@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CIED Periprocedural Quick Reference — For Anaesthetists</title>
+<style>
+  :root{
+    --aha-red:#C8102E;
+    --aha-red-dark:#8E0C22;
+    --aha-red-soft:#E85D75;
+    --red-tint:#FDF1F3;
+    --teal:#0F6E78;
+    --teal-tint:#EAF4F5;
+    --amber-tint:#FFF8E9;
+    --amber-line:#F0D69A;
+    --ink:#1F2A33;
+    --muted:#5A6B78;
+    --line:#E4E9ED;
+    --bg:#F7F9FA;
+    --card:#FFFFFF;
+    --shadow:0 1px 2px rgba(16,32,48,.05), 0 6px 18px rgba(16,32,48,.045);
+    --radius:14px;
+    --hit-bg:#FFE9A8;
+    --hit-bg-active:#FFC94D;
+    --hit-ink:#6B4300;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:15.5px;
+    line-height:1.62;
+  }
+
+  .wrap{max-width:960px;margin:0 auto;padding:0 18px;}
+
+  /* ---------- Header ---------- */
+  .topbar{height:5px;background:linear-gradient(90deg,var(--aha-red) 0%,var(--aha-red-soft) 55%,#F3A6B4 100%);}
+
+  .hero{
+    background:linear-gradient(135deg,#FCE9EC 0%,#FBF4F5 45%,#EAF4F5 100%);
+    border-bottom:1px solid var(--line);
+    padding:34px 0 30px;
+  }
+
+  .eyebrow{
+    margin:0 0 10px;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--aha-red);
+  }
+
+  .hero h1{
+    margin:0 0 10px;
+    font-size:clamp(22px,3.4vw,31px);
+    line-height:1.24;
+    letter-spacing:-.015em;
+    color:var(--aha-red-dark);
+    font-weight:750;
+  }
+
+  .hero p.sub{
+    margin:0 0 18px;
+    color:#4A5A66;
+    font-size:15.5px;
+    max-width:62ch;
+  }
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:rgba(255,255,255,.85);
+    border:1px solid #EBD5D9;
+    color:#8A3141;
+    font-size:12.5px;
+    font-weight:600;
+    padding:5px 11px;
+    border-radius:999px;
+  }
+
+  /* ---------- Sticky Toolbar ---------- */
+  .toolbar-outer{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(247,249,250,.94);
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+
+  .toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 10px;
+    align-items:center;
+    padding:12px 0;
+  }
+
+  .btn{
+    appearance:none;
+    border:1px solid var(--line);
+    background:#fff;
+    color:#3B4A55;
+    font:inherit;
+    font-size:13.5px;
+    font-weight:600;
+    padding:8px 15px;
+    border-radius:9px;
+    cursor:pointer;
+    transition:.16s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{border-color:#CFD8DE;background:#FCFDFD;color:var(--aha-red-dark);}
+  .btn:active{transform:translateY(1px);}
+  .btn:focus-visible{outline:2px solid var(--aha-red-soft);outline-offset:1px;}
+  .btn.primary{background:var(--aha-red);border-color:var(--aha-red);color:#fff;}
+  .btn.primary:hover{background:#B00E28;color:#fff;}
+
+  /* ---------- Search ---------- */
+  .search-wrap{
+    position:relative;
+    display:flex;
+    align-items:center;
+    flex:1 1 240px;
+    min-width:0;
+    max-width:440px;
+  }
+
+  .search-icon{
+    position:absolute;
+    left:12px;
+    width:15px;
+    height:15px;
+    color:#9AA8B2;
+    pointer-events:none;
+  }
+
+  .search-input{
+    width:100%;
+    font:inherit;
+    font-size:14px;
+    padding:9px 36px 9px 35px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:#fff;
+    color:var(--ink);
+    transition:.16s ease;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+  .search-input::placeholder{color:#9AA8B2;}
+  .search-input:focus{
+    outline:none;
+    border-color:var(--aha-red-soft);
+    box-shadow:0 0 0 3px rgba(232,93,117,.15);
+  }
+  .search-input::-webkit-search-cancel-button{display:none;}
+
+  .search-clear{
+    position:absolute;
+    right:7px;
+    width:24px;height:24px;
+    border:none;
+    background:#EFF3F5;
+    border-radius:6px;
+    color:#5A6B78;
+    font-size:16px;
+    line-height:1;
+    cursor:pointer;
+    display:grid;
+    place-items:center;
+    padding:0;
+    font-family:inherit;
+  }
+  .search-clear:hover{background:#E2E8EC;color:var(--aha-red-dark);}
+  .search-clear[hidden]{display:none;}
+
+  .status{
+    flex:1 1 auto;
+    text-align:right;
+    font-size:12.5px;
+    color:var(--muted);
+    min-width:0;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .status.has-match{color:var(--teal);font-weight:650;}
+  .status.no-match{color:var(--aha-red);font-weight:650;}
+
+  @media (max-width:640px){
+    .status{flex:1 1 100%;text-align:left;white-space:normal;}
+  }
+
+  /* ---------- Cards / Details ---------- */
+  details.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid #E7EDF0;
+    border-radius:var(--radius);
+    margin-bottom:12px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    transition:border-left-color .2s ease;
+  }
+
+  details.card[open]{border-left-color:var(--aha-red-soft);}
+
+  details.card > summary{
+    list-style:none;
+    cursor:pointer;
+    padding:15px 18px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    font-weight:650;
+    font-size:16px;
+    color:#22303A;
+    user-select:none;
+  }
+  details.card > summary::-webkit-details-marker{display:none;}
+  details.card > summary:hover{background:#FCFDFD;}
+  details.card > summary:focus-visible{outline:2px solid var(--aha-red-soft);outline-offset:-2px;}
+
+  summary .title{flex:1 1 auto;min-width:0;}
+
+  .num{
+    flex:0 0 auto;
+    width:27px;height:27px;
+    border-radius:8px;
+    display:grid;place-items:center;
+    font-size:12.5px;font-weight:750;
+    background:var(--red-tint);
+    color:var(--aha-red);
+    border:1px solid #F3D9DE;
+  }
+  details.card[open] .num{background:var(--aha-red);color:#fff;border-color:var(--aha-red);}
+
+  .chev{
+    margin-left:auto;
+    flex:0 0 auto;
+    width:9px;height:9px;
+    border-right:2px solid #A9B6BF;
+    border-bottom:2px solid #A9B6BF;
+    transform:rotate(45deg);
+    transition:transform .22s ease;
+    margin-top:-4px;
+  }
+  details.card[open] .chev{transform:rotate(-135deg);margin-top:4px;}
+
+  .card-body{padding:2px 18px 20px 18px;}
+  .card-body > *:first-child{margin-top:0;}
+  .card-body > *:last-child{margin-bottom:0;}
+
+  /* ---------- Typography ---------- */
+  h3{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.09em;
+    color:var(--teal);
+    margin:22px 0 9px;
+    font-weight:750;
+  }
+
+  p{margin:0 0 12px;}
+
+  ul,ol{margin:0 0 13px;padding-left:20px;}
+  li{margin-bottom:6px;}
+  li::marker{color:var(--aha-red-soft);}
+  ul ul{margin-top:6px;margin-bottom:4px;}
+
+  strong{font-weight:670;color:#17232B;}
+
+  code{
+    background:#F2F5F7;
+    border:1px solid #E4E9ED;
+    border-radius:5px;
+    padding:1px 6px;
+    font-size:13px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    color:#8E0C22;
+    white-space:nowrap;
+  }
+
+  /* ---------- Tables ---------- */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 14px;border-radius:10px;border:1px solid var(--line);}
+
+  table{border-collapse:collapse;width:100%;min-width:540px;font-size:14px;background:#fff;}
+
+  thead th{
+    background:#F4F7F9;
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    color:#44555F;
+    font-weight:750;
+    padding:10px 13px;
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+
+  tbody td{
+    padding:11px 13px;
+    border-bottom:1px solid #EEF2F5;
+    vertical-align:top;
+    line-height:1.5;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even){background:#FCFDFE;}
+  tbody td:first-child{font-weight:620;color:#22303A;}
+
+  /* ---------- Callouts ---------- */
+  .callout{
+    border-radius:11px;
+    padding:14px 16px;
+    margin:0 0 14px;
+    font-size:14.5px;
+    border:1px solid;
+  }
+  .callout > *:last-child{margin-bottom:0;}
+  .callout .label{
+    display:block;
+    font-size:11.5px;
+    font-weight:750;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    margin-bottom:5px;
+  }
+  .callout.warn{background:var(--red-tint);border-color:#F3D9DE;color:#6E1424;}
+  .callout.warn .label{color:var(--aha-red);}
+  .callout.tip{background:var(--teal-tint);border-color:#CFE4E7;color:#0C4E56;}
+  .callout.tip .label{color:var(--teal);}
+  .callout.note{background:var(--amber-tint);border-color:var(--amber-line);color:#6B5015;}
+  .callout.note .label{color:#A87B12;}
+
+  /* ---------- Four-question grid ---------- */
+  .qgrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:11px;
+    margin:0 0 16px;
+  }
+  .qcard{
+    background:linear-gradient(180deg,#FFFFFF,#FBFCFD);
+    border:1px solid var(--line);
+    border-top:3px solid var(--aha-red-soft);
+    border-radius:11px;
+    padding:13px 15px;
+  }
+  .qcard .q{
+    font-size:11.5px;
+    font-weight:750;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--aha-red);
+    margin-bottom:4px;
+  }
+  .qcard p{margin:0;font-size:14px;color:#3B4A55;}
+
+  /* ---------- Checklist ---------- */
+  ul.check{list-style:none;padding-left:0;}
+  ul.check li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:8px;
+  }
+  ul.check li::before{
+    content:"";
+    position:absolute;
+    left:2px;top:8px;
+    width:13px;height:7px;
+    border-left:2.5px solid var(--aha-red-soft);
+    border-bottom:2.5px solid var(--aha-red-soft);
+    transform:rotate(-45deg);
+    border-radius:1px;
+  }
+
+  /* ---------- Search highlight ---------- */
+  mark.sh{
+    background:var(--hit-bg);
+    color:var(--hit-ink);
+    padding:0 2px;
+    border-radius:3px;
+    font-weight:650;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+
+  /* ---------- No results ---------- */
+  .no-results{
+    text-align:center;
+    padding:44px 22px;
+    background:#fff;
+    border:1px dashed #D8E0E5;
+    border-radius:var(--radius);
+    color:var(--muted);
+    margin-bottom:12px;
+    font-size:14.5px;
+  }
+  .no-results p{margin:0 0 8px;}
+  .no-results p:last-child{margin-bottom:0;}
+  .link-btn{
+    background:none;
+    border:none;
+    padding:0;
+    font:inherit;
+    color:var(--aha-red-dark);
+    text-decoration:underline;
+    cursor:pointer;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    margin-top:34px;
+    padding:26px 0 44px;
+    border-top:1px solid var(--line);
+    background:#fff;
+  }
+  .cite{
+    background:#FAFBFC;
+    border:1px solid var(--line);
+    border-left:4px solid var(--teal);
+    border-radius:11px;
+    padding:16px 18px;
+    font-size:13.5px;
+    color:#3B4A55;
+    line-height:1.6;
+  }
+  .cite .label{
+    display:block;
+    font-size:11.5px;
+    font-weight:750;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:7px;
+  }
+  .cite a{color:var(--aha-red-dark);text-decoration:none;border-bottom:1px solid #EBD5D9;}
+  .cite a:hover{border-bottom-color:var(--aha-red);}
+
+  .disclaimer{margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.6;}
+
+  /* ---------- Print ---------- */
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .topbar,.toolbar-outer,.no-results{display:none !important;}
+    .hero{background:#fff;border-bottom:2px solid var(--aha-red);padding:0 0 16px;}
+    details.card{break-inside:avoid;box-shadow:none;page-break-inside:avoid;}
+    details.card > summary{cursor:default;}
+    .chev{display:none;}
+    mark.sh{background:transparent;color:inherit;font-weight:700;padding:0;text-decoration:underline;}
+  }
+
+  @media (max-width:520px){
+    .hero{padding:24px 0 22px;}
+    details.card > summary{font-size:15px;padding:13px 14px;gap:10px;}
+    .card-body{padding:2px 14px 17px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">American Heart Association · Scientific Statement</p>
+    <h1>Periprocedural Management of Cardiac Implantable Electronic Devices</h1>
+    <p class="sub">A quick-reference guide for anaesthetists — pacing, defibrillator therapies, magnets, electromagnetic interference and the multidisciplinary care pathway.</p>
+    <div class="chips">
+      <span class="chip">Pacemakers &amp; CRT-P</span>
+      <span class="chip">ICD &amp; CRT-D</span>
+      <span class="chip">Leadless pacemakers</span>
+      <span class="chip">Subcutaneous / extravascular ICD</span>
+      <span class="chip">Loop recorders</span>
+      <span class="chip">Magnet response</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar-outer">
+  <div class="wrap">
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.5"></circle>
+          <path d="m10.5 10.5 3 3"></path>
+        </svg>
+        <input type="search" id="searchInput" class="search-input" placeholder="Search this guide…" autocomplete="off" spellcheck="false" aria-label="Search this guide">
+        <button type="button" id="searchClear" class="search-clear" aria-label="Clear search" hidden>×</button>
+      </div>
+      <button class="btn primary" id="expandAll" type="button">Expand all</button>
+      <button class="btn" id="collapseAll" type="button">Collapse all</button>
+      <button class="btn" id="printBtn" type="button">Print / PDF</button>
+      <span class="status" id="statusText" aria-live="polite">Press / to search</span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div id="noResults" class="no-results" hidden>
+    <p><strong>No matches found.</strong></p>
+    <p>Try a different term, or <button type="button" id="clearFromNoResults" class="link-btn">clear the search</button> to see all sections.</p>
+  </div>
+
+  <!-- ============ 0. THE FOUR QUESTIONS ============ -->
+  <details class="card" open>
+    <summary><span class="num">★</span><span class="title">Start here: the four questions</span><span class="chev"></span></summary>
+    <div class="card-body">
+      <p>Before any procedure, answer these four questions. They determine everything that follows.</p>
+      <div class="qgrid">
+        <div class="qcard">
+          <div class="q">1 · What device?</div>
+          <p>Pacemaker, ICD, CRT, leadless, subcutaneous/extravascular ICD, or loop recorder — and which manufacturer?</p>
+        </div>
+        <div class="qcard">
+          <div class="q">2 · Where is it?</div>
+          <p>Right/left infraclavicular, abdominal, or midaxillary. Is the surgical site or grounding pad near it?</p>
+        </div>
+        <div class="qcard">
+          <div class="q">3 · Pacing dependent?</div>
+          <p>Check interrogation within 3 months and a 12-lead ECG. Dependency can increase under sedation.</p>
+        </div>
+        <div class="qcard">
+          <div class="q">4 · Above the umbilicus?</div>
+          <p>Procedures above the umbilicus carry the highest risk of electromagnetic interference (EMI).</p>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <span class="label">The single most important safety step</span>
+        <strong>Re-enable defibrillator tachyarrhythmia detection and therapies before the patient leaves a monitored setting.</strong> Deaths have been reported after failure to reactivate ICD therapies following elective procedures.
+      </div>
+
+      <h3>The periprocedural cycle</h3>
+      <p><strong>CIED care centre</strong> (procedure planning, remote monitoring) → <strong>Preprocedure</strong> (optimise settings, prepare, test magnet) → <strong>Intraprocedure</strong> (monitoring, emergency readiness) → <strong>Postprocedure</strong> (restore settings) → back to the <strong>CIED care centre</strong> for follow-up.</p>
+      <p>Involvement of the cardiology clinic that primarily manages the device improves both patient safety and continuity of care. Planning begins as soon as the decision to operate is made — not on the morning of surgery.</p>
+    </div>
+  </details>
+
+  <!-- ============ 1. PREPROCEDURAL ============ -->
+  <details class="card">
+    <summary><span class="num">1</span><span class="title">Preprocedural screening &amp; interrogation</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <h3>Patient screening checklist</h3>
+      <ul class="check">
+        <li><strong>Presence and location of the CIED</strong> — right/left infraclavicular, abdominal, or midaxillary region.</li>
+        <li><strong>Device type</strong> — transvenous or leadless pacemaker; transvenous, subcutaneous or extravascular defibrillator; cardiac resynchronisation device; or implantable cardiac monitor.</li>
+        <li><strong>Indication and arrhythmic history</strong> — sick sinus syndrome, AV block, primary/secondary prevention of sudden cardiac death, VT/VF, sinus node dysfunction, tachy-brady syndrome, SVT, AF, or cause of cardiomyopathy.</li>
+        <li><strong>Physical examination</strong> — jugular venous pressure, pulmonary auscultation, lower-extremity oedema, and condition of the CIED pocket if applicable.</li>
+        <li><strong>Other sources of EMI</strong> — nerve stimulators, cochlear implants, programmable hydrocephalus shunts, left ventricular assist devices, cardiac contractility modulation devices.</li>
+        <li><strong>New arrhythmia events</strong> recorded by the device.</li>
+        <li><strong>Extracardiac conditions</strong> affecting intraprocedural safety — acute or chronic kidney dysfunction, hepatic failure, acute/subacute neurological impairment, pulmonary insufficiency, and impediments to vascular access.</li>
+      </ul>
+
+      <div class="callout tip">
+        <span class="label">Finding the device details</span>
+        Sources include the patient's device card, recent interrogation or remote transmission, the electronic health record, and the chest x-ray. Chest x-ray also distinguishes an ICD from a pacemaker: <strong>the radiopaque coil on the lead is the hallmark of a defibrillator.</strong>
+      </div>
+
+      <h3>What to interrogate</h3>
+      <p>An interrogation within <strong>3 months</strong> of the planned procedure may be reviewed to assess recent device activity. Specific elements:</p>
+      <ul>
+        <li>Cardiac rhythm status — underlying rhythm, baseline heart rate, and dependency on pacing support.</li>
+        <li>Battery life, thresholds, impedances, sensing parameters, and history of prior arrhythmias.</li>
+        <li>Whether the device is MRI conditional, and at what magnet strength.</li>
+        <li><strong>Testing and confirmation of magnet response.</strong></li>
+      </ul>
+
+      <h3>Additional screening</h3>
+      <p>Active or ongoing heart failure symptoms — orthopnoea, paroxysmal nocturnal dyspnoea — warrant assessment for atrial or ventricular arrhythmias and optimisation of cardiac status before the procedure. A high burden of atrial or ventricular arrhythmias, or recent ICD therapy (antitachycardia pacing or shocks), may warrant further medical evaluation unless the operation is urgent or emergent.</p>
+    </div>
+  </details>
+
+  <!-- ============ 2. PROCEDURE & SITE ============ -->
+  <details class="card">
+    <summary><span class="num">2</span><span class="title">Procedure &amp; surgical site risk</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <h3>Above vs. below the umbilicus</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Site</th><th>EMI risk</th><th>Practical implication</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Above the umbilicus</td>
+              <td>Higher</td>
+              <td>Consider inhibiting ICD therapies; consider asynchronous pacing if pacemaker dependent; test magnet response preoperatively.</td>
+            </tr>
+            <tr>
+              <td>Below the umbilicus</td>
+              <td>Lower</td>
+              <td>Unlikely to cause EMI <em>provided the return/grounding pad is also below the umbilicus</em>.</td>
+            </tr>
+            <tr>
+              <td>CIED generator in the abdomen</td>
+              <td>Variable</td>
+              <td>Consult the electrophysiology/CIED team about cautery; reprogramming may be needed because of proximity to the generator.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Cautery</h3>
+      <ul>
+        <li><strong>Unipolar cautery is the principal source of EMI.</strong> Oversensing of EMI may cause failure of pacing output or false detection of arrhythmias.</li>
+        <li><strong>True bipolar cautery</strong> — frequently used by ocular and plastic surgeons — is safe and has no adverse effects, unless applied directly to a CIED.</li>
+        <li>Place the grounding/return pad <strong>far away from the CIED</strong> — ideally on the contralateral lower limb — to keep the current path away from the device.</li>
+      </ul>
+
+      <div class="callout note">
+        <span class="label">Risk mitigation — the standard bundle</span>
+        <ul style="margin-bottom:0;">
+          <li>Keep the current path away from the CIED; return electrode on the contralateral lower limb.</li>
+          <li>Use bipolar electrosurgery whenever possible.</li>
+          <li>Minimise monopolar bursts to <strong>≤ 5 seconds</strong>.</li>
+          <li>Avoid whole-body return electrodes.</li>
+          <li>Remember: <strong>a low battery increases the risk of electrical current intrusion</strong> (protection circuitry depends on battery current).</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 3. PACING DEPENDENCY ============ -->
+  <details class="card">
+    <summary><span class="num">3</span><span class="title">Pacemaker dependency</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <p>Pacing dependency may change according to the programmed pacemaker mode, <strong>depth of anaesthesia</strong>, changes in autonomic activity, and administration of other pharmacological agents. It may increase under sedation.</p>
+
+      <h3>Assessing dependency</h3>
+      <ul>
+        <li>Review interrogation within 3 months — the burden of atrial, ventricular, or dual-chamber pacing helps determine dependency.</li>
+        <li>A 12-lead ECG can determine whether intrinsic conduction (underlying rhythm) or pacing is present.</li>
+        <li>Patients who are <em>not</em> pacing dependent may still have an underlying rhythm inadequate for the haemodynamic demands of the procedure — careful observation may be used if sinus node dysfunction with a stable rhythm is present.</li>
+      </ul>
+
+      <h3>If the patient is pacing dependent</h3>
+      <ul>
+        <li>Programme an <strong>asynchronous pacing mode</strong> — <code>AOO</code>, <code>VOO</code> or <code>DOO</code> — according to hospital preoperative workflow, <em>or</em></li>
+        <li>Apply a <strong>magnet</strong> continuously, assuming a stable position can be maintained and the generator is not within the sterile field.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="label">Important</span>
+        Magnet application causes pacing at a <strong>proprietary, manufacturer- and battery-specific rate</strong>, with variability between leadless and transvenous devices. Not all pacemakers respond. If magnet application is planned, <strong>test the response preoperatively</strong> in a monitored environment.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 4. ICD / DEFIBRILLATOR ============ -->
+  <details class="card">
+    <summary><span class="num">4</span><span class="title">Defibrillator (ICD / CRT-D) management</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <ul>
+        <li>For procedures <strong>above the umbilicus</strong>, defibrillators may be inhibited preoperatively to avoid inappropriate shocks due to EMI.</li>
+        <li>Continuous application of a <strong>magnet inhibits arrhythmia detection and therapy but does not affect pacing function</strong>. Oversensing of EMI may therefore still inhibit pacing during magnet application.</li>
+        <li><strong>Removal of the magnet restores</strong> arrhythmia detection to its original settings.</li>
+        <li>If a stable magnet position is difficult to maintain — due to patient positioning or the extent of the sterile field — <strong>reprogramming may be necessary</strong>.</li>
+        <li>Some magnet responses are programmable; check the setting and magnet response routinely before the proposed procedure.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="label">Critical workflow requirement</span>
+        There must be a <strong>designated workflow to ensure ICD therapies are re-enabled before the patient is discharged from a monitored setting.</strong>
+      </div>
+
+      <div class="callout note">
+        <span class="label">Manufacturer nuance — Biotronik</span>
+        After <strong>8 hours of continuous magnet application</strong>, tachycardia detection and therapy are automatically re-enabled. Unlike all other manufacturers, there is <strong>no audible tone</strong> when the magnet is applied.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 5. MAGNET RESPONSE TABLE ============ -->
+  <details class="card">
+    <summary><span class="num">5</span><span class="title">Magnet response by device type</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Device type</th><th>Magnet response</th><th>Special considerations</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Transvenous pacemaker / CRT-P</td>
+              <td>Asynchronous pacing (<code>VOO</code>/<code>DOO</code>)</td>
+              <td>
+                <strong>Abbott:</strong> can be programmed to "off".<br>
+                <strong>Biotronik:</strong> nominal is 10 asynchronous beats followed by prior settings; also programmable to VOO/DOO or AAI/VVI/DDD.<br>
+                <strong>Boston Scientific:</strong> can be programmed to "off".
+              </td>
+            </tr>
+            <tr>
+              <td>Leadless pacemaker</td>
+              <td>
+                <strong>Abbott AVEIR:</strong> VOO/DOO<br>
+                <strong>Medtronic Micra VR &amp; AV:</strong> none
+              </td>
+              <td>
+                <strong>AVEIR:</strong> because of the location within the heart, magnet response may be more difficult to achieve than with transvenous systems — consider testing before the patient enters the procedural suite.<br>
+                <strong>Micra VR/AV:</strong> no magnet response mode at all.
+              </td>
+            </tr>
+            <tr>
+              <td>Transvenous ICD / CRT-D</td>
+              <td>Tachycardia detection and therapy inhibited; <strong>no change to pacing function</strong></td>
+              <td>
+                <strong>Biotronik:</strong> after 8 h of continuous magnet application, tachycardia detection and therapy are automatically re-enabled. No audible tone when the magnet is applied, unlike all other manufacturers.
+              </td>
+            </tr>
+            <tr>
+              <td>Subcutaneous ICD (S-ICD)</td>
+              <td>Tachycardia detection and therapy inhibited</td>
+              <td>
+                <strong>Boston Scientific:</strong> no bradycardia pacing through the subcutaneous system with magnet application; <strong>emergency bradycardia pacing not possible.</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Extravascular ICD (EV-ICD)</td>
+              <td>Tachycardia detection and therapy inhibited</td>
+              <td>
+                <strong>Medtronic:</strong> no bradycardia pacing through the system with magnet application; however, <strong>emergency bradycardia pacing is possible.</strong> Pause-prevention pacing is <em>not</em> affected by the magnet.
+              </td>
+            </tr>
+            <tr>
+              <td>Implantable loop recorder (ILR)</td>
+              <td>Some models use magnet application to communicate with applications</td>
+              <td>Negligible risk to the patient during surgery from EMI.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="font-size:13px;color:var(--muted);margin-bottom:0;">
+        <strong>Abbreviations:</strong> <code>VOO</code> single-chamber asynchronous ventricular pacing · <code>DOO</code> dual-chamber asynchronous atrial and ventricular pacing · <code>AOO</code> single-chamber asynchronous atrial pacing · <code>AAI</code> single-chamber atrial demand pacing · <code>VVI</code> single-chamber ventricular demand pacing · <code>DDD</code> dual-chamber sensing and pacing.<br>
+        The rate of asynchronous pacing in magnet mode is manufacturer- and battery-life-specific.
+      </p>
+
+      <h3>Magnet checklist</h3>
+      <ol>
+        <li>Appropriate patient position.</li>
+        <li>Magnet not in sterile field.</li>
+        <li>Test magnet mode activation preoperatively.</li>
+        <li>If leadless pacemaker — may not have a magnet mode.</li>
+        <li>If ICD — the magnet does not affect the pacing mode (reprogramming is required to change pacing).</li>
+      </ol>
+    </div>
+  </details>
+
+  <!-- ============ 6. SPECIAL DEVICES ============ -->
+  <details class="card">
+    <summary><span class="num">6</span><span class="title">Special devices: leadless, S-ICD, EV-ICD, ILR, CSP</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <h3>Leadless pacemakers</h3>
+      <ul>
+        <li>Entirely contained within the heart — <strong>may not be seen or palpated</strong> on examination. A careful history is required to identify them.</li>
+        <li>Two systems are commercially available in the US; identify the company and specific type, because behaviour (especially magnet response) differs.</li>
+        <li>Usually interrogated before the planned procedure for pacing burden, battery life, ventricular sensing amplitude, capture threshold, and device impedance. Repeat assessment after the procedure.</li>
+        <li>Ventricular leadless devices provide ventricular pacing with or without rate response (<code>VOO</code>, <code>VVI</code>, <code>VVIR</code>). Devices with accelerometers (Medtronic Micra AV) may also provide AV synchrony via atrial mechanical sensing (<code>VDD</code>, <code>VDI</code>).</li>
+        <li>Unlike transvenous devices, leadless pacemakers can be programmed <strong>"off"</strong>.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="label">Key anaesthetic consideration</span>
+        Magnet response may be <strong>absent or difficult to activate</strong> because of device position or body habitus. The Medtronic Micra VR and AV have <strong>no magnet response</strong>. If the patient is pacemaker dependent and the procedure involves EMI above the umbilicus, <strong>programme the device to asynchronous ventricular pacing (<code>VOO</code>)</strong> to avoid sensing of noise.
+      </div>
+
+      <p>When the Abbott AVEIR magnet mode is activated, it paces asynchronously (<code>VOO</code>) at <strong>100 bpm for 5 seconds</strong>, followed by a fixed rate determined by battery voltage. When the magnet is removed, the device returns to its previous settings. The Abbott AVEIR DR (dual-chamber leadless) paces in <code>DOO</code> with magnet application; a single atrial leadless device converts to <code>AOO</code>.</p>
+
+      <p><strong>Rate response differs by manufacturer:</strong> Micra series increase rate via an accelerometer; Abbott series increase rate according to the temperature of blood returning to the heart.</p>
+
+      <h3>Subcutaneous ICD (S-ICD) and extravascular ICD (EV-ICD)</h3>
+      <ul>
+        <li>Implanted outside the vascular system: pulse generator in the extrathoracic space along the <strong>left midaxillary line</strong>, with a single lead tunnelled to the midline.</li>
+        <li>S-ICD shock coil lies <strong>superficial to the sternum</strong>; EV-ICD shock coil lies <strong>deep to the sternum</strong>.</li>
+        <li>Both use widely spaced electrode recordings, making them <strong>more susceptible to EMI</strong> than transvenous bipolar sensing configurations.</li>
+        <li><strong>Neither provides long-term bradycardia pacing.</strong> Both provide temporary "post-shock pacing" after defibrillation. The EV-ICD additionally provides antitachycardia pacing and temporary pause-prevention pacing at 40 bpm for pauses &gt; 5 s (programmable up to 15 s).</li>
+        <li>Avoid including the pulse generator and defibrillator electrode in the electrocautery current path to the grounding pad.</li>
+        <li>To inhibit EMI-induced shocks or pacing: place a magnet over the pulse generator, or programme the defibrillator "off".</li>
+        <li>For the S-ICD, best magnet response has been shown with <strong>direct placement of a ring-shaped magnet</strong>.</li>
+      </ul>
+
+      <h3>Loop recorders / implantable cardiac monitors</h3>
+      <ul>
+        <li>Implanted subcutaneously in the left upper chest; may be palpated and identified on chest x-ray.</li>
+        <li>If the insertion site lies within the planned surgical incision, <strong>removal may be considered</strong>.</li>
+        <li>Electrocautery, defibrillation, radiofrequency ablation, lithotripsy, and nerve stimulators can cause inappropriate episode storage or inhibit episode storage.</li>
+        <li><strong>Preprocedural data retrieval</strong> may be needed to avoid loss of symptomatic preprocedural events. Postprocedural data may contain artefacts — accurate reporting of procedural date/time is essential.</li>
+      </ul>
+
+      <h3>Conduction system pacing</h3>
+      <p>Leads implanted within the conduction system usually produce a narrower ventricular-paced QRS than traditional RV or biventricular pacing. <strong>His bundle pacing sites</strong> may carry a higher risk of elevated pacing thresholds or microdislodgement compared with RV apical or left bundle branch pacing sites.</p>
+
+      <h3>Lead dislodgement &amp; vascular instrumentation</h3>
+      <ul>
+        <li>Surgical instruments or guide wires can dislodge leads or leadless pacemakers, causing loss of pacing or inappropriate shocks.</li>
+        <li>Avoid central line access on the <strong>ipsilateral side</strong> of a CIED to reduce the risk of vascular stenosis and infection.</li>
+        <li>Recently implanted leads and leadless devices are at higher risk of dislodgement.</li>
+        <li>With an ICD — especially dual-coil leads — upper-body central venous catheter placement risks inducing ventricular arrhythmias or oversensing from guide wire interference. High-voltage shorting from guide wire contact with coils can cause ICD circuitry issues.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7. EMI SOURCES ============ -->
+  <details class="card">
+    <summary><span class="num">7</span><span class="title">EMI sources &amp; their effects</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <h3>General effects of EMI</h3>
+      <ul>
+        <li>Oversensing of electrosurgical energy.</li>
+        <li>Initiation of noise-reversion mode (asynchronous pacing).</li>
+        <li>Initiation of electrical reset mode.</li>
+        <li>Permanent damage to, or failure of, the CIED pulse generator.</li>
+        <li>Damage to the lead–myocardial interface causing an increase in pacing thresholds.</li>
+      </ul>
+
+      <p><strong>Most common problem during surgery:</strong></p>
+      <ul>
+        <li><strong>Pacemakers:</strong> oversensing of EMI and device inhibition, which may lead to inappropriately high heart rates due to tracking.</li>
+        <li><strong>ICD:</strong> false detection of tachyarrhythmia and inappropriate therapy.</li>
+      </ul>
+      <p>Device reset occurs infrequently with electrosurgery. Pulse generator damage from electrosurgery can occur but is uncommon.</p>
+
+      <h3>Procedures &amp; devices</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Source / procedure</th><th>Effect &amp; considerations</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bipolar electrosurgery</td>
+              <td>Does not cause EMI unless applied directly to a CIED.</td>
+            </tr>
+            <tr>
+              <td>Monopolar electrosurgery</td>
+              <td>Applied below the umbilicus it is unlikely to cause EMI, as long as the return pad is also below the umbilicus.</td>
+            </tr>
+            <tr>
+              <td>Electrical cardioversion</td>
+              <td>May result in reset of the CIED, device programming changes, premature battery depletion, or premature lead failure.</td>
+            </tr>
+            <tr>
+              <td>Radiofrequency ablation</td>
+              <td>Interactions similar to monopolar electrosurgery but greater risk with prolonged current exposure and risk to leads. Check sensing, impedance and threshold testing after the EP study.</td>
+            </tr>
+            <tr>
+              <td>Therapeutic radiation</td>
+              <td>Most likely source of EMI to cause CIED reset. Can cause oversensing, change pacing thresholds, change lead impedances, or prematurely deplete the battery. Neutron contamination and increased absorbed dose from proximity of the radiation field warrant enhanced monitoring.</td>
+            </tr>
+            <tr>
+              <td>Electroconvulsive therapy</td>
+              <td>Unlikely to cause EMI during the stimulus. More commonly, extreme sinus tachycardia occurs with the seizure — review ICD tachycardia therapy zones.</td>
+            </tr>
+            <tr>
+              <td>Interventional pulmonary procedures</td>
+              <td>Laser appears safe with little EMI risk. Endobronchial electrosurgery may interfere and carries a theoretical risk of thermal injury at the lead–myocardium interface. Endoscopic argon plasma coagulation (monopolar circuitry, high voltage) is more likely to cause EMI. Electromagnetic navigational bronchoscopy is unlikely to cause EMI.</td>
+            </tr>
+            <tr>
+              <td>Gastrointestinal procedures</td>
+              <td>Procedures using electrosurgery (biliary sphincterotomy, polypectomy, haemostasis, lesion ablation, endoscopic surgery) may cause EMI. Argon plasma coagulation is more likely to cause EMI.</td>
+            </tr>
+            <tr>
+              <td>Transcutaneous electrical nerve stimulation (TENS)</td>
+              <td>May rarely cause EMI — influenced by nerve stimulator position on the chest and current intensity. May be assessed for interference before use.</td>
+            </tr>
+            <tr>
+              <td>Lithotripsy</td>
+              <td>Possible risk of reset; use a magnet in the case of inhibition.</td>
+            </tr>
+            <tr>
+              <td>Left ventricular assist devices (LVAD)</td>
+              <td>A common cause of EMI that can result in CIED reset, inappropriate shocks, inhibition of pacing, magnet mode, or premature battery depletion.</td>
+            </tr>
+            <tr>
+              <td>Cardiac contractility modulation</td>
+              <td>Device often present over the right chest and may coexist with an ICD on the contralateral side. Pulses are applied through multiple leads to the right ventricle periodically over the day.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Unipolar sensing &amp; pacing</h3>
+      <p>CIED sensing must occur between two electrical references. Most commonly this is between closely spaced electrodes in the heart (bipolar configuration). Some transvenous devices may be programmed to sense between an electrode in the heart and the device generator (unipolar configuration). <strong>Transvenous devices with unipolar sensing are more susceptible to EMI</strong>, with greater potential for oversensing.</p>
+    </div>
+  </details>
+
+  <!-- ============ 8. INTRAOPERATIVE ============ -->
+  <details class="card">
+    <summary><span class="num">8</span><span class="title">Intraprocedural management</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <ul>
+        <li><strong>Continuous telemetry monitoring</strong> for all patients with CIEDs for the duration of the procedure.</li>
+        <li>Because of possible electrical interference with telemetry recordings, use <strong>plethysmography or arterial blood pressure monitoring</strong>.</li>
+        <li>Consider <strong>storing telemetry strips</strong> for expert review after the procedure if concerns arise about device malfunction or arrhythmia detection.</li>
+        <li>Cardiac pacing spikes seen on telemetry are added by an algorithm and <strong>may not be identified or displayed if pacing output is low</strong> — this is often not a reliable means of monitoring pacing output.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="label">If a magnet is used intraprocedurally</span>
+        <ul style="margin-bottom:0;">
+          <li>The magnet must be <strong>continuously applied directly to the CIED</strong> without contaminating the sterile field.</li>
+          <li>The device returns to its prior settings as soon as the magnet is no longer detected.</li>
+          <li>While ICD therapies are deactivated, <strong>external defibrillation pads must be in place</strong> in case of ventricular arrhythmias or need for pacing.</li>
+        </ul>
+      </div>
+
+      <p>Plans should be made for rapid detection and treatment of ventricular arrhythmias whenever ICD therapies are temporarily deactivated or pacing settings altered — including immediate availability of an <strong>external defibrillator and external transcutaneous pacing device</strong>.</p>
+
+      <p>If programming changes are performed, they should be completed under the direct supervision of a physician or health care professional experienced in periprocedural CIED management. Industry-employed allied professionals may assist with logistics and technical aspects, but <strong>should not be primarily responsible for perioperative recommendations</strong>.</p>
+    </div>
+  </details>
+
+  <!-- ============ 9. POSTPROCEDURAL ============ -->
+  <details class="card">
+    <summary><span class="num">9</span><span class="title">Postprocedural care</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <div class="callout warn">
+        <span class="label">Non-negotiable</span>
+        <strong>Ensure the device is returned to its prior settings after the procedure.</strong> Patient deaths have been reported after failure to reactivate ICD therapies following elective procedures.
+      </div>
+
+      <ul>
+        <li>Once the magnet is removed, the CIED returns to its previous settings.</li>
+        <li>If reprogramming is required to reinstate tachyarrhythmia detection and therapies, <strong>continuous monitoring until the device therapy is re-enabled</strong> is useful.</li>
+        <li>Place all reprogramming documentation in the electronic health record.</li>
+        <li>In the event of major intraprocedural events — cardiac arrest, ICD therapy delivery, external defibrillation, or suspected device reset — <strong>interrogate the device postprocedurally</strong>.</li>
+        <li>In the absence of any major procedural events, the patient can return to routine device follow-up.</li>
+        <li><strong>Communicate with the CIED team</strong> about any device changes or reprogramming to ensure safe continuity of care.</li>
+        <li>For radiofrequency ablation, check sensing, impedance and threshold testing after the EP study; loop recorders are usually not reprogrammed, but note that the patient underwent a cardiac procedure that may produce recorded arrhythmias, artefact, or noise.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 10. EMERGENCY MAGNET ============ -->
+  <details class="card">
+    <summary><span class="num">10</span><span class="title">Emergency use of magnets</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <p>In the preprocedural period there may be an increased risk of scenarios leading to unwanted ICD therapy aside from EMI:</p>
+      <ul>
+        <li>Supraventricular tachycardia, sinus tachycardia, atrial fibrillation, atrial flutter.</li>
+        <li>Oversensing secondary to lead fracture.</li>
+        <li>T-wave oversensing.</li>
+        <li>Presence of mechanical circulatory support devices.</li>
+      </ul>
+
+      <p><strong>In the absence of haemodynamic instability and malignant ventricular arrhythmia</strong>, a magnet can be used to cease unwanted tachytherapies from an ICD as a bridge to further treatment and device reprogramming.</p>
+
+      <p>A magnet can be applied to a <strong>pacemaker</strong> to temporarily increase the heart rate through asynchronous pacing, if the magnet response rate exceeds the current intrinsic heart rate. However, <strong>asynchronous ventricular pacing may be detrimental in some clinical cases.</strong></p>
+
+      <div class="callout note">
+        <span class="label">Caveats</span>
+        <ul style="margin-bottom:0;">
+          <li>Magnet mode may be <strong>disabled in some devices</strong> — test the response before the procedure.</li>
+          <li><strong>Not all devices produce an audible tone</strong> to confirm activation.</li>
+          <li>Magnet behaviour may become <strong>unpredictable when battery voltage falls below end-of-life values</strong>.</li>
+          <li>Be aware of the <strong>magnet mode timeout</strong> — some devices revert to original programming after a set period.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 11. MRI ============ -->
+  <details class="card">
+    <summary><span class="num">11</span><span class="title">MRI in patients with a CIED</span><span class="chev"></span></summary>
+    <div class="card-body">
+      <ul>
+        <li>Improvements in CIED structure, electronics, and programmed algorithms, plus changes in MRI protocol design over the past decade, have created a relatively safe environment for performing MRI in patients with CIEDs.</li>
+        <li>Institution-specific protocols improve safety of MRI studies and MRI-based procedures.</li>
+        <li>Most — but not all — contemporary devices are considered <strong>MRI conditional</strong>: they carry FDA labelling for performance under MRI conditions provided certain prespecified conditions are met, including periprocedural monitoring and programming when indicated.</li>
+        <li><strong>MRI-conditional labelling must apply to the entire system.</strong> Abandoned leads, or any part that is not MRI conditional, render the whole system non-conditional.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 12. PRACTICE POINTS ============ -->
+  <details class="card">
+    <summary><span class="num">✓</span><span class="title">Considerations for clinical practice</span><span class="chev"></span></summary>
+    <div class="card-body">
+
+      <h3>Pacemaker-dependent patients</h3>
+      <p>Electrocautery can cause EMI, leading to oversensing of non-physiological signals and inhibition of pacing — particularly when surgery is performed above the umbilicus. (Patients with CIED generators in the abdomen may require reprogramming because of proximity to the generator.)</p>
+      <p>To prevent this, the pacemaker may be programmed to an asynchronous mode (<code>DOO</code>, <code>AOO</code>, or <code>VOO</code>), or a magnet can be placed over the device during the procedure — assuming a stable magnet position can be maintained and the pulse generator is not within the sterile surgical field.</p>
+      <p><strong>Note:</strong> application of a magnet to an ICD has <em>no effect</em> on the pacing function.</p>
+
+      <h3>Patients with ICDs</h3>
+      <p>To prevent inappropriate therapies due to EMI, tachyarrhythmia detection should be programmed "off". If a programmer is not available, a magnet may be placed over the pulse generator during the procedure.</p>
+      <p><strong>It is essential to re-enable detection of tachyarrhythmias before discharge from a monitored setting.</strong></p>
+
+      <h3>Magnet response in leadless pacemakers</h3>
+      <p>Unlike transvenous pacemakers, the Micra leadless pacemaker does <strong>not</strong> have a programmed response to a magnet. Therefore, if a patient is pacemaker dependent and a procedure will involve EMI above the umbilicus, the device may be programmed to <code>VOO</code> asynchronous pacing <em>before</em> the use of electrocautery.</p>
+      <p>Although some leadless pacemakers do have an asynchronous magnet response, the magnet mode may be limited by patient body habitus — testing before entering the operating room may be considered. If a stable position cannot be maintained, reprogramme to an asynchronous mode before electrocautery.</p>
+
+      <h3>Emergency magnet use</h3>
+      <p>In addition to magnet mode programming, magnets may be useful in certain emergency scenarios, including avoiding inappropriate shocks due to haemodynamically stable rhythms, EMI, or ICD lead fracture — or increasing the heart rate to the pacemaker magnet response rate before a device programmer is available.</p>
+
+      <h3>Communication with the CIED team</h3>
+      <p>Before the procedure, notifying the device team about the upcoming procedure may facilitate generation of a periprocedural plan for the CIED. Postprocedural communication about any device changes or reprogramming ensures patient safety and safe continuity of care.</p>
+
+      <div class="callout tip">
+        <span class="label">Ongoing research &amp; future directions</span>
+        Research on optimal workflows for perioperative CIED management is limited. Remote programming may be an option in the future but is <strong>not currently available with most devices</strong>. Team-based care is essential: an integrated, multidisciplinary model including cardiology, anaesthesia, surgery and electrophysiology — with nurses, advanced practice clinicians and physicians — with the patient at the centre of the framework.
+      </div>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cite">
+      <span class="label">Source</span>
+      Wan EY, Rogers AJ, Lavelle M, Marcus M, Stone SA, Ottoboni L, Srivatsa U, Leal MA, Russo AM, Jackson LR II, Crossley GH; on behalf of the American Heart Association Electrocardiography and Arrhythmias Committee of the Council on Clinical Cardiology; Council on Cardiovascular and Stroke Nursing; Council on Cardiovascular Surgery and Anesthesia; and Council on Peripheral Vascular Disease.
+      <strong>Periprocedural Management and Multidisciplinary Care Pathways for Patients With Cardiac Implantable Electronic Devices: A Scientific Statement From the American Heart Association.</strong>
+      <em>Circulation.</em> Originally published 10 July 2024. Available at <a href="https://www.ahajournals.org/journal/circ" target="_blank" rel="noopener">ahajournals.org</a>.
+    </div>
+    <p class="disclaimer">
+      This quick-reference summary is intended for educational use by anaesthetists and other perioperative clinicians. It is a condensed interpretation of the cited American Heart Association scientific statement and does not replace the full document, local institutional protocols, or clinical judgement. Always confirm device-specific behaviour — particularly magnet response and programmable options — with the patient's CIED care team or device manufacturer before the procedure.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+  var searchInput = document.getElementById('searchInput');
+  var searchClear = document.getElementById('searchClear');
+  var statusText  = document.getElementById('statusText');
+  var noResults   = document.getElementById('noResults');
+  var clearFromNoResults = document.getElementById('clearFromNoResults');
+  var DEFAULT_STATUS = 'Press / to search';
+
+  /* ---- Build search index (title + body, ignoring badge/chevron) ---- */
+  var cardData = cards.map(function (card) {
+    var titleEl = card.querySelector('.title');
+    var bodyEl  = card.querySelector('.card-body');
+    return {
+      el: card,
+      title: titleEl,
+      body: bodyEl,
+      textLower: ((titleEl ? titleEl.textContent : '') + ' ' + (bodyEl ? bodyEl.textContent : '')).toLowerCase()
+    };
+  });
+
+  var savedOpenState = null;
+
+  /* ---- Helpers ---- */
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function clearHighlights(root) {
+    if (!root) return;
+    var marks = root.querySelectorAll('mark.sh');
+    if (!marks.length) return;
+    var parents = [];
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var p = m.parentNode;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      if (parents.indexOf(p) === -1) parents.push(p);
+    }
+    for (var j = 0; j < parents.length; j++) parents[j].normalize();
+  }
+
+  function highlightIn(root, query) {
+    if (!root || !query) return 0;
+
+    var testRegex = new RegExp(escapeRegExp(query), 'i');
+    var regex     = new RegExp(escapeRegExp(query), 'gi');
+
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        if (p.classList && (p.classList.contains('num') || p.classList.contains('chev'))) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+
+    var total = 0;
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var text = node.nodeValue;
+      if (!testRegex.test(text)) continue;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+      var m;
+      var nodeCount = 0;
+      regex.lastIndex = 0;
+
+      while ((m = regex.exec(text)) !== null) {
+        if (m[0].length === 0) { regex.lastIndex++; continue; }
+        if (m.index > last) {
+          frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        }
+        var mark = document.createElement('mark');
+        mark.className = 'sh';
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        nodeCount++;
+      }
+
+      if (nodeCount > 0) {
+        if (last < text.length) {
+          frag.appendChild(document.createTextNode(text.slice(last)));
+        }
+        node.parentNode.replaceChild(frag, node);
+        total += nodeCount;
+      }
+    }
+    return total;
+  }
+
+  /* ---- Main search routine ---- */
+  function runSearch() {
+    var query = searchInput.value.trim();
+    var isSearching = query.length > 0;
+
+    searchClear.hidden = !isSearching;
+
+    /* --- Empty query: restore everything --- */
+    if (!isSearching) {
+      cardData.forEach(function (cd, i) {
+        cd.el.style.display = '';
+        if (savedOpenState) cd.el.open = savedOpenState[i];
+        clearHighlights(cd.title);
+        clearHighlights(cd.body);
+      });
+      savedOpenState = null;
+      noResults.hidden = true;
+      statusText.textContent = DEFAULT_STATUS;
+      statusText.className = 'status';
+      return;
+    }
+
+    /* --- Save open state on first search --- */
+    if (!savedOpenState) {
+      savedOpenState = cardData.map(function (cd) { return cd.el.open; });
+    }
+
+    var qLower = query.toLowerCase();
+    var totalMatches = 0;
+    var visibleCount = 0;
+
+    cardData.forEach(function (cd) {
+      clearHighlights(cd.title);
+      clearHighlights(cd.body);
+
+      if (cd.textLower.indexOf(qLower) === -1) {
+        cd.el.style.display = 'none';
+        return;
+      }
+
+      cd.el.style.display = '';
+      cd.el.open = true;
+      visibleCount++;
+
+      var c = highlightIn(cd.title, query);
+      c += highlightIn(cd.body, query);
+      totalMatches += c;
+    });
+
+    /* --- Update status / no-results --- */
+    if (visibleCount === 0) {
+      noResults.hidden = false;
+      statusText.textContent = 'No matches for "' + query + '"';
+      statusText.className = 'status no-match';
+    } else {
+      noResults.hidden = true;
+      statusText.textContent =
+        totalMatches + ' match' + (totalMatches === 1 ? '' : 'es') +
+        ' in ' + visibleCount + ' section' + (visibleCount === 1 ? '' : 's');
+      statusText.className = 'status has-match';
+    }
+  }
+
+  /* ---- Debounced input ---- */
+  var searchTimer;
+  searchInput.addEventListener('input', function () {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(runSearch, 140);
+  });
+
+  searchClear.addEventListener('click', function () {
+    searchInput.value = '';
+    runSearch();
+    searchInput.focus();
+  });
+
+  if (clearFromNoResults) {
+    clearFromNoResults.addEventListener('click', function () {
+      searchInput.value = '';
+      runSearch();
+      searchInput.focus();
+    });
+  }
+
+  /* ---- Keyboard shortcuts ---- */
+  document.addEventListener('keydown', function (e) {
+    var t = e.target;
+    var tag = (t && t.tagName) || '';
+    var typing = tag === 'INPUT' || tag === 'TEXTAREA' || (t && t.isContentEditable);
+
+    if (e.key === '/' && !typing) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+      return;
+    }
+    if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+      return;
+    }
+    if (e.key === 'Escape' && document.activeElement === searchInput) {
+      if (searchInput.value) {
+        searchInput.value = '';
+        runSearch();
+      } else {
+        searchInput.blur();
+      }
+    }
+  });
+
+  /* ---- Expand / Collapse (respect search filter) ---- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    cards.forEach(function (d) {
+      if (d.style.display !== 'none') d.open = true;
+    });
+  });
+
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    cards.forEach(function (d) {
+      if (d.style.display !== 'none') d.open = false;
+    });
+  });
+
+  /* ---- Print ---- */
+  document.getElementById('printBtn').addEventListener('click', function () {
+    window.print();
+  });
+
+  window.addEventListener('beforeprint', function () {
+    cards.forEach(function (d) {
+      if (d.style.display === 'none') return;
+      d.dataset.wasOpen = d.open ? 'true' : 'false';
+      d.open = true;
+    });
+  });
+
+  window.addEventListener('afterprint', function () {
+    cards.forEach(function (d) {
+      if (d.dataset.wasOpen !== undefined) {
+        d.open = d.dataset.wasOpen === 'true';
+        delete d.dataset.wasOpen;
+      }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
