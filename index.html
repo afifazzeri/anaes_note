@@ -3,365 +3,412 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anaesthesia Notes</title>
+<title>Anaesthesia Reference Contents</title>
 <style>
   :root {
     --cyan: #0891b2;
     --cyan-dark: #0e7490;
-    --cyan-light: #ecfeff;
     --yellow: #facc15;
     --ink: #1a2e35;
     --muted: #6b8a95;
     --line: #e2eef2;
+    --bg: #f8fdfe;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
     font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
     color: var(--ink);
-    background: #f8fdfe;
+    background: var(--bg);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 880px; margin: 0 auto; }
 
   /* HEADER */
   header {
     background: var(--cyan);
     color: #fff;
-    padding: 2rem 1.25rem 1.6rem;
+    padding: 1.6rem 1.5rem 1.4rem;
     border-bottom: 4px solid var(--yellow);
   }
   header h1 {
-    margin: 0 0 .35rem;
-    font-size: clamp(1.25rem, 3vw, 1.6rem);
+    margin: 0 0 0.3rem;
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
     font-weight: 700;
   }
   header p {
     margin: 0;
-    opacity: .92;
-    font-size: .88rem;
-    max-width: 640px;
+    opacity: 0.92;
+    font-size: 0.85rem;
+    max-width: 650px;
+  }
+
+  /* SEARCH BAR */
+  .search-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0.9rem 1.5rem 0.6rem;
+  }
+  .search-wrap input {
+    width: 100%;
+    padding: 0.6rem 0.9rem;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .search-wrap input:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(8,145,178,0.12);
   }
 
   /* MAIN */
   main {
-    max-width: 880px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 1.5rem 1.25rem 3rem;
+    padding: 0.4rem 1.5rem 3rem;
   }
-  .intro {
+
+  /* LEGEND */
+  .legend {
     background: #fff;
     border: 1px solid var(--line);
     border-left: 4px solid var(--yellow);
     border-radius: 6px;
-    padding: .85rem 1rem;
-    font-size: .82rem;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.8rem;
     color: #5a6b72;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
   }
 
   /* SECTION */
   h2 {
-    font-size: .76rem;
-    text-transform: uppercase;
-    letter-spacing: .1em;
+    font-size: 0.98rem;
     color: var(--cyan-dark);
-    margin: 1.8rem 0 .7rem;
-    padding-bottom: .4rem;
+    margin: 1.2rem 0 0.35rem;
+    padding-bottom: 0.25rem;
     border-bottom: 2px solid var(--line);
     font-weight: 700;
   }
   h2:first-of-type { margin-top: 0; }
 
-  /* LIST */
-  ul { list-style: none; padding: 0; margin: 0; }
-  li { margin-bottom: .45rem; }
+  /* LISTS */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.3rem 0;
+  }
+  li {
+    margin-bottom: 0.18rem;
+    font-size: 0.88rem;
+  }
+  ul.sub {
+    padding-left: 1.2rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.3rem;
+  }
+  ul.sub li {
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-bottom: 0.12rem;
+  }
 
-  li a {
-    display: block;
-    padding: .7rem .9rem;
-    background: #fff;
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--cyan);
-    border-radius: 6px;
-    color: inherit;
+  /* LINKS */
+  a {
     text-decoration: none;
-    font-size: .88rem;
-    transition: border-color .15s, background .15s;
+    color: inherit;
+    transition: color 0.15s;
   }
-  li a:hover {
-    border-left-color: var(--yellow);
-    background: var(--cyan-light);
-  }
-  li a:focus-visible {
-    outline: 2px solid var(--cyan);
-    outline-offset: 2px;
-  }
+  a:hover { color: var(--cyan); }
 
-  .num {
-    color: var(--muted);
+  /* FILE LINKS (UNDERLINE + ALERT EMOJI) */
+  a.has-file {
+    text-decoration: underline;
+    color: var(--cyan);
     font-weight: 600;
-    margin-right: .5rem;
-    font-size: .82rem;
   }
-  .title { font-weight: 600; }
-  .desc {
-    display: block;
-    color: var(--muted);
-    font-size: .78rem;
-    margin-top: .2rem;
-    font-weight: 400;
+  a.has-file::after {
+    content: " 🚨";
+    font-size: 0.9em;
   }
-
-  /* LIVE LINK */
-  li a.live {
-    background: #fffbe6;
-    border-left-color: var(--yellow);
-  }
-  li a.live .title::after {
-    content: "LIVE";
-    display: inline-block;
-    margin-left: .5rem;
-    background: var(--cyan);
-    color: #fff;
-    font-size: .58rem;
-    padding: .15rem .45rem;
-    border-radius: 3px;
-    letter-spacing: .08em;
-    font-weight: 700;
-    vertical-align: 1px;
-  }
-  li a.live .desc {
-    color: #8a7320;
+  a.has-file:hover {
+    color: var(--cyan-dark);
   }
 
   /* FOOTER */
   footer {
     background: var(--cyan-dark);
     color: #d4f4fa;
-    padding: 1.5rem 1.25rem;
-    font-size: .78rem;
+    padding: 1.2rem 1.5rem;
+    font-size: 0.78rem;
     border-top: 4px solid var(--yellow);
+    margin-top: 2rem;
   }
-  footer .wrap { max-width: 880px; }
-  footer p { margin: 0 0 .5rem; line-height: 1.6; }
+  footer .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  footer p { margin: 0 0 0.4rem; }
   footer a {
     color: var(--yellow);
-    text-decoration: none;
+    text-decoration: underline;
   }
-  footer a:hover { text-decoration: underline; }
+  footer a:hover { color: #fff; }
+
+  /* EMPTY STATE */
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .no-results.show { display: block; }
 
   @media (max-width: 500px) {
-    header { padding: 1.5rem 1rem 1.2rem; }
-    main { padding: 1.2rem 1rem 2rem; }
-    li a { padding: .65rem .8rem; font-size: .85rem; }
+    header { padding: 1.2rem 1rem 1rem; }
+    .search-wrap { padding: 0.7rem 1rem 0.4rem; }
+    main { padding: 0.3rem 1rem 2rem; }
+    ul.sub { padding-left: 0.9rem; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap">
-    <h1>Anaesthesia Notes</h1>
-    <p>Condensed summaries and quick-reference notes for anaesthesia, critical care and perioperative medicine.</p>
-  </div>
+  <h1>Anaesthesia Reference Contents</h1>
+  <p>A structured index of anaesthesia, critical care and perioperative medicine topics.</p>
 </header>
+
+<div class="search-wrap">
+  <input type="search" id="search" placeholder="Search topics…" aria-label="Search topics">
+</div>
 
 <main>
 
-  <div class="intro">
-    <strong>About this index:</strong> These topic titles and descriptions are my own condensed wording, written as a curriculum map and revision aid — not extracts from any textbook. Each note is independently summarised from primary literature and guidelines, with sources cited on the relevant page.
+  <div class="legend">
+    <strong>Note:</strong> Topics with an <strong>underline</strong> and <strong>🚨 alert emoji</strong> have an available note or file. All other topics are placeholders and will be added in due course.
   </div>
 
-  <!-- ============ FOUNDATIONS ============ -->
-  <h2>Foundations &amp; Organisation</h2>
-  <ul>
-    <li><a href="#">
-      <span class="num">1</span><span class="title">Unit Organisation &amp; Governance</span>
-      <span class="desc">Structure, staffing and running of a critical care unit — admission criteria, handover and quality assurance.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">2</span><span class="title">Scores &amp; Risk Stratification</span>
-      <span class="desc">Severity scoring, prognostic tools and risk calculators used to guide escalation.</span>
-    </a></li>
-  </ul>
+  <!-- 1 -->
+  <h2>1. Good Practice and Safety</h2>
 
-  <!-- ============ ORGAN SUPPORT ============ -->
-  <h2>Organ Support &amp; Therapy</h2>
-  <ul>
-    <li><a href="#">
-      <span class="num">3</span><span class="title">Respiratory Support &amp; Ventilation</span>
-      <span class="desc">Oxygen therapy, non-invasive support, ventilation modes and lung-protective strategies.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">4</span><span class="title">Cardiovascular Support</span>
-      <span class="desc">Vasoactive drugs, inotropes, mechanical circulatory support and haemodynamic goals.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">5</span><span class="title">Renal Replacement &amp; Transfusion</span>
-      <span class="desc">Modes of renal replacement therapy, blood components and transfusion thresholds.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">6</span><span class="title">Gastrointestinal Support</span>
-      <span class="desc">Stress ulcer prophylaxis, ileus and bowel management in critical illness.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">7</span><span class="title">Nutrition &amp; Feeding</span>
-      <span class="desc">Enteral and parenteral nutrition, calorie and protein targets, refeeding risk.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">8</span><span class="title">Wound &amp; Pressure Area Management</span>
-      <span class="desc">Wound assessment, dressings and prevention of pressure-related injury.</span>
-    </a></li>
-  </ul>
+  <!-- 2 -->
+  <h2>2. Preoperative Considerations</h2>
 
-  <!-- ============ MONITORING ============ -->
-  <h2>Monitoring</h2>
-  <ul>
-    <li><a href="#">
-      <span class="num">9</span><span class="title">Respiratory Monitoring</span>
-      <span class="desc">Oximetry, capnography, blood gas interpretation and respiratory mechanics.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">10</span><span class="title">Cardiovascular Monitoring</span>
-      <span class="desc">Invasive and non-invasive haemodynamic monitoring, including echocardiography.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">11</span><span class="title">Neurological Monitoring</span>
-      <span class="desc">Consciousness scoring, intracranial pressure, sedation depth and neuro-prognostication.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">12</span><span class="title">Laboratory &amp; Point-of-Care Testing</span>
-      <span class="desc">Blood gases, coagulation, viscoelastic testing and glucose control.</span>
-    </a></li>
-  </ul>
+  <!-- 3 -->
+  <h2>3. Preoptimisation</h2>
 
-  <!-- ============ FLUIDS & DRUGS ============ -->
-  <h2>Fluids &amp; Pharmacology</h2>
+  <!-- 4 -->
+  <h2>4. At-Risk Populations</h2>
   <ul>
-    <li><a href="#">
-      <span class="num">13</span><span class="title">Fluid Therapy</span>
-      <span class="desc">Crystalloids, colloids, balanced solutions and fluid resuscitation physiology.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">14</span><span class="title">Respiratory Drugs</span>
-      <span class="desc">Bronchodilators, corticosteroids, mucolytics and airway agents.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">15</span><span class="title">Cardiovascular Drugs</span>
-      <span class="desc">Vasoactive agents, antiarrhythmics, antihypertensives and inotropes.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">16</span><span class="title">Gastrointestinal Drugs</span>
-      <span class="desc">Antiemetics, prokinetics, acid suppression and bowel-regulating agents.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">17</span><span class="title">Neurological Drugs</span>
-      <span class="desc">Sedatives, anticonvulsants, neuropathic analgesics and CNS agents.</span>
-    </a></li>
-    <li>
-      <a class="live" href="regional_anticoagulation/">
-        <span class="num">18</span><span class="title">Haematological Drugs</span>
-        <span class="desc">Anticoagulants, antiplatelets, thrombolytics and reversal agents — including the <em>Anticoagulation and Regional Anaesthesia</em> guideline.</span>
-      </a>
+    <li>Obesity
+      <ul class="sub">
+        <li>Introduction (70)</li>
+        <li>Common comorbidities in obesity (71)</li>
+        <li>Obstructive sleep apnoea (73)</li>
+        <li>Airway considerations in obesity (76)</li>
+        <li>Practicalities with obese patients (77)</li>
+        <li>Pharmacology in obese patients (80)</li>
+        <li>Thromboprophylaxis in obesity (81)</li>
+      </ul>
     </li>
-    <li><a href="#">
-      <span class="num">19</span><span class="title">Antimicrobial Drugs</span>
-      <span class="desc">Antibiotics, antivirals, antifungals — spectrum, dosing and stewardship.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">20</span><span class="title">Immunological Drugs</span>
-      <span class="desc">Immunosuppressants, biologics and immunomodulating agents.</span>
-    </a></li>
+    <li>The Malnourished Patient
+      <ul class="sub">
+        <li>Cachexia related to chronic illness or malignancy (83)</li>
+        <li>Anorexia nervosa (86)</li>
+        <li>Short gut (bowel) syndrome (88)</li>
+      </ul>
+    </li>
+    <li>Considerations for the Older Patient
+      <ul class="sub">
+        <li>Anaesthesia for older patients (92)</li>
+        <li>(4cii) PERI operative NEUROCOGNITIVE DISORDERS: dementia, mild cognitive dysfunction, delirium, POSToperative neurocognitive disorder (frcanotes)</li>
+        <li>When not to operate on older people (94)</li>
+      </ul>
+    </li>
+    <li>Learning Disabilities and/or Autism
+      <ul class="sub">
+        <li>Autistic spectrum disorder (96)</li>
+      </ul>
+    </li>
   </ul>
 
-  <!-- ============ RESUSC & TOX ============ -->
-  <h2>Resuscitation &amp; Toxicology</h2>
+  <!-- 5 -->
+  <h2>5. Cardiovascular Disease</h2>
   <ul>
-    <li><a href="#">
-      <span class="num">21</span><span class="title">Resuscitation</span>
-      <span class="desc">Cardiac arrest management, advanced life support and post-resuscitation care.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">30</span><span class="title">Poisoning &amp; Toxicology</span>
-      <span class="desc">Common overdoses, toxidromes and targeted antidotal therapy.</span>
-    </a></li>
+    <li>Preoperative Management Of Coronary Stents</li>
   </ul>
 
-  <!-- ============ DISORDERS ============ -->
-  <h2>System-Based Disorders</h2>
+  <!-- 6 -->
+  <h2>6. Respiratory Disease</h2>
+
+  <!-- 7 -->
+  <h2>7. Renal Disease</h2>
+
+  <!-- 8 -->
+  <h2>8. Hepatic Disease</h2>
+
+  <!-- 9 -->
+  <h2>9. Endocrine and Metabolic Disease</h2>
+
+  <!-- 10 -->
+  <h2>10. Bone, Joint and Connective Tissue Disorders</h2>
+
+  <!-- 11 -->
+  <h2>11. Haematology</h2>
   <ul>
-    <li><a href="#">
-      <span class="num">22</span><span class="title">Respiratory Disorders</span>
-      <span class="desc">Respiratory failure, pneumonia, ARDS, obstructive disease and pleural emergencies.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">23</span><span class="title">Cardiovascular Disorders</span>
-      <span class="desc">ACS, arrhythmias, heart failure, hypertensive crisis and post-cardiac arrest care.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">24</span><span class="title">Renal Disorders</span>
-      <span class="desc">Acute kidney injury, chronic kidney disease and renal complications of critical illness.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">25</span><span class="title">Gastrointestinal Disorders</span>
-      <span class="desc">GI bleeding, acute abdomen, bowel ischaemia and other GI emergencies.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">26</span><span class="title">Hepatopancreatobiliary Disorders</span>
-      <span class="desc">Liver failure, pancreatitis and hepatobiliary disease in the critically ill.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">27</span><span class="title">Neurological Disorders</span>
-      <span class="desc">Stroke, traumatic brain injury, seizures, delirium and neuromuscular emergencies.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">28</span><span class="title">Haematological Disorders</span>
-      <span class="desc">Coagulopathy, DIC, thrombocytopenia and thrombotic disease — including VTE (NICE 2023).</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">29</span><span class="title">Metabolic &amp; Endocrine Disorders</span>
-      <span class="desc">Glycaemic emergencies, thyroid and adrenal disease, and major electrolyte disturbances.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">31</span><span class="title">Infection, Sepsis &amp; Inflammation</span>
-      <span class="desc">Sepsis recognition and management, source control and inflammatory response — including melioidosis.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">32</span><span class="title">Trauma &amp; Burns</span>
-      <span class="desc">Initial assessment and resuscitation of major trauma and burns.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">33</span><span class="title">Disorders of Temperature</span>
-      <span class="desc">Hypothermia, hyperthermia, heat illness and malignant hyperthermia.</span>
-    </a></li>
+    <li>
+      <a href="regional_anticoagulation/" class="has-file">Anticoagulation and Regional Anaesthesia</a>
+    </li>
   </ul>
 
-  <!-- ============ SPECIAL ============ -->
-  <h2>Special Situations &amp; Professional Practice</h2>
+  <!-- 12 -->
+  <h2>12. Neurological and Muscular Disorders</h2>
   <ul>
-    <li><a href="#">
-      <span class="num">34</span><span class="title">Pain &amp; Perioperative Care</span>
-      <span class="desc">Acute pain management, regional techniques and enhanced recovery principles.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">35</span><span class="title">Oncology &amp; the Critically Ill</span>
-      <span class="desc">Oncological emergencies, treatment toxicity and critical care of the patient with cancer.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">36</span><span class="title">Obstetric Emergencies</span>
-      <span class="desc">Major obstetric haemorrhage, hypertensive disease of pregnancy and maternal critical care.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">37</span><span class="title">Transport of the Critically Ill</span>
-      <span class="desc">Safe intra- and inter-hospital transfer — planning, monitoring and handover.</span>
-    </a></li>
-    <li><a href="#">
-      <span class="num">38</span><span class="title">End-of-Life Care</span>
-      <span class="desc">Goals-of-care discussions, withdrawal of treatment and symptom control.</span>
-    </a></li>
+    <li>Autonomic dysfunction</li>
+    <li>Cervical spine injury</li>
+    <li>Chronic spinal cord lesion</li>
   </ul>
+
+  <!-- 13 -->
+  <h2>13. Psychiatric Disorders</h2>
+
+  <!-- 14 -->
+  <h2>14. Getting Started</h2>
+
+  <!-- 15 -->
+  <h2>15. Airway Assessment and Management</h2>
+
+  <!-- 16 -->
+  <h2>16. Conduct of Anaesthesia</h2>
+
+  <!-- 17 -->
+  <h2>17. Blood Products and Fluid Therapy</h2>
+
+  <!-- 18 -->
+  <h2>18. Specific Circumstances</h2>
+  <ul>
+    <li>18.1 Oncological consideration</li>
+  </ul>
+
+  <!-- 19 -->
+  <h2>19. Cardiac Anaesthesia</h2>
+  <ul>
+    <li>Non cardiac surgery</li>
+    <li>Pacemaker patient</li>
+  </ul>
+
+  <!-- 20 -->
+  <h2>20. Thoracic Surgery</h2>
+
+  <!-- 21 -->
+  <h2>21. Neurosurgery</h2>
+  <ul>
+    <li>BIS by age</li>
+  </ul>
+
+  <!-- 22 -->
+  <h2>22. Vascular Surgery</h2>
+
+  <!-- 23 -->
+  <h2>23. Orthopaedic Surgery</h2>
+  <ul>
+    <li>Lower limb amputation (high risk) (bjaed)</li>
+  </ul>
+
+  <!-- 24 -->
+  <h2>24. Plastic and Burns Surgery</h2>
+  <ul>
+    <li>Burn injury</li>
+    <li>Pediatric burn</li>
+  </ul>
+
+  <!-- 25 -->
+  <h2>25. Gastrointestinal Surgery</h2>
+
+  <!-- 26 -->
+  <h2>26. Bariatric Surgery</h2>
+  <ul>
+    <li>Dr Laila cme</li>
+  </ul>
+
+  <!-- 27 -->
+  <h2>27. Liver Procedures</h2>
+
+  <!-- 28 -->
+  <h2>28. Endocrine Surgery</h2>
+
+  <!-- 29 -->
+  <h2>29. Urological Surgery</h2>
+
+  <!-- 30 -->
+  <h2>30. Gynaecological Surgery</h2>
+
+  <!-- 31 -->
+  <h2>31. Ear, Nose and Throat Surgery</h2>
+
+  <!-- 32 -->
+  <h2>32. Maxillofacial and Dental Surgery</h2>
+
+  <!-- 33 -->
+  <h2>33. Ophthalmic Surgery</h2>
+
+  <!-- 34 -->
+  <h2>34. Anaesthesia for Radiology and Cardiology</h2>
+  <ul>
+    <li>benda non textbook remote</li>
+  </ul>
+
+  <!-- 35 -->
+  <h2>35. Obstetric Anaesthesia and Analgesia</h2>
+  <ul>
+    <li>Dr Praveena note</li>
+    <li>Peripartum cardiomyopathy (bjaed 2024)</li>
+  </ul>
+
+  <!-- 36 -->
+  <h2>36. Paediatric and Neonatal Anaesthesia</h2>
+  <ul>
+    <li>URTI</li>
+    <li>Mediastinal mass</li>
+  </ul>
+
+  <!-- 37 -->
+  <h2>37. Geriatric Elderly Anaesthesia</h2>
+  <ul>
+    <li>Physiology &amp; preoperative</li>
+    <li>Frailty</li>
+  </ul>
+
+  <!-- 38 -->
+  <h2>38. The Major Trauma Patient</h2>
+
+  <!-- 39 -->
+  <h2>39. The Emergency Patient</h2>
+
+  <!-- 40 -->
+  <h2>40. Anaesthetic Emergencies</h2>
+
+  <!-- 41 -->
+  <h2>41. Regional Anaesthesia</h2>
+
+  <!-- 42 -->
+  <h2>42. Acute Pain</h2>
+  <ul>
+    <li>Pathophysiology and types of sympathetic blocks</li>
+  </ul>
+
+  <!-- 43 -->
+  <h2>43. Drug Formulary</h2>
+
+  <div class="no-results" id="noResults">
+    <strong>No matching topics.</strong><br>
+    <span style="font-size:0.8rem;">Try a different term — e.g. “obesity”, “cardiac”, “paediatric” or “pain”.</span>
+  </div>
 
 </main>
 
@@ -372,5 +419,99 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  "use strict";
+
+  var search    = document.getElementById('search');
+  var noResults = document.getElementById('noResults');
+  var main      = document.querySelector('main');
+
+  function filter(){
+    var q = search.value.trim().toLowerCase();
+    var visibleCount = 0;
+
+    // 1. Show/hide every list item based on its own text
+    var allLis = main.querySelectorAll('li');
+    allLis.forEach(function(li){
+      var text = li.textContent.toLowerCase();
+      var match = !q || text.indexOf(q) !== -1;
+      li.style.display = match ? '' : 'none';
+    });
+
+    // 2. If a child is visible, make sure its parent <li> is visible too
+    allLis.forEach(function(li){
+      if(li.style.display === 'none') return;
+      var parent = li.parentElement;
+      while(parent && parent !== main){
+        if(parent.tagName === 'LI'){
+          parent.style.display = '';
+        }
+        parent = parent.parentElement;
+      }
+    });
+
+    // 3. For each section (h2 + following ul), decide whether to show the heading
+    var h2s = main.querySelectorAll('h2');
+    h2s.forEach(function(h2){
+      var next = h2.nextElementSibling;
+      var hasVisibleLi = false;
+
+      if(next && next.tagName === 'UL'){
+        var lis = next.querySelectorAll('li');
+        lis.forEach(function(li){
+          if(li.style.display !== 'none') hasVisibleLi = true;
+        });
+      }
+
+      // If the section has a list, base visibility on the list.
+      // If it has no list, show it only when the query is empty or the heading matches.
+      var headingMatches = h2.textContent.toLowerCase().indexOf(q) !== -1;
+      var showSection = false;
+
+      if(next && next.tagName === 'UL'){
+        showSection = hasVisibleLi;
+      } else {
+        showSection = !q || headingMatches;
+      }
+
+      h2.style.display = showSection ? '' : 'none';
+      if(next && next.tagName === 'UL'){
+        next.style.display = showSection ? '' : 'none';
+      }
+
+      if(showSection) visibleCount++;
+    });
+
+    // 4. Also count visible list items for the empty state
+    var anyVisible = false;
+    main.querySelectorAll('li').forEach(function(li){
+      if(li.style.display !== 'none') anyVisible = true;
+    });
+
+    // If there are no list items at all, fall back to section visibility
+    if(main.querySelectorAll('li').length === 0){
+      anyVisible = visibleCount > 0;
+    }
+
+    noResults.classList.toggle('show', !anyVisible);
+  }
+
+  var debounce;
+  search.addEventListener('input', function(){
+    clearTimeout(debounce);
+    debounce = setTimeout(filter, 100);
+  });
+
+  // Escape clears
+  search.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      search.value = '';
+      filter();
+    }
+  });
+
+})();
+</script>
 </body>
 </html>
