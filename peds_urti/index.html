@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paediatric Anaesthesia: URTI Quick Reference</title>
+    <style>
+        :root {
+            --primary-yellow: #fdd835;
+            --primary-orange: #fb8c00;
+            --primary-green: #8bc34a;
+            --primary-blue: #2196f3;
+            --bg-color: #fcfcfc;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a1a1a;
+            margin-top: 0;
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            padding: 30px 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-banner h1 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+        }
+
+        .header-banner p {
+            margin: 0;
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        /* Search Bar Styling */
+        .search-container {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #searchInput:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 8px rgba(33, 150, 243, 0.3);
+        }
+
+        #searchInput::placeholder {
+            color: #999;
+        }
+
+        /* Collapsible Details Styling */
+        details {
+            background-color: var(--card-bg);
+            border-left: 6px solid var(--primary-blue);
+            border-radius: var(--border-radius);
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            border-left-color: var(--primary-orange);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        summary {
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 1.1em;
+            cursor: pointer;
+            list-style: none; /* Hide default arrow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f9fa;
+            transition: background-color 0.2s ease;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary:hover {
+            background-color: #eef1f5;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5em;
+            color: var(--primary-blue);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+            color: var(--primary-orange);
+        }
+
+        .content-inner {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Thematic styling for different sections */
+        .theme-yellow { border-left-color: var(--primary-yellow); }
+        .theme-yellow summary::after { color: var(--primary-yellow); }
+        
+        .theme-orange { border-left-color: var(--primary-orange); }
+        .theme-orange summary::after { color: var(--primary-orange); }
+        
+        .theme-green { border-left-color: var(--primary-green); }
+        .theme-green summary::after { color: var(--primary-green); }
+        
+        .theme-blue { border-left-color: var(--primary-blue); }
+        .theme-blue summary::after { color: var(--primary-blue); }
+
+        .theme-purple { border-left-color: #9c27b0; }
+        .theme-purple summary::after { color: #9c27b0; }
+
+        /* Lists */
+        ul, ol {
+            padding-left: 20px;
+            margin-top: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive Tables */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            position: relative;
+        }
+
+        .table-responsive table {
+            width: 100%;
+            min-width: 600px; /* Prevents columns from squishing on mobile */
+            border-collapse: collapse;
+            margin-top: 0;
+            font-size: 0.9em;
+        }
+
+        .table-responsive th, .table-responsive td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        .table-responsive th {
+            background-color: #f4f6f8;
+            font-weight: 600;
+            color: #444;
+            white-space: nowrap; /* Keeps headers clean */
+        }
+
+        .table-responsive tr:hover {
+            background-color: #f9fbfd;
+        }
+
+        /* Visual hint for scrollable tables */
+        .table-responsive::after {
+            content: '👉 Swipe left/right to view full table';
+            display: block;
+            text-align: center;
+            font-size: 0.75em;
+            color: #888;
+            padding: 8px;
+            background: #fdfdfd;
+            border-top: 1px solid #eee;
+        }
+
+        /* Algorithm Flowchart Styling */
+        .algorithm-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        .algo-step {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .algo-step::after {
+            content: '↓';
+            display: block;
+            text-align: center;
+            font-size: 1.5em;
+            color: var(--primary-blue);
+            margin-top: 5px;
+            line-height: 1;
+        }
+
+        .algo-step:last-child::after {
+            content: '';
+            margin: 0;
+        }
+
+        .algo-decision {
+            font-weight: bold;
+            color: var(--primary-orange);
+        }
+
+        .algo-outcome {
+            background-color: #e3f2fd;
+            border-color: #90caf9;
+            font-weight: bold;
+        }
+
+        .algo-action {
+            background-color: #e8f5e9;
+            border-color: #a5d6a7;
+        }
+
+        .highlight-box {
+            background-color: #fff9e6;
+            border-left: 4px solid var(--primary-yellow);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .highlight-box.warning {
+            background-color: #fff0f0;
+            border-left-color: #f44336;
+        }
+
+        .highlight-box.success {
+            background-color: #e8f5e9;
+            border-left-color: var(--primary-green);
+        }
+
+        /* Vancouver Style Superscripts */
+        sup {
+            font-size: 0.75em;
+            color: #d32f2f;
+            font-weight: bold;
+            vertical-align: super;
+            line-height: 0;
+        }
+
+        .citation {
+            font-size: 0.85em;
+            color: #555;
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 30px;
+            border-left: 4px solid #ccc;
+        }
+
+        .citation p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header-banner">
+        <h1>Paediatric Anaesthesia: URTI Quick Reference</h1>
+        <p>Perioperative Management of Upper Respiratory Tract Infections</p>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="🔍 Search guidelines (e.g., 'midazolam', 'delay', 'extubation', 'COLDS')...">
+    </div>
+
+    <!-- SECTION 1: KEY RISKS -->
+    <details class="theme-yellow">
+        <summary>1. Key Risks & Pathophysiology</summary>
+        <div class="content-inner">
+            <ul>
+                <li><strong>Increased Risk:</strong> Children with current or recent URTI have a <strong>2-3 fold</strong> increased risk of Perioperative Respiratory Adverse Events (PRAEs).<sup>[1]</sup></li>
+                <li><strong>PRAEs include:</strong> Laryngospasm, bronchospasm, desaturation, severe coughing, breath holding, and airway obstruction.<sup>[1]</sup></li>
+                <li><strong>Pathophysiology:</strong> Airway hyperreactivity and inflammation can persist for <strong>up to 4-8 weeks</strong> post-infection.<sup>[1]</sup></li>
+                <li><strong>High-Risk Patient Factors:</strong> Age < 2 years (especially < 6 months), prematurity, ASA physical status 3+, asthma, congenital heart disease, obstructive sleep apnoea (OSA), and passive smoking.<sup>[1]</sup></li>
+                <li><strong>COVID-19:</strong> Symptomatic COVID-19 carries a 3.7x higher incidence of desaturation compared to asymptomatic. Follows similar risk profiles to other URTIs.<sup>[1]</sup></li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- SECTION 2: PRE-OPERATIVE ASSESSMENT & TIMING -->
+    <details class="theme-orange">
+        <summary>2. Pre-operative Assessment & Timing</summary>
+        <div class="content-inner">
+            <h3>Timing of Surgery</h3>
+            <ul>
+                <li><strong>Mild URTI:</strong> May proceed if otherwise well and surgery is minor. Delay for at least <strong>2 weeks</strong> after symptom resolution is recommended for severe URTI.<sup>[1]</sup></li>
+                <li><strong>COVID-19:</strong> Delay elective surgery for 2 weeks (mild) to 4 weeks (severe).<sup>[1]</sup></li>
+                <li><strong>Recent Infection:</strong> Children undergoing surgery within the first 2 weeks after symptom resolution are at similar risk to those with active symptoms. Baseline risk returns within 4 weeks.<sup>[1]</sup></li>
+            </ul>
+
+            <h3>Risk Stratification Tools</h3>
+            
+            <h4>COLDS Score<sup>[1]</sup></h4>
+            <p>Each category is assigned 1, 2, or 5 points. Scores range from 5 to 25. Any category scoring 5 points is considered a "red flag".</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>None (1 pt)</th>
+                            <th>Mild (2 pts)</th>
+                            <th>Moderate/Severe (5 pts)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>C</strong>urrent signs/symptoms</td>
+                            <td>No URTI symptoms</td>
+                            <td>Parent confirms URTI, purulence, wet cough, congestion, rhinorrhoea, sore throat, sneezing, low fever or dry cough <2 weeks ago</td>
+                            <td>Abnormal lung sounds, lethargy, 'toxic' appearance, high fever</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L</strong>ung disease</td>
+                            <td>None</td>
+                            <td>RSV, mild intermittent asthma, CLD if >1 yr old, loud snoring</td>
+                            <td>Moderate persistent asthma, infant with CLD, OSA, or pulmonary hypertension</td>
+                        </tr>
+                        <tr>
+                            <td><strong>D</strong>evice (Airway)</td>
+                            <td>None or facemask</td>
+                            <td>Laryngeal mask airway (LMA) or supraglottic device</td>
+                            <td>Tracheal tube (ETT)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>S</strong>urgery</td>
+                            <td>Other (including ear tubes)</td>
+                            <td>Minor airway (e.g., adenotonsillectomy, flexible bronchoscopy, dental extractions)</td>
+                            <td>Major airway (e.g., cleft palate, rigid bronchoscopy, maxillofacial)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><em>Note: A score > 12.5 is associated with increased risk of PRAEs.<sup>[1]</sup></em></p>
+
+            <h4>MSPA Assessment & Management Algorithm<sup>[2]</sup></h4>
+            <div class="algorithm-flow">
+                <div class="algo-step">
+                    <strong>Child with URI symptoms</strong>
+                </div>
+                <div class="algo-step">
+                    <span class="algo-decision">Is Surgery urgent?</span>
+                    <br>➔ <strong>YES:</strong> Proceed (with caution)
+                    <br>➔ <strong>NO:</strong> Check infectious aetiology
+                </div>
+                <div class="algo-step">
+                    <span class="algo-decision">Infectious aetiology?</span>
+                    <br>➔ <strong>NO:</strong> Proceed
+                    <br>➔ <strong>YES:</strong> Check severity of symptoms
+                </div>
+                <div class="algo-step">
+                    <span class="algo-decision">Severe Symptoms?</span>
+                    <br>➔ <strong>YES:</strong> <span class="algo-outcome">Postpone 4 weeks</span>
+                    <br>➔ <strong>NO:</strong> Check if General Anaesthesia is required
+                </div>
+                <div class="algo-step">
+                    <span class="algo-decision">General Anaesthesia?</span>
+                    <br>➔ <strong>NO:</strong> Proceed
+                    <br>➔ <strong>YES:</strong> Assess Risk Factors
+                </div>
+                <div class="algo-step">
+                    <strong>Assess Risk Factors:</strong>
+                    <ul>
+                        <li>Hx of asthma</li>
+                        <li>Use of an ETT</li>
+                        <li>Copious secretions</li>
+                        <li>Nasal congestion</li>
+                        <li>Parental smoking</li>
+                        <li>Surgery on airway</li>
+                        <li>Hx of prematurity</li>
+                    </ul>
+                    <strong>Other Factors:</strong>
+                    <ul>
+                        <li>Need for expedience</li>
+                        <li>Parents travelled far</li>
+                        <li>Surgery cancelled previously</li>
+                        <li>Comfort anaesthetizing child with URI</li>
+                    </ul>
+                </div>
+                <div class="algo-step">
+                    <span class="algo-decision">Risk/Benefit Assessment</span>
+                    <br>➔ <strong>POOR:</strong> <span class="algo-outcome">Postpone 4 weeks</span>
+                    <br>➔ <strong>GOOD:</strong> <span class="algo-outcome">Proceed</span> to Management
+                </div>
+                <div class="algo-step algo-action">
+                    <strong>Management if proceeding:</strong>
+                    <ul>
+                        <li>Avoid ETT</li>
+                        <li>Consider LMA</li>
+                        <li>Pulse oximetry</li>
+                        <li>Hydration</li>
+                        <li>Humidification</li>
+                        <li>Anticholinergics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <!-- SECTION 3: INTRAOPERATIVE MANAGEMENT -->
+    <details class="theme-green">
+        <summary>3. Intraoperative Management (The "How-To")</summary>
+        <div class="content-inner">
+            <h3>Premedication & Induction</h3>
+            <ul>
+                <li><strong>Anxiolytics:</strong> Avoid Midazolam (associated with increased PRAE). <strong>Dexmedetomidine</strong> is preferred (reduces PRAE, especially coughing and laryngospasm).<sup>[1]</sup></li>
+                <li><strong>Bronchodilators:</strong> Preoperative inhaled Salbutamol is recommended for those at risk of bronchospasm.<sup>[1]</sup></li>
+                <li><strong>Induction Agent:</strong> <strong>Propofol</strong> is superior to Sevoflurane or Thiopentone. It reduces airway reactivity and bronchospasm.<sup>[1]</sup></li>
+            </ul>
+
+            <h3>Airway Management</h3>
+            <ul>
+                <li><strong>Device Choice:</strong> Preference for <strong>Facemask > Supraglottic Airway (SGA/LMA) > Tracheal Tube (ETT)</strong>. ETT use in URTI increases PRAE risk by 11x.<sup>[2]</sup></li>
+                <li><strong>Maintenance:</strong> Total Intravenous Anaesthesia (TIVA) with Propofol is preferred. Avoid Desflurane.<sup>[1]</sup></li>
+                <li><strong>Extubation:</strong> Deep removal of the airway device (in lateral position) is often beneficial to reduce coughing and bronchospasm, but requires experienced staff to manage potential upper airway obstruction.<sup>[1]</sup></li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- SECTION 4: POSTOPERATIVE PLAN -->
+    <details class="theme-purple">
+        <summary>4. Postoperative Plan</summary>
+        <div class="content-inner">
+            <p>Children with URTI require close monitoring in the immediate postoperative period due to the risk of residual airway hyperreactivity and respiratory depression.<sup>[1]</sup></p>
+            <ul>
+                <li><strong>Respiratory Monitoring:</strong> Appropriate respiratory monitoring (pulse oximetry) in the immediate postoperative period is mandatory.<sup>[1]</sup></li>
+                <li><strong>PACU Staff:</strong> Ensure Postoperative Anaesthesia Care Unit (PACU) staff are well-educated on recognising airway obstruction and performing airway manoeuvres in children.<sup>[1]</sup></li>
+                <li><strong>Handover:</strong> Use standardised handover protocols to communicate the specific risks and intraoperative events to the recovery team.<sup>[1]</sup></li>
+                <li><strong>Observation:</strong> Close observation by experienced staff must be available until the patient is fully awake, especially if deep extubation was performed.<sup>[1]</sup></li>
+                <li><strong>Apnoea Risk:</strong> Premature and ex-premature babies up to 50 weeks post-conceptual age are at risk of postoperative apnoea. Close observation for at least 24 hours is mandatory.<sup>[2]</sup></li>
+            </ul>
+            <div class="highlight-box success">
+                <strong>MSPA Post-op Tips:</strong> Ensure adequate hydration, humidification, and consider anticholinergics to reduce secretions. Early use of blood products (if indicated) and standardised handover protocols improve outcomes.<sup>[2]</sup>
+            </div>
+        </div>
+    </details>
+
+    <!-- SECTION 5: COMPARISON OF GUIDELINES -->
+    <details class="theme-blue">
+        <summary>5. Comparison & Contrast: Journal Review vs. MSPA Handbook</summary>
+        <div class="content-inner">
+            <p>While both sources agree on the fundamental management of paediatric URTI, there are subtle differences in emphasis and timing recommendations.</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Journal Review (Stepanovic et al.)<sup>[1]</sup></th>
+                            <th>MSPA Handbook<sup>[2]</sup></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Delay Period</strong></td>
+                            <td>2 weeks for mild; <strong>4 weeks for severe</strong> (fever > 40°C). Baseline returns in 4 weeks.</td>
+                            <td>General consensus for reschedule is <strong>2-4 weeks</strong>. Algorithm suggests 4 weeks for severe symptoms.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Risk Magnitude</strong></td>
+                            <td>Emphasises 2-3x increased risk. PRAE risk is 24-30% if current URTI vs 8-17% without.</td>
+                            <td>Emphasises 2-7x increased risk. Intubated URTI has <strong>11x</strong> increased risk.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Airway Device</strong></td>
+                            <td>Strong emphasis on SGA > ETT. Highlights deep extubation to reduce bronchospasm.</td>
+                            <td>Algorithm includes "Avoid ETT" and "Consider LMA". Mentions humidification and anticholinergics.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Premedication</strong></td>
+                            <td>Recommends alpha-2 agonists (Dexmedetomidine) and preoperative Salbutamol. Warns against Midazolam.</td>
+                            <td>Algorithm suggests management options like pulse oximetry, hydration, and anticholinergics. Less specific on premedication agents.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>COVID-19 Specifics</strong></td>
+                            <td>Extensive discussion. Delay 2 weeks for mild, 4 weeks for severe. Symptomatic COVID-19 has higher desaturation risk.</td>
+                            <td>Mentions infectious aetiology in algorithm. Adopts a pragmatic approach to proceed if not severe.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Risk Stratification</strong></td>
+                            <td>Discusses the <strong>COLDS score</strong> and validated scoring systems.</td>
+                            <td>Provides a step-by-step <strong>clinical algorithm</strong> based on urgency, severity, and risk factors.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Postoperative Care</strong></td>
+                            <td>Focus on PACU education, standardised handover, and close observation.</td>
+                            <td>Focus on hydration, humidification, anticholinergics, and 24-hour apnoea monitoring for at-risk infants.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <div class="citation">
+        <strong>References (Vancouver Style):</strong>
+        <p>[1] Stepanovic B, et al. Perioperative preparation in children with upper respiratory tract infections (URTI). Journal Review Article. 2024. (File: PIIS0007091224004975)</p>
+        <p>[2] Muhammad Habibullah Zakaria. Anaesthesia for the Child with Upper Respiratory Tract Infection (URTI). In: Paediatric Anaesthesia Handbook. Malaysian Society of Paediatric Anaesthesiologists (MSPA); 2021. (File: Paediatric_Anaesthesia_Handbook-1)</p>
+    </div>
+
+</div>
+
+<!-- JavaScript for Search Functionality -->
+<script>
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase().trim();
+        const detailsElements = document.querySelectorAll('details');
+        
+        detailsElements.forEach(details => {
+            const text = details.textContent.toLowerCase();
+            
+            if (text.includes(searchTerm)) {
+                details.style.display = 'block';
+                // Automatically open sections that match the search term
+                if (searchTerm !== '') {
+                    details.open = true;
+                } else {
+                    // Reset to closed if search is cleared
+                    details.open = false; 
+                }
+            } else {
+                details.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+                </html>
