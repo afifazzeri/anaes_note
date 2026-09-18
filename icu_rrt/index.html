@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RRT in Critical Care — Anaesthetist Quick Reference</title>
+<meta name="description" content="Collapsible, searchable quick reference on renal replacement therapy in critical care." />
+<style>
+  :root{
+    --pink:#ec4899;
+    --pink-600:#db2777;
+    --pink-200:#fbcfe8;
+    --pink-100:#fce7f3;
+    --pink-50:#fdf2f8;
+    --purple:#7c3aed;
+    --purple-700:#6d28d9;
+    --purple-300:#c4b5fd;
+    --purple-200:#ddd6fe;
+    --purple-100:#ede9fe;
+    --purple-50:#f5f3ff;
+    --ink:#3b0764;
+    --ink-soft:#6b21a8;
+    --line:#f5d0fe;
+    --card:#ffffff;
+    --radius:16px;
+    --shadow:0 2px 12px rgba(124,58,237,.08);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+
+  body{
+    margin:0;
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    color:var(--ink);
+    background:linear-gradient(160deg,#fdf2f8 0%,#f5f3ff 45%,#faf5ff 100%);
+    background-attachment:fixed;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(120deg,#7c3aed 0%,#a855f7 40%,#ec4899 100%);
+    color:#fff;
+    padding:34px 20px 30px;
+    border-radius:0 0 28px 28px;
+    box-shadow:0 8px 26px rgba(168,85,247,.28);
+  }
+  .hero-inner{max-width:1000px;margin:0 auto}
+  .hero h1{
+    margin:0 0 6px;
+    font-size:clamp(1.35rem,3.4vw,2rem);
+    line-height:1.25;
+    letter-spacing:-.4px;
+  }
+  .hero .sub{margin:0 0 14px;font-size:.98rem;opacity:.95}
+  .src-line{
+    margin:0 0 8px;
+    font-size:.8rem;
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.28);
+    padding:9px 13px;
+    border-radius:12px;
+    display:block;
+    line-height:1.55;
+  }
+  .src-line:last-child{margin-bottom:0}
+  .src-line strong{color:#fff}
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(253,242,248,.92);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:10px 20px 8px;
+  }
+  .toolbar-inner{
+    max-width:1000px;
+    margin:0 auto;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .search-wrap{position:relative;flex:1 1 300px;display:flex;align-items:center}
+  .search-icon{
+    position:absolute;left:12px;width:17px;height:17px;
+    stroke:var(--purple);fill:none;stroke-width:2.2;
+    stroke-linecap:round;pointer-events:none;
+  }
+  #search{
+    width:100%;font:inherit;font-size:.92rem;
+    padding:10px 38px 10px 36px;
+    border:1.5px solid var(--purple-200);
+    border-radius:999px;background:#fff;color:var(--ink);
+    outline:none;transition:border-color .15s, box-shadow .15s;
+  }
+  #search::placeholder{color:#a78bfa}
+  #search:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(236,72,153,.14)}
+  .clear-btn{
+    position:absolute;right:10px;border:0;background:var(--purple-100);
+    color:var(--purple-700);width:22px;height:22px;border-radius:50%;
+    cursor:pointer;font-size:15px;line-height:1;display:grid;place-items:center;
+  }
+  .clear-btn:hover{background:var(--pink-200)}
+
+  .btns{display:flex;gap:8px}
+  .btns button{
+    font:inherit;font-size:.8rem;font-weight:600;
+    padding:8px 14px;border-radius:999px;
+    border:1.5px solid var(--purple-200);background:#fff;color:var(--purple-700);
+    cursor:pointer;transition:.15s;white-space:nowrap;
+  }
+  .btns button:hover{
+    background:linear-gradient(120deg,var(--purple),var(--pink));
+    color:#fff;border-color:transparent;
+  }
+
+  .status{max-width:1000px;margin:8px auto 0;font-size:.82rem;color:var(--ink-soft)}
+  .status strong{color:var(--pink-600)}
+
+  /* ---------- CONTENT ---------- */
+  main{max-width:1000px;margin:0 auto;padding:18px 20px 60px}
+
+  details.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:6px solid var(--pink);
+    border-radius:var(--radius);
+    margin:0 0 14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    transition:box-shadow .2s, border-color .2s;
+  }
+  details.card.hit{box-shadow:0 0 0 3px rgba(236,72,153,.22), var(--shadow)}
+  details.card.hidden{display:none}
+
+  details.card>summary{
+    cursor:pointer;list-style:none;
+    padding:15px 20px;
+    font-weight:700;font-size:1rem;color:var(--purple-700);
+    display:flex;align-items:center;gap:12px;
+    background:linear-gradient(90deg,#fdf4ff,#ffffff);
+    user-select:none;
+  }
+  details.card>summary::-webkit-details-marker{display:none}
+  details.card>summary::after{
+    content:"";width:9px;height:9px;margin-left:auto;
+    border-right:2.5px solid var(--pink);border-bottom:2.5px solid var(--pink);
+    transform:rotate(45deg);transition:transform .22s ease;
+    flex:0 0 auto;border-radius:1px;
+  }
+  details.card[open]>summary::after{transform:rotate(225deg)}
+  details.card[open]>summary{border-bottom:1px solid var(--line)}
+  details.card>summary:hover{background:linear-gradient(90deg,#fce7f3,#ffffff)}
+
+  .badge{
+    flex:0 0 auto;min-width:28px;height:26px;padding:0 7px;
+    border-radius:9px;
+    background:linear-gradient(135deg,var(--purple),var(--pink));
+    color:#fff;font-size:.76rem;font-weight:700;
+    display:grid;place-items:center;letter-spacing:.2px;
+  }
+
+  .body{padding:14px 20px 20px}
+
+  .body h3{
+    margin:18px 0 8px;font-size:.95rem;color:var(--pink-600);
+    text-transform:uppercase;letter-spacing:.6px;
+  }
+  .body h3:first-child{margin-top:4px}
+  .body h4{margin:14px 0 6px;font-size:.9rem;color:var(--purple-700)}
+
+  .body p{margin:0 0 10px}
+  .body ul,.body ol{margin:0 0 12px;padding-left:20px}
+  .body li{margin:0 0 6px}
+  .body li::marker{color:var(--pink)}
+  .body ul ul{margin:6px 0 6px}
+
+  strong{color:var(--purple-700)}
+
+  /* key-point list */
+  ul.kp{list-style:none;padding-left:0}
+  ul.kp li{
+    position:relative;
+    padding:9px 14px 9px 40px;
+    background:linear-gradient(90deg,var(--pink-50),#fff);
+    border-left:3px solid var(--pink-200);
+    border-radius:0 10px 10px 0;
+    margin-bottom:8px;
+  }
+  ul.kp li::before{
+    content:"★";position:absolute;left:14px;top:9px;
+    color:var(--pink);font-size:.9rem;
+  }
+
+  /* callout */
+  .callout{
+    background:linear-gradient(120deg,var(--purple-50),var(--pink-50));
+    border:1px solid var(--purple-200);
+    border-left:4px solid var(--purple);
+    border-radius:0 12px 12px 0;
+    padding:11px 15px;margin:12px 0;font-size:.92rem;
+  }
+  .callout.warn{
+    background:linear-gradient(120deg,#fff7ed,#fdf2f8);
+    border-color:#fed7aa;border-left-color:#f97316;
+  }
+  .callout.danger{
+    background:linear-gradient(120deg,#fef2f2,#fdf2f8);
+    border-color:#fecaca;border-left-color:#ef4444;
+  }
+  .callout strong{color:var(--pink-600)}
+
+  /* chips */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{
+    font-size:.8rem;font-weight:600;padding:5px 12px;
+    border-radius:999px;background:var(--purple-100);
+    color:var(--purple-700);border:1px solid var(--purple-200);
+  }
+  .chip.pink{background:var(--pink-100);border-color:var(--pink-200);color:var(--pink-600)}
+
+  /* ---------- citation marker (NOW BELOW THE LINE, NOT SUPERSCRIPT) ---------- */
+  .cite{
+    font-size:.74em;
+    font-weight:700;
+    color:var(--pink-600);
+    white-space:nowrap;
+    letter-spacing:.2px;
+  }
+  .cite a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--pink-200)}
+  .cite a:hover{border-bottom-style:solid}
+
+  /* source note at the bottom of every card */
+  .src-note{
+    margin:18px 0 0;
+    padding:9px 0 0;
+    border-top:1px dashed var(--line);
+    font-size:.76rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .src-note strong{color:var(--pink-600);font-weight:700}
+
+  /* tables */
+  .table-wrap{overflow-x:auto;margin:12px 0 16px;border-radius:12px;border:1px solid var(--line)}
+  table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:520px}
+  caption{
+    caption-side:top;text-align:left;
+    font-size:.8rem;font-weight:700;color:var(--purple-700);
+    padding:9px 13px 7px;background:var(--purple-50);
+    border-bottom:1px solid var(--line);
+  }
+  th{
+    background:linear-gradient(120deg,var(--purple),var(--pink));
+    color:#fff;text-align:left;padding:10px 13px;
+    font-weight:600;font-size:.8rem;letter-spacing:.3px;
+    vertical-align:bottom;
+  }
+  td{padding:9px 13px;border-top:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--pink-50)}
+  tbody tr:hover{background:var(--purple-50)}
+  td:first-child{font-weight:600;color:var(--purple-700)}
+  .tbl-small table{font-size:.82rem;min-width:420px}
+
+  /* diagrams */
+  figure{margin:16px 0 8px}
+  .diagram{
+    width:100%;height:auto;display:block;
+    border:1px solid var(--line);border-radius:14px;
+    background:#fff;padding:6px;
+  }
+  figcaption{
+    font-size:.78rem;color:var(--ink-soft);
+    text-align:center;margin-top:8px;font-style:italic;line-height:1.5;
+  }
+  .svg-lbl{font:600 15px ui-sans-serif,system-ui,sans-serif;fill:#4c1d95}
+  .svg-lbl-sm{font:400 12px ui-sans-serif,system-ui,sans-serif;fill:#6b21a8}
+  .svg-title{font:700 16px ui-sans-serif,system-ui,sans-serif;fill:#6d28d9}
+  .svg-badge{font:700 16px ui-sans-serif,system-ui,sans-serif;fill:#ffffff}
+  .svg-tiny{font:400 10px ui-sans-serif,system-ui,sans-serif;fill:#6b21a8}
+
+  .legend{
+    display:flex;flex-wrap:wrap;gap:10px 20px;
+    font-size:.8rem;color:var(--ink-soft);
+    margin:10px 0 4px;padding:10px 14px;
+    background:var(--purple-50);border-radius:12px;
+    border:1px solid var(--purple-200);
+  }
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+
+  mark.hl{
+    background:linear-gradient(120deg,#fde68a,#fbcfe8);
+    color:#581c87;
+    border-radius:3px;
+    padding:0 2px;
+    font-weight:700;
+    box-shadow:0 0 0 1px rgba(236,72,153,.25);
+  }
+
+  /* references */
+  .refs-list{list-style:none;padding-left:0;margin:0}
+  .refs-list li{
+    display:flex;gap:12px;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    margin-bottom:10px;
+    background:linear-gradient(120deg,var(--purple-50),#fff);
+    font-size:.85rem;
+    line-height:1.55;
+  }
+  .refs-list li .num{
+    flex:0 0 auto;
+    font-weight:800;
+    color:var(--pink-600);
+    min-width:26px;
+  }
+  .refs-list li:target{
+    background:linear-gradient(120deg,#fde68a,#fbcfe8);
+    border-color:var(--pink-200);
+  }
+
+  footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;font-size:.8rem;color:var(--ink-soft)}
+  footer .foot-card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:16px 20px;box-shadow:var(--shadow);
+  }
+  footer p{margin:0 0 8px}
+  footer p:last-child{margin-bottom:0}
+
+  .no-results{
+    display:none;text-align:center;padding:40px 20px;
+    color:var(--ink-soft);font-size:.95rem;
+  }
+  .no-results.show{display:block}
+
+  @media (max-width:640px){
+    .hero{padding:24px 16px 22px;border-radius:0 0 20px 20px}
+    main{padding:14px 14px 50px}
+    .toolbar{padding:8px 14px}
+    .body{padding:12px 15px 18px}
+    details.card>summary{padding:13px 15px;font-size:.94rem}
+    table{font-size:.8rem;min-width:440px}
+  }
+
+  @media print{
+    .toolbar,.btns,.clear-btn{display:none}
+    details.card{break-inside:avoid;box-shadow:none}
+    details.card .body{display:block !important}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Renal Replacement Therapy in Critical Care</h1>
+    <p class="sub">Anaesthetist&rsquo;s quick reference &middot; AKI &middot; CRRT &middot; modality comparison &middot; dosing &middot; anticoagulation</p>
+    <p class="src-line">
+      <strong>Reference (1)</strong> &mdash; Gemmell L, Docking R, Black E. Renal replacement therapy in critical care.
+      <em>BJA Education</em> 2017;17(3):88&ndash;93. Queen Elizabeth University Hospital, Glasgow.
+    </p>
+    <p class="src-line">
+      <strong>Reference (2)</strong> &mdash; Renal replacement therapy in critical care. WFSA Tutorial 548.
+      Tallaght University Hospital, Ireland; published 3 June 2025. Edited by Weinkauf J.
+    </p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+      </svg>
+      <input id="search" type="search" placeholder="Search this guide… (press / to focus)" autocomplete="off" aria-label="Search the quick reference" />
+      <button id="clearBtn" class="clear-btn" hidden aria-label="Clear search">&times;</button>
+    </div>
+    <div class="btns">
+      <button id="expandAll" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+    </div>
+  </div>
+  <div id="searchStatus" class="status" hidden></div>
+</div>
+
+<main id="content">
+
+  <!-- ============ KEY POINTS ============ -->
+  <details class="card" open>
+    <summary><span class="badge">★</span> Key points at a glance</summary>
+    <div class="body">
+      <ul class="kp">
+        <li>Acute kidney injury (AKI) is <strong>common in critical care</strong>, and a significant fraction of patients require renal replacement therapy (RRT). <span class="cite">(2)</span></li>
+        <li>There are <strong>multiple indications for RRT</strong>, but there is limited guidance on the <strong>optimal initiation time</strong> in critically ill patients. <span class="cite">(2)</span></li>
+        <li><strong>Good vascular access and adequate anticoagulation</strong> are required to minimise circuit clotting and downtime. <span class="cite">(2)</span></li>
+        <li><strong>Regional citrate anticoagulation (RCA)</strong> is now considered the <strong>first-line strategy</strong> for continuous renal replacement therapy (CRRT) anticoagulation in patients with no contraindications. <span class="cite">(2)</span></li>
+        <li>Despite improvements in RRT technology, <strong>mortality associated with AKI remains high</strong>, and there is <strong>no benefit from high-intensity RRT</strong> as part of routine care. <span class="cite">(1)</span></li>
+      </ul>
+
+      <div class="callout">
+        <strong>Bottom line for the anaesthetist:</strong> start RRT for the classical indications, target
+        <strong>20&ndash;25&nbsp;ml&nbsp;kg<sup>&minus;1</sup>&nbsp;h<sup>&minus;1</sup></strong> effluent dose, minimise filter
+        downtime, and remember the circuit changes your drug handling. <span class="cite">(1)(2)</span>
+      </div>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 01 AKI DEFINITION ============ -->
+  <details class="card">
+    <summary><span class="badge">01</span> AKI — definition &amp; epidemiology</summary>
+    <div class="body">
+      <h3>Definition</h3>
+      <p>Acute kidney injury (AKI) is defined as an <strong>abrupt reduction in kidney function</strong>, encompassing structural damage and loss of function. It is characterised by a rapid (hours to days) reduction in the ability of the kidneys to eliminate small to middle molecular weight solutes (e.g. nitrogen, urea, creatinine). These solutes can be measured to assess the extent of functional loss, but they often do not reflect dynamic changes in glomerular filtration rate. <span class="cite">(2)</span></p>
+
+      <h3>KDIGO criteria — AKI is defined by any of</h3>
+      <div class="table-wrap tbl-small">
+        <table>
+          <caption>Table 1. KDIGO diagnostic criteria for AKI <span class="cite">(2)</span></caption>
+          <thead>
+            <tr><th style="width:60px">#</th><th>Criterion</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>An increase in serum creatinine of <strong>&ge; 26.5&nbsp;&micro;mol/L (0.3&nbsp;mg/dL)</strong></td></tr>
+            <tr><td>2</td><td>An increase in serum creatinine <strong>&ge; 1.5 &times; baseline</strong> (occurring within the prior 7 days)</td></tr>
+            <tr><td>3</td><td>A urine volume of <strong>&lt; 0.5&nbsp;mL/kg/hr for 6 hours</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Epidemiology</h3>
+      <div class="chips">
+        <span class="chip pink">1% of US hospital admissions</span>
+        <span class="chip">5&ndash;7% of hospitalised patients</span>
+        <span class="chip pink">Up to 60% of ICU patients</span>
+        <span class="chip">Up to ⅔ need RRT</span>
+      </div>
+      <ul>
+        <li>AKI is estimated to account for <strong>1% of hospital admissions</strong> in the United States, and to develop in <strong>5&ndash;7% of hospitalised patients</strong>. <span class="cite">(2)</span></li>
+        <li>Up to <strong>60% of intensive care patients</strong> are affected by AKI, of whom up to <strong>two-thirds require RRT</strong>. <span class="cite">(2)</span></li>
+        <li>AKI is associated with <strong>decreased overall survival</strong>; even mild, reversible AKI can lead to increased mortality and long-term dialysis. <span class="cite">(2)</span></li>
+        <li>Within the adult critical care population in the UK, <strong>continuous modes of RRT are generally preferred</strong>, although intermittent and hybrid therapies remain in use. <span class="cite">(1)</span></li>
+        <li><strong>No current specific pharmacological therapy is effective</strong> in treating AKI; care is limited to supportive treatment, including RRT. <span class="cite">(2)</span></li>
+        <li>AKI often has a <strong>mixed aetiology</strong> &mdash; coexisting sepsis, ischaemia and nephrotoxicity can complicate recognition and treatment. <span class="cite">(2)</span></li>
+      </ul>
+
+      <h3>Why incidence is probably rising</h3>
+      <ul>
+        <li>Increasing <strong>age and comorbidity</strong> of the hospitalised population.</li>
+        <li>Increasing prevalence of AKI risk factors such as <strong>chronic kidney disease and diabetes</strong>.</li>
+        <li>More widespread use of <strong>i.v. contrast</strong> for cardiovascular and other radiological procedures. <span class="cite">(1)</span></li>
+      </ul>
+
+      <h3>Why mortality has not fallen faster</h3>
+      <ul>
+        <li>Lack of diagnostic tools to detect <strong>early AKI</strong>.</li>
+        <li><strong>Delayed initiation</strong> of RRT.</li>
+        <li><strong>Inadequate delivery</strong> of RRT.</li>
+        <li>Inability to <strong>fully replace kidney function</strong> with current RRT modalities. <span class="cite">(1)</span></li>
+      </ul>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 02 INDICATIONS ============ -->
+  <details class="card">
+    <summary><span class="badge">02</span> Indications for RRT</summary>
+    <div class="body">
+      <div class="table-wrap">
+        <table>
+          <caption>Table 2. Indications for initiating renal replacement therapy <span class="cite">(1)(2)</span></caption>
+          <thead>
+            <tr><th style="width:34%">Indication</th><th>Detail / threshold</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Volume overload</td><td>Refractory to diuresis</td></tr>
+            <tr><td>Electrolyte abnormalities</td><td>Severe hyperkalaemia (<strong>&gt; 6.5&nbsp;mmol/L</strong> or rapidly rising); hyponatraemia (<strong>&lt; 110&nbsp;mmol/L</strong>); hypernatraemia (<strong>&gt; 160&nbsp;mmol/L</strong>)</td></tr>
+            <tr><td>Uraemic manifestations</td><td>Encephalopathy, pericarditis, convulsions, myopathy</td></tr>
+            <tr><td>Metabolic acidosis</td><td>Uncompensated severe metabolic acidosis (<strong>pH &lt; 7.2</strong>)</td></tr>
+            <tr><td>Drug or toxin removal</td><td>Water-soluble, not highly protein bound — e.g. lithium, salicylates, barbiturates, metformin, methanol, ethylene glycol</td></tr>
+            <tr><td>Temperature management</td><td>e.g. temperature <strong>&gt; 40&nbsp;&deg;C</strong></td></tr>
+            <tr><td>Severe sepsis</td><td>Remains <strong>controversial</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        The classical criteria are based on <strong>expert opinion rather than evidence from randomised controlled trials</strong>. <span class="cite">(1)</span>
+      </div>
+
+      <h3>Beyond the classical criteria</h3>
+      <p>A decision to institute RRT should consider the <strong>severity of other organ failure</strong> and the <strong>trajectory of the patient&rsquo;s illness</strong>. It is increasingly accepted that RRT can be used when managing fluid overload, hyperthermia, and toxicity related to acute hepatic failure or drugs. <span class="cite">(1)</span></p>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 03 MODALITY COMPARISON ============ -->
+  <details class="card">
+    <summary><span class="badge">03</span> Modalities at a glance — full comparison</summary>
+    <div class="body">
+      <p>Worldwide, RRT can be provided as <strong>peritoneal dialysis</strong>, <strong>intermittent haemodialysis (IHD)</strong>, and <strong>continuous renal replacement therapy (CRRT)</strong>. <span class="cite">(1)(2)</span></p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 3. Comparison of RRT modalities <span class="cite">(1)(2)</span></caption>
+          <thead>
+            <tr>
+              <th>Modality</th>
+              <th>Transport mechanism</th>
+              <th>Access</th>
+              <th>Haemodynamic stability</th>
+              <th>Solute clearance</th>
+              <th>Fluid removal</th>
+              <th>Typical indication</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Peritoneal dialysis</td>
+              <td>Diffusion across the peritoneal membrane (natural filter)</td>
+              <td>Peritoneal catheter</td>
+              <td>Good (slow, gradual)</td>
+              <td>Small solutes; poor middle-molecule clearance</td>
+              <td>Moderate, slow</td>
+              <td>CKD patients preferring home-based therapy; preserved residual kidney function</td>
+            </tr>
+            <tr>
+              <td>Intermittent haemodialysis (IHD)</td>
+              <td>Diffusion</td>
+              <td>Dual venous access (CVC or AV fistula)</td>
+              <td>Poorer — rapid shifts in fluid/solute</td>
+              <td>Small solutes; high efficiency per session</td>
+              <td>Rapid, intermittent</td>
+              <td>ESRD on chronic haemodialysis; AKI patients who tolerate rapid shifts</td>
+            </tr>
+            <tr>
+              <td>CVVH</td>
+              <td>Convection (solute drag with ultrafiltration)</td>
+              <td>Double-lumen central venous catheter</td>
+              <td>Excellent</td>
+              <td>Small <em>and</em> middle molecules (e.g. cytokines)</td>
+              <td>Continuous, controllable</td>
+              <td>Critically ill, especially on vasoactive infusions; sepsis</td>
+            </tr>
+            <tr>
+              <td>CVVHD</td>
+              <td>Diffusion (counter-current dialysate)</td>
+              <td>Double-lumen central venous catheter</td>
+              <td>Excellent</td>
+              <td>Small solutes</td>
+              <td>Minimal ultrafiltration</td>
+              <td>Critically ill needing solute/electrolyte control</td>
+            </tr>
+            <tr>
+              <td>CVVHDF</td>
+              <td>Convection <strong>+</strong> diffusion</td>
+              <td>Double-lumen central venous catheter</td>
+              <td>Excellent</td>
+              <td>Broad range of solutes</td>
+              <td>Continuous</td>
+              <td>Critically ill needing combined solute and volume control</td>
+            </tr>
+            <tr>
+              <td>SCUF</td>
+              <td>Convection (low-rate ultrafiltration)</td>
+              <td>Double-lumen central venous catheter</td>
+              <td>Excellent</td>
+              <td>Minimal solute removal</td>
+              <td>Fluid removal only</td>
+              <td>Isolated volume overload — heart or liver failure, malnutrition</td>
+            </tr>
+            <tr>
+              <td>Hybrid / SLEDD</td>
+              <td>Diffusion &plusmn; convection</td>
+              <td>Double-lumen central venous catheter</td>
+              <td>Intermediate</td>
+              <td>Small solutes</td>
+              <td>Moderate, prolonged session</td>
+              <td>Units without CRRT capability; combines IHD and CRRT</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 4. Solute clearance and flows in CRRT <span class="cite">(2)</span></caption>
+          <thead>
+            <tr>
+              <th>Type of therapy</th>
+              <th>Solute transport</th>
+              <th>Replacement fluid</th>
+              <th>Blood flow (mL/min)</th>
+              <th>Dialysate flow (mL/hr)</th>
+              <th>Ultrafiltrate / effluent flow (mL/hr)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>CVVH</td><td>Convection</td><td>Yes</td><td>50&ndash;300</td><td>&mdash;</td><td>500&ndash;4000</td></tr>
+            <tr><td>CVVHD</td><td>Diffusion</td><td>No</td><td>50&ndash;300</td><td>500&ndash;4000</td><td>0&ndash;350</td></tr>
+            <tr><td>CVVHDF</td><td>Convection &amp; diffusion</td><td>Yes</td><td>50&ndash;300</td><td>500&ndash;4000</td><td>500&ndash;4000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>Practical take-home:</strong> CVVH clears middle molecules best (convection); CVVHD clears small solutes efficiently with almost no fluid removal; CVVHDF does both; SCUF only removes fluid. <span class="cite">(2)</span>
+      </div>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 04 CONVECTION vs DIFFUSION ============ -->
+  <details class="card">
+    <summary><span class="badge">04</span> Convection vs diffusion — how clearance happens</summary>
+    <div class="body">
+      <h3>The aims of RRT</h3>
+      <div class="chips">
+        <span class="chip">Correction of electrolyte abnormalities</span>
+        <span class="chip">Solute and water removal</span>
+        <span class="chip">Normalisation of acid&ndash;base disturbances</span>
+      </div>
+      <p>These aims are achieved via <strong>diffusion</strong> (haemodialysis) or <strong>convection</strong> (haemofiltration). <span class="cite">(1)(2)</span></p>
+
+      <h3>Haemofiltration (convection)</h3>
+      <ul>
+        <li>A <strong>convective process</strong> whereby a <strong>hydrostatic pressure gradient</strong> filters plasma, water and solute across a membrane — analogous to the process within the renal corpuscle. <span class="cite">(1)</span></li>
+        <li>The underlying mechanism is <strong>&lsquo;solute drag&rsquo;</strong>: appropriately sized molecules are pulled along with the mass movement of solvent, traditionally termed <strong>ultrafiltration (UF)</strong>. <span class="cite">(1)</span></li>
+        <li>Convective transport is <strong>independent of solute concentration</strong> but determined by the <strong>direction and magnitude of the transmembrane pressure (TMP)</strong>. <span class="cite">(1)</span></li>
+        <li>Measures that result in a <strong>higher flow rate</strong> increase UF production and in turn increase solute clearance. Measures that increase the <strong>negative pressure</strong> across the membrane (including the pump on the effluent line) can have a marked effect. <span class="cite">(1)</span></li>
+        <li>The fluid produced, known as <strong>effluent</strong>, is discarded. Owing to the high volumes produced, the patient&rsquo;s circulating volume is replaced with a <strong>balanced crystalloid buffer solution</strong>. <span class="cite">(1)</span></li>
+        <li>Convection enhances removal of <strong>low and middle molecular weight molecules</strong>. <span class="cite">(2)</span></li>
+      </ul>
+
+      <h3>Haemodialysis (diffusion)</h3>
+      <ul>
+        <li>Solute clearance is achieved by <strong>diffusion</strong> across the membrane. A <strong>concentration gradient</strong> between blood and dialysate drives solutes across the semipermeable membrane. <span class="cite">(1)(2)</span></li>
+        <li>The space outside the blood-containing fibres within the filter is filled with <strong>dialysate</strong>, pumped in a <strong>counter-current</strong> fashion to the flow of blood. <span class="cite">(1)</span></li>
+        <li>Dialysate is reconstituted to include a <strong>buffer</strong> (acetic acid or bicarbonate) and <strong>essential electrolytes</strong> dissolved in ultrapure water rendered devoid of toxins and impurities. <span class="cite">(1)</span></li>
+        <li>Diffusion is most suitable for clearing <strong>low molecular weight solutes</strong>, e.g. urea and creatinine. <span class="cite">(2)</span></li>
+        <li>Whether tailoring the dose of bicarbonate to match individual patient needs can affect outcome requires further research. <span class="cite">(1)</span></li>
+      </ul>
+
+      <figure>
+        <svg class="diagram" viewBox="0 0 820 630" role="img" aria-label="Comparison of convection and diffusion across a haemofilter membrane">
+          <defs>
+            <marker id="mCross" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#be185d"/>
+            </marker>
+            <marker id="mBlood" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#e11d48"/>
+            </marker>
+            <marker id="mDial" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#059669"/>
+            </marker>
+            <marker id="mOut" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#f472b6"/>
+            </marker>
+          </defs>
+
+          <!-- ===== PANEL A ===== -->
+          <rect x="10" y="10" width="800" height="300" rx="18" fill="#ffffff" stroke="#f5d0fe" stroke-width="2"/>
+          <circle cx="45" cy="45" r="18" fill="#ec4899"/>
+          <text x="45" y="51" text-anchor="middle" class="svg-badge">A</text>
+          <text x="75" y="51" class="svg-title">Convection — haemofiltration</text>
+
+          <text x="60" y="78" class="svg-lbl-sm">&larr; Blood returning to patient</text>
+          <text x="760" y="78" text-anchor="end" class="svg-lbl-sm">Blood from patient &rarr;</text>
+
+          <rect x="60" y="90" width="700" height="160" rx="30" fill="#fce7f3"/>
+          <path d="M60 170 V120 a30 30 0 0 1 30 -30 h640 a30 30 0 0 1 30 30 v50 Z" fill="#ffe4e6"/>
+          <rect x="60" y="90" width="700" height="160" rx="30" fill="none" stroke="#f472b6" stroke-width="3"/>
+          <line x1="62" y1="170" x2="758" y2="170" stroke="#f472b6" stroke-width="3" stroke-dasharray="10 7"/>
+
+          <line x1="720" y1="138" x2="110" y2="138" stroke="#e11d48" stroke-width="3" opacity="0.3" marker-end="url(#mBlood)"/>
+
+          <circle cx="200" cy="118" r="9" fill="#dc2626"/>
+          <circle cx="450" cy="132" r="9" fill="#dc2626"/>
+          <circle cx="630" cy="115" r="9" fill="#dc2626"/>
+          <circle cx="140" cy="147" r="6" fill="#f97316"/>
+          <circle cx="330" cy="110" r="6" fill="#f97316"/>
+          <circle cx="540" cy="150" r="6" fill="#f97316"/>
+          <circle cx="700" cy="130" r="6" fill="#f97316"/>
+          <circle cx="270" cy="145" r="4" fill="#3b82f6"/>
+          <circle cx="390" cy="120" r="4" fill="#3b82f6"/>
+          <circle cx="500" cy="108" r="4" fill="#3b82f6"/>
+          <circle cx="610" cy="148" r="4" fill="#3b82f6"/>
+
+          <line x1="250" y1="152" x2="250" y2="204" stroke="#be185d" stroke-width="2.5" marker-end="url(#mCross)"/>
+          <line x1="420" y1="152" x2="420" y2="204" stroke="#be185d" stroke-width="2.5" marker-end="url(#mCross)"/>
+          <line x1="590" y1="152" x2="590" y2="204" stroke="#be185d" stroke-width="2.5" marker-end="url(#mCross)"/>
+
+          <circle cx="250" cy="220" r="9" fill="#dc2626"/>
+          <circle cx="420" cy="222" r="6" fill="#f97316"/>
+          <circle cx="590" cy="220" r="4" fill="#3b82f6"/>
+
+          <text x="120" y="205" class="svg-lbl-sm">Ultrafiltrate (low pressure)</text>
+          <line x1="700" y1="250" x2="700" y2="280" stroke="#f472b6" stroke-width="4" marker-end="url(#mOut)"/>
+          <text x="700" y="298" text-anchor="middle" class="svg-lbl-sm">Ultrafiltrate out</text>
+          <text x="120" y="120" class="svg-lbl-sm">High pressure</text>
+
+          <!-- ===== PANEL B ===== -->
+          <rect x="10" y="325" width="800" height="295" rx="18" fill="#ffffff" stroke="#f5d0fe" stroke-width="2"/>
+          <circle cx="45" cy="360" r="18" fill="#7c3aed"/>
+          <text x="45" y="366" text-anchor="middle" class="svg-badge">B</text>
+          <text x="75" y="366" class="svg-title">Diffusion — haemodialysis</text>
+
+          <text x="60" y="393" class="svg-lbl-sm">&larr; Blood returning to patient</text>
+          <text x="760" y="393" text-anchor="end" class="svg-lbl-sm">Blood from patient &rarr;</text>
+
+          <rect x="60" y="405" width="700" height="155" rx="30" fill="#d1fae5"/>
+          <path d="M60 480 V435 a30 30 0 0 1 30 -30 h640 a30 30 0 0 1 30 30 v45 Z" fill="#ffe4e6"/>
+          <rect x="60" y="405" width="700" height="155" rx="30" fill="none" stroke="#f472b6" stroke-width="3"/>
+          <line x1="62" y1="480" x2="758" y2="480" stroke="#f472b6" stroke-width="3" stroke-dasharray="10 7"/>
+
+          <line x1="720" y1="450" x2="110" y2="450" stroke="#e11d48" stroke-width="3" opacity="0.3" marker-end="url(#mBlood)"/>
+          <line x1="110" y1="530" x2="720" y2="530" stroke="#059669" stroke-width="3" opacity="0.45" marker-end="url(#mDial)"/>
+
+          <circle cx="220" cy="435" r="9" fill="#dc2626"/>
+          <circle cx="480" cy="445" r="9" fill="#dc2626"/>
+          <circle cx="180" cy="462" r="6" fill="#f97316"/>
+          <circle cx="360" cy="430" r="6" fill="#f97316"/>
+          <circle cx="560" cy="462" r="6" fill="#f97316"/>
+          <circle cx="680" cy="438" r="6" fill="#f97316"/>
+          <circle cx="300" cy="458" r="4" fill="#3b82f6"/>
+          <circle cx="620" cy="452" r="4" fill="#3b82f6"/>
+
+          <line x1="270" y1="470" x2="270" y2="512" stroke="#be185d" stroke-width="2.5" marker-end="url(#mCross)"/>
+          <line x1="440" y1="470" x2="440" y2="512" stroke="#be185d" stroke-width="2.5" marker-end="url(#mCross)"/>
+          <line x1="610" y1="470" x2="610" y2="512" stroke="#be185d" stroke-width="2.5" marker-end="url(#mCross)"/>
+          <circle cx="270" cy="528" r="6" fill="#f97316"/>
+          <circle cx="440" cy="528" r="6" fill="#f97316"/>
+          <circle cx="610" cy="528" r="6" fill="#f97316"/>
+
+          <text x="60" y="592" class="svg-lbl-sm">Dialysate inflow &rarr;</text>
+          <text x="760" y="592" text-anchor="end" class="svg-lbl-sm">&larr; Spent dialysate outflow</text>
+          <text x="120" y="440" class="svg-lbl-sm">Blood</text>
+          <text x="120" y="512" class="svg-lbl-sm">Dialysate (counter-current)</text>
+        </svg>
+
+        <div class="legend">
+          <span><span class="dot" style="background:#dc2626"></span> Middle molecular weight</span>
+          <span><span class="dot" style="background:#f97316"></span> Low molecular weight</span>
+          <span><span class="dot" style="background:#3b82f6"></span> Water molecule</span>
+        </div>
+
+        <figcaption>Fig. 1 — Movement of solutes across a semipermeable membrane. <strong>Convection (A)</strong> transports solutes in response to a hydrostatic pressure gradient and enhances removal of low and middle molecular weight molecules. <strong>Diffusion (B)</strong> uses a concentration gradient between blood and dialysate, and is most suitable for clearing low molecular weight solutes such as urea and creatinine. <span class="cite">(1)(2)</span></figcaption>
+      </figure>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 05 CIRCUIT ============ -->
+  <details class="card">
+    <summary><span class="badge">05</span> The CRRT circuit, filter &amp; membrane</summary>
+    <div class="body">
+      <h3>Circuit components</h3>
+      <ul>
+        <li>An <strong>extracorporeal circuit</strong> is used during RRT. Blood is passed through the circuit from one lumen of a <strong>wide-bore double-lumen central venous catheter (Vascath)</strong> and flows towards a <strong>semipermeable membrane</strong> consisting of multiple hollow fibres with pores throughout. <span class="cite">(1)(2)</span></li>
+        <li>These pores only allow substances with certain molecular sizes to pass through — <strong>waste products pass through</strong> while <strong>cells and blood proteins remain intravascularly</strong>. Once the blood has passed through the membrane, it is returned to the patient via the second lumen of the same Vascath. <span class="cite">(1)(2)</span></li>
+        <li><strong>Roller pumps</strong> control the speed of blood flow towards the membrane. <span class="cite">(1)</span></li>
+        <li><strong>Middle molecules</strong> are preferentially cleared by convective methods; <strong>smaller molecules</strong> are more reliably cleared by diffusion — this potentially allows individualisation of treatment modality. <span class="cite">(1)</span></li>
+        <li><strong>Anticoagulation</strong> is generally required to minimise the chance of thrombosis within the extracorporeal circuit. <span class="cite">(1)</span></li>
+        <li>Modern circuits use <strong>polysulphone</strong> membranes. <span class="cite">(1)</span></li>
+      </ul>
+
+      <figure>
+        <svg class="diagram" viewBox="0 0 900 520" role="img" aria-label="Simplified continuous renal replacement therapy circuit diagram showing blood pump, haemofilter, replacement fluid, dialysate, effluent and patient">
+          <defs>
+            <marker id="arrRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#e11d48"/>
+            </marker>
+            <marker id="arrBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#2563eb"/>
+            </marker>
+            <marker id="arrPink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#ec4899"/>
+            </marker>
+            <marker id="arrAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#f59e0b"/>
+            </marker>
+            <marker id="arrGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#10b981"/>
+            </marker>
+          </defs>
+
+          <path d="M745 330 Q800 288 865 330 L865 500 L745 500 Z" fill="#faf5ff" stroke="#e9d5ff" stroke-width="2"/>
+          <rect x="778" y="200" width="44" height="90" rx="16" fill="#faf5ff" stroke="#d8b4fe" stroke-width="2"/>
+          <circle cx="800" cy="165" r="46" fill="#faf5ff" stroke="#d8b4fe" stroke-width="2"/>
+          <line x1="716" y1="240" x2="790" y2="240" stroke="#9ca3af" stroke-width="7" stroke-linecap="round"/>
+          <rect x="694" y="205" width="24" height="70" rx="9" fill="#e5e7eb" stroke="#9ca3af" stroke-width="2"/>
+          <text x="800" y="360" text-anchor="middle" class="svg-lbl">Patient</text>
+
+          <path d="M694 225 H610 V80 H385 V130" fill="none" stroke="#e11d48" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrRed)"/>
+
+          <circle cx="570" cy="80" r="27" fill="#fff" stroke="#e11d48" stroke-width="4"/>
+          <path d="M562 71 L583 80 L562 89 Z" fill="#e11d48"/>
+          <text x="570" y="34" text-anchor="middle" class="svg-lbl">Blood pump</text>
+
+          <rect x="60" y="30" width="200" height="60" rx="12" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+          <text x="160" y="55" text-anchor="middle" class="svg-lbl">Replacement fluid</text>
+          <text x="160" y="74" text-anchor="middle" class="svg-lbl-sm">pre-dilution (before filter)</text>
+          <path d="M260 60 H470 V80" fill="none" stroke="#ec4899" stroke-width="4" stroke-linejoin="round" marker-end="url(#arrPink)"/>
+
+          <rect x="340" y="130" width="90" height="200" rx="16" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="4"/>
+          <line x1="362" y1="148" x2="362" y2="312" stroke="#c4b5fd" stroke-width="2"/>
+          <line x1="385" y1="148" x2="385" y2="312" stroke="#c4b5fd" stroke-width="2"/>
+          <line x1="408" y1="148" x2="408" y2="312" stroke="#c4b5fd" stroke-width="2"/>
+          <text x="452" y="198" class="svg-lbl">Haemofilter</text>
+          <text x="452" y="220" class="svg-lbl-sm">Polysulphone hollow-fibre membrane</text>
+          <text x="452" y="240" class="svg-lbl-sm">Pore size &rarr; what can be cleared</text>
+
+          <rect x="60" y="150" width="180" height="60" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+          <text x="150" y="186" text-anchor="middle" class="svg-lbl">Effluent (discarded)</text>
+          <path d="M340 180 H240" fill="none" stroke="#f59e0b" stroke-width="4" marker-end="url(#arrAmber)"/>
+          <circle cx="290" cy="180" r="24" fill="#fff" stroke="#f59e0b" stroke-width="4"/>
+
+          <rect x="60" y="250" width="180" height="60" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="150" y="277" text-anchor="middle" class="svg-lbl">Dialysate</text>
+          <text x="150" y="295" text-anchor="middle" class="svg-lbl-sm">counter-current</text>
+          <path d="M240 280 H340" fill="none" stroke="#10b981" stroke-width="4" marker-end="url(#arrGreen)"/>
+          <circle cx="290" cy="280" r="24" fill="#fff" stroke="#10b981" stroke-width="4"/>
+
+          <path d="M385 330 V400 H694 V262" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrBlue)"/>
+
+          <rect x="480" y="430" width="220" height="60" rx="12" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+          <text x="590" y="455" text-anchor="middle" class="svg-lbl">Replacement fluid</text>
+          <text x="590" y="474" text-anchor="middle" class="svg-lbl-sm">post-dilution (after filter)</text>
+          <path d="M590 430 V400" fill="none" stroke="#ec4899" stroke-width="4" marker-end="url(#arrPink)"/>
+
+          <g transform="translate(60,355)">
+            <text x="0" y="0" class="svg-lbl">Key</text>
+            <line x1="0" y1="22" x2="30" y2="22" stroke="#e11d48" stroke-width="5"/>
+            <text x="40" y="26" class="svg-lbl-sm">Arterial &mdash; patient &rarr; filter</text>
+            <line x1="0" y1="50" x2="30" y2="50" stroke="#2563eb" stroke-width="5"/>
+            <text x="40" y="54" class="svg-lbl-sm">Venous &mdash; filter &rarr; patient</text>
+            <line x1="0" y1="78" x2="30" y2="78" stroke="#ec4899" stroke-width="5"/>
+            <text x="40" y="82" class="svg-lbl-sm">Replacement fluid (buffered crystalloid)</text>
+            <line x1="0" y1="106" x2="30" y2="106" stroke="#f59e0b" stroke-width="5"/>
+            <text x="40" y="110" class="svg-lbl-sm">Effluent &mdash; discarded</text>
+            <line x1="0" y1="134" x2="30" y2="134" stroke="#10b981" stroke-width="5"/>
+            <text x="40" y="138" class="svg-lbl-sm">Dialysate</text>
+          </g>
+        </svg>
+        <figcaption>Fig. 2 — Simplified CRRT circuit. Blood is drawn from a double-lumen central venous catheter, driven by a roller pump through a hollow-fibre membrane, and returned to the patient. Replacement fluid may be given pre- and/or post-filter; dialysate runs counter-current; effluent is discarded. <span class="cite">(1)(2)</span></figcaption>
+      </figure>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 06 CRRT MODALITIES IN DETAIL ============ -->
+  <details class="card">
+    <summary><span class="badge">06</span> CRRT modalities in detail — CVVH, CVVHD, CVVHDF, SCUF</summary>
+    <div class="body">
+      <figure>
+        <svg class="diagram" viewBox="0 0 900 600" role="img" aria-label="Four CRRT circuit schematics: CVVH, CVVHD, CVVHDF and SCUF">
+          <defs>
+            <marker id="pRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#e11d48"/>
+            </marker>
+            <marker id="pPink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#ec4899"/>
+            </marker>
+            <marker id="pAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#f59e0b"/>
+            </marker>
+            <marker id="pGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#10b981"/>
+            </marker>
+          </defs>
+
+          <!-- PANEL A : CVVH -->
+          <g transform="translate(10,10)">
+            <rect x="0" y="0" width="430" height="280" rx="14" fill="#fff" stroke="#f5d0fe" stroke-width="2"/>
+            <circle cx="24" cy="24" r="14" fill="#ec4899"/>
+            <text x="24" y="30" text-anchor="middle" class="svg-badge">A</text>
+            <text x="48" y="30" class="svg-title">CVVH — convection</text>
+
+            <rect x="10" y="95" width="68" height="105" rx="10" fill="#faf5ff" stroke="#d8b4fe" stroke-width="2"/>
+            <text x="44" y="152" text-anchor="middle" class="svg-tiny">Patient</text>
+
+            <path d="M78 125 H252" fill="none" stroke="#e11d48" stroke-width="4" marker-end="url(#pRed)"/>
+            <circle cx="150" cy="125" r="17" fill="#fff" stroke="#e11d48" stroke-width="3"/>
+            <path d="M144 119 L158 125 L144 131 Z" fill="#e11d48"/>
+            <text x="150" y="98" text-anchor="middle" class="svg-tiny">Blood pump</text>
+            <text x="105" y="145" class="svg-tiny">Access</text>
+
+            <rect x="252" y="75" width="78" height="110" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
+            <text x="291" y="133" text-anchor="middle" class="svg-tiny">Hemofilter</text>
+
+            <path d="M291 75 V48 H42 V95" fill="none" stroke="#e11d48" stroke-width="4" stroke-linejoin="round" marker-end="url(#pRed)"/>
+            <text x="200" y="42" text-anchor="middle" class="svg-tiny">Return</text>
+
+            <path d="M291 185 V232" fill="none" stroke="#f59e0b" stroke-width="4" marker-end="url(#pAmber)"/>
+            <circle cx="291" cy="208" r="14" fill="#fff" stroke="#f59e0b" stroke-width="3"/>
+            <text x="291" y="258" text-anchor="middle" class="svg-tiny">Effluent</text>
+
+            <rect x="168" y="235" width="44" height="28" rx="6" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+            <circle cx="190" cy="208" r="14" fill="#fff" stroke="#ec4899" stroke-width="3"/>
+            <path d="M190 235 V222" fill="none" stroke="#ec4899" stroke-width="3"/>
+            <path d="M190 194 V125" fill="none" stroke="#ec4899" stroke-width="4" marker-end="url(#pPink)"/>
+            <text x="160" y="256" text-anchor="end" class="svg-tiny">Replacement fluid</text>
+          </g>
+
+          <!-- PANEL B : CVVHD -->
+          <g transform="translate(460,10)">
+            <rect x="0" y="0" width="430" height="280" rx="14" fill="#fff" stroke="#f5d0fe" stroke-width="2"/>
+            <circle cx="24" cy="24" r="14" fill="#7c3aed"/>
+            <text x="24" y="30" text-anchor="middle" class="svg-badge">B</text>
+            <text x="48" y="30" class="svg-title">CVVHD — diffusion</text>
+
+            <rect x="10" y="95" width="68" height="105" rx="10" fill="#faf5ff" stroke="#d8b4fe" stroke-width="2"/>
+            <text x="44" y="152" text-anchor="middle" class="svg-tiny">Patient</text>
+
+            <path d="M78 125 H252" fill="none" stroke="#e11d48" stroke-width="4" marker-end="url(#pRed)"/>
+            <circle cx="150" cy="125" r="17" fill="#fff" stroke="#e11d48" stroke-width="3"/>
+            <path d="M144 119 L158 125 L144 131 Z" fill="#e11d48"/>
+            <text x="150" y="98" text-anchor="middle" class="svg-tiny">Blood pump</text>
+            <text x="105" y="145" class="svg-tiny">Access</text>
+
+            <rect x="252" y="75" width="78" height="110" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
+            <text x="291" y="133" text-anchor="middle" class="svg-tiny">Hemofilter</text>
+
+            <path d="M291 75 V48 H42 V95" fill="none" stroke="#e11d48" stroke-width="4" stroke-linejoin="round" marker-end="url(#pRed)"/>
+            <text x="200" y="42" text-anchor="middle" class="svg-tiny">Return</text>
+
+            <path d="M291 185 V232" fill="none" stroke="#f59e0b" stroke-width="4" marker-end="url(#pAmber)"/>
+            <circle cx="291" cy="208" r="14" fill="#fff" stroke="#f59e0b" stroke-width="3"/>
+            <text x="291" y="258" text-anchor="middle" class="svg-tiny">Effluent</text>
+
+            <rect x="344" y="235" width="44" height="28" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+            <circle cx="366" cy="208" r="14" fill="#fff" stroke="#10b981" stroke-width="3"/>
+            <path d="M366 235 V222" fill="none" stroke="#10b981" stroke-width="3"/>
+            <path d="M366 194 V160 H332" fill="none" stroke="#10b981" stroke-width="4" stroke-linejoin="round" marker-end="url(#pGreen)"/>
+            <text x="366" y="258" text-anchor="middle" class="svg-tiny">Dialysate</text>
+          </g>
+
+          <!-- PANEL C : CVVHDF -->
+          <g transform="translate(10,310)">
+            <rect x="0" y="0" width="430" height="280" rx="14" fill="#fff" stroke="#f5d0fe" stroke-width="2"/>
+            <circle cx="24" cy="24" r="14" fill="#db2777"/>
+            <text x="24" y="30" text-anchor="middle" class="svg-badge">C</text>
+            <text x="48" y="30" class="svg-title">CVVHDF — both</text>
+
+            <rect x="10" y="95" width="68" height="105" rx="10" fill="#faf5ff" stroke="#d8b4fe" stroke-width="2"/>
+            <text x="44" y="152" text-anchor="middle" class="svg-tiny">Patient</text>
+
+            <path d="M78 125 H252" fill="none" stroke="#e11d48" stroke-width="4" marker-end="url(#pRed)"/>
+            <circle cx="150" cy="125" r="17" fill="#fff" stroke="#e11d48" stroke-width="3"/>
+            <path d="M144 119 L158 125 L144 131 Z" fill="#e11d48"/>
+            <text x="150" y="98" text-anchor="middle" class="svg-tiny">Blood pump</text>
+            <text x="105" y="145" class="svg-tiny">Access</text>
+
+            <rect x="252" y="75" width="78" height="110" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
+            <text x="291" y="133" text-anchor="middle" class="svg-tiny">Hemofilter</text>
+
+            <path d="M291 75 V48 H42 V95" fill="none" stroke="#e11d48" stroke-width="4" stroke-linejoin="round" marker-end="url(#pRed)"/>
+            <text x="200" y="42" text-anchor="middle" class="svg-tiny">Return</text>
+
+            <path d="M291 185 V232" fill="none" stroke="#f59e0b" stroke-width="4" marker-end="url(#pAmber)"/>
+            <circle cx="291" cy="208" r="14" fill="#fff" stroke="#f59e0b" stroke-width="3"/>
+            <text x="291" y="258" text-anchor="middle" class="svg-tiny">Effluent</text>
+
+            <rect x="168" y="235" width="44" height="28" rx="6" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+            <circle cx="190" cy="208" r="14" fill="#fff" stroke="#ec4899" stroke-width="3"/>
+            <path d="M190 235 V222" fill="none" stroke="#ec4899" stroke-width="3"/>
+            <path d="M190 194 V125" fill="none" stroke="#ec4899" stroke-width="4" marker-end="url(#pPink)"/>
+            <text x="160" y="256" text-anchor="end" class="svg-tiny">Replacement</text>
+
+            <rect x="344" y="235" width="44" height="28" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+            <circle cx="366" cy="208" r="14" fill="#fff" stroke="#10b981" stroke-width="3"/>
+            <path d="M366 235 V222" fill="none" stroke="#10b981" stroke-width="3"/>
+            <path d="M366 194 V160 H332" fill="none" stroke="#10b981" stroke-width="4" stroke-linejoin="round" marker-end="url(#pGreen)"/>
+            <text x="366" y="258" text-anchor="middle" class="svg-tiny">Dialysate</text>
+          </g>
+
+          <!-- PANEL D : SCUF -->
+          <g transform="translate(460,310)">
+            <rect x="0" y="0" width="430" height="280" rx="14" fill="#fff" stroke="#f5d0fe" stroke-width="2"/>
+            <circle cx="24" cy="24" r="14" fill="#a855f7"/>
+            <text x="24" y="30" text-anchor="middle" class="svg-badge">D</text>
+            <text x="48" y="30" class="svg-title">SCUF — fluid only</text>
+
+            <rect x="10" y="95" width="68" height="105" rx="10" fill="#faf5ff" stroke="#d8b4fe" stroke-width="2"/>
+            <text x="44" y="152" text-anchor="middle" class="svg-tiny">Patient</text>
+
+            <path d="M78 125 H252" fill="none" stroke="#e11d48" stroke-width="4" marker-end="url(#pRed)"/>
+            <circle cx="150" cy="125" r="17" fill="#fff" stroke="#e11d48" stroke-width="3"/>
+            <path d="M144 119 L158 125 L144 131 Z" fill="#e11d48"/>
+            <text x="150" y="98" text-anchor="middle" class="svg-tiny">Blood pump</text>
+            <text x="105" y="145" class="svg-tiny">Access</text>
+
+            <rect x="252" y="75" width="78" height="110" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
+            <text x="291" y="133" text-anchor="middle" class="svg-tiny">Hemofilter</text>
+
+            <path d="M291 75 V48 H42 V95" fill="none" stroke="#e11d48" stroke-width="4" stroke-linejoin="round" marker-end="url(#pRed)"/>
+            <text x="200" y="42" text-anchor="middle" class="svg-tiny">Return</text>
+
+            <path d="M291 185 V232" fill="none" stroke="#f59e0b" stroke-width="4" marker-end="url(#pAmber)"/>
+            <circle cx="291" cy="208" r="14" fill="#fff" stroke="#f59e0b" stroke-width="3"/>
+            <text x="291" y="258" text-anchor="middle" class="svg-tiny">Effluent</text>
+
+            <text x="215" y="150" text-anchor="middle" class="svg-tiny" fill="#f59e0b">Low filtration rate</text>
+          </g>
+        </svg>
+        <figcaption>Fig. 3 — Simplified CRRT circuit schematics. <strong>A</strong> CVVH: convection with replacement fluid. <strong>B</strong> CVVHD: diffusion with counter-current dialysate, minimal ultrafiltration. <strong>C</strong> CVVHDF: convection + diffusion with both replacement fluid and dialysate. <strong>D</strong> SCUF: low-rate ultrafiltration for fluid control only. <span class="cite">(2)</span></figcaption>
+      </figure>
+
+      <h3>Continuous veno-venous hemofiltration (CVVH)</h3>
+      <ul>
+        <li>In CVVH, <strong>convection</strong> is used to remove solutes through large-volume fluid ultrafiltration. Solutes are swept across the membrane with the fluid, <strong>without any influence from concentration gradients</strong>. <span class="cite">(2)</span></li>
+        <li>Small solute molecules (e.g. urea) and middle-sized molecules (e.g. inflammatory cytokines) pass through the porous membrane. Large volumes of fluid are removed, so <strong>replacement fluid is required to maintain intravascular volume</strong>. <span class="cite">(2)</span></li>
+        <li>This method can be used for volume removal and correction of electrolyte/acid–base abnormalities. <span class="cite">(2)</span></li>
+      </ul>
+
+      <div class="table-wrap tbl-small">
+        <table>
+          <caption>Table 5. Pre-dilution vs post-dilution replacement fluid <span class="cite">(2)</span></caption>
+          <thead>
+            <tr><th>Strategy</th><th>Advantages</th><th>Disadvantages</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pre-dilution (before hemofilter)</td>
+              <td>Increased filter life; enhanced elution of urea from red blood cells</td>
+              <td>Decreased rate of solute clearance</td>
+            </tr>
+            <tr>
+              <td>Post-dilution (after hemofilter)</td>
+              <td>Smaller volume of replacement fluid required; higher solute clearance rate</td>
+              <td>Filter life may be decreased, particularly if anticoagulation is inadequate</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        In CVVH, an ultrafiltration rate of <strong>2&nbsp;L/hour</strong> leads to a urea clearance of approximately
+        <strong>25&nbsp;mL/kg/hr</strong> in an average 80&nbsp;kg patient. <span class="cite">(2)</span>
+      </div>
+
+      <h3>Continuous veno-venous hemodialysis (CVVHD)</h3>
+      <ul>
+        <li>CVVHD utilises <strong>counter-current dialysate flow</strong> to remove small solutes through <strong>diffusion</strong> based on their concentration gradients. <span class="cite">(2)</span></li>
+        <li>Higher blood or dialysate flow rates can be used to <strong>increase solute clearance</strong>. <span class="cite">(2)</span></li>
+        <li>Dialysates contain physiologic concentrations of <strong>magnesium, sodium, chloride and glucose</strong>. <strong>Potassium is prescribed separately</strong>, as serum potassium can vary significantly in critically ill patients. <span class="cite">(2)</span></li>
+        <li>Dialysate is buffered with either <strong>bicarbonate</strong> or a bicarbonate precursor (e.g. lactate or citrate). <span class="cite">(2)</span></li>
+        <li>In CVVHD there is <strong>no significant fluid removal</strong>, as there is minimal ultrafiltration. <span class="cite">(2)</span></li>
+      </ul>
+
+      <h3>Continuous veno-venous hemodiafiltration (CVVHDF)</h3>
+      <ul>
+        <li>A <strong>combination of hemodialysis and hemofiltration</strong>. It therefore clears a large range of solutes and volume by optimally combining <strong>diffusion, convection and ultrafiltration</strong>. <span class="cite">(2)</span></li>
+      </ul>
+
+      <h3>Slow continuous ultrafiltration (SCUF)</h3>
+      <ul>
+        <li>An alternative mode of CRRT used to <strong>control fluid balance</strong> — essentially CVVH with a <strong>low filtration rate</strong>. <span class="cite">(2)</span></li>
+        <li>Used mainly for <strong>fluid balance</strong> but has <strong>limited solute removal</strong>. The hydrostatic pressure gradient between the blood compartment of the filter and the filtrate compartment determines the rate of fluid removal. <span class="cite">(2)</span></li>
+        <li>Less complex than other modes with a <strong>decreased nursing workload</strong>. However, it <strong>cannot correct acid–base or electrolyte abnormalities</strong>. <span class="cite">(2)</span></li>
+        <li>Should be considered in conditions with <strong>isolated volume overload</strong>, e.g. heart or liver failure, malnutrition. <span class="cite">(1)(2)</span></li>
+      </ul>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 07 IHD & PD ============ -->
+  <details class="card">
+    <summary><span class="badge">07</span> Intermittent haemodialysis &amp; peritoneal dialysis</summary>
+    <div class="body">
+      <h3>Intermittent haemodialysis (IHD)</h3>
+      <ul>
+        <li>Fluid, solutes and toxins are removed through a <strong>dual venous access</strong>, on <strong>multiple days per week</strong>, with each session lasting <strong>several hours</strong>. <span class="cite">(2)</span></li>
+        <li>Typical patients for IHD include <strong>end-stage renal disease patients on chronic haemodialysis</strong>, and patients with AKI requiring temporary renal support <strong>who can tolerate rapid shifts in fluid/solute levels</strong>. <span class="cite">(2)</span></li>
+        <li>Dosing of intermittent techniques is difficult because of urea kinetics and fluid shifts in the critically ill: most studies assessing IHD measure dose in relation to <strong>frequency and duration of sessions</strong>. <span class="cite">(1)(2)</span></li>
+      </ul>
+
+      <h3>Peritoneal dialysis (PD)</h3>
+      <ul>
+        <li>The patient&rsquo;s <strong>peritoneal membrane is used as a natural filter</strong> to remove excess fluid and waste products from the blood. <span class="cite">(2)</span></li>
+        <li>Typically used for <strong>CKD patients who prefer a home-based treatment</strong>, and patients who wish to avoid haemodialysis and have <strong>preserved residual kidney function</strong>. <span class="cite">(2)</span></li>
+      </ul>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 08 CHOOSING A TECHNIQUE ============ -->
+  <details class="card">
+    <summary><span class="badge">08</span> Choosing a technique — CRRT vs IHD</summary>
+    <div class="body">
+      <h3>The evidence</h3>
+      <ul>
+        <li><strong>No randomised controlled trials</strong> have demonstrated that CRRT is superior to IHD in terms of survival. <span class="cite">(1)(2)</span></li>
+        <li>A <strong>Cochrane meta-analysis of 15 RCTs</strong> involving <strong>1550 critically ill patients</strong> with AKI concluded that CRRT and IHD <strong>did not differ significantly</strong> with respect to hospital mortality, ICU mortality, or requirement for long-term RRT. <span class="cite">(2)</span></li>
+        <li>However, CRRT does have advantages, including a <strong>reduced risk of haemodynamic instability</strong>. In that meta-analysis, patients receiving CRRT had significantly <strong>higher mean arterial pressures</strong> compared with those receiving IHD. <span class="cite">(2)</span></li>
+      </ul>
+
+      <h3>Claimed advantages of continuous techniques</h3>
+      <ul>
+        <li>Enhanced <strong>haemodynamic stability</strong>.</li>
+        <li>Superior management of <strong>fluid balance</strong>.</li>
+        <li>Enhanced clearance of <strong>inflammatory mediators</strong>, which may provide benefit in septic patients.</li>
+        <li>Better preservation of <strong>cerebral perfusion</strong> among patients with acute brain injury or fulminant hepatic failure. <span class="cite">(1)</span></li>
+      </ul>
+
+      <div class="callout">
+        <strong>KDIGO consensus</strong> favours CRRT for <strong>haemodynamically unstable</strong> patients, and CRRT is typically used in critically ill patients, especially those on vasoactive infusions. <span class="cite">(1)(2)</span>
+      </div>
+
+      <ul>
+        <li>There is mounting evidence from observational studies that the use of <strong>CRRT at initiation reduces long-term dialysis dependence</strong> compared with IHD. <span class="cite">(1)</span></li>
+        <li>With regard to CRRT, there is <strong>insufficient data to recommend one form over another</strong>. Some clinicians prefer <strong>CVVH or CVVHDF in sepsis</strong>, because convection is more effective at reducing inflammatory cytokines (mostly middle molecular weight range). <span class="cite">(2)</span></li>
+        <li>Overall, modality selection is primarily based on <strong>institutional preference and experience</strong> — and on the capabilities within the unit providing RRT. <span class="cite">(1)(2)</span></li>
+      </ul>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 09 TIMING ============ -->
+  <details class="card">
+    <summary><span class="badge">09</span> Timing of initiation</summary>
+    <div class="body">
+      <p>AKI is common in critically ill patients; however, the <strong>optimal timing for initiating RRT remains uncertain</strong> and clinical judgement must be used to determine if and when RRT is required. <span class="cite">(1)(2)</span></p>
+
+      <ul>
+        <li>RRT is generally safe but there are various associated risks, e.g. <strong>vascular access complications, hypotension, and complications of anticoagulation</strong>. <span class="cite">(2)</span></li>
+        <li>A recent multinational randomized trial concluded that critically ill patients with severe AKI who received <strong>early initiation of RRT</strong> (within 12 hours of meeting full eligibility criteria) <strong>did not have a lower risk of death at 90 days</strong> compared to those who received <strong>delayed RRT</strong> (RRT commenced if AKI persisted for &gt; 72 hours). <span class="cite">(2)</span></li>
+        <li>The decision to commence RRT is <strong>clearer when AKI is associated with fluid disturbances and major metabolic disturbances</strong> such as hyperkalaemia or acidosis. However, the decision is more difficult when these complications are not present, and often the benefits of RRT in this cohort of patients is unclear. <span class="cite">(2)</span></li>
+        <li>This uncertainty is partly due to the fact that a <strong>significant proportion of AKI patients have spontaneous recovery of renal function</strong>. <span class="cite">(2)</span></li>
+      </ul>
+
+      <h3>Classical criteria for initiating therapy</h3>
+      <ul>
+        <li><strong>Hyperkalaemia</strong> (potassium &gt; 6.5&nbsp;mmol&nbsp;l<sup>&minus;1</sup> or rapidly rising).</li>
+        <li><strong>Refractory fluid overload</strong>.</li>
+        <li><strong>Metabolic acidosis</strong>.</li>
+        <li>Certain <strong>drug and alcohol intoxications</strong>.</li>
+        <li>Signs of <strong>uraemia</strong>, such as pericarditis or encephalopathy. <span class="cite">(1)</span></li>
+      </ul>
+
+      <div class="callout warn">
+        These criteria are based on <strong>expert opinion rather than evidence arising from randomised controlled trials</strong>. <span class="cite">(1)</span>
+      </div>
+
+      <h3>Risks to weigh up</h3>
+      <div class="chips">
+        <span class="chip pink">Cannula insertion</span>
+        <span class="chip pink">Biocompatibility</span>
+        <span class="chip pink">Fluid shifts</span>
+        <span class="chip pink">Altered drug metabolism</span>
+        <span class="chip pink">Nursing workload</span>
+        <span class="chip pink">Cost</span>
+      </div>
+      <p>These downsides must be balanced against the benefits of RRT — and consideration must also be given to the fact that <strong>spontaneous recovery of the kidneys may occur</strong>. <span class="cite">(1)</span></p>
+
+      <h3>What the evidence says</h3>
+      <ul>
+        <li>Some observational studies suggest <strong>earlier initiation correlates with improved survival</strong>; however, randomised controlled trial evidence is limited to the <strong>cardiac ICU</strong> population. <span class="cite">(1)</span></li>
+        <li>Two recently published trials reported <strong>conflicting results</strong>, which may relate to the populations studied:
+          <ul>
+            <li>A <strong>single-centre</strong> study involving predominantly <strong>surgical</strong> patients (47% cardiac) reported a <strong>benefit of early initiation</strong>.</li>
+            <li>A <strong>multicentre</strong> study involving mainly <strong>medical</strong> patients reported <strong>no benefit</strong> of early treatment. <span class="cite">(1)</span></li>
+          </ul>
+        </li>
+        <li>Multicentre research is ongoing, which should help address this in a general ICU setting. <span class="cite">(1)</span></li>
+        <li>A significant issue regarding studies on timing relates to the previous <strong>lack of consensus regarding definitions of AKI</strong>. <span class="cite">(1)</span></li>
+      </ul>
+
+      <h3>Beyond the classical criteria</h3>
+      <p>A decision to institute RRT should consider the <strong>severity of other organ failure</strong> and the <strong>trajectory of the patient&rsquo;s illness</strong>. It is increasingly accepted that RRT can be used when managing fluid overload, hyperthermia, and toxicity related to acute hepatic failure or drugs. <span class="cite">(1)</span></p>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 10 DISCONTINUATION ============ -->
+  <details class="card">
+    <summary><span class="badge">10</span> Discontinuation &amp; weaning from RRT</summary>
+    <div class="body">
+      <p>Most critically ill patients who survive an AKI requiring RRT will <strong>recover sufficient renal function</strong> to allow discontinuation of RRT. RRT is continued until there is evidence of recovery of native renal function. <span class="cite">(1)(2)</span></p>
+
+      <h3>Markers of recovery</h3>
+      <ul>
+        <li><strong>Improvement in urine output</strong> — the primary indication of recovery. A urine output of <strong>&gt; 400&nbsp;ml per day</strong> is a reasonable cut-off, equating to correct identification of the majority of patients with renal recovery from RRT-dependent AKI. <span class="cite">(1)</span></li>
+        <li><strong>Progressive reduction in serum creatinine</strong> during steady-state RRT. <span class="cite">(1)(2)</span></li>
+        <li><strong>Creatinine clearance</strong> — a more objective assessment of recovery. <span class="cite">(1)</span></li>
+      </ul>
+
+      <div class="callout">
+        In one large randomised controlled trial, renal support was discontinued when measured creatinine clearance exceeded
+        <strong>20&nbsp;ml&nbsp;min<sup>&minus;1</sup></strong>, and was left to the discretion of providers in the range of
+        <strong>12&ndash;20&nbsp;ml&nbsp;min<sup>&minus;1</sup></strong>. <span class="cite">(1)</span>
+      </div>
+
+      <h3>KDIGO criteria for discontinuation</h3>
+      <p>The KDIGO guideline criteria for discontinuation of acute RRT suggest weaning RRT when there is <strong>sufficient renal recovery to meet patient needs</strong>, or when <strong>RRT is no longer consistent with the goals of care</strong>. <span class="cite">(2)</span></p>
+
+      <h3>Stepwise approach to assessing readiness for weaning</h3>
+      <div class="table-wrap tbl-small">
+        <table>
+          <caption>Table 6. Weaning algorithm for a critically ill AKI patient on RRT <span class="cite">(2)</span></caption>
+          <thead>
+            <tr><th style="width:52px">Step</th><th>Question</th><th>Criteria to proceed</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Is the patient stable?</td>
+              <td>Stable haemodynamics; stable respiratory function; balanced fluid status; no impending renal insult</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Is there adequate urine output?</td>
+              <td>Without diuretics: <strong>400&ndash;1000&nbsp;mL/24&nbsp;h</strong>; with diuretics: <strong>2000&nbsp;mL/24&nbsp;h</strong></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Is there adequate creatinine clearance?</td>
+              <td><strong>15&ndash;20&nbsp;mL/min</strong> and a spontaneous decrease in serum creatinine</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Attempt to wean RRT</td>
+              <td>Proceed to trial of discontinuation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 11 DOSING ============ -->
+  <details class="card">
+    <summary><span class="badge">11</span> Dosing of RRT</summary>
+    <div class="body">
+      <p>A key element of RRT delivery is <strong>dose</strong>. Until recently, little evidence existed for dosing, which led to wide variations in clinical practice. <span class="cite">(1)</span></p>
+
+      <h3>How dose is defined</h3>
+      <ul>
+        <li><strong>Continuous techniques:</strong> the dose is the <strong>sum of all effluent fluids</strong>, expressed as <strong>ml&nbsp;kg<sup>&minus;1</sup>&nbsp;h<sup>&minus;1</sup></strong>. It is important to note that the addition of dialysate and the targeting of negative fluid balance both add to the summative dose. <span class="cite">(1)(2)</span></li>
+        <li><strong>Intermittent techniques:</strong> dosing is difficult because of urea kinetics and fluid shifts in the critically ill — most studies measure dose in relation to <strong>frequency and duration of sessions</strong>. <span class="cite">(1)(2)</span></li>
+      </ul>
+
+      <h3>The evidence journey</h3>
+      <ul>
+        <li>The notion of a relationship between treatment dose and outcome was first postulated in a single-centre study, in which patients randomised to post-dilution haemofiltration at a dose of <strong>35&nbsp;ml&nbsp;kg<sup>&minus;1</sup>&nbsp;h<sup>&minus;1</sup> or above</strong> had significantly improved survival compared with those randomised to <strong>20&nbsp;ml&nbsp;kg<sup>&minus;1</sup>&nbsp;h<sup>&minus;1</sup></strong>. <span class="cite">(1)</span></li>
+        <li>Similar results were seen using IHD in a <strong>daily vs alternate day</strong> study. These papers led to the widespread adoption of high-dose prescribing. <span class="cite">(1)</span></li>
+        <li>This practice has recently been challenged: <strong>two large multicentre trials both failed to detect any reduction in mortality</strong> associated with more intensive RRT, and instead provided quality evidence that <strong>effluent flow rates above 25&nbsp;ml&nbsp;kg<sup>&minus;1</sup>&nbsp;h<sup>&minus;1</sup> do not improve patient outcomes</strong> in ICU. <span class="cite">(1)</span></li>
+      </ul>
+
+      <div class="callout">
+        <strong>International consensus guidelines support delivery of 20&ndash;25&nbsp;ml&nbsp;kg<sup>&minus;1</sup>&nbsp;h<sup>&minus;1</sup>.</strong>
+        In these trials, delivery of at least <strong>85% of prescribed treatment time</strong> was achieved, highlighting the importance of <strong>minimising filter downtime</strong>. <span class="cite">(1)(2)</span>
+      </div>
+
+      <h3>Weight — an unresolved question</h3>
+      <p>Given that CRRT dosing is intrinsically related to weight, it is surprising that little evidence exists as to the <strong>optimal measure of weight</strong> that should be used (ideal, pre-morbid, or actual). <span class="cite">(1)</span></p>
+
+      <h3>Prescribing CRRT</h3>
+      <p>A prescription is required for CRRT. Factors such as <strong>body weight, age, co-administered drugs, and mode of elimination</strong> must be taken into account. A CRRT prescription should include: <span class="cite">(2)</span></p>
+      <ol>
+        <li>Form of therapy</li>
+        <li>Blood-flow rate</li>
+        <li>Type and rate of dialysis fluid (for CVVHD and CVVHDF)</li>
+        <li>Type and rate of replacement fluid (for CVVH and CVVHDF)</li>
+        <li>Type and dose of anticoagulation</li>
+        <li>Net fluid goal</li>
+      </ol>
+
+      <div class="callout warn">
+        Careful consideration is needed when prescribing <strong>high-dose RRT</strong> as there are associated risks, e.g.
+        depletion of essential minerals, removal of critical medications, antibiotics and amino acids, and disequilibrium
+        syndrome. It may be advisable to dose RRT <strong>dynamically</strong> by continuously adjusting the RRT dose to
+        achieve and maintain defined goals for control of pH, volume status, or specific solutes. <span class="cite">(2)</span>
+      </div>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 12 DRUG DOSING ============ -->
+  <details class="card">
+    <summary><span class="badge">12</span> Drug dosing in CRRT</summary>
+    <div class="body">
+      <p>Patients receiving RRT are often on multiple medications, many of which are vital to their care and require appropriate dosing. <span class="cite">(1)</span></p>
+
+      <h3>Why pharmacokinetics are complex</h3>
+      <ul>
+        <li>The disease state can lead to an <strong>increased volume of distribution</strong>, an <strong>extended drug half-life</strong>, or an <strong>alteration in protein binding capacity</strong>. These variables make generalised dosing recommendations difficult. <span class="cite">(1)</span></li>
+        <li>Drugs with <strong>low protein binding</strong> are removed by CRRT more readily, whereas those with a <strong>higher volume of distribution</strong> have lower clearance by CRRT. <span class="cite">(1)</span></li>
+        <li>The mechanical processes of CRRT may also affect drug clearance: changes to the dialysate or blood flow rate altering the <strong>transmembrane pressure (TMP)</strong> lead to changes in drug clearance. <strong>Membrane pore size</strong> is directly proportional to the degree of drug removal by CRRT. <span class="cite">(1)</span></li>
+        <li>Modern CRRT treatments result in a <strong>creatinine clearance of around 25&ndash;50&nbsp;ml&nbsp;min<sup>&minus;1</sup></strong>. <span class="cite">(1)</span></li>
+      </ul>
+
+      <h3>Practical drug principles</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>Table 7. Drug dosing considerations in CRRT <span class="cite">(1)</span></caption>
+          <thead>
+            <tr><th style="width:26%">Drug / class</th><th>Key point</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Beta-lactam antibiotics</td>
+              <td>Require to be kept above the <strong>minimal inhibitory concentration</strong> for as long as possible; relatively benign toxic effects. Can be dosed either <strong>more frequently or at close to normal dose</strong> to achieve maximal benefit.</td>
+            </tr>
+            <tr>
+              <td>Fluconazole (antifungals)</td>
+              <td>Undergoes significant <strong>tubular reabsorption in health</strong> and therefore undergoes <strong>greater clearance during CRRT</strong> — requires dose adjustment for this reason.</td>
+            </tr>
+            <tr>
+              <td>Vancomycin</td>
+              <td><strong>Narrow therapeutic index</strong> — requires regular level monitoring and benefits from delivery by <strong>continuous infusion</strong> to avoid rapid under- or overdosing.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Recommendations with regard to drug dosing are often based on <strong>expert consensus</strong> in conjunction with the known pharmacokinetic and pharmacodynamic properties of individual drugs. Dosing of drugs therefore relates to the effects of the AKI, the effect of the RRT modality, and the behaviour of the drug itself. <span class="cite">(1)</span></p>
+
+      <p class="src-note"><strong>Source for this section:</strong> (1) BJA Education 2017.</p>
+    </div>
+  </details>
+
+  <!-- ============ 13 VASCULAR ACCESS ============ -->
+  <details class="card">
+    <summary><span class="badge">13</span> Vascular access</summary>
+    <div class="body">
+      <p>A double-lumen vascular catheter placed in a central vein is required for veno-venous RRT. The site of vascular access is important in ensuring successful RRT and must provide <strong>adequate blood flows to mitigate the risk of premature filter clotting</strong>. <span class="cite">(1)(2)</span></p>
+
+      <h3>KDIGO order of preference</h3>
+      <div class="table-wrap tbl-small">
+        <table>
+          <caption>Table 8. Preferred vascular access sites for RRT <span class="cite">(1)(2)</span></caption>
+          <thead>
+            <tr><th style="width:70px">Rank</th><th>Site</th><th>Comment</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Right internal jugular</td><td>First choice — straightest route, improved delivery of RRT</td></tr>
+            <tr><td>2</td><td>Femoral</td><td>Second choice — straight route, usually good flows, may be quicker to insert</td></tr>
+            <tr><td>3</td><td>Left internal jugular</td><td>Third choice</td></tr>
+            <tr><td>4</td><td>Subclavian</td><td>Least preferred — higher rate of stenosis formation during chronic use</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Site-specific advantages and disadvantages</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>Table 9. Advantages and disadvantages of Vascath insertion sites <span class="cite">(2)</span></caption>
+          <thead>
+            <tr><th style="width:24%">Site</th><th>Advantages</th><th>Disadvantages</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Internal jugular vein</td>
+              <td>Straightest route, particularly right IJV</td>
+              <td>Site often occupied by other lines; changes in intrathoracic pressure can affect flows; higher rate of catheter-related infections in obese patients; risk of central vein stenosis; risk of pneumothorax</td>
+            </tr>
+            <tr>
+              <td>Femoral vein</td>
+              <td>Straight route and usually provides good flows</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Subclavian vein</td>
+              <td>More comfortable for patients</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Practical points</h3>
+      <ul>
+        <li>Except for the obese patient, the <strong>femoral site is no longer considered at higher risk for bloodstream-related infections</strong> and may be quicker to insert. <span class="cite">(1)</span></li>
+        <li>The <strong>right internal jugular</strong> site should be used in preference to the left because of improved delivery of RRT. <span class="cite">(1)</span></li>
+        <li>Position of the catheter tip improves flow; therefore, perhaps <strong>not site but length</strong> remains a more important feature of vascular access. <span class="cite">(1)</span></li>
+        <li>Optimal flow rates are obtained with the catheter tip <strong>in the right atrium</strong> for internal jugular lines and <strong>within the inferior vena cava</strong> for femoral access. <span class="cite">(1)</span></li>
+        <li>Further considerations relating to flow include the <strong>central venous pressure</strong> of the patient and <strong>kinking of the catheter</strong>. <span class="cite">(1)</span></li>
+        <li>When not in use, <strong>locking lines with citrate</strong> reduces catheter-associated infection. <span class="cite">(1)</span></li>
+      </ul>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 14 ANTICOAGULATION ============ -->
+  <details class="card">
+    <summary><span class="badge">14</span> Anticoagulation of the circuit</summary>
+    <div class="body">
+      <p>Clotting is the <strong>most common cause of circuit downtime</strong>. One US retrospective study found that only <strong>68% of patients received their prescribed CRRT dose</strong> as a result of circuit downtime. Effective anticoagulation is therefore needed to prevent clotting of the extracorporeal circuit and to optimise the efficiency of the filter. This can be achieved with either <strong>systemic</strong> or <strong>regional</strong> anticoagulation. <span class="cite">(2)</span></p>
+
+      <h3>Systemic anticoagulation</h3>
+      <p>The main agents used are <strong>unfractionated heparin (UFH)</strong>, <strong>direct thrombin inhibitors</strong>, and <strong>low molecular weight heparins (LMWH)</strong>. <span class="cite">(2)</span></p>
+      <div class="table-wrap">
+        <table>
+          <caption>Table 10. Systemic anticoagulants for CRRT <span class="cite">(1)(2)</span></caption>
+          <thead>
+            <tr><th style="width:22%">Agent</th><th>Advantages</th><th>Disadvantages</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Unfractionated heparin (UFH)</td>
+              <td>Cost-effective; easy to monitor (via activated partial thromboplastin time); easily reversed with protamine; administered via a separate intravenous line; ubiquitous and cheap</td>
+              <td>Bleeding risk; pro-inflammatory effects; heparin-induced thrombocytopenia (HIT); heparin resistance (reduced antithrombin III in the critically ill)</td>
+            </tr>
+            <tr>
+              <td>Direct thrombin inhibitors (e.g. argatroban)</td>
+              <td>Reduced risk of bleeding; commonly used in patients with HIT</td>
+              <td>Associated with shorter filter patency time</td>
+            </tr>
+            <tr>
+              <td>Low molecular weight heparins (LMWH)</td>
+              <td>Fewer adverse events compared with UFH</td>
+              <td>Undergo renal elimination, which limits their use in RRT; monitoring (anti-Xa activity) is expensive and not widely available</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        If patients develop <strong>HIT and associated thrombosis</strong>, systemic anticoagulation with either the <strong>heparinoids</strong>
+        (such as danaparoid) or <strong>direct thrombin inhibitors</strong> (such as argatroban) is required. If patients merely have
+        <strong>HIT antibodies and no evidence of thrombosis</strong>, RRT circuit anticoagulation can be maintained with
+        <strong>prostacyclin or citrate</strong>, provided systemic anticoagulation is unnecessary. <span class="cite">(1)</span>
+      </div>
+
+      <h3>Regional citrate anticoagulation (RCA)</h3>
+      <ul>
+        <li>Introduced in the 1990s and an alternative strategy to systemic anticoagulation. <span class="cite">(2)</span></li>
+        <li>Citrate is added at the <strong>beginning of the circuit</strong> and works by <strong>chelating ionised calcium</strong> in the blood, leading to inhibition of the coagulation cascade. <span class="cite">(1)(2)</span></li>
+        <li>The citrate–calcium complexes are <strong>partially filtered across the RRT membrane</strong>, thus preventing clotting in the circuit. <span class="cite">(2)</span></li>
+        <li>The remaining citrate enters the patient&rsquo;s circulation and is <strong>metabolised in the kidney, liver, or skeletal muscle</strong> (with no anticoagulant effect on the patient). <span class="cite">(2)</span></li>
+        <li><strong>Calcium supplementation must be given post-filter</strong> to avoid hypocalcaemia, which can be life-threatening. <span class="cite">(1)(2)</span></li>
+      </ul>
+
+      <div class="callout">
+        A 2016 meta-analysis showed a <strong>significantly prolonged filter lifespan</strong> when citrate was used, and also
+        confirmed that RCA is <strong>superior in decreasing the risk of bleeding</strong>. However, there was
+        <strong>no mortality difference</strong> observed in the RCA group. <span class="cite">(2)</span>
+      </div>
+
+      <p><strong>RCA is now considered the first-line strategy for CRRT anticoagulation in patients without contraindications.</strong> <span class="cite">(2)</span></p>
+
+      <h3>RCA — advantages and disadvantages</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>Table 11. Regional citrate anticoagulation — pros and cons <span class="cite">(1)(2)</span></caption>
+          <thead>
+            <tr><th>Advantages</th><th>Disadvantages</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Reduced bleeding risk; avoids systemic anticoagulation; does not cause HIT; citrate has a short half-life; enhanced filter life spans; reduced requirements for blood products compared with heparin</td>
+              <td>Complex citrate protocols; potential patient inability to metabolise citrate; risk of citrate toxicity; metabolic complications; need for a protocolised infusion; requires strict protocols and training for medical and nursing staff</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Relative contraindications to RCA</h3>
+      <div class="chips">
+        <span class="chip pink">Worsening lactic acidosis</span>
+        <span class="chip pink">Acute liver dysfunction</span>
+        <span class="chip pink">Severe liver failure</span>
+        <span class="chip pink">Severe intracellular hypoxia (cardiogenic or septic shock)</span>
+      </div>
+
+      <h3>RCA monitoring</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>Table 12. RCA-CRRT monitoring recommendations <span class="cite">(2)</span></caption>
+          <thead>
+            <tr><th>Measurement</th><th>Sample type</th><th>Timing</th><th>Target range</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ionised calcium</td><td>Circuit (post-filter)</td><td>Every 6&ndash;8 hr</td><td><strong>0.25&ndash;0.4&nbsp;mmol/L</strong></td></tr>
+            <tr><td>Ionised calcium</td><td>Serum</td><td>Every 6&ndash;8 hr</td><td><strong>1.1&ndash;1.3&nbsp;mmol/L</strong></td></tr>
+            <tr><td>Total calcium &amp; magnesium</td><td>Serum</td><td>Every 12&ndash;24 hr</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Circuit ionised calcium</strong> is the main target to assess RCA efficacy, while a patient&rsquo;s <strong>ionised calcium</strong> is measured to guide safe calcium replacement. The <strong>ratio of total calcium to ionised calcium</strong> should also be measured to assess for citrate accumulation. <span class="cite">(2)</span></p>
+
+      <div class="callout danger">
+        <strong>Signs of citrate accumulation:</strong> total calcium to ionised calcium ratio <strong>&gt; 2.5</strong>,
+        a <strong>worsening metabolic acidosis</strong>, and an <strong>increased calcium replacement requirement</strong>.
+        Interventions include decreasing blood flow rate, decreasing dialysate flow rate, decreasing target citrate dose, or
+        discontinuing RCA and switching to alternative anticoagulation strategies. <span class="cite">(2)</span>
+      </div>
+
+      <h3>Complications of citrate use</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>Table 13. Complications of citrate use <span class="cite">(2)</span></caption>
+          <thead>
+            <tr>
+              <th style="width:22%">Complication</th>
+              <th>Insufficient sodium-citrate delivery</th>
+              <th>Citrate overload</th>
+              <th>Citrate accumulation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mechanism</td>
+              <td>Reduced HCO<sub>3</sub> content in dialysate; inadequate buffering in AKI</td>
+              <td>Excess citrate metabolism liberates HCO<sub>3</sub><sup>&minus;</sup> beyond buffering requirements</td>
+              <td>Impaired citrate metabolism (e.g. liver failure, sepsis) &rarr; accumulation of citrate in blood</td>
+            </tr>
+            <tr>
+              <td>Effect</td>
+              <td>Metabolic acidosis</td>
+              <td>Metabolic alkalosis</td>
+              <td>Severe hypocalcaemia; metabolic acidosis</td>
+            </tr>
+            <tr>
+              <td>Management</td>
+              <td>Increase citrate delivery; optimise blood &amp; dialysate flow rates</td>
+              <td>Reduce citrate infusion rate</td>
+              <td>Decrease dialysate flow rate; use alternative anticoagulation</td>
+            </tr>
+            <tr>
+              <td>Frequency &amp; severity</td>
+              <td>Rare &amp; potentially lethal</td>
+              <td>Common &amp; benign</td>
+              <td>Rare but lethal</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        It is important to note that <strong>citrate provides no prophylaxis against deep vein thrombosis</strong>. <span class="cite">(1)</span>
+      </div>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 15 FLUID BALANCE ============ -->
+  <details class="card">
+    <summary><span class="badge">15</span> Fluid balance &amp; volume control</summary>
+    <div class="body">
+      <ul>
+        <li><strong>Mean fluid balance is a significant and independent predictor of mortality in ICU</strong>, and is significantly more positive in AKI patients who die compared with survivors. <span class="cite">(1)</span></li>
+        <li>The extent of fluid accumulation is <strong>negatively associated with survival</strong>, as is the <strong>duration of fluid overload</strong> in patients receiving RRT. <span class="cite">(1)</span></li>
+        <li>Fluid overload during AKI is also associated with a <strong>decreased likelihood for renal recovery</strong>. <span class="cite">(1)</span></li>
+        <li>Use of <strong>beds with inbuilt scales</strong> can allow for trending of patient weight during RRT treatments. <span class="cite">(1)</span></li>
+        <li><strong>SCUF</strong>, as a form of RRT, can be used for patients whose primary problem is fluid overload. <span class="cite">(1)</span></li>
+      </ul>
+
+      <p class="src-note"><strong>Source for this section:</strong> (1) BJA Education 2017.</p>
+    </div>
+  </details>
+
+  <!-- ============ 16 CONTROVERSIES ============ -->
+  <details class="card">
+    <summary><span class="badge">16</span> Controversies &amp; emerging evidence</summary>
+    <div class="body">
+      <h3>High-volume haemofiltration in sepsis</h3>
+      <ul>
+        <li>It has been hypothesised that patients with sepsis may benefit from more intensive CRRT dosing owing to the removal of circulating inflammatory mediators. <span class="cite">(1)</span></li>
+        <li>Current evidence for <strong>high-volume haemofiltration</strong> (defined by effluents greater than <strong>50&nbsp;ml&nbsp;kg<sup>&minus;1</sup>&nbsp;h<sup>&minus;1</sup></strong>) suggests it has <strong>no influence on mortality or dialysis dependency</strong> and <strong>no consistent effect</strong> with regard to serum cytokine concentrations, but can lead to a <strong>reduction in vasopressor requirements</strong>. <span class="cite">(1)</span></li>
+        <li>This technique is associated with <strong>increased episodes of electrolyte disturbance</strong> and the risk of <strong>decreased plasma concentrations of antimicrobials</strong> in a high-risk population. <span class="cite">(1)</span></li>
+      </ul>
+
+      <h3>Biomarkers of AKI</h3>
+      <ul>
+        <li>There is interest in the development of <strong>sensitive early biomarkers of AKI</strong>, given the low sensitivity and delay in increase of serum creatinine. <span class="cite">(1)</span></li>
+        <li>There is <strong>no current level 1 evidence</strong> supporting the use of any single biomarker for the diagnosis of AKI, but using a <strong>panel of different markers</strong> may increase utility. <span class="cite">(1)</span></li>
+        <li>There may be a further role for their use in detecting patients who are <strong>recovering from AKI</strong>. <span class="cite">(1)</span></li>
+      </ul>
+
+      <h3>Ongoing questions</h3>
+      <ul>
+        <li>The timing of commencement of RRT in critically ill patients. <span class="cite">(1)(2)</span></li>
+        <li>Optimal drug dosing during CRRT. <span class="cite">(1)</span></li>
+        <li>Optimal anticoagulation strategies. <span class="cite">(1)</span></li>
+        <li>The role of bicarbonate buffering tailored to individual patient needs. <span class="cite">(1)</span></li>
+      </ul>
+
+      <p class="src-note"><strong>Source for this section:</strong> (1) BJA Education 2017.</p>
+    </div>
+  </details>
+
+  <!-- ============ 17 COMPLICATIONS ============ -->
+  <details class="card">
+    <summary><span class="badge">17</span> Complications of RRT</summary>
+    <div class="body">
+      <p>Complications of RRT can be related to <strong>vascular access</strong>, the use of the <strong>extracorporeal circuit</strong>, or the use of <strong>anticoagulation</strong>. <span class="cite">(2)</span></p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 14. Complications of RRT <span class="cite">(2)</span></caption>
+          <thead>
+            <tr><th style="width:26%">Type</th><th>Complications</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Vascular access</td><td>Bleeding, thrombosis, pneumothorax, arrhythmia, air embolism, infection</td></tr>
+            <tr><td>Extracorporeal circuit</td><td>Air embolism, hypothermia</td></tr>
+            <tr><td>Haematological</td><td>Heparin related (HIT, bleeding), bleeding</td></tr>
+            <tr><td>Electrolyte &amp; acid–base</td><td>Hypophosphataemia, hypomagnesaemia, hypocalcaemia, hypokalaemia, hyponatraemia, hypernatraemia</td></tr>
+            <tr><td>Citrate related</td><td>Hypocalcaemia, hypomagnesaemia, metabolic alkalosis, hypernatraemia, citrate intoxication</td></tr>
+            <tr><td>Other</td><td>Physical deconditioning, drug metabolism/elimination</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="src-note"><strong>Source for this section:</strong> (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ 18 LONG-TERM RENAL IMPACT ============ -->
+  <details class="card">
+    <summary><span class="badge">18</span> Long-term renal impact &amp; follow-up</summary>
+    <div class="body">
+      <ul>
+        <li>Among survivors of AKI, a proportion become <strong>dialysis dependent</strong>. A further subset of patients recovering from AKI <strong>never return to their baseline renal function</strong>: ongoing evidence of renal dysfunction has been described in as many as <strong>40% of survivors</strong>. <span class="cite">(1)(2)</span></li>
+        <li>The <strong>more severe the AKI, the higher the risk</strong> of renal dysfunction long term. <span class="cite">(1)</span></li>
+        <li>A number of patients who survive AKI will become <strong>dependent on dialysis</strong>, whereas others will never return to their baseline renal function — long-term renal dysfunction may occur in up to <strong>40% of patients</strong>. <span class="cite">(2)</span></li>
+        <li><strong>Nephrology input should be sought early on</strong> to help with the management of complicated renal disease. <span class="cite">(2)</span></li>
+        <li>ICUs should have <strong>formalised regional pathways for specialist nephrology input</strong>. Whilst the patient remains in ICU, nephrologists can provide necessary expertise in the evaluation and management of those with complicated renal disease. <span class="cite">(1)</span></li>
+        <li>For patients with <strong>non-resolving AKI</strong>, long-term follow-up should be arranged after discharge from both ICU and hospital. <span class="cite">(1)</span></li>
+      </ul>
+
+      <p class="src-note"><strong>Sources for this section:</strong> (1) BJA Education 2017; (2) WFSA Tutorial 548, 2025.</p>
+    </div>
+  </details>
+
+  <!-- ============ REFERENCES ============ -->
+  <details class="card" id="references" style="border-left-color:var(--purple)">
+    <summary><span class="badge">R</span> References</summary>
+    <div class="body">
+      <ul class="refs-list">
+        <li id="ref1">
+          <span class="num">(1)</span>
+          <span>
+            Gemmell L, Docking R, Black E. Renal replacement therapy in critical care.
+            <em>BJA Education</em>. 2017;17(3):88&ndash;93. PII S2058-5349(17)30092-6.
+            Queen Elizabeth University Hospital, Glasgow, UK.
+          </span>
+        </li>
+        <li id="ref2">
+          <span class="num">(2)</span>
+          <span>
+            Renal replacement therapy in critical care. <em>WFSA Tutorial 548</em>.
+            Tallaght University Hospital, Ireland; published 3 June 2025.
+            Edited by Weinkauf J, Abbott Northwestern Hospital, Minneapolis, USA.
+          </span>
+        </li>
+      </ul>
+
+      <div class="callout" style="margin-top:16px">
+        <strong>How to use this guide:</strong> every section carries a source note at the bottom listing the reference
+        numbers it draws on. Reference (1) is the BJA Education 2017 review; reference (2) is the WFSA Tutorial 548 (2025).
+      </div>
+    </div>
+  </details>
+
+  <div id="noResults" class="no-results">
+    <p style="font-size:1.6rem;margin:0 0 8px">🔍</p>
+    <p><strong>No matches found.</strong><br />Try a different term — e.g. &ldquo;citrate&rdquo;, &ldquo;CVVH&rdquo;, &ldquo;hyperkalaemia&rdquo;, &ldquo;femoral&rdquo;.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="foot-card">
+    <p><strong>Disclaimer.</strong> This quick-reference guide is a summary of two educational sources and is intended for information and educational purposes only. It is not a substitute for the active involvement and judgement of appropriate professional medical personnel, local protocols, or the full source documents.</p>
+    <p><strong>References:</strong> (1) Gemmell L, Docking R, Black E. Renal replacement therapy in critical care. <em>BJA Education</em> 2017;17(3):88&ndash;93. (2) Renal replacement therapy in critical care. <em>WFSA Tutorial 548</em>, Tallaght University Hospital, Ireland; 3 June 2025.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var input      = document.getElementById("search");
+  var clearBtn   = document.getElementById("clearBtn");
+  var statusEl   = document.getElementById("searchStatus");
+  var noResults  = document.getElementById("noResults");
+  var expandBtn  = document.getElementById("expandAll");
+  var collapseBtn= document.getElementById("collapseAll");
+  var cards      = Array.prototype.slice.call(document.querySelectorAll("main details.card"));
+
+  var MIN_QUERY = 2;
+  var debounceTimer = null;
+
+  /* ---------- remember the default open/closed state ---------- */
+  cards.forEach(function (c) {
+    c.dataset.defaultOpen = c.open ? "1" : "0";
+  });
+
+  /* ---------- utility: escape HTML ---------- */
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  /* ---------- remove all <mark class="hl"> and rejoin text ---------- */
+  function clearMarks(root) {
+    if (!root) return;
+    var marks = root.querySelectorAll("mark.hl");
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      while (m.firstChild) parent.insertBefore(m.firstChild, m);
+      parent.removeChild(m);
+      parent.normalize();
+    }
+  }
+
+  /* ---------- wrap every match of `term` in <mark class="hl"> ---------- */
+  function highlight(root, term) {
+    if (!root || !term) return 0;
+
+    var lower = term.toLowerCase();
+    var walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          var p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName;
+          if (tag === "SCRIPT" || tag === "STYLE" || tag === "NOSCRIPT" ||
+              tag === "MARK"   || tag === "TEXTAREA") {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+
+    var total = 0;
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var low  = text.toLowerCase();
+      var idx  = low.indexOf(lower);
+      if (idx === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) {
+          frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        }
+        var mk = document.createElement("mark");
+        mk.className = "hl";
+        mk.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mk);
+        total++;
+        last = idx + term.length;
+        idx = low.indexOf(lower, last);
+      }
+
+      if (last < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    return total;
+  }
+
+  /* ---------- reset everything ---------- */
+  function resetAll() {
+    cards.forEach(function (c) {
+      clearMarks(c);
+      c.classList.remove("hidden", "hit");
+      c.open = c.dataset.defaultOpen === "1";
+    });
+    noResults.classList.remove("show");
+    statusEl.hidden = true;
+    statusEl.innerHTML = "";
+  }
+
+  /* ---------- run the search ---------- */
+  function runSearch() {
+    var q = input.value.trim();
+    clearBtn.hidden = q.length === 0;
+
+    if (q.length < MIN_QUERY) {
+      resetAll();
+      return;
+    }
+
+    var totalHits = 0;
+    var cardHits  = 0;
+
+    cards.forEach(function (card) {
+      clearMarks(card);
+
+      var summary = card.querySelector("summary");
+      var body    = card.querySelector(".body");
+
+      var hits = 0;
+      if (summary) hits += highlight(summary, q);
+      if (body)    hits += highlight(body, q);
+
+      if (hits > 0) {
+        totalHits += hits;
+        cardHits++;
+        card.classList.remove("hidden");
+        card.classList.add("hit");
+        card.open = true;            /* auto-expand matching sections */
+      } else {
+        card.classList.add("hidden");
+        card.classList.remove("hit");
+      }
+    });
+
+    /* show / hide the "no results" block */
+    if (cardHits === 0) {
+      noResults.classList.add("show");
+    } else {
+      noResults.classList.remove("show");
+    }
+
+    /* status line */
+    statusEl.hidden = false;
+    if (cardHits === 0) {
+      statusEl.innerHTML = 'No matches for &ldquo;' + escapeHtml(q) + '&rdquo;.';
+    } else {
+      statusEl.innerHTML =
+        '<strong>' + totalHits + '</strong> match' + (totalHits === 1 ? '' : 'es') +
+        ' in <strong>' + cardHits + '</strong> section' + (cardHits === 1 ? '' : 's') +
+        ' for &ldquo;' + escapeHtml(q) + '&rdquo;.';
+    }
+  }
+
+  /* ---------- debounced search ---------- */
+  function scheduleSearch() {
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 110);
+  }
+
+  /* ---------- event wiring ---------- */
+  input.addEventListener("input", scheduleSearch);
+
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      input.value = "";
+      clearBtn.hidden = true;
+      resetAll();
+      input.blur();
+    }
+  });
+
+  clearBtn.addEventListener("click", function () {
+    input.value = "";
+    clearBtn.hidden = true;
+    resetAll();
+    input.focus();
+  });
+
+  expandBtn.addEventListener("click", function () {
+    cards.forEach(function (c) {
+      if (!c.classList.contains("hidden")) c.open = true;
+    });
+  });
+
+  collapseBtn.addEventListener("click", function () {
+    cards.forEach(function (c) {
+      if (!c.classList.contains("hidden")) c.open = false;
+    });
+  });
+
+  /* press "/" to focus search */
+  document.addEventListener("keydown", function (e) {
+    var tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
+    if (e.key === "/" && tag !== "input" && tag !== "textarea") {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+
+  /* ---------- initial state ---------- */
+  clearBtn.hidden = true;
+  runSearch(); /* no-op at start, keeps everything consistent */
+
+})();
+</script>
+
+</body>
+            </html>
