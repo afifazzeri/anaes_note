@@ -20,6 +20,10 @@
     --red-bg:#fdeaea;
     --green:#1d6b3f;
     --green-bg:#e8f5ee;
+    --case:#6b4fa8;
+    --case-dark:#4a3579;
+    --case-bg:#fbfaf7;
+    --case-line:#e3ddd0;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -99,6 +103,9 @@
     white-space:nowrap;
   }
   .btn:hover{background:var(--teal-light);}
+  .btn.case-btn{border-color:var(--case);color:var(--case);}
+  .btn.case-btn:hover{background:#f1ecfb;}
+  .btn.case-btn.active{background:var(--case);color:#fff;}
   .count{
     font-size:.78rem;
     color:var(--muted);
@@ -311,6 +318,88 @@
   }
   th{background:#eef4f6;color:var(--teal-dark);font-weight:700;}
 
+  /* ---------- CASE EXAMPLES ---------- */
+  .case-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-top:12px;
+  }
+  @media (min-width:760px){
+    .case-grid{grid-template-columns:1fr 1fr;}
+  }
+  .case{
+    background:var(--case-bg);
+    border:1px solid var(--case-line);
+    border-left:4px solid var(--case);
+    border-radius:0 9px 9px 0;
+    padding:11px 13px;
+    font-size:.85rem;
+    line-height:1.5;
+    break-inside:avoid;
+  }
+  .case h4{
+    margin:0 0 7px;
+    font-size:.88rem;
+    font-weight:700;
+    color:var(--case-dark);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    line-height:1.3;
+  }
+  .case-num{
+    flex:0 0 auto;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:var(--case);
+    color:#fff;
+    font-size:.72rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .case .vignette{
+    font-style:italic;
+    color:#4a4640;
+    border-left:3px solid #ded6c6;
+    padding-left:9px;
+    margin:0 0 8px;
+  }
+  .case p{margin:5px 0;}
+  .case ul{margin:5px 0 5px 17px;}
+  .case li{margin:3px 0;}
+  .case .rule{
+    background:#efeaf9;
+    border-radius:6px;
+    padding:7px 9px;
+    margin-top:8px;
+    font-size:.81rem;
+    color:#3c3350;
+  }
+  .case .rule b{color:var(--case-dark);}
+  .case .label{
+    font-weight:700;
+    color:var(--case-dark);
+    font-size:.76rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+
+  /* Inline case callout — drop into any section */
+  .case-inline{
+    background:var(--case-bg);
+    border:1px dashed #b9a9dd;
+    border-left:4px solid var(--case);
+    border-radius:0 8px 8px 0;
+    padding:10px 12px;
+    margin:10px 0;
+    font-size:.85rem;
+  }
+  .case-inline b{color:var(--case-dark);}
+
   #no-results{
     display:none;
     text-align:center;
@@ -341,7 +430,7 @@
 <header>
   <div class="wrap">
     <h1>AATS Consensus Guidelines for the Management of Empyema</h1>
-    <p class="sub">Quick reference for anaesthetists · Collapsible · Searchable</p>
+    <p class="sub">Quick reference for anaesthetists · Collapsible · Searchable · 10 worked cases</p>
     <p class="cite">
       Shen KR, Bribriesco A, Crabtree T, Denlinger C, Eby J, Eiken P, Jones DR, Keshavjee S, Maldonado F, Paul S, Kozower B.
       <em>The American Association for Thoracic Surgery consensus guidelines for the management of empyema.</em>
@@ -355,6 +444,7 @@
     <input id="search" type="search" placeholder="Search guidelines… (e.g. pH, VATS, epidural, BPF, aminoglycoside)" aria-label="Search guidelines">
     <button class="btn" id="expandAll" type="button">Expand all</button>
     <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    <button class="btn case-btn" id="casesOnly" type="button">Cases only</button>
     <span class="count" id="count"></span>
   </div>
 </div>
@@ -443,6 +533,10 @@
         <b>Anaesthetic relevance:</b> These patients often present late, septic, malnourished, and with aspiration risk. Anticipate a full stomach, difficult venous access, and haemodynamic instability on induction.
       </div>
 
+      <div class="case-inline">
+        <b>Case link → Case 2:</b> an indolent presentation with weight loss, alcohol use and poor dentition is the classic anaerobic empyema picture. See Case Examples section.
+      </div>
+
     </div></div></div>
   </section>
 
@@ -514,6 +608,10 @@
         <li><strong>PET</strong> — does not appear useful; does not accurately distinguish inflammatory from malignant pleural effusions.</li>
         <li><strong>MRI</strong> — may become an attractive alternative to CT; useful for distinguishing transudate from exudate and assessing extension into soft tissues (chest wall, spinal involvement).</li>
       </ul>
+
+      <div class="case-inline">
+        <b>Case link → Case 3 &amp; Case 4:</b> US septation predicts small-bore catheter success (92% if anechoic vs 63% if extensively septated). CT — not CXR — detects a dislodged drain or an undrained loculation.
+      </div>
 
     </div></div></div>
   </section>
@@ -591,6 +689,10 @@
         <li>Blood cultures are positive in only a minority of patients with pleural space infection.</li>
       </ul>
 
+      <div class="case-inline">
+        <b>Case link → Case 1 &amp; Case 5:</b> Case 1 turns on frank pus with pH 7.04; Case 5 shows how lidocaine, heparin or delayed transport can make a pH value falsely low — and how glucose/LDH rescue the decision.
+      </div>
+
     </div></div></div>
   </section>
 
@@ -650,6 +752,10 @@
 
       <div class="flag">
         <b>Anaesthetic / perioperative relevance:</b> Check renal function before vancomycin + piperacillin/tazobactam (nephrotoxicity risk). Vancomycin infusion reactions (flushing, hypotension) can mimic anaphylaxis under anaesthesia — infuse over ≥60 min. Avoid aminoglycosides entirely — poor pleural penetration and inactivation in purulent fluid.
+      </div>
+
+      <div class="case-inline">
+        <b>Case link → Case 6:</b> a hospital-acquired empyema where gentamicin is proposed — the guideline's only Class I "avoid" statement on antibiotics.
       </div>
 
     </div></div></div>
@@ -718,6 +824,10 @@
 
       <p>Any undrained loculations should be pursued aggressively with additional or larger drains. Failure to achieve complete pleural drainage or failure of clinical improvement should prompt more aggressive management — <strong>lytic therapy or surgery</strong>.</p>
 
+      <div class="case-inline">
+        <b>Case link → Case 3 &amp; Case 4:</b> the non-surgical candidate with a septated effusion (Case 3), and the occluded drain with a missed loculation (Case 4).
+      </div>
+
     </div></div></div>
   </section>
 
@@ -762,6 +872,10 @@
 
       <div class="note">
         <b>Interpretation caveat:</b> The primary endpoint of most studies was reduction of pleural fluid on CXR after fibrinolytic administration — not long-term outcomes such as pulmonary reserve or time to return to work. Under the care of a dedicated thoracic surgeon, thoracoscopic or open intervention remains the gold standard for complicated pleural effusions/empyemas.
+      </div>
+
+      <div class="case-inline">
+        <b>Case link → Case 5 (variant):</b> a patient failing tube drainage who is <em>not</em> a surgical candidate is the one setting where MIST2-style tPA + DNase may be discussed — never as routine therapy.
       </div>
 
     </div></div></div>
@@ -843,6 +957,10 @@
 
       <div class="flag">
         <b>Anaesthetist's translation:</b> Expect one-lung ventilation, lateral decubitus positioning with the empyema side up, and a real possibility of conversion to open thoracotomy. Have a double-lumen tube or bronchial blocker plan, check tube position with fibreoptic bronchoscopy, and prepare for possible major blood loss and prolonged single-lung ventilation.
+      </div>
+
+      <div class="case-inline">
+        <b>Case link → Case 1:</b> stage II, no organised peel → VATS first-line, no formal decortication required.
       </div>
 
     </div></div></div>
@@ -951,6 +1069,10 @@
         <li>Similar to open thoracic windows, pleural drainage catheters (chest tubes) may be left in chronic empyema cavities to drain infected fluid where lung expansion is incomplete. May be placed at the time of surgical decortication or as a first measure to drain a chronic empyema in a medically unfit patient.</li>
         <li>Large infected pleural cavities may best be drained with an open thoracic window — especially if grossly infected tissue is encountered or a BPF is present, and particularly if lung expansion through decortication or tissue placement to cover the BPF is not possible.</li>
       </ul>
+
+      <div class="case-inline">
+        <b>Case link → Case 7 &amp; Case 10:</b> the fit patient with a fibrous peel (decortication, ± epidural) versus the debilitated patient unfit for decortication (open thoracic window, empyema tube, VAC with air-leak caution).
+      </div>
 
     </div></div></div>
   </section>
@@ -1084,6 +1206,10 @@
         <li><strong>Massera et al.:</strong> 31 patients with postpneumonectomy empyema (26 with BPF) treated with open thoracostomy windows; closure attempted in 15 with muscle transpositions. Factors correlating with successful closure: <strong>late development of empyema</strong> and <strong>immediate creation of a thoracostomy window after identification of the empyema</strong>. Trends favouring success (not statistically significant): female patients, left-sided pneumonectomy, index operations for infectious processes, neoadjuvant chemotherapy.</li>
       </ul>
 
+      <div class="case-inline">
+        <b>Case link → Case 8:</b> postpneumonectomy empyema with a BPF — the highest-risk scenario in this guideline (mortality 28–50%).
+      </div>
+
     </div></div></div>
   </section>
 
@@ -1159,6 +1285,10 @@
         <li>More studies reported VATS than thoracotomy, with a strong trend toward more VATS publications in recent years.</li>
         <li>Prospective randomised studies have all compared VATS (rather than thoracotomy) to chest tube + fibrinolytics — implying a general shift among practising surgeons away from open thoracotomy to VATS.</li>
       </ul>
+
+      <div class="case-inline">
+        <b>Case link → Case 9:</b> a 4-year-old with a septated effusion — tube thoracostomy ± fibrinolytics first, VATS if not responding.
+      </div>
 
     </div></div></div>
   </section>
@@ -1309,10 +1439,179 @@
     </div></div></div>
   </section>
 
-  <!-- ============ 14. REFERENCE ============ -->
-  <section class="section" data-title="Reference">
+  <!-- ============ 14. CASE EXAMPLES ============ -->
+  <section class="section" data-title="Case Examples">
     <button class="sec-head" type="button">
       <span class="num">14</span>
+      <span class="title">Case Examples — 10 Worked Scenarios</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="note">
+        <b>How to use this section:</b> each case is a short vignette followed by the guideline-derived route and the anaesthetic hook. Class and level-of-evidence tags mirror the recommendations in sections 1–13. Cases are illustrative teaching examples, not real patients.
+      </div>
+
+      <div class="case-grid">
+
+        <!-- CASE 1 -->
+        <article class="case">
+          <h4><span class="case-num">1</span> Stage II community-acquired empyema</h4>
+          <p class="vignette">55-year-old man, 2 weeks of productive cough, fever and right pleuritic pain. CXR: right lower-zone opacity. US: free-flowing effusion with early fibrin strands. Thoracentesis: frank pus, pH 7.04, glucose 28 mg/dL, LDH 1,850 IU/L.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li>Frank pus and pH &lt; 7.2 → empyema with a predicted complicated course → tube thoracostomy, then surgical intervention when appropriate <b>(Class I, LOE B)</b>.</li>
+            <li>Community-acquired → ceftriaxone + metronidazole, or ampicillin/sulbactam <b>(Class IIa, LOE C)</b>.</li>
+            <li>Stage II, no organised peel → VATS first-line; formal decortication not required <b>(Class IIa, LOE B)</b>.</li>
+            <li>Antibiotics for a minimum of 2 weeks from drainage and defervescence <b>(Class IIb, LOE C)</b>.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> plan one-lung ventilation. Acute inability to tolerate one-lung ventilation is a universal indication to convert to open thoracotomy.</div>
+        </article>
+
+        <!-- CASE 2 -->
+        <article class="case">
+          <h4><span class="case-num">2</span> Anaerobic / aspiration empyema</h4>
+          <p class="vignette">62-year-old man, heavy alcohol use, poor dental hygiene, 6 weeks of anorexia and 8 kg weight loss with low-grade fever. Pleural fluid: positive anaerobic culture; no aerobes isolated.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li>Alcohol use, poor dentition and aspiration risk are recognised risk factors for progression to complicated effusion/empyema.</li>
+            <li>Cover anaerobes empirically — ampicillin/sulbactam, or ceftriaxone + metronidazole; clindamycin is a suitable alternative <b>(Class IIa, LOE C)</b>.</li>
+            <li>Continue anaerobic cover even though only anaerobes grew — anaerobes are inconsistently cultured and often co-exist with aerobes.</li>
+            <li>Indolent course and weight loss are typical of anaerobic pleural space infection.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> full stomach + aspiration risk → rapid sequence induction. Check albumin and sodium; expect a catabolic, malnourished patient with poor venous access.</div>
+        </article>
+
+        <!-- CASE 3 -->
+        <article class="case">
+          <h4><span class="case-num">3</span> Loculated effusion in a non-surgical candidate</h4>
+          <p class="vignette">78-year-old woman, severe COPD (FEV₁ 35% predicted), home oxygen. US shows an extensively septated, loculated right effusion. Declined for general anaesthesia by the surgical team.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li>Small-bore catheters are recommended in septated effusions for patients who are <em>not</em> surgical candidates <b>(Class IIa, LOE C)</b>.</li>
+            <li>Counsel realistically: success of US-guided small-bore drainage is 92% if anechoic but only <b>63% with extensive septation</b>.</li>
+            <li>Routine drain flushing is recommended to prevent occlusion <b>(Class I, LOE B)</b> — e.g. 20 mL sterile saline every 6 h.</li>
+            <li>Close CT follow-up to confirm adequacy of drainage; any undrained fluid should prompt additional drains or more aggressive management <b>(Class I, LOE C)</b>.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> even "non-surgical" patients may need sedation or GA for repeated drain insertion or imaging. Pre-assess respiratory reserve; consider regional/intercostal block rather than deep sedation.</div>
+        </article>
+
+        <!-- CASE 4 -->
+        <article class="case">
+          <h4><span class="case-num">4</span> Occluded drain with a missed loculation</h4>
+          <p class="vignette">48-year-old man, day 2 after chest drain for empyema. Drain output falls to nil, fever persists, CRP rising. The CXR is reported as "unchanged"; CT shows a residual 6 cm loculation with the drain tip lying outside it.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li>Drain occlusion is more common in empyema than in simple effusion or pneumothorax — reported blockage rates 11–30%, and up to <b>64%</b> in one large empyema subgroup.</li>
+            <li>Flush the drain routinely: 20 mL sterile saline every 6 hours reduces occlusion <b>(Class I, LOE B)</b>.</li>
+            <li><b>CT is superior to CXR</b> for identifying drain dislodgement or undrained pleural fluid — do not rely on the plain film.</li>
+            <li>Persistence of any undrained fluid should prompt additional drains or more aggressive management, i.e. lytic therapy or surgery <b>(Class I, LOE C)</b>.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> if this becomes a VATS washout, treat as a potentially difficult lung isolation — loculations and adhesions distort anatomy.</div>
+        </article>
+
+        <!-- CASE 5 -->
+        <article class="case">
+          <h4><span class="case-num">5</span> An unreliable pleural pH</h4>
+          <p class="vignette">52-year-old woman with a thin, non-purulent effusion. Fluid was aspirated after 5 mL of 1% lidocaine, drawn into a heparinised syringe, left at room temperature and analysed 3 hours later. Reported pH: 7.18.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li>pH must be measured with an arterial blood gas analyser <b>within 1 hour</b> of sampling.</li>
+            <li>Pre-analytical pitfalls — residual <b>lidocaine</b> and <b>heparin</b> falsely lower pH; <b>air in the syringe</b> falsely raises it. This result cannot be trusted.</li>
+            <li>If pH is unreliable, use the fallback markers: pleural glucose &lt; 40 mg/dL, LDH &gt; 1000 IU/L, or a loculated effusion → unlikely to resolve with antibiotics alone <b>(Class IIa, LOE C)</b>.</li>
+            <li>Rarely, urease-splitting organisms (e.g. <em>Proteus</em>) cause a spuriously <em>elevated</em> pH.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> a wrongly reassuring pH can delay drainage and lead to a sicker patient presenting later for surgery. Flag the sampling error to the team before a decision is made.</div>
+        </article>
+
+        <!-- CASE 6 -->
+        <article class="case">
+          <h4><span class="case-num">6</span> Hospital-acquired empyema — the aminoglycoside error</h4>
+          <p class="vignette">58-year-old man, day 9 of an ICU stay, MRSA-colonised, new loculated pleural effusion and ongoing sepsis. The ward team proposes gentamicin plus vancomycin.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li><b>Stop the gentamicin.</b> Aminoglycosides should be avoided in empyema — they are inactivated in empyema fluid <b>(Class I, LOE B)</b> — the guideline's firmest "avoid" statement.</li>
+            <li>Hospital-acquired/post-procedural → cover MRSA and <em>P. aeruginosa</em>: vancomycin + cefepime + metronidazole, or vancomycin + piperacillin/tazobactam <b>(Class IIa, LOE C)</b>.</li>
+            <li>If ESBL organisms are suspected, vancomycin + meropenem may be indicated.</li>
+            <li>There is <b>no role for intrapleural antibiotics</b> <b>(Class IIa, LOE C)</b>.</li>
+            <li>Source control remains the priority — antibiotics alone will not sterilise a loculated empyema.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> check renal function before vancomycin + piperacillin/tazobactam. Infuse vancomycin over ≥60 min — a vancomycin infusion reaction (flushing, hypotension) can mimic anaphylaxis under anaesthesia.</div>
+        </article>
+
+        <!-- CASE 7 -->
+        <article class="case">
+          <h4><span class="case-num">7</span> Chronic empyema with a fibrous peel</h4>
+          <p class="vignette">45-year-old man, 3 months of symptoms. CT: contracted right hemithorax, narrowed rib spaces, mediastinal shift to the right, and a dense visceral pleural peel. Drainage has long since stopped being effective.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li>Stage III disease — pleural drainage procedures are no longer effective.</li>
+            <li>Decortication is reasonable if the patient is medically operable for major thoracic surgery <b>(Class IIa, LOE B)</b>.</li>
+            <li>Avoid extensive parenchymal resection where possible — bronchial stumps in an infected field are prone to fistulise. Close any BPF; use muscle flaps to fill residual space.</li>
+            <li>Postoperative epidural: there is <b>no compelling evidence that epidural catheters cannot be used safely</b> in chronic empyema if the patient is otherwise low risk for epidural abscess <b>(Class IIb, LOE C)</b>.</li>
+            <li>Epidural abscess risk factors to weigh: compromised immunity, physical disruption of the spinal column, a definitive source of infection. Reported rate overall 1.1 per 100,000 to 1 in 1,930.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> this is a long open case with major blood loss potential. Discuss epidural versus paravertebral/erector spinae up front, document the risk–benefit discussion, and plan postoperative ventilation on merit.</div>
+        </article>
+
+        <!-- CASE 8 -->
+        <article class="case">
+          <h4><span class="case-num">8</span> Postpneumonectomy empyema with a BPF</h4>
+          <p class="vignette">63-year-old man, 3 weeks after right pneumonectomy for lung cancer. Fever, purulent sputum, new left-sided infiltrate, falling SpO₂, and a rising air leak from the chest drain.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li>Presume a BPF — it is present in <b>&gt; 80%</b> of postpneumonectomy empyema. Confirm with flexible bronchoscopy under local anaesthesia in a semi-upright position.</li>
+            <li>Prompt intervention to identify/rule out the BPF and drain the sepsis <b>(Class I, LOE C)</b>.</li>
+            <li>Position the patient <b>lateral decubitus with the pneumonectomy side DOWN</b> until the pleural space is drained — this protects the remaining lung from soiling.</li>
+            <li>Emergency chest tube drainage of the cavity to control infection and stop contralateral spillage.</li>
+            <li>Aggressive surgical strategy: antibiotics + serial debridement + BPF closure + obliteration of the residual space with vascularised tissue <b>(Class IIa, LOE C)</b>.</li>
+            <li>Omentum is preferred over skeletal muscle flaps or mediastinal soft tissue, once purulent fluid has been drained and granulation tissue has formed <b>(Class IIb, LOE C)</b>.</li>
+            <li>Reported mortality of postpneumonectomy empyema: <b>28–50%</b>.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> isolate the lung early, ventilate with low airway pressures and small tidal volumes, keep the bronchoscope immediately available — the surgeon may ask you to ventilate the stump to reveal bubbles after the chest is filled with saline.</div>
+        </article>
+
+        <!-- CASE 9 -->
+        <article class="case">
+          <h4><span class="case-num">9</span> Paediatric empyema</h4>
+          <p class="vignette">4-year-old girl, 5 days of fever and tachypnoea despite oral antibiotics. US shows a moderate septated right pleural effusion. She is haemodynamically stable and tolerating oral fluids.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li>Tube thoracostomy, with or without subsequent instillation of fibrinolytic agents, should be attempted as the initial treatment <b>(Class I, LOE A)</b> — the highest-graded recommendation in the paediatric section.</li>
+            <li>If she does not respond adequately, thoracoscopic debridement and drainage is recommended <b>(Class IIa, LOE B)</b>.</li>
+            <li>Where surgery is required, VATS is preferred over open thoracotomy <b>(Class IIa, LOE C)</b>.</li>
+            <li>Context: meta-analysis of 3,418 children — primary surgery had a 2.5% failure rate and 10.8-day length of stay versus 23.6% failure and 20.0 days for non-operative management.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> paediatric one-lung ventilation requires a small bronchial blocker or endobronchial tube; humified gases, meticulous fluid balance and active warming. Expect the child to be dehydrated and tachycardic from fever and poor intake.</div>
+        </article>
+
+        <!-- CASE 10 -->
+        <article class="case">
+          <h4><span class="case-num">10</span> Chronic empyema, unfit for surgery, VAC with a large air leak</h4>
+          <p class="vignette">70-year-old woman, ECOG 3, frailty and severe cardiac disease. Chronic empyema with a persistent space; an open thoracic window has been created. There is a large air leak and the team proposes a wound VAC to reduce dressing changes.</p>
+          <p><span class="label">Guideline route</span></p>
+          <ul>
+            <li>An open thoracic window is reasonable for chronic empyema in patients medically unfit for decortication and tissue flap placement, or with a BPF <b>(Class IIa, LOE C)</b>.</li>
+            <li>A wound VAC may be a reasonable alternative to daily dressing changes <b>(Class IIb, LOE C)</b> — with a stated caution where there is a BPF or visceral pleural rents causing large air leaks.</li>
+            <li>With a large air leak, suction can remove significant portions of the patient's lung volume, causing respiratory compromise. Non-adherent material such as Vaseline petrolatum gauze may seal the leak and allow VAC use.</li>
+            <li>An empyema tube draining a small persistent space or small BPF may be considered in patients unfit for decortication and flap placement <b>(Class IIb, LOE C)</b>.</li>
+          </ul>
+          <div class="rule"><b>Anaesthetic hook:</b> any VAC change or dressing under sedation carries a real risk of sudden desaturation and loss of lung volume. Have suction immediately available, monitor EtCO₂ and airway pressures continuously, and be ready to stop suction and seal the leak.</div>
+        </article>
+
+      </div>
+
+      <div class="note" style="margin-top:16px;">
+        <b>Cross-cutting themes across all 10 cases:</b> (1) source control beats antibiotics alone; (2) stage of disease dictates the operation; (3) the anaesthetist owns lung isolation, positioning and the BPF contingency; (4) aminoglycosides have no place in empyema; (5) drain occlusion and dislodgement are common — flush the drain and CT the chest.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 15. REFERENCE ============ -->
+  <section class="section" data-title="Reference">
+    <button class="sec-head" type="button">
+      <span class="num">15</span>
       <span class="title">Source Reference</span>
       <span class="chev">▼</span>
     </button>
@@ -1366,6 +1665,9 @@
   var searchInput = document.getElementById('search');
   var countEl = document.getElementById('count');
   var noResults = document.getElementById('no-results');
+  var casesBtn = document.getElementById('casesOnly');
+  var casesOnly = false;
+  var CASE_SECTION_INDEX = sections.length - 2; // Case Examples sits just before the Reference
 
   // Accordion toggles
   sections.forEach(function(sec){
@@ -1388,24 +1690,39 @@
     sections.forEach(function(sec){ sec.classList.remove('open'); });
   });
 
+  // Cases-only filter
+  casesBtn.addEventListener('click', function(){
+    casesOnly = !casesOnly;
+    casesBtn.classList.toggle('active', casesOnly);
+    casesBtn.textContent = casesOnly ? 'Show all sections' : 'Cases only';
+    runSearch();
+  });
+
   // Search
   function runSearch(){
     var q = searchInput.value.trim().toLowerCase();
     var visible = 0;
 
-    sections.forEach(function(sec){
+    sections.forEach(function(sec, i){
       var text = (sec.textContent || '').toLowerCase();
       var match = (q === '') || text.indexOf(q) !== -1;
+
+      if (casesOnly){
+        match = match && (i === CASE_SECTION_INDEX);
+      }
+
       sec.style.display = match ? '' : 'none';
       if (match){
         visible++;
-        if (q.length >= 2) sec.classList.add('open');
+        if (q.length >= 2 || casesOnly) sec.classList.add('open');
       }
     });
 
     noResults.style.display = visible === 0 ? 'block' : 'none';
 
-    if (q === ''){
+    if (casesOnly){
+      countEl.textContent = visible + ' section shown (cases only)';
+    } else if (q === ''){
       countEl.textContent = sections.length + ' sections';
     } else {
       countEl.textContent = visible + ' of ' + sections.length + ' sections match';
@@ -1427,4 +1744,4 @@
 })();
 </script>
 </body>
-</html>
+                                        </html>
