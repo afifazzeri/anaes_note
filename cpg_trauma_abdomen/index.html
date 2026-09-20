@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abdominal Trauma CPG 2025 — Anaesthetist Quick Reference</title>
+<style>
+  :root{
+    --teal:#0d7a8a;
+    --teal-dark:#095c69;
+    --teal-light:#e6f4f7;
+    --ink:#1c2b30;
+    --muted:#5b6f76;
+    --line:#d3e2e6;
+    --bg:#f4f8f9;
+    --card:#ffffff;
+    --amber:#a8620a;
+    --amber-bg:#fdf3e3;
+    --red:#a32121;
+    --red-bg:#fdeaea;
+    --green:#1d6b3f;
+    --green-bg:#e8f5ee;
+    --blue:#2c5aa0;
+    --blue-bg:#eaf0fa;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    font-size:16px;
+  }
+  header{
+    background:linear-gradient(135deg,var(--teal-dark),var(--teal));
+    color:#fff;
+    padding:22px 18px 18px;
+  }
+  .wrap{max-width:1000px;margin:0 auto;}
+  header h1{
+    font-size:1.3rem;
+    margin:0 0 6px;
+    line-height:1.25;
+    font-weight:700;
+  }
+  header .sub{
+    font-size:.85rem;
+    opacity:.9;
+    margin:0;
+  }
+  header .cite{
+    font-size:.75rem;
+    opacity:.85;
+    margin-top:10px;
+    border-top:1px solid rgba(255,255,255,.25);
+    padding-top:8px;
+  }
+  .sticky-bar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    padding:10px 18px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+  }
+  .sticky-inner{
+    max-width:1000px;
+    margin:0 auto;
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  #search{
+    flex:1 1 240px;
+    min-width:0;
+    padding:10px 14px;
+    border:1.5px solid var(--line);
+    border-radius:8px;
+    font-size:.95rem;
+    background:#fff;
+    color:var(--ink);
+  }
+  #search:focus{
+    outline:none;
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(13,122,138,.15);
+  }
+  .btn{
+    padding:9px 13px;
+    border:1.5px solid var(--teal);
+    background:#fff;
+    color:var(--teal);
+    border-radius:8px;
+    font-size:.82rem;
+    font-weight:600;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--teal-light);}
+  .count{
+    font-size:.78rem;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  main{max-width:1000px;margin:0 auto;padding:18px;}
+
+  /* ---------- Accordion ---------- */
+  .section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-bottom:10px;
+    overflow:hidden;
+  }
+  .sec-head{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 16px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    text-align:left;
+    font-family:inherit;
+    font-size:1rem;
+    font-weight:700;
+    color:var(--teal-dark);
+  }
+  .sec-head:hover{background:var(--teal-light);}
+  .sec-head .num{
+    flex:0 0 auto;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:var(--teal);
+    color:#fff;
+    font-size:.78rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+  }
+  .sec-head .title{flex:1;}
+  .sec-head .chev{
+    flex:0 0 auto;
+    font-size:.8rem;
+    color:var(--teal);
+    transition:transform .25s ease;
+  }
+  .section.open .sec-head .chev{transform:rotate(180deg);}
+  .acc-body{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .28s ease;
+  }
+  .section.open .acc-body{grid-template-rows:1fr;}
+  .acc-body > .inner{overflow:hidden;}
+  .sec-content{
+    padding:0 16px 16px;
+    font-size:.93rem;
+  }
+
+  /* ---------- Recommendation blocks ---------- */
+  .rec{
+    border-left:4px solid var(--teal);
+    background:var(--teal-light);
+    border-radius:0 8px 8px 0;
+    padding:10px 12px;
+    margin:8px 0;
+    font-size:.9rem;
+  }
+  .rec.amber{border-left-color:var(--amber);background:var(--amber-bg);}
+  .rec.red{border-left-color:var(--red);background:var(--red-bg);}
+  .rec.green{border-left-color:var(--green);background:var(--green-bg);}
+  .rec.blue{border-left-color:var(--blue);background:var(--blue-bg);}
+  .badge{
+    display:inline-block;
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    padding:2px 7px;
+    border-radius:4px;
+    margin-right:6px;
+    vertical-align:1px;
+  }
+  .b-strong{background:#0d7a8a;color:#fff;}
+  .b-cond{background:#3a9aa8;color:#fff;}
+  .b-weak{background:#7ab8c1;color:#08343c;}
+  .b-loe{background:#e2e9eb;color:#3c5057;}
+  .b-key{background:#a8620a;color:#fff;}
+  .rec strong{color:var(--teal-dark);}
+
+  h3{
+    margin:16px 0 6px;
+    color:var(--teal-dark);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:.78rem;
+    border-bottom:1px solid var(--line);
+    padding-bottom:4px;
+  }
+  h4{
+    margin:12px 0 4px;
+    font-size:.88rem;
+    color:var(--teal-dark);
+  }
+  p{margin:6px 0;}
+  ul{margin:6px 0 6px 18px;padding:0;}
+  li{margin:4px 0;}
+  .note{
+    background:#f0f4f5;
+    border:1px dashed #b9cdd2;
+    border-radius:8px;
+    padding:10px 12px;
+    margin:10px 0;
+    font-size:.86rem;
+    color:#33474d;
+  }
+  .note b{color:var(--teal-dark);}
+  .flag{
+    background:#fff8e6;
+    border-left:4px solid #d9a300;
+    border-radius:0 8px 8px 0;
+    padding:9px 12px;
+    margin:8px 0;
+    font-size:.86rem;
+  }
+  .flag b{color:#8a6100;}
+  .danger{
+    background:var(--red-bg);
+    border-left:4px solid var(--red);
+    border-radius:0 8px 8px 0;
+    padding:9px 12px;
+    margin:8px 0;
+    font-size:.86rem;
+  }
+  .danger b{color:var(--red);}
+
+  /* ---------- Tables — SCROLLABLE ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    overflow-y:visible;
+    -webkit-overflow-scrolling:touch;
+    margin:8px 0;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:#fff;
+  }
+  .table-wrap table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.82rem;
+    margin:0;
+    min-width:520px;
+  }
+  .table-wrap table.wide{min-width:760px;}
+  .table-wrap table.wider{min-width:900px;}
+  .table-wrap th,
+  .table-wrap td{
+    border:1px solid var(--line);
+    padding:6px 8px;
+    text-align:left;
+    vertical-align:top;
+  }
+  .table-wrap th{
+    background:#eef4f6;
+    color:var(--teal-dark);
+    font-weight:700;
+    position:sticky;
+    top:0;
+    z-index:1;
+  }
+  .table-wrap td.center,
+  .table-wrap th.center{text-align:center;}
+  .scroll-hint{
+    font-size:.72rem;
+    color:var(--muted);
+    text-align:right;
+    margin:-4px 0 8px;
+    font-style:italic;
+  }
+  @media (min-width:760px){ .scroll-hint{display:none;} }
+
+  /* Case example column */
+  .case-col{
+    background:#f0f7f9;
+    border-left:3px solid var(--teal);
+    font-size:.8rem;
+  }
+  .case-col b{color:var(--teal-dark);}
+  .case-tag{
+    display:inline-block;
+    font-size:.65rem;
+    font-weight:700;
+    background:var(--teal);
+    color:#fff;
+    padding:1px 5px;
+    border-radius:3px;
+    margin-right:4px;
+    vertical-align:1px;
+  }
+  .case-tag.hi{background:var(--red);}
+  .case-tag.med{background:var(--amber);}
+  .case-tag.lo{background:var(--green);}
+
+  /* Case examples section */
+  .case-card{
+    border:1px solid var(--line);
+    border-left:4px solid var(--teal);
+    border-radius:0 8px 8px 0;
+    background:#fff;
+    padding:12px 14px;
+    margin:12px 0;
+  }
+  .case-card h4{
+    margin:0 0 6px;
+    font-size:.92rem;
+    color:var(--teal-dark);
+  }
+  .case-card .vitals{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin:6px 0;
+  }
+  .case-card .vitals span{
+    background:#eef4f6;
+    border-radius:4px;
+    padding:2px 8px;
+    font-size:.76rem;
+    font-weight:600;
+    color:var(--teal-dark);
+  }
+  .case-card .vitals span.abn{background:var(--red-bg);color:var(--red);}
+  .case-card p{margin:6px 0;font-size:.88rem;}
+  .case-card .teach{
+    background:var(--teal-light);
+    border-radius:6px;
+    padding:8px 10px;
+    margin-top:8px;
+    font-size:.85rem;
+  }
+  .case-card .teach b{color:var(--teal-dark);}
+  .case-num{
+    display:inline-block;
+    background:var(--teal);
+    color:#fff;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    text-align:center;
+    line-height:22px;
+    font-size:.75rem;
+    font-weight:700;
+    margin-right:6px;
+  }
+
+  /* ---------- Flow diagrams ---------- */
+  .flow{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:10px 0 4px;
+  }
+  .node{
+    background:#fff;
+    border:2px solid var(--teal);
+    border-radius:9px;
+    padding:9px 14px;
+    text-align:center;
+    max-width:620px;
+    width:100%;
+    font-size:.82rem;
+    line-height:1.4;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  .node.start{background:var(--teal);color:#fff;border-color:var(--teal);font-weight:600;}
+  .node.decision{background:#fff6e0;border-color:#d9a300;border-radius:20px;}
+  .node.action{background:var(--teal-light);}
+  .node.warn{background:var(--red-bg);border-color:var(--red);}
+  .node.chronic{background:#eef3ff;border-color:#4a6fc4;}
+  .node small{display:block;font-size:.73rem;opacity:.85;margin-top:3px;}
+  .arrow{
+    width:2px;
+    height:16px;
+    background:var(--teal);
+    position:relative;
+    flex:0 0 auto;
+  }
+  .arrow::after{
+    content:"";
+    position:absolute;
+    bottom:-1px;
+    left:50%;
+    transform:translateX(-50%);
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-top:9px solid var(--teal);
+  }
+  .branch{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    width:100%;
+  }
+  .branch .node{max-width:290px;flex:1 1 240px;}
+  .fig-title{
+    font-size:.78rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--muted);
+    text-align:center;
+    margin-top:18px;
+    margin-bottom:4px;
+  }
+
+  #no-results{
+    display:none;
+    text-align:center;
+    padding:30px 10px;
+    color:var(--muted);
+    font-size:.9rem;
+  }
+  footer{
+    max-width:1000px;
+    margin:0 auto;
+    padding:20px 18px 40px;
+    font-size:.8rem;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+  }
+  footer a{color:var(--teal);}
+  mark{background:#ffe9a8;padding:0 2px;border-radius:2px;}
+  @media (max-width:540px){
+    header h1{font-size:1.08rem;}
+    .sec-head{font-size:.9rem;padding:12px 12px;}
+    .sec-content{padding:0 12px 14px;}
+    .node{font-size:.78rem;}
+    .branch .node{flex:1 1 100%;max-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Management of Abdominal Trauma in Adults — CPG 2025</h1>
+    <p class="sub">Anaesthetist quick reference · Malaysian Ministry of Health / MaHTAS · Collapsible · Searchable · Tables scroll horizontally</p>
+    <p class="cite">
+      Ministry of Health Malaysia. <em>Clinical Practice Guidelines: Management of Abdominal Trauma in Adults.</em>
+      Putrajaya: MaHTAS, Medical Development Division; 2025. MOH/P/PAK/594.25(GU)-e. eISBN 978-629-7842-05-9.
+      Reviewed minimum 4 years (2029).
+    </p>
+  </div>
+</header>
+
+<div class="sticky-bar">
+  <div class="sticky-inner">
+    <input id="search" type="search" placeholder="Search guidelines… (e.g. ketamine, shock index, TXA, FAST, damage control, pelvic)" aria-label="Search guidelines">
+    <button class="btn" id="expandAll" type="button">Expand all</button>
+    <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ 1. OVERVIEW ============ -->
+  <section class="section" data-title="Overview">
+    <button class="sec-head" type="button">
+      <span class="num">1</span>
+      <span class="title">Overview &amp; Scope</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <p>First Malaysian CPG on early management of intra-abdominal injury. Covers pre-hospital care, transfer, early assessment and resuscitation, diagnosis, treatment and referral.</p>
+
+      <h3>Scope</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Item</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Target population</td>
+          <td>Patients aged ≥ 12 years with blunt or penetrating abdominal trauma. Special consideration: pregnancy, geriatric, concurrent head/spine/pelvic/chest injuries.</td>
+          <td class="case-col"><span class="case-tag lo">LO</span> 24-year-old motorcyclist, blunt abdominal trauma, isolated splenic laceration. Otherwise healthy.</td>
+        </tr>
+        <tr>
+          <td>Exclusions</td>
+          <td>Paediatric population (&lt; 12 years)</td>
+          <td class="case-col">12-year-old with handlebar injury — paediatric pathway, not this CPG.</td>
+        </tr>
+        <tr>
+          <td>Users</td>
+          <td>Doctors, allied health professionals, trainees/students, patients &amp; advocates, professional societies</td>
+          <td class="case-col">—</td>
+        </tr>
+        <tr>
+          <td>Settings</td>
+          <td>Primary, secondary and tertiary care</td>
+          <td class="case-col">District hospital stabilises, then refers to specialist centre.</td>
+        </tr>
+        <tr>
+          <td>Methods</td>
+          <td>Systematic search Jan 2023; literature cut-off 1 Feb 2025. U.S. Preventive Services Task Force level of evidence (2015); GRADE for recommendations. AGREE II compliant.</td>
+          <td class="case-col">—</td>
+        </tr>
+      </table>
+      </div>
+
+      <h3>How recommendations are worded</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Term</th><th>Meaning</th><th class="case-col">Case example</th></tr>
+        <tr><td><strong>"should"</strong></td><td>Strong recommendation (more GRADE criteria fulfilled)</td><td class="case-col"><span class="case-tag hi">HI</span> "All unstable patients <b>should</b> have laparotomy within 90 min" — non-negotiable target.</td></tr>
+        <tr><td><strong>"may"</strong></td><td>Weak recommendation</td><td class="case-col"><span class="case-tag med">MED</span> "Laparoscopic surgery <b>may</b> be offered if stable and no TBI" — depends on surgeon skill and patient factors.</td></tr>
+        <tr><td>Yellow box</td><td>Important management message</td><td class="case-col">"DO NOT perform CT scan in persistently unstable patients" — delays definitive surgery.</td></tr>
+        <tr><td>Blue box</td><td>Evidence-based recommendation</td><td class="case-col">Balanced crystalloid preferred; avoid hypotonic solutions in TBI.</td></tr>
+      </table>
+      </div>
+
+      <h3>Key epidemiological facts</h3>
+      <ul>
+        <li>WHO 2024: 4.4 million injury-related deaths worldwide each year; ~1/3 from road traffic accidents.</li>
+        <li>Malaysia: 402,626 road accidents Jan–Sep 2022 (↑58% from 2021); 4,379 deaths (↑~32%).</li>
+        <li>Malaysia Road Fatalities Index: average <strong>18 lives lost per day</strong>.</li>
+        <li>Most common intra-abdominal injuries: <strong>liver and spleen</strong>.</li>
+      </ul>
+
+      <div class="flag">
+        <b>Anaesthetist's perspective:</b> This guideline repeatedly emphasises the <b>golden hour</b>, <b>haemorrhage control before imaging in unstable patients</b>, and <b>balanced resuscitation</b>. Your intraoperative decisions (induction agent, fluid strategy, lung isolation) directly influence the two primary outcomes: time to haemostasis and prevention of the lethal triad.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 2. PRE-HOSPITAL ============ -->
+  <section class="section" data-title="Pre-hospital Care & Transfer">
+    <button class="sec-head" type="button">
+      <span class="num">2</span>
+      <span class="title">Pre-hospital Care &amp; Transfer</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 1 — Pre-hospital care</strong>
+        <ul>
+          <li>Attending team <strong>should have adequate training</strong> in providing basic trauma care.</li>
+          <li><strong>Vital signs should be monitored regularly.</strong></li>
+          <li><strong>Fluid resuscitation should be done judiciously.</strong></li>
+          <li><strong>Tranexamic acid should be administered</strong> in suspected bleeding patients without known contraindications.</li>
+          <li>All severely injured trauma patients <strong>should be transferred to the nearest appropriate hospital within 60 minutes from time of injury</strong> (trauma bypass system).</li>
+        </ul>
+      </div>
+
+      <h3>Pre-hospital team &amp; interventions</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Provider level</th><th>Interventions</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Basic (BLS-trained paramedics)</td>
+          <td>Cervical collar, splints, pelvic binder; monitoring during transport</td>
+          <td class="case-col"><span class="case-tag lo">LO</span> Fall from ladder, isolated abdominal pain. Pelvic binder not indicated. Cervical collar applied.</td>
+        </tr>
+        <tr>
+          <td>Advanced (ALS-trained)</td>
+          <td>Supraglottic airway, control of external major haemorrhage, IV access, fluid boluses/therapy, drug administration. Further interventions by consultation with receiving hospital specialist.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Motorcyclist with abdominal distension and SBP 80. ALS team establishes IV access, gives 500 ml balanced crystalloid, TXA 1 g over 10 min, pre-alerts ED.</td>
+        </tr>
+        <tr>
+          <td>Physician-driven</td>
+          <td>Not yet established in Malaysia (except mass casualty incidents)</td>
+          <td class="case-col">—</td>
+        </tr>
+      </table>
+      </div>
+
+      <h3>Vital signs — what matters most</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Parameter</th><th>Finding</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>SpO₂</td>
+          <td>Mean continuous SpO₂ &lt; 90% is the most predictive of subsequent mortality (AUC 0.76 vs 0.59 for initial value)</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Patient with continuous SpO₂ 86% on 15 L NRB despite normal initial reading of 97%. High mortality risk.</td>
+        </tr>
+        <tr>
+          <td>SpO₂ + GCS</td>
+          <td>Combined prediction AUC 0.88</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> SpO₂ 88%, GCS 11 → combined score flags severe injury; prepare for massive transfusion.</td>
+        </tr>
+        <tr>
+          <td>Target SpO₂</td>
+          <td>≥ 95%</td>
+          <td class="case-col">Titrate oxygen to 95–100%; avoid hyperoxia in oxygen-sufficient patients.</td>
+        </tr>
+      </table>
+      </div>
+
+      <h3>Pre-hospital fluid treatment</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Intervention</th><th>Evidence / target</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Choice of fluid</td>
+          <td>0.9% sodium chloride or balanced crystalloid</td>
+          <td class="case-col"><span class="case-tag lo">LO</span> Rural clinic: 500 ml Sterofundin commenced for SBP 85.</td>
+        </tr>
+        <tr>
+          <td>Crystalloid risk</td>
+          <td>PATOS: prehospital crystalloid → increased in-hospital mortality (OR 4.26, 95% CI 3.50–5.20) and poor functional outcome (OR 2.33, 95% CI 2.16–2.51)</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 2 L prehospital crystalloid given for SBP 70. Patient arrives coagulopathic and hypothermic — difficult resuscitation.</td>
+        </tr>
+        <tr>
+          <td>Target SBP</td>
+          <td>80–90 mmHg for suspected uncontrolled haemorrhage in chest, abdomen or retroperitoneum</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Permissive hypotension to SBP 85 while awaiting OT — avoid over-resuscitation.</td>
+        </tr>
+        <tr>
+          <td>Target MAP</td>
+          <td>≥ 80 mmHg if TBI suspected</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Abdominal trauma + GCS 8, unequal pupils. Target MAP ≥ 80 to maintain CPP.</td>
+        </tr>
+      </table>
+      </div>
+
+      <h3>Pre-hospital blood transfusion</h3>
+      <ul>
+        <li>Multicentre RCT (RePHILL): no significant differences between pre-hospital blood products (PRBC–LyoPlas) and 0.9% sodium chloride in mortality, tissue perfusion improvement, or transfusion-related complications in first 24 hours after ED arrival.</li>
+        <li>Decision must consider healthcare system readiness — hospital transfusion capacity, EMS transport and administration capability.</li>
+        <li>Best practice: well-planned and resourced, multiple safeguards, adequate training and credentialing, responsible stewardship to minimise waste.</li>
+      </ul>
+
+      <h3>Tranexamic acid (TXA) — pre-hospital</h3>
+      <div class="rec green">
+        <strong>Indication:</strong> administer within <strong>3 hours</strong> from time of injury in patients with:
+        <ul>
+          <li>Suspected haemorrhage</li>
+          <li>SBP &lt; 90 mmHg</li>
+          <li>GCS ≤ 12</li>
+        </ul>
+        <strong>Dosage:</strong> Loading dose <strong>1 g over 10 minutes</strong>, followed by maintenance <strong>1 g infusion over 8 hours</strong>.
+      </div>
+      <p><strong>Evidence:</strong> CRASH-2 — TXA reduced all-cause mortality (RR 0.91, 95% CI 0.85–0.97) and risk of death due to bleeding (RR 0.85, 95% CI 0.76–0.96). Cohort data in traumatic haemorrhagic shock: reduced 28-day mortality (OR 0.41, 95% CI 0.21–0.80), less total blood product transfused (median difference 2 units), shorter hospital LOS (4 days) and ICU LOS (1 day). No significant difference in adverse events.</p>
+
+      <h3>Pre-hospital ultrasound</h3>
+      <ul>
+        <li>Not yet established in Malaysia.</li>
+        <li>Italian study (moderate–severe liver/spleen injury): positive pre-hospital FAST independently associated with reduced door-to-CT or door-to-OT time (OR 2.58, 95% CI 1.52–4.36).</li>
+      </ul>
+
+      <h3>Triaging</h3>
+      <p>Eight independent predictors of severe injury (ISS &gt; 15):</p>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Predictor</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr><td>Age</td><td>—</td><td class="case-col">62-year-old — low-energy fall still high risk.</td></tr>
+        <tr><td>Systolic BP</td><td>—</td><td class="case-col"><span class="case-tag hi">HI</span> SBP 88 → triggers severe injury predictor.</td></tr>
+        <tr><td>GCS score</td><td>—</td><td class="case-col"><span class="case-tag hi">HI</span> GCS 13 → borderline; recheck frequently.</td></tr>
+        <tr><td>Mechanism criteria</td><td>—</td><td class="case-col">High-speed MVC, rollover.</td></tr>
+        <tr><td>Penetrating injury to head, thorax or abdomen</td><td>—</td><td class="case-col"><span class="case-tag hi">HI</span> Stab wound to epigastrium with omental evisceration.</td></tr>
+        <tr><td>Signs/symptoms of head or neck injury</td><td>—</td><td class="case-col">Battle's sign, CSF rhinorrhoea.</td></tr>
+        <tr><td>Expected injury in AIS thorax region</td><td>—</td><td class="case-col">Flail chest, multiple rib fractures.</td></tr>
+        <tr><td>Expected injury in ≥ 2 AIS regions</td><td>—</td><td class="case-col"><span class="case-tag hi">HI</span> Abdominal + chest + pelvic injuries → polytrauma.</td></tr>
+      </table>
+      </div>
+      <p>Prediction model AUC 0.823 (95% CI 0.813–0.832); external validation AUC 0.831 (95% CI 0.814–0.848).</p>
+
+      <h3>Transfer — golden hour &amp; trauma bypass</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Concept</th><th>Key data</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Golden hour</td>
+          <td>Definitive resuscitative care should be initiated within first 60 minutes from time of injury.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 32-year-old, pedestrian vs car. Scene time 15 min, transport 25 min, ED arrival 40 min. OT within 90 min.</td>
+        </tr>
+        <tr>
+          <td>Asian cohort</td>
+          <td>No association between overall pre-hospital time and 30-day mortality, but 6% increase in odds of poor functional outcome per 10-minute delay (OR 1.06, 95% CI 1.04–1.08).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> 20-minute delay for extrication → higher risk of poor functional outcome, not necessarily death.</td>
+        </tr>
+        <tr>
+          <td>Direct transfer</td>
+          <td>Major trauma centre vs trauma unit: shorter time to surgery (4.37 vs 5.37 h), shorter time to CT (2 vs 3.15 h), lower odds of death (OR 0.77, 95% CI 0.72–0.82).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Bypass district hospital with no surgeon; go direct to specialist centre 45 min away.</td>
+        </tr>
+      </table>
+      </div>
+
+      <div class="danger">
+        <b>Anaesthetic relevance:</b> Many patients arrive with a pelvic binder in place, a supraglottic airway or endotracheal tube already inserted, and having received up to 1 L of crystalloid and TXA. Document what was given and when — this changes your induction and transfusion planning.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 3. ASSESSMENT & RESUSCITATION ============ -->
+  <section class="section" data-title="Early Assessment & Resuscitation">
+    <button class="sec-head" type="button">
+      <span class="num">3</span>
+      <span class="title">Early Assessment &amp; Resuscitation</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <h3>Primary survey (ATLS)</h3>
+      <ul>
+        <li>Cervical spine protection with rigid collar; pelvic binder if pelvic fracture suspected.</li>
+        <li>Adjuncts: vital sign monitoring, continuous ECG, ABG including lactate, chest and pelvic X-rays, FAST/e-FAST, DPL.</li>
+        <li>Gastric and urinary catheters assist diagnosis and monitoring.</li>
+        <li>Specialist-led multidisciplinary team (Trauma Team Activation — Emergency, Surgical, Anaesthesiology) should be initiated early on arrival.</li>
+      </ul>
+
+      <h3>Triage — Malaysian Triage Scale (MTS) 2022</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Level</th><th>Chest/Abdominal trauma parameters</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td><b>1 — Resuscitation</b></td>
+          <td>Agonal breathing · pulseless · unrecordable BP · <b>Shock index ≥ 1.4</b></td>
+          <td class="case-col"><span class="case-tag hi">HI</span> HR 130, SBP 80 → SI 1.63. Immediate resus bay, massive transfusion protocol activated.</td>
+        </tr>
+        <tr>
+          <td><b>2 — Emergency</b></td>
+          <td>Penetrating injury · high-velocity mechanism · respiratory distress · SpO₂ &lt; 95% · <b>Shock index ≥ 1.0 to &lt; 1.4</b></td>
+          <td class="case-col"><span class="case-tag hi">HI</span> HR 110, SBP 100 → SI 1.1. Penetrating wound to RUQ. Priority 2.</td>
+        </tr>
+        <tr>
+          <td><b>3 — Urgency</b></td>
+          <td>Likely rib fractures · possible pelvic injury · significant external bruising · <b>Shock index ≥ 0.6 to &lt; 1.0</b></td>
+          <td class="case-col"><span class="case-tag med">MED</span> HR 95, SBP 130 → SI 0.73. Seatbelt sign, abdominal tenderness. Needs urgent workup.</td>
+        </tr>
+        <tr>
+          <td><b>4 — Early Care</b></td>
+          <td>Elderly · anticoagulant use · pregnancy · <b>Shock index &lt; 0.6</b></td>
+          <td class="case-col"><span class="case-tag lo">LO</span> 78-year-old on warfarin, minor fall, HR 80, SBP 140 → SI 0.57. Still needs CT and INR.</td>
+        </tr>
+        <tr>
+          <td><b>5 — Routine</b></td>
+          <td>Mild symptoms</td>
+          <td class="case-col">Minor abrasion, no abdominal pain, normal vitals.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Shock Index (SI) &amp; Delta Shock Index (DSI)</h3>
+      <div class="note">
+        <b>Shock Index (SI) = Pulse rate ÷ Systolic blood pressure</b><br>
+        &lt; 0.6 = no shock · 0.6–&lt;1.0 = mild · 1.0–&lt;1.4 = moderate · ≥ 1.4 = severe<br><br>
+        <b>Delta Shock Index (DSI) = ED SI − Pre-hospital SI</b><br>
+        Assume occult shock if <b>DSI &gt; 0.1</b>
+      </div>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Study</th><th>Finding</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>PATOS (DSI &gt; 0.1 vs ≤ 0.1)</td>
+          <td>Higher in-hospital mortality (OR 2.82, 95% CI 2.08–3.84); higher ICU admission (OR 2.02, 95% CI 1.76–2.32); higher massive transfusion (OR 5.24, 95% CI 3.10–8.85).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Pre-hospital SI 0.7, ED SI 0.95 → DSI 0.25. Occult shock. Prepare blood products early.</td>
+        </tr>
+        <tr>
+          <td>Japan Trauma Data Bank</td>
+          <td>DSI &gt; 0.1 → higher incidence of emergency surgery (OR 1.22, 95% CI 1.08–1.38).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> DSI 0.2 in a patient with abdominal pain — higher likelihood of needing laparotomy.</td>
+        </tr>
+      </table>
+      </div>
+
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 2</strong> — Abdominal trauma patients with <strong>Shock Index ≥ 1.0</strong> should be given priority and monitored closely.
+      </div>
+
+      <h3>Laboratory tests</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Test</th><th>Purpose / key point</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Full blood count</td>
+          <td>Haemoglobin interpreted by time since injury, fluid given, extent of haemorrhage. <b>Haematocrit &lt; 30%</b> increases likelihood of intra-abdominal injury in blunt trauma.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Initial Hb 110 g/L, repeat at 1 h 85 g/L → ongoing haemorrhage despite normal initial value.</td>
+        </tr>
+        <tr><td>Renal profile</td><td>Identify and monitor renal dysfunction.</td><td class="case-col">Baseline creatinine 90 µmol/L; monitor for contrast nephropathy post-CT.</td></tr>
+        <tr><td>Blood glucose</td><td>Identify/manage hypo- or hyperglycaemia from stress response.</td><td class="case-col">Glucose 14 mmol/L in severe trauma — stress response, monitor and treat.</td></tr>
+        <tr>
+          <td>Coagulation profile</td>
+          <td>PT and INR. Early and repeated coagulation profiles (traditional or viscoelastic) in unstable patients with solid organ injury are crucial. Prolonged PT defines trauma-induced coagulopathy (TIC) and correlates with shock severity and ongoing transfusion need.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> INR 1.8 in a patient with splenic laceration → TIC; give plasma and consider TEG/ROTEM.</td>
+        </tr>
+        <tr>
+          <td>Arterial/venous blood gases</td>
+          <td>Serial pH, lactate, base excess to monitor tissue oxygenation, circulatory status and response to resuscitation.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Lactate 6.2 → 4.8 after 1 L crystalloid and blood. Improving but still high.</td>
+        </tr>
+        <tr><td>Group, Screen &amp; Hold / Crossmatch</td><td>For high index of suspicion of haemorrhage.</td><td class="case-col">GXM 4 units for suspected splenic bleed with SI 1.2.</td></tr>
+        <tr><td>Liver function test</td><td>Transaminitis may suggest liver injury.</td><td class="case-col">AST 450, ALT 380 → suspect hepatic injury even if CT equivocal.</td></tr>
+        <tr><td>Urine pregnancy test</td><td>Rule out pregnancy in females of childbearing age.</td><td class="case-col"><span class="case-tag hi">HI</span> 28-year-old female with abdominal trauma — positive pregnancy test changes imaging and management.</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Airway management</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 3 — Video laryngoscopy is the preferred method for intubation of patients with abdominal trauma.</strong>
+      </div>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Evidence</th><th>Finding</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Multicentre cohort (ED trauma intubations)</td>
+          <td>First-pass success prevalence 86.8% (95% CI 83.3–90.3%). VL had more first-pass success than DL after propensity matching (OR 2.2, 95% CI 1.6–2.9). Oesophageal intubations more common with DL.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Patient with blood in oropharynx — VL improves view and first-pass success.</td>
+        </tr>
+        <tr>
+          <td>Meta-analysis 14 RCTs</td>
+          <td>VL increased first-attempt success (RR 1.12, 95% CI 1.04–1.20), reduced oesophageal intubation (RR 0.44, 95% CI 0.24–0.80) and aspiration (RR 0.63, 95% CI 0.41–0.96). Benefit regardless of operator experience.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Junior anaesthetist on night shift — VL preferred for trauma RSI.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Fluid resuscitation</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 4</strong>
+        <ul>
+          <li>Initial bolus fluid resuscitation (including pre-hospital phase) in abdominal trauma <strong>should not exceed 1 L (15 ml/kg)</strong> except when necessary to maintain a systolic blood pressure of 80–90 mmHg.</li>
+          <li><strong>Balanced crystalloid is the preferred fluid</strong> in abdominal trauma resuscitation.</li>
+          <li><strong>Hypotonic solution should be avoided</strong> in all abdominal trauma resuscitation, especially with concurrent traumatic brain injury.</li>
+          <li><strong>Transfusion of packed red blood cells and plasma (FFP) should be considered early</strong> in haemorrhagic trauma patients.</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Study</th><th>Finding</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Level I trauma centre, moderate–severe trauma</td>
+          <td>High-volume (≥ 2 L) crystalloid in ED → increased overall mortality vs low-volume (&lt; 2 L), OR 1.88 (95% CI 1.18–3.01). Subgroup: elderly OR 2.56 (95% CI 1.01–6.45); blunt injury OR 2.11 (95% CI 1.28–3.48).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 72-year-old given 3 L crystalloid in ED for SBP 85 — higher mortality risk. Switch to blood products early.</td>
+        </tr>
+        <tr>
+          <td>Severely injured blunt trauma with haemorrhagic shock</td>
+          <td>High-volume (&gt; 15 L) crystalloid in first 24 h → acute lung injury/ARDS OR 3.4 (95% CI 1.5–7.9); multiple-organ failure OR 2.9 (95% CI 1.3–6.1); abdominal compartment syndrome OR 8.7 (95% CI 2.6–28.9).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Massive crystalloid resuscitation → abdominal compartment syndrome. Monitor IAP and bladder pressure.</td>
+        </tr>
+        <tr>
+          <td>Critically ill trauma patients</td>
+          <td>Non-survivors had higher risk of positive fluid balance (OR 1.236, 95% CI 1.008–1.515) and volume of fluid infusion (OR 4.10, 95% CI 1.030–16.317).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Aim for zero or negative fluid balance after initial resuscitation.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="note">
+        <b>Obese patients:</b> use <b>adjusted body weight (ABW)</b> to guide fluid volume.<br>
+        ABW = IBW + 0.4 (actual weight − IBW)<br>
+        IBW male = 50.0 kg + 0.91 (height in cm − 152); female = 45.5 kg + 0.91 (height in cm − 152).
+      </div>
+
+      <h3>Blood &amp; blood products transfusion</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Trial / study</th><th>Finding</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>PROPPR RCT</td>
+          <td>1:1:1 (plasma:platelets:RBC) vs 1:1:2 → significantly more haemostasis and fewer exsanguination events in the 1:1:1 group; no difference in 24-hour or 30-day mortality; no difference in ARDS, multiple organ failure, VTE, sepsis or transfusion-related complications.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Massive transfusion for ruptured spleen — use 1:1:1 ratio. Document blood products given.</td>
+        </tr>
+        <tr>
+          <td>Whole blood–centred resuscitation</td>
+          <td>Lower pRBC:WB ratios associated with improved 24-hour survival vs WB alone — 2:1 HR 1.27 (95% CI 0.58–2.79); 3:1 HR 2.83 (95% CI 1.18–6.77); 4:1 HR 3.67 (95% CI 1.57–8.57).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Where whole blood available, use it early. Avoid high pRBC:WB ratios.</td>
+        </tr>
+        <tr>
+          <td>Massive transfusion protocol (MTP)</td>
+          <td>Meta-analysis: decreased overall mortality (OR 0.71, 95% CI 0.56–0.90) vs pre-MTP implementation.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Activate MTP early in SI ≥ 1.4 or anticipated massive transfusion.</td>
+        </tr>
+        <tr>
+          <td>Viscoelastic testing (VET)</td>
+          <td>Where available, VET (TEG/ROTEM) guides emergency resuscitation, predicts massive transfusion, aids early diagnosis of coagulopathy and guides component transfusion. Refer to Malaysian Consensus Statement of Patient Blood Management 2024.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> TEG shows prolonged R time → give plasma; low MA → give platelets; high LY30 → consider TXA.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Haemorrhage classes (ATLS — Appendix 5)</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Parameter</th><th class="center">Class I</th><th class="center">Class II</th><th class="center">Class III</th><th class="center">Class IV</th><th class="case-col">Case example</th></tr>
+        <tr><td>Approx. blood loss</td><td class="center">&lt; 15%</td><td class="center">15–30%</td><td class="center">31–40%</td><td class="center">&gt; 40%</td><td class="case-col"><span class="case-tag hi">HI</span> Class III (35% loss) — tachycardia, hypotension, reduced urine output.</td></tr>
+        <tr><td>Pulse rate</td><td class="center">↔</td><td class="center">↔/↑</td><td class="center">↑↑</td><td class="center">↑↑</td><td class="case-col">HR 130 → Class III/IV.</td></tr>
+        <tr><td>Blood pressure</td><td class="center">↔</td><td class="center">↔</td><td class="center">↔/↓</td><td class="center">↓↓</td><td class="case-col">SBP 85 → Class III/IV.</td></tr>
+        <tr><td>Pulse pressure</td><td class="center">↔</td><td class="center">↓</td><td class="center">↓↓</td><td class="center">↓↓</td><td class="case-col">Narrow pulse pressure — early sign of significant loss.</td></tr>
+        <tr><td>Respiratory rate</td><td class="center">↔</td><td class="center">↔</td><td class="center">↔/↑</td><td class="center">↑↑</td><td class="case-col">RR 28 → Class III/IV.</td></tr>
+        <tr><td>Urine output</td><td class="center">↔</td><td class="center">↔</td><td class="center">↓↓</td><td class="center">↓↓</td><td class="case-col">Urine output &lt; 0.5 ml/kg/h → Class III.</td></tr>
+        <tr><td>GCS score</td><td class="center">↔</td><td class="center">↔</td><td class="center">↓↓</td><td class="center">↓↓</td><td class="case-col">GCS 13 → Class III.</td></tr>
+        <tr><td>Base deficit</td><td class="center">0 to −2</td><td class="center">−2 to −6</td><td class="center">−6 to −10</td><td class="center">≤ −10</td><td class="case-col">Base deficit −8 → Class III.</td></tr>
+        <tr><td>Need for blood products</td><td class="center">Monitor</td><td class="center">Possible</td><td class="center">Yes</td><td class="center">MTP</td><td class="case-col"><span class="case-tag hi">HI</span> Class III → activate MTP.</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 4. DIAGNOSIS ============ -->
+  <section class="section" data-title="Diagnosis">
+    <button class="sec-head" type="button">
+      <span class="num">4</span>
+      <span class="title">Diagnosis — Clinical, Laboratory &amp; Imaging</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <h3>Clinical diagnosis</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 5</strong>
+        <ul>
+          <li>Assessment should include <strong>clinical history, mechanism of injury and physical examination</strong>.</li>
+          <li>Trauma patients with <strong>'seatbelt sign'</strong> should raise suspicion of intra-abdominal injury and further evaluation is warranted.</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Sign / finding</th><th>Significance</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Seatbelt sign</td>
+          <td>Redness, bruises or abrasions on chest, abdomen or neck corresponding to the strap. Signs above ASIS → fourfold increased risk of intra-abdominal or lumbar spine injuries. Meta-analysis: higher odds of intra-abdominal injury (OR 3.61, 95% CI 1.12–11.6) and need for surgery (OR 7.34, 95% CI 2.03–26.54).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Obvious seatbelt sign across abdomen after MVC. Even with normal vitals, CT indicated.</td>
+        </tr>
+        <tr>
+          <td>Hypotension (SBP &lt; 90 mmHg)</td>
+          <td>Often due to intra-abdominal haemorrhage. Even when external bleeding sources identified, intra-abdominal injuries should not be excluded.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> SBP 85 with scalp laceration — do not assume head injury alone explains shock.</td>
+        </tr>
+        <tr>
+          <td>Abdominal distension, rebound tenderness, guarding</td>
+          <td>Increased probability of intra-abdominal injury.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Generalised guarding and rebound → peritonitis → laparotomy.</td>
+        </tr>
+        <tr>
+          <td>Concomitant femur fracture</td>
+          <td>Distracting injury — may mask abdominal signs.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Femur fracture with abdominal pain — low threshold for CT.</td>
+        </tr>
+        <tr>
+          <td>Kehr's sign</td>
+          <td>Left shoulder pain from splenic injury; right shoulder pain from liver injury.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Left shoulder tip pain after blunt trauma → suspect splenic injury.</td>
+        </tr>
+        <tr>
+          <td>Absence of pain/tenderness</td>
+          <td>Does not rule out serious injury — symptoms may develop hours later. Repeated assessment and timely imaging essential.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Initially comfortable patient with normal examination, later develops tachycardia and pain — missed splenic bleed.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Urinary dipstick for haematuria</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 6</strong>
+        <ul>
+          <li>Urine dipstick should be done in abdominal trauma patients with <strong>suspected genitourinary injury</strong>.</li>
+          <li>Patients with <strong>gross haematuria or microscopic haematuria</strong> should be further investigated.</li>
+          <li><strong>Serum amylase</strong> may be performed in patients with suspected pancreatic injury.</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Haematuria</th><th class="center">Sensitivity</th><th class="center">Specificity</th><th class="center">PPV</th><th class="center">NPV</th><th class="center">AUC</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Microscopic on dipstick</td><td class="center">72.2%</td><td class="center">53.1%</td><td class="center">46.4%</td><td class="center">77.3%</td><td class="center">0.627</td>
+          <td class="case-col"><span class="case-tag lo">LO</span> Microscopic haematuria, no hypotension → further investigate but low risk.</td>
+        </tr>
+        <tr>
+          <td>Gross</td><td class="center">36.1%</td><td class="center">53.1%</td><td class="center">76.5%</td><td class="center">72.3%</td><td class="center">0.649</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Gross haematuria with hypotension → CECT once stable.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Serum pancreatic enzymes</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Enzyme</th><th class="center">Sensitivity</th><th class="center">Specificity</th><th class="center">PPV</th><th class="center">NPV</th><th class="case-col">Case example</th></tr>
+        <tr><td>Amylase</td><td class="center">85%</td><td class="center">79%</td><td class="center">50%</td><td class="center">95%</td><td class="case-col">Amylase 1200 IU — suspect pancreatic injury but not specific.</td></tr>
+        <tr><td>Lipase</td><td class="center">85%</td><td class="center">99%</td><td class="center">97%</td><td class="center">96%</td><td class="case-col">Lipase 950 IU — highly specific for pancreatic injury.</td></tr>
+        <tr><td>Combined</td><td class="center">85%</td><td class="center">100%</td><td class="center">100%</td><td class="center">96%</td><td class="case-col">Both raised → high probability of pancreatic injury; CT with delayed phase.</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>e-FAST / POCUS</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 7 — Extended Focused Assessment with Sonography in Trauma (e-FAST) should be performed in all abdominal trauma patients by trained healthcare providers.</strong>
+      </div>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Population</th><th>Performance</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Unstable blunt abdominal injury / life-threatening pelvic fracture</td>
+          <td>Sensitivity 92.6–96%, specificity 96–100%, PPV 93–100%, NPV 92–98% for intra-abdominal free fluid.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> SBP 80, positive FAST → straight to OT for laparotomy.</td>
+        </tr>
+        <tr>
+          <td>Stable penetrating torso trauma</td>
+          <td>High specificity (94.1–100%) but wide sensitivity (28.1–100%).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Stab wound, negative FAST — cannot exclude injury; need CT or serial examination.</td>
+        </tr>
+        <tr>
+          <td>Morbid obesity (BMI ≥ 36 kg/m²)</td>
+          <td>Sensitivity falls to 27.1%, specificity 91.7%, accuracy 76.2%.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> BMI 38, negative e-FAST — low sensitivity; proceed to CT.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="danger">
+        <b>Limitations:</b> Operator-dependent. Cannot reliably detect solid organ injuries or bowel perforation without free fluid. <b>A negative e-FAST does not completely exclude intra-abdominal injury.</b> Early-stage injuries with minimal bleeding may be overlooked — repeat at regular intervals based on clinical judgement.
+      </div>
+
+      <h3>Computed tomography (CT)</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 8</strong> — All abdominal trauma patients undergoing CECT should have <strong>at least arterial and portovenous phases</strong>, obtained by either <strong>multiphasic</strong> or <strong>split-bolus</strong> protocol.
+      </div>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 9</strong> — <strong>Whole body CT may be considered</strong> in patients with abdominal trauma who fulfil at least <strong>two criteria from any two of the three categories</strong> (physiological, anatomical, mechanism of injury).
+      </div>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 10</strong> — CECT should be performed in <strong>haemodynamically stable</strong> abdominal trauma patients with suspected intra-abdominal injury to guide treatment.
+      </div>
+
+      <h4>CT protocols compared</h4>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Protocol</th><th>Technique</th><th>Advantages</th><th>Disadvantages</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td><b>Single phase</b></td><td>Single CM bolus, single acquisition in portal venous phase</td><td>Adequate parenchymal and venous evaluation; lower radiation than multiphasic</td><td>Only one phase — may miss or misinterpret vascular injuries</td>
+          <td class="case-col">Stable patient with suspected liver laceration — single phase may suffice if no vascular concern.</td>
+        </tr>
+        <tr>
+          <td><b>Multiphasic</b></td><td>Single CM bolus, multiple acquisitions (at least arterial + portal venous)</td><td>Comprehensive characterisation of vascular and parenchymal injuries</td><td>Higher radiation exposure</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Suspected splenic vascular injury — multiphasic to detect pseudoaneurysm or active extravasation.</td>
+        </tr>
+        <tr>
+          <td><b>Split bolus</b></td><td>Two or three CM boluses sequentially, single acquisition</td><td>Concurrent arterial and venous phases in one scan; lower radiation than multiphasic</td><td>Single acquisition may miss vascular injuries; higher CM dose</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Stable polytrauma patient — split bolus reduces radiation while providing both phases.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h4>Criteria to consider WBCT (Table 3)</h4>
+      <div class="table-wrap">
+      <table class="wider">
+        <tr><th>Physiological</th><th>Anatomical</th><th>Mechanism</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>GCS ≤ 13 or abnormal pupillary reaction<br>SBP &lt; 100 mmHg<br>PR &lt; 50 or &gt; 120 bpm<br>RR &lt; 10 or &gt; 29 breaths/min<br>SpO₂ &lt; 90% on air<br>Estimated external blood loss ≥ 500 ml</td>
+          <td>Visible injury to &gt; 1 body part (head, neck, chest, abdomen, pelvis — exclude extremity)<br>Flail chest, open chest or multiple rib fractures<br>Positive FAST scan<br>Suspected unstable pelvic fracture<br>Vertebral fractures / spinal cord compression</td>
+          <td>Fall from height &gt; 4 m<br>Wedged or trapped chest/abdomen<br>Ejection, rollover or death of passenger in same vehicle<br>Pedestrian, cyclist or motorcyclist hit by moving vehicle<br>Explosion</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> GCS 12 (physiological) + positive FAST (anatomical) = 2 criteria from 2 categories → WBCT indicated.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h4>CT signs of hypoperfusion / hypovolaemia</h4>
+      <div class="table-wrap">
+      <table class="wider">
+        <tr><th>Vascular signs (true hypovolaemia)</th><th>Visceral signs (hypoperfusion)</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Flat inferior vena cava (AP diameter &lt; 9 mm infrarenal)<br>IVC halo (extracellular fluid)<br>Small aortic calibre (&lt; 1.3 cm, measured 2 cm above and below renal artery origin)</td>
+          <td>Shock bowel: wall thickening &gt; 3 mm, increased wall enhancement &gt; psoas density, dilatation &gt; 2.5 cm<br>Shock liver: altered/heterogeneous parenchymal enhancement<br>Shock pancreas: altered enhancement and peripancreatic fluid<br>Adrenal enhancement: higher density than IVC<br>Kidney: cortical hyper-enhancement &gt; aortic density in portovenous phase<br>Spleen hypo-enhancement: &lt; 20 HU than liver in portovenous phase<br>Spleen volume loss &gt; 30% from baseline or normal for age/gender<br>Gallbladder enhancement &gt; 50 HU higher than psoas</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Flat IVC + shock bowel + shock liver = hypovolaemic shock complex. ROC 0.88 for mortality. Prepare for aggressive resuscitation.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h4>Blunt bowel &amp; mesenteric injury (BBMI)</h4>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Specific CT findings</th><th>Minor CT findings</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Bowel wall discontinuity<br>Active bleeding<br>Extraluminal air</td>
+          <td>Intramural air<br>Bowel wall thickening<br>Abnormal bowel wall enhancement<br>Mesenteric stranding<br>Free fluid</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Extraluminal air + bowel wall discontinuity → exploratory laparotomy (PPV 100%).</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Diagnostic peritoneal lavage (DPL)</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Aspect</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Indication</td>
+          <td>Subcutaneous emphysema impeding ultrasound, existing/unexplained free fluid, rapidly determining haemoperitoneum in unstable patients when imaging not feasible or non-diagnostic.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Unstable patient with severe subcutaneous emphysema obscuring FAST view — DPL to confirm haemoperitoneum.</td>
+        </tr>
+        <tr>
+          <td>WBC/RBC ratio</td>
+          <td>Ratio ≥ 1: sensitivity 100%, specificity 62%, accuracy 78%. Ratio ≥ 4: specificity 90%, accuracy 92%.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Ratio 5 → high probability of bowel injury; proceed to laparotomy.</td>
+        </tr>
+        <tr>
+          <td>Comparison with FAST</td>
+          <td>Small RCT: DPL detected more bowel injuries than FAST (p = 0.011) in patients who underwent laparotomy.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Suspected bowel injury with negative FAST — DPL may detect it.</td>
+        </tr>
+        <tr>
+          <td>Limitation</td>
+          <td>Does not assess the retroperitoneum. Invasive — only by trained personnel.</td>
+          <td class="case-col">Retroperitoneal duodenal injury missed by DPL — need CT.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 5. ORGAN INJURY SCALE ============ -->
+  <section class="section" data-title="Organ Injury Scale">
+    <button class="sec-head" type="button">
+      <span class="num">5</span>
+      <span class="title">Abdominal Organ Injury Scale</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 11</strong> — All abdominal trauma patients should have their injury severity graded using the <strong>American Association for the Surgery of Trauma (AAST) Organ Injury Scale</strong>.
+      </div>
+
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Scale</th><th>Description</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td><b>AAST OIS</b></td>
+          <td>Grades I (minor) to V (severe). Applied to liver, spleen, kidneys, pancreas and intestines. Aids decision-making, communication, registry/research consistency, outcome prediction.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Grade IV splenic laceration → high risk of NOM failure; consider angioembolisation or surgery.</td>
+        </tr>
+        <tr>
+          <td><b>AIS</b></td>
+          <td>1 Minor · 2 Moderate · 3 Serious (non-life-threatening) · 4 Serious (life-threatening, survival probable) · 5 Critical (survival uncertain) · 6 Unsurvivable. Latest AIS 15 published 2015.</td>
+          <td class="case-col">AIS 4 liver injury → life-threatening, survival probable with appropriate care.</td>
+        </tr>
+        <tr>
+          <td><b>ISS</b></td>
+          <td>Sum of squares of highest AIS in 3 most severely injured body regions. Range 1–75. <b>Score &gt; 15 = major trauma.</b> Correlates with mortality, morbidity, LOS, multi-organ failure.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> ISS 34 (head AIS 4, abdomen AIS 4, chest AIS 2) → major trauma, ICU admission.</td>
+        </tr>
+        <tr>
+          <td><b>NISS</b></td>
+          <td>Three most severe injuries regardless of body region. Blunt trauma: better than ISS for mortality (AUC 0.733 vs 0.708) in ISS ≥ 25; better for ICU admission (0.727 vs 0.713) and ICU LOS (0.772 vs 0.760).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> NISS 41 in a patient with multiple abdominal injuries — better prognostic discrimination than ISS.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 6. STABLE TREATMENT ============ -->
+  <section class="section" data-title="Stable Abdominal Trauma">
+    <button class="sec-head" type="button">
+      <span class="num">6</span>
+      <span class="title">Treatment — Stable Abdominal Trauma</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <h3>Stable blunt abdominal trauma — surgical indications</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Category</th><th>Indication</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Clinical</td>
+          <td>Generalised peritonitis · failure of NOM · positive DPL when CT not feasible</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Generalised guarding and rebound → peritonitis → laparotomy regardless of CT findings.</td>
+        </tr>
+        <tr>
+          <td>Imaging (CT)</td>
+          <td>Vascular blush · bowel injury signs (pneumoperitoneum, bowel wall discontinuity, mesenteric stranding) · diaphragmatic injury · unexplained free fluid without solid organ injury</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Blush on CT (OR 11.7 for intervention) → angiography or surgery. Severe isolated free fluid (OR 13.88 for surgery) → laparotomy.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Laparotomy vs laparoscopy</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 12</strong>
+        <ul>
+          <li><strong>Laparotomy is the preferred option</strong> in stable abdominal trauma patients requiring surgical intervention.</li>
+          <li><strong>Laparoscopic surgery may be offered</strong> in abdominal trauma patients who are haemodynamically stable and <strong>without traumatic brain injury</strong>.</li>
+          <li>Laparoscopic surgery should be performed by <strong>surgeons experienced and competent in trauma laparoscopy</strong>.</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Comparison</th><th>Finding</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Therapeutic laparoscopy vs laparotomy</td>
+          <td>No significant difference in median operating time (105 vs 98 min). Laparoscopy: lower post-op complications (1 vs 10), opiate requirements (34 vs 136 mg MEQ), hospital stay (4 vs 9 days).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Stable patient with anterior stab wound — laparoscopy reduces pain and LOS.</td>
+        </tr>
+        <tr>
+          <td>Diagnostic laparoscopy vs non-therapeutic laparotomy</td>
+          <td>Lower mortality (OR 0.10, 95% CI 0.04–0.29), lower major complications (OR 0.38, 95% CI 0.29–0.50), shorter LOS (p &lt; 0.001).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Negative CT but persistent pain — diagnostic laparoscopy avoids unnecessary laparotomy.</td>
+        </tr>
+        <tr>
+          <td>Meta-analysis (BAT)</td>
+          <td>Less blood loss (SMD 0.28, 95% CI 0.51–0.05), shorter hospital stay (SMD 0.67, 95% CI 0.90–0.43). No difference in mortality or operation time.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Blunt trauma with equivocal findings — laparoscopy reduces morbidity.</td>
+        </tr>
+        <tr>
+          <td>Hollow viscus / mesenteric injury</td>
+          <td>Laparoscopy: shorter LOS (11.0 vs 17.6 days, p &lt; 0.001), fewer wound infections (5.1% vs 16.1%, p = 0.049).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Suspected bowel injury — laparoscopic repair reduces wound infection.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="danger">
+        <b>Laparoscopy should be avoided in traumatic brain injury</b> — it increases intra-abdominal pressure and induces hypercarbia, which increases intracranial pressure and causes long-term adverse neurological outcomes.
+      </div>
+
+      <h3>Non-operative management (NOM)</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 13</strong>
+        <ul>
+          <li>NOM in abdominal trauma should only be performed in <strong>haemodynamically stable patients</strong>.</li>
+          <li>It should be undertaken in centres with <strong>24-hour availability of surgical services, operating theatres, intensive care units</strong> and other supporting resources.</li>
+          <li>Patients treated non-operatively should be <strong>closely monitored for clinical deterioration</strong> (haemodynamic instability and peritonitis) which warrants urgent intervention.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <b>Prerequisites:</b> 24-hour access to surgeon, OT, ICU, CT, continuous monitoring. Care led by a surgeon. Haemodynamically stable. No peritonitis. Full extent/severity determined by CECT. In polytrauma, consider extra-abdominal injuries.<br><br>
+        <b>Monitoring:</b> Vital signs (BP, PR, RR, SpO₂, temperature, pain score) and GCS · fluid balance and urine output · clinical parameters (peritonitis) · blood results (ABG, Hb, coagulation, renal, LFT).<br><br>
+        <b>Termination of NOM:</b> Haemodynamic deterioration · onset of peritonitis · increased blood transfusion requirement · radiological evidence of complications on reimaging.
+      </div>
+
+      <h4>Organ-specific NOM notes</h4>
+      <div class="table-wrap">
+      <table class="wider">
+        <tr><th>Organ</th><th>Key points</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td><b>Spleen</b></td>
+          <td>All AAST grades can be managed non-operatively if haemodynamically stable without peritonitis or associated injuries requiring surgery. CECT mandatory. Prognostic factors for failure: age &gt; 40, ISS &gt; 25, splenic grade &gt; 3 (strong evidence); abdominal AIS &gt; 3, TRISS &lt; 0.80, intraparenchymal contrast blush, &gt; 1 U blood transfusion (moderate evidence). RBC transfusion in ED is a significant risk factor for failure.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 45-year-old with grade IV splenic laceration and blush on CT — high risk of NOM failure. Consider angioembolisation or splenectomy.</td>
+        </tr>
+        <tr>
+          <td><b>Liver</b></td>
+          <td>NOM only in centres able to diagnose and grade accurately, with surgeons able to respond rapidly. Constant clinical monitoring and OT availability at all times mandatory. Surgically treated patients had more complications (23.7% vs 10.5%), higher mortality (16.9% vs 0%), longer LOS. Complication risk increases with grade: 1% in grade 1 → 63% in grade 5 (necrosis, abscess, biliary leaks, biloma, haemobilia, delayed haemorrhage).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Grade II liver laceration — NOM with serial monitoring; watch for biliary leak and delayed bleeding.</td>
+        </tr>
+        <tr>
+          <td><b>Kidneys</b></td>
+          <td>NOM acceptable for all haemodynamically stable renal injuries. Accurate grading by CECT with delayed urographic phase mandatory. AUA suggests repeat CT in high-grade (IV–V) and those with complications. Collecting system involvement: half of urinary leaks detected only on follow-up scans. AAST data: 80% of high-grade renal trauma utilised NOM. Nephrectomy rate 15% in grade IV, 62% in grade V. Failure risk factors: grade V injury and penetrating mechanism. Urinary contrast leak and ipsilateral hydronephrosis are indications for intervention (ureteric stenting, percutaneous nephrostomy, percutaneous drainage) but not absolute contraindications.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Grade V renal injury with urinary leak → NOM may be attempted but high risk of nephrectomy. Involve urology.</td>
+        </tr>
+        <tr>
+          <td><b>Pancreas</b></td>
+          <td>Rare (0.2–12% of abdominal injuries) but high morbidity (53%) and mortality (21.2%), especially with delayed diagnosis. NOM acceptable for low-grade (I–II). Failure rates for grade III–IV: 10–50%; complication rates 30% (pancreatitis, pseudocyst, fistula). Major duct injury in stable patients with contained enzyme leakage: ERCP with transpapillary stenting or sphincterotomy ± percutaneous drainage is reasonable.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Grade III pancreatic injury with duct disruption → ERCP and stenting rather than immediate surgery.</td>
+        </tr>
+        <tr>
+          <td><b>Multiple organ injuries</b></td>
+          <td>Higher NOM failure rate, more associated hollow viscus injury, higher transfusion and surgery needs, higher sepsis risk, longer hospital stays, more ventilator days. Mortality comparable. Not a contraindication to NOM, but be aware of higher failure rates and risk of missed injuries.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Liver + spleen + kidney injuries — NOM possible but high failure rate; close monitoring and low threshold for intervention.</td>
+        </tr>
+        <tr>
+          <td><b>Extraperitoneal bladder perforation</b></td>
+          <td>Can be treated non-operatively with continuous urinary drainage (urethral or suprapubic catheter). Diagnosis confirmed with cystogram phase during CECT. Contraindications: bladder neck involvement, bone fragments in bladder wall, concurrent rectal/vaginal injury, entrapment of bladder wall.</td>
+          <td class="case-col"><span class="case-tag lo">LO</span> Extraperitoneal bladder rupture with pelvic fracture — catheter drainage, repeat cystogram in 7–10 days.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Stable penetrating abdominal trauma</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 14</strong> — For stable anterior penetrating abdominal trauma without peritonitis, peritoneal violation should be determined via either <strong>local wound exploration, CT scan or diagnostic laparoscopy</strong>. Presence of peritoneal violation requires further operative assessment and treatment via laparoscopy or laparotomy.
+      </div>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Approach</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Diagnostic laparoscopy</td>
+          <td>No missed injuries with standardised sequential steps (45% diagnostic, 55% therapeutic). May reduce non-therapeutic laparotomies (26% negative; 77% of positives repaired laparoscopically, 23% non-therapeutic). Especially useful for diaphragmatic injury (accuracy 75%).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Stab wound to left lower chest — laparoscopy detects diaphragmatic injury missed on CT.</td>
+        </tr>
+        <tr>
+          <td>Serial clinical examination (SCE)</td>
+          <td>Anterior stab wounds with stable haemodynamics, GCS ≥ 12, localised pain, no diffuse peritoneal irritation, no alcohol/drugs, wound not needing immediate surgery: SCE every 6 hours had better accuracy than CT (100% vs 96%).</td>
+          <td class="case-col"><span class="case-tag lo">LO</span> Small anterior stab wound, stable, localised pain — serial examination rather than immediate surgery.</td>
+        </tr>
+        <tr>
+          <td>Local wound exploration (LWE)</td>
+          <td>Determines anterior abdominal fascia breach. Sensitivity and specificity 100% vs laparotomy for peritoneal violation. Blunt probing not advocated. If fascia not clearly seen, further evaluation required.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Stab wound with unclear depth — LWE reveals fascial breach → proceed to laparoscopy.</td>
+        </tr>
+        <tr>
+          <td>Gunshot wounds</td>
+          <td>NOM may be considered in stab wounds, but <strong>not in gunshot wounds</strong>. Transperitoneal gunshot trajectory → laparotomy even if stable.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Gunshot wound to abdomen with transperitoneal trajectory — laparotomy regardless of stable vitals.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 7. UNSTABLE TREATMENT ============ -->
+  <section class="section" data-title="Unstable Abdominal Trauma">
+    <button class="sec-head" type="button">
+      <span class="num">7</span>
+      <span class="title">Treatment — Unstable Abdominal Trauma &amp; Damage Control</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="danger">
+        <b>Haemodynamic instability defined as:</b> SBP &lt; 90 mmHg, PR &gt; 120 bpm and Shock Index &gt; 1.0.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 15</strong> — All haemodynamically unstable abdominal trauma patients should have <strong>acute emergency laparotomy within 90 minutes from arrival to emergency department</strong>.
+      </div>
+
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Study</th><th>Finding</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Severe abdominal injury with instability</td>
+          <td>Abdominal CT before laparotomy → higher risk of mortality vs OT within 90 min post-injury without abdominal imaging (OR 1.71, 95% CI 1.2–2.2).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> SBP 80, positive FAST — do not send for CT. Straight to OT.</td>
+        </tr>
+        <tr>
+          <td>PROMMTT study</td>
+          <td>After FAST on arrival, each 10-minute increase in time to laparotomy → increased in-hospital mortality at 24 hours (HR 1.50, 95% CI 1.14–1.97) and 30 days (HR 1.41, 95% CI 1.18–2.10).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Every minute counts. Anaesthetist must be ready for immediate induction and surgery.</td>
+        </tr>
+        <tr>
+          <td>Asian multicentre study</td>
+          <td>Longer interval to definitive care significantly associated with higher 30-day mortality and poor functional outcome (major trauma and torso injury subgroups).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Delayed OT due to logistical issues → worse outcomes. Prioritise trauma patients.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="danger">
+        <b>DO NOT perform CT scan in persistently unstable patients</b> — it may delay definitive surgical intervention.
+      </div>
+
+      <h3>Damage Control Surgery (DCS)</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Aspect</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Definition</td>
+          <td>Life-saving strategy for physiologically deranged patients where definitive repair is not feasible due to instability. Decision may be made pre- or intra-operatively.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Patient with SBP 70, pH 7.1, temperature 34°C — DCS rather than definitive repair.</td>
+        </tr>
+        <tr>
+          <td>Three stages</td>
+          <td>1. Initial abbreviated surgery: rapid control of haemorrhage and contamination (packing or shunting).<br>2. Physiological resuscitation in ICU: stabilise and optimise.<br>3. Definitive surgical repair: once stable, restore normal anatomy and function.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Liver packing and temporary closure → ICU resuscitation → return to OT in 24–48 h for definitive repair.</td>
+        </tr>
+        <tr>
+          <td>Indications (systematic review)</td>
+          <td>Acidosis (increased lactate or decreased pH); hypothermia (temperature &lt; 34°C); shock (SBP &lt; 90 mmHg); &gt; 10 units packed RBC transfusion; ISS &gt; 25.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Patient received 12 units PRBC, temperature 33.5°C, lactate 8 → DCS indicated.</td>
+        </tr>
+        <tr>
+          <td>Complications</td>
+          <td>Short-term: fluid and protein loss, sepsis, intestinal fistulae, nursing care challenges, economic costs. Long-term: chronic physical discomfort, physique embarrassment, delayed return to work, poor QoL. Unnecessary use increases morbidity and cost.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Open abdomen for 10 days → higher risk of fistula and complications. Aim for early closure.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="note">
+        <b>Anaesthetist's role in DCS:</b> Anticipate massive transfusion, hypothermia prevention (forced-air warming, fluid warmers), correction of acidosis and coagulopathy, and a planned return to theatre in 24–48 hours. Communicate clearly with the surgical team about physiological endpoints.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 8. IR / ANGIOEMBOLISATION ============ -->
+  <section class="section" data-title="Interventional Radiology">
+    <button class="sec-head" type="button">
+      <span class="num">8</span>
+      <span class="title">Interventional Radiology / Angioembolisation</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Application</th><th>Evidence</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Solid organ injuries (liver, spleen, kidney)</td>
+          <td>TAE controls bleeding and preserves organ function. Blush on CT is the only independent prognostic factor for surgical or angiographic intervention in stable BAT (OR 11.7, 95% CI 5.1–30.8).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Grade IV splenic laceration with contrast blush in a stable patient → angioembolisation rather than splenectomy.</td>
+        </tr>
+        <tr>
+          <td>Pelvic fractures</td>
+          <td>TAE controls arterial haemorrhage. No significant difference in mortality vs external fixation with pre-peritoneal packing.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Unstable pelvic ring fracture with ongoing bleeding despite binder → angiogram and embolisation.</td>
+        </tr>
+        <tr>
+          <td>Renal trauma</td>
+          <td>TAE success up to 94.9% (grade III), 89% (grade IV), 52% (grade V). No significant difference in renal function at 6 months.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Grade IV renal injury with active extravasation → TAE to preserve renal function.</td>
+        </tr>
+        <tr>
+          <td>Stable vs unstable</td>
+          <td>Systematic review: TAE successful in 92% of grade III–IV and 76% of grade V. Success higher in stable (90%) vs unstable (63%) patients.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Unstable patient with renal injury — TAE less likely to succeed; surgery may be needed.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="flag">
+        <b>Malaysian context:</b> IR service is currently limited to regional centres. Where available, TAE plays a role in the treatment of <b>haemodynamically stable</b> patients with arterial bleeding in abdominal trauma.
+      </div>
+
+      <div class="note">
+        <b>Anaesthetic consideration:</b> TAE is usually performed in the angiography suite under sedation or general anaesthesia. These patients are often coagulopathic and have ongoing resuscitation needs. Ensure monitoring, access, blood products and vasopressors are available. Radiation exposure and contrast nephropathy are additional considerations.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 9. ANALGESIA ============ -->
+  <section class="section" data-title="Analgesia">
+    <button class="sec-head" type="button">
+      <span class="num">9</span>
+      <span class="title">Analgesia</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 16</strong>
+        <ul>
+          <li>Pain should be assessed based on <strong>patient self-rated pain score and regular clinical examination</strong>.</li>
+          <li>Choice of analgesia should be based on <strong>pain severity</strong>.</li>
+          <li><strong>Exercise caution</strong> when prescribing <strong>opioids and ketamine</strong> in patients with suspected <strong>traumatic brain injury</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Analgesic</th><th>Evidence</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>IV ketamine (vs morphine)</td>
+          <td>Meta-analysis: more effective than IV morphine for pain reduction on NRS (MD −1.23, 95% CI −2.2 to −0.18).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Severe abdominal pain in a stable patient — ketamine provides effective analgesia without respiratory depression.</td>
+        </tr>
+        <tr>
+          <td>IV fentanyl vs morphine</td>
+          <td>No significant difference in pain status (MD −0.34, 95% CI −0.97 to 0.29).</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Either agent acceptable; fentanyl has faster onset and less histamine release.</td>
+        </tr>
+        <tr>
+          <td>Safety</td>
+          <td>Decreases in SpO₂: fentanyl, ketamine, morphine (0.55–0.58%). Hypotension: 1.57% fentanyl vs 0.46% morphine. Nausea/vomiting higher with morphine and morphine + ketamine.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Hypotensive patient — fentanyl more likely to cause hypotension than morphine. Monitor closely.</td>
+        </tr>
+        <tr>
+          <td>Rectus sheath block (RSB)</td>
+          <td>RCT emergency laparotomy: bilateral ultrasound-guided RSB provided significant extended post-operative analgesia at rest and cough (1, 4, 8, 12 hours) vs LA infiltration. Reduced morphine consumption, PONV, prolonged time to first rescue analgesia.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Emergency midline laparotomy — RSB reduces opioid requirement and improves pain scores.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="flag">
+        <b>Anaesthetist's role:</b> Early, effective analgesia reduces the stress response, improves respiratory mechanics and facilitates examination. In suspected TBI, opioids and ketamine may confound neurological assessment and affect ICP/CPP — use judiciously. Consider multimodal analgesia and regional techniques where feasible.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 10. ANAESTHETIC DRUGS ============ -->
+  <section class="section" data-title="Anaesthetic Drugs & RSI">
+    <button class="sec-head" type="button">
+      <span class="num">10</span>
+      <span class="title">Anaesthetic Drugs &amp; Rapid Sequence Induction</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <h3>Indications for intubation in trauma</h3>
+      <ul>
+        <li>Airway obstruction</li>
+        <li>Hypoventilation</li>
+        <li>Persistent hypoxaemia (SaO₂ ≤ 90%) despite supplemental oxygen</li>
+        <li>Severe cognitive impairment (GCS ≤ 8)</li>
+        <li>Severe haemorrhagic shock requiring surgical intervention</li>
+        <li>Cardiac arrest</li>
+      </ul>
+
+      <h3>Induction agents — pharmacology</h3>
+      <div class="table-wrap">
+      <table class="wider">
+        <tr><th>Agent</th><th>Mechanism</th><th>Cardiovascular effects</th><th>Notes</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td><b>Propofol</b></td>
+          <td>GABA receptor</td>
+          <td>Negative inotropy + vasodilation → further haemodynamic instability in unstable trauma patients</td>
+          <td>Preferred in OT (67.4% in one study) vs ED (etomidate 89.6%)</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Stable patient in OT — propofol acceptable. <b>Avoid in SBP &lt; 90.</b></td>
+        </tr>
+        <tr>
+          <td><b>Etomidate</b></td>
+          <td>GABA receptor</td>
+          <td>No effect on systemic vascular resistance, myocardial contractility or heart rate at induction dose</td>
+          <td>Single bolus causes dose-dependent adrenal suppression lasting <b>6–12 hours</b> — may impair stress response. Commonly used in ED (89.6%).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Unstable patient in ED — etomidate provides haemodynamic stability but be aware of adrenal suppression.</td>
+        </tr>
+        <tr>
+          <td><b>Ketamine</b></td>
+          <td>Non-competitive NMDA receptor blockade</td>
+          <td>Increases heart rate and blood pressure via sympathetic stimulation → potentially suitable for trauma patients</td>
+          <td>Historically thought to increase ICP; recent data does not support this. Commonly used in severe trauma (ISS median 22, IQR 13–29) with high SI (median 0.81, IQR 0.65–1.05).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Severe trauma with high SI — ketamine may be useful but watch for hypotension if catecholamine-depleted.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Effects of common induction and paralytic agents</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Agent</th><th>Induction dose</th><th class="center">PR</th><th class="center">MAP</th><th class="center">CBF</th><th class="center">CMRO₂</th><th class="center">ICP</th><th class="case-col">Case example</th></tr>
+        <tr><td><b>Propofol</b>*</td><td>1–2.5 mg/kg</td><td class="center">—</td><td class="center">↓↓</td><td class="center">↓↓</td><td class="center">↓↓</td><td class="center">↓↓</td><td class="case-col">Reduces ICP — useful in TBI but causes hypotension.</td></tr>
+        <tr><td><b>Etomidate</b>*</td><td>0.2–0.3 mg/kg</td><td class="center">—</td><td class="center">↓</td><td class="center">↓↓</td><td class="center">↓↓</td><td class="center">↓↓</td><td class="case-col">Haemodynamic stability + ICP reduction — good for TBI with hypotension.</td></tr>
+        <tr><td><b>Ketamine</b>*</td><td>1–2 mg/kg</td><td class="center">↑↑</td><td class="center">↑↑</td><td class="center">↑↑</td><td class="center">↑↑</td><td class="center">↑/↔</td><td class="case-col"><span class="case-tag hi">HI</span> Increases HR/MAP — useful in hypovolaemia but caution with TBI (ICP ↑/↔).</td></tr>
+        <tr><td><b>Suxamethonium</b></td><td>1–1.5 mg/kg</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">↑/↔</td><td class="case-col">Rapid onset — ideal for RSI. Avoid in hyperkalaemia or burns &gt; 24 h.</td></tr>
+        <tr><td><b>Rocuronium</b></td><td>1–1.2 mg/kg</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="case-col">Alternative to suxamethonium. Longer duration — ensure plan for reversal.</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+      <p style="font-size:.8rem;color:var(--muted);">PR = pulse rate; MAP = mean arterial pressure; CBF = cerebral blood flow; CMRO₂ = cerebral metabolic rate of oxygen consumption; ICP = intracranial pressure. ↓ = reduces; ↑ = increases; ↔ = equivocal. *Lower doses may be appropriate for haemodynamically unstable patients.</p>
+
+      <h3>Clinical evidence</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Study</th><th>Finding</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Two level I trauma centres, RSI within 24 h</td>
+          <td>Etomidate commonly used in ETD (89.6%), propofol preferred in OT (67.4%). Ketamine commonly used in severe trauma (ISS median 22) with high SI (median 0.81).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> ED RSI — etomidate likely. OT RSI — propofol likely. Know your environment.</td>
+        </tr>
+        <tr>
+          <td>Peri-induction haemodynamics</td>
+          <td>Stable in all groups, but etomidate and ketamine groups had <strong>higher rate of vasopressor need at 24 h post-intubation</strong> vs propofol (p = 0.03).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Etomidate or ketamine → anticipate vasopressor requirement. Have phenylephrine or noradrenaline ready.</td>
+        </tr>
+        <tr>
+          <td>Etomidate complications</td>
+          <td>Significantly higher mean number of complications (IRR 1.7, 95% CI 1.2–2.5) and highest in-hospital mortality (25.5%, p &lt; 0.001).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Etomidate associated with worse outcomes — consider alternative if haemodynamics allow.</td>
+        </tr>
+        <tr>
+          <td>Ketamine and high SI (&gt; 0.9)</td>
+          <td>More patients developed hypotension within 9 minutes post-induction than those with low SI (26% vs 2%).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> SI &gt; 0.9 — ketamine may cause hypotension. Have vasopressors ready and consider reduced dose.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="danger">
+        <b>Key message:</b> Ketamine, propofol and etomidate are the drugs of choice for RSI, <b>but they must be used with caution in trauma patients.</b> Consider dose reduction in haemodynamically unstable patients. Have vasopressors drawn up and immediately available.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 11. ICU/HDU ============ -->
+  <section class="section" data-title="ICU / HDU Admission">
+    <button class="sec-head" type="button">
+      <span class="num">11</span>
+      <span class="title">Intensive Care / High-Dependency Unit Admission</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Score</th><th>Purpose</th><th>Key points</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td><b>CRASH Score</b></td>
+          <td>Predicts risk of unplanned ICU admission.</td>
+          <td>Unplanned ICU admission rate increased from 0.1% to 3.9% to 9.4% at scores of 0, 6 and 12 (AUC 0.78, 95% CI 0.77–0.79). Cut-off point 12 can aid decision-making.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> CRASH score 14 → high risk of unplanned ICU admission; admit to ICU/HDU for monitoring.</td>
+        </tr>
+        <tr>
+          <td><b>MEWS</b></td>
+          <td>Identify correct level of care after emergency surgery.</td>
+          <td>MEWS 3–4 → HDU; MEWS ≥ 5 → ICU. Use reduced ICU admission by 6% (p &lt; 0.01) and increased HDU admission by 7% (p &lt; 0.05). No significant difference in mortality.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> MEWS 6 after laparotomy → ICU admission. MEWS 3 → HDU.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>CRASH Score components</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Variable</th><th class="center">Points</th><th class="case-col">Case example</th></tr>
+        <tr><td colspan="3" style="background:#f0f4f5;font-weight:700;">Demographics</td></tr>
+        <tr><td>Age ≥ 65</td><td class="center">1</td><td class="case-col">72-year-old — 1 point.</td></tr>
+        <tr><td colspan="3" style="background:#f0f4f5;font-weight:700;">Co-morbidities</td></tr>
+        <tr><td>Alcoholism</td><td class="center">2</td><td class="case-col">—</td></tr>
+        <tr><td>Anticoagulant use</td><td class="center">1</td><td class="case-col"><span class="case-tag hi">HI</span> On warfarin — 1 point; also risk of delayed bleeding.</td></tr>
+        <tr><td>Cirrhosis</td><td class="center">2</td><td class="case-col">—</td></tr>
+        <tr><td>Dementia</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Chronic heart failure</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Hypertension</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Peripheral arterial disease</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Mental disorder</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Chronic renal failure</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td colspan="3" style="background:#f0f4f5;font-weight:700;">Injury</td></tr>
+        <tr><td>Multiple rib fractures</td><td class="center">2</td><td class="case-col">Flail chest — 2 points.</td></tr>
+        <tr><td>Pneumothorax</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Haemothorax</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Pelvis fracture</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Small intestine injury</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Bladder injury</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Spinal cord injury</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Lower extremity long bone fracture</td><td class="center">1</td><td class="case-col">Femur fracture — 1 point.</td></tr>
+        <tr><td>Traumatic brain injury</td><td class="center">2</td><td class="case-col">GCS 9 — 2 points.</td></tr>
+        <tr><td>Cervical fracture</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Major surgery for respiratory system</td><td class="center">3</td><td class="case-col">—</td></tr>
+        <tr><td>Major surgery for gastrointestinal system</td><td class="center">2</td><td class="case-col">Laparotomy — 2 points.</td></tr>
+        <tr><td>Major surgery for hepatobiliary system</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td>Major surgery for urinary system</td><td class="center">1</td><td class="case-col">—</td></tr>
+        <tr><td><b>Maximum score</b></td><td class="center"><b>32</b></td><td class="case-col">—</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Modified Early Warning Score (MEWS)</h3>
+      <div class="table-wrap">
+      <table class="wider">
+        <tr><th>Parameter</th><th class="center">3</th><th class="center">2</th><th class="center">1</th><th class="center">0</th><th class="center">1</th><th class="center">2</th><th class="center">3</th><th class="case-col">Case example</th></tr>
+        <tr><td>SBP (mmHg)</td><td class="center">&lt; 70</td><td class="center">71–80</td><td class="center">81–100</td><td class="center">101–199</td><td class="center">—</td><td class="center">≥ 200</td><td class="center">—</td><td class="case-col">SBP 85 → 1 point.</td></tr>
+        <tr><td>HR (bpm)</td><td class="center">—</td><td class="center">&lt; 40</td><td class="center">41–50</td><td class="center">51–100</td><td class="center">101–110</td><td class="center">111–129</td><td class="center">≥ 130</td><td class="case-col">HR 115 → 2 points.</td></tr>
+        <tr><td>RR (breaths/min)</td><td class="center">—</td><td class="center">&lt; 9</td><td class="center">—</td><td class="center">9–14</td><td class="center">15–20</td><td class="center">21–29</td><td class="center">≥ 30</td><td class="case-col">RR 24 → 2 points.</td></tr>
+        <tr><td>Temperature (°C)</td><td class="center">—</td><td class="center">&lt; 35</td><td class="center">—</td><td class="center">35.1–38.4</td><td class="center">—</td><td class="center">≥ 38.5</td><td class="center">—</td><td class="case-col">Temp 38.6 → 2 points.</td></tr>
+        <tr><td>Neurological</td><td class="center">—</td><td class="center">—</td><td class="center">Alert</td><td class="center">Reacting to voice</td><td class="center">Reacting to pain</td><td class="center">Unresponsive</td><td class="center">—</td><td class="case-col">Reacting to voice → 1 point.</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+      <p><strong>Interpretation:</strong> MEWS 3–4 → HDU; MEWS ≥ 5 → ICU admission criteria.</p>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 12. VTE PROPHYLAXIS ============ -->
+  <section class="section" data-title="VTE Prophylaxis">
+    <button class="sec-head" type="button">
+      <span class="num">12</span>
+      <span class="title">Venous Thromboembolism Prophylaxis</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 17</strong> — In blunt abdominal trauma patients undergoing non-operative management, VTE prophylaxis should be initiated <strong>early, preferably within 48 hours</strong>, in patients without active bleeding or other contraindications.
+      </div>
+
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Study</th><th>Finding</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>BAT patients undergoing NOM</td>
+          <td>Chemical thromboprophylaxis significantly reduced DVT and PE vs no prophylaxis. Preventive effects more pronounced when started early (≤ 48 hours) vs late (&gt; 48 hours). No difference in NOM failure, PRBC transfusion or mortality.</td>
+          <td class="case-col"><span class="case-tag lo">LO</span> Grade II splenic laceration, stable — start LMWH within 48 hours.</td>
+        </tr>
+        <tr>
+          <td>Meta-analysis</td>
+          <td>Early initiation (&lt; 48 hours) of LMWH or UFH lowered risk of DVT (OR 0.36, 95% CI 0.22–0.59) but slightly increased risk of NOM failure (OR 1.76, 95% CI 1.01–3.05) vs delayed prophylaxis. No difference in transfusion or mortality.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> High-grade solid organ injury — weigh VTE risk vs NOM failure risk. Discuss with surgeon.</td>
+        </tr>
+        <tr>
+          <td>AAST Critical Care Committee</td>
+          <td>For blunt solid organ injury undergoing NOM, initiate LMWH within 48 hours of injury in the absence of ongoing bleeding or other contraindications. Delay pharmacological prophylaxis in active bleeding or coagulopathy until controlled/reversed — use mechanical prophylaxis.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Active bleeding from grade IV liver injury — hold LMWH, apply intermittent pneumatic compression devices.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="flag">
+        <b>Anaesthetic relevance:</b> Know the timing of the last dose of LMWH/UFH before any surgical or regional procedure. In patients with epidural catheters, follow local protocols regarding timing of thromboprophylaxis and catheter manipulation.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 13. SPECIAL POPULATIONS ============ -->
+  <section class="section" data-title="Special Populations">
+    <button class="sec-head" type="button">
+      <span class="num">13</span>
+      <span class="title">Special Populations — Pregnancy, Geriatric, Concurrent Injuries</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <h3>Pregnancy</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Consideration</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Physiology</td>
+          <td>Disproportionate increase in plasma volume vs red cell volume allows <strong>35% of maternal blood loss before clinical signs of shock</strong> appear.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 28-week pregnant patient with normal vitals but significant intra-abdominal bleeding — may decompensate suddenly.</td>
+        </tr>
+        <tr>
+          <td>Seatbelt use</td>
+          <td>Correct seatbelt use associated with decreased injury severity, reduced need for emergent operation, shortened hospital LOS.</td>
+          <td class="case-col">Pregnant driver with seatbelt — lower injury severity than unrestrained counterpart.</td>
+        </tr>
+        <tr>
+          <td>Placental abruption</td>
+          <td>Pregnant patients ≥ 26 weeks with imaging abnormalities consistent with placental abruption: early delivery protocol (emergent caesarean at first sign of non-reassuring foetal status for abruptions grade ≥ 2) improved foetal outcome to 100% survival.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 32-week pregnant patient with abruption grade 3 — emergent caesarean improves foetal survival.</td>
+        </tr>
+        <tr>
+          <td>Rh(D) negative</td>
+          <td>Administer anti-D immunoglobulin as soon as possible within 72 hours of the event.</td>
+          <td class="case-col"><span class="case-tag med">MED</span> Rh-negative pregnant patient with abdominal trauma — give anti-D within 72 h.</td>
+        </tr>
+        <tr>
+          <td>VTE risk</td>
+          <td>Pregnancy increases VTE risk (venous stasis, endothelial injury, hypercoagulable state). Documented thromboembolism risk reassessment during ward admission; thromboprophylaxis during transient periods of surgical procedures and immobility.</td>
+          <td class="case-col">Pregnant trauma patient admitted — VTE risk assessment and prophylaxis.</td>
+        </tr>
+        <tr>
+          <td>Resuscitation priority</td>
+          <td>Assess and resuscitate the mother first, then assess the foetus, before conducting a secondary survey of the mother.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Maternal hypotension corrected → foetal distress improves.</td>
+        </tr>
+        <tr>
+          <td>Imaging</td>
+          <td>Imaging in pregnant patients should be similar to the non-pregnant patient if life-threatening injuries are suspected.</td>
+          <td class="case-col">Do not withhold CT if needed for maternal life-threatening injury; shield where possible.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Geriatric</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Consideration</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Low-energy mechanisms</td>
+          <td>Major trauma can occur from a fall &lt; 1 metre. Avoid under-triage.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 80-year-old fall from standing — still at risk of major intra-abdominal injury.</td>
+        </tr>
+        <tr>
+          <td>Geriatric trauma protocols</td>
+          <td>Institutions without dedicated geriatric trauma protocols or consulting geriatric services had higher overall in-hospital mortality vs those with them (OR 2.1, 95% CI 1.3–3.4).</td>
+          <td class="case-col">Activate geriatric trauma protocol early for all elderly trauma patients.</td>
+        </tr>
+        <tr>
+          <td>Triage set points</td>
+          <td>Low thresholds: HR &gt; 90 bpm and SBP &lt; 110 mmHg.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 76-year-old with HR 95, SBP 105 — meets geriatric triage threshold despite "normal" vitals.</td>
+        </tr>
+        <tr>
+          <td>Age Shock Index</td>
+          <td>Age × SI. Better predictor of 48-hour mortality than HR, SBP or SI. Best predictive power for in-hospital mortality: sensitivity 73.0%, specificity 74.9% at cut-off 49.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 82-year-old, SI 0.7 → Age SI 57.4 → high mortality risk. Aggressive resuscitation.</td>
+        </tr>
+        <tr>
+          <td>Frailty</td>
+          <td>Clinical Frailty Score (CFS), 9-point scale, highly correlated (r = 0.80) with Frailty Index. Frail patients: higher 30-day mortality vs non-frail (mild–moderate frailty OR 5.68, 95% CI 1.75–18.47; severe frailty OR 10.38, 95% CI 2.08–51.62). Assess at triage.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> CFS 7 (severe frailty) — high mortality risk; consider goals of care discussion.</td>
+        </tr>
+        <tr>
+          <td>Anticoagulants</td>
+          <td>DOAC vs warfarin in blunt trauma — DOAC had significantly less mortality (8.3% vs 29.5%) and blood product transfusion (2.8 ± 1.8 vs 6.7 ± 6.4 units). Common tests: aPTT, TT, PT, INR.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 78-year-old on apixaban with abdominal trauma — lower mortality than warfarin but still at risk. Check coagulation.</td>
+        </tr>
+        <tr>
+          <td>Imaging</td>
+          <td>Positive CXR and/or pelvic X-ray associated with both intra-abdominal injury and need for laparotomy. WBCT at initial evaluation in severe injury requiring ICU admission associated with lower mortality vs conventional radiography or ultrasound (OR 0.21, 95% CI 0.07–0.68). Low threshold for CT in secondary survey.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Elderly patient with pelvic fracture on X-ray — high risk of intra-abdominal injury; proceed to CT.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Concurrent head/spinal injury</h3>
+      <div class="rec red">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 18</strong>
+        <ul>
+          <li>Patients with haemodynamically unstable abdominal trauma and concurrent head injury should undergo <strong>surgical haemostasis before addressing the head injury</strong>.</li>
+          <li>Patients with abdominal trauma with concurrent head injury <strong>should not undergo laparoscopic surgery</strong>.</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Consideration</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Priority</td>
+          <td>Surgical management of abdominal injury to address hypotension is the most important management in prevention of secondary brain injury. Patients who had operation on head and torso simultaneously have extremely low survival rates.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> SBP 80, GCS 9 — laparotomy first to restore BP, then head CT and neurosurgery.</td>
+        </tr>
+        <tr>
+          <td>Assessment</td>
+          <td>GCS, pupillary reactivity and sizes, localising signs. Signs of skull vault/base injury: racoon's eye, battle's sign, scalp swelling/haematoma, CSF leakage.</td>
+          <td class="case-col">Battle's sign and CSF otorrhoea — suspect base of skull fracture.</td>
+        </tr>
+        <tr>
+          <td>GCS accuracy</td>
+          <td>May be influenced by haemodynamic instability or drugs in polytrauma.</td>
+          <td class="case-col">GCS 10 after ketamine — reassess after resuscitation and drug effects wear off.</td>
+        </tr>
+        <tr>
+          <td>Abdominal insufflation</td>
+          <td>May affect cerebral perfusion pressure/ICP — use cautiously with baseline elevated ICP or head trauma.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Known TBI with elevated ICP — avoid laparoscopy; proceed with laparotomy.</td>
+        </tr>
+        <tr>
+          <td>Surgical sequence</td>
+          <td>In hypotensive patients with GCS &gt; 8, it may be safer to proceed with laparotomy first and address head CT later.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> GCS 10, SBP 85, positive FAST — laparotomy first, then head CT.</td>
+        </tr>
+        <tr>
+          <td>Craniotomy predictors</td>
+          <td>GCS &lt; 8; presence of lateralising neurological signs.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> GCS 7, right pupil dilated — needs craniotomy after abdominal haemostasis.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h4>Suggested flow — abdominal trauma with suspected head injury</h4>
+      <div class="flow">
+        <div class="node start">Intra-abdominal injury with suspected concomitant head injury</div>
+        <div class="arrow"></div>
+        <div class="node decision">Haemodynamic instability due to intra-abdominal injury?</div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action"><b>Yes</b> → Lateralising sign?<br><small>If No → Exploratory laparotomy, followed by immediate head CT</small><br><small>If Yes → iCT availability? → Suspected large EDH? → Consider exploratory burr hole with laparotomy, followed by immediate head CT / Consider exploratory laparotomy in OT (head CT in OT)</small></div>
+          <div class="node action"><b>No</b> → Consider head and abdomen/pelvis CT scan and treat accordingly</div>
+        </div>
+      </div>
+
+      <h3>Concurrent chest injury</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Consideration</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Rib fractures</td>
+          <td>Common cause of morbidity and mortality; often associated with abdominal solid organ injuries. Blunt chest trauma: concurrent abdominal injuries in <strong>34.9%</strong> of patients. Significant association between <strong>middle zone rib fractures</strong> and abdominal solid organ injuries.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Middle zone rib fractures on CXR → high suspicion of splenic or hepatic injury; proceed to CT.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Concurrent pelvic injury</h3>
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 19</strong>
+        <ul>
+          <li>In intra-abdominal injuries with concomitant pelvic fracture, patient's <strong>haemodynamic status and pelvic ring stability should be identified early</strong> to provide appropriate management.</li>
+          <li>Patients with haemodynamic instability with unstable pelvic ring fracture should have <strong>pelvic stabilisation and haemorrhage control</strong>.</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Consideration</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Incidence &amp; mortality</td>
+          <td>Incidence of pelvic injury with abdominal injury: <strong>30.7%</strong>. Mortality approximates <strong>50%</strong> if pelvic fracture is open or associated with major vessel injury. ATLS implementation → low mortality (4.3–4.9%) and morbidity (9.3–9.9%).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Open pelvic fracture with abdominal trauma — mortality ~50%. Aggressive resuscitation and early stabilisation.</td>
+        </tr>
+        <tr>
+          <td>FAST performance</td>
+          <td>BAT with pelvic fractures: sensitivity 85.4% (95% CI 76.3–92), specificity 98.7% (95% CI 97.8–99.3), accuracy 97.7% (95% CI 96.7–98.5) for intra-abdominal free fluid.</td>
+          <td class="case-col">Positive FAST with pelvic fracture → intra-abdominal haemorrhage likely; proceed to laparotomy.</td>
+        </tr>
+        <tr>
+          <td>Haemostatic procedures</td>
+          <td>External fixation with pre-peritoneal packing vs pelvic binder with pelvic angiography: no significant difference in mortality at day 7 (10.5% vs 21.1%), day 30 (21.1% vs 26.3%) or overall (26.3% vs 26.3%).</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Unstable pelvic ring fracture — apply binder and consider angiography or pre-peritoneal packing.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h4>Acute management after damage control orthopaedics</h4>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Haemodynamic status</th><th>Pelvic ring</th><th>Management</th><th class="case-col">Case example</th></tr>
+        <tr><td>Stable</td><td>Stable</td><td>Thorough clinical and diagnostic imaging for definitive treatment</td><td class="case-col">Stable patient with stable pelvic ring — full workup.</td></tr>
+        <tr><td>Stable</td><td>Unstable</td><td>Close observation for at least 48 hours for occult or late pelvic bleeding</td><td class="case-col"><span class="case-tag med">MED</span> Stable vitals but unstable ring — observe for delayed bleeding.</td></tr>
+        <tr><td>Unstable</td><td>Stable</td><td>Resuscitation per ATLS, then thorough assessment for non-pelvic bleeding sources. Pelvic stabilisation not required.</td><td class="case-col"><span class="case-tag hi">HI</span> Unstable with stable ring — look for intra-abdominal or thoracic bleeding.</td></tr>
+        <tr><td>Unstable</td><td>Unstable</td><td>Reduction to reduce blood loss (sheets, pelvic binders, external fixation). If fails → pre-peritoneal pelvic packing for initial DCS, then definitive pelvic management.</td><td class="case-col"><span class="case-tag hi">HI</span> Unstable with unstable ring — binder + pre-peritoneal packing, then angioembolisation or surgery.</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 14. ACS ============ -->
+  <section class="section" data-title="Abdominal Compartment Syndrome">
+    <button class="sec-head" type="button">
+      <span class="num">14</span>
+      <span class="title">Abdominal Compartment Syndrome</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <h3>Definitions &amp; grades</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Term</th><th>Definition</th><th class="case-col">Case example</th></tr>
+        <tr><td>Normal IAP</td><td>&lt; 12 mmHg (varies with obesity, cardiac failure)</td><td class="case-col">—</td></tr>
+        <tr><td>IAH</td><td>Sustained or repeated IAP ≥ 12 mmHg</td><td class="case-col"><span class="case-tag hi">HI</span> IAP 14 mmHg after massive resuscitation — Grade I IAH. Monitor closely.</td></tr>
+        <tr><td>ACS</td><td>Sustained IAH Grade III/IV with new onset of one or multiple organ dysfunction/failure</td><td class="case-col"><span class="case-tag hi">HI</span> IAP 23 mmHg with rising creatinine and hypoxia — ACS. Consider decompressive laparotomy.</td></tr>
+        <tr><td>Grade I</td><td>12–15 mmHg</td><td class="case-col">—</td></tr>
+        <tr><td>Grade II</td><td>16–20 mmHg</td><td class="case-col">—</td></tr>
+        <tr><td>Grade III</td><td>21–25 mmHg</td><td class="case-col"><span class="case-tag hi">HI</span> Grade III — critical; monitor for organ dysfunction.</td></tr>
+        <tr><td>Grade IV</td><td>&gt; 25 mmHg</td><td class="case-col"><span class="case-tag hi">HI</span> Grade IV — decompressive laparotomy indicated if organ dysfunction present.</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Risk factors for IAH Grade III/IV and ACS after trauma laparotomy</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Factor</th><th>Detail</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Hypothermia</td>
+          <td>Increasing body temperature reduces risk (OR 0.74, 95% CI 0.57–0.96)</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Temperature 34.5°C → keep warm with forced-air warmer and fluid warmers.</td>
+        </tr>
+        <tr>
+          <td>Lactate</td>
+          <td>Higher lactate (OR 1.33, 95% CI 1.08–1.64)</td>
+          <td class="case-col">Lactate 7.2 → high risk of IAH/ACS.</td>
+        </tr>
+        <tr>
+          <td>Base deficit</td>
+          <td>Larger base deficit (OR 1.11, 95% CI 1.06–1.16)</td>
+          <td class="case-col">Base deficit −9 → high risk.</td>
+        </tr>
+        <tr>
+          <td>Coagulopathy at 6 h</td>
+          <td>OR 1.01, 95% CI 1.01–1.02</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> INR 1.9 at 6 h post-laparotomy → high risk of IAH/ACS.</td>
+        </tr>
+        <tr>
+          <td>Resuscitation volume / PRBC</td>
+          <td>Higher total resuscitation volume (p &lt; 0.001) and PRBC transfusion (p &lt; 0.001) in first 24 hours</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> 12 units PRBC in 24 h → high risk; monitor IAP every 4–6 h.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <h3>Management by severity</h3>
+      <div class="table-wrap">
+      <table class="wider">
+        <tr><th>No IAH / Grade I–II</th><th>Increasing IAH</th><th>ACS</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>Prevent development or progression:<br>• Avoid fluid overload<br>• Aim for zero or negative fluid balance<br>• Provide adequate sedation and analgesia</td>
+          <td>If IAP increasing and risk of ACS high:<br>• Aggressive negative fluid balance (diuresis) in hypervolaemia<br>• Gastric decompression<br>• Prokinetics, rectal enemas<br>• Colonoscopy with bowel decompression for colonic distension<br>• Drainage of intra-abdominal/retroperitoneal collections<br>• Increase sedation<br>• Reduce enteral nutrition</td>
+          <td>Stop enteral nutrition. Consider:<br>• Deep sedation<br>• Temporary neuromuscular blockade<br>• Surgical decompression (haematoma evacuation, laparostomy, bowel decompression)</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> IAP 22 mmHg, rising creatinine, hypoxia → stop enteral feed, deepen sedation, consider laparostomy.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <div class="danger">
+        <b>If the patient has obvious ACS with severe organ dysfunction, decompressive laparotomy is indicated.</b> Timely observation and appropriate medical management can either delay or avoid development of ACS.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 15. REFERRAL ============ -->
+  <section class="section" data-title="Referral">
+    <button class="sec-head" type="button">
+      <span class="num">15</span>
+      <span class="title">Referral</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-key">Key</span>
+        <strong>Recommendation 21</strong> — If the initial health facility is unable to provide the patient the required trauma care, a <strong>timely referral to an appropriate facility should be made</strong>.
+      </div>
+
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Step</th><th>Action</th><th class="case-col">Case example</th></tr>
+        <tr>
+          <td>1. Transfer decision</td>
+          <td>Decision by senior doctor (specialist/consultant). Risk vs benefit. Reason, preparation, stability and expected interventions agreed by both teams. Communicate with next of kin. Document names of referring and receiving doctors.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> District hospital calls specialist centre; agreed to transfer for laparotomy. Family informed.</td>
+        </tr>
+        <tr>
+          <td>2. Transport activation</td>
+          <td>Appropriate level of ambulance. Document time of activation, response time and departure. Determine level of care during transfer and select escort team.</td>
+          <td class="case-col">ALS ambulance requested; estimated 45-minute transfer.</td>
+        </tr>
+        <tr>
+          <td>3. Escort team</td>
+          <td>Advanced level of care requires at least ONE ALS-trained member capable of initiating emergency interventions. Other members trained in equipment handling and transportation safety.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Anaesthetist accompanies unstable patient; nurse trained in transport.</td>
+        </tr>
+        <tr>
+          <td>4. Prepare patient</td>
+          <td>Repeat assessment after transfer to stretcher, after loading into ambulance, and before departure. Airway secured; breathing adequate with appropriate ventilator settings; circulation stable with secured access; drains functional and secured, underwater seal not clamped.</td>
+          <td class="case-col"><span class="case-tag hi">HI</span> Check ETT position, drains, IV access before departure. Ensure chest drain not clamped.</td>
+        </tr>
+        <tr>
+          <td>5. Equipment &amp; drugs</td>
+          <td>Functional to last the journey. Calculate oxygen requirements. Alarms on, properly restrained and visible.</td>
+          <td class="case-col">Calculate oxygen: 15 L/min × 45 min = 675 L. Ensure adequate supply.</td>
+        </tr>
+        <tr>
+          <td>6. Documents</td>
+          <td>Clinical status, therapy, interventions, pertinent events. Imaging films (or digital). Patient identification documents.</td>
+          <td class="case-col">Send CT images digitally; include notes and blood results.</td>
+        </tr>
+        <tr>
+          <td>7. Pre-departure</td>
+          <td>Notify receiving team of expected arrival time. Use item checklist for final checks.</td>
+          <td class="case-col">Call ahead; receiving team prepares OT and blood products.</td>
+        </tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 16. DIAGRAMS ============ -->
+  <section class="section" data-title="Diagrams">
+    <button class="sec-head" type="button">
+      <span class="num">16</span>
+      <span class="title">Diagrams — Simplified Algorithms</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <!-- Algorithm 1 -->
+      <div class="fig-title">Algorithm 1 — Haemodynamically stable abdominal trauma</div>
+      <div class="flow">
+        <div class="node start">Haemodynamically stable trauma patients suspected of intra-abdominal injury</div>
+        <div class="arrow"></div>
+        <div class="node action">Patient's condition: alert · not intubated · no distracting injuries?</div>
+        <div class="arrow"></div>
+        <div class="node decision">Generalised peritonitis?</div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action"><b>Yes → Exploratory laparotomy</b></div>
+          <div class="node action"><b>No → e-FAST → Presence of intraperitoneal fluid?</b></div>
+        </div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action"><b>No</b> → Serial abdominal examination and observation → Consider repeat FAST/CECT scan if equivocal signs and treat accordingly</div>
+          <div class="node action"><b>Yes</b> → CT scan available? → Proceed with CECT scan</div>
+        </div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action">Suggestive of <b>hollow viscus injury</b> → Exploratory laparotomy</div>
+          <div class="node action">Suggestive of <b>solid organ injury</b> → Active bleeding?<br><small>Yes → Consider exploratory laparotomy/angiography<br>No → Consider non-operative management based on clinical judgement</small></div>
+          <div class="node action">Non-suggestive of intra-abdominal injury → Consider non-operative management based on clinical judgement</div>
+        </div>
+      </div>
+
+      <!-- Algorithm 2 -->
+      <div class="fig-title">Algorithm 2 — Haemodynamically unstable abdominal trauma</div>
+      <div class="flow">
+        <div class="node start">Suspected blunt intra-abdominal injury<br><small>Haemodynamically unstable despite initial resuscitation: SBP &lt; 90 mmHg, HR &gt; 120/min</small></div>
+        <div class="arrow"></div>
+        <div class="node action">Clinical examination and initial resuscitation per ATLS protocol</div>
+        <div class="arrow"></div>
+        <div class="node decision">Haemodynamically unstable despite initial resuscitation?</div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action"><b>No → Refer to Algorithm 1</b></div>
+          <div class="node action"><b>Yes → e-FAST → Presence of intraperitoneal fluid?</b></div>
+        </div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node warn"><b>Yes → Exploratory laparotomy</b></div>
+          <div class="node action"><b>No → Pelvic fracture?*</b> → Continue resuscitation, keep pelvic binder</div>
+        </div>
+        <div class="arrow"></div>
+        <div class="node decision">Haemodynamically stable after resuscitation?</div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action"><b>No → Refer for management of pelvic fracture</b></div>
+          <div class="node action"><b>Yes → CECT scan</b><br><small>Identify other causes of hypotension (extra-abdominal injury) and treat accordingly</small></div>
+        </div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action"><b>CT available:</b> Negative → refer for pelvic fracture management; Positive → treat based on clinical assessment and CECT findings</div>
+          <div class="node action"><b>CT not available:</b> Consider formal ultrasound/laparoscopy/DPL/RFE for CECT scan and treat accordingly</div>
+          <div class="node warn">Consider exploratory laparotomy for retroperitoneal injury</div>
+        </div>
+      </div>
+
+      <!-- Algorithm 3 -->
+      <div class="fig-title">Algorithm 3 — Penetrating abdominal trauma</div>
+      <div class="flow">
+        <div class="node start">Patient with penetrating abdominal trauma</div>
+        <div class="arrow"></div>
+        <div class="node decision">Indication for surgery?<br><small>Haemodynamically unstable · Peritonitis · Evisceration</small></div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node warn"><b>Yes → Exploratory laparotomy</b></div>
+          <div class="node action"><b>No</b> → Anterior abdomen or posterior abdomen?</div>
+        </div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action"><b>Anterior abdomen:</b> Diagnostic procedure according to clinical judgement by attending surgeon<br><small>• Diagnostic laparoscopy (DL)<br>• Local wound exploration (LWE)</small><br>Peritoneal violation? / Anterior abdominal fascia breach?<br><small>Yes → Exploratory laparotomy OR laparoscopy<br>No → Wound debridement (± suture)</small></div>
+          <div class="node action"><b>Posterior abdomen:</b> CECT scan abdomen ± GI contrast (± CT scan thoracic if suspected b/cavitary injury)</div>
+        </div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action">Suggestive of peritoneal violation/hollow viscus/major vessel injury → Active bleeding? → Consider exploratory laparotomy/angiography</div>
+          <div class="node action">Suggestive of solid organ injury → Active bleeding? → Consider exploratory laparotomy/angiography</div>
+          <div class="node action">Non-suggestive of intra-abdominal injury → Consider non-operative management based on clinical judgement</div>
+        </div>
+      </div>
+
+      <!-- Figure 1 -->
+      <div class="fig-title">Figure 1 — Trauma bypass concept</div>
+      <div class="flow">
+        <div class="node start">Routine transfer practice</div>
+        <div class="node">Site of incident → Nearest hospital → Inter-facility transfer → Specialist hospital</div>
+        <div class="arrow"></div>
+        <div class="node start">Trauma bypass concept</div>
+        <div class="node">Site of incident → Direct transfer to appropriate/specialist hospital when criteria fulfilled, bypassing nearby non-specialist hospital</div>
+      </div>
+
+      <!-- Pelvic fracture classification -->
+      <div class="fig-title">Modified Tile Classification — Pelvic fracture stability</div>
+      <div class="table-wrap">
+      <table>
+        <tr><th>Type</th><th>Stability</th><th>Description</th><th class="case-col">Case example</th></tr>
+        <tr><td><b>A</b></td><td>Stable (posterior arch intact)</td><td>A1: Avulsion of innominate bone iliac · A2: Wing or anterior arch fracture from direct blow · A3: Transverse fractures of sacrum and coccyx</td><td class="case-col"><span class="case-tag lo">LO</span> Type A2 — stable, no pelvic stabilisation required.</td></tr>
+        <tr><td><b>B</b></td><td>Partially stable (incomplete disruption of posterior arch)</td><td>B1: Open book injury (external rotation) · B2: Lateral compression injury (internal rotation) · B3: Bilateral B injuries</td><td class="case-col"><span class="case-tag med">MED</span> Type B1 — partially stable; pelvic binder may be sufficient.</td></tr>
+        <tr><td><b>C</b></td><td>Completely unstable (complete disruption of posterior arch)</td><td>C1: Unilateral · C2: Bilateral, one side type B, one side type C · C3: Bilateral</td><td class="case-col"><span class="case-tag hi">HI</span> Type C — unstable; requires pelvic stabilisation and haemorrhage control.</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 17. CASE EXAMPLES ============ -->
+  <section class="section" data-title="10 High-Yield Case Examples">
+    <button class="sec-head" type="button">
+      <span class="num">17</span>
+      <span class="title">10 High-Yield Anaesthetic Case Examples</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <p>These cases integrate the CPG recommendations into realistic anaesthetic scenarios. Each includes vitals, key findings and the teaching point.</p>
+
+      <!-- Case 1 -->
+      <div class="case-card">
+        <h4><span class="case-num">1</span> The "normal vitals" trap — occult shock in a young patient</h4>
+        <div class="vitals">
+          <span>24-year-old</span><span>MVC</span><span>HR 98</span><span>SBP 118</span><span class="abn">SI 0.83</span><span>GCS 15</span>
+        </div>
+        <p><b>Scenario:</b> Motorcyclist hit by car. Initial vitals look reassuring. Pre-hospital SI was 0.55; ED SI is 0.83 → <b>DSI 0.28</b> (occult shock). Abdomen soft but seatbelt sign present. e-FAST shows free fluid in RUQ.</p>
+        <p><b>Action:</b> Do not be reassured by normal HR/BP. DSI &gt; 0.1 indicates occult hypoperfusion. Proceed to CECT (stable) or OT if unstable. Prepare blood products early.</p>
+        <div class="teach"><b>Teaching point:</b> Shock Index and Delta Shock Index detect occult shock before conventional vital signs deteriorate. PATOS: DSI &gt; 0.1 → mortality OR 2.82, massive transfusion OR 5.24.</div>
+      </div>
+
+      <!-- Case 2 -->
+      <div class="case-card">
+        <h4><span class="case-num">2</span> The unstable patient — do not scan, go to theatre</h4>
+        <div class="vitals">
+          <span>45-year-old</span><span>Blunt abdominal trauma</span><span class="abn">HR 132</span><span class="abn">SBP 78</span><span class="abn">SI 1.69</span><span class="abn">e-FAST positive</span>
+        </div>
+        <p><b>Scenario:</b> Fall from height. SBP 78 despite 1 L crystalloid. e-FAST shows free fluid in Morison's pouch. Surgeon asks for CT to "define anatomy."</p>
+        <p><b>Action:</b> Refuse CT. This is a Class III recommendation — do not scan persistently unstable patients. Proceed to emergency laparotomy within 90 minutes of ED arrival. Activate MTP.</p>
+        <div class="teach"><b>Teaching point:</b> CT before laparotomy in unstable patients increases mortality (OR 1.71). Every 10-minute delay to laparotomy increases 24-hour mortality (HR 1.50). The anaesthetist is a key advocate for the OT.</div>
+      </div>
+
+      <!-- Case 3 -->
+      <div class="case-card">
+        <h4><span class="case-num">3</span> RSI in the haemodynamically unstable trauma patient</h4>
+        <div class="vitals">
+          <span>35-year-old</span><span>Stab wound abdomen</span><span class="abn">HR 128</span><span class="abn">SBP 82</span><span>GCS 14</span><span class="abn">SI 1.56</span>
+        </div>
+        <p><b>Scenario:</b> Penetrating abdominal trauma with omental evisceration. Needs emergency intubation for laparotomy. You have propofol, ketamine, etomidate, rocuronium and suxamethonium available.</p>
+        <p><b>Action:</b> Use <b>video laryngoscopy</b> (Class I recommendation). Choose an induction agent that maintains haemodynamics — <b>ketamine</b> (reduced dose) or <b>etomidate</b>. Avoid propofol in this unstable patient. Have vasopressors drawn up. Use rocuronium or suxamethonium for rapid sequence.</p>
+        <div class="teach"><b>Teaching point:</b> Ketamine and etomidate are associated with higher vasopressor need at 24 h vs propofol. Ketamine in high SI (&gt; 0.9) causes hypotension in 26% within 9 min. Have phenylephrine/noradrenaline immediately available.</div>
+      </div>
+
+      <!-- Case 4 -->
+      <div class="case-card">
+        <h4><span class="case-num">4</span> The TBI + abdominal trauma dilemma</h4>
+        <div class="vitals">
+          <span>52-year-old</span><span>MVC</span><span class="abn">GCS 8</span><span class="abn">SBP 85</span><span class="abn">HR 118</span><span class="abn">Right pupil dilated</span>
+        </div>
+        <p><b>Scenario:</b> Both head and abdominal injuries. FAST positive. Neurosurgery wants to take the patient for craniotomy; general surgery wants laparotomy. SBP is 85.</p>
+        <p><b>Action:</b> <b>Surgical haemostasis first</b> (Recommendation 18). Hypotension worsens secondary brain injury. Laparotomy to control abdominal haemorrhage and restore BP, then address the head injury. <b>Do not use laparoscopy</b> — pneumoperitoneum increases ICP.</p>
+        <div class="teach"><b>Teaching point:</b> In haemodynamically unstable patients with head injury, abdominal haemostasis takes priority. Patients who have simultaneous head and torso operations have extremely low survival rates. Target MAP ≥ 80 mmHg if TBI suspected.</div>
+      </div>
+
+      <!-- Case 5 -->
+      <div class="case-card">
+        <h4><span class="case-num">5</span> Damage control surgery — the lethal triad</h4>
+        <div class="vitals">
+          <span>38-year-old</span><span>Crush injury</span><span class="abn">Temp 34.2°C</span><span class="abn">pH 7.12</span><span class="abn">Lactate 9.4</span><span class="abn">INR 2.1</span>
+        </div>
+        <p><b>Scenario:</b> Massive abdominal trauma with liver and splenic injuries. Already received 10 units PRBC. Hypothermic, acidotic, coagulopathic. Surgeon asks whether to do definitive repair or DCS.</p>
+        <p><b>Action:</b> <b>Damage control surgery.</b> Indications: acidosis, hypothermia (&lt; 34°C), shock, &gt; 10 units PRBC, ISS &gt; 25. Abbreviated surgery: pack liver, splenectomy if needed, temporary abdominal closure. ICU resuscitation to correct physiology. Return to OT in 24–48 h for definitive repair.</p>
+        <div class="teach"><b>Teaching point:</b> Your role: prevent further heat loss, warm all fluids, correct coagulopathy with blood products and TXA, communicate physiological endpoints with the surgeon. Recognise when to stop.</div>
+      </div>
+
+      <!-- Case 6 -->
+      <div class="case-card">
+        <h4><span class="case-num">6</span> The stable splenic injury — NOM with a plan</h4>
+        <div class="vitals">
+          <span>19-year-old</span><span>Sports injury</span><span>HR 88</span><span>SBP 122</span><span>Grade III splenic laceration</span><span>No blush</span>
+        </div>
+        <p><b>Scenario:</b> Stable patient with isolated grade III splenic laceration on CT. No active extravasation, no peritonitis. Surgeon plans non-operative management.</p>
+        <p><b>Action:</b> NOM is appropriate — haemodynamically stable, no peritonitis, 24-hour surgical/ICU/OT availability. Monitor closely (vitals, GCS, pain score, fluid balance, bloods). Start VTE prophylaxis within 48 hours if no active bleeding (Recommendation 17). Watch for NOM failure: haemodynamic deterioration, peritonitis, increasing transfusion requirement.</p>
+        <div class="teach"><b>Teaching point:</b> NOM success rate 80–95%. Risk factors for failure: age &gt; 40, ISS &gt; 25, grade &gt; 3, contrast blush, &gt; 1 unit transfusion. Know when to escalate — the anaesthetist may be called for emergency laparotomy if NOM fails.</div>
+      </div>
+
+      <!-- Case 7 -->
+      <div class="case-card">
+        <h4><span class="case-num">7</span> Penetrating abdominal trauma — stab vs gunshot</h4>
+        <div class="vitals">
+          <span>28-year-old</span><span>Stab wound RUQ</span><span>HR 92</span><span>SBP 124</span><span>Localised pain</span><span>No peritonitis</span>
+        </div>
+        <p><b>Scenario:</b> Anterior abdominal stab wound. Haemodynamically stable. No evisceration, no peritonitis. Wound is small and pain is localised.</p>
+        <p><b>Action:</b> Determine peritoneal violation via <b>local wound exploration, CT or diagnostic laparoscopy</b> (Recommendation 14). If fascia breached → laparoscopy or laparotomy. If no breach → wound debridement. <b>NOM may be considered in stab wounds, but not gunshot wounds.</b></p>
+        <div class="teach"><b>Teaching point:</b> For gunshot wounds with transperitoneal trajectory, laparotomy is required even if stable. For stab wounds, selective NOM with serial clinical examination (every 6 hours) is acceptable in the right patient.</div>
+      </div>
+
+      <!-- Case 8 -->
+      <div class="case-card">
+        <h4><span class="case-num">8</span> Pelvic fracture + abdominal trauma — the double bleed</h4>
+        <div class="vitals">
+          <span>42-year-old</span><span>MVC</span><span class="abn">HR 138</span><span class="abn">SBP 76</span><span>Pelvic binder applied</span><span class="abn">FAST positive</span>
+        </div>
+        <p><b>Scenario:</b> Unstable pelvic ring fracture with positive FAST. Patient remains hypotensive despite pelvic binder and 1 L crystalloid. Pelvic X-ray shows Type C fracture.</p>
+        <p><b>Action:</b> <b>Haemodynamic instability + unstable pelvic ring → pelvic stabilisation and haemorrhage control</b> (Recommendation 19). Options: external fixation with pre-peritoneal packing, or pelvic binder with angiography. Positive FAST → exploratory laparotomy for intra-abdominal bleeding. Coordinate with orthopaedics and interventional radiology.</p>
+        <div class="teach"><b>Teaching point:</b> Mortality ~50% if open pelvic fracture or major vessel injury. FAST has high sensitivity (85.4%) and specificity (98.7%) for intra-abdominal free fluid in pelvic fractures. Resuscitate with blood products, not crystalloid.</div>
+      </div>
+
+      <!-- Case 9 -->
+      <div class="case-card">
+        <h4><span class="case-num">9</span> The geriatric trauma patient — frailty and anticoagulants</h4>
+        <div class="vitals">
+          <span>81-year-old</span><span>Fall from standing</span><span>HR 92</span><span>SBP 108</span><span class="abn">Age SI 69</span><span>On apixaban</span><span class="abn">CFS 6</span>
+        </div>
+        <p><b>Scenario:</b> Elderly patient on DOAC for AF. Low-energy fall. Vitals look "normal" for age but HR 92 and SBP 108 meet geriatric triage thresholds (HR &gt; 90, SBP &lt; 110). CFS 6 (moderate frailty).</p>
+        <p><b>Action:</b> <b>Do not under-triage.</b> Age SI = 81 × 0.85 = 69 (cut-off 49 → high mortality risk). Proceed to CT — low threshold in geriatric patients. Check coagulation (PT/INR, aPTT). Consider reversal agents if bleeding. Involve geriatric services if available. Discuss goals of care with frailty in mind.</p>
+        <div class="teach"><b>Teaching point:</b> Geriatric patients can have major trauma from low-energy mechanisms. Frailty (CFS 5–6: OR 5.68; CFS 7–9: OR 10.38 for 30-day mortality) and anticoagulation are key risk modifiers. DOACs have lower mortality than warfarin but still require attention.</div>
+      </div>
+
+      <!-- Case 10 -->
+      <div class="case-card">
+        <h4><span class="case-num">10</span> Abdominal compartment syndrome — the silent killer</h4>
+        <div class="vitals">
+          <span>33-year-old</span><span>Post-laparotomy</span><span class="abn">IAP 24 mmHg</span><span class="abn">Urine output 10 ml/h</span><span class="abn">Peak airway pressure 38 cmH₂O</span><span class="abn">Lactate 5.8</span>
+        </div>
+        <p><b>Scenario:</b> Patient had damage control laparotomy with temporary abdominal closure 24 hours ago. Now in ICU: IAP 24 mmHg (Grade III), rising creatinine, hypoxia, high airway pressures, lactic acidosis.</p>
+        <p><b>Action:</b> <b>Abdominal compartment syndrome.</b> Stop enteral nutrition. Deepen sedation, consider neuromuscular blockade. Aggressive negative fluid balance (diuresis). Gastric decompression, prokinetics. If organ dysfunction persists → <b>decompressive laparotomy / laparostomy</b>. Monitor IAP every 4–6 hours.</p>
+        <div class="teach"><b>Teaching point:</b> IAH/ACS affects respiratory mechanics (reduced compliance), cardiovascular function (reduced preload) and renal perfusion. Your ventilation strategy should avoid high airway pressures. Fluid management should target zero or negative balance once resuscitation is complete. Overzealous fluid resuscitation is the commonest cause.</div>
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 18. REFERENCE ============ -->
+  <section class="section" data-title="Reference">
+    <button class="sec-head" type="button">
+      <span class="num">18</span>
+      <span class="title">Source Reference &amp; Abbreviations</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <p><strong>Primary source</strong></p>
+      <p>
+        Ministry of Health Malaysia. <em>Clinical Practice Guidelines: Management of Abdominal Trauma in Adults.</em>
+        Putrajaya: Malaysian Health Technology Assessment Section (MaHTAS), Medical Development Division, Ministry of Health Malaysia; 2025.
+        MOH/P/PAK/594.25(GU)-e. eISBN 978-629-7842-05-9.
+      </p>
+      <p>
+        Available at: <a href="http://www.moh.gov.my" target="_blank" rel="noopener">www.moh.gov.my</a> ·
+        <a href="http://www.acadmed.org.my" target="_blank" rel="noopener">www.acadmed.org.my</a> ·
+        <a href="https://mymahtas.moh.gov.my" target="_blank" rel="noopener">mymahtas.moh.gov.my</a> ·
+        <a href="https://www.traumasurgerymalaysia.org/" target="_blank" rel="noopener">www.traumasurgerymalaysia.org</a>
+      </p>
+
+      <p><strong>Chairperson:</strong> Dr. Ashok Kannan, Consultant General and Trauma Surgeon, Hospital Seberang Jaya, Pulau Pinang.</p>
+      <p><strong>Review Committee Chairperson:</strong> Dr. Rizal Imran Alwi, Head of Trauma Surgery Subspecialty, MoH; Senior Consultant General and Trauma Surgeon, Hospital Sultanah Aminah, Johor.</p>
+
+      <p><strong>Methodology:</strong> Systematic literature search (Medline via Ovid, Cochrane, PubMed, Guidelines International Network), limited to humans, 2009–current, English. Searches conducted 10–30 January 2023; repeated with cut-off 1 February 2025. U.S. Preventive Services Task Force (2015) level of evidence; GRADE for recommendations; AGREE II compliant. 12 clinical questions; DG met 25 times. Referenced CPGs: WSES blunt and penetrating bowel injury (2022); WSES trauma in elderly and frail patients (2023).</p>
+
+      <p><strong>Review date:</strong> minimum 4 years (2029) or sooner if new evidence becomes available.</p>
+
+      <h3>Selected abbreviations</h3>
+      <div class="table-wrap">
+      <table class="wide">
+        <tr><th>Abbreviation</th><th>Meaning</th><th>Abbreviation</th><th>Meaning</th></tr>
+        <tr><td>AAST</td><td>American Association for the Surgery of Trauma</td><td>MEWS</td><td>Modified Early Warning Score</td></tr>
+        <tr><td>ACS</td><td>Abdominal compartment syndrome</td><td>MTP</td><td>Massive transfusion protocol</td></tr>
+        <tr><td>AIS</td><td>Abbreviated Injury Scale</td><td>NISS</td><td>New Injury Severity Score</td></tr>
+        <tr><td>ALS</td><td>Advanced life support</td><td>NOM</td><td>Non-operative management</td></tr>
+        <tr><td>ATLS</td><td>Advanced trauma life support</td><td>POCUS</td><td>Point-of-care ultrasound</td></tr>
+        <tr><td>BAT</td><td>Blunt abdominal trauma</td><td>RSI</td><td>Rapid sequence induction</td></tr>
+        <tr><td>BBMI</td><td>Blunt bowel and mesenteric injury</td><td>SI</td><td>Shock Index</td></tr>
+        <tr><td>BLS</td><td>Basic life support</td><td>SOI</td><td>Solid organ injury</td></tr>
+        <tr><td>CECT</td><td>Contrast-enhanced computed tomography</td><td>TAC</td><td>Temporary abdominal closure</td></tr>
+        <tr><td>CFS</td><td>Clinical Frailty Score</td><td>TAE</td><td>Transarterial embolisation</td></tr>
+        <tr><td>DCS</td><td>Damage control surgery</td><td>TBI</td><td>Traumatic brain injury</td></tr>
+        <tr><td>DPL</td><td>Diagnostic peritoneal lavage</td><td>TXA</td><td>Tranexamic acid</td></tr>
+        <tr><td>DSI</td><td>Delta Shock Index</td><td>UFH</td><td>Unfractionated heparin</td></tr>
+        <tr><td>e-FAST</td><td>Extended focused assessment with sonography in trauma</td><td>VL</td><td>Video laryngoscopy</td></tr>
+        <tr><td>GCS</td><td>Glasgow Coma Scale</td><td>VTE</td><td>Venous thromboembolism</td></tr>
+        <tr><td>IAH</td><td>Intra-abdominal hypertension</td><td>WBCT</td><td>Whole body CT</td></tr>
+        <tr><td>IAP</td><td>Intra-abdominal pressure</td><td>WSES</td><td>World Society of Emergency Surgery</td></tr>
+        <tr><td>ISS</td><td>Injury Severity Score</td><td>—</td><td>—</td></tr>
+        <tr><td>LMWH</td><td>Low molecular weight heparin</td><td>—</td><td>—</td></tr>
+        <tr><td>LWE</td><td>Local wound exploration</td><td>—</td><td>—</td></tr>
+        <tr><td>MECC</td><td>Medical Emergency Coordinating Centre</td><td>—</td><td>—</td></tr>
+      </table>
+      </div>
+      <div class="scroll-hint">↔ Scroll table sideways to see all columns</div>
+
+      <p style="font-size:.8rem;color:var(--muted);margin-top:14px;">
+        This quick reference is a summary for educational use by anaesthetists. It does not replace the full guideline or clinical judgement. Always confirm recommendations against the original publication.
+      </p>
+
+    </div></div></div>
+  </section>
+
+  <div id="no-results">No sections match your search.</div>
+
+</main>
+
+<footer>
+  <p><strong>Citation:</strong> Ministry of Health Malaysia. Clinical Practice Guidelines: Management of Abdominal Trauma in Adults. Putrajaya: MaHTAS, Medical Development Division; 2025. MOH/P/PAK/594.25(GU)-e.</p>
+  <p>Quick reference compiled for anaesthetic practice. Not a substitute for the full guideline or clinical judgement.</p>
+</footer>
+
+<script>
+(function(){
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.section'));
+  var searchInput = document.getElementById('search');
+  var countEl = document.getElementById('count');
+  var noResults = document.getElementById('no-results');
+
+  // Accordion toggles
+  sections.forEach(function(sec){
+    var head = sec.querySelector('.sec-head');
+    head.addEventListener('click', function(){
+      sec.classList.toggle('open');
+    });
+  });
+
+  // Open the first section by default
+  if (sections.length) sections[0].classList.add('open');
+
+  // Expand / collapse all
+  document.getElementById('expandAll').addEventListener('click', function(){
+    sections.forEach(function(sec){
+      if (sec.style.display !== 'none') sec.classList.add('open');
+    });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    sections.forEach(function(sec){ sec.classList.remove('open'); });
+  });
+
+  // Search
+  function runSearch(){
+    var q = searchInput.value.trim().toLowerCase();
+    var visible = 0;
+
+    sections.forEach(function(sec){
+      var text = (sec.textContent || '').toLowerCase();
+      var match = (q === '') || text.indexOf(q) !== -1;
+      sec.style.display = match ? '' : 'none';
+      if (match){
+        visible++;
+        if (q.length >= 2) sec.classList.add('open');
+      }
+    });
+
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+
+    if (q === ''){
+      countEl.textContent = sections.length + ' sections';
+    } else {
+      countEl.textContent = visible + ' of ' + sections.length + ' sections match';
+    }
+  }
+
+  searchInput.addEventListener('input', runSearch);
+  searchInput.addEventListener('search', runSearch);
+
+  // Keyboard shortcut: "/" focuses search
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== searchInput){
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
+
+  runSearch();
+})();
+</script>
+</body>
+</html>
