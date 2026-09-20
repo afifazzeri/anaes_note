@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AATS Empyema Guidelines — Anaesthetist Quick Reference</title>
+<style>
+  :root{
+    --teal:#0d7a8a;
+    --teal-dark:#095c69;
+    --teal-light:#e6f4f7;
+    --ink:#1c2b30;
+    --muted:#5b6f76;
+    --line:#d3e2e6;
+    --bg:#f4f8f9;
+    --card:#ffffff;
+    --amber:#a8620a;
+    --amber-bg:#fdf3e3;
+    --red:#a32121;
+    --red-bg:#fdeaea;
+    --green:#1d6b3f;
+    --green-bg:#e8f5ee;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    font-size:16px;
+  }
+  header{
+    background:linear-gradient(135deg,var(--teal-dark),var(--teal));
+    color:#fff;
+    padding:22px 18px 18px;
+  }
+  .wrap{max-width:960px;margin:0 auto;}
+  header h1{
+    font-size:1.35rem;
+    margin:0 0 6px;
+    line-height:1.25;
+    font-weight:700;
+  }
+  header .sub{
+    font-size:.85rem;
+    opacity:.9;
+    margin:0;
+  }
+  header .cite{
+    font-size:.75rem;
+    opacity:.85;
+    margin-top:10px;
+    border-top:1px solid rgba(255,255,255,.25);
+    padding-top:8px;
+  }
+  .sticky-bar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    padding:10px 18px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+  }
+  .sticky-inner{
+    max-width:960px;
+    margin:0 auto;
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  #search{
+    flex:1 1 240px;
+    min-width:0;
+    padding:10px 14px;
+    border:1.5px solid var(--line);
+    border-radius:8px;
+    font-size:.95rem;
+    background:#fff;
+    color:var(--ink);
+  }
+  #search:focus{
+    outline:none;
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(13,122,138,.15);
+  }
+  .btn{
+    padding:9px 13px;
+    border:1.5px solid var(--teal);
+    background:#fff;
+    color:var(--teal);
+    border-radius:8px;
+    font-size:.82rem;
+    font-weight:600;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--teal-light);}
+  .count{
+    font-size:.78rem;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  main{max-width:960px;margin:0 auto;padding:18px;}
+
+  /* ---------- Accordion ---------- */
+  .section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-bottom:10px;
+    overflow:hidden;
+  }
+  .sec-head{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 16px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    text-align:left;
+    font-family:inherit;
+    font-size:1rem;
+    font-weight:700;
+    color:var(--teal-dark);
+  }
+  .sec-head:hover{background:var(--teal-light);}
+  .sec-head .num{
+    flex:0 0 auto;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:var(--teal);
+    color:#fff;
+    font-size:.78rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+  }
+  .sec-head .title{flex:1;}
+  .sec-head .chev{
+    flex:0 0 auto;
+    font-size:.8rem;
+    color:var(--teal);
+    transition:transform .25s ease;
+  }
+  .section.open .sec-head .chev{transform:rotate(180deg);}
+  .acc-body{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .28s ease;
+  }
+  .section.open .acc-body{grid-template-rows:1fr;}
+  .acc-body > .inner{
+    overflow:hidden;
+  }
+  .sec-content{
+    padding:0 16px 16px;
+    font-size:.93rem;
+  }
+
+  /* ---------- Recommendation blocks ---------- */
+  .rec{
+    border-left:4px solid var(--teal);
+    background:var(--teal-light);
+    border-radius:0 8px 8px 0;
+    padding:10px 12px;
+    margin:8px 0;
+    font-size:.9rem;
+  }
+  .rec.amber{border-left-color:var(--amber);background:var(--amber-bg);}
+  .rec.red{border-left-color:var(--red);background:var(--red-bg);}
+  .rec.green{border-left-color:var(--green);background:var(--green-bg);}
+  .badge{
+    display:inline-block;
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    padding:2px 7px;
+    border-radius:4px;
+    margin-right:6px;
+    vertical-align:1px;
+  }
+  .b-I{background:#0d7a8a;color:#fff;}
+  .b-IIa{background:#3a9aa8;color:#fff;}
+  .b-IIb{background:#7ab8c1;color:#08343c;}
+  .b-III{background:#a32121;color:#fff;}
+  .b-loe{background:#e2e9eb;color:#3c5057;}
+  .rec strong{color:var(--teal-dark);}
+
+  h3{
+    font-size:.95rem;
+    margin:16px 0 6px;
+    color:var(--teal-dark);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:.78rem;
+    border-bottom:1px solid var(--line);
+    padding-bottom:4px;
+  }
+  p{margin:6px 0;}
+  ul{margin:6px 0 6px 18px;padding:0;}
+  li{margin:4px 0;}
+  .note{
+    background:#f0f4f5;
+    border:1px dashed #b9cdd2;
+    border-radius:8px;
+    padding:10px 12px;
+    margin:10px 0;
+    font-size:.86rem;
+    color:#33474d;
+  }
+  .note b{color:var(--teal-dark);}
+  .flag{
+    background:#fff8e6;
+    border-left:4px solid #d9a300;
+    border-radius:0 8px 8px 0;
+    padding:9px 12px;
+    margin:8px 0;
+    font-size:.86rem;
+  }
+  .flag b{color:#8a6100;}
+
+  /* ---------- Flow diagrams ---------- */
+  .flow{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:10px 0 4px;
+  }
+  .node{
+    background:#fff;
+    border:2px solid var(--teal);
+    border-radius:9px;
+    padding:9px 14px;
+    text-align:center;
+    max-width:560px;
+    width:100%;
+    font-size:.83rem;
+    line-height:1.4;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  .node.start{background:var(--teal);color:#fff;border-color:var(--teal);font-weight:600;}
+  .node.decision{background:#fff6e0;border-color:#d9a300;border-radius:20px;}
+  .node.action{background:var(--teal-light);}
+  .node.warn{background:var(--red-bg);border-color:var(--red);}
+  .node.chronic{background:#eef3ff;border-color:#4a6fc4;}
+  .node small{display:block;font-size:.74rem;opacity:.85;margin-top:3px;}
+  .arrow{
+    width:2px;
+    height:16px;
+    background:var(--teal);
+    position:relative;
+    flex:0 0 auto;
+  }
+  .arrow::after{
+    content:"";
+    position:absolute;
+    bottom:-1px;
+    left:50%;
+    transform:translateX(-50%);
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-top:9px solid var(--teal);
+  }
+  .branch{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    width:100%;
+  }
+  .branch .node{max-width:270px;flex:1 1 220px;}
+  .legend{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:8px;
+    margin:10px 0;
+  }
+  .legend .node{max-width:none;}
+  .fig-title{
+    font-size:.78rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--muted);
+    text-align:center;
+    margin-top:14px;
+    margin-bottom:2px;
+  }
+
+  /* ---------- Tables ---------- */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.83rem;
+    margin:8px 0;
+  }
+  th,td{
+    border:1px solid var(--line);
+    padding:6px 8px;
+    text-align:left;
+    vertical-align:top;
+  }
+  th{background:#eef4f6;color:var(--teal-dark);font-weight:700;}
+
+  #no-results{
+    display:none;
+    text-align:center;
+    padding:30px 10px;
+    color:var(--muted);
+    font-size:.9rem;
+  }
+  footer{
+    max-width:960px;
+    margin:0 auto;
+    padding:20px 18px 40px;
+    font-size:.8rem;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+  }
+  footer a{color:var(--teal);}
+  mark{background:#ffe9a8;padding:0 2px;border-radius:2px;}
+  @media (max-width:520px){
+    header h1{font-size:1.1rem;}
+    .sec-head{font-size:.92rem;padding:12px 12px;}
+    .sec-content{padding:0 12px 14px;}
+    .node{font-size:.79rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>AATS Consensus Guidelines for the Management of Empyema</h1>
+    <p class="sub">Quick reference for anaesthetists · Collapsible · Searchable</p>
+    <p class="cite">
+      Shen KR, Bribriesco A, Crabtree T, Denlinger C, Eby J, Eiken P, Jones DR, Keshavjee S, Maldonado F, Paul S, Kozower B.
+      <em>The American Association for Thoracic Surgery consensus guidelines for the management of empyema.</em>
+      J Thorac Cardiovasc Surg. 2017;153(6):e129–e146. doi:10.1016/j.jtcvs.2017.01.030
+    </p>
+  </div>
+</header>
+
+<div class="sticky-bar">
+  <div class="sticky-inner">
+    <input id="search" type="search" placeholder="Search guidelines… (e.g. pH, VATS, epidural, BPF, aminoglycoside)" aria-label="Search guidelines">
+    <button class="btn" id="expandAll" type="button">Expand all</button>
+    <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ 1. OVERVIEW ============ -->
+  <section class="section" data-title="Overview">
+    <button class="sec-head" type="button">
+      <span class="num">1</span>
+      <span class="title">Overview &amp; Key Facts</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <p><strong>Empyema thoracis</strong> — from the Greek, "pus in the chest." The most common precursor is bacterial pneumonia with a subsequent parapneumonic effusion.</p>
+
+      <h3>Epidemiology</h3>
+      <ul>
+        <li>~1 million patients hospitalised in the USA each year with pneumonia.</li>
+        <li>20–40% have a parapneumonic effusion.</li>
+        <li>5–10% of these progress to empyema (~32,000 patients/year).</li>
+        <li>~15% of empyema patients die; ~30% require surgical drainage of the pleural space.</li>
+        <li>Incidence is <em>increasing</em> in the USA since the 1990s.</li>
+      </ul>
+
+      <h3>Three stages of disease</h3>
+      <table>
+        <tr><th>Stage</th><th>Process</th><th>Implication</th></tr>
+        <tr><td><b>I — Exudative</b></td><td>Free-flowing sterile effusion</td><td>Antibiotics ± drainage</td></tr>
+        <tr><td><b>II — Fibrinopurulent</b></td><td>Fibrin deposition, loculations, adhesions; no organised peel</td><td>Drainage ± VATS (first-line)</td></tr>
+        <tr><td><b>III — Organising / chronic</b></td><td>Granulation tissue → fibrous peel, contracted hemithorax, rib-space narrowing, mediastinal shift</td><td>Decortication / space-obliteration surgery</td></tr>
+      </table>
+
+      <h3>Level of evidence (IOM framework, Fig. 1 of guideline)</h3>
+      <table>
+        <tr><th>Level</th><th>Basis</th></tr>
+        <tr><td><b>A</b></td><td>Multiple randomised trials or meta-analyses; multiple (3–5) population risk strata evaluated</td></tr>
+        <tr><td><b>B</b></td><td>Single randomised trial or non-randomised studies; limited (2–3) population risk strata</td></tr>
+        <tr><td><b>C</b></td><td>Expert opinion, case studies, or standard-of-care; very limited (1–2) population risk strata</td></tr>
+      </table>
+
+      <div class="note">
+        <b>How the guideline was made:</b> AATS Guidelines Committee appointed co-chairs (Shen, Kozower) who assembled a multidisciplinary group (5 thoracic surgeons, 1 interventional radiologist, 1 infectious disease specialist, 1 interventional pulmonologist). Three teleconferences plus a 1-day face-to-face meeting. Each recommendation required <b>&gt;75% approval</b>. IOM 2011 standards followed, without patient engagement.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 2. CLINICAL PRESENTATION ============ -->
+  <section class="section" data-title="Clinical Presentation">
+    <button class="sec-head" type="button">
+      <span class="num">2</span>
+      <span class="title">Clinical Presentation</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE B</span>
+        <strong>Investigate for pleural effusion</strong> in all patients presenting with signs and symptoms of pneumonia or unexplained sepsis.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE B</span>
+        <strong>Failure of community- or healthcare-associated pneumonia to respond clinically to appropriate antibiotic therapy</strong> should prompt investigations to identify a pleural effusion.
+      </div>
+
+      <h3>Reasoning</h3>
+      <ul>
+        <li>Pleural fluid analysis is <strong>mandatory</strong> — complicated parapneumonic effusions do not differ from simple effusions on the basis of clinical presentation alone.</li>
+        <li>In a large randomised trial, median duration of symptoms before presentation was <strong>2 weeks</strong>.</li>
+        <li>Anaerobic pleural space infections are more indolent: loss of appetite, substantial weight loss; more likely with <strong>poor dental hygiene</strong> and <strong>aspiration risk</strong>.</li>
+        <li>Failure to respond to appropriate antibiotics within a few days should suggest progression to pleural space infection.</li>
+      </ul>
+
+      <h3>Risk factors for progression to complicated effusion / empyema</h3>
+      <ul>
+        <li>History of <strong>alcohol or intravenous drug use</strong></li>
+        <li><strong>Hypoalbuminaemia</strong> &lt; 30 g/dL</li>
+        <li><strong>Hyponatraemia</strong> &lt; 130 mmol/L</li>
+        <li>Elevated <strong>C-reactive protein</strong> &gt; 100 mg/L</li>
+      </ul>
+
+      <div class="flag">
+        <b>Anaesthetic relevance:</b> These patients often present late, septic, malnourished, and with aspiration risk. Anticipate a full stomach, difficult venous access, and haemodynamic instability on induction.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 3. IMAGING ============ -->
+  <section class="section" data-title="Imaging">
+    <button class="sec-head" type="button">
+      <span class="num">3</span>
+      <span class="title">Imaging Studies</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE B</span>
+        <strong>Pleural ultrasound (US) should be performed routinely</strong> in addition to conventional chest x-ray (CXR) in the evaluation of pleural space infection — both for diagnosis and for image-guidance of pleural interventions.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE B</span>
+        <strong>CT chest should be obtained</strong> when pleural space infection is suspected.
+      </div>
+
+      <h3>Chest x-ray</h3>
+      <ul>
+        <li>Minimum <strong>175 mL</strong> of pleural fluid needed to blunt the costophrenic angle on a PA film.</li>
+        <li>Smaller, loculated effusions may appear as lenticular pleural-based opacities — hard to distinguish from consolidation.</li>
+        <li>Loculated, radiologically complex effusions often do not layer dependently and may be missed.</li>
+        <li>In 61 patients with CT-proven parapneumonic effusions, AP, PA and lateral CXRs each missed ~<strong>10%</strong> — usually due to coexisting lower-lobe consolidation.</li>
+        <li>Useful as a first step, but <strong>must be combined with additional imaging</strong>.</li>
+      </ul>
+
+      <h3>Pleural ultrasound</h3>
+      <ul>
+        <li>Now the <strong>cornerstone</strong> of imaging for pleural effusions.</li>
+        <li>At least as effective as lateral decubitus CXR for small effusions; better at estimating volume; not hindered by adjacent consolidation.</li>
+        <li>Bedside availability — can be performed competently by non-radiologists; ideal for guiding safe diagnostic thoracentesis.</li>
+        <li>Rapid evaluation in ED or ICU.</li>
+        <li>Patterns (320-patient study):</li>
+      </ul>
+      <table>
+        <tr><th>US pattern</th><th>Likely fluid type</th></tr>
+        <tr><td>Complex septated / complex non-septated / echogenic</td><td>Exudative</td></tr>
+        <tr><td>Homogeneously echogenic</td><td>Haemorrhage or empyema</td></tr>
+        <tr><td>Anechoic</td><td>Transudative — but 27% of anechoic effusions are exudative</td></tr>
+        <tr><td>Pleural thickening</td><td>Indicates exudative effusion</td></tr>
+      </table>
+      <p>Increased septations on thoracic US may be predictive of clinical outcome.</p>
+
+      <h3>Computed tomography</h3>
+      <ul>
+        <li>Contrast-enhanced CT with tissue phase is valuable; allows detailed assessment of parenchymal abnormalities and may reveal the cause (bronchogenic carcinoma, endobronchial foreign body, oesophageal rupture).</li>
+        <li>Loculated empyemas are typically lenticular with compression of adjacent lung — generally distinguishable from pleural-based lung abscess.</li>
+        <li>Findings in empyema:</li>
+      </ul>
+      <table>
+        <tr><th>CT sign</th><th>Frequency</th></tr>
+        <tr><td>Parietal pleural thickening</td><td>86%</td></tr>
+        <tr><td>Pleural enhancement</td><td>96%</td></tr>
+        <tr><td>"Split pleura sign" (visceral + parietal thickening/enhancement)</td><td>68%</td></tr>
+        <tr><td>High attenuation of extrapleural adipose tissue</td><td>Suggests empyema; virtually excludes transudate</td></tr>
+        <tr><td>Air bubbles within effusion (no prior intervention)</td><td>Specific for pleural space infection; may suggest resistance to chest tube drainage alone</td></tr>
+      </table>
+      <ul>
+        <li>Pleural fluid thickness cutoff of <strong>2–2.5 cm</strong> suggested to guide thoracentesis — smaller effusions on CT likely resolve with antibiotics alone.</li>
+      </ul>
+
+      <h3>PET and MRI</h3>
+      <ul>
+        <li><strong>PET</strong> — does not appear useful; does not accurately distinguish inflammatory from malignant pleural effusions.</li>
+        <li><strong>MRI</strong> — may become an attractive alternative to CT; useful for distinguishing transudate from exudate and assessing extension into soft tissues (chest wall, spinal involvement).</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 4. LABS ============ -->
+  <section class="section" data-title="Laboratory & Pleural Fluid Analysis">
+    <button class="sec-head" type="button">
+      <span class="num">4</span>
+      <span class="title">Laboratory &amp; Pleural Fluid Analysis</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE B</span>
+        <strong>Pus, positive Gram's stain, or positive culture</strong> in pleural fluid establishes the diagnosis of empyema → treat with tube thoracostomy followed by surgical intervention when appropriate.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE B</span>
+        <strong>Pleural pH &lt; 7.2</strong> in suspected pleural space infection predicts a complicated clinical course → tube thoracostomy followed by surgical intervention when appropriate.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>Pleural fluid LDH &gt; 1000 IU/L, glucose &lt; 40 mg/dL, or a loculated effusion</strong> suggests the effusion is unlikely to resolve with antibiotics alone.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE B</span>
+        <strong>Obtain pleural fluid cultures during aspiration or drainage procedures</strong> — not from previously inserted tubes or drains. Inoculate freshly drained fluid into <strong>aerobic and anaerobic blood culture vials</strong> in addition to sterile containers for Gram stain and culture.
+      </div>
+
+      <h3>Thoracentesis — technique &amp; sample processing</h3>
+      <ul>
+        <li>Diagnostic thoracentesis is indicated for <strong>all suspected parapneumonic effusions</strong> when pleural fluid thickness is <strong>&gt; 1 cm on CXR</strong> and <strong>&gt; 2 cm on CT</strong>.</li>
+        <li>Loculated and large effusions are likely to have a complicated course irrespective of fluid analysis.</li>
+        <li>Fluid analysis may differ substantially from one locule to another — limits its value in loculated disease.</li>
+        <li>Perform with <strong>US guidance</strong> to reduce pneumothorax risk.</li>
+        <li>Frankly purulent appearance → no need for pH analysis.</li>
+        <li><strong>pH must be measured with an arterial blood gas analyser within 1 hour of sampling.</strong></li>
+      </ul>
+
+      <div class="flag">
+        <b>Pre-analytical pitfalls for pleural pH:</b><br>
+        • Residual <b>lidocaine</b> → falsely low pH<br>
+        • <b>Heparin</b> → falsely low pH<br>
+        • <b>Air in the syringe</b> → falsely high pH
+      </div>
+
+      <h3>Biomarkers — key thresholds</h3>
+      <table>
+        <tr><th>Marker</th><th>Threshold</th><th>Action</th></tr>
+        <tr><td>Pleural pH</td><td>&lt; 7.2</td><td>Best next predictor of complicated course if no pus/organism → chest tube drainage</td></tr>
+        <tr><td>Pleural glucose</td><td>&lt; 40 mg/dL</td><td>If pH not measured → chest tube drainage</td></tr>
+        <tr><td>Pleural LDH</td><td>&gt; 1000 IU/L</td><td>Predictive of need for tube thoracostomy</td></tr>
+      </table>
+
+      <div class="note">
+        <b>Rare pitfall:</b> Urease-splitting organisms (e.g. <em>Proteus</em> species) may cause a <b>spuriously elevated</b> pleural pH.
+      </div>
+
+      <h3>Pleural fluid culture</h3>
+      <ul>
+        <li>Obtain in all cases of acute bacterial empyema.</li>
+        <li><strong>44% of cultures from previously placed catheters or tubing are inaccurate.</strong></li>
+        <li>Inoculation of BACTEC blood culture bottles (by trained personnel) improves yield when combined with standard laboratory culture.</li>
+        <li><strong>Do not use swabs.</strong></li>
+        <li>If only a small amount of fluid is available, inoculate only into the standard specimen culture container.</li>
+        <li>Always send cell count and chemistries alongside cultures.</li>
+      </ul>
+
+      <h3>General laboratory studies</h3>
+      <ul>
+        <li>Blood cultures are positive in only a minority of patients with pleural space infection.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 5. ANTIBIOTICS ============ -->
+  <section class="section" data-title="Antibiotic Treatment">
+    <button class="sec-head" type="button">
+      <span class="num">5</span>
+      <span class="title">Acute Pleural Empyema — Antibiotic Treatment</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <p>Appropriate empiric therapy incorporates: <b>(1)</b> patient's clinical history, <b>(2)</b> local antimicrobial resistance patterns, <b>(3)</b> institutional antibiotic stewardship, <b>(4)</b> pharmacologic characteristics of the antibiotics.</p>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>Community-acquired empyema:</strong> parenteral 2nd- or 3rd-generation cephalosporin (e.g. ceftriaxone) <em>with</em> metronidazole, <strong>OR</strong> parenteral aminopenicillin with β-lactamase inhibitor (e.g. ampicillin/sulbactam).
+      </div>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>Hospital-acquired or post-procedural empyema:</strong> include cover for MRSA and <em>Pseudomonas aeruginosa</em> — e.g. vancomycin + cefepime + metronidazole, <strong>OR</strong> vancomycin + piperacillin/tazobactam (dosed for activity against <em>P. aeruginosa</em>).
+      </div>
+
+      <div class="rec red">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE B</span>
+        <strong>Avoid aminoglycosides</strong> in the management of empyema — they are inactivated in empyema fluid.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>No role for intrapleural administration of antibiotics.</strong>
+      </div>
+
+      <div class="rec amber">
+        <span class="badge b-IIb">Class IIb</span><span class="badge b-loe">LOE C</span>
+        <strong>Duration of antibiotic therapy</strong> is influenced by the organism, adequacy of source control, and clinical response.
+      </div>
+
+      <h3>Reasoning &amp; practical points</h3>
+      <ul>
+        <li>Low MRSA / highly resistant Gram-negative risk → 2nd-gen or non-pseudomonal 3rd-gen cephalosporin, or aminopenicillin + β-lactamase inhibitor covers the most commonly identified organisms.</li>
+        <li><strong>Treat anaerobes empirically.</strong> Ampicillin/sulbactam covers a range of anaerobes; ceftriaxone requires addition of metronidazole. Clindamycin is a suitable alternative for most upper GI and respiratory anaerobic infections.</li>
+        <li>Even with a positive monomicrobial aerobic culture, it is often reasonable to continue anaerobic cover — anaerobes are frequently present and inconsistently cultured.</li>
+        <li>Empiric cover for atypical organisms is generally <strong>not</strong> necessary.</li>
+        <li>Vancomycin + meropenem may be indicated if there is history/suspicion of ESBL-producing organisms.</li>
+        <li>In slowly progressing or chronic empyema, empiric therapy can be held until culture results allow directed therapy. <strong>Infectious diseases consultation recommended</strong> for chronic empyema.</li>
+      </ul>
+
+      <h3>Duration</h3>
+      <ul>
+        <li>No comparative trials. Literature reports <strong>2–6 weeks</strong>.</li>
+        <li>Working Group recommends a <strong>minimum of 2 weeks from the time of drainage and defervescence</strong>.</li>
+        <li>Final duration determined by organism sensitivities, adequacy of drainage, and response on follow-up.</li>
+        <li>Transition to oral therapy if: patient responding, source controlled, organism susceptible to orally bioavailable agent, and patient tolerating oral intake.</li>
+      </ul>
+
+      <div class="flag">
+        <b>Anaesthetic / perioperative relevance:</b> Check renal function before vancomycin + piperacillin/tazobactam (nephrotoxicity risk). Vancomycin infusion reactions (flushing, hypotension) can mimic anaphylaxis under anaesthesia — infuse over ≥60 min. Avoid aminoglycosides entirely — poor pleural penetration and inactivation in purulent fluid.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 6. DRAINAGE ============ -->
+  <section class="section" data-title="Pleural Drainage">
+    <button class="sec-head" type="button">
+      <span class="num">6</span>
+      <span class="title">Acute Pleural Empyema — Pleural Drainage</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <h3>Thoracentesis</h3>
+      <div class="rec red">
+        <span class="badge b-III">Class III — No benefit</span><span class="badge b-loe">LOE C</span>
+        <strong>Thoracentesis without pleural drain placement is NOT recommended</strong> for the treatment of parapneumonic effusion or empyema.
+      </div>
+      <p>Thoracentesis is useful for diagnosis of uncomplicated effusion and is a recommended diagnostic step. However, in known pleural infection, <strong>ongoing drainage is required</strong> for adequate treatment.</p>
+
+      <h3>Image-guided drain placement</h3>
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE B</span>
+        <strong>Image-guided pleural drain placement</strong> is useful in the treatment of early-stage, minimally septated empyema.
+      </div>
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        In septated effusions, <strong>small-bore catheters</strong> are recommended in patients who are not surgical candidates.
+      </div>
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE B</span>
+        <strong>Routine drain flushing</strong> is recommended to prevent occlusion.
+      </div>
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE C</span>
+        <strong>Tube thoracostomy should be combined with close CT follow-up</strong> to confirm adequacy of drainage. Persistence of any undrained fluid should prompt additional drains or more aggressive management.
+      </div>
+
+      <h3>Reasoning</h3>
+      <ul>
+        <li>Drainage of infected material is a fundamental part of treatment.</li>
+        <li>No consensus on ideal drain size. Small drains placed with imaging guidance report ~80% success — favourable vs earlier large-bore studies.</li>
+        <li>405-patient study: equivalent success with tubes <strong>≤14 F vs &gt;14 F</strong> — but tube size was <em>not</em> randomised; more complicated effusions/frank pus likely received larger drains.</li>
+        <li>Small-bore tubes are an accepted alternative as first-line therapy in patients amenable to tube thoracostomy alone.</li>
+        <li>Expert opinion holds small-bore catheters are ineffective for thick pus or extensively septated effusions — but data are mixed.</li>
+      </ul>
+
+      <h3>Septation &amp; success of small-bore drainage</h3>
+      <table>
+        <tr><th>US finding</th><th>Success of US-guided small-bore drainage</th></tr>
+        <tr><td>Anechoic (no septation)</td><td>92%</td></tr>
+        <tr><td>Extensive septation</td><td>63%</td></tr>
+      </table>
+      <p>Another study found imaging appearance of empyema was <em>not</em> predictive of tube drainage success/failure. A case series described successful use of small-bore tunneled catheters in 2 patients with chronic complicated empyema who were not surgical candidates.</p>
+
+      <h3>Causes of drain failure</h3>
+      <ul>
+        <li><strong>Occlusion</strong> — more common in empyema than in uncomplicated effusion or pneumothorax. Reported blockage rates 11–30%; one large study showed <strong>64%</strong> in its empyema subgroup.</li>
+        <li><strong>Dislodgement</strong> — common. CXR is insensitive for malpositioned tubes. <strong>CT is superior to CXR</strong> in identifying drain dislodgement or undrained pleural fluid.</li>
+      </ul>
+
+      <div class="note">
+        <b>Flushing protocol:</b> Ideal frequency/volume not well established, but one study showed <b>20 mL sterile saline every 6 hours</b> reduced occlusion rate.
+      </div>
+
+      <p>Any undrained loculations should be pursued aggressively with additional or larger drains. Failure to achieve complete pleural drainage or failure of clinical improvement should prompt more aggressive management — <strong>lytic therapy or surgery</strong>.</p>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 7. FIBRINOLYTICS ============ -->
+  <section class="section" data-title="Intrapleural Fibrinolytics">
+    <button class="sec-head" type="button">
+      <span class="num">7</span>
+      <span class="title">Acute Pleural Empyema — Intrapleural Fibrinolytic Therapy</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec amber">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE A</span>
+        <strong>Intrapleural fibrinolytics should NOT be used routinely</strong> for complicated pleural effusions and early empyemas.
+      </div>
+
+      <h3>Reasoning</h3>
+      <ul>
+        <li>Used for empyema and complicated pleural effusions for 65 years; biologically plausible before an established pleural rind forms.</li>
+        <li>Systematic review (PRISMA) identified 8 prospective, placebo-controlled trials since 1997.</li>
+      </ul>
+
+      <h3>Key randomised trials since 2000 (Table 1 of guideline)</h3>
+      <table>
+        <tr><th>Study</th><th>Year</th><th>n</th><th>Chest tube size (F)</th><th>Intervention</th></tr>
+        <tr><td>Tuncozgur</td><td>2001</td><td>49</td><td>24–36</td><td>Urokinase 100,000 IU OD × 3 d</td></tr>
+        <tr><td>Diacon</td><td>2004</td><td>53</td><td>24–28</td><td>Streptokinase 250,000 IU OD × 7 d</td></tr>
+        <tr><td>Misthos</td><td>2005</td><td>127</td><td>28–32</td><td>Streptokinase 250,000 IU OD × 3 d</td></tr>
+        <tr><td><b>MIST1</b></td><td>2005</td><td>454</td><td>12–20</td><td>Streptokinase 250,000 IU OD × 3 d</td></tr>
+        <tr><td><b>MIST2</b></td><td>2011</td><td>210</td><td>&lt;15</td><td>Alteplase 10 mg bid × 3 d + DNase 5 mg bid × 3 d</td></tr>
+        <tr><td>Thommi</td><td>2012</td><td>68</td><td>14–28</td><td>Alteplase 25 mg OD × 3 d</td></tr>
+      </table>
+
+      <h3>Trial outcomes</h3>
+      <ul>
+        <li><strong>MIST1:</strong> streptokinase increased the amount of pleural fluid drainage, but was <em>not</em> associated with reduced mortality, frequency of surgery, or length of hospital stay.</li>
+        <li><strong>MIST2:</strong> combination of intrapleural tPA + DNase produced statistically and clinically significant improvement in pleural drainage and reduction in hospital stay. There was a <strong>75% reduction in the need for surgical intervention at 3 months</strong>.</li>
+        <li>2012 meta-analysis: fibrinolytic therapy is <em>potentially</em> beneficial in adults, but there is <strong>insufficient evidence to support routine use</strong> for all patients. Patient and treatment heterogeneity confound results.</li>
+        <li>British Thoracic Society 2010: no indication for routine intrapleural fibrinolytics — but that recommendation predates MIST2.</li>
+      </ul>
+
+      <div class="note">
+        <b>Interpretation caveat:</b> The primary endpoint of most studies was reduction of pleural fluid on CXR after fibrinolytic administration — not long-term outcomes such as pulmonary reserve or time to return to work. Under the care of a dedicated thoracic surgeon, thoracoscopic or open intervention remains the gold standard for complicated pleural effusions/empyemas.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 8. SURGICAL MANAGEMENT ACUTE ============ -->
+  <section class="section" data-title="Surgical Management — Acute">
+    <button class="sec-head" type="button">
+      <span class="num">8</span>
+      <span class="title">Acute Pleural Empyema — Surgical Management (VATS vs Open)</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE B</span>
+        <strong>Video-assisted thoracoscopic surgery (VATS) should be the first-line approach in all patients with stage II acute empyema.</strong>
+      </div>
+
+      <h3>Goals of operative intervention</h3>
+      <ul>
+        <li><strong>(1)</strong> Complete evacuation of potentially infected fluid and/or material.</li>
+        <li><strong>(2)</strong> Complete re-expansion of the lung.</li>
+      </ul>
+
+      <h3>Technical considerations with either approach</h3>
+      <ul>
+        <li>Safe access into the chest.</li>
+        <li>Drainage of pleural space.</li>
+        <li>Manoeuvres to allow full expansion of lung (e.g. release of inferior pulmonary ligament) resulting in obliteration of dead space in the hemithorax.</li>
+        <li>By definition, <strong>stage II empyema does not have an organised pleural peel</strong>, so formal decortication is not necessary.</li>
+        <li>In clinical practice, patients rarely present with a "pure" stage II empyema — rather a "mixed stage" with areas of fibrinous organisation on the pleural surface.</li>
+      </ul>
+
+      <div class="note">
+        <b>Definition of VATS in this guideline:</b> The distinguishing feature is the <b>absence of rib spreading</b>, with avoidance of retractors or instruments that place pressure on the underlying intercostal neurovascular bundle. The number or size of incisions used for port access is less important than rib distraction.
+      </div>
+
+      <h3>Potential benefits of VATS over open thoracotomy</h3>
+      <ul>
+        <li>Improved postoperative pain control.</li>
+        <li>Shorter length of stay.</li>
+        <li>Less blood loss.</li>
+        <li>Less respiratory compromise.</li>
+        <li>Reduction in postoperative complications including 30-day mortality.</li>
+        <li>Lower cost compared with open thoracotomy (although not studied specifically in empyema, VATS has shown significant cost savings for pulmonary wedge resections and lobectomies in 3 large retrospective database analyses).</li>
+      </ul>
+
+      <h3>Potential harm of VATS over open thoracotomy</h3>
+      <ul>
+        <li>Little potential harm as an initial intervention given the overall safety profile of diagnostic thoracoscopy and the relative ease of conversion to open thoracotomy if needed.</li>
+        <li>Potential contraindications: <strong>inability to tolerate one-lung ventilation</strong> and <strong>severe coagulopathy</strong>.</li>
+        <li>Potential drawbacks: increased operative time, increased cost, steeper learning curve, incomplete therapy requiring additional procedures. (Many studies predate advances in technology, training and familiarity.)</li>
+      </ul>
+
+      <h3>Summary of relevant evidence</h3>
+      <p><strong>Quality:</strong> Retrospective, cohort (LOE B) · <strong>Quantity:</strong> 10+ studies · <strong>Consistency:</strong> Satisfactory</p>
+      <ul>
+        <li>Chambers et al. reviewed 14 studies. Majority were single-institution retrospective cohort studies, n = 48 to 420; most groups mixed stage II and III empyema.</li>
+        <li>Outcomes consistently demonstrated that VATS offers superior clinical outcomes for treatment of empyema, with decreased length of stay, less pain, and less overall morbidity.</li>
+        <li><strong>Limitations:</strong> stage of empyema varied among and within studies; variance in description of VATS drainage vs decortication; inherent selection bias of individual surgeons favouring open vs VATS; "pre-procedure probability" of conversion influences the decision to attempt VATS and the thoracoscopic time tolerated before opening.</li>
+        <li>Tong et al.: comparing patients requiring conversion to open vs successful VATS, there were <em>no significant differences</em> in preoperative factors such as previous cardiac or general thoracic procedures.</li>
+        <li>Shahin et al.: demonstrated a departmental learning curve over 3 years after introducing VATS; with favourable results they consider VATS first choice not just for acute/early empyema but also advanced disease.</li>
+      </ul>
+
+      <h3>Expert clinical opinion — when to convert to open thoracotomy</h3>
+      <p><strong>Universal indications for immediate conversion:</strong></p>
+      <ul>
+        <li>Uncontrollable bleeding.</li>
+        <li>Injury to structures not amenable to thoracoscopic repair.</li>
+        <li>Acute intolerance of single-lung ventilation.</li>
+      </ul>
+      <p><strong>Additional empyema-specific factors prompting consideration of conversion:</strong></p>
+      <ul>
+        <li>Lack of surgical progression.</li>
+        <li>Failure to ultimately achieve the 2 goals of empyema therapy (evacuation and expansion).</li>
+      </ul>
+      <p>Published conversion rates range from <strong>0% to 41%</strong>; the largest study (Duke) reported <strong>11.4%</strong>. No studies define a specific time limit after which surgeons should abort VATS in favour of thoracotomy — most authors are subjective, stating thoracotomy should be performed if VATS is not successful "in a timely fashion."</p>
+
+      <div class="flag">
+        <b>Anaesthetist's translation:</b> Expect one-lung ventilation, lateral decubitus positioning with the empyema side up, and a real possibility of conversion to open thoracotomy. Have a double-lumen tube or bronchial blocker plan, check tube position with fibreoptic bronchoscopy, and prepare for possible major blood loss and prolonged single-lung ventilation.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 9. CHRONIC EMPYEMA ============ -->
+  <section class="section" data-title="Chronic Empyema">
+    <button class="sec-head" type="button">
+      <span class="num">9</span>
+      <span class="title">Chronic Empyema</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <h3>Overview — stage III</h3>
+      <ul>
+        <li>The turbid thick fluid of stage II begins to organise and form granulation tissue.</li>
+        <li>Granulation tissue + underlying inflammation → formation of a <strong>peel</strong> compressing the visceral pleural surface.</li>
+        <li>Continuation → <strong>contraction of the hemithorax</strong> with rib space narrowing and <strong>mediastinal shift</strong> to the affected side.</li>
+        <li>Pleural drainage procedures are no longer effective at this stage.</li>
+        <li>Effective surgical treatment = removal of purulent collections + debridement of infected tissue + <strong>obliteration of the empyema space</strong> to prevent recurrence.</li>
+        <li>Choice of initial approach depends on the condition of the patient, pleural space, and underlying lung parenchyma.</li>
+      </ul>
+
+      <h3>Decortication</h3>
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE B</span>
+        <strong>Decortication is reasonable</strong> in patients with chronic empyemas who are medically operable to tolerate major thoracic surgery.
+      </div>
+      <div class="rec amber">
+        <span class="badge b-IIb">Class IIb</span><span class="badge b-loe">LOE C</span>
+        <strong>No compelling evidence that epidural catheters cannot be used safely</strong> in patients with chronic empyema if they are otherwise low risk for epidural abscess.
+      </div>
+
+      <p><strong>Technique:</strong> peeling off the granulation tissue and/or fibrous peel overlying the visceral (and at times parietal) pleura to allow expansion, plus debridement of infected tissue.</p>
+      <ul>
+        <li>Frankly necrotic lung parenchyma can be resected if warranted — e.g. patients with a frank abscess serving as a source of sepsis, or other symptomatology such as haemoptysis.</li>
+        <li><strong>Extensive resections should be avoided as much as possible</strong> — bronchial stumps in infected fields are prone to fistulise.</li>
+        <li>If bronchopleural fistulas (BPFs) are present, close them if possible.</li>
+        <li>Where lung is resected or fistulas are present, muscle flaps may be appropriate for closing the fistula and/or filling space from incomplete expansion or needed parenchymal resection.</li>
+        <li>Limited studies have examined the functional impact of decortication on lung function and performance status.</li>
+      </ul>
+
+      <h3>Epidural anaesthesia for postoperative pain control</h3>
+      <div class="note">
+        <b>Benefits:</b> It is well accepted that an epidural catheter for central analgesia improves pain and postoperative function after thoracic surgery.
+      </div>
+      <div class="flag">
+        <b>Concern:</b> Epidural catheters in empyema patients have generally been avoided because of the risk of epidural abscess. The 3 main risk factors for epidural abscess of any aetiology are:<br>
+        1. Compromised immunity<br>
+        2. Physical disruption of the spinal column<br>
+        3. A definitive source of infection<br><br>
+        <b>To date, no studies have causally linked epidural abscess to placement of an epidural catheter in the presence of empyema.</b>
+      </div>
+      <p><strong>Rate of epidural abscess</strong> (all populations): from <strong>1.1 in 100,000</strong> to as frequent as <strong>1 in 1,930</strong> patients. Rare but severe consequences — septic shock and paralysis. Studies specifically examining incidence/risk in empyema are difficult to perform given the low overall incidence and understandable reluctance to attempt catheter insertion in pleural space infection.</p>
+
+      <h3>Space filling of chronic empyema cavities</h3>
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>Tissue flaps</strong> — pedicled muscle flaps or omentum — can be useful to fill empyema cavities where space is created by incomplete lung expansion, or to close a BPF.
+      </div>
+      <div class="rec amber">
+        <span class="badge b-IIb">Class IIb</span><span class="badge b-loe">LOE C</span>
+        <strong>Thoracoplasty</strong> with resection of ribs may be considered in select cases to obliterate the infected pleural space where previous measures (muscle flaps, open window) have failed.
+      </div>
+
+      <p><strong>Reasoning:</strong></p>
+      <ul>
+        <li>Incomplete re-expansion of the lung or required resection for necrotic parenchyma may require tissue flaps (omentum or muscle) to prevent reaccumulation of infected pleural fluid. Muscle flaps have also been used to help close BPFs.</li>
+        <li>Any extrathoracic muscle can be used; common pedicled flaps: <strong>serratus anterior, latissimus dorsi, pectoralis major</strong>. Lower abdominal muscle groups can be used as complex flaps but should be limited to when chest wall musculature is unavailable. <strong>Omental flaps</strong> also can be used — potential advantage of inherent wound healing properties, but omental harvest requires abdominal entry, which could lead to another infected cavity.</li>
+        <li>Muscle flaps are best applied in <strong>relatively clean wounds devoid of frank purulence</strong>. They may be placed at the first operation or reserved after debridement with fresh granulation tissue via open thoracic window techniques.</li>
+        <li>Adjunctive measures to decrease the size of the thoracic cavity: <strong>pleural tenting</strong> and <strong>thoracoplasty</strong>. Experience with pleural tenting in non-mycobacterial empyema is limited.</li>
+        <li>Schede thoracoplasty and its modern versions are <strong>morbid and disfiguring</strong>; reserved for extreme cases where previous muscle flaps or open thoracic window techniques have failed.</li>
+      </ul>
+
+      <h3>Prolonged treatment measures</h3>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>Open thoracic window</strong> with marsupialisation of the infected thoracic cavity, resection of several ribs, and dressing changes — reasonable for patients with chronic empyema who are medically unfit to tolerate decortication and tissue flap placement, or those with chronic empyema with a BPF.
+      </div>
+
+      <div class="rec amber">
+        <span class="badge b-IIb">Class IIb</span><span class="badge b-loe">LOE C</span>
+        <strong>Wound VAC</strong> may be a reasonable alternative to daily dressing changes to debride chronic pleural cavities being treated with an open thoracic window. <strong>Exercise caution when there is a BPF or visceral pleural rents leading to large air leaks.</strong>
+      </div>
+
+      <div class="rec amber">
+        <span class="badge b-IIb">Class IIb</span><span class="badge b-loe">LOE C</span>
+        <strong>Empyema tube</strong> draining a chronic empyema cavity may be considered for chronic infections with a small persistently infected space or small BPF — especially in patients medically unfit to tolerate decortication and tissue flap placement.
+      </div>
+
+      <p><strong>Reasoning:</strong></p>
+      <ul>
+        <li>Patients with chronic empyema are often debilitated or have a BPF leading to uncontrolled empyema; often unable to tolerate extensive decortication ± parenchymal resection or tissue flap placement.</li>
+        <li>A BPF may create a grossly infected space that needs to be controlled before definitive operative repair.</li>
+        <li><strong>Open thoracic window</strong> allows infectious and fistula control, either definitively or as part of a stepwise operative plan. Created by marsupialising the pleural cavity after resection of rib space. Patients then undergo dressing changes until the cavity is debrided and granulation tissue forms.</li>
+        <li><strong>VAC dressings</strong> — recent single-institution studies evaluated VAC placement as an alternative to dressing changes. Placing a closed-suction sponge device into an infected cavity may provide superior debridement and promotion of granulation tissue with less patient discomfort (less frequent sponge changes).</li>
+      </ul>
+
+      <div class="flag">
+        <b>VAC + BPF warning (key anaesthetic/critical care point):</b> Caution when placing VACs where a BPF or rents in the visceral pleura lead to substantial air leaks. In these settings, <b>respiratory compromise may result from suctioning significant portions of the patient's lung volume</b>. Placement of non-adherent material to seal air leaks — such as Vaseline Petrolatum Gauze or similar — may allow VAC use in these settings. Further investigation of this technology is warranted.
+      </div>
+
+      <ul>
+        <li>Similar to open thoracic windows, pleural drainage catheters (chest tubes) may be left in chronic empyema cavities to drain infected fluid where lung expansion is incomplete. May be placed at the time of surgical decortication or as a first measure to drain a chronic empyema in a medically unfit patient.</li>
+        <li>Large infected pleural cavities may best be drained with an open thoracic window — especially if grossly infected tissue is encountered or a BPF is present, and particularly if lung expansion through decortication or tissue placement to cover the BPF is not possible.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 10. POSTRESECTIONAL ============ -->
+  <section class="section" data-title="Postresectional & Postpneumonectomy Empyema">
+    <button class="sec-head" type="button">
+      <span class="num">10</span>
+      <span class="title">Postresectional Empyema &amp; Bronchopleural Fistula</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <h3>Postpneumonectomy empyema</h3>
+
+      <div class="rec red">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE C</span>
+        <strong>Prompt intervention to identify or rule out a BPF and provide drainage of sepsis</strong> in patients suspected of having postpneumonectomy empyema.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>Aggressive surgical approach</strong> including antibiotics, serial debridement, closure of the BPF when present, and obliteration of the residual pleural space using vascularized tissue transposition is a reasonable strategy.
+      </div>
+
+      <h3>Epidemiology &amp; mortality</h3>
+      <ul>
+        <li>Infection of the empty pleural space after pneumonectomy is serious and potentially fatal — reported mortality <strong>28% to 50%</strong>.</li>
+        <li>Incidence: <strong>5% after standard pneumonectomy</strong>, <strong>10% after completion pneumonectomy</strong>.</li>
+        <li>BPF is found in <strong>more than 80%</strong> of cases of postpneumonectomy empyema.</li>
+      </ul>
+
+      <h3>Initial assessment &amp; management</h3>
+      <ul>
+        <li><strong>First priority:</strong> identify presence or absence of a BPF. A fistula should be <em>presumed present</em> until accurately determined by <strong>flexible bronchoscopy under local anaesthesia in a semiupright position</strong>.</li>
+        <li>If the patient presents acutely with features of a BPF, contralateral pneumonitis and respiratory distress: initial management begins with <strong>emergency chest tube drainage</strong> of the cavity to control infection and stop contralateral spillage.</li>
+        <li><strong>Positioning:</strong> patient should preferentially be placed in the <strong>lateral decubitus position with the pneumonectomy side DOWN</strong> until drainage of the pleural space is obtained.</li>
+        <li>In empyema <em>without</em> BPF, initial management follows established rules for managing any abscess: adequate pleural drainage, appropriate parenteral antibiotics, removal of necrotic and infected tissue, obliteration of residual pleural space.</li>
+      </ul>
+
+      <div class="note">
+        <b>Evidence base:</b> No randomised or prospective studies analysed the best strategy for postpneumonectomy empyema — recommendations are based on single-institution retrospective studies and expert opinion.
+      </div>
+
+      <h3>The Clagett procedure (and its modification)</h3>
+      <ul>
+        <li>Originally described by Clagett and Geraci — a <strong>2-stage procedure</strong>: open pleural drainage → frequent wet-to-dry dressing changes → when the thorax is clean, secondary chest wall closure with obliteration of the pleural cavity using an <strong>antibiotic solution</strong>.</li>
+        <li>If a BPF is present, attempt at the time of debridement to locate and reclose the open bronchial stump.</li>
+        <li>Even if the BPF developed relatively soon after pneumonectomy, identifying the bronchial stump can be technically challenging because of rapid effacement of hilar structures.</li>
+        <li><strong>Trick:</strong> filling the chest cavity with a small amount of saline and having the anaesthetist ventilate the bronchial stump can help identify a stream of air bubbles that can be followed to the bronchial stump.</li>
+      </ul>
+
+      <h3>Principles when reclosing the bronchus</h3>
+      <ul>
+        <li>Minimise trauma to the end of the bronchus.</li>
+        <li>Preserve blood supply all the way out to the cut end of the bronchus.</li>
+        <li>Carefully approximate the cut edges of the bronchus.</li>
+        <li>Provide adequate tissue reinforcement of the bronchial closure with vascularized tissue.</li>
+      </ul>
+      <p>Because failure is caused most often by a persistent or recurrent fistula, the original Clagett technique has been modified to include <strong>transposition of a well-vascularized muscle flap</strong> to cover and buttress the pneumonectomy stump to prevent further ischaemia and necrosis.</p>
+
+      <h3>Contemporary outcomes</h3>
+      <ul>
+        <li><strong>Zaheer et al. (2006), n = 84:</strong> open pleural drainage, serial operative debridements, eventual chest closure after filling the pleural cavity with antibiotic solution. BPF present in 55 patients, closed in all. Vascularized muscle flap used to reinforce the bronchial stump in 60 patients (51 with BPF, 9 without). <strong>81%</strong> healed chest wall without recurrent infection; BPF remained closed in all patients.</li>
+        <li><strong>Schneiter et al. (2008), n = 75:</strong> serial open surgical debridement, temporary closure with negative pressure wound therapy, and iodine-soaked dressings. BPFs closed and reinforced with tissue when present. In <strong>95%</strong>, the chest could be closed definitively after filling with antibiotic solution. Postpneumonectomy empyema treated successfully in <strong>97.3%</strong>; 10 patients required a second treatment cycle. 90-day mortality <strong>4%</strong>.</li>
+      </ul>
+
+      <h3>Empyema associated with BPF</h3>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>Closure of BPFs should be attempted with a combination of primary closure and buttressing with a well-vascularized transposed soft-tissue pedicle.</strong>
+      </div>
+
+      <div class="rec amber">
+        <span class="badge b-IIb">Class IIb</span><span class="badge b-loe">LOE C</span>
+        <strong>Transposition of the omentum is preferred over skeletal muscle flaps or mediastinal soft tissue</strong>, and this should be attempted after the purulent fluid has been drained completely and the pleural cavity has a surface of granulation tissue.
+      </div>
+
+      <h3>BPF — background</h3>
+      <ul>
+        <li>Historically frequent after pulmonary resection (reported 28% in the era of tuberculosis surgery and less effective antibiotics).</li>
+        <li>More contemporaneously: <strong>0.7% to 7.5%</strong> after pulmonary resections.</li>
+        <li>Risk is lower for lobectomy than pneumonectomy.</li>
+        <li><strong>Reported risk factors:</strong> index operation for benign disease, right pneumonectomy, completion pneumonectomy, diminished pulmonary reserve, extended lymph node dissection.</li>
+        <li>No prospective studies evaluating different treatment strategies — literature limited to single-institution retrospective case series.</li>
+        <li>An empyema associated with a BPF is most often described after pneumonectomy; less often after lobectomy.</li>
+      </ul>
+
+      <h3>Closure devices</h3>
+      <ul>
+        <li>Bronchoscopic interventions have been attempted with variable results.</li>
+        <li>Jiang et al.: 58 pneumonectomy patients, 8 developed BPF. Endoscopic embolisation attempted in 5 — unsuccessful in each case.</li>
+        <li>Several case reports and small series describe various devices: <strong>Amplatzer vascular occlusion devices</strong> ± bioglue; cyanoacrylate-based glue, fibrin compounds, gelatin sponges, chemical cautery, endobronchial silicone spigots, submucosal injection of tissue expanders — all in small numbers of cases.</li>
+      </ul>
+
+      <h3>Fistula associated with necrotizing pneumonia</h3>
+      <ul>
+        <li>BPFs associated with thoracic infections occur in the majority of patients after anatomical surgical resections. Less frequently, fistulae occur spontaneously in the setting of necrotizing pneumonia.</li>
+        <li>In children, traditionally managed with prolonged chest tube duration.</li>
+        <li>More recently described: rotation of a single segment of the <strong>serratus anterior muscle</strong> into the chest cavity to close the fistula at the time of thoracoscopic debridement. In 20 paediatric patients, median time to resolution of fever was 2 days and postoperative length of stay was 9 days.</li>
+      </ul>
+
+      <h3>Management of the residual thoracic space</h3>
+
+      <div class="rec amber">
+        <span class="badge b-IIb">Class IIb</span><span class="badge b-loe">LOE B</span>
+        <strong>Primary chest closure</strong> should be attempted with the chest cavity filled with antibiotic solution, after granulation tissue has formed and if the patient is medically fit to undergo another operation.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>Creation of a permanent open thoracostomy window</strong> is an acceptable treatment strategy for patients treated for empyema with a recurrent or persistent BPF who are medically unfit for another operation, or for those with recurrent cancer.
+      </div>
+
+      <p><strong>Three general approaches to the thoracic space:</strong></p>
+      <ul>
+        <li>Permanent open thoracostomy window.</li>
+        <li>After adequate drainage, close the space and fill with antibiotic solution.</li>
+        <li>Obliterate the thoracic space using soft-tissue muscle or omental flaps ± partial thoracoplasty.</li>
+      </ul>
+
+      <div class="note">
+        <b>Eloesser flap:</b> A one-way soft-tissue flap valve allowing drainage of pleural fluid while preventing re-entrance of air. Required partial resection of 2–3 ribs and creation of a U-shaped soft-tissue flap folded into the chest cavity. Others have been unable to recapitulate these results; many adopted a modified version with an inverted U-shaped muscle flap. Objective: allow dependent drainage of the pleural space and provide access for frequent packing.
+      </div>
+
+      <h3>Outcomes from case series</h3>
+      <ul>
+        <li><strong>Puskas et al.:</strong> 131 patients treated for empyema associated with BPF after pneumonectomy. In 16, the thoracic space was obliterated at the time of initial drainage using omentum or muscle ± partial thoracoplasty. Remaining cavities resolved in 5 with adequate drainage; still open in 9 at last follow-up; 1 lost to follow-up. Clagett procedure performed in 10 after successful BPF closure — 6 cleared the infection after a single Clagett procedure; the other 4 underwent 2–5 procedures to sterilise the chest cavity. 2 had chest permanently closed, 1 required a permanent thoracostomy window, 1 died.</li>
+        <li><strong>Regnard et al.:</strong> 46 patients with postresection empyemas treated with open thoracostomy windows; 14 also had a concomitant BPF. Open thoracostomy window was definitive treatment in 10; in only 1 case did the window close spontaneously. 36 underwent closure with muscle or omental transposition flaps. 3 deaths within the first 6 months (2 related to recurrent empyema and sepsis, 1 to recurrent cancer). Intrathoracic flap transposition successful in <strong>27/36 (75%)</strong>; in the remaining 9 (25%), thoracostomy windows were reopened to drain recurrent infections. Presence of a BPF did not impact success of drainage or subsequent closure.</li>
+        <li><strong>Massera et al.:</strong> 31 patients with postpneumonectomy empyema (26 with BPF) treated with open thoracostomy windows; closure attempted in 15 with muscle transpositions. Factors correlating with successful closure: <strong>late development of empyema</strong> and <strong>immediate creation of a thoracostomy window after identification of the empyema</strong>. Trends favouring success (not statistically significant): female patients, left-sided pneumonectomy, index operations for infectious processes, neoadjuvant chemotherapy.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 11. PAEDIATRICS ============ -->
+  <section class="section" data-title="Paediatrics">
+    <button class="sec-head" type="button">
+      <span class="num">11</span>
+      <span class="title">Paediatrics</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="rec">
+        <span class="badge b-I">Class I</span><span class="badge b-loe">LOE A</span>
+        <strong>Tube thoracostomy with or without subsequent instillation of fibrinolytic agents</strong> should be attempted as the initial treatment for paediatric patients with empyema.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE B</span>
+        <strong>Thoracoscopic debridement and drainage</strong> is recommended in paediatric patients not responding adequately to tube thoracostomy and fibrinolytic instillation.
+      </div>
+
+      <div class="rec">
+        <span class="badge b-IIa">Class IIa</span><span class="badge b-loe">LOE C</span>
+        <strong>VATS debridement is preferred rather than open thoracotomy</strong> for surgical management of empyema in the paediatric population.
+      </div>
+
+      <h3>Background</h3>
+      <p>Management of paediatric empyema remains controversial. Approaches range from conservative (prolonged chest tube + antibiotics) to aggressive surgical intervention to an intermediary approach with fibrinolytic instillation through chest tubes.</p>
+
+      <h3>Meta-analysis (54 studies, 1981–2004; n = 3,418)</h3>
+      <table>
+        <tr><th>Initial treatment</th><th>n</th><th>Mortality</th><th>Failure rate</th><th>Length of stay</th></tr>
+        <tr><td>Non-operative (antibiotics, thoracentesis, tube thoracostomy)</td><td>3,418</td><td>3.3%</td><td>23.6%</td><td>20.0 days</td></tr>
+        <tr><td>Primary fibrinolytics</td><td>64</td><td>0%</td><td>9.3%</td><td>—</td></tr>
+        <tr><td>Primary surgery</td><td>363</td><td>0% perioperative</td><td>2.5%</td><td>10.8 days</td></tr>
+      </table>
+      <ul>
+        <li>Among non-operative failures: <strong>76.7% underwent thoracotomy</strong> and <strong>11.2% had VATS</strong>.</li>
+        <li>VATS vs thoracotomy: VATS conversion rate 1.1%, failure rate 2.8% — favourable vs initial thoracotomy (3.3% failure rate).</li>
+      </ul>
+
+      <h3>Randomised evidence</h3>
+      <ul>
+        <li><strong>Marhuenda et al. (multicentre RCT, n = 103):</strong> thoracostomy tube + urokinase vs VATS. Included only patients ≤15 years requiring thoracostomy tube drainage of a parapneumonic effusion with sonographic evidence of septations. VATS objective: disrupt septations, drain purulent fluid, irrigate — <em>did not</em> include complete decortication. Urokinase given twice daily for 3 days. <strong>No differences</strong> in post-treatment length of stay (10 vs 9 days), total length of stay (14 vs 13 days), or febrile days after treatment (4 vs 6 days). Secondary interventions: 15% (VATS) vs 10% (urokinase).</li>
+        <li>Three other prospective randomised studies compared initial VATS debridement vs tube thoracostomy + fibrinolytics. <strong>No mortalities in either group in any study.</strong> Primary outcome was hospital length of stay:
+          <ul>
+            <li>No difference in 2 studies (6 vs 6 days; 6.9 vs 8.8 days).</li>
+            <li>Significantly shorter in the VATS group in one study (5.8 vs 13.3 days).</li>
+          </ul>
+        </li>
+        <li>Time to fever resolution: no difference in one study (3.1 vs 3.8 days, P = .46); different in another (2.8 vs 9.6 days, P &lt; .001).</li>
+        <li><strong>Cost:</strong> Sonnappa et al. — VATS more costly than fibrinolytics ($11,379 vs $9,127, P &lt; .001). Kurt et al. — fibrinolytics less costly than VATS ($7,600 vs $11,700, P = .02). St. Peter et al. — no difference ($19,714 vs $21,947, P = .312).</li>
+      </ul>
+
+      <div class="note">
+        <b>Study design differences:</b> Kurt et al. (n = 18) — non-operative group received chest tube and later fibrinolytics if needed for incomplete drainage; additional catheters placed if inadequate resolution. Sonnappa et al. (n = 60) and St. Peter et al. (n = 36) — fibrinolytics administered by protocol immediately after chest tube placement. A different fibrinolytic agent was used in each of the three studies.
+      </div>
+
+      <h3>Systematic review (Gates et al., 44 retrospective studies)</h3>
+      <table>
+        <tr><th>Treatment</th><th>Studies</th><th>Patients</th></tr>
+        <tr><td>Chest tube alone</td><td>16</td><td>611</td></tr>
+        <tr><td>Chest tube + fibrinolytics</td><td>10</td><td>83</td></tr>
+        <tr><td>VATS</td><td>22</td><td>449</td></tr>
+        <tr><td>Thoracotomy</td><td>13</td><td>226</td></tr>
+      </table>
+      <ul>
+        <li>Shorter hospital stay with VATS or thoracotomy vs non-operative treatment.</li>
+        <li>Trend toward shorter duration of fever in surgically treated patients.</li>
+        <li>Authors concluded the weight of evidence favoured <strong>early surgical treatment</strong> for paediatric empyema.</li>
+        <li>Postoperative length of stay: VATS 10.5 days vs thoracotomy 9.9 days.</li>
+        <li>More studies reported VATS than thoracotomy, with a strong trend toward more VATS publications in recent years.</li>
+        <li>Prospective randomised studies have all compared VATS (rather than thoracotomy) to chest tube + fibrinolytics — implying a general shift among practising surgeons away from open thoracotomy to VATS.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 12. ANAESTHETIC IMPLICATIONS ============ -->
+  <section class="section" data-title="Anaesthetic Implications">
+    <button class="sec-head" type="button">
+      <span class="num">12</span>
+      <span class="title">Anaesthetist's Practical Summary (derived from the guideline)</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <div class="note">
+        This section is a <b>practical synthesis</b> for anaesthetists, drawn from the recommendations and reasoning above. It is not verbatim guideline text — always refer to the source document for the formal recommendations.
+      </div>
+
+      <h3>Preoperative assessment</h3>
+      <ul>
+        <li>Assess and optimise sepsis — these patients may present late, malnourished (hypoalbuminaemia &lt; 30 g/dL), hyponatraemic (&lt; 130 mmol/L), with raised CRP (&gt; 100 mg/L).</li>
+        <li>Review CT chest for: loculations, extent of disease, pleural thickening, "split pleura sign", air bubbles in the effusion, and any underlying cause (malignancy, oesophageal rupture, foreign body).</li>
+        <li>Identify aspiration risk — anaerobic empyema is associated with poor dental hygiene and aspiration.</li>
+        <li>Check renal function and allergies before antibiotic dosing (vancomycin, piperacillin/tazobactam, cephalosporins).</li>
+        <li>Review previous thoracic surgery — relevant for VATS conversion risk.</li>
+      </ul>
+
+      <h3>Airway &amp; lung isolation</h3>
+      <ul>
+        <li>Plan for <strong>one-lung ventilation</strong> — double-lumen tube or bronchial blocker.</li>
+        <li>Confirm tube position with fibreoptic bronchoscopy.</li>
+        <li>Anticipate difficult lung isolation due to adhesions, loculations, and distorted anatomy.</li>
+        <li><strong>Inability to tolerate one-lung ventilation is a potential contraindication to VATS</strong> — and is also a universal indication for immediate conversion to open thoracotomy if it occurs acutely.</li>
+        <li>Severe coagulopathy is a potential contraindication to VATS.</li>
+      </ul>
+
+      <h3>Positioning</h3>
+      <ul>
+        <li><strong>Decortication / VATS for acute empyema:</strong> lateral decubitus, empyema side <em>up</em>.</li>
+        <li><strong>Postpneumonectomy empyema with suspected BPF and contralateral spillage:</strong> lateral decubitus with the <strong>pneumonectomy side DOWN</strong> until drainage of the pleural space is obtained — this protects the contralateral lung from soiling.</li>
+      </ul>
+
+      <h3>Bronchopleural fistula — intraoperative priorities</h3>
+      <ul>
+        <li>BPF is present in &gt; 80% of postpneumonectomy empyema. Presume it is present until excluded by flexible bronchoscopy.</li>
+        <li>Avoid positive pressure to the fistula side; isolate the lung early.</li>
+        <li>Have fibreoptic bronchoscopy immediately available — the surgical team may ask for ventilation to help identify the stump via air bubbles after filling the chest with saline.</li>
+        <li>Ventilate with low airway pressures and small tidal volumes where possible.</li>
+        <li>Monitor for contralateral soiling and sudden deterioration.</li>
+      </ul>
+
+      <h3>Analgesia</h3>
+      <ul>
+        <li>Thoracic epidural analgesia improves pain and postoperative function after thoracic surgery.</li>
+        <li><strong>Class IIb recommendation:</strong> there is no compelling evidence that epidural catheters cannot be used safely in chronic empyema if the patient is otherwise at low risk for epidural abscess.</li>
+        <li>Epidural abscess risk factors to consider: <strong>compromised immunity, physical disruption of the spinal column, a definitive source of infection</strong>.</li>
+        <li>No studies causally link epidural abscess to epidural catheter placement in the presence of empyema. Rate in all populations: 1.1 per 100,000 to 1 in 1,930 — rare but potentially catastrophic (septic shock, paralysis).</li>
+        <li>Alternatives: paravertebral block, erector spinae plane block, intercostal blocks, multimodal systemic analgesia.</li>
+      </ul>
+
+      <h3>Antibiotics — anaesthetic implications</h3>
+      <ul>
+        <li><strong>Avoid aminoglycosides</strong> — inactivated in empyema fluid (Class I, LOE B).</li>
+        <li>No role for intrapleural antibiotics (Class IIa, LOE C).</li>
+        <li>Vancomycin + piperacillin/tazobactam: monitor renal function; watch for vancomycin infusion reaction (flushing/hypotension) which can mimic anaphylaxis under anaesthesia.</li>
+        <li>Continue anaerobic cover even with a positive monomicrobial aerobic culture.</li>
+      </ul>
+
+      <h3>Chest drains &amp; VAC</h3>
+      <ul>
+        <li>Routine drain flushing is recommended to prevent occlusion — typical protocol 20 mL sterile saline every 6 hours.</li>
+        <li>Blockage rates in empyema are high (11–30%, up to 64% in one large study).</li>
+        <li>CT is superior to CXR for detecting drain dislodgement or undrained fluid.</li>
+        <li><strong>VAC caution:</strong> with a BPF or visceral pleural rents causing large air leaks, suction can compromise ventilation by removing large portions of lung volume. Non-adherent material (e.g. Vaseline gauze) may be used to seal leaks to allow VAC use.</li>
+        <li>Watch for <strong>re-expansion pulmonary oedema</strong> after drainage of a chronically collapsed lung — a recognised clinical concern when large volumes are evacuated rapidly.</li>
+      </ul>
+
+      <h3>Postoperative considerations</h3>
+      <ul>
+        <li>Ongoing sepsis management; source control is the priority.</li>
+        <li>Minimum 2 weeks of antibiotics from the time of drainage and defervescence (Class IIb).</li>
+        <li>Infectious diseases consultation for chronic empyema.</li>
+        <li>Anticipate prolonged ICU stay in postpneumonectomy empyema (mortality 28–50%).</li>
+        <li>Multidisciplinary planning for staged procedures (Clagett, open window, flaps, VAC changes).</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 13. DIAGRAMS ============ -->
+  <section class="section" data-title="Diagrams">
+    <button class="sec-head" type="button">
+      <span class="num">13</span>
+      <span class="title">Diagrams — Simplified Pathways</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <!-- Figure 1 -->
+      <div class="fig-title">Figure 1 — Recommendation classes (simplified)</div>
+      <div class="legend">
+        <div class="node start">Class I · Benefit &gt;&gt;&gt; Risk<br><small>Procedure/treatment SHOULD be performed</small></div>
+        <div class="node action">Class IIa · Benefit &gt;&gt; Risk<br><small>IT IS REASONABLE to perform</small></div>
+        <div class="node decision">Class IIb · Benefit ≥ Risk<br><small>MAY BE CONSIDERED</small></div>
+        <div class="node warn">Class III · Risk ≥ Benefit<br><small>should NOT be performed — may be harmful</small></div>
+      </div>
+
+      <!-- Figure 2 -->
+      <div class="fig-title">Figure 2 — Management of acute empyema</div>
+      <div class="flow">
+        <div class="node start">Suspected pleural space infection<br><small>Pneumonia or unexplained sepsis</small></div>
+        <div class="arrow"></div>
+        <div class="node action">CXR + Pleural US (Class I, LOE B)<br><small>CT chest if infection suspected (Class IIa, LOE B)</small></div>
+        <div class="arrow"></div>
+        <div class="node decision">Diagnostic thoracentesis?<br><small>Fluid &gt; 1 cm on CXR · &gt; 2 cm on CT · US-guided</small></div>
+        <div class="arrow"></div>
+        <div class="node decision">Pus / +Gram / +culture / pH &lt; 7.2 / LDH &gt;1000 / glucose &lt;40?</div>
+        <div class="arrow"></div>
+        <div class="node action"><b>Empyema confirmed</b><br>Antibiotics + drainage<br><small>Image-guided drain · flush · CT follow-up</small></div>
+        <div class="arrow"></div>
+        <div class="node decision">Adequate drainage &amp; clinical improvement?</div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action"><b>Yes</b><br>Continue antibiotics<br><small>Minimum 2 weeks from drainage &amp; defervescence</small></div>
+          <div class="node warn"><b>No</b><br>Additional drains · fibrinolytics (not routine) · <b>VATS first-line</b> (Class IIa, LOE B)<br><small>Convert to open thoracotomy if no progression</small></div>
+        </div>
+      </div>
+
+      <!-- Figure 3 -->
+      <div class="fig-title">Figure 3 — Management of chronic empyema</div>
+      <div class="flow">
+        <div class="node chronic"><b>Chronic pleural empyema</b><br><small>Peel pressing pleural surface · contraction of chest space · mediastinal shift</small></div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node action"><b>Decortication</b><br><small>Open thoracotomy · ± VATS (Class IIa, LOE B)</small></div>
+          <div class="node warn"><b>Open thoracic window</b><br><small>If unfit for decortication, or chronic empyema with BPF (Class IIa, LOE C)</small></div>
+        </div>
+        <div class="arrow"></div>
+        <div class="branch">
+          <div class="node"><b>Adjuncts (decortication route)</b><br><small>VAC · Empyema tube</small></div>
+          <div class="node"><b>Adjuncts (open window route)</b><br><small>Tissue flaps · Pleural tenting · Thoracoplasty</small></div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:16px;">
+        <b>Class III — no benefit:</b> thoracentesis without pleural drain placement is not recommended for treatment of parapneumonic effusion or empyema.
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ============ 14. REFERENCE ============ -->
+  <section class="section" data-title="Reference">
+    <button class="sec-head" type="button">
+      <span class="num">14</span>
+      <span class="title">Source Reference</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="inner"><div class="sec-content">
+
+      <p><strong>Primary source</strong></p>
+      <p>
+        Shen KR, Bribriesco A, Crabtree T, Denlinger C, Eby J, Eiken P, Jones DR, Keshavjee S, Maldonado F, Paul S, Kozower B.
+        <em>The American Association for Thoracic Surgery consensus guidelines for the management of empyema.</em>
+        J Thorac Cardiovasc Surg. 2017;153(6):e129–e146.
+        doi:<a href="https://doi.org/10.1016/j.jtcvs.2017.01.030" target="_blank" rel="noopener">10.1016/j.jtcvs.2017.01.030</a>
+      </p>
+
+      <p><strong>Writing group:</strong> K. Robert Shen, MD; Benjamin Kozower, MD; Traves Crabtree, MD; Chad Denlinger, MD; Joshua Eby, MD; Patrick Eiken, MD; Fabien Maldonado, MD; Subroto Paul, MD.</p>
+
+      <p><strong>Methodology:</strong> Institute of Medicine (IOM) 2011 <em>Clinical Practice Guidelines We Can Trust</em> standards. Level of evidence graded by the workforce panel; recommendations required &gt; 75% approval. An executive summary was published in <em>The Journal of Thoracic &amp; Cardiovascular Surgery</em>; a more extensive version was prepared for online publication with additional data and a comprehensive reference list.</p>
+
+      <p><strong>Abbreviations used in the guideline</strong></p>
+      <table>
+        <tr><td>AATS</td><td>The American Association for Thoracic Surgery</td></tr>
+        <tr><td>BPF</td><td>Bronchopleural fistula</td></tr>
+        <tr><td>CT</td><td>Computed tomography</td></tr>
+        <tr><td>CXR</td><td>Chest x-ray</td></tr>
+        <tr><td>IOM</td><td>Institute of Medicine</td></tr>
+        <tr><td>LOE</td><td>Level of evidence</td></tr>
+        <tr><td>MRI</td><td>Magnetic resonance imaging</td></tr>
+        <tr><td>US</td><td>Ultrasound</td></tr>
+        <tr><td>VAC</td><td>Vacuum-assisted closure</td></tr>
+        <tr><td>VATS</td><td>Video-assisted thoracoscopic surgery</td></tr>
+      </table>
+
+      <p style="font-size:.8rem;color:var(--muted);margin-top:14px;">
+        This quick reference is a summary for educational use by anaesthetists. It does not replace the full guideline or clinical judgement. Always confirm recommendations against the original publication.
+      </p>
+
+    </div></div></div>
+  </section>
+
+  <div id="no-results">No sections match your search.</div>
+
+</main>
+
+<footer>
+  <p><strong>Citation:</strong> Shen KR, et al. The American Association for Thoracic Surgery consensus guidelines for the management of empyema. <em>J Thorac Cardiovasc Surg.</em> 2017;153(6):e129–e146. doi:10.1016/j.jtcvs.2017.01.030</p>
+  <p>Quick reference compiled for anaesthetic practice. Not a substitute for the full guideline or clinical judgement.</p>
+</footer>
+
+<script>
+(function(){
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.section'));
+  var searchInput = document.getElementById('search');
+  var countEl = document.getElementById('count');
+  var noResults = document.getElementById('no-results');
+
+  // Accordion toggles
+  sections.forEach(function(sec){
+    var head = sec.querySelector('.sec-head');
+    head.addEventListener('click', function(){
+      sec.classList.toggle('open');
+    });
+  });
+
+  // Open the first section by default
+  if (sections.length) sections[0].classList.add('open');
+
+  // Expand / collapse all
+  document.getElementById('expandAll').addEventListener('click', function(){
+    sections.forEach(function(sec){
+      if (sec.style.display !== 'none') sec.classList.add('open');
+    });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    sections.forEach(function(sec){ sec.classList.remove('open'); });
+  });
+
+  // Search
+  function runSearch(){
+    var q = searchInput.value.trim().toLowerCase();
+    var visible = 0;
+
+    sections.forEach(function(sec){
+      var text = (sec.textContent || '').toLowerCase();
+      var match = (q === '') || text.indexOf(q) !== -1;
+      sec.style.display = match ? '' : 'none';
+      if (match){
+        visible++;
+        if (q.length >= 2) sec.classList.add('open');
+      }
+    });
+
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+
+    if (q === ''){
+      countEl.textContent = sections.length + ' sections';
+    } else {
+      countEl.textContent = visible + ' of ' + sections.length + ' sections match';
+    }
+  }
+
+  searchInput.addEventListener('input', runSearch);
+  searchInput.addEventListener('search', runSearch);
+
+  // Keyboard shortcut: "/" focuses search
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== searchInput){
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
+
+  runSearch();
+})();
+</script>
+</body>
+</html>
