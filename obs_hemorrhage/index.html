@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Obstetric Haemorrhage — Anaesthetist Quick Reference</title>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:#f1f5f9;color:#0f172a;font-size:15px;line-height:1.55;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .hidden{display:none !important}
+
+  /* ---------- Sticky header ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:60;
+    background:linear-gradient(180deg,#0e7490,#155e75);
+    color:#fff;padding:10px 14px 12px;box-shadow:0 2px 14px rgba(15,23,42,.18);
+  }
+  .topbar h1{font-size:1.02rem;margin:0 0 1px;font-weight:750;letter-spacing:.15px}
+  .topbar .sub{font-size:.7rem;opacity:.85;margin-bottom:9px}
+  .searchrow{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+  #search{
+    flex:1 1 230px;min-width:0;padding:9px 12px;border-radius:8px;border:none;
+    font-size:.9rem;outline:none;background:#fff;color:#0f172a;
+  }
+  #search:focus{box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+  .btn{
+    border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.12);
+    color:#fff;padding:8px 11px;border-radius:8px;font-size:.76rem;cursor:pointer;
+    font-weight:600;white-space:nowrap;transition:background .15s;
+  }
+  .btn:hover{background:rgba(255,255,255,.25)}
+  .status{font-size:.72rem;opacity:.9;margin-left:2px}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1000px;margin:0 auto;padding:14px 14px 60px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 18px}
+  .chips a{
+    font-size:.72rem;text-decoration:none;color:#155e75;background:#fff;
+    border:1px solid #cbd5e1;padding:4px 9px;border-radius:20px;font-weight:600;
+  }
+  .chips a:hover{background:#ecfeff;border-color:#67e8f9}
+
+  .section{margin:20px 0;scroll-margin-top:130px}
+  .section > h2{
+    font-size:.76rem;text-transform:uppercase;letter-spacing:.1em;color:#0e7490;
+    margin:0 0 8px;font-weight:800;border-bottom:2px solid #cbd5e1;padding-bottom:5px;
+  }
+
+  /* ---------- Collapsible cards ---------- */
+  details.card{
+    background:#fff;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:7px;
+    overflow:hidden;transition:box-shadow .15s;
+  }
+  details.card[open]{box-shadow:0 2px 10px rgba(15,23,42,.06)}
+  details.card > summary{
+    cursor:pointer;padding:10px 13px;font-weight:650;font-size:.9rem;list-style:none;
+    display:flex;align-items:center;gap:9px;color:#0f172a;user-select:none;
+  }
+  details.card > summary::-webkit-details-marker{display:none}
+  details.card > summary::before{
+    content:"▸";color:#0e7490;font-size:.8rem;flex:0 0 auto;width:11px;
+  }
+  details.card[open] > summary::before{content:"▾"}
+  details.card > summary:hover{background:#f8fafc}
+  details.card[open] > summary{border-bottom:1px solid #e2e8f0;background:#f8fafc}
+  .card-body{padding:11px 14px 14px}
+  .card-body > *:first-child{margin-top:0}
+  .card-body > *:last-child{margin-bottom:0}
+
+  /* ---------- Typography inside cards ---------- */
+  .card-body ul,.card-body ol{margin:6px 0;padding-left:20px}
+  .card-body li{margin:3px 0}
+  .card-body p{margin:7px 0}
+  .card-body h4{margin:12px 0 4px;font-size:.84rem;color:#0e7490;text-transform:uppercase;letter-spacing:.05em}
+  .card-body small{color:#64748b}
+  strong.lbl{color:#0f172a}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82em}
+
+  /* ---------- Callouts ---------- */
+  .key,.tip,.warn{
+    padding:8px 11px;border-radius:0 8px 8px 0;margin:9px 0;font-size:.85rem;
+  }
+  .key{background:#fef2f2;border-left:4px solid #b91c1c}
+  .tip{background:#ecfeff;border-left:4px solid #0e7490}
+  .warn{background:#fffbeb;border-left:4px solid #d97706}
+  .key strong,.tip strong,.warn strong{display:block;margin-bottom:2px;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+  .key strong{color:#b91c1c}
+  .tip strong{color:#0e7490}
+  .warn strong{color:#b45309}
+
+  /* ---------- Tables ---------- */
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:9px 0}
+  table{border-collapse:collapse;width:100%;font-size:.79rem;min-width:540px}
+  th,td{border:1px solid #e2e8f0;padding:6px 9px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:700;font-size:.76rem;text-transform:uppercase;letter-spacing:.03em;color:#334155}
+  tbody tr:nth-child(even){background:#fafbfc}
+
+  /* ---------- Flow diagrams ---------- */
+  .flow{display:flex;flex-direction:column;margin:8px 0}
+  .fbox{border:1px solid #cbd5e1;border-radius:9px;padding:9px 11px;background:#fff;font-size:.82rem}
+  .fbox strong{display:block;font-size:.84rem;margin-bottom:2px;color:#0f172a}
+  .fbox span,.fbox li{color:#334155;font-size:.79rem}
+  .fbox ul{margin:3px 0 0;padding-left:17px}
+  .fbox li{margin:1px 0}
+  .fbox-red{background:#fef2f2;border-color:#fca5a5}
+  .fbox-red strong{color:#b91c1c}
+  .fbox-teal{background:#ecfeff;border-color:#67e8f9}
+  .fbox-teal strong{color:#0e7490}
+  .fbox-amber{background:#fffbeb;border-color:#fcd34d}
+  .fbox-amber strong{color:#b45309}
+  .fbox-slate{background:#f8fafc;border-color:#94a3b8}
+  .arrow{text-align:center;color:#94a3b8;font-size:.75rem;line-height:1;margin:3px 0}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  @media(max-width:640px){.split{grid-template-columns:1fr}}
+
+  /* ---------- Cases ---------- */
+  .case-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:20px;height:20px;border-radius:50%;background:#0e7490;color:#fff;
+    font-size:.7rem;font-weight:800;flex:0 0 auto;
+  }
+  .qa{border-left:3px solid #e2e8f0;padding-left:10px;margin:8px 0}
+  .qa b{color:#0e7490;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block}
+
+  /* ---------- References ---------- */
+  .refs{font-size:.8rem;color:#334155}
+  .refs li{margin:6px 0}
+  .refs .src{color:#0e7490;font-weight:650}
+
+  mark{background:#fde68a;color:inherit;padding:0 1px;border-radius:2px}
+
+  footer{
+    max-width:1000px;margin:0 auto;padding:0 14px 50px;
+    font-size:.72rem;color:#64748b;text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <h1>Obstetric Haemorrhage — Anaesthetist Quick Reference</h1>
+  <div class="sub">Merged clinical notes: RCOG Green-top 52 · BJA Education (Drew &amp; Carvalho) · BJA Education (Katz &amp; Conwell)</div>
+  <div class="searchrow">
+    <input id="search" type="search" placeholder="Search… (e.g. fibrinogen, TXA, carboprost, FIBTEM, balloon)" autocomplete="off" spellcheck="false">
+    <button class="btn" id="expandAll" type="button">Expand all</button>
+    <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    <span class="status" id="status"></span>
+  </div>
+</header>
+
+<main>
+
+  <nav class="chips">
+    <a href="#definitions">Definitions</a>
+    <a href="#physiology">Physiology</a>
+    <a href="#aetiology">Aetiology</a>
+    <a href="#assessment">Recognition</a>
+    <a href="#preparation">Preparation</a>
+    <a href="#resuscitation">Resuscitation</a>
+    <a href="#blood">Blood products</a>
+    <a href="#viscoelastic">ROTEM/TEG</a>
+    <a href="#txa">TXA</a>
+    <a href="#uterotonics">Uterotonics</a>
+    <a href="#otherdrugs">Other drugs</a>
+    <a href="#mechanical">Mechanical/surgical</a>
+    <a href="#anaesthesia">Anaesthesia</a>
+    <a href="#postcare">Post-PPH</a>
+    <a href="#algorithms">Algorithms</a>
+    <a href="#cases">Cases</a>
+    <a href="#references">References</a>
+  </nav>
+
+  <!-- ============ DEFINITIONS ============ -->
+  <section class="section" id="definitions">
+    <h2>1 · Definitions &amp; Epidemiology</h2>
+
+    <details class="card" open>
+      <summary>Definitions of obstetric haemorrhage</summary>
+      <div class="card-body">
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Primary PPH</strong></td><td>Blood loss within <strong>24 h</strong> of delivery. WHO: ≥500 mL. ACOG (2014): ≥1000 mL with or without clinical signs of hypovolaemia, regardless of mode of delivery.</td></tr>
+              <tr><td><strong>Minor PPH</strong> (RCOG)</td><td>500–1000 mL</td></tr>
+              <tr><td><strong>Major PPH</strong> (RCOG)</td><td>&gt;1000 mL — <em>moderate</em> 1001–2000 mL; <em>severe</em> &gt;2000 mL</td></tr>
+              <tr><td><strong>Secondary PPH</strong></td><td>Abnormal/excessive bleeding from the birth canal between <strong>24 h and 12 weeks</strong> postnatally</td></tr>
+              <tr><td><strong>Antepartum haemorrhage (APH)</strong></td><td>Bleeding from 24 weeks' gestation. <em>Major APH</em> 50–1000 mL without shock; <em>massive APH</em> ≥1000 mL and/or any volume with clinical shock</td></tr>
+              <tr><td><strong>Major obstetric haemorrhage (MOH)</strong></td><td>Umbrella term for the leading cause of maternal morbidity/mortality — includes major PPH and massive APH</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tip">
+          <strong>Clinical caveat</strong>
+          In women with low body mass (e.g. &lt;60 kg), a <em>lower</em> volume of blood loss may already be clinically significant. Interpret volumes against the individual's circulating blood volume.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Epidemiology &amp; why it matters</summary>
+      <div class="card-body">
+        <ul>
+          <li>PPH is the <strong>leading cause of maternal death worldwide</strong> — responsible for up to <strong>27.1%</strong> of maternal deaths, and one of the most preventable.</li>
+          <li>The proportion of maternal deaths attributable to PPH is greater in less developed nations; however, PPH prevalence in the USA <strong>rose from 2.9% to 3.2%</strong> of deliveries between 2010 and 2014.</li>
+          <li>UK/Ireland (MBRRACE): haemorrhage is the <strong>second most common cause of direct maternal death</strong>, rate 0.64 per 100,000.</li>
+          <li>Wales (quantitative measurement): PPH &gt;1000 mL in <strong>8.6%</strong>; blood loss ≥2000 mL in <strong>1.3%</strong>.</li>
+          <li>Increasing incidence of severe PPH requiring transfusion/surgery is driven largely by rising rates of <strong>uterine atony</strong>.</li>
+          <li>Deaths commonly result from <strong>inadequate volume replacement</strong> and <strong>failure to correct coagulopathy</strong>.</li>
+          <li>Severity of haemorrhage was <strong>not recognised in 61%</strong> (11 of 17) of women who died in one Confidential Enquiry cohort.</li>
+        </ul>
+        <div class="key">
+          <strong>Key message</strong>
+          Most maternal deaths from haemorrhage are preventable. Early recognition, prompt volume replacement and early correction of coagulopathy save lives.
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PHYSIOLOGY ============ -->
+  <section class="section" id="physiology">
+    <h2>2 · Physiology of Pregnancy &amp; Maternal Haemostasis</h2>
+
+    <details class="card">
+      <summary>Hypercoagulable state — what changes and why it matters</summary>
+      <div class="card-body">
+        <ul>
+          <li>Term pregnancy is a <strong>hypercoagulable state</strong> from hormone-mediated alterations in coagulation factors.</li>
+          <li>Clotting factor concentrations are <strong>increased</strong> — <em>except</em> factor XI and factor XIII.</li>
+          <li><strong>Protein S is decreased</strong>; protein C remains unchanged.</li>
+          <li><strong>Fibrinogen rises markedly</strong> in the third trimester: <strong>3.5–6.5 g/L</strong> (vs 2–4 g/L in non-pregnant patients). This acts as a physiological buffer for haemorrhage.</li>
+          <li><strong>Fibrinolysis is downregulated</strong> — decreased tissue plasminogen activator (t-PA) activity.</li>
+          <li>At delivery, the fibrinolytic system becomes <strong>activated</strong>, reducing clot stability (D-dimers rise).</li>
+        </ul>
+        <div class="tip">
+          <strong>Implication</strong>
+          A "normal" fibrinogen in a bleeding parturient may be <em>relatively</em> low. A fibrinogen &lt;2 g/L in pregnancy is abnormal and predicts severe PPH.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Blood volume, dilutional anaemia and thrombocytopenia</summary>
+      <div class="card-body">
+        <ul>
+          <li>Blood volume rises from <strong>6–8 weeks</strong>, peaking at <strong>32 weeks</strong>, by <strong>40–50%</strong> of non-pregnant values — mediated by ADH and aldosterone with sodium/water retention.</li>
+          <li>Red cell mass increases (↑ erythropoietin) but plasma volume rises more → <strong>physiological dilutional anaemia</strong>.</li>
+          <li>Combined dilution + increased platelet turnover → <strong>gestational thrombocytopenia</strong>. Platelet <em>function</em> is unchanged.</li>
+          <li>The uteroplacental unit is a high-flow, low-resistance vascular bed receiving <strong>25% of cardiac output</strong> at term — large volumes can be lost rapidly.</li>
+          <li>Uterine involution and placental separation after delivery cause <strong>autotransfusion of ~500 mL</strong>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Haemodynamic response to blood loss — why signs are masked</summary>
+      <div class="card-body">
+        <p>In pregnancy, resting heart rate is higher and mean arterial pressure lower than in the non-pregnant state. <strong>Pulse and blood pressure are usually maintained in the normal range until blood loss exceeds 1000 mL.</strong></p>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Blood loss</th><th>Typical clinical signs</th></tr></thead>
+            <tbody>
+              <tr><td>&lt;1000 mL</td><td>Often no reliable change in pulse or BP</td></tr>
+              <tr><td>1000–1500 mL</td><td>Tachycardia, tachypnoea, slight recordable fall in systolic BP</td></tr>
+              <tr><td>&gt;1500 mL</td><td>Systolic BP &lt;80 mmHg with worsening tachycardia, tachypnoea and altered mental state</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>Shock index</strong> (heart rate ÷ systolic BP) identifies women at risk of adverse outcomes (e.g. ICU admission) and compares favourably with conventional vital signs.</li>
+          <li>Take the woman's <strong>weight</strong> into account — smaller women decompensate faster.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ AETIOLOGY ============ -->
+  <section class="section" id="aetiology">
+    <h2>3 · Aetiology of Obstetric Haemorrhage</h2>
+
+    <details class="card">
+      <summary>The four T's — Tone, Trauma, Tissue, Thrombin</summary>
+      <div class="card-body">
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>T</th><th>Cause</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Tone</strong></td><td>Uterine atony</td><td>The commonest cause — ~79–80% of primary PPH</td></tr>
+              <tr><td><strong>Trauma</strong></td><td>Genital tract injury, uterine rupture, uterine inversion, haematoma</td><td>Consider after instrumental delivery, rapid delivery, or if uterus is well contracted but bleeding continues</td></tr>
+              <tr><td><strong>Tissue</strong></td><td>Retained products of conception, placenta accreta spectrum (accreta / increta / percreta)</td><td>Incidence of PAS is increasing; a common cause of MOH</td></tr>
+              <tr><td><strong>Thrombin</strong></td><td>Primary coagulation disorders, acquired coagulopathy</td><td>Consumptive or dilutional — see below</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><small>Other causes: extragenital bleeding. Secondary PPH: endometritis and retained products of conception are commonest.</small></p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Acquired coagulopathy — consumptive vs dilutional</summary>
+      <div class="card-body">
+        <h4>Dilutional</h4>
+        <ul>
+          <li>Crystalloid and red cell resuscitation can dilute clotting factors and platelets.</li>
+          <li>Occurs mainly at <strong>extreme levels of dilution</strong>, such as large-volume resuscitation for massive haemorrhage, or when large volumes of low-fibrinogen products (e.g. FFP) are used without fibrinogen replacement.</li>
+        </ul>
+        <h4>Consumptive — localised</h4>
+        <ul>
+          <li>Occurs at the placental bed: <strong>placental abruption</strong>, or consumption within uterine clots.</li>
+          <li>Bleeding plus clot formation consumes coagulation factors, <strong>especially fibrinogen</strong> → hypofibrinogenaemia, thrombocytopenia, reduced clotting factor concentrations.</li>
+        </ul>
+        <h4>Consumptive — disseminated (DIC)</h4>
+        <ul>
+          <li>Associated with <strong>severe pre-eclampsia, HELLP syndrome, severe abruption, amniotic fluid embolism (AFE)</strong>.</li>
+          <li>AFE, uterine rupture and placental abruption may cause <strong>early-onset DIC</strong>.</li>
+        </ul>
+        <div class="key">
+          <strong>Predictor</strong>
+          Hypofibrinogenaemia is strongly associated with severe PPH. Fibrinogen is the <em>only</em> marker independently associated with progression to severe PPH — a level &lt;2.0 g/L has a <strong>100% positive predictive value</strong> for progression to severe PPH; ≥4.0 g/L has a 79% negative predictive value.
+        </div>
+        <p>The risk of coagulopathy increases markedly once bleeding exceeds <strong>2000 mL</strong>.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Risk factors &amp; where to deliver</summary>
+      <div class="card-body">
+        <ul>
+          <li>Risk factors may be <strong>antenatal or intrapartum</strong>; care plans must be modified as and when risk factors arise.</li>
+          <li>Clinicians must be aware of risk factors and take them into account when counselling women about <strong>place of delivery</strong>.</li>
+          <li><strong>Women with known risk factors for PPH should only deliver in a hospital with a blood bank on site.</strong></li>
+          <li>However, <strong>most cases of PPH have no identifiable risk factors</strong> — risk stratification is fraught with difficulty. Universal prophylaxis is therefore required.</li>
+          <li>Antenatal anaemia should be investigated and treated — this may reduce the morbidity associated with PPH.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ ASSESSMENT ============ -->
+  <section class="section" id="assessment">
+    <h2>4 · Recognition &amp; Assessment of Blood Loss</h2>
+
+    <details class="card">
+      <summary>Measuring blood loss — visual estimation is unreliable</summary>
+      <div class="card-body">
+        <ul>
+          <li><strong>Visual estimation of peripartum blood loss is inaccurate</strong> and usually <em>underestimates</em> the true volume.</li>
+          <li>Clinical signs and symptoms must be included in the assessment of PPH.</li>
+          <li>More accurate methods: blood collection drapes for vaginal delivery, weighing of swabs, and <strong>quantitative blood loss</strong> (gravimetric or photometric).</li>
+          <li>Quantitative measurement can form part of an <strong>alert system</strong> to prevent progression of minor to severe bleeding (successfully used in the Welsh Obstetric Bleeding Strategy / OBS Cymru).</li>
+          <li>Written and pictorial guidelines on the labour ward help staff estimate blood loss; clinical reconstructions/simulation encourage earlier diagnosis.</li>
+          <li>Remember: a single point-of-care haemoglobin may be <strong>falsely reassuring</strong> in acute haemorrhage — clinical evaluation is paramount.</li>
+        </ul>
+        <div class="tip">
+          <strong>Anaesthetic relevance</strong>
+          Do not wait for laboratory results or a haemoglobin value to start resuscitation. The clinical picture is the main determinant of the need for blood transfusion.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Who to call — escalation triggers</summary>
+      <div class="card-body">
+        <ul>
+          <li><strong>Minor PPH (500–1000 mL) without clinical shock:</strong> alert the midwife in charge, plus first-line obstetric and anaesthetic staff.</li>
+          <li><strong>Major PPH (&gt;1000 mL) with ongoing bleeding or clinical shock:</strong> summon a <strong>multidisciplinary team involving senior members of staff</strong>.</li>
+          <li>For major PPH, call and summon:
+            <ul>
+              <li>an experienced midwife (in addition to the midwife in charge)</li>
+              <li>the obstetric middle grade</li>
+              <li>the anaesthetic middle grade</li>
+              <li>the on-call clinical haematologist with experience in major haemorrhage</li>
+              <li>porters for delivery of specimens/blood</li>
+            </ul>
+          </li>
+          <li>Alert the <strong>consultant obstetrician and consultant anaesthetist</strong>, and inform the <strong>blood transfusion laboratory</strong>.</li>
+          <li>Assign one team member as <strong>scribe</strong> to record events, fluids, drugs, blood/components and vital signs.</li>
+          <li>The RCOG recommends the consultant obstetrician attend in person when PPH &gt;1500 mL with continuing haemorrhage.</li>
+        </ul>
+        <div class="tip">
+          <strong>Communication</strong>
+          Keep the woman and her birthing partner informed from the outset. Agree locally a standard form of words ("we need compatible blood now", "group-specific blood") and timescales for delivery of components. Senior staff must be receptive to concerns raised by junior staff and midwives.
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PREPARATION ============ -->
+  <section class="section" id="preparation">
+    <h2>5 · Preparation &amp; Massive Transfusion Planning</h2>
+
+    <details class="card">
+      <summary>Antenatal optimisation &amp; system readiness</summary>
+      <div class="card-body">
+        <ul>
+          <li><strong>Screen for and treat antenatal anaemia.</strong> Hb outside the normal UK pregnancy range (110 g/L at first contact, 105 g/L at 28 weeks) should be investigated; consider iron supplementation, and parenteral iron if oral iron fails.</li>
+          <li>Maximise maternal red cell mass antenatally (nutrition, iron, ± recombinant erythropoietin) to reduce the need for transfusion if bleeding occurs.</li>
+          <li>Match every woman to a unit where her clinical needs can be met. Protocols should exist for rapid transfer to a consultant-led unit.</li>
+          <li>In <strong>abnormal placentation</strong>, prior structured multidisciplinary planning reduces blood loss, transfusion and emergency Caesarean delivery.</li>
+          <li>Identify women who <strong>refuse blood products</strong> (e.g. Jehovah's Witnesses) early in the antenatal period and counsel appropriately.</li>
+          <li>Every maternity unit should have a <strong>multidisciplinary protocol</strong> for PPH management.</li>
+          <li>Massive transfusion algorithms should be developed, adapted and <strong>rehearsed locally</strong> in each obstetric unit.</li>
+          <li>Safe Motherhood Initiative (SMI) themes: <strong>readiness, recognition, response, reporting</strong>.</li>
+          <li>Training for PPH should be multiprofessional and include <strong>team rehearsals / simulation</strong> — improves knowledge, practical skills, communication and team performance.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Blood bank readiness</summary>
+      <div class="card-body">
+        <ul>
+          <li>Major obstetric haemorrhage protocols must include immediate issue of <strong>group O, RhD-negative and K-negative</strong> units, switching to group-specific blood as soon as feasible.</li>
+          <li>All delivery units — especially small units without an on-site blood bank — should maintain a supply of group O, RhD-negative blood. Agree locally the minimum number of units.</li>
+          <li>RhD-negative women of childbearing age must only receive RhD-negative blood. Unless known to be K-positive, only <strong>K-negative</strong> blood should be used.</li>
+          <li>If clinically significant red cell antibodies are present, liaise closely with the transfusion laboratory to avoid delay.</li>
+          <li>In an emergency, standard leucocyte-depleted components should be given — <strong>CMV-negative blood is not required</strong> during delivery or postpartum.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ RESUSCITATION ============ -->
+  <section class="section" id="resuscitation">
+    <h2>6 · Resuscitation, Fluids &amp; Transfusion Triggers</h2>
+
+    <details class="card" open>
+      <summary>Minor PPH (500–1000 mL) without clinical shock</summary>
+      <div class="card-body">
+        <ul>
+          <li>Intravenous access — <strong>one 14-gauge cannula</strong>.</li>
+          <li>Urgent venepuncture (20 mL) for:
+            <ul>
+              <li>group and screen</li>
+              <li>full blood count</li>
+              <li>coagulation screen, <strong>including fibrinogen</strong></li>
+            </ul>
+          </li>
+          <li>Record pulse, respiratory rate and blood pressure <strong>every 15 minutes</strong>.</li>
+          <li>Commence <strong>warmed crystalloid</strong> infusion.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card" open>
+      <summary>Major PPH (&gt;1000 mL) with ongoing bleeding or clinical shock</summary>
+      <div class="card-body">
+        <h4>Immediate priorities</h4>
+        <ul>
+          <li><strong>A &amp; B</strong> — assess airway and breathing; give high-concentration oxygen <strong>10–15 L/min</strong> via facemask regardless of measured saturation. If airway is compromised by impaired consciousness, seek anaesthetic assistance urgently.</li>
+          <li><strong>C</strong> — evaluate circulation; position the patient flat; keep the woman warm.</li>
+          <li>Transfuse blood as soon as possible if clinically required.</li>
+          <li>Establish <strong>two 14-gauge intravenous lines</strong>; take a 20 mL blood sample.</li>
+          <li>Consider arterial line monitoring once appropriately experienced staff are available.</li>
+          <li>Consider transfer to intensive therapy unit once bleeding is controlled, or high-dependency monitoring on the delivery suite.</li>
+          <li>Record parameters on a <strong>MEOWS</strong> chart (modified early obstetric warning score) and escalate promptly when abnormal.</li>
+          <li>Document fluid balance, blood, blood products and procedures.</li>
+        </ul>
+        <div class="warn">
+          <strong>Left lateral tilt</strong>
+          In <em>antepartum</em> cases, use left lateral tilt or uterine displacement to optimise preload to the right side of the heart.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Fluid resuscitation — volumes and choice</summary>
+      <div class="card-body">
+        <ul>
+          <li>Until blood is available, infuse <strong>up to 3.5 L of warmed clear fluids</strong>:
+            <ul>
+              <li>initially <strong>up to 2 L warmed isotonic crystalloid</strong> as rapidly as possible</li>
+              <li>then up to a further <strong>1.5 L warmed colloid</strong> (succinylated gelatin)</li>
+            </ul>
+          </li>
+          <li><strong>Hydroxyethyl starch should NOT be used</strong> — may increase mortality.</li>
+          <li>WHO recommends isotonic crystalloids in preference to colloids for intravenous fluid replacement in PPH.</li>
+          <li>Use the best equipment available to achieve <strong>rapid warmed infusion</strong>.</li>
+          <li><strong>Do not use special blood filters</strong> — they slow infusions.</li>
+          <li>Keep the woman warm — hypothermia exacerbates acidosis.</li>
+        </ul>
+        <div class="tip">
+          <strong>Principle</strong>
+          The nature of the fluid infused is of less importance than <em>rapid administration</em> and <em>warming</em>. Avoid a dilutional coagulopathy by not persisting with clear fluids once blood and components are available.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Red cell transfusion — when and what</summary>
+      <div class="card-body">
+        <ul>
+          <li>There are <strong>no firm criteria</strong> for initiating red cell transfusion. Base the decision on <strong>clinical <em>and</em> haematological assessment</strong>.</li>
+          <li>Transfusion is almost always required when Hb &lt;60 g/L and rarely required when Hb &gt;100 g/L. In acute haemorrhage, Hb may be normal — <strong>clinical evaluation is essential</strong>.</li>
+          <li>Serial Hb/haematocrit measurements may help monitor progress; single values may mislead and delay transfusion.</li>
+          <li>Consider repeated measurements of <strong>serum lactate and base deficit</strong> alongside haematocrit/Hb to assess tissue perfusion and oxygenation.</li>
+          <li>If immediate transfusion is indicated, give <strong>emergency group O, RhD-negative, K-negative red cells</strong>; switch to group-specific as soon as feasible.</li>
+        </ul>
+        <h4>Intraoperative cell salvage</h4>
+        <ul>
+          <li>Consider for <strong>emergency use</strong> in PPH associated with Caesarean section and with vaginal delivery.</li>
+          <li>No single serious complication leading to poor maternal outcome has been directly attributed to its use.</li>
+          <li>The SALVO RCT found <strong>no benefit from routine use</strong> during Caesarean section in women at risk of haemorrhage, and it may increase the risk of maternal alloimmunisation.</li>
+          <li>May be acceptable to patients who would otherwise refuse blood transfusion (e.g. Jehovah's Witnesses).</li>
+          <li>A <strong>double-suction technique</strong> is often used — one suction for amniotic fluid, another for uncontaminated blood. Requires training and demonstrated proficiency.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Haematological targets during major haemorrhage (BCSH)</summary>
+      <div class="card-body">
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Parameter</th><th>Target</th></tr></thead>
+            <tbody>
+              <tr><td>Haemoglobin</td><td><strong>&gt;80 g/L</strong></td></tr>
+              <tr><td>Platelet count</td><td><strong>&gt;50 × 10⁹/L</strong> (transfuse at &lt;75 × 10⁹/L during PPH)</td></tr>
+              <tr><td>Prothrombin time (PT)</td><td><strong>&lt;1.5 × normal</strong></td></tr>
+              <tr><td>Activated partial thromboplastin time (APTT)</td><td><strong>&lt;1.5 × normal</strong></td></tr>
+              <tr><td>Fibrinogen</td><td><strong>&gt;2 g/L</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><small>The principle is to <strong>prevent and treat haemostatic abnormalities during bleeding</strong>, but not to correct abnormalities in non-bleeding women.</small></p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ BLOOD PRODUCTS ============ -->
+  <section class="section" id="blood">
+    <h2>7 · Blood Components &amp; Haemostatic Agents</h2>
+
+    <details class="card">
+      <summary>At-a-glance: product, trigger, dose</summary>
+      <div class="card-body">
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Product</th><th>Trigger / indication</th><th>Dose</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Packed red cells</strong></td>
+                <td>Clinical need; Hb &lt;80 g/L target</td>
+                <td>Emergency O RhD-negative K-negative → group-specific ASAP</td>
+              </tr>
+              <tr>
+                <td><strong>Fresh frozen plasma (FFP)</strong></td>
+                <td>PT/APTT &gt;1.5× normal with ongoing haemorrhage; or continuing bleeding after 4 units RBC with no haemostatic results; consider early in abruption / AFE / delayed diagnosis</td>
+                <td><strong>12–15 mL/kg</strong> (≈4 units). If PT/APTT &gt;1.5×, &gt;15 mL/kg likely needed</td>
+              </tr>
+              <tr>
+                <td><strong>Cryoprecipitate</strong></td>
+                <td>Fibrinogen &lt;2 g/L with ongoing bleeding; massive bleeding with ≥8 units RBC and no coagulation results</td>
+                <td><strong>2 pools</strong> (1 pool = 5 donors) — raises fibrinogen ≈1 g/L. If no results and ≥8 units RBC given: 2 pools + 1 pool platelets</td>
+              </tr>
+              <tr>
+                <td><strong>Fibrinogen concentrate</strong></td>
+                <td>Hypofibrinogenaemia / consumptive coagulopathy. Consider if plasma fibrinogen &lt;2 g/L</td>
+                <td>≈<strong>60 mg/kg</strong> raises fibrinogen by 1 g/L; typical dose 2–4 g IV</td>
+              </tr>
+              <tr>
+                <td><strong>Platelets</strong></td>
+                <td>Platelet count &lt;75 × 10⁹/L during PPH; maintain &gt;50 × 10⁹/L during active bleeding</td>
+                <td>1 pool</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="key">
+          <strong>Order early</strong>
+          Blood components must be ordered as soon as a need is anticipated — there is always a delay for thawing.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Fibrinogen: the pivotal target</summary>
+      <div class="card-body">
+        <ul>
+          <li>Fibrinogen concentrations &lt;2 g/L are associated with worse outcomes and severe PPH — maintain <strong>&gt;2 g/L</strong> (or FIBTEM A5 &gt;12 mm).</li>
+          <li>Fibrinogen falls <strong>earlier and more rapidly</strong> than other coagulation factors and may be reduced to a clinically significant level despite a normal PT/APTT — always measure <strong>Clauss fibrinogen</strong> as part of the routine coagulation screen.</li>
+          <li>In an active haemorrhage, consider a <strong>higher target concentration</strong> than 2 g/L.</li>
+          <li>Observational data: fibrinogen 1.0–1.5 g/L is likely too low for adequate haemostasis during ongoing PPH; fibrinogen &lt;3 g/L (especially &lt;2 g/L) is associated with progression of bleeding, increased RBC/component requirements, and need for invasive procedures.</li>
+        </ul>
+        <div class="tip">
+          <strong>Why FFP alone may not be enough</strong>
+          The average fibrinogen concentration in FFP is only <strong>2–2.5 g/L</strong>, whereas term pregnancy values approach <strong>5 g/L</strong>. FFP can therefore result in <em>relative</em> hypofibrinogenaemia and may worsen haemostasis. Give FFP when factor concentrations are low enough to warrant repletion, and consider <strong>concurrent fibrinogen supplementation</strong> (cryoprecipitate or fibrinogen concentrate).
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Cryoprecipitate vs fibrinogen concentrate</summary>
+      <div class="card-body">
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Characteristic</th><th>Cryoprecipitate</th><th>Fibrinogen concentrate</th></tr></thead>
+            <tbody>
+              <tr><td>Composition</td><td>Fibrinogen, vWF, FVIII, FXIII, fibronectin</td><td>Purified fibrinogen</td></tr>
+              <tr><td>Fibrinogen concentration</td><td>Variable; ~100–250 mg per unit; ~1.25 g per 5-donor pool</td><td>Known concentration; typically 1 g vials to be reconstituted</td></tr>
+              <tr><td>Viral inactivation</td><td>None (nucleic acid testing for certain viruses)</td><td>Viral inactivation through preparation</td></tr>
+              <tr><td>Transfusion risk</td><td>Allogeneic reaction, TACO, TRALI</td><td>Negligible transfusion reaction risk; small risk of allergic/anaphylactic reaction</td></tr>
+              <tr><td>Storage &amp; preparation</td><td>Stored at ~−20 °C; must be thawed before transfusion</td><td>Reconstituted in minutes; can be infused shortly after</td></tr>
+              <tr><td>Cost (USA)</td><td>$300–400 per 5–6 unit pool</td><td>≈$1,000 per 1 g vial</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><small>Both products produce similar clinical outcomes and fibrinogen increments, based on limited data. In the UK, fibrinogen concentrate is not licensed for acquired hypofibrinogenaemia.</small></p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Evidence on fibrinogen supplementation — what the trials show</summary>
+      <div class="card-body">
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Trial</th><th>Design</th><th>Finding</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>FIB-PPH</strong></td>
+                <td>Fibrinogen concentrate 2 g IV vs placebo in severe PPH</td>
+                <td>No difference in transfusion requirement or estimated blood loss over 6 weeks. Baseline fibrinogen was 4.5 g/L and only <strong>2.2%</strong> had fibrinogen &lt;2 g/L → <strong>prophylactic fibrinogen is not warranted in the absence of hypofibrinogenaemia</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>OBS2</strong></td>
+                <td>Viscoelastometric-guided fibrinogen concentrate vs placebo; FIBTEM A5 &lt;15 mm triggered 1 g</td>
+                <td>No change in number of blood products transfused. Subgroup with FIBTEM A5 &lt;12 mm: a FIBTEM A5 <strong>&gt;12 mm</strong> or fibrinogen <strong>&gt;2 g/L</strong> is likely adequate for haemostasis without additional fibrinogen.</td>
+              </tr>
+              <tr>
+                <td><strong>FIDEL</strong></td>
+                <td>Fibrinogen concentrate 3 g vs placebo in persistent PPH after vaginal delivery</td>
+                <td>No benefit in lowering transfusion requirement or blood loss. Did prevent a fall in plasma fibrinogen; no increase in thromboembolic events.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="key">
+          <strong>Bottom line</strong>
+          Prophylactic/empiric fibrinogen concentrate has <strong>no established role</strong> in PPH. Use viscoelastic testing to target therapy — this also saves cost given the expense of cryoprecipitate and fibrinogen concentrate.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Fresh frozen plasma (FFP) — practical rules</summary>
+      <div class="card-body">
+        <ul>
+          <li>Contains all coagulation factors except platelets, at <strong>variable concentrations</strong>.</li>
+          <li>Indicated during PPH in cases of <strong>overt coagulopathy</strong> after fibrinogen repletion has been attempted, or a known consumptive process with evidence of coagulopathy.</li>
+          <li>Empiric plasma transfusion is <strong>rarely indicated</strong> when cryoprecipitate or fibrinogen concentrate is available.</li>
+          <li>RCOG: FFP should be <strong>guided by coagulation testing</strong> — maintain PT and APTT below 1.5× normal.</li>
+          <li>If bleeding continues after 4 units of RBC and haemostatic results are unavailable → give FFP 12–15 mL/kg until results are known.</li>
+          <li>If PT/APTT &gt;1.5× normal and haemorrhage is ongoing → volumes <strong>in excess of 15 mL/kg</strong> are likely needed.</li>
+          <li>If PPH has stopped and PT/APTT are normal → <strong>no FFP required</strong>.</li>
+          <li>Fixed-ratio protocols (1:1 or 6:4 RBC:FFP) derived from trauma data have <strong>no evidence of benefit</strong> in PPH. Drawbacks: most women have normal coagulation at the time of administration, and there is increased risk of <strong>TACO and TRALI</strong>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Platelets &amp; transfusion risks</summary>
+      <div class="card-body">
+        <ul>
+          <li>Thrombocytopenia may be gestational, non-pregnancy-related, or indicate a <strong>consumptive coagulopathy</strong>.</li>
+          <li>Evidence for platelet transfusion is based on <strong>expert opinion</strong> rather than RCTs.</li>
+          <li>During active bleeding: maintain platelet count <strong>&gt;50 × 10⁹/L</strong>; transfuse at <strong>&lt;75 × 10⁹/L</strong> during active PPH, based on laboratory monitoring.</li>
+          <li>Point-of-care viscoelastic testing can determine clot strength based on platelet contribution and may illustrate the need for platelet transfusion faster than traditional clotting tests.</li>
+        </ul>
+        <h4>Risks of blood product transfusion</h4>
+        <ul>
+          <li>Febrile reactions, allergic reactions, haemolytic reactions</li>
+          <li>Transfusion-related acute lung injury (<strong>TRALI</strong>)</li>
+          <li>Transfusion-associated circulatory overload (<strong>TACO</strong>)</li>
+          <li>Infection — platelets are stored at room temperature and carry more infection-related complications than other products</li>
+        </ul>
+        <p><small>Maternal instability in acute PPH may necessitate liberal transfusion to prevent complications of delayed resuscitation — but clinicians should still know and weigh these risks.</small></p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ VISCOELASTIC ============ -->
+  <section class="section" id="viscoelastic">
+    <h2>8 · Coagulopathy Monitoring &amp; Viscoelastic Testing</h2>
+
+    <details class="card">
+      <summary>Laboratory tests vs point-of-care viscoelastic testing</summary>
+      <div class="card-body">
+        <ul>
+          <li>Laboratory fibrinogen results take approximately <strong>60 minutes</strong>. ROTEM can provide specific information about clot formation within <strong>10 minutes</strong>.</li>
+          <li>Routine coagulation tests (PT, APTT, Clauss fibrinogen, platelet count) are widely available with well-regulated quality control — but turnaround times are often too slow for acute, rapidly evolving bleeds, and they reflect the <em>past</em> haemostatic status of the woman.</li>
+          <li>Coagulopathies may evolve rapidly — repeated testing (e.g. <strong>every 30 minutes</strong>) during continued bleeding and observation of trends is more useful than single measurements.</li>
+          <li>Point-of-care viscoelastic testing (TEG / ROTEM) combined with an agreed treatment algorithm has been associated with <strong>decreased blood loss and blood product use</strong>, both outside and within the obstetric setting.</li>
+          <li>Recommended by the Obstetric Anaesthetists' Association / Association of Anaesthetists of Great Britain and Ireland. However, <strong>NICE concluded there is insufficient evidence to recommend routine adoption</strong>. If used, agree a quality control protocol with the haematology laboratory.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>FIBTEM — how to use it</summary>
+      <div class="card-body">
+        <ul>
+          <li>FIBTEM is performed on the ROTEM machine and evaluates the <strong>contribution of fibrinogen to clot strength</strong>.</li>
+          <li>This is achieved by adding <strong>cytochalasin D</strong>, which eliminates the contribution of platelets to the clot.</li>
+          <li><strong>FIBTEM A5</strong> = clot amplitude measured after 5 minutes.</li>
+          <li>FIBTEM A5 is an <strong>independent predictor of PPH &gt;2500 mL</strong>; a FIBTEM A5 &lt;10 mm is associated with prolonged bleeds.</li>
+          <li>FIBTEM amplitude <strong>correlates with serum fibrinogen concentration</strong>: FIBTEM A5 of <strong>12 mm ≈ fibrinogen 2 g/L</strong>.</li>
+        </ul>
+        <div class="tip">
+          <strong>Targets</strong>
+          Fibrinogen &gt;2 g/L <em>or</em> FIBTEM A5 &gt;12 mm. The value of viscoelastic testing here is the ability to rapidly identify low-fibrinogen states or hyperfibrinolysis and allow targeted replacement.
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ TXA ============ -->
+  <section class="section" id="txa">
+    <h2>9 · Tranexamic Acid (TXA)</h2>
+
+    <details class="card" open>
+      <summary>Mechanism, dose and the WOMAN trial</summary>
+      <div class="card-body">
+        <h4>Mechanism</h4>
+        <ul>
+          <li>At delivery there is a marked increase in fibrinolysis (increased D-dimers).</li>
+          <li>TXA reduces bleeding by <strong>inhibiting the breakdown of fibrin and fibrinogen</strong>, stabilising blood clots.</li>
+        </ul>
+        <h4>Dose</h4>
+        <ul>
+          <li><strong>1 g IV</strong> (WHO recommended fixed dose, given over 10 minutes), with a <strong>second 1 g dose after 30 minutes if bleeding continues</strong>.</li>
+          <li>RCOG: consider intravenous TXA <strong>0.5–1.0 g</strong>, in addition to oxytocin, at Caesarean section to reduce blood loss in women at increased risk of PPH.</li>
+        </ul>
+        <h4>WOMAN trial</h4>
+        <ul>
+          <li>International double-blind, randomised, multicentre study of TXA vs placebo in women with PPH; treatment group received 1 g IV plus a further 1 g 30 min later if bleeding continued.</li>
+          <li><strong>No difference</strong> in the composite primary endpoint of death from all causes or hysterectomy.</li>
+          <li>Secondary endpoint — <strong>death due to bleeding was significantly reduced</strong> in the TXA group, with greatest effect when given <strong>within 3 hours of birth</strong>.</li>
+          <li>Absolute risk reduction of death from bleeding: <strong>0.368%</strong>; number needed to treat ≈ <strong>271</strong>.</li>
+          <li><strong>No statistically significant difference in thromboembolic events</strong> — this was the first study adequately powered for this endpoint.</li>
+          <li>Many participating hospitals were in low-resource countries, so findings may not be fully generalisable to well-resourced settings.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Prophylactic TXA — what the evidence shows</summary>
+      <div class="card-body">
+        <ul>
+          <li><strong>Vaginal delivery:</strong> a large multicentre trial found prophylactic TXA 1 g did <strong>not</strong> reduce the incidence of PPH.</li>
+          <li><strong>Caesarean delivery (2021 trial):</strong> prophylactic TXA 1 g decreased the rate of PPH and reduced calculated estimated blood loss by ~100 mL — but there was <strong>no significant difference in blood transfusion, hysterectomy, reoperation for bleeding, or use of additional uterotonics</strong>. Nausea/vomiting was significantly higher with TXA. &gt;70% of patients underwent Caesarean delivery without labour, putting them at lower baseline risk.</li>
+          <li><strong>Caesarean delivery (2023 trial):</strong> TXA 1 g IV vs placebo in scheduled or unscheduled operative delivery — <strong>no difference</strong> in maternal death or blood transfusion, no difference in estimated blood loss &gt;1 L, and similar frequency of thromboembolic events.</li>
+          <li><strong>Pharmacokinetics:</strong> peak concentrations after 3 minutes, with antifibrinolysis sustained for about 1 hour after dosing. Peak concentrations were <strong>lower than those associated with seizure and thrombosis risk</strong>.</li>
+        </ul>
+        <div class="tip">
+          <strong>Summary</strong>
+          Limited evidence that prophylactic TXA prevents clinically significant haemorrhage in vaginal or Caesarean delivery. However, <strong>1 g is an appropriate dose</strong> to ensure antifibrinolytic activity while avoiding concentrations associated with seizure and thrombosis risk. TXA should be considered in the management of established PPH.
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ UTEROTONICS ============ -->
+  <section class="section" id="uterotonics">
+    <h2>10 · Uterotonic Drugs</h2>
+
+    <details class="card" open>
+      <summary>Comparison table — drug, role, dose, cautions</summary>
+      <div class="card-body">
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Drug</th><th>Role &amp; mechanism</th><th>Dose during MOH/PPH</th><th>Cautions / contraindications</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Oxytocin</strong></td>
+                <td>First-line. Acts via oxytocin receptors on myometrial cell membrane</td>
+                <td>
+                  <em>Vaginal delivery:</em> 5 IU IV slowly (may repeat).<br>
+                  <em>Elective Caesarean:</em> bolus 1 IU, then infusion 2.5–7.5 IU/h.<br>
+                  <em>Intrapartum Caesarean:</em> 3 IU over ≥30 s, then 7.5–15 IU/h; a further 3 IU over ≥30 s may be given after 2 min if required.<br>
+                  <em>Infusion:</em> 40 IU in 500 mL isotonic crystalloid at 125 mL/h.
+                </td>
+                <td>Extreme caution with haemodynamic instability or cardiovascular disease — <strong>deliver slowly</strong>. Causes tachycardia, hypotension, chest pain, ECG ST-T changes, dysrhythmias. Antidiuretic-like effect → fluid overload and hyponatraemia (reduce fluid volume, e.g. in pre-eclampsia).</td>
+              </tr>
+              <tr>
+                <td><strong>Carbetocin</strong></td>
+                <td>First-line. Oxytocin analogue via oxytocin receptors; duration 4–7× oxytocin</td>
+                <td>100 µg over ≥30 s (vaginal, elective CD, intrapartum CD). Smaller doses may be sufficient at CD (as low as 20 µg) and may be repeated up to 100 µg. <strong>Do not exceed 100 µg</strong> in any setting.</td>
+                <td>Extreme caution with haemodynamic instability or cardiovascular disease — deliver slowly. Heat-stable formulation available (no cold chain required). Adverse effects similar to oxytocin.</td>
+              </tr>
+              <tr>
+                <td><strong>Prostaglandins</strong></td>
+                <td>Second-line. Act via prostaglandin receptors (PGE1, PGE2, PGF2α); <strong>unaffected by prior oxytocin exposure</strong>. Misoprostol may be first-line where oxytocin/carbetocin unavailable</td>
+                <td>
+                  <em>Misoprostol</em> 400–600 µg sublingual, rectal, vaginal or oral; repeat after 15 min if required, <strong>maximum 800 µg</strong>.<br>
+                  <em>Carboprost</em> 250 µg IM or intramyometrial; up to every 15 min, <strong>maximum 8 doses (2 mg)</strong>.<br>
+                  <em>Sulprostone</em> 500 µg IV at 100 µg/h; maximum 1500 µg.
+                </td>
+                <td><strong>Contraindicated in asthma / obstructive lung disease</strong> (bronchospasm). Carboprost IV use is contraindicated. Other effects: hypertension, hypotension, pulmonary oedema, diarrhoea, nausea, vomiting, flushing, pyrexia, myalgia. Misoprostol takes 1.0–2.5 h to increase uterine tone.</td>
+              </tr>
+              <tr>
+                <td><strong>Ergot alkaloids</strong><br><small>(ergometrine)</small></td>
+                <td>Second-line. Acts via dopamine, α-adrenergic and 5-HT₃ receptors; unaffected by oxytocin desensitisation</td>
+                <td>Ergometrine (ergonovine) <strong>200–500 µg</strong> IM, or slow IV in exceptional circumstances; may be repeated after 2 h. Duration: 45 min IV, up to 3 h IM.</td>
+                <td><strong>Contraindicated in hypertension</strong>, myocardial ischaemia and cardiovascular disease — α-adrenergic activation may precipitate or exacerbate hypertension. Higher rates of nausea/vomiting.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Practical oxytocin pharmacology for the anaesthetist</summary>
+      <div class="card-body">
+        <ul>
+          <li>Oxytocin and carbetocin are recommended as <strong>first-line uterotonic prophylaxis and treatment</strong> for PPH.</li>
+          <li>Give oxytocin initially as a <strong>small bolus</strong>, then as a <strong>titrated infusion</strong>.</li>
+          <li>Major guidelines recommend 5–10 IU after vaginal and Caesarean delivery — but <strong>5 IU is the maximum allowable IV bolus in the UK</strong>. There is evidence these drugs are as effective for prophylaxis at much lower doses.</li>
+          <li><strong>Oxytocin receptor desensitisation:</strong> prolonged exposure to oxytocin desensitises myometrial receptors, so oxytocin fails to stimulate effective contractions. Labouring women with oxytocin augmentation require <strong>much greater doses</strong> than those at elective Caesarean delivery — consider them separately.</li>
+          <li>Extrauterine effects are most serious on the cardiovascular system. Effects correlate strongly with <strong>both dose and speed of administration</strong>.</li>
+        </ul>
+        <div class="key">
+          <strong>Critical safety point</strong>
+          During MOH, oxytocin given in the context of reduced intravascular volume may precipitate <strong>rapid decompensation</strong>, and deaths have occurred in this situation. Resuscitate volume first, and give any uterotonic slowly.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>RCOG sequence for atonic PPH — mechanical &amp; pharmacological</summary>
+      <div class="card-body">
+        <p>When uterine atony is perceived to be the cause, institute the following <strong>in turn</strong> until bleeding stops:</p>
+        <ol>
+          <li>Palpate the uterine fundus and <strong>rub it up</strong> to stimulate contractions</li>
+          <li>Ensure the <strong>bladder is empty</strong> (Foley catheter, leave in place)</li>
+          <li><strong>Oxytocin 5 IU</strong> by slow IV injection (may repeat dose)</li>
+          <li><strong>Ergometrine 0.5 mg</strong> by slow IV or IM injection (contraindicated in hypertension)</li>
+          <li><strong>Oxytocin infusion</strong> — 40 IU in 500 mL isotonic crystalloid at 125 mL/h (unless fluid restriction is necessary)</li>
+          <li><strong>Carboprost 0.25 mg</strong> IM, repeated at intervals of not less than 15 minutes, to a maximum of 8 doses (use with caution in asthma)</li>
+          <li><strong>Misoprostol 800 µg</strong> sublingually</li>
+        </ol>
+        <div class="warn">
+          <strong>Timing</strong>
+          If significant atonic haemorrhage continues after a third dose of carboprost without improvement (i.e. ≥30 minutes after the first dose), consider transfer to theatre for examination under anaesthesia, anticipating the possible need for laparotomy and/or hysterectomy.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Prophylaxis at delivery — RCOG recommendations</summary>
+      <div class="card-body">
+        <ul>
+          <li><strong>Uterine massage is of no benefit</strong> in the prophylaxis of PPH.</li>
+          <li><strong>Prophylactic uterotonics should be routinely offered</strong> in the management of the third stage of labour in all women — they reduce the risk of PPH.</li>
+          <li>Women without risk factors delivering vaginally: <strong>oxytocin 10 IU IM</strong> is the agent of choice. A higher dose is unlikely to be beneficial.</li>
+          <li>Caesarean section: <strong>oxytocin 5 IU by slow IV injection</strong> to encourage uterine contraction and decrease blood loss.</li>
+          <li><strong>Ergometrine–oxytocin</strong> may be used in the absence of hypertension in women at increased risk of haemorrhage, as it reduces the risk of minor PPH (500–1000 mL) — but carries a five-fold increased risk of nausea/vomiting and blood pressure elevation.</li>
+          <li>For women at increased risk, a <strong>combination of preventative measures</strong> may be superior to oxytocin alone.</li>
+          <li>Consider IV TXA 0.5–1.0 g, in addition to oxytocin, at Caesarean section in women at increased risk of PPH.</li>
+          <li>Delayed cord clamping (≥1 minute, ideally ≥2 minutes) is beneficial to the newborn; routine early cord clamping as part of active management can no longer be recommended.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ OTHER DRUGS ============ -->
+  <section class="section" id="otherdrugs">
+    <h2>11 · Other Haemostatic Drugs &amp; Topical Agents</h2>
+
+    <details class="card">
+      <summary>Desmopressin (DDAVP)</summary>
+      <div class="card-body">
+        <ul>
+          <li>Synthetic arginine vasopressin; stimulates release of vWF from endothelial cells.</li>
+          <li>von Willebrand disease subtypes: <strong>type 1</strong> = quantitative defect; <strong>type 2</strong> = qualitative defects; <strong>type 3</strong> = no vWF.</li>
+          <li>Most clotting factors including vWF increase during pregnancy, but those with <strong>severe type 1 vWD may benefit from DDAVP</strong> in the setting of PPH.</li>
+          <li>Patients with <strong>type 2 and type 3</strong> vWD would have <strong>limited benefit</strong> (qualitative defect / absent vWF).</li>
+          <li><strong>Contraindicated in the 2B subtype</strong> of vWD.</li>
+          <li>Can cause <strong>severe hyponatraemia</strong> — restrict free water for 24 h after use.</li>
+          <li>Because the mechanism is release of <em>stored</em> vWF, <strong>tachyphylaxis occurs rapidly</strong> — repeat dosing in a short time frame is likely to be ineffective.</li>
+          <li>No current indication for desmopressin during PPH outside these specific bleeding-disorder contexts.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Prothrombin complex concentrate (PCC)</summary>
+      <div class="card-body">
+        <ul>
+          <li>Contains the vitamin K-dependent clotting factors <strong>II, VII, IX and X</strong>. Available as 3-factor and 4-factor forms.</li>
+          <li>4-factor PCC contains higher concentrations of FVII relative to the 3-factor formulation, plus protein S and C, and heparin.</li>
+          <li>Current use is limited to treatment of haemorrhage in patients needing <strong>urgent reversal of vitamin K antagonists</strong>.</li>
+          <li>Its role in PPH is <strong>yet to be defined</strong> — there is only a case report of use in PPH.</li>
+          <li>In vitro evidence suggests the doses required to support haemostasis are <strong>much lower</strong> than those in current prescribing information for warfarin reversal.</li>
+          <li>Theoretical advantages over FFP: more precise factor dosing, without the risks of TACO, TRALI or citrate toxicity.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Recombinant activated factor VII (rFVIIa)</summary>
+      <div class="card-body">
+        <ul>
+          <li>Approved by the European Medicines Agency in 2022 for women with <strong>severe PPH unresponsive to uterotonic drugs</strong>.</li>
+          <li>Binds tissue factor, mediating activation of factor X and converting prothrombin to thrombin at the site of local injury.</li>
+          <li><strong>Limited evidence for efficacy and safety</strong> in PPH, with concern regarding thrombotic risk.</li>
+          <li>Registry of 113 women across nine European countries: 81% received a single dose; clinically positive response rate &gt;80%; 4 patients developed VTE, 1 developed myocardial infarction (though the patient had cardiac arrest <em>before</em> rFVIIa was given), 1 developed a skin rash. Reported doses varied; the most common was ≤7.2 mg (≈90 µg/kg or less for an 80 kg woman). rFVIIa failed to treat PPH in 13.8% of cases.</li>
+          <li><strong>Not recommended as first-line therapy.</strong> RCOG reserves it for life-threatening PPH; it is <strong>not a substitute for other management strategies</strong>. Hospitals should prepare local guidance for intractable PPH involving haematologists.</li>
+          <li>In <strong>amniotic fluid embolism</strong>, use has been studied and found to be associated with <strong>worse outcomes</strong> than cohorts not receiving rFVIIa.</li>
+          <li>Off-label placebo-controlled trial analysis: rates of <strong>all arterial thromboembolic events were increased</strong> in patients receiving rFVIIa, including coronary arterial events — more pronounced in patients aged ≥65 years. <strong>No significant difference in venous thromboembolic events.</strong></li>
+          <li>Effectiveness is markedly diminished by <strong>hypothermia, acidosis and low platelets</strong> — effective resuscitation towards normal physiology is a prerequisite.</li>
+          <li>Use with caution in hypercoagulable pregnant patients.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Topical haemostatic agents</summary>
+      <div class="card-body">
+        <p>These provide local haemostasis through thrombin or fibrin deposition to stabilise clot formation. They are useful during Caesarean delivery with bleeding at the surgical site, but <strong>may not be sufficient for haemostasis during a severe PPH</strong>.</p>
+        <h4>Flowable agents</h4>
+        <ul>
+          <li><strong>Floseal</strong> (Baxter) and <strong>Surgiflo</strong> (Johnson &amp; Johnson) — indicated in gynaecological procedures.</li>
+          <li>Combine <strong>gelatine particles and thrombin</strong>. Thrombin acts at the end of the clotting cascade, converting fibrinogen to fibrin to assist local clot formation.</li>
+          <li>Effective even in the setting of factor deficiencies or platelet dysfunction.</li>
+          <li>Potential adverse effects: compression of structures, infection, allergic reaction.</li>
+        </ul>
+        <h4>Fibrin sealants</h4>
+        <ul>
+          <li><strong>Tisseel</strong> (Baxter) and <strong>Evicel</strong> (Ethicon) — typically contain fibrinogen, thrombin and an antifibrinolytic such as TXA.</li>
+          <li>Create a stable clot by inhibiting fibrinolysis.</li>
+          <li>Biodegradable; not associated with foreign body reactions or tissue necrosis. The fibrin clot is typically absorbed within 14 days after placement.</li>
+        </ul>
+        <div class="tip">
+          <strong>Team communication</strong>
+          Have a discussion with the surgical team about topical haemostatic agents in the setting of ongoing PPH, especially during operative delivery.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Summary comparison of haemostatic agents</summary>
+      <div class="card-body">
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Agent</th><th>Indication</th><th>Considerations</th></tr></thead>
+            <tbody>
+              <tr><td>Fibrinogen concentrate</td><td>PPH with hypofibrinogenaemia; DIC, consumptive coagulopathy</td><td>Strongly consider if plasma fibrinogen &lt;2 g/L</td></tr>
+              <tr><td>Tranexamic acid</td><td>1 g in the setting of PPH; redose at 30 min if PPH ongoing</td><td>No evidence for prophylactic use for vaginal delivery; limited evidence for prophylactic use during Caesarean delivery</td></tr>
+              <tr><td>Desmopressin</td><td>vWD type 1 patients with PPH</td><td>No current indication during PPH; consider other causes of haemorrhage in this population</td></tr>
+              <tr><td>Prothrombin complex concentrate</td><td>—</td><td>No evidence for use during PPH</td></tr>
+              <tr><td>Activated factor VII</td><td>Life-threatening PPH</td><td>Limited evidence for its use; consider other agents first</td></tr>
+              <tr><td>Topical agents (Floseal, Surgiflo)</td><td>During Caesarean delivery with bleeding at the surgical site</td><td>Variety of options; many work via the coagulation cascade. May not be sufficient for haemostasis during a severe PPH</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ MECHANICAL / SURGICAL ============ -->
+  <section class="section" id="mechanical">
+    <h2>12 · Mechanical &amp; Surgical Interventions</h2>
+
+    <details class="card">
+      <summary>Principles &amp; first-line mechanical measures</summary>
+      <div class="card-body">
+        <ul>
+          <li>Clinicians should be prepared to use a <strong>combination of pharmacological, mechanical and surgical methods</strong> to arrest PPH, directed towards the causative factor.</li>
+          <li><strong>Bimanual uterine compression</strong> is recommended as a temporising measure until definitive care is available for PPH due to uterine atony after vaginal delivery — it stimulates contraction of uterine muscle fibres.</li>
+          <li><strong>"Rubbing up the fundus"</strong> and <strong>emptying the bladder</strong> represent first-line management of atonic PPH (professional consensus, no published trials).</li>
+          <li>Compression of the aorta may be a temporary but effective measure to allow time for resuscitation and arrival of surgical support.</li>
+          <li><strong>If pharmacological measures fail to control the haemorrhage, surgical interventions should be initiated sooner rather than later.</strong></li>
+          <li>The use of pharmacological agents other than those detailed should <strong>not delay recourse to surgery</strong>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Intrauterine balloon tamponade</summary>
+      <div class="card-body">
+        <ul>
+          <li>An appropriate <strong>first-line 'surgical' intervention</strong> for most women where uterine atony is the only or main cause of haemorrhage.</li>
+          <li>Tamponade using hydrostatic balloon catheters has <strong>superseded uterine packing</strong> for atonic PPH.</li>
+          <li>Devices described: Foley catheter, Bakri balloon, Sengstaken–Blakemore oesophageal catheter, condom catheter. The <strong>urological Rusch balloon</strong> is described as preferable by virtue of larger capacity, ease of use and low cost.</li>
+          <li>Scottish Confidential Audit of Severe Maternal Morbidity: of 339 women with estimated blood loss ≥2500 mL, balloon tamponade was used in 82 cases and <strong>successfully avoided hysterectomy in 75 (91%)</strong>.</li>
+          <li>Effective in <strong>97%</strong> of cases of PPH in resource-poor settings (systematic review).</li>
+          <li><strong>The "tamponade test":</strong> a <em>positive</em> test (control of PPH after balloon inflation) indicates laparotomy is not required; a <em>negative</em> test (continued PPH) is an indication to proceed to laparotomy.</li>
+          <li>No clear evidence on duration — in most cases <strong>4–6 hours</strong> of tamponade should be adequate. Ideally remove during <strong>daytime hours</strong>, in the presence of appropriate senior staff, because of the risk of rebleeding.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Haemostatic compression sutures</summary>
+      <div class="card-body">
+        <ul>
+          <li>Most commonly used at Caesarean delivery to arrest haemorrhage, particularly in <strong>refractory uterine atony</strong>.</li>
+          <li><strong>B-Lynch suture</strong> (1997): requires hysterotomy for insertion — particularly suitable when the uterus has already been opened for Caesarean section.</li>
+          <li><strong>Hayman technique</strong> (2002): modified compression suture that <strong>does not require hysterotomy</strong>.</li>
+          <li>Double vertical compression sutures are effective for PPH due to atony and placenta praevia — possibly a dual action of reducing uterine blood flow and compressing the bleeding surface.</li>
+          <li>Prospective population-based study of 211 women: overall <strong>failure rate leading to hysterectomy was 25%</strong>. No difference between B-Lynch, modified B-Lynch and other techniques. Risk factors for hysterectomy included <strong>increasing age and vaginal delivery</strong>. A delay of <strong>2–6 hours</strong> between delivery and compression suture was independently associated with a <strong>four-fold increased risk of hysterectomy</strong>.</li>
+          <li>Scottish audit: hysterectomy averted in 16 of 21 (76%) women with blood loss ≥2500 mL treated with brace suturing.</li>
+          <li>Compression sutures are associated with a <strong>low complication rate</strong>. Higher risk of uterine ischaemia when combined with vessel ligation. <strong>No negative impact on fertility</strong> reported.</li>
+          <li><strong>Keep a laminated diagram of the brace suture technique in theatre.</strong></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Vascular ligation, embolisation &amp; hysterectomy</summary>
+      <div class="card-body">
+        <h4>Stepwise uterine devascularisation</h4>
+        <ul>
+          <li>Successive ligation of: (i) one uterine artery, (ii) both uterine arteries, (iii) low uterine arteries, (iv) one ovarian artery, (v) both ovarian arteries.</li>
+          <li>Original case series of 103 patients with intractable PPH not responding to medical management was effective in all cases without hysterectomy.</li>
+        </ul>
+        <h4>Internal iliac artery ligation</h4>
+        <ul>
+          <li>Requires a high degree of surgical skill and training; <strong>may be associated with ureteric injury</strong> — involve a senior gynaecologist or vascular surgeon.</li>
+          <li>Case series of 84 women: hysterectomy was subsequently required in <strong>33 (39%)</strong>.</li>
+          <li>Subsequent fertility and pregnancy outcomes do not appear to be impaired.</li>
+        </ul>
+        <h4>Interventional radiology</h4>
+        <ul>
+          <li>Offers a minimally invasive, fertility-preserving method to treat refractory haemorrhage.</li>
+          <li>Retrospective study of 251 patients: arterial embolisation arrested bleeding in <strong>86.5% (217/251)</strong>. Caesarean delivery, DIC and transfusion of &gt;10 units of packed red cells were related to failed embolisation.</li>
+          <li><strong>Selective arterial occlusion</strong> using balloons may stem blood flow to the common internal iliac artery or aorta, either to prevent or treat PPH.</li>
+          <li><strong>REBOA</strong> (resuscitative endovascular balloon occlusion of the aorta) has resulted in better outcomes than standard therapy without REBOA, but is associated with serious complications including ischaemia.</li>
+          <li>Complications of embolisation: ischaemia, thrombosis, arterial rupture.</li>
+          <li>Follow-up studies suggest no impairment of menstruation, fertility or obstetric outcomes.</li>
+          <li>Logistically, where equipment or an interventional radiologist is unavailable, <strong>uterine balloon tamponade is the more appropriate first-line treatment</strong>.</li>
+        </ul>
+        <h4>Hysterectomy</h4>
+        <ul>
+          <li>The <strong>definitive last resort</strong> to control obstetric haemorrhage; associated with significant morbidity.</li>
+          <li>Decision should be made by an experienced consultant clinician, and preferably discussed with a second experienced clinician when feasible.</li>
+          <li><strong>Early recourse is recommended</strong>, especially where bleeding is associated with <strong>placenta accreta or uterine rupture</strong>.</li>
+          <li>Do not delay until the woman is in extremis, or while less definitive procedures with which the surgeon has little experience are attempted.</li>
+          <li><strong>Subtotal hysterectomy</strong> is the operation of choice in many instances, unless there is trauma to the cervix or a morbidly adherent placenta in the lower segment.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ ANAESTHESIA ============ -->
+  <section class="section" id="anaesthesia">
+    <h2>13 · Anaesthetic Considerations</h2>
+
+    <details class="card" open>
+      <summary>The anaesthetist's role in PPH</summary>
+      <div class="card-body">
+        <ul>
+          <li>Management of PPH requires a <strong>multidisciplinary approach</strong>. The anaesthetist plays a crucial role in maintaining haemodynamic stability and, if necessary, determining and administering the most appropriate method of anaesthesia.</li>
+          <li>A <strong>senior anaesthetist should be consulted early</strong> to help assess, initiate and continue prompt resuscitation — bringing expertise in fluid and transfusion therapy and in managing critically ill patients.</li>
+          <li>Anaesthetists should be familiar with the range of <strong>mechanical and surgical options</strong> available to treat haemorrhage.</li>
+          <li>Women who suffer MOH should be managed in a <strong>high-dependency area</strong> with the capacity to deliver high-quality maternal critical care, in the presence of the infant where possible.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Choice of anaesthetic technique</summary>
+      <div class="card-body">
+        <ul>
+          <li>Women may need <strong>examination under anaesthesia</strong> to evaluate the cause of haemorrhage, repair genital tract tears, drain a haematoma, or perform other interventions to control bleeding.</li>
+          <li>Central neuraxial anaesthesia has become the technique of choice in the obstetric population and has resulted in a reduction in maternal mortality.</li>
+          <li>However, <strong>general anaesthesia may be preferable</strong> to regional anaesthesia in cases of:
+            <ul>
+              <li>haemodynamic instability</li>
+              <li>compromised consciousness</li>
+              <li>questionable coagulation status</li>
+            </ul>
+          </li>
+          <li>General anaesthesia in obstetric patients is associated with increased morbidity and mortality compared with regional anaesthesia due to physiological changes in pregnancy — but this must be weighed against the risks of regional anaesthesia in an unstable or coagulopathic patient.</li>
+          <li>Choose induction agents that <strong>avoid cardiovascular decompensation</strong> — 'cardiostable' agents such as <strong>ketamine</strong> may be preferred.</li>
+          <li><strong>Invasive arterial pressure monitoring</strong> allows detection of rapid shifts in arterial pressure and close titration of vasopressors and fluid balance.</li>
+          <li><strong>Central venous access</strong> should be considered if vasopressors might be needed; it also provides a route for rapid fluid replacement. Use ultrasound to make the procedure safer.</li>
+          <li>An <strong>obstetric early warning score system</strong> (MEOWS) helps in early identification of continuing bleeding, especially when it is not apparent.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ POST CARE ============ -->
+  <section class="section" id="postcare">
+    <h2>14 · Post-PPH Care, Secondary PPH &amp; Governance</h2>
+
+    <details class="card">
+      <summary>Monitoring, HDU/ICU and documentation</summary>
+      <div class="card-body">
+        <ul>
+          <li><strong>Continuous physiological monitoring</strong> is necessary, with parameters recorded over time on a flow chart to give good visual cues on clinical progress.</li>
+          <li>Continually re-evaluate the woman's physiological condition <strong>even when bleeding appears to have stopped</strong> — this is essential to recognise continuing bleeding.</li>
+          <li>Major PPH monitoring protocol: temperature every 15 minutes; continuous pulse, BP and respiratory rate (oximeter, ECG, automated BP); Foley catheter to monitor urine output.</li>
+          <li>Consider transfer to <strong>intensive care</strong> once bleeding is controlled, or monitoring at a <strong>high-dependency unit</strong> on the delivery suite, depending on severity.</li>
+          <li>A prospective audit found the majority of women with major PPH received high-dependency care on the labour ward, with only <strong>21% admitted to intensive care</strong> — care may be better provided by obstetricians and anaesthetists on the labour ward.</li>
+          <li>Accurate documentation is essential: staff in attendance and arrival times, sequence of events, drugs with timing and sequence, time of surgical intervention, maternal condition throughout, and timing of fluids and blood products given.</li>
+          <li>The <strong>scribe</strong> is crucial — the structured proforma acts as a checklist of available interventions.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Debriefing &amp; longer-term sequelae</summary>
+      <div class="card-body">
+        <ul>
+          <li>Offer the woman (possibly with her birthing partner) an opportunity to discuss the events surrounding the haemorrhage at a mutually convenient time.</li>
+          <li>Major PPH can be traumatic and has been associated with subsequent <strong>post-traumatic stress disorder</strong> and postnatal depression / fear of further childbirth.</li>
+          <li>Discussion of future pregnancy should include the likelihood of recurrent PPH and any fears regarding pregnancy and childbirth.</li>
+          <li>Arrange appropriate investigations as necessary — e.g. testing for coagulopathies if there are other indicators, and screening for <strong>Sheehan syndrome</strong> (postpartum hypopituitarism secondary to hypotension).</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Secondary PPH (24 h – 12 weeks)</summary>
+      <div class="card-body">
+        <ul>
+          <li>Causes are numerous: <strong>endometritis, retained products of conception (RPOC), subinvolution of the placental implantation site</strong>.</li>
+          <li>Management includes assessment of haemodynamic status, assessment of blood loss, and evaluation of the woman's concerns.</li>
+          <li><strong>Assess vaginal microbiology</strong> — high vaginal and endocervical swabs — and start appropriate antimicrobial therapy when endometritis is suspected.</li>
+          <li>Where endometritis is confirmed, <strong>clindamycin plus gentamicin</strong> is appropriate; once uncomplicated endometritis has clinically improved with IV therapy, there is no additional benefit from further oral therapy.</li>
+          <li><strong>Pelvic ultrasound</strong> may help exclude retained products, although the diagnosis is unreliable — reported sensitivities 44–94% and specificities 16–92%. An echogenic mass in the uterine cavity and an anteroposterior cavity diameter above the 90th centile (~25 mm on days 1–7 postpartum) is associated with RPOC.</li>
+          <li>Take clinical findings into account (degree of bleeding, whether the cervical os is open) before deciding on surgery.</li>
+          <li><strong>Surgical evacuation of retained placental tissue should be undertaken or supervised by an experienced clinician</strong> — it carries a risk of uterine perforation (1.5%) and Asherman's syndrome. Consider ultrasound guidance.</li>
+          <li>Uterotonics (misoprostol, ergometrine) have been recommended although evidence is limited. Transcatheter arterial embolisation and balloon tamponade have been used for ongoing bleeding.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Risk management &amp; audit standards</summary>
+      <div class="card-body">
+        <ul>
+          <li>Every maternity unit should have a <strong>multidisciplinary protocol</strong> for the management of PPH.</li>
+          <li>All staff involved in maternity care should receive training in the management of obstetric emergencies, including PPH.</li>
+          <li>Training for PPH should be <strong>multiprofessional and include team rehearsals</strong>. Simulation training improves knowledge, practical skills, communication and team performance; training in a simulation centre did not further improve outcome compared with training at a local unit.</li>
+          <li><strong>All cases of PPH involving a blood loss greater than 1500 mL should be the subject of a formal clinical incident review.</strong></li>
+        </ul>
+        <h4>Auditable topics</h4>
+        <ul>
+          <li>Proportion of women screened for antenatal anaemia (100%)</li>
+          <li>Proportion of women offered uterotonics for the third stage of labour (100%)</li>
+          <li>Proportion of women undergoing assessment of risk factors for PPH when presenting in labour (100%)</li>
+          <li>Appropriate documentation of management, especially timing of events (100%)</li>
+          <li>Notification to the risk management team of PPH with blood loss &gt;1500 mL (100%)</li>
+          <li>Proportion of the multidisciplinary team who have undergone skills drills training in PPH (100%)</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ ALGORITHMS ============ -->
+  <section class="section" id="algorithms">
+    <h2>15 · Simplified Algorithms</h2>
+
+    <details class="card" open>
+      <summary>Algorithm 1 — Major obstetric haemorrhage: response flow</summary>
+      <div class="card-body">
+        <div class="flow">
+          <div class="fbox fbox-red">
+            <strong>Major obstetric haemorrhage call</strong>
+            <span>Blood loss ≥1000 mL ± signs of hypovolaemia</span>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-amber">
+            <strong>Call for help &amp; activate the massive transfusion protocol</strong>
+            <span>Mobilise obstetrics + anaesthesia · summon senior help · alert laboratory &amp; porters · immediate issue of blood components</span>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-teal">
+            <strong>Immediate resuscitation</strong>
+            <span>A — airway assessment · B — 100% O₂ · C — wide-bore IV access ×2, warmed IV fluid or blood if available</span>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="split">
+            <div class="fbox">
+              <strong>Interventions</strong>
+              <ul>
+                <li>External uterine massage</li>
+                <li>Bimanual uterine compression</li>
+                <li>Active warming</li>
+                <li>If uterus contracted — transfer to theatre</li>
+              </ul>
+            </div>
+            <div class="fbox">
+              <strong>Assessment &amp; investigation</strong>
+              <ul>
+                <li>Bloods: cross-match, FBC, coagulation, fibrinogen, U&amp;E, LFTs</li>
+                <li>ABG / lactate</li>
+                <li>Point-of-care echo, Hb, viscoelastic testing</li>
+                <li>Consider invasive monitoring</li>
+              </ul>
+            </div>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="split">
+            <div class="fbox fbox-teal">
+              <strong>Pharmacological</strong>
+              <ul>
+                <li>Uterotonics</li>
+                <li>Tranexamic acid 1 g IV</li>
+              </ul>
+            </div>
+            <div class="fbox fbox-teal">
+              <strong>Blood component therapy</strong>
+              <ul>
+                <li>Packed red cells</li>
+                <li>FFP</li>
+                <li>Cryoprecipitate / fibrinogen concentrate</li>
+                <li>Platelets</li>
+              </ul>
+            </div>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-slate">
+            <strong>Consider interventional radiology</strong>
+            <span>Selective endovascular balloon occlusion · selective radiological embolisation</span>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-amber">
+            <strong>Transfer to operating theatre</strong>
+            <ul>
+              <li>Examination under anaesthesia</li>
+              <li>If uterine inversion: reduce</li>
+              <li>Genital tract trauma: repair ± pack</li>
+              <li>Intrauterine balloon tamponade</li>
+              <li>Haemostatic compression sutures</li>
+              <li>Uterine artery ligation</li>
+              <li>Hysterectomy</li>
+            </ul>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-teal">
+            <strong>Postoperative care</strong>
+            <span>High-dependency unit · intensive care unit</span>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Algorithm 2 — RCOG major PPH: simultaneous steps</summary>
+      <div class="card-body">
+        <p><small>Resuscitation, monitoring, investigation and treatment should occur <strong>simultaneously</strong>.</small></p>
+        <div class="flow">
+          <div class="fbox fbox-red">
+            <strong>Major obstetric haemorrhage</strong>
+            <span>Blood loss greater than 1000 mL · continuing major obstetric haemorrhage · or clinical shock</span>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-amber">
+            <strong>Call for help</strong>
+            <ul>
+              <li>Senior midwife / obstetrician and anaesthetist</li>
+              <li>Alert haematologist</li>
+              <li>Alert blood transfusion laboratory</li>
+              <li>Alert consultant obstetrician on call</li>
+            </ul>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-teal">
+            <strong>Resuscitation — ABC</strong>
+            <ul>
+              <li>Airway · Breathing · Circulation</li>
+              <li>Oxygen mask (15 L)</li>
+              <li>Fluid balance (e.g. 2 L isotonic crystalloid, 1.5 L colloid)</li>
+              <li>Blood transfusion (O RhD-negative or group-specific blood)</li>
+              <li>Blood products (FFP, PLT, cryoprecipitate, factor VIIa)</li>
+              <li>Keep patient warm</li>
+            </ul>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="split">
+            <div class="fbox">
+              <strong>Monitoring &amp; investigations</strong>
+              <ul>
+                <li>14-gauge cannula ×2</li>
+                <li>FBC, coagulation, U&amp;Es, LFTs</li>
+                <li>Cross-match (4 units, FFP, PLT, cryoprecipitate)</li>
+                <li>ECG, oximeter</li>
+                <li>Foley catheter</li>
+                <li>Hb bedside testing</li>
+                <li>Blood products</li>
+                <li>Consider central and arterial lines</li>
+                <li>Commence record chart</li>
+                <li>Weigh all swabs and estimate blood loss</li>
+              </ul>
+            </div>
+            <div class="fbox">
+              <strong>Medical treatment</strong>
+              <ul>
+                <li>Rub up the uterine fundus</li>
+                <li>Empty bladder</li>
+                <li>Oxytocin 5 IU slow IV (repeat if necessary)</li>
+                <li>Ergometrine 0.5 mg slow IV or IM</li>
+                <li>Oxytocin infusion 40 IU in 500 mL</li>
+                <li>Carboprost 0.25 mg IM every 15 min up to 8 times</li>
+                <li>Carboprost (intramyometrial) 0.25 mg</li>
+                <li>Misoprostol 800 µg sublingually</li>
+                <li>Consider tranexamic acid 1 g IV</li>
+              </ul>
+            </div>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-amber">
+            <strong>Theatre</strong>
+            <ul>
+              <li>Is the uterus contracted?</li>
+              <li>Examination under anaesthesia</li>
+              <li>Has any clotting abnormality been corrected?</li>
+            </ul>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-slate">
+            <strong>Intrauterine balloon tamponade · Brace suture · Consider interventional radiology</strong>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-slate">
+            <strong>Surgery</strong>
+            <ul>
+              <li>Stepwise uterine devascularisation</li>
+              <li>Bilateral internal iliac ligation</li>
+              <li>Hysterectomy (second experienced clinician)</li>
+              <li>Uterine artery embolisation</li>
+            </ul>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-teal">
+            <strong>High-dependency unit or intensive care unit</strong>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Algorithm 3 — Coagulopathy decision aid</summary>
+      <div class="card-body">
+        <div class="flow">
+          <div class="fbox fbox-red">
+            <strong>Ongoing bleeding despite uterotonics &amp; volume resuscitation</strong>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-teal">
+            <strong>Send / repeat coagulation screen (every 30 min) + viscoelastic test if available</strong>
+            <span>PT · APTT · Clauss fibrinogen · platelet count · FIBTEM A5</span>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="split">
+            <div class="fbox">
+              <strong>Fibrinogen &lt;2 g/L or FIBTEM A5 &lt;12 mm</strong>
+              <ul>
+                <li>2 pools cryoprecipitate, or</li>
+                <li>Fibrinogen concentrate ≈60 mg/kg (typically 2–4 g)</li>
+                <li>Recheck; target fibrinogen &gt;2 g/L, FIBTEM A5 &gt;12 mm</li>
+              </ul>
+            </div>
+            <div class="fbox">
+              <strong>PT / APTT &gt;1.5× normal</strong>
+              <ul>
+                <li>FFP 12–15 mL/kg (more if &gt;1.5×)</li>
+                <li>If no results and bleeding continues after 4 units RBC → FFP 12–15 mL/kg</li>
+                <li>Consider early FFP in abruption, AFE or delayed diagnosis</li>
+              </ul>
+            </div>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="split">
+            <div class="fbox">
+              <strong>Platelets &lt;75 × 10⁹/L (maintain &gt;50 × 10⁹/L)</strong>
+              <ul>
+                <li>Transfuse 1 pool</li>
+              </ul>
+            </div>
+            <div class="fbox">
+              <strong>≥8 units RBC given, still bleeding, no results</strong>
+              <ul>
+                <li>2 pools cryoprecipitate + 1 pool platelets</li>
+              </ul>
+            </div>
+          </div>
+          <div class="arrow">▼</div>
+          <div class="fbox fbox-amber">
+            <strong>Persistent life-threatening haemorrhage</strong>
+            <span>Optimise temperature, pH, calcium and platelets before considering rFVIIa. rFVIIa is not first-line and is not a substitute for other measures — discuss with haematology.</span>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ CASES ============ -->
+  <section class="section" id="cases">
+    <h2>16 · Ten High-Yield Case Examples</h2>
+
+    <details class="card">
+      <summary><span class="case-num">1</span>&nbsp;Minor PPH after spontaneous vaginal delivery — atonic uterus</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          A 28-year-old P1 delivers vaginally after a 6-hour labour. Estimated blood loss 750 mL. She is mildly tachycardic (HR 105), BP 118/72, uterus soft on palpation. Placenta and membranes appear complete.
+        </div>
+        <div class="qa"><b>Immediate actions</b>
+          <ul>
+            <li>This is <strong>minor PPH (500–1000 mL) without clinical shock</strong>.</li>
+            <li>IV access with one 14-gauge cannula; send 20 mL blood for group &amp; screen, FBC, coagulation screen <strong>including fibrinogen</strong>.</li>
+            <li>Record pulse, RR and BP every 15 minutes; commence warmed crystalloid.</li>
+            <li><strong>Rub up the fundus</strong>; ensure the <strong>bladder is empty</strong> (Foley).</li>
+            <li>Oxytocin 5 IU slow IV (may repeat); consider ergometrine 0.5 mg if not hypertensive; start oxytocin infusion 40 IU in 500 mL at 125 mL/h.</li>
+            <li>Consider <strong>TXA 1 g IV</strong>.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          Visual estimation underestimates blood loss — reassess continuously. A soft uterus plus ongoing bleeding is atony until proven otherwise. Escalate to the multidisciplinary team if bleeding continues or the patient becomes unstable.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="case-num">2</span>&nbsp;Placental abruption with early consumptive coagulopathy</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          A 33-year-old at 36 weeks presents with painful vaginal bleeding and a tense, tender uterus. Fetal death is confirmed. She is tachycardic and oozing from IV puncture sites. Initial fibrinogen is 1.4 g/L.
+        </div>
+        <div class="qa"><b>Key issue</b>
+          Abruption causes <strong>localised consumptive coagulopathy</strong> at the placental bed, consuming coagulation factors — <strong>especially fibrinogen</strong>. This can progress to DIC and is a classic setting for hypofibrinogenaemia. Bleeding plus clot formation consumes factors rapidly.
+        </div>
+        <div class="qa"><b>Management</b>
+          <ul>
+            <li>Anticipate massive haemorrhage — activate the massive transfusion protocol and call senior help early.</li>
+            <li>Because coagulopathy is likely, consider <strong>early FFP</strong> (12–15 mL/kg) rather than waiting for laboratory results.</li>
+            <li>Replace fibrinogen to maintain <strong>&gt;2 g/L</strong> — 2 pools cryoprecipitate or fibrinogen concentrate ≈60 mg/kg.</li>
+            <li>Give <strong>TXA 1 g IV</strong>, repeat at 30 min if bleeding continues.</li>
+            <li>Cross-match at least 4 units; transfuse to target Hb &gt;80 g/L.</li>
+            <li>If available, use <strong>ROTEM FIBTEM A5</strong> to guide fibrinogen replacement (target &gt;12 mm).</li>
+            <li>Prepare for expedited delivery and possible surgical intervention.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          AFE, uterine rupture and placental abruption may all cause <strong>early-onset DIC</strong>. In these conditions, do not wait for laboratory confirmation before treating coagulopathy. (Note: rFVIIa has been associated with <em>worse</em> outcomes in AFE.)
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="case-num">3</span>&nbsp;Placenta accreta spectrum at elective Caesarean — anticipated MOH</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          A 38-year-old with two previous Caesarean sections has a planned Caesarean at 36 weeks for placenta praevia with suspected accreta. MRI suggests percreta.
+        </div>
+        <div class="qa"><b>Preparation</b>
+          <ul>
+            <li><strong>Structured multidisciplinary planning</strong> reduces blood loss, transfusion and emergency Caesarean delivery — involve obstetrics, anaesthesia, radiology, haematology and transfusion medicine.</li>
+            <li>Ensure delivery in a unit with an on-site blood bank; cross-match adequate units; activate massive transfusion protocol.</li>
+            <li>Consider <strong>cell salvage</strong>, and discuss with the patient beforehand.</li>
+            <li>Consider <strong>preventive/selective arterial balloon occlusion</strong> or interventional radiology support.</li>
+            <li>Senior anaesthetist to plan technique — general anaesthesia may be preferable if haemodynamic instability is anticipated; invasive arterial monitoring is advisable.</li>
+            <li>Consider IV TXA 0.5–1.0 g at Caesarean section in women at increased risk of PPH.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          For abnormal placentation, the battle is won <em>before</em> the incision. Aortic cross-clamping and REBOA are temporising measures. <strong>Early recourse to hysterectomy</strong> is recommended for placenta accreta — do not delay while less definitive procedures are attempted.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="case-num">4</span>&nbsp;Refractory atony after labour augmentation — oxytocin receptor desensitisation</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          A woman augmented with an oxytocin infusion for 8 hours has a Caesarean delivery. Despite 10 IU oxytocin IV bolus and a 40 IU infusion, the uterus remains atonic with ongoing bleeding.
+        </div>
+        <div class="qa"><b>Key issue</b>
+          Prolonged oxytocin exposure causes <strong>oxytocin receptor desensitisation</strong> — the myometrium fails to respond to further oxytocin. Labouring women with oxytocin augmentation require <strong>much greater doses</strong> than those at elective Caesarean delivery.
+        </div>
+        <div class="qa"><b>Management</b>
+          <ul>
+            <li>Escalate to agents that act on <strong>different receptors</strong>: prostaglandins (carboprost 250 µg IM/intramyometrial every 15 min, max 8 doses — caution asthma; misoprostol 800 µg sublingually) and/or ergometrine 200–500 µg IM (contraindicated in hypertension).</li>
+            <li>These are <strong>unaffected by oxytocin desensitisation</strong>.</li>
+            <li>Proceed to mechanical measures — bimanual compression, then intrauterine balloon tamponade, then compression sutures.</li>
+            <li>Give TXA 1 g IV and correct coagulopathy.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          If the uterus does not respond to escalating oxytocin, switch drug class rather than simply increasing the oxytocin dose. If significant atonic bleeding continues after a third dose of carboprost, consider theatre for examination under anaesthesia.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="case-num">5</span>&nbsp;Oxytocin bolus in the hypovolaemic patient — iatrogenic decompensation</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          A woman has lost an estimated 1800 mL after a prolonged labour. She is tachycardic with a systolic BP of 85 mmHg. A colleague administers <strong>10 IU oxytocin as a rapid IV bolus</strong>. She becomes profoundly hypotensive with ST-T changes on the monitor.
+        </div>
+        <div class="qa"><b>Key issue</b>
+          Oxytocin's extrauterine effects are most serious on the cardiovascular system, and correlate strongly with <strong>dose and speed of administration</strong>. In the context of reduced intravascular volume, a rapid oxytocin bolus can precipitate <strong>rapid decompensation</strong> — and deaths have occurred in this situation.
+        </div>
+        <div class="qa"><b>Management</b>
+          <ul>
+            <li>Stop the bolus; support with rapid volume resuscitation and blood products.</li>
+            <li>Consider vasopressor support; obtain invasive arterial monitoring.</li>
+            <li>Give any further oxytocin <strong>slowly and in reduced dose</strong> (≤5 IU IV slowly, the maximum allowable IV bolus in the UK).</li>
+            <li>Reduce oxytocin infusion volume in women at risk of fluid overload/hyponatraemia (e.g. pre-eclampsia) due to its antidiuretic-like effect.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          <strong>Resuscitate volume first, then give uterotonics slowly.</strong> The same applies to carbetocin — deliver slowly in haemodynamic instability or cardiovascular disease.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="case-num">6</span>&nbsp;Viscoelastic-guided fibrinogen replacement (FIBTEM A5 8 mm)</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          Ongoing PPH with estimated blood loss 2000 mL despite uterotonics. Laboratory fibrinogen is pending (sent 20 min ago). ROTEM shows <strong>FIBTEM A5 = 8 mm</strong>.
+        </div>
+        <div class="qa"><b>Interpretation</b>
+          <ul>
+            <li>FIBTEM assesses the <strong>fibrinogen contribution to clot strength</strong> (cytochalasin D eliminates platelet contribution).</li>
+            <li>FIBTEM A5 <strong>&lt;10 mm</strong> is associated with prolonged bleeds and is an independent predictor of PPH &gt;2500 mL.</li>
+            <li>A5 <strong>12 mm ≈ fibrinogen 2 g/L</strong> — the target.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Action</b>
+          <ul>
+            <li>Give <strong>2 pools cryoprecipitate</strong> (raises fibrinogen ≈1 g/L) or <strong>fibrinogen concentrate ≈60 mg/kg</strong> (typically 2–4 g).</li>
+            <li>Recheck FIBTEM; target A5 &gt;12 mm.</li>
+            <li>Remember: FFP is a poor fibrinogen source (2–2.5 g/L) and may worsen relative hypofibrinogenaemia in a parturient whose baseline is ~5 g/L.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          Do <strong>not</strong> give fibrinogen concentrate empirically to a patient with normal fibrinogen — the FIB-PPH trial showed no benefit when baseline fibrinogen was 4.5 g/L. Viscoelastic testing allows targeted replacement and cost savings.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="case-num">7</span>&nbsp;Massive haemorrhage, 8 units RBC given, no laboratory results</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          A woman with uterine rupture has received 8 units of packed red cells and remains haemorrhagic. Coagulation results and platelet count are still unavailable.
+        </div>
+        <div class="qa"><b>Action</b>
+          <ul>
+            <li>Give <strong>2 pools of cryoprecipitate and 1 pool of platelets</strong> empirically (RCOG).</li>
+            <li>If bleeding continues and no haemostatic results are available, FFP should have been started after 4 units of RBC at <strong>12–15 mL/kg</strong> and a 6:4 RBC:FFP ratio maintained until results are available.</li>
+            <li>Give <strong>TXA 1 g IV</strong> (repeat after 30 min if bleeding continues).</li>
+            <li>Keep the patient warm; correct calcium; monitor lactate and base deficit.</li>
+            <li>Targets: Hb &gt;80 g/L, platelets &gt;50 × 10⁹/L, PT/APTT &lt;1.5× normal, fibrinogen &gt;2 g/L.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          Fixed-ratio transfusion protocols derived from trauma have <strong>no proven benefit in PPH</strong> and increase TACO/TRALI risk — but when no results are available and bleeding is ongoing, empirical component therapy is appropriate. Order components as soon as the need is anticipated: thawing causes delay.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="case-num">8</span>&nbsp;PPH in a Jehovah's Witness refusing blood products</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          A 31-year-old Jehovah's Witness with a documented advance decision refusing allogeneic blood has a PPH of 1500 mL after Caesarean delivery. She is tachycardic with a systolic BP of 95 mmHg.
+        </div>
+        <div class="qa"><b>Management</b>
+          <ul>
+            <li>Identify and counsel such patients <strong>early in the antenatal period</strong> — plan ahead rather than in crisis.</li>
+            <li>Maximise red cell mass antenatally: iron supplementation, parenteral iron, ± recombinant erythropoietin; treat anaemia.</li>
+            <li>Use <strong>intraoperative cell salvage</strong> — it may be acceptable to patients who would not otherwise accept transfusion. Use a <strong>double-suction technique</strong>.</li>
+            <li>Give <strong>TXA 1 g IV</strong> early and repeat after 30 min if bleeding continues.</li>
+            <li>Use uterotonics aggressively, and proceed to mechanical/surgical measures (balloon tamponade, compression sutures, vessel ligation, hysterectomy) <strong>sooner rather than later</strong>.</li>
+            <li>Minimise iatrogenic blood loss: small-volume sampling tubes, closed circuits, avoid unnecessary blood tests.</li>
+            <li>Consider high-flow oxygen, permissive hypotension, and early HDU/ICU involvement.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          Respect the patient's autonomy, but do not let refusal of blood delay definitive surgical control of bleeding. Surgical intervention is often the most effective "blood conservation" measure available.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="case-num">9</span>&nbsp;Hypertensive and asthmatic patient — choosing a uterotonic</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          A woman with severe pre-eclampsia and well-controlled asthma has an atonic PPH after Caesarean delivery. She is already on labetalol and magnesium sulphate.
+        </div>
+        <div class="qa"><b>Drug selection reasoning</b>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Drug</th><th>Decision</th><th>Reason</th></tr></thead>
+              <tbody>
+                <tr><td>Oxytocin</td><td>✅ First-line</td><td>Use a slow, small bolus (≤5 IU) — watch for hypotension and tachycardia. Antidiuretic-like effect: reduce fluid volumes</td></tr>
+                <tr><td>Carbetocin</td><td>✅ Alternative first-line</td><td>Longer acting; deliver slowly; same haemodynamic caution</td></tr>
+                <tr><td>Ergometrine</td><td>❌ Contraindicated</td><td>α-adrenergic activation may precipitate or exacerbate hypertension</td></tr>
+                <tr><td>Carboprost</td><td>⚠️ Caution</td><td>Contraindicated/relative contraindication in asthma — may cause bronchospasm</td></tr>
+                <tr><td>Misoprostol</td><td>✅ Second-line</td><td>Prostaglandin E1 analogue; not associated with bronchospasm to the same degree; 400–600 µg SL/PR/PV/PO, max 800 µg. Note delayed onset 1.0–2.5 h</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="qa"><b>Additional considerations</b>
+          <ul>
+            <li>Severe pre-eclampsia is associated with DIC — check platelets and coagulation early.</li>
+            <li>Magnesium sulphate potentiates neuromuscular blockade and may worsen hypotension — anticipate with general anaesthesia.</li>
+            <li>Reduce oxytocin infusion fluid volume because of the risk of fluid overload and hyponatraemia.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          There is no single "correct" uterotonic — the choice depends on the clinical context. Check blood pressure and respiratory history before selecting a second-line agent.
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="case-num">10</span>&nbsp;Secondary PPH at day 10 — endometritis and retained products</summary>
+      <div class="card-body">
+        <div class="qa"><b>Scenario</b>
+          A woman presents 10 days post-vaginal delivery with heavy, offensive vaginal bleeding, lower abdominal pain and a temperature of 38.2 °C. The cervical os is open.
+        </div>
+        <div class="qa"><b>Assessment</b>
+          <ul>
+            <li>Assess haemodynamic status and quantify blood loss; assess the woman's concerns.</li>
+            <li>Take <strong>high vaginal and endocervical swabs</strong> for microbiology.</li>
+            <li>Perform pelvic ultrasound to look for retained products of conception — but remember the diagnosis is <strong>unreliable</strong> (sensitivity 44–94%, specificity 16–92%). An echogenic mass with cavity diameter &gt;90th centile (~25 mm on days 1–7) suggests RPOC.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Management</b>
+          <ul>
+            <li>If endometritis is suspected, start antimicrobial therapy — <strong>clindamycin plus gentamicin</strong>. Once uncomplicated endometritis has clinically improved with IV therapy, there is no additional benefit from further oral therapy.</li>
+            <li><strong>Surgical evacuation of retained placental tissue should be undertaken or supervised by an experienced clinician</strong> — risks include uterine perforation (1.5%) and Asherman's syndrome. Consider ultrasound guidance.</li>
+            <li>Uterotonics (misoprostol, ergometrine) have been used with limited evidence.</li>
+            <li>For ongoing bleeding, transcatheter arterial embolisation and balloon tamponade have been employed.</li>
+          </ul>
+        </div>
+        <div class="qa"><b>Teaching point</b>
+          Secondary PPH is a different disease from primary PPH. Infection and retained tissue dominate — take swabs, treat sepsis, and involve a senior clinician for any surgical evacuation.
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ REFERENCES ============ -->
+  <section class="section" id="references">
+    <h2>17 · Sources &amp; References</h2>
+
+    <details class="card" open>
+      <summary>Primary source documents</summary>
+      <div class="card-body refs">
+        <ul>
+          <li>
+            <span class="src">Royal College of Obstetricians and Gynaecologists.</span>
+            Mavrides E, Allard S, Chandraharan E, Collins P, Green L, Hunt BJ, Riris S, Thomson AJ on behalf of the RCOG.
+            <strong>Prevention and Management of Postpartum Haemorrhage. Green-top Guideline No. 52.</strong>
+            <em>BJOG</em> 2016;124:e106–e149. (Second edition, December 2016.)
+          </li>
+          <li>
+            <span class="src">BJA Education.</span>
+            Drew T, Carvalho JCA.
+            <strong>Major obstetric haemorrhage.</strong>
+            <em>BJA Education</em>, PIIS205853492200021X. The Rotunda and Beaumont Hospitals, Dublin, Ireland; Mount Sinai Hospital, University of Toronto, Canada.
+          </li>
+          <li>
+            <span class="src">BJA Education.</span>
+            Katz D, Conwell J.
+            <strong>Coagulopathy and haemostatic agents in obstetric haemorrhage.</strong>
+            <em>BJA Education</em>, PIIS2058534924000891. Columbia University Irving Medical Center / Mount Sinai Hospital, New York, USA.
+          </li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Key trials, guidelines &amp; guidance cited</summary>
+      <div class="card-body refs">
+        <ul>
+          <li><strong>WOMAN Trial Collaborators.</strong> Effect of early tranexamic acid administration on mortality, hysterectomy, and other morbidities in women with post-partum haemorrhage (WOMAN): an international, randomised, double-blind, placebo-controlled trial. <em>Lancet</em> 2017;389:2105–16.</li>
+          <li><strong>Wikkelsø AJ et al. (FIB-PPH trial group).</strong> Pre-emptive treatment with fibrinogen concentrate for postpartum haemorrhage: randomized controlled trial. <em>Br J Anaesth</em> 2015;114:623–33.</li>
+          <li><strong>Collins PW et al. (OBS2).</strong> Viscoelastometric-guided early fibrinogen concentrate replacement during postpartum haemorrhage: OBS2, a double-blind randomized controlled trial. <em>Br J Anaesth</em> 2017;119:411–21.</li>
+          <li><strong>Ducloy-Bouthors AS et al. (FIDEL).</strong> Early and systematic administration of fibrinogen concentrate in postpartum haemorrhage following vaginal delivery: the FIDEL randomised controlled trial. <em>BJOG</em> 2021;128:1814–23.</li>
+          <li><strong>Charbit B et al.</strong> The decrease of fibrinogen is an early predictor of the severity of postpartum hemorrhage. <em>J Thromb Haemost</em> 2007;5:266–73.</li>
+          <li><strong>Collins PW et al.</strong> Fibrin-based clot formation as an early and rapid biomarker for progression of postpartum hemorrhage: a prospective study. <em>Blood</em> 2014;124:1727–36.</li>
+          <li><strong>Sentilhes L et al.</strong> Tranexamic acid for the prevention of blood loss after vaginal delivery. <em>N Engl J Med</em> 2018;379:731–42.</li>
+          <li><strong>Sentilhes L et al.</strong> Tranexamic acid for the prevention of blood loss after Cesarean delivery. <em>N Engl J Med</em> 2021;384:1623–34.</li>
+          <li><strong>Pacheco LD et al.</strong> Tranexamic acid to prevent obstetrical hemorrhage after Cesarean delivery. <em>N Engl J Med</em> 2023;388:1365–75.</li>
+          <li><strong>Levi M, Levy JH, Andersen HF, Truloff D.</strong> Safety of recombinant activated factor VII in randomized clinical trials. <em>N Engl J Med</em> 2010;363:1791–800.</li>
+          <li><strong>Alfirevic Z et al.</strong> Use of recombinant activated factor VII in primary postpartum hemorrhage: the Northern European registry 2000–2004. <em>Obstet Gynecol</em> 2007;110:1270–8.</li>
+          <li><strong>Leighton BL et al.</strong> Use of recombinant factor VIIa in patients with amniotic fluid embolism: a systematic review of case reports. <em>Anesthesiology</em> 2011;115:1201–8.</li>
+          <li><strong>Heesen M, Carvalho B, Carvalho JCA et al.</strong> International consensus statement on the use of uterotonic agents during caesarean section. <em>Anaesthesia</em> 2019;74:1305–19.</li>
+          <li><strong>Khan KS et al. (SALVO trial).</strong> A randomised controlled trial and economic evaluation of intraoperative cell salvage during caesarean section in women at risk of haemorrhage. <em>Health Technol Assess</em> 2018;22:1–88.</li>
+          <li><strong>Royal College of Obstetricians and Gynaecologists.</strong> Blood transfusion in obstetrics. Green-top Guideline No. 47. London: RCOG; 2015.</li>
+          <li><strong>Royal College of Obstetricians and Gynaecologists.</strong> Antepartum haemorrhage. Green-top Guideline No. 63. London: RCOG; 2011.</li>
+          <li><strong>Royal College of Obstetricians and Gynaecologists.</strong> Placenta praevia, placenta praevia accreta and vasa praevia: diagnosis and management. Green-top Guideline No. 27. London: RCOG; 2011.</li>
+          <li><strong>Hunt BJ, Allard S, Keeling D et al.; British Committee for Standards in Haematology.</strong> A practical guideline for the haematological management of major haemorrhage. <em>Br J Haematol</em> 2015;170:788–803.</li>
+          <li><strong>National Institute for Health and Care Excellence.</strong> Detecting, managing and monitoring haemostasis: viscoelastometric point-of-care testing (ROTEM, TEG and Sonoclot systems). NICE diagnostics guidance 13. Manchester: NICE; 2014.</li>
+          <li><strong>Knight M, Bunch K, Tuffnell D et al. on behalf of MBRRACE-UK.</strong> Saving Lives, Improving Mothers' Care — lessons learned to inform maternity care from the UK and Ireland Confidential Enquiries into Maternal Deaths and Morbidity 2017–19. National Perinatal Epidemiology Unit, University of Oxford; 2021.</li>
+          <li><strong>Tompeck AJ et al.</strong> A comprehensive review of topical haemostatic agents: the good, the bad, and the novel. <em>J Trauma Acute Care Surg</em> 2020;88:e1–21.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  Quick reference compiled for anaesthetic use. Always follow local unit protocols and individual patient assessment.<br>
+  Merged from: RCOG Green-top Guideline No. 52 (BJOG 2016); BJA Education — Major Obstetric Haemorrhage (Drew &amp; Carvalho); BJA Education — Coagulopathy and Haemostatic Agents in Obstetric Haemorrhage (Katz &amp; Conwell).
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var cards  = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.section'));
+  var input  = document.getElementById('search');
+  var status = document.getElementById('status');
+
+  // Store original markup + default open state
+  var orig = new Map();
+  var defaultOpen = new Map();
+  cards.forEach(function(c){
+    orig.set(c, c.innerHTML);
+    defaultOpen.set(c, c.hasAttribute('open'));
+  });
+
+  /* ---------- Highlighting ---------- */
+  function highlight(root, q){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        if(node.parentNode && node.parentNode.nodeName === 'MARK') return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(q) !== -1
+          ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var targets = [];
+    while(walker.nextNode()) targets.push(walker.currentNode);
+
+    targets.forEach(function(node){
+      var text  = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag  = document.createDocumentFragment();
+      var i = 0, idx;
+      while((idx = lower.indexOf(q, i)) !== -1){
+        if(idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement('mark');
+        mark.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mark);
+        i = idx + q.length;
+      }
+      if(i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      if(node.parentNode) node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- Restore ---------- */
+  function restore(){
+    cards.forEach(function(c){
+      c.innerHTML = orig.get(c);
+      c.classList.remove('hidden');
+      c.open = defaultOpen.get(c);
+    });
+    sections.forEach(function(s){ s.classList.remove('hidden'); });
+  }
+
+  /* ---------- Search ---------- */
+  var timer = null;
+  function runSearch(){
+    var q = input.value.trim().toLowerCase();
+    restore();
+
+    if(!q){
+      status.textContent = '';
+      return;
+    }
+
+    var total = 0;
+    cards.forEach(function(c){
+      if(c.textContent.toLowerCase().indexOf(q) !== -1){
+        total++;
+        c.classList.remove('hidden');
+        c.open = true;
+        highlight(c, q);
+      } else {
+        c.classList.add('hidden');
+      }
+    });
+
+    sections.forEach(function(s){
+      var vis = s.querySelectorAll('details.card:not(.hidden)').length;
+      if(vis === 0) s.classList.add('hidden');
+    });
+
+    status.textContent = total
+      ? total + (total === 1 ? ' section matched' : ' sections matched')
+      : 'No matches';
+  }
+
+  input.addEventListener('input', function(){
+    clearTimeout(timer);
+    timer = setTimeout(runSearch, 130);
+  });
+
+  // "/" focuses the search box
+  document.addEventListener('keydown', function(e){
+    if(e.key === '/' && document.activeElement !== input){
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+    if(e.key === 'Escape' && document.activeElement === input){
+      input.value = '';
+      runSearch();
+      input.blur();
+    }
+  });
+
+  /* ---------- Expand / collapse ---------- */
+  document.getElementById('expandAll').addEventListener('click', function(){
+    cards.forEach(function(c){ if(!c.classList.contains('hidden')) c.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    cards.forEach(function(c){ c.open = false; });
+  });
+
+})();
+</script>
+
+</body>
+    </html>
