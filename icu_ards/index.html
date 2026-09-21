@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ARDS Quick Reference — Anaesthetist's Guide</title>
+<title>ARDS Quick Reference — Anaesthetist's Guide (Berlin + Global 2024)</title>
 <style>
   :root{
     --bg:#eef3f7; --card:#ffffff; --ink:#12222e; --muted:#5a6b78;
@@ -18,14 +18,13 @@
     font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     line-height:1.55; font-size:16px;
   }
-  /* ---------- top bar ---------- */
   header.topbar{
     position:sticky; top:0; z-index:50;
     background:linear-gradient(135deg,#0b6e99,#0e8f6e);
     color:#fff; padding:12px 16px 10px;
     box-shadow:0 2px 10px rgba(6,40,60,.18);
   }
-  .topbar-inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .topbar-inner{max-width:1120px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
   .brand{font-weight:750;font-size:1.12rem;letter-spacing:.2px;white-space:nowrap}
   .brand small{display:block;font-weight:400;font-size:.72rem;opacity:.85;letter-spacing:.3px}
   .searchwrap{flex:1 1 260px;position:relative;min-width:220px}
@@ -50,16 +49,14 @@
   .btn.primary:hover{background:#eaf6fb}
   .btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--line)}
   .btn.ghost:hover{background:var(--accent-soft)}
-  #searchInfo{max-width:1080px;margin:6px auto 0;font-size:.78rem;opacity:.95;min-height:1em}
-  /* ---------- layout ---------- */
-  main{max-width:1080px;margin:18px auto 60px;padding:0 16px}
+  #searchInfo{max-width:1120px;margin:6px auto 0;font-size:.78rem;opacity:.95;min-height:1em}
+  main{max-width:1120px;margin:18px auto 60px;padding:0 16px}
   .toc{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
   .toc a{
     text-decoration:none;font-size:.78rem;font-weight:600;color:var(--accent);
     background:#fff;border:1px solid var(--line);padding:5px 10px;border-radius:99px;
   }
   .toc a:hover{background:var(--accent-soft);border-color:#b9dcec}
-  /* ---------- collapsible cards ---------- */
   details.card{
     background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
     margin:0 0 12px; box-shadow:0 1px 3px rgba(16,40,60,.06); overflow:hidden;
@@ -88,7 +85,6 @@
   details.sub > summary::before{content:"▸";color:var(--accent);transition:transform .18s}
   details.sub[open] > summary::before{transform:rotate(90deg)}
   details.sub .card-body{padding:2px 14px 14px}
-  /* ---------- typography ---------- */
   h3{margin:16px 0 6px;font-size:.98rem;color:var(--accent);letter-spacing:.2px}
   h4{margin:12px 0 4px;font-size:.92rem}
   p{margin:8px 0}
@@ -98,6 +94,7 @@
   .key strong{color:#8a5a00}
   .pearl{background:#e9f7f1;border-left:4px solid var(--green);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0}
   .warn{background:#fdecea;border-left:4px solid var(--red);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+  .new{background:#e3f1f8;border-left:4px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0}
   .muted{color:var(--muted);font-size:.86rem}
   .pill{
     display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:99px;
@@ -106,31 +103,37 @@
   .pill.mild{background:#e6f4ea;color:#1e7a45}
   .pill.mod{background:#fff3dd;color:#a8680d}
   .pill.sev{background:#fdecea;color:#b02a1f}
+  .pill.newpill{background:#0b6e99;color:#fff}
   table.tbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:.88rem}
   table.tbl th,table.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
   table.tbl th{background:#f2f7fa;font-weight:700;font-size:.83rem}
   table.tbl tr:nth-child(even) td{background:#fbfdff}
+  table.cmp{font-size:.84rem}
+  table.cmp th:nth-child(1){width:17%}
+  table.cmp th:nth-child(2){width:41%;background:#f2f7fa}
+  table.cmp th:nth-child(3){width:42%;background:#e3f1f8;color:#08496b}
+  table.cmp td:nth-child(3){background:#f5fbfe}
+  table.cmp tr:nth-child(even) td:nth-child(3){background:#eef8fd}
   mark.hl{background:var(--hl);padding:0 1px;border-radius:2px}
   code{background:#eef3f7;padding:1px 5px;border-radius:5px;font-size:.88em}
-  /* ---------- diagrams ---------- */
   figure{margin:14px 0;background:#fbfdff;border:1px solid var(--line);border-radius:10px;padding:10px}
   figure svg{width:100%;height:auto;display:block}
   figcaption{font-size:.8rem;color:var(--muted);margin-top:8px;text-align:center}
-  /* ---------- calculator ---------- */
   .calc{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:12px 0}
   .calc label{display:flex;flex-direction:column;font-size:.78rem;font-weight:600;color:var(--muted);gap:4px}
   .calc input,.calc select{
-    padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:.95rem;width:120px;
+    padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:.95rem;
     background:#fff;color:var(--ink);
   }
-  #pfResult{
-    margin-top:6px;padding:12px 14px;border-radius:10px;background:#f2f7fa;
-    border:1px solid var(--line);font-size:.92rem;
-  }
+  .calc input{width:120px}
+  .calc select{min-width:150px;max-width:210px}
+  #pfResult{margin-top:6px;padding:12px 14px;border-radius:10px;background:#f2f7fa;border:1px solid var(--line);font-size:.92rem}
   #pfResult b{font-size:1.1rem}
-  /* ---------- cases ---------- */
+  .catgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:12px 0}
+  .catcard{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fbfdff}
+  .catcard h4{margin-top:0;color:var(--accent);font-size:.9rem}
+  .catcard ul{margin-left:16px;font-size:.85rem}
   .case-q{font-weight:650;color:#0b4a66;margin-top:6px}
-  /* ---------- game ---------- */
   .game-top{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);font-weight:600}
   .bar{height:7px;background:#e6eef4;border-radius:99px;overflow:hidden;margin:8px 0 4px}
   .bar-fill{height:100%;background:var(--accent);transition:width .3s}
@@ -154,14 +157,15 @@
   .game-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.8rem;color:var(--muted)}
   .game-end{text-align:center;padding:16px 0}
   .game-end .big{font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1.1}
-  /* ---------- footer ---------- */
-  footer{max-width:1080px;margin:0 auto 60px;padding:0 16px;font-size:.82rem;color:var(--muted)}
+  footer{max-width:1120px;margin:0 auto 60px;padding:0 16px;font-size:.82rem;color:var(--muted)}
   footer ol{margin-left:18px}
   footer li{margin:5px 0}
   @media (max-width:600px){
     .brand{font-size:1rem}
     .btn{padding:6px 9px;font-size:.75rem}
     .card-body{padding:4px 12px 14px}
+    table.cmp{font-size:.78rem}
+    table.cmp th,table.cmp td{padding:5px 6px}
   }
 </style>
 </head>
@@ -170,10 +174,10 @@
 <header class="topbar">
   <div class="topbar-inner">
     <div class="brand">ARDS Quick Reference
-      <small>Anaesthetist &amp; ICU — merged evidence summary</small>
+      <small>Anaesthetist &amp; ICU — Berlin 2012 + Global 2024</small>
     </div>
     <div class="searchwrap">
-      <input id="search" type="search" placeholder="Search… PEEP, prone, driving pressure, ECMO" autocomplete="off" aria-label="Search the reference">
+      <input id="search" type="search" placeholder="Search… PEEP, prone, HFNO, SpO₂, driving pressure, ECMO" autocomplete="off" aria-label="Search the reference">
       <button id="clearBtn" title="Clear search" aria-label="Clear search">✕</button>
     </div>
     <button class="btn" id="expandAll">Expand all</button>
@@ -185,26 +189,28 @@
 <main>
 
 <nav class="toc">
-  <a href="#s-def">Definition</a>
-  <a href="#s-epi">Epidemiology</a>
-  <a href="#s-aet">Aetiology</a>
-  <a href="#s-path">Pathophysiology</a>
-  <a href="#s-inv">Investigations</a>
-  <a href="#s-vent">Ventilation</a>
-  <a href="#s-nonvent">Non-ventilatory</a>
-  <a href="#s-prog">Prognosis</a>
-  <a href="#s-sum">Summary</a>
-  <a href="#s-cases">10 Cases</a>
-  <a href="#s-game">Mini-game</a>
-  <a href="#s-ref">References</a>
+  <a href="#s-def">1 Berlin</a>
+  <a href="#s-global">2 Global 2024</a>
+  <a href="#s-cmp">3 Berlin vs Global</a>
+  <a href="#s-epi">4 Epidemiology</a>
+  <a href="#s-aet">5 Aetiology</a>
+  <a href="#s-path">6 Pathophysiology</a>
+  <a href="#s-inv">7 Investigations</a>
+  <a href="#s-vent">8 Ventilation</a>
+  <a href="#s-nonvent">9 Non-ventilatory</a>
+  <a href="#s-prog">10 Prognosis</a>
+  <a href="#s-sum">11 Summary</a>
+  <a href="#s-cases">12 Cases</a>
+  <a href="#s-game">13 Mini-game</a>
+  <a href="#s-ref">14 References</a>
 </nav>
 
-<!-- ============ DEFINITION ============ -->
+<!-- ============ 1 BERLIN DEFINITION ============ -->
 <details class="card" id="s-def" data-section open>
-  <summary>1 · Definition &amp; Diagnosis (Berlin criteria)</summary>
+  <summary>1 · Berlin definition (2012) — the established standard</summary>
   <div class="card-body">
 
-    <p>The older American–European Consensus Conference (AECC, 1994) definition was replaced in 2011/2012 by the <strong>Berlin definition</strong>, which improved reliability and predictive value. It also abolished the term “acute lung injury” (ALI) and categorises ARDS as <strong>mild, moderate or severe</strong>.</p>
+    <p>The older American–European Consensus Conference (AECC, 1994) definition was replaced in 2011/2012 by the <strong>Berlin definition</strong>, which improved reliability and predictive value. It abolished the term “acute lung injury” (ALI) and categorised ARDS as <strong>mild, moderate or severe</strong>.</p>
 
     <div class="key">
       <strong>Berlin definition:</strong> “An acute diffuse, inflammatory lung injury, leading to increased pulmonary vascular permeability, increased lung weight, and loss of aerated lung tissue… [with] hypoxaemia and bilateral radiographic opacities, associated with increased venous admixture, increased physiological dead space, and decreased lung compliance.”
@@ -232,33 +238,327 @@
     <h3>Validation &amp; caveats</h3>
     <ul>
       <li>The Berlin definition has slightly better prediction validity for mortality than the AECC definition — area under the ROC curve 0.577 (95% CI 0.561–0.593) vs 0.536 (95% CI 0.520–0.553), P &lt; 0.001.</li>
-      <li>Features that clinicians often assumed were prognostically useful — high PEEP (&gt; 10 cmH<sub>2</sub>O), static lung compliance, radiographic severity, and corrected expired volume &gt; 10 L min<sup>−1</sup> — were <strong>not</strong> predictive of mortality or other outcomes, and were removed from the first draft of the Berlin definition.</li>
-      <li>No clinical gold standard exists for ARDS. Diffuse alveolar damage on post-mortem confirms the diagnosis in non-survivors, but histological biopsy is rarely performed in the critically ill — so <strong>over-diagnosis</strong> is possible, and false-positive recruitment into trials may confound results.</li>
+      <li>Features clinicians often assumed were prognostically useful — high PEEP (&gt; 10 cmH<sub>2</sub>O), static lung compliance, radiographic severity, and corrected expired volume &gt; 10 L min<sup>−1</sup> — were <strong>not</strong> predictive of mortality or other outcomes, and were removed from the first draft of the Berlin definition.</li>
+      <li>No clinical gold standard exists for ARDS. Diffuse alveolar damage on post-mortem confirms the diagnosis in non-survivors, but histological biopsy is rarely performed in the critically ill — so <strong>over-diagnosis</strong> is possible.</li>
+      <li><strong>Known limitations recognised soon after publication:</strong> the requirement for invasive or non-invasive ventilation could not be met where these modalities were unavailable; patients managed with high-flow nasal oxygen (HFNO) were excluded; arterial blood gases and chest radiography were not universally available; and ultrasound was not accepted as an imaging modality.</li>
     </ul>
 
-    <h3>Quick P/F ratio calculator</h3>
-    <div class="calc">
-      <label>PaO<sub>2</sub>
-        <input id="pao2" type="number" step="0.1" placeholder="e.g. 9.3" value="">
-      </label>
-      <label>Unit
-        <select id="pao2unit"><option value="kpa">kPa</option><option value="mmhg">mmHg</option></select>
-      </label>
-      <label>FiO<sub>2</sub> (%)
-        <input id="fio2" type="number" step="1" placeholder="e.g. 60" value="">
-      </label>
-      <label>PEEP (cmH<sub>2</sub>O)
-        <input id="peep" type="number" step="1" placeholder="e.g. 10" value="">
-      </label>
+    <div class="new">
+      <strong>➜ The Berlin definition has now been expanded.</strong> See section 2 for the <strong>2024 Global Definition</strong>, which adds HFNO, pulse-oximetry-based oxygenation, lung ultrasound, and a resource-limited category — while retaining the same underlying conceptual model and timing.
     </div>
-    <div id="pfResult" class="muted">Enter PaO₂ and FiO₂ to calculate the ratio and Berlin category.</div>
+  </div>
+</details>
+
+<!-- ============ 2 GLOBAL DEFINITION ============ -->
+<details class="card" id="s-global" data-section open>
+  <summary>2 · New Global Definition of ARDS (2024) <span class="pill newpill">NEW</span></summary>
+  <div class="card-body">
+
+    <p>A consensus conference of <strong>32 critical care ARDS experts</strong> met over six virtual meetings (<strong>June 2021 – March 2022</strong>), with subsequent input from members of <strong>21 global critical care societies</strong>. The goal was a definition that would: (1) identify patients fitting the accepted conceptual framework, (2) facilitate rapid diagnosis for care and research, (3) be applicable in resource-limited settings, (4) be useful for testing specific therapies, and (5) be practical for communication with patients and caregivers. Approval used a supermajority threshold (≥ 70% agreement); the final definition was approved by all committee members.</p>
+
+    <div class="key">
+      <strong>Four main recommendations:</strong>
+      <ol style="margin-bottom:0">
+        <li>Include <strong>high-flow nasal oxygen (HFNO) at ≥ 30 L/min</strong>.</li>
+        <li>Use <strong>PaO<sub>2</sub>:FiO<sub>2</sub> ≤ 300 mmHg</strong> <em>or</em> <strong>SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 315</strong> — the latter only if <strong>SpO<sub>2</sub> ≤ 97%</strong>.</li>
+        <li>Retain <strong>bilateral opacities</strong> for imaging criteria, but <strong>add lung ultrasound</strong> as an accepted modality (especially in resource-limited areas).</li>
+        <li>In <strong>resource-limited settings</strong>, do <strong>not</strong> require PEEP, oxygen flow rate, or specific respiratory support devices.</li>
+      </ol>
+    </div>
+
+    <!-- Criteria applying to all -->
+    <h3>Criteria that apply to ALL ARDS categories</h3>
+    <table class="tbl">
+      <thead><tr><th style="width:22%">Domain</th><th>Criterion</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Risk factors and origin of oedema</strong></td>
+          <td>Precipitated by an <strong>acute predisposing risk factor</strong> — pneumonia, non-pulmonary infection, trauma, transfusion, aspiration, or shock. Pulmonary oedema is <strong>not exclusively or primarily attributable to cardiogenic pulmonary oedema / fluid overload</strong>, and hypoxaemia / gas-exchange abnormalities are <strong>not primarily attributable to atelectasis</strong>. However, ARDS <em>can</em> be diagnosed in the presence of these conditions if a predisposing risk factor for ARDS is also present.</td>
+        </tr>
+        <tr>
+          <td><strong>Timing</strong></td>
+          <td>Acute onset or worsening of hypoxaemic respiratory failure <strong>within 1 week</strong> of the estimated onset of the predisposing risk factor, or of new or worsening respiratory symptoms.</td>
+        </tr>
+        <tr>
+          <td><strong>Chest imaging</strong></td>
+          <td><strong>Bilateral opacities</strong> on chest radiography or CT, <strong>or bilateral B-lines and/or consolidations on ultrasound</strong>, not fully explained by effusions, atelectasis, or nodules/masses.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Three categories -->
+    <h3>The three ARDS categories</h3>
+    <div class="catgrid">
+      <div class="catcard">
+        <h4>1 · Nonintubated ARDS</h4>
+        <p class="muted" style="font-size:.83rem">Patient on <strong>HFNO ≥ 30 L/min</strong> or <strong>NIV</strong> who otherwise meets ARDS criteria. <strong>New category</strong> — these patients did not meet the Berlin definition.</p>
+      </div>
+      <div class="catcard">
+        <h4>2 · Intubated ARDS</h4>
+        <p class="muted" style="font-size:.83rem">Invasive mechanical ventilation with a <strong>minimum PEEP of 5 cmH<sub>2</sub>O</strong>. Equivalent to the classic Berlin population.</p>
+      </div>
+      <div class="catcard">
+        <h4>3 · Resource-limited settings</h4>
+        <p class="muted" style="font-size:.83rem">Modified definition (<strong>formal adoption of the Kigali modification</strong>). <strong>Neither PEEP nor a minimum oxygen flow rate is required</strong> for diagnosis. Uses either PaO<sub>2</sub>:FiO<sub>2</sub> or SpO<sub>2</sub>:FiO<sub>2</sub>.</p>
+      </div>
+    </div>
+
+    <!-- Oxygenation thresholds -->
+    <h3>Oxygenation criteria by category</h3>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Severity</th>
+          <th>Nonintubated ARDS<br><span class="muted" style="font-weight:400">HFNO ≥ 30 L/min or NIV</span></th>
+          <th>Intubated ARDS<br><span class="muted" style="font-weight:400">minimum PEEP 5 cmH<sub>2</sub>O</span></th>
+          <th>Resource-limited<br><span class="muted" style="font-weight:400">no PEEP / flow requirement</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pill mild">Mild</span></td>
+          <td>200 &lt; PaO<sub>2</sub>:FiO<sub>2</sub> ≤ 300 mmHg<br>or 235 &lt; SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 315 <span class="muted">(if SpO<sub>2</sub> ≤ 97%)</span></td>
+          <td>200 &lt; PaO<sub>2</sub>:FiO<sub>2</sub> ≤ 300 mmHg<br>or 235 &lt; SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 315 <span class="muted">(if SpO<sub>2</sub> ≤ 97%)</span></td>
+          <td rowspan="3" style="vertical-align:middle">Same thresholds as intubated / nonintubated, but <strong>no PEEP, oxygen flow rate or specific device required</strong></td>
+        </tr>
+        <tr>
+          <td><span class="pill mod">Moderate</span></td>
+          <td>100 &lt; PaO<sub>2</sub>:FiO<sub>2</sub> ≤ 200 mmHg<br>or 148 &lt; SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 235</td>
+          <td>100 &lt; PaO<sub>2</sub>:FiO<sub>2</sub> ≤ 200 mmHg<br>or 148 &lt; SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 235</td>
+        </tr>
+        <tr>
+          <td><span class="pill sev">Severe</span></td>
+          <td>PaO<sub>2</sub>:FiO<sub>2</sub> ≤ 100 mmHg<br>or SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 148</td>
+          <td>PaO<sub>2</sub>:FiO<sub>2</sub> ≤ 100 mmHg<br>or SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 148</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <figure>
+      <svg viewBox="0 0 680 250" role="img" aria-label="Number-line diagram of the Global Definition oxygenation thresholds for PaO2:FiO2 and SpO2:FiO2">
+        <text x="340" y="16" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0b6e99">Global definition — oxygenation thresholds</text>
+
+        <!-- P/F row -->
+        <text x="8" y="62" font-size="12.5" font-weight="700" fill="#12222e">PaO₂:FiO₂</text>
+        <rect x="100" y="44" width="170" height="34" rx="4" fill="#fdecea" stroke="#c0392b" stroke-width="1.5"/>
+        <text x="185" y="66" text-anchor="middle" font-size="12" font-weight="600" fill="#b02a1f">Severe ≤ 100</text>
+        <rect x="270" y="44" width="170" height="34" rx="4" fill="#fff3dd" stroke="#c9821a" stroke-width="1.5"/>
+        <text x="355" y="66" text-anchor="middle" font-size="12" font-weight="600" fill="#a8680d">Moderate 100–200</text>
+        <rect x="440" y="44" width="170" height="34" rx="4" fill="#e6f4ea" stroke="#1e7a45" stroke-width="1.5"/>
+        <text x="525" y="66" text-anchor="middle" font-size="12" font-weight="600" fill="#1e7a45">Mild 200–300</text>
+
+        <!-- S/F row -->
+        <text x="8" y="130" font-size="12.5" font-weight="700" fill="#12222e">SpO₂:FiO₂</text>
+        <rect x="100" y="112" width="170" height="34" rx="4" fill="#fdecea" stroke="#c0392b" stroke-width="1.5"/>
+        <text x="185" y="134" text-anchor="middle" font-size="12" font-weight="600" fill="#b02a1f">Severe ≤ 148</text>
+        <rect x="270" y="112" width="170" height="34" rx="4" fill="#fff3dd" stroke="#c9821a" stroke-width="1.5"/>
+        <text x="355" y="134" text-anchor="middle" font-size="12" font-weight="600" fill="#a8680d">Moderate 148–235</text>
+        <rect x="440" y="112" width="170" height="34" rx="4" fill="#e6f4ea" stroke="#1e7a45" stroke-width="1.5"/>
+        <text x="525" y="134" text-anchor="middle" font-size="12" font-weight="600" fill="#1e7a45">Mild 235–315</text>
+
+        <!-- notes -->
+        <line x1="100" y1="164" x2="610" y2="164" stroke="#d9e3ea" stroke-width="1"/>
+        <text x="100" y="186" font-size="11.5" fill="#5a6b78">• SpO₂:FiO₂ is only valid when SpO₂ ≤ 97% (the oxyhaemoglobin dissociation curve flattens above this).</text>
+        <text x="100" y="204" font-size="11.5" fill="#5a6b78">• SpO₂:FiO₂ is not recommended if a haemoglobin abnormality is suspected (methaemoglobinaemia, carboxyhaemoglobinaemia).</text>
+        <text x="100" y="222" font-size="11.5" fill="#5a6b78">• At altitude &gt; 1,000 m, apply: (PaO₂ or SpO₂)/FiO₂ × (barometric pressure / 760).</text>
+        <text x="100" y="240" font-size="11.5" fill="#5a6b78">• Patients may move between categories during their disease course.</text>
+      </svg>
+      <figcaption>Global definition oxygenation thresholds (not drawn to scale).</figcaption>
+    </figure>
+
+    <!-- Practical notes -->
+    <h3>Practical measurement notes</h3>
+    <ul>
+      <li>Blood gas and oximetry measurements should be made when the patient is <strong>comfortably at rest</strong> and <strong>at least 30 minutes after</strong> changes in position, FiO<sub>2</sub>, or flow rate.</li>
+      <li>For pulse oximetry, ensure an <strong>adequate waveform</strong> and correct <strong>oximeter placement</strong>.</li>
+      <li><strong>Estimated FiO<sub>2</sub></strong> = ambient FiO<sub>2</sub> (e.g. 0.21) + 0.03 × O<sub>2</sub> flow rate (L/min) — used when there is no blender or air-entrainment device.</li>
+      <li>For <strong>intubated ARDS</strong>, a <strong>minimum PEEP of 5 cmH<sub>2</sub>O</strong> is required.</li>
+    </ul>
+
+    <!-- Rationale -->
+    <h3>Rationale for the four changes</h3>
+
+    <details class="sub">
+      <summary>Why include HFNO ≥ 30 L/min?</summary>
+      <div class="card-body">
+        <ul>
+          <li>HFNO use increased substantially after the <strong>FLORALI trial (2015)</strong> and became widespread during the <strong>COVID-19 pandemic</strong>.</li>
+          <li>Patients on HFNO with acute hypoxaemic respiratory failure <strong>did not meet the Berlin definition</strong>, which required invasive or non-invasive mechanical ventilation with ≥ 5 cmH<sub>2</sub>O PEEP.</li>
+          <li>The COVID-19 pandemic demonstrated that patients treated with HFNO may genuinely have ARDS. In one study, <strong>93% of COVID-19 patients treated with HFNO continued to meet ARDS oxygenation criteria — including severe ARDS — after intubation</strong> and treatment with mechanical ventilation and PEEP.</li>
+          <li>Mortality of patients treated with HFNO alone (never progressing to invasive ventilation) was lower, but <strong>similar to those treated with NIV alone</strong> — who already met Berlin criteria.</li>
+          <li><strong>30 L/min</strong> was chosen as the threshold because flow at that rate can provide <strong>low levels of PEEP</strong>.</li>
+          <li>Key advantage: ARDS can be <strong>recognised earlier</strong>, making trials of early intervention more feasible.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Why allow SpO₂:FiO₂?</summary>
+      <div class="card-body">
+        <ul>
+          <li>Arterial blood gases (ABGs) are <strong>not consistently available in resource-limited settings</strong>, and ABG monitoring is <strong>declining in frequency in high-income countries</strong>.</li>
+          <li>Both linear and non-linear imputations of PaO<sub>2</sub>:FiO<sub>2</sub> from SpO<sub>2</sub>:FiO<sub>2</sub> perform well <strong>provided SpO<sub>2</sub> ≤ 97%</strong>.</li>
+          <li>Recent ARDS trials have used SpO<sub>2</sub>:FiO<sub>2</sub> for patient selection, and patients diagnosed this way have <strong>similar clinical outcomes</strong> to those diagnosed by ABG.</li>
+          <li>The committee chose the <strong>Rice linear equation</strong> for cut-off values because its sensitivity and specificity are comparable to non-linear imputations and it is simpler to calculate.</li>
+          <li><strong>Important limitation — racial bias:</strong> pulse oximeters may lack sensitivity for hypoxaemia in patients with <strong>darker skin</strong> and in <strong>shock</strong>. Occult hypoxaemia (true SaO<sub>2</sub> &lt; 88% with SpO<sub>2</sub> 92–96%) occurs up to <strong>four times more frequently</strong> among patients who identify as Black than those who identify as White, contributing to care disparities.</li>
+          <li><strong>Mitigation:</strong> if clinical suspicion for ARDS is high but the hypoxaemia threshold is not met by pulse oximetry, <strong>obtain an ABG if available</strong>. Consider ABG when a classification error would affect management or trial eligibility.</li>
+          <li>On balance, the committee judged that the ready availability of pulse oximetry <strong>outweighs</strong> the risk of missed hypoxaemia, because overall it will increase health equity where ARDS is currently under-diagnosed.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Why add lung ultrasound?</summary>
+      <div class="card-body">
+        <ul>
+          <li>Chest radiography and CT are <strong>not available in all clinical settings</strong>.</li>
+          <li>Ultrasound can identify <strong>bilateral loss of lung aeration</strong> — multiple B-lines and/or consolidations — consistent with non-cardiogenic pulmonary oedema or consolidation.</li>
+          <li>Other sonographic signs, such as <strong>pleural line abnormalities</strong>, may improve diagnostic accuracy (especially specificity).</li>
+          <li><strong>Caveat:</strong> the operator must be <strong>trained in thoracic ultrasound</strong> for this purpose. Interrater variability was a specific concern raised by reviewing societies.</li>
+          <li>Relying exclusively on B-lines/consolidations may lead to <strong>oversensitivity and only moderate specificity</strong>.</li>
+          <li>The committee did <strong>not</strong> select a preferred imaging modality — there is insufficient evidence to support any single modality as the gold standard.</li>
+          <li>Radiographic scoring systems (e.g. the Radiographic Assessment of Lung Edema score) were <strong>not</strong> included, as they require further prospective validation.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Why a resource-limited category?</summary>
+      <div class="card-body">
+        <ul>
+          <li>Formal adoption of the <strong>Kigali modification</strong> of the Berlin definition addresses a major limitation — exclusion of settings without advanced respiratory support.</li>
+          <li>The committee considered making this universally applicable, but concluded that allowing <em>any</em> respiratory device in all settings would not support the face validity of ARDS as a critical illness syndrome, since very mildly hypoxaemic patients could be included.</li>
+          <li>A <strong>separate category</strong> was therefore created to balance applicability with clinical credibility.</li>
+          <li>This allows researchers in low-income countries to identify ARDS populations and conduct clinical studies.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Additional clarifications -->
+    <h3>Other clarifications in the Global Definition</h3>
+    <ul>
+      <li><strong>Timing unchanged:</strong> the 1-week window was retained. Prolonging it was considered (some insults such as COVID-19 have more indolent courses), but including HFNO should allow <strong>earlier</strong> diagnosis instead.</li>
+      <li><strong>Chronic lung disease:</strong> ARDS <em>can</em> be diagnosed in the presence of COPD, interstitial lung disease or pulmonary hypertension, provided the acute hypoxaemic respiratory failure is <strong>not primarily attributable</strong> to these underlying conditions.</li>
+      <li><strong>Histology:</strong> intra-alveolar oedema, inflammation, hyaline membrane formation and alveolar haemorrhage (diffuse alveolar damage) are often present but are <strong>not always present and are not necessary</strong> for a clinical diagnosis.</li>
+      <li><strong>Management influences presentation:</strong> initial PEEP, fluid strategy, sedation and neuromuscular blockade, and prone positioning all affect the clinical picture.</li>
+      <li><strong>Subphenotypes not integrated:</strong> latent class analysis-based hyper- and hypo-inflammatory phenotypes were not incorporated. Prospective validation with point-of-care biomarker platforms is needed to determine whether they are unique to ARDS or broader to sepsis.</li>
+      <li><strong>Under-recognition remains a problem:</strong> in LUNG SAFE, <strong>20% of severe ARDS and up to 50% of mild ARDS were not recognised</strong>. The revised definition needs similar reliability evaluation.</li>
+      <li><strong>Rapidly improving patients:</strong> because ARDS is dynamic, investigators may choose to study only patients whose diagnosis persists beyond 24 hours.</li>
+    </ul>
+
+    <div class="warn">
+      <strong>Stated limitations of the consensus process:</strong> no stringent systematic literature review; recommendations based on consensus opinion rather than formal guideline methodology; no prospective testing of the various SpO<sub>2</sub>:FiO<sub>2</sub> thresholds or the non-intubated ARDS subset; risk of misclassification with removal of PEEP and use of ultrasound in resource-limited areas; and a need for more input from resource-limited regions in future.
+    </div>
+
+    <div class="pearl">
+      <strong>Research priorities identified:</strong> large multicentre studies (similar to LUNG SAFE) of HFNO/NIV progression and outcomes; prognostic value of unilateral vs bilateral opacities; limitations to operationalising the definition (e.g. pulse oximetry inaccuracy due to shock or skin pigmentation); incidence of ARDS diagnosed on room air vs supplemental oxygen; prognostic value of severity categories in non-intubated patients; specificity of lung ultrasound across operators and settings; relationship to biological subphenotypes; prospective evaluation in large trials and observational studies; and long-term outcomes.
+    </div>
 
   </div>
 </details>
 
-<!-- ============ EPIDEMIOLOGY ============ -->
+<!-- ============ 3 COMPARISON ============ -->
+<details class="card" id="s-cmp" data-section open>
+  <summary>3 · Berlin (2012) vs Global (2024) — side-by-side comparison</summary>
+  <div class="card-body">
+
+    <table class="tbl cmp">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Berlin definition (2012)</th>
+          <th>Global definition (2024)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Conceptual model</strong></td>
+          <td>Acute, diffuse inflammatory lung injury → increased pulmonary vascular permeability, increased lung weight, loss of aerated lung tissue. Hypoxaemia + bilateral opacities with increased shunt, increased dead space, decreased compliance.</td>
+          <td><strong>Retained, with minor revisions.</strong> Emphasises the lack of consistent histological findings or biomarkers, and the influence of initial clinical management (position, sedation, paralysis, PEEP, fluid balance) on presentation.</td>
+        </tr>
+        <tr>
+          <td><strong>Timing</strong></td>
+          <td>Acute onset within <strong>1 week</strong> of a known insult or new/worsening respiratory symptoms.</td>
+          <td><strong>Unchanged</strong> — within 1 week of the estimated onset of the predisposing risk factor or new/worsening respiratory symptoms.</td>
+        </tr>
+        <tr>
+          <td><strong>Risk factors / origin of oedema</strong></td>
+          <td>Respiratory failure not fully explained by cardiac failure or fluid overload.</td>
+          <td><strong>Expanded wording.</strong> Precipitated by an acute predisposing risk factor (pneumonia, non-pulmonary infection, trauma, transfusion, aspiration, shock). Oedema not exclusively/primarily cardiogenic or due to fluid overload; hypoxaemia not primarily due to atelectasis. <strong>ARDS can still be diagnosed</strong> if these coexist with a predisposing risk factor. <strong>Chronic lung disease no longer excludes</strong> ARDS.</td>
+        </tr>
+        <tr>
+          <td><strong>Chest imaging</strong></td>
+          <td>Bilateral opacities on <strong>chest radiography or CT</strong>, not fully explained by effusions, lobar/lung collapse, or nodules.</td>
+          <td>Bilateral opacities on chest radiography or CT <strong>OR bilateral B-lines and/or consolidations on lung ultrasound</strong> (trained operator required). <strong>Ultrasound is now an accepted modality.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Oxygenation measure</strong></td>
+          <td><strong>PaO<sub>2</sub>:FiO<sub>2</sub> only</strong> (arterial blood gas required).</td>
+          <td><strong>PaO<sub>2</sub>:FiO<sub>2</sub> ≤ 300 mmHg OR SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 315</strong> — the latter valid only if <strong>SpO<sub>2</sub> ≤ 97%</strong>. Pulse oximetry is now accepted.</td>
+        </tr>
+        <tr>
+          <td><strong>Severity thresholds</strong></td>
+          <td>P/F: mild 200–300, moderate 100–200, severe &lt; 100 mmHg.</td>
+          <td>P/F thresholds <strong>unchanged</strong>. Corresponding S/F thresholds added: <strong>mild 235–315, moderate 148–235, severe ≤ 148</strong>.</td>
+        </tr>
+        <tr>
+          <td><strong>Respiratory support required</strong></td>
+          <td><strong>Invasive or non-invasive mechanical ventilation</strong> required for all categories (mild could also be met with CPAP ≥ 5 cmH<sub>2</sub>O).</td>
+          <td><strong>HFNO at ≥ 30 L/min is now included</strong>, alongside NIV and invasive ventilation. Creates a new <strong>nonintubated ARDS</strong> category.</td>
+        </tr>
+        <tr>
+          <td><strong>PEEP requirement</strong></td>
+          <td><strong>≥ 5 cmH<sub>2</sub>O PEEP</strong> required for diagnosis.</td>
+          <td><strong>≥ 5 cmH<sub>2</sub>O PEEP required for intubated ARDS.</strong> Not required for nonintubated ARDS. <strong>Not required at all in resource-limited settings.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Categories created</strong></td>
+          <td>Mild / moderate / severe (single population).</td>
+          <td><strong>Three populations:</strong> nonintubated ARDS, intubated ARDS, and a modified definition for resource-limited settings. Patients may move between categories over time.</td>
+        </tr>
+        <tr>
+          <td><strong>Resource-limited settings</strong></td>
+          <td><strong>Excluded</strong> — diagnosis impossible without ABG, radiography and mechanical ventilation.</td>
+          <td><strong>Formal adoption of the Kigali modification.</strong> No PEEP, oxygen flow rate, or specific respiratory support device required. Allows epidemiological and clinical research in low-income settings.</td>
+        </tr>
+        <tr>
+          <td><strong>Altitude</strong></td>
+          <td>Not addressed.</td>
+          <td>If altitude &gt; 1,000 m, apply correction factor: <strong>(PaO<sub>2</sub> or SpO<sub>2</sub>)/FiO<sub>2</sub> × (barometric pressure / 760)</strong>.</td>
+        </tr>
+        <tr>
+          <td><strong>Measurement conditions</strong></td>
+          <td>Not specified in detail.</td>
+          <td>Measure when the patient is <strong>comfortably at rest</strong> and <strong>≥ 30 minutes after</strong> changes in position, FiO<sub>2</sub> or flow rate. Ensure adequate pulse-oximetry waveform and probe placement.</td>
+        </tr>
+        <tr>
+          <td><strong>Subphenotypes</strong></td>
+          <td>Not incorporated.</td>
+          <td>Still <strong>not incorporated</strong> — hyper-/hypo-inflammatory phenotypes require prospective validation with point-of-care biomarkers.</td>
+        </tr>
+        <tr>
+          <td><strong>Key advantage</strong></td>
+          <td>Simple, validated, universally recognised; strong evidence base.</td>
+          <td><strong>Earlier diagnosis</strong>, applicability in resource-limited settings, non-invasive monitoring, and inclusion of a previously excluded HFNO population — with the same underlying conceptual framework.</td>
+        </tr>
+        <tr>
+          <td><strong>Key limitation</strong></td>
+          <td>Excludes HFNO; requires ABG, radiography and ventilation; under-recognition (20% severe, up to 50% mild).</td>
+          <td>Consensus rather than guideline methodology; no prospective validation of SpO<sub>2</sub>:FiO<sub>2</sub> thresholds; risk of misclassification in resource-limited settings; pulse oximetry racial bias; ultrasound operator-dependent.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="key">
+      <strong>Bottom line:</strong> the Global Definition is <strong>additive, not a replacement</strong> of the underlying concept. Every patient who met Berlin criteria still meets the Global Definition (as intubated or nonintubated ARDS), but the Global Definition also captures patients on HFNO, patients diagnosed by pulse oximetry, patients diagnosed by lung ultrasound, and patients in resource-limited settings who would previously have been excluded.
+    </div>
+
+  </div>
+</details>
+
+<!-- ============ 4 EPIDEMIOLOGY ============ -->
 <details class="card" id="s-epi" data-section>
-  <summary>2 · Epidemiology</summary>
+  <summary>4 · Epidemiology</summary>
   <div class="card-body">
     <h3>LUNG SAFE study (landmark observational data)</h3>
     <ul>
@@ -270,17 +570,22 @@
       <li>Conclusion: ARDS is <strong>under-recognised and under-treated</strong>, with high mortality. Clinician recognition occurred in only about <strong>60%</strong> of cases, and adherence to best practice was poor.</li>
     </ul>
 
+    <div class="warn">
+      <strong>Under-recognition in detail (LUNG SAFE):</strong> <strong>20% of patients with severe ARDS</strong> and <strong>up to 50% of those with mild ARDS</strong> were not recognised as having ARDS. The revised Global Definition will need a similar evaluation for reliability.
+    </div>
+
     <h3>Other figures</h3>
     <ul>
       <li>Estimated incidence ≈ <strong>64 cases per 100,000 people</strong> (figures vary widely because of the subjectivity of the old AECC definition).</li>
       <li>ARDS is associated with multiple organ dysfunction and carries high mortality, morbidity and financial cost.</li>
+      <li>Reported mortality range across the critical care population: <strong>27–45%</strong>.</li>
     </ul>
   </div>
 </details>
 
-<!-- ============ AETIOLOGY ============ -->
+<!-- ============ 5 AETIOLOGY ============ -->
 <details class="card" id="s-aet" data-section>
-  <summary>3 · Aetiology (pulmonary vs extrapulmonary)</summary>
+  <summary>5 · Aetiology (pulmonary vs extrapulmonary)</summary>
   <div class="card-body">
     <p>Precipitants are classified as <strong>pulmonary</strong> (direct lung insult) or <strong>extrapulmonary</strong> (systemic insult). <strong>Pneumonia and non-pulmonary sepsis are the leading causes.</strong></p>
 
@@ -297,7 +602,7 @@
         <tr><td></td><td>Burns (&lt; 1%)</td></tr>
       </tbody>
     </table>
-    <p class="muted"><sup>a</sup>Percentages are from the LUNG SAFE study.</p>
+    <p class="muted"><sup>a</sup>Percentages are from the LUNG SAFE study. The Global Definition adds <strong>transfusion</strong> and <strong>shock</strong> explicitly to the list of predisposing risk factors, alongside pneumonia, non-pulmonary infection, trauma, aspiration and burn.</p>
 
     <div class="pearl">
       <strong>Genetics:</strong> there is wide variability in genetic predisposition to ARDS, but the precise genetic basis remains poorly understood.
@@ -305,9 +610,9 @@
   </div>
 </details>
 
-<!-- ============ PATHOPHYSIOLOGY ============ -->
+<!-- ============ 6 PATHOPHYSIOLOGY ============ -->
 <details class="card" id="s-path" data-section>
-  <summary>4 · Pathophysiology (three overlapping phases)</summary>
+  <summary>6 · Pathophysiology (three overlapping phases)</summary>
   <div class="card-body">
 
     <p>ARDS is the end result of a complex interplay of inflammatory mediators producing <strong>diffuse alveolar damage, non-cardiogenic pulmonary oedema, surfactant dysfunction and atelectasis</strong>. Angiotensin II is of particular research interest because of its ability to induce alveolar apoptosis and fibrosis.</p>
@@ -318,7 +623,6 @@
           <clipPath id="alvClip"><circle cx="480" cy="140" r="62"/></clipPath>
         </defs>
 
-        <!-- LEFT: normal -->
         <text x="150" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#0b6e99">NORMAL ALVEOLUS</text>
         <circle cx="150" cy="140" r="62" fill="#e8f4ff" stroke="#1f6fb2" stroke-width="4"/>
         <circle cx="150" cy="140" r="53" fill="none" stroke="#7fb8e0" stroke-width="2" stroke-dasharray="3 6"/>
@@ -332,10 +636,8 @@
         <text x="150" y="288" text-anchor="middle" font-size="12" fill="#5a6b78">Thin intact membrane · surfactant intact</text>
         <text x="150" y="306" text-anchor="middle" font-size="12" fill="#5a6b78">No shunt · normal compliance</text>
 
-        <!-- RIGHT: ARDS -->
         <text x="480" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#b02a1f">ARDS ALVEOLUS</text>
 
-        <!-- collapsed neighbours -->
         <ellipse cx="398" cy="62" rx="20" ry="11" fill="#cfd8de" stroke="#8fa3b0" stroke-width="2"/>
         <ellipse cx="562" cy="62" rx="20" ry="11" fill="#cfd8de" stroke="#8fa3b0" stroke-width="2"/>
         <text x="398" y="42" text-anchor="middle" font-size="10.5" fill="#7c8d9a">collapsed</text>
@@ -392,84 +694,49 @@
     <div class="pearl">
       <strong>“Baby lung” concept:</strong> ARDS affects alveoli heterogeneously. Some areas become stiff and hard to expand, while more normal, compliant alveoli may become over-distended and damaged. Patients therefore have a <strong>smaller proportion of lung available for ventilation</strong> and lower respiratory system compliance (C<sub>RS</sub>).
     </div>
+
+    <div class="new">
+      <strong>Histology in the Global Definition:</strong> intra-alveolar oedema, inflammation, hyaline membrane formation and alveolar haemorrhage (diffuse alveolar damage) are often present, but are <strong>not always present and are not necessary</strong> for a clinical diagnosis of ARDS. The revised conceptual model explicitly emphasises this, and the lack of consistent biomarkers.
+    </div>
   </div>
 </details>
 
-<!-- ============ INVESTIGATIONS ============ -->
+<!-- ============ 7 INVESTIGATIONS ============ -->
 <details class="card" id="s-inv" data-section>
-  <summary>5 · Investigations &amp; imaging</summary>
+  <summary>7 · Investigations &amp; imaging</summary>
   <div class="card-body">
     <ul>
       <li>ARDS is predominantly a <strong>clinical diagnosis</strong>; adequate clinician experience is needed to recognise the mimics.</li>
-      <li><strong>Chest radiograph:</strong> bilateral lung infiltrates are an early finding.</li>
-      <li><strong>Echocardiography:</strong> used to quantify cardiac function and exclude a cardiac explanation (Berlin criterion 4).</li>
-      <li><strong>CT:</strong> particularly useful when there is an underlying pulmonary cause. It demonstrates the <strong>heterogeneity</strong> of the disease — small areas of relatively unaffected lung with potential for recruitment, interspersed with segments of severely affected lung (typically anterior sparing with extensive posterior change).</li>
+      <li><strong>Chest radiograph:</strong> bilateral lung infiltrates are an early finding. It is the most common imaging modality in critically ill patients, but identification of bilateral opacities has <strong>poor interrater reliability</strong>.</li>
+      <li><strong>Echocardiography:</strong> used to quantify cardiac function and exclude a cardiac explanation (Berlin / Global criterion).</li>
+      <li><strong>CT:</strong> particularly useful when there is an underlying pulmonary cause. Demonstrates the <strong>heterogeneity</strong> of the disease — small areas of relatively unaffected lung with potential for recruitment, interspersed with segments of severely affected lung (typically anterior sparing with extensive posterior change).</li>
+      <li><strong>Lung ultrasound <span class="pill newpill">NEW</span>:</strong> now accepted in the Global Definition. Bilateral B-lines and/or consolidations indicate loss of lung aeration consistent with non-cardiogenic pulmonary oedema or consolidation. <strong>The operator must be trained in thoracic ultrasound.</strong> Integrating pleural line abnormalities may improve specificity.</li>
       <li><strong>Caution:</strong> transferring a patient with ARDS for CT is not without risk and may lead to subsequent increases in ventilatory support.</li>
     </ul>
 
-    <figure>
-      <svg viewBox="0 0 660 360" role="img" aria-label="Schematic of supine and prone chest cross-sections showing dorsal atelectasis and improvement with prone positioning">
-        <defs>
-          <linearGradient id="gradSupine" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#cfe9f8"/>
-            <stop offset="45%" stop-color="#9dc9e8"/>
-            <stop offset="100%" stop-color="#44637a"/>
-          </linearGradient>
-          <linearGradient id="gradProne" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#a9c6da"/>
-            <stop offset="100%" stop-color="#cfe9f8"/>
-          </linearGradient>
-        </defs>
+    <div class="key">
+      <strong>No gold standard:</strong> the Global Definition committee did <strong>not</strong> select a preferred imaging modality for diagnosing ARDS — there is insufficient evidence to support any single modality as the gold standard. Chest radiography and CT were retained alongside ultrasound.
+    </div>
 
-        <!-- SUPINE -->
-        <text x="165" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#0b6e99">SUPINE</text>
-        <rect x="40" y="45" width="250" height="225" rx="45" fill="#f2f6f9" stroke="#8fa3b0" stroke-width="2"/>
-        <ellipse cx="105" cy="140" rx="45" ry="72" fill="url(#gradSupine)"/>
-        <ellipse cx="225" cy="140" rx="45" ry="72" fill="url(#gradSupine)"/>
-        <ellipse cx="165" cy="178" rx="26" ry="30" fill="#d98a8a" stroke="#b06a6a" stroke-width="2"/>
-        <text x="165" y="182" text-anchor="middle" font-size="10" fill="#7a2f2f" font-weight="700">heart</text>
-        <circle cx="165" cy="255" r="13" fill="#cbd5dc" stroke="#8fa3b0" stroke-width="2"/>
-        <text x="165" y="259" text-anchor="middle" font-size="9" fill="#5a6b78">spine</text>
-        <line x1="315" y1="80" x2="315" y2="150" stroke="#5a6b78" stroke-width="3"/>
-        <polygon points="315,160 308,146 322,146" fill="#5a6b78"/>
-        <text x="165" y="295" text-anchor="middle" font-size="12" fill="#5a6b78">Anterior (top) relatively spared</text>
-        <text x="165" y="313" text-anchor="middle" font-size="12" fill="#b02a1f" font-weight="600">Dorsal atelectasis / consolidation → shunt</text>
-        <text x="165" y="331" text-anchor="middle" font-size="11.5" fill="#5a6b78">Heart compresses the underlying lung</text>
-
-        <!-- PRONE -->
-        <text x="495" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#0e8f6e">PRONE</text>
-        <rect x="370" y="45" width="250" height="225" rx="45" fill="#f2f6f9" stroke="#8fa3b0" stroke-width="2"/>
-        <ellipse cx="435" cy="140" rx="45" ry="72" fill="url(#gradProne)"/>
-        <ellipse cx="555" cy="140" rx="45" ry="72" fill="url(#gradProne)"/>
-        <ellipse cx="495" cy="118" rx="26" ry="28" fill="#d98a8a" stroke="#b06a6a" stroke-width="2"/>
-        <text x="495" y="122" text-anchor="middle" font-size="10" fill="#7a2f2f" font-weight="700">heart</text>
-        <circle cx="495" cy="255" r="13" fill="#cbd5dc" stroke="#8fa3b0" stroke-width="2"/>
-        <text x="495" y="259" text-anchor="middle" font-size="9" fill="#5a6b78">spine</text>
-        <line x1="645" y1="80" x2="645" y2="150" stroke="#5a6b78" stroke-width="3"/>
-        <polygon points="645,160 638,146 652,146" fill="#5a6b78"/>
-        <text x="495" y="295" text-anchor="middle" font-size="12" fill="#5a6b78">Dorsal regions recruited</text>
-        <text x="495" y="313" text-anchor="middle" font-size="12" fill="#0e8f6e" font-weight="600">More even V<sub>T</sub> distribution &amp; V/Q matching</text>
-        <text x="495" y="331" text-anchor="middle" font-size="11.5" fill="#5a6b78">Heart falls anteriorly → less lung compression</text>
-      </svg>
-      <figcaption>Schematic representation of the radiological appearances in the source articles (chest radiograph and CT showing heterogeneously affected lungs). Simplified — anterior is drawn at the top of both panels.</figcaption>
-    </figure>
+    <div class="warn">
+      <strong>Ultrasound caveats:</strong> relying exclusively on B-lines/consolidations may lead to <strong>oversensitivity and only moderate specificity</strong>. Interrater variability was a specific concern raised by reviewing critical care societies, and further multicentre, multi-operator studies are needed.
+    </div>
   </div>
 </details>
 
-<!-- ============ VENTILATION ============ -->
+<!-- ============ 8 VENTILATION ============ -->
 <details class="card" id="s-vent" data-section>
-  <summary>6 · Ventilatory strategies (lung-protective ventilation)</summary>
+  <summary>8 · Ventilatory strategies (lung-protective ventilation)</summary>
   <div class="card-body">
 
     <div class="key">
       <strong>Core principle — lung-protective ventilation:</strong> minimise lung injury by ventilating with <strong>low tidal volumes at controlled pressure</strong>, using <strong>appropriate PEEP</strong>, a <strong>rationalised FiO<sub>2</sub></strong>, and a <strong>permissive approach to hypercapnoea</strong>. These basics require minimal specialised equipment and should be achievable in any ICU.
     </div>
 
-    <p class="muted">Guidelines: American Thoracic Society / European Society of Intensive Care Medicine (2017) and the UK Faculty of Intensive Care Medicine / Intensive Care Society ARDS guideline (2018). Despite a strong evidence base, LUNG SAFE found ARDS under-diagnosed (recognised in only 60% of cases) and poor adherence to best practice.</p>
+    <p class="muted">Guidelines: American Thoracic Society / European Society of Intensive Care Medicine (2017), the UK Faculty of Intensive Care Medicine / Intensive Care Society ARDS guideline (2018), and the ESICM guidelines on ARDS (2023 — definition, phenotyping and respiratory support strategies). Despite a strong evidence base, LUNG SAFE found ARDS under-diagnosed (recognised in only 60% of cases) and poor adherence to best practice.</p>
 
-    <!-- Low tidal volume -->
     <details class="sub" open>
-      <summary>6.1 · Low-tidal-volume ventilation — the cornerstone</summary>
+      <summary>8.1 · Low-tidal-volume ventilation — the cornerstone</summary>
       <div class="card-body">
         <p>Pioneered by the <strong>ARDSnet ARMA trial (2000)</strong>:</p>
         <ul>
@@ -495,9 +762,8 @@
       </div>
     </details>
 
-    <!-- Driving pressure -->
     <details class="sub">
-      <summary>6.2 · Driving pressure (ΔP) — the “baby lung” index</summary>
+      <summary>8.2 · Driving pressure (ΔP) — the “baby lung” index</summary>
       <div class="card-body">
         <p>ΔP reflects the reduced functional size of the lung by accounting for lung compliance. Also called the <strong>driving pressure</strong>:</p>
         <div class="key"><strong>ΔP = V<sub>T</sub> / C<sub>RS</sub> = inspiratory plateau pressure − PEEP</strong></div>
@@ -513,9 +779,8 @@
       </div>
     </details>
 
-    <!-- PEEP -->
     <details class="sub">
-      <summary>6.3 · Positive end-expiratory pressure (PEEP)</summary>
+      <summary>8.3 · Positive end-expiratory pressure (PEEP)</summary>
       <div class="card-body">
         <h4>Physiological effects</h4>
         <ul>
@@ -537,12 +802,12 @@
           <li>Based on the inflection point of the pressure/volume curve</li>
         </ul>
         <p>Guidelines recommend <strong>high PEEP</strong> (defined variably, but on average <strong>15 cmH<sub>2</sub>O</strong>) in patients with <strong>moderate and severe ARDS</strong>, in whom a mortality benefit was demonstrated in clinical trials. ARDSnet recommend <strong>increasing PEEP in tandem with increasing FiO<sub>2</sub></strong>. No study has identified a universally optimal PEEP level.</p>
+        <p class="muted"><strong>Global Definition note:</strong> a minimum PEEP of 5 cmH<sub>2</sub>O is required for the <strong>intubated ARDS</strong> category, but not for nonintubated ARDS, and not at all in resource-limited settings.</p>
       </div>
     </details>
 
-    <!-- Prone -->
     <details class="sub">
-      <summary>6.4 · Prone-position ventilation</summary>
+      <summary>8.4 · Prone-position ventilation</summary>
       <div class="card-body">
         <h4>Postulated physiological benefits</h4>
         <ul>
@@ -568,9 +833,8 @@
       </div>
     </details>
 
-    <!-- APRV -->
     <details class="sub">
-      <summary>6.5 · Airway pressure release ventilation (APRV)</summary>
+      <summary>8.5 · Airway pressure release ventilation (APRV)</summary>
       <div class="card-body">
         <ul>
           <li>Sometimes known as <strong>“inverse ratio ventilation”</strong>.</li>
@@ -585,9 +849,8 @@
       </div>
     </details>
 
-    <!-- HFOV -->
     <details class="sub">
-      <summary>6.6 · High-frequency oscillatory ventilation (HFOV)</summary>
+      <summary>8.6 · High-frequency oscillatory ventilation (HFOV)</summary>
       <div class="card-body">
         <ul>
           <li>More commonly used in paediatrics. The lung is held open at a <strong>high mean airway pressure (typically 25–30 cmH<sub>2</sub>O)</strong>, with <strong>small tidal volumes of 1–3 mL/kg</strong> delivered at a <strong>frequency of 3–15 Hz</strong>.</li>
@@ -602,9 +865,8 @@
       </div>
     </details>
 
-    <!-- Recruitment -->
     <details class="sub">
-      <summary>6.7 · Recruitment manoeuvres</summary>
+      <summary>8.7 · Recruitment manoeuvres</summary>
       <div class="card-body">
         <p><strong>Aim:</strong> use a transient increase in ventilatory pressure to open (“recruit”) collapsed alveoli, reversing the atelectasis of ARDS and increasing the lung area available for gas exchange. Following the manoeuvre, PEEP is generally increased to hold the newly recruited alveoli open.</p>
 
@@ -626,9 +888,8 @@
       </div>
     </details>
 
-    <!-- ECMO -->
     <details class="sub">
-      <summary>6.8 · Extracorporeal membrane oxygenation (ECMO)</summary>
+      <summary>8.8 · Extracorporeal membrane oxygenation (ECMO)</summary>
       <div class="card-body">
         <ul>
           <li>Uses <strong>large-bore central venous access</strong> to remove blood, pass it through a <strong>gas exchanger</strong>, and return it to the (usually venous) circulation. A modified cardiopulmonary bypass device used at the bedside for days to weeks.</li>
@@ -651,14 +912,13 @@
   </div>
 </details>
 
-<!-- ============ NON-VENTILATORY ============ -->
+<!-- ============ 9 NON-VENTILATORY ============ -->
 <details class="card" id="s-nonvent" data-section>
-  <summary>7 · Non-ventilatory &amp; adjunctive strategies</summary>
+  <summary>9 · Non-ventilatory &amp; adjunctive strategies</summary>
   <div class="card-body">
 
-    <!-- Fluids -->
     <details class="sub" open>
-      <summary>7.1 · Conservative fluid therapy</summary>
+      <summary>9.1 · Conservative fluid therapy</summary>
       <div class="card-body">
         <p>Given that ARDS is a pathological state of non-cardiogenic pulmonary oedema, conservative fluid management appears intuitive. Excessive fluid administration is deleterious to gas exchange because of increased pulmonary capillary permeability.</p>
         <ul>
@@ -676,9 +936,8 @@
       </div>
     </details>
 
-    <!-- NMB -->
     <details class="sub">
-      <summary>7.2 · Neuromuscular blockade (NMB)</summary>
+      <summary>9.2 · Neuromuscular blockade (NMB)</summary>
       <div class="card-body">
         <h4>Rationale</h4>
         <ul>
@@ -694,13 +953,13 @@
           <li>The Intensive Care Society guideline concludes there is <strong>weak evidence from systematic reviews</strong> to support the use of a <strong>48-hour cisatracurium infusion</strong> in patients with <strong>moderate to severe ARDS</strong>.</li>
           <li>All trials to date have been of <strong>cisatracurium</strong>, which may have a <strong>direct anti-inflammatory action</strong> in addition to its neuromuscular effect. It is <strong>unclear whether these findings generalise to other neuromuscular blockers</strong>.</li>
           <li>An observational study comparing cisatracurium with vecuronium found <strong>no difference in mortality</strong> but a <strong>significant reduction in ventilator days</strong> in favour of cisatracurium.</li>
+          <li>The PETAL network trial of <strong>early neuromuscular blockade</strong> (Moss et al., <em>N Engl J Med</em> 2019) further informed this area — the role remains one of moderate-to-severe ARDS with weak supporting evidence.</li>
         </ul>
       </div>
     </details>
 
-    <!-- Steroids -->
     <details class="sub">
-      <summary>7.3 · Corticosteroids</summary>
+      <summary>9.3 · Corticosteroids</summary>
       <div class="card-body">
         <p>Given the known inflammatory component of ARDS, there is a potential role for steroids to suppress this phase. Many small studies exist, but many were of <strong>low quality</strong> and were conducted <strong>before the advent of lung-protective ventilation</strong>.</p>
         <ul>
@@ -713,9 +972,8 @@
       </div>
     </details>
 
-    <!-- Other drugs -->
     <details class="sub">
-      <summary>7.4 · Other adjunctive / pharmacological therapies</summary>
+      <summary>9.4 · Other adjunctive / pharmacological therapies</summary>
       <div class="card-body">
         <p>A number of pharmaceutical therapies have been trialled in attempts to improve V/Q matching, reduce ventilator-induced lung injury, and modulate the inflammatory process underlying ARDS.</p>
 
@@ -740,9 +998,8 @@
       </div>
     </details>
 
-    <!-- Nutrition -->
     <details class="sub">
-      <summary>7.5 · Nutrition</summary>
+      <summary>9.5 · Nutrition</summary>
       <div class="card-body">
         <ul>
           <li>Nutrition is a key part of treatment in critical illness, but <strong>optimal feeding in ARDS has not been delineated</strong>.</li>
@@ -754,27 +1011,29 @@
   </div>
 </details>
 
-<!-- ============ PROGNOSIS ============ -->
+<!-- ============ 10 PROGNOSIS ============ -->
 <details class="card" id="s-prog" data-section>
-  <summary>8 · Prognosis &amp; long-term outcomes</summary>
+  <summary>10 · Prognosis &amp; long-term outcomes</summary>
   <div class="card-body">
     <ul>
       <li>Studies on long-term outcomes of ARDS survivors are limited, but <strong>reductions in functional outcomes are increasingly recognised</strong>.</li>
       <li>In one study of <strong>109 ARDS survivors</strong>, the <strong>6-minute walking distances at 1, 3 and 5 years were 66%, 67% and 76% of predicted values</strong> respectively.</li>
       <li><strong>None of the patients in this relatively young cohort had returned to normal function within the 5-year follow-up.</strong></li>
       <li><strong>Significant cognitive and psychiatric sequelae</strong> are also recognised in survivors, as is <strong>persistent cognitive impairment in the longer term</strong>.</li>
+      <li>The Global Definition committee noted that the definition <strong>does not capture differences in long-term functional outcomes</strong> — these are not a fundamental component of the initial diagnosis, but should be prioritised in prospective epidemiological studies of patients diagnosed using the new definition.</li>
     </ul>
   </div>
 </details>
 
-<!-- ============ SUMMARY ============ -->
+<!-- ============ 11 SUMMARY ============ -->
 <details class="card" id="s-sum" data-section>
-  <summary>9 · Summary &amp; key points</summary>
+  <summary>11 · Summary &amp; key points</summary>
   <div class="card-body">
     <ul>
       <li>ARDS is a syndrome of <strong>hypoxaemic respiratory failure associated with non-cardiogenic pulmonary oedema</strong>, occurring in <strong>10% of ICU patients</strong> and <strong>23% of those requiring mechanical ventilation</strong>.</li>
       <li>It is characterised by an <strong>acute inflammatory reaction followed by a proliferative stage</strong>, which may then progress to <strong>fibrosis or resolution</strong>.</li>
-      <li>Diagnosed by the <strong>Berlin definition</strong>, and categorised as <strong>mild, moderate or severe</strong> by PaO<sub>2</sub>:FiO<sub>2</sub> ratio.</li>
+      <li>Diagnosed by the <strong>Berlin definition (2012)</strong>, and categorised as <strong>mild, moderate or severe</strong> by PaO<sub>2</sub>:FiO<sub>2</sub> ratio.</li>
+      <li><strong>Updated by the Global Definition (2024)</strong>: adds HFNO ≥ 30 L/min, allows SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 315 (if SpO<sub>2</sub> ≤ 97%), accepts lung ultrasound, and creates a resource-limited category requiring neither PEEP nor a minimum oxygen flow rate. Three populations: <strong>nonintubated, intubated, and resource-limited</strong>.</li>
       <li>Principles of management aim to <strong>avoid exacerbating lung injury</strong> by ventilating at <strong>low tidal volumes with controlled pressure</strong>, <strong>appropriate PEEP</strong>, and a <strong>permissive approach to hypercapnoea</strong>.</li>
       <li>Adjuncts include a <strong>conservative fluid management strategy</strong> and, in moderate to severe cases, <strong>neuromuscular blockade</strong> and <strong>prone-position ventilation</strong>.</li>
       <li><strong>ECMO</strong> can be used as a <strong>rescue therapy for severe cases</strong>.</li>
@@ -784,9 +1043,9 @@
   </div>
 </details>
 
-<!-- ============ CASES ============ -->
+<!-- ============ 12 CASES ============ -->
 <details class="card" id="s-cases" data-section>
-  <summary>10 · Ten high-yield case examples</summary>
+  <summary>12 · Twelve high-yield case examples</summary>
   <div class="card-body">
 
     <details class="sub">
@@ -884,11 +1143,11 @@
       <summary>Case 8 · ARDS or cardiogenic pulmonary oedema?</summary>
       <div class="card-body">
         <p class="case-q">A 72-year-old with known heart failure presents with bilateral infiltrates, hypoxaemia and raised JVP. How do you distinguish ARDS from cardiogenic pulmonary oedema?</p>
-        <p><strong>Answer:</strong> Apply <strong>Berlin criterion 4</strong> — the respiratory failure must <strong>not be fully explained by cardiac failure or fluid overload</strong>. The Berlin definition moved away from pulmonary artery occlusion pressure and left atrial pressure measurement; <strong>echocardiography is now the recommended tool</strong> and accounts for patients with congestive heart failure or left atrial hypertension who <em>also</em> develop ARDS.</p>
+        <p><strong>Answer:</strong> Apply the criterion on <strong>origin of oedema</strong> — the respiratory failure must <strong>not be exclusively or primarily explained by cardiac failure or fluid overload</strong>. The Berlin definition moved away from pulmonary artery occlusion pressure and left atrial pressure measurement; <strong>echocardiography is now the recommended tool</strong> and accounts for patients with congestive heart failure or left atrial hypertension who <em>also</em> develop ARDS.</p>
         <ul>
           <li>Use echocardiography to quantify cardiac function and identify structural disease.</li>
-          <li>Both conditions can coexist — if ARDS criteria are met, ARDS management still applies.</li>
-          <li>Note that historical bedside indices such as high PEEP (&gt; 10 cmH<sub>2</sub>O), static compliance, radiographic severity and corrected expired volume &gt; 10 L/min were <strong>not</strong> predictive of outcome and were removed from the draft Berlin definition.</li>
+          <li><strong>The Global Definition explicitly permits a diagnosis of ARDS even when these conditions coexist</strong>, provided a predisposing risk factor for ARDS is also present and the clinician believes the other conditions are unlikely to be the primary cause of hypoxaemia.</li>
+          <li>Hypoxaemia and gas-exchange abnormalities must also not be primarily attributable to <strong>atelectasis or lung collapse, pleural effusion, or pulmonary embolism</strong> — again, ARDS can still be diagnosed if these coexist with a predisposing risk factor.</li>
         </ul>
       </div>
     </details>
@@ -920,43 +1179,129 @@
       </div>
     </details>
 
+    <details class="sub">
+      <summary>Case 11 · Ward referral — patient on high-flow nasal oxygen <span class="pill newpill">NEW</span></summary>
+      <div class="card-body">
+        <p class="case-q">A 54-year-old woman with breast cancer and COVID-19 pneumonia has worsening breathlessness for 6 days. She is on HFNO 40 L/min, FiO<sub>2</sub> 0.80, SpO<sub>2</sub> 91%. Chest X-ray shows bilateral infiltrates. She is not intubated.</p>
+        <p><strong>Answer:</strong> SpO<sub>2</sub>:FiO<sub>2</sub> = 91 ÷ 0.80 = <strong>114</strong>. Because SpO<sub>2</sub> ≤ 97%, this is valid. S/F ≤ 148 = <strong>severe ARDS</strong>.</p>
+        <ul>
+          <li>Under the <strong>Berlin definition</strong> she would <strong>not</strong> meet ARDS criteria — she is not on invasive or non-invasive mechanical ventilation with ≥ 5 cmH<sub>2</sub>O PEEP.</li>
+          <li>Under the <strong>Global Definition</strong> she has <strong>nonintubated ARDS (severe)</strong> — HFNO ≥ 30 L/min with a valid SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 148.</li>
+          <li><strong>Action:</strong> close monitoring for deterioration; escalate respiratory support as needed; discuss ceiling of care and consider ICU referral. Note the timing criterion — 6 days of worsening symptoms is within the 1-week window.</li>
+          <li>If there is any doubt about the pulse oximetry reading (e.g. dark skin tone, poor perfusion, shock), <strong>obtain an arterial blood gas if available</strong>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 12 · Resource-limited setting without ABG or ventilation <span class="pill newpill">NEW</span></summary>
+      <div class="card-body">
+        <p class="case-q">A 39-year-old man with abdominal sepsis and gram-negative bacteraemia in a rural hospital. No blood gases, no radiography, no mechanical ventilation available. He is on supplemental oxygen by face mask at 15 L/min, FiO<sub>2</sub> 0.6 (estimated), SpO<sub>2</sub> 85%. Lung ultrasound shows bilateral diffuse B-lines.</p>
+        <p><strong>Answer:</strong> S/F = 85 ÷ 0.6 = <strong>142</strong>. Because SpO<sub>2</sub> ≤ 97%, this is valid. S/F ≤ 148 = <strong>severe ARDS</strong>.</p>
+        <ul>
+          <li>Under the <strong>Global Definition (resource-limited category)</strong>, the diagnosis can be made using:
+            <ul>
+              <li>An acute predisposing risk factor (abdominal sepsis / gram-negative bacteraemia)</li>
+              <li>Timing within 1 week</li>
+              <li>Bilateral B-lines on ultrasound (trained operator)</li>
+              <li>SpO<sub>2</sub>:FiO<sub>2</sub> ≤ 148</li>
+            </ul>
+          </li>
+          <li><strong>No PEEP, oxygen flow rate, or specific respiratory support device is required</strong> for diagnosis in this category.</li>
+          <li><strong>Estimated FiO<sub>2</sub></strong> for face-mask oxygen = 0.21 + 0.03 × flow (L/min) — here 0.21 + 0.03 × 15 = 0.66, rounded to 0.6 in the scenario.</li>
+          <li><strong>Action:</strong> treat the underlying sepsis, provide the best available oxygen therapy, and recognise that this patient can now be included in epidemiological and clinical research using the Global Definition.</li>
+        </ul>
+      </div>
+    </details>
+
   </div>
 </details>
 
-<!-- ============ GAME ============ -->
+<!-- ============ 13 GAME ============ -->
 <details class="card" id="s-game" data-section open>
-  <summary>11 · Mini-game: ARDS Rapid Fire 🎮</summary>
+  <summary>13 · Mini-game: ARDS Rapid Fire 🎮</summary>
   <div class="card-body">
-    <p class="muted">Ten randomised questions drawn from the reference above. 30 seconds per question. Feedback is given after each answer.</p>
+    <p class="muted">Ten randomised questions drawn from all sections above — Berlin, Global 2024, pathophysiology, ventilation, adjuncts and outcomes. 30 seconds per question. Feedback is given after each answer.</p>
     <div id="gameArea"></div>
   </div>
 </details>
 
-<!-- ============ REFERENCES ============ -->
+<!-- ============ 14 REFERENCES ============ -->
 <details class="card" id="s-ref" data-section>
-  <summary>12 · Sources &amp; references</summary>
+  <summary>14 · Sources &amp; references</summary>
   <div class="card-body">
 
     <h3>Source articles merged for this quick reference</h3>
     <ol>
       <li><strong>Rae J.</strong> <em>Acute respiratory distress syndrome.</em> BJA Education / Continuing Education in Anaesthesia, Critical Care &amp; Pain — article 411 (ICU Fellow, Ninewells Hospital, Dundee, UK; edited by Niraj Niranjan, Consultant Anaesthetist, University Hospital of North Durham, UK). Published 1 October 2019.</li>
       <li><strong>Tolhurst-Cleaver S.</strong> <em>Acute respiratory distress syndrome.</em> BJA Education (Consultant in Intensive Care, Salford Royal Foundation Trust, Stott Lane, Salford M6 8HD, UK). Article ID PII S2058-5349(17)30050-1.</li>
+      <li><strong>Matthay MA, Arabi Y, Arroliga AC, Bernard G, Bersten AD, Brochard LJ, Calfee CS, Combes A, Daniel BM, Ferguson ND, Gong MN, Gotts JE, Herridge MS, Laffey JG, Liu KD, Machado FR, Martin TR, McAuley DF, Mercat A, Moss M, Mularski RA, Pesenti A, Qiu H, Ramakrishnan N, Ranieri VM, Riviello ED, Rubin E, Slutsky AS, Thompson BT, Twagirumugabe T, Ware LB, Wick KD.</strong> <em>A New Global Definition of Acute Respiratory Distress Syndrome.</em> <strong>Am J Respir Crit Care Med</strong> 2024;209(1):37–47. DOI: 10.1164/rccm.202303-0558WS. (Global consensus conference of 32 critical care ARDS experts; June 2021 – March 2022.)</li>
     </ol>
 
     <h3>Primary references cited within those articles</h3>
     <ol>
-      <li>ARDS Definition Task Force. Acute respiratory distress syndrome: the Berlin definition. <em>JAMA</em> 2012;307(23):2526–2533.</li>
-      <li>Bellani G, Laffey JG, Pham T, et al. Epidemiology, patterns of care, and mortality for patients with acute respiratory distress syndrome in intensive care units in 50 countries (LUNG SAFE). <em>JAMA</em> 2016;315(8):788–800.</li>
-      <li>Pierrakos C, Karanikolas M, Scolletta S, et al. Acute respiratory distress syndrome: pathophysiology and therapeutic options. <em>J Clin Med Res</em> 2012;4(1):7–16.</li>
-      <li>Fan E, Del Sorbo L, Goligher EC, et al. An official ATS/ESICM/SCCM clinical practice guideline: mechanical ventilation in adult patients with acute respiratory distress syndrome. <em>Am J Respir Crit Care Med</em> 2017;195(9):1253–1263.</li>
-      <li>Faculty of Intensive Care Medicine / Intensive Care Society. Guidelines on the management of acute respiratory distress syndrome. 2018. ficm.ac.uk</li>
+      <li>Ashbaugh DG, Bigelow DB, Petty TL, Levine BE. Acute respiratory distress in adults. <em>Lancet</em> 1967;2:319–323.</li>
+      <li>Murray JF, Matthay MA, Luce JM, Flick MR. An expanded definition of the adult respiratory distress syndrome. <em>Am Rev Respir Dis</em> 1988;138:720–723.</li>
+      <li>Bernard GR, Artigas A, Brigham KL, et al.; The Consensus Committee. Report of the American-European consensus conference on ARDS. <em>Intensive Care Med</em> 1994;20:225–232.</li>
+      <li>ARDS Definition Task Force (Ranieri VM, Rubenfeld GD, Thompson BT, et al.). Acute respiratory distress syndrome: the Berlin definition. <em>JAMA</em> 2012;307(23):2526–2533.</li>
+      <li>Ferguson ND, Fan E, Camporota L, et al. The Berlin definition of ARDS: an expanded rationale, justification, and supplementary material. <em>Intensive Care Med</em> 2012;38:1573–1582.</li>
+      <li>Angus DC. The acute respiratory distress syndrome: what's in a name? <em>JAMA</em> 2012;307:2542–2544.</li>
+      <li>Grasselli G, Calfee CS, Camporota L, et al.; ESICM Taskforce on ARDS. ESICM guidelines on acute respiratory distress syndrome: definition, phenotyping and respiratory support strategies. <em>Intensive Care Med</em> 2023;49:727–759.</li>
+      <li>Rice TW, Wheeler AP, Bernard GR, et al.; NHLBI ARDS Network. Comparison of the SpO<sub>2</sub>/FiO<sub>2</sub> ratio and the PaO<sub>2</sub>/FiO<sub>2</sub> ratio in patients with acute lung injury or ARDS. <em>Chest</em> 2007;132:410–417.</li>
+      <li>Brown SM, Grissom CK, Moss M, et al.; NIH/NHLBI PETAL Network Collaborators. Nonlinear imputation of PaO<sub>2</sub>/FiO<sub>2</sub> from SpO<sub>2</sub>/FiO<sub>2</sub> among patients with ARDS. <em>Chest</em> 2016;150:307–313.</li>
+      <li>Vercesi V, Pisani L, van Tongeren PSI, et al.; Lung Ultrasound Consortium. External confirmation and exploration of the Kigali modification for diagnosing moderate or severe ARDS. <em>Intensive Care Med</em> 2018;44:523–524.</li>
+      <li>Moss M, Huang DT, Brower RG, et al.; NHLBI PETAL Clinical Trials Network. Early neuromuscular blockade in the acute respiratory distress syndrome. <em>N Engl J Med</em> 2019;380:1997–2008.</li>
+      <li>Wick KD, Matthay MA, Ware LB. Pulse oximetry for the diagnosis and management of acute respiratory distress syndrome. <em>Lancet Respir Med</em> 2022;10:1086–1098.</li>
+      <li>Frat JP, Thille AW, Mercat A, et al.; FLORALI Study Group; REVA Network. High-flow oxygen through nasal cannula in acute hypoxemic respiratory failure. <em>N Engl J Med</em> 2015;372:2185–2196.</li>
+      <li>Ranieri VM, Tonetti T, Navalesi P, et al. High flow nasal oxygen for severe hypoxemia: oxygenation response and outcome in COVID-19 patients. <em>Am J Respir Crit Care Med</em> 2022;205:431–439.</li>
+      <li>Gershengorn HB, Hu Y, Chen JT, et al. The impact of high-flow nasal cannula on one patient mortality and the availability of mechanical ventilators in COVID-19. <em>Ann Am Thorac Soc</em> 2021;18:623–631.</li>
+      <li>Calligaro GL, Lalla U, Audley G, et al. The utility of high-flow nasal oxygen for severe COVID-19 pneumonia in a resource-constrained setting. <em>EClinicalMedicine</em> 2020;28:100570.</li>
+      <li>Ware LB. Go with the flow: expanding the definition of acute respiratory distress syndrome to include high-flow nasal oxygen. <em>Am J Respir Crit Care Med</em> 2022;205:380–382.</li>
+      <li>Matthay MA, Thompson BT, Ware LB. The Berlin definition of acute respiratory distress syndrome: should patients receiving high-flow nasal oxygen be included? <em>Lancet Respir Med</em> 2021;9:933–936.</li>
+      <li>Riviello ED, Kiviri W, Twagirumugabe T, et al. Hospital incidence and outcomes of the acute respiratory distress syndrome using the Kigali modification of the Berlin definition. <em>Am J Respir Crit Care Med</em> 2016;193:52–59.</li>
+      <li>Wooten WM, Shaffer LET, Hamilton LA. Bedside ultrasound versus chest radiography for detection of pulmonary edema: a prospective cohort study. <em>J Ultrasound Med</em> 2019;38:967–973.</li>
+      <li>Smit MR, Hagens LA, Heijnen NFL, et al.; DARTS Consortium. Lung ultrasound prediction model for acute respiratory distress syndrome: a multicenter prospective observational study. <em>Am J Respir Crit Care Med</em> 2023;207:1591–1601.</li>
+      <li>Guérin C, Reignier J, Richard JC, et al.; PROSEVA Study Group. Prone positioning in severe acute respiratory distress syndrome. <em>N Engl J Med</em> 2013;368(23):2159–2168.</li>
+      <li>Pham T, Pesenti A, Bellani G, et al.; LUNG SAFE Investigators and the ESICM Trials Group. Outcome of acute hypoxaemic respiratory failure: insights from the LUNG SAFE Study. <em>Eur Respir J</em> 2021;57:2003317.</li>
+      <li>Thille AW, Esteban A, Fernández-Segoviano P, et al. Comparison of the Berlin definition for acute respiratory distress syndrome with autopsy. <em>Am J Respir Crit Care Med</em> 2013;187:761–767.</li>
+      <li>Bellani G, Laffey JG, Pham T, et al.; LUNG SAFE Investigators, ESICM Trials Group. Epidemiology, patterns of care, and mortality for patients with acute respiratory distress syndrome in intensive care units in 50 countries. <em>JAMA</em> 2016;315(8):788–800.</li>
+      <li>Rubenfeld GD, Caldwell E, Granton J, Hudson LD, Matthay MA. Interobserver variability in applying a radiographic definition for ARDS. <em>Chest</em> 1999;116:1347–1353.</li>
+      <li>Bellani G, Pham T, Laffey JG. Missed or delayed diagnosis of ARDS: a common and serious problem. <em>Intensive Care Med</em> 2020;46:1180–1183.</li>
+      <li>Brown SM, Peltan ID, Barkauskas C, et al. What does acute respiratory distress syndrome mean during the COVID-19 pandemic? <em>Ann Am Thorac Soc</em> 2021;18:1948–1950.</li>
+      <li>Volpicelli G, Elbarbary M, Blaivas M, et al.; International Liaison Committee on Lung Ultrasound. International evidence-based recommendations for point-of-care lung ultrasound. <em>Intensive Care Med</em> 2012;38:577–591.</li>
+      <li>Brown SM, Duggal A, Hou PC, et al.; NIH/NHLBI PETAL Network. Nonlinear imputation of PaO<sub>2</sub>/FiO<sub>2</sub> from SpO<sub>2</sub>/FiO<sub>2</sub> among mechanically ventilated patients in the ICU. <em>Crit Care Med</em> 2017;45:1317–1324.</li>
+      <li>Pandharipande PP, Shintani AK, Hagerman HE, et al. Derivation and validation of SpO<sub>2</sub>/FiO<sub>2</sub> ratio to impute for PaO<sub>2</sub>/FiO<sub>2</sub> ratio in the respiratory component of the SOFA score. <em>Crit Care Med</em> 2009;37:1317–1321.</li>
+      <li>Chen W, Janz DR, Shaver CM, et al. Clinical characteristics and outcomes are similar in ARDS diagnosed by oxygen saturation/FiO<sub>2</sub> ratio compared with PaO<sub>2</sub>/FiO<sub>2</sub> ratio. <em>Chest</em> 2015;148:1477–1483.</li>
+      <li>Sjoding MW, Dickson RP, Iwashyna TJ, Gay SE, Valley TS. Racial bias in pulse oximetry measurement. <em>N Engl J Med</em> 2020;383:2477–2478.</li>
+      <li>Wong AI, Charpignon M, Kim H, et al. Analysis of discrepancies between pulse oximetry and arterial oxygen saturation measurements by race and ethnicity and association with organ dysfunction and mortality. <em>JAMA Netw Open</em> 2021;4:e2131674.</li>
+      <li>Henry NR, Hanson AC, Schulte PJ, et al. Disparities in hypoxemia detection by pulse oximetry across self-identified racial groups and associations with clinical outcomes. <em>Crit Care Med</em> 2022;50:204–211.</li>
+      <li>Fawzy A, Wu TD, Wang K, et al. Racial and ethnic discrepancy in pulse oximetry and delayed identification of treatment eligibility among patients with COVID-19. <em>JAMA Intern Med</em> 2022;182:730–738.</li>
+      <li>Cardinal-Fernandez P, Lorente JA, Ballen-Barragán A, Matute-Bello G. Acute respiratory distress syndrome and diffuse alveolar damage: new insights on a complex relationship. <em>Ann Am Thorac Soc</em> 2017;14:844–850.</li>
+      <li>Thompson BT, Matthay MA. The Berlin definition of ARDS versus pathological evidence of diffuse alveolar damage. <em>Am J Respir Crit Care Med</em> 2013;187:675–677.</li>
+      <li>Herridge MS, Azoulay E. Outcomes after critical illness. <em>N Engl J Med</em> 2023;388:913–924.</li>
+      <li>Frat JP, Coudroy R, Marjanovic N, Thille AW. High-flow nasal oxygen therapy and noninvasive ventilation in the management of acute hypoxemic respiratory failure. <em>Ann Transl Med</em> 2017;5:297.</li>
+      <li>Groves N, Tobin A. High flow nasal oxygen generates positive airway pressure in adult volunteers. <em>Aust Crit Care</em> 2007;20:126–131.</li>
+      <li>Bodley T, Chan M, Levi O, et al. Patient harm associated with serial phlebotomy and blood waste in the intensive care unit. <em>PLoS One</em> 2021;16:e0243782.</li>
+      <li>Scheer B, Perel A, Pfeiffer UJ. Clinical review: complications and risk factors of peripheral arterial catheters. <em>Crit Care</em> 2002;6:199–204.</li>
+      <li>Jamali H, Castillo LT, Morgan CC, et al. Racial disparity in oxygen saturation measurements by pulse oximetry: evidence and implications. <em>Ann Am Thorac Soc</em> 2022;19:1951–1964.</li>
+      <li>Kotok D, Yang L, Evankovich JW, et al. The evolution of radiographic edema in ARDS and its association with clinical outcomes. <em>J Crit Care</em> 2020;56:222–228.</li>
+      <li>Jabaudon M, Audard J, Pereira B, et al.; LIVE Study Group and the AZUREA Network. Early changes over time in the radiographic assessment of lung edema score are associated with survival in ARDS. <em>Chest</em> 2020;158:2394–2403.</li>
+      <li>Tierney DM, Huelster JS, Overgaard JD, et al. Comparative performance of pulmonary ultrasound, chest radiograph, and CT among patients with acute respiratory failure. <em>Crit Care Med</em> 2020;48:151–157.</li>
+      <li>Mojoli F, Bouhemad B, Mongodi S, Lichtenstein D. Lung ultrasound for critically ill patients. <em>Am J Respir Crit Care Med</em> 2019;199:701–714.</li>
+      <li>Goffi A, Kruisselbrink R, Volpicelli G. The sound of air: point-of-care lung ultrasound in perioperative medicine. <em>Can J Anaesth</em> 2018;65:399–416.</li>
+      <li>Ware LB. Improving ARDS diagnosis: is lung ultrasound the answer? <em>Am J Respir Crit Care Med</em> 2023;207:1548–1549.</li>
+      <li>Schenck EJ, Oromendia C, Torres LK, et al. Rapidly improving ARDS in therapeutic randomized controlled trials. <em>Chest</em> 2019;155:474–482.</li>
+      <li>Calfee CS, Delucchi K, Parsons PE, et al.; NHLBI ARDS Network. Subphenotypes in acute respiratory distress syndrome: latent class analysis of data from two randomised controlled trials. <em>Lancet Respir Med</em> 2014;2:611–620.</li>
+      <li>Maddali MV, Churpek M, Pham T, et al. Validation and utility of ARDS subphenotypes identified by machine-learning models using clinical data. <em>Lancet Respir Med</em> 2022;10:367–377.</li>
+      <li>Sinha P, Delucchi KL, Chen Y, et al. Latent class analysis-derived subphenotypes are generalisable to observational cohorts of ARDS. <em>Thorax</em> 2022;77:13–21.</li>
+      <li>Wick KD, Aggarwal NR, Curley MAQ, et al. Opportunities for improved clinical trial designs in acute respiratory distress syndrome. <em>Lancet Respir Med</em> 2022;10:916–924.</li>
+      <li>Ranieri VM, Rubenfeld G, Slutsky AS. Rethinking ARDS after COVID-19: if a “better” definition is the answer, what is the question? <em>Am J Respir Crit Care Med</em> 2023;207:255–260.</li>
       <li>Acute Respiratory Distress Syndrome Network. Ventilation with lower tidal volumes as compared with traditional tidal volumes for acute lung injury and the acute respiratory distress syndrome. <em>N Engl J Med</em> 2000;342(18):1301–1308.</li>
       <li>Taccone P, Carlesso E, Marini J. Prone position in acute respiratory distress syndrome: rationale, indications and limits. <em>Am J Respir Crit Care Med</em> 2013;188(11):1286–1293.</li>
-      <li>Guérin C, Reignier J, Richard JC, et al. (PROSEVA). Prone positioning in severe acute respiratory distress syndrome. <em>N Engl J Med</em> 2013;368(23):2159–2168.</li>
       <li>Zhou Y, Jin X, Lv Y, et al. Early application of airway pressure release ventilation may reduce the duration of mechanical ventilation in acute respiratory distress syndrome. <em>Intensive Care Med</em> 2017;43(11):1648–1659.</li>
       <li>Young D, Lamb S, Shah S, et al. (OSCAR). High-frequency oscillation for acute respiratory distress syndrome. <em>N Engl J Med</em> 2013;368:806–813.</li>
       <li>Ferguson ND, Cook DJ, Guyatt GH, et al. (OSCILLATE). High-frequency oscillation in early acute respiratory distress syndrome. <em>N Engl J Med</em> 2013;368:795–805.</li>
-      <li>Cavalcanti AB, Suzumura EA, Laranjeira LN, et al. (ART). Effect of lung recruitment and titrated PEEP vs low PEEP on mortality in patients with ARDS: a randomized clinical trial. <em>JAMA</em> 2017;318(14):1335–1345.</li>
+      <li>Cavalcanti AB, Suzumura EA, Laranjeira LN, et al. (ART). Effect of lung recruitment and titrated PEEP vs low PEEP on mortality in patients with ARDS. <em>JAMA</em> 2017;318(14):1335–1345.</li>
       <li>Peek GJ, Mugford M, Tiruvoipati R, et al. (CESAR). Efficacy and economic assessment of conventional ventilatory support versus extracorporeal membrane oxygenation for severe adult respiratory failure. <em>Lancet</em> 2009;374(9698):1351–1363.</li>
       <li>Combes A, Hajage D, Capellier G, et al. (EOLIA). Extracorporeal membrane oxygenation for severe acute respiratory distress syndrome. <em>N Engl J Med</em> 2018;378(21):1965–1975.</li>
       <li>National Heart, Lung and Blood Institute ARDS Clinical Trials Network (FACTT). Comparison of two fluid-management strategies in acute lung injury. <em>N Engl J Med</em> 2006;354(24):2564–2575.</li>
@@ -964,8 +1309,6 @@
       <li>Annane D, Pastores SM, Rochwerg B, et al. Guidelines for the diagnosis and management of critical illness-related corticosteroid insufficiency (CIRCI) in critically ill patients (Part I): SCCM and ESICM 2017. <em>Intensive Care Med</em> 2017;43(12):1751–1763.</li>
       <li>Gates S, Perkins G, Lamb SE, et al. Beta-agonist lung injury trial-2 (BALTI-2). <em>Health Technol Assess</em> 2013;17:vi–87.</li>
       <li>McAuley DF, Laffey JG, O'Kane CM, et al. Simvastatin in the acute respiratory distress syndrome. <em>N Engl J Med</em> 2014;371(18):1695–1703.</li>
-      <li>Ashbaugh DG, Bigelow DB, Petty TL, et al. Acute respiratory distress in adults. <em>Lancet</em> 1967;2:319–323.</li>
-      <li>Rubenfeld GD, Caldwell E, Peabody E, et al. Incidence and outcomes of acute lung injury. <em>N Engl J Med</em> 2005;353:1685–1693.</li>
       <li>Amato M, Meade MO, Slutsky AS, et al. Driving pressure and survival in the acute respiratory distress syndrome. <em>N Engl J Med</em> 2015;372:747–755.</li>
       <li>Borges J, Hedenstierna G, Larsson A, Suarez-Sipmann F. Altering the mechanical scenario to decrease the driving pressure. <em>Crit Care</em> 2015;19:342.</li>
       <li>Gattinoni L, Carlesso E, Taccone P, et al. Prone positioning improves survival in severe ARDS: a pathophysiologic review and individual patient meta-analysis. <em>Minerva Anestesiol</em> 2010;76:448–454.</li>
@@ -979,14 +1322,14 @@
       <li>Herridge MS, Tansey CM, Matté A, et al. Functional disability 5 years after acute respiratory distress syndrome. <em>N Engl J Med</em> 2011;364:1293–1301.</li>
     </ol>
 
-    <p class="muted">This page is a study/quick-reference aid produced by merging the two source reviews above. It is not a substitute for local guidelines, current evidence updates, or clinical judgement.</p>
+    <p class="muted">This page is a study/quick-reference aid produced by merging the three source reviews above. It is not a substitute for local guidelines, current evidence updates, or clinical judgement. A living website for the Global Definition is maintained at <code>https://globalardsdefinition.org</code>.</p>
   </div>
 </details>
 
 </main>
 
 <footer>
-  <p>ARDS Quick Reference · merged from two BJA Education reviews · built as a single static HTML file for GitHub Pages.</p>
+  <p>ARDS Quick Reference · merged from BJA Education reviews and the 2024 ATS/ESICM Global Definition · built as a single static HTML file for GitHub Pages.</p>
 </footer>
 
 <script>
@@ -1097,69 +1440,163 @@
     for(var i=0;i<all.length;i++) all[i].open = false;
   });
 
-  /* ---------------- P/F calculator ---------------- */
-  var pao2El = document.getElementById('pao2');
-  var unitEl = document.getElementById('pao2unit');
-  var fio2El = document.getElementById('fio2');
-  var peepEl = document.getElementById('peep');
-  var resEl  = document.getElementById('pfResult');
+  /* ---------------- Oxygenation calculator ---------------- */
+  var oxMode   = document.getElementById('oxMode');
+  var pao2El   = document.getElementById('pao2');
+  var unitEl   = document.getElementById('pao2unit');
+  var spo2El   = document.getElementById('spo2');
+  var fio2El   = document.getElementById('fio2');
+  var peepEl   = document.getElementById('peep');
+  var deviceEl = document.getElementById('device');
+  var resEl    = document.getElementById('pfResult');
 
-  function calcPF(){
-    var pao2 = parseFloat(pao2El.value);
+  function toggleMode(){
+    var isPao2 = oxMode.value === 'pao2';
+    document.getElementById('pao2Wrap').style.display = isPao2 ? '' : 'none';
+    document.getElementById('unitWrap').style.display = isPao2 ? '' : 'none';
+    document.getElementById('spo2Wrap').style.display = isPao2 ? 'none' : '';
+    calcOx();
+  }
+
+  function berlinCategory(ratioMmhg){
+    if(ratioMmhg < 100) return {label:'SEVERE ARDS', cls:'sev', note:'P/F < 100 mmHg (< 13.3 kPa). Cohort mortality ~45%.'};
+    if(ratioMmhg < 200) return {label:'MODERATE ARDS', cls:'mod', note:'P/F 100–200 mmHg (13.3–26.7 kPa). Cohort mortality ~32%.'};
+    if(ratioMmhg <= 300) return {label:'MILD ARDS', cls:'mild', note:'P/F 200–300 mmHg (26.7–40 kPa). Cohort mortality ~27%.'};
+    return {label:'Does not meet Berlin P/F threshold', cls:'mild', note:'P/F > 300 mmHg (> 40 kPa).'};
+  }
+
+  function globalCategoryPF(ratioMmhg){
+    if(ratioMmhg <= 100) return {label:'SEVERE', cls:'sev'};
+    if(ratioMmhg <= 200) return {label:'MODERATE', cls:'mod'};
+    if(ratioMmhg <= 300) return {label:'MILD', cls:'mild'};
+    return {label:'Does not meet oxygenation threshold', cls:'mild'};
+  }
+
+  function globalCategorySF(ratio){
+    if(ratio <= 148) return {label:'SEVERE', cls:'sev'};
+    if(ratio <= 235) return {label:'MODERATE', cls:'mod'};
+    if(ratio <= 315) return {label:'MILD', cls:'mild'};
+    return {label:'Does not meet oxygenation threshold', cls:'mild'};
+  }
+
+  function calcOx(){
+    var mode = oxMode.value;
     var fio2pct = parseFloat(fio2El.value);
     var peep = parseFloat(peepEl.value);
+    var dev = deviceEl.value;
 
-    if(isNaN(pao2) || isNaN(fio2pct) || fio2pct <= 0){
+    if(isNaN(fio2pct) || fio2pct <= 0){
       resEl.className = 'muted';
-      resEl.innerHTML = 'Enter PaO₂ and FiO₂ to calculate the ratio and Berlin category.';
+      resEl.innerHTML = 'Enter an oxygen value and FiO₂ to calculate the ratio and category.';
       return;
     }
-    var mmhg = unitEl.value === 'kpa' ? pao2 * 7.5 : pao2;
     var fio2 = fio2pct / 100;
-    var ratioMmhg = mmhg / fio2;
-    var ratioKpa = ratioMmhg / 7.5;
 
-    var label, cls, note;
-    if(ratioMmhg >= 300){
-      label = 'Does not meet the Berlin P/F threshold';
-      cls = 'mild';
-      note = 'P/F \u2265 300 mmHg (\u2265 40 kPa).';
-    } else if(ratioMmhg >= 200){
-      label = 'MILD ARDS';
-      cls = 'mild';
-      note = 'P/F 200\u2013300 mmHg (26.7\u201340 kPa). Cohort mortality ~27%.';
-    } else if(ratioMmhg >= 100){
-      label = 'MODERATE ARDS';
-      cls = 'mod';
-      note = 'P/F 100\u2013200 mmHg (13.3\u201326.7 kPa). Cohort mortality ~32%.';
+    var ratio, ratioLabel, ratioMmhg = null, spo2Val = null, kpaVal = null;
+
+    if(mode === 'pao2'){
+      var p = parseFloat(pao2El.value);
+      if(isNaN(p)){
+        resEl.className = 'muted';
+        resEl.innerHTML = 'Enter PaO₂ to calculate the ratio and category.';
+        return;
+      }
+      ratioMmhg = (unitEl.value === 'kpa') ? p * 7.5 : p;
+      ratio = ratioMmhg / fio2;
+      kpaVal = ratio / 7.5;
+      ratioLabel = 'P/F';
     } else {
-      label = 'SEVERE ARDS';
-      cls = 'sev';
-      note = 'P/F < 100 mmHg (< 13.3 kPa). Cohort mortality ~45%. Consider prone positioning (>12 h/day) and ECMO rescue referral.';
+      var s = parseFloat(spo2El.value);
+      if(isNaN(s)){
+        resEl.className = 'muted';
+        resEl.innerHTML = 'Enter SpO₂ to calculate the ratio and category.';
+        return;
+      }
+      spo2Val = s;
+      ratio = s / fio2;
+      ratioLabel = 'S/F';
     }
 
+    /* ---- Global definition category ---- */
+    var gHtml = '';
+    var gWarn = '';
+
+    if(mode === 'pao2'){
+      var gc = globalCategoryPF(ratio);
+      gHtml = '<span class="pill ' + gc.cls + '">Global: ' + gc.label + '</span>';
+    } else {
+      if(spo2Val > 97){
+        gHtml = '<span class="pill sev">Global: S/F not valid</span>';
+        gWarn = '<br><span class="muted" style="color:#b02a1f">⚠ SpO₂ is above 97% — SpO₂:FiO₂ is <strong>not valid</strong> above this level because of the shape of the oxyhaemoglobin dissociation curve. Use an arterial blood gas.</span>';
+      } else {
+        var gcs = globalCategorySF(ratio);
+        gHtml = '<span class="pill ' + gcs.cls + '">Global: ' + gcs.label + '</span>';
+      }
+    }
+
+    /* ---- Category label (nonintubated / intubated / resource-limited) ---- */
+    var catLabel = '';
+    if(dev === 'imv'){
+      catLabel = 'Intubated ARDS — minimum PEEP 5 cmH₂O required.';
+    } else if(dev === 'niv'){
+      catLabel = 'Nonintubated ARDS — NIV.';
+    } else if(dev === 'hfno'){
+      catLabel = 'Nonintubated ARDS — HFNO ≥ 30 L/min.';
+    } else {
+      catLabel = 'Resource-limited category — no PEEP, oxygen flow rate or specific device required.';
+    }
+
+    /* ---- PEEP check ---- */
     var peepNote = '';
     if(!isNaN(peep)){
-      peepNote = peep >= 5
-        ? 'PEEP ' + peep + ' cmH₂O \u2265 5 \u2014 meets the Berlin PEEP requirement.'
-        : 'PEEP ' + peep + ' cmH₂O is < 5 \u2014 the Berlin definition requires \u2265 5 cmH₂O PEEP.';
-    } else {
-      peepNote = 'Enter PEEP to check the \u2265 5 cmH₂O requirement.';
+      if(dev === 'imv'){
+        peepNote = peep >= 5
+          ? 'PEEP ' + peep + ' cmH₂O ≥ 5 — meets the requirement for intubated ARDS.'
+          : 'PEEP ' + peep + ' cmH₂O is < 5 — intubated ARDS requires a minimum PEEP of 5 cmH₂O.';
+      } else if(dev === 'none'){
+        peepNote = 'PEEP is not required for the resource-limited category.';
+      } else {
+        peepNote = 'PEEP ' + peep + ' cmH₂O recorded (not required for the nonintubated category).';
+      }
+    } else if(dev === 'imv'){
+      peepNote = 'Enter PEEP to check the ≥ 5 cmH₂O requirement for intubated ARDS.';
     }
+
+    /* ---- Berlin category ---- */
+    var berlinHtml = '';
+    if(mode === 'spo2'){
+      berlinHtml = '<br><span class="muted"><strong>Berlin:</strong> cannot be applied — Berlin requires PaO₂:FiO₂ from an arterial blood gas.</span>';
+    } else if(dev === 'hfno'){
+      berlinHtml = '<br><span class="muted"><strong>Berlin:</strong> not met — HFNO does not satisfy the Berlin requirement for invasive or non-invasive mechanical ventilation with ≥ 5 cmH₂O PEEP.</span>';
+    } else if(dev === 'none'){
+      berlinHtml = '<br><span class="muted"><strong>Berlin:</strong> cannot be applied — requires invasive or non-invasive mechanical ventilation with ≥ 5 cmH₂O PEEP.</span>';
+    } else if(!isNaN(peep) && peep < 5){
+      berlinHtml = '<br><span class="muted"><strong>Berlin:</strong> not met — PEEP is below 5 cmH₂O.</span>';
+    } else {
+      var bc = berlinCategory(ratioMmhg);
+      berlinHtml = '<br><span class="muted"><strong>Berlin:</strong> ' + bc.label + ' — ' + bc.note + '</span>';
+    }
+
+    /* ---- Assemble ---- */
+    var ratioDisplay = (mode === 'pao2')
+      ? '<b>' + ratioLabel + ' = ' + ratio.toFixed(0) + ' mmHg</b> (' + kpaVal.toFixed(1) + ' kPa)'
+      : '<b>' + ratioLabel + ' = ' + ratio.toFixed(0) + '</b>';
 
     resEl.className = '';
     resEl.innerHTML =
-      '<span class="pill ' + cls + '">' + label + '</span><br>' +
-      '<b>P/F = ' + ratioMmhg.toFixed(0) + ' mmHg</b> &nbsp;(' + ratioKpa.toFixed(1) + ' kPa)<br>' +
-      '<span class="muted">' + note + '</span><br>' +
+      gHtml + '<br>' +
+      ratioDisplay + '<br>' +
+      '<span class="muted">' + catLabel + '</span><br>' +
       '<span class="muted">' + peepNote + '</span>' +
-      '<br><span class="muted">Remember the other three Berlin criteria: acute onset within 7 days of a trigger, bilateral infiltrates, and not fully explained by cardiac failure or fluid overload.</span>';
+      berlinHtml + gWarn +
+      '<br><span class="muted">Remember the other criteria: acute onset within 1 week of a predisposing risk factor, bilateral opacities on imaging (including lung ultrasound), and oedema not primarily cardiogenic or due to atelectasis.</span>';
   }
 
-  [pao2El, unitEl, fio2El, peepEl].forEach(function(el){
-    el.addEventListener('input', calcPF);
-    el.addEventListener('change', calcPF);
+  [oxMode, pao2El, unitEl, spo2El, fio2El, peepEl, deviceEl].forEach(function(el){
+    el.addEventListener('input', function(){ if(el === oxMode) toggleMode(); else calcOx(); });
+    el.addEventListener('change', function(){ if(el === oxMode) toggleMode(); else calcOx(); });
   });
+  toggleMode();
 
   /* ---------------- Mini-game ---------------- */
   var QUESTIONS = [
@@ -1286,6 +1723,110 @@
       opts: ['About 40%', 'About 55%', 'About 76%', 'About 100%'],
       ans: 2,
       exp: 'In 109 ARDS survivors, 6-minute walking distances at 1, 3 and 5 years were 66%, 67% and 76% of predicted. None of this relatively young cohort had returned to normal function at 5 years.'
+    },
+
+    /* ---------- Global Definition 2024 questions ---------- */
+    {
+      q: 'What is the minimum high-flow nasal oxygen (HFNO) flow rate required to meet the 2024 Global Definition of ARDS?',
+      opts: ['10 L/min', '20 L/min', '30 L/min', '50 L/min'],
+      ans: 2,
+      exp: 'HFNO at \u2265 30 L/min is required. The threshold was chosen because 30 L/min can provide low levels of PEEP. This created the new \u201Cnonintubated ARDS\u201D category.'
+    },
+    {
+      q: 'Under the 2024 Global Definition, up to what SpO\u2082 value can SpO\u2082:FiO\u2082 be used to diagnose ARDS?',
+      opts: ['SpO\u2082 \u2264 100%', 'SpO\u2082 \u2264 97%', 'SpO\u2082 \u2264 92%', 'SpO\u2082 \u2264 88%'],
+      ans: 1,
+      exp: 'SpO\u2082:FiO\u2082 is valid only when SpO\u2082 \u2264 97%. Above this, the oxyhaemoglobin dissociation curve flattens and S/F is not a good index of gas-exchange severity. It is also not recommended if a haemoglobin abnormality is suspected (methaemoglobinaemia, carboxyhaemoglobinaemia).'
+    },
+    {
+      q: 'Which SpO\u2082:FiO\u2082 threshold defines SEVERE ARDS in the 2024 Global Definition?',
+      opts: ['\u2264 315', '\u2264 235', '\u2264 148', '\u2264 100'],
+      ans: 2,
+      exp: 'S/F thresholds: mild 235\u2013315, moderate 148\u2013235, severe \u2264 148. The corresponding P/F thresholds are unchanged from Berlin: mild 200\u2013300, moderate 100\u2013200, severe \u2264 100.'
+    },
+    {
+      q: 'Which imaging modality was newly accepted by the 2024 Global Definition?',
+      opts: ['Chest radiography', 'CT scan', 'Lung ultrasound', 'MRI'],
+      ans: 2,
+      exp: 'Lung ultrasound (bilateral B-lines and/or consolidations) was added \u2014 especially valuable in resource-limited settings. Chest radiography and CT were retained. The operator must be trained in thoracic ultrasound.'
+    },
+    {
+      q: 'In the 2024 Global Definition, which of the following is NOT required for diagnosis in resource-limited settings?',
+      opts: [
+        'A predisposing risk factor',
+        'Timing within 1 week',
+        'Bilateral opacities on imaging',
+        'PEEP, oxygen flow rate, or a specific respiratory support device'
+      ],
+      ans: 3,
+      exp: 'The resource-limited category (formal adoption of the Kigali modification) does not require PEEP, oxygen flow rate, or specific respiratory support devices. The predisposing risk factor, 1-week timing, and bilateral imaging findings are still required.'
+    },
+    {
+      q: 'What is the estimated FiO\u2082 when a patient is on face-mask oxygen at 15 L/min?',
+      opts: ['0.21', '0.36', '0.51', '0.66'],
+      ans: 3,
+      exp: 'Estimated FiO\u2082 = ambient FiO\u2082 (0.21) + 0.03 \u00D7 oxygen flow rate (L/min) = 0.21 + 0.45 = 0.66. This formula is used when there is no blender or air-entrainment device.'
+    },
+    {
+      q: 'In the 2024 Global Definition, how many categories of ARDS are defined?',
+      opts: [
+        'One (mild/moderate/severe only)',
+        'Two (intubated and nonintubated)',
+        'Three (nonintubated, intubated, resource-limited)',
+        'Four (mild, moderate, severe, resource-limited)'
+      ],
+      ans: 2,
+      exp: 'Three populations: nonintubated ARDS (HFNO \u2265 30 L/min or NIV), intubated ARDS (minimum PEEP 5 cmH\u2082O), and a modified definition for resource-limited settings. Each retains the mild/moderate/severe severity sub-categories, and patients may move between categories over time.'
+    },
+    {
+      q: 'Which statement about pulse oximetry in the 2024 Global Definition is correct?',
+      opts: [
+        'Pulse oximetry is the preferred method and ABG is never needed',
+        'Occult hypoxaemia occurs up to four times more often in patients who identify as Black, so ABG should be obtained if clinical suspicion is high but the oximetry threshold is not met',
+        'Pulse oximetry is unaffected by skin pigmentation or shock',
+        'SpO\u2082:FiO\u2082 is valid at any saturation level'
+      ],
+      ans: 1,
+      exp: 'Occult hypoxaemia (true SaO\u2082 < 88% with SpO\u2082 92\u201396%) occurs up to four times more frequently in patients who identify as Black, and racial discrepancies contribute to care disparities. The committee advised obtaining an ABG if clinical suspicion is high but the oximetry threshold is not met, or when a classification error would affect management or trial eligibility.'
+    },
+    {
+      q: 'The Kigali modification, formally adopted into the 2024 Global Definition, applies to\u2026',
+      opts: [
+        'All ARDS patients worldwide',
+        'Resource-limited settings without routine access to ABG, chest radiography or mechanical ventilation',
+        'Paediatric patients only',
+        'Patients on ECMO'
+      ],
+      ans: 1,
+      exp: 'The Kigali modification is formally adopted for resource-limited settings. The committee considered making it universally applicable but decided against it, because allowing any respiratory device in all settings would permit very mildly hypoxaemic patients to be labelled as having ARDS, undermining face validity.'
+    },
+    {
+      q: 'Under the 2024 Global Definition, which of the following is TRUE about the timing criterion?',
+      opts: [
+        'It was extended to 2 weeks to capture indolent COVID-19 presentations',
+        'It was shortened to 48 hours',
+        'It remains within 1 week of the predisposing risk factor or new/worsening respiratory symptoms',
+        'There is no timing criterion'
+      ],
+      ans: 2,
+      exp: 'The 1-week window was retained. Prolonging it was considered because some insults (e.g. COVID-19) have more indolent courses, but the committee judged that including HFNO would allow earlier diagnosis instead.'
+    },
+    {
+      q: 'Which of the following is TRUE about the 2024 Global Definition and chronic lung disease?',
+      opts: [
+        'ARDS cannot be diagnosed in patients with COPD, ILD or pulmonary hypertension',
+        'ARDS can be diagnosed provided the acute hypoxaemic respiratory failure is not primarily attributable to the underlying chronic condition',
+        'Chronic lung disease automatically excludes the diagnosis',
+        'Patients with chronic lung disease are diagnosed using a separate definition'
+      ],
+      ans: 1,
+      exp: 'The Global Definition explicitly allows ARDS to be diagnosed in the presence of chronic lung disease such as COPD, interstitial lung disease or pulmonary hypertension, providing that the acute hypoxaemic respiratory failure is not primarily attributable to these underlying conditions.'
+    },
+    {
+      q: 'What is the minimum PEEP required for the intubated ARDS category in the 2024 Global Definition?',
+      opts: ['No PEEP required', '3 cmH\u2082O', '5 cmH\u2082O', '10 cmH\u2082O'],
+      ans: 2,
+      exp: 'A minimum PEEP of 5 cmH\u2082O is required for all severity categories of intubated ARDS \u2014 unchanged from Berlin. PEEP is not required for nonintubated ARDS or in the resource-limited category.'
     }
   ];
 
