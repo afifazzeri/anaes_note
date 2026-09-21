@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARDS Quick Reference — Anaesthetist's Guide</title>
+<style>
+  :root{
+    --bg:#eef3f7; --card:#ffffff; --ink:#12222e; --muted:#5a6b78;
+    --accent:#0b6e99; --accent-soft:#e3f1f8; --green:#0e8f6e;
+    --amber:#c9821a; --red:#c0392b; --line:#d9e3ea; --hl:#ffe680;
+    --radius:12px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; font-size:16px;
+  }
+  /* ---------- top bar ---------- */
+  header.topbar{
+    position:sticky; top:0; z-index:50;
+    background:linear-gradient(135deg,#0b6e99,#0e8f6e);
+    color:#fff; padding:12px 16px 10px;
+    box-shadow:0 2px 10px rgba(6,40,60,.18);
+  }
+  .topbar-inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .brand{font-weight:750;font-size:1.12rem;letter-spacing:.2px;white-space:nowrap}
+  .brand small{display:block;font-weight:400;font-size:.72rem;opacity:.85;letter-spacing:.3px}
+  .searchwrap{flex:1 1 260px;position:relative;min-width:220px}
+  .searchwrap input{
+    width:100%; padding:9px 34px 9px 12px; border-radius:9px; border:0;
+    font-size:.95rem; outline:none; background:#fff; color:var(--ink);
+  }
+  .searchwrap input:focus{box-shadow:0 0 0 3px rgba(255,255,255,.45)}
+  #clearBtn{
+    position:absolute; right:6px; top:50%; transform:translateY(-50%);
+    border:0; background:transparent; font-size:1rem; cursor:pointer; color:#5a6b78;
+    padding:2px 6px; border-radius:6px;
+  }
+  #clearBtn:hover{background:#e6eef4}
+  .btn{
+    border:1px solid rgba(255,255,255,.55); background:rgba(255,255,255,.12);
+    color:#fff; padding:7px 11px; border-radius:9px; font-size:.82rem;
+    cursor:pointer; font-weight:600; white-space:nowrap;
+  }
+  .btn:hover{background:rgba(255,255,255,.24)}
+  .btn.primary{background:#fff;color:var(--accent);border-color:#fff}
+  .btn.primary:hover{background:#eaf6fb}
+  .btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--line)}
+  .btn.ghost:hover{background:var(--accent-soft)}
+  #searchInfo{max-width:1080px;margin:6px auto 0;font-size:.78rem;opacity:.95;min-height:1em}
+  /* ---------- layout ---------- */
+  main{max-width:1080px;margin:18px auto 60px;padding:0 16px}
+  .toc{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+  .toc a{
+    text-decoration:none;font-size:.78rem;font-weight:600;color:var(--accent);
+    background:#fff;border:1px solid var(--line);padding:5px 10px;border-radius:99px;
+  }
+  .toc a:hover{background:var(--accent-soft);border-color:#b9dcec}
+  /* ---------- collapsible cards ---------- */
+  details.card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    margin:0 0 12px; box-shadow:0 1px 3px rgba(16,40,60,.06); overflow:hidden;
+  }
+  details.card > summary{
+    cursor:pointer; padding:13px 16px; font-weight:700; font-size:1.02rem;
+    display:flex; align-items:center; gap:10px; list-style:none;
+    background:#fbfdff; border-bottom:1px solid transparent;
+  }
+  details.card[open] > summary{border-bottom:1px solid var(--line)}
+  summary::-webkit-details-marker{display:none}
+  summary::before{
+    content:"▸"; color:var(--accent); font-size:.95em; flex:0 0 auto;
+    transition:transform .18s ease;
+  }
+  details[open] > summary::before{transform:rotate(90deg)}
+  .card-body{padding:6px 18px 18px}
+  details.sub{
+    border:1px solid var(--line); border-radius:10px; margin:10px 0;
+    background:#fbfdff;
+  }
+  details.sub > summary{
+    cursor:pointer;padding:10px 14px;font-weight:650;font-size:.94rem;
+    list-style:none;display:flex;align-items:center;gap:9px;
+  }
+  details.sub > summary::before{content:"▸";color:var(--accent);transition:transform .18s}
+  details.sub[open] > summary::before{transform:rotate(90deg)}
+  details.sub .card-body{padding:2px 14px 14px}
+  /* ---------- typography ---------- */
+  h3{margin:16px 0 6px;font-size:.98rem;color:var(--accent);letter-spacing:.2px}
+  h4{margin:12px 0 4px;font-size:.92rem}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0 8px 20px;padding:0}
+  li{margin:4px 0}
+  .key{background:#fff8e1;border-left:4px solid var(--amber);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+  .key strong{color:#8a5a00}
+  .pearl{background:#e9f7f1;border-left:4px solid var(--green);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+  .warn{background:#fdecea;border-left:4px solid var(--red);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+  .muted{color:var(--muted);font-size:.86rem}
+  .pill{
+    display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:99px;
+    background:var(--accent-soft);color:var(--accent);margin-right:6px;vertical-align:middle;
+  }
+  .pill.mild{background:#e6f4ea;color:#1e7a45}
+  .pill.mod{background:#fff3dd;color:#a8680d}
+  .pill.sev{background:#fdecea;color:#b02a1f}
+  table.tbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:.88rem}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  table.tbl th{background:#f2f7fa;font-weight:700;font-size:.83rem}
+  table.tbl tr:nth-child(even) td{background:#fbfdff}
+  mark.hl{background:var(--hl);padding:0 1px;border-radius:2px}
+  code{background:#eef3f7;padding:1px 5px;border-radius:5px;font-size:.88em}
+  /* ---------- diagrams ---------- */
+  figure{margin:14px 0;background:#fbfdff;border:1px solid var(--line);border-radius:10px;padding:10px}
+  figure svg{width:100%;height:auto;display:block}
+  figcaption{font-size:.8rem;color:var(--muted);margin-top:8px;text-align:center}
+  /* ---------- calculator ---------- */
+  .calc{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:12px 0}
+  .calc label{display:flex;flex-direction:column;font-size:.78rem;font-weight:600;color:var(--muted);gap:4px}
+  .calc input,.calc select{
+    padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:.95rem;width:120px;
+    background:#fff;color:var(--ink);
+  }
+  #pfResult{
+    margin-top:6px;padding:12px 14px;border-radius:10px;background:#f2f7fa;
+    border:1px solid var(--line);font-size:.92rem;
+  }
+  #pfResult b{font-size:1.1rem}
+  /* ---------- cases ---------- */
+  .case-q{font-weight:650;color:#0b4a66;margin-top:6px}
+  /* ---------- game ---------- */
+  .game-top{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);font-weight:600}
+  .bar{height:7px;background:#e6eef4;border-radius:99px;overflow:hidden;margin:8px 0 4px}
+  .bar-fill{height:100%;background:var(--accent);transition:width .3s}
+  .timerbar{height:5px;background:#eef3f7;border-radius:99px;overflow:hidden;margin-bottom:12px}
+  #timeFill{height:100%;width:100%;background:var(--green);transition:width .1s linear}
+  .qtext{font-weight:700;font-size:1.02rem;margin:6px 0 12px}
+  .opts{display:flex;flex-direction:column;gap:8px}
+  .opt{
+    text-align:left;padding:10px 13px;border-radius:9px;border:1px solid var(--line);
+    background:#fff;cursor:pointer;font-size:.92rem;font-family:inherit;color:var(--ink);
+    transition:background .12s,border-color .12s;
+  }
+  .opt:hover:not(:disabled){background:var(--accent-soft);border-color:#b9dcec}
+  .opt:disabled{cursor:default}
+  .opt.correct{background:#e6f4ea;border-color:#1e7a45;font-weight:650}
+  .opt.wrong{background:#fdecea;border-color:var(--red)}
+  .fb{margin-top:12px;padding:10px 13px;border-radius:9px;font-size:.88rem;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:#e6f4ea;border-left:4px solid var(--green)}
+  .fb.no{background:#fdecea;border-left:4px solid var(--red)}
+  .game-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.8rem;color:var(--muted)}
+  .game-end{text-align:center;padding:16px 0}
+  .game-end .big{font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1.1}
+  /* ---------- footer ---------- */
+  footer{max-width:1080px;margin:0 auto 60px;padding:0 16px;font-size:.82rem;color:var(--muted)}
+  footer ol{margin-left:18px}
+  footer li{margin:5px 0}
+  @media (max-width:600px){
+    .brand{font-size:1rem}
+    .btn{padding:6px 9px;font-size:.75rem}
+    .card-body{padding:4px 12px 14px}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">ARDS Quick Reference
+      <small>Anaesthetist &amp; ICU — merged evidence summary</small>
+    </div>
+    <div class="searchwrap">
+      <input id="search" type="search" placeholder="Search… PEEP, prone, driving pressure, ECMO" autocomplete="off" aria-label="Search the reference">
+      <button id="clearBtn" title="Clear search" aria-label="Clear search">✕</button>
+    </div>
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+  </div>
+  <div id="searchInfo"></div>
+</header>
+
+<main>
+
+<nav class="toc">
+  <a href="#s-def">Definition</a>
+  <a href="#s-epi">Epidemiology</a>
+  <a href="#s-aet">Aetiology</a>
+  <a href="#s-path">Pathophysiology</a>
+  <a href="#s-inv">Investigations</a>
+  <a href="#s-vent">Ventilation</a>
+  <a href="#s-nonvent">Non-ventilatory</a>
+  <a href="#s-prog">Prognosis</a>
+  <a href="#s-sum">Summary</a>
+  <a href="#s-cases">10 Cases</a>
+  <a href="#s-game">Mini-game</a>
+  <a href="#s-ref">References</a>
+</nav>
+
+<!-- ============ DEFINITION ============ -->
+<details class="card" id="s-def" data-section open>
+  <summary>1 · Definition &amp; Diagnosis (Berlin criteria)</summary>
+  <div class="card-body">
+
+    <p>The older American–European Consensus Conference (AECC, 1994) definition was replaced in 2011/2012 by the <strong>Berlin definition</strong>, which improved reliability and predictive value. It also abolished the term “acute lung injury” (ALI) and categorises ARDS as <strong>mild, moderate or severe</strong>.</p>
+
+    <div class="key">
+      <strong>Berlin definition:</strong> “An acute diffuse, inflammatory lung injury, leading to increased pulmonary vascular permeability, increased lung weight, and loss of aerated lung tissue… [with] hypoxaemia and bilateral radiographic opacities, associated with increased venous admixture, increased physiological dead space, and decreased lung compliance.”
+    </div>
+
+    <h3>Four key diagnostic criteria</h3>
+    <ol>
+      <li><strong>Acute onset</strong> — within 7 days of a defined trigger (e.g. pneumonia).</li>
+      <li><strong>Hypoxaemia</strong> — PaO<sub>2</sub>:FiO<sub>2</sub> ratio &lt; 300 mmHg (&lt; 40 kPa) on at least <strong>5 cmH<sub>2</sub>O PEEP</strong>.</li>
+      <li><strong>Bilateral lung infiltrates</strong> on chest X-ray or CT.</li>
+      <li><strong>Not fully explained by cardiac failure or fluid overload</strong> — echocardiography is now recommended (rather than left atrial / pulmonary artery pressure measurement). The definition only requires that respiratory failure is not <em>fully</em> explained by cardiac failure or fluid overload, so cardiac disease and ARDS can coexist.</li>
+    </ol>
+
+    <h3>Severity by P/F ratio (on PEEP ≥ 5 cmH<sub>2</sub>O)</h3>
+    <table class="tbl">
+      <thead><tr><th>Severity</th><th>PaO<sub>2</sub>:FiO<sub>2</sub> (mmHg)</th><th>PaO<sub>2</sub>:FiO<sub>2</sub> (kPa)</th><th>Cohort mortality</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill mild">Mild</span></td><td>200–300</td><td>26.7–40</td><td>27%</td></tr>
+        <tr><td><span class="pill mod">Moderate</span></td><td>100–200</td><td>13.3–26.7</td><td>32%</td></tr>
+        <tr><td><span class="pill sev">Severe</span></td><td>&lt; 100</td><td>&lt; 13.3</td><td>45%</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">Overall mortality across the critical care population is quoted at 27–45%.</p>
+
+    <h3>Validation &amp; caveats</h3>
+    <ul>
+      <li>The Berlin definition has slightly better prediction validity for mortality than the AECC definition — area under the ROC curve 0.577 (95% CI 0.561–0.593) vs 0.536 (95% CI 0.520–0.553), P &lt; 0.001.</li>
+      <li>Features that clinicians often assumed were prognostically useful — high PEEP (&gt; 10 cmH<sub>2</sub>O), static lung compliance, radiographic severity, and corrected expired volume &gt; 10 L min<sup>−1</sup> — were <strong>not</strong> predictive of mortality or other outcomes, and were removed from the first draft of the Berlin definition.</li>
+      <li>No clinical gold standard exists for ARDS. Diffuse alveolar damage on post-mortem confirms the diagnosis in non-survivors, but histological biopsy is rarely performed in the critically ill — so <strong>over-diagnosis</strong> is possible, and false-positive recruitment into trials may confound results.</li>
+    </ul>
+
+    <h3>Quick P/F ratio calculator</h3>
+    <div class="calc">
+      <label>PaO<sub>2</sub>
+        <input id="pao2" type="number" step="0.1" placeholder="e.g. 9.3" value="">
+      </label>
+      <label>Unit
+        <select id="pao2unit"><option value="kpa">kPa</option><option value="mmhg">mmHg</option></select>
+      </label>
+      <label>FiO<sub>2</sub> (%)
+        <input id="fio2" type="number" step="1" placeholder="e.g. 60" value="">
+      </label>
+      <label>PEEP (cmH<sub>2</sub>O)
+        <input id="peep" type="number" step="1" placeholder="e.g. 10" value="">
+      </label>
+    </div>
+    <div id="pfResult" class="muted">Enter PaO₂ and FiO₂ to calculate the ratio and Berlin category.</div>
+
+  </div>
+</details>
+
+<!-- ============ EPIDEMIOLOGY ============ -->
+<details class="card" id="s-epi" data-section>
+  <summary>2 · Epidemiology</summary>
+  <div class="card-body">
+    <h3>LUNG SAFE study (landmark observational data)</h3>
+    <ul>
+      <li>Prospective observational study of ARDS epidemiology and management: <strong>29,000 patients, &gt; 50 countries</strong>.</li>
+      <li>ARDS criteria fulfilled in <strong>10% of all ICU admissions</strong> and in <strong>23% of patients requiring mechanical ventilation</strong>.</li>
+      <li>Severity distribution: <strong>mild 30%, moderate 47%, severe 23%</strong>.</li>
+      <li>Median duration of mechanical ventilation <strong>8 days</strong>; median ICU stay <strong>10 days</strong>.</li>
+      <li>ICU mortality <strong>34%</strong>; hospital mortality <strong>40%</strong>.</li>
+      <li>Conclusion: ARDS is <strong>under-recognised and under-treated</strong>, with high mortality. Clinician recognition occurred in only about <strong>60%</strong> of cases, and adherence to best practice was poor.</li>
+    </ul>
+
+    <h3>Other figures</h3>
+    <ul>
+      <li>Estimated incidence ≈ <strong>64 cases per 100,000 people</strong> (figures vary widely because of the subjectivity of the old AECC definition).</li>
+      <li>ARDS is associated with multiple organ dysfunction and carries high mortality, morbidity and financial cost.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ AETIOLOGY ============ -->
+<details class="card" id="s-aet" data-section>
+  <summary>3 · Aetiology (pulmonary vs extrapulmonary)</summary>
+  <div class="card-body">
+    <p>Precipitants are classified as <strong>pulmonary</strong> (direct lung insult) or <strong>extrapulmonary</strong> (systemic insult). <strong>Pneumonia and non-pulmonary sepsis are the leading causes.</strong></p>
+
+    <table class="tbl">
+      <thead><tr><th>Pulmonary</th><th>Extrapulmonary</th></tr></thead>
+      <tbody>
+        <tr><td>Pneumonia (59%)<sup>a</sup></td><td>Sepsis (16%)</td></tr>
+        <tr><td>Aspiration of gastric contents (14%)</td><td>No obvious precipitant (8%)</td></tr>
+        <tr><td>Pulmonary contusion (3%)</td><td>Non-cardiogenic shock (7.5%)</td></tr>
+        <tr><td>Inhalational injury (2%)</td><td>Massive transfusion (4%)</td></tr>
+        <tr><td>Pulmonary vasculitis (1%)</td><td>Multiple trauma (4%)</td></tr>
+        <tr><td>Near drowning (&lt; 1%)</td><td>Other, e.g. pancreatitis (3%)</td></tr>
+        <tr><td></td><td>Drugs and toxins (2%)</td></tr>
+        <tr><td></td><td>Burns (&lt; 1%)</td></tr>
+      </tbody>
+    </table>
+    <p class="muted"><sup>a</sup>Percentages are from the LUNG SAFE study.</p>
+
+    <div class="pearl">
+      <strong>Genetics:</strong> there is wide variability in genetic predisposition to ARDS, but the precise genetic basis remains poorly understood.
+    </div>
+  </div>
+</details>
+
+<!-- ============ PATHOPHYSIOLOGY ============ -->
+<details class="card" id="s-path" data-section>
+  <summary>4 · Pathophysiology (three overlapping phases)</summary>
+  <div class="card-body">
+
+    <p>ARDS is the end result of a complex interplay of inflammatory mediators producing <strong>diffuse alveolar damage, non-cardiogenic pulmonary oedema, surfactant dysfunction and atelectasis</strong>. Angiotensin II is of particular research interest because of its ability to induce alveolar apoptosis and fibrosis.</p>
+
+    <figure>
+      <svg viewBox="0 0 660 320" role="img" aria-label="Schematic comparing a normal air-filled alveolus with an ARDS alveolus filled with protein-rich oedema fluid and surrounded by collapsed alveoli">
+        <defs>
+          <clipPath id="alvClip"><circle cx="480" cy="140" r="62"/></clipPath>
+        </defs>
+
+        <!-- LEFT: normal -->
+        <text x="150" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#0b6e99">NORMAL ALVEOLUS</text>
+        <circle cx="150" cy="140" r="62" fill="#e8f4ff" stroke="#1f6fb2" stroke-width="4"/>
+        <circle cx="150" cy="140" r="53" fill="none" stroke="#7fb8e0" stroke-width="2" stroke-dasharray="3 6"/>
+        <text x="150" y="146" text-anchor="middle" font-size="15" font-weight="700" fill="#1f6fb2">AIR</text>
+        <text x="150" y="216" text-anchor="middle" font-size="12.5" fill="#0e8f6e" font-weight="600">O₂ ⇄ CO₂</text>
+        <rect x="40" y="228" width="220" height="36" rx="18" fill="#ffe3e3" stroke="#c0392b" stroke-width="2"/>
+        <circle cx="80" cy="246" r="9" fill="#c0392b" opacity="0.8"/>
+        <circle cx="120" cy="246" r="9" fill="#c0392b" opacity="0.8"/>
+        <circle cx="160" cy="246" r="9" fill="#c0392b" opacity="0.8"/>
+        <circle cx="200" cy="246" r="9" fill="#c0392b" opacity="0.8"/>
+        <text x="150" y="288" text-anchor="middle" font-size="12" fill="#5a6b78">Thin intact membrane · surfactant intact</text>
+        <text x="150" y="306" text-anchor="middle" font-size="12" fill="#5a6b78">No shunt · normal compliance</text>
+
+        <!-- RIGHT: ARDS -->
+        <text x="480" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#b02a1f">ARDS ALVEOLUS</text>
+
+        <!-- collapsed neighbours -->
+        <ellipse cx="398" cy="62" rx="20" ry="11" fill="#cfd8de" stroke="#8fa3b0" stroke-width="2"/>
+        <ellipse cx="562" cy="62" rx="20" ry="11" fill="#cfd8de" stroke="#8fa3b0" stroke-width="2"/>
+        <text x="398" y="42" text-anchor="middle" font-size="10.5" fill="#7c8d9a">collapsed</text>
+        <text x="562" y="42" text-anchor="middle" font-size="10.5" fill="#7c8d9a">collapsed</text>
+
+        <circle cx="480" cy="140" r="62" fill="#eef6fd" stroke="#1f6fb2" stroke-width="6"/>
+        <g clip-path="url(#alvClip)">
+          <path d="M410 168 C430 156, 450 178, 470 166 C490 154, 510 176, 530 164 C545 156, 552 162, 558 158 L558 210 L410 210 Z"
+                fill="#e0b96a" opacity="0.85"/>
+          <circle cx="452" cy="120" r="5.5" fill="#7a4fa3" opacity="0.85"/>
+          <circle cx="508" cy="132" r="5.5" fill="#7a4fa3" opacity="0.85"/>
+          <circle cx="472" cy="98" r="5.5" fill="#7a4fa3" opacity="0.85"/>
+          <circle cx="524" cy="108" r="5.5" fill="#7a4fa3" opacity="0.85"/>
+          <circle cx="494" cy="150" r="5.5" fill="#7a4fa3" opacity="0.85"/>
+        </g>
+        <text x="480" y="188" text-anchor="middle" font-size="12" font-weight="700" fill="#7a5a10">oedema fluid</text>
+
+        <rect x="370" y="228" width="220" height="36" rx="18" fill="#ffe3e3" stroke="#c0392b" stroke-width="2"/>
+        <circle cx="410" cy="246" r="9" fill="#c0392b" opacity="0.8"/>
+        <circle cx="450" cy="246" r="9" fill="#c0392b" opacity="0.8"/>
+        <circle cx="490" cy="246" r="9" fill="#c0392b" opacity="0.8"/>
+        <circle cx="530" cy="246" r="9" fill="#c0392b" opacity="0.8"/>
+        <text x="480" y="288" text-anchor="middle" font-size="12" fill="#5a6b78">Leaky, thickened membrane · surfactant denatured</text>
+        <text x="480" y="306" text-anchor="middle" font-size="12" fill="#5a6b78">Shunt · ↓ compliance · purple dots = neutrophils</text>
+      </svg>
+      <figcaption>Simplified schematic of the alveolus in health and in ARDS. Not to scale.</figcaption>
+    </figure>
+
+    <h3>Phase 1 — Exudative / acute (up to ~1 week)</h3>
+    <ul>
+      <li>Acute inflammatory response with release of cytokines — <strong>TNF-α, IL-1 and IL-6</strong>.</li>
+      <li>These stimulate <strong>neutrophil migration into the alveoli</strong>, where they become activated and release reactive oxygen species.</li>
+      <li>Free-radical production damages <strong>endothelial cells and pneumocytes</strong>.</li>
+      <li>Damage to alveolar and capillary endothelium causes accumulation of <strong>protein-rich inflammatory exudate</strong> in alveoli and interstitium — i.e. <strong>non-cardiogenic pulmonary oedema</strong>.</li>
+      <li>Plasma proteins <strong>denature alveolar surfactant</strong> → alveolar collapse.</li>
+      <li>Collapsed / fluid-filled alveoli cause <strong>shunt</strong> → hypoxaemia; there is also reduced pulmonary compliance.</li>
+      <li>Radiological infiltrates appear during this phase.</li>
+    </ul>
+
+    <h3>Phase 2 — Proliferative / subacute (≈ 72 hours to day 7; may begin from day 5)</h3>
+    <ul>
+      <li>Proliferation of <strong>type 2 pneumocytes, fibroblasts and myofibroblasts</strong> with deposition of new matrix.</li>
+      <li><strong>Fibroproliferation</strong> and <strong>microvascular thrombus formation</strong> cause further reduction in lung compliance and continuing hypoxaemia.</li>
+      <li>Some patients improve rapidly at this stage; others progress.</li>
+    </ul>
+
+    <h3>Phase 3 — Fibrotic / chronic or resolution</h3>
+    <ul>
+      <li>Either <strong>resolution and reconstitution of normal pulmonary parenchyma</strong>, or a <strong>fibrotic stage</strong>.</li>
+      <li>Interstitial and intra-alveolar fibrosis results from excessive, disordered collagen deposition and is associated with a <strong>poor outcome</strong>; lung remodelling may be irreversible.</li>
+      <li>The factors determining progression to fibrosis versus resolution are <strong>not well understood</strong>.</li>
+    </ul>
+
+    <div class="pearl">
+      <strong>“Baby lung” concept:</strong> ARDS affects alveoli heterogeneously. Some areas become stiff and hard to expand, while more normal, compliant alveoli may become over-distended and damaged. Patients therefore have a <strong>smaller proportion of lung available for ventilation</strong> and lower respiratory system compliance (C<sub>RS</sub>).
+    </div>
+  </div>
+</details>
+
+<!-- ============ INVESTIGATIONS ============ -->
+<details class="card" id="s-inv" data-section>
+  <summary>5 · Investigations &amp; imaging</summary>
+  <div class="card-body">
+    <ul>
+      <li>ARDS is predominantly a <strong>clinical diagnosis</strong>; adequate clinician experience is needed to recognise the mimics.</li>
+      <li><strong>Chest radiograph:</strong> bilateral lung infiltrates are an early finding.</li>
+      <li><strong>Echocardiography:</strong> used to quantify cardiac function and exclude a cardiac explanation (Berlin criterion 4).</li>
+      <li><strong>CT:</strong> particularly useful when there is an underlying pulmonary cause. It demonstrates the <strong>heterogeneity</strong> of the disease — small areas of relatively unaffected lung with potential for recruitment, interspersed with segments of severely affected lung (typically anterior sparing with extensive posterior change).</li>
+      <li><strong>Caution:</strong> transferring a patient with ARDS for CT is not without risk and may lead to subsequent increases in ventilatory support.</li>
+    </ul>
+
+    <figure>
+      <svg viewBox="0 0 660 360" role="img" aria-label="Schematic of supine and prone chest cross-sections showing dorsal atelectasis and improvement with prone positioning">
+        <defs>
+          <linearGradient id="gradSupine" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#cfe9f8"/>
+            <stop offset="45%" stop-color="#9dc9e8"/>
+            <stop offset="100%" stop-color="#44637a"/>
+          </linearGradient>
+          <linearGradient id="gradProne" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#a9c6da"/>
+            <stop offset="100%" stop-color="#cfe9f8"/>
+          </linearGradient>
+        </defs>
+
+        <!-- SUPINE -->
+        <text x="165" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#0b6e99">SUPINE</text>
+        <rect x="40" y="45" width="250" height="225" rx="45" fill="#f2f6f9" stroke="#8fa3b0" stroke-width="2"/>
+        <ellipse cx="105" cy="140" rx="45" ry="72" fill="url(#gradSupine)"/>
+        <ellipse cx="225" cy="140" rx="45" ry="72" fill="url(#gradSupine)"/>
+        <ellipse cx="165" cy="178" rx="26" ry="30" fill="#d98a8a" stroke="#b06a6a" stroke-width="2"/>
+        <text x="165" y="182" text-anchor="middle" font-size="10" fill="#7a2f2f" font-weight="700">heart</text>
+        <circle cx="165" cy="255" r="13" fill="#cbd5dc" stroke="#8fa3b0" stroke-width="2"/>
+        <text x="165" y="259" text-anchor="middle" font-size="9" fill="#5a6b78">spine</text>
+        <line x1="315" y1="80" x2="315" y2="150" stroke="#5a6b78" stroke-width="3"/>
+        <polygon points="315,160 308,146 322,146" fill="#5a6b78"/>
+        <text x="165" y="295" text-anchor="middle" font-size="12" fill="#5a6b78">Anterior (top) relatively spared</text>
+        <text x="165" y="313" text-anchor="middle" font-size="12" fill="#b02a1f" font-weight="600">Dorsal atelectasis / consolidation → shunt</text>
+        <text x="165" y="331" text-anchor="middle" font-size="11.5" fill="#5a6b78">Heart compresses the underlying lung</text>
+
+        <!-- PRONE -->
+        <text x="495" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#0e8f6e">PRONE</text>
+        <rect x="370" y="45" width="250" height="225" rx="45" fill="#f2f6f9" stroke="#8fa3b0" stroke-width="2"/>
+        <ellipse cx="435" cy="140" rx="45" ry="72" fill="url(#gradProne)"/>
+        <ellipse cx="555" cy="140" rx="45" ry="72" fill="url(#gradProne)"/>
+        <ellipse cx="495" cy="118" rx="26" ry="28" fill="#d98a8a" stroke="#b06a6a" stroke-width="2"/>
+        <text x="495" y="122" text-anchor="middle" font-size="10" fill="#7a2f2f" font-weight="700">heart</text>
+        <circle cx="495" cy="255" r="13" fill="#cbd5dc" stroke="#8fa3b0" stroke-width="2"/>
+        <text x="495" y="259" text-anchor="middle" font-size="9" fill="#5a6b78">spine</text>
+        <line x1="645" y1="80" x2="645" y2="150" stroke="#5a6b78" stroke-width="3"/>
+        <polygon points="645,160 638,146 652,146" fill="#5a6b78"/>
+        <text x="495" y="295" text-anchor="middle" font-size="12" fill="#5a6b78">Dorsal regions recruited</text>
+        <text x="495" y="313" text-anchor="middle" font-size="12" fill="#0e8f6e" font-weight="600">More even V<sub>T</sub> distribution &amp; V/Q matching</text>
+        <text x="495" y="331" text-anchor="middle" font-size="11.5" fill="#5a6b78">Heart falls anteriorly → less lung compression</text>
+      </svg>
+      <figcaption>Schematic representation of the radiological appearances in the source articles (chest radiograph and CT showing heterogeneously affected lungs). Simplified — anterior is drawn at the top of both panels.</figcaption>
+    </figure>
+  </div>
+</details>
+
+<!-- ============ VENTILATION ============ -->
+<details class="card" id="s-vent" data-section>
+  <summary>6 · Ventilatory strategies (lung-protective ventilation)</summary>
+  <div class="card-body">
+
+    <div class="key">
+      <strong>Core principle — lung-protective ventilation:</strong> minimise lung injury by ventilating with <strong>low tidal volumes at controlled pressure</strong>, using <strong>appropriate PEEP</strong>, a <strong>rationalised FiO<sub>2</sub></strong>, and a <strong>permissive approach to hypercapnoea</strong>. These basics require minimal specialised equipment and should be achievable in any ICU.
+    </div>
+
+    <p class="muted">Guidelines: American Thoracic Society / European Society of Intensive Care Medicine (2017) and the UK Faculty of Intensive Care Medicine / Intensive Care Society ARDS guideline (2018). Despite a strong evidence base, LUNG SAFE found ARDS under-diagnosed (recognised in only 60% of cases) and poor adherence to best practice.</p>
+
+    <!-- Low tidal volume -->
+    <details class="sub" open>
+      <summary>6.1 · Low-tidal-volume ventilation — the cornerstone</summary>
+      <div class="card-body">
+        <p>Pioneered by the <strong>ARDSnet ARMA trial (2000)</strong>:</p>
+        <ul>
+          <li><strong>Tidal volume 6 mL/kg</strong> based on <strong>ideal (predicted) body weight</strong></li>
+          <li><strong>Plateau pressure &lt; 30 cmH<sub>2</sub>O</strong></li>
+          <li><strong>Permissive hypercapnoea</strong> tolerated as long as <strong>pH &gt; 7.2</strong></li>
+        </ul>
+        <p>In the landmark trial, traditional tidal volumes of 12 mL/kg with plateau pressure ≤ 50 cmH<sub>2</sub>O were compared with 6 mL/kg and plateau ≤ 30 cmH<sub>2</sub>O. <strong>Survival (39.8% vs 31%) and ventilator-free days were higher in the lower tidal volume group.</strong> Notably, minute ventilation was higher than in previous low-tidal-volume studies, and treatment of acidosis may have contributed to the improved outcomes.</p>
+        <p>The benefit is thought to arise from <strong>reducing excessive distension/stretch of the aerated lung</strong> — which can release pro-inflammatory cytokines contributing to lung injury (<strong>volutrauma</strong>) and other organ injury.</p>
+
+        <h4>Ideal body weight (kg) from height (cm)</h4>
+        <ul>
+          <li><strong>Males</strong> = 50 + 0.91 × (height − 152.4)</li>
+          <li><strong>Females</strong> = 45.5 + 0.91 × (height − 152.4)</li>
+        </ul>
+
+        <h4>Practical mechanics</h4>
+        <ul>
+          <li>Position the patient optimally to avoid extra-pulmonary causes of high ventilator pressures.</li>
+          <li>Assess for and decompress a distended, high-pressure abdomen — nasogastric drainage or surgical means.</li>
+          <li>Barriers to successful implementation of low-tidal-volume ventilation are common; anticipate and address them early rather than abandoning lung protection.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Driving pressure -->
+    <details class="sub">
+      <summary>6.2 · Driving pressure (ΔP) — the “baby lung” index</summary>
+      <div class="card-body">
+        <p>ΔP reflects the reduced functional size of the lung by accounting for lung compliance. Also called the <strong>driving pressure</strong>:</p>
+        <div class="key"><strong>ΔP = V<sub>T</sub> / C<sub>RS</sub> = inspiratory plateau pressure − PEEP</strong></div>
+        <ul>
+          <li>A <strong>post hoc analysis of 3,562 ARDS patients from nine RCTs</strong> evaluated ΔP as a predictor of outcome.</li>
+          <li>In trials where tidal volume and PEEP were independent variables, <strong>decreased ΔP was the variable most strongly associated with survival</strong>.</li>
+          <li>This suggests that reducing tidal volume <em>in relation to lung compliance</em>, rather than in relation to ideal body weight alone, may be the key to improving survival.</li>
+          <li>Further trials are needed to determine whether PEEP increments are protective only when the increased PEEP allows the same V<sub>T</sub> to be delivered at a <strong>lower ΔP</strong>.</li>
+        </ul>
+        <div class="pearl">
+          An <strong>individualised, stepwise approach</strong> to lung recruitment and PEEP selection has been described. This may redistribute tidal volume and transpulmonary pressures more homogeneously, improve overall compliance with a larger functional lung, and allow a further decrease in ΔP without decreasing ventilation. Where evidence for optimal PEEP is lacking, individual assessment of lung mechanics may be appropriate.
+        </div>
+      </div>
+    </details>
+
+    <!-- PEEP -->
+    <details class="sub">
+      <summary>6.3 · Positive end-expiratory pressure (PEEP)</summary>
+      <div class="card-body">
+        <h4>Physiological effects</h4>
+        <ul>
+          <li>Prevents <strong>alveolar derecruitment</strong>, minimising <strong>atelectrauma</strong>.</li>
+          <li>Increases <strong>functional residual capacity</strong>.</li>
+          <li>Displaces fluid from the alveoli into the interstitium.</li>
+          <li>Moves the lung onto the <strong>steeper part of the compliance curve</strong>.</li>
+          <li>Reduces shunt and ventilation/perfusion mismatch.</li>
+        </ul>
+        <div class="warn"><strong>Balance against:</strong> potential hyperinflation and decreased venous return → decreased cardiac output.</div>
+
+        <h4>Setting PEEP</h4>
+        <p>PEEP is patient-specific and determining the “optimal” level is challenging. Several strategies have been suggested — <strong>none has proven superiority</strong>:</p>
+        <ul>
+          <li>Use of PEEP/FiO<sub>2</sub> tables</li>
+          <li>Titration based on plateau pressure</li>
+          <li>Stepwise increase until maximal compliance</li>
+          <li>Recruitment manoeuvre followed by decremental titration</li>
+          <li>Based on the inflection point of the pressure/volume curve</li>
+        </ul>
+        <p>Guidelines recommend <strong>high PEEP</strong> (defined variably, but on average <strong>15 cmH<sub>2</sub>O</strong>) in patients with <strong>moderate and severe ARDS</strong>, in whom a mortality benefit was demonstrated in clinical trials. ARDSnet recommend <strong>increasing PEEP in tandem with increasing FiO<sub>2</sub></strong>. No study has identified a universally optimal PEEP level.</p>
+      </div>
+    </details>
+
+    <!-- Prone -->
+    <details class="sub">
+      <summary>6.4 · Prone-position ventilation</summary>
+      <div class="card-body">
+        <h4>Postulated physiological benefits</h4>
+        <ul>
+          <li>Improved <strong>recruitment of atelectatic dorsal lung tissue</strong>; note that total respiratory compliance may actually <em>decrease</em> even as oxygenation improves.</li>
+          <li><strong>More even distribution of tidal volume.</strong></li>
+          <li>Improved <strong>V/Q matching</strong> (V = pulmonary ventilation; Q = pulmonary perfusion).</li>
+          <li><strong>Decreases alveolar hyperinflation.</strong></li>
+          <li>Reduces <strong>cardiac compression</strong> of the underlying lung.</li>
+          <li>Improves <strong>drainage of secretions</strong>.</li>
+          <li>Experimental evidence suggests it may influence the generation and evolution of <strong>ventilator-induced lung injury</strong>.</li>
+        </ul>
+
+        <h4>Evidence</h4>
+        <ul>
+          <li>Long known to improve oxygenation, but evidence of a mortality benefit was lacking until recently.</li>
+          <li><strong>Gattinoni et al. (2010)</strong> — meta-analysis of four major trials: absolute mortality of severely hypoxaemic ARDS patients may be reduced by around <strong>10%</strong> with prone positioning.</li>
+          <li><strong>PROSEVA (2013)</strong> — landmark “Prone positioning in severe ARDS” trial: mortality benefit when used for <strong>&gt; 12 hours per day</strong>, in the <strong>severe ARDS subgroup only</strong>. 28-day mortality <strong>16% prone vs 32% supine</strong>; <strong>number needed to treat = 6</strong>.</li>
+        </ul>
+
+        <div class="warn">
+          <strong>Safety:</strong> must be carried out with caution and appropriate training. Proven increased risk of <strong>endotracheal tube obstruction</strong> and <strong>pressure sores</strong>. Prone positioning is best attempted in selected severe ARDS patients in a fully equipped, trained unit.
+        </div>
+      </div>
+    </details>
+
+    <!-- APRV -->
+    <details class="sub">
+      <summary>6.5 · Airway pressure release ventilation (APRV)</summary>
+      <div class="card-body">
+        <ul>
+          <li>Sometimes known as <strong>“inverse ratio ventilation”</strong>.</li>
+          <li>The majority of the respiratory cycle (usually around <strong>90%</strong>) is spent at a <strong>high pressure</strong>, with a <strong>brief drop to lower pressure</strong> to allow expiration.</li>
+          <li>Crucially, the time at low pressure is set to allow the expiratory flow rate to decrease only to <strong>70–75% of its peak value</strong> — preventing alveolar derecruitment.</li>
+          <li><strong>Spontaneous breathing</strong> without additional support is encouraged.</li>
+          <li>Rationale: the higher mean airway pressure opens the alveoli and holds them open, improving oxygenation and decreasing lung injury — the <strong>“open lung” concept</strong>. Supported by small trials and animal studies.</li>
+        </ul>
+        <div class="warn">
+          <strong>Evidence is currently weak:</strong> only one single-centre RCT, which showed improved gas exchange and more ventilator-free days in the APRV group. This minimal evidence base meant <strong>neither the ATS nor the ICS guidelines offered an opinion</strong> on APRV.
+        </div>
+      </div>
+    </details>
+
+    <!-- HFOV -->
+    <details class="sub">
+      <summary>6.6 · High-frequency oscillatory ventilation (HFOV)</summary>
+      <div class="card-body">
+        <ul>
+          <li>More commonly used in paediatrics. The lung is held open at a <strong>high mean airway pressure (typically 25–30 cmH<sub>2</sub>O)</strong>, with <strong>small tidal volumes of 1–3 mL/kg</strong> delivered at a <strong>frequency of 3–15 Hz</strong>.</li>
+          <li>Theory: low V<sub>T</sub> with higher PEEP limits ventilator-associated lung injury.</li>
+        </ul>
+        <h4>Two trials published in 2013 changed practice</h4>
+        <ul>
+          <li><strong>OSCAR</strong> (High Frequency OSCillation in ARDS) — multicentre, non-blinded RCT using lower airway pressures than OSCILLATE; <strong>no difference in mortality</strong> vs control at 1 month.</li>
+          <li><strong>OSCILLATE</strong> (High-Frequency Oscillation in Early ARDS) — halted early after 548 patients; <strong>in-hospital mortality 47% with HFOV vs 35%</strong> with low V<sub>T</sub>/high PEEP. Possible confounders: more midazolam, neuromuscular blockade, vasopressors and higher mean airway pressures in the HFOV group.</li>
+        </ul>
+        <p>As a result, HFOV has <strong>fallen out of favour</strong>; guidelines <strong>strongly recommend against its routine use</strong> in ARDS. It may be considered in refractory cases where access to ECMO is limited.</p>
+      </div>
+    </details>
+
+    <!-- Recruitment -->
+    <details class="sub">
+      <summary>6.7 · Recruitment manoeuvres</summary>
+      <div class="card-body">
+        <p><strong>Aim:</strong> use a transient increase in ventilatory pressure to open (“recruit”) collapsed alveoli, reversing the atelectasis of ARDS and increasing the lung area available for gas exchange. Following the manoeuvre, PEEP is generally increased to hold the newly recruited alveoli open.</p>
+
+        <h4>Described methods</h4>
+        <ul>
+          <li><strong>Sustained inflation</strong> — e.g. CPAP at 30–40 cmH<sub>2</sub>O for 30–40 seconds.</li>
+          <li><strong>Stepwise increase</strong> in peak pressure and/or PEEP.</li>
+          <li><strong>“Extended sigh”</strong> — PEEP incrementally increased while tidal volume is incrementally decreased, aiming to keep plateau pressure constant. This is followed by sustained inflation at CPAP 30 cmH<sub>2</sub>O, and the sequence is then carried out in reverse to return to baseline.</li>
+        </ul>
+
+        <div class="warn">
+          Recruitment manoeuvres undoubtedly improve oxygenation and compliance — at least temporarily — but they can cause <strong>haemodynamic instability and barotrauma</strong>, and the physiological benefit may not be sustained.
+        </div>
+        <ul>
+          <li>ATS 2017 guidelines give a <strong>weak conditional recommendation</strong> for their use.</li>
+          <li>However, since publication, the <strong>ART trial</strong> (Alveolar Recruitment for ARDS Trial, 2017) showed <strong>increased mortality</strong> with a strategy of recruitment manoeuvre plus PEEP titration.</li>
+          <li><strong>The place of the recruitment manoeuvre is therefore currently unclear.</strong></li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ECMO -->
+    <details class="sub">
+      <summary>6.8 · Extracorporeal membrane oxygenation (ECMO)</summary>
+      <div class="card-body">
+        <ul>
+          <li>Uses <strong>large-bore central venous access</strong> to remove blood, pass it through a <strong>gas exchanger</strong>, and return it to the (usually venous) circulation. A modified cardiopulmonary bypass device used at the bedside for days to weeks.</li>
+          <li>Invasive, expensive and complex; a highly effective method of oxygenation, with a particular role in both gas exchange and circulatory support.</li>
+          <li>Complications relate to <strong>vascular access, anticoagulation and serious bleeding</strong>.</li>
+          <li>As a specialist therapy, its use is limited to <strong>respiratory failure centres</strong>.</li>
+        </ul>
+
+        <h4>Trial evidence</h4>
+        <ul>
+          <li><strong>CESAR (2009)</strong> — showed a mortality benefit in those assigned to the ECMO treatment group. Criticised as being a trial of <em>good conventional treatment at a respiratory failure centre</em> rather than a trial of ECMO specifically, because <strong>24% of patients assigned to ECMO did not receive it</strong>. Also lacked safety analysis of ECMO and standardised ARDSnet care; transfer to a tertiary centre was a confounder.</li>
+          <li><strong>EOLIA (2018)</strong> — ECMO for severe ARDS showed an <strong>11% reduction in mortality</strong> in the treatment group, which <strong>failed to reach statistical significance</strong>. The trial was underpowered and complicated by a high rate of crossover from control to ECMO.</li>
+          <li>ECMO also gained a particular role during the 2009 H1N1 pandemic — largely young patients with respiratory failure from non-necrotising viral pneumonia and little co-morbidity.</li>
+        </ul>
+
+        <div class="key"><strong>Present role:</strong> ECMO is a <strong>rescue therapy in severe ARDS only</strong>.</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ============ NON-VENTILATORY ============ -->
+<details class="card" id="s-nonvent" data-section>
+  <summary>7 · Non-ventilatory &amp; adjunctive strategies</summary>
+  <div class="card-body">
+
+    <!-- Fluids -->
+    <details class="sub" open>
+      <summary>7.1 · Conservative fluid therapy</summary>
+      <div class="card-body">
+        <p>Given that ARDS is a pathological state of non-cardiogenic pulmonary oedema, conservative fluid management appears intuitive. Excessive fluid administration is deleterious to gas exchange because of increased pulmonary capillary permeability.</p>
+        <ul>
+          <li><strong>FACTT</strong> (Fluid And Catheters Treatment Trial) compared conservative and liberal fluid strategies: <strong>no difference in mortality</strong>, but a <strong>significant improvement in ventilator-free days and ICU-free days</strong> in favour of the conservative arm.</li>
+          <li>Reassuringly, <strong>no increased risk of renal failure / acute kidney injury</strong> was identified in the conservative arm.</li>
+          <li>Despite the lack of strong evidence, guidelines give a <strong>weak recommendation</strong> for conservative fluid management.</li>
+        </ul>
+
+        <h4>Albumin</h4>
+        <ul>
+          <li>A systematic review and meta-analysis of RCTs (Uhlig et al.) in ARDS patients showed albumin treatment <strong>improved oxygenation in the first 2 days and after 7 days</strong> compared with crystalloid therapy — but this <strong>did not translate into a mortality difference</strong>. The sample size was relatively small.</li>
+          <li>Research has indicated favourable physiological changes when <strong>albumin is combined with furosemide</strong> in ARDS patients with low serum albumin: improved oxygenation, weight loss and normalisation of serum protein levels, with <strong>no significant adverse events</strong> — but <strong>no direct impact on ventilator time or survival</strong>.</li>
+          <li>Without strong evidence dictating how this is achieved, there is increasingly a move to a <strong>negative fluid balance approach</strong>, which also aims to address low colloid oncotic pressure.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- NMB -->
+    <details class="sub">
+      <summary>7.2 · Neuromuscular blockade (NMB)</summary>
+      <div class="card-body">
+        <h4>Rationale</h4>
+        <ul>
+          <li>Improve <strong>patient–ventilator synchrony</strong> by eliminating spontaneous respiratory effort and coughing.</li>
+          <li>May facilitate compliance with lung-protective ventilation protocols and reduce <strong>barotrauma</strong>.</li>
+          <li>Improves oxygenation as measured by PaO<sub>2</sub>:FiO<sub>2</sub> ratio — in part due to better control of ventilation and in part due to a <strong>decrease in oxygen consumption</strong>.</li>
+        </ul>
+        <div class="warn">
+          Paralysis clearly necessitates a <strong>deep level of sedation</strong>, which may cause additional problems. There are also concerns about a role in causing <strong>increased ICU-acquired weakness</strong>.
+        </div>
+        <h4>Evidence</h4>
+        <ul>
+          <li>The Intensive Care Society guideline concludes there is <strong>weak evidence from systematic reviews</strong> to support the use of a <strong>48-hour cisatracurium infusion</strong> in patients with <strong>moderate to severe ARDS</strong>.</li>
+          <li>All trials to date have been of <strong>cisatracurium</strong>, which may have a <strong>direct anti-inflammatory action</strong> in addition to its neuromuscular effect. It is <strong>unclear whether these findings generalise to other neuromuscular blockers</strong>.</li>
+          <li>An observational study comparing cisatracurium with vecuronium found <strong>no difference in mortality</strong> but a <strong>significant reduction in ventilator days</strong> in favour of cisatracurium.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Steroids -->
+    <details class="sub">
+      <summary>7.3 · Corticosteroids</summary>
+      <div class="card-body">
+        <p>Given the known inflammatory component of ARDS, there is a potential role for steroids to suppress this phase. Many small studies exist, but many were of <strong>low quality</strong> and were conducted <strong>before the advent of lung-protective ventilation</strong>.</p>
+        <ul>
+          <li><strong>SCCM/ESICM corticosteroid guideline:</strong> methylprednisolone <strong>1 mg/kg/day</strong> is recommended with <strong>moderate certainty</strong> for <strong>moderate to severe ARDS</strong>.</li>
+          <li><strong>Meduri trial</strong> of low-dose methylprednisolone in early ARDS: numbers were small (91 patients) and the placebo group had more patients with catecholamine-dependent shock, rendering the reduction in ventilator days less significant.</li>
+          <li><strong>LaSRS trial</strong> (late rescue steroids for ARDS): reported an <strong>increase in ventilator- and ICU-free days but no improvement in mortality</strong>. In fact, those with <strong>persistent ARDS had higher mortality</strong> with a <strong>number needed to harm of 4</strong>.</li>
+          <li>Steroids may potentially increase the risk of <strong>hospital-acquired infections, neuromyopathy and delirium</strong>.</li>
+          <li>Due to the low quality of existing evidence, the <strong>FICM/ICS document makes a recommendation for further research only</strong>. Steroids have not reliably shown improvement in hospital mortality and are <strong>not recommended for routine use</strong>. Their role remains <strong>controversial</strong>; further trials are ongoing.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Other drugs -->
+    <details class="sub">
+      <summary>7.4 · Other adjunctive / pharmacological therapies</summary>
+      <div class="card-body">
+        <p>A number of pharmaceutical therapies have been trialled in attempts to improve V/Q matching, reduce ventilator-induced lung injury, and modulate the inflammatory process underlying ARDS.</p>
+
+        <table class="tbl">
+          <thead><tr><th>Therapy</th><th>Effect in ARDS</th></tr></thead>
+          <tbody>
+            <tr><td>Inhaled nitric oxide</td><td>No benefit; associated with renal dysfunction</td></tr>
+            <tr><td>Inhaled prostacyclin</td><td>Insufficient evidence</td></tr>
+            <tr><td>β<sub>2</sub> agonists</td><td>No benefit (BALTI-2)</td></tr>
+            <tr><td>Statins</td><td>No benefit (rosuvastatin and simvastatin trials disappointing)</td></tr>
+            <tr><td>Ketoconazole</td><td>No benefit</td></tr>
+          </tbody>
+        </table>
+
+        <h4>Inhaled nitric oxide (iNO) — detail</h4>
+        <ul>
+          <li>Used historically, but evidence of efficacy is lacking.</li>
+          <li>Meta-analysis of <strong>12 RCTs, 1,237 patients</strong>: despite <strong>improved oxygenation at 24 h</strong>, <strong>no mortality benefit</strong> was gained, and a possible link was found to <strong>increased renal dysfunction</strong>.</li>
+          <li>A new understanding that iNO may have complex systemic effects means that, without a clear mortality benefit in ARDS, <strong>it has no role in current treatment</strong>.</li>
+        </ul>
+        <p class="muted">Statins were considered because of anti-inflammatory and immune-modulating effects; ketoconazole for its anti-inflammatory properties. Neither demonstrated improvement in mortality or other endpoints. Existing evidence does not support their use.</p>
+      </div>
+    </details>
+
+    <!-- Nutrition -->
+    <details class="sub">
+      <summary>7.5 · Nutrition</summary>
+      <div class="card-body">
+        <ul>
+          <li>Nutrition is a key part of treatment in critical illness, but <strong>optimal feeding in ARDS has not been delineated</strong>.</li>
+          <li><strong>EDEN trial:</strong> failed to establish a difference between standard full enteral feed and trophic feed in terms of the number of ventilator-free days, or in survivor outcomes at 6 and 12 months.</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ============ PROGNOSIS ============ -->
+<details class="card" id="s-prog" data-section>
+  <summary>8 · Prognosis &amp; long-term outcomes</summary>
+  <div class="card-body">
+    <ul>
+      <li>Studies on long-term outcomes of ARDS survivors are limited, but <strong>reductions in functional outcomes are increasingly recognised</strong>.</li>
+      <li>In one study of <strong>109 ARDS survivors</strong>, the <strong>6-minute walking distances at 1, 3 and 5 years were 66%, 67% and 76% of predicted values</strong> respectively.</li>
+      <li><strong>None of the patients in this relatively young cohort had returned to normal function within the 5-year follow-up.</strong></li>
+      <li><strong>Significant cognitive and psychiatric sequelae</strong> are also recognised in survivors, as is <strong>persistent cognitive impairment in the longer term</strong>.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ SUMMARY ============ -->
+<details class="card" id="s-sum" data-section>
+  <summary>9 · Summary &amp; key points</summary>
+  <div class="card-body">
+    <ul>
+      <li>ARDS is a syndrome of <strong>hypoxaemic respiratory failure associated with non-cardiogenic pulmonary oedema</strong>, occurring in <strong>10% of ICU patients</strong> and <strong>23% of those requiring mechanical ventilation</strong>.</li>
+      <li>It is characterised by an <strong>acute inflammatory reaction followed by a proliferative stage</strong>, which may then progress to <strong>fibrosis or resolution</strong>.</li>
+      <li>Diagnosed by the <strong>Berlin definition</strong>, and categorised as <strong>mild, moderate or severe</strong> by PaO<sub>2</sub>:FiO<sub>2</sub> ratio.</li>
+      <li>Principles of management aim to <strong>avoid exacerbating lung injury</strong> by ventilating at <strong>low tidal volumes with controlled pressure</strong>, <strong>appropriate PEEP</strong>, and a <strong>permissive approach to hypercapnoea</strong>.</li>
+      <li>Adjuncts include a <strong>conservative fluid management strategy</strong> and, in moderate to severe cases, <strong>neuromuscular blockade</strong> and <strong>prone-position ventilation</strong>.</li>
+      <li><strong>ECMO</strong> can be used as a <strong>rescue therapy for severe cases</strong>.</li>
+      <li><strong>No routine role</strong> for steroids, statins, inhaled nitric oxide, or high-frequency oscillatory ventilation.</li>
+      <li><strong>Adverse functional and neuropsychological outcomes</strong> are increasingly recognised in long-term ARDS survivors.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ CASES ============ -->
+<details class="card" id="s-cases" data-section>
+  <summary>10 · Ten high-yield case examples</summary>
+  <div class="card-body">
+
+    <details class="sub">
+      <summary>Case 1 · Does this meet Berlin criteria — and how severe?</summary>
+      <div class="card-body">
+        <p class="case-q">A 34-year-old man, day 2 of severe acute pancreatitis, is intubated for hypoxaemia. FiO<sub>2</sub> 0.6, PEEP 10 cmH<sub>2</sub>O, PaO<sub>2</sub> 9.3 kPa (70 mmHg). CXR shows bilateral infiltrates. Echocardiography: normal LV function, no significant valve disease, no fluid overload.</p>
+        <p><strong>Answer:</strong> P/F = 70 ÷ 0.6 ≈ <strong>117 mmHg</strong> → <strong>moderate ARDS</strong> (100–200 mmHg). All four Berlin criteria are met: acute onset within 7 days of a defined trigger (pancreatitis), P/F &lt; 300 on PEEP ≥ 5, bilateral infiltrates, and not fully explained by cardiac failure or fluid overload (echo normal).</p>
+        <p><strong>Action:</strong> lung-protective ventilation (V<sub>T</sub> 6 mL/kg IBW, plateau &lt; 30 cmH<sub>2</sub>O), optimise PEEP, conservative fluid strategy. Prone positioning is generally reserved for severe disease, but <strong>re-assess severity frequently</strong> — deterioration to P/F &lt; 150 on FiO<sub>2</sub> ≥ 0.6 triggers consideration of prone ventilation.</p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 2 · Severe ARDS — what is the full bundle?</summary>
+      <div class="card-body">
+        <p class="case-q">A 68-year-old with faecal peritonitis and septic shock, day 1 of ICU. FiO<sub>2</sub> 0.9, PEEP 14 cmH<sub>2</sub>O, PaO<sub>2</sub> 8.0 kPa (60 mmHg). Plateau pressure 32 cmH<sub>2</sub>O. CXR: bilateral infiltrates.</p>
+        <p><strong>Answer:</strong> P/F = 60 ÷ 0.9 ≈ <strong>67 mmHg → severe ARDS</strong> (&lt; 100 mmHg; mortality ~45%).</p>
+        <ul>
+          <li><strong>Lung-protective ventilation:</strong> reduce V<sub>T</sub> towards 6 mL/kg IBW; target plateau &lt; 30 cmH<sub>2</sub>O; accept permissive hypercapnoea while pH &gt; 7.2.</li>
+          <li><strong>PEEP:</strong> guidelines recommend high PEEP (average ~15 cmH<sub>2</sub>O) in moderate–severe ARDS where a mortality benefit has been shown.</li>
+          <li><strong>Prone positioning &gt; 12 h/day</strong> — PROSEVA: 28-day mortality 16% vs 32%, NNT 6. Requires a trained team; watch for ETT obstruction and pressure sores.</li>
+          <li><strong>Neuromuscular blockade:</strong> consider 48 h cisatracurium infusion (weak evidence in moderate–severe ARDS).</li>
+          <li><strong>Conservative fluid strategy</strong> — more ventilator-free and ICU-free days, no excess AKI.</li>
+          <li><strong>Refractory hypoxaemia:</strong> discuss referral to a respiratory failure centre for <strong>ECMO as rescue therapy</strong>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 3 · Plateau pressure is 38 — what now?</summary>
+      <div class="card-body">
+        <p class="case-q">A man of height 175 cm, weight 70 kg, is ventilated with a tidal volume of 700 mL. Plateau pressure is 38 cmH<sub>2</sub>O. His oxygen requirements are rising.</p>
+        <p><strong>Answer:</strong> Ideal body weight = 50 + 0.91 × (175 − 152.4) = <strong>≈ 70.6 kg</strong>. Target V<sub>T</sub> = 6 mL/kg IBW ≈ <strong>420 mL</strong> (current V<sub>T</sub> is ~10 mL/kg IBW).</p>
+        <ul>
+          <li>Reduce tidal volume to 6 mL/kg IBW and target <strong>plateau pressure &lt; 30 cmH<sub>2</sub>O</strong>.</li>
+          <li>Accept permissive hypercapnoea provided <strong>pH &gt; 7.2</strong>.</li>
+          <li>Consider <strong>driving pressure (ΔP = plateau − PEEP)</strong> — a post hoc analysis of 3,562 ARDS patients found decreased ΔP was the variable most strongly associated with survival.</li>
+          <li>Exclude extra-pulmonary causes of high pressures: patient position, abdominal distension (consider NG drainage or surgical decompression), bronchospasm, secretions, circuit issues.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 4 · pH falls to 7.16 after reducing tidal volume</summary>
+      <div class="card-body">
+        <p class="case-q">After lowering the tidal volume to 6 mL/kg IBW, the patient's pH is 7.16 and PaCO<sub>2</sub> 9.5 kPa. The registrar wants to increase the tidal volume back up.</p>
+        <p><strong>Answer:</strong> Permissive hypercapnoea is an accepted component of lung-protective ventilation and is <strong>tolerated as long as pH &gt; 7.2</strong>. Do <strong>not</strong> abandon lung protection — cyclical over-stretching causes volutrauma and drives mortality.</p>
+        <ul>
+          <li>Increase respiratory rate (watch for auto-PEEP and air trapping).</li>
+          <li>Reduce dead space: suction secretions, treat bronchospasm, check circuit/tubing length.</li>
+          <li>Ensure adequate sedation and patient–ventilator synchrony.</li>
+          <li>Consider renal replacement therapy/buffering in extreme refractory acidaemia.</li>
+          <li>Remember permissive hypercapnoea is relatively contraindicated with raised intracranial pressure, severe pulmonary hypertension or severe LV dysfunction.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 5 · Prone positioning — who, how long, and what are the risks?</summary>
+      <div class="card-body">
+        <p class="case-q">A colleague asks you to prone a patient with severe ARDS (P/F 110 on FiO<sub>2</sub> 0.8 and PEEP 12).</p>
+        <p><strong>Answer:</strong></p>
+        <ul>
+          <li><strong>Indication:</strong> mortality benefit demonstrated in the <strong>severe ARDS subgroup only</strong>, when used for <strong>&gt; 12 hours each day</strong>. PROSEVA enrolled patients with P/F &lt; 150 on FiO<sub>2</sub> ≥ 0.6 and PEEP ≥ 5.</li>
+          <li><strong>Benefits:</strong> recruitment of atelectatic dorsal lung, more even tidal volume distribution, improved V/Q matching, reduced alveolar hyperinflation, reduced cardiac compression of lung, improved secretion drainage. Note that <strong>total respiratory compliance may actually fall</strong> even as oxygenation improves.</li>
+          <li><strong>Risks:</strong> proven increased risk of <strong>endotracheal tube obstruction</strong> and <strong>pressure sores</strong>; also haemodynamic instability.</li>
+          <li><strong>Requirements:</strong> caution, appropriate training, and a fully equipped unit with an experienced team.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 6 · Request for inhaled nitric oxide</summary>
+      <div class="card-body">
+        <p class="case-q">A patient with severe ARDS remains hypoxaemic despite lung-protective ventilation and high PEEP. A colleague suggests inhaled nitric oxide.</p>
+        <p><strong>Answer:</strong> A meta-analysis of <strong>12 RCTs and 1,237 patients</strong> showed that inhaled nitric oxide <strong>improved oxygenation at 24 hours but produced no mortality benefit</strong>, with a possible link to <strong>increased renal dysfunction</strong>. It has <strong>no role in current treatment</strong>. Inhaled prostacyclin has insufficient evidence.</p>
+        <p><strong>Instead:</strong> optimise PEEP and ΔP, ensure lung-protective volumes, consider prone positioning, consider neuromuscular blockade, manage fluid balance conservatively, and refer for ECMO assessment if refractory.</p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 7 · Mild ARDS — how aggressive should you be?</summary>
+      <div class="card-body">
+        <p class="case-q">A 55-year-old with community-acquired pneumonia, day 1 of ICU, FiO<sub>2</sub> 0.5, PEEP 5 cmH<sub>2</sub>O, PaO<sub>2</sub> 125 mmHg. Bilateral infiltrates. Haemodynamically stable, euvolaemic, good urine output.</p>
+        <p><strong>Answer:</strong> P/F = 125 ÷ 0.5 = <strong>250 mmHg → mild ARDS</strong> (200–300 mmHg; cohort mortality ~27%).</p>
+        <ul>
+          <li>Lung-protective ventilation with V<sub>T</sub> 6 mL/kg IBW and plateau &lt; 30 cmH<sub>2</sub>O.</li>
+          <li><strong>Conservative fluid strategy</strong> — FACTT showed no mortality difference but significantly more ventilator-free and ICU-free days, with no increase in acute kidney injury.</li>
+          <li><strong>Not indicated routinely:</strong> prone positioning (reserved for severe), neuromuscular blockade (moderate–severe), steroids (controversial), inhaled nitric oxide or HFOV.</li>
+          <li>Treat the underlying cause and monitor closely for deterioration — ARDS severity can escalate quickly.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 8 · ARDS or cardiogenic pulmonary oedema?</summary>
+      <div class="card-body">
+        <p class="case-q">A 72-year-old with known heart failure presents with bilateral infiltrates, hypoxaemia and raised JVP. How do you distinguish ARDS from cardiogenic pulmonary oedema?</p>
+        <p><strong>Answer:</strong> Apply <strong>Berlin criterion 4</strong> — the respiratory failure must <strong>not be fully explained by cardiac failure or fluid overload</strong>. The Berlin definition moved away from pulmonary artery occlusion pressure and left atrial pressure measurement; <strong>echocardiography is now the recommended tool</strong> and accounts for patients with congestive heart failure or left atrial hypertension who <em>also</em> develop ARDS.</p>
+        <ul>
+          <li>Use echocardiography to quantify cardiac function and identify structural disease.</li>
+          <li>Both conditions can coexist — if ARDS criteria are met, ARDS management still applies.</li>
+          <li>Note that historical bedside indices such as high PEEP (&gt; 10 cmH<sub>2</sub>O), static compliance, radiographic severity and corrected expired volume &gt; 10 L/min were <strong>not</strong> predictive of outcome and were removed from the draft Berlin definition.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 9 · Recruitment manoeuvre requested</summary>
+      <div class="card-body">
+        <p class="case-q">A colleague proposes a sustained inflation to 40 cmH<sub>2</sub>O for 40 seconds, followed by a PEEP titration, in a patient with severe ARDS and a high plateau pressure.</p>
+        <p><strong>Answer:</strong> Recruitment manoeuvres <strong>do</strong> improve oxygenation and compliance at least temporarily, but they can cause <strong>haemodynamic instability and barotrauma</strong>, and the physiological benefit may not be sustained.</p>
+        <ul>
+          <li><strong>ATS 2017:</strong> weak conditional recommendation for use.</li>
+          <li><strong>ART trial (2017):</strong> showed <strong>increased mortality</strong> with a strategy of recruitment manoeuvre plus PEEP titration.</li>
+          <li><strong>The place of recruitment manoeuvres is currently unclear</strong> — do not use routinely, and be especially cautious with haemodynamic instability or pre-existing barotrauma.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Case 10 · Survivor asks about long-term prognosis</summary>
+      <div class="card-body">
+        <p class="case-q">A patient who survived severe ARDS 12 months ago asks whether he will return to normal.</p>
+        <p><strong>Answer:</strong> Adverse <strong>functional and neuropsychological outcomes</strong> are increasingly recognised in long-term ARDS survivors.</p>
+        <ul>
+          <li>In a study of <strong>109 ARDS survivors</strong>, 6-minute walking distances at 1, 3 and 5 years were <strong>66%, 67% and 76% of predicted</strong> values.</li>
+          <li><strong>None of this relatively young cohort had returned to normal function</strong> within the 5-year follow-up.</li>
+          <li><strong>Significant cognitive and psychiatric sequelae</strong> are recognised, as is persistent cognitive impairment in the longer term.</li>
+          <li>Refer to critical care follow-up and rehabilitation services; manage expectations honestly but supportively.</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ============ GAME ============ -->
+<details class="card" id="s-game" data-section open>
+  <summary>11 · Mini-game: ARDS Rapid Fire 🎮</summary>
+  <div class="card-body">
+    <p class="muted">Ten randomised questions drawn from the reference above. 30 seconds per question. Feedback is given after each answer.</p>
+    <div id="gameArea"></div>
+  </div>
+</details>
+
+<!-- ============ REFERENCES ============ -->
+<details class="card" id="s-ref" data-section>
+  <summary>12 · Sources &amp; references</summary>
+  <div class="card-body">
+
+    <h3>Source articles merged for this quick reference</h3>
+    <ol>
+      <li><strong>Rae J.</strong> <em>Acute respiratory distress syndrome.</em> BJA Education / Continuing Education in Anaesthesia, Critical Care &amp; Pain — article 411 (ICU Fellow, Ninewells Hospital, Dundee, UK; edited by Niraj Niranjan, Consultant Anaesthetist, University Hospital of North Durham, UK). Published 1 October 2019.</li>
+      <li><strong>Tolhurst-Cleaver S.</strong> <em>Acute respiratory distress syndrome.</em> BJA Education (Consultant in Intensive Care, Salford Royal Foundation Trust, Stott Lane, Salford M6 8HD, UK). Article ID PII S2058-5349(17)30050-1.</li>
+    </ol>
+
+    <h3>Primary references cited within those articles</h3>
+    <ol>
+      <li>ARDS Definition Task Force. Acute respiratory distress syndrome: the Berlin definition. <em>JAMA</em> 2012;307(23):2526–2533.</li>
+      <li>Bellani G, Laffey JG, Pham T, et al. Epidemiology, patterns of care, and mortality for patients with acute respiratory distress syndrome in intensive care units in 50 countries (LUNG SAFE). <em>JAMA</em> 2016;315(8):788–800.</li>
+      <li>Pierrakos C, Karanikolas M, Scolletta S, et al. Acute respiratory distress syndrome: pathophysiology and therapeutic options. <em>J Clin Med Res</em> 2012;4(1):7–16.</li>
+      <li>Fan E, Del Sorbo L, Goligher EC, et al. An official ATS/ESICM/SCCM clinical practice guideline: mechanical ventilation in adult patients with acute respiratory distress syndrome. <em>Am J Respir Crit Care Med</em> 2017;195(9):1253–1263.</li>
+      <li>Faculty of Intensive Care Medicine / Intensive Care Society. Guidelines on the management of acute respiratory distress syndrome. 2018. ficm.ac.uk</li>
+      <li>Acute Respiratory Distress Syndrome Network. Ventilation with lower tidal volumes as compared with traditional tidal volumes for acute lung injury and the acute respiratory distress syndrome. <em>N Engl J Med</em> 2000;342(18):1301–1308.</li>
+      <li>Taccone P, Carlesso E, Marini J. Prone position in acute respiratory distress syndrome: rationale, indications and limits. <em>Am J Respir Crit Care Med</em> 2013;188(11):1286–1293.</li>
+      <li>Guérin C, Reignier J, Richard JC, et al. (PROSEVA). Prone positioning in severe acute respiratory distress syndrome. <em>N Engl J Med</em> 2013;368(23):2159–2168.</li>
+      <li>Zhou Y, Jin X, Lv Y, et al. Early application of airway pressure release ventilation may reduce the duration of mechanical ventilation in acute respiratory distress syndrome. <em>Intensive Care Med</em> 2017;43(11):1648–1659.</li>
+      <li>Young D, Lamb S, Shah S, et al. (OSCAR). High-frequency oscillation for acute respiratory distress syndrome. <em>N Engl J Med</em> 2013;368:806–813.</li>
+      <li>Ferguson ND, Cook DJ, Guyatt GH, et al. (OSCILLATE). High-frequency oscillation in early acute respiratory distress syndrome. <em>N Engl J Med</em> 2013;368:795–805.</li>
+      <li>Cavalcanti AB, Suzumura EA, Laranjeira LN, et al. (ART). Effect of lung recruitment and titrated PEEP vs low PEEP on mortality in patients with ARDS: a randomized clinical trial. <em>JAMA</em> 2017;318(14):1335–1345.</li>
+      <li>Peek GJ, Mugford M, Tiruvoipati R, et al. (CESAR). Efficacy and economic assessment of conventional ventilatory support versus extracorporeal membrane oxygenation for severe adult respiratory failure. <em>Lancet</em> 2009;374(9698):1351–1363.</li>
+      <li>Combes A, Hajage D, Capellier G, et al. (EOLIA). Extracorporeal membrane oxygenation for severe acute respiratory distress syndrome. <em>N Engl J Med</em> 2018;378(21):1965–1975.</li>
+      <li>National Heart, Lung and Blood Institute ARDS Clinical Trials Network (FACTT). Comparison of two fluid-management strategies in acute lung injury. <em>N Engl J Med</em> 2006;354(24):2564–2575.</li>
+      <li>Sottile PD, Kiser TH, Burnham EL, et al. An observational study of the efficacy of cisatracurium compared with vecuronium in patients with or at risk for acute respiratory distress syndrome. <em>Am J Respir Crit Care Med</em> 2018;197(7):897–904.</li>
+      <li>Annane D, Pastores SM, Rochwerg B, et al. Guidelines for the diagnosis and management of critical illness-related corticosteroid insufficiency (CIRCI) in critically ill patients (Part I): SCCM and ESICM 2017. <em>Intensive Care Med</em> 2017;43(12):1751–1763.</li>
+      <li>Gates S, Perkins G, Lamb SE, et al. Beta-agonist lung injury trial-2 (BALTI-2). <em>Health Technol Assess</em> 2013;17:vi–87.</li>
+      <li>McAuley DF, Laffey JG, O'Kane CM, et al. Simvastatin in the acute respiratory distress syndrome. <em>N Engl J Med</em> 2014;371(18):1695–1703.</li>
+      <li>Ashbaugh DG, Bigelow DB, Petty TL, et al. Acute respiratory distress in adults. <em>Lancet</em> 1967;2:319–323.</li>
+      <li>Rubenfeld GD, Caldwell E, Peabody E, et al. Incidence and outcomes of acute lung injury. <em>N Engl J Med</em> 2005;353:1685–1693.</li>
+      <li>Amato M, Meade MO, Slutsky AS, et al. Driving pressure and survival in the acute respiratory distress syndrome. <em>N Engl J Med</em> 2015;372:747–755.</li>
+      <li>Borges J, Hedenstierna G, Larsson A, Suarez-Sipmann F. Altering the mechanical scenario to decrease the driving pressure. <em>Crit Care</em> 2015;19:342.</li>
+      <li>Gattinoni L, Carlesso E, Taccone P, et al. Prone positioning improves survival in severe ARDS: a pathophysiologic review and individual patient meta-analysis. <em>Minerva Anestesiol</em> 2010;76:448–454.</li>
+      <li>Martinez G, Vuylsteke A. Extracorporeal membrane oxygenation in adults. <em>Contin Educ Anaesth Crit Care Pain</em> 2011;12:57–61.</li>
+      <li>Uhlig C, Silva P, Deckert S, et al. Albumin versus crystalloid solutions in patients with the acute respiratory distress syndrome: a systematic review and meta-analysis. <em>Crit Care</em> 2014;18:R10.</li>
+      <li>Martin G, Mangialardi J, Wheeler AP, et al. Albumin and furosemide therapy in hypoproteinaemic patients with acute lung injury. <em>Crit Care Med</em> 2002;30:2175–2182.</li>
+      <li>Rice TW, Wheeler AP, Thompson BT, et al. (EDEN). Initial trophic vs full enteral feeding in patients with acute lung injury. <em>JAMA</em> 2012;307:795–803.</li>
+      <li>Meduri G, Golden E, Freire A, et al. Methylprednisolone infusion in early severe ARDS: results of a randomised controlled trial. <em>Chest</em> 2007;131:954–963.</li>
+      <li>Rice TW, Wheeler AP, Thompson BT, et al. (LaSRS). Efficacy and safety of corticosteroids for persistent acute respiratory distress syndrome. <em>N Engl J Med</em> 2006;354:1671–1684.</li>
+      <li>Creagh-Brown B, Griffiths M, Evans T. Bench-to-bedside review: inhaled nitric oxide therapy in adults. <em>Crit Care</em> 2009;12:221.</li>
+      <li>Herridge MS, Tansey CM, Matté A, et al. Functional disability 5 years after acute respiratory distress syndrome. <em>N Engl J Med</em> 2011;364:1293–1301.</li>
+    </ol>
+
+    <p class="muted">This page is a study/quick-reference aid produced by merging the two source reviews above. It is not a substitute for local guidelines, current evidence updates, or clinical judgement.</p>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <p>ARDS Quick Reference · merged from two BJA Education reviews · built as a single static HTML file for GitHub Pages.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- Search ---------------- */
+  var sections = Array.prototype.slice.call(document.querySelectorAll('[data-section]'));
+  var searchInput = document.getElementById('search');
+  var clearBtn = document.getElementById('clearBtn');
+  var searchInfo = document.getElementById('searchInfo');
+
+  function clearMarks(root){
+    var marks = root.querySelectorAll('mark.hl');
+    for(var i=0;i<marks.length;i++){
+      var m = marks[i];
+      var p = m.parentNode;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    }
+  }
+
+  function highlight(root, term){
+    if(!term) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var tag = node.parentNode ? node.parentNode.nodeName : '';
+        if(tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(term) !== -1
+          ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var i = 0, idx;
+      while((idx = lower.indexOf(term, i)) !== -1){
+        if(idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+        i = idx + term.length;
+      }
+      if(i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      if(node.parentNode) node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function runSearch(raw){
+    var term = (raw || '').trim().toLowerCase();
+
+    clearMarks(document.body);
+
+    if(!term){
+      sections.forEach(function(sec){ sec.style.display = ''; });
+      searchInfo.textContent = '';
+      return;
+    }
+
+    var hits = 0;
+    sections.forEach(function(sec){
+      var match = sec.textContent.toLowerCase().indexOf(term) !== -1;
+      sec.style.display = match ? '' : 'none';
+      if(match){
+        hits++;
+        if(sec.tagName === 'DETAILS') sec.open = true;
+        var nested = sec.querySelectorAll('details');
+        for(var i=0;i<nested.length;i++) nested[i].open = true;
+        highlight(sec, term);
+      }
+    });
+
+    searchInfo.textContent = hits
+      ? hits + ' section' + (hits === 1 ? '' : 's') + ' matched \u201C' + raw.trim() + '\u201D'
+      : 'No matches for \u201C' + raw.trim() + '\u201D';
+  }
+
+  var searchTimer = null;
+  searchInput.addEventListener('input', function(e){
+    clearTimeout(searchTimer);
+    var val = e.target.value;
+    searchTimer = setTimeout(function(){ runSearch(val); }, 160);
+  });
+
+  clearBtn.addEventListener('click', function(){
+    searchInput.value = '';
+    runSearch('');
+    searchInput.focus();
+  });
+
+  searchInput.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ searchInput.value = ''; runSearch(''); }
+  });
+
+  /* ---------------- Expand / collapse ---------------- */
+  document.getElementById('expandAll').addEventListener('click', function(){
+    var all = document.querySelectorAll('details');
+    for(var i=0;i<all.length;i++) all[i].open = true;
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    var all = document.querySelectorAll('details');
+    for(var i=0;i<all.length;i++) all[i].open = false;
+  });
+
+  /* ---------------- P/F calculator ---------------- */
+  var pao2El = document.getElementById('pao2');
+  var unitEl = document.getElementById('pao2unit');
+  var fio2El = document.getElementById('fio2');
+  var peepEl = document.getElementById('peep');
+  var resEl  = document.getElementById('pfResult');
+
+  function calcPF(){
+    var pao2 = parseFloat(pao2El.value);
+    var fio2pct = parseFloat(fio2El.value);
+    var peep = parseFloat(peepEl.value);
+
+    if(isNaN(pao2) || isNaN(fio2pct) || fio2pct <= 0){
+      resEl.className = 'muted';
+      resEl.innerHTML = 'Enter PaO₂ and FiO₂ to calculate the ratio and Berlin category.';
+      return;
+    }
+    var mmhg = unitEl.value === 'kpa' ? pao2 * 7.5 : pao2;
+    var fio2 = fio2pct / 100;
+    var ratioMmhg = mmhg / fio2;
+    var ratioKpa = ratioMmhg / 7.5;
+
+    var label, cls, note;
+    if(ratioMmhg >= 300){
+      label = 'Does not meet the Berlin P/F threshold';
+      cls = 'mild';
+      note = 'P/F \u2265 300 mmHg (\u2265 40 kPa).';
+    } else if(ratioMmhg >= 200){
+      label = 'MILD ARDS';
+      cls = 'mild';
+      note = 'P/F 200\u2013300 mmHg (26.7\u201340 kPa). Cohort mortality ~27%.';
+    } else if(ratioMmhg >= 100){
+      label = 'MODERATE ARDS';
+      cls = 'mod';
+      note = 'P/F 100\u2013200 mmHg (13.3\u201326.7 kPa). Cohort mortality ~32%.';
+    } else {
+      label = 'SEVERE ARDS';
+      cls = 'sev';
+      note = 'P/F < 100 mmHg (< 13.3 kPa). Cohort mortality ~45%. Consider prone positioning (>12 h/day) and ECMO rescue referral.';
+    }
+
+    var peepNote = '';
+    if(!isNaN(peep)){
+      peepNote = peep >= 5
+        ? 'PEEP ' + peep + ' cmH₂O \u2265 5 \u2014 meets the Berlin PEEP requirement.'
+        : 'PEEP ' + peep + ' cmH₂O is < 5 \u2014 the Berlin definition requires \u2265 5 cmH₂O PEEP.';
+    } else {
+      peepNote = 'Enter PEEP to check the \u2265 5 cmH₂O requirement.';
+    }
+
+    resEl.className = '';
+    resEl.innerHTML =
+      '<span class="pill ' + cls + '">' + label + '</span><br>' +
+      '<b>P/F = ' + ratioMmhg.toFixed(0) + ' mmHg</b> &nbsp;(' + ratioKpa.toFixed(1) + ' kPa)<br>' +
+      '<span class="muted">' + note + '</span><br>' +
+      '<span class="muted">' + peepNote + '</span>' +
+      '<br><span class="muted">Remember the other three Berlin criteria: acute onset within 7 days of a trigger, bilateral infiltrates, and not fully explained by cardiac failure or fluid overload.</span>';
+  }
+
+  [pao2El, unitEl, fio2El, peepEl].forEach(function(el){
+    el.addEventListener('input', calcPF);
+    el.addEventListener('change', calcPF);
+  });
+
+  /* ---------------- Mini-game ---------------- */
+  var QUESTIONS = [
+    {
+      q: 'According to the Berlin definition, ARDS is defined as a PaO\u2082:FiO\u2082 ratio of less than\u2026',
+      opts: [
+        '< 300 mmHg (< 40 kPa) on at least 5 cmH\u2082O PEEP',
+        '< 200 mmHg (< 26.7 kPa) on at least 10 cmH\u2082O PEEP',
+        '< 300 mmHg (< 40 kPa) on any level of PEEP',
+        '< 100 mmHg (< 13.3 kPa) regardless of PEEP'
+      ],
+      ans: 0,
+      exp: 'Berlin criteria: P/F < 300 mmHg (< 40 kPa) on at least 5 cmH\u2082O PEEP, acute onset within 7 days of a trigger, bilateral infiltrates, and not fully explained by cardiac failure or fluid overload.'
+    },
+    {
+      q: 'A patient with pneumonia has a P/F ratio of 150 mmHg on PEEP 10 cmH\u2082O with bilateral infiltrates on day 2. What is the ARDS severity?',
+      opts: ['Mild', 'Moderate', 'Severe', 'Does not meet ARDS criteria'],
+      ans: 1,
+      exp: 'P/F 100\u2013200 mmHg = MODERATE ARDS (cohort mortality ~32%). Mild is 200\u2013300; severe is < 100.'
+    },
+    {
+      q: 'What is the cornerstone of ventilation in ARDS?',
+      opts: [
+        'High tidal volume (10\u201312 mL/kg) to normalise gas exchange',
+        'Tidal volume 6 mL/kg ideal body weight, plateau pressure < 30 cmH\u2082O, permissive hypercapnoea to pH > 7.2',
+        'Permissive hypoxaemia with minimal PEEP',
+        'Immediate high-frequency oscillatory ventilation'
+      ],
+      ans: 1,
+      exp: 'Lung-protective ventilation: V\u209C 6 mL/kg IBW, plateau < 30 cmH\u2082O, permissive hypercapnoea provided pH > 7.2. Pioneered by the ARDSnet ARMA trial (2000).'
+    },
+    {
+      q: 'In the ARDSnet ARMA trial, which tidal volume was used in the protective arm?',
+      opts: ['4 mL/kg predicted body weight', '6 mL/kg predicted body weight', '8 mL/kg predicted body weight', '12 mL/kg predicted body weight'],
+      ans: 1,
+      exp: '6 mL/kg predicted (ideal) body weight, with plateau pressure \u2264 30 cmH\u2082O, versus 12 mL/kg and plateau \u2264 50 cmH\u2082O. Survival was 39.8% vs 31% in favour of the low-volume group.'
+    },
+    {
+      q: 'Driving pressure (\u0394P) is defined as\u2026',
+      opts: [
+        'Peak airway pressure minus PEEP',
+        'Plateau pressure minus PEEP (equivalently V\u209C / C\u1D63\u209b)',
+        'Mean airway pressure minus PEEP',
+        'Tidal volume divided by ideal body weight'
+      ],
+      ans: 1,
+      exp: '\u0394P = inspiratory plateau pressure \u2212 PEEP, which equals V\u209C / respiratory system compliance. A post hoc analysis of 3,562 ARDS patients found decreased \u0394P was the variable most strongly associated with survival.'
+    },
+    {
+      q: 'Which trial demonstrated a mortality benefit from prone positioning in ARDS?',
+      opts: ['OSCAR', 'OSCILLATE', 'PROSEVA', 'CESAR'],
+      ans: 2,
+      exp: 'PROSEVA (2013): prone ventilation for > 12 hours/day in severe ARDS. 28-day mortality 16% prone vs 32% supine, NNT 6. OSCAR and OSCILLATE studied HFOV; CESAR studied ECMO.'
+    },
+    {
+      q: 'Which ventilatory mode do ARDS guidelines strongly recommend AGAINST for routine use?',
+      opts: ['Low-tidal-volume ventilation', 'High-frequency oscillatory ventilation', 'Prone positioning in severe ARDS', 'PEEP titrated to FiO\u2082'],
+      ans: 1,
+      exp: 'HFOV: OSCAR showed no mortality difference, and OSCILLATE showed increased mortality (47% vs 35% in-hospital). Guidelines strongly recommend against routine use. It may be considered in refractory cases where ECMO access is limited.'
+    },
+    {
+      q: 'What is the evidence for inhaled nitric oxide in ARDS?',
+      opts: [
+        'It reduces mortality and is first-line in severe ARDS',
+        'It improves oxygenation at 24 h but gives no mortality benefit and may increase renal dysfunction',
+        'It reliably shortens ICU stay',
+        'It is recommended in all patients with P/F < 150'
+      ],
+      ans: 1,
+      exp: 'Meta-analysis of 12 RCTs / 1,237 patients: improved oxygenation at 24 hours, no mortality benefit, possible link to increased renal dysfunction. It has no role in current treatment.'
+    },
+    {
+      q: 'Which fluid strategy is supported by the FACTT trial?',
+      opts: [
+        'Liberal fluid administration to maximise cardiac output',
+        'Conservative fluid management \u2014 no mortality difference but more ventilator-free and ICU-free days',
+        'Routine albumin for all patients',
+        'Aggressive diuresis to a negative balance in all cases'
+      ],
+      ans: 1,
+      exp: 'FACTT: conservative vs liberal fluids showed no mortality difference, but a significant improvement in ventilator-free and ICU-free days favouring the conservative arm, with no increase in acute kidney injury.'
+    },
+    {
+      q: 'Which neuromuscular blocking strategy has evidence (albeit weak) in ARDS?',
+      opts: [
+        '48-hour cisatracurium infusion in moderate to severe ARDS',
+        'Single-dose suxamethonium in severe ARDS',
+        'Routine vecuronium for 7 days in all ARDS patients',
+        'No neuromuscular blocker has ever been studied in ARDS'
+      ],
+      ans: 0,
+      exp: 'The Intensive Care Society concludes there is weak evidence from systematic reviews supporting a 48-hour cisatracurium infusion in moderate\u2013severe ARDS. All trials used cisatracurium, which may have a direct anti-inflammatory action; generalisability to other agents is unclear.'
+    },
+    {
+      q: 'What is the ideal body weight formula for a male (height in cm)?',
+      opts: [
+        '45.5 + 0.91 \u00D7 (height \u2212 152.4)',
+        '50 + 0.91 \u00D7 (height \u2212 152.4)',
+        '50 + 1.2 \u00D7 (height \u2212 150)',
+        '60 + 0.8 \u00D7 (height \u2212 160)'
+      ],
+      ans: 1,
+      exp: 'Males: 50 + 0.91 \u00D7 (height \u2212 152.4). Females: 45.5 + 0.91 \u00D7 (height \u2212 152.4). Tidal volume is set on ideal, not actual, body weight.'
+    },
+    {
+      q: 'In the LUNG SAFE study, ARDS was clinically recognised in roughly what proportion of cases?',
+      opts: ['40%', '60%', '80%', '95%'],
+      ans: 1,
+      exp: 'LUNG SAFE found ARDS to be under-diagnosed \u2014 recognised in only about 60% of cases \u2014 with poor adherence to best practice, despite much of the evidence being almost 20 years old.'
+    },
+    {
+      q: 'What is the current role of ECMO in ARDS?',
+      opts: [
+        'First-line therapy for moderate ARDS',
+        'Rescue therapy for severe ARDS only',
+        'Routine therapy for all patients with P/F < 200',
+        'Contraindicated in ARDS'
+      ],
+      ans: 1,
+      exp: 'CESAR (2009) was criticised for confounding, and EOLIA (2018) showed an 11% mortality reduction that did not reach statistical significance. ECMO is an invasive, expensive, specialist therapy \u2014 a rescue option in severe ARDS only.'
+    },
+    {
+      q: 'In ARDS survivors, what was the 5-year 6-minute walking distance as a percentage of predicted?',
+      opts: ['About 40%', 'About 55%', 'About 76%', 'About 100%'],
+      ans: 2,
+      exp: 'In 109 ARDS survivors, 6-minute walking distances at 1, 3 and 5 years were 66%, 67% and 76% of predicted. None of this relatively young cohort had returned to normal function at 5 years.'
+    }
+  ];
+
+  var area = document.getElementById('gameArea');
+  var TOTAL = 10;
+  var TIME_PER_Q = 30;
+  var g = null;
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for(var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function startScreen(){
+    area.innerHTML =
+      '<div class="game-end">' +
+        '<div class="big">ARDS Rapid Fire</div>' +
+        '<p class="muted">' + TOTAL + ' questions · ' + TIME_PER_Q + ' seconds each · instant feedback</p>' +
+        '<button class="btn primary" data-start="1">▶ Start game</button>' +
+      '</div>';
+  }
+
+  function startGame(){
+    var picked = shuffle(QUESTIONS).slice(0, TOTAL).map(function(q){
+      var opts = q.opts.map(function(text, i){
+        return { text: text, correct: i === q.ans };
+      });
+      return { q: q.q, opts: shuffle(opts), exp: q.exp };
+    });
+    g = { queue: picked, i: 0, score: 0, streak: 0, best: 0, locked: false, t: null, timeLeft: TIME_PER_Q };
+    renderQuestion();
+  }
+
+  function stopTimer(){
+    if(g && g.t){ clearInterval(g.t); g.t = null; }
+  }
+
+  function startTimer(){
+    stopTimer();
+    g.t = setInterval(function(){
+      g.timeLeft -= 0.1;
+      var fill = document.getElementById('timeFill');
+      var lbl = document.getElementById('timerLabel');
+      if(!fill){ stopTimer(); return; }
+      var w = Math.max(0, (g.timeLeft / TIME_PER_Q) * 100);
+      fill.style.width = w + '%';
+      fill.style.background = w < 33 ? '#c0392b' : (w < 66 ? '#c9821a' : '#0e8f6e');
+      if(lbl) lbl.textContent = Math.max(0, Math.ceil(g.timeLeft)) + 's';
+      if(g.timeLeft <= 0){
+        stopTimer();
+        if(!g.locked) answer(-1);
+      }
+    }, 100);
+  }
+
+  function renderQuestion(){
+    if(g.i >= g.queue.length){ return endGame(); }
+    var q = g.queue[g.i];
+    g.locked = false;
+    g.timeLeft = TIME_PER_Q;
+
+    var html = '';
+    html += '<div class="game-top"><span>Question ' + (g.i + 1) + ' / ' + g.queue.length + '</span>';
+    html += '<span>Score: <b>' + g.score + '</b> &nbsp;·&nbsp; Streak: <b>' + g.streak + '</b></span></div>';
+    html += '<div class="bar"><div class="bar-fill" style="width:' + ((g.i / g.queue.length) * 100) + '%"></div></div>';
+    html += '<div class="timerbar"><div id="timeFill" style="width:100%"></div></div>';
+    html += '<p class="qtext">' + q.q + '</p>';
+    html += '<div class="opts">';
+    for(var i = 0; i < q.opts.length; i++){
+      html += '<button class="opt" data-opt="' + i + '">' + q.opts[i].text + '</button>';
+    }
+    html += '</div>';
+    html += '<div id="fb" class="fb"></div>';
+    html += '<div class="game-bottom"><span id="timerLabel">' + TIME_PER_Q + 's</span><span>Answer to continue</span></div>';
+
+    area.innerHTML = html;
+    startTimer();
+  }
+
+  function answer(idx){
+    if(!g || g.locked) return;
+    g.locked = true;
+    stopTimer();
+
+    var q = g.queue[g.i];
+    var btns = area.querySelectorAll('.opt');
+    for(var i = 0; i < btns.length; i++){
+      btns[i].disabled = true;
+      if(q.opts[i].correct) btns[i].classList.add('correct');
+      if(i === idx && !q.opts[i].correct) btns[i].classList.add('wrong');
+    }
+
+    var isCorrect = idx >= 0 && q.opts[idx] && q.opts[idx].correct;
+    if(isCorrect){
+      g.score++;
+      g.streak++;
+      if(g.streak > g.best) g.best = g.streak;
+    } else {
+      g.streak = 0;
+    }
+
+    var fb = document.getElementById('fb');
+    if(fb){
+      fb.className = 'fb show ' + (isCorrect ? 'ok' : 'no');
+      var lead = isCorrect ? '✅ Correct! ' : (idx === -1 ? '⏱ Time up. ' : '❌ Not quite. ');
+      fb.innerHTML = lead + q.exp;
+    }
+
+    var bottom = document.createElement('div');
+    bottom.className = 'game-bottom';
+    bottom.style.justifyContent = 'flex-end';
+    var label = (g.i + 1 >= g.queue.length) ? 'See results →' : 'Next question →';
+    bottom.innerHTML = '<button class="btn ghost" data-next="1">' + label + '</button>';
+    area.appendChild(bottom);
+  }
+
+  function endGame(){
+    stopTimer();
+    var pct = Math.round((g.score / g.queue.length) * 100);
+    var msg;
+    if(pct >= 90) msg = 'Outstanding — ICU consultant level. 🏆';
+    else if(pct >= 70) msg = 'Strong performance. Solid ARDS knowledge. 👍';
+    else if(pct >= 50) msg = 'Reasonable — worth a second pass through the reference. 📖';
+    else msg = 'Time to revisit the quick reference above. 🔁';
+
+    area.innerHTML =
+      '<div class="game-end">' +
+        '<div class="big">' + g.score + ' / ' + g.queue.length + '</div>' +
+        '<p><strong>' + pct + '%</strong> · best streak ' + g.best + '</p>' +
+        '<p class="muted">' + msg + '</p>' +
+        '<button class="btn primary" data-restart="1">↻ Play again</button>' +
+      '</div>';
+  }
+
+  area.addEventListener('click', function(e){
+    var optBtn = e.target.closest ? e.target.closest('[data-opt]') : null;
+    if(optBtn){ answer(parseInt(optBtn.getAttribute('data-opt'), 10)); return; }
+
+    if(e.target.closest && e.target.closest('[data-next]')){
+      g.i++;
+      renderQuestion();
+      return;
+    }
+    if(e.target.closest && e.target.closest('[data-restart]')){ startGame(); return; }
+    if(e.target.closest && e.target.closest('[data-start]')){ startGame(); return; }
+  });
+
+  startScreen();
+
+})();
+</script>
+</body>
+</html>
