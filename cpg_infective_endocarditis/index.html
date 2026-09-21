@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infective Endocarditis — Anaesthesia &amp; ICU Quick Reference</title>
+<style>
+:root{
+  --bg:#eef2f7; --card:#ffffff; --ink:#16212e; --muted:#5b6b7c; --line:#dbe3ec;
+  --accent:#0b6e99; --accent-soft:#e6f2f8; --green:#0e8a72; --green-soft:#e4f5f1;
+  --amber:#b45309; --amber-soft:#fdf3e3; --red:#b91c1c; --red-soft:#fdeaea;
+  --purple:#6d28d9; --purple-soft:#f1eafe;
+  --radius:12px; --shadow:0 1px 3px rgba(16,32,48,.08),0 6px 20px rgba(16,32,48,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+/* ---------- Header ---------- */
+header{
+  background:linear-gradient(135deg,#083c56 0%,#0b6e99 55%,#0e8a72 100%);
+  color:#fff; padding:26px 18px 20px; position:relative; overflow:hidden;
+}
+header::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle at 88% 10%,rgba(255,255,255,.16),transparent 42%);
+  pointer-events:none;
+}
+.wrap{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+h1{margin:0 0 4px;font-size:1.45rem;letter-spacing:-.3px;line-height:1.25}
+.sub{margin:0;font-size:.88rem;opacity:.88}
+.badges{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.badge{
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+  padding:3px 9px;border-radius:999px;font-size:.72rem;letter-spacing:.02em;
+}
+/* ---------- Search bar ---------- */
+.searchbar{
+  position:sticky;top:0;z-index:50;background:rgba(238,242,247,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 18px;
+}
+.searchinner{max-width:1100px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.searchbox{
+  flex:1 1 260px;display:flex;align-items:center;gap:8px;background:#fff;
+  border:1px solid var(--line);border-radius:999px;padding:7px 14px;box-shadow:var(--shadow);
+}
+.searchbox svg{flex:none;opacity:.5}
+#q{
+  border:0;outline:0;background:transparent;font-size:.92rem;width:100%;color:var(--ink);
+  font-family:inherit;
+}
+.btn{
+  border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;
+  padding:7px 13px;font-size:.78rem;cursor:pointer;font-family:inherit;font-weight:600;
+  transition:.15s;white-space:nowrap;
+}
+.btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+#hits{font-size:.75rem;color:var(--muted);white-space:nowrap}
+/* ---------- Layout ---------- */
+main{max-width:1100px;margin:0 auto;padding:20px 18px 70px}
+/* ---------- Accordion ---------- */
+details.acc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;
+}
+details.acc[hidden]{display:none}
+details.acc>summary{
+  cursor:pointer;list-style:none;padding:14px 16px;display:flex;align-items:center;gap:10px;
+  font-weight:700;font-size:.98rem;color:var(--ink);user-select:none;
+}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{
+  content:"›";margin-left:auto;font-size:1.4rem;line-height:1;color:var(--muted);
+  transform:rotate(90deg);transition:transform .2s;
+}
+details.acc[open]>summary::after{transform:rotate(-90deg)}
+details.acc>summary:hover{background:var(--accent-soft)}
+.snum{
+  flex:none;width:24px;height:24px;border-radius:7px;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-size:.72rem;font-weight:700;
+}
+.acc-body{padding:0 16px 18px;border-top:1px solid var(--line)}
+.acc-body>*:first-child{margin-top:14px}
+/* ---------- Typography ---------- */
+h3{font-size:.92rem;margin:20px 0 8px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
+h4{font-size:.9rem;margin:16px 0 6px}
+p{margin:8px 0}
+ul,ol{margin:8px 0 8px 18px;padding:0}
+li{margin:4px 0}
+small{color:var(--muted)}
+mark{background:#ffe680;padding:0 2px;border-radius:3px;color:inherit}
+/* ---------- Tables ---------- */
+.tblwrap{overflow-x:auto;margin:10px 0;border:1px solid var(--line);border-radius:9px}
+table{border-collapse:collapse;width:100%;font-size:.83rem;min-width:520px;background:#fff}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f3f7fa;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even){background:#fafcfe}
+/* ---------- Callouts ---------- */
+.call{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 13px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.86rem}
+.call.anaes{border-color:var(--purple);background:var(--purple-soft)}
+.call.warn{border-color:var(--amber);background:var(--amber-soft)}
+.call.danger{border-color:var(--red);background:var(--red-soft)}
+.call.good{border-color:var(--green);background:var(--green-soft)}
+.call b{display:block;margin-bottom:2px;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+/* ---------- Grades ---------- */
+.g{display:inline-block;background:#eef2f7;border:1px solid var(--line);border-radius:5px;
+   padding:0 5px;font-size:.68rem;font-weight:700;color:var(--muted);vertical-align:middle;margin-left:4px}
+.g1{background:#e4f5f1;color:#0e8a72;border-color:#bfe6dc}
+/* ---------- Flow diagrams ---------- */
+.flow{margin:16px 0;display:flex;flex-direction:column;align-items:stretch;gap:0}
+.fnode{
+  border:1.5px solid var(--line);border-radius:9px;padding:9px 12px;background:#fff;
+  font-size:.82rem;text-align:center;line-height:1.45;
+}
+.fnode.start{background:#0b6e99;color:#fff;border-color:#0b6e99;font-weight:700}
+.fnode.decision{background:#fdf3e3;border-color:#e8c48a}
+.fnode.pos{background:#e4f5f1;border-color:#bfe6dc}
+.fnode.neg{background:#fdeaea;border-color:#f3c2c2}
+.fnode.act{background:#e6f2f8;border-color:#b9dcec}
+.farrow{text-align:center;color:#9fb2c4;font-size:1.05rem;line-height:1;padding:4px 0}
+.fsplit{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fsplit .col{display:flex;flex-direction:column;gap:0}
+.fcap{font-size:.75rem;color:var(--muted);text-align:center;margin-top:6px}
+/* tree */
+.tree{display:grid;gap:12px;margin:14px 0}
+.branch{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.bhead{padding:8px 12px;font-weight:700;font-size:.82rem;color:#fff}
+.bhead.nat{background:#0b6e99}
+.bhead.pro{background:#6d28d9}
+.bleaf{padding:9px 12px;font-size:.81rem;border-top:1px solid var(--line)}
+.bleaf b{color:var(--accent)}
+/* timing ladder */
+.ladder{display:grid;gap:8px;margin:14px 0}
+.rung{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:stretch;font-size:.82rem}
+.rung .tag{
+  border-radius:8px;padding:8px 6px;text-align:center;font-weight:700;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:.75rem;line-height:1.25;
+}
+.rung .body{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.t-em{background:#b91c1c}.t-ur{background:#ea580c}.t-ea{background:#d97706}.t-se{background:#0e8a72}.t-el{background:#0b6e99}
+/* ---------- Cases ---------- */
+.case{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#fff;overflow:hidden}
+.case-h{padding:9px 13px;background:#f3f7fa;font-weight:700;font-size:.86rem;border-bottom:1px solid var(--line)}
+.case-b{padding:11px 13px;font-size:.84rem}
+.case-b .lbl{font-weight:700;color:var(--accent);font-size:.75rem;text-transform:uppercase;letter-spacing:.04em}
+/* ---------- Misc ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:720px){
+  .grid2,.fsplit{grid-template-columns:1fr}
+  .rung{grid-template-columns:96px 1fr}
+  h1{font-size:1.2rem}
+}
+footer{max-width:1100px;margin:0 auto;padding:26px 18px 60px;font-size:.78rem;color:var(--muted);border-top:1px solid var(--line)}
+footer a{color:var(--accent);word-break:break-word}
+.ref{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:12px;box-shadow:var(--shadow)}
+#noresults{display:none;text-align:center;color:var(--muted);padding:30px 0;font-size:.9rem}
+.kbd{display:inline-block;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;
+  padding:0 5px;font-size:.7rem;background:#fff;font-family:ui-monospace,Menlo,Consolas,monospace}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Infective Endocarditis — Anaesthesia &amp; ICU Quick Reference</h1>
+    <p class="sub">Condensed from the Malaysian CPG on the Prevention, Diagnosis &amp; Management of Infective Endocarditis (2017)</p>
+    <div class="badges">
+      <span class="badge">Peri-operative risk</span>
+      <span class="badge">Antimicrobial therapy</span>
+      <span class="badge">Surgical timing</span>
+      <span class="badge">Anticoagulation</span>
+      <span class="badge">Neuro complications</span>
+      <span class="badge">10 case vignettes</span>
+    </div>
+  </div>
+</header>
+
+<div class="searchbar">
+  <div class="searchinner">
+    <label class="searchbox" for="q">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search — e.g. gentamicin, warfarin, timing, vancomycin trough…" autocomplete="off">
+    </label>
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <span id="hits"></span>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ 1 ============ -->
+<details class="acc" open>
+  <summary><span class="snum">1</span>At a Glance — Numbers the Anaesthetist Must Know</summary>
+  <div class="acc-body">
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Item</th><th>Value / Threshold</th></tr></thead>
+        <tbody>
+          <tr><td>Blood cultures before antimicrobials</td><td><b>3 sets</b> (aerobic + anaerobic per set), ≥30 min apart, <b>10 mL per bottle</b> in adults</td></tr>
+          <tr><td>Incubation for negativity</td><td><b>5 days</b> adequate for most pathogens incl. HACEK; extend to 2 weeks for fungi / fastidious organisms</td></tr>
+          <tr><td>Vegetation size → embolism risk</td><td><b>&gt;10 mm</b> = excess embolic risk; <b>&gt;15 mm</b> even higher</td></tr>
+          <tr><td>Vancomycin trough — VGS / viridans strep</td><td><b>10–15 mg/L</b></td></tr>
+          <tr><td>Vancomycin trough — <i>S. aureus</i>, PVE, CIED</td><td><b>15–20 mg/L</b></td></tr>
+          <tr><td>Gentamicin pre-dose (trough)</td><td><b>&lt;1 mg/L</b> (&lt;2 µmol/L); infuse over 30 min if once-daily</td></tr>
+          <tr><td>Heart failure in IE</td><td>Up to <b>50%</b> of cases — strongest predictor of mortality</td></tr>
+          <tr><td>Systemic embolism</td><td><b>20–50%</b>; highest in the first days of therapy, falls after 2–3 weeks</td></tr>
+          <tr><td>Symptomatic neurological events</td><td><b>25–40%</b>; most occur in the first 2 weeks</td></tr>
+          <tr><td>Surgery needed</td><td><b>~50%</b> of IE patients (25–50% during acute infection)</td></tr>
+          <tr><td>Persistent fever on treatment</td><td>Reassess if fever persists <b>&gt;10 days</b> (or &gt;7–10 days with positive cultures) — look for abscess / perivalvular extension</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call anaes"><b>Anaesthetic bottom line</b>
+      Every IE patient coming to theatre is a <b>high-risk cardiac + sepsis</b> case: acute valvular regurgitation, possible periannular abscess with conduction disease, anticoagulation dilemmas, and a brain that may already have silent or overt embolic injury. Plan for invasive monitoring, cross-matched blood, rapid pacing capability, TEE, and a multidisciplinary plan documented before induction.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 2 ============ -->
+<details class="acc">
+  <summary><span class="snum">2</span>Diagnosis Essentials &amp; Modified Duke Criteria</summary>
+  <div class="acc-body">
+    <h3>Clinical suspicion — triggers</h3>
+    <ul>
+      <li>Fever + new/changed murmur, or fever of unexplained origin with a history of heart disease or previous IE.</li>
+      <li>Unexplained embolic phenomena — brain/liver/spleen (left-sided) or lung (right-sided).</li>
+      <li>Focal neurological signs of unknown aetiology.</li>
+      <li>Heart failure that cannot be accounted for.</li>
+      <li>Haemorrhages in unusual locations.</li>
+    </ul>
+    <p><b>Pre-existing risk factors:</b> previous IE · pre-existing cardiac disease · prosthetic valve or prosthetic cardiac material · intracardiac device · IVDU · chronic IV access (dialysis catheters, chemoports, neonatal CVCs) · congenital heart disease · elderly or immunocompromised · diabetes, HIV, malignancy.</p>
+
+    <div class="call"><b>Fever may be absent or blunted</b>
+      Temperature may be normal or subnormal in subacute cases, the elderly and the immunocompromised. A normal temperature does <i>not</i> exclude IE.
+    </div>
+
+    <h3>Modified Duke criteria — summary</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Category</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td><b>Definite IE</b></td><td>Pathological criteria <i>or</i> 2 major <i>or</i> 1 major + 3 minor <i>or</i> 5 minor</td></tr>
+          <tr><td><b>Possible IE</b></td><td>1 major + 1 minor <i>or</i> 3 minor</td></tr>
+          <tr><td><b>Rejected IE</b></td><td>Firm alternative diagnosis; or resolution with ≤4 days of antimicrobials; or no pathological evidence at surgery/autopsy with ≤4 days of antimicrobials</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid2">
+      <div>
+        <h4>Major criteria</h4>
+        <ul>
+          <li><b>Blood culture positive for IE</b> — typical organisms (VGS, <i>S. bovis</i>, HACEK, <i>S. aureus</i>, community-acquired enterococci without a primary focus) from 2 separate cultures; or persistently positive cultures; or single positive <i>Coxiella burnetii</i> / phase 1 IgG &gt;1:800.</li>
+          <li><b>Evidence of endocardial involvement</b> — oscillating intracardiac mass, abscess, new partial dehiscence of prosthetic valve, or new valvular regurgitation. TEE recommended for prosthetic valves / complicated IE.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Minor criteria</h4>
+        <ul>
+          <li>Predisposition — heart condition or IVDU</li>
+          <li>Fever &gt;38 °C</li>
+          <li>Vascular phenomena — major arterial emboli, septic pulmonary infarcts, mycotic aneurysm, intracranial haemorrhage, conjunctival haemorrhage, Janeway lesions</li>
+          <li>Immunological phenomena — glomerulonephritis, Osler nodes, Roth spots, rheumatoid factor</li>
+          <li>Microbiological evidence not meeting a major criterion; or serological evidence of active infection</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="call warn"><b>Limitations of Duke criteria</b>
+      Lower accuracy in <b>early disease</b>, <b>prosthetic valve endocarditis</b> (TTE sensitivity 36%, TEE 82%) and <b>pacemaker/defibrillator lead IE</b> (TTE 23%, TEE 94%). If clinical suspicion is high but criteria give "possible IE": repeat TTE/TEE, advanced microbiology, cardiac CT, cerebral MRI, SPECT/CT or <sup>18</sup>F-FDG PET/CT.
+    </div>
+
+    <h3>Simplified diagnostic pathway</h3>
+    <div class="flow">
+      <div class="fnode start">Suspected IE</div>
+      <div class="farrow">▼</div>
+      <div class="fnode act">Take 3 sets of blood cultures (≥30 min apart, 10 mL/bottle) <b>before</b> antimicrobials</div>
+      <div class="farrow">▼</div>
+      <div class="fnode act">Start empirical antimicrobials · TTE as soon as possible</div>
+      <div class="farrow">▼</div>
+      <div class="fsplit">
+        <div class="col">
+          <div class="fnode pos"><b>Culture positive</b><br>Identify organism · MIC testing · adjust therapy</div>
+        </div>
+        <div class="col">
+          <div class="fnode neg"><b>Culture negative</b><br>No recent antimicrobials &amp; risk factors for fastidious/intracellular pathogens → prolonged incubation, serology, PCR</div>
+        </div>
+      </div>
+      <div class="farrow">▼</div>
+      <div class="fnode decision">Apply modified Duke criteria → Definite / Possible / Rejected</div>
+      <div class="farrow">▼</div>
+      <div class="fnode act">If high clinical suspicion despite "possible/rejected" → repeat TTE/TEE · cardiac CT · cerebral MRI · PET/SPECT · send tissue for HPE if surgery</div>
+    </div>
+    <p class="fcap">Adapted from Figure 3a &amp; 3c, MOH/NHAM IE CPG 2017 (after Habib G, et al. Eur Heart J 2015).</p>
+  </div>
+</details>
+
+<!-- ============ 3 ============ -->
+<details class="acc">
+  <summary><span class="snum">3</span>Blood Cultures &amp; Microbiology — Practical Rules</summary>
+  <div class="acc-body">
+    <ul>
+      <li><b>Timing:</b> any time — bacteraemia in IE is continuous. No need to wait for fever spikes. Collect at 30-minute intervals between samples.</li>
+      <li><b>Number:</b> at least 3 sets. If the initial 3 sets are negative at 24 h, obtain 2 more (total 5).</li>
+      <li><b>Volume:</b> 10 mL per bottle in adults; 1–3 mL per paediatric bottle. <b>Volume is the single most important factor</b> in recovery.</li>
+      <li><b>Bottles:</b> each set = 1 aerobic + 1 anaerobic. Anaerobic culture is vital for nutritionally variant streptococci and facultative anaerobes such as Enterobacteriaceae.</li>
+      <li><b>Site:</b> separate peripheral venepunctures. <b>Avoid</b> central venous or indwelling catheters (higher contamination).</li>
+      <li><b>Asepsis:</b> 70% isopropyl alcohol, then chlorhexidine gluconate in alcohol over ~5 cm, rub ≥30 s, allow to dry, do not re-palpate.</li>
+      <li><b>Transport:</b> to laboratory within 2–4 h; do not refrigerate inoculated bottles.</li>
+      <li><b>Repeat cultures 3–4 days</b> after starting treatment to document clearance of bacteraemia. If still positive on adequate therapy → look for metastatic infection.</li>
+    </ul>
+
+    <div class="call"><b>Skin contaminants — interpret with care</b>
+      CoNS, <i>Bacillus</i> spp., <i>Corynebacterium</i> spp., <i>Propionibacterium</i> spp., viridans streptococci, <i>Aerococcus</i>, <i>Micrococcus</i>. These may be significant if grown from ≥2 cultures drawn on separate occasions.
+    </div>
+
+    <h3>Blood culture–negative IE (BCNIE)</h3>
+    <p>No growth after ≥3 independent samples and 5 days of incubation. Three main causes:</p>
+    <ol>
+      <li><b>Partially treated IE</b> — most common (prior antimicrobials).</li>
+      <li><b>Fastidious organisms</b> — <i>Brucella</i>, <i>Nocardia</i>, nutritionally variant streptococci, fungi, <i>Legionella pneumophila</i> (extend incubation to 2 weeks; special media).</li>
+      <li><b>True BCNIE</b> — intracellular bacteria not routinely culturable: <i>Bartonella</i> spp., <i>Coxiella burnetii</i>, <i>Tropheryma whipplei</i>.</li>
+    </ol>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Organism</th><th>Clue / exposure</th><th>Test</th></tr></thead>
+        <tbody>
+          <tr><td><i>Bartonella</i> spp.</td><td>Cat contact, chronic alcoholism, body louse, homelessness</td><td>Serology IgG/IgM; HPE of valve tissue</td></tr>
+          <tr><td><i>Brucella</i> spp.</td><td>Unpasteurised milk/cheese, farm animals</td><td>Blood culture with extended incubation (4–6 weeks); serology; PCR</td></tr>
+          <tr><td><i>Coxiella burnetii</i></td><td>Unpasteurised dairy, farms</td><td>Serology IgG/IgM; HPE</td></tr>
+          <tr><td><i>Legionella</i> spp.</td><td>Prosthetic valves</td><td>PCR of valve tissue; HPE</td></tr>
+          <tr><td>Non-<i>Candida</i> fungi</td><td>Prosthetic valves</td><td>Culture; galactomannan; PCR; HPE</td></tr>
+          <tr><td>Nutritionally variant streptococci</td><td>Slow indolent course</td><td>Supplemented media / satellite growth around <i>S. aureus</i> streak</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="call warn"><b>PCR caveat</b>
+      PCR is more sensitive on cardiac valvular tissue or surgical material than on blood. Do <b>not</b> use PCR results to guide duration of therapy — bacterial DNA persists after eradication of viable organisms.
+    </div>
+
+    <h3>Histopathology</h3>
+    <p>Send resected valve tissue, endocardial vegetation and excised abscess wall for HPE <b>and</b> culture. Formalin for HPE (10% formalin, 3–4× tissue volume, minimum 30 mL); normal saline for culture — separate containers. Special stains: Gram (Brown-Hopps/Brown-Brenn), Giemsa, acridine orange, Warthin-Starry (<i>Bartonella</i>), Ziehl-Nielsen (AFB), Gimenez (<i>Coxiella</i>, <i>Legionella</i>), PAS (<i>Tropheryma</i>, fungi), Gomori-Grocott (fungi).</p>
+  </div>
+</details>
+
+<!-- ============ 4 ============ -->
+<details class="acc">
+  <summary><span class="snum">4</span>Echocardiography &amp; Imaging</summary>
+  <div class="acc-body">
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th></th><th>Native valve</th><th>Prosthetic valve</th></tr></thead>
+        <tbody>
+          <tr><td>TTE sensitivity</td><td>44–63%</td><td>36–69%</td></tr>
+          <tr><td>TEE sensitivity</td><td>90–100%</td><td>86–94%</td></tr>
+          <tr><td>Specificity</td><td>&gt;90%</td><td>&gt;90% (TEE for vegetation 88–100%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>When to do TEE</h3>
+    <ul>
+      <li>Poor/suboptimal transthoracic window (obesity, COPD, previous sternotomy).</li>
+      <li>High clinical suspicion but negative TTE (e.g. typical IE organism on cultures).</li>
+      <li>Community-acquired <i>Staphylococcus</i> bacteraemia with no obvious focus.</li>
+      <li>All prosthetic valves and prosthetic material (conduits).</li>
+      <li>High-risk features — new AV block on ECG suggesting periannular extension.</li>
+      <li>Peri-operative assessment of valve dysfunction, perivalvular extension and surgical success.</li>
+      <li>CIED infection — TEE required regardless of TTE findings.</li>
+    </ul>
+
+    <h3>Echo findings suggestive of IE</h3>
+    <p>Vegetation · abscess · fistula · perforation · valve leaflet aneurysm · new partial dehiscence of a prosthetic valve.</p>
+    <p><small>Measure vegetation/abscess size by <b>largest diameter in ≥2 dimensions</b>, not circumference, and document the view used.</small></p>
+
+    <div class="call"><b>A negative echo does not exclude IE</b>
+      Repeat TTE or TEE within a week if suspicion persists — or earlier in <i>S. aureus</i> bacteraemia. False positives occur with thrombus, fibroelastoma, Lambl's excrescences, cusp prolapse, chordal rupture, degenerative/myxomatous disease, strands, Libman-Sacks lesions, antiphospholipid syndrome, marantic vegetations, Chiari network.
+    </div>
+
+    <h3>Simplified echo pathway</h3>
+    <div class="flow">
+      <div class="fnode start">Suspected IE</div>
+      <div class="farrow">▼</div>
+      <div class="fnode act">Initial TTE as soon as possible</div>
+      <div class="farrow">▼</div>
+      <div class="fsplit">
+        <div class="col">
+          <div class="fnode pos">Positive TTE → treat for IE</div>
+          <div class="farrow">▼</div>
+          <div class="fnode">Low risk + good response → repeat TTE as indicated &amp; pre-discharge</div>
+          <div class="farrow">▼</div>
+          <div class="fnode">Worsening course / high risk / possible complication → <b>TEE</b></div>
+        </div>
+        <div class="col">
+          <div class="fnode neg">Negative TTE</div>
+          <div class="farrow">▼</div>
+          <div class="fnode decision">High risk &amp; high suspicion, or poor window?</div>
+          <div class="farrow">▼</div>
+          <div class="fnode act">TEE</div>
+          <div class="farrow">▼</div>
+          <div class="fnode">Negative but suspicion persists → empirical treatment + repeat TEE/TTE within a week</div>
+        </div>
+      </div>
+    </div>
+    <p class="fcap">Adapted from Figure 3b, MOH/NHAM IE CPG 2017 (after Baddour LM, et al. Circulation 2015).</p>
+
+    <h3>Other imaging modalities</h3>
+    <ul>
+      <li><b>MSCT</b> — perivalvular extension, abscess/pseudoaneurysm/fistula anatomy, extracardiac complications (pulmonary, CNS, intra-abdominal, peripheral mycotic aneurysms), pre-operative coronary assessment, aortic root definition. Limitations: radiation, contrast nephrotoxicity, poor sensitivity for valve perforation.</li>
+      <li><b>MRI</b> — more sensitive than CT for cerebral embolic lesions; 60–80% of acute IE patients have cerebral embolic lesions, mostly silent. Detecting cerebral lesions in neurologically asymptomatic patients adds 1 minor Duke criterion. May influence timing of surgery.</li>
+      <li><b>Nuclear imaging</b> — <sup>18</sup>F-FDG PET/CT and radiolabelled WBC SPECT/CT can upgrade "possible" to "definite" IE and are useful in prosthetic valve endocarditis (ESC 2015 added abnormal uptake around a prosthesis implanted &gt;3 months as a new major criterion). Availability is limited locally.</li>
+    </ul>
+
+    <div class="call anaes"><b>Anaesthetic implication</b>
+      Intra-operative TEE is recommended for <b>all</b> IE cases undergoing surgery — to define the mechanism and severity of valve dysfunction, detect perivalvular extension, and assess the result of repair/replacement before separation from bypass.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 5 ============ -->
+<details class="acc">
+  <summary><span class="snum">5</span>Antimicrobial Therapy — Adult Regimens (Normal Renal Function)</summary>
+  <div class="acc-body">
+    <div class="call"><b>Principles</b>
+      Parenteral, high-dose, bactericidal, prolonged. Determine the <b>MIC</b> to optimise therapy. All doses below are for adults with normal renal function — see Section 8 for renal adjustment.
+    </div>
+
+    <h3>Viridans group streptococci &amp; <i>S. gallolyticus</i> (bovis)</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Scenario</th><th>Regimen</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Penicillin-susceptible</b> (MIC ≤0.125 µg/mL)</td>
+            <td>Benzyl penicillin 3 MU IV q4–6h <i>or</i> 12–18 MU/day continuous infusion<br>
+                <b>OR</b> Ampicillin 2 g IV q4h<br>
+                <b>OR</b> Ceftriaxone 2 g IV once daily<br>
+                <i>Vancomycin 15–20 mg/kg IV q8–12h (max 2 g/dose) only for immediate-type penicillin hypersensitivity</i></td>
+            <td>4 weeks native<br>6 weeks prosthetic</td>
+          </tr>
+          <tr>
+            <td><b>Relatively penicillin-resistant</b> (MIC &gt;0.125–2 µg/mL)</td>
+            <td>Benzyl penicillin 4 MU IV q4h or 24 MU/day CI<br><b>PLUS</b> Gentamicin 3 mg/kg/day IV once daily<br><i>(or vancomycin + gentamicin if immediate penicillin hypersensitivity)</i></td>
+            <td>β-lactam: 4 wk native / 6 wk prosthetic<br>Gentamicin: 2 wk native / 6 wk prosthetic</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><span class="g g1">IIa/B</span> Monotherapy is adequate for penicillin-susceptible VGS. <span class="g g1">IIa/B</span> Add gentamicin for relatively resistant strains.</p>
+
+    <h3>Nutritionally variant streptococci (<i>Abiotrophia</i>, <i>Granulicatella</i>)</h3>
+    <p>Ampicillin 2 g IV q4h <b>or</b> benzyl penicillin 4 MU IV q4h <b>PLUS</b> gentamicin 1 mg/kg IV q8h for at least the first 2 weeks, then continue the chosen antimicrobial <b>without</b> gentamicin to complete <b>6 weeks</b>. Ceftriaxone 2 g IV daily is preferred if not responding to penicillin. <span class="g g1">II/B</span></p>
+
+    <h3><i>Staphylococcus aureus</i> &amp; CoNS</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Scenario</th><th>Regimen</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>MSSA — left-sided native</td><td>Cloxacillin 12 g/day IV in 4–6 divided doses</td><td>4–6 weeks</td></tr>
+          <tr><td>MSSA — right-sided (tricuspid)</td><td>Cloxacillin 12 g/day IV in 4–6 divided doses</td><td><b>2–4 weeks</b> — 2 weeks only if <i>all</i>: MSSA, good response, no metastatic infection/empyema, no cardiac or extracardiac complications, no prosthetic or left-sided involvement, vegetation &lt;20 mm, no severe immunosuppression (CD4 &lt;200)</td></tr>
+          <tr><td>β-lactam allergy (non-immediate)</td><td>Cefazolin 2 g IV q8h <span class="g">avoid if immediate hypersensitivity; poor BBB penetration — watch for failure in brain abscess</span></td><td>4–6 weeks</td></tr>
+          <tr><td>β-lactam allergy (immediate)</td><td>Vancomycin 15–20 mg/kg IV q8–12h (max 2 g/dose); loading 25–30 mg/kg in serious illness</td><td>4–6 weeks</td></tr>
+          <tr><td>MRSA</td><td>Vancomycin as above <b>OR</b> Daptomycin 10 mg/kg IV daily (superior to vancomycin if vancomycin MIC &gt;1 mg/L)</td><td>4–6 weeks</td></tr>
+          <tr><td><b>Prosthetic valve / prosthetic material</b> — MSSA</td><td>Cloxacillin 2 g IV q4h <b>PLUS</b> rifampicin 300–450 mg PO q12h <b>PLUS</b> gentamicin 1 mg/kg IV q8h</td><td>≥6 weeks (gentamicin 2 weeks)</td></tr>
+          <tr><td><b>Prosthetic valve</b> — MRSA</td><td>Vancomycin <b>PLUS</b> rifampicin 300–450 mg PO q12h <b>PLUS</b> gentamicin 1 mg/kg IV q8h</td><td>≥6 weeks (gentamicin 2 weeks)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call danger"><b>Rifampicin rules — critical</b>
+      Start rifampicin <b>3–5 days after</b> effective therapy has begun and/or once bacteraemia has cleared — to prevent resistance. Rifampicin induces hepatic enzymes: expect reduced warfarin effect, altered metabolism of many anaesthetic and ICU drugs, and orange-red discolouration of urine, tears and secretions.
+    </div>
+    <div class="call danger"><b>Gentamicin in staphylococcal IE</b>
+      <span class="g">III/B</span> Addition of gentamicin for <b>native valve</b> staphylococcal endocarditis is <b>not recommended</b>. <span class="g">I/C</span> Gentamicin + rifampicin <b>is</b> recommended for prosthetic valve staphylococcal endocarditis.
+    </div>
+
+    <h3><i>Enterococcus</i> species</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Scenario</th><th>Regimen</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>Fully penicillin-susceptible (MIC ≤8 mg/L)</td><td>Ampicillin 2 g IV q4h <b>PLUS</b> gentamicin 1 mg/kg IV q8h</td><td>Symptoms &lt;3 months &amp; native valve: ampicillin 4 wk, gentamicin 2 wk<br>Symptoms &gt;3 months or prosthetic valve: both 6 wk</td></tr>
+          <tr><td>Renal impairment (CrCl ≤50 mL/min) or elderly</td><td>Ampicillin 2 g IV q4h <b>PLUS</b> ceftriaxone 2 g IV q12h<br><small>Not active against <i>E. faecium</i>; ceftriaxone must never be used alone</small></td><td>6 weeks</td></tr>
+          <tr><td>High-level gentamicin resistance (MIC &gt;500 mg/L)</td><td>Ampicillin + ceftriaxone as above</td><td>6 weeks</td></tr>
+          <tr><td>Penicillin-resistant, aminoglycoside- and vancomycin-susceptible</td><td>Vancomycin 15–20 mg/kg IV q8–12h <b>PLUS</b> gentamicin 1 mg/kg IV q8h</td><td>6 weeks</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>HACEK microorganisms</h3>
+    <p><i>Haemophilus parainfluenzae, Aggregatibacter aphrophilus, A. actinomycetemcomitans, Cardiobacterium hominis, Eikenella corrodens, Kingella kingae.</i></p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Drug</th><th>Dose</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ceftriaxone</b> (preferred)</td><td>2 g IV once daily</td><td>4 wk native / 6 wk prosthetic</td></tr>
+          <tr><td>Ampicillin + sulbactam</td><td>3 g IV q6h</td><td>4 wk native / 6 wk prosthetic</td></tr>
+          <tr><td>Ciprofloxacin</td><td>400 mg IV q12h or 500 mg PO q12h</td><td>4 wk native / 6 wk prosthetic</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><span class="g g1">IIa/B</span> Ceftriaxone monotherapy is recommended. HACEK bacilli produce β-lactamases — adjust definitive therapy to culture results.</p>
+
+    <h3><i>Candida</i> endocarditis</h3>
+    <div class="call danger"><b>Valve surgery is mandatory</b> <span class="g">I/B</span>
+      Combine with antifungal therapy. Continue for ≥6 weeks after replacement, longer with perivalvular abscess. If valve replacement is not possible → lifelong suppressive fluconazole 400–800 mg (6–12 mg/kg) daily.
+    </div>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Antifungal</th><th>Adult dose</th></tr></thead>
+        <tbody>
+          <tr><td>Amphotericin B deoxycholate</td><td>0.6–1.0 mg/kg IV once daily</td></tr>
+          <tr><td>Lipid formulation amphotericin B</td><td>3–5 mg/kg IV once daily</td></tr>
+          <tr><td>Flucytosine (with amphotericin)</td><td>25 mg/kg PO q6h</td></tr>
+          <tr><td>Micafungin</td><td>150 mg IV daily</td></tr>
+          <tr><td>Caspofungin</td><td>150 mg IV daily</td></tr>
+          <tr><td>Anidulafungin</td><td>200 mg IV daily</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Step-down: fluconazole 400–800 mg PO daily for susceptible organisms in stable patients with cleared blood cultures. Amphotericin causes dose-related marrow toxicity — avoid in renal failure; use lipid formulations.</p>
+
+    <h3>Non-HACEK Gram-negative microorganisms</h3>
+    <p>Combination therapy with a β-lactam <b>plus</b> an aminoglycoside or fluoroquinolone, for <b>6 weeks</b>. Often needs to be combined with cardiac surgery.</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Column A — anti-pseudomonal β-lactam</th><th>Column B</th></tr></thead>
+        <tbody>
+          <tr><td>Ceftazidime 2 g IV q8h<br>Cefepime 2 g IV q8h<br>Piperacillin-tazobactam 4.5 g IV q6h</td><td>Gentamicin 5–7 mg/kg IV daily<br>Amikacin 15 mg/kg IV daily<br><b>OR</b> Ciprofloxacin 400 mg IV q8h<br>Levofloxacin 750 mg IV daily</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>Fluoroquinolones may be switched to oral if tolerated. Limited paediatric data — consult Paediatric ID.</small></p>
+
+    <h3>Other microorganisms (adults)</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Pathogen</th><th>Regimen</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td><i>Brucella</i> spp.</td><td>Doxycycline 100 mg PO q12h + rifampicin 300–600 mg PO daily + streptomycin 1 g IM daily (first 2–3 weeks only) <i>or</i> gentamicin 5 mg/kg IV daily</td><td>3–6 months</td></tr>
+          <tr><td><i>Coxiella burnetii</i> (Q fever)</td><td>Doxycycline 100 mg PO q12h + hydroxychloroquine 600 mg PO daily (or 200 mg q8h)</td><td>18–24 months (clinical + serological response)</td></tr>
+          <tr><td><i>Bartonella</i> spp.</td><td>Doxycycline 100 mg PO q12h + gentamicin 3 mg/kg IV daily</td><td>2 weeks</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call warn"><b>Toxicity monitoring</b>
+      <b>Gentamicin:</b> monitor level and renal function weekly; low threshold to stop with deteriorating renal function or other toxicity. Pre-dose trough &lt;1 mg/L. Single daily dose infused over 30 min. Screen for ototoxicity biweekly — baseline visual acuity with a Snellen pocket card, have the patient shake their head and re-read the card; formal audiology if 2 lines of acuity are lost.<br>
+      <b>Vancomycin:</b> trough 10–15 mg/L (VGS) or 15–20 mg/L (<i>S. aureus</i>, PVE). Adjust in renal impairment.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 6 ============ -->
+<details class="acc">
+  <summary><span class="snum">6</span>Empirical Therapy — Before the Organism Is Known</summary>
+  <div class="acc-body">
+    <p>Choice depends on: native vs prosthetic valve · time since prosthetic surgery (early vs late PVE) · community-acquired vs healthcare-associated · risk factors for multidrug-resistant organisms (prior antimicrobials, colonisation with ESBL, <i>Pseudomonas</i>, MRSA) · risk factors for fastidious/intracellular pathogens · acute vs subacute presentation.</p>
+
+    <div class="tree">
+      <div class="branch">
+        <div class="bhead nat">Native valve</div>
+        <div class="bleaf"><b>Community-acquired</b> — cover streptococci, enterococci, HACEK.<br>
+          Subacute: <i>Streptococcus</i>, <i>Enterococcus</i>, HACEK Gram-negatives.<br>
+          Acute: the above <b>plus MSSA</b> (add cloxacillin).</div>
+        <div class="bleaf"><b>Healthcare-associated</b> (nosocomial / non-nosocomial) — cover <b>MRSA, enterococci, non-HACEK Gram-negative organisms</b>.</div>
+      </div>
+      <div class="branch">
+        <div class="bhead pro">Prosthetic valve</div>
+        <div class="bleaf"><b>Early PVE (&lt;12 months)</b> — cover MRSA, enterococci, non-HACEK Gram-negatives (± rifampicin).</div>
+        <div class="bleaf"><b>Late PVE (&gt;12 months)</b> — treat as community-acquired native valve endocarditis.</div>
+      </div>
+    </div>
+    <p class="fcap">Adapted from Figure 4a, MOH/NHAM IE CPG 2017.</p>
+
+    <h3>Initial empirical regimens</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Setting</th><th>Regimen (adult, normal renal function)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Community-acquired native valve</b> or <b>late PVE (≥12 months)</b></td>
+            <td>Ampicillin 12 g/day IV in 4–6 divided doses<br><b>PLUS</b> gentamicin 3 mg/kg/day IV once daily (low dose)<br><b>±</b> Cloxacillin 12 g/day IV in 4–6 divided doses if suspected <i>S. aureus</i> (IVDU, prosthesis, acute presentation)<br><br>
+            <i>β-lactam allergy:</i> Vancomycin 15–20 mg/kg IV q8–12h <b>PLUS</b> gentamicin 3 mg/kg/day once daily</td>
+          </tr>
+          <tr>
+            <td><b>Early PVE (&lt;12 months)</b> or <b>nosocomial / healthcare-associated</b></td>
+            <td>Vancomycin 15–20 mg/kg IV q8–12h<br><b>PLUS</b> gentamicin 3 mg/kg/day IV once daily<br><b>PLUS/MINUS</b> rifampicin 300–450 mg PO q12h <b>(start 3–5 days later)</b><br><b>PLUS/MINUS</b> cefepime 2 g IV q8h if local epidemiology suggests non-HACEK Gram-negative rods (e.g. <i>Pseudomonas</i>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call anaes"><b>Anaesthetic implication — empirical therapy in the ICU</b>
+      Vancomycin + gentamicin is nephrotoxic and ototoxic, and vancomycin infused rapidly causes histamine-mediated hypotension ("vancomycin flushing"). Infuse over ≥60 minutes, especially in the peri-operative period. Document the antimicrobial start time — it anchors the entire 4–6 week treatment clock and the timing of surgery.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 7 ============ -->
+<details class="acc">
+  <summary><span class="snum">7</span>ICU Monitoring of the IE Patient</summary>
+  <div class="acc-body">
+    <h3>Daily clinical monitoring</h3>
+    <ul>
+      <li><b>Fever:</b> usually resolves within a few days of appropriate therapy, but may recur in ~30%. If fever persists beyond 10 days, evaluate for suppurative complications — abdominal, pulmonary or intracardiac abscess.</li>
+      <li>Examine regularly for heart failure, embolic events, ongoing sepsis and neurological sequelae.</li>
+    </ul>
+
+    <h3>ECG — daily</h3>
+    <div class="call danger"><b>Conduction defects = perivalvular extension until proven otherwise</b>
+      Daily ECG to monitor rhythm and detect conduction defects. Especially important in prosthetic valve IE and native valve IE, where infection can extend to the conduction pathways abruptly. New AV block, particularly with aortic valve involvement, is a sign of abscess formation.
+    </div>
+
+    <h3>Laboratory</h3>
+    <ul>
+      <li>CRP and ESR — daily in the acute period, then at least twice weekly.</li>
+      <li>FBC — white cell count, haemoglobin, platelets (thrombocytopenia).</li>
+      <li>Renal profile — acute renal failure is a complication of IE and may require dialysis.</li>
+      <li>Liver function tests; coagulation profile if anticoagulated.</li>
+      <li>Antimicrobial peak and trough levels as appropriate; assess for clinical features of toxicity.</li>
+    </ul>
+
+    <h3>Blood cultures</h3>
+    <p>Repeat 3–4 days after commencing treatment to document eradication of bacteraemia. Persistently positive cultures on adequate levels of appropriate antimicrobials → look for metastatic infection.</p>
+
+    <h3>Echocardiography during treatment</h3>
+    <ul>
+      <li>Repeat TTE if there is any change in clinical condition.</li>
+      <li>Assess haemodynamics and the cause of heart failure.</li>
+      <li>Look for uncontrolled infection — paravalvular abscess, pseudoaneurysm, fistula (TEE).</li>
+      <li>Monitor vegetation size and mobility (embolic risk).</li>
+      <li>Resolution: vegetations gradually shrink, become less mobile and more echogenic — but may never disappear.</li>
+      <li>Rarer complications: purulent pericarditis, coronary obstruction (regional wall motion abnormality), myocarditis (global hypokinesia).</li>
+      <li>Baseline pre-discharge TTE in uncomplicated cases.</li>
+    </ul>
+
+    <h3>Outpatient parenteral antimicrobial therapy (OPAT)</h3>
+    <p>Minimum <b>2 weeks of inpatient therapy</b> first. Then consider OPAT if the patient is medically stable, with no heart failure, no neurological signs, no renal impairment, and no high-risk echocardiographic features. Requires an established OPAT service with trained staff and protocols — daily nurse review and doctor review once or twice weekly. Weekly checklist: clinical review for heart failure, embolic events, recurrent fever, new neurological signs, drug rash; compliance and vascular access check (thrombophlebitis); co-morbidity control; FBC, CRP, renal profile, LFTs; confirm planned antimicrobial duration and orders. As required: ECG, therapeutic drug monitoring, INR, echocardiogram.</p>
+  </div>
+</details>
+
+<!-- ============ 8 ============ -->
+<details class="acc">
+  <summary><span class="snum">8</span>Complications — Recognition &amp; Management</summary>
+  <div class="acc-body">
+    <div class="call danger"><b>Refer to a Specialist Centre</b>
+      All IE patients who develop cardiac complications should be referred to a centre with cardiology and cardiothoracic surgery services — most need advanced imaging, surgical intervention and cardiac intensive care.
+    </div>
+
+    <h3>A. Heart failure</h3>
+    <ul>
+      <li>Most common complication — up to <b>half of all cases</b>; the most important predictor of mortality.</li>
+      <li>Usually caused by <b>valvular dysfunction</b>, not myocardial failure. More common with aortic than mitral dysfunction. Intracardiac fistulae are a less common cause.</li>
+      <li>Presentation: dyspnoea, pulmonary oedema, cardiogenic shock.</li>
+      <li>Echo: acute regurgitation — chamber size may be normal or only slightly enlarged, ejection fraction may be normal. Look for extensive leaflet destruction, massive regurgitation, abscess/pseudoaneurysm, perforation, secondary mitral lesions, aneurysm/fistula (best with TEE). In chronic regurgitation with superimposed IE, chambers are enlarged with impaired systolic function.</li>
+      <li>NT-proBNP is useful for diagnosis and monitoring therapy effectiveness.</li>
+    </ul>
+    <div class="call danger"><b>Drug warning — aortic regurgitation</b>
+      <b>Beta-blockers should not be used in aortic regurgitation</b> — they increase diastolic time and therefore regurgitant volume. They may also cause harm in acute heart failure.
+    </div>
+    <div class="call anaes"><b>Anaesthetic implications — acute severe AR</b>
+      Maintain a relatively fast heart rate and avoid bradycardia (bradycardia prolongs diastole and worsens regurgitation). Avoid excessive afterload; vasodilators are useful. Positive-pressure ventilation reduces LV afterload and can be beneficial. <b>Avoid IABP</b> in aortic regurgitation. Have rapid pacing available. These patients may decompensate precipitously on induction.
+    </div>
+
+    <h3>B. Persistent infection &amp; perivalvular extension</h3>
+    <p>If fever persists and blood cultures remain positive after 7–10 days of therapy, consider:</p>
+    <ul>
+      <li>Inadequate or inappropriate antimicrobial therapy.</li>
+      <li>Resistant microorganisms.</li>
+      <li>Complications — perivascular extension, extracardiac septic embolisation.</li>
+      <li>Thrombophlebitis / infected intravenous lines.</li>
+    </ul>
+    <p>Actions: daily ECG for conduction abnormalities (AV block); TEE in persistent fever — especially prosthetic valves, aortic valve IE and <i>S. aureus</i>; ECG-gated cardiac CT for aortic root abscess or perivascular extension if TEE is unavailable.</p>
+    <p><small>Paravalvular extension is the most frequent cause of uncontrolled infection and carries a very high hospital mortality of up to 41%. Abscesses are more common in native aortic valve IE (near the membranous septum and AV node) and in PVE, where the annulus rather than the valve is usually the primary source.</small></p>
+
+    <h3>C. Systemic embolism</h3>
+    <ul>
+      <li>Risk 20–50%. Highest in the first days after starting antimicrobials; falls rapidly after 2–3 weeks.</li>
+      <li>Left-sided IE → brain and spleen. Right-sided and pacemaker lead IE → pulmonary embolism.</li>
+      <li>Risk factors: vegetation <b>&gt;10 mm</b> (&gt;15 mm higher), mobility, anterior mitral valve leaflet location, increasing vegetation size on therapy, <i>S. aureus</i>, <i>S. bovis</i>, fungal endocarditis, previous embolism, multivalvular IE, elevated CRP.</li>
+      <li>Embolisation may occur before diagnosis, within the first 2–4 weeks of therapy, or late (up to 15–30 weeks) with poor antimicrobial response.</li>
+      <li>Distal emboli → metastatic infection or abscess (liver, kidneys, mesenteric vessels). Osteomyelitis in 2–6%, more common in IVDU.</li>
+      <li><sup>18</sup>F-FDG PET/CT is useful for detecting peripheral embolic and metastatic events when other imaging is negative.</li>
+    </ul>
+
+    <h3>D. Neurological complications</h3>
+    <p>Symptomatic in 25–40%; most common in left-sided IE and early in the course. Types: ischaemic stroke/TIA, intracranial haemorrhage, mycotic aneurysm, cerebral abscess, meningitis.</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Complication</th><th>Epidemiology</th><th>Management</th><th>Surgery implications</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Ischaemic</b></td>
+            <td>Clinically 20–40%; asymptomatic a further 30–40%</td>
+            <td>Avoid IV tPA or streptokinase, antiplatelets and warfarin. Anticoagulation decisions individualised by the IE team.</td>
+            <td>Clinically silent/small lesions should <b>not</b> delay surgery. Larger infarcts may warrant delay.</td>
+          </tr>
+          <tr>
+            <td><b>Haemorrhagic</b></td>
+            <td>4–27%; microhaemorrhage up to 57%</td>
+            <td>Native valve: avoid all antiplatelets and anticoagulants. Prosthetic valve: stop anticoagulation, monitor closely for at least 2 weeks. Consider MRA and neurology consult. Consider conversion to heparin in anticipation of surgery.</td>
+            <td><b>Postpone cardiac surgery for 4 weeks</b> after clinically significant haemorrhage.</td>
+          </tr>
+          <tr>
+            <td><b>Mycotic aneurysm</b></td>
+            <td>At least 2–4%</td>
+            <td>Antimicrobials + serial imaging for small, stable, unruptured aneurysms. Endovascular repair for large/enlarging unruptured aneurysms if suitable. Open clipping if not amenable. Stop anticoagulation; restart decision by the IE team.</td>
+            <td>Postpone cardiac surgery <b>1–2 weeks</b> after aneurysmal repair.</td>
+          </tr>
+          <tr>
+            <td><b>Cerebral abscess</b></td>
+            <td>1–7%</td>
+            <td>Antimicrobials alone for small/multifocal. Surgical drainage for large or non-responding. Neurosurgical intervention for hydrocephalus or mass effect.</td>
+            <td>Typically does not interfere with surgical planning. Prioritise neurosurgery if hydrocephalus or mass effect.</td>
+          </tr>
+          <tr>
+            <td><b>Meningitis</b></td>
+            <td>1–20%</td>
+            <td>At least 4 weeks of antimicrobials.</td>
+            <td>Typically does not interfere with surgical planning.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>Adapted from Morris et al. Neurohospitalist 2014.</small></p>
+    <div class="call anaes"><b>Anaesthetic implication</b>
+      Highest risk of morbidity and mortality is in moderate-to-severe ischaemic stroke and intracranial haemorrhage. Anticoagulation (warfarin or heparin) must be reviewed and adjusted according to clinical status. Despite antimicrobials, patients with large vegetations (&gt;10 mm) should be considered for early surgical intervention. Imaging should be performed within 24 hours of new neurological features.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 9 ============ -->
+<details class="acc">
+  <summary><span class="snum">9</span>Anticoagulation &amp; Antiplatelet Management</summary>
+  <div class="acc-body">
+    <div class="call danger"><b>Core principle</b>
+      Cerebral haemorrhage is a major determinant of poor outcome in IE and occurs through: acute pyogenic arteritis from uncontrolled infection, haemorrhagic transformation of embolic infarcts, or rupture of mycotic aneurysms.
+    </div>
+
+    <h3>Antiplatelet therapy</h3>
+    <ul>
+      <li>Aspirin has <b>not</b> been shown to reduce mortality or morbidity in IE — initiation as treatment for IE is <b>not recommended</b>.</li>
+      <li>If the patient was on long-term aspirin before diagnosis, it may be continued if there are no bleeding complications.</li>
+      <li>The role of clopidogrel has not been extensively investigated.</li>
+    </ul>
+
+    <h3>Warfarin — native valve IE</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>No cerebrovascular ischaemic or haemorrhagic event</td><td>Warfarin may be <b>continued</b> if anticoagulated for non-valvular indications (AF, DVT)</td></tr>
+          <tr><td>Cerebrovascular ischaemic or haemorrhagic event</td><td><b>Stop warfarin</b> to prevent haemorrhagic transformation or expansion of the haemorrhage. May restart <b>2–3 weeks</b> after the event or once the septic period is over. Stop all anticoagulation — NOACs and LMWH included. Their role in this context is not established.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Warfarin — mechanical prosthetic valve IE (MPVIE)</h3>
+    <p>MPVIE carries higher mortality and poorer prognosis than native valve IE. Weigh the risk of cerebral haemorrhage on continued anticoagulation against thromboembolic risk if stopped.</p>
+    <p><b>Higher thromboembolic risk with:</b> mitral prosthesis (vs aortic), non-bileaflet valves, early post-operative period (&lt;3 months), atrial fibrillation, LV dysfunction, left atrial dilatation, previous thromboembolism, hypercoagulable states (e.g. pregnancy).</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Event</th><th>Management</th></tr></thead>
+        <tbody>
+          <tr><td><b>Major ischaemic cerebral event</b></td><td>Stop warfarin for at least 2–3 weeks (period of highest haemorrhagic transformation risk). Unfractionated heparin may be used from the <b>2nd week</b> after stopping warfarin, under close monitoring.</td></tr>
+          <tr><td><b>MPVIE due to <i>S. aureus</i></b></td><td>Much higher risk of cerebral haemorrhage. Even with no neurological complication, warfarin can be stopped at diagnosis and substituted with unfractionated heparin for 2 weeks.</td></tr>
+          <tr><td><b>Intracranial bleeding in MPVIE</b></td><td>Stop anticoagulation. Avoid anticoagulation during the first 2 weeks (highest risk of further bleeding/expansion). After 2 weeks, it is reasonable to restart cautiously with unfractionated heparin in most cases — the risk of further intracranial bleeding is low after 2 weeks while thromboembolic risk without anticoagulation rises. If the neurosurgical team judges bleeding risk high, balance against thromboembolic risk and make a consensus team decision.</td></tr>
+          <tr><td><b>Imminent surgery possible</b></td><td>Discontinue warfarin at diagnosis until the management plan is clear. If surgery is not indicated and the patient is stable without contraindications or neurological complications, warfarin can be restarted cautiously.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Restarting: begin with IV unfractionated heparin guided by aPTT, then dose-adjusted warfarin. The role of LMWH here is unknown. There are no guidelines for NOAC use in mechanical prosthetic valves — a Phase II dabigatran trial in mechanical valves was terminated early due to excess bleeding.</p>
+
+    <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+      <ul style="margin:6px 0 0 18px">
+        <li>Clearly document the anticoagulation plan and who authorised it before any procedure.</li>
+        <li>Remember rifampicin will reduce warfarin effect and destabilise the INR — expect to increase the warfarin dose and monitor more frequently.</li>
+        <li>In MPVIE due to <i>S. aureus</i>, assume a high cerebral haemorrhage risk even without neurological signs.</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 10 ============ -->
+<details class="acc">
+  <summary><span class="snum">10</span>Surgical Indications &amp; Timing — The Theatre Clock</summary>
+  <div class="acc-body">
+    <h3>Indications for surgery</h3>
+    <ol>
+      <li><b>Severe valvular incompetence, heart failure or haemodynamic instability</b> <span class="g g1">I/B</span> — life-saving; improves survival.</li>
+      <li><b>Persistent infection, uncontrolled sepsis or paravalvular extension</b> <span class="g g1">I/B</span> — fever or positive cultures persisting despite appropriate therapy for 5–7 days after excluding extracardiac causes.</li>
+      <li><b>Fungal or multiresistant endocarditis</b> <span class="g g1">I/B</span> — fungal IE responds poorly to medical therapy (mortality up to 70%); multiresistant organisms; non-HACEK Gram-negatives; <i>S. aureus</i> without a favourable early response.</li>
+      <li><b>Very large vegetations (&gt;10 mm) or previous systemic embolism</b> <span class="g g1">I/B</span> — particularly with other embolic risk factors.</li>
+    </ol>
+
+    <h3>Timing ladder</h3>
+    <div class="ladder">
+      <div class="rung"><div class="tag t-em">EMERGENCY<br>within 24 h</div><div class="body">Cardiogenic shock from severe valve dysfunction <span class="g g1">I/C</span></div></div>
+      <div class="rung"><div class="tag t-ur">URGENT<br>within 3–4 days</div><div class="body">Pulmonary oedema but not in cardiogenic shock <span class="g">I/B</span><br>Very large vegetations (&gt;10 mm) <span class="g">I/B</span><br>Paravalvular abscess or heart block <span class="g g1">I/C</span></div></div>
+      <div class="rung"><div class="tag t-ea">EARLY<br>within 1–2 weeks</div><div class="body">Fungal, <i>S. aureus</i> or other highly resistant microorganisms <span class="g g1">I/C</span><br>Persistent infection <span class="g g1">IIa/B</span><br>Persistent or enlarging vegetations despite antimicrobials <span class="g g1">IIa/B</span><br>Recurrent emboli <span class="g g1">I/B</span></div></div>
+      <div class="rung"><div class="tag t-se">SEMI-ELECTIVE<br>after 2 weeks</div><div class="body">Prosthetic valve endocarditis and relapsing infection <span class="g g1">I/B</span></div></div>
+      <div class="rung"><div class="tag t-el">ELECTIVE<br>after 6 weeks</div><div class="body">Well-tolerated chronic severe valvular regurgitation with controlled infection <span class="g g1">I/C</span></div></div>
+    </div>
+
+    <div class="call"><b>Why early surgery?</b>
+      Early intervention improves survival, prevents progressive heart failure/cardiogenic shock/multiorgan failure, decreases progression of infection and abscess formation, reduces systemic embolism, and increases the likelihood of valve <b>repair</b> rather than replacement. A meta-analysis of 8,141 patients showed early surgery within 2 weeks of diagnosis improved both early mortality and long-term survival.
+    </div>
+    <div class="call warn"><b>Septic shock caveat</b>
+      In cardiogenic shock, surgery should be undertaken within 24 hours. In <b>septic shock</b>, it may be reasonable to delay 48 hours to allow stabilisation and better sepsis control — cardiac surgery with cardiopulmonary bypass in septic shock carries excessively high operative mortality.
+    </div>
+
+    <h3>Preventing systemic embolism</h3>
+    <p>Most emboli occur before diagnosis and in the first 2 weeks; the rate falls significantly after 2–3 weeks of therapy. A randomised trial of 76 patients with left-sided native valve IE and vegetations &gt;10 mm showed a lower composite of hospital death, embolic events and recurrent endocarditis at 6 months with early surgery within 48 hours (3% vs 23%) — largely driven by fewer embolic events. Surgery for embolism prevention should be performed urgently in the first few days of antimicrobial therapy, when risk is highest.</p>
+
+    <h3>Surgery after cerebral infarction or haemorrhage</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Timing</th><th>Clinical situation</th></tr></thead>
+        <tbody>
+          <tr><td><b>Without delay</b></td><td>Subclinical cerebral emboli, or small cerebral infarcts without severe neurological damage; absence of cerebral haemorrhage <span class="g g1">IIb/B</span></td></tr>
+          <tr><td><b>Delay ≥2 weeks</b></td><td>Major ischaemic stroke without coma or intracranial haemorrhage, when more urgent surgery is indicated (congestive heart failure, deteriorating cardiac function, uncontrolled infection); small infarct areas; absence of haemorrhage <span class="g g1">IIa/B</span></td></tr>
+          <tr><td><b>Delay ≥4 weeks</b></td><td>Major ischaemic stroke; major intracranial haemorrhage (&gt;2 cm) — reduces the risk of haemorrhage during cardiopulmonary bypass with systemic heparinisation <span class="g g1">IIa/B</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Risk of neurological deterioration after cardiac surgery following cerebral infarction:</b> ~20% in the first 3 days · 20–50% between days 4–14 · 6–10% between days 15–28 · &lt;1% after 28 days. Hospital mortality is 66% when surgery is within 24 hours of a stroke, falling to 7% after 4 weeks. One study showed 75% mortality when surgery was performed within 4 weeks of a haemorrhagic stroke versus 40% after 4 weeks.</p>
+
+    <h3>Right-sided endocarditis</h3>
+    <p>5–10% of cases, mostly tricuspid; isolated pulmonary valve involvement is rare. Usually resolves with conservative treatment — surgery is uncommon. Avoid prosthetic valves where possible (most patients are IVDU with high risk of re-infection).</p>
+    <p><b>Indications for surgery</b> <span class="g g1">IIa/C</span>: persistent infection despite 2 weeks of appropriate antimicrobials · persistent vegetation &gt;20 mm with recurrent septic pulmonary emboli · massive/worsening tricuspid regurgitation causing right heart failure unresponsive to medical therapy · failure or complications of percutaneous removal of infected pacing wires.</p>
+
+    <h3>Prosthetic valve endocarditis — additional indications</h3>
+    <p>Staphylococcal endocarditis <span class="g g1">I/C</span>; severe prosthetic valve dysfunction or dehiscence <span class="g g1">I/C</span>. About half of PVE patients undergo surgery, more commonly early PVE (within the first year). Recurrent PVE after surgery occurs in up to 18%.</p>
+
+    <h3>Surgical principles</h3>
+    <ul>
+      <li><b>Valve repair preferred over replacement</b> where possible — improves in-hospital and long-term survival, preserves ventricular function, eliminates prosthetic valve complications, reduces risk of infecting the new prosthesis.</li>
+      <li><b>Complete removal and radical debridement</b> of all infected and necrotic material, leaving only healthy tissue that will hold suture.</li>
+      <li>Avoid excessive manipulation of the heart before cardiopulmonary bypass — prevents embolisation of vegetations.</li>
+      <li>Reconstruct with autologous or bovine pericardium, or Dacron, avoiding prosthetic material if possible.</li>
+      <li>Send vegetations/cardiac tissue for Gram stain, culture and HPE.</li>
+      <li>Prosthesis choice based on usual considerations — age, life expectancy, co-morbidities, anticoagulation compliance. No difference in infection risk between mechanical and bioprosthetic valves.</li>
+      <li>Consider <b>bioprosthetic</b> rather than mechanical replacement if mycotic cerebral aneurysms are identified pre-operatively, to avoid post-operative anticoagulation.</li>
+      <li>Continue antimicrobials to complete a total course of 6 weeks in most cases.</li>
+    </ul>
+
+    <div class="call"><b>Pre-operative workup</b>
+      Investigate and treat the primary source; treat extracardiac sepsis (splenic and paravertebral abscesses) by splenectomy or percutaneous drainage to avoid infecting the new valve; investigate and manage cerebrovascular events; dental consultation. Imaging of brain, chest, abdomen, pelvis and maxillofacial area. MRA of the brain may be considered before cardiac surgery in patients without neurological complications who are at high risk of mycotic aneurysm.
+    </div>
+
+    <div class="call anaes"><b>Anaesthetic implications — IE cardiac surgery</b>
+      <ul style="margin:6px 0 0 18px">
+        <li>Use <b>CT-guided coronary angiography</b> rather than conventional catheter angiography in aortic valve IE — reduced embolic risk.</li>
+        <li>Anticipate periannular abscess: annulus reconstruction, possible need for root replacement with homograft or stentless root.</li>
+        <li>Anticipate temporary or permanent pacing — periannular abscess and debridement can cause AV block.</li>
+        <li>Mitral valve repair may need pericardial patch, artificial neochordae; complete subvalvular apparatus preservation if replacement is needed.</li>
+        <li>Tricuspid: repair preferred; bioprosthesis reasonable in IVDU if anticoagulation compliance is a concern.</li>
+        <li>Where abscess cavities exist, they must be drained, necrotic tissue excised, and fistulous tracts closed.</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 11 ============ -->
+<details class="acc">
+  <summary><span class="snum">11</span>Renal Impairment — Antimicrobial Dose Adjustments</summary>
+  <div class="acc-body">
+    <p>Loading doses generally do <b>not</b> need modification in renal impairment (depends on volume of distribution, not clearance) — but be careful with narrow-therapeutic-index drugs and altered volume of distribution (low serum protein, fluid overload).</p>
+    <p><b>Three dose-reduction methods:</b> <b>I</b> = interval method (same dose, longer interval — where peak concentrations matter); <b>D</b> = dose method (smaller dose, same interval); <b>D&amp;I</b> = combination (narrow therapeutic index).</p>
+
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Drug</th><th>Normal dose</th><th>Adjustment (CrCl, mL/min)</th><th>Comments</th></tr></thead>
+        <tbody>
+          <tr><td><b>Gentamicin</b></td><td>1 mg/kg q8h</td><td>40–59: 1 mg/kg q12h<br>20–39: 1 mg/kg daily<br>&lt;20: 1 mg/kg once, check level at 24 h, redose when &lt;1 mg/L</td><td>Monitor levels + renal function weekly; low threshold to stop. Trough &lt;1 mg/L</td></tr>
+          <tr><td><b>Vancomycin</b></td><td>15 mg/kg q12h (ABW)</td><td>Start 15–20 mg/kg q8–12h; CrCl 20–49: 15–20 mg/kg daily</td><td>Critically ill: initial load 25–30 mg/kg should <b>not</b> be reduced. Trough 30 min before 4th dose</td></tr>
+          <tr><td><b>Cefazolin</b></td><td>2 g IV q8h</td><td>35–54: 2 g q≥8h<br>11–34: 1 g q12h<br>&lt;10: 1 g q18–24h</td><td>HD: 500 mg then 1 g daily post-dialysis</td></tr>
+          <tr><td><b>Cefepime</b></td><td>2 g IV q8h</td><td>30–60: 2 g q12h<br>11–29: 2 g daily</td><td>Neurotoxicity risk in renal impairment</td></tr>
+          <tr><td><b>Ceftriaxone</b></td><td>2 g IV daily</td><td>No adjustment (max 2 g/day in renal failure)</td><td>—</td></tr>
+          <tr><td><b>Ciprofloxacin</b></td><td>500 mg PO q12h / 400 mg IV q12h</td><td>50–75% of dose q12h (250 mg PO / 200 mg IV)</td><td>—</td></tr>
+          <tr><td><b>Ampicillin</b></td><td>12 g/day in 4–6 divided doses</td><td>2 g q6–12h<br>&lt;10: 2 g q12–24h</td><td>HD: 2 g q12–24h post-dialysis</td></tr>
+          <tr><td><b>Ampicillin/sulbactam</b></td><td>3 g IV q6h</td><td>15–29: 3 g q12h<br>&lt;15: 3 g daily</td><td>—</td></tr>
+          <tr><td><b>Cloxacillin</b></td><td>2 g IV q4h</td><td>No adjustment</td><td>HD: no adjustment needed</td></tr>
+          <tr><td><b>Benzyl penicillin</b></td><td>3–4 MU q4–6h</td><td>100% → 75% → 20–50% as CrCl falls</td><td><b>Increased risk of neurotoxicity (seizures)</b> in renal impairment</td></tr>
+          <tr><td><b>Daptomycin</b></td><td>10 mg/kg IV daily</td><td>CrCl &lt;30: 10 mg/kg q48h</td><td>Monitor creatine phosphokinase (CPK)</td></tr>
+          <tr><td><b>Rifampicin</b></td><td>300–450 mg PO q12h</td><td>CrCl ≤50: 50–100% of full dose</td><td>Not dialysed; excreted in CAPD fluid — orange/yellow discolouration</td></tr>
+          <tr><td><b>Amphotericin B deoxycholate</b></td><td>0.6–1.0 mg/kg/day</td><td>Avoid; if essential use normal dose. If nephrotoxicity develops, reduce total daily dose by 50% or give every other day</td><td>Nephrotoxic — monitor creatinine closely; lipid formulations less nephrotoxic</td></tr>
+          <tr><td><b>Amphotericin B lipid complex</b></td><td>3–5 mg/kg/day</td><td>No adjustment in pre-existing renal failure</td><td>Still nephrotoxic — monitor creatinine</td></tr>
+          <tr><td><b>Fluconazole</b></td><td>400–800 mg/day</td><td>Normal loading dose then 50% of normal dose</td><td>HD: 100% of daily dose after each dialysis session</td></tr>
+          <tr><td><b>Flucytosine</b></td><td>25 mg/kg PO q6h</td><td>20–40: 12.5 mg/kg q6h<br>10–20: 6.25 mg/kg q6h</td><td>HD: 25 mg/kg q48–72h</td></tr>
+          <tr><td><b>Micafungin / Caspofungin / Anidulafungin</b></td><td>150 / 150 / 200 mg IV daily</td><td>No adjustment</td><td>No supplemental dose needed for HD/PD/CRRT</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><small><b>Paediatric note:</b> use the Schwartz method (CrCl = k × height/cm ÷ serum creatinine, with k varying by age) or the Counahan-Barratt formula. Paediatric doses should never exceed the normal maximum adult dose. Aminoglycoside trough targets in paediatrics: &lt;2 µmol/mL (&lt;1 mcg/mL), or &lt;4 µmol/mL (&lt;2 mcg/mL) in NICU/PICU.</small></p>
+
+    <div class="call anaes"><b>ICU prescribing tip</b>
+      In a critically ill IE patient on CRRT or intermittent HD, <b>give the full loading dose</b> and then adjust maintenance based on levels. Vancomycin and gentamicin are the two drugs most likely to be under- or over-dosed in this population.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 12 ============ -->
+<details class="acc">
+  <summary><span class="snum">12</span>Specific Situations — CIED, TAVI/TPVI, Pregnancy, Paediatrics, CHD</summary>
+  <div class="acc-body">
+
+    <h3>Cardiac implantable electronic devices (CIED)</h3>
+    <ul>
+      <li>Serious, high mortality; incidence rising with wider device use and older population.</li>
+      <li><b>Risk factors:</b> immunosuppression (steroids, diabetes, renal failure), oral anticoagulation, ageing/co-morbidity, failure of periprocedural prophylaxis, device revision/replacement, amount of indwelling hardware, operator experience, <i>S. aureus</i> bloodstream infection.</li>
+      <li>Presentation is vague and non-specific — a high index of suspicion is mandatory. Always consider CIED IE with unexplained fever in a patient with a device.</li>
+      <li>Staphylococci (especially CoNS) account for 60–80%. Methicillin resistance varies. Polymicrobial infection occurs.</li>
+      <li><b>Investigations:</b> 3 or more sets of blood cultures <b>before</b> antimicrobials. TTE may show lead vegetation and tricuspid involvement, but a negative TTE does not exclude CIED IE — proceed to TEE. Both are preferable (TTE gives a baseline). If suspicion remains high with negative TTE and TEE, consider radiolabelled leucocyte scintigraphy or <sup>18</sup>F-FDG PET/CT. Repeated TEE is not necessary after completing treatment.</li>
+      <li><b>Treatment:</b> at least 4–6 weeks of antimicrobials. Complete hardware removal is advocated; if required, implant a temporary device until infection resolves. Blood cultures within 24 hours after hardware removal to confirm clearance. Reimplant on the contralateral side. Assess the need for reimplantation after extraction.</li>
+    </ul>
+    <div class="call"><b>CIED recommendations</b>
+      <span class="g g1">I/C</span> 3+ sets of blood cultures before antimicrobials · TEE regardless of blood culture or TTE findings · antimicrobials before and after extraction for definite CIED IE and isolated pocket infection · complete device and lead removal when no other source is found · reassess need for reimplantation after extraction · postpone reimplantation for days to weeks during antimicrobial therapy · a "temporary" ipsilateral device can be considered in pacemaker-dependent patients needing antimicrobials before reimplantation <span class="g g1">IIb/C</span> · <b>temporary pacing is not routinely recommended</b> <span class="g">III/C</span> · <sup>18</sup>F-FDG PET/CT may be done with positive cultures and negative echo <span class="g g1">IIb/C</span>.
+    </div>
+
+    <h3>Transcatheter pulmonary valve implantation (TPVI)</h3>
+    <ul>
+      <li>Early PVE incidence ≤1%. Clinical diagnosis requiring high suspicion.</li>
+      <li>Beyond Duke criteria: any increase in RVOT gradient unexplained by a structural complication (e.g. stent fracture), valvular involvement, or new-onset pulmonary regurgitation should raise high suspicion.</li>
+      <li><b>Risk factors:</b> male sex, dental treatment, septic skin wound, reactivation of treated fungal infection, previous medically treated IE, multiple stents in RVOT, distorted RVOT anatomy, Contagra conduit and Melody valve (higher risk than homograft).</li>
+      <li>Fever (80%) and heart failure (22%) are the most common initial symptoms in transcatheter valve PVE.</li>
+      <li><b>Management:</b> refer to a specialist centre. Antimicrobials for at least 6 weeks based on the organism (usually <i>S. aureus</i>). Surgical explantation of the infected conduit valve is recommended. In-hospital mortality associated with PVE episodes was 7.1%. Follow-up at a specialist centre.</li>
+      <li>Lifelong pre-procedural prophylactic antimicrobials are proposed for TPVI patients with previous IE or complex RVOT anatomy.</li>
+    </ul>
+
+    <h3>Transcatheter aortic valve implantation / replacement (TAVI/TAVR)</h3>
+    <ul>
+      <li>PVE rates similar to surgical groups in the PARTNER trial (1.0% transcatheter vs 1.5% surgical).</li>
+      <li>Typical organisms: <i>Enterococcus</i> spp., CoNS, <i>S. aureus</i>, <i>Streptococcus</i> spp.</li>
+      <li>Prolonged fever, valve murmur or new regurgitation → TTE; consider TEE because acoustic shadows limit TTE views.</li>
+      <li>Risk factors: diabetes mellitus, poor oral hygiene, non-adherence to dental prophylaxis.</li>
+      <li>First-line treatment is targeted antimicrobial therapy; surgery remains an option to be discussed in the context of complications.</li>
+    </ul>
+
+    <h3>Pregnancy</h3>
+    <div class="call danger"><b>Refer all pregnant patients with IE to a Specialist Centre</b>
+      Multidisciplinary team: cardiologist, ID physician, obstetrician, obstetric anaesthetist, neonatologist — from the moment of diagnosis.
+    </div>
+    <ul>
+      <li>General IE management is the same as for non-pregnant patients.</li>
+      <li>Surgical indications are the same as for non-pregnant patients — but cardiac surgery should be <b>delayed wherever possible until after delivery</b>.</li>
+      <li>Produce a detailed pregnancy and delivery care plan.</li>
+      <li>Cardiac patients at risk should receive pre-pregnancy counselling on good skin and oral hygiene, and be referred for professional oral hygiene care throughout pregnancy.</li>
+    </ul>
+
+    <h3>Paediatric IE</h3>
+    <ul>
+      <li>Frequency is increasing due to improved survival in CHD and hospitalised neonates. Rheumatic heart disease is no longer a common cause in children except in some developing countries.</li>
+      <li>Three groups: children with CHD, children with acquired valvular heart disease, and neonates with normal heart structures.</li>
+      <li>Classical extracardiac signs (Osler nodes, Janeway lesions, splinter haemorrhages) are uncommon in children. More commonly seen are septic emboli to abdomen, brain and lungs.</li>
+      <li>Presentation may be indolent and indistinguishable from septicaemia, or acute and fulminant.</li>
+      <li>Diagnosis uses the modified Duke criteria; a high clinical suspicion is necessary. <i>S. aureus</i> bacteraemia is a major criterion irrespective of cause. Remove central venous catheters in prolonged bacteraemia before diagnosing IE.</li>
+      <li>TTE is more sensitive (97%) in young patients (weight &lt;60 kg). TEE is an important adjunct for obesity, prosthetic grafts/valves/conduits, chest deformities, hyperinflated lungs or compromised respiratory function.</li>
+      <li>Management is predominantly medical; weight-based dosing is essential, especially in neonates. Remove or change all long-standing central venous catheters.</li>
+      <li>Mortality is highest in premature infants (31%) and in <i>S. aureus</i> IE.</li>
+    </ul>
+
+    <h3>Congenital heart disease (CHD)</h3>
+    <p><b>Predisposing risk factors:</b> complex cyanotic CHD (unrepaired and/or palliated, e.g. aortopulmonary shunts) · repaired CHD with prosthetic material including conduits, bioprosthetic homografts and/or CIED · repaired CHD with residual lesions · within 6 months of cardiac surgery or transcatheter device intervention · VSD with associated valve or outflow tract anomalies · age &lt;3 years.</p>
+    <p><b>Risk factors for in-hospital mortality in CHD:</b> vegetation ≥20 mm · age &lt;1 year · heart failure at diagnosis · <i>S. aureus</i> · aortic valve involvement · nosocomial/healthcare-associated endocarditis.</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Repaired CHD lesion</th><th>Cumulative incidence of IE</th></tr></thead>
+        <tbody>
+          <tr><td>Valvular aortic stenosis</td><td>13.3% at 25 yr; 20.6% at 30 yr</td></tr>
+          <tr><td>Pulmonary atresia + VSD</td><td>6.4% at 15 yr</td></tr>
+          <tr><td>VSD</td><td>4.1% at 30 yr</td></tr>
+          <tr><td>d-TGA</td><td>4.0% at 20 yr</td></tr>
+          <tr><td>Coarctation of the aorta</td><td>3.5% at 30 yr</td></tr>
+          <tr><td>Primum ASD</td><td>2.8% at 20 yr</td></tr>
+          <tr><td>Tetralogy of Fallot repair</td><td>1.3% at 30 yr</td></tr>
+          <tr><td>Complete AVSD</td><td>1.1% at 15 yr</td></tr>
+          <tr><td>Secundum ASD / pulmonary stenosis / PDA</td><td>0.0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>Risk is higher with post-interventional or prosthetic aortic valves (10-year incidence 26%) than native valves (5%). The risk in secundum ASD rises with mitral valve anomalies.</small></p>
+    <div class="call"><b>CHD principles</b>
+      Diagnostic and management principles do not differ from the general principles. TTE is adequate for most; consider TEE with poor windows, prosthetic material, or high suspicion with normal TTE. Cardiac MRI and CT are powerful adjuncts in complex CHD. After treatment, refer patients with residual lesions or uncorrected intracardiac shunts for surgical repair. <b>Refer to a tertiary centre with CHD imaging, surgery and intensive care expertise.</b>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 13 ============ -->
+<details class="acc">
+  <summary><span class="snum">13</span>Antimicrobial Prophylaxis</summary>
+  <div class="acc-body">
+    <div class="call"><b>Key principle</b>
+      Antimicrobial prophylaxis is <b>not</b> routinely recommended for all cardiac patients. It is limited to those at <b>highest risk of IE or of adverse outcome from IE</b>. Maintaining good oral and skin hygiene is emphasised over prophylaxis.
+    </div>
+
+    <h3>Cardiac conditions with increased risk of IE — prophylaxis indicated</h3>
+    <ul>
+      <li>Prosthetic cardiac valves, or prosthetic material used for cardiac valve repair</li>
+      <li>Native valvular heart disease, including established rheumatic heart disease</li>
+      <li>Previous IE</li>
+      <li>Unrepaired cyanotic CHD, including palliative shunts and conduits</li>
+      <li>Completely repaired CHD with prosthetic material or devices — for the first 6 months after the procedure</li>
+      <li>Repaired CHD with residual defects at or adjacent to the site of a prosthetic patch or device (which inhibit endothelialisation)</li>
+      <li>Cardiac transplant recipients who develop cardiac valvulopathy</li>
+    </ul>
+
+    <h3>Dental procedures</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Prophylaxis always required</th><th>Prophylaxis in some circumstances</th><th>Prophylaxis not required</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Extractions<br>Periodontal procedures including surgery, subgingival scaling and root planing<br>Replanting avulsed teeth<br>Other surgical procedures (implant placement, apicectomy)</td>
+            <td>Consider if multiple procedures, prolonged procedure, or periodontal disease present:<br>Full periodontal probing in periodontitis<br>Intraligamentary and intraosseous LA injection<br>Supragingival calculus removal/cleaning<br>Rubber dam placement with clamps<br>Restorative matrix band/strip placement<br>Endodontics beyond the apical foramen<br>Orthodontic bands or interdental wedges<br>Subgingival retraction cords, antimicrobial fibres/strips</td>
+            <td>Oral examination<br>Infiltration and block LA injection<br>Restorative dentistry<br>Supragingival rubber dam clamping/placement<br>Intracanal endodontic procedures<br>Suture removal<br>Impressions and denture construction<br>Orthodontic bracket placement and appliance adjustment<br>Application of gels<br>Intraoral radiographs<br>Supragingival plaque removal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Non-dental procedures</h3>
+    <ul>
+      <li><b>Respiratory tract:</b> prophylaxis recommended for high-risk patients undergoing invasive respiratory tract procedures involving incision or biopsy of the respiratory mucosa. If there is an established respiratory tract infection, the antimicrobial must cover the causative organism in addition to VGS.</li>
+      <li><b>Gastrointestinal / genitourinary:</b> routine pre-procedural prophylaxis is <b>no longer recommended</b>. However, for high-risk cardiac patients with an established GI or GU infection, or receiving antimicrobials for surgical reasons, the regimen should include an agent active against enterococci — ampicillin or vancomycin.</li>
+      <li><b>Other:</b> incision and drainage of local abscess (brain, skin/subcutaneous, eye, epidural, lung, orbital, perirectal, liver, tooth) and surgical procedures through infected skin; percutaneous endoscopic gastrostomy.</li>
+    </ul>
+
+    <h3>Regimens — single dose 30–60 minutes before the procedure</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Antimicrobial</th><th>Adult dose</th><th>Paediatric dose</th></tr></thead>
+        <tbody>
+          <tr><td>No penicillin/ampicillin allergy</td><td>Amoxicillin or ampicillin</td><td>2 g PO or IV</td><td>50 mg/kg PO or IV</td></tr>
+          <tr><td>Penicillin/ampicillin allergy</td><td>Clindamycin</td><td>600 mg PO or IV</td><td>20 mg/kg PO or IV</td></tr>
+          <tr><td>Alternative</td><td>Cephalexin<br>Cefazolin or ceftriaxone</td><td>2 g IV<br>1 g IV</td><td>50 mg/kg IV<br>50 mg/kg IV</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>Cephalosporins must <b>not</b> be used in patients with anaphylaxis, angioedema or urticaria after penicillin/ampicillin due to cross-sensitivity. For genitourinary and gastrointestinal procedures, include an agent active against enterococci (ampicillin or vancomycin).</small></p>
+
+    <h3>Preventive measures</h3>
+    <ul>
+      <li>Periodontal and dental disease increases bacteraemia risk. Optimal oral hygiene reduces bacteraemia from daily activities such as tooth brushing, flossing and oral irrigators — <b>more important than prophylactic antimicrobials</b> for a dental procedure. Dental evaluation twice a year.</li>
+      <li>Discourage tongue piercing and body piercing/tattooing.</li>
+      <li>Before implanting prosthetic material/valves, CIED or transcatheter devices: screen and eradicate nasal and skin MRSA carriage with local mupirocin and chlorhexidine; treat and eliminate potential sources of sepsis at least 2 weeks before the procedure; give pre-procedure antimicrobial prophylaxis.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 14 ============ -->
+<details class="acc">
+  <summary><span class="snum">14</span>Simplified Flow Diagrams</summary>
+  <div class="acc-body">
+
+    <h3>1 · Overall clinical management of IE</h3>
+    <div class="flow">
+      <div class="fnode start">Diagnosis</div>
+      <div class="farrow">▼</div>
+      <div class="fsplit">
+        <div class="col"><div class="fnode act">History · Examination · Basic investigations</div></div>
+        <div class="col"><div class="fnode act">Microbiology (3 sets blood cultures)</div></div>
+      </div>
+      <div class="farrow">▼</div>
+      <div class="fnode act">ECHO (TTE first, TEE as indicated)</div>
+      <div class="farrow">▼</div>
+      <div class="fnode decision">Definite IE, or Possible IE with high clinical suspicion</div>
+      <div class="farrow">▼</div>
+      <div class="fnode start">Commence empirical antimicrobial treatment</div>
+      <div class="farrow">▼</div>
+      <div class="fsplit">
+        <div class="col"><div class="fnode act">Refine therapy by culture results &amp; MIC · treat for appropriate duration</div></div>
+        <div class="col"><div class="fnode decision">Review indications for surgery</div></div>
+      </div>
+      <div class="farrow">▼</div>
+      <div class="fnode act">Monitor treatment — vitals · daily ECG · daily exam for complications · repeat ECHO as needed · review anticoagulation</div>
+      <div class="farrow">▼</div>
+      <div class="fsplit">
+        <div class="col"><div class="fnode pos">Treatment success</div></div>
+        <div class="col"><div class="fnode neg">Treatment failure → consult specialist centre · assess complications · repeat TEE · advanced imaging</div></div>
+      </div>
+      <div class="farrow">▼</div>
+      <div class="fnode act">Pre-discharge management: document clinical status &amp; echo findings · educate on preventive measures and features of recurrence</div>
+      <div class="farrow">▼</div>
+      <div class="fnode start">Follow-up: monitor for relapse &amp; reinfection · review indications for elective surgery</div>
+    </div>
+    <p class="fcap">Simplified from the management summary figure, MOH/NHAM IE CPG 2017.</p>
+
+    <h3>2 · Empirical antimicrobial coverage</h3>
+    <div class="flow">
+      <div class="fnode start">Suspected or confirmed IE</div>
+      <div class="farrow">▼</div>
+      <div class="fsplit">
+        <div class="col">
+          <div class="fnode act"><b>Native valve</b></div>
+          <div class="farrow">▼</div>
+          <div class="fnode">Community-acquired<br><small>Subacute: Streptococcus, Enterococcus, HACEK<br>Acute: the above + MSSA</small></div>
+          <div class="farrow">▼</div>
+          <div class="fnode decision">Healthcare-associated<br><small>MRSA · Enterococci · non-HACEK Gram-negatives</small></div>
+        </div>
+        <div class="col">
+          <div class="fnode act"><b>Prosthetic valve</b></div>
+          <div class="farrow">▼</div>
+          <div class="fnode decision">Early &lt;12 months<br><small>MRSA · Enterococci · non-HACEK Gram-negatives</small></div>
+          <div class="farrow">▼</div>
+          <div class="fnode">Late &gt;12 months<br><small>Treat as community-acquired native valve</small></div>
+        </div>
+      </div>
+    </div>
+    <p class="fcap">Simplified from Figure 4a, MOH/NHAM IE CPG 2017.</p>
+
+    <h3>3 · Surgical timing</h3>
+    <div class="ladder">
+      <div class="rung"><div class="tag t-em">24 HOURS</div><div class="body">Cardiogenic shock from severe valve dysfunction</div></div>
+      <div class="rung"><div class="tag t-ur">3–4 DAYS</div><div class="body">Pulmonary oedema (not cardiogenic shock) · vegetations &gt;10 mm · paravalvular abscess or heart block</div></div>
+      <div class="rung"><div class="tag t-ea">1–2 WEEKS</div><div class="body">Fungal / <i>S. aureus</i> / highly resistant organisms · persistent infection · enlarging vegetations · recurrent emboli</div></div>
+      <div class="rung"><div class="tag t-se">2 WEEKS</div><div class="body">Prosthetic valve endocarditis · relapsing infection</div></div>
+      <div class="rung"><div class="tag t-el">6 WEEKS</div><div class="body">Well-tolerated chronic severe regurgitation with controlled infection</div></div>
+    </div>
+
+    <h3>4 · Neurological complication → cardiac surgery timing</h3>
+    <div class="flow">
+      <div class="fnode start">Cerebrovascular event in IE</div>
+      <div class="farrow">▼</div>
+      <div class="fsplit">
+        <div class="col">
+          <div class="fnode pos"><b>Subclinical emboli or small infarct, no haemorrhage</b></div>
+          <div class="farrow">▼</div>
+          <div class="fnode">Surgery <b>without delay</b> when indicated</div>
+        </div>
+        <div class="col">
+          <div class="fnode decision"><b>Major ischaemic stroke, no coma / no haemorrhage</b></div>
+          <div class="farrow">▼</div>
+          <div class="fnode">If urgent surgery needed (CHF, deteriorating cardiac function, uncontrolled infection) → <b>delay ~2 weeks</b><br>Otherwise <b>delay ≥4 weeks</b></div>
+        </div>
+      </div>
+      <div class="farrow">▼</div>
+      <div class="fnode neg"><b>Major intracranial haemorrhage (&gt;2 cm)</b> → delay cardiac surgery <b>≥4 weeks</b></div>
+      <div class="farrow">▼</div>
+      <div class="fnode decision"><b>Mycotic aneurysm</b> → postpone cardiac surgery <b>1–2 weeks</b> after aneurysmal repair</div>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 15 ============ -->
+<details class="acc">
+  <summary><span class="snum">15</span>10 High-Yield Case Examples</summary>
+  <div class="acc-body">
+
+    <div class="case">
+      <div class="case-h">Case 1 · IVDU with tricuspid endocarditis and septic pulmonary emboli</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>A 28-year-old man who injects drugs presents with fever, pleuritic chest pain and multiple cavitating lung lesions. Blood cultures grow MSSA. Echo shows a large tricuspid vegetation.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li>Right-sided MSSA native valve IE — cloxacillin 12 g/day IV in 4–6 divided doses.</li>
+          <li>Duration may be shortened to <b>2 weeks</b> only if all criteria are met: good response, no metastatic infection or empyema, no cardiac/extracardiac complications, no prosthetic or left-sided involvement, vegetation &lt;20 mm, no severe immunosuppression (CD4 &lt;200).</li>
+          <li>Septic pulmonary emboli and pneumonia are common and do <b>not</b> alter treatment duration.</li>
+          <li>Surgery is uncommon; avoid prosthetic valves — most patients are IVDU with high re-infection risk.</li>
+        </ul>
+        <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>Difficult IV access, opioid tolerance, potential for withdrawal — plan analgesia carefully.</li>
+            <li>Lung pathology may complicate ventilation; expect hypoxia and possible need for lung-protective strategies.</li>
+            <li>If surgery is required: indications are persistent infection &gt;2 weeks despite therapy, vegetation &gt;20 mm with recurrent septic emboli, or right heart failure from massive tricuspid regurgitation.</li>
+            <li>Rehabilitation for IVDU and education on relapse are part of discharge planning.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-h">Case 2 · Acute aortic regurgitation with cardiogenic shock</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>A 62-year-old man with fever and a new early diastolic murmur becomes hypotensive and develops pulmonary oedema. Echo shows a perforated aortic leaflet with massive regurgitation and a vegetation.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li>Heart failure is the most common complication of IE and the strongest predictor of mortality.</li>
+          <li>Cardiogenic shock from severe valve dysfunction = <b>emergency surgery within 24 hours</b>.</li>
+          <li>Echo may show normal chamber size and normal ejection fraction in acute regurgitation — do not be reassured by a normal EF.</li>
+        </ul>
+        <div class="call danger"><b>Anaesthetic implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li><b>Avoid beta-blockers</b> — they prolong diastole and increase regurgitant volume.</li>
+            <li>Avoid bradycardia; maintain a relatively fast heart rate.</li>
+            <li>Avoid excessive afterload; vasodilators are useful.</li>
+            <li>Positive-pressure ventilation reduces LV afterload and may be beneficial.</li>
+            <li><b>Avoid IABP</b> in aortic regurgitation.</li>
+            <li>Have rapid pacing and full cross-matched blood available — these patients decompensate abruptly on induction.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-h">Case 3 · Mitral IE with a 14 mm vegetation and a recent embolic stroke</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>A 45-year-old woman with mitral valve IE and a 14 mm mobile vegetation develops sudden right-sided weakness. MRI shows a small cortical infarct without haemorrhage.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li>Vegetation &gt;10 mm = excess embolic risk; surgery indicated to prevent embolisation.</li>
+          <li>Avoid IV tPA or streptokinase, antiplatelets and warfarin in ischaemic complications of IE.</li>
+          <li>Clinically silent or small lesions should <b>not</b> delay cardiac surgery.</li>
+          <li>Risk of neurological deterioration post-cardiac surgery: ~20% in the first 3 days, 20–50% between days 4–14, 6–10% between days 15–28, &lt;1% after 28 days.</li>
+        </ul>
+        <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>Imaging within 24 hours of new neurological features.</li>
+            <li>Anticoagulation decisions must be individualised by the multidisciplinary IE team.</li>
+            <li>If urgent surgery is needed for heart failure or uncontrolled infection and the infarct is small without haemorrhage, surgery can proceed after ~2 weeks.</li>
+            <li>Remember the embolic risk is highest in the first days of antimicrobial therapy — early surgery is preventive.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-h">Case 4 · Mechanical prosthetic valve IE due to <i>S. aureus</i> with intracranial haemorrhage</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>A 55-year-old man with a mechanical mitral valve on warfarin develops <i>S. aureus</i> bacteraemia and then a sudden reduction in consciousness. CT shows an intracerebral haemorrhage.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li><b>Stop anticoagulation.</b> Avoid anticoagulation for the first 2 weeks — the risk of further bleeding and haematoma expansion is highest then.</li>
+          <li>After 2 weeks, it is reasonable to restart cautiously with unfractionated heparin in most cases, guided by aPTT, balancing thromboembolic risk from the mechanical prosthesis.</li>
+          <li>If the neurosurgical team judges bleeding risk high, make a consensus team decision.</li>
+          <li>Postpone cardiac surgery for <b>4 weeks</b> after clinically significant haemorrhage.</li>
+          <li>MPVIE due to <i>S. aureus</i> has a much higher risk of cerebral haemorrhage — even without neurological complications, warfarin can be stopped at diagnosis and substituted with unfractionated heparin for 2 weeks.</li>
+        </ul>
+        <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>Document clearly who authorised stopping/restarting anticoagulation and when.</li>
+            <li>If surgery becomes imminent, consider conversion to heparin.</li>
+            <li>NOACs and LMWH should be stopped in the event of ischaemic stroke or intracerebral haemorrhage — their role here is not established.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-h">Case 5 · CIED infection with lead vegetation</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>A 70-year-old with a permanent pacemaker presents with unexplained fever 4 months after a generator change. Blood cultures grow CoNS. TTE is unremarkable.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li>CIED IE must always be considered with unexplained fever in a patient with a device — presentation is often vague.</li>
+          <li>Take <b>3 or more sets of blood cultures before antimicrobials</b>.</li>
+          <li>A negative TTE does <b>not</b> exclude CIED IE — TEE is required regardless of blood culture or TTE findings (TEE sensitivity 94% vs TTE 23%).</li>
+          <li>If suspicion remains high with negative TTE and TEE, consider radiolabelled leucocyte scintigraphy or <sup>18</sup>F-FDG PET/CT.</li>
+          <li>At least 4–6 weeks of antimicrobials; complete hardware removal is advocated; blood cultures within 24 hours after removal; reimplant on the contralateral side.</li>
+        </ul>
+        <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>Pacemaker-dependent patients need a bridging strategy — a "temporary" ipsilateral device can be considered, but <b>temporary pacing is not routinely recommended</b>.</li>
+            <li>Reassess the need for reimplantation after extraction; postpone reimplantation for days to weeks during antimicrobial therapy.</li>
+            <li>Repeated TEE is not necessary after completing treatment.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-h">Case 6 · <i>Candida</i> prosthetic valve endocarditis</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>A 60-year-old with a bioprosthetic aortic valve and recent prolonged ICU stay develops persistent fever and a new paravalvular leak. Blood cultures grow <i>Candida albicans</i>.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li>Fungal IE responds poorly to medical therapy — mortality up to 70%.</li>
+          <li><b>Valve replacement is mandatory</b>, combined with antifungal therapy.</li>
+          <li>Continue antifungal therapy for ≥6 weeks after surgery, longer with perivalvular abscess.</li>
+          <li>If valve replacement is not possible → lifelong suppressive fluconazole 400–800 mg daily.</li>
+          <li>Antifungals: amphotericin B deoxycholate 0.6–1.0 mg/kg/day ± flucytosine 25 mg/kg q6h, or lipid amphotericin 3–5 mg/kg/day, or an echinocandin (micafungin 150 mg, caspofungin 150 mg, anidulafungin 200 mg daily).</li>
+        </ul>
+        <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>Amphotericin is nephrotoxic and causes dose-related marrow toxicity — avoid in renal failure, prefer lipid formulations, monitor creatinine closely.</li>
+            <li>Anticipate difficult redo cardiac surgery with dense adhesions and possible root reconstruction.</li>
+            <li>Perivalvular abscess may require annulus reconstruction and carries high hospital mortality (up to 41%).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-h">Case 7 · Elderly patient with enterococcal native valve IE and renal impairment</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>An 82-year-old with chronic kidney disease (CrCl 35 mL/min) has enterococcal mitral valve endocarditis. Creatinine is already elevated.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li>For fully penicillin-susceptible <i>Enterococcus</i> with renal impairment (CrCl ≤50 mL/min) or in the elderly, the preferred regimen is <b>ampicillin 2 g IV q4h PLUS ceftriaxone 2 g IV q12h for 6 weeks</b> — avoiding gentamicin nephrotoxicity.</li>
+          <li>This combination is <b>not active against <i>E. faecium</i></b>.</li>
+          <li>Ceftriaxone should never be used alone for enterococcal infection — intrinsically resistant.</li>
+          <li>For native valve enterococcal IE, duration depends on symptom duration: &lt;3 months → ampicillin 4 weeks + gentamicin 2 weeks; &gt;3 months or prosthetic valve → both 6 weeks.</li>
+        </ul>
+        <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>Acute renal failure is itself a complication of IE and may require dialysis — plan vascular access accordingly.</li>
+            <li>Dose-adjust all antimicrobials for renal function (see Section 11).</li>
+            <li>Careful fluid balance and avoidance of further nephrotoxins (NSAIDs, contrast, aminoglycosides).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-h">Case 8 · Penicillin-allergic patient with viridans streptococcal native valve IE</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>A 40-year-old with documented anaphylaxis to penicillin has native mitral valve IE due to penicillin-susceptible viridans streptococci.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li>Use <b>vancomycin 15–20 mg/kg IV q8–12h</b> (max 2 g/dose) — target trough <b>10–15 mg/L</b> for VGS. Duration 4 weeks (native valve).</li>
+          <li>Cephalosporins must be avoided with immediate-type penicillin hypersensitivity (anaphylaxis, angioedema, urticaria).</li>
+          <li>Cefazolin has inadequate blood-brain barrier penetration — watch for treatment failure if there is a brain abscess complicating MSSA IE.</li>
+          <li>Vancomycin is <b>inferior to cloxacillin</b> for MSSA endocarditis — use vancomycin for staphylococcal disease only when there is genuine immediate-type penicillin hypersensitivity or MRSA.</li>
+        </ul>
+        <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>Infuse vancomycin over ≥60 minutes — rapid infusion causes histamine-mediated hypotension and "vancomycin flushing".</li>
+            <li>Monitor trough levels, especially with any change in renal function.</li>
+            <li>Check for cross-reactivity history carefully before any peri-operative antibiotic choice.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-h">Case 9 · IE in pregnancy</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>A 26-year-old, 24 weeks pregnant, with known rheumatic heart disease presents with fever and a new murmur. Echocardiography confirms mitral valve IE.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li><b>Refer to a Specialist Centre</b> with a multidisciplinary team: cardiologist, ID physician, obstetrician, obstetric anaesthetist and neonatologist — from the moment of diagnosis.</li>
+          <li>General IE management is the same as for non-pregnant patients.</li>
+          <li>Surgical indications are the same as for non-pregnant patients, but cardiac surgery should be <b>delayed wherever possible until after delivery</b>.</li>
+          <li>Produce a detailed pregnancy and delivery care plan; the management of IE in pregnancy is also addressed in the Heart Disease in Pregnancy CPG (2016).</li>
+          <li>Provide pre-pregnancy counselling on good skin and oral hygiene; refer for professional oral hygiene care throughout pregnancy.</li>
+        </ul>
+        <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>Anticipate the combined challenges of aortocaval compression, altered drug pharmacokinetics, and a potentially difficult airway.</li>
+            <li>If surgery cannot be delayed, plan for cardiopulmonary bypass in pregnancy with fetal monitoring and a multidisciplinary delivery plan.</li>
+            <li>Avoid beta-blockers in aortic regurgitation — relevant if the lesion involves the aortic valve.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-h">Case 10 · Neonate with a central venous catheter and suspected IE</div>
+      <div class="case-b">
+        <p><span class="lbl">Stem</span><br>A premature neonate in NICU with a long-standing central venous catheter develops recurrent fever, thrombocytopenia and a new murmur.</p>
+        <p><span class="lbl">Key issues</span></p>
+        <ul>
+          <li>IE in the first month of life accounts for 7.3–18% of paediatric IE cases, driven by prolonged indwelling central venous catheters.</li>
+          <li>Common organisms: <i>S. aureus</i>, CoNS, Gram-negative species and <i>Candida</i> spp. — the last is associated with hyperalimentation and high glucose concentrations.</li>
+          <li>Mortality is highest in premature infants (31%) and in <i>S. aureus</i> IE.</li>
+          <li>Left-sided structures are usually affected.</li>
+          <li><b>Remove or change all long-standing central venous catheters</b> — removal is advised in prolonged bacteraemia before diagnosing IE.</li>
+          <li>TTE is highly sensitive (97%) in children weighing &lt;60 kg; TEE is an adjunct for prosthetic material, poor windows or complications.</li>
+          <li>Use weight-based antimicrobial dosing — never exceed the normal maximum adult dose.</li>
+        </ul>
+        <div class="call anaes"><b>Anaesthetic / ICU implications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>Aminoglycoside trough targets in neonates are higher: &lt;4 µmol/mL (&lt;2 mcg/mL) in NICU/PICU versus &lt;2 µmol/mL (&lt;1 mcg/mL) generally.</li>
+            <li>Classical peripheral stigmata of IE are uncommon in children — septic emboli to abdomen, brain and lungs are more typical.</li>
+            <li>The presentation may be indistinguishable from septicaemia; maintain a high index of suspicion in any neonate with a central line and persistent fever.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 16 ============ -->
+<details class="acc">
+  <summary><span class="snum">16</span>Outcome, Follow-Up &amp; Relapse</summary>
+  <div class="acc-body">
+    <ul>
+      <li>After adequate antimicrobial therapy ± surgery, resolution occurs in most patients. Close monitoring with clinical examination and echocardiography is encouraged, especially in the first year.</li>
+      <li>Follow-up frequency depends on clinical status at discharge, residual valvular dysfunction, and the presence/severity of intra- and extracardiac complications.</li>
+      <li>Refer back to a cardiac centre if the patient develops relapse/reinfection, requires advanced imaging to quantify valvular or structural damage, or requires surgical intervention.</li>
+    </ul>
+    <p><b>Surveillance should monitor for:</b> relapse or reinfection (if febrile, take 3 sets of blood cultures <b>before</b> starting empirical antimicrobials) · worsening clinical status and progression of heart failure · severity and progression of valvular regurgitation (timing of surgery) · delayed antimicrobial toxicity (vestibular/auditory toxicity, <i>Clostridioides difficile</i> colitis).</p>
+    <p><b>Relapse and reinfection</b> occur in 2–6%. A high rate of relapse is associated with <i>S. aureus</i>, <i>Enterococcus</i> and Gram-negative organisms such as <i>Pseudomonas aeruginosa</i>; IVDU with pre-treatment symptoms &gt;3 months; previous IE; prosthetic material and CHD.</p>
+    <p><b>Factors increasing relapse rate:</b> inadequate antimicrobial treatment (duration, dose, resistant organism) · polymicrobial infection in IVDU · empirical treatment in BCNIE · periannular extension · persistent metastatic foci · prosthetic valve IE · chronic dialysis. Treatment for relapse/reinfection is as for primary IE — up to 42 days.</p>
+    <div class="call"><b>Reinforce at follow-up</b>
+      Oral care and dental hygiene · rehabilitation for high-risk behaviour (IVDU) · good skin hygiene · discourage body piercing and tattoos.
+    </div>
+  </div>
+</details>
+
+<div id="noresults">No matching sections. Try a different term — e.g. <span class="kbd">warfarin</span>, <span class="kbd">gentamicin</span>, <span class="kbd">timing</span>, <span class="kbd">CIED</span>.</div>
+
+</main>
+
+<footer>
+  <div class="ref">
+    <b>Source / citation</b><br>
+    Kandavello G, Adnan A, Chan JKM, Kalaiarasu MP, Kamaleswary A, Leong CL, Mohd Rahal Y, Norazah Z, Shamruz Khan AAK, Sivakumar S, Suresh Kumar C, Syahidah ST, Yap LB.
+    <i>Clinical Practice Guidelines for the Prevention, Diagnosis &amp; Management of Infective Endocarditis.</i>
+    Published by the Clinical Practice Guidelines (CPG) Secretariat, c/o Health Technology Assessment (HTA) Unit, Medical Development Division, Ministry of Health Malaysia, 4th Floor, Block E1, Parcel E, 62590 Putrajaya; 2017.
+    Developed by the National Heart Association of Malaysia (NHAM) and the Academy of Medicine Malaysia. Valid 2017, review due 2021 or earlier.
+    Available at: <a href="http://www.moh.gov.my">www.moh.gov.my</a> · <a href="http://www.acadmed.org.my">www.acadmed.org.my</a> · <a href="https://www.malaysianheart.org/">www.malaysianheart.org</a>
+    <br><br>
+    <b>Disclaimer</b> — This is an educational condensation for anaesthetists and intensive care clinicians. It is not a substitute for the full CPG or for individual clinical judgement. Doses are for adults with normal renal function unless stated; always verify against the full guideline, local antibiograms and formulary, and adjust for renal/hepatic function, weight and allergies.
+  </div>
+</footer>
+
+<script>
+(function(){
+  const q        = document.getElementById('q');
+  const hits     = document.getElementById('hits');
+  const noRes    = document.getElementById('noresults');
+  const accs     = Array.from(document.querySelectorAll('details.acc'));
+  const original = new Map();
+
+  // Store original HTML for each accordion body
+  accs.forEach(a => {
+    const body = a.querySelector('.acc-body');
+    if (body) original.set(a, body.innerHTML);
+  });
+
+  function restore(a){
+    const body = a.querySelector('.acc-body');
+    if (body && original.has(a)) body.innerHTML = original.get(a);
+  }
+
+  function highlightIn(el, term){
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    const lowerTerm = term.toLowerCase();
+    nodes.forEach(n => {
+      const parent = n.parentNode;
+      if (!parent) return;
+      if (parent.nodeName === 'SCRIPT' || parent.nodeName === 'STYLE' || parent.nodeName === 'MARK') return;
+      const text = n.nodeValue;
+      const lower = text.toLowerCase();
+      let idx = lower.indexOf(lowerTerm);
+      if (idx === -1) return;
+      const frag = document.createDocumentFragment();
+      let last = 0;
+      while (idx !== -1) {
+        frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        const m = document.createElement('mark');
+        m.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(m);
+        last = idx + term.length;
+        idx = lower.indexOf(lowerTerm, last);
+      }
+      frag.appendChild(document.createTextNode(text.slice(last)));
+      parent.replaceChild(frag, n);
+    });
+  }
+
+  let timer;
+  function runSearch(){
+    const term = q.value.trim();
+    let shown = 0;
+
+    accs.forEach(a => {
+      restore(a);
+      const text = a.textContent.toLowerCase();
+      const match = term === '' || text.includes(term.toLowerCase());
+
+      if (match){
+        a.hidden = false;
+        shown++;
+        if (term === ''){
+          // leave open state as-is
+        } else {
+          a.open = true;
+          const body = a.querySelector('.acc-body');
+          if (body) highlightIn(body, term);
+        }
+      } else {
+        a.hidden = true;
+      }
+    });
+
+    noRes.style.display = (shown === 0) ? 'block' : 'none';
+    if (term === ''){
+      hits.textContent = '';
+    } else {
+      hits.textContent = shown + ' section' + (shown === 1 ? '' : 's');
+    }
+  }
+
+  q.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(runSearch, 160);
+  });
+
+  document.getElementById('expandAll').addEventListener('click', () => {
+    accs.forEach(a => { if (!a.hidden) a.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', () => {
+    accs.forEach(a => a.open = false);
+  });
+
+  // Keyboard shortcut: "/" focuses search
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== q){
+      e.preventDefault();
+      q.focus();
+      q.select();
+    }
+  });
+
+  // Clear highlights when the search box is emptied via native clear button
+  q.addEventListener('search', () => { if (q.value === '') runSearch(); });
+})();
+</script>
+</body>
+</html>
