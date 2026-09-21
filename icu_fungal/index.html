@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fungal Infections in the Critically Ill — Anaesthetist's Quick Reference</title>
+<meta name="description" content="Collapsible, searchable quick reference on fungal infections in critically ill adults for anaesthetists and intensivists: Candida, Aspergillus, mucormycosis, cryptococcosis, PCP, antifungals, cases and a memory palace.">
+<style>
+  :root{
+    --bg:#eef2f6;
+    --card:#ffffff;
+    --ink:#16222e;
+    --muted:#5b6b7c;
+    --accent:#0b6fb8;
+    --accent-dark:#08456f;
+    --green:#0e8a6a;
+    --amber:#b45309;
+    --line:#d7e0e8;
+    --mark:#ffe680;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    font-size:15.5px;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:1020px;margin:0 auto;padding:0 16px}
+
+  /* ---------- Header ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:linear-gradient(160deg,#0b3d63 0%,#0b6fb8 100%);
+    color:#fff;
+    padding:12px 0 10px;
+    box-shadow:0 2px 12px rgba(0,0,0,.18);
+  }
+  .topbar h1{
+    margin:0 0 2px;
+    font-size:1.12rem;
+    letter-spacing:.2px;
+    line-height:1.25;
+  }
+  .topbar .sub{
+    margin:0 0 10px;
+    font-size:.78rem;
+    opacity:.85;
+  }
+  .controls{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  #search{
+    flex:1 1 240px;
+    min-width:0;
+    padding:9px 12px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,.35);
+    background:rgba(255,255,255,.96);
+    color:#16222e;
+    font-size:.92rem;
+    outline:none;
+  }
+  #search:focus{box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+  .controls button{
+    padding:8px 12px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,.4);
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    font-size:.8rem;
+    font-weight:600;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .controls button:hover{background:rgba(255,255,255,.24)}
+  .search-info{
+    font-size:.76rem;
+    margin-top:6px;
+    min-height:1em;
+    opacity:.95;
+  }
+  .kbd{
+    font-size:.68rem;
+    border:1px solid rgba(255,255,255,.5);
+    border-radius:4px;
+    padding:1px 5px;
+    margin-left:4px;
+    opacity:.8;
+  }
+
+  /* ---------- Sections ---------- */
+  main{padding-top:14px;padding-bottom:40px}
+  details.section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    margin:0 0 12px;
+    overflow:hidden;
+    box-shadow:0 1px 3px rgba(16,34,52,.06);
+  }
+  details.section.hidden{display:none}
+  details.section>summary{
+    cursor:pointer;
+    list-style:none;
+    padding:13px 16px;
+    font-weight:700;
+    font-size:1rem;
+    color:var(--accent-dark);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(180deg,#fbfdff,#f2f7fc);
+    border-bottom:1px solid transparent;
+  }
+  details.section>summary::-webkit-details-marker{display:none}
+  details.section>summary::before{
+    content:"";
+    width:9px;height:9px;
+    border-right:2.4px solid var(--accent);
+    border-bottom:2.4px solid var(--accent);
+    transform:rotate(-45deg);
+    transition:transform .18s ease;
+    flex:0 0 auto;
+    margin-left:2px;
+  }
+  details.section[open]>summary::before{transform:rotate(45deg)}
+  details.section[open]>summary{border-bottom:1px solid var(--line)}
+  .body{padding:14px 16px 18px}
+  .body>*:first-child{margin-top:0}
+  .body>*:last-child{margin-bottom:0}
+
+  h3{
+    font-size:.94rem;
+    margin:18px 0 8px;
+    color:var(--accent-dark);
+    letter-spacing:.2px;
+  }
+  h4{font-size:.88rem;margin:14px 0 6px;color:#24425c}
+  p{margin:0 0 10px}
+  ul,ol{margin:0 0 12px;padding-left:20px}
+  li{margin-bottom:5px}
+  b,strong{color:#10293d}
+  em{color:#2b4a63}
+  code{
+    background:#eef3f8;border:1px solid #dbe6ef;border-radius:4px;
+    padding:1px 5px;font-size:.85em;
+  }
+  .pill{
+    display:inline-block;font-size:.68rem;font-weight:700;
+    padding:2px 8px;border-radius:999px;vertical-align:middle;
+    letter-spacing:.3px;text-transform:uppercase;
+  }
+  .pill.red{background:#fde8e8;color:#9b1c1c}
+  .pill.amber{background:#fdf3e0;color:#a15c07}
+  .pill.green{background:#e3f6ef;color:#0b6b52}
+  .pill.blue{background:#e6f0fa;color:#0b4f85}
+
+  .callout{
+    border-left:4px solid var(--accent);
+    background:#f4f9fd;
+    padding:10px 14px;
+    border-radius:0 8px 8px 0;
+    margin:12px 0;
+    font-size:.92rem;
+  }
+  .callout.warn{border-left-color:#d97706;background:#fffaf0}
+  .callout.danger{border-left-color:#c0392b;background:#fdf3f2}
+  .callout.ok{border-left-color:var(--green);background:#f1fbf7}
+  .callout p:last-child{margin-bottom:0}
+
+  /* ---------- Tables ---------- */
+  .table-wrap{overflow-x:auto;margin:10px 0 16px;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:520px;background:#fff}
+  caption{
+    caption-side:top;text-align:left;font-weight:700;font-size:.82rem;
+    padding:8px 10px;color:var(--muted);background:#f7fafc;border-bottom:1px solid var(--line);
+  }
+  th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  thead th{background:#f2f7fc;color:var(--accent-dark);font-size:.8rem;letter-spacing:.2px;position:sticky;top:0}
+  tbody tr:nth-child(even){background:#fafcfe}
+  tbody tr:last-child td{border-bottom:none}
+  td.drug{font-weight:650;white-space:nowrap}
+
+  /* ---------- Diagrams ---------- */
+  .diagram-grid{
+    display:grid;
+    grid-template-columns:minmax(200px,300px) 1fr;
+    gap:18px;
+    align-items:center;
+    margin:12px 0 18px;
+  }
+  @media(max-width:640px){.diagram-grid{grid-template-columns:1fr}}
+  .diagram-grid svg{width:100%;height:auto;display:block}
+  .legend{margin:0;padding-left:0;list-style:none;counter-reset:l}
+  .legend li{
+    position:relative;
+    padding-left:30px;
+    margin-bottom:12px;
+    font-size:.88rem;
+  }
+  .legend li::before{
+    counter-increment:l;
+    content:counter(l);
+    position:absolute;left:0;top:0;
+    width:21px;height:21px;border-radius:50%;
+    background:var(--accent);color:#fff;
+    font-size:.72rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  figure{margin:12px 0 18px}
+  figure svg{width:100%;max-width:340px;height:auto;display:block;margin:0 auto;border-radius:10px}
+  figcaption{font-size:.8rem;color:var(--muted);text-align:center;margin-top:8px}
+
+  /* ---------- Cases ---------- */
+  details.case{
+    border:1px solid var(--line);
+    border-left:3px solid var(--green);
+    border-radius:8px;
+    margin-bottom:9px;
+    background:#fdfefe;
+  }
+  details.case>summary{
+    cursor:pointer;list-style:none;padding:9px 12px;
+    font-weight:650;font-size:.88rem;color:#12455f;
+    display:flex;gap:8px;align-items:flex-start;
+  }
+  details.case>summary::-webkit-details-marker{display:none}
+  details.case>summary::before{content:"＋";color:var(--green);font-weight:700;flex:0 0 auto}
+  details.case[open]>summary::before{content:"−"}
+  details.case .case-body{padding:0 14px 12px 32px;font-size:.87rem}
+  details.case .case-body p{margin:0 0 7px}
+  .label{
+    display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.4px;
+    text-transform:uppercase;color:var(--muted);margin-right:4px;
+  }
+
+  /* ---------- Memory palace ---------- */
+  .palace-note{
+    background:#f4f9fd;border:1px dashed #b9d4ea;border-radius:10px;
+    padding:12px 14px;font-size:.87rem;margin-bottom:14px;
+  }
+  .palace-note ol{margin:8px 0 0;padding-left:20px}
+  td.img{min-width:190px;font-style:italic;color:#2d4b63}
+  td.station{font-weight:650;white-space:nowrap}
+
+  mark{background:var(--mark);padding:0 2px;border-radius:3px;color:#000}
+  .hidden{display:none !important}
+
+  footer{
+    background:#0b2233;color:#c6d6e3;
+    padding:22px 0 34px;font-size:.82rem;
+  }
+  footer a{color:#7fc4f2;text-decoration:none;word-break:break-word}
+  footer a:hover{text-decoration:underline}
+  footer ul{padding-left:18px}
+  footer li{margin-bottom:9px}
+  .disclaimer{
+    margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);
+    font-size:.76rem;opacity:.8;
+  }
+
+  @media print{
+    .topbar{position:static;background:#0b3d63 !important;-webkit-print-color-adjust:exact}
+    .controls{display:none}
+    details.section{break-inside:avoid}
+    details.section,details.case{open:true}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <h1>Fungal Infections in the Critically Ill Adult</h1>
+    <p class="sub">Anaesthetist's / Intensivist's quick reference — Candida · Aspergillus · Mucorales · Cryptococcus · PCP</p>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search the whole page… (voriconazole, air crescent, DKA, micafungin…)" aria-label="Search reference">
+      <button id="expandAll" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+    </div>
+    <div id="searchInfo" class="search-info" role="status" aria-live="polite"></div>
+  </div>
+</header>
+
+<main id="content" class="wrap">
+
+  <!-- ============ 1. KEY POINTS ============ -->
+  <details class="section" id="s1" open>
+    <summary>1 · Key points at a glance</summary>
+    <div class="body">
+      <ul>
+        <li>The incidence of fungal disease in critically ill patients is <b>thought to be increasing</b>, most commonly involving <b><em>Candida</em></b> and <b><em>Aspergillus</em></b> species.</li>
+        <li><b>Risk factors</b> for invasive fungal infection: immunocompromised states including neutropenia; intravascular or other catheters (especially with parenteral nutrition); prostheses; loss of anatomical barriers (e.g. burns); broad-spectrum antimicrobial usage.</li>
+        <li><b>Delay in starting antifungal therapy is associated with worse outcomes.</b> Because confirming fungal infection is difficult, <b>empirical therapy is often commenced in high-risk patients</b>.</li>
+        <li><b>Geographical variation</b> in the prevalence of fungal species affects the choice of antifungal therapy.</li>
+        <li>Symptoms are usually <b>non-specific</b> (fever, tachycardia) or reflect end-organ damage (hypoxia, confusion). A <b>high index of suspicion</b> is essential.</li>
+        <li>Fungi are <b>eukaryotes</b> with a cell wall (chitin, chitosan, mannan, glucan) and a membrane containing <b>ergosterol instead of cholesterol</b> — this difference is the basis of most antifungal drugs.</li>
+      </ul>
+      <div class="callout warn">
+        <p><b>One-line take-home:</b> in the ICU, think fungus when a patient is <em>not improving on broad-spectrum antibacterials</em> and has the right risk profile — treat early, and always ask "is this colonisation or invasion?"</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 2. STRUCTURE ============ -->
+  <details class="section" id="s2">
+    <summary>2 · Structure &amp; classification of fungi</summary>
+    <div class="body">
+      <p>Although there are many different species of fungi, relatively few are responsible for human illness. Fungal infections associated with critical illness are thought to be increasing in incidence, possibly as a result of the increasing population of immunocompromised individuals, more aggressive medical interventions and procedures, and increased use of anti-bacterial therapies.</p>
+
+      <p>Fungi are <b>eukaryotes</b> (membranes cover the nucleus and other intracellular organelles); this makes them structurally similar to animals and plants, but different from prokaryotes such as bacteria. Fungi have <b>rigid cell walls containing chitin, chitosan, mannan and glucan</b>. Their cell membranes are structurally different from those of animals because they contain <b>ergosterol rather than cholesterol</b>.</p>
+
+      <h3>Moulds vs yeasts</h3>
+      <ul>
+        <li><b>Yeasts</b> (e.g. <em>Candida</em>) — small rounded cells that can bud.</li>
+        <li><b>Moulds</b> (e.g. <em>Aspergillus</em>) — stranded, filamentous appearance caused by <b>hyphae</b>.</li>
+        <li><b>Dimorphic</b> fungi can exist in both forms (e.g. <em>Blastomyces</em>).</li>
+        <li>Some yeasts develop <b>pseudo-hyphae</b> (e.g. <em>Candida</em> species).</li>
+        <li>A matted, intermeshed network of hyphae is a <b>mycelium</b>.</li>
+      </ul>
+
+      <h3>Growth &amp; reproduction</h3>
+      <ul>
+        <li>Fungi are <b>slow-growing</b>; cell-doubling times can be as long as days — this limits the ability to identify clinically relevant infection quickly.</li>
+        <li>Reproduction may be sexual, asexual, or both, and may produce "daughter cells" or <b>spores</b>.</li>
+        <li>Many fungi and spores are <b>environmentally ubiquitous</b> — <em>Aspergillus</em> is common in soil and its spores are prevalent in the atmosphere.</li>
+        <li>Several fungi are <b>common human flora</b> (e.g. <em>Candida</em> in the gut) or colonise the gut, oropharynx, or upper and lower airways.</li>
+      </ul>
+
+      <div class="callout">
+        <p><b>Clinical trap:</b> it can be difficult to tell whether a positive fungal culture represents <b>invasive disease</b> or simply capture of <b>normal flora / colonisation</b>. Always interpret in the context of the patient.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 3. RISK FACTORS ============ -->
+  <details class="section" id="s3">
+    <summary>3 · Risk factors for fungal disease (Table 1)</summary>
+    <div class="body">
+      <div class="table-wrap">
+        <table>
+          <caption>Table 1 — Risk factors thought to affect the incidence of fungal disease</caption>
+          <thead>
+            <tr><th style="width:22%">Category</th><th>Risk factors</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="drug">Immunocompromise</td>
+              <td>Human immunodeficiency virus · Haematological malignancy · Haematopoietic stem cell transplant · Neutropaenia · Chemotherapy · Immunosuppressant usage (solid organ transplant, long-term steroids) · Liver disease · Diabetes · Renal failure and haemodialysis · Burns · Malnutrition</td>
+            </tr>
+            <tr>
+              <td class="drug">Respiratory compromise</td>
+              <td>Suppurative diseases (cystic fibrosis, bronchiectasis, chronic obstructive pulmonary disease) · Tracheal intubation and mechanical ventilation</td>
+            </tr>
+            <tr>
+              <td class="drug">Invasive procedures</td>
+              <td>Central venous catheters · Parenteral nutrition · Urinary catheterisation · Intra-peritoneal dialysis catheters · Implanted prosthetics and devices (e.g. heart valves)</td>
+            </tr>
+            <tr>
+              <td class="drug">General</td>
+              <td>Increased use of broad-spectrum antibiotic therapy · Gut lumen contamination of body compartments (faecal peritonitis, oesophageal perforation) · I.V. drug misuse</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><b>Admission to ICU is itself a risk factor</b> for invasive fungal infection, and there is evidence of higher rates of non-infective fungal colonisation and of horizontal transmission within critical care areas.</p>
+    </div>
+  </details>
+
+  <!-- ============ 4. CANDIDA ============ -->
+  <details class="section" id="s4">
+    <summary>4 · <em>Candida</em> — the commonest ICU fungus</summary>
+    <div class="body">
+      <p><em>Candida</em> species are responsible for the <b>majority of fungal infections in critically ill patients</b>, with <b><em>Candida albicans</em></b> being the most common organism in the UK.</p>
+
+      <h3>Non-albicans species</h3>
+      <p>The genus also contains <em>C. tropicalis</em>, <em>C. parapsilosis</em>, <em>C. glabrata</em>, <em>C. krusei</em> and <em>C. dubliniensis</em> — collectively the <b>non-albicans</b> species. Their incidence varies geographically and overall appears to be <b>increasing</b>, possibly related to increased use of <b>fluconazole</b>, which may select out resistant non-albicans species such as <em>C. glabrata</em> and <em>C. krusei</em>. Non-albicans infection has been associated with <b>worse outcomes</b>.</p>
+
+      <h3>Spectrum of disease</h3>
+      <ul>
+        <li><b>Superficial</b> candidiasis/candidosis — mostly mucous membranes or skin.</li>
+        <li><b>Invasive candidiasis</b> — <em>Candida</em> enters the bloodstream (<b>candidaemia</b>) with haematogenous spread to liver, spleen, brain, eyes (<b>endophthalmitis</b>) or heart (<b>endocarditis</b>).</li>
+        <li><b>Direct spread</b> — peritoneum and thoracic cavity after bowel or oesophageal perforation, or via colonisation of intra-peritoneal dialysis catheters.</li>
+      </ul>
+
+      <h3>Epidemiology &amp; mortality</h3>
+      <ul>
+        <li>USA data: <em>Candida</em> is the <b>4th most common</b> cause of nosocomial ICU bloodstream infection (5–10% of infections).</li>
+        <li>European studies: between the <b>6th and 10th</b> most common cause.</li>
+        <li>Mortality associated with candidaemia may be <b>as high as 40%</b>.</li>
+      </ul>
+
+      <h3>Respiratory secretions — usually colonisation</h3>
+      <div class="callout danger">
+        <p><em>Candida</em> spp. are often isolated from respiratory secretions in critically ill patients, but <b>true infection of the lower respiratory tract is rare</b>. Growth of <em>Candida</em> from respiratory specimens alone <b>should not prompt antifungal therapy</b> in most patients.</p>
+      </div>
+
+      <h3>Urine — interpret with care</h3>
+      <ul>
+        <li>May simply represent colonisation of a urinary catheter or lower urinary tract in the absence of symptoms.</li>
+        <li>May cause ascending pyelonephritis, frequently complicated by <b>fungal balls</b>, or spread haematogenously to the urinary tract.</li>
+        <li><b>Pyuria is of limited value</b> — it may represent bacterial co-infection in as many as <b>25%</b> of cases.</li>
+        <li>In <b>severely immunocompromised</b> patients, fever + candiduria may be a surrogate marker of disseminated disease and requires treatment. In other groups, <b>removing predisposing factors</b> (e.g. indwelling catheters) may be sufficient.</li>
+      </ul>
+
+      <h3>Devices &amp; line removal</h3>
+      <ul>
+        <li><em>Candida</em> commonly colonises urinary catheters and intravascular devices (especially with parenteral nutrition); <b>removal of the indwelling device is often required</b> to eradicate and cure associated infection.</li>
+        <li>In <b>non-neutropaenic</b> patients there is evidence of <b>improved outcomes after early line removal</b>, regardless of the putative source.</li>
+        <li>Where <b><em>C. parapsilosis</em></b> is the causative organism, line removal should be undertaken whenever possible — the organism is thought to form <b>resistant biofilms</b>.</li>
+      </ul>
+
+      <h3>Eye &amp; heart</h3>
+      <ul>
+        <li>The two most commonly cited complications of disseminated candidiasis are <b>infective endocarditis</b> and <b>ocular involvement</b> — hence recommendations that patients with candidaemia undergo <b>echocardiography</b> and <b>dilated retinal examination</b>.</li>
+        <li>A more targeted approach has been suggested: <b>persistently positive blood cultures despite treatment and removal of an infected focus</b> indicates the need to investigate for endovascular involvement.</li>
+        <li>Patients reporting <b>new visual disturbance</b> should be prioritised — but <b>early ophthalmological review is required even without symptoms</b>, as infection may be clinically silent, especially in the critically ill.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 5. ASPERGILLUS ============ -->
+  <details class="section" id="s5">
+    <summary>5 · <em>Aspergillus</em> — the mould that invades</summary>
+    <div class="body">
+      <p><em>Aspergillus</em> species are responsible for a range of <b>invasive and saprophytic</b> human diseases, and also common but non-infective conditions such as <b>allergic bronchopulmonary aspergillosis</b> and <b>allergic sinusitis</b>. The <b>lung is the most common site</b> of true infection.</p>
+
+      <h3>Spectrum of pulmonary disease</h3>
+      <ul>
+        <li><b>Aspergilloma (fungal ball)</b> — regarded as a <b>saprophytic</b> condition.</li>
+        <li><b>Invasive pulmonary aspergillosis (IPA)</b>.</li>
+        <li><b>Chronic necrotizing pulmonary aspergillosis</b>.</li>
+        <li><b>Chronic cavitary aspergillosis</b>.</li>
+        <li><b>Tracheobronchial aspergillosis</b> and <b><em>Aspergillus</em> bronchitis</b>.</li>
+        <li><b>Extrapulmonary aspergillosis</b> — via haematogenous dissemination or contiguous spread (e.g. sinus disease leading to cerebral involvement).</li>
+      </ul>
+
+      <h3>Species</h3>
+      <p>Only a very few of the several hundred species cause human disease, and of these <b><em>Aspergillus fumigatus</em></b> is the most common. Less common potential pathogens include <em>A. niger</em>, <em>A. flavus</em>, <em>A. nidulans</em>, <em>A. oryzae</em>, <em>A. glaucus</em> and <em>A. versicolor</em>. <b><em>A. terreus</em> is resistant to amphotericin B.</b></p>
+
+      <h3>Clinical presentation</h3>
+      <ul>
+        <li>Typically <b>non-specific</b>: fever, cough, dyspnoea, and occasionally pleuritic pain or <b>haemoptysis</b>.</li>
+        <li>Dissemination from the lungs may cause <b>abscess/aspergilloma formation</b> and <b>angio-invasion</b>.</li>
+        <li>Angio-invasion occasionally results in <b>pseudo-aneurysms that rupture</b>, causing <b>massive haemoptysis</b> where the lungs are affected.</li>
+      </ul>
+
+      <h3>Imaging</h3>
+      <ul>
+        <li><b>Chest X-ray</b> changes are typically non-specific: pleural infiltrates, cavitation, rounded densities. <b>Pleural effusions are uncommon.</b></li>
+        <li><b>Chest CT</b> may identify features more specific to invasive <em>Aspergillus</em> infection — see the diagnostic techniques section.</li>
+      </ul>
+
+      <h3>Microbiology &amp; histology</h3>
+      <ul>
+        <li>Direct sampling of bronchial secretions/washings or lung tissue may indicate the presence of <em>Aspergillus</em>, but <b>presence in secretions alone cannot distinguish colonisation from true infection</b> — interpret in the clinical context.</li>
+        <li><b>Lung histology</b> is rarely available but can confirm the diagnosis by demonstrating <b>septate, branching hyphae invading lung tissue</b>.</li>
+        <li>In <b>neutropaenic patients</b> the diagnostic yield of any culture may be particularly low, and <em>Aspergillus</em>-specific antifungal therapy is often commenced on an <b>empirical basis</b> in patients with risk factors.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 6. ZYGOMYCOSIS ============ -->
+  <details class="section" id="s6">
+    <summary>6 · Zygomycosis (mucormycosis)</summary>
+    <div class="body">
+      <p>Zygomycetes are a class of fungus that includes several orders and species. The taxonomy contains many synonymous or obsolete terms, but as the order <b>Mucorales</b> are most commonly involved in human infection, the terms <b>"mucormycosis"</b> and <b>"zygomycosis"</b> are often used interchangeably. The literature is confusing to interpret; an up-to-date list of fungal terms is available at <a href="http://www.doctorfungus.org" target="_blank" rel="noopener">www.doctorfungus.org</a>.</p>
+
+      <p><b>Most commonly implicated species:</b> <em>Absidia corymbifera</em>, <em>Rhizopus arrhizus</em>, <em>Rhizomucor pusillus</em>, <em>Mucor indicus</em>.</p>
+
+      <h3>Key features</h3>
+      <ul>
+        <li><b>Rare</b>, and may affect any organ — in particular the <b>sinuses, brain, skin, lungs and gastrointestinal tract</b>.</li>
+        <li><b>Angio-invasion and disseminated infection with associated necrosis</b> are hallmarks of the disease.</li>
+        <li><b>Prompt surgical debridement together with antifungal therapy may improve survival</b>, although mortality rates are high.</li>
+        <li>Typically affects <b>immunocompromised hosts</b>, but also has a specific association with <b>diabetic ketoacidosis</b>, where a classic <b>rhinocerebral form</b> can occur that carries a <b>poor prognosis</b>.</li>
+      </ul>
+      <div class="callout danger">
+        <p><b>Do not miss:</b> DKA + facial/orbital pain, periorbital swelling, black necrotic eschar on the palate or nasal mucosa = <b>rhinocerebral mucormycosis</b>. This is a surgical emergency — call ENT/maxillofacial immediately.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 7. CRYPTOCOCCUS ============ -->
+  <details class="section" id="s7">
+    <summary>7 · Cryptococcosis</summary>
+    <div class="body">
+      <p><em>Cryptococcus neoformans</em> and <em>Cryptococcus gattii</em> are responsible for most cases of cryptococcosis, which is <b>strongly associated with immunocompromise, and in particular HIV infection</b>. As with tuberculous infections, cryptococci are known to <b>remain dormant within lymph nodes</b>.</p>
+
+      <p>Cryptococcosis primarily affects either the <b>lungs</b> or the <b>central nervous system</b>, but can result in disseminated infection affecting almost any organ.</p>
+
+      <h3>Pulmonary cryptococcosis</h3>
+      <ul>
+        <li>Infiltrative pneumonia, occasionally with associated <b>pleural effusions</b> or <b>hilar lymphadenopathy</b>.</li>
+        <li><b>Pulmonary nodules</b> may occur, which can cavitate or result in distal lung collapse.</li>
+        <li>Chest X-ray appearances may be <b>similar to those of lung cancer</b>.</li>
+      </ul>
+
+      <h3>Cryptococcal meningo-encephalitis</h3>
+      <ul>
+        <li>May develop <b>slowly over weeks</b>.</li>
+        <li>Fever and non-specific neurological symptoms: <b>headache, cranial nerve palsies, memory loss, meningeal irritation, reduced consciousness</b>.</li>
+        <li><b>Cryptococcomas</b> can develop, as can <b>raised intracranial pressure</b> — especially if hydrocephalus develops as a result of "sludging" within the CSF, cryptococcoma formation, or scarring.</li>
+        <li>Even with optimal treatment, mortality associated with cryptococcal meningoencephalitis is <b>as high as 20%</b>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 8. DIMORPHIC FUNGI ============ -->
+  <details class="section" id="s8">
+    <summary>8 · Blastomyces, Histoplasma, Coccidioides, Paracoccidioides</summary>
+    <div class="body">
+      <p><em>Blastomyces dermatitidis</em>, <em>Histoplasma capsulatum</em>, <em>Coccidioides immitis</em> and <em>Paracoccidioides brasiliensis</em> are <b>thermally dimorphic fungi</b> found in soil from the Americas (and in the case of <em>B. dermatitidis</em> also from Africa). These fungi are capable of causing <b>self-limiting pneumonia when inhaled</b>. In immunocompromised individuals, haematogenous spread may affect the <b>liver, bones, joints, brain or skin</b>.</p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Distinguishing features of the dimorphic fungi</caption>
+          <thead><tr><th>Organism</th><th>Key clinical clues</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">Histoplasma capsulatum</td><td>May appear similar to <em>Pneumocystis jirovecii</em> yeasts; can cause a <b>cavitating pulmonary disease</b> similar in appearance to tuberculous lung disease.</td></tr>
+            <tr><td class="drug">Blastomyces dermatitidis</td><td>May cause <b>granulomatous skin ulcers</b>.</td></tr>
+            <tr><td class="drug">Paracoccidioides brasiliensis</td><td><b>Palatal and oropharyngeal lesions</b> with extensive erosion and tissue destruction.</td></tr>
+            <tr><td class="drug">Coccidioides immitis</td><td>Endemic desert soil; pulmonary disease with dissemination in the immunocompromised.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <p><b>Diagnostic &amp; safety warning:</b> in non-endemic areas, diagnosing these infections is difficult because of the lack of availability of indirect laboratory tests and reliance on slow and relatively insensitive direct culture techniques. <b>Propagating these organisms is hazardous to laboratory personnel</b> — samples should be labelled as <b>high risk</b> with the relevant history attached. <b>Consultation with a medical microbiologist is essential</b> if infection with dimorphic fungi is suspected.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 9. PCP ============ -->
+  <details class="section" id="s9">
+    <summary>9 · <em>Pneumocystis</em> pneumonia (PCP)</summary>
+    <div class="body">
+      <p>There are different species of <em>Pneumocystis</em>, but they appear to be <b>species specific</b>, with <em>Pneumocystis jirovecii</em> affecting the human lungs. <em>P. jirovecii</em> (also known as <em>Pneumocystis carinii</em>) was previously thought to be a protozoa but is <b>genetically classified as a fungus</b>. It demonstrates certain aspects that are different from other fungi, including a <b>lack of ergosterol</b>.</p>
+
+      <h3>Presentation</h3>
+      <ul>
+        <li>Gradually progressive <b>dyspnoea</b>.</li>
+        <li><b>Unproductive cough</b> — although up to <b>30%</b> of patients may expectorate.</li>
+        <li><b>Low-grade fever</b>.</li>
+        <li>Associated with <b>HIV seropositive</b> individuals (specifically advanced disease/AIDS), <b>cancer</b>, or the administration of <b>immunosuppressants</b> (including after organ transplantation).</li>
+      </ul>
+
+      <h3>Investigations</h3>
+      <ul>
+        <li>Chest X-ray: <b>bilateral, proximal interstitial infiltrates</b>; <b>pneumatocoeles and pneumothoraces</b> are common findings.</li>
+        <li>Dissemination beyond the lungs is rare.</li>
+        <li>Person-to-person spread is suspected to occur — <b>isolation of patients is advisable</b>.</li>
+      </ul>
+
+      <h3>Treatment</h3>
+      <div class="callout danger">
+        <p><b>Most antifungal agents are ineffective against <em>P. jirovecii</em></b> because it lacks ergosterol. Treatment is <b>co-trimoxazole</b>, pentamidine, atovaquone, primaquine, dapsone or clindamycin. There is some evidence that <b>echinocandins</b> may be active, in particular <b>micafungin</b>. Antimicrobial treatment is normally accompanied by the administration of <b>steroids</b>.</p>
+      </div>
+      <p>PCP has a high associated mortality, with estimates ranging from <b>20 to 60%</b>.</p>
+    </div>
+  </details>
+
+  <!-- ============ 10. DIAGNOSTICS ============ -->
+  <details class="section" id="s10">
+    <summary>10 · Diagnostic techniques (Table 2 + imaging)</summary>
+    <div class="body">
+      <p>Fungi, or fungal invasion of tissues, can sometimes be seen directly under the microscope, and certain fungi can also be cultured using specialist culture plates, which can contain anti-bacterial elements. Where there is skin involvement, microscopy and culture of skin biopsies may help in identifying the organism.</p>
+
+      <p>Specialist tests can detect fungal elements including <b>polymerase chain reaction (PCR)</b> detection of fungal DNA, and <b>galactomannan</b>, which is present in the cell wall of <em>Aspergillus</em> species and can be detected in blood and broncho-alveolar lavage (BAL) specimens.</p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 2 — Diagnostic techniques available for identifying fungal infections. *May not be readily available in the UK. †Sputum induction with hypertonic saline may be useful; microscopic identification of PCP is thought to be most effective in patients with AIDS.</caption>
+          <thead><tr><th style="width:26%">Infection</th><th>Investigations</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="drug">Candidiasis</td>
+              <td>Microscopy/culture of sputum, BAL, urine, or other body fluids (or tissue samples) · Blood culture · Serum mannan and anti-mannan tests · Serum assay for 1–3 beta-d-glucan · Whole blood PCR · Fundoscopy if eye involvement considered</td>
+            </tr>
+            <tr>
+              <td class="drug">Aspergillosis</td>
+              <td>Microscopy/culture of sputum, or other body fluids or tissue samples · Serum or BAL assay for galactomannan · Serum assay for 1–3 beta-d-glucan · Whole blood PCR · Chest CT imaging</td>
+            </tr>
+            <tr>
+              <td class="drug">Zygomycosis</td>
+              <td>Microscopy/culture of sputum, BAL, or other body fluids or tissue samples (including tissue scrapings and skin biopsies from necrotic lesions) · Whole blood PCR (in some cases)</td>
+            </tr>
+            <tr>
+              <td class="drug">Cryptococcus</td>
+              <td>Microscopy/culture of CSF · Blood and urine culture · Antigen test on CSF or blood · Chest X-ray</td>
+            </tr>
+            <tr>
+              <td class="drug">Blastomycosis</td>
+              <td>Microscopy/culture of sputum, BAL, urine, or pus · Serum assay for 1–3 beta-D-glucan · Urine antigen assay*</td>
+            </tr>
+            <tr>
+              <td class="drug">Histoplasmosis</td>
+              <td>Microscopy/culture of sputum, BAL, or pus · Microscopy of blood smears · Blood or bone-marrow culture · Serum assay for 1–3 beta-D-glucan · Antigen radioimmunoassay in blood, urine, CSF, or BAL</td>
+            </tr>
+            <tr>
+              <td class="drug">Coccidioidomycosis</td>
+              <td>Microscopy/culture of sputum, CSF, joint aspiration fluid, or pus · Serum assay for 1–3 beta-D-glucan · Coccidioidal skin test* · Serum latex agglutination test* · Serum or CSF complement fixation test*</td>
+            </tr>
+            <tr>
+              <td class="drug">Paracoccidioidomycosis</td>
+              <td>Microscopy/culture of sputum, pus, or tissue granuloma biopsies · Antigen complement fixation test*</td>
+            </tr>
+            <tr>
+              <td class="drug">Pneumocystis pneumonia</td>
+              <td>Microscopy of sputum (after staining)† · Sputum or BAL immunofluorescence and PCR · Serum assay for 1–3 beta-D-glucan · Chest X-ray and chest CT imaging</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Serum markers</h3>
+      <ul>
+        <li><b>Serum inflammatory markers are non-specific</b> for fungal infections.</li>
+        <li><b>Moderate increases in procalcitonin</b> may assist in differentiating between fungal and bacterial infections, but procalcitonin has a <b>low sensitivity for invasive fungal infections</b>.</li>
+      </ul>
+
+      <h3>Imaging</h3>
+      <ul>
+        <li>Chest X-ray changes in fungal pneumonia are <b>non-specific</b>.</li>
+        <li>In <em>Aspergillus</em> lung disease, the presence of <b>aspergillomas</b> or <b>"air crescent" formations</b> on chest CT can be <b>diagnostic if present</b>.</li>
+        <li>More common but less specific CT findings: <b>nodules surrounded by a diffuse "halo" of ground-glass appearance (the halo sign)</b>, or <b>pleural "wedges" of consolidation</b>.</li>
+        <li><b>Fundoscopy</b> may reveal <b>cotton-wool ball changes</b> within the retina if candidal chorioretinitis is present.</li>
+      </ul>
+
+      <figure>
+        <svg viewBox="0 0 320 220" role="img" aria-label="Simplified axial CT of the chest showing a lung cavity containing a fungal ball with an adjacent crescent of air">
+          <defs>
+            <marker id="arrowHead" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+              <path d="M0,0 L9,4.5 L0,9 z" fill="#ffd21f"/>
+            </marker>
+          </defs>
+          <rect width="320" height="220" fill="#0b0b0e"/>
+          <!-- chest wall -->
+          <ellipse cx="160" cy="112" rx="152" ry="102" fill="#2b2b30"/>
+          <ellipse cx="160" cy="112" rx="140" ry="92" fill="#0b0b0e"/>
+          <!-- mediastinum / spine -->
+          <ellipse cx="160" cy="196" rx="18" ry="14" fill="#4a4a52"/>
+          <!-- lungs -->
+          <ellipse cx="82" cy="112" rx="58" ry="78" fill="#15151a" stroke="#3b3b43" stroke-width="1.5"/>
+          <ellipse cx="238" cy="112" rx="58" ry="78" fill="#15151a" stroke="#3b3b43" stroke-width="1.5"/>
+          <!-- cavity -->
+          <circle cx="238" cy="104" r="44" fill="#050507" stroke="#8c8c96" stroke-width="1.8"/>
+          <!-- fungal ball -->
+          <circle cx="238" cy="119" r="29" fill="#b6b6bd"/>
+          <circle cx="228" cy="112" r="6" fill="#96969e" opacity="0.7"/>
+          <circle cx="248" cy="126" r="5" fill="#96969e" opacity="0.7"/>
+          <!-- air crescent highlight -->
+          <path d="M204 82 A44 44 0 0 1 272 82" fill="none" stroke="#ffd21f" stroke-width="2" stroke-dasharray="4 3"/>
+          <!-- arrow -->
+          <line x1="96" y1="188" x2="222" y2="78" stroke="#ffd21f" stroke-width="2.6" marker-end="url(#arrowHead)"/>
+          <text x="8" y="24" fill="#cfd8e3" font-size="11" font-family="sans-serif">Axial CT — right lung</text>
+          <text x="252" y="206" fill="#ffd21f" font-size="11" font-family="sans-serif">air crescent</text>
+        </svg>
+        <figcaption><b>Fig 1 (simplified).</b> <em>Aspergillus</em> lung disease showing a lung cavity containing a fungal ball (aspergilloma) with the diagnostic <b>"air crescent"</b> of air between the ball and the cavity wall. The halo sign (nodule with surrounding ground-glass) is the other classic CT finding.</figcaption>
+      </figure>
+    </div>
+  </details>
+
+  <!-- ============ 11. ANTIFUNGALS ============ -->
+  <details class="section" id="s11">
+    <summary>11 · Antifungal agents — mechanisms &amp; formulary (Table 3)</summary>
+    <div class="body">
+      <p>Antifungal agents work by a variety of mechanisms. The three main targets are the <b>cell wall</b>, the <b>cell membrane</b> and the <b>nucleus</b>.</p>
+
+      <div class="diagram-grid">
+        <svg viewBox="0 0 360 300" role="img" aria-label="Diagram of a fungal cell showing the three main antifungal drug targets">
+          <!-- cell wall -->
+          <ellipse cx="175" cy="150" rx="150" ry="115" fill="#eaf3fb" stroke="#7aa9d6" stroke-width="16"/>
+          <!-- membrane -->
+          <ellipse cx="175" cy="150" rx="132" ry="97" fill="#fdf3e3" stroke="#e8a33d" stroke-width="5"/>
+          <!-- nucleus -->
+          <circle cx="160" cy="155" r="46" fill="#e6d8f6" stroke="#9b6fd0" stroke-width="3"/>
+          <!-- marker 1: cell wall -->
+          <circle cx="175" cy="30" r="13" fill="#0b6fb8"/>
+          <text x="175" y="35" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">1</text>
+          <!-- marker 2: membrane -->
+          <circle cx="307" cy="150" r="13" fill="#0b6fb8"/>
+          <text x="307" y="155" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">2</text>
+          <!-- marker 3: nucleus -->
+          <circle cx="160" cy="155" r="13" fill="#0b6fb8"/>
+          <text x="160" y="160" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">3</text>
+        </svg>
+        <ol class="legend">
+          <li><b>Cell wall</b> — <b>echinocandins</b> inhibit glucan synthesis.</li>
+          <li><b>Cell membrane</b> — <b>polyenes</b> (amphotericin B and nystatin) bind to ergosterol; <b>imidazoles, triazoles and terbinafine</b> prevent ergosterol synthesis.</li>
+          <li><b>Cell nucleus</b> — <b>flucytosine</b> inhibits DNA and RNA synthesis; <b>griseofulvin</b> inhibits cell mitosis.</li>
+        </ol>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 3 — Antifungal agents, formulations and main indications</caption>
+          <thead><tr><th>Class</th><th>Drug</th><th>Route</th><th>Main indication</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="4" class="drug">Azoles<br>(triazoles)</td><td class="drug">Fluconazole</td><td>PO / IV</td><td><em>Candida albicans</em>; candidiasis</td></tr>
+            <tr><td class="drug">Itraconazole</td><td>PO / IV</td><td>Blastomycosis, histoplasmosis, aspergillosis, candidiasis, cryptococcal meningitis</td></tr>
+            <tr><td class="drug">Voriconazole</td><td>PO / IV</td><td>Invasive aspergillosis (first line), non-albicans candidaemia, coccidioidomycosis, fluconazole-resistant <em>Candida</em> spp.</td></tr>
+            <tr><td class="drug">Posaconazole</td><td>PO</td><td><em>Aspergillus</em> (alternative treatment), zygomycosis, fluconazole-resistant <em>Candida</em> spp.</td></tr>
+
+            <tr><td rowspan="5" class="drug">Azoles<br>(imidazoles)</td><td class="drug">Ketoconazole</td><td>PO</td><td rowspan="5">All limited to cutaneous or mucocutaneous fungal infections (topical/buccal use)</td></tr>
+            <tr><td class="drug">Miconazole</td><td>Topical / buccal</td></tr>
+            <tr><td class="drug">Econazole nitrate</td><td>Topical</td></tr>
+            <tr><td class="drug">Clotrimazole</td><td>Topical</td></tr>
+            <tr><td class="drug">Tioconazole</td><td>Topical</td></tr>
+
+            <tr><td rowspan="3" class="drug">Echinocandins*</td><td class="drug">Anidulafungin</td><td>IV</td><td><em>Candida</em> species</td></tr>
+            <tr><td class="drug">Caspofungin</td><td>IV</td><td>Most <em>Candida</em> infections; potential salvage treatment for <em>Aspergillus</em>†</td></tr>
+            <tr><td class="drug">Micafungin</td><td>IV</td><td>Active against most systemic fungal infections, including aspergillosis</td></tr>
+
+            <tr><td rowspan="3" class="drug">Polyenes</td><td class="drug">Amphotericin B</td><td>IV</td><td rowspan="3">Broadest spectrum of antifungal activity; invasive aspergillosis, zygomycosis, cryptococcosis, severe candidiasis, blastomycosis, histoplasmosis, coccidioidomycosis</td></tr>
+            <tr><td class="drug">Liposomal amphotericin (AmBisome®)</td><td>IV</td></tr>
+            <tr><td class="drug">Amphotericin lipid complex (Abelcet®)</td><td>IV</td></tr>
+
+            <tr><td class="drug">Others</td><td class="drug">Flucytosine</td><td>IV</td><td>Cryptococcal meningitis (used in combination with amphotericin)</td></tr>
+
+            <tr><td class="drug">Topical / other</td><td colspan="3">Amorolfine · Benzoic acid · Griseofulvin · Nystatin · Terbinafine · Undecanoates</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.8rem;color:var(--muted)">
+        *Echinocandins have activity against <em>Pneumocystis</em> pneumonia, but are not commonly used treatments.
+        †<em>Aspergillus terreus</em> is resistant to amphotericin B. <em>Pneumocystis</em> pneumonia antimicrobials are not included in the table above as they are not classical antifungal agents.
+      </p>
+
+      <h3>Amphotericin B — the broadest, but toxic</h3>
+      <ul>
+        <li>An IV polyene antifungal with the <b>broadest range of antifungal activity</b>, but usage is limited by side-effects: <b>nephrotoxicity, anaphylactoid reactions, electrolyte disturbance and bone-marrow suppression</b>.</li>
+        <li><b>Liposomal</b> formulations (AmBisome, Abelcet) have a reduced incidence of nephrotoxicity.</li>
+        <li><b>Different formulations of amphotericin should not be stored together</b> — their dosing regimens are very different and there is the potential for <b>severe toxicity</b> if conventional amphotericin is dosed in the same manner as liposomal amphotericin.</li>
+      </ul>
+
+      <h3>Echinocandins and azoles</h3>
+      <ul>
+        <li>Both are <b>well tolerated</b>, but both classes may have a tendency to promote varying degrees of <b>liver dysfunction</b>.</li>
+        <li>Certain azoles <b>prolong the QT interval</b>, particularly when used in combination with other drugs.</li>
+        <li>Azoles also affect <b>cytochrome P450</b>, causing drug interactions — for example with <b>ciclosporin and rifampicin</b>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 12. TARGETED THERAPY ============ -->
+  <details class="section" id="s12">
+    <summary>12 · Targeted antifungal therapy by organism</summary>
+    <div class="body">
+      <div class="table-wrap">
+        <table>
+          <caption>First-line targeted therapy (check local guidelines and sensitivities)</caption>
+          <thead><tr><th style="width:26%">Infection</th><th>Treatment</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">Candidiasis</td><td><b>Fluconazole</b>; or if a resistant <em>Candida</em> species is likely: an <b>echinocandin</b> or an <b>amphotericin</b>.</td></tr>
+            <tr><td class="drug">Aspergillosis</td><td><b>Voriconazole</b>, an <b>amphotericin</b>, or both.</td></tr>
+            <tr><td class="drug">Zygomycosis</td><td>An <b>amphotericin ± posaconazole</b>. (Plus urgent surgical debridement.)</td></tr>
+            <tr><td class="drug">Cryptococcosis</td><td>An <b>amphotericin with flucytosine</b>, followed by <b>fluconazole</b>.</td></tr>
+            <tr><td class="drug">Blastomycosis</td><td><b>Itraconazole</b>, <b>fluconazole</b>, or an <b>amphotericin</b> — depending on the site and severity of the disease.</td></tr>
+            <tr><td class="drug">Histoplasmosis</td><td><b>Itraconazole</b> or an <b>amphotericin</b> (possibly with steroids in acute pulmonary disease).</td></tr>
+            <tr><td class="drug">Coccidioidomycosis</td><td><b>Fluconazole</b> or an <b>amphotericin</b>.</td></tr>
+            <tr><td class="drug">Paracoccidioidomycosis</td><td><b>Co-trimoxazole</b> (fluconazole or an amphotericin if co-trimoxazole is not tolerated).</td></tr>
+            <tr><td class="drug">Pneumocystis pneumonia</td><td><b>Co-trimoxazole</b> (with steroids); alternatively, if co-trimoxazole is not tolerated: <b>pentamidine</b> or <b>primaquine/atovaquone with clindamycin</b>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 13. PROPHYLAXIS & EMPIRICAL ============ -->
+  <details class="section" id="s13">
+    <summary>13 · Prophylaxis &amp; empirical therapy</summary>
+    <div class="body">
+      <h3>Prophylaxis</h3>
+      <p>Antifungal agents may be used as prophylaxis against invasive fungal infections in:</p>
+      <ul>
+        <li>Individuals with <b>neutropenia</b>.</li>
+        <li>Patients treated with <b>immunosuppressants after solid organ transplants</b>.</li>
+        <li>Patients with <b>HIV who have low CD4 counts</b>.</li>
+      </ul>
+      <p>Prophylaxis may reduce opportunistic infection with:</p>
+      <ul>
+        <li><b><em>Pneumocystis</em></b> — using reduced doses of co-trimoxazole.</li>
+        <li><b><em>Candida</em></b> — using fluconazole, echinocandins, or an amphotericin.</li>
+        <li><b><em>Aspergillus</em></b> — using voriconazole or an amphotericin.</li>
+      </ul>
+      <p>Anti-candidal prophylaxis with <b>fluconazole</b> may be used after upper and lower gastrointestinal perforation, but <b>only limited evidence exists to support this</b>.</p>
+
+      <h3>Empirical therapy</h3>
+      <div class="callout warn">
+        <p>Empirical treatment is required when <b>high-risk patients develop evidence of severe sepsis or severe respiratory compromise</b>. Broad-spectrum antifungals such as an <b>echinocandin</b> are advised, and <b>amphotericin</b> may be required if a resistant species or pulmonary aspergillosis is possible.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 14. PRACTICAL POINTS ============ -->
+  <details class="section" id="s14">
+    <summary>14 · Anaesthetic &amp; ICU practical points</summary>
+    <div class="body">
+      <p class="callout"><b>Always check the BNF / local formulary and microbiology advice before prescribing.</b> The points below are the ones that most often change what you do at the bedside.</p>
+
+      <h3>Before you start</h3>
+      <ul>
+        <li><b>Take cultures first</b> — blood (multiple sets), urine, sputum/ETA/BAL, CSF, wound/pus, and remove/change lines where possible. But <b>do not delay therapy in the unstable patient</b>.</li>
+        <li>Ask: <b>colonisation or invasion?</b> A positive culture from a non-sterile site (sputum, urine, wound swab) in a stable patient is often colonisation.</li>
+        <li>Document the <b>risk profile</b> (neutropenia, TPN, steroids, transplant, HIV, DKA, prolonged broad-spectrum antibacterials, burns, prostheses).</li>
+      </ul>
+
+      <h3>Drug-specific issues relevant to the anaesthetist/intensivist</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Drug</th><th>Watch out for</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">Amphotericin B (conventional)</td><td>Nephrotoxicity, anaphylactoid reactions, electrolyte disturbance (K⁺, Mg²⁺), bone-marrow suppression. Pre-load with saline; monitor renal function and electrolytes. <b>Never interchange conventional and liposomal dosing.</b></td></tr>
+            <tr><td class="drug">Liposomal amphotericin</td><td>Less nephrotoxic than conventional, but far more expensive — and the dose is <em>much</em> higher. Storage mix-ups are a real hazard.</td></tr>
+            <tr><td class="drug">Voriconazole</td><td>Visual disturbance and hallucinations (often transient); hepatotoxicity; <b>QT prolongation</b>; major <b>CYP450 interactions</b> — tacrolimus, ciclosporin, rifampicin, warfarin. The IV vehicle accumulates in renal impairment.</td></tr>
+            <tr><td class="drug">Fluconazole</td><td>Well tolerated; CYP interactions; QT prolongation. Fluconazole exposure drives selection of <em>C. glabrata</em> and <em>C. krusei</em>.</td></tr>
+            <tr><td class="drug">Echinocandins</td><td>Well tolerated; generally minimal CYP interaction; hepatic dysfunction possible. Useful when the patient is already on multiple CYP-metabolised drugs. <b>No activity against <em>P. jirovecii</em> or Cryptococcus</b> — and not the drug for CNS cryptococcosis.</td></tr>
+            <tr><td class="drug">Flucytosine</td><td>Bone-marrow suppression — monitor FBC; used in combination (never alone) for cryptococcal meningitis.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Don't forget the non-drug bits</h3>
+      <ul>
+        <li><b>Remove infected lines and devices</b> — especially in candidaemia and where <em>C. parapsilosis</em> is isolated.</li>
+        <li><b>Source control</b>: surgical debridement for zygomycosis; drainage of infected collections.</li>
+        <li><b>Echocardiography + dilated retinal examination</b> in candidaemia — early ophthalmology even if asymptomatic.</li>
+        <li><b>Isolate suspected PCP</b> — person-to-person spread is suspected.</li>
+        <li><b>Reduce immunosuppression</b> where feasible (transplant patients, steroids) in discussion with the relevant team.</li>
+        <li><b>Label dimorphic fungus samples as high risk</b> and speak to a medical microbiologist.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 15. CASES ============ -->
+  <details class="section" id="s15">
+    <summary>15 · Ten high-yield case examples</summary>
+    <div class="body">
+      <p>Click each case to expand. These are the scenarios that catch people out in ICU and on the wards.</p>
+
+      <details class="case">
+        <summary>Case 1 — Day 10 after laparotomy for faecal peritonitis: fever, TPN, CVVH, new candidaemia</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A 58-year-old man is on ICU day 10 after laparotomy for faecal peritonitis. He is on parenteral nutrition via a central line, CVVH, and has had 12 days of broad-spectrum antibacterials. He spikes a temperature of 39°C with rising vasopressor requirement. Blood cultures grow <em>Candida</em> spp.</p>
+          <p><span class="label">Do</span> Take repeat blood cultures and remove/change the central line early. Start an <b>echinocandin</b> (micafungin, caspofungin or anidulafungin) empirically if he is unstable or a non-albicans species is likely; if he is stable and <em>C. albicans</em> is confirmed, <b>fluconazole</b> is reasonable. Arrange <b>echocardiography and dilated retinal examination</b>. Review TPN and consider stopping it if not essential. Review all other devices (urinary catheter, PD catheter).</p>
+          <p><span class="label">Key learning</span> Gut perforation + TPN + broad-spectrum antibacterials + a line is the classic ICU candidaemia triad. <b>Early line removal improves outcomes</b> regardless of the putative source. Mortality may be as high as 40%.</p>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary>Case 2 — Neutropenic AML patient with pleuritic pain and haemoptysis</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A 34-year-old with AML is day 14 post-chemotherapy, profoundly neutropenic, febrile despite meropenem. He develops pleuritic chest pain and haemoptysis. CT chest shows a nodule with a surrounding ground-glass halo.</p>
+          <p><span class="label">Do</span> Send serum <b>galactomannan</b> and 1–3 beta-D-glucan, and take BAL if safe and appropriate. Start <b>voriconazole</b> — the first-line agent for invasive pulmonary aspergillosis. Do not wait for culture; diagnostic yield in neutropenic patients is low.</p>
+          <p><span class="label">Key learning</span> The <b>halo sign</b> in a neutropenic febrile patient is invasive aspergillosis until proven otherwise. <b>Delay in therapy worsens outcome</b> — empirical treatment in high-risk patients is standard. Watch for CYP450 interactions with the patient's other drugs.</p>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary>Case 3 — DKA with periorbital swelling and a black eschar on the palate</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A 46-year-old with poorly controlled type 1 diabetes presents in DKA with facial pain, periorbital swelling, and a black necrotic eschar on the hard palate. He is confused.</p>
+          <p><span class="label">Do</span> Call ENT/maxillofacial and ophthalmology <b>immediately</b> — this is <b>rhinocerebral mucormycosis</b>. Start <b>liposomal amphotericin B</b> (± posaconazole). Arrange urgent CT/MRI of sinuses and brain. <b>Surgical debridement is the definitive treatment</b> and improves survival; antifungal therapy alone is not enough.</p>
+          <p><span class="label">Key learning</span> Zygomycosis has a specific association with <b>diabetic ketoacidosis</b>. Angio-invasion and necrosis are hallmarks. Mortality is high even with optimal treatment — <b>speed of debridement matters more than the drug choice</b>.</p>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary>Case 4 — HIV with CD4 40, headache, fever and confusion</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A 39-year-old with HIV (CD4 count 40) presents with two weeks of worsening headache, low-grade fever, cranial nerve palsy and reduced consciousness. CT head is unremarkable; LP shows raised opening pressure.</p>
+          <p><span class="label">Do</span> Send <b>CSF cryptococcal antigen</b> and India ink/culture. If positive, start <b>liposomal amphotericin B + flucytosine</b> for induction (typically 2 weeks), followed by <b>fluconazole</b> consolidation. Manage <b>raised intracranial pressure</b> with serial therapeutic LPs and appropriate CSF diversion. Monitor FBC for flucytosine marrow suppression.</p>
+          <p><span class="label">Key learning</span> Cryptococcal meningoencephalitis develops <b>over weeks</b>, and mortality is up to <b>20% even with optimal treatment</b>. Raised ICP from "sludging", cryptococcomas or hydrocephalus is what kills these patients — treat the pressure, not just the fungus.</p>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary>Case 5 — Renal transplant on tacrolimus with worsening hypoxia and a dry cough</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A 55-year-old renal transplant recipient on tacrolimus and prednisolone develops progressive dyspnoea, a dry cough and low-grade fever over 10 days. SpO₂ is 88% on air. CXR shows bilateral proximal interstitial infiltrates; LDH is high.</p>
+          <p><span class="label">Do</span> Suspect <b>Pneumocystis pneumonia</b>. Send sputum/BAL for immunofluorescence and PCR, and serum 1–3 beta-D-glucan. Start <b>co-trimoxazole</b> (high dose, adjusted for renal function) and <b>add steroids</b> if hypoxic. <b>Do not reach for an azole</b> — <em>P. jirovecii</em> lacks ergosterol, so most antifungals are ineffective. Reduce immunosuppression in discussion with the transplant team, and beware the <b>tacrolimus interaction</b> if any azole is added for another indication.</p>
+          <p><span class="label">Key learning</span> PCP mortality is <b>20–60%</b>. Pneumatocoeles and pneumothoraces are common — watch for barotrauma on the ventilator. Isolation is advisable as person-to-person spread is suspected.</p>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary>Case 6 — <em>Candida</em> in the tracheal aspirate of a long-stay ventilated patient</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A 70-year-old with COPD is on day 14 of mechanical ventilation. The tracheal aspirate grows <em>Candida albicans</em>. He is afebrile with stable white cell count and no new infiltrate.</p>
+          <p><span class="label">Do</span> <b>Nothing antifungal.</b> This is almost certainly colonisation. Look for another explanation for any clinical deterioration. Do not start fluconazole "just in case".</p>
+          <p><span class="label">Key learning</span> <em>Candida</em> is frequently isolated from respiratory secretions in the critically ill, but <b>true lower respiratory tract infection is rare</b>. Growth from respiratory specimens alone should <b>not</b> prompt antifungal therapy in most patients.</p>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary>Case 7 — Candiduria in a catheterised patient with pyuria</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A 72-year-old with a long-term urinary catheter has <em>Candida</em> grown on urine culture. Urinalysis shows pyuria. She is haemodynamically stable and apyrexial.</p>
+          <p><span class="label">Do</span> <b>Remove or change the catheter first.</b> Remember pyuria is unreliable — up to <b>25%</b> have bacterial co-infection. Treat systemically only if she is <b>severely immunocompromised</b>, septic with no other source, symptomatic, or undergoing a urological procedure. Otherwise removal of the predisposing factor may be sufficient.</p>
+          <p><span class="label">Key learning</span> In the severely immunocompromised, fever + candiduria may be a <b>surrogate marker of disseminated disease</b> and needs treatment. In everyone else — treat the catheter, not the culture.</p>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary>Case 8 — Breakthrough candidaemia on fluconazole prophylaxis</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A surgical ICU patient has been on fluconazole prophylaxis for 3 weeks. He develops a new fever and a blood culture grows <em>Candida glabrata</em>.</p>
+          <p><span class="label">Do</span> <b>Switch to an echinocandin.</b> Fluconazole use selects out resistant non-albicans species such as <em>C. glabrata</em> and <em>C. krusei</em>. Remove lines, repeat cultures, and arrange echo and retinal examination.</p>
+          <p><span class="label">Key learning</span> Non-albicans candidaemia is <b>increasing</b>, is associated with <b>worse outcomes</b>, and should be assumed when a patient breaks through azole prophylaxis. Previous fluconazole exposure is a strong hint.</p>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary>Case 9 — Prosthetic valve and persistently positive <em>Candida</em> blood cultures</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A 66-year-old man with a mechanical aortic valve has persistent <em>Candida</em> bacteraemia despite appropriate antifungal therapy and removal of his central line. He has a new early diastolic murmur.</p>
+          <p><span class="label">Do</span> Urgent <b>echocardiography</b> (TTE, and TOE if TTE is non-diagnostic) for <b>infective endocarditis</b>. Involve cardiology/cardiac surgery early. <b>Persistently positive blood cultures despite treatment and removal of an infected focus</b> indicate the need to investigate for endovascular involvement.</p>
+          <p><span class="label">Key learning</span> The two classic complications of disseminated candidiasis are <b>endocarditis and ocular involvement</b> — which is why every candidaemia patient should get an echo and a dilated retinal examination. Prosthetic material makes eradication very hard without surgery.</p>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary>Case 10 — Severe ARDS with an air crescent on CT</summary>
+        <div class="case-body">
+          <p><span class="label">Presentation</span> A 60-year-old with severe viral pneumonitis (influenza/COVID) has been on high-dose steroids and 10 days of broad-spectrum antibacterials. He deteriorates with worsening hypoxia and haemoptysis. CT chest shows a cavity with an air crescent and a pleural wedge of consolidation.</p>
+          <p><span class="label">Do</span> Think <b>invasive pulmonary aspergillosis in a non-neutropenic ICU patient</b>. Send serum and BAL <b>galactomannan</b> and 1–3 beta-D-glucan, and blood PCR. Start <b>voriconazole</b> (or an amphotericin if azole interactions are prohibitive, remembering <em>A. terreus</em> is amphotericin-resistant). Minimise steroids where possible. Beware massive haemoptysis from angio-invasion and pseudoaneurysm rupture.</p>
+          <p><span class="label">Key learning</span> Aspergillosis is not just a neutropenic disease. <b>Severe viral pneumonia, high-dose steroids, COPD and prolonged ICU stay</b> are increasingly recognised risk factors. <b>Air crescent</b> and <b>halo sign</b> on CT are the classic findings.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- ============ 16. MEMORY PALACE ============ -->
+  <details class="section" id="s16">
+    <summary>16 · Memory palace (Anthony Metivier technique) — drug &amp; organism mnemonics</summary>
+    <div class="body">
+      <div class="palace-note">
+        <b>How to build this palace (Metivier's method):</b>
+        <ol>
+          <li><b>Location</b> — choose a place you know intimately. Use <em>your own ICU</em> as the route (ambulance bay → reception → corridor → bed spaces → store cupboard → sluice → coffee room).</li>
+          <li><b>Image</b> — put <em>one</em> exaggerated, multi-sensory image at each station. Make it huge, colourful, smelly, noisy.</li>
+          <li><b>Action / interaction</b> — make the image <em>move</em> and <em>do something to you</em>. Static images fade; moving ones stick.</li>
+          <li><b>Recall</b> — mentally walk the route in order. Revisit at day 1, day 3, day 7, day 30 (spaced repetition).</li>
+        </ol>
+      </div>
+
+      <h3>The drug palace — walk the ICU</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th style="width:16%">Palace station</th><th style="width:30%">Vivid image (say it out loud)</th><th style="width:20%">Locks in</th><th>Why it works</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="station">Ambulance bay</td>
+              <td class="img">A giant seagull with an orange traffic cone stuck on its head, carrying a huge boiled sweet in its beak, flying at your face.</td>
+              <td class="drug">Fluconazole</td>
+              <td><b>Flu</b>-con-<b>azole</b> = <em>flu</em> (bird) + <em>cone</em>. The sweet = <b>Candida</b> ("candy") — first-line for <em>C. albicans</em>.</td>
+            </tr>
+            <tr>
+              <td class="station">Reception desk</td>
+              <td class="img">A rat wearing the same orange cone, standing on the desk, blasting grey spores out of a leaf blower at the receptionist.</td>
+              <td class="drug">Itraconazole</td>
+              <td><b>Itra</b> = <em>rat</em> + <em>cone</em>. Spores = blastomycosis, histoplasmosis, aspergillosis.</td>
+            </tr>
+            <tr>
+              <td class="station">Corridor</td>
+              <td class="img">Casper the Friendly Ghost floating down the corridor, mopping up a sea of foamy white yeast with a mop.</td>
+              <td class="drug">Caspofungin</td>
+              <td><b>Casp</b>ofungin = <b>Casper</b>. A friendly ghost = well tolerated. Mopping = covers most <em>Candida</em>; also salvage for <em>Aspergillus</em>.</td>
+            </tr>
+            <tr>
+              <td class="station">Store cupboard</td>
+              <td class="img">Mickey Mouse, ears the size of dustbin lids, trapped in a giant mousetrap that is full of green mould.</td>
+              <td class="drug">Micafungin</td>
+              <td><b>Mica</b>fungin = <b>Mickey</b>. Mickey is broad — active against most systemic fungi including aspergillosis.</td>
+            </tr>
+            <tr>
+              <td class="station">Sluice room</td>
+              <td class="img">Little Orphan Annie, red curly wig, scrubbing the sluice floor with a tiny brush, singing at you.</td>
+              <td class="drug">Anidulafungin</td>
+              <td><b>Ani</b>dulafungin = <b>Annie</b>. She scrubs <em>Candida</em> off every surface (Candida spp.).</td>
+            </tr>
+            <tr>
+              <td class="station">Bed space 1</td>
+              <td class="img">Voldemort sitting up in bed, his snake slithering out of his chest and branching into the lungs of the patient next to him.</td>
+              <td class="drug">Voriconazole</td>
+              <td><b>Vori</b>conazole = <b>Voldemort</b>. Snakes = septate branching hyphae = <b>invasive aspergillosis</b> — first-line treatment.</td>
+            </tr>
+            <tr>
+              <td class="station">Bed space 2</td>
+              <td class="img">Poseidon rises out of the bed, trident in hand, and stabs a mouldy rhinoceros standing in the corner.</td>
+              <td class="drug">Posaconazole</td>
+              <td><b>Posa</b>conazole = <b>Poseidon</b>. Trident = zygomycosis; also fluconazole-resistant <em>Candida</em> and prophylaxis.</td>
+            </tr>
+            <tr>
+              <td class="station">Drug trolley</td>
+              <td class="img">A giant frog in a toga standing in an amphitheatre, weeing a flood of fluid all over the trolley.</td>
+              <td class="drug">Amphotericin B</td>
+              <td><b>Ampho</b>tericin = <b>amphi</b>bian / <b>amphi</b>theatre. <b>B</b> = <b>B</b>roadest spectrum. The flood = <b>nephrotoxicity</b> and electrolyte loss.</td>
+            </tr>
+            <tr>
+              <td class="station">Bed space 3</td>
+              <td class="img">A fly riding on the frog's back, both of them disappearing into a dark crypt in the patient's head.</td>
+              <td class="drug">Flucytosine</td>
+              <td><b>Flu</b>cytosine = <b>fly</b>. Riding the frog = <b>synergy with amphotericin</b>. The crypt = <b>cryptococcal meningitis</b>.</td>
+            </tr>
+            <tr>
+              <td class="station">Coffee room</td>
+              <td class="img">Your niece is sitting in the coffee room painting her mouth with a tin of white paint.</td>
+              <td class="drug">Nystatin</td>
+              <td><b>Nys</b>tatin = <b>niece</b> + <b>tin</b>. Painted on the mouth = <b>topical, not absorbed</b> — oral/mucocutaneous thrush.</td>
+            </tr>
+            <tr>
+              <td class="station">Front doormat</td>
+              <td class="img">A grisly grey bear with greasy fur is standing on the doormat, scratching its skin off.</td>
+              <td class="drug">Griseofulvin</td>
+              <td><b>Gris</b>eofulvin = <b>grisly grey</b> bear. Greasy fur + scratching = <b>dermatophytes</b> (skin/hair/nail); it inhibits mitosis.</td>
+            </tr>
+            <tr>
+              <td class="station">Porter's toe</td>
+              <td class="img">The porter has a turban tied around his big toe, which is yellow and crumbling.</td>
+              <td class="drug">Terbinafine</td>
+              <td><b>Terb</b>inafine = <b>turban</b>. On the <b>toe</b> = tinea/nail fungus.</td>
+            </tr>
+            <tr>
+              <td class="station">Car park sign</td>
+              <td class="img">You drive in and a giant traffic cone with "MY" written on it hits your windscreen.</td>
+              <td class="drug">Miconazole / Ketoconazole</td>
+              <td><b>My</b>conazole = "my cone". These are the <b>topical-only</b> azoles — skin and mucous membranes, not systemic.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The organism palace — the same route, different characters</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th style="width:20%">Organism</th><th style="width:38%">Picture it</th><th>What the image reminds you of</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="drug"><em>Candida</em></td><td class="img">A bag of boiled sweets (candy) melting in the gut, then dripping into a central line.</td><td>Gut flora → candidaemia via lines/TPN. Endophthalmitis and endocarditis. Non-albicans = resistant.</td></tr>
+            <tr><td class="drug"><em>Aspergillus</em></td><td class="img">Asparagus spears growing inside the lungs, with a crescent moon of air around a grey ball.</td><td>Septate branching hyphae; aspergilloma + <b>air crescent</b>; halo sign; haemoptysis from angio-invasion.</td></tr>
+            <tr><td class="drug"><em>Mucor</em> / zygomycosis</td><td class="img">The Mucus Monster rising from a bowl of ketones, punching through the sinuses into the brain.</td><td><b>DKA</b> → rhinocerebral mucormycosis. Angio-invasion, necrosis, black eschar. <b>Debridement + amphotericin.</b></td></tr>
+            <tr><td class="drug"><em>Cryptococcus</em></td><td class="img">A crypt in a graveyard, in the patient's skull, flooding with CSF under pressure.</td><td>HIV, slow-onset meningoencephalitis, raised ICP. Amphotericin + flucytosine then fluconazole. 20% mortality.</td></tr>
+            <tr><td class="drug"><em>Pneumocystis</em></td><td class="img">A pretty cold balloon filled with foam, floating in a frothy lung.</td><td><b>PCP</b> = Pretty Cold Pneumonia. No ergosterol → <b>azoles don't work</b>. Co-trimoxazole + steroids. 20–60% mortality.</td></tr>
+            <tr><td class="drug"><em>Histoplasma</em></td><td class="img">An old history book, covered in bat droppings, open in a cave.</td><td>Cave/bat exposure, endemic soil, cavitating lung disease mimicking TB. Itraconazole.</td></tr>
+            <tr><td class="drug"><em>Blastomyces</em></td><td class="img">An explosion (blast) on the skin, leaving a granulomatous ulcer.</td><td>Skin ulcers; itraconazole/fluconazole/amphotericin depending on site and severity.</td></tr>
+            <tr><td class="drug"><em>Coccidioides</em></td><td class="img">A cloud of cocoa powder blowing across a hot desert valley.</td><td>Desert soil (Americas); fluconazole or amphotericin.</td></tr>
+            <tr><td class="drug"><em>Paracoccidioides</em></td><td class="img">A parrot with a rotting hole in the roof of its mouth.</td><td>Palatal/oropharyngeal destructive lesions; co-trimoxazole.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout ok">
+        <p><b>Exam-ready one-liner:</b> "Mickey (micafungin) and Casper (caspofungin) mop up the Candida; Voldemort (voriconazole) and the frog (amphotericin) fight the moulds; the fly (flucytosine) hitches a ride on the frog to the crypt."</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 17. REFERENCES ============ -->
+  <details class="section" id="s17">
+    <summary>17 · References &amp; further reading</summary>
+    <div class="body">
+      <h3>Source article</h3>
+      <ul>
+        <li>Beed M, Sherman R, Holden S. <b>Fungal infections and critically ill adults.</b> <em>BJA Education</em> (Continuing Education in Anaesthesia, Critical Care &amp; Pain). Available at: <a href="https://www.bjaed.org/article/S1743-1816(17)30071-9/fulltext" target="_blank" rel="noopener">bjaed.org — S1743-1816(17)30071-9</a></li>
+      </ul>
+
+      <h3>Further reading (Deranged Physiology)</h3>
+      <ul>
+        <li><a href="https://derangedphysiology.com/main/required-reading/sepsis-and-infections/Chapter-413/aspergillosis-and-other-invasive-fungal-infections" target="_blank" rel="noopener">Aspergillosis and other invasive fungal infections</a></li>
+        <li><a href="https://derangedphysiology.com/main/required-reading/sepsis-and-infections/Chapter-415/candida-albicans-and-non-albicans" target="_blank" rel="noopener"><em>Candida albicans</em> and non-albicans</a></li>
+        <li><a href="https://derangedphysiology.com/main/required-reading/sepsis-and-infections/Chapter-323/pharmacology-antifungal-agents" target="_blank" rel="noopener">Pharmacology of antifungal agents</a></li>
+      </ul>
+
+      <h3>References cited in the source article</h3>
+      <ol style="font-size:.85rem">
+        <li><a href="http://www.doctorfungus.org" target="_blank" rel="noopener">www.doctorfungus.org</a> (accessed 18 November 2013)</li>
+        <li>Shoham S, Marwaha S. Invasive fungal infections in the ICU. <em>J Intensive Care Med</em> 2009; 25: 78–92</li>
+        <li>Bassetti M, Righi E, Costa A et al. Epidemiologic trends in nosocomial candidemia in intensive care. <em>BMC Infect Dis</em> 2006; 6: 21</li>
+        <li>Kauffman CA. Candiduria. <em>Clin Infect Dis</em> 2005; 41(S6): S371–6</li>
+        <li>Pappas PG, Kauffman CA, Andes D et al. Clinical Practice Guidelines for the Management of Candidiasis: 2009 Update by the Infectious Diseases Society of America. <em>Clin Infect Dis</em> 2009; 48: 503–35</li>
+        <li>Zmeili OS, Soubani AO. Pulmonary aspergillosis: a clinical update. <em>Q J Med</em> 2007; 100: 317–34</li>
+        <li>Thomas CF, Limpner AH. Pneumocystis pneumonia. <em>N Engl J Med</em> 2004; 350: 2487–98</li>
+        <li>Zaragoza R, Pemán J. The diagnostic and therapeutic approach to fungal infections in critical care settings. <em>Adv Sepsis</em> 2008; 6: 90–2</li>
+        <li>Dornbusch HJ, Strenger V, Kerbl R et al. Procalcitonin — marker of invasive fungal infection? <em>Support Care Cancer</em> 2005; 13: 343–6</li>
+      </ol>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Quick reference compiled for anaesthetists and intensivists.</b> Content merged and adapted from Beed, Sherman &amp; Holden, <em>Fungal infections and critically ill adults</em>, plus the linked Deranged Physiology chapters.</p>
+    <p class="disclaimer">Educational use only. Always check current national and local guidelines, the BNF, and microbiology advice before prescribing. Drug doses, interactions and indications are not included here and must be verified locally.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content = document.getElementById("content");
+  var originalHTML = content.innerHTML;
+  var input = document.getElementById("search");
+  var info = document.getElementById("searchInfo");
+
+  /* Preserve the open/closed state across re-renders */
+  function getOpenIds() {
+    return Array.prototype.map.call(
+      content.querySelectorAll("details[open]"),
+      function (d) { return d.id; }
+    ).filter(Boolean);
+  }
+
+  function restore(openIds) {
+    content.innerHTML = originalHTML;
+    openIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.open = true;
+    });
+  }
+
+  /* Highlight every occurrence of the term in text nodes only */
+  function highlight(term) {
+    if (!term) return;
+
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          var parent = node.parentElement;
+          if (parent && parent.closest("script, style, svg")) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return node.nodeValue.toLowerCase().indexOf(term) !== -1
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
+        }
+      },
+      false
+    );
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var i = 0;
+      var idx;
+
+      while ((idx = lower.indexOf(term, i)) !== -1) {
+        if (idx > i) {
+          frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        }
+        var mark = document.createElement("mark");
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+        i = idx + term.length;
+      }
+      if (i < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(i)));
+      }
+      if (node.parentNode) {
+        node.parentNode.replaceChild(frag, node);
+      }
+    });
+  }
+
+  function runSearch() {
+    var raw = input.value.trim();
+    var q = raw.toLowerCase();
+    var openIds = getOpenIds();
+
+    restore(openIds);
+
+    if (q.length < 2) {
+      info.textContent = "";
+      return;
+    }
+
+    highlight(q);
+
+    var sections = content.querySelectorAll("details.section");
+    var matches = 0;
+
+    Array.prototype.forEach.call(sections, function (sec) {
+      var hit = sec.textContent.toLowerCase().indexOf(q) !== -1;
+      sec.classList.toggle("hidden", !hit);
+      if (hit) {
+        matches++;
+        // open this section and any nested cases so the hit is visible
+        Array.prototype.forEach.call(
+          sec.querySelectorAll("details"),
+          function (d) { d.open = true; }
+        );
+        sec.open = true;
+      }
+    });
+
+    info.textContent = matches
+      ? matches + (matches === 1 ? " section matches " : " sections match ") + "\u201C" + raw + "\u201D"
+      : "No matches for \u201C" + raw + "\u201D";
+  }
+
+  var timer;
+  input.addEventListener("input", function () {
+    clearTimeout(timer);
+    timer = setTimeout(runSearch, 140);
+  });
+
+  document.getElementById("expandAll").addEventListener("click", function () {
+    Array.prototype.forEach.call(content.querySelectorAll("details"), function (d) {
+      d.open = true;
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function () {
+    Array.prototype.forEach.call(content.querySelectorAll("details"), function (d) {
+      d.open = false;
+    });
+  });
+
+  /* Ctrl/Cmd + K focuses the search box */
+  document.addEventListener("keydown", function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+    if (e.key === "Escape" && document.activeElement === input) {
+      input.value = "";
+      runSearch();
+      input.blur();
+    }
+  });
+})();
+</script>
+</body>
+</html>
