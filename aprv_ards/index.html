@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APRV for ARDS — Anaesthetist Quick Reference</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --card: #ffffff;
+            --primary: #0b5e7c;
+            --primary-light: #e3f0f5;
+            --accent: #d32f2f;
+            --text: #1e293b;
+            --text-light: #475569;
+            --border: #cbd5e1;
+            --highlight: #fff3cd;
+            --radius: 10px;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: var(--primary);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 1.5rem 1.25rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            position: sticky;
+            top: 0.5rem;
+            z-index: 10;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 0.65rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            background: var(--card);
+            box-shadow: var(--shadow);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-bar button {
+            padding: 0.65rem 1rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .search-bar button:hover {
+            background: #094a62;
+        }
+
+        details {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 0.85rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        details[open] {
+            border-color: var(--primary);
+        }
+
+        summary {
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        summary:hover {
+            background: #d0e6ef;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: "▸";
+            font-size: 1rem;
+            transition: transform 0.2s;
+            display: inline-block;
+            width: 1rem;
+            text-align: center;
+        }
+
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .content {
+            padding: 1rem 1.1rem 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .content p {
+            margin-bottom: 0.65rem;
+            font-size: 0.93rem;
+        }
+
+        .content ul, .content ol {
+            margin: 0.5rem 0 0.75rem 1.25rem;
+            font-size: 0.93rem;
+        }
+
+        .content li {
+            margin-bottom: 0.3rem;
+        }
+
+        .content h3 {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin: 1rem 0 0.4rem;
+        }
+
+        .content h3:first-child {
+            margin-top: 0;
+        }
+
+        .variable-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin: 0.75rem 0;
+        }
+
+        .variable-table th {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.5rem 0.6rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .variable-table td {
+            padding: 0.5rem 0.6rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .variable-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .variable-table tr:nth-child(even) td {
+            background: #f1f5f9;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            margin-left: 0.35rem;
+        }
+
+        .badge-pro {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-con {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .diagram-wrap {
+            background: #f1f5f9;
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin: 0.75rem 0;
+            text-align: center;
+        }
+
+        .diagram-wrap svg {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+        }
+
+        .diagram-caption {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.4rem;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.65rem;
+        }
+
+        .case-card {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 0.7rem 0.9rem;
+        }
+
+        .case-card .case-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .case-card .case-body {
+            font-size: 0.88rem;
+            color: var(--text-light);
+        }
+
+        .case-card .case-body strong {
+            color: var(--text);
+        }
+
+        mark {
+            background: var(--highlight);
+            padding: 0 0.15rem;
+            border-radius: 2px;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .no-results.visible {
+            display: block;
+        }
+
+        .source-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem 1.1rem;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            box-shadow: var(--shadow);
+        }
+
+        .source-box strong {
+            color: var(--text);
+        }
+
+        .source-box a {
+            color: var(--primary);
+            word-break: break-all;
+        }
+
+        @media (min-width: 640px) {
+            .case-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            header h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>APRV for ARDS — Anaesthetist Quick Reference</h1>
+            <p>Airway Pressure Release Ventilation · High-yield summary · Searchable &amp; collapsible</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search across all sections… (e.g. Tlow, Plow, weaning, pneumothorax)" autocomplete="off">
+            <button id="clearBtn" type="button">Clear</button>
+        </div>
+
+        <div id="noResults" class="no-results">No matching sections found. Try a different term.</div>
+
+        <!-- SECTION 1: Overview -->
+        <details open>
+            <summary>1. Overview &amp; Rationale</summary>
+            <div class="content searchable">
+                <p><strong>What it is:</strong> APRV is a pressure-controlled, time-cycled mode that maintains a <strong>constant high airway pressure (P<sub>high</sub>)</strong> for most of the respiratory cycle, interrupted by brief <strong>pressure releases (T<sub>low</sub>)</strong> to a low pressure (P<sub>low</sub>). It is essentially <strong>CPAP with intermittent, very short expiratory periods</strong>.</p>
+                <p><strong>Core idea:</strong> Driving pressure (ΔP between PEEP and inspiratory pressure) is the main injurious force in ARDS. APRV minimises cyclic atelectasis by keeping alveoli open at a high mean airway pressure, while allowing CO₂ clearance during brief releases. Spontaneous breathing is preserved throughout.</p>
+                <p><strong>Key conceptual point:</strong> AutoPEEP is <em>central</em> to the mechanism — gas trapping maintains alveolar recruitment. In conventional ventilation, autoPEEP is an unwanted side effect; in APRV, it is the therapeutic goal.</p>
+                <p><strong>Historical note:</strong> First described by Stock et al. (1987). Still controversial; not first-line in most guidelines, but used as a rescue strategy in severe ARDS.</p>
+            </div>
+        </details>
+
+        <!-- SECTION 2: The Four Variables -->
+        <details>
+            <summary>2. The Four Variables (T<sub>low</sub>, P<sub>low</sub>, P<sub>high</sub>, T<sub>high</sub>)</summary>
+            <div class="content searchable">
+                <table class="variable-table">
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>What it does</th>
+                            <th>Typical starting value</th>
+                            <th>Adjustment logic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>T<sub>low</sub></strong><br><span style="font-size:0.8rem;color:#64748b">Time at low pressure</span></td>
+                            <td>Determines derecruitment risk; the most important setting for lung protection.</td>
+                            <td><strong>0.3–0.5 s</strong></td>
+                            <td>Titrate to <strong>75% of peak expiratory flow (PEFR)</strong>. Shorter if stiff lungs (0.3 s); longer as compliance improves (0.5 s+).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>P<sub>low</sub></strong><br><span style="font-size:0.8rem;color:#64748b">Release pressure</span></td>
+                            <td>Sets the pressure gradient for expiratory flow and CO₂ clearance.</td>
+                            <td><strong>0 cm H₂O</strong> (or 5 cm H₂O)</td>
+                            <td>Keep minimal. If hypoxia persists, increase P<sub>low</sub> to raise autoPEEP and reduce derecruitment.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>P<sub>high</sub></strong><br><span style="font-size:0.8rem;color:#64748b">High pressure</span></td>
+                            <td>Maintains alveolar recruitment and oxygenation; safety ceiling.</td>
+                            <td><strong>≈ 28 cm H₂O</strong> (≤ 30)</td>
+                            <td>Set near the previous plateau pressure. Reduce slowly as the patient improves.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T<sub>high</sub></strong><br><span style="font-size:0.8rem;color:#64748b">Time at high pressure</span></td>
+                            <td>Controls CO₂ clearance (minute volume) and is the primary weaning variable.</td>
+                            <td><strong>≈ 9× T<sub>low</sub></strong> (e.g. 4.5 s for T<sub>low</sub> 0.5 s)</td>
+                            <td>Reduce T<sub>high</sub> to increase breath rate if CO₂ high. Increase T<sub>high</sub> during weaning.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size:0.85rem;color:#475569;"><strong>Default starting settings example:</strong> P<sub>high</sub> 28, P<sub>low</sub> 0, T<sub>high</sub> 4.5 s, T<sub>low</sub> 0.5 s → I:E ≈ 9:1, rate ≈ 12/min.</p>
+            </div>
+        </details>
+
+        <!-- SECTION 3: Simplified Diagram -->
+        <details>
+            <summary>3. Simplified Waveform Diagram</summary>
+            <div class="content searchable">
+                <div class="diagram-wrap">
+                    <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="APRV pressure-time waveform: high pressure plateau with brief low-pressure releases">
+                        <!-- Background grid -->
+                        <line x1="50" y1="30" x2="50" y2="170" stroke="#94a3b8" stroke-width="1"/>
+                        <line x1="50" y1="170" x2="500" y2="170" stroke="#94a3b8" stroke-width="1"/>
+                        <!-- Y-axis labels -->
+                        <text x="45" y="35" text-anchor="end" font-size="11" fill="#475569">Pressure</text>
+                        <text x="45" y="75" text-anchor="end" font-size="10" fill="#0b5e7c" font-weight="600">P_high</text>
+                        <text x="45" y="168" text-anchor="end" font-size="10" fill="#d32f2f" font-weight="600">P_low</text>
+                        <!-- X-axis labels -->
+                        <text x="275" y="190" text-anchor="middle" font-size="11" fill="#475569">Time</text>
+                        <!-- Waveform path -->
+                        <polyline points="50,70 130,70 130,165 180,165 180,70 260,70 260,165 310,165 310,70 390,70 390,165 440,165 440,70 500,70"
+                            fill="none" stroke="#0b5e7c" stroke-width="2.5" stroke-linejoin="round"/>
+                        <!-- T_low annotation -->
+                        <line x1="130" y1="175" x2="180" y2="175" stroke="#d32f2f" stroke-width="1.5"/>
+                        <line x1="130" y1="170" x2="130" y2="180" stroke="#d32f2f" stroke-width="1.5"/>
+                        <line x1="180" y1="170" x2="180" y2="180" stroke="#d32f2f" stroke-width="1.5"/>
+                        <text x="155" y="195" text-anchor="middle" font-size="10" fill="#d32f2f" font-weight="600">T_low</text>
+                        <!-- T_high annotation -->
+                        <line x1="180" y1="175" x2="260" y2="175" stroke="#0b5e7c" stroke-width="1.5"/>
+                        <line x1="180" y1="170" x2="180" y2="180" stroke="#0b5e7c" stroke-width="1.5"/>
+                        <line x1="260" y1="170" x2="260" y2="180" stroke="#0b5e7c" stroke-width="1.5"/>
+                        <text x="220" y="195" text-anchor="middle" font-size="10" fill="#0b5e7c" font-weight="600">T_high</text>
+                        <!-- Release flow arrow -->
+                        <path d="M145,120 Q155,90 165,120" fill="none" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+                        <defs>
+                            <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto">
+                                <polygon points="0,0 6,2 0,4" fill="#f59e0b"/>
+                            </marker>
+                        </defs>
+                        <text x="175" y="110" font-size="9" fill="#f59e0b">CO₂ out</text>
+                        <!-- Spontaneous breath hint -->
+                        <path d="M330,70 Q340,55 350,70" fill="none" stroke="#10b981" stroke-width="1.5"/>
+                        <text x="360" y="62" font-size="9" fill="#10b981">spontaneous breaths allowed</text>
+                    </svg>
+                    <p class="diagram-caption">Simplified APRV waveform: sustained P<sub>high</sub> plateau with brief T<sub>low</sub> releases to P<sub>low</sub>. Spontaneous breathing occurs throughout.</p>
+                </div>
+            </div>
+        </details>
+
+        <!-- SECTION 4: Advantages -->
+        <details>
+            <summary>4. Advantages <span class="badge badge-pro">Pro</span></summary>
+            <div class="content searchable">
+                <ul>
+                    <li><strong>Maximal alveolar recruitment:</strong> High mean airway pressure keeps alveoli open, minimising cyclic atelectasis and shear stress.</li>
+                    <li><strong>AutoPEEP is therapeutic:</strong> Gas trapping maintains recruitment; not an unwanted side effect.</li>
+                    <li><strong>Fewer breaths, lower power:</strong> Reduced total energy transfer to lung tissue (theoretically less VILI).</li>
+                    <li><strong>No paralysis needed:</strong> Spontaneous breathing is encouraged; patients can be awake and comfortable.</li>
+                    <li><strong>Better basal aeration:</strong> Diaphragmatic activity recruits dependent lung regions.</li>
+                    <li><strong>Haemodynamics may improve:</strong> Spontaneous effort aids venous return.</li>
+                    <li><strong>Secretion clearance:</strong> High expiratory flow during release may help mobilise secretions (supported by animal studies).</li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- SECTION 5: Disadvantages -->
+        <details>
+            <summary>5. Disadvantages &amp; Cautions <span class="badge badge-con">Con</span></summary>
+            <div class="content searchable">
+                <ul>
+                    <li><strong>Barotrauma risk:</strong> Anecdotal increase in pneumothorax/pneumomediastinum, especially in awake patients who cough on high PEEP.</li>
+                    <li><strong>Fluid/vasopressor requirement:</strong> Sustained high intrathoracic pressure reduces preload — often needs volume or vasopressors.</li>
+                    <li><strong>Unfamiliar mode:</strong> Requires clinician comfort; troubleshooting by junior staff can be difficult.</li>
+                    <li><strong>RV strain:</strong> High pressures may worsen RV afterload; caution in severe pulmonary hypertension or right-to-left shunting.</li>
+                    <li><strong>Tidal volumes can be large:</strong> With P<sub>low</sub> = 0, release volumes may violate lung-protective norms.</li>
+                    <li><strong>Derecruitment risk:</strong> Brief releases may cause alveolar collapse if T<sub>low</sub> is too long.</li>
+                    <li><strong>Without spontaneous breathing:</strong> APRV degenerates into inverse-ratio ventilation and loses many benefits.</li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- SECTION 6: Practical Settings & Troubleshooting -->
+        <details>
+            <summary>6. Practical Settings &amp; Troubleshooting</summary>
+            <div class="content searchable">
+                <h3>Initial setup</h3>
+                <ol>
+                    <li>Set <strong>P<sub>high</sub></strong> to the current plateau pressure (≈ 28 cm H₂O), not above 30.</li>
+                    <li>Set <strong>P<sub>low</sub></strong> to 0 cm H₂O.</li>
+                    <li>Set <strong>T<sub>low</sub></strong> to 0.3–0.5 s; titrate to 75% of peak expiratory flow.</li>
+                    <li>Set <strong>T<sub>high</sub></strong> to ~9× T<sub>low</sub> (e.g. 4.5 s for T<sub>low</sub> 0.5 s).</li>
+                </ol>
+
+                <h3>Troubleshooting</h3>
+                <ul>
+                    <li><strong>Hypoxia persists:</strong> Increase P<sub>low</sub> (raises autoPEEP, reduces derecruitment) rather than increasing P<sub>high</sub>.</li>
+                    <li><strong>Hypercapnia:</strong> Reduce T<sub>high</sub> to increase respiratory rate (more releases per minute).</li>
+                    <li><strong>Over-distension / high plateau:</strong> Reduce P<sub>high</sub> in 2 cm H₂O steps.</li>
+                    <li><strong>Haemodynamic instability:</strong> Consider fluid bolus or vasopressor; if refractory, reduce P<sub>high</sub> or abandon APRV.</li>
+                    <li><strong>As compliance improves:</strong> Lengthen T<sub>low</sub> (0.5 s or more) to avoid excessive autoPEEP.</li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- SECTION 7: Weaning -->
+        <details>
+            <summary>7. Weaning — “Drop and Stretch”</summary>
+            <div class="content searchable">
+                <p>The weaning process gradually converts APRV into CPAP:</p>
+                <ul>
+                    <li><strong>Drop P<sub>high</sub></strong> by 2 cm H₂O at each step.</li>
+                    <li><strong>Stretch T<sub>high</sub></strong> by 0.5–2 seconds at each step.</li>
+                    <li>Leave P<sub>low</sub> and T<sub>low</sub> essentially unchanged.</li>
+                    <li>The patient breathes spontaneously throughout, becoming increasingly comfortable on what is effectively CPAP with intermittent releases.</li>
+                    <li>Once P<sub>high</sub> is ~15–20 cm H₂O and T<sub>high</sub> is long, the release breaths become haemodynamically irrelevant — the patient can be transitioned to conventional ventilation or extubated.</li>
+                </ul>
+                <p style="font-size:0.85rem;color:#475569;"><em>Note:</em> Weaning protocols are based on expert opinion, not strong trial evidence.</p>
+            </div>
+        </details>
+
+        <!-- SECTION 8: Case Examples -->
+        <details>
+            <summary>8. 10 High-Yield Case Examples</summary>
+            <div class="content searchable">
+                <div class="case-grid">
+
+                    <div class="case-card">
+                        <div class="case-title">1. Post-laparotomy ARDS</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 58M, emergency laparotomy for perforated viscus, now P/F 110 on PEEP 14.<br>
+                            <strong>APRV move:</strong> Switch to P<sub>high</sub> 28, P<sub>low</sub> 0, T<sub>low</sub> 0.4 s, T<sub>high</sub> 4.0 s. Allow spontaneous breathing once sedation lightened.<br>
+                            <strong>Watch:</strong> Fluid balance — may need vasopressors due to reduced preload.
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-title">2. COVID-19 ARDS with refractory hypoxaemia</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 45F, P/F 80 on lung-protective ventilation, failed proning.<br>
+                            <strong>APRV move:</strong> Start P<sub>high</sub> 30, P<sub>low</sub> 5, T<sub>low</sub> 0.3 s (stiff lungs), T<sub>high</sub> 3.5 s. Increase P<sub>low</sub> to 8 if hypoxia persists.<br>
+                            <strong>Watch:</strong> Barotrauma — high risk with coughing on high PEEP.
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-title">3. Trauma with pulmonary contusions</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 32M, RTA, bilateral contusions, P/F 140, plateau 32 on PCV.<br>
+                            <strong>APRV move:</strong> Set P<sub>high</sub> 32 (not higher), P<sub>low</sub> 0, T<sub>low</sub> 0.5 s, T<sub>high</sub> 4.5 s.<br>
+                            <strong>Watch:</strong> Pneumothorax — ensure chest drains are functioning; low threshold for imaging.
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-title">4. Severe CAP with ARDS</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 70F, bilateral consolidation, P/F 95, on noradrenaline 0.15 µg/kg/min.<br>
+                            <strong>APRV move:</strong> Consider APRV after optimising conventional ventilation. Start P<sub>high</sub> 28, P<sub>low</sub> 5, T<sub>low</sub> 0.4 s, T<sub>high</sub> 4.0 s.<br>
+                            <strong>Watch:</strong> RV function — echo if available; avoid if severe PH.
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-title">5. Post-cardiac surgery ARDS</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 64M, CABG, now P/F 120, moderate RV dysfunction on echo.<br>
+                            <strong>APRV move:</strong> <em>Relative caution.</em> If used, keep P<sub>high</sub> ≤ 26, P<sub>low</sub> 5–8 to avoid RV strain. Monitor CVP and cardiac output.<br>
+                            <strong>Watch:</strong> RV afterload — APRV may worsen RV failure.
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-title">6. ARDS with bronchopleural fistula</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 50M, necrotising pneumonia, persistent air leak on chest drain.<br>
+                            <strong>APRV move:</strong> APRV may reduce mean airway pressure compared to conventional modes if P<sub>high</sub> kept low; however, high PEEP can worsen leak.<br>
+                            <strong>Watch:</strong> Air leak — consider lowering P<sub>high</sub> and T<sub>high</sub>; may not be suitable.
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-title">7. Obese patient with ARDS</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 42F, BMI 48, P/F 130, difficult to oxygenate on conventional ventilation.<br>
+                            <strong>APRV move:</strong> P<sub>high</sub> may need to be higher (up to 35) due to chest wall compliance. Start P<sub>high</sub> 30, P<sub>low</sub> 5, T<sub>low</sub> 0.4 s, T<sub>high</sub> 4.0 s.<br>
+                            <strong>Watch:</strong> Oesophageal pressure monitoring if available to guide P<sub>high</sub>.
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-title">8. Young patient with ARDS from aspiration</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 28M, aspiration after overdose, P/F 105, compliance improving.<br>
+                            <strong>APRV move:</strong> Start P<sub>high</sub> 26, P<sub>low</sub> 0, T<sub>low</sub> 0.5 s, T<sub>high</sub> 4.5 s. As compliance improves, lengthen T<sub>low</sub> to 0.6 s.<br>
+                            <strong>Watch:</strong> AutoPEEP — if excessive, T<sub>low</sub> may need lengthening.
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-title">9. ARDS with severe metabolic acidosis</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 55F, DKA + ARDS, pH 7.15, CO₂ 60 on conventional ventilation.<br>
+                            <strong>APRV move:</strong> APRV may struggle to clear CO₂. Reduce T<sub>high</sub> to 3.5 s (rate ~17/min) to increase minute volume. Consider P<sub>low</sub> 0 for maximal expiratory flow.<br>
+                            <strong>Watch:</strong> CO₂ clearance — may need to abandon APRV if hypercapnia worsens.
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-title">10. Weaning failure on conventional ventilation</div>
+                        <div class="case-body">
+                            <strong>Scenario:</strong> 60M, ARDS recovering, but failing SBTs due to anxiety and high work of breathing.<br>
+                            <strong>APRV move:</strong> Transition to APRV with P<sub>high</sub> 20, P<sub>low</sub> 5, T<sub>low</sub> 0.5 s, T<sub>high</sub> 6 s. Allow spontaneous breathing; gradually “drop and stretch” to CPAP.<br>
+                            <strong>Watch:</strong> Patient comfort — APRV often reduces sedation needs and improves weaning success.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </details>
+
+        <!-- Source Citation -->
+        <div class="source-box">
+            <strong>Source:</strong> Deranged Physiology. “Airway Pressure Release Ventilation (APRV) for ARDS.” <em>Deranged Physiology</em>, Chapter 136.
+            <br>
+            <a href="https://derangedphysiology.com/main/required-reading/respiratory-intensive-care/Chapter-136/airway-pressure-release-ventilation-aprv-ards" target="_blank" rel="noopener">
+                https://derangedphysiology.com/main/required-reading/respiratory-intensive-care/Chapter-136/airway-pressure-release-ventilation-aprv-ards
+            </a>
+            <br><br>
+            <strong>Additional references cited within source:</strong> Stock et al. (1987); Andrews et al. (2022) <em>Front Physiol</em>; Zhou et al. (2017) <em>Intensive Care Med</em>; Habashi (2005) <em>Crit Care Med</em>; Kollisch-Singule et al. (2014, 2016) <em>JAMA Surg</em>.
+        </div>
+
+        <p style="text-align:center;font-size:0.8rem;color:#94a3b8;margin-top:1.5rem;">
+            Quick reference for educational use · Not a substitute for clinical judgement
+        </p>
+    </div>
+
+    <script>
+        (function() {
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearBtn');
+            const noResults = document.getElementById('noResults');
+            const allDetails = document.querySelectorAll('details');
+            const allContent = document.querySelectorAll('.searchable');
+
+            // Store original HTML for each searchable content block
+            const originalHTML = new Map();
+            allContent.forEach((el, i) => {
+                originalHTML.set(i, el.innerHTML);
+            });
+
+            function clearHighlights() {
+                allContent.forEach((el, i) => {
+                    el.innerHTML = originalHTML.get(i);
+                });
+            }
+
+            function highlightText(container, term) {
+                if (!term) return;
+                const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+                const textNodes = [];
+                while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+                textNodes.forEach(node => {
+                    const text = node.textContent;
+                    if (regex.test(text)) {
+                        const span = document.createElement('span');
+                        span.innerHTML = text.replace(regex, '<mark>$1</mark>');
+                        node.parentNode.replaceChild(span, node);
+                    }
+                });
+            }
+
+            function performSearch() {
+                const term = searchInput.value.trim().toLowerCase();
+                clearHighlights();
+
+                if (!term) {
+                    allDetails.forEach(d => d.style.display = '');
+                    noResults.classList.remove('visible');
+                    return;
+                }
+
+                let anyMatch = false;
+
+                allDetails.forEach(detail => {
+                    const content = detail.querySelector('.searchable');
+                    if (!content) {
+                        detail.style.display = 'none';
+                        return;
+                    }
+                    const text = content.textContent.toLowerCase();
+                    if (text.includes(term)) {
+                        detail.style.display = '';
+                        anyMatch = true;
+                        // Highlight inside this content
+                        highlightText(content, term);
+                    } else {
+                        detail.style.display = 'none';
+                    }
+                });
+
+                // Also search the source box (not in a details)
+                const sourceBox = document.querySelector('.source-box');
+                if (sourceBox) {
+                    const sourceText = sourceBox.textContent.toLowerCase();
+                    if (sourceText.includes(term)) {
+                        anyMatch = true;
+                    }
+                }
+
+                noResults.classList.toggle('visible', !anyMatch);
+            }
+
+            searchInput.addEventListener('input', performSearch);
+
+            clearBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                performSearch();
+                searchInput.focus();
+            });
+
+            // Allow Enter key to trigger search
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSearch();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
