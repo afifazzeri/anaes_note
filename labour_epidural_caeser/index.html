@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quick Reference — Converting Labour Epidural to Surgical Anaesthesia for Emergency Caesarean Section</title>
+<style>
+  :root{
+    --pink-50:#fff5f9;
+    --pink-100:#ffe7f0;
+    --pink-200:#f9c9db;
+    --pink-400:#e87ba5;
+    --pink-600:#c04d78;
+    --green-50:#f2faf5;
+    --green-100:#e0f3e8;
+    --green-200:#bce3cd;
+    --green-400:#6fbf94;
+    --green-600:#3d8b64;
+    --ink:#2b2830;
+    --muted:#6d6875;
+    --line:#eae1e8;
+    --amber:#b7791f;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    color:var(--ink);
+    background:
+      radial-gradient(1100px 550px at 8% -8%, #ffe9f2 0%, rgba(255,233,242,0) 60%),
+      radial-gradient(1000px 550px at 102% 0%, #e2f7ea 0%, rgba(226,247,234,0) 58%),
+      linear-gradient(160deg,#fffafc 0%, #f6fbf7 100%);
+    background-attachment:fixed;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 72px}
+
+  /* ---------- Header ---------- */
+  header.top{
+    border-radius:22px;
+    padding:22px 22px 18px;
+    background:linear-gradient(120deg, rgba(255,228,239,.95), rgba(222,243,231,.95));
+    border:1px solid #f0dae6;
+    box-shadow:0 10px 28px rgba(192,77,120,.09);
+  }
+  header.top .eyebrow{
+    font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:700;color:var(--pink-600);margin:0 0 6px;
+  }
+  header.top h1{
+    margin:0 0 8px;font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.25;
+    color:#5f2340;letter-spacing:-.2px;
+  }
+  header.top p.sub{margin:0;color:#4d4553;font-size:.92rem;max-width:70ch}
+
+  .searchbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
+  .searchbar input{
+    flex:1 1 260px;min-width:0;padding:12px 14px;border-radius:13px;
+    border:1.5px solid #ecd4e0;background:#fff;font-size:1rem;color:var(--ink);
+    outline:none;transition:border-color .18s, box-shadow .18s;
+  }
+  .searchbar input:focus{border-color:var(--pink-400);box-shadow:0 0 0 4px rgba(232,123,165,.15)}
+  .btn{
+    padding:11px 15px;border-radius:12px;border:1.5px solid var(--green-200);
+    background:linear-gradient(180deg,#ffffff,#f0faf4);color:var(--green-600);
+    font-weight:650;font-size:.86rem;cursor:pointer;transition:.18s;white-space:nowrap;
+  }
+  .btn:hover{background:linear-gradient(180deg,#f4fdf7,#e2f5ea);border-color:var(--green-400)}
+  .btn:active{transform:translateY(1px)}
+  .btn.pink{border-color:var(--pink-200);color:var(--pink-600);background:linear-gradient(180deg,#fff,#fff0f6)}
+  .btn.pink:hover{border-color:var(--pink-400);background:linear-gradient(180deg,#fff6fa,#ffe6f0)}
+
+  .status{margin-top:10px;font-size:.8rem;color:var(--muted)}
+  .status b{color:var(--pink-600)}
+
+  /* ---------- TOC ---------- */
+  nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+  nav.toc a{
+    font-size:.78rem;font-weight:600;text-decoration:none;color:#5a4a55;
+    padding:6px 11px;border-radius:999px;background:#fff;
+    border:1px solid var(--line);transition:.18s;white-space:nowrap;
+  }
+  nav.toc a:hover{background:linear-gradient(120deg,#ffe9f2,#e3f6ea);color:var(--pink-600);border-color:var(--pink-200)}
+
+  /* ---------- Cards / accordions ---------- */
+  .card{
+    background:#fff;border:1px solid var(--line);border-left:5px solid var(--pink-200);
+    border-radius:16px;margin:14px 0;box-shadow:0 4px 16px rgba(120,90,110,.06);
+    overflow:hidden;transition:border-color .25s, box-shadow .25s;
+  }
+  .card[open]{border-left-color:var(--green-400);box-shadow:0 6px 20px rgba(61,139,100,.09)}
+  .card > summary{
+    list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;
+    padding:14px 18px;background:linear-gradient(90deg,#fff4f8,#f2faf5);
+    user-select:none;transition:background .2s;
+  }
+  .card > summary:hover{background:linear-gradient(90deg,#ffe9f1,#e8f7ee)}
+  .card > summary h2{
+    margin:0;font-size:1.02rem;font-weight:680;color:#7a2f52;letter-spacing:.1px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary{list-style:none}
+  .chev{
+    width:9px;height:9px;flex:0 0 9px;margin-left:2px;
+    border-right:2.5px solid var(--pink-400);border-bottom:2.5px solid var(--pink-400);
+    transform:rotate(-45deg);transition:transform .25s ease, border-color .25s ease;
+  }
+  details[open] > summary .chev{transform:rotate(45deg);border-color:var(--green-600)}
+  .card-body{padding:6px 18px 18px}
+
+  h3{font-size:.94rem;margin:16px 0 8px;color:#5f2340;letter-spacing:.2px}
+  h3:first-child{margin-top:8px}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:0;list-style:none}
+  ul li,ol li{position:relative;padding-left:20px;margin:7px 0}
+  ul li::before{
+    content:"";position:absolute;left:4px;top:.6em;width:7px;height:7px;border-radius:50%;
+    background:linear-gradient(135deg,var(--pink-400),var(--green-400));
+  }
+  ol{counter-reset:n}
+  ol li{counter-increment:n}
+  ol li::before{
+    content:counter(n);position:absolute;left:0;top:0;
+    font-size:.72rem;font-weight:800;color:var(--pink-600);
+    width:15px;height:15px;line-height:15px;text-align:center;border-radius:50%;
+    background:#ffe7f0;top:.22em;
+  }
+  strong{color:#4a1f34}
+  em{color:var(--muted)}
+
+  /* ---------- Callouts ---------- */
+  .callout{border-radius:13px;padding:11px 14px;margin:12px 0;border:1px solid;font-size:.9rem}
+  .callout.pink{background:#fff3f8;border-color:#f7cfdf}
+  .callout.green{background:#f1faf4;border-color:#c6e6d4}
+  .callout.warn{background:#fff9ee;border-color:#f0dfb8;color:#6b4a12}
+  .callout strong{color:inherit}
+  .callout.warn strong{color:#7a5310}
+
+  /* ---------- Chip grids (risk factors) ---------- */
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;margin:12px 0}
+  .box{border-radius:14px;padding:13px 15px;border:1px solid}
+  .box h4{margin:0 0 8px;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}
+  .box.consistent{background:linear-gradient(160deg,#fff2f7,#ffe6ef);border-color:#f6c9da}
+  .box.consistent h4{color:var(--pink-600)}
+  .box.inconsistent{background:linear-gradient(160deg,#f1faf4,#e2f5ea);border-color:#bfe4cf}
+  .box.inconsistent h4{color:var(--green-600)}
+  .box ul li{margin:6px 0;font-size:.92rem}
+  .box.consistent ul li::before{background:var(--pink-400)}
+  .box.inconsistent ul li::before{background:var(--green-400)}
+  .or{font-weight:700;color:#9c3f66;font-size:.85em}
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);border-radius:13px;margin:12px 0;background:#fff;
+  }
+  table{width:100%;border-collapse:collapse;min-width:600px;font-size:.9rem}
+  thead th{
+    position:sticky;top:0;z-index:1;
+    background:linear-gradient(120deg,#ffe7f0,#e2f5ea);
+    color:#5f2340;text-align:left;font-weight:700;font-size:.8rem;
+    letter-spacing:.05em;text-transform:uppercase;
+    padding:11px 13px;border-bottom:1px solid #eddfe7;white-space:nowrap;
+  }
+  tbody td{padding:10px 13px;border-bottom:1px solid #f3ecf1;vertical-align:top}
+  tbody tr:nth-child(even){background:#fdf9fb}
+  tbody tr:last-child td{border-bottom:none}
+  tbody td:first-child{font-weight:650;color:#5f2340;white-space:nowrap}
+  .scroll-hint{font-size:.75rem;color:var(--muted);margin:-4px 0 12px;font-style:italic}
+
+  /* ---------- Cases ---------- */
+  .section-block{margin-top:26px}
+  .section-block > h2{
+    font-size:1.05rem;color:#7a2f52;margin:0 0 4px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .section-block > h2::after{
+    content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--pink-200),var(--green-200),transparent);
+  }
+  .cases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:14px}
+  .case{
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--pink-200);
+    border-radius:15px;overflow:hidden;box-shadow:0 4px 14px rgba(120,90,110,.06);
+    transition:border-color .25s, box-shadow .25s;
+  }
+  .case[open]{border-left-color:var(--green-400);box-shadow:0 6px 18px rgba(61,139,100,.1)}
+  .case > summary{
+    list-style:none;cursor:pointer;display:flex;gap:10px;align-items:flex-start;
+    padding:12px 14px;background:linear-gradient(90deg,#fff4f8,#f3fbf6);
+    font-size:.9rem;font-weight:650;color:#5f2340;user-select:none;
+  }
+  .case > summary:hover{background:linear-gradient(90deg,#ffe9f1,#eaf8f0)}
+  .case .num{
+    flex:0 0 22px;height:22px;border-radius:50%;
+    background:linear-gradient(135deg,var(--pink-400),var(--green-400));
+    color:#fff;font-size:.72rem;font-weight:800;line-height:22px;text-align:center;margin-top:1px;
+  }
+  .case .body{padding:4px 14px 14px;font-size:.89rem}
+  .case .body p{margin:8px 0}
+  .case .stem{color:#4d4553}
+  .case .q{font-weight:650;color:#7a2f52;margin-top:10px}
+  .case .a{
+    margin-top:8px;padding:10px 12px;border-radius:11px;
+    background:linear-gradient(160deg,#f1faf4,#e6f6ec);border:1px solid #c9e7d6;
+  }
+  .case .a b{color:var(--green-600)}
+
+  /* ---------- Footer ---------- */
+  footer.cite{
+    margin-top:34px;padding:18px 20px;border-radius:16px;
+    background:linear-gradient(120deg,#fff3f8,#f0faf4);
+    border:1px solid #eddfe7;font-size:.85rem;color:#4d4553;
+  }
+  footer.cite h3{margin:0 0 8px;color:#7a2f52;font-size:.86rem;text-transform:uppercase;letter-spacing:.09em}
+  footer.cite p{margin:6px 0}
+  footer.cite a{color:var(--pink-600);word-break:break-all}
+  .disclaimer{margin-top:10px;font-size:.78rem;color:var(--muted);font-style:italic}
+
+  mark.hl{background:#ffe08a;color:#4a1f34;border-radius:3px;padding:0 2px;box-shadow:0 0 0 1px #f3cd63 inset}
+  .is-hidden{display:none !important}
+
+  @media (max-width:520px){
+    .wrap{padding:14px 11px 60px}
+    header.top{padding:16px 15px 14px;border-radius:18px}
+    .card > summary{padding:12px 14px}
+    .card-body{padding:4px 14px 15px}
+  }
+  @media print{
+    body{background:#fff}
+    .searchbar,nav.toc,.status{display:none}
+    .card,.case{break-inside:avoid;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">Anaesthetic Quick Reference</p>
+    <h1>Conversion of Labour Epidural Analgesia to Surgical Anaesthesia for Emergency Intrapartum Caesarean Section</h1>
+    <p class="sub">Bedside summary for anaesthetists &amp; intensivists — risk factors, catheter checks, drug choice, block assessment, failed top-up management and follow-up.</p>
+
+    <div class="searchbar">
+      <input id="search" type="search" placeholder="Search this reference… e.g. T5, lidocaine, bicarbonate, spinal, LAST" autocomplete="off" aria-label="Search clinical content">
+      <button class="btn pink" id="expandAll" type="button">Expand all</button>
+      <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    </div>
+    <p class="status" id="count"></p>
+  </header>
+
+  <nav class="toc" aria-label="Contents">
+    <a href="#numbers">Key numbers</a>
+    <a href="#risk">Risk factors</a>
+    <a href="#assess">Assessment</a>
+    <a href="#cat1">Category 1</a>
+    <a href="#location">Catheter location</a>
+    <a href="#where">Where to convert</a>
+    <a href="#drugs">Drugs &amp; adjuncts</a>
+    <a href="#block">Block adequacy</a>
+    <a href="#failed">Failed top-up</a>
+    <a href="#recs">Recommendations</a>
+    <a href="#followup">Follow-up</a>
+    <a href="#cases">10 cases</a>
+  </nav>
+
+  <!-- ================= KEY NUMBERS ================= -->
+  <details class="card" id="numbers" open>
+    <summary><span class="chev"></span><h2>Bottom line &amp; key numbers</h2></summary>
+    <div class="card-body">
+      <div class="callout pink">
+        <strong>Bottom line:</strong> A labour epidural that is not working well enough for labour pain will
+        <em>not</em> provide adequate surgical anaesthesia. Top up a good epidural as soon as it is safe to do so —
+        but stay with the patient, assess bilaterally and cephalad, and be ready to induce general anaesthesia.
+      </div>
+      <ul>
+        <li><strong>Decision-to-delivery (RCoA):</strong> Category 1 ≤ <strong>30 min</strong>; Category 2 ≤ <strong>75 min</strong> (for ≥90% of cases).</li>
+        <li><strong>Conversion neuraxial → general anaesthesia (RCoA target):</strong> &lt; <strong>15%</strong> for Category 1; &lt; <strong>5%</strong> for Categories 1–3 overall.</li>
+        <li><strong>Incidence of failed labour epidural conversion:</strong> <strong>0–21%</strong>.</li>
+        <li><strong>Scale:</strong> &gt;100,000 emergency Caesarean deliveries in England (2017–18); <strong>21%</strong> performed with epidural anaesthesia alone.</li>
+        <li><strong>Decision-to-delivery:</strong> epidural top-up mean <strong>19 min</strong> vs general anaesthesia <strong>17 min</strong> — comparable.</li>
+        <li><strong>Operating-room-to-incision:</strong> general anaesthesia <strong>6 min</strong> vs epidural top-up <strong>11 min</strong> — the longer interval did <em>not</em> produce inferior neonatal outcomes.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= RISK FACTORS ================= -->
+  <details class="card" id="risk" open>
+    <summary><span class="chev"></span><h2>Risk factors for failed conversion</h2></summary>
+    <div class="card-body">
+      <div class="grid2">
+        <div class="box consistent">
+          <h4>Consistent factors</h4>
+          <ul>
+            <li>Greater number of unscheduled epidural top-ups needed to maintain labour analgesia <span class="or">(OR 3.2)</span></li>
+            <li>Parturient-reported pain in the <strong>2 h before Caesarean section</strong></li>
+            <li>Management by a <strong>non-obstetric anaesthetist</strong> <span class="or">(OR 4.6)</span></li>
+            <li><strong>Urgency</strong> of the Caesarean section <span class="or">(OR 40.4)</span></li>
+          </ul>
+        </div>
+        <div class="box inconsistent">
+          <h4>Inconsistent factors</h4>
+          <ul>
+            <li>Increased BMI or weight</li>
+            <li>Cervical dilatation at commencement of the labour epidural</li>
+            <li>Epidural rather than combined spinal-epidural (CSE) for labour</li>
+            <li>Increasing duration of epidural analgesia</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout green">
+        <strong>Practical point:</strong> Breakthrough pain in labour may mark a poorly functioning epidural, but many
+        epidurals that needed unscheduled boluses still work well when topped up for Caesarean section. Specialist
+        obstetric anaesthetists may have lower failure rates because they replace problematic catheters <em>before</em>
+        Caesarean section is needed.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= ASSESSMENT ================= -->
+  <details class="card" id="assess">
+    <summary><span class="chev"></span><h2>Assessing a labour epidural before conversion</h2></summary>
+    <div class="card-body">
+      <ul>
+        <li>Careful assessment of epidural <strong>function</strong> is needed before deciding whether to top up.</li>
+        <li>Look for <strong>missed segments</strong>, <strong>unilateral blockade</strong> or inadequate sacral cover on objective testing.</li>
+        <li>An epidural judged <strong>inadequate for labour</strong> cannot be expected to provide surgical anaesthesia.</li>
+        <li>If the obstetrician is concerned about slow progress or the fetal heart rate tracing, the anaesthetist must
+            <strong>re-evaluate epidural function in anticipation</strong> of needing to convert.</li>
+        <li>Inspect the epidural catheter in theatre to confirm it has <strong>not migrated</strong> since placement.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= CATEGORY 1 ================= -->
+  <details class="card" id="cat1">
+    <summary><span class="chev"></span><h2>Category 1 Caesarean section — epidural or general?</h2></summary>
+    <div class="card-body">
+      <ul>
+        <li>General anaesthesia is <strong>consistently associated with a shorter decision-to-delivery interval</strong> than
+            CSE, spinal or epidural conversion.</li>
+        <li>However, labour epidural conversion can achieve a <strong>comparable</strong> decision-to-delivery interval
+            (mean 19 vs 17 min).</li>
+        <li>General anaesthesia carries many potential drawbacks for mother and neonate.</li>
+      </ul>
+      <div class="callout pink">
+        <strong>Authors' view:</strong> If a Category 1 Caesarean section is required, a labour epidural judged adequate for
+        conversion <strong>should be topped up as soon as practically and safely possible in preference to general
+        anaesthesia</strong>. Continue to evaluate for bilateral and progressively cephalad blockade — but be prepared and
+        ready to induce general anaesthesia if adequate density and level are not obtained.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= CATHETER LOCATION ================= -->
+  <details class="card" id="location">
+    <summary><span class="chev"></span><h2>Confirming the correct location of the epidural catheter</h2></summary>
+    <div class="card-body">
+      <div class="callout warn">
+        <strong>Why it matters:</strong> Between 1970 and 1998 in the USA, almost one-fifth of maternal deaths associated with
+        obstetric anaesthesia were related to epidural anaesthesia — many following bupivacaine 0.75% and caused by
+        inadvertent high/total spinal blockade or local anaesthetic systemic toxicity (LAST).
+      </div>
+
+      <h3>Aspiration</h3>
+      <ul>
+        <li>Gentle aspiration, looking for <strong>blood or cerebrospinal fluid (CSF)</strong>, identifies a misplaced catheter
+            effectively and immediately.</li>
+        <li>Sensitivity <strong>98%</strong>, specificity <strong>100%</strong> — but <strong>false negatives occur</strong>.</li>
+        <li>In 2003 in the UK, only <strong>34%</strong> of respondents with an interest in obstetric anaesthesia gave an
+            epidural test dose for emergency Caesarean section.</li>
+      </ul>
+
+      <h3>Test dose</h3>
+      <ul>
+        <li>Defined as a small amount of local anaesthetic (LA), with or without adrenaline, to determine whether the catheter
+            lies in a <strong>blood vessel</strong> or the <strong>subarachnoid space</strong>.</li>
+        <li>Controversial — many argue it is unnecessary because catheter position was confirmed in labour.</li>
+        <li>But <strong>multicompartmental block</strong> (distal orifice intravascular/subarachnoid while a proximal orifice
+            remains epidural), <strong>arachnoid rupture after subdural placement</strong> and <strong>secondary catheter
+            migration</strong> can still occur.</li>
+        <li>Balance the test dose against the <strong>delay</strong> incurred in establishing blockade.</li>
+      </ul>
+
+      <h3>Onset data</h3>
+      <ul>
+        <li>Intrathecal <strong>2 mL lidocaine 1.5%</strong>: mean onset of objective block <strong>1.5 min</strong>.</li>
+        <li>Epidural <strong>3 mL lidocaine 1.5%</strong>: <strong>9 min</strong>, with no detectable sensory blockade at 1.5 min.</li>
+        <li>If the test dose uses a slower-onset LA (e.g. levobupivacaine), excluding intrathecal placement takes longer than
+            one is willing to wait.</li>
+        <li>Intrathecal <strong>3 mL lidocaine 2%</strong> — unlike 3 mL bupivacaine 0.25–0.5% — reliably produces motor blockade.</li>
+      </ul>
+
+      <h3>Adrenaline marker</h3>
+      <ul>
+        <li>Epidural adrenaline <strong>10–15 µg</strong> with lidocaine, given in uterine diastole.</li>
+        <li>Criterion: rise in maternal heart rate of <strong>≥10 beats min⁻¹ within 1 min</strong> after injection.</li>
+        <li>Sensitivity up to <strong>100%</strong>, specificity up to <strong>96%</strong> when combined with clinical evaluation.</li>
+        <li>Not universally supported — in one study adrenaline with lidocaine did not compare favourably with simple aspiration.</li>
+        <li>I.V. adrenaline 10–15 µg is <strong>not harmful to the fetus</strong>.</li>
+      </ul>
+
+      <div class="callout pink">
+        <strong>Authors' view:</strong> Even with a well-functioning labour epidural, <strong>every epidural top-up dose must be
+        considered a test dose</strong>, so that incremental dosing causes no harm even if the catheter is intrathecal or
+        intravascular. <strong>Lidocaine 2%</strong> with or without adrenaline, fentanyl, or both, serves as both the test dose
+        and the Caesarean top-up dose.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= WHERE ================= -->
+  <details class="card" id="where">
+    <summary><span class="chev"></span><h2>Where to initiate the conversion (delivery room vs theatre)</h2></summary>
+    <div class="card-body">
+      <ul>
+        <li>2003 UK survey: <strong>81%</strong> initiated extension of the block in the <strong>delivery room</strong>.</li>
+        <li>2014 Scandinavian survey: <strong>33%</strong> did so.</li>
+        <li><strong>Delivery room argument:</strong> allows a test dose and reduces the decision-to-delivery interval during
+            concurrent urgent transfer.</li>
+        <li><strong>Theatre argument:</strong> better monitoring, and earlier identification of high/total blockade,
+            hypotension and LAST.</li>
+      </ul>
+      <div class="callout green">
+        <strong>Authors' practice:</strong> After <strong>negative aspiration</strong>, give the epidural test dose in the
+        delivery room as soon as Caesarean section is decided (where possible), then transfer immediately for full conversion
+        in theatre with safe monitoring and resuscitation facilities, once the test dose effect is evaluated.
+        <br><br>
+        For a <strong>Category 1</strong> Caesarean section, a more aggressive strategy of epidural top-up with increased dosing
+        in the delivery room may be suitable. <strong>The anaesthetist must stay with the patient at all times once an epidural
+        top-up has started.</strong>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= DRUGS ================= -->
+  <details class="card" id="drugs">
+    <summary><span class="chev"></span><h2>Choice of local anaesthetics and adjuncts</h2></summary>
+    <div class="card-body">
+      <p class="scroll-hint">↔ Table scrolls horizontally on small screens.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Solution</th>
+              <th>Onset of surgical blockade</th>
+              <th>Intraoperative supplementation</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lidocaine 2% + adrenaline<br>(≈5 µg mL⁻¹) ± fentanyl</td>
+              <td><strong>Fastest</strong> — mean 4.5 min</td>
+              <td>—</td>
+              <td>Epidural fentanyl <strong>50–75 µg</strong> further reduces onset by a mean difference of &gt;2 min.
+                  Serves as both test dose and top-up dose.</td>
+            </tr>
+            <tr>
+              <td>Ropivacaine 0.75%</td>
+              <td>Slower than lidocaine + adrenaline</td>
+              <td><strong>Lowest</strong> need for supplementation</td>
+              <td>Adding fentanyl did <strong>not</strong> reduce supplementation in emergency Caesarean section — unlike
+                  elective Caesarean section. Possibly because labour epidural fentanyl already produced a near-maximal effect.</td>
+            </tr>
+            <tr>
+              <td>Bupivacaine 0.5% or<br>levobupivacaine 0.5%</td>
+              <td><strong>Slowest</strong></td>
+              <td>Higher requirement</td>
+              <td><strong>Least effective</strong> solutions for both speed of onset and quality of block.
+                  Levobupivacaine and ropivacaine are less cardiotoxic with a greater margin of safety than bupivacaine,
+                  which at higher concentrations has been linked to maternal mortality.</td>
+            </tr>
+            <tr>
+              <td>Bupivacaine 0.5% + lidocaine 2% (1:1)</td>
+              <td>No advantage over lidocaine 2% alone</td>
+              <td>—</td>
+              <td>Adds an extra step to drug preparation.</td>
+            </tr>
+            <tr>
+              <td>Bicarbonate 8.4%</td>
+              <td>Reduces onset by a mean of <strong>4.5 min</strong> when added</td>
+              <td>—</td>
+              <td>Add <strong>2 mL bicarbonate 8.4% to 20 mL lidocaine</strong>, then discard 2 mL of the mixture.
+                  Alkalinisation increases the unionised fraction of lidocaine and may increase fentanyl lipid solubility and
+                  penetration into spinal cord and systemic circulation.<br>
+                  <strong>Never</strong> give with bupivacaine, levobupivacaine or ropivacaine — precipitation occurs.<br>
+                  Prep-time concern: unfamiliar anaesthetists take <strong>4× longer</strong> to prepare than bupivacaine;
+                  familiar anaesthetists add &lt;1 min.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn">
+        <strong>Trade-off:</strong> It is difficult to choose a single solution when both <strong>speed of onset</strong> and
+        <strong>quality of block</strong> are sought. Weigh LAST risk, preparation time and operator familiarity.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= BLOCK ADEQUACY ================= -->
+  <details class="card" id="block">
+    <summary><span class="chev"></span><h2>Evaluating the adequacy of neuraxial blockade</h2></summary>
+    <div class="card-body">
+      <div class="callout pink">
+        <strong>Gold standard:</strong> Loss of sensation to <strong>TOUCH up to and including T5</strong>
+        (between the nipple line and the xiphisternum) is the most reliable modality to prevent pain during Caesarean section.
+        <br>Sensitivity <strong>98%</strong>, specificity <strong>53%</strong> (in the absence of neuraxial opioids) for
+        discriminating effective from ineffective blockade.
+      </div>
+
+      <h3>Defining the level</h3>
+      <ul>
+        <li><strong>Russell:</strong> the cephalad dermatomal level to touch = the <em>first sensation of light touch</em>.</li>
+        <li><strong>Yentis:</strong> the point at which the sensation of touch <em>no longer changes</em> when the stimulus is
+            applied yet more cranially.</li>
+        <li>These contrasting definitions cause confusion in interpretation.</li>
+      </ul>
+
+      <h3>Why T5 and not T10?</h3>
+      <ul>
+        <li>Afferent pain fibres from pelvic organs are thought to accompany sympathetic nerves and enter the spinal cord
+            around <strong>T10–L1</strong>.</li>
+        <li>Blockade must be much higher than T10, so other non-conventional pathways must transmit Caesarean pain — possibly
+            pelvic afferents following sympathetic nerves through intra-abdominal plexuses and the greater splanchnic nerve to
+            reach the cord as high as <strong>T5</strong>, or visceral pain from other intra-abdominal structures entering at T5.</li>
+      </ul>
+
+      <h3>Other modalities — do not substitute</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Modality</th><th>Sensitivity (discriminating effective vs ineffective block)</th><th>Comment</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Loss of sensation to touch</td><td><strong>98%</strong> (specificity 53%)</td><td>The standard. Must reach T5.</td></tr>
+            <tr><td>Sharp pinprick</td><td><strong>55%</strong></td><td>Not a surrogate for touch.</td></tr>
+            <tr><td>Cold</td><td><strong>12%</strong></td><td>Only 12% of parturients who experience pain will have loss of cold sensation below T4.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li>In 2010 in the UK, more than <strong>two-thirds</strong> of respondents who evaluated a single modality used
+            <strong>loss of cold sensation to T4</strong> — a poor discriminator.</li>
+        <li>Adequate anaesthesia means <strong>lack of awareness to the sensation</strong> — not merely absence of cold or
+            sharp pinprick.</li>
+        <li>Loss of cold is found <strong>many dermatomes higher</strong> than loss of sharp pinprick, which in turn is several
+            dermatomes higher than loss of touch — and the relationship is <strong>not constant</strong> within or between
+            individuals. Testing one modality does <strong>not</strong> predict the level of another.</li>
+      </ul>
+
+      <h3>Caudal and motor assessment</h3>
+      <ul>
+        <li>Assess caudal spread from the <strong>lateral margin of the foot (S1)</strong> to the <strong>anterior leg and
+            thigh (lumbar dermatomes)</strong>.</li>
+        <li><strong>Sacral segments must be blocked</strong> to prevent pain during pressure and traction on the lower uterus,
+            cervix and vagina.</li>
+        <li>Motor block of the lower limbs is secondary to lumbar blockade — assess with the <strong>Bromage scale</strong> or
+            <strong>straight leg raising</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= FAILED TOP-UP ================= -->
+  <details class="card" id="failed">
+    <summary><span class="chev"></span><h2>Clinical management of a failed epidural top-up</h2></summary>
+    <div class="card-body">
+      <p>Optimal management is <strong>controversial</strong> and best-practice guidelines are lacking. Every option has
+        drawbacks and introduces risk to mother and neonate.</p>
+
+      <p class="scroll-hint">↔ Table scrolls horizontally on small screens.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Management option</th><th>Drawbacks and risks</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CSE</td>
+              <td>Longer time to perform · Difficult to choose optimal intrathecal LA dose · Untested epidural catheter if
+                  subsequent epidural dosing is needed · Potential for LAST with epidural administration of additional LA</td>
+            </tr>
+            <tr>
+              <td>General anaesthesia</td>
+              <td>Accidental awareness · Complications of aspiration and failed intubation · Greater maternal and neonatal
+                  sedation · Increased risk of poor uterine tone and blood loss · Depressed 5-min Apgar scores, need for bag-mask
+                  ventilation and neonatal intensive care admission · Increased postoperative pain and PONV · Impaired early
+                  breastfeeding and maternal–neonatal bonding</td>
+            </tr>
+            <tr>
+              <td>Manipulation or replacement of epidural</td>
+              <td>Longer time to perform · Potential for LAST with administration of additional LA</td>
+            </tr>
+            <tr>
+              <td>Spinal</td>
+              <td>Difficulty obtaining CSF and increased risk of block failure · Difficult to select optimal intrathecal LA dose ·
+                  Decreasing the intrathecal LA dose further increases risk of block failure · Potential for high or total spinal
+                  with standard or modestly reduced intrathecal dose</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Unilateral sensory blockade</h3>
+      <ul>
+        <li>May be due to the catheter lying <strong>too lateral</strong> in the epidural space, or <strong>outside</strong> the
+            space after passing through the intervertebral foramen.</li>
+        <li><strong>Withdrawal</strong> of the catheter followed by additional LA in surgical concentrations was effective in
+            <strong>&gt;4/5</strong> of failed conversions in a retrospective analysis.</li>
+        <li>But it can take a long time, causing delays, and further LA increases <strong>LAST risk</strong>.</li>
+      </ul>
+
+      <h3>Spinal after a failed top-up</h3>
+      <ul>
+        <li>Technically challenging — <strong>difficulty obtaining CSF</strong>, possibly due to collapse of the subarachnoid
+            space below the termination of the cord from the volume effect of the epidural bolus.</li>
+        <li>Spinal anaesthesia within <strong>30 min</strong> of a failed top-up is associated with increased failure risk — free
+            flow of clear fluid may be <strong>previously injected LA</strong> in the epidural space, not CSF.</li>
+        <li>Increased likelihood of <strong>high or total spinal</strong> may relate to: pre-existing subclinical analgesia from
+            prior epidural LA; compression of the dural sac by residual epidural LA causing cephalad displacement of intrathecal
+            drug; and leakage of LA through the dural hole into the subarachnoid space.</li>
+        <li><strong>Risk-reduction measures:</strong> perform the spinal <strong>sitting</strong>; reduce intrathecal bupivacaine
+            dose by <strong>20%</strong>; delay supine positioning after injection.</li>
+        <li>Caveat: dose reduction may <strong>not</strong> prevent high/total spinal and can increase later intraoperative block
+            failure.</li>
+      </ul>
+
+      <h3>CSE instead of spinal</h3>
+      <ul>
+        <li>Allows a <strong>decreased initial intrathecal LA dose</strong> with reduced risk of block failure, because additional
+            LA can be given through the epidural catheter.</li>
+        <li>Concerns about the untested epidural catheter are <strong>not substantiated</strong> — the incidence of a failed
+            epidural component after a successful CSE is unlikely.</li>
+        <li>Longer performance times than spinal reported, but only one trial showed a clinically meaningful difference of
+            <strong>11 min</strong>.</li>
+      </ul>
+
+      <div class="callout warn">
+        <strong>General anaesthesia risk:</strong> Accidental awareness under anaesthesia and complications related to aspiration
+        and failed intubation — with critical incidents mainly occurring after <strong>failed conversion of neuraxial
+        anaesthesia</strong> rather than primary general anaesthesia.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= RECOMMENDATIONS ================= -->
+  <details class="card" id="recs">
+    <summary><span class="chev"></span><h2>Recommendations to decrease the risk of failed conversion</h2></summary>
+    <div class="card-body">
+      <div class="grid2">
+        <div class="box consistent">
+          <h4>Delivery room — before deciding on Caesarean section</h4>
+          <ul>
+            <li><strong>Early recognition</strong> of poorly functioning epidural analgesia, giving the anaesthetist an
+                opportunity to manipulate or replace the catheter.</li>
+            <li>If the obstetrician expresses concern about <strong>slow progress</strong> or the <strong>fetal heart rate
+                tracing</strong>, re-evaluate how well the epidural is functioning in anticipation of needing to convert.</li>
+          </ul>
+        </div>
+        <div class="box inconsistent">
+          <h4>Operating theatre — after deciding on Caesarean section</h4>
+          <ul>
+            <li><strong>Inspect the catheter</strong> to check it has not migrated since placement in labour.</li>
+            <li>If sufficient time is available, test function by giving <strong>one-quarter to one-third</strong> of the full LA
+                dose, examining initially and then <strong>every 3–5 min</strong> for bilateral level and density of sensory
+                blockade.</li>
+            <li>In the absence of definite evidence of bilateral, progressively cephalad blockade of adequate density,
+                <strong>do not administer more than half</strong> of the full LA dose.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= FOLLOW-UP ================= -->
+  <details class="card" id="followup">
+    <summary><span class="chev"></span><h2>Follow-up</h2></summary>
+    <div class="card-body">
+      <ul>
+        <li><strong>All women</strong> who receive intrapartum anaesthetic care — analgesia for labour or anaesthesia for
+            operative procedures — should be followed up <strong>routinely</strong>.</li>
+        <li>Aims: determine general well-being; exclude complications such as <strong>epidural haematoma</strong> or
+            <strong>postdural puncture headache (PDPH)</strong>; monitor adverse effects such as <strong>pruritus</strong> or
+            <strong>vomiting</strong>; obtain feedback on quality of analgesia and anaesthesia service.</li>
+        <li>Serious complications such as <strong>epidural abscess</strong> may not manifest clinically until
+            <strong>after hospital discharge</strong> — verbal <em>and</em> written information must be provided on when and how
+            to seek further advice and help.</li>
+        <li>Those with identified complications (e.g. PDPH) should be <strong>contacted daily</strong> and offered postpartum
+            follow-up review as an <strong>outpatient with a consultant anaesthetist</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= CASES ================= -->
+  <section class="section-block" id="cases">
+    <h2>10 high-yield case examples</h2>
+    <p class="scroll-hint">Tap a case to reveal the answer.</p>
+
+    <div class="cases-grid">
+
+      <details class="case">
+        <summary><span class="num">1</span><span>The ideal Category 1 top-up</span></summary>
+        <div class="body">
+          <p class="stem">28-year-old, working labour epidural, no breakthrough pain, no missed segments. Sudden fetal
+            bradycardia → Category 1 Caesarean section.</p>
+          <p class="q">What is your plan?</p>
+          <div class="a"><b>Answer:</b> Negative aspiration → <b>lidocaine 2% + adrenaline (≈5 µg mL⁻¹) ± fentanyl
+            50–75 µg</b>. This gives the fastest onset of surgical blockade (mean 4.5 min) and acts as both test and top-up
+            dose. Give the test dose in the delivery room if possible, transfer immediately, then top up incrementally in
+            theatre with full monitoring. Assess <b>touch to T5</b> bilaterally and progressively. Stay with the patient.
+            Be prepared to induce general anaesthesia.</div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="num">2</span><span>Three unscheduled boluses in 2 hours</span></summary>
+        <div class="body">
+          <p class="stem">Epidural required three unscheduled top-ups in the last 2 h. Now Category 2 for failure to
+            progress.</p>
+          <p class="q">How does this change your approach?</p>
+          <div class="a"><b>Answer:</b> Two <b>consistent</b> risk factors are present — multiple unscheduled top-ups
+            (OR 3.2) and pain in the 2 h before Caesarean section. Failure risk is high. If time permits, consider
+            <b>replacing the catheter or placing a CSE</b> before/at the time of the decision. Test with ¼–⅓ of the full LA
+            dose and reassess every 3–5 min; without definite bilateral cephalad block of adequate density, do not exceed
+            <b>half</b> the full dose. Have a low threshold for general anaesthesia.</div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="num">3</span><span>Unilateral block after top-up</span></summary>
+        <div class="body">
+          <p class="stem">After the epidural top-up, blockade is dense on the right but absent on the left.</p>
+          <p class="q">What are the options?</p>
+          <div class="a"><b>Answer:</b> The catheter is likely too lateral in the epidural space or outside it via the
+            intervertebral foramen. <b>Withdrawal then re-dosing</b> with surgical concentrations was effective in
+            &gt;4/5 of failed conversions in a retrospective analysis — but it takes time and increases <b>LAST</b> risk.
+            Alternatives: CSE or spinal, or general anaesthesia if the situation is time-critical. Do not persist with an
+            obviously one-sided block for a Category 1.</div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="num">4</span><span>Spinal 20 minutes after a failed top-up</span></summary>
+        <div class="body">
+          <p class="stem">Epidural top-up failed. Twenty minutes later you decide to perform a spinal.</p>
+          <p class="q">What must you anticipate?</p>
+          <div class="a"><b>Answer:</b> Spinal within <b>30 min</b> of a failed top-up carries increased risk of
+            <b>block failure</b> and <b>high/total spinal</b>. Free flow of clear fluid may be previously injected LA in the
+            epidural space, not CSF — do not be falsely reassured. Perform the spinal <b>sitting</b>, reduce intrathecal
+            bupivacaine by <b>20%</b>, and <b>delay supine positioning</b>. Note that dose reduction may not prevent high
+            block and can increase later intraoperative failure — a <b>CSE</b> may be a better option.</div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="num">5</span><span>Test dose — is it intravascular?</span></summary>
+        <div class="body">
+          <p class="stem">One minute after 3 mL lidocaine 2% via the epidural catheter, the patient reports a metallic taste
+            and palpitations; heart rate has risen 20 beats min⁻¹.</p>
+          <p class="q">What do you do?</p>
+          <div class="a"><b>Answer:</b> Treat as a <b>positive test dose / LAST prodrome</b>. Stop injecting, re-aspirate,
+            do not give further LA through the catheter, call for help, and manage per your LAST protocol (including lipid
+            emulsion where indicated). Systemically, adrenaline 10–15 µg as a marker produces a rise in heart rate of
+            <b>≥10 beats min⁻¹ within 1 min</b> (sensitivity up to 100%, specificity up to 96%) — but the same rise can be
+            caused by pain. Use clinical judgment and consider an alternative anaesthetic technique.</div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="num">6</span><span>Conflicting block levels</span></summary>
+        <div class="body">
+          <p class="stem">Assessment shows loss of cold sensation to T4, loss of sharp pinprick to T8, and loss of light touch
+            only to T10.</p>
+          <p class="q">Is this block adequate to start surgery?</p>
+          <div class="a"><b>Answer:</b> <b>No.</b> Loss of sensation to <b>touch must reach T5</b>. Cold and pinprick are
+            not substitutes or surrogate measures — cold has only 12% sensitivity and pinprick 55%. The dermatomal
+            relationship between modalities is not constant within or between individuals, so a high cold level does not
+            predict an adequate touch level. Top up further and reassess, or change technique.</div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="num">7</span><span>Speed is everything — bicarbonate?</span></summary>
+        <div class="body">
+          <p class="stem">Category 1 Caesarean section, good working epidural, experienced obstetric anaesthetist on site.</p>
+          <p class="q">Is adding bicarbonate worth it?</p>
+          <div class="a"><b>Answer:</b> Bicarbonate 8.4% (2 mL added to 20 mL lidocaine, then discard 2 mL of the mixture)
+            reduces onset by a mean of <b>4.5 min</b>. In familiar hands, the extra preparation time is <b>&lt;1 min</b>; in
+            unfamiliar hands it is <b>4×</b> that of bupivacaine — and mixing drugs in an emergency carries error risk.
+            <b>Never</b> add bicarbonate to bupivacaine, levobupivacaine or ropivacaine (precipitation).</div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="num">8</span><span>Ropivacaine 0.75% — when to choose it</span></summary>
+        <div class="body">
+          <p class="stem">Category 2 Caesarean section, predicted to be surgically difficult, epidural functioning well.</p>
+          <p class="q">Is ropivacaine 0.75% a good choice?</p>
+          <div class="a"><b>Answer:</b> Ropivacaine 0.75% produces the <b>lowest need for intraoperative supplementation</b>,
+            which suits a longer or more difficult operation — but onset is slower than lidocaine 2% + adrenaline.
+            Unlike in elective Caesarean section, adding <b>fentanyl does not reduce supplementation</b> in the emergency
+            setting, possibly because labour epidural fentanyl has already produced a near-maximal effect.</div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="num">9</span><span>Non-obstetric anaesthetist on call</span></summary>
+        <div class="body">
+          <p class="stem">You are the general on-call anaesthetist covering obstetrics overnight. A Category 2 Caesarean
+            section is called for a woman with a labour epidural.</p>
+          <p class="q">What is the key risk factor and what should you do?</p>
+          <div class="a"><b>Answer:</b> Management by a <b>non-obstetric anaesthetist</b> carries an OR of <b>4.6</b> for
+            failed conversion (alongside urgency, OR 40.4). Involve a specialist obstetric anaesthetist early, re-evaluate
+            epidural function before the decision, consider replacing a poorly functioning catheter <b>before</b> Caesarean
+            section is needed, and be explicit about your threshold for general anaesthesia.</div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="num">10</span><span>Day 6 readmission after discharge</span></summary>
+        <div class="body">
+          <p class="stem">A woman discharged on day 2 after an epidural top-up for Caesarean section returns on day 6 with
+            back pain and fever.</p>
+          <p class="q">What is the lesson?</p>
+          <div class="a"><b>Answer:</b> Serious complications such as <b>epidural abscess</b> may not manifest clinically
+            until <b>after hospital discharge</b>. Every woman receiving intrapartum anaesthetic care must receive
+            <b>verbal and written information</b> on when and how to seek further advice, and routine follow-up should look
+            for haematoma, PDPH, pruritus and vomiting. Women with identified complications (e.g. PDPH) should be contacted
+            <b>daily</b> and offered outpatient consultant anaesthetist review.</div>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ================= CITATION ================= -->
+  <footer class="cite">
+    <h3>Source</h3>
+    <p>
+      Desai N, Carvalho B. <strong>Conversion of labour epidural analgesia to surgical anaesthesia for emergency intrapartum
+      Caesarean section.</strong> <em>BJA Education</em> 2020;20(1):24–31.
+      doi: <a href="https://doi.org/10.1016/j.bjae.2019.09.006" target="_blank" rel="noopener">10.1016/j.bjae.2019.09.006</a>
+      (article file: PIIS2058534919301490.pdf).
+    </p>
+    <p>
+      Affiliations: Guy's and St Thomas' NHS Foundation Trust, London, UK; Stanford University School of Medicine, Stanford,
+      CA, USA; King's College London, London, UK.
+    </p>
+    <p class="disclaimer">
+      Quick-reference educational summary. Always follow your local departmental guidelines and current national
+      obstetric anaesthesia guidance.
+    </p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var units = Array.prototype.slice.call(document.querySelectorAll(".card, .case"));
+  var searchInput = document.getElementById("search");
+  var countEl = document.getElementById("count");
+  var expandAll = document.getElementById("expandAll");
+  var collapseAll = document.getElementById("collapseAll");
+
+  // Remember default open/closed state so clearing search restores it
+  units.forEach(function (u) {
+    u.dataset.defaultOpen = u.hasAttribute("open") ? "1" : "0";
+  });
+
+  function unhighlight() {
+    var marks = document.querySelectorAll("mark.hl");
+    Array.prototype.forEach.call(marks, function (m) {
+      var parent = m.parentNode;
+      if (!parent) return;
+      while (m.firstChild) parent.insertBefore(m.firstChild, m);
+      parent.removeChild(m);
+      parent.normalize();
+    });
+  }
+
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function highlight(term, root) {
+    if (!term) return;
+    var re = new RegExp("(" + escapeRegExp(term) + ")", "gi");
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        if (/^(SCRIPT|STYLE|MARK|NOSCRIPT)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      re.lastIndex = 0;
+      if (!re.test(text)) return;
+      re.lastIndex = 0;
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      while ((m = re.exec(text)) !== null) {
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var mark = document.createElement("mark");
+        mark.className = "hl";
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        if (m[0].length === 0) re.lastIndex++;
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function run() {
+    var q = searchInput.value.trim();
+    var qLower = q.toLowerCase();
+
+    unhighlight();
+
+    var shown = 0;
+    units.forEach(function (u) {
+      var match = !q || u.textContent.toLowerCase().indexOf(qLower) !== -1;
+      u.classList.toggle("is-hidden", !match);
+      if (match) {
+        shown++;
+        if (q) {
+          u.setAttribute("open", "");
+        } else {
+          if (u.dataset.defaultOpen === "1") u.setAttribute("open", "");
+          else u.removeAttribute("open");
+        }
+      }
+    });
+
+    if (q) {
+      units.forEach(function (u) {
+        if (!u.classList.contains("is-hidden")) highlight(q, u);
+      });
+      countEl.innerHTML = "Showing <b>" + shown + "</b> of " + units.length +
+        " sections for “" + q.replace(/</g, "&lt;") + "”";
+    } else {
+      countEl.innerHTML = units.length + " expandable sections · type to filter";
+    }
+  }
+
+  var t;
+  searchInput.addEventListener("input", function () {
+    clearTimeout(t);
+    t = setTimeout(run, 120);
+  });
+
+  expandAll.addEventListener("click", function () {
+    units.forEach(function (u) { u.setAttribute("open", ""); });
+  });
+
+  collapseAll.addEventListener("click", function () {
+    units.forEach(function (u) { u.removeAttribute("open"); });
+  });
+
+  // Keyboard: "/" focuses search
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+    if (e.key === "Escape" && document.activeElement === searchInput) {
+      searchInput.value = "";
+      run();
+      searchInput.blur();
+    }
+  });
+
+  run();
+})();
+</script>
+</body>
+</html>
