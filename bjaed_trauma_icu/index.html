@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Quick reference for anaesthetists and intensivists: management of major trauma in the ICU (first 72 hours).">
+<title>Major Trauma in the ICU — Anaesthetist &amp; Intensivist Quick Reference</title>
+<style>
+  :root{
+    --bg:#eef2f7;
+    --card:#ffffff;
+    --ink:#0f172a;
+    --muted:#5b6675;
+    --line:#e2e8f0;
+    --line-2:#cbd5e1;
+    --accent:#0f766e;
+    --accent-soft:#e6f4f2;
+    --accent-2:#0e7490;
+    --warn:#b45309;
+    --warn-soft:#fef3c7;
+    --danger:#b91c1c;
+    --hl:#fde68a;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(15,23,42,.06), 0 8px 24px -12px rgba(15,23,42,.25);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font:16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:10px 16px 12px;
+  }
+  .topbar-inner{max-width:1040px;margin:0 auto}
+  .brandline{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand-dot{
+    width:12px;height:12px;border-radius:50%;
+    background:var(--accent);flex:none;
+    box-shadow:0 0 0 4px var(--accent-soft);
+  }
+  h1{font-size:1.02rem;margin:0;letter-spacing:-.01em;font-weight:700}
+  .sub{font-size:.78rem;color:var(--muted);margin:0}
+  .tools{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+  .searchwrap{position:relative;flex:1 1 260px;min-width:200px}
+  #search{
+    width:100%;
+    padding:10px 34px 10px 34px;
+    border:1px solid var(--line-2);
+    border-radius:10px;
+    font-size:.92rem;
+    background:#fff;
+    color:var(--ink);
+    outline:none;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  #search:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .search-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.9rem;pointer-events:none}
+  .clear-btn{
+    position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    border:0;background:transparent;color:var(--muted);cursor:pointer;
+    font-size:1rem;line-height:1;padding:6px;border-radius:6px;display:none;
+  }
+  .clear-btn:hover{background:#f1f5f9;color:var(--ink)}
+  button.btn{
+    border:1px solid var(--line-2);background:#fff;color:var(--ink);
+    padding:9px 12px;border-radius:10px;font-size:.82rem;font-weight:600;
+    cursor:pointer;white-space:nowrap;transition:.15s;
+  }
+  button.btn:hover{background:#f8fafc;border-color:var(--accent);color:var(--accent)}
+  button.btn:active{transform:translateY(1px)}
+  .hint{font-size:.72rem;color:var(--muted);margin-top:8px}
+  kbd{
+    background:#f1f5f9;border:1px solid var(--line-2);border-bottom-width:2px;
+    border-radius:5px;padding:1px 5px;font-size:.7rem;font-family:inherit;
+  }
+  #searchCount{font-size:.75rem;color:var(--muted);margin-left:auto;white-space:nowrap}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
+
+  /* ---------- Stat strip ---------- */
+  .stats{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:10px;margin-bottom:18px;
+  }
+  .stat{
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+    box-shadow:var(--shadow);
+  }
+  .stat b{display:block;font-size:1.15rem;color:var(--accent);letter-spacing:-.02em;line-height:1.2}
+  .stat span{font-size:.72rem;color:var(--muted);display:block;margin-top:2px}
+
+  /* ---------- Cards ---------- */
+  details.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin-bottom:12px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  details.card[hidden]{display:none}
+  details.card > summary{
+    list-style:none;cursor:pointer;
+    padding:14px 16px;
+    display:flex;align-items:center;gap:10px;
+    font-weight:700;font-size:.98rem;letter-spacing:-.01em;
+    user-select:none;
+  }
+  details.card > summary::-webkit-details-marker{display:none}
+  details.card > summary:hover{background:#f8fafc}
+  details.card > summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+  .chev{
+    flex:none;width:18px;height:18px;color:var(--accent);
+    transition:transform .18s ease;
+  }
+  details[open] > summary .chev{transform:rotate(90deg)}
+  .tag{
+    margin-left:auto;font-size:.68rem;font-weight:700;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--accent);
+    background:var(--accent-soft);border-radius:999px;padding:3px 9px;flex:none;
+  }
+  .tag.warn{color:var(--warn);background:var(--warn-soft)}
+  .card-body{padding:0 16px 18px;border-top:1px solid var(--line);margin-top:0}
+  .card-body > *:first-child{margin-top:14px}
+
+  h3{
+    font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;
+    color:var(--accent);margin:18px 0 8px;font-weight:800;
+  }
+  h3:first-child{margin-top:14px}
+  p{margin:0 0 10px}
+  ul,ol{margin:0 0 10px;padding-left:1.15rem}
+  li{margin-bottom:6px}
+  li::marker{color:var(--accent)}
+  strong{font-weight:700}
+  .muted{color:var(--muted)}
+  .small{font-size:.85rem}
+
+  .callout{
+    border-left:4px solid var(--accent);
+    background:var(--accent-soft);
+    padding:10px 12px;border-radius:0 10px 10px 0;
+    margin:12px 0;font-size:.9rem;
+  }
+  .callout.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+  .callout.danger{border-left-color:var(--danger);background:#fee2e2}
+  .callout b{display:block;margin-bottom:2px}
+
+  .pill{
+    display:inline-block;font-size:.7rem;font-weight:700;
+    padding:2px 8px;border-radius:999px;background:#f1f5f9;color:var(--muted);
+    border:1px solid var(--line);margin:0 4px 4px 0;
+  }
+
+  /* ---------- Scrollable tables ---------- */
+  .table-wrap{
+    overflow:auto;
+    max-height:340px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin:12px 0;
+    background:#fff;
+  }
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:.86rem}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{
+    position:sticky;top:0;z-index:2;
+    background:#f1f5f9;font-weight:800;font-size:.75rem;
+    text-transform:uppercase;letter-spacing:.05em;color:#334155;
+    border-bottom:1px solid var(--line-2);
+  }
+  tbody tr:nth-child(even){background:#fafbfd}
+  tbody tr:last-child td{border-bottom:0}
+  td code,th code{
+    background:#f1f5f9;border:1px solid var(--line);border-radius:5px;
+    padding:1px 5px;font-size:.82em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+
+  /* ---------- Figures ---------- */
+  .figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:12px 0}
+  figure{
+    margin:0;background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:12px;box-shadow:var(--shadow);
+  }
+  .fig-svg{width:100%;height:auto;display:block;border-radius:8px;background:#f8fafc}
+  figcaption{font-size:.78rem;color:var(--muted);margin-top:9px}
+  figcaption b{color:var(--ink)}
+  .legend{list-style:none;margin:10px 0 0;padding:0;font-size:.8rem}
+  .legend li{display:flex;gap:8px;align-items:flex-start;margin-bottom:5px}
+  .num{
+    flex:none;width:18px;height:18px;border-radius:50%;
+    background:var(--accent);color:#fff;font-size:.68rem;font-weight:800;
+    display:grid;place-items:center;line-height:1;margin-top:1px;
+  }
+
+  /* ---------- SBA ---------- */
+  .sba-intro{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow);font-size:.88rem;
+  }
+  .q-stem{font-weight:600;margin-bottom:10px}
+  ol.options{list-style:none;padding:0;margin:0 0 12px;counter-reset:opt}
+  ol.options li{
+    counter-increment:opt;
+    display:flex;gap:10px;padding:7px 10px;border:1px solid var(--line);
+    border-radius:9px;margin-bottom:6px;background:#fbfcfe;font-size:.88rem;
+  }
+  ol.options li::before{
+    content:counter(opt,upper-alpha) ".";
+    font-weight:800;color:var(--accent);flex:none;min-width:18px;
+  }
+  details.answer{
+    border:1px dashed var(--line-2);border-radius:10px;background:#fbfcfe;
+    padding:0;overflow:hidden;
+  }
+  details.answer > summary{
+    list-style:none;cursor:pointer;padding:9px 12px;
+    font-size:.8rem;font-weight:800;color:var(--accent);
+    letter-spacing:.03em;text-transform:uppercase;
+  }
+  details.answer > summary::-webkit-details-marker{display:none}
+  details.answer > summary:hover{background:var(--accent-soft)}
+  .answer-body{padding:0 12px 12px;font-size:.87rem;border-top:1px dashed var(--line-2)}
+  .answer-body p:first-child{margin-top:10px}
+  .correct{color:#047857;font-weight:800}
+
+  /* ---------- Search highlight ---------- */
+  mark.hl{background:var(--hl);color:inherit;border-radius:3px;padding:0 2px;box-shadow:0 0 0 1px #f59e0b33}
+  #noResults{
+    display:none;text-align:center;padding:34px 16px;color:var(--muted);
+    background:#fff;border:1px dashed var(--line-2);border-radius:var(--radius);font-size:.9rem;
+  }
+
+  /* ---------- Footer / citation ---------- */
+  footer{
+    max-width:1040px;margin:0 auto;padding:0 16px 60px;
+  }
+  .cite{
+    background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);
+    border-radius:12px;padding:16px;box-shadow:var(--shadow);font-size:.85rem;
+  }
+  .cite h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin:0 0 10px}
+  .cite ol{padding-left:1.2rem;margin:0 0 12px}
+  .cite li{margin-bottom:6px;color:#334155}
+  .disclaimer{
+    font-size:.76rem;color:var(--muted);border-top:1px solid var(--line);
+    margin-top:12px;padding-top:12px;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  @media (max-width:560px){
+    h1{font-size:.94rem}
+    .card-body{padding:0 12px 16px}
+    details.card > summary{padding:12px;font-size:.92rem}
+    .tag{display:none}
+  }
+  @media print{
+    .topbar,.tools,.hint,#searchCount{display:none}
+    body{background:#fff}
+    details.card{box-shadow:none;break-inside:avoid}
+    .table-wrap{max-height:none;overflow:visible}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brandline">
+      <span class="brand-dot"></span>
+      <div>
+        <h1>Major Trauma in the ICU — Quick Reference</h1>
+        <p class="sub">Anaesthetist &amp; intensivist bedside guide · first 72 hours · adult MTC practice</p>
+      </div>
+    </div>
+
+    <div class="tools">
+      <div class="searchwrap">
+        <span class="search-ico">⌕</span>
+        <input id="search" type="search" placeholder="Search (e.g. PEEP, collar, pneumothorax, frailty)…" autocomplete="off" spellcheck="false" aria-label="Search the quick reference">
+        <button class="clear-btn" id="clearBtn" type="button" aria-label="Clear search">✕</button>
+      </div>
+      <button class="btn" id="expandAll" type="button">Expand all</button>
+      <button class="btn" id="collapseAll" type="button">Collapse all</button>
+      <span id="searchCount"></span>
+    </div>
+
+    <p class="hint">Tip: press <kbd>/</kbd> to search · click any heading to open or close it · scroll tables sideways &amp; vertically</p>
+  </div>
+</header>
+
+<main id="content">
+
+  <!-- ================= STAT STRIP ================= -->
+  <section class="stats" aria-label="Key numbers">
+    <div class="stat"><b>ISS &gt; 15</b><span>Defines major trauma (retrospective)</span></div>
+    <div class="stat"><b>20.4%</b><span>Hospital mortality, ISS &gt; 15, LOS ≥ 48 h</span></div>
+    <div class="stat"><b>3.1% → 86%</b><span>Mortality with 0 vs all 5 physiological risk factors</span></div>
+    <div class="stat"><b>22%</b><span>Missed injuries in ICU major trauma (¾ orthopaedic)</span></div>
+    <div class="stat"><b>0.17%</b><span>Unstable C-spine injury on MRI after normal CT (obtunded)</span></div>
+    <div class="stat"><b>6 ml/kg</b><span>Ideal body weight tidal volume (lung protective)</span></div>
+    <div class="stat"><b>4.5–5.0 kPa</b><span>PaCO₂ target if TBI / spinal cord injury</span></div>
+    <div class="stat"><b>&gt; 90%</b><span>Conservatively managed pneumothoraces never needed an ICD</span></div>
+  </section>
+
+  <!-- ================= 1. ICU ADMISSION ================= -->
+  <details class="card" open>
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      1 · ICU Admission — Who, and Why
+      <span class="tag">Triage</span>
+    </summary>
+    <div class="card-body">
+
+      <h3>Definitions &amp; routes of admission</h3>
+      <ul>
+        <li><strong>ISS &gt; 15</strong> defines major trauma, but the ISS is <em>retrospective</em> and is not useful in the prehospital or hyperacute setting where accurate grading is impossible.</li>
+        <li>Patients may arrive in ICU <strong>directly from ED</strong>, from the <strong>interventional radiology suite</strong>, or from the <strong>operating theatre after damage-control surgery (DCS)</strong>.</li>
+        <li>Severity of injury and ongoing need for ventilation often make ICU admission obvious — but the <strong>high-risk patient who "looks okay" must not be missed</strong>.</li>
+      </ul>
+
+      <h3>The five physiological variables that predict death</h3>
+      <p class="small">From a German study of &gt; 45,000 patients admitted with ISS &gt; 15 and a minimum hospital stay of 48 h (overall hospital mortality <strong>20.4%</strong>).</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Variable</th><th>Threshold</th><th>Practical note</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>High age</td><td>&gt; 70 years</td><td>Baseline risk of death already elevated</td></tr>
+            <tr><td>2</td><td>Acidosis</td><td>Base excess &gt; 6 mmol L⁻¹</td><td>Marker of shock / hypoperfusion</td></tr>
+            <tr><td>3</td><td>Prehospital unconsciousness</td><td>GCS 3–8</td><td>Documented before sedation and paralysis</td></tr>
+            <tr><td>4</td><td>Hypotension</td><td>Systolic BP ≤ 90 mmHg</td><td>Any prehospital or early admission reading</td></tr>
+            <tr><td>5</td><td>Coagulopathy</td><td>INR &gt; 1.4 <em>or</em> PTT &gt; 40 s</td><td>Send early, interpret with TEG/ROTEM if available</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <b>Risk stratification</b>
+        No risk factors → mortality <strong>3.1%</strong>. All five factors → near-linear rise in mortality up to <strong>86%</strong>. If <em>any</em> factor is identified by the trauma team, have an <strong>early discussion with the intensivist</strong> about potential ICU admission.
+      </div>
+
+      <h3>Systems context (why it matters to your bed)</h3>
+      <ul>
+        <li>Centralised major trauma centres (MTCs) and regional trauma networks (hub-and-spoke with trauma units, TUs) were developed after the 2007 NCEPOD report <em>Trauma: Who Cares?</em></li>
+        <li>MTCs hold 24 h specialist resources (neurosurgery, cardiothoracic, IR). TUs resuscitate and stabilise but lack tertiary services.</li>
+        <li>NICE: <strong>most major trauma patients should go straight to an MTC</strong>, even if further away — unless a local network protocol directs a stabilising stop at a TU first.</li>
+        <li>In the first 5 years after MTC establishment, NHS England studies showed a <strong>~20% increase in the odds of survival</strong> from severe injury in patients reaching hospital alive.</li>
+      </ul>
+
+      <h3>Groups needing special anticipation</h3>
+      <p>
+        <span class="pill">Older patients</span>
+        <span class="pill">Children</span>
+        <span class="pill">Anticoagulated patients</span>
+        <span class="pill">Pregnant patients</span>
+      </p>
+      <ul>
+        <li>Pregnant trauma patients have <strong>higher mortality</strong> than non-pregnant age-matched women with similar injury scores.</li>
+        <li>They require obstetric and fetal assessment as part of the <strong>secondary survey</strong> and usually shared care with maternity services.</li>
+      </ul>
+
+      <div class="callout warn">
+        <b>Epidemiology of ICU deaths</b>
+        All-cause mortality in trauma ICU admissions has fallen, but <strong>brain-injury-related deaths have increased</strong> and are the leading cause of trauma-related death in Europe. In the USA the leading cause is <strong>multiorgan dysfunction syndrome (MODS)</strong>.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 2. IMAGING ================= -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      2 · Imaging — WBCT Is the Default
+      <span class="tag">Radiology</span>
+    </summary>
+    <div class="card-body">
+
+      <ul>
+        <li>The Royal College of Radiologists recommends <strong>whole-body contrast-enhanced multidetector CT (WBCT)</strong> as the default imaging procedure of choice in the severely injured patient.</li>
+        <li>Imaging protocols should be <strong>clearly defined across the regional trauma network</strong>.</li>
+        <li><strong>All critically injured patients should undergo WBCT before transfer to the ICU.</strong></li>
+        <li>WBCT <strong>improves survival after major blunt trauma</strong> compared with selective CT imaging.</li>
+        <li>WBCT should be performed <strong>at the earliest opportunity after life-saving interventions</strong>.</li>
+      </ul>
+
+      <div class="callout warn">
+        <b>The theatre-to-ICU trap</b>
+        Patients transferred <strong>directly to the operating theatre</strong> may never have had an initial WBCT in the ED. In ICU, actively consider injuries not apparent on the primary survey or on WBCT — and arrange the scan as soon as the patient is stable enough.
+      </div>
+
+      <h3>Reviewing the images in ICU</h3>
+      <ul>
+        <li>Review <strong>all imaging thoroughly</strong> to confirm correct placement of:
+          <span class="pill">Intravascular catheters</span>
+          <span class="pill">Tracheal tube</span>
+          <span class="pill">Nasogastric / orogastric tubes</span>
+          <span class="pill">Intercostal drains</span>
+        </li>
+        <li>Where only <strong>provisional radiology reports</strong> were released, obtain the <strong>final reports</strong> to inform management plans.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 3. HISTORY & EXAM ================= -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      3 · History &amp; Examination
+      <span class="tag">Assessment</span>
+    </summary>
+    <div class="card-body">
+
+      <h3>Handover &amp; documentation</h3>
+      <ul>
+        <li>Handover between teams must contain a <strong>clear, concise summary</strong>.</li>
+        <li>Admission documentation should include: <strong>accurate injury pattern</strong>, <strong>interventions performed</strong>, and <strong>all planned investigations or interventions</strong>.</li>
+      </ul>
+
+      <h3>Getting the history when the patient cannot give it</h3>
+      <ul>
+        <li>ICU trauma patients are often unable to give a history — decreased conscious level, sedation, or tracheal intubation.</li>
+        <li>Prehospital teams often hold <strong>additional information from the physical scene</strong> and the patient's clinical state immediately after injury.</li>
+        <li>Confirm the patient's <strong>identity</strong> and obtain a <strong>collateral history</strong>.</li>
+        <li>Establish an accurate history of presenting injuries <em>plus</em> past medical and drug history.</li>
+      </ul>
+
+      <div class="callout">
+        <b>Always ask: was this a medical event first?</b>
+        If there is any suspicion of incapacitation <em>before</em> the injury (RTC, fall), investigate medical causes — cardiac, diabetic or neurological disorders, or intoxication from prescribed or recreational drugs.
+      </div>
+
+      <h3>Examination</h3>
+      <ul>
+        <li>Perform a <strong>comprehensive physical examination</strong>.</li>
+        <li>This must include <strong>rolling the patient</strong> to assess the back of the head and body — with <strong>spinal precautions</strong> if spinal injury is suspected or confirmed on initial imaging.</li>
+        <li>Look for soft tissue injuries, penetrating wounds, and complete assessment of the extent of burns.</li>
+      </ul>
+
+      <h3>Operative records</h3>
+      <ul>
+        <li>Provide valuable information on: <strong>findings, procedures performed, problems encountered, blood loss, and postoperative instructions</strong>.</li>
+        <li>Especially important when <strong>multiple operative procedures</strong> have been carried out.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 4. SURVEYS ================= -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      4 · Secondary &amp; Tertiary Surveys
+      <span class="tag warn">Missed injury</span>
+    </summary>
+    <div class="card-body">
+
+      <ul>
+        <li>The major trauma team <strong>must return</strong> to conduct and complete any incomplete secondary and tertiary surveys, to identify injuries not found during the resuscitative phase.</li>
+        <li>Reported rates of missed injury vary widely; <strong>more severely injured patients are at highest risk</strong>.</li>
+      </ul>
+
+      <div class="callout warn">
+        <b>Local data</b>
+        In one centre, missed injuries were found in <strong>22%</strong> of major trauma patients admitted to a general adult ICU over 1 year (median ISS 26), discovered after primary and secondary surveys. <strong>Three-quarters were orthopaedic</strong> — highlighting the importance of completing the tertiary survey.
+      </div>
+
+      <h3>Why it changes management</h3>
+      <ul>
+        <li>Identification of other injuries and ongoing assessment allows teams to <strong>plan care and prioritise urgent interventions</strong> — e.g. ICP monitoring, further blood products.</li>
+        <li>Enables <strong>short-term planning</strong> for returns to theatre: relook laparotomies, orthopaedic fixations.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 5. CERVICAL SPINE ================= -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      5 · Cervical Spine in the Obtunded Patient
+      <span class="tag">C-spine</span>
+    </summary>
+    <div class="card-body">
+
+      <ul>
+        <li>Follow the <strong>Canadian C-spine rule</strong> (2016 NICE guideline) for assessment of cervical spine injury.</li>
+        <li>Most critically injured major trauma patients admitted to ICU qualify as <strong>high risk</strong> (dangerous mechanism or advanced age) and arrive with <strong>full spinal immobilisation</strong>.</li>
+        <li>In the obtunded blunt trauma patient, <strong>clinical clearance is impossible</strong> — so consider <strong>radiological clearance</strong>.</li>
+        <li>ICU patients should already have had WBCT, which includes assessment of the cervical spine.</li>
+      </ul>
+
+      <h3>The evidence on clearing after a negative CT</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Source</th><th>Finding / recommendation</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>EAST guidelines (US)</td>
+              <td>Cannot make a definitive recommendation on the need for MRI cervical spine after a negative CT in the obtunded blunt trauma patient. Risk-to-benefit ratio is unclear; incidence of significant cervical spine injury with a negative CT approaches <strong>zero</strong>.</td>
+            </tr>
+            <tr>
+              <td>2017 meta-analysis</td>
+              <td>Only <strong>16 unstable spine injuries on MRI</strong> in <strong>5286</strong> trauma patients with normal CT findings. In the obtunded patient, positive finding rate <strong>0.17%</strong>.</td>
+            </tr>
+            <tr>
+              <td>2008 review (blunt trauma, coma, GCS 3–8)</td>
+              <td>Risk of <strong>secondary brain injury from cervical collar use or MRI</strong> is more likely than cervical spine instability after a negative CT — these interventions could jeopardise cerebral recovery.</td>
+            </tr>
+            <tr>
+              <td>Collar design</td>
+              <td>Few studies comparing complication rates between older rigid collars and newer semi-rigid collars.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <b>Recommended approach (BOAST-aligned)</b>
+        Remove the cervical collar in an obtunded trauma patient <strong>provided</strong>:
+        <ul style="margin-top:6px;margin-bottom:0">
+          <li>a <strong>high-quality CT of the cervical spine</strong> has been reported by a <strong>consultant musculoskeletal radiologist</strong> with <strong>no evidence of injury</strong>, and</li>
+          <li>there are <strong>no comorbidities confounding interpretation</strong>.</li>
+        </ul>
+      </div>
+
+      <ul>
+        <li><strong>Clinical clearance is not confirmed</strong> until the patient is awake and a <strong>tertiary survey including neurological examination</strong> is complete.</li>
+        <li>If there is <strong>evidence of injury on the initial CT</strong>, or a <strong>confounding comorbidity</strong> is present: <strong>maintain spinal precautions</strong>, refer to a <strong>spinal surgery specialist</strong>, and consider <strong>MRI</strong>.</li>
+      </ul>
+
+      <h3>Practical collar management in ICU</h3>
+      <ul>
+        <li>Neck collars are used for ongoing immobilisation.</li>
+        <li>If there are <strong>concerns about raised ICP</strong> in the sedated patient, the collar may be removed and the cervical spine kept in alignment using <strong>bolsters on each side of the head</strong> (e.g. rolled towels).</li>
+        <li><strong>Reapply the collar</strong> whenever the patient needs to be log-rolled (e.g. for personal care).</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 6. VENTILATION ================= -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      6 · Mechanical Ventilation, Chest Injury &amp; Drains
+      <span class="tag">Ventilation</span>
+    </summary>
+    <div class="card-body">
+
+      <h3>Why these patients deteriorate</h3>
+      <ul>
+        <li>Major trauma patients admitted to ICU are at risk of <strong>acute respiratory failure</strong> from chest injuries and subsequent complications such as <strong>pneumonia</strong> or <strong>worsening pulmonary contusions</strong>.</li>
+        <li>Contusions lead to <strong>consolidation and atelectasis</strong>, with worsening <strong>V/Q mismatch over the first 24–48 h</strong>.</li>
+        <li>Contusions <strong>start to resolve after 3 days</strong>, but patients remain at increased risk of <strong>pneumonia and ARDS</strong>.</li>
+      </ul>
+
+      <h3>Ventilator targets</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Group</th><th>Tidal volume</th><th>PEEP</th><th>CO₂ / pH strategy</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Blunt polytrauma, no brain or spinal cord injury</strong></td>
+              <td><code>6 ml kg⁻¹</code> ideal body weight</td>
+              <td>Titrated to FiO₂ (e.g. ARDSnet PEEP titration table)</td>
+              <td>Permissive hypercapnia acceptable with <code>pH &gt; 7.2</code></td>
+            </tr>
+            <tr>
+              <td><strong>Coexisting traumatic brain or spinal cord injury</strong></td>
+              <td><code>6 ml kg⁻¹</code> ideal body weight</td>
+              <td>Titrated to FiO₂; do not withhold PEEP for ICP concerns alone</td>
+              <td>Low-normal <code>PaCO₂ 4.5–5.0 kPa (34–38 mmHg)</code> to optimise cerebral/spinal perfusion pressure and prevent secondary neurological injury</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <b>PEEP and intracranial pressure</b>
+        Historical concern that PEEP in TBI may exacerbate ICP. Latest observational evidence suggests that <strong>increasing PEEP in non-obese patients does not increase ICP</strong>. In patients with obesity the effect is <strong>modest and may be clinically inconsequential</strong>.
+      </div>
+
+      <h3>Intercostal drains (ICDs)</h3>
+      <ul>
+        <li>Patients with major trauma commonly have ICDs for traumatic <strong>haemothorax or pneumothorax</strong>.</li>
+        <li>On ICU admission: <strong>ensure drains are secured</strong> and <strong>re-image with a portable chest X-ray</strong>.</li>
+        <li>Drains are often inserted under time pressure and are <strong>prone to dislodgement during multiple transfers</strong> — e.g. from interventional radiology or damage-control surgery.</li>
+      </ul>
+
+      <h3>Traumatic pneumothorax: the paradigm shift</h3>
+      <p class="small">International trauma courses teach that ICDs should be <em>strongly considered</em> for all traumatic pneumothoraces undergoing GA or positive pressure ventilation. A large UK observational cohort challenges this.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Cohort</th><th>Numbers</th><th>Outcome</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>MTC patients with traumatic pneumothorax</td>
+              <td>&gt; 602</td>
+              <td>Index cohort</td>
+            </tr>
+            <tr>
+              <td>Initially managed <strong>without</strong> an ICD but <strong>required invasive ventilation</strong></td>
+              <td>62</td>
+              <td>Only <strong>6 (&lt; 10%)</strong> went on to require an ICD</td>
+            </tr>
+            <tr>
+              <td>Spontaneously breathing group</td>
+              <td>—</td>
+              <td>Similar results — <strong>&gt; 90%</strong> of conservatively managed traumatic pneumothoraces never required an ICD</td>
+            </tr>
+            <tr>
+              <td>Predictor of conservative management failure</td>
+              <td>—</td>
+              <td><strong>Only the presence of a large pneumothorax</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <b>Practice point</b>
+        In patients with <strong>small pneumothoraces that are not clinically relevant</strong> at first presentation, <strong>do not insert an ICD simply because the patient is receiving invasive mechanical ventilation</strong>.
+      </div>
+
+      <h3>Safety netting for a conservatively managed pneumothorax</h3>
+      <ol>
+        <li><strong>Note the laterality</strong> of any pneumothorax.</li>
+        <li><strong>Hand this over</strong> clearly between clinical teams.</li>
+        <li>Have a <strong>low threshold for inserting an ICD</strong> if the patient deteriorates.</li>
+        <li>Consider <strong>marking the side on the patient with a surgical site marker</strong> — a cognitive aid for the clinician called urgently to the bedside for a sudden deterioration.</li>
+      </ol>
+    </div>
+  </details>
+
+  <!-- ================= 7. OLDER PATIENT ================= -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      7 · The Older Patient with Major Trauma
+      <span class="tag warn">Goals of care</span>
+    </summary>
+    <div class="card-body">
+
+      <ul>
+        <li>The 2017 England and Wales Trauma Audit and Research Network (TARN) report on major trauma in older people found that patients <strong>&gt; 60 years old with ISS &gt; 15 represent more than half of the TARN database</strong>.</li>
+        <li>The report identified possible <strong>inequity in care</strong> of the older trauma patient — including <strong>lack of access to specialist services in an MTC</strong>.</li>
+      </ul>
+
+      <h3>The decision-making balance</h3>
+      <ul>
+        <li>Weigh <strong>aggressive treatment and organ support</strong> to preserve life against <strong>highly burdensome interventions</strong> in a cohort most at risk of ICU complications (delirium, pressure damage, further loss of function) and with a <strong>high baseline risk of death</strong>.</li>
+        <li>Decisions should be <strong>patient-centred</strong>, made by an <strong>ICU consultant</strong>, ideally as part of a wider <strong>trauma MDT</strong>.</li>
+        <li>As with all ICU admissions, explore <strong>outcomes acceptable to the patient</strong> and how realistic the prospects are of achieving them, using as much objective data as possible.</li>
+      </ul>
+
+      <h3>Objective data to use</h3>
+      <ul>
+        <li>Injuries and their associated <strong>baseline risk of death</strong>.</li>
+        <li>Comorbidities, including <strong>frailty — objectively scored</strong> (e.g. Clinical Frailty Scale).</li>
+      </ul>
+
+      <div class="callout">
+        <b>Time-limited trial</b>
+        Early prognostication is difficult when objective information is incomplete. Where there is significant uncertainty about the potential benefits of interventions, consider a <strong>time-limited trial of supportive or interventional management</strong>. This buys time to obtain more detail about injuries and comorbidities, and to explore outcomes acceptable to the patient.
+      </div>
+
+      <h3>When a palliative approach may be considered</h3>
+      <p class="small">From the London Major Trauma System best practice guidance on palliative and end-of-life care for the older trauma patient:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Situation</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>(i)</td><td>Catastrophic injury</td><td>Traumatic brain injury with cerebral herniation</td></tr>
+            <tr><td>(ii)</td><td>Disabling injury where health and quality-of-life outcomes are anticipated to be poor</td><td>High spinal cord injury</td></tr>
+            <tr><td>(iii)</td><td>Significant pre-morbid frailty or co-existing conditions where the patient may die within 12 months</td><td>Advanced frailty syndrome</td></tr>
+            <tr><td>(iv)</td><td>Other underlying terminal or life-limiting illness</td><td>Metastatic malignancy, end-stage organ failure</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="small muted">The guideline also highlights considerations beyond the scope of this review: comprehensive geriatric assessment, advance directives, and the five key priorities of care at the end of life.</p>
+
+      <div class="callout warn">
+        <b>Communication</b>
+        Early compassionate conversations with families are vital — exploring what goals of care would be acceptable to the patient, and doing so <em>before</em> urgent decisions about life-changing interventions.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 8. FIGURES ================= -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      8 · Simplified Diagrams (redrawn from the article figures)
+      <span class="tag">Visual</span>
+    </summary>
+    <div class="card-body">
+
+      <div class="figgrid">
+
+        <!-- ---------- FIGURE 1 ---------- -->
+        <figure>
+          <svg class="fig-svg" viewBox="0 0 420 300" role="img" aria-labelledby="fig1title fig1desc">
+            <title id="fig1title">Simplified schematic of a patient in ICU after damage control surgery</title>
+            <desc id="fig1desc">Line drawing of a supine patient showing a tracheal tube, nasogastric tube, anterolateral thoracotomy incision, negative pressure temporary abdominal closure over an open abdomen, mediastinal drain and central venous access.</desc>
+
+            <rect width="420" height="300" fill="#f8fafc"/>
+
+            <!-- head -->
+            <ellipse cx="150" cy="44" rx="27" ry="31" fill="#eef2f7" stroke="#334155" stroke-width="2"/>
+            <!-- torso -->
+            <path d="M108 80 Q150 64 192 80 L208 252 Q150 274 92 252 Z"
+                  fill="#ffffff" stroke="#334155" stroke-width="2"/>
+            <!-- arms -->
+            <path d="M104 96 Q78 130 74 190" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+            <path d="M196 96 Q222 130 226 190" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- negative pressure abdominal dressing -->
+            <rect x="118" y="168" width="66" height="70" rx="9" fill="#1d4ed8" opacity="0.85"/>
+            <rect x="118" y="168" width="66" height="70" rx="9" fill="none" stroke="#1e3a8a" stroke-width="2"/>
+
+            <!-- thoracotomy incision -->
+            <path d="M112 122 L148 158" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- tracheal tube -->
+            <path d="M126 10 L138 34 L146 58" fill="none" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+            <!-- NG tube -->
+            <path d="M156 8 L158 46" fill="none" stroke="#64748b" stroke-width="2.4" stroke-linecap="round"/>
+
+            <!-- mediastinal drain -->
+            <path d="M198 126 Q232 118 252 142" fill="none" stroke="#0e7490" stroke-width="3" stroke-linecap="round"/>
+            <!-- central venous access -->
+            <path d="M194 96 Q226 96 254 108" fill="none" stroke="#b45309" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="254" cy="108" r="4" fill="#b45309"/>
+
+            <!-- numbered badges -->
+            <g font-family="sans-serif" font-size="11" font-weight="700" text-anchor="middle">
+              <circle cx="110" cy="24" r="10" fill="#0f766e"/><text x="110" y="28" fill="#fff">1</text>
+              <circle cx="178" cy="14" r="10" fill="#0f766e"/><text x="178" y="18" fill="#fff">2</text>
+              <circle cx="151" cy="203" r="10" fill="#0f766e"/><text x="151" y="207" fill="#fff">3</text>
+              <circle cx="98" cy="122" r="10" fill="#0f766e"/><text x="98" y="126" fill="#fff">4</text>
+              <circle cx="268" cy="148" r="10" fill="#0f766e"/><text x="268" y="152" fill="#fff">5</text>
+              <circle cx="272" cy="104" r="10" fill="#0f766e"/><text x="272" y="108" fill="#fff">6</text>
+            </g>
+          </svg>
+
+          <figcaption>
+            <b>Figure 1 (simplified).</b> ICU patient after damage-control surgery (trauma laparotomy + anterolateral thoracotomy). Original photograph reproduced in the source article with the patient's consent after recovery.
+          </figcaption>
+
+          <ol class="legend">
+            <li><span class="num">1</span><span>Tracheal tube</span></li>
+            <li><span class="num">2</span><span>Nasogastric tube</span></li>
+            <li><span class="num">3</span><span>Negative-pressure temporary closure system over the open abdomen (laparostomy)</span></li>
+            <li><span class="num">4</span><span>Anterolateral thoracotomy incision</span></li>
+            <li><span class="num">5</span><span>Mediastinal drain</span></li>
+            <li><span class="num">6</span><span>Central venous access</span></li>
+          </ol>
+        </figure>
+
+        <!-- ---------- FIGURE 2 ---------- -->
+        <figure>
+          <svg class="fig-svg" viewBox="0 0 380 360" role="img" aria-labelledby="fig2title fig2desc">
+            <title id="fig2title">Simplified schematic of an ICU chest radiograph</title>
+            <desc id="fig2desc">Line drawing of a chest radiograph showing a tracheal tube, nasogastric tube, right internal jugular central venous catheter, mediastinal drain and abdominal packs.</desc>
+
+            <rect width="380" height="360" fill="#f8fafc"/>
+
+            <!-- body outline -->
+            <path d="M168 46 C108 54 66 112 62 182 C58 244 76 302 92 348 L288 348 C304 302 322 244 318 182 C314 112 272 54 212 46 Z"
+                  fill="#ffffff" stroke="#334155" stroke-width="2"/>
+            <!-- neck -->
+            <rect x="168" y="12" width="44" height="38" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+            <!-- clavicles -->
+            <path d="M172 62 Q130 60 96 78" fill="none" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M208 62 Q250 60 284 78" fill="none" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/>
+
+            <!-- ribs -->
+            <g fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round">
+              <path d="M186 88 Q140 92 118 122 Q108 140 122 154"/>
+              <path d="M194 88 Q240 92 262 122 Q272 140 258 154"/>
+              <path d="M186 108 Q142 112 120 142 Q110 160 124 174"/>
+              <path d="M194 108 Q238 112 260 142 Q270 160 256 174"/>
+              <path d="M186 128 Q144 132 122 162 Q112 180 126 194"/>
+              <path d="M194 128 Q236 132 258 162 Q268 180 254 194"/>
+              <path d="M186 148 Q146 152 124 182 Q114 200 128 214"/>
+              <path d="M194 148 Q234 152 256 182 Q266 200 252 214"/>
+              <path d="M186 168 Q148 172 128 200 Q118 218 132 232"/>
+              <path d="M194 168 Q232 172 252 200 Q262 218 248 232"/>
+            </g>
+
+            <!-- diaphragm -->
+            <path d="M66 246 Q126 208 190 246 Q254 208 314 246" fill="none" stroke="#64748b" stroke-width="2.2"/>
+
+            <!-- spine -->
+            <g fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.4">
+              <rect x="182" y="70" width="16" height="13" rx="2"/>
+              <rect x="182" y="86" width="16" height="13" rx="2"/>
+              <rect x="182" y="102" width="16" height="13" rx="2"/>
+              <rect x="182" y="118" width="16" height="13" rx="2"/>
+              <rect x="182" y="134" width="16" height="13" rx="2"/>
+              <rect x="182" y="150" width="16" height="13" rx="2"/>
+              <rect x="182" y="166" width="16" height="13" rx="2"/>
+              <rect x="182" y="182" width="16" height="13" rx="2"/>
+              <rect x="182" y="198" width="16" height="13" rx="2"/>
+            </g>
+
+            <!-- tracheal tube + carina -->
+            <path d="M178 6 L178 118" stroke="#0f172a" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <path d="M178 118 L150 152" stroke="#0f172a" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <path d="M178 118 L206 152" stroke="#0f172a" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+            <!-- NG tube -->
+            <path d="M188 6 L188 190 Q188 226 166 246 Q146 266 152 300"
+                  fill="none" stroke="#64748b" stroke-width="2.6" stroke-linecap="round"/>
+
+            <!-- right IJ CVC -->
+            <path d="M232 14 L234 62 Q236 96 232 128 L230 152"
+                  fill="none" stroke="#b45309" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="232" cy="14" r="4.5" fill="#b45309"/>
+
+            <!-- mediastinal drain -->
+            <path d="M256 66 L262 122 Q264 152 244 162 Q226 170 232 132"
+                  fill="none" stroke="#0e7490" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- abdominal packs -->
+            <g fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.95">
+              <path d="M104 286 Q130 268 160 286 Q168 306 142 314 Q110 318 104 286 Z"/>
+              <path d="M186 292 Q214 274 244 292 Q252 314 224 320 Q192 324 186 292 Z"/>
+              <path d="M140 320 Q170 306 200 322 Q204 340 174 344 Q142 344 140 320 Z"/>
+            </g>
+
+            <!-- numbered badges -->
+            <g font-family="sans-serif" font-size="11" font-weight="700" text-anchor="middle">
+              <circle cx="150" cy="24" r="10" fill="#0f766e"/><text x="150" y="28" fill="#fff">1</text>
+              <circle cx="214" cy="24" r="10" fill="#0f766e"/><text x="214" y="28" fill="#fff">2</text>
+              <circle cx="286" cy="30" r="10" fill="#0f766e"/><text x="286" y="34" fill="#fff">3</text>
+              <circle cx="292" cy="166" r="10" fill="#0f766e"/><text x="292" y="170" fill="#fff">4</text>
+              <circle cx="82" cy="316" r="10" fill="#0f766e"/><text x="82" y="320" fill="#fff">5</text>
+            </g>
+          </svg>
+
+          <figcaption>
+            <b>Figure 2 (simplified).</b> ICU chest radiograph of the same patient. Original radiograph reproduced in the source article with the patient's consent after recovery.
+          </figcaption>
+
+          <ol class="legend">
+            <li><span class="num">1</span><span>Tracheal tube</span></li>
+            <li><span class="num">2</span><span>Nasogastric tube</span></li>
+            <li><span class="num">3</span><span>Right internal jugular central venous catheter</span></li>
+            <li><span class="num">4</span><span>Mediastinal drain</span></li>
+            <li><span class="num">5</span><span>Abdominal packs (laparotomy swabs) visible below the diaphragm</span></li>
+          </ol>
+        </figure>
+
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 9. SUMMARY ================= -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      9 · Summary &amp; Key Points
+      <span class="tag">Take home</span>
+    </summary>
+    <div class="card-body">
+      <ul>
+        <li>Managing <strong>complex competing injuries</strong> is the fundamental challenge of major trauma in ICU.</li>
+        <li>All major trauma patients should have had <strong>early WBCT</strong> — after life-saving interventions and <strong>before transfer to ICU</strong>.</li>
+        <li><strong>Comprehensive physical examination</strong> and <strong>review of imaging (including final reports)</strong> are both essential.</li>
+        <li>Patients are likely to require <strong>further interventions and regular reassessment</strong>, especially in the <strong>first 72 h</strong>.</li>
+        <li>Trauma teams must ensure <strong>secondary and tertiary surveys are completed at the earliest opportunity</strong>.</li>
+        <li><strong>Effective team working improves survival</strong> — intensivists, trauma surgeons, anaesthetists, interventional radiologists, haematologists and emergency physicians should be involved in decisions about priority and timing of surgery and other major interventions.</li>
+        <li>Adults, children, older adults and pregnant women may all require adult ICU care in the MTC — be aware of the specific challenges of each group.</li>
+        <li>Teams must be aware of <strong>competing injury priorities</strong> and make <strong>best-interest decisions with MDT colleagues</strong>.</li>
+      </ul>
+
+      <div class="callout">
+        <b>The trauma chain of survival</b>
+        Each link is equally important. Guidelines for the management of specific injuries <strong>may need to be adapted for competing injuries</strong> — for example, lung-protective ventilation targets in a patient who also has a traumatic brain injury.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= SBA ================= -->
+  <h2 style="font-size:1rem;margin:26px 0 12px;letter-spacing:-.01em;">10 High-Yield SBA Questions</h2>
+
+  <div class="sba-intro">
+    Single best answer. Choose <strong>one</strong> option, then open <em>Show answer</em> for the explanation and source rationale.
+    <br><span class="muted small">Interactive reinforcement for CME/CPD — not a substitute for the full article or local guidelines.</span>
+  </div>
+
+  <!-- Q1 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q1 · Physiological predictors of death
+      <span class="tag">Admission</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">A 68-year-old man is admitted to ICU after a high-speed road traffic collision with an ISS of 29. Which of the following was <strong>NOT</strong> identified in the German study of &gt; 45,000 patients as a physiological variable associated with a higher risk of death?</p>
+      <ol class="options">
+        <li>Age &gt; 70 years</li>
+        <li>Base excess &gt; 6 mmol L⁻¹</li>
+        <li>Prehospital GCS 3–8</li>
+        <li>Systolic blood pressure ≤ 90 mmHg</li>
+        <li>Serum lactate &gt; 4 mmol L⁻¹</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: E — Serum lactate &gt; 4 mmol L⁻¹</span></p>
+          <p>The five variables identified were: (i) high age &gt; 70 years; (ii) acidosis (base excess &gt; 6 mmol L⁻¹); (iii) prehospital unconsciousness (GCS 3–8); (iv) hypotension (systolic BP ≤ 90 mmHg); (v) coagulopathy (INR &gt; 1.4 or PTT &gt; 40 s).</p>
+          <p>Patients with ISS &gt; 15 but none of these factors had a very low mortality of <strong>3.1%</strong>, rising almost linearly to <strong>86%</strong> when all five were present. Lactate was not one of the five named variables.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- Q2 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q2 · Ventilation without brain injury
+      <span class="tag">Ventilation</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">A 45-year-old woman with blunt polytrauma (ISS 26) is sedated and ventilated in ICU. There is no head or spinal cord injury. Which ventilator strategy is most appropriate?</p>
+      <ol class="options">
+        <li>Tidal volume 10 ml kg⁻¹ IBW, PEEP 5 cmH₂O, target PaCO₂ 4.0–4.5 kPa</li>
+        <li>Tidal volume 6 ml kg⁻¹ IBW, PEEP titrated to FiO₂, permissive hypercapnia to pH &gt; 7.2</li>
+        <li>Tidal volume 6 ml kg⁻¹ IBW, PEEP 5 cmH₂O, target PaCO₂ 4.5–5.0 kPa</li>
+        <li>Tidal volume 8 ml kg⁻¹ IBW, PEEP 15 cmH₂O, permissive hypercapnia</li>
+        <li>Tidal volume 12 ml kg⁻¹ IBW, zero PEEP</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: B</span></p>
+          <p>Patients with blunt polytrauma <strong>without</strong> concomitant brain or spinal cord injury should receive a <strong>lung-protective strategy</strong>: tidal volumes of <strong>6 ml kg⁻¹ ideal body weight</strong>, PEEP titrated to FiO₂ (e.g. ARDSnet PEEP titration table), and consideration of <strong>permissive hypercapnia with an acceptable pH &gt; 7.2</strong>.</p>
+          <p>The aim is to prevent worsening of underlying pulmonary contusions from the harmful effects of positive pressure ventilation. The low-normal PaCO₂ target of 4.5–5.0 kPa (option C) applies when there is a coexisting traumatic brain or spinal cord injury.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- Q3 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q3 · Ventilation with traumatic brain injury
+      <span class="tag">TBI</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">A 32-year-old man with severe traumatic brain injury and multiple rib fractures with pulmonary contusions is ventilated in ICU. What is the appropriate PaCO₂ target?</p>
+      <ol class="options">
+        <li>3.0–3.5 kPa</li>
+        <li>4.0–4.4 kPa</li>
+        <li>4.5–5.0 kPa (34–38 mmHg)</li>
+        <li>5.5–6.0 kPa</li>
+        <li>6.0–6.5 kPa</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: C — 4.5–5.0 kPa (34–38 mmHg)</span></p>
+          <p>In patients with a coexisting traumatic brain or spinal cord injury, the aim is a <strong>low-normal PaCO₂</strong> to optimise cerebral or spinal perfusion pressure and prevent secondary neurological injury.</p>
+          <p>Lung-protective tidal volumes of 6 ml kg⁻¹ IBW still apply, but permissive hypercapnia is <em>not</em> appropriate in this group. Note that the latest observational evidence suggests increasing PEEP in non-obese patients does <strong>not</strong> increase ICP, so PEEP should not be withheld on ICP grounds alone.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- Q4 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q4 · Cervical collar in the obtunded patient
+      <span class="tag">C-spine</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">A 50-year-old obtunded (GCS 6) blunt trauma patient is sedated and ventilated in ICU with full spinal precautions. A high-quality CT of the cervical spine has been reported as normal by a consultant musculoskeletal radiologist, and there are no confounding comorbidities. What is the most appropriate management of the cervical collar?</p>
+      <ol class="options">
+        <li>Maintain full spinal precautions until the patient is awake and can be examined</li>
+        <li>Remove the collar; clinical clearance will be confirmed once awake with a completed tertiary survey</li>
+        <li>MRI of the cervical spine is mandatory before the collar can be removed</li>
+        <li>Remove the collar and formally document clinical clearance of the cervical spine now</li>
+        <li>Continue the collar for a further 14 days as prophylaxis</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: B</span></p>
+          <p>On balance, the collar can be removed in an obtunded trauma patient provided there is a high-quality CT of the cervical spine reported by a consultant musculoskeletal radiologist with no evidence of injury, and no confounding comorbidities (BOAST standard).</p>
+          <p>Key supporting evidence: a 2017 meta-analysis found only 16 unstable spine injuries on MRI in 5286 patients with normal CT (positive finding rate 0.17% in the obtunded). A 2008 review concluded that the risk of <strong>secondary brain injury from collar use or MRI</strong> is more likely than cervical spine instability after a negative CT.</p>
+          <p>Crucially, option D is wrong: <strong>clinical clearance is not confirmed</strong> until the patient is awake and a tertiary survey (including neurological examination) has been completed. If there were injury on CT or a confounding comorbidity, precautions should be maintained, spinal surgery referral made, and MRI considered.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- Q5 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q5 · Small pneumothorax requiring ventilation
+      <span class="tag warn">Chest</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">A 28-year-old man with a small traumatic pneumothorax — clinically not relevant at presentation — requires invasive mechanical ventilation for a head injury. What is the most appropriate management of the pneumothorax?</p>
+      <ol class="options">
+        <li>Insert an intercostal drain in all patients receiving invasive ventilation</li>
+        <li>Conservative management is reasonable; an ICD is not required solely because the patient is ventilated</li>
+        <li>Insert an intercostal drain only if the pneumothorax exceeds 2 cm</li>
+        <li>Proceed directly to thoracotomy</li>
+        <li>Insert bilateral intercostal drains prophylactically</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: B</span></p>
+          <p>In a UK MTC cohort of &gt; 602 patients with traumatic pneumothoraces, 62 were initially managed without an ICD but did require invasive ventilation — only <strong>6 (&lt; 10%)</strong> went on to require an ICD. Results were similar in the spontaneously breathing group: &gt; 90% of conservatively managed traumatic pneumothoraces never required an ICD.</p>
+          <p>Only the presence of a <strong>large pneumothorax</strong> was associated with failure of conservative management. For small, clinically irrelevant pneumothoraces, do not insert an ICD simply because the patient is ventilated.</p>
+          <p><strong>Safety netting:</strong> note and hand over the laterality, consider marking the side on the patient with a surgical site marker as a cognitive aid, and have a low threshold for inserting an ICD if the patient deteriorates.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- Q6 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q6 · Missed injuries
+      <span class="tag warn">Surveys</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">In a study of major trauma patients admitted to a general adult ICU, missed injuries were identified in 22% after primary and secondary surveys. Approximately what proportion of these missed injuries were orthopaedic?</p>
+      <ol class="options">
+        <li>One quarter</li>
+        <li>One third</li>
+        <li>One half</li>
+        <li>Three quarters</li>
+        <li>All of them</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: D — Three quarters</span></p>
+          <p>Missed injuries were found in 22% of major trauma patients admitted to a general adult ICU over a 1-year period (median ISS 26). <strong>Three-quarters were orthopaedic</strong>, highlighting the importance of completing the tertiary survey.</p>
+          <p>More severely injured patients are at highest risk of missed injury, and reported rates vary widely between centres.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- Q7 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q7 · PEEP and intracranial pressure
+      <span class="tag">TBI</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">Regarding the use of PEEP in patients with traumatic brain injury, the latest observational evidence suggests which of the following?</p>
+      <ol class="options">
+        <li>PEEP increases ICP in all patients with TBI</li>
+        <li>PEEP should be avoided entirely in TBI</li>
+        <li>Increasing PEEP in non-obese patients does not increase ICP</li>
+        <li>PEEP reliably lowers ICP in TBI</li>
+        <li>PEEP is only safe if an ICP monitor is in situ</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: C</span></p>
+          <p>Historically there have been concerns that using PEEP in patients with traumatic brain injury may exacerbate ICP. The latest observational evidence suggests that <strong>increasing PEEP in non-obese patients does not increase ICP</strong>; in patients with obesity the effect is <strong>modest and may be clinically inconsequential</strong>.</p>
+          <p>This supports continuing to use PEEP titrated to FiO₂ as part of a lung-protective strategy in polytrauma patients who also have a brain injury.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- Q8 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q8 · Older patients and palliative care triggers
+      <span class="tag warn">Goals of care</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">A 78-year-old woman is admitted with an ISS of 20 and a Clinical Frailty Scale score of 6. Which of the following is <strong>NOT</strong> listed in the London Major Trauma System best practice guidance as a situation in which a palliative approach can be considered?</p>
+      <ol class="options">
+        <li>Catastrophic injury, e.g. traumatic brain injury with cerebral herniation</li>
+        <li>Disabling injury where health and quality-of-life outcomes are anticipated to be poor, e.g. high spinal cord injury</li>
+        <li>Significant pre-morbid frailty or co-existing conditions where the patient may die within 12 months</li>
+        <li>Other underlying terminal or life-limiting illness, e.g. metastatic malignancy</li>
+        <li>Age over 75 years alone, irrespective of injury and comorbidity</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: E</span></p>
+          <p>Age alone is not a criterion. The guidance lists four situations: (i) catastrophic injury; (ii) disabling injury with anticipated poor health and quality-of-life outcomes; (iii) significant pre-morbid frailty or co-existing conditions where the patient may die within 12 months; (iv) other underlying terminal or life-limiting illness.</p>
+          <p>Decisions should be patient-centred, made by an ICU consultant ideally within a wider trauma MDT, using objective data (injuries and their baseline risk of death, comorbidities, frailty scored with e.g. the Clinical Frailty Scale). Where significant uncertainty exists, consider a <strong>time-limited trial</strong> of supportive or interventional management.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- Q9 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q9 · Imaging strategy
+      <span class="tag">Radiology</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">Which statement about imaging in major trauma is correct?</p>
+      <ol class="options">
+        <li>Selective CT is preferred to whole-body CT in blunt trauma</li>
+        <li>Whole-body CT should be performed before any life-saving intervention</li>
+        <li>All critically injured patients should have whole-body CT before ICU transfer; it improves survival versus selective CT in blunt trauma</li>
+        <li>MRI is the first-line imaging modality in the severely injured patient</li>
+        <li>Whole-body CT is unnecessary if the patient goes directly to the operating theatre</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: C</span></p>
+          <p>The Royal College of Radiologists recommends whole-body contrast-enhanced multidetector CT as the default imaging procedure of choice in the severely injured patient, with protocols clearly defined across the regional trauma network.</p>
+          <p>WBCT <strong>improves survival after major blunt trauma</strong> compared with selective CT imaging, and should be performed <strong>at the earliest opportunity after life-saving interventions</strong> — not before them. All critically injured patients should undergo WBCT before transfer to ICU.</p>
+          <p>Option E is a classic trap: patients transferred directly to theatre may have missed their initial WBCT, and this should be performed as soon as feasible afterwards.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- Q10 -->
+  <details class="card">
+    <summary>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      Q10 · Intercostal drain on ICU arrival
+      <span class="tag">Chest</span>
+    </summary>
+    <div class="card-body">
+      <p class="q-stem">A patient with a traumatic haemothorax had an intercostal drain inserted in the emergency department and is now admitted to ICU after a transfer from interventional radiology. Which is the most appropriate immediate action?</p>
+      <ol class="options">
+        <li>Remove the drain if less than 200 ml has drained</li>
+        <li>Clamp the drain to prevent air entrainment</li>
+        <li>Confirm the drain is secured and obtain a portable chest X-ray</li>
+        <li>Exchange the drain for a larger-bore tube</li>
+        <li>No action is needed if the patient is haemodynamically stable</li>
+      </ol>
+      <details class="answer">
+        <summary>Show answer</summary>
+        <div class="answer-body">
+          <p><span class="correct">Correct answer: C</span></p>
+          <p>It is essential that intercostal drains are <strong>secured</strong> and <strong>re-imaged with a portable chest X-ray</strong> when the patient is admitted to ICU. These drains are often inserted under time-pressured conditions and are prone to being dislodged during the multiple transfers involved in the care of a critically injured patient — for example during transfer from interventional radiology or damage-control surgery.</p>
+          <p>Remember also to review all imaging thoroughly to confirm correct placement of intravascular catheters, tracheal and nasogastric/orogastric tubes, and intercostal drains, and to obtain final radiology reports where only provisional reports were issued.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <div id="noResults">No sections match your search. Try a different term (e.g. <em>PEEP</em>, <em>collar</em>, <em>frailty</em>).</div>
+
+</main>
+
+<!-- ================= FOOTER / CITATION ================= -->
+<footer>
+  <div class="cite">
+    <h2>Source &amp; reference</h2>
+
+    <p style="margin-top:0"><strong>Primary source (uploaded PDF: <code>PIIS2058534924001203.pdf</code>)</strong></p>
+    <p>
+      Gordon J, Naumann D, Shilston J. <em>Major trauma in the intensive care unit — Part 1.</em>
+      <strong>BJA Education</strong> (article ID PII S2058-5349(24)00120-3).
+      Queen's Medical Centre, Nottingham University Hospitals NHS Trust, Nottingham, UK and Royal Centre for Defence Medicine,
+      Queen Elizabeth Hospital, Birmingham, UK. Corresponding author: josephine.gordon2@nhs.net
+      <br><span class="muted small">Keywords: critical care; multiple trauma; ventilation</span>
+    </p>
+
+    <p class="small muted">Key references cited within the source article:</p>
+    <ol class="small">
+      <li>Moran CG, Lecky F, Bouamra O et al. Changing the System — major trauma patients and their outcomes in the NHS (England) 2008–17. <em>EClinicalMedicine</em> 2018; 2–3: 13–21.</li>
+      <li>Cole E. The national major trauma system within the United Kingdom: inclusive regionalized networks of care. <em>Emerg Crit Care Med</em> 2022; 2: 76–9.</li>
+      <li>Glen J, Constant M, Brohi K. Assessment and initial management of major trauma: summary of NICE guidance. <em>BMJ</em> 2016; 353: i3051.</li>
+      <li>Findlay G, Martin IC, Carter S, Smith N, Weyman D, Mason M. <em>Trauma: Who Cares?</em> NCEPOD, 2007.</li>
+      <li>NICE. Major trauma: service delivery. Guidance NG40, 2016.</li>
+      <li>Paffrath T, Lefering R, Flohé S. How to define severely injured patients? An Injury Severity Score (ISS) based approach alone is not sufficient. <em>Injury</em> 2014; 45(Suppl 3): S64–9.</li>
+      <li>The Royal College of Radiologists. <em>Standards of practice and guidance for trauma radiology in severely injured patients.</em> 2nd edn. London: RCR; 2015.</li>
+      <li>Brooks A, Holroyd B, Riley B. Missed injury in major trauma patients. <em>Injury</em> 2004; 35: 407–10.</li>
+      <li>Como JJ, Diaz JJ, Dunham CM et al. Practice management guidelines for identification of cervical spine injuries following trauma: update from the EAST Practice Management Guidelines Committee. <em>J Trauma</em> 2009; 67: 651–9.</li>
+      <li>Malhotra A, Wu X, Kalra VB et al. Utility of MRI for cervical spine clearance after blunt traumatic injury: a meta-analysis. <em>Eur Radiol</em> 2017; 27: 1148–60.</li>
+      <li>Dunham CM, Brocker BP, Collier BD, Gemmel DJ. Risks associated with MRI and cervical collar in comatose, blunt trauma patients with negative comprehensive cervical spine CT. <em>Crit Care</em> 2008; 12: R89.</li>
+      <li>British Orthopaedic Association. Standard for trauma (BOAST): cervical spine clearance in the trauma patient. <em>Injury</em> 2021; 52: 2759.</li>
+      <li>ARDS Network (Brower RG, Matthay MA, Morris A et al). Ventilation with lower tidal volumes as compared with traditional tidal volumes. <em>N Engl J Med</em> 2000; 342: 1301–8.</li>
+      <li>Zhou D, Li T, Fei S, Wang C, Lv Y. The effect of PEEP on intracranial pressure in obese and non-obese severe brain injury patients. <em>BMC Anesthesiol</em> 2022; 22: 388.</li>
+      <li>Walker SP, Barratt SL, Thompson J, Maskell NA. Conservative management in traumatic pneumothoraces. <em>Chest</em> 2018; 153: 946–53.</li>
+      <li>Banerjee J, Baxter M, Coats T et al. <em>Major trauma in older people.</em> TARN, 2017.</li>
+      <li>Bichard J et al. <em>Palliative and end of life care considerations for older trauma patients.</em> Best practice guidance from the London Major Trauma System, 2024.</li>
+    </ol>
+
+    <p class="disclaimer">
+      <strong>Disclaimer.</strong> This quick reference is a summary of a single educational review article for the personal study of anaesthetists and
+      intensivists. It is not a clinical protocol. Local trauma network pathways, NICE guidance and institutional policies take precedence.
+      Always verify drug doses, ventilator settings and imaging decisions against current local guidance and the full text of the source article
+      before applying them in clinical practice.
+      <br>Diagram redrawn and simplified for web display; the original figures appear in the source article and were published with the patient's consent after recovery.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var main        = document.getElementById('content');
+  var searchInput = document.getElementById('search');
+  var clearBtn    = document.getElementById('clearBtn');
+  var countEl     = document.getElementById('searchCount');
+  var noResults   = document.getElementById('noResults');
+  var cards       = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+
+  /* Remember default open/closed state so we can restore it */
+  cards.forEach(function (c) {
+    c.dataset.defaultOpen = c.hasAttribute('open') ? '1' : '0';
+  });
+
+  /* ---------- highlight helpers ---------- */
+  function clearHighlights(root) {
+    var marks = root.querySelectorAll('mark.hl');
+    Array.prototype.forEach.call(marks, function (m) {
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  function highlight(root, term) {
+    var needle = term.toLowerCase();
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var tag = node.parentNode && node.parentNode.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(needle) !== -1
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text  = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag  = document.createDocumentFragment();
+      var i = 0, idx;
+
+      while ((idx = lower.indexOf(needle, i)) !== -1) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + needle.length);
+        frag.appendChild(mark);
+        i = idx + needle.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      if (frag.childNodes.length) node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- search ---------- */
+  function runSearch() {
+    var term = searchInput.value.trim();
+    clearHighlights(main);
+
+    clearBtn.style.display = term ? 'block' : 'none';
+
+    if (!term) {
+      cards.forEach(function (c) {
+        c.hidden = false;
+        c.open = c.dataset.defaultOpen === '1';
+      });
+      noResults.style.display = 'none';
+      countEl.textContent = '';
+      return;
+    }
+
+    var needle = term.toLowerCase();
+    var hits = 0;
+
+    cards.forEach(function (card) {
+      var matches = card.textContent.toLowerCase().indexOf(needle) !== -1;
+      card.hidden = !matches;
+      if (matches) {
+        hits++;
+        card.open = true;
+        highlight(card, term);
+      }
+    });
+
+    noResults.style.display = hits ? 'none' : 'block';
+    countEl.textContent = hits
+      ? hits + (hits === 1 ? ' section matched' : ' sections matched')
+      : 'No matches';
+  }
+
+  var debounce;
+  searchInput.addEventListener('input', function () {
+    clearTimeout(debounce);
+    debounce = setTimeout(runSearch, 120);
+  });
+
+  clearBtn.addEventListener('click', function () {
+    searchInput.value = '';
+    runSearch();
+    searchInput.focus();
+  });
+
+  /* "/" focuses search */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+    if (e.key === 'Escape' && document.activeElement === searchInput) {
+      searchInput.value = '';
+      runSearch();
+      searchInput.blur();
+    }
+  });
+
+  /* ---------- expand / collapse ---------- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    cards.forEach(function (c) { c.hidden = false; c.open = true; });
+  });
+
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    cards.forEach(function (c) { c.open = false; });
+  });
+
+  /* ---------- print: open everything, then restore ---------- */
+  var printState = null;
+  window.addEventListener('beforeprint', function () {
+    printState = cards.map(function (c) { return c.open; });
+    cards.forEach(function (c) { c.open = true; });
+  });
+  window.addEventListener('afterprint', function () {
+    if (!printState) return;
+    cards.forEach(function (c, i) { c.open = printState[i]; });
+    printState = null;
+  });
+})();
+</script>
+</body>
+</html>
