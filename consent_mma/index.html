@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consent for Treatment — Anaesthetist Quick Reference (MMC v3/2025)</title>
+<meta name="description" content="Collapsible, searchable quick reference on consent for treatment for anaesthetists, based on the Malaysian Medical Council Guideline v3/2025 and FAQs v1/2025.">
+<style>
+  :root{
+    --bg:#eef4f7;
+    --card:#ffffff;
+    --ink:#132430;
+    --muted:#5a7183;
+    --accent:#0f766e;
+    --accent-dark:#0b5d57;
+    --accent-soft:#e4f3f1;
+    --accent-line:#b6ded8;
+    --warn:#b45309;
+    --warn-soft:#fdf3e3;
+    --warn-line:#f0d3a4;
+    --line:#d8e3ec;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(16,42,58,.06),0 6px 18px rgba(16,42,58,.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.55;
+    -webkit-text-size-adjust:100%;
+  }
+  [hidden]{display:none !important;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 16px;}
+
+  /* ---------- Header ---------- */
+  .top{
+    position:sticky;top:0;z-index:60;
+    background:linear-gradient(160deg,#0f766e 0%,#0b5d57 100%);
+    color:#fff;
+    box-shadow:0 4px 16px rgba(6,40,44,.22);
+  }
+  .top .wrap{padding:14px 16px 12px;display:flex;flex-direction:column;gap:10px;}
+  .brand h1{margin:0;font-size:1.18rem;letter-spacing:.2px;font-weight:750;}
+  .brand p{margin:2px 0 0;font-size:.78rem;opacity:.88;letter-spacing:.02em;}
+  .tools{display:flex;gap:8px;flex-wrap:wrap;}
+  #q{
+    flex:1 1 260px;min-width:0;
+    padding:10px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.35);
+    background:rgba(255,255,255,.14);color:#fff;font-size:.92rem;outline:none;
+  }
+  #q::placeholder{color:rgba(255,255,255,.72);}
+  #q:focus{background:rgba(255,255,255,.22);border-color:#fff;}
+  .tools button{
+    padding:10px 13px;border-radius:10px;cursor:pointer;font-size:.82rem;font-weight:650;
+    border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.10);color:#fff;
+    transition:background .15s ease;
+  }
+  .tools button:hover{background:rgba(255,255,255,.24);}
+  .status{font-size:.75rem;opacity:.85;min-height:1em;}
+
+  /* ---------- Groups ---------- */
+  main{padding:18px 0 60px;}
+  .group{margin:26px 0 0;}
+  .group > h2{
+    margin:0 0 10px;font-size:.8rem;font-weight:800;
+    text-transform:uppercase;letter-spacing:.12em;color:var(--accent);
+    display:flex;align-items:center;gap:10px;
+  }
+  .group > h2::after{content:"";flex:1;height:1px;background:var(--accent-line);}
+
+  /* ---------- Cards ---------- */
+  details.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--accent);
+    border-radius:var(--radius);
+    margin:10px 0;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  details.card > summary{
+    cursor:pointer;list-style:none;
+    padding:13px 16px;
+    font-weight:680;font-size:.97rem;
+    display:flex;align-items:flex-start;gap:10px;
+  }
+  details.card > summary::-webkit-details-marker{display:none;}
+  details.card > summary::after{
+    content:"▸";margin-left:auto;color:var(--muted);
+    font-size:.9rem;transition:transform .18s ease;flex-shrink:0;
+  }
+  details.card[open] > summary::after{transform:rotate(90deg);}
+  details.card[open] > summary{border-bottom:1px dashed var(--line);}
+  .body{padding:12px 16px 16px;font-size:.92rem;}
+  .body > *:first-child{margin-top:0;}
+  .body > *:last-child{margin-bottom:0;}
+  .body ul{margin:8px 0;padding-left:20px;}
+  .body li{margin:5px 0;}
+  .body p{margin:8px 0;}
+  .body strong{font-weight:680;}
+
+  /* Case cards */
+  details.card.case{border-left-color:#7c3aed;}
+  details.card.case > summary{background:#faf7ff;}
+
+  /* ---------- Callouts ---------- */
+  .key,.warn,.cite{
+    border-radius:10px;padding:10px 13px;margin:12px 0;font-size:.88rem;
+  }
+  .key{background:var(--accent-soft);border:1px solid var(--accent-line);}
+  .warn{background:var(--warn-soft);border:1px solid var(--warn-line);}
+  .cite{background:#f4f7fa;border:1px solid var(--line);color:var(--muted);font-size:.8rem;}
+  .key b,.warn b{color:var(--accent-dark);}
+  .warn b{color:var(--warn);}
+
+  /* ---------- Simple diagrams ---------- */
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:14px 0;}
+  .node{
+    flex:1 1 140px;min-width:130px;
+    background:var(--accent-soft);border:1px solid var(--accent-line);
+    border-radius:10px;padding:10px 12px;font-size:.84rem;line-height:1.4;
+  }
+  .node b{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:3px;}
+  .node.alt{background:var(--warn-soft);border-color:var(--warn-line);}
+  .node.alt b{color:var(--warn);}
+  .node.plain{background:#f6f9fb;border-color:var(--line);}
+  .node.plain b{color:var(--muted);}
+  .arrow{align-self:center;color:var(--muted);font-weight:800;font-size:.95rem;padding:0 1px;}
+  @media (max-width:560px){
+    .arrow{transform:rotate(90deg);width:100%;text-align:center;line-height:1;}
+  }
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.86rem;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:#f2f7fa;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);}
+  .table-scroll{overflow-x:auto;}
+
+  /* ---------- Search highlight ---------- */
+  mark.hl{background:#ffe08a;color:inherit;padding:0 2px;border-radius:3px;}
+
+  /* ---------- Sources ---------- */
+  .src-list{list-style:none;padding:0;margin:0;font-size:.88rem;}
+  .src-list li{padding:10px 0;border-bottom:1px dashed var(--line);}
+  .src-list li:last-child{border-bottom:none;}
+  a{color:var(--accent-dark);}
+  .disclaimer{
+    margin-top:26px;padding:14px 16px;border-radius:var(--radius);
+    background:#fff;border:1px dashed var(--line);font-size:.8rem;color:var(--muted);
+  }
+  #noresults{
+    display:none;padding:26px 16px;text-align:center;color:var(--muted);font-size:.9rem;
+    background:#fff;border:1px dashed var(--line);border-radius:var(--radius);margin-top:16px;
+  }
+  footer{padding:22px 0 40px;font-size:.76rem;color:var(--muted);text-align:center;}
+
+  @media print{
+    .top{position:static;background:#fff;color:#000;box-shadow:none;}
+    .tools,.status{display:none;}
+    details.card{break-inside:avoid;box-shadow:none;}
+    details.card:not([open]) .body{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Consent for Treatment — Anaesthetist Quick Reference</h1>
+      <p>Malaysian Medical Council · Guideline v3/2025 &amp; FAQs v1/2025</p>
+    </div>
+    <div class="tools">
+      <input id="q" type="search" placeholder="Search: minor, material risk, emergency, advance decision…" autocomplete="off" aria-label="Search consent topics">
+      <button id="expandAll" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+    </div>
+    <div class="status" id="status">Tap any card to expand · use search to filter instantly</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= 1. FOUNDATIONS ================= -->
+  <section class="group">
+    <h2>1 · Foundations</h2>
+
+    <details class="card">
+      <summary>The three pillars of a valid consent</summary>
+      <div class="body">
+        <p>Consent may be <strong>implied, verbal, non-verbal or written</strong>. A signature on a form is <em>not</em> the same as valid consent — all three pillars below must be satisfied.</p>
+        <div class="flow">
+          <div class="node"><b>Pillar 1</b>Has <strong>mental capacity</strong> for this decision</div>
+          <div class="arrow">+</div>
+          <div class="node"><b>Pillar 2</b>Is <strong>informed</strong> (options, benefits, material risks)</div>
+          <div class="arrow">+</div>
+          <div class="node"><b>Pillar 3</b>Consents <strong>freely &amp; voluntarily</strong></div>
+          <div class="arrow">=</div>
+          <div class="node plain"><b>Result</b><strong>Valid consent</strong></div>
+        </div>
+        <div class="warn"><b>Consequence:</b> Failure to obtain valid consent can result in disciplinary proceedings by the MMC against the registered medical practitioner (RMP).</div>
+        <div class="cite">Guideline §3.1 · §3.1.3 · Preamble</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>What counts as "treatment"?</summary>
+      <div class="body">
+        <ul>
+          <li>Assessment of history, symptoms and signs.</li>
+          <li>Examination and, where necessary, diagnostic investigations.</li>
+          <li>Management of the patient.</li>
+          <li>Action upon evidence suggesting a condition requiring urgent medical intervention.</li>
+          <li>Referral to appropriate professional colleagues where circumstances warrant.</li>
+        </ul>
+        <div class="key"><b>Anaesthesia note:</b> Anaesthesia, sedation, regional blocks, blood products and pain procedures all fall under "management" — each requires its own valid consent.</div>
+        <div class="cite">Guideline §2 (Treatment), referencing MMC Code of Professional Conduct 2019, §1.1</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 2. MENTAL CAPACITY ================= -->
+  <section class="group">
+    <h2>2 · Mental Capacity</h2>
+
+    <details class="card">
+      <summary>The four abilities — assess all four</summary>
+      <div class="body">
+        <div class="flow">
+          <div class="node"><b>Step 1</b>Receive the information</div>
+          <div class="arrow">→</div>
+          <div class="node"><b>Step 2</b>Understand <em>and weigh</em> it</div>
+          <div class="arrow">→</div>
+          <div class="node"><b>Step 3</b>Make a decision from it</div>
+          <div class="arrow">→</div>
+          <div class="node"><b>Step 4</b>Communicate the decision</div>
+        </div>
+        <p>All four must be present for the patient to be deemed to possess mental capacity.</p>
+        <div class="cite">Guideline §3.1.1</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Key capacity rules</summary>
+      <div class="body">
+        <ul>
+          <li><strong>Decision-specific and time-specific.</strong> Capacity is not global — a patient may be able to consent to a cannula but not to a complex high-risk operation, and may fluctuate.</li>
+          <li>All RMPs must consider capacity before taking consent.</li>
+          <li><strong>If in doubt</strong>, refer for a formal mental capacity assessment for that particular decision — performed by an RMP suitably trained in capacity assessment.</li>
+          <li>Where capacity appears <strong>impaired</strong>, first attempt <strong>supported decision-making</strong> (trusted friends, family, professionals chosen by the patient) to help the patient make an autonomous decision.</li>
+        </ul>
+        <div class="key"><b>Anaesthesia note:</b> Post-op delirium, sedation hangover, head injury, hypoxia and hypothermia all impair capacity. Re-assess before accepting a refusal or a consent given in these states.</div>
+        <div class="cite">Guideline §3.1.1.1–3.1.1.3</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 3. INFORMATION ================= -->
+  <section class="group">
+    <h2>3 · Information &amp; Material Risk</h2>
+
+    <details class="card">
+      <summary>What must be disclosed</summary>
+      <div class="body">
+        <ul>
+          <li>The patient's <strong>diagnosis and current condition</strong>.</li>
+          <li><strong>Investigation and/or treatment options</strong>, including alternatives (including the option of doing nothing).</li>
+          <li><strong>Benefits and risks of each option</strong> — including material risks, possible adverse effects or complications.</li>
+          <li>Per the FAQs: also the <strong>consequences of not proceeding</strong> with treatment, and alternative treatment options available.</li>
+        </ul>
+        <div class="cite">Guideline §3.1.2.1 · FAQ 1</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>The material risk test (two limbs)</summary>
+      <div class="body">
+        <p>A risk is <strong>material</strong> if <em>either</em> limb applies:</p>
+        <div class="flow">
+          <div class="node"><b>Limb 1 · Objective</b>A reasonable person <em>in the patient's position</em>, if warned of the risk, would be likely to attach significance to it in the circumstances of the particular case.</div>
+          <div class="arrow">OR</div>
+          <div class="node"><b>Limb 2 · Subjective</b>The RMP is, or should reasonably be aware, that <em>this particular patient</em>, if warned, would be likely to attach significance to it.</div>
+        </div>
+        <div class="key"><b>Anaesthesia note:</b> For a professional singer, hoarseness or vocal cord injury after intubation is likely material even if statistically rare. Ask about occupation, hobbies, anxieties and prior anaesthetic experiences.</div>
+        <div class="cite">Guideline §2 (Material Risk) · FAQ 1</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>How to communicate the information</summary>
+      <div class="body">
+        <ul>
+          <li>Communicate in a manner that is <strong>understandable</strong> to that person.</li>
+          <li><strong>Verify understanding</strong> and allow the opportunity to seek further explanation and clarification.</li>
+          <li>Use <strong>visual aids, charts, models</strong> or other accessories — especially for complicated procedures.</li>
+          <li>Prepared brochures/information sheets may <strong>stimulate discussion</strong>, but must <em>not</em> substitute for informing the patient and ensuring understanding. They must be current, accurate and relevant.</li>
+          <li>Additional risk information may be provided in a <strong>written explanatory document appended to the consent form</strong>.</li>
+          <li>Where necessary, engage a <strong>translator</strong> to facilitate communication.</li>
+          <li><strong>Therapeutic privilege:</strong> an RMP may ethically withhold information if non-disclosure is believed to be in the patient's best interests — <strong>the reasons must be documented in the medical records</strong>.</li>
+        </ul>
+        <div class="cite">Guideline §3.1.2.2–3.1.2.7</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 4. PROCESS ================= -->
+  <section class="group">
+    <h2>4 · The Consent Process &amp; Documentation</h2>
+
+    <details class="card">
+      <summary>Consent is a process, not an event</summary>
+      <div class="body">
+        <p>Consent is an ongoing process throughout the course of treatment — not a one-off event.</p>
+        <p><strong>Document in the medical records:</strong></p>
+        <ul>
+          <li>Who was involved in the process.</li>
+          <li>The information provided.</li>
+          <li>Questions asked (and answers given).</li>
+          <li>Any additional information or explanatory notes.</li>
+        </ul>
+        <p>It is <strong>advisable to have a witness</strong> attest to the process.</p>
+        <div class="key"><b>Witness role (FAQ 7):</b> should be another healthcare professional (RMP, nurse, allied health professional) — preferably not directly involved in the patient's management, and not related to the patient or the RMP. The witness must be capable and available to attest to the consent process should the need arise.</div>
+        <div class="cite">Guideline §3.2 · FAQ 7</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Re-consent triggers</summary>
+      <div class="body">
+        <p>Re-obtain consent where there is a change in the <strong>nature, clinical course or presentation</strong> of the illness for which consent was originally obtained — these changes must be discussed with the patient.</p>
+        <div class="flow">
+          <div class="node plain"><b>Consent obtained</b>Condition stable</div>
+          <div class="arrow">→</div>
+          <div class="node alt"><b>Change occurs</b>New symptoms, new diagnosis, changed risk profile, delayed procedure, interim discharge</div>
+          <div class="arrow">→</div>
+          <div class="node"><b>Discuss &amp; re-consent</b>Document the conversation</div>
+        </div>
+        <div class="cite">Guideline §3.3 · FAQ 10</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 5. EXCEPTIONS ================= -->
+  <section class="group">
+    <h2>5 · Exceptions &amp; Emergency</h2>
+
+    <details class="card">
+      <summary>The only two exceptions to prior consent</summary>
+      <div class="body">
+        <ul>
+          <li><strong>A medical emergency</strong> — an injury or illness that is acute and poses an immediate risk to a person's life or long-term health.</li>
+          <li><strong>Treatment required by law.</strong></li>
+        </ul>
+        <div class="warn"><b>Use sparingly.</b> The emergency exception undermines patient autonomy. Any non-consensual treatment must be <strong>limited to the procedures required to address the immediate necessity</strong> — nothing more.</div>
+        <div class="cite">Guideline §3.4 · §3.5 · §2 (Medical emergency)</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Emergency decision pathway</summary>
+      <div class="body">
+        <div class="flow">
+          <div class="node plain"><b>Start</b>Acute, immediate risk to life or long-term health</div>
+          <div class="arrow">→</div>
+          <div class="node"><b>Q1</b>Does the patient have mental capacity?</div>
+        </div>
+        <div class="flow">
+          <div class="node"><b>YES</b>The patient must personally consent to the proposed treatment</div>
+          <div class="arrow">→</div>
+          <div class="node"><b>NO / unable</b>Attempt to identify &amp; contact the surrogate decision-maker (where time permits)</div>
+        </div>
+        <div class="flow">
+          <div class="node alt"><b>Surrogate unavailable / none identifiable</b>Proceed in the <strong>best interests</strong> of the patient</div>
+          <div class="arrow">→</div>
+          <div class="node alt"><b>Pre-condition</b>Determine there is <strong>no unequivocal written direction</strong> refusing the proposed treatment</div>
+          <div class="arrow">→</div>
+          <div class="node plain"><b>Where practicable</b>Obtain a consensus of the attending RMPs · Document everything</div>
+        </div>
+        <div class="cite">FAQ 2 · Guideline §3.8.3</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 6. MINORS ================= -->
+  <section class="group">
+    <h2>6 · Minors</h2>
+
+    <details class="card">
+      <summary>Assessing a minor's capacity</summary>
+      <div class="body">
+        <ul>
+          <li>Younger children are generally <strong>not competent</strong> to provide consent.</li>
+          <li>Whether a minor has the mental capacity to give valid consent depends on whether he/she has <strong>sufficient maturity and intelligence</strong> to understand the nature and implications of the proposed treatment.</li>
+          <li>This is decided <strong>case-by-case by the treating RMP</strong>.</li>
+          <li>RMPs should, as far as possible, <strong>respect the decisions of mature minors</strong>, while being mindful of legal provisions requiring parental consent.</li>
+        </ul>
+        <div class="key"><b>Anaesthesia note:</b> A 15-year-old who understands and can weigh the risks of a general anaesthetic may be able to assent/consent — but local law may still require parental consent. When in doubt, seek ethics or legal advice and document.</div>
+        <div class="cite">Guideline §3.6 · §3.7</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Parental consent — one parent usually enough</summary>
+      <div class="body">
+        <ul>
+          <li>In general, consent of <strong>either parent</strong> is sufficient — each parent has full responsibility for their children under 18, unaffected by changes to spousal relationships (e.g. separation).</li>
+          <li><strong>Exceptions:</strong> a court order to the contrary, or an apparent dispute between the parents.</li>
+          <li>Handle disputes by counselling the parents towards consensus on the child's best interests, or seeking an ethics consult where available.</li>
+          <li>If there is any doubt about who may provide consent, <strong>obtain legal advice</strong>.</li>
+        </ul>
+        <div class="cite">FAQ 3</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Accompanying adult who is not a parent</summary>
+      <div class="body">
+        <ul>
+          <li><strong>Emergency:</strong> follow the emergency pathway (FAQ 2).</li>
+          <li><strong>Non-emergency:</strong> ascertain the adult's relationship to the patient and their authority to provide consent as a surrogate decision-maker.</li>
+        </ul>
+        <div class="warn"><b>Invalid:</b> A blanket consent form signed by parents allowing <em>any</em> third party to authorise treatment on their behalf is <strong>not valid consent</strong>.</div>
+        <div class="cite">FAQ 4 · Guideline §3.6–3.7</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Patients with mental disorders</summary>
+      <div class="body">
+        <ul>
+          <li>Patients with mental disorders <strong>who have mental capacity</strong> must provide consent for any treatment themselves.</li>
+          <li>For mentally disordered patients <strong>without capacity</strong> requiring surgery, electroconvulsive therapy, or recruitment into clinical trials, consent is governed by <strong>Section 77 of the Mental Health Act 2001</strong>.</li>
+        </ul>
+        <div class="cite">FAQ 5 · Mental Health Act 2001 §77</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 7. NO CAPACITY ================= -->
+  <section class="group">
+    <h2>7 · Adults Without Mental Capacity</h2>
+
+    <details class="card">
+      <summary>Finding a surrogate decision-maker (in order)</summary>
+      <div class="body">
+        <p>Impairments to reasoning and judgment from medical conditions may be permanent or transient. Where the patient cannot give informed consent, identify a surrogate:</p>
+        <div class="flow">
+          <div class="node"><b>1st</b>A person with <strong>legal authority</strong> to make decisions for the patient</div>
+          <div class="arrow">→</div>
+          <div class="node"><b>2nd</b>A person the patient <strong>identified or nominated</strong> as surrogate</div>
+          <div class="arrow">→</div>
+          <div class="node"><b>3rd</b>An <strong>appropriate surrogate</strong> who knows the patient's values and preferences</div>
+          <div class="arrow">→</div>
+          <div class="node alt"><b>Last resort</b>RMPs decide in the <strong>best interests</strong> of the patient</div>
+        </div>
+        <div class="warn"><b>Before deciding alone:</b> steps must first be taken to attempt to identify a suitable surrogate, and <strong>these efforts must be documented in the medical records</strong>.</div>
+        <div class="cite">Guideline §3.8 · §3.8.1–3.8.3</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Best interests — how to assess</summary>
+      <div class="body">
+        <p>All treatment decisions for a patient without mental capacity must be made in the <strong>best interests of that particular patient</strong>.</p>
+        <p>An assessment of best interests includes what is clinically indicated, plus:</p>
+        <ul>
+          <li>The views of the patient, so far as they can express them — including previously expressed preferences.</li>
+          <li>The cultural, religious or other beliefs and values of the patient.</li>
+          <li>The views of others involved in providing care to the patient.</li>
+        </ul>
+        <p>The list is not exhaustive; weight depends on circumstances. <strong>Do not</strong> make unjustified assumptions based on irrelevant or discriminatory factors — behaviour, appearance or disability.</p>
+        <div class="cite">Guideline §3.9 · FAQ 6</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 8. ADVANCE DECISIONS & REFUSAL ================= -->
+  <section class="group">
+    <h2>8 · Advance Decisions &amp; Refusal</h2>
+
+    <details class="card">
+      <summary>Advance decisions — four validity checks</summary>
+      <div class="body">
+        <p>Where a patient has made advance decisions or expressed wishes while they had mental capacity, consider:</p>
+        <div class="flow">
+          <div class="node"><b>Check 1</b>Are they <strong>sufficiently clear and specific</strong> to apply to the clinical circumstances now arisen?</div>
+          <div class="node"><b>Check 2</b>Does the decision <strong>remain current</strong>?</div>
+          <div class="node"><b>Check 3</b>Any reason to <strong>doubt the patient's capacity</strong> at the time the decision was made?</div>
+          <div class="node"><b>Check 4</b>Was there any <strong>undue pressure</strong> on the patient to make the decision?</div>
+        </div>
+        <div class="warn"><b>Doubts, especially in an emergency:</b> proceed in the patient's best interests while attempting to determine the validity of the advance decision. Such decisions must be clearly documented in the medical records.</div>
+        <div class="key"><b>Unequivocal written directive:</b> an RMP should refrain from providing treatment where there is an unequivocal written directive by the patient that such treatment is not to be provided in the circumstances that now apply.</div>
+        <div class="cite">Guideline §3.10 · §3.11 · §3.12</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Refusal of treatment</summary>
+      <div class="body">
+        <ul>
+          <li>Generally, any patient with mental capacity can <strong>refuse consent for any treatment without giving reasons</strong>.</li>
+          <li>The refusal, and where possible the specific details discussed, should be <strong>recorded</strong> in the medical record or by signing a refusal of treatment form.</li>
+          <li>A patient also has the right to <strong>withdraw consent at any time prior to treatment</strong>, without assigning any reasons.</li>
+        </ul>
+        <div class="key"><b>Anaesthesia note:</b> A patient may withdraw consent on the operating table. Once withdrawn, stop and re-discuss — do not proceed on the original consent.</div>
+        <div class="cite">Guideline §3.13 · §3.14 · §3.1.3.1</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>When a surrogate refuses against best interests</summary>
+      <div class="body">
+        <p>If the surrogate decision-maker of an incapacitated patient refuses consent for treatment, and the decision is deemed <strong>not to be in the best interests of the patient</strong>, the RMP should:</p>
+        <ul>
+          <li>Seek an <strong>ethical consult</strong>, and/or</li>
+          <li>Seek <strong>legal support</strong> — which may include a court decision.</li>
+        </ul>
+        <div class="cite">Guideline §3.15</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 9. PRACTICAL RULES ================= -->
+  <section class="group">
+    <h2>9 · Practical Rules &amp; Validity</h2>
+
+    <details class="card">
+      <summary>Who is responsible for taking consent?</summary>
+      <div class="body">
+        <ul>
+          <li><strong>The RMP providing the treatment</strong> is ultimately responsible for ensuring prior valid consent was obtained.</li>
+          <li>Where possible, consent should be obtained <strong>personally by the treating RMP</strong>.</li>
+          <li>All RMPs who take consent must possess the necessary <strong>competence, communication skills, experience and knowledge</strong>.</li>
+          <li>This applies <strong>regardless of type of registration</strong> — including provisionally registered practitioners.</li>
+        </ul>
+        <div class="warn"><b>Delegation:</b> If the treating RMP delegates consent-taking to another RMP (practical necessity or training), the treating RMP <strong>must be willing to take full responsibility</strong> for their actions. If the RMP taking/signing the form and the RMP providing treatment differ, final responsibility still rests with the treating RMP.</div>
+        <div class="cite">Guideline §3.16 · §3.17 · FAQ 8 · FAQ 9</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Duration of validity</summary>
+      <div class="body">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Situation</th><th>Is consent still valid?</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Patient's condition remains the same</td><td>Yes — consent remains valid</td></tr>
+              <tr><td>Change in nature, clinical course or presentation of illness</td><td><strong>No</strong> — discuss and re-obtain consent</td></tr>
+              <tr><td>Procedure delayed, postponed, or patient discharged home in the interim</td><td><strong>No</strong> — re-obtain, as the condition may have changed</td></tr>
+              <tr><td>Consent taken in out-patient clinic prior to scheduling treatment</td><td>Must be <strong>re-confirmed with the patient on admission</strong> (consent and details on the form)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cite">FAQ 10 · Guideline §3.3</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Periodic &amp; serial treatment</summary>
+      <div class="body">
+        <p><strong>Predetermined series</strong> (e.g. chemotherapy, radiotherapy regimen, course of psychotherapy):</p>
+        <ul>
+          <li>Specific details (duration, interval, total number of episodes) must be explained <strong>before</strong> consent is taken for the whole series.</li>
+          <li>Consent remains valid as long as the patient's condition and the risks remain the same.</li>
+          <li>The patient's clinical condition should be <strong>evaluated prior to each episode</strong>.</li>
+          <li>Any change → discuss and re-obtain consent.</li>
+        </ul>
+        <p><strong>Chronic periodic treatment</strong> (e.g. regular haemodialysis, repeated de-sloughing of a wound, periodic blood transfusion):</p>
+        <ul>
+          <li>Consent should be <strong>re-obtained prior to each treatment</strong>, as the patient's condition — and therefore the associated risks — may have changed.</li>
+        </ul>
+        <div class="cite">FAQ 11</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>High-risk procedures and next-of-kin</summary>
+      <div class="body">
+        <ul>
+          <li>There is <strong>no legal distinction</strong> between a "normal" consent and a "high-risk" consent, nor any additional ethical or legal requirement for another individual to sign.</li>
+          <li>For high-risk treatment, <strong>encourage</strong> the patient to discuss options with family, close friends or others they wish, to support their decision-making.</li>
+          <li>Document these conversations and the explanation of risks in the medical records.</li>
+        </ul>
+        <div class="warn"><b>Do not:</b> require another individual to provide consent after a patient with mental capacity has given their own consent — this <strong>violates respect for the patient's autonomy</strong>.</div>
+        <div class="cite">FAQ 12</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Additional purposes requiring separate consent</summary>
+      <div class="body">
+        <p>Consent is only applicable for the <strong>specific purposes</strong> for which it was obtained. Additional consent is needed for:</p>
+        <ul>
+          <li>Photographs and audio-visual recordings taken during treatment.</li>
+          <li>Releasing patient data to a third party.</li>
+          <li>Keeping organs or tissues removed at surgery for purposes other than the original procedure.</li>
+        </ul>
+        <div class="cite">Guideline §3.18</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Sterilisation, hysterectomy &amp; orchidectomy</summary>
+      <div class="body">
+        <ul>
+          <li>Consent must be given by <strong>the patient concerned</strong>.</li>
+          <li>Discussions between spouses should be encouraged, but this <strong>does not and should not deny the patient's right</strong> to make the final decision and give consent.</li>
+        </ul>
+        <div class="cite">Guideline §3.19</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Artificial intelligence (AI) tools in treatment</summary>
+      <div class="body">
+        <p>If an RMP plans to use and rely on an AI tool and/or technology in treatment, the patient must be informed <strong>before</strong> treatment of:</p>
+        <ul>
+          <li>How the AI tools/technology are being used in their clinical care.</li>
+          <li>The basis of the results or recommendations generated by the AI.</li>
+          <li>Any known risks associated with the AI tool/technology.</li>
+          <li>Safeguards in place to prevent errors and/or data breaches.</li>
+          <li>Any conflicts of interest the RMP has or may have in relation to the AI tool/technology.</li>
+          <li>That the <strong>RMP remains responsible and accountable</strong> for the patient's clinical outcomes.</li>
+        </ul>
+        <p>The patient also retains the right to know when an AI tool/technology has failed and/or led to an adverse outcome.</p>
+        <div class="cite">Guideline §3.20 · FAQ 13</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Blanket consent is invalid</summary>
+      <div class="body">
+        <p>Consent given in broad terms without relevant information and advice does not amount to an exercise of choice.</p>
+        <div class="warn">A <strong>"blanket" or universal consent</strong> for treatment obtained on admission — whether as an out-patient or in-patient — is <strong>not considered valid</strong>.</div>
+        <div class="cite">Guideline §3.21</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 10. ANAESTHESIA-SPECIFIC ================= -->
+  <section class="group">
+    <h2>10 · Anaesthesia-Specific Situations</h2>
+
+    <details class="card">
+      <summary>Pre-op clinic → theatre: the re-confirmation rule</summary>
+      <div class="body">
+        <ul>
+          <li>Consent taken in the anaesthetic or surgical clinic before scheduling must be <strong>re-confirmed with the patient on admission</strong> — both the consent itself and the details on the form.</li>
+          <li>If the patient was discharged home in the interim, or the list was postponed, treat the old consent as <strong>no longer valid</strong>.</li>
+          <li>Any new symptom, new investigation result or change in planned procedure requires a fresh discussion and re-consent.</li>
+        </ul>
+        <div class="key"><b>Practical tip:</b> Build a "consent reconfirmation" step into your WHO-style sign-in — verify consent, procedure, site and any change since the clinic visit.</div>
+        <div class="cite">FAQ 10 · Guideline §3.3</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Regional &amp; neuraxial blocks</summary>
+      <div class="body">
+        <ul>
+          <li>Discuss <strong>alternatives</strong> — general anaesthesia, local infiltration, sedation, or doing nothing.</li>
+          <li>Discuss <strong>material risks</strong> relevant to that patient: bleeding/haematoma (especially with anticoagulation), nerve injury, infection, local anaesthetic systemic toxicity, inadequate block and conversion to GA.</li>
+          <li>Confirm the patient understands that <strong>conversion to GA may become necessary</strong> and what that entails.</li>
+          <li>Consent to a block is <strong>not</strong> consent to surgery, and vice versa — separate purposes need separate consent.</li>
+        </ul>
+        <div class="cite">Guideline §3.1.2.1 · §3.18 · §2 (Material Risk)</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Sedation</summary>
+      <div class="body">
+        <ul>
+          <li>Sedation is a treatment in its own right — it requires its own informed consent, including risks of over-sedation, aspiration, respiratory depression and the possibility of conversion to GA.</li>
+          <li>Document the discussion separately from the procedural consent where possible.</li>
+        </ul>
+        <div class="cite">Guideline §2 (Treatment) · §3.18</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Obstetric anaesthesia</summary>
+      <div class="body">
+        <ul>
+          <li>A labouring woman with mental capacity consents for herself — including for epidural analgesia and caesarean section anaesthesia.</li>
+          <li>Consent for epidural analgesia covers the <strong>specific episode and plan</strong>; if the clinical situation or risks change (e.g. prolonged labour, new thrombocytopenia, need for caesarean), <strong>re-discuss and re-consent</strong>.</li>
+          <li>She may <strong>withdraw consent at any time</strong> prior to treatment.</li>
+          <li>If she lacks capacity in an emergency, follow the emergency pathway — best interests, no unequivocal written refusal, and consensus of attending RMPs where practicable.</li>
+        </ul>
+        <div class="cite">Guideline §3.1.3.1 · §3.3 · §3.8 · FAQ 2 · FAQ 11</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Emergency surgery, trauma &amp; the unconscious patient</summary>
+      <div class="body">
+        <ul>
+          <li>Limit non-consensual treatment to <strong>what is required to address the immediate necessity</strong> — no elective extras.</li>
+          <li>Attempt to contact a surrogate <strong>where time permits</strong>.</li>
+          <li>Check for any <strong>unequivocal written directive</strong> refusing the proposed treatment before proceeding.</li>
+          <li>Document: the emergency, why consent could not be obtained, the attempts made to find a surrogate, and the best-interests reasoning.</li>
+        </ul>
+        <div class="cite">Guideline §3.4 · §3.5 · §3.8.3 · §3.10 · FAQ 2</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Blood products &amp; transfusion</summary>
+      <div class="body">
+        <ul>
+          <li>Transfusion is treatment — it requires informed consent, including material risks and alternatives.</li>
+          <li>A valid <strong>advance decision refusing blood</strong> must be respected where it is clear, specific, current, made with capacity and free of undue pressure.</li>
+          <li>If validity is in doubt, especially in an emergency, proceed in the patient's <strong>best interests</strong> while attempting to determine validity — and document clearly.</li>
+          <li>Refer also to other MMC guidelines and relevant laws for consent in this area.</li>
+        </ul>
+        <div class="cite">Guideline §3.10–3.12 · §3.22–3.23</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Withdrawal of consent in theatre</summary>
+      <div class="body">
+        <ul>
+          <li>A patient may withdraw consent <strong>at any time prior to the treatment</strong>, without giving reasons.</li>
+          <li>Stop, re-discuss, and document the withdrawal — including the specific details discussed where possible.</li>
+          <li>A refusal should be recorded in the medical record or on a refusal of treatment form.</li>
+        </ul>
+        <div class="cite">Guideline §3.1.3.1 · §3.13 · §3.14</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Teaching, photography, recordings &amp; data</summary>
+      <div class="body">
+        <ul>
+          <li>Consent for anaesthesia does <strong>not</strong> cover photographs, audio-visual recordings, release of data to third parties, or retention of tissues/organs for other purposes.</li>
+          <li>Each of these requires <strong>additional consent</strong>.</li>
+        </ul>
+        <div class="cite">Guideline §3.18</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Other guidelines and laws still apply</summary>
+      <div class="body">
+        <ul>
+          <li>Consent in other aspects of healthcare may be covered by <strong>other MMC guidelines</strong> — the RMP has a duty to refer to these when a relevant situation arises.</li>
+          <li>RMPs must also be cognisant of the <strong>relevant laws</strong> pertaining to consent for treatment.</li>
+        </ul>
+        <div class="cite">Guideline §3.22 · §3.23</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 11. CASES ================= -->
+  <section class="group">
+    <h2>11 · Ten High-Yield Cases</h2>
+
+    <details class="card case">
+      <summary>Case 1 — Consent taken in clinic 6 weeks ago, now new symptoms</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> A patient consented for elective laparoscopic cholecystectomy in the surgical clinic. The list was postponed twice and the patient now reports new-onset chest pain and a productive cough.</p>
+        <p><strong>Action:</strong> The original consent is <strong>no longer valid</strong> — the condition has changed and the procedure was postponed. Re-discuss the new findings and the anaesthetic risks, then re-obtain consent on admission.</p>
+        <div class="cite">FAQ 10 · Guideline §3.3</div>
+      </div>
+    </details>
+
+    <details class="card case">
+      <summary>Case 2 — Unconscious trauma patient, no next-of-kin reachable</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> A road-traffic victim with a ruptured spleen and head injury arrives intubated and haemodynamically unstable. No family can be contacted.</p>
+        <p><strong>Action:</strong> Invoke the <strong>medical emergency exception</strong>. Check for any unequivocal written directive refusing treatment. Proceed in the patient's <strong>best interests</strong>, limited to what addresses the immediate threat to life. Seek consensus of attending RMPs where practicable, and document the attempts to identify a surrogate.</p>
+        <div class="cite">Guideline §3.4 · §3.5 · §3.8.3 · §3.10 · FAQ 2</div>
+      </div>
+    </details>
+
+    <details class="card case">
+      <summary>Case 3 — Mature 15-year-old, parents unreachable, urgent appendicectomy</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> A 15-year-old with a history and examination consistent with acute appendicitis is for urgent surgery. He understands the procedure and risks. Parents are overseas and unreachable for several hours.</p>
+        <p><strong>Action:</strong> The minor's capacity depends on his <strong>maturity and intelligence</strong> to understand the nature and implications — assess and document this. Respect a mature minor's decision as far as possible, while being mindful of legal provisions requiring parental consent. If this becomes a <strong>medical emergency</strong> before parents are reachable, follow the emergency pathway and act in his best interests.</p>
+        <div class="cite">Guideline §3.6 · §3.7 · FAQ 2 · FAQ 3</div>
+      </div>
+    </details>
+
+    <details class="card case">
+      <summary>Case 4 — Jehovah's Witness with a signed advance decision refusing blood</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> A patient for major elective surgery produces a signed, dated advance decision refusing blood transfusion.</p>
+        <p><strong>Action:</strong> Run the <strong>four validity checks</strong> — is it clear and specific to the current circumstances, still current, made with capacity, and free of undue pressure? If valid and unequivocal in writing, <strong>refrain</strong> from giving the refused treatment. Plan alternatives in advance, and document the discussion.</p>
+        <div class="cite">Guideline §3.10 · §3.11</div>
+      </div>
+    </details>
+
+    <details class="card case">
+      <summary>Case 5 — Parents in dispute over elective paediatric surgery</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> Mother consents to a tonsillectomy for her 7-year-old; the estranged father objects in writing. The surgery is elective and non-urgent.</p>
+        <p><strong>Action:</strong> Consent from either parent is usually sufficient, but this is an <strong>exception</strong> — there is an apparent dispute. Counsel the parents towards consensus in the child's best interests, or seek an ethics consult. If doubt remains about who may consent, obtain <strong>legal advice</strong>. Do not proceed on the mother's consent alone until resolved.</p>
+        <div class="cite">FAQ 3</div>
+      </div>
+    </details>
+
+    <details class="card case">
+      <summary>Case 6 — Patient withdraws consent on the operating table</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> A patient consented to spinal anaesthesia for a procedure. After positioning, she becomes distressed and says she no longer wants the spinal.</p>
+        <p><strong>Action:</strong> She may <strong>withdraw consent at any time prior to treatment</strong>, without giving reasons. Stop. Re-discuss alternatives (e.g. GA) and <strong>obtain fresh consent</strong> for the new plan. Record the withdrawal and the discussion.</p>
+        <div class="cite">Guideline §3.1.3.1 · §3.13 · §3.14</div>
+      </div>
+    </details>
+
+    <details class="card case">
+      <summary>Case 7 — Dementia patient with a fractured neck of femur</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> An 84-year-old with moderate dementia is confused and cannot weigh the risks of spinal versus GA. Her daughter, who holds legal authority, is present.</p>
+        <p><strong>Action:</strong> Identify the daughter as the <strong>surrogate with legal authority</strong> and seek consent from her. Check whether the patient made any <strong>advance decision</strong> or expressed wishes while she had capacity. All decisions must be made in the patient's <strong>best interests</strong>, considering her views, beliefs and values.</p>
+        <div class="cite">Guideline §3.8 · §3.8.1 · §3.9 · §3.11 · FAQ 6</div>
+      </div>
+    </details>
+
+    <details class="card case">
+      <summary>Case 8 — Next-of-kin demands to co-sign a high-risk consent</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> A patient with severe aortic stenosis consents to a major operation. His wife insists on signing the consent form as well, believing it is required.</p>
+        <p><strong>Action:</strong> There is <strong>no legal distinction</strong> between normal and high-risk consent, and no requirement for another individual to sign. <strong>Encourage</strong> the patient to discuss the options with his wife to support his decision-making, and document the risk explanation — but requiring her signature after he has consented <strong>violates his autonomy</strong>.</p>
+        <div class="cite">FAQ 12</div>
+      </div>
+    </details>
+
+    <details class="card case">
+      <summary>Case 9 — Repeated sessions under GA (radiotherapy / ECT)</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> A patient requires 20 fractions of radiotherapy under general anaesthesia.</p>
+        <p><strong>Action:</strong> Consent may be taken for the <strong>whole predetermined series</strong>, provided the duration, interval and total number of episodes are explained beforehand. The consent remains valid <strong>as long as the condition and risks remain the same</strong> — evaluate the patient's clinical condition <strong>before each episode</strong>. Any change in the nature, clinical course or presentation requires a fresh discussion and re-consent.</p>
+        <div class="cite">FAQ 11 · Guideline §3.3</div>
+      </div>
+    </details>
+
+    <details class="card case">
+      <summary>Case 10 — Provisionally registered MO asked to take anaesthetic consent</summary>
+      <div class="body">
+        <p><strong>Scenario:</strong> A busy consultant asks a provisionally registered medical officer to obtain consent for anaesthesia for a complex case.</p>
+        <p><strong>Action:</strong> Any RMP taking consent must have the necessary <strong>competence, communication skills, experience and knowledge</strong>. The <strong>treating RMP remains ultimately responsible</strong> for ensuring valid consent was obtained, and must be willing to take full responsibility for the delegate's actions. If the MO cannot adequately explain the material risks, the consultant must take the consent personally.</p>
+        <div class="cite">Guideline §3.16 · §3.17 · FAQ 8 · FAQ 9</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 12. SOURCES ================= -->
+  <section class="group">
+    <h2>12 · Sources</h2>
+    <details class="card" open>
+      <summary>Primary documents cited in this quick reference</summary>
+      <div class="body">
+        <ul class="src-list">
+          <li>
+            <strong>Malaysian Medical Council.</strong> <em>Consent for Treatment of Patients by Registered Medical Practitioners.</em> Version 3/2025. First published 21 June 2016; revised 19 September 2017. Approved by the Ethics Committee on 21 October 2024 and adopted by the Malaysian Medical Council on 18 February 2025. Due for review in 5 years, or earlier as necessary.<br>
+            <span style="color:var(--muted);font-size:.84rem;">Drafting committee: Dato' Dr. N.K.S. Tharmaseelan; Assoc. Prof. Dr. Sharon Kaur A/P Gurmukh Singh; Assoc. Prof. Dr. Mark Tan Kiak Min.</span>
+          </li>
+          <li>
+            <strong>Malaysian Medical Council.</strong> <em>Frequently Asked Questions (FAQs): Consent for Treatment of Patients by Registered Medical Practitioners.</em> Version 1/2025.
+          </li>
+          <li>
+            <strong>Malaysian Medical Council.</strong> <em>Code of Professional Conduct 2019</em>, Section 1.1 (definition of "treatment").
+          </li>
+          <li>
+            <strong>Laws of Malaysia.</strong> <em>Mental Health Act 2001</em>, Section 77 (consent for mentally disordered patients lacking capacity — surgery, electroconvulsive therapy, clinical trials).
+          </li>
+          <li>
+            <strong>Malaysian Medical Council (MMC) official website</strong> — for the full guidelines, FAQs, and contact details for queries and clarification: <a href="https://mmc.gov.my/" target="_blank" rel="noopener">mmc.gov.my</a>
+          </li>
+        </ul>
+        <div class="warn"><b>Note:</b> This quick reference is a summary aid for clinical use. It is not exhaustive and does not replace the full MMC Guideline and FAQs, other MMC guidelines, or the relevant laws. Where a query arises, refer to the source documents or seek clarification from the MMC.</div>
+      </div>
+    </details>
+  </section>
+
+  <div id="noresults">No matching sections. Try a different term — e.g. <em>minor</em>, <em>material risk</em>, <em>emergency</em>, <em>advance decision</em>, <em>sedation</em>.</div>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> Prepared as a clinical quick-reference summary of the Malaysian Medical Council Guideline "Consent for Treatment of Patients by Registered Medical Practitioners" (Version 3/2025) and its accompanying FAQs (Version 1/2025). Always consult the full published documents and applicable Malaysian law. Not a substitute for clinical judgement, ethics consultation or legal advice.
+  </div>
+
+</main>
+
+<footer>
+  Consent for Treatment — Anaesthetist Quick Reference · MMC Guideline v3/2025 &amp; FAQs v1/2025
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var searchInput = document.getElementById("q");
+  var status = document.getElementById("status");
+  var noResults = document.getElementById("noresults");
+  var cards = Array.prototype.slice.call(document.querySelectorAll("details.card"));
+  var groups = Array.prototype.slice.call(document.querySelectorAll(".group"));
+  var expandBtn = document.getElementById("expandAll");
+  var collapseBtn = document.getElementById("collapseAll");
+
+  var TOTAL = cards.length;
+  var DEFAULT_STATUS = "Tap any card to expand · use search to filter instantly";
+
+  /* ---------- Highlight helpers ---------- */
+  function clearMarks(root) {
+    var marks = root.querySelectorAll("mark.hl");
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function highlight(root, term) {
+    if (!term) return;
+    var lower = term.toLowerCase();
+    var walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName;
+          if (tag === "SCRIPT" || tag === "STYLE" || tag === "MARK") return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var text = node.nodeValue;
+      if (text.toLowerCase().indexOf(lower) === -1) continue;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+      var pos = text.toLowerCase().indexOf(lower);
+
+      while (pos !== -1) {
+        if (pos > last) frag.appendChild(document.createTextNode(text.slice(last, pos)));
+        var mark = document.createElement("mark");
+        mark.className = "hl";
+        mark.textContent = text.slice(pos, pos + term.length);
+        frag.appendChild(mark);
+        last = pos + term.length;
+        pos = text.toLowerCase().indexOf(lower, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+
+      if (node.parentNode) node.parentNode.replaceChild(frag, node);
+    }
+  }
+
+  /* ---------- Search ---------- */
+  function runSearch() {
+    var term = searchInput.value.trim();
+
+    // Always reset highlights first
+    for (var i = 0; i < cards.length; i++) clearMarks(cards[i]);
+
+    if (!term) {
+      for (var j = 0; j < cards.length; j++) cards[j].hidden = false;
+      for (var k = 0; k < groups.length; k++) groups[k].hidden = false;
+      noResults.style.display = "none";
+      status.textContent = DEFAULT_STATUS;
+      return;
+    }
+
+    var lower = term.toLowerCase();
+    var visibleCount = 0;
+
+    for (var a = 0; a < cards.length; a++) {
+      var card = cards[a];
+      var match = card.textContent.toLowerCase().indexOf(lower) !== -1;
+      card.hidden = !match;
+      if (match) {
+        visibleCount++;
+        card.open = true;
+        highlight(card, term);
+      }
+    }
+
+    for (var b = 0; b < groups.length; b++) {
+      var g = groups[b];
+      var anyVisible = false;
+      var inner = g.querySelectorAll("details.card");
+      for (var c = 0; c < inner.length; c++) {
+        if (!inner[c].hidden) { anyVisible = true; break; }
+      }
+      g.hidden = !anyVisible;
+    }
+
+    if (visibleCount === 0) {
+      noResults.style.display = "block";
+      status.textContent = 'No matches for "' + term + '"';
+    } else {
+      noResults.style.display = "none";
+      status.textContent = visibleCount + " of " + TOTAL + " sections match “" + term + "”";
+    }
+  }
+
+  var debounceTimer = null;
+  searchInput.addEventListener("input", function () {
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 130);
+  });
+
+  searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      searchInput.value = "";
+      runSearch();
+    }
+  });
+
+  /* ---------- Expand / collapse ---------- */
+  expandBtn.addEventListener("click", function () {
+    for (var i = 0; i < cards.length; i++) {
+      if (!cards[i].hidden) cards[i].open = true;
+    }
+  });
+
+  collapseBtn.addEventListener("click", function () {
+    for (var i = 0; i < cards.length; i++) cards[i].open = false;
+  });
+
+  /* ---------- Keyboard shortcut: "/" focuses search ---------- */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
