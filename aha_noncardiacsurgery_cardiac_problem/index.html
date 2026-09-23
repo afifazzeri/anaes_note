@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perioperative Cardiovascular Management — Anaesthesia &amp; ICU Quick Reference (2024 AHA/ACC)</title>
+<style>
+/* ============ THEME ============ */
+:root{
+  --blue-900:#0b2559;
+  --blue-800:#12306e;
+  --blue-700:#1d4ed8;
+  --blue-600:#2563eb;
+  --blue-400:#60a5fa;
+  --blue-100:#dbeafe;
+  --blue-50:#eff6ff;
+  --red-800:#7f1d1d;
+  --red-700:#b91c1c;
+  --red-600:#dc2626;
+  --red-400:#f87171;
+  --red-100:#fee2e2;
+  --red-50:#fef2f2;
+  --ink:#0f172a;
+  --ink-soft:#334155;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --bg:#f7f9fc;
+  --card:#ffffff;
+  --amber:#b45309;
+  --amber-bg:#fffbeb;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(15,23,42,.06),0 8px 24px -12px rgba(15,23,42,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ============ HEADER ============ */
+header{
+  background:linear-gradient(125deg,#0b2559 0%,#143a86 40%,#8b1a1a 100%);
+  color:#fff;
+  padding:26px 20px 20px;
+  position:relative;
+  overflow:hidden;
+}
+header::after{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(600px 200px at 85% 0%,rgba(248,113,113,.35),transparent 70%),
+             radial-gradient(500px 220px at 10% 120%,rgba(96,165,250,.35),transparent 70%);
+  pointer-events:none;
+}
+.hdr-inner{position:relative;z-index:1;max-width:1180px;margin:0 auto}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:#bfdbfe;font-weight:700;margin:0 0 6px
+}
+h1{margin:0 0 6px;font-size:1.55rem;line-height:1.25;font-weight:800;letter-spacing:-.01em}
+.sub{margin:0;color:#dbeafe;font-size:.9rem;max-width:820px}
+.hdr-tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:999px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff
+}
+
+/* ============ STICKY TOOLBAR ============ */
+.toolbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  padding:10px 20px;
+  box-shadow:0 4px 14px -10px rgba(15,23,42,.35);
+}
+.toolbar-inner{max-width:1180px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search-wrap{position:relative;flex:1 1 320px;min-width:220px}
+.search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.45}
+#search{
+  width:100%;padding:11px 12px 11px 38px;border-radius:11px;
+  border:1.5px solid var(--line);background:#fff;font-size:.92rem;color:var(--ink);
+  transition:border-color .18s,box-shadow .18s;
+}
+#search:focus{outline:none;border-color:var(--blue-600);box-shadow:0 0 0 4px rgba(37,99,235,.12)}
+.btn{
+  border:1.5px solid var(--line);background:#fff;color:var(--blue-800);
+  padding:9px 14px;border-radius:11px;font-size:.85rem;font-weight:650;cursor:pointer;
+  transition:.18s;white-space:nowrap
+}
+.btn:hover{border-color:var(--blue-400);background:var(--blue-50)}
+.btn.red{color:var(--red-700)}
+.btn.red:hover{border-color:var(--red-400);background:var(--red-50)}
+#count{font-size:.8rem;color:var(--muted);font-weight:600;white-space:nowrap}
+
+/* ============ LAYOUT ============ */
+main{max-width:1180px;margin:0 auto;padding:22px 20px 60px}
+.section{margin:0 0 16px}
+.section>details{
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--card);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.section>details>summary{
+  list-style:none;cursor:pointer;padding:15px 18px;
+  display:flex;align-items:center;gap:12px;
+  background:linear-gradient(100deg,var(--blue-50),#fff 65%);
+  border-left:5px solid var(--blue-700);
+  font-weight:800;font-size:1rem;color:var(--blue-900);
+  transition:background .18s;
+}
+.section>details>summary::-webkit-details-marker{display:none}
+.section>details>summary:hover{background:linear-gradient(100deg,var(--blue-100),#fff 70%)}
+.section>details[open]>summary{border-bottom:1px solid var(--line)}
+.section.red>details>summary{
+  background:linear-gradient(100deg,var(--red-50),#fff 65%);
+  border-left-color:var(--red-700);color:var(--red-800);
+}
+.section.red>details>summary:hover{background:linear-gradient(100deg,var(--red-100),#fff 70%)}
+.chev{
+  margin-left:auto;width:18px;height:18px;flex:none;opacity:.55;
+  transition:transform .22s ease;color:var(--blue-700)
+}
+details[open]>summary .chev{transform:rotate(90deg)}
+.section-body{padding:14px 16px 18px}
+
+/* ============ CARDS ============ */
+.card{
+  border:1px solid var(--line);border-radius:11px;background:#fff;
+  margin:0 0 10px;overflow:hidden;transition:border-color .18s,box-shadow .18s;
+}
+.card:hover{border-color:var(--blue-400)}
+.card>summary{
+  list-style:none;cursor:pointer;padding:11px 14px;
+  display:flex;align-items:center;gap:10px;font-weight:700;font-size:.92rem;
+  color:var(--blue-900);background:#fbfdff;
+}
+.card>summary::-webkit-details-marker{display:none}
+.card[open]>summary{border-bottom:1px dashed var(--line);background:var(--blue-50)}
+.card>summary .chev{width:15px;height:15px}
+.card-body{padding:12px 15px 14px;font-size:.89rem;color:var(--ink-soft)}
+.card-body p{margin:.45em 0}
+.card-body ul{margin:.4em 0;padding-left:1.15em}
+.card-body li{margin:.28em 0}
+.card-body strong{color:var(--ink)}
+
+/* ============ BADGES ============ */
+.badge{
+  display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.05em;
+  padding:2.5px 7px;border-radius:6px;text-transform:uppercase;
+  vertical-align:middle;line-height:1.5;white-space:nowrap
+}
+.b1{background:var(--blue-800);color:#fff}
+.b2a{background:var(--blue-600);color:#fff}
+.b2b{background:var(--blue-100);color:var(--blue-900);border:1px solid var(--blue-400)}
+.b3n{background:#f1f5f9;color:#475569;border:1px solid #cbd5e1}
+.b3h{background:var(--red-700);color:#fff}
+.loe{font-weight:700;opacity:.85;font-size:.95em}
+
+/* ============ TABLES ============ */
+.table-wrap{
+  overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:.6em 0;
+  -webkit-overflow-scrolling:touch;
+}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.83rem}
+th{
+  background:linear-gradient(180deg,var(--blue-50),#fff);
+  text-align:left;padding:9px 11px;font-weight:750;color:var(--blue-900);
+  border-bottom:1.5px solid var(--blue-100);white-space:nowrap;position:sticky;top:0
+}
+td{padding:8px 11px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:#fafcff}
+td strong{color:var(--ink)}
+.scroll-hint{font-size:.72rem;color:var(--muted);margin:-.2em 0 .6em;font-style:italic}
+
+/* ============ FLOW DIAGRAMS ============ */
+.flow{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:14px 10px;background:linear-gradient(180deg,#fbfdff,#fff);
+  border:1px solid var(--line);border-radius:12px;overflow-x:auto
+}
+.node{
+  text-align:center;padding:9px 14px;border-radius:10px;font-size:.83rem;font-weight:650;
+  background:#fff;border:1.5px solid var(--blue-400);color:var(--blue-900);
+  max-width:640px;box-shadow:0 1px 3px rgba(15,23,42,.06)
+}
+.node.start{background:var(--blue-800);color:#fff;border-color:var(--blue-800);font-weight:750}
+.node.decision{background:var(--blue-50);border-style:dashed;border-color:var(--blue-600)}
+.node.action{background:var(--red-50);border-color:var(--red-400);color:var(--red-800)}
+.node.good{background:#f0fdf4;border-color:#86efac;color:#166534}
+.node.warn{background:var(--amber-bg);border-color:#fcd34d;color:var(--amber)}
+.node.harm{background:var(--red-700);color:#fff;border-color:var(--red-700)}
+.arrow{color:var(--blue-400);font-size:.95rem;line-height:1;font-weight:700}
+.branch{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  width:100%;margin-top:4px
+}
+.branch-col{
+  flex:1 1 250px;min-width:230px;max-width:360px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:10px;border:1px dashed var(--line);border-radius:10px;background:#fff
+}
+.branch-col .node{width:100%;max-width:none}
+.branch-label{
+  font-size:.7rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2px
+}
+.fig-cap{font-size:.76rem;color:var(--muted);margin:.5em 0 0;text-align:center}
+
+/* ============ CALLOUTS ============ */
+.callout{
+  border-left:4px solid var(--blue-600);background:var(--blue-50);
+  padding:10px 13px;border-radius:0 9px 9px 0;margin:.6em 0;font-size:.86rem
+}
+.callout.red{border-left-color:var(--red-600);background:var(--red-50)}
+.callout.amber{border-left-color:#f59e0b;background:var(--amber-bg)}
+.callout strong{color:var(--ink)}
+
+/* ============ CASES ============ */
+.case{border-left:4px solid var(--red-600)}
+.case>summary{background:linear-gradient(100deg,var(--red-50),#fff 70%);color:var(--red-800)}
+.case[open]>summary{background:var(--red-50)}
+.case .q{font-weight:750;color:var(--blue-900);margin:.2em 0 .5em}
+.answer{
+  background:#f8fafc;border:1px dashed var(--line);border-radius:9px;
+  padding:9px 12px;margin-top:.5em
+}
+.answer .lbl{
+  font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue-700);display:block;margin-bottom:3px
+}
+mark.hl{background:#fde68a;color:#7c2d12;border-radius:3px;padding:0 2px}
+
+/* ============ SOURCE ============ */
+.source{
+  margin-top:26px;border:1px solid var(--line);border-radius:var(--radius);
+  background:#fff;padding:18px 20px;box-shadow:var(--shadow);font-size:.84rem;color:var(--ink-soft)
+}
+.source h3{margin:0 0 8px;font-size:.95rem;color:var(--blue-900)}
+.source ol{padding-left:1.2em;margin:.4em 0}
+.source li{margin:.3em 0}
+.source a{color:var(--blue-700);word-break:break-word}
+footer{
+  text-align:center;font-size:.76rem;color:var(--muted);
+  padding:22px 20px 40px
+}
+.no-results{
+  display:none;text-align:center;padding:30px;color:var(--muted);
+  border:1px dashed var(--line);border-radius:12px;background:#fff;font-size:.9rem
+}
+@media (max-width:640px){
+  h1{font-size:1.2rem}
+  .section>details>summary{font-size:.92rem;padding:13px 14px}
+  main{padding:16px 12px 50px}
+  .toolbar{padding:9px 12px}
+  .branch-col{flex:1 1 100%;max-width:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-inner">
+    <p class="eyebrow">Anaesthesia &amp; Critical Care Quick Reference</p>
+    <h1>Perioperative Cardiovascular Management for Noncardiac Surgery</h1>
+    <p class="sub">2024 AHA/ACC/ACS/ASNC/HRS/SCA/SCCT/SCMR/SVM Guideline — condensed to clinical decision points, thresholds and drug/timing rules for the operating room and ICU.</p>
+    <div class="hdr-tags">
+      <span class="tag">Risk assessment</span>
+      <span class="tag">Testing</span>
+      <span class="tag">Comorbidities</span>
+      <span class="tag">Drugs &amp; timing</span>
+      <span class="tag">Intraoperative</span>
+      <span class="tag">MINS / MI</span>
+      <span class="tag">10 cases</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Search — e.g. SGLT2, DES, bridging, aortic stenosis, DASI, MAP…" autocomplete="off">
+    </div>
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn red" id="collapseAll">Collapse all</button>
+    <span id="count"></span>
+  </div>
+</div>
+
+<main id="content">
+
+  <div class="no-results" id="noResults">No matching content. Try another term (e.g. <em>statin</em>, <em>troponin</em>, <em>CIED</em>, <em>MINS</em>).</div>
+
+  <!-- ================= TAKE-HOME ================= -->
+  <section class="section red">
+    <details open>
+      <summary>★ Top Take-Home Messages <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+      <div class="section-body">
+        <div class="card"><details open><summary>Nine principles that drive every decision <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><strong>Stepwise assessment</strong> — decide when to proceed vs. pause for further evaluation.</li>
+              <li><strong>Same indications as non-surgical patients</strong> — screening/treatment should not be triggered by surgery itself; avoid overscreening, overtreatment and delays.</li>
+              <li><strong>Stress testing judiciously</strong> — only if it would be appropriate independent of the planned surgery; especially avoid in low-risk patients.</li>
+              <li><strong>Team-based care</strong> for complex anatomy or unstable cardiovascular disease.</li>
+              <li><strong>SGLT2 inhibitors: stop 3–4 days pre-op</strong> to avoid perioperative ketoacidosis (new diabetes/HF/obesity therapies matter).</li>
+              <li><strong>MINS is a real disease</strong> — myocardial injury after noncardiac surgery must not be ignored.</li>
+              <li><strong>New-onset perioperative AF</strong> → higher stroke risk; follow up closely, treat reversible triggers, assess rhythm control and long-term anticoagulation.</li>
+              <li><strong>Bridging anticoagulation</strong> — selective use only in highest thrombotic risk; not recommended for most patients.</li>
+              <li><strong>FoCUS</strong> can be used for unexplained haemodynamic instability when expertise exists — but it does not replace comprehensive TTE.</li>
+            </ul>
+          </div>
+        </details></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 1. RISK ================= -->
+  <section class="section">
+    <details open>
+      <summary>1 · Risk Assessment &amp; Stepwise Approach <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+      <div class="section-body">
+
+        <div class="card"><details open><summary>Stepwise approach to perioperative cardiac assessment <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <div class="flow">
+              <div class="node start">Adult for noncardiac surgery (NCS)</div>
+              <div class="arrow">▼</div>
+              <div class="node decision">Emergency / urgent surgery?</div>
+              <div class="arrow">▼ YES</div>
+              <div class="node action">Proceed — treat as high risk. No time for extensive work-up; optimise intra-operatively &amp; post-operatively</div>
+              <div class="arrow">▼ NO — elective / time-sensitive</div>
+              <div class="node decision">Active cardiac condition or symptoms?<br><span style="font-weight:500">ACS · decompensated HF · severe symptomatic AS · uncontrolled arrhythmia</span></div>
+              <div class="arrow">▼ NO</div>
+              <div class="node decision">Elevated-risk surgery?<br><span style="font-weight:500">RCRI &gt;1 or calculated MACE &gt;1%</span></div>
+              <div class="arrow">▼ YES</div>
+              <div class="node decision">Functional capacity ≥4 METs or DASI &gt;34?</div>
+              <div class="arrow">▼</div>
+              <div class="branch">
+                <div class="branch-col">
+                  <div class="branch-label">YES — good capacity</div>
+                  <div class="node good">Proceed to surgery. Avoid routine further cardiac testing</div>
+                </div>
+                <div class="branch-col">
+                  <div class="branch-label">NO / unknown</div>
+                  <div class="node">Consider biomarkers (BNP/NT-proBNP, cTn) and ECG</div>
+                  <div class="arrow">▼</div>
+                  <div class="node warn">Only test if result would change management AND testing is indicated independent of surgery</div>
+                </div>
+              </div>
+              <div class="arrow" style="margin-top:8px">▼</div>
+              <div class="node action">Review GDMT · optimise comorbidities · multidisciplinary team · shared decision-making · plan disposition</div>
+            </div>
+            <p class="fig-cap">Simplified from Figure 1, 2024 guideline. Not prospectively validated — does not replace clinical judgement.</p>
+            <div class="callout"><strong>Risk definitions:</strong> Low risk = combined surgical + patient characteristics predict &lt;1% MACCE. Elevated risk = ≥1% MACCE (intermediate or high surgical risk).</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Risk scores &amp; calculators <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><span class="badge b2a">COR 2a</span> <span class="loe">B-NR</span> In patients with known CVD being considered for NCS, a validated risk-prediction tool can be useful to estimate risk of perioperative MACE.</p>
+            <p class="scroll-hint">Table scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Tool</th><th>Components</th><th>Outcome</th><th>Elevated-risk threshold</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>RCRI</strong> (Lee, 1999)</td><td>Ischaemic heart disease · cerebrovascular disease · HF history · insulin-treated diabetes · creatinine ≥2.0 mg/dL · high-risk procedure (intraperitoneal, intrathoracic, vascular) — 1 point each</td><td>MI, pulmonary oedema, VF, complete heart block, cardiac death</td><td><strong>RCRI &gt;1</strong></td></tr>
+                  <tr><td><strong>Gupta NSQIP MICA</strong></td><td>Age, ASA class, functional status, creatinine, procedure type</td><td>MI or cardiac arrest within 30 days</td><td><strong>&gt;1%</strong></td></tr>
+                  <tr><td><strong>ACS NSQIP Surgical Risk Calculator</strong></td><td>21 factors incl. ASA, urgency, functional status, sepsis, COPD, dialysis, BMI, CPT-specific risk</td><td>Cardiac arrest, MI, all-cause mortality at 30 days</td><td><strong>&gt;1%</strong></td></tr>
+                  <tr><td><strong>AUB-HAS2</strong></td><td>Age ≥75 · heart disease history · angina/dyspnoea · Hb &lt;12 · vascular surgery · emergency surgery</td><td>Death, MI or stroke at 30 days</td><td><strong>Score ≥2</strong></td></tr>
+                  <tr><td><strong>SORT</strong></td><td>Age, ASA, urgency, specialty, severity, cancer</td><td>30-day mortality</td><td>&gt;1%</td></tr>
+                  <tr><td><strong>NSQIP Geriatric-Sensitive Cardiac Risk Index</strong></td><td>ASA, HF, stroke, diabetes, functional status, creatinine, surgical category</td><td>Cardiac arrest, MI, mortality at 30 days</td><td>&gt;1%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout amber"><strong>No single index is superior.</strong> Data do not support one risk index over another. Adding coronary calcium burden from a non-gated chest CT within the prior year may refine risk. Risk scores discriminate less well in vascular surgery (underestimate MI).</div>
+            <p><strong>Surgical risk by category (guide only):</strong> highest — suprainguinal vascular, thoracic, transplant, neurosurgery; intermediate — general, ENT, genitourinary, orthopaedic; lowest — endocrine, breast, gynaecology, obstetrics. Endovascular approaches carry lower risk than open (e.g. EVAR vs. open AAA repair). Emergency surgery &gt; elective.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Functional capacity — METs &amp; DASI <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><span class="badge b2a">COR 2a</span> <span class="loe">B-NR</span> In elevated-risk NCS, structured functional capacity assessment (e.g. <strong>DASI</strong>) is reasonable to stratify risk of perioperative adverse cardiovascular events.</p>
+            <p><strong>Thresholds:</strong> Poor functional capacity = <strong>&lt;4 METs</strong> or <strong>DASI ≤34</strong>. Climbing 2 flights of stairs ≈ &gt;4 METs.</p>
+            <div class="callout red"><strong>Key evidence:</strong> Subjective clinician assessment of functional capacity was <em>not</em> associated with outcomes in the METS study — use a structured tool (DASI). DASI ≤34 was associated with increased odds of 30-day death or MI.</div>
+            <p class="scroll-hint">Duke Activity Status Index — scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Activity — "Can you…"</th><th>Weight</th></tr></thead>
+                <tbody>
+                  <tr><td>Take care of yourself (eating, dressing, bathing, toileting)?</td><td>2.75</td></tr>
+                  <tr><td>Walk indoors, around your house?</td><td>1.75</td></tr>
+                  <tr><td>Walk a block or 2 on level ground?</td><td>2.75</td></tr>
+                  <tr><td>Climb a flight of stairs or walk up a hill?</td><td>5.5</td></tr>
+                  <tr><td>Run a short distance?</td><td>8.0</td></tr>
+                  <tr><td>Do light work around the house (dusting, washing dishes)?</td><td>2.7</td></tr>
+                  <tr><td>Do moderate work around the house (vacuuming, sweeping, carrying groceries)?</td><td>3.5</td></tr>
+                  <tr><td>Do heavy work around the house (scrubbing floors, moving heavy furniture)?</td><td>8.0</td></tr>
+                  <tr><td>Do yardwork (raking, weeding, pushing a power mower)?</td><td>4.5</td></tr>
+                  <tr><td>Have sexual relations?</td><td>5.25</td></tr>
+                  <tr><td>Moderate recreational activity (golf, bowling, dancing, doubles tennis)?</td><td>6.0</td></tr>
+                  <tr><td>Strenuous sports (swimming, singles tennis, basketball, skiing)?</td><td>7.5</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Score = sum of performed activities (range 0–58.2). Higher = better functional status. <strong>DASI ≤34 = poor capacity.</strong></p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Frailty assessment <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><span class="badge b2a">COR 2a</span> <span class="loe">B-NR</span> In all patients <strong>≥65 years</strong>, and in those <strong>&lt;64 with perceived frailty</strong> undergoing elevated-risk NCS, preoperative frailty assessment using a validated tool can be useful for evaluating risk and guiding management.</p>
+            <div class="callout red"><strong>Impact:</strong> Meta-analysis of 56 studies (1.1 million older adults) — frailty associated with 30-day mortality RR <strong>3.71</strong> (95% CI 2.89–4.77) and 30-day complications RR <strong>2.39</strong> (2.02–2.83). Routine frailty screening in a single centre was associated with reduced 30-day mortality.</div>
+            <p class="scroll-hint">Table scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Tool</th><th>Items</th><th>Scoring</th></tr></thead>
+                <tbody>
+                  <tr><td>Fried phenotype (Physical Frailty Phenotype)</td><td>Slowness, low activity, weight loss, exhaustion, weakness (1 point each)</td><td>0 = non-frail; 1–2 = pre-frail; 3–5 = frail</td></tr>
+                  <tr><td>Deficit Accumulation Index</td><td>Typically 30–70 items across domains</td><td>Deficits / items scored; higher = more frail</td></tr>
+                  <tr><td>Edmonton Frail Scale</td><td>10 items, multiple domains</td><td>Sum/17; higher = more frail</td></tr>
+                  <tr><td>FRAIL Scale</td><td>Fatigue, stair climb, ambulation, illness &gt;5, weight loss ≥5%</td><td>0 = non-frail; 1–2 = intermediate; 3–5 = frail</td></tr>
+                  <tr><td>Clinical Frailty Scale</td><td>9 clinician-rated categories (very fit → terminally ill)</td><td>Categories 5–8 = mild → very severe frailty</td></tr>
+                  <tr><td>SPPB (Short Physical Performance Battery)</td><td>Gait speed, chair stands, balance</td><td>0–12; ≥10 non-frail, 3–9 frail, ≤2 disabled</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Prehabilitation (physical conditioning ± nutritional support) may improve outcomes in selected frail patients. In advanced frailty with poor functional status and reduced life expectancy, integrate goals of care and shared decision-making.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Preoperative biomarkers — BNP / NT-proBNP / troponin <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><span class="badge b2a">COR 2a</span> <span class="loe">B-NR</span> In patients with <strong>known CVD</strong>, or <strong>age ≥65</strong>, or <strong>age ≥45 with symptoms suggestive of CVD</strong> undergoing elevated-risk NCS — measure <strong>BNP or NT-proBNP</strong> before surgery to supplement perioperative risk evaluation.</p>
+            <p><span class="badge b2b">COR 2b</span> <span class="loe">B-NR</span> Same population — measuring <strong>cardiac troponin</strong> before surgery may be reasonable to supplement risk evaluation.</p>
+            <div class="callout"><strong>Practical points:</strong> Both have high prognostic value and excellent negative predictive value. Preoperative NT-proBNP &gt;100 pg/mL was independently associated with all-cause mortality (VISION substudy). Adding NT-proBNP to traditional risk scores did not clearly improve prediction beyond risk scores + self-reported functional status. A preoperative baseline troponin helps interpret postoperative troponins and identify chronic myocardial injury.</div>
+            <div class="callout amber"><strong>Value is uncertain:</strong> No studies show that acting on an elevated preoperative biomarker improves perioperative outcomes. Utility in low-risk patients has not been evaluated, and downstream testing is a potential harm.</div>
+          </div>
+        </details></div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 2. TESTING ================= -->
+  <section class="section">
+    <details open>
+      <summary>2 · Preoperative Cardiovascular Testing <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+      <div class="section-body">
+
+        <div class="card"><details><summary>12-lead ECG <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">B-NR</span> Known coronary heart disease, significant arrhythmia, peripheral arterial disease, cerebrovascular disease, other significant structural heart disease, or CVD symptoms undergoing <strong>elevated-risk surgery</strong> → preoperative resting 12-lead ECG <strong>reasonable</strong> to establish baseline and guide management.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">B-NR</span> New abnormalities on preoperative ECG → further evaluation reasonable to refine cardiovascular risk.</li>
+              <li><span class="badge b2b">2b</span> <span class="loe">B-NR</span> Asymptomatic patients, elevated-risk surgery, <strong>no known CVD</strong> → preoperative ECG <strong>may be considered</strong>.</li>
+              <li><span class="badge b3n">3: No benefit</span> <span class="loe">B-NR</span> Asymptomatic patients undergoing <strong>low-risk</strong> procedures → routine preoperative ECG <strong>not recommended</strong>.</li>
+            </ul>
+            <div class="callout"><strong>Abnormalities that may change management:</strong> Mobitz II or higher AV block, AF with rapid ventricular response / new-onset AF, prolonged QT (informs anaesthetic, antiemetic and antibiotic choice). Incidental Q-waves or bundle branch block should <em>not</em> trigger revascularisation before NCS.</div>
+            <p>Optimal interval between ECG and elective NCS is unknown. Comparing with prior tracings is helpful.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Left &amp; right ventricular function <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>Left ventricle</strong></p>
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> New dyspnoea, examination findings of HF, or suspected new/worsening ventricular dysfunction → <strong>perform</strong> preoperative LV function evaluation.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> Known HF with worsening dyspnoea or other change in clinical status → preoperative LV assessment <strong>reasonable</strong>.</li>
+              <li><span class="badge b3n">3: No benefit</span> <span class="loe">B-NR</span> Asymptomatic, clinically stable → routine preoperative LV evaluation <strong>not recommended</strong>.</li>
+            </ul>
+            <p>Lower LVEF, higher-risk surgery and additional comorbidity raise MACE risk. Grade 3 diastolic dysfunction carries ~70% higher MACE risk vs. grade 1–2. FoCUS by trained operators may identify patients needing fuller evaluation, but comprehensive TTE remains the standard.</p>
+            <p><strong>Right ventricle:</strong> Reduced RV function (in MR, TR, PH) is independently associated with adverse outcomes. <strong>Routine preoperative RV assessment is not recommended</strong> in asymptomatic, stable patients. CMR is the gold standard for RV volumes/function in selected cases.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Stress testing &amp; modality selection <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b2b">2b</span> <span class="loe">B-NR</span> Elevated-risk NCS with <strong>poor or unknown functional capacity</strong> AND elevated risk by validated tool → stress testing <strong>may be considered</strong> for inducible ischaemia.</li>
+              <li><span class="badge b3n">3: No benefit</span> <span class="loe">B-R</span> Low risk, adequate functional capacity with stable symptoms, or low-risk procedures → <strong>routine stress testing not recommended</strong>.</li>
+            </ul>
+            <div class="callout red"><strong>Central principle:</strong> The goal is <em>not</em> to find undiagnosed CAD. It is to identify patients in whom revascularisation would improve outcomes — essentially <strong>left main disease or severe multivessel disease with reduced LVEF</strong>. Preoperative revascularisation has <em>not</em> been shown to reduce perioperative MACE or cardiac mortality in stable patients. An abnormal stress test should not prompt angiography or revascularisation unless it shows high-risk features.</div>
+            <p>Exercise testing is preferred over pharmacological stress when the patient can exercise.</p>
+            <p class="scroll-hint">Table scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Modality</th><th>Contraindications</th></tr></thead>
+                <tbody>
+                  <tr><td>Vasodilator pharmacological stress imaging</td><td>Significant arrhythmias (VT, 2nd/3rd degree AV block); significant hypotension (SBP &lt;90 mm Hg); known/suspected bronchoconstrictive or bronchospastic disease; dipyridamole or methylxanthines (aminophylline, caffeine) within 12 h</td></tr>
+                  <tr><td>Exercise stress testing (± imaging)</td><td>Inability to exercise</td></tr>
+                  <tr><td>Dobutamine stress echocardiography</td><td>Critical aortic stenosis; haemodynamically significant LVOT obstruction</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>Contraindicated for all modalities:</strong> ACS, decompensated HF, severe/symptomatic AS, uncontrolled arrhythmia, severe systemic hypertension (≥200/110 mm Hg), acute aortic dissection, pericarditis/myocarditis, pulmonary embolism, severe PH.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Cardiopulmonary exercise testing (CPET) <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p>In high-risk patients undergoing elevated-risk procedures with objectively reduced functional capacity, where extra physiological data are needed to inform perioperative care or guide optimisation, CPET may be beneficial for risk assessment of morbidity and mortality.</p>
+            <ul>
+              <li>Gold standard for physiological response to exercise; diagnoses cardiac vs. pulmonary cause of exercise intolerance; guides prehabilitation.</li>
+              <li>Predicts all-cause morbidity (more common than cardiovascular complications alone) in major abdominal, vascular, bariatric and thoracic surgery.</li>
+              <li>Anaerobic threshold thresholds have fallen over time (11 → 9–10 mL/min/kg) reflecting evolution in surgical/perioperative practice.</li>
+              <li>Most perioperative CPET studies are retrospective, single-centre, with variable predictive precision.</li>
+              <li>The 6-minute walk test is easier (no specialist equipment) and also used for risk prediction; correlation with CPET is variable.</li>
+            </ul>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Coronary CTA &amp; invasive coronary angiography <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>CCTA</strong></p>
+            <ul>
+              <li><span class="badge b2b">2b</span> <span class="loe">B-NR</span> Elevated-risk surgery, poor/unknown functional capacity, elevated risk by validated tool → CCTA to detect <strong>high-risk coronary anatomy</strong> (≥50% left main stenosis or anatomically significant 3-vessel disease ≥70%) <strong>may be considered</strong>.</li>
+              <li><span class="badge b3n">3: No benefit</span> <span class="loe">B-NR</span> Low risk, adequate functional capacity with stable symptoms, or low-risk procedures → <strong>routine CCTA not recommended</strong>.</li>
+            </ul>
+            <div class="callout amber"><strong>CCTA overestimates risk</strong> — &gt;5× as likely as clinical risk scores to inappropriately overestimate risk in patients who will not have MACE, potentially delaying/cancelling surgery. High negative predictive value. A prior coronary calcium score of 0 within 2 years → reasonable to proceed without further testing. <strong>Contraindicated/harmful</strong> in urgent or emergency surgery.</div>
+            <p><strong>Invasive coronary angiography (ICA)</strong></p>
+            <p><span class="badge b3n">3: No benefit</span> <span class="loe">C-LD</span> Routine preoperative ICA is <strong>not recommended</strong> to improve perioperative outcomes. Reserve ICA for the highest-risk patients and for indications similar to non-operative settings: ACS, accelerating angina despite maximal antianginal therapy, newly diagnosed moderate–severe ischaemia on stress testing, or indicators of obstructive left main disease on non-invasive testing.</p>
+          </div>
+        </details></div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 3. COMORBIDITIES ================= -->
+  <section class="section">
+    <details open>
+      <summary>3 · Cardiovascular Comorbidities <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+      <div class="section-body">
+
+        <div class="card"><details><summary>Coronary artery disease &amp; revascularisation <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p>CAD is prevalent in ~18% of major NCS and history of MI confers ~3.5× increased risk of perioperative MACE. Coronary stents in the prior 2 years → ~2× higher odds of perioperative MACE vs. matched controls.</p>
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">C-LD</span> ACS being considered for elective NCS → <strong>revascularise as appropriate and defer surgery</strong>.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> CCD with haemodynamically significant <strong>left main stenosis ≥50%</strong> planning elective NCS → revascularisation + deferral is <strong>reasonable</strong>.</li>
+              <li><span class="badge b3n">3: No benefit</span> <span class="loe">B-R</span> Non-left-main CAD planned for NCS → <strong>routine preoperative revascularisation not recommended</strong>.</li>
+            </ul>
+            <div class="callout">Apply the 2021 ACC/AHA/SCAI revascularisation guideline to NCS patients as long as surgery can be safely postponed to accommodate DAPT. Multidisciplinary input recommended for transplant, vascular and/or multivessel CAD.</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Hypertension &amp; perioperative blood pressure <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>Preoperative</strong></p>
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-EO</span> Most patients with hypertension planned for elective NCS → <strong>continue antihypertensive therapy throughout the perioperative period</strong>.</li>
+              <li><span class="badge b2b">2b</span> <span class="loe">C-LD</span> Elective elevated-risk surgery + cardiovascular risk factors + poorly controlled hypertension (<strong>SBP ≥180 or DBP ≥110 mm Hg before the day of surgery</strong>) → <strong>deferring surgery may be considered</strong>.</li>
+            </ul>
+            <p><strong>Intraoperative</strong></p>
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Maintain <strong>MAP ≥60–65 mm Hg or SBP ≥90 mm Hg</strong> to reduce risk of myocardial injury.</li>
+            </ul>
+            <p><strong>Postoperative</strong></p>
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Treat hypotension (<strong>MAP &lt;60–65 or SBP &lt;90 mm Hg</strong>) to limit cardiovascular, cerebrovascular and renal events and mortality.</li>
+              <li><span class="badge b1">1</span> <span class="loe">C-EO</span> Restart preoperative antihypertensives <strong>as soon as clinically reasonable</strong> to avoid complications of postoperative hypertension.</li>
+            </ul>
+            <div class="callout red"><strong>Caution</strong> with continuing antihypertensives in low/low-normal perioperative BP, adults ≥65 years, and when risk of perioperative hypotension is high (assess overall status, surgery type, anaesthetic plan).</div>
+            <div class="callout amber">Observational harm threshold: MAP &lt;65 mm Hg or SBP &lt;90 mm Hg sustained ~15 minutes. Three key trials (INPRESS, a single-centre MAP ≥60 vs ≥75 trial, POISE-3) do <strong>not</strong> support higher BP targets — there is insufficient trial evidence for targets above MAP 60–65/SBP 90.</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Heart failure &amp; cardiomyopathies <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>Heart failure (general)</strong></p>
+            <ul>
+              <li>HF is an established risk factor for poor outcomes after NCS. In a cohort of 159,237 patients, 18% had HF; HF carried significantly higher mortality and HF readmission than CAD.</li>
+              <li>Symptomatic HF: 90-day mortality 5.49%; asymptomatic HF 4.9%; no HF history 1.2%.</li>
+              <li>LVEF ≤30% identified on preoperative echo was an independent predictor of 30-day mortality in intermediate/high-risk procedures.</li>
+              <li><strong>Continue guideline-directed medical therapy</strong> for HF through the perioperative period — discontinuation is harmful.</li>
+              <li><strong>SGLT2 inhibitors: stop 3–4 days before surgery</strong> (see Drugs section).</li>
+            </ul>
+            <p><strong>Hypertrophic cardiomyopathy (HCM)</strong></p>
+            <p><span class="badge b3h">3: Harm</span> <span class="loe">C-LD</span> Avoid factors that aggravate or trigger dynamic outflow obstruction — <strong>positive inotropes, tachycardia, reduced preload</strong> — to reduce risk of haemodynamic instability.</p>
+            <p class="scroll-hint">HCM management table — scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Do</th><th>Avoid</th></tr></thead>
+                <tbody>
+                  <tr><td>Continue beta blockers and/or non-dihydropyridine CCBs uninterrupted</td><td>Hypovolaemia and reduced preload (worsens LVOT obstruction)</td></tr>
+                  <tr><td>Prioritise IV fluids to correct hypovolaemia if hypotension develops</td><td>Hypotension and reduced afterload (worsens LVOT obstruction)</td></tr>
+                  <tr><td>Use alpha-agonists (phenylephrine, vasopressin) for BP support</td><td>Beta-agonists / inotropes (worsen LVOT obstruction)</td></tr>
+                  <tr><td>Consider intraoperative echo to assess LVOT obstruction with hypotension</td><td>Tachycardia (impairs LV filling)</td></tr>
+                  <tr><td>IV beta-blockade in selected cases to reduce contractility and relieve LVOT obstruction</td><td>Excessive diuresis</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Maintain sinus rhythm where possible. Consider referral to a high-volume centre; postoperative critical care may be indicated in obstructive HCM.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Pulmonary hypertension <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">C-LD</span> Stable doses of targeted therapy for <strong>PAH</strong> undergoing NCS → <strong>continue these agents</strong> to reduce risk of perioperative MACE.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> <strong>Severe PH</strong> undergoing elevated-risk NCS → referral/consultation with a specialised PH centre (risk assessment, optimisation, postoperative management, consider ICU) is reasonable.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> Severe PH undergoing elevated-risk NCS → <strong>invasive haemodynamic monitoring</strong> is reasonable to guide intraoperative and postoperative care.</li>
+              <li><span class="badge b2b">2b</span> <span class="loe">C-EO</span> Precapillary PH undergoing elevated-risk NCS → short-acting <strong>inhaled pulmonary vasodilators</strong> (nitric oxide, aerosolised prostacyclin) may be reasonable to reduce RV afterload and prevent acute decompensated right HF.</li>
+            </ul>
+            <div class="callout"><strong>Definitions:</strong> Precapillary PH = mean PA pressure &gt;20 mm Hg, PA wedge &lt;15 mm Hg, PVR &gt;2 Wood units. <strong>Severe</strong> PH = mean PA &gt;40 mm Hg, PVR &gt;5 Wood units, or significant RV morphological change (RV:LV diastolic diameter ratio &gt;0.8, or moderate/severe RV dysfunction).</div>
+            <p><strong>Outcome data:</strong> PH in NCS hospitalisations — 43% increased odds of death, MI or stroke; ~2× risk of cardiogenic shock and cardiac arrest. Group 1 disease: 2.5× MACE and 5× cardiogenic shock. PAH: major complications 6.1%, perioperative mortality 3.5% (15% in emergency procedures vs. 2% non-emergency).</p>
+            <p>VA-ECMO is the mechanical support of choice for PH-induced right HF; avoid RV assist devices.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Adult congenital heart disease (ACHD) <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p>Patients with ACHD have increased in-hospital mortality, longer hospitalisation and higher 30-day readmission after high-risk NCS. Preoperative consultation with an ACHD specialist is advised. Where possible, perform NCS at a facility with an established ACHD programme.</p>
+            <p class="scroll-hint">Risk stratification table — scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Risk</th><th>Anatomy</th><th>Functional / haemodynamic status</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Low</strong></td><td>Isolated small CHD lesions; repaired lesion with no residual shunt; bicuspid aortic valve disease and aortopathy</td><td>NYHA I, normal exercise capacity, no chamber enlargement, no residual shunt, no PAH, no arrhythmias</td></tr>
+                  <tr><td><strong>Intermediate</strong></td><td>Unrepaired moderate–large shunts (ASD, VSD, PDA, AVSD); repaired CHD with moderate–large residual shunt; obstructive left-sided lesions (except low-risk); obstructive right-sided lesions; Ebstein anomaly; anomalous coronary origins</td><td>NYHA II–IV, limited exercise capacity, residual shunt, PAH, chamber enlargement, significant valvular dysfunction (&gt;mild), arrhythmias requiring treatment, HF</td></tr>
+                  <tr><td><strong>Elevated</strong></td><td>Single-ventricle (palliated or post-Fontan); unrepaired/palliated cyanotic CHD; double outlet RV; pulmonary atresia; truncus arteriosus; TGA (classic, d-TGA, CCTGA/l-TGA); interrupted aortic arch</td><td>NYHA II–IV, limited exercise capacity, significant valvular dysfunction (&gt;mild), arrhythmias requiring treatment, PAH, HF</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>Management considerations:</strong> clarify anatomy, prior procedures, residua and sequelae; endocarditis prophylaxis; VTE prevention; renal/hepatic function and drug dosing; need for haemodynamic monitoring; periprocedural anticoagulation; abnormal venous/arterial anatomy affecting access; meticulous line care with air filters in cyanotic patients with right-to-left shunts; arrhythmias including bradyarrhythmias; erythrocytosis; pulmonary vascular disease; adjusted anticoagulant volumes for blood work in cyanosis.</p>
+            <p><strong>Avoid</strong> in Eisenmenger syndrome or prior Fontan: increased intra-abdominal pressure, hypothermia, hypercapnia, metabolic acidosis, hypovolaemia.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>LVAD &amp; heart transplant recipients <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>LVAD</strong> — <span class="badge b1">1</span> <span class="loe">C-EO</span> Coordinate with the LVAD care team on timing and perioperative considerations of elective NCS to mitigate perioperative MACE.</p>
+            <ul>
+              <li>Require therapeutic anticoagulation (pump thrombosis, stroke risk) → risk of bleeding.</li>
+              <li>Other risks: major infection, right HF, arrhythmias, respiratory failure, renal and hepatic dysfunction.</li>
+              <li>Higher odds of some MACE with elective NCS &lt;6 months vs. ≥6 months after implantation — but data predate contemporary devices.</li>
+              <li>Weigh personalised surgical benefit against MACE risk and the risk of delaying elective NCS.</li>
+            </ul>
+            <p><strong>Heart transplant</strong></p>
+            <ul>
+              <li>Adult heart transplants in the US 2022: 3,668; 1-year survival &gt;90%, 3-year &gt;85%, 5-year &gt;80%.</li>
+              <li>Unique issues: infection, wound-healing complications, acute kidney injury; acute rejection and immunosuppression complications (infection, steroid-induced hyperglycaemia, leukopenia) dominate in year 1; cardiac allograft vasculopathy, malignancy and CKD thereafter.</li>
+              <li>Consider adjusting immunosuppression if prolonged oral fasting is anticipated, or to minimise wound-healing complications.</li>
+              <li>Account for <strong>cardiac denervation</strong> of the transplanted heart, anaesthetic–immunosuppressant interactions, and transfusion decisions minimising HLA allosensitisation and CMV infection.</li>
+              <li>ISHLT guidance: preoperative assessment in collaboration with the transplant team, especially for major procedures requiring general or regional anaesthesia.</li>
+            </ul>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Valvular heart disease — aortic stenosis <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">C-LD</span> Severe AS → <strong>evaluate the need for aortic valve intervention before elective NCS</strong>.</li>
+              <li><span class="badge b1">1</span> <span class="loe">C-EO</span> Suspected moderate or severe AS undergoing elevated-risk NCS → <strong>preoperative echocardiography</strong> recommended before elective NCS.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> Asymptomatic moderate or severe AS with normal LV systolic function on echo within the past year → <strong>reasonable to proceed with elective low-risk NCS</strong>.</li>
+            </ul>
+            <p><strong>Severe AS definition:</strong> aortic valve area &lt;1.0 cm², mean gradient ≥40 mm Hg, or peak velocity ≥4.0 m/s (including low-flow, low-gradient AS).</p>
+            <div class="flow">
+              <div class="node start">Severe AS requiring elective / time-sensitive NCS</div>
+              <div class="arrow">▼</div>
+              <div class="node">Multidisciplinary team discussion: cardiology, anaesthesia, surgery</div>
+              <div class="arrow">▼</div>
+              <div class="branch">
+                <div class="branch-col">
+                  <div class="branch-label">Symptomatic severe AS</div>
+                  <div class="node decision">Candidate for AVR?</div>
+                  <div class="arrow">▼ YES</div>
+                  <div class="node good">Evaluate for AVR before elective elevated-risk NCS</div>
+                  <div class="arrow">▼</div>
+                  <div class="node">Team-based decision on modality — TAVI vs. SAVR</div>
+                  <div class="arrow" style="margin-top:6px">▼ NO</div>
+                  <div class="node warn">Consider non-surgical management, minimally invasive alternatives, BAV before NCS, palliative care, or proceed with elevated-risk surgery after shared decision-making</div>
+                </div>
+                <div class="branch-col">
+                  <div class="branch-label">Asymptomatic severe AS</div>
+                  <div class="node decision">LVEF &lt;50%?</div>
+                  <div class="arrow">▼ YES → AVR pathway as above</div>
+                  <div class="arrow" style="margin-top:6px">▼ NO (LVEF ≥50%)</div>
+                  <div class="node decision">Can NCS be delayed?</div>
+                  <div class="arrow">▼ YES → AVR pathway</div>
+                  <div class="arrow" style="margin-top:6px">▼ NO</div>
+                  <div class="node decision">Elevated-risk surgery?</div>
+                  <div class="arrow">▼ NO</div>
+                  <div class="node good">Reasonable to proceed with elective low-risk NCS <span class="badge b2a">2a</span></div>
+                  <div class="arrow" style="margin-top:6px">▼ YES</div>
+                  <div class="node warn">Team-based, patient-centred decision regarding how to proceed</div>
+                </div>
+              </div>
+            </div>
+            <p class="fig-cap">Simplified from Figure 2, 2024 guideline.</p>
+            <div class="callout"><strong>Echo within 1 year</strong> of elevated-risk NCS defines AS severity, LV systolic/diastolic function, other valve lesions, RV function and PA pressure. Patients with prior AVR have reduced MACE after elective NCS (5.4% vs. 20.5% in untreated severe AS). Balloon aortic valvuloplasty may be a bridging strategy for urgent elevated-risk NCS. Monitor closely to avoid hypotension, excessive hypertension and tachycardia.</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Valvular heart disease — mitral stenosis, AR &amp; MR, prior TAVI/TEER <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>Mitral stenosis</strong></p>
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Severe MS → evaluate need for MV intervention before elective NCS.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-EO</span> Severe MS who cannot undergo MV intervention before NCS → perioperative <strong>invasive haemodynamic monitoring</strong> reasonable.</li>
+              <li><span class="badge b2b">2b</span> <span class="loe">C-LD</span> Severe MS who cannot undergo MV intervention → perioperative <strong>heart-rate control</strong> (beta blockers, CCBs, ivabradine, digoxin) may be considered to prolong diastolic filling and reduce complications.</li>
+            </ul>
+            <p>Goals: low-normal heart rate, high-normal systemic vascular resistance, adequate preload, rhythm control to maintain sinus rhythm. Tachycardia ↑ transvalvular gradient → ↑ LA pressure, pulmonary oedema, systemic hypotension. Avoid hypoxia/hypercapnia which worsen PH.</p>
+            <p><strong>Chronic AR &amp; MR</strong></p>
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">C-EO</span> Suspected moderate or severe regurgitation → preoperative echocardiography recommended before elective NCS.</li>
+              <li><span class="badge b1">1</span> <span class="loe">C-EO</span> VHD meeting indications for intervention → consider valvular intervention before elective elevated-risk NCS.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> Asymptomatic moderate or severe <strong>MR</strong>, normal LV systolic function, PA systolic &lt;50 mm Hg → reasonable to perform elective NCS.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> Asymptomatic moderate or severe <strong>AR</strong>, normal LV systolic function (LVEF &gt;55%) → reasonable to perform elective NCS.</li>
+            </ul>
+            <div class="callout"><strong>MR:</strong> avoid increased afterload and bradycardia. Vasodilation (general anaesthesia, neuraxial + opioid) is generally favourable — but maintain preload. Consider invasive monitoring ± TEE; intensive monitoring up to 24–72 h post-op. Risk factors for adverse outcome: lower EF, pre-existing AF.<br><br>
+            <strong>AR:</strong> avoid bradycardia (prolongs diastolic filling time and worsens regurgitation). Meticulous volume status. Risk factors: LV systolic dysfunction, creatinine &gt;2 mg/dL, intermediate/high-risk NCS. Consider arterial/venous catheters and TEE; intensive postoperative monitoring.</div>
+            <p><strong>Prior TAVI or MV TEER</strong></p>
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">B-NR</span> After successful TAVI → reasonable to perform NCS early as clinically indicated (evidence supports safety within 30 days if indicated).</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-EO</span> After MV TEER → reasonable to perform NCS after successful intervention as clinically indicated (may be early, e.g. within 30 days, if residual MR is no longer severe).</li>
+            </ul>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Atrial fibrillation (pre-existing &amp; new-onset POAF) <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> Rapid AF in the setting of NCS → treat potential underlying triggers (sepsis, anaemia, pain).</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> New-onset AF in the setting of NCS → initiating postoperative anticoagulation can be beneficial after weighing competing thromboembolic vs. bleeding risks.</li>
+              <li><span class="badge b1">1</span> <span class="loe">C-LD</span> New-onset AF in the setting of NCS → <strong>outpatient follow-up</strong> for thromboembolic risk stratification and AF surveillance is recommended (high risk of recurrence).</li>
+            </ul>
+            <div class="callout red"><strong>Outcome data:</strong> POAF → 62% increased risk of early stroke and 44% increased risk of early mortality within 30 days; 37% increased long-term stroke risk and 37% increased long-term mortality. POAF is more strongly associated with stroke in NCS (HR 2.00) than cardiac surgery (HR 1.20). In a Danish registry, OAC within 30 days post-discharge was associated with 48% reduced thromboembolic events. POAF after NCS → 39% risk of AF recurrence at 5 years.</div>
+            <p><strong>Rate/rhythm control:</strong> target heart rate &lt;110 bpm in stable patients. AV nodal blockers (beta blockers, CCBs); digoxin as adjunct or if others contraindicated. Rhythm control (synchronised DCCV or pharmacological) if refractory. Exclude LA appendage thrombus before rhythm control if AF duration &gt;48 h or high thromboembolic risk. <strong>Synchronised DCCV is recommended for haemodynamically unstable AF with rapid ventricular response and hypotension.</strong></p>
+            <p>Pre-existing AF: higher risk of all-cause mortality, HF and ischaemic stroke within 30 days. If haemodynamically stable, generally no change in medical management other than OAC interruption. Optimise rate control before surgery if poorly controlled.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Cardiovascular implantable electronic devices (CIED) <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Elective NCS with anticipated EMI → develop a <strong>management plan before surgery</strong>: identify CIED type (pacemaker, ICD, implantable monitor), manufacturer and model.</li>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Pacemaker-dependent + surgery above the umbilicus with anticipated EMI → <strong>reprogramme the pacemaker or place a magnet</strong> on the generator to provide asynchronous mode (avoid pacing inhibition).</li>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Pacemaker-dependent with transvenous ICD, surgery above umbilicus with anticipated EMI → <strong>reprogramme</strong>; if not pacemaker-dependent → either reprogramming or magnet to inhibit tachytherapies/inappropriate shocks.</li>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Devices reprogrammed to asynchronous pacing or with tachytherapies off → <strong>restore device function postoperatively before hospital discharge</strong>.</li>
+              <li><span class="badge b1">1</span> <span class="loe">C-LD</span> Leadless pacemakers, pacemaker-dependent, anticipated EMI above the umbilicus → <strong>reprogramme to asynchronous mode</strong>.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> Subcutaneous ICD, noncardiac/nonthoracic surgery with anticipated EMI above the groin → reasonable to reprogramme or use a magnet to temporarily disable tachytherapies.</li>
+            </ul>
+            <div class="flow">
+              <div class="node start">Transvenous CIED</div>
+              <div class="arrow">▼</div>
+              <div class="node decision">EMI above umbilicus? (source &lt;15 cm from generator = significant risk)</div>
+              <div class="arrow">▼</div>
+              <div class="branch">
+                <div class="branch-col">
+                  <div class="branch-label">NO</div>
+                  <div class="node good">No reprogramming or magnet application necessary — have magnet available</div>
+                </div>
+                <div class="branch-col">
+                  <div class="branch-label">YES — Pacemaker</div>
+                  <div class="node decision">Pacemaker dependent?</div>
+                  <div class="arrow">▼ YES</div>
+                  <div class="node">Use a magnet or reprogramme to asynchronous mode</div>
+                  <div class="arrow" style="margin-top:6px">▼ NO</div>
+                  <div class="node good">No reprogramming/magnet necessary; have magnet available. Consider disabling rate-responsive function</div>
+                </div>
+                <div class="branch-col">
+                  <div class="branch-label">YES — ICD</div>
+                  <div class="node decision">Pacemaker dependent?</div>
+                  <div class="arrow">▼ YES</div>
+                  <div class="node">Reprogramme to asynchronous mode AND disable ICD therapy</div>
+                  <div class="arrow" style="margin-top:6px">▼ NO</div>
+                  <div class="node">Use a magnet or reprogramme to disable tachytherapies</div>
+                </div>
+              </div>
+            </div>
+            <p class="fig-cap">Simplified from Figure 3, 2024 guideline. External pacing and/or defibrillation must be available.</p>
+
+            <div class="flow">
+              <div class="node start">Non-transvenous devices</div>
+              <div class="arrow">▼</div>
+              <div class="branch">
+                <div class="branch-col">
+                  <div class="branch-label">Leadless pacemaker</div>
+                  <div class="node decision">EMI above umbilicus?</div>
+                  <div class="arrow">▼ NO → No intervention required</div>
+                  <div class="arrow" style="margin-top:6px">▼ YES</div>
+                  <div class="node decision">Pacemaker dependent?</div>
+                  <div class="arrow">▼ YES → Reprogramme to asynchronous mode</div>
+                  <div class="arrow" style="margin-top:6px">▼ NO → No intervention required</div>
+                </div>
+                <div class="branch-col">
+                  <div class="branch-label">Subcutaneous ICD</div>
+                  <div class="node decision">EMI above groin?</div>
+                  <div class="arrow">▼ NO → No intervention required; have magnet available</div>
+                  <div class="arrow" style="margin-top:6px">▼ YES → Programme therapies off</div>
+                </div>
+              </div>
+            </div>
+            <p class="fig-cap">Simplified from Figure 4, 2024 guideline. A magnet will <em>not</em> force asynchronous pacing in a leadless pacemaker. Secure a magnet with adhesive tape.</p>
+
+            <div class="callout amber">
+              <strong>Practical:</strong> Magnet pacing rates 85–100 bpm (varies by manufacturer, falls with battery depletion) — confirm asynchronous (VOO/DOO) pacing at expected rate. Magnets may be ineffective in obese/prone patients or if continuous generator contact cannot be ensured. Monopolar ESU requires a dispersive electrode positioned as far as possible from the generator and heart — current path must not cross generator or leads. Bipolar ESU and ultrasonic scalpels are unlikely to cause EMI. EMI is more common with monopolar than bipolar and with coagulation vs. cutting mode. Deactivate rate-adaptive function during lithotripsy or ECT.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Previous stroke / TIA &amp; obstructive sleep apnoea <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>Stroke / TIA</strong></p>
+            <p><span class="badge b2a">2a</span> <span class="loe">B-NR</span> History of stroke or TIA → <strong>delay elective NCS for ≥3 months</strong> after the most recent cerebrovascular event to reduce recurrent stroke and MACE.</p>
+            <div class="callout"><strong>Risk decay:</strong> Danish registry — OR for recurrent stroke/MI/CV death 14.23 (&lt;3 months), 4.85 (3–6 months), 3.04 (6–11 months), 2.47 (≥12 months). Medicare analysis (~6 million patients): OR 8.0 (&lt;30 days) and 5.0 (61–90 days), with only a very small decrement between 61–90 days and 6–12 months — <strong>delaying beyond 6 months does not appear to add protection</strong>.</div>
+            <p><strong>Obstructive sleep apnoea (OSA)</strong></p>
+            <p><span class="badge b2a">2a</span> <span class="loe">B-NR</span> Patients scheduled for NCS → OSA screening using a validated questionnaire is reasonable to assess risk of perioperative complications.</p>
+            <div class="callout">~34% of men and 17% of women aged 40–60 meet diagnostic criteria. OSA associated with increased composite postoperative cardiac and cerebrovascular complications; 2.5× risk of postoperative pulmonary complications; increased perioperative MI and AF (not HF). Risk increases with OSA severity. In one prospective study of 1,218 patients without prior OSA diagnosis scheduled for major NCS: 67.6% newly diagnosed, 30.5% at least moderate, 11.2% severe; severe OSA → increased composite of myocardial injury, cardiac death, HF, thromboembolism, AF and stroke within 30 days.</div>
+          </div>
+        </details></div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 4. DRUGS ================= -->
+  <section class="section red">
+    <details open>
+      <summary>4 · Perioperative Medications <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+      <div class="section-body">
+
+        <div class="card"><details><summary>Statins <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Currently on statins and scheduled for NCS → <strong>continue statin therapy</strong> to reduce MACE risk.</li>
+              <li><span class="badge b1">1</span> <span class="loe">B-R</span> Statin-naïve adults meeting criteria for statin use (ASCVD history or 10-year risk assessment) scheduled for NCS → <strong>initiate statin perioperatively with intention of long-term use</strong>.</li>
+            </ul>
+            <div class="callout amber">The LOAD trial (largest RCT, n=648 statin-naïve) found no difference in 30-day MACE with atorvastatin loading. Benefits of reloading/intensification are uncertain. <strong>Do not delay surgery</strong> if LDL-cholesterol is not already available. The NCS setting is an opportunity to start therapy for long-term benefit.</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>RAAS inhibitors (ACEi / ARB) <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b2b">2b</span> <span class="loe">B-R</span> Select patients on chronic RAASi for <strong>hypertension</strong> undergoing elevated-risk NCS → <strong>omission 24 hours before surgery may be beneficial</strong> to limit intraoperative hypotension.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-EO</span> Patients on chronic RAASi for <strong>HFrEF</strong> → perioperative <strong>continuation is reasonable</strong>.</li>
+            </ul>
+            <div class="callout">RCTs show intraoperative hypotension (MAP &lt;60 mm Hg) is more common with continuation, but continuation vs. omission did <strong>not</strong> result in worse clinical outcomes (e.g. MINS). Patients with SBP &gt;160 or &lt;105 mm Hg and those with HFrEF are largely excluded from RCTs. No data on sacubitril/valsartan. <strong>Individualised approach warranted.</strong></div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Calcium channel blockers &amp; alpha-2 agonists <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>Calcium channel blockers</strong> — no formal recommendation. Meta-analyses show initiation does not reduce perioperative mortality or MI. <strong>Continuation may be reasonable</strong>, recognising potential for intraoperative hypotension (dihydropyridines) and/or bradycardia (non-dihydropyridines).</p>
+            <p><strong>Alpha-2 receptor agonists</strong></p>
+            <p><span class="badge b3n">3: No benefit</span> <span class="loe">B-R</span> Initiation of low-dose clonidine perioperatively is <strong>not recommended</strong> to reduce cardiovascular risk.</p>
+            <div class="callout red">POISE-2 (n=10,010): no difference in death or nonfatal MI at 30 days; <strong>significantly more nonfatal cardiac arrest, clinically significant bradycardia and hypotension</strong> with clonidine. Perioperative continuation of chronic therapy has not been studied in RCTs; abrupt discontinuation can cause rebound hypertension.</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Antiplatelet therapy &amp; timing of NCS after PCI <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><span class="badge b1">1</span> <span class="loe">B-NR</span> CAD undergoing elective NCS → perioperative antiplatelet management and timing of surgery should be determined by a <strong>multidisciplinary team with shared decision-making</strong>, weighing bleeding, thrombosis and consequences of delay.</p>
+
+            <div class="flow">
+              <div class="node start">Optimal timing of elective / time-sensitive NCS after PCI requiring DAPT management</div>
+              <div class="arrow">▼</div>
+              <div class="branch">
+                <div class="branch-col">
+                  <div class="branch-label">Balloon angioplasty only</div>
+                  <div class="node good">Delay NCS &gt;14 days <span class="badge b1">1</span></div>
+                </div>
+                <div class="branch-col">
+                  <div class="branch-label">BMS-PCI</div>
+                  <div class="node good">Delay NCS &gt;30 days <span class="badge b1">1</span></div>
+                </div>
+                <div class="branch-col">
+                  <div class="branch-label">DES-PCI for ACS</div>
+                  <div class="node good">Delay NCS ≥12 months <span class="badge b1">1</span></div>
+                  <div class="arrow">▼ if time-sensitive</div>
+                  <div class="node warn">Delay ≥3 months <span class="badge b2b">2b</span></div>
+                  <div class="arrow">▼</div>
+                  <div class="node harm">If DES ≤1 month → do not perform NCS <span class="badge b3h">3: Harm</span></div>
+                </div>
+                <div class="branch-col">
+                  <div class="branch-label">DES-PCI for CCD</div>
+                  <div class="node good">Delay NCS ≥6 months <span class="badge b2a">2a</span></div>
+                  <div class="arrow">▼ if time-sensitive</div>
+                  <div class="node warn">Delay ≥3 months <span class="badge b2b">2b</span></div>
+                  <div class="arrow">▼</div>
+                  <div class="node harm">If DES ≤1 month → do not perform NCS <span class="badge b3h">3: Harm</span></div>
+                </div>
+              </div>
+            </div>
+            <p class="fig-cap">Simplified from Figure 5, 2024 guideline.</p>
+
+            <p><strong>Perioperative antiplatelet management after PCI</strong></p>
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-R</span> Prior PCI undergoing NCS → <strong>continue aspirin 75–100 mg if possible</strong> to reduce cardiac events.</li>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Time-sensitive NCS within 30 days of BMS-PCI or &lt;3 months of DES-PCI → <strong>continue DAPT</strong> unless bleeding risk outweighs benefit of stent thrombosis prevention.</li>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> Prior PCI where OAC monotherapy must be discontinued before NCS → <strong>substitute aspirin</strong> in the perioperative period until OAC can be safely reinitiated.</li>
+              <li><span class="badge b2b">2b</span> <span class="loe">B-NR</span> Select patients after PCI with high thrombotic risk → perioperative <strong>bridging with IV antiplatelet therapy may be considered</strong> if &lt;6 months after DES or &lt;30 days after BMS and NCS cannot be deferred.</li>
+            </ul>
+            <p><strong>No prior PCI</strong></p>
+            <ul>
+              <li><span class="badge b2b">2b</span> <span class="loe">B-R</span> CCD without prior PCI undergoing elective NCS → continuing aspirin may be reasonable in selected patients when risk of cardiac events outweighs bleeding risk.</li>
+              <li><span class="badge b3n">3: No benefit</span> <span class="loe">B-R</span> CAD without prior PCI undergoing elective NCS → <strong>routine initiation of aspirin is not beneficial</strong>.</li>
+            </ul>
+
+            <p class="scroll-hint">Antiplatelet offset table — scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Agent</th><th>Minimum time from interruption to restoration of platelet function</th></tr></thead>
+                <tbody>
+                  <tr><td>Aspirin</td><td>4 days</td></tr>
+                  <tr><td>Clopidogrel</td><td>5–7 days</td></tr>
+                  <tr><td>Prasugrel</td><td>7–10 days</td></tr>
+                  <tr><td>Ticagrelor</td><td>3–5 days</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout red"><strong>Highest risk window:</strong> stent thrombosis risk is greatest in the first 4–6 weeks post-PCI and in the first 3 months after DES. NCS within 1 month of PCI-DES was associated with a 13-fold higher risk of cardiac death and 4-fold higher all-cause mortality. Patients with PCI performed for MI have nearly 3-fold higher postoperative MACE vs. CCD as the PCI indication.</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Oral anticoagulants — interruption, bridging, resumption <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> CVD receiving OAC requiring elective NCS → <strong>multidisciplinary, team-based approach to time-based interruption</strong> to balance thromboembolism and bleeding.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> High thrombotic risk undergoing NCS where VKA interruption is required → preoperative <strong>bridging with parenteral heparin can be effective</strong> to reduce thromboembolic risk.</li>
+              <li><span class="badge b3h">3: Harm</span> <span class="loe">C-LD</span> Most patients undergoing elective NCS where OAC interruption is warranted → <strong>routine periprocedural bridging is not recommended</strong> due to increased bleeding risk.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> Preoperative OAC interruption → resumption of OAC is reasonable <strong>after haemostasis is achieved</strong>.</li>
+            </ul>
+
+            <div class="callout"><strong>Practical hold times:</strong> hold for ≥5 half-lives. Factor Xa inhibitors (rivaroxaban, apixaban, edoxaban): <strong>≥3 days</strong>. Dabigatran: <strong>≥4 days</strong> (5–6 days if CrCl &lt;50 mL/min). Warfarin: hold ~5 days pre-op.</div>
+
+            <p class="scroll-hint">Interruption and resumption by bleeding risk — scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Procedure bleeding risk</th><th>Preoperative interruption</th><th>Postoperative resumption</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Minimal</strong> (30-day major bleeding risk ~0%; e.g. cataract, most dental/dermatological)</td><td>May proceed without interrupting OAC</td><td>Resume per usual</td></tr>
+                  <tr><td><strong>Low / moderate</strong> (30-day major bleeding risk &lt;2%; e.g. complex dental, GI, breast surgery, large-bore needles)</td><td>Time-based interruption: DOAC ≥3 days (factor Xa) or ≥4 days (dabigatran); warfarin held ~5 days</td><td>DOAC may resume as early as ~6 h if hemostasis achieved and full anticoagulation appropriate; VKA restart 12–24 h post-op once hemostasis achieved, at previous therapeutic dose</td></tr>
+                  <tr><td><strong>High</strong> (30-day major bleeding risk ≥2%; e.g. neuraxial anaesthesia)</td><td>Complete interruption of OAC; consider checking coagulation parameters/drug levels</td><td>PAUSE trial: DOAC resumed 48–72 h after high-bleeding-risk procedures with low bleeding/thrombotic event rates</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="scroll-hint">Thromboembolic risk by OAC indication — scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Risk</th><th>Venous thromboembolism</th><th>Atrial fibrillation</th><th>Mechanical valve</th><th>Other</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Low</strong></td><td>VTE &gt;12 months</td><td>CHA₂DS₂-VASc 1–4 (no prior stroke)</td><td>Bileaflet mechanical AVR without major stroke risk factors</td><td>—</td></tr>
+                  <tr><td><strong>Moderate</strong></td><td>VTE ≤3–12 months; recurrent VTE</td><td>CHA₂DS₂-VASc 5–6</td><td>Bileaflet mechanical AVR with major stroke risk factors</td><td>Nonsevere coagulopathy (heterozygous factor V Leiden or prothrombin G20210A); active cancer</td></tr>
+                  <tr><td><strong>High</strong></td><td>Recent VTE (&lt;1 month or &lt;3 months)</td><td>CHA₂DS₂-VASc ≥7 (or 5–6 with recent stroke/TIA); AF with rheumatic valvular heart disease</td><td>Mechanical mitral valve; caged ball or tilting-disc valve; mechanical valve any position with recent stroke/TIA (&lt;3 months)</td><td>Recent cardioembolic stroke (&lt;3 months); active cancer with high VTE risk; LV thrombus (within 3 months); severe thrombophilia; antiphospholipid antibodies</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="scroll-hint">Pharmacokinetics, monitoring and reversal — scrolls horizontally →</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th></th><th>Warfarin</th><th>Apixaban</th><th>Rivaroxaban</th><th>Edoxaban</th><th>Dabigatran</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Mechanism</strong></td><td>VKORC1 (vitamin K–dependent factors)</td><td>Factor Xa inhibitor</td><td>Factor Xa inhibitor</td><td>Factor Xa inhibitor</td><td>Direct thrombin (IIa) inhibitor</td></tr>
+                  <tr><td><strong>Bioavailability</strong></td><td>&gt;95%</td><td>50%</td><td>100% (66% without food)</td><td>62%</td><td>3–7%</td></tr>
+                  <tr><td><strong>Tmax</strong></td><td>2–6 h</td><td>3–4 h</td><td>2–4 h</td><td>1–2 h</td><td>1.25–3 h</td></tr>
+                  <tr><td><strong>Half-life</strong></td><td>36–48 h</td><td>9–14 h</td><td>6–9 h (11–13 h older)</td><td>10–14 h</td><td>12–15 h</td></tr>
+                  <tr><td><strong>Duration</strong></td><td>~5 days</td><td>24 h</td><td>24 h</td><td>24 h</td><td>24 h</td></tr>
+                  <tr><td><strong>Renal clearance</strong></td><td>0%</td><td>27%</td><td>33%</td><td>37–59%</td><td>85% (partially dialysable)</td></tr>
+                  <tr><td><strong>Monitoring</strong></td><td>PT/INR</td><td>Anti-Xa (DOAC)</td><td>Anti-Xa (DOAC)</td><td>Anti-Xa (DOAC)</td><td>ECT / dTT</td></tr>
+                  <tr><td><strong>Reversal</strong></td><td>Vitamin K, 4F-PCC, FFP</td><td>4F-PCC, andexanet alfa</td><td>4F-PCC, andexanet alfa</td><td>4F-PCC, andexanet alfa</td><td>4F-PCC, idarucizumab</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout red"><strong>BRIDGE trial:</strong> bridging was noninferior to placebo for thromboembolism prevention but <strong>increased major bleeding</strong>. PERIOP-2: thromboembolism similar across groups; postoperative bridging increased bleeding. Limit bridging to <strong>very high thrombotic risk</strong> (e.g. mechanical mitral valve) on VKA, with careful bleeding-risk consideration (HAS-BLED, prior bleeding, procedural bleeding risk).</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Perioperative beta blockers <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> On stable doses → <strong>continue beta blockers through the perioperative period</strong> as appropriate to clinical circumstances.</li>
+              <li><span class="badge b2b">2b</span> <span class="loe">B-NR</span> New indication for beta blockade before elective NCS → may be initiated <strong>far enough before surgery (optimally &gt;7 days)</strong> to allow assessment of tolerability and titration.</li>
+              <li><span class="badge b3h">3: Harm</span> <span class="loe">B-R</span> No immediate need for beta blockers → <strong>do not initiate on the day of surgery</strong> due to increased risk of postoperative mortality.</li>
+            </ul>
+            <div class="callout red">POISE: initiating high-dose beta blockers immediately before surgery in beta-blocker-naïve patients → moderate reduction in MACE but <strong>hypotension, stroke, and net increase in all-cause mortality</strong>. Observational data suggest higher death risk if initiated &lt;7 days before surgery. <strong>Acutely discontinuing</strong> long-term beta blockers is harmful and should be avoided.</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Perioperative blood glucose &amp; diabetes drugs <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">B-NR</span> Diabetes or at risk, elective NCS → <strong>preoperative HbA1c testing reasonable if not performed in ≤3 months</strong>.</li>
+              <li><span class="badge b1">1</span> <span class="loe">C-LD</span> Scheduled for NCS → <strong>SGLT2i should be discontinued 3–4 days before surgery</strong> to reduce risk of perioperative metabolic acidosis.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> Diabetes or impaired glucose tolerance → <strong>continuation of metformin</strong> perioperatively is reasonable to maintain glycaemic control.</li>
+            </ul>
+            <div class="callout red"><strong>SGLT2i hold times:</strong> canagliflozin, dapagliflozin, empagliflozin — stop <strong>≥3 days</strong>; ertugliflozin — stop <strong>≥4 days</strong> before scheduled surgery. Reason: euglycaemic diabetic ketoacidosis (glucose &lt;250 mg/dL with pH &lt;7.3, bicarbonate &lt;18 mEq/L, elevated serum/urine ketones). No clear guidance on restarting — ideally not until clinically stable and eating normally.</div>
+            <div class="callout amber"><strong>GLP-1 receptor agonists:</strong> can cause clinically significant gastroparesis and delayed gastric emptying. ASA consensus: hold weekly formulations <strong>&gt;1 week</strong> before elective NCS; daily formulations the <strong>day before</strong>, to reduce risk of pulmonary aspiration.</div>
+            <p><strong>HbA1c:</strong> no validated risk thresholds; it may be reasonable to postpone elective surgery if HbA1c &gt;8%. Do not delay emergency/time-sensitive procedures to achieve a target HbA1c — focus on perioperative glucose control. Preoperative glucose ≥200 mg/dL was associated with &gt;2-fold all-cause and &gt;4-fold cardiovascular mortality.</p>
+          </div>
+        </details></div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 5. INTRAOPERATIVE ================= -->
+  <section class="section">
+    <details open>
+      <summary>5 · Anaesthetic &amp; Intraoperative Management <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+      <div class="section-body">
+
+        <div class="card"><details><summary>Choice of anaesthetic technique &amp; agent <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">A</span> Volatile-based anaesthetic or total intravenous anaesthesia — <strong>no apparent difference in associated cardiovascular events</strong> (MI, ischaemia) for general anaesthesia.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">B-R</span> Where neuraxial is feasible → either neuraxial or general anaesthesia is reasonable with <strong>no apparent difference in cardiovascular events</strong>.</li>
+            </ul>
+            <p>Multiple RCTs (sevoflurane vs. propofol ± remifentanil) showed no difference in troponin release, NT-proBNP, MACE, delirium or mortality. Oxygen concentration (30% vs. 80% FiO₂) was not associated with myocardial injury or NT-proBNP release.</p>
+            <p>Assess non-cardiac risk factors too: type and duration of surgery, comorbidities, patient preference, coagulation status.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Perioperative pain management <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">B-R</span> Major abdominal surgery → <strong>epidural analgesia</strong> for postoperative pain relief is reasonable to decrease perioperative cardiac events.</li>
+              <li><span class="badge b2b">2b</span> <span class="loe">B-R</span> Hip fracture awaiting surgical repair → <strong>epidural analgesia may be considered</strong> to decrease preoperative cardiac events.</li>
+            </ul>
+            <div class="callout"><strong>Evidence:</strong> Thoracic epidural analgesia (TEA) in abdominal aortic surgery — Cochrane review found decreased incidence of MI vs. IV systemic opioid analgesia. RCT in major abdominal surgery: postoperative myocardial injury 8.33% (TEA) vs. 36.67% (IV); supraventricular tachyarrhythmia 11.66% vs. 36.67%. NSQIP analysis &gt;8,000 patients: epidural analgesia reduced cardiopulmonary complications (OR 0.58) in open abdominal surgery. Lumbar epidural for hip fracture: 2022 meta-analysis of 4 RCTs supported reduced perioperative MACE.</div>
+            <p><strong>Gabapentinoids</strong> are less successful as opioid-sparing adjuncts and cause visual disturbance, dizziness, respiratory depression and postoperative delirium in patients ≥65 years.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Intraoperative echocardiography (TEE / FoCUS) <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">C-LD</span> <strong>Unexplained haemodynamic instability</strong> during NCS → emergency perioperative TEE or FoCUS is reasonable to determine the cause <strong>if expertise is readily available</strong>.</li>
+              <li><span class="badge b3n">3: No benefit</span> <span class="loe">C-LD</span> NCS without risk factors or procedural risks for significant haemodynamic compromise → <strong>routine intraoperative TEE not recommended</strong> to screen for cardiac abnormalities or monitor for myocardial ischaemia.</li>
+            </ul>
+            <p>Echo assesses biventricular and valvular function, intracardiac structures, pericardial space and thoracic aorta. The left atrial appendage and thoracic aorta are better evaluated with TEE. If more information is needed, perform a comprehensive examination. Recommendations suggest appropriately trained practitioners perform TEE/FoCUS.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Body temperature, mechanical circulatory support &amp; PA catheters <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>Body temperature</strong></p>
+            <p><span class="badge b2a">2a</span> <span class="loe">B-R</span> CVD undergoing NCS → <strong>maintenance of normothermia</strong> is reasonable to avoid perioperative complications overall.</p>
+            <div class="callout">Hypothermia is associated with wound infection, MACE, immune dysfunction, coagulopathy, increased blood loss, death and transfusion requirements. Hypothermia is proarrhythmogenic (↑ sympathetic activity) and shivering creates oxygen supply–demand imbalance. Note: PROTECT trial (n=5,056) found no significant difference in 30-day major cardiovascular outcomes between aggressive warming to 37°C vs. routine management to 35.5°C.</div>
+
+            <p><strong>Temporary mechanical circulatory support (MCS)</strong></p>
+            <p><span class="badge b2b">2b</span> <span class="loe">C-LD</span> Acute, severe haemodynamic instability and cardiopulmonary dysfunction undergoing urgent/emergency NCS → temporary MCS devices <strong>may be used preemptively or as rescue therapy</strong>.</p>
+            <p>No high-quality evidence for routine use in patients at risk of cardiogenic shock undergoing NCS. Emergency use has increased. Options: intra-aortic balloon pump counterpulsation, ECMO, percutaneous ventricular assist devices. Multidisciplinary approach essential (anticoagulation, MCS management, haemodynamic monitoring, infection prevention).</p>
+
+            <p><strong>Pulmonary artery catheters</strong></p>
+            <ul>
+              <li><span class="badge b2b">2b</span> <span class="loe">C-LD</span> CVD undergoing NCS → PA catheterisation <strong>may be considered</strong> when underlying conditions that significantly affect haemodynamics (decompensated HF, severe valvular disease, combined shock states, PH) cannot be corrected before surgery.</li>
+              <li><span class="badge b3n">3: No benefit</span> <span class="loe">A</span> <strong>Routine use of PA catheterisation is not recommended</strong> to reduce morbidity or mortality.</li>
+            </ul>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Perioperative anaemia management <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">A</span> NCS with expected blood loss → <strong>tranexamic acid</strong> is reasonable to reduce intraoperative blood loss, reduce transfusions and avoid anaemia.</li>
+              <li><span class="badge b2a">2a</span> <span class="loe">B-R</span> Iron deficiency anaemia undergoing elective NCS → <strong>preoperative iron therapy (oral or IV)</strong> is reasonable to reduce blood transfusions and increase haemoglobin.</li>
+            </ul>
+            <div class="callout"><strong>Definitions &amp; thresholds:</strong> WHO anaemia = Hb &lt;13 g/dL (men), &lt;12 g/dL (women). Up to 64% of surgical patients are anaemic; iron deficiency causes 40–50% of cases. Ferritin &lt;100 ng/mL, transferrin saturation &lt;20%, and/or microcytic hypochromic red cells (MCV &lt;80 fL, MCHC &lt;27 g/dL) indicate iron deficiency. Restrictive transfusion threshold of 8 g/dL recommended for orthopaedic surgery and patients with CVD (7 g/dL likely comparable, but evidence lacking).</div>
+            <p><strong>Iron therapy:</strong> IV iron is more effective than oral (which has low bioavailability, poor tolerance, long duration) — even a single dose increases Hb and iron stores and reduces transfusion and readmission. Ferric carboxymaltose, ferric derisomaltose and ferumoxytol allow higher single doses; iron sucrose is less stable, max 200–300 mg per infusion.</p>
+            <p><strong>Tranexamic acid:</strong> safe even in high-risk arthroplasty patients with prior VTE, MI, seizures, stroke, TIA, renal disease and AF — associated with fewer transfusions without increased VTE, MI, seizures, stroke or TIA. In POISE-3, the composite bleeding outcome was significantly lower with tranexamic acid; net clinical benefit is patient-specific (worthwhile for those at increased bleeding risk, potentially harmful for those at increased adverse cardiovascular event risk).</p>
+          </div>
+        </details></div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 6. MINS ================= -->
+  <section class="section red">
+    <details open>
+      <summary>6 · Postoperative Surveillance: MINS, STEMI / NSTEMI <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+      <div class="section-body">
+
+        <div class="card"><details open><summary>Myocardial injury after noncardiac surgery (MINS) <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p><strong>Surveillance</strong></p>
+            <ul>
+              <li><span class="badge b2b">2b</span> <span class="loe">B-NR</span> Known CVD, symptoms of CVD, or age ≥65 with cardiovascular risk factors undergoing elevated-risk NCS → measuring <strong>cTn at 24 and 48 hours after surgery</strong> may be reasonable to identify myocardial injury.</li>
+              <li><span class="badge b3n">3: No benefit</span> <span class="loe">B-NR</span> Low-risk NCS → <strong>routine postoperative cTn screening not indicated</strong> without signs/symptoms suggestive of ischaemia or MI.</li>
+            </ul>
+            <p><strong>Management</strong></p>
+            <ul>
+              <li><span class="badge b2a">2a</span> <span class="loe">B-NR</span> MINS → <strong>outpatient follow-up</strong> is reasonable for optimisation of cardiovascular risk factors, especially in those not previously known to have excess risk.</li>
+              <li><span class="badge b2b">2b</span> <span class="loe">C-LD</span> MINS → <strong>antithrombotic therapy may be considered</strong> to reduce thromboembolic events.</li>
+            </ul>
+            <div class="callout red"><strong>Epidemiology &amp; prognosis:</strong> Perioperative myocardial injury occurs in ~20% of NCS. Overall 30-day mortality associated with MINS is ~10%, with risk proportional to peak cTn (17% in highest quartile vs. 1% in lowest); 34% population attributable risk of 30-day postoperative mortality. 80–90% of MINS patients have no ischaemic signs or symptoms but still have substantial 30-day mortality. Predictors: cardiovascular risk factors and disease, kidney disease, urgent/emergency surgery.</div>
+            <div class="callout"><strong>Diagnosis:</strong> ≥1 elevated cTn &gt;99th percentile URL of presumed ischaemic origin (exclude non-ischaemic causes such as pulmonary embolism, stroke, sepsis). A baseline preoperative value or serial postoperative measures help determine whether injury is acute or chronic.</div>
+            <div class="callout amber"><strong>MANAGE trial</strong> (only RCT of medical therapy for MINS, n=1,754): dabigatran 110 mg twice daily significantly decreased major vascular events without increasing major bleeding, but increased minor and GI bleeding; ~half discontinued study drug; post hoc change in primary outcome. Optimal medical therapy for MINS remains an important evidence gap. Observational data support cardiology consultation/referral (associated with lower early mortality), and statin/antiplatelet use (associated with lower 1-year mortality).</div>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Evaluation of an abnormal postoperative troponin <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <div class="flow">
+              <div class="node start">Troponin &gt;99th percentile URL</div>
+              <div class="arrow">▼</div>
+              <div class="node">History and physical examination</div>
+              <div class="arrow">▼</div>
+              <div class="node">12-lead ECG</div>
+              <div class="arrow">▼</div>
+              <div class="node decision">ST-segment elevations?</div>
+              <div class="branch">
+                <div class="branch-col">
+                  <div class="branch-label">YES</div>
+                  <div class="node harm">STEMI</div>
+                  <div class="arrow">▼</div>
+                  <div class="node action">GDMT including consideration of invasive coronary angiography — balance bleeding and thrombotic risks with severity of clinical presentation <span class="badge b1">1</span></div>
+                </div>
+                <div class="branch-col">
+                  <div class="branch-label">NO</div>
+                  <div class="node decision">Meets ≥1 criterion for Universal Definition of MI?<br><span style="font-weight:500">Symptoms · new ECG changes · pathologic Q waves · imaging evidence of new loss of viable myocardium or new regional wall motion abnormality · coronary thrombus on angiography/imaging</span></div>
+                  <div class="arrow">▼ NO</div>
+                  <div class="node">Postoperative myocardial injury</div>
+                  <div class="arrow">▼</div>
+                  <div class="node decision">Injury likely due to a non-ischaemic process?</div>
+                  <div class="arrow">▼ YES → Non-ischaemic myocardial injury → Treat underlying cause</div>
+                  <div class="arrow" style="margin-top:6px">▼ NO</div>
+                  <div class="node warn">MINS → Discussion and recognition of MINS diagnosis; outpatient referral is reasonable <span class="badge b2a">2a</span></div>
+                  <div class="arrow" style="margin-top:8px">▼ YES (meets MI criteria)</div>
+                  <div class="node">NSTEMI</div>
+                  <div class="arrow">▼</div>
+                  <div class="node decision">Is acute plaque rupture suspected?</div>
+                  <div class="arrow">▼ NO → Type 2 NSTEMI → Treat underlying cause of supply–demand mismatch; optimise GDMT with limitations imposed by bleeding risk and postoperative haemodynamic status</div>
+                  <div class="arrow" style="margin-top:6px">▼ YES</div>
+                  <div class="node action">Type 1 NSTEMI → GDMT as for spontaneous MI; may benefit from invasive coronary angiography after weighing bleeding/thrombotic risks <span class="badge b2a">2a</span></div>
+                </div>
+              </div>
+            </div>
+            <p class="fig-cap">Simplified from Figure 6, 2024 guideline. Presumes a rise and fall of troponin consistent with acute myocardial injury. Non-ischaemic myocardial injury includes pulmonary embolism, sepsis, acute decompensated HF, acute stroke.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Management of postoperative STEMI / NSTEMI <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <ul>
+              <li><span class="badge b1">1</span> <span class="loe">B-NR</span> STEMI after NCS → consider <strong>GDMT including consideration of invasive coronary angiography</strong>, balancing bleeding and thrombotic risks with severity of clinical presentation.</li>
+            </ul>
+            <div class="callout red"><strong>STEMI:</strong> due to acute plaque rupture in a minority of perioperative MI but associated with in-hospital mortality of <strong>30–35%</strong>. Initiate GDMT promptly, balancing bleeding and hypotension; strongly consider emergent ICA. Team-based decisions (surgeon, anaesthesiologist, cardiologist).</div>
+            <div class="callout"><strong>NSTEMI:</strong> receive GDMT as recommended for nonsurgical spontaneous MI, tailored to haemodynamic status and bleeding risk. Include at least 1 antiplatelet (if benefits outweigh bleeding risk) and a high-intensity statin. Beta blockers, ACEi and nitrates may be considered for symptom relief and long-term risk reduction if haemodynamics permit.</div>
+            <div class="callout amber"><strong>Invasive management for NSTEMI:</strong> may be appropriate in selected patients — retrospective analyses showed lower in-hospital mortality with invasive vs. conservative management. Balance against residual postoperative bleeding risk, type of surgery and time since surgery. Greatest benefit likely in ongoing symptoms unresponsive to GDMT, haemodynamic instability, persistent biomarker elevation, or imaging evidence of new regional wall motion abnormality or reduced ventricular function.</div>
+            <p><strong>Incidence &amp; risk:</strong> perioperative MI 0.9–15% depending on definitions, risk factors and surgical type. Type 2 MI (supply–demand mismatch) is more common than type 1. Recognition is difficult — sedation and analgesia limit symptoms and reporting. Nearly one-third of patients with perioperative STEMI/NSTEMI die or are readmitted at 30 days. Mortality risk factors: peak cTn, bleeding events, peripheral artery disease.</p>
+          </div>
+        </details></div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 7. SPECIAL POPULATIONS ================= -->
+  <section class="section">
+    <details open>
+      <summary>7 · Special Populations <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+      <div class="section-body">
+
+        <div class="card"><details><summary>Liver &amp; kidney transplantation candidates <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p>Patients with end-stage kidney or liver disease have higher prevalence of cardiovascular risk factors and CAD, plus risk of HF and PH.</p>
+            <ul>
+              <li>A targeted approach to preoperative CAD screening before kidney transplantation appears associated with similar postoperative outcomes vs. routine preoperative testing.</li>
+              <li>US Renal Data System/Medicare: more frequent invasive or non-invasive CAD testing in the year before kidney transplantation was <strong>not</strong> associated with lower 30-day post-transplant death or acute MI.</li>
+              <li>ISCHEMIA-CKD (advanced CKD, CCD, moderate–severe ischaemia): initial invasive approach did not reduce death or MI vs. initial medical therapy at median 2.2 years.</li>
+            </ul>
+            <p>Refer to the 2022 AHA scientific statement on coronary heart disease screening in kidney and liver transplantation candidates.</p>
+          </div>
+        </details></div>
+
+        <div class="card"><details><summary>Obesity &amp; bariatric surgery <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p>Obesity affects more than one-third of US adults. Bariatric surgery is the most effective and durable weight-loss intervention for BMI ≥35 kg/m², improving or resolving type 2 diabetes, hypertension and dyslipidaemia.</p>
+            <div class="callout"><strong>Outcomes:</strong> population-based cohort (n=2,638) — bariatric surgery associated with lower MACE incidence in patients with CVD and obesity over median 4.6 years. Large meta-analyses: perioperative MI in 0.37% of bariatric surgeries; all-cause mortality 0.08%. In a retrospective multicentre study (n=494,611) of Roux-en-Y gastric bypass or sleeve gastrectomy, prior cardiac history was associated with greater risk of perioperative cardiac arrest and 30-day mortality; sleeve gastrectomy had fewer adverse events than Roux-en-Y.</div>
+            <p>Careful attention to history and risk factors during preoperative assessment is essential. Patients with obesity are increasingly prescribed GLP-1 receptor agonists — see glucose section for discontinuation guidance.</p>
+          </div>
+        </details></div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= 8. CASES ================= -->
+  <section class="section red">
+    <details open>
+      <summary>8 · 10 High-Yield Clinical Cases <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+      <div class="section-body">
+
+        <div class="card case"><details><summary>Case 1 — DES placed for ACS 2 months ago, needs elective hemicolectomy <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">A 68-year-old man had a drug-eluting stent placed for an acute coronary syndrome 2 months ago. He is on aspirin and ticagrelor. Now presents for elective right hemicolectomy for colon cancer.</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              Elective NCS should be <strong>delayed ≥12 months after DES-PCI for ACS</strong> when interruption of ≥1 antiplatelet agent is required (<span class="badge b1">1</span> B-NR). This is <strong>not</strong> a case for elective surgery at 2 months — the stent thrombosis risk is highest in the first 3 months and remains elevated to 1 year when PCI was for ACS. If the indication becomes time-sensitive (e.g. obstructing tumour), NCS may be considered ≥3 months after PCI <em>only if</em> the risk of delaying surgery outweighs MACE risk (<span class="badge b2b">2b</span> B-NR), and DAPT should be continued through the perioperative period unless bleeding risk outweighs the benefit of preventing stent thrombosis. Multidisciplinary team decision with the patient, surgeon, anaesthetist and cardiologist is mandatory.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card case"><details><summary>Case 2 — Asymptomatic severe aortic stenosis, LVEF 60%, low-risk surgery <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">A 74-year-old woman has asymptomatic severe aortic stenosis (AVA 0.8 cm², mean gradient 45 mm Hg), LVEF 60%, and an echocardiogram from 4 months ago. She needs an elective inguinal hernia repair under general anaesthesia.</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              In asymptomatic moderate or severe AS with normal LV systolic function assessed by echocardiography within the past year, it is <strong>reasonable to proceed with elective low-risk NCS</strong> (<span class="badge b2a">2a</span> C-LD). However, monitor closely throughout surgery and the early postoperative period to avoid hypotension, excessive hypertension and tachycardia, and to avoid dehydration or volume overload. If the surgery were elevated-risk, or if she were symptomatic (exertional dyspnoea, angina, HF, syncope/presyncope), she should be <strong>evaluated for AVR before elective elevated-risk NCS</strong> (<span class="badge b1">1</span> C-LD), with a multidisciplinary heart valve team discussion regarding TAVI vs. SAVR. Note that general anaesthesia is appropriate here — do not be deterred by the AS alone, but have a low threshold for invasive monitoring and consider intraoperative TEE.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card case"><details><summary>Case 3 — Pacemaker-dependent patient, surgery above the umbilicus with monopolar diathermy <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">A 79-year-old pacemaker-dependent man with a transvenous dual-chamber pacemaker is scheduled for an open cholecystectomy. Monopolar diathermy will be used above the umbilicus.</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              Electromagnetic interference (EMI) is anticipated and the source will be &lt;15 cm from the generator. Because he is pacemaker-dependent, the pacemaker should be <strong>reprogrammed to an asynchronous mode or a magnet placed on the generator</strong> to avoid pacing inhibition (<span class="badge b1">1</span> B-NR). Confirm the device type, manufacturer and model beforehand, and confirm asynchronous (VOO/DOO) pacing at the expected rate (magnet rates typically 85–100 bpm and fall with battery depletion). Ensure external pacing and/or defibrillation is available. Use the lowest feasible energy with intermittent bursts of monopolar diathermy; place the dispersive electrode as far as possible from the generator and heart, with the current path not crossing the generator or leads. <strong>Restore device function postoperatively before hospital discharge</strong> (<span class="badge b1">1</span> B-NR). Bipolar diathermy and ultrasonic scalpels are unlikely to cause EMI.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card case"><details><summary>Case 4 — Patient on warfarin for AF, elective elevated-risk surgery <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">A 71-year-old man on warfarin for atrial fibrillation (CHA₂DS₂-VASc 4, no prior stroke) is scheduled for elective open ventral hernia repair with expected moderate bleeding risk. Should he be bridged with LMWH?</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              <strong>No.</strong> In most patients undergoing elective NCS where OAC interruption is warranted, routine periprocedural bridging is <strong>not recommended</strong> due to increased bleeding risk (<span class="badge b3h">3: Harm</span> C-LD). Use a <strong>multidisciplinary, time-based interruption approach</strong> (<span class="badge b1">1</span> B-NR): hold warfarin ~5 days pre-op, check INR on the day of surgery, and resume once haemostasis is achieved — VKA can be restarted as early as 12–24 h post-op for low/moderate bleeding risk procedures, at the previous therapeutic dose. Bridging with parenteral heparin can be effective in <em>high</em> thrombotic risk patients on VKA (<span class="badge b2a">2a</span> C-LD) — e.g. mechanical mitral valve — with careful consideration of bleeding risk (HAS-BLED, prior bleeding, procedural risk). The BRIDGE and PERIOP-2 trials both showed increased bleeding with bridging without a reduction in thromboembolism.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card case"><details><summary>Case 5 — SGLT2 inhibitor before major surgery <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">A 63-year-old woman with type 2 diabetes and HFrEF (LVEF 35%) takes empagliflozin, metformin and bisoprolol. She is scheduled for elective laparoscopic sigmoid colectomy in 4 days.</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              <strong>Stop empagliflozin 3–4 days before surgery</strong> (<span class="badge b1">1</span> C-LD) — canagliflozin, dapagliflozin and empagliflozin should be stopped ≥3 days and ertugliflozin ≥4 days before scheduled surgery. The concern is <strong>euglycaemic diabetic ketoacidosis</strong> (glucose &lt;250 mg/dL with pH &lt;7.3, bicarbonate &lt;18 mEq/L, elevated serum/urine ketones). Continue metformin (<span class="badge b2a">2a</span> C-LD) — it is not associated with lactic acidosis and has cardiovascular benefits. <strong>Continue bisoprolol</strong> — she is on a stable dose for HFrEF, and acutely discontinuing beta blockers for long-term indications is harmful (<span class="badge b1">1</span> B-NR). Do not restart the SGLT2 inhibitor until she is clinically stable and has resumed a normal diet. Check HbA1c if not done within 3 months.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card case"><details><summary>Case 6 — Postoperative troponin rise, asymptomatic, day 1 <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">A 66-year-old man with hypertension and diabetes undergoes open abdominal aortic aneurysm repair. On day 1, high-sensitivity troponin is elevated above the 99th percentile URL with a rise-and-fall pattern. He has no chest pain, the ECG shows no ischaemic changes, and he is haemodynamically stable.</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              This is <strong>MINS (myocardial injury after noncardiac surgery)</strong> — an elevated cTn &gt;99th percentile URL of presumed ischaemic origin, without meeting the Universal Definition of MI criteria, in a patient who cannot reliably report symptoms due to anaesthesia/analgesia. Recognise and document the diagnosis; <strong>outpatient follow-up is reasonable</strong> for optimisation of cardiovascular risk factors (<span class="badge b2a">2a</span> B-NR), and <strong>antithrombotic therapy may be considered</strong> (<span class="badge b2b">2b</span> C-LD). MINS is associated with ~10% 30-day mortality and a 34% population attributable risk of 30-day postoperative mortality — even in the 80–90% without ischaemic signs or symptoms. Cardiology consultation/referral has been associated with reduced early mortality. Continue troponin surveillance at 24 and 48 hours in this elevated-risk patient (<span class="badge b2b">2b</span> B-NR). The optimal medical therapy for MINS remains uncertain — the MANAGE trial (dabigatran) is the only RCT.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card case"><details><summary>Case 7 — Postoperative AF with rapid ventricular response and hypotension <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">A 75-year-old woman develops new-onset atrial fibrillation on day 2 after major abdominal surgery. Ventricular rate is 150 bpm, BP 82/50 mm Hg. She has no prior history of AF.</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              First, <strong>treat reversible triggers</strong> — pain, sepsis, anaemia, electrolyte imbalance, fluid shifts (<span class="badge b2a">2a</span> C-LD). In haemodynamically unstable AF with a rapid ventricular response associated with hypotension, <strong>synchronised direct current cardioversion is recommended</strong>. Exclude left atrial appendage thrombus before rhythm control if AF duration &gt;48 h or high thromboembolic risk. If stable, target heart rate &lt;110 bpm using AV nodal blockers (beta blockers, CCBs), with digoxin as adjunct or if others are contraindicated. Initiation of postoperative anticoagulation can be beneficial after weighing competing thromboembolic and bleeding risks (<span class="badge b2a">2a</span> C-LD). <strong>Arrange outpatient follow-up</strong> for thromboembolic risk stratification and AF surveillance (<span class="badge b1">1</span> C-LD) — POAF after NCS carries a 39% risk of AF recurrence at 5 years, a 62% increased risk of early stroke and 44% increased risk of early mortality. Consider 1–2 week ambulatory ECG monitoring, 30-day event monitoring or implantable cardiac monitoring in selected patients.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card case"><details><summary>Case 8 — Elderly patient on chronic beta blocker, urgent hip fracture <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">An 82-year-old man on long-term bisoprolol for ischaemic heart disease sustains a hip fracture and needs surgery within 24–48 hours. He has poor functional capacity (&lt;4 METs).</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              <strong>Continue bisoprolol</strong> through the perioperative period (<span class="badge b1">1</span> B-NR) — acutely discontinuing beta blockers for long-term indications is harmful and should be avoided. This is a <strong>time-sensitive</strong> procedure, so do not delay surgery for extensive cardiac testing; the stepwise approach does not require further evaluation when surgery is urgent. Consider <strong>lumbar epidural analgesia</strong> for pain control — it may decrease the incidence of preoperative cardiac events in hip fracture patients awaiting repair (<span class="badge b2b">2b</span> B-R). Maintain intraoperative MAP ≥60–65 mm Hg or SBP ≥90 mm Hg (<span class="badge b1">1</span> B-NR) and treat postoperative hypotension (MAP &lt;60–65 or SBP &lt;90 mm Hg) promptly (<span class="badge b1">1</span> B-NR). Restart his antihypertensives as soon as clinically reasonable. Frailty assessment is indicated in all patients ≥65 years undergoing elevated-risk NCS (<span class="badge b2a">2a</span> B-NR) and may inform goals-of-care discussions.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card case"><details><summary>Case 9 — Chronic ACE inhibitor and elevated-risk surgery <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">A 59-year-old woman with well-controlled hypertension on ramipril 10 mg daily (no HF, normal LVEF) is scheduled for elective open nephrectomy.</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              In select patients on chronic RAAS inhibitors for <strong>hypertension</strong> undergoing elevated-risk NCS, <strong>omission 24 hours before surgery may be beneficial</strong> to limit intraoperative hypotension (<span class="badge b2b">2b</span> B-R). RCTs show intraoperative hypotension (MAP &lt;60 mm Hg) occurs more commonly with continuation, but continuation vs. omission did not result in worse clinical outcomes (e.g. MINS). Note that patients with high (SBP &gt;160 mm Hg) or low (SBP &lt;105 mm Hg) BP are often excluded from the RCTs, and there is limited enrolment of high-risk patients including those with HFrEF. <strong>If she had HFrEF, continuation would be reasonable</strong> (<span class="badge b2a">2a</span> C-EO) given the important role of RAASi in preventing MI, stroke, HF and decline in kidney function. An individualised approach is warranted; larger RCTs (STOP-or-NOT) are ongoing.
+            </div>
+          </div>
+        </details></div>
+
+        <div class="card case"><details><summary>Case 10 — Recent ischaemic stroke, elective surgery <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></summary>
+          <div class="card-body">
+            <p class="q">A 70-year-old man had a small ischaemic stroke 6 weeks ago with good functional recovery. He now presents for elective transurethral resection of the prostate for bothersome symptoms.</p>
+            <div class="answer"><span class="lbl">Answer</span>
+              In patients with a history of stroke or TIA, it is reasonable to <strong>delay elective NCS for ≥3 months after the most recent cerebrovascular event</strong> to reduce the incidence of recurrent stroke and/or MACE (<span class="badge b2a">2a</span> B-NR). At 6 weeks, he is still within the highest-risk window: the odds ratio for recurrent stroke/MI/cardiovascular death was 14.23 within 3 months, falling to 4.85 at 3–6 months. A Medicare analysis (~6 million patients) confirmed markedly elevated odds for operations within 30 days (OR 8.0) and 61–90 days (OR 5.0) after prior stroke. Importantly, there was only a very small decrement in risk between 61–90 days and 6–12 months — <strong>delaying beyond 6 months does not appear to provide additional protection</strong>. Defer the elective procedure, optimise secondary prevention per the 2021 AHA/ASA stroke prevention guideline, and reassess after the 3-month window. If the surgery becomes time-sensitive, individualise with the multidisciplinary team.
+            </div>
+          </div>
+        </details></div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= SOURCE ================= -->
+  <div class="source" id="source">
+    <h3>Source &amp; Citation</h3>
+    <p>This quick reference is a condensed clinical summary derived from the following guideline. All recommendations, thresholds, COR/LOE designations, figures and trial data are drawn from that document. Always consult the full guideline and the primary literature before making clinical decisions.</p>
+    <ol>
+      <li>Thompson A, Fleischmann KE, Smilowitz NR, et al. <strong>2024 AHA/ACC/ACS/ASNC/HRS/SCA/SCCT/SCMR/SVM Guideline for Perioperative Cardiovascular Management for Noncardiac Surgery: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines.</strong> <em>Circulation.</em> 2024;150(19):e351–e442. doi:10.1161/CIR.0000000000001285. Also co-published in <em>Journal of the American College of Cardiology</em>.</li>
+      <li>This guideline <strong>supersedes</strong> the 2014 ACC/AHA Guideline on Perioperative Cardiovascular Evaluation and Management of Patients Undergoing Noncardiac Surgery (Fleisher LA, et al. <em>Circulation.</em> 2014;130:e278–e333).</li>
+      <li>Developed in collaboration with and endorsed by: American College of Surgeons; American Society of Nuclear Cardiology; Heart Rhythm Society; Society of Cardiovascular Anesthesiologists; Society of Cardiovascular Computed Tomography; Society for Cardiovascular Magnetic Resonance; and the Society for Vascular Medicine.</li>
+      <li>Literature search conducted August 2022 – March 2023; additional studies published through November 2023 considered. Evidence tables are available in the Online Data Supplement at the AHA Journals website.</li>
+    </ol>
+    <p style="margin-top:10px"><strong>Figures simplified for the web from:</strong> Figure 1 (Stepwise Approach to Perioperative Cardiac Assessment); Figure 2 (Management of Patients With Severe Aortic Stenosis Requiring Elective or Time-Sensitive Noncardiac Surgery); Figure 3 (Patients With Transvenous CIEDs); Figure 4 (Patients With Nontransvenous Devices); Figure 5 (Optimal Timing of Elective or Time-Sensitive NCS for Prior PCI Requiring Management of DAPT); Figure 6 (Evaluation of an Abnormal Troponin Obtained for Postoperative Surveillance).</p>
+    <p style="margin-top:10px;font-size:.8rem;color:var(--muted)"><strong>Disclaimer:</strong> This condensed reference is for educational and point-of-care support only. It does not replace clinical judgement, the full guideline text, or individualised patient assessment. Drug doses, contraindications and interactions must be verified against product labelling.</p>
+  </div>
+
+</main>
+
+<footer>
+  Perioperative Cardiovascular Management — Anaesthesia &amp; ICU Quick Reference · Condensed from the 2024 AHA/ACC/ACS/ASNC/HRS/SCA/SCCT/SCMR/SVM Guideline · Circulation 2024;150(19):e351–e442
+</footer>
+
+<script>
+(function(){
+  const content   = document.getElementById('content');
+  const search    = document.getElementById('search');
+  const countEl   = document.getElementById('count');
+  const noResults = document.getElementById('noResults');
+  const allCards  = () => Array.from(content.querySelectorAll('.card'));
+
+  /* ---------- clear previous highlights ---------- */
+  function clearMarks(root){
+    root.querySelectorAll('mark.hl').forEach(function(m){
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  /* ---------- highlight matches in a subtree ---------- */
+  function escapeReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  function highlight(root, term){
+    const re = new RegExp(escapeReg(term), 'gi');
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if(!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const tag = node.parentNode.nodeName;
+        if(tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        return re.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    const targets = [];
+    while(walker.nextNode()) targets.push(walker.currentNode);
+    targets.forEach(function(node){
+      const frag = document.createDocumentFragment();
+      let last = 0, text = node.nodeValue, m;
+      re.lastIndex = 0;
+      while((m = re.exec(text)) !== null){
+        if(m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        const mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        if(m[0].length === 0) re.lastIndex++;
+      }
+      if(last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- filtering ---------- */
+  function runSearch(){
+    const q = search.value.trim().toLowerCase();
+    clearMarks(content);
+
+    const cards = allCards();
+    let visibleCards = 0;
+
+    cards.forEach(function(card){
+      const hit = q === '' || card.textContent.toLowerCase().indexOf(q) !== -1;
+      card.style.display = hit ? '' : 'none';
+      if(hit){
+        visibleCards++;
+        if(q){
+          // auto-expand matched cards and any ancestor <details>
+          card.open = true;
+          let p = card.parentElement;
+          while(p && p !== content){
+            if(p.tagName === 'DETAILS') p.open = true;
+            p = p.parentElement;
+          }
+        }
+      }
+    });
+
+    // hide sections with no visible cards
+    content.querySelectorAll('.section').forEach(function(sec){
+      const any = Array.from(sec.querySelectorAll('.card')).some(function(c){
+        return c.style.display !== 'none';
+      });
+      sec.style.display = any ? '' : 'none';
+    });
+
+    // highlight (only if query long enough to avoid noise)
+    if(q.length >= 2){
+      cards.forEach(function(card){
+        if(card.style.display !== 'none') highlight(card, search.value.trim());
+      });
+    }
+
+    // counters + empty state
+    if(q === ''){
+      countEl.textContent = '';
+      noResults.style.display = 'none';
+    } else {
+      countEl.textContent = visibleCards + (visibleCards === 1 ? ' section match' : ' section matches');
+      noResults.style.display = visibleCards === 0 ? 'block' : 'none';
+    }
+  }
+
+  let debounce;
+  search.addEventListener('input', function(){
+    clearTimeout(debounce);
+    debounce = setTimeout(runSearch, 120);
+  });
+
+  /* ---------- expand / collapse all ---------- */
+  document.getElementById('expandAll').addEventListener('click', function(){
+    content.querySelectorAll('details').forEach(function(d){ d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    content.querySelectorAll('details').forEach(function(d){ d.open = false; });
+  });
+
+  /* ---------- keyboard: "/" focuses search ---------- */
+  document.addEventListener('keydown', function(e){
+    if(e.key === '/' && document.activeElement !== search){
+      e.preventDefault();
+      search.focus();
+    }
+    if(e.key === 'Escape' && document.activeElement === search){
+      search.value = '';
+      runSearch();
+      search.blur();
+    }
+  });
+})();
+</script>
+</body>
+  </html>
