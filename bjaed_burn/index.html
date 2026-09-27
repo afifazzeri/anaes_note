@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Major Burns — Anaesthesia &amp; Critical Care Quick Reference</title>
+<style>
+  :root{
+    --bg:#fffaf6;
+    --panel:#ffffff;
+    --line:rgba(230,110,20,.22);
+    --line-strong:rgba(230,110,20,.5);
+    --ink:#3a1f10;
+    --muted:#8a6552;
+    --o1:#ff4d00;
+    --o2:#ff8c1a;
+    --o3:#ffb347;
+    --deep:#b23c00;
+    --tint:rgba(255,140,40,.08);
+    --tint2:rgba(255,140,40,.15);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(1000px 520px at 8% -10%, rgba(255,140,40,.14), transparent 62%),
+      radial-gradient(900px 480px at 96% -6%, rgba(255,77,0,.10), transparent 58%),
+      linear-gradient(180deg,#fffaf6 0%, #fff5ec 100%);
+    background-attachment:fixed;
+  }
+  [hidden]{display:none !important;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:46px 22px 38px;
+    text-align:center;
+    overflow:hidden;
+    color:#fff;
+    background:linear-gradient(120deg,#e63a00 0%, #ff6a00 32%, #ff8c1a 62%, #ffa733 100%);
+    box-shadow:0 18px 44px -26px rgba(230,70,0,.85);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; left:50%; top:-170px; transform:translateX(-50%);
+    width:720px; height:380px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,.34), transparent 68%);
+    filter:blur(26px);
+    animation:glow 7s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes glow{
+    0%,100%{opacity:.65; transform:translateX(-50%) scale(1);}
+    48%{opacity:1; transform:translateX(-50%) scale(1.1);}
+    62%{opacity:.82; transform:translateX(-50%) scale(1.03);}
+  }
+  .hero-inner{position:relative; z-index:1; max-width:1000px; margin:0 auto;}
+  .eyebrow{
+    margin:0 0 12px;
+    font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+    font-weight:800; color:#fff3e0; opacity:.95;
+  }
+  .hero h1{
+    margin:0 0 10px;
+    font-size:clamp(1.6rem, 4.4vw, 2.6rem);
+    line-height:1.16; font-weight:900; letter-spacing:-.015em;
+    text-shadow:0 3px 16px rgba(120,30,0,.35);
+  }
+  .hero h1 span{display:block; font-size:.6em; font-weight:700; opacity:.96; margin-top:6px; letter-spacing:0;}
+  .sub{margin:0; color:#fff0e0; font-size:.95rem; font-weight:500;}
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:60;
+    display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+    padding:12px 18px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:2px solid rgba(255,120,30,.35);
+    box-shadow:0 6px 22px -18px rgba(180,60,0,.6);
+  }
+  .searchbox{position:relative; flex:1 1 340px; min-width:220px;}
+  .searchbox svg{
+    position:absolute; left:14px; top:50%; transform:translateY(-50%);
+    width:17px; height:17px; stroke:#e85d04; fill:none; stroke-width:2.2;
+    pointer-events:none;
+  }
+  #search{
+    width:100%;
+    padding:12px 14px 12px 42px;
+    font-size:.95rem; font-family:inherit; color:var(--ink);
+    background:#fff;
+    border:2px solid rgba(255,120,30,.25);
+    border-radius:12px;
+    outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  #search::placeholder{color:#b08a76;}
+  #search:focus{
+    border-color:var(--o2);
+    box-shadow:0 0 0 4px rgba(255,140,40,.16);
+  }
+  .btns{display:flex; gap:8px; flex:none;}
+  .btns button{
+    font-family:inherit; font-size:.82rem; font-weight:750;
+    color:#fff;
+    background:linear-gradient(135deg,#ff6a00,#ff8c1a);
+    border:0;
+    padding:11px 15px; border-radius:11px;
+    cursor:pointer;
+    box-shadow:0 4px 12px -6px rgba(230,80,0,.8);
+    transition:filter .2s, transform .12s;
+  }
+  .btns button:hover{filter:brightness(1.07);}
+  .btns button:active{transform:translateY(1px);}
+  .btns button.ghost{
+    background:#fff;
+    color:#c2410c;
+    border:2px solid rgba(255,120,30,.4);
+    box-shadow:none;
+  }
+  .btns button.ghost:hover{background:var(--tint);}
+
+  .status{
+    max-width:1000px; margin:0 auto;
+    padding:9px 22px 0;
+    font-size:.83rem; font-weight:700; color:#c2410c; min-height:0;
+  }
+  .status:not(:empty){padding-bottom:4px;}
+
+  /* ---------- CONTENT ---------- */
+  main{max-width:1000px; margin:0 auto; padding:20px 18px 40px; counter-reset:sec;}
+
+  .acc{
+    counter-increment:sec;
+    border:2px solid var(--line);
+    border-radius:15px;
+    margin:0 0 12px;
+    background:var(--panel);
+    overflow:hidden;
+    box-shadow:0 2px 10px -8px rgba(160,60,0,.4);
+    transition:border-color .28s, box-shadow .28s;
+  }
+  .acc.open{
+    border-color:var(--line-strong);
+    box-shadow:0 10px 34px -24px rgba(220,80,0,.9), 0 0 0 3px rgba(255,140,40,.07);
+  }
+  .acc-head{
+    width:100%;
+    display:flex; align-items:center; gap:13px;
+    padding:16px 18px;
+    background:transparent; border:0; cursor:pointer;
+    font-family:inherit; font-size:1.01rem; font-weight:800;
+    color:var(--ink); text-align:left;
+    transition:background .2s;
+  }
+  .acc-head:hover{background:var(--tint);}
+  .acc-head:focus-visible{outline:3px solid var(--o2); outline-offset:-3px;}
+  .acc-head::before{
+    content:counter(sec,decimal-leading-zero);
+    flex:none;
+    font-size:.68rem; font-weight:900; letter-spacing:.06em;
+    color:#fff;
+    background:linear-gradient(135deg,#ff6a00,#ffa733);
+    padding:4px 8px; border-radius:8px;
+    box-shadow:0 2px 8px -4px rgba(230,80,0,.9);
+  }
+  .acc.no-num{counter-increment:none;}
+  .acc.no-num .acc-head::before{display:none;}
+  .acc-title{flex:1;}
+  .chev{
+    flex:none; color:var(--o1); font-size:.9rem; font-weight:900;
+    transition:transform .3s ease;
+  }
+  .acc.open .chev{transform:rotate(180deg);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+  .acc-inner{padding:4px 20px 22px;}
+
+  /* ---------- TYPOGRAPHY ---------- */
+  .acc-inner p{margin:0 0 12px;}
+  .acc-inner ul{margin:0 0 14px; padding-left:0; list-style:none;}
+  .acc-inner ul li{position:relative; padding-left:21px; margin-bottom:9px;}
+  .acc-inner ul li::before{
+    content:"";
+    position:absolute; left:2px; top:.6em;
+    width:8px; height:8px; border-radius:50%;
+    background:linear-gradient(140deg,#ffb347,#ff4d00);
+    box-shadow:0 0 0 2px rgba(255,140,40,.16);
+  }
+  .acc-inner ul ul{margin:8px 0 0;}
+  .acc-inner ul ul li::before{
+    width:6px; height:6px; background:#ff8c1a; box-shadow:none; top:.66em;
+  }
+  .acc-inner strong{color:var(--deep); font-weight:800;}
+  .acc-inner em{color:#c2410c; font-style:normal; font-weight:700;}
+
+  h3.sub-head{
+    margin:22px 0 10px;
+    padding-left:11px;
+    font-size:.9rem; font-weight:900;
+    letter-spacing:.05em; text-transform:uppercase;
+    color:#b23c00;
+    border-left:4px solid var(--o2);
+  }
+  h3.sub-head:first-child{margin-top:4px;}
+
+  .note{
+    margin:14px 0;
+    padding:13px 16px;
+    border-left:4px solid var(--o1);
+    border-radius:0 11px 11px 0;
+    background:linear-gradient(90deg, rgba(255,110,20,.13), rgba(255,110,20,.02));
+    font-size:.92rem;
+    color:#5a2a10;
+  }
+  .note strong{color:#a33400;}
+  .note.warn{
+    border-left-color:#c62828;
+    background:linear-gradient(90deg, rgba(198,40,40,.13), rgba(198,40,40,.02));
+  }
+  .note.warn strong{color:#9b1c1c;}
+
+  /* ---------- TABLES ---------- */
+  .table-wrap{margin:16px 0 20px;}
+  .table-hint{
+    font-size:.74rem; color:var(--muted); margin:0 0 6px;
+    letter-spacing:.06em; text-transform:uppercase; font-weight:800;
+  }
+  .table-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border:2px solid var(--line);
+    border-radius:12px;
+    background:#fff;
+  }
+  .table-scroll::-webkit-scrollbar{height:10px;}
+  .table-scroll::-webkit-scrollbar-track{background:var(--tint);}
+  .table-scroll::-webkit-scrollbar-thumb{
+    background:linear-gradient(90deg,#ff8c1a,#ff4d00); border-radius:10px;
+  }
+  table{border-collapse:collapse; width:100%; min-width:660px; font-size:.9rem;}
+  caption{
+    caption-side:top; text-align:left;
+    padding:11px 14px 4px; font-size:.82rem; color:var(--muted); font-weight:600;
+  }
+  th{
+    background:linear-gradient(180deg,#ff8c1a,#ff6a00);
+    color:#fff; text-align:left; font-weight:800;
+    padding:12px 13px;
+    white-space:nowrap; font-size:.83rem; letter-spacing:.03em;
+  }
+  td{
+    padding:11px 13px;
+    border-bottom:1px solid rgba(255,140,40,.16);
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:0;}
+  tbody tr:nth-child(even){background:rgba(255,140,40,.045);}
+  tbody tr:hover{background:var(--tint2);}
+  td.num{font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:700;}
+  td.act{font-weight:700; color:#a33400;}
+
+  /* ---------- FIGURES ---------- */
+  figure{margin:18px 0 10px;}
+  .fig-flex{
+    display:flex; gap:22px; align-items:center; flex-wrap:wrap;
+    background:linear-gradient(135deg, rgba(255,140,40,.07), rgba(255,140,40,.02));
+    border:2px solid var(--line);
+    border-radius:14px;
+    padding:16px;
+  }
+  .fig-flex .svg-holder{flex:1 1 300px; min-width:260px;}
+  .fig-flex .txt{flex:1 1 240px; min-width:220px;}
+  .fig-flex h4{
+    margin:0 0 10px; font-size:.78rem; letter-spacing:.1em;
+    text-transform:uppercase; color:#b23c00; font-weight:900;
+  }
+  .fig-flex ul{margin:0; padding-left:0; list-style:none;}
+  .fig-flex ul li{position:relative; padding-left:18px; margin-bottom:6px; font-size:.89rem;}
+  .fig-flex ul li::before{
+    content:""; position:absolute; left:0; top:.62em;
+    width:7px; height:7px; border-radius:50%;
+    background:linear-gradient(140deg,#ffb347,#ff4d00);
+  }
+  svg.diagram{width:100%; height:auto; display:block;}
+  figcaption{
+    text-align:center; font-size:.82rem; color:var(--muted);
+    margin-top:12px; font-weight:600;
+  }
+
+  /* ---------- CASE CARDS ---------- */
+  .case{
+    border:2px solid var(--line);
+    border-left:5px solid var(--o1);
+    border-radius:13px;
+    padding:16px 18px;
+    margin:14px 0;
+    background:linear-gradient(100deg, rgba(255,120,40,.075), rgba(255,120,40,.012));
+    transition:border-color .25s, box-shadow .25s, transform .18s;
+  }
+  .case:hover{
+    border-color:var(--line-strong);
+    box-shadow:0 12px 30px -24px rgba(220,80,0,.95);
+    transform:translateY(-1px);
+  }
+  .case h4{
+    margin:0 0 11px; font-size:.98rem; color:#a33400;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-weight:900;
+  }
+  .tag{
+    flex:none; font-size:.65rem; font-weight:900;
+    letter-spacing:.1em; text-transform:uppercase;
+    color:#fff;
+    background:linear-gradient(135deg,#ff6a00,#ffa733);
+    padding:3px 9px; border-radius:999px;
+    box-shadow:0 2px 8px -4px rgba(230,80,0,.9);
+  }
+  .case p{margin:0 0 8px; font-size:.92rem;}
+  .case p:last-child{margin-bottom:0;}
+  .case .label{
+    display:inline-block;
+    color:#b23c00; font-weight:900; font-size:.74rem;
+    letter-spacing:.08em; text-transform:uppercase;
+    margin-right:6px;
+  }
+
+  /* ---------- HIGHLIGHT ---------- */
+  mark{
+    background:linear-gradient(180deg,#ffd27a,#ff8c1a);
+    color:#3a1500;
+    border-radius:3px;
+    padding:0 2px;
+    font-weight:800;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .foot{
+    max-width:1000px; margin:0 auto;
+    padding:28px 22px 56px;
+    border-top:2px solid var(--line);
+    color:var(--muted); font-size:.87rem;
+  }
+  .foot h3{
+    margin:0 0 12px; font-size:.76rem;
+    letter-spacing:.18em; text-transform:uppercase;
+    color:#b23c00; font-weight:900;
+  }
+  .foot p{margin:0 0 10px;}
+  .foot strong{color:#7a3410;}
+  .fine{font-size:.8rem; opacity:.9;}
+  .src{
+    background:linear-gradient(100deg, rgba(255,140,40,.09), rgba(255,140,40,.02));
+    border:2px solid var(--line);
+    border-left:5px solid var(--o1);
+    border-radius:12px;
+    padding:14px 17px;
+    margin-bottom:14px;
+    color:#5a2a10;
+  }
+
+  @media (max-width:640px){
+    .hero{padding:32px 16px 28px;}
+    main{padding:16px 12px 30px;}
+    .acc-inner{padding:4px 15px 18px;}
+    .acc-head{padding:14px 14px; font-size:.95rem;}
+    .toolbar{padding:10px 12px;}
+    .btns{width:100%;}
+    .btns button{flex:1; padding:10px 8px; font-size:.78rem;}
+    .fig-flex{padding:12px; gap:14px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">BJA Education &middot; Major Burns Part 1 &amp; Part 2</p>
+    <h1>Major Burns <span>Anaesthesia &amp; Critical Care Quick Reference</span></h1>
+    <p class="sub">Merged clinical summary for anaesthetists and intensivists &middot; collapsible &amp; searchable</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="searchbox">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="11" cy="11" r="7"></circle>
+      <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+    </svg>
+    <input id="search" type="search" placeholder="Search — e.g. Parkland, albumin, escharotomy, oxandrolone, sepsis…" autocomplete="off" aria-label="Search reference">
+  </div>
+  <div class="btns">
+    <button id="expandAll" type="button">Expand all</button>
+    <button id="collapseAll" class="ghost" type="button">Collapse all</button>
+  </div>
+</div>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+
+<main id="content">
+
+  <!-- 1 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Key Points</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>An adult with a <strong>major burn</strong> — defined as <strong>&gt;15% TBSA</strong> in a patient aged &gt;16 years — requires resuscitation and care at a <strong>specialised burns service</strong>.</li>
+        <li>Depth of burn is assessed by the degree the <strong>dermis</strong> has been affected and determines subsequent surgical management.</li>
+        <li>Major burns have local tissue and wider systemic effects. In burns <strong>&gt;25% TBSA</strong>, a systemic inflammatory response occurs.</li>
+        <li>Timely but safe transfer to a specialist centre is often required, with attention to <strong>airway, invasive catheters, fluids and temperature maintenance</strong>.</li>
+        <li>Early surgical management with <strong>total or near-total burn wound excision within &lt;48 h</strong> of injury has been shown to decrease blood loss, burn wound sepsis and length of stay.</li>
+        <li>Involvement of the <strong>multidisciplinary burns team</strong> is vital.</li>
+        <li><strong>Thermoregulation, blood loss and coagulopathy</strong> are key considerations for the anaesthetist during burn surgery.</li>
+        <li>The Parkland formula should be used to <em>guide</em> resuscitation — fluids are then titrated to <strong>urine output, haemodynamic and laboratory variables</strong>.</li>
+        <li><strong>Human albumin solution</strong>, given in addition to crystalloids, may reduce fluid requirements.</li>
+        <li>The hypermetabolic response to major burns can be attenuated by <strong>early excision, appropriate nutrition and specific pharmacotherapy</strong>.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Epidemiology &amp; Risk Factors</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>Fire, heat and hot substance injuries caused <strong>8,991,468 injuries and 120,632 deaths</strong> worldwide in 2017.</li>
+        <li><strong>90%</strong> of these were in low- or middle-income countries.</li>
+        <li>UK: approximately <strong>10,000 hospital admissions</strong> and <strong>300 major burns in adults</strong> requiring fluid resuscitation in England and Wales per year. Scotland: 500 burn admissions/year, of which 5% are major.</li>
+        <li>Most common mechanism of injury <em>requiring admission</em>: <strong>scalds</strong>.</li>
+        <li>Most common cause of <em>major</em> burns: <strong>flame injuries</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Aetiology</h3>
+      <ul>
+        <li><strong>Thermal</strong> — scald, flame, flash, contact, irradiation</li>
+        <li><strong>Electrical</strong> — including lightning strikes</li>
+        <li><strong>Chemical</strong> — acid, alkali</li>
+        <li>Most are accidents in the home or work-related. <strong>Intentional injuries</strong> (deliberate self-harm, assaults, fires) are more likely to result in major burns.</li>
+      </ul>
+
+      <h3 class="sub-head">Risk factors</h3>
+      <ul>
+        <li>Low socioeconomic status</li>
+        <li>Overcrowding</li>
+        <li>Households where young girls have domestic roles</li>
+        <li>Cooking with kerosene</li>
+        <li>Generalised poor health</li>
+        <li>Poor safety practices</li>
+        <li>Pre-existing psychiatric diagnoses and substance use problems</li>
+        <li>Extremes of age — children (accidental and non-accidental injury); older and frail individuals with pre-existing medical conditions presenting as collapse</li>
+      </ul>
+      <p>Burns are a <strong>preventable injury</strong>; prevention strategies focus on awareness, education and health and safety legislation.</p>
+    </div></div>
+  </section>
+
+  <!-- 3 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Risk Prediction Scores</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>The main scoring system used to predict mortality and length of hospitalisation in adult burns is the <strong>revised Baux score</strong> — taking into account <strong>age, %TBSA burned and the presence of inhalation injury</strong>.</li>
+        <li>Point of futility in Baux's original article = <strong>100</strong>.</li>
+        <li>Point of futility with 21st-century burn care = <strong>160</strong>.</li>
+        <li><strong>Baux50</strong> (predicted mortality 50%) = <strong>109.6</strong>.</li>
+        <li>Other models in use: <strong>Belgian Outcome in Burn Injury (BOBI) score</strong> and the <strong>Abbreviated Burn Severity Index (ABSI)</strong>.</li>
+        <li>Increasing age is strongly associated with mortality. There is a developing need to assess <strong>frailty and comorbidities</strong> as part of holistic assessment of the older burns patient — not yet included in current scoring systems.</li>
+        <li>Clinical frailty scores are increasingly used in burns services; the <strong>Rockwood clinical frailty scale</strong> is used in the authors' unit for burns in older people.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Skin Structure &amp; Function</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>The skin is the <strong>largest organ system</strong> in the body.</li>
+        <li><strong>Five layers of epidermis</strong> and <strong>two layers of dermis</strong>, sitting on subcutaneous fat, connective tissue and muscle compartments.</li>
+        <li>Deepest layers of the epidermis continually divide and migrate to the surface to regenerate every <strong>2–3 weeks</strong>.</li>
+        <li><strong>Melanocytes</strong> (pigmentation) are found in the epidermis.</li>
+        <li>The dermis contains <strong>nerves, blood vessels, exocrine glands and hair follicles</strong>, around which regenerating epidermal cells are found.</li>
+        <li><strong>The epidermis cannot regenerate without the presence of dermal tissue.</strong></li>
+      </ul>
+
+      <figure>
+        <div class="fig-flex">
+          <div class="svg-holder">
+            <svg class="diagram" viewBox="0 0 430 300" role="img" aria-label="Schematic cross-section of skin showing epidermis, dermis and subcutaneous tissue with hair follicle, sweat gland and blood vessels">
+              <defs>
+                <linearGradient id="epiG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f8d9b4"/><stop offset="100%" stop-color="#eec39a"/>
+                </linearGradient>
+                <linearGradient id="derG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f6b3a8"/><stop offset="100%" stop-color="#ee9a8e"/>
+                </linearGradient>
+                <linearGradient id="subG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#fde9b4"/><stop offset="100%" stop-color="#f9d98c"/>
+                </linearGradient>
+              </defs>
+
+              <!-- layers -->
+              <rect x="120" y="20" width="290" height="42" fill="url(#epiG)" stroke="#d9a878" stroke-width="1.4"/>
+              <rect x="120" y="62" width="290" height="118" fill="url(#derG)" stroke="#d98d80" stroke-width="1.4"/>
+              <rect x="120" y="180" width="290" height="86" fill="url(#subG)" stroke="#dcb96a" stroke-width="1.4"/>
+
+              <!-- wavy epidermis-dermis junction -->
+              <path d="M120,62 q18,10 36,0 t36,0 t36,0 t36,0 t36,0 t36,0 t36,0 t36,0"
+                    fill="none" stroke="#d98d80" stroke-width="1.6" opacity=".8"/>
+
+              <!-- blood vessels in dermis -->
+              <path d="M150,175 q10,-30 26,-42 q14,-11 12,-30" fill="none" stroke="#d32f2f" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+              <path d="M156,176 q12,-28 30,-38 q16,-9 14,-28" fill="none" stroke="#1976d2" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+              <path d="M340,175 q-10,-32 -26,-44 q-14,-11 -12,-30" fill="none" stroke="#d32f2f" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+              <path d="M346,176 q-12,-30 -30,-40 q-16,-9 -14,-28" fill="none" stroke="#1976d2" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+
+              <!-- hair follicle -->
+              <path d="M258,22 L250,150" stroke="#8d5524" stroke-width="6" stroke-linecap="round" fill="none"/>
+              <path d="M258,22 L246,-4" stroke="#8d5524" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <ellipse cx="250" cy="152" rx="10" ry="9" fill="#a86b32"/>
+
+              <!-- sweat gland -->
+              <path d="M330,90 q4,34 0,56" stroke="#7fb3d5" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <circle cx="330" cy="158" r="15" fill="none" stroke="#7fb3d5" stroke-width="3.4"/>
+              <path d="M330,143 q10,7 10,15" fill="none" stroke="#7fb3d5" stroke-width="3"/>
+
+              <!-- labels -->
+              <g font-family="Segoe UI, system-ui, sans-serif" font-size="13" fill="#7a3410" font-weight="700" text-anchor="end">
+                <text x="110" y="46">Epidermis</text>
+                <text x="110" y="126">Dermis</text>
+                <text x="110" y="228">Subcutaneous</text>
+              </g>
+              <g stroke="#c2410c" stroke-width="1.4" opacity=".6">
+                <line x1="114" y1="41" x2="122" y2="41"/>
+                <line x1="114" y1="121" x2="122" y2="121"/>
+                <line x1="114" y1="223" x2="122" y2="223"/>
+              </g>
+            </svg>
+          </div>
+          <div class="txt">
+            <h4>Functions of the skin</h4>
+            <ul>
+              <li><strong>Epidermis:</strong> prevents fluid loss</li>
+              <li><strong>Epidermis:</strong> barrier to entry of microorganisms</li>
+              <li><strong>Epidermis:</strong> major site of immune system activity</li>
+              <li><strong>Epidermis:</strong> neurosensory (pain, touch)</li>
+              <li><strong>Epidermis:</strong> social and psychological</li>
+              <li><strong>Dermis:</strong> regulation of body temperature — dermal vascular plexus, sweating, piloerection</li>
+              <li><strong>Dermis:</strong> responsible for skin durability and flexibility</li>
+            </ul>
+          </div>
+        </div>
+        <figcaption><strong>Figure 1.</strong> Skin structure and function. Loss of the dermis removes the regenerative source for the epidermis — the basis of why deep burns require grafting.</figcaption>
+      </figure>
+    </div></div>
+  </section>
+
+  <!-- 5 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Classification of Burn Injuries &amp; Depth</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <p>A burn injury is classified according to <strong>aetiology, percentage total body surface area involved, and depth</strong>.</p>
+
+      <ul>
+        <li><strong>Epidermal / superficial burn</strong> — simple erythema, damage to the epidermis only. <em>Excluded</em> from calculation of surface area involved.</li>
+        <li><strong>Superficial partial thickness</strong> — upper dermis damaged, but the vascular plexus and most adnexal structures remain intact. Good blood supply and sufficient regenerating epidermal cells. With proper management, <strong>heals without scarring in 1–2 weeks</strong>. Blisters from fluid leak; very painful because nerve endings are exposed.</li>
+        <li><strong>Deep partial thickness</strong> — extends into the deep dermis, affecting the vascular plexus but not destroying all of the dermis. Only deep adnexal structures are intact. Drier, red, non-blanching as the dermal plexus is coagulated by heat. <strong>Less sensitive.</strong></li>
+        <li><strong>Full thickness</strong> — has extended through the entire thickness of the dermis; <strong>no dermal tissue remains</strong>. Waxy and white, may look charred, and are <strong>not painful</strong>. Requires excision and skin grafting.</li>
+      </ul>
+
+      <figure>
+        <div class="fig-flex">
+          <div class="svg-holder">
+            <svg class="diagram" viewBox="0 0 720 270" role="img" aria-label="Diagram comparing superficial partial, deep partial and full thickness burns through the skin layers">
+              <defs>
+                <linearGradient id="burnHot" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffb347"/><stop offset="45%" stop-color="#ff6a00"/><stop offset="100%" stop-color="#c62828"/>
+                </linearGradient>
+                <linearGradient id="skinBase" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#fbe3c8"/><stop offset="100%" stop-color="#f0cda6"/>
+                </linearGradient>
+              </defs>
+
+              <!-- BLOCK 1 -->
+              <rect x="50" y="40" width="170" height="150" rx="7" fill="url(#skinBase)" stroke="#d9a878" stroke-width="1.5"/>
+              <path d="M50,40 h170 v38 h-170 z" fill="url(#burnHot)"/>
+              <line x1="50" y1="70" x2="220" y2="70" stroke="rgba(140,70,20,.45)" stroke-width="1.3" stroke-dasharray="5 4"/>
+              <line x1="50" y1="150" x2="220" y2="150" stroke="rgba(140,70,20,.45)" stroke-width="1.3" stroke-dasharray="5 4"/>
+
+              <!-- BLOCK 2 -->
+              <rect x="275" y="40" width="170" height="150" rx="7" fill="url(#skinBase)" stroke="#d9a878" stroke-width="1.5"/>
+              <path d="M275,40 h170 v90 h-170 z" fill="url(#burnHot)"/>
+              <line x1="275" y1="70" x2="445" y2="70" stroke="rgba(140,70,20,.45)" stroke-width="1.3" stroke-dasharray="5 4"/>
+              <line x1="275" y1="150" x2="445" y2="150" stroke="rgba(140,70,20,.45)" stroke-width="1.3" stroke-dasharray="5 4"/>
+
+              <!-- BLOCK 3 -->
+              <rect x="500" y="40" width="170" height="150" rx="7" fill="url(#skinBase)" stroke="#d9a878" stroke-width="1.5"/>
+              <path d="M500,40 h170 v150 h-170 z" fill="url(#burnHot)"/>
+              <line x1="500" y1="70" x2="670" y2="70" stroke="rgba(140,70,20,.45)" stroke-width="1.3" stroke-dasharray="5 4"/>
+              <line x1="500" y1="150" x2="670" y2="150" stroke="rgba(140,70,20,.45)" stroke-width="1.3" stroke-dasharray="5 4"/>
+
+              <!-- layer key -->
+              <g font-family="Segoe UI, system-ui, sans-serif" font-size="12" fill="#8a6552" text-anchor="end" font-weight="700">
+                <text x="42" y="62">Epidermis</text>
+                <text x="42" y="115">Dermis</text>
+                <text x="42" y="176">Subcut.</text>
+              </g>
+
+              <!-- captions -->
+              <g font-family="Segoe UI, system-ui, sans-serif" text-anchor="middle">
+                <text x="135" y="215" font-size="14" font-weight="900" fill="#b23c00">Superficial partial</text>
+                <text x="135" y="234" font-size="12" fill="#8a6552">Vascular plexus + adnexae intact</text>
+                <text x="135" y="250" font-size="12" fill="#8a6552">Heals in 1–2 weeks, no scar</text>
+
+                <text x="360" y="215" font-size="14" font-weight="900" fill="#b23c00">Deep partial</text>
+                <text x="360" y="234" font-size="12" fill="#8a6552">Only deep adnexae intact</text>
+                <text x="360" y="250" font-size="12" fill="#8a6552">Less sensitive → excision + graft</text>
+
+                <text x="585" y="215" font-size="14" font-weight="900" fill="#b23c00">Full thickness</text>
+                <text x="585" y="234" font-size="12" fill="#8a6552">No dermal tissue remains</text>
+                <text x="585" y="250" font-size="12" fill="#8a6552">Not painful → excision + graft</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <figcaption><strong>Figure 2.</strong> Burn depth described by how much of the dermis has been destroyed.</figcaption>
+      </figure>
+
+      <h3 class="sub-head">Factors determining tissue damage</h3>
+      <ul>
+        <li><strong>Burn-related:</strong> aetiology, temperature and duration of exposure. <em>Wet heat (scalds) carries more energy than dry heat (flame)</em>, so greater tissue damage is caused at the same temperature.</li>
+        <li><strong>Patient-related:</strong> skin thickness, age, and whether or not first aid was given. The very young and older individuals with thinner, more fragile skin sustain a greater injury from the same insult.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Beyond the dermis:</strong> the burn can affect fat and muscle. <strong>Muscle injury</strong> can lead to compartment syndrome and rhabdomyolysis.
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 6 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Pathophysiology — Local &amp; Systemic Effects</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+
+      <figure>
+        <div class="fig-flex">
+          <div class="svg-holder">
+            <svg class="diagram" viewBox="0 0 700 330" role="img" aria-label="Jackson's burn wound model showing zones of coagulation, stasis and hyperaemia">
+              <defs>
+                <radialGradient id="hypG" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ffd699"/><stop offset="100%" stop-color="#ffc266"/>
+                </radialGradient>
+              </defs>
+              <ellipse cx="230" cy="165" rx="130" ry="130" fill="url(#hypG)" opacity=".9"/>
+              <ellipse cx="230" cy="165" rx="88" ry="88" fill="#ff8c1a" opacity=".92"/>
+              <ellipse cx="230" cy="165" rx="46" ry="46" fill="#c62828"/>
+
+              <g font-family="Segoe UI, system-ui, sans-serif" font-size="12.5" font-weight="800" fill="#fff">
+                <text x="230" y="170" text-anchor="middle">Coagulation</text>
+              </g>
+
+              <!-- leader lines -->
+              <g stroke="#b23c00" stroke-width="1.8" fill="none" opacity=".75">
+                <path d="M276,165 H400"/>
+                <path d="M318,165 H400"/>
+                <path d="M360,165 H400"/>
+              </g>
+              <g font-family="Segoe UI, system-ui, sans-serif" font-size="13" fill="#3a1f10">
+                <text x="410" y="118" font-weight="900" fill="#b23c00">Zone of coagulation</text>
+                <text x="410" y="136" font-size="12" fill="#8a6552">Dead tissue from direct injury</text>
+
+                <text x="410" y="164" font-weight="900" fill="#b23c00">Zone of stasis</text>
+                <text x="410" y="182" font-size="12" fill="#8a6552">Hypoperfusion from vasoconstriction; tissue</text>
+                <text x="410" y="197" font-size="12" fill="#8a6552">viable but vulnerable → may expand/deepen</text>
+
+                <text x="410" y="228" font-weight="900" fill="#b23c00">Zone of hyperaemia</text>
+                <text x="410" y="246" font-size="12" fill="#8a6552">Vasodilation, ↑ permeability, oedema;</text>
+                <text x="410" y="261" font-size="12" fill="#8a6552">tissue recovery expected</text>
+              </g>
+            </svg>
+          </div>
+          <div class="txt">
+            <h4>Jackson's burn wound model</h4>
+            <ul>
+              <li><strong>Zone of coagulation</strong> — dead tissue as a result of direct injury.</li>
+              <li><strong>Zone of stasis</strong> — adjacent tissues suffer hypoperfusion from vasoconstriction. Not directly damaged but vulnerable to ischaemia, infection and necrosis. Initial burn wounds may <em>expand and deepen</em>.</li>
+              <li><strong>Zone of hyperaemia</strong> — dead tissue releases inflammatory mediators causing vasodilation, increased vascular permeability and oedema.</li>
+            </ul>
+          </div>
+        </div>
+        <figcaption><strong>Figure 3.</strong> Local effects — the three zones of tissue injury and blood flow.</figcaption>
+      </figure>
+
+      <h3 class="sub-head">Local effects</h3>
+      <ul>
+        <li>Dead tissue prompts release of <strong>inflammatory mediators</strong> — histamine, prostaglandins, leukotrienes, thromboxanes, kinins, reactive oxygen species, interleukins (IL-6, IL-1&beta;), TNF-&alpha; and IL-8.</li>
+        <li>Without resuscitation with i.v. fluids, vasodilation exacerbates hypovolaemia and subsequent tissue hypoperfusion.</li>
+        <li>In burns <strong>&gt;25% TBSA</strong>, these mediators also cause a <strong>systemic inflammatory response</strong>.</li>
+        <li><strong>Early burn wound excision</strong> decreases the necrotic load, infection risk and systemic inflammatory effects.</li>
+        <li>Burns dressings help stabilise the wound bed, decrease fluid losses and help prevent infection.</li>
+      </ul>
+
+      <h3 class="sub-head">Systemic effects</h3>
+      <ul>
+        <li><strong>Acute phase (up to 48 h):</strong> combination of peripheral vasodilation, hypovolaemia and myocardial depression results in <strong>burns shock</strong>.</li>
+        <li><strong>Hypermetabolic phase (from ~48 h up to 1 year):</strong> persistent catabolic and inflammatory state.</li>
+        <li>The stress response is via the same pro-inflammatory mediators as in other causes of tissue injury, but of <strong>greater severity and duration</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Systemic consequences by system</h3>
+      <ul>
+        <li><strong>Cardiovascular:</strong> hypovolaemia, myocardial depression, &darr; cardiac output, burns shock up to 48 h</li>
+        <li><strong>Vascular:</strong> &uarr; capillary permeability; Na<sup>+</sup> and proteins leak into interstitium; tissue oedema</li>
+        <li><strong>Respiratory:</strong> bronchoconstriction, ARDS</li>
+        <li><strong>Peripheral and splanchnic vasoconstriction:</strong> AKI, ileus, GI stress ulceration</li>
+        <li><strong>Fluid resuscitation itself:</strong> tissue oedema, pulmonary oedema, abdominal compartment syndrome</li>
+        <li><strong>Systemic inflammatory response:</strong> HPA axis activation, &uarr; ADH, sympathetic NS activation, &uarr; RAA, hypercoagulability, hypoalbuminaemia</li>
+        <li><strong>Hypermetabolic phase:</strong> &uarr; catecholamines, cortisol, glucagon; &darr; insulin; &uarr; hepatic gluconeogenesis, glycogenolysis, lipolysis, proteolysis; hyperdynamic circulation; hyperthermia; increased O<sub>2</sub> consumption; weight loss; muscle weakness; immunosuppression; impaired wound healing</li>
+      </ul>
+
+      <h3 class="sub-head">Persisting changes (may last years)</h3>
+      <ul>
+        <li>Increased resting energy expenditure</li>
+        <li>Increased serum and urine cortisol and catecholamines</li>
+        <li>Increased cytokines including IL-6, IL-8 and granulocyte colony-stimulating factor (G-CSF)</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 7 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">First Aid &amp; Initial Assessment</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3 class="sub-head">First aid</h3>
+      <ul>
+        <li>First aid at the scene is <strong>vitally important</strong> and can prevent more severe injury.</li>
+        <li>Strong evidence base: a burn should be managed under <strong>cool or tepid running water for 20 min</strong>, even up to <strong>4 h</strong> after the injury is sustained.</li>
+        <li>By arresting tissue damage, wounds are not as deep as they otherwise would have been — with subsequent improvement in healing and decreased scar formation.</li>
+        <li>General principles for thermal injuries: use the <strong>SAFE approach</strong> (Shout/call for help, Assess the scene, Free from danger, Evaluate the casualty), stop the burning process, cool the burn, then cover in a <strong>non-adherent dressing</strong> (e.g. cling film).</li>
+        <li>Although the burn must be cooled, <strong>the rest of the patient must be warmed</strong> to prevent hypothermia.</li>
+      </ul>
+
+      <h3 class="sub-head">Chemical burns</h3>
+      <ul>
+        <li>Remove the patient from the area of exposure and remove all contaminated clothing.</li>
+        <li>Irrigate with running water or sterile fluids, taking care not to wash chemicals into the eyes.</li>
+        <li><strong>Irrigation is key</strong> — removing the chemical stops the burning process.</li>
+        <li>Recommended: <strong>acid burns irrigate for 45 min</strong>; <strong>alkali burns for 1 h</strong>.</li>
+        <li>Agent-specific treatments should be given if available, according to National Poisons Information Service advice.</li>
+      </ul>
+
+      <h3 class="sub-head">Electrical injuries</h3>
+      <ul>
+        <li>May be accompanied by a burn — requires specific assessment and management.</li>
+      </ul>
+
+      <div class="note">
+        <strong>All major burns are traumatic injuries</strong> and should be treated according to the principles of <strong>Advanced Trauma Life Support (ATLS)</strong>. The treatment recommendations can be learnt on the <strong>Emergency Management of Severe Burns (EMSB)</strong> course run by the British Burn Association.
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 8 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Airway &amp; Inhalation Injury</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3 class="sub-head">Indications for intubation</h3>
+      <ul>
+        <li><strong>Reduced conscious level</strong> requiring airway protection — e.g. head trauma during escape from a fire (also requiring C-spine immobilisation), systemic toxicity from inhalation injury, medical or substance use causing collapse.</li>
+        <li><strong>Actual or impending upper airway obstruction</strong> — deep neck, perioral or intra-oral burns and oedema.</li>
+        <li><strong>Respiratory distress</strong> from inhalation injury requiring ventilatory support.</li>
+        <li>To <strong>facilitate safe transfer</strong> to a burns centre.</li>
+      </ul>
+
+      <div class="note warn">
+        <strong>The dilemma:</strong> the requirement for intubation is not always clear-cut. The main concern is that a burned patient may have an associated inhalation injury that will subsequently cause airway oedema and an <strong>airway emergency in the hours that follow fluid resuscitation</strong>.
+      </div>
+
+      <h3 class="sub-head">Inhalation injury — mechanism</h3>
+      <ul>
+        <li>Hot gaseous products of combustion are inhaled, particularly when a patient is trapped in an enclosed space with a fire.</li>
+        <li><strong>Hot gas</strong> causes direct burn injury to the upper airway.</li>
+        <li><strong>Particulate matter and chemicals</strong> enter the lower airways, causing acute lung injury.</li>
+        <li><strong>Carbon monoxide and hydrogen cyanide</strong> cause systemic toxicity.</li>
+        <li>More common if facial burns are present — but <em>not all</em> patients with facial burns have an inhalation injury.</li>
+      </ul>
+
+      <h3 class="sub-head">Signs and symptoms</h3>
+      <ul>
+        <li>Cough</li>
+        <li>Soot in the nose, mouth and sputum</li>
+        <li>Singed eyebrows and nasal hair</li>
+        <li>In the absence of a facial burn, these are unlikely to signal an airway emergency.</li>
+        <li><strong>Particularly concerning:</strong> voice changes, hoarseness and <strong>stridor</strong> — these signs may not develop until swelling is <em>already</em> obstructing the airway.</li>
+        <li>If there is doubt about whether tracheal intubation is needed, <strong>discuss with the receiving burns service</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Securing the airway</h3>
+      <ul>
+        <li>Plan for a <strong>difficult intubation including a surgical airway</strong> — tissues may be erythematous, ulcerated and distorted by oedema.</li>
+        <li><strong>Suxamethonium can be used safely up to 48 h</strong> after burn injury.</li>
+        <li>Use a <strong>video-laryngoscope</strong> if available.</li>
+        <li>An <strong>uncut tracheal tube is vital</strong> — to allow for further soft tissue swelling that might otherwise make a cut tube recede into the mouth.</li>
+        <li>A <strong>larger-diameter tracheal tube</strong> is preferable to facilitate bronchoscopy and respiratory toilet.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 9 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Ventilation, CO/Cyanide Toxicity &amp; Escharotomy</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3 class="sub-head">Ventilation</h3>
+      <ul>
+        <li>In full thickness burns, the dead tissue or <strong>eschar</strong> is non-compliant and may prevent adequate ventilation and adversely affect cardiac pre-load — necessitating <strong>escharotomies to the chest before transfer</strong>.</li>
+        <li>Impaired gas exchange may also result from inhalation injury and associated carbon monoxide poisoning.</li>
+        <li><strong>Hypoxaemia will persist despite adequate oxygen saturation by pulse oximetry</strong> — it is important to check the <strong>co-oximetry results on an arterial blood gas</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Carbon monoxide poisoning</h3>
+      <ul>
+        <li>Time to carbon monoxide washout is reduced by ventilation in <strong>100% oxygen</strong>.</li>
+        <li><strong>Hyperbaric oxygen therapy is not currently recommended.</strong></li>
+        <li>Ventilate lungs with <strong>100% oxygen until carboxyhaemoglobin &lt;3%</strong>, taking care to reduce the F<sub>i</sub>O<sub>2</sub> as soon as possible to avoid further lung damage.</li>
+      </ul>
+
+      <h3 class="sub-head">Hydrogen cyanide poisoning</h3>
+      <ul>
+        <li>Consider in patients with inhalation injury, <strong>cardiovascular instability</strong> and <strong>increasing blood lactate levels not responding to treatment</strong>.</li>
+        <li>The specific antidote — <strong>hydroxocobalamin</strong> — should be given.</li>
+      </ul>
+
+      <h3 class="sub-head">Indications for escharotomy</h3>
+      <ul>
+        <li>Surgical incisions through <strong>non-compliant full thickness burn</strong> that:
+          <ul>
+            <li>Restricts ventilation on the chest and abdomen, or</li>
+            <li>Causes significantly reduced perfusion in circumferential burns to the limbs</li>
+          </ul>
+        </li>
+        <li>Perform <strong>as soon as required</strong> for ventilation or perfusion.</li>
+        <li>Incision is <strong>longitudinal from unburned skin to unburned skin</strong> if possible, and deep enough to reach subcutaneous fat to release the eschar.</li>
+        <li><strong>Anaesthesia will be required</strong>, diathermy is usually used so blood loss should be minimal, and <strong>prophylactic antibiotics should be given</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Fasciotomy vs escharotomy</h3>
+      <ul>
+        <li><strong>Fasciotomy</strong> incisions are <em>deeper</em> — through the subcutaneous tissue and the fascial layers surrounding the muscle compartments.</li>
+        <li>Most commonly indicated in <strong>high-voltage electrical burns</strong> where tissue necrosis of muscle causes compartment syndrome.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Circulation &amp; Fluid Resuscitation</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="note warn">
+        <strong>Key principle:</strong> burns and burn shock are <em>not</em> an immediate cause of hypovolaemia. Any haemodynamic instability must be assessed as <strong>possible bleeding in the first instance</strong>.
+      </div>
+
+      <h3 class="sub-head">Vascular access</h3>
+      <ul>
+        <li>Peripheral i.v. access may be difficult with limited sites available. <strong>Two large bore cannulas are necessary.</strong></li>
+        <li>Ideally, access is not placed through burned tissue — but this may be unavoidable.</li>
+        <li>If unable, <strong>intraosseous access must be gained</strong> before proceeding to definitive central venous access.</li>
+      </ul>
+
+      <h3 class="sub-head">Parkland formula</h3>
+      <ul>
+        <li><strong>2–4 mL/kg &times; actual body weight (kg) &times; %TBSA burned</strong></li>
+        <li>Guides resuscitation fluids in the <strong>first 24 h</strong> for burns of <strong>&gt;15% TBSA</strong>.</li>
+        <li>From the time the burn was sustained: <strong>half in the first 8 h</strong>, <strong>half in the subsequent 16 h</strong>.</li>
+        <li><strong>Subtract any fluid already given.</strong></li>
+        <li>Use <strong>warm, isotonic balanced crystalloid</strong>.</li>
+        <li>The <strong>modified Parkland formula of 3 mL/kg &times; actual body weight (kg) &times; %TBSA</strong> is advocated to limit excessive fluids being given.</li>
+        <li>The amount of fluid actually given will need adjustment according to the evolving clinical picture.</li>
+      </ul>
+
+      <div class="table-wrap">
+        <p class="table-hint">Scroll horizontally &#8594;</p>
+        <div class="table-scroll">
+          <table>
+            <caption>Parkland and modified Parkland volumes — worked examples for a 70 kg adult over the first 24 h.</caption>
+            <thead>
+              <tr>
+                <th>Formula</th><th>Rule</th><th>20% TBSA</th><th>30% TBSA</th><th>40% TBSA</th><th>60% TBSA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Parkland (4 mL)</strong></td>
+                <td>4 mL/kg/%TBSA balanced crystalloid</td>
+                <td class="num">5600 mL</td><td class="num">8400 mL</td><td class="num">11,200 mL</td><td class="num">16,800 mL</td>
+              </tr>
+              <tr>
+                <td><strong>Modified Parkland (3 mL)</strong></td>
+                <td>3 mL/kg/%TBSA balanced crystalloid</td>
+                <td class="num">4200 mL</td><td class="num">6300 mL</td><td class="num">8400 mL</td><td class="num">12,600 mL</td>
+              </tr>
+              <tr>
+                <td><strong>Lower limit (2 mL)</strong></td>
+                <td>2 mL/kg/%TBSA balanced crystalloid</td>
+                <td class="num">2800 mL</td><td class="num">4200 mL</td><td class="num">5600 mL</td><td class="num">8400 mL</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note"><strong>Timing:</strong> half of the total calculated volume is given in the <strong>first 8 hours</strong> — calculated from the <em>time of injury</em>, not the time of presentation. Then titrate to effect.</p>
+      </div>
+
+      <h3 class="sub-head">Fluid management — the balance</h3>
+      <ul>
+        <li><strong>Under-resuscitation</strong> may lead to impaired tissue perfusion, end organ damage and <strong>extension of burn depth</strong>.</li>
+        <li><strong>Excessive fluids are also harmful</strong> — risks include:
+          <ul>
+            <li>Electrolyte disturbances such as hyponatraemia</li>
+            <li>Exacerbation of tissue oedema</li>
+            <li>Pulmonary and cerebral oedema</li>
+            <li>Abdominal and limb compartment syndromes</li>
+          </ul>
+        </li>
+        <li>The Parkland formula remains the most commonly used tool. Concerns have been raised that it may <em>overestimate</em> the volume needed, prompting bodies such as the American Burn Association to recommend <strong>less than 4 mL/kg/%TBSA</strong>.</li>
+        <li>Advocated approach: use <strong>4 mL/kg/%TBSA for initial calculations</strong>, then perform regular clinical reviews to permit escalation or de-escalation of fluid input based on individual patient physiology — as opposed to rigidly adhering to any one formula.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 11 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Goal-Directed Fluid Therapy &amp; Colloid Rescue</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>The most common and easy method of ensuring appropriate fluid resuscitation is by targeting an <strong>hourly urine output of 0.5–1 mL/kg <em>ideal</em> body weight</strong>.</li>
+        <li>Failure to meet this target should prompt reassessment and adjustment of fluid delivery (see algorithm below).</li>
+      </ul>
+
+      <div class="table-wrap">
+        <p class="table-hint">Scroll horizontally &#8594;</p>
+        <div class="table-scroll">
+          <table>
+            <caption>Fluid titration algorithm — calculate initial Parkland rate using ACTUAL body weight; target urine output using IDEAL body weight. Check hourly urine volumes (mL/kg/h of ideal body weight).</caption>
+            <thead>
+              <tr><th>Hourly urine output</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="num">&lt; 0.5 mL/kg/h</td>
+                <td class="act">Fluid challenge 250 mL balanced crystalloid up to 3&times;/h. Consider noradrenaline if hypotensive. Increase baseline fluid rate by <strong>10%</strong>.</td>
+              </tr>
+              <tr>
+                <td class="num">0.5–1 mL/kg/h</td>
+                <td class="act">Continue current fluid rate.</td>
+              </tr>
+              <tr>
+                <td class="num">1–2 mL/kg/h</td>
+                <td class="act">Reduce fluid rate by <strong>10%</strong>.</td>
+              </tr>
+              <tr>
+                <td class="num">&gt; 2 mL/kg/h</td>
+                <td class="act">Reduce fluid rate by <strong>25%</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Persisting low urine output may be due to a problem other than under-resuscitation.</strong> Reassess the patient using:
+        <ul style="margin-top:8px;">
+          <li>Peripheral perfusion, mean arterial pressure, pulse pressure variation</li>
+          <li>Blood lactate, haematocrit, base excess</li>
+          <li>Cardiac output monitor</li>
+          <li>Measure intra-abdominal pressures</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <strong>Colloid Rescue:</strong> at <strong>12 h after injury</strong>, if fluid volumes will exceed <strong>6 mL/kg/%TBSA</strong>, replace <strong>ONE THIRD</strong> of the crystalloid regimen with <strong>4.5% human albumin solution</strong>.
+      </div>
+
+      <h3 class="sub-head">Other causes of low urine output</h3>
+      <ul>
+        <li>Renal failure from <strong>acute tubular necrosis</strong> or <strong>rhabdomyolysis</strong></li>
+        <li>Increased <strong>anti-diuretic hormone</strong> release in response to injury</li>
+        <li><strong>Vasoplegia</strong>, low cardiac output</li>
+        <li><strong>Abdominal compartment syndrome</strong></li>
+      </ul>
+
+      <h3 class="sub-head">Fluid creep</h3>
+      <ul>
+        <li>Urine volumes in excess of targeted values should prompt a <strong>reduction</strong> in the volumes of fluids given — mitigating against the phenomenon of <strong>"fluid creep"</strong>, whereby more fluid than required is given.</li>
+        <li>Peripheral perfusion, serum lactate, acid-base balance and haematocrit should also be used to help guide fluid therapy.</li>
+        <li>The additional use of <strong>cardiac output monitoring</strong> to guide fluid delivery has demonstrated improvements in cardiac output, oxygen delivery and organ dysfunction — but <strong>a mortality benefit has not been identified</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Choice of fluid</h3>
+      <ul>
+        <li><strong>Balanced crystalloids</strong> such as Hartmann's solution are the mainstay of fluid resuscitation in major burn injuries.</li>
+        <li>Their use, when compared with <strong>0.9% saline</strong>, has been demonstrated to reduce the incidence of significant electrolyte disturbances such as <strong>hyperchloraemic metabolic acidosis</strong>.</li>
+        <li>The use of colloids such as <strong>human albumin solution</strong> in combination with crystalloids may:
+          <ul>
+            <li>Reduce overall fluid volume requirements</li>
+            <li>Mitigate against "fluid creep"</li>
+            <li>Lessen increases in intra-abdominal pressures compared with crystalloids alone</li>
+          </ul>
+        </li>
+        <li>Recommendation: add <strong>4.5% human albumin solution</strong> if fluid resuscitation volumes in the first 24 h are projected to be greater than <strong>6 mL/kg/%TBSA</strong>. This technique of "colloid rescue" should be continued until <strong>48 h</strong> after the burn injury.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 12 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Disability, Exposure &amp; TBSA Estimation</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3 class="sub-head">Disability</h3>
+      <ul>
+        <li>A reduced Glasgow Coma Scale at presentation in major burns is <strong>not caused by the burn itself</strong> and must lead to a search for the cause and appropriate management.</li>
+        <li>Causes include:
+          <ul>
+            <li>Poisoning by inhaled toxins (carbon monoxide, hydrogen cyanide)</li>
+            <li>Overdose</li>
+            <li>Trauma including head injury</li>
+            <li>Medical comorbidities leading to collapse</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3 class="sub-head">Exposure &amp; estimation of %TBSA burned</h3>
+      <ul>
+        <li>All clothing and jewellery must be removed; however, exposure must be kept to a <strong>minimum</strong> — almost all major burns patients become hypothermic.</li>
+        <li><strong>Erythema alone is not counted</strong> in the estimation of burn surface area. All areas of superficial partial thickness burn or deeper <em>are</em> included.</li>
+        <li>Many management decisions — including transfer decisions and prognosis — are based on %TBSA burned.</li>
+        <li><strong>Overestimation of burned surface area leads to fluid overload.</strong></li>
+        <li>Traditional methods: <strong>Lund and Browder chart</strong> or the <strong>Wallace Rule of Nines</strong>.</li>
+        <li>More recently, the <strong>Mersey Burns app</strong> has gained popularity for ease of use and accuracy.</li>
+      </ul>
+
+      <h3 class="sub-head">Secondary survey</h3>
+      <ul>
+        <li><strong>Corneal damage</strong> — examination with fluorescein stain is required.</li>
+        <li><strong>Electrical burns</strong> are at risk of rhabdomyolysis — a <strong>creatine kinase level</strong> should be measured.</li>
+        <li>All major burn injuries should receive <strong>tetanus toxoid</strong> treatment.</li>
+        <li><strong>Pain relief</strong> — i.v. opioid titrated to effect (if the patient is not already anaesthetised).</li>
+        <li><strong>Gastric decompression</strong> with a nasogastric tube should occur.</li>
+        <li><strong>Routine use of antibiotics is not required.</strong></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 13 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Referral &amp; Transfer to a Specialist Centre</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li><strong>All major burns</strong> will need referral and transfer to specialist services.</li>
+        <li>Severe burns thought to be <strong>non-survivable</strong> should also be discussed — accurate estimation of burn size, site of donor areas, age and comorbidities are essential in making this decision, which is best done using the expertise of the burns centre.</li>
+      </ul>
+
+      <h3 class="sub-head">Goals of transfer</h3>
+      <ul>
+        <li>Patients should be transferred <strong>as soon as they are resuscitated and stable</strong>, with a secure airway — noting that fluid resuscitation will cause burn oedema, which may worsen en route.</li>
+        <li>If the trachea is intubated, a <strong>nasogastric tube</strong> should also be inserted to decompress the stomach.</li>
+        <li>If tracheal intubation is not indicated, the patient should be <strong>sat up as much as possible</strong> to offset the effects of developing oedema.</li>
+        <li><strong>Invasive monitoring</strong> is usually required, and lines must be secured with <strong>stitches</strong>.</li>
+        <li>Provision for continuation of possible <strong>large volume fluid resuscitation</strong> during transfer, together with consideration of <strong>vasopressor support</strong>, is necessary.</li>
+        <li><strong>Active warming</strong> is required — patients will continue to lose heat and may become severely hypothermic and acidotic. Delaying transfer to try to warm an already hypothermic patient is often not effective; decisions should be made case-by-case in conjunction with the specialist centre.</li>
+        <li>Burn wounds should be dressed with <strong>cling film</strong> for transfer, taking care to <strong>avoid circumferential application</strong> that might impair blood flow.</li>
+      </ul>
+
+      <h3 class="sub-head">Admission room protocol — key steps (authors' unit)</h3>
+      <ul>
+        <li>Trauma screen completed in ED before transferring (unless transferred by helicopter).</li>
+        <li>Admission space → designate team leader → inform all burn team members of arrival, introductions, confirm patient weight, move to warming area and begin active warming, exchange monitoring/infusions, confirm patient is stable, handover.</li>
+        <li><strong>Primary survey</strong> by surgical team → emergency resuscitation/interventions if required → <strong>secondary survey and interventions</strong>.</li>
+        <li><strong>Anaesthetic:</strong> ensure airway secure, monitoring attached, vascular access adequate, plan for ongoing anaesthesia or sedation, ensure warming measures, check infusion pumps, prepare bronchoscopy, prepare feeding tubes, cyanokit if required.</li>
+        <li><strong>Surgical:</strong> complete secondary survey, confirm %TBSA and depth, confirm surgical plan, consent, examine eyes, photographs, place urinary catheter, shave patient if required, escharotomies if required, dressings as appropriate.</li>
+        <li><strong>BICU nursing:</strong> obtain hospital ID number, admit on Lorenzo/MetaVision, confirm height, print name bands, bloods incl. labels and track, wound/MRSA/COVID swabs, check infections, consider blood alcohol level, paracetamol and salicylate level, urine toxicology, pregnancy test, dressings, obtain GP summary.</li>
+        <li><strong>All team:</strong> confirm resuscitation plan, confirm surgical plan, complete WHO checklist prior to general anaesthetic or any surgical intervention → <strong>team huddle and patient transfer to room</strong>.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 14 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Early Surgical Management</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li><strong>Burns are a surgical disease</strong> — the wound must be debrided, and deep partial thickness and full thickness burns require tissue excision and wound closure with skin grafts.</li>
+        <li>Guidance suggests surgical removal of full thickness burns <strong>within 5 days</strong>.</li>
+        <li>Preferred practice: <strong>total or near-total early burn wound excision within &lt;48 h</strong> of injury — aiming to reduce the necrotic load of the burn wound that drives the systemic inflammatory response.</li>
+        <li>Early wound excision has been shown to decrease <strong>blood loss, burn wound sepsis and length of stay</strong>.</li>
+        <li>Positive association with <strong>aesthetic and functional outcomes</strong> compared with serial excision or conservative management — however, available evidence is <em>not yet conclusive</em> on whether this technique offers improved survival outcomes.</li>
+        <li>Once burned tissue is excised, <strong>wound closure must be achieved</strong> to decrease fluid loss, prevent further wound desiccation and infection, and reduce hypermetabolism.</li>
+      </ul>
+
+      <h3 class="sub-head">Closure options</h3>
+      <ul>
+        <li><strong>Temporary</strong> — allograft (skin from organ donors) or synthetic skin substitutes.</li>
+        <li><strong>Permanent</strong> — autologous split skin grafts. In general, these are the <strong>gold standard</strong> for treating burn wounds.</li>
+        <li>The ability to cover all wounds permanently depends on the size of area requiring grafting and the availability of donor sites.</li>
+        <li>Patients with a major burn undergo repeated operations and dressing changes and require multidisciplinary specialist care in ICU.</li>
+      </ul>
+
+      <h3 class="sub-head">Sequence of burn surgery (Part 2)</h3>
+      <ul>
+        <li>Since the 1940s it has been recognised that <strong>early excision of burn eschar improves mortality</strong> — likely from removal of necrotic tissue that both fuels the intense inflammatory response and acts as a culture medium for pathogens.</li>
+        <li>Patients often undergo surgical excision of burnt tissue <strong>in the first day or two</strong> after injury.</li>
+        <li>Some patients with full thickness burns require more immediate decompressive surgery such as <strong>escharotomy or fasciotomy</strong>.</li>
+        <li>Many will undergo multiple subsequent operations including <strong>temporising cadaveric allografts, xenografts (such as pig skin) or synthetic dermal substitutes</strong> until skin coverage with autografts is possible (using unburned patient donor skin).</li>
+        <li>Later <strong>elective surgical procedures</strong> are frequently required to help restore function and improve cosmesis.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 15 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Anaesthesia for Burn Surgery — Preoperative Assessment</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3 class="sub-head">Location of surgery</h3>
+      <ul>
+        <li>Burns surgery should be carried out in a <strong>dedicated burns operating theatre</strong>, ideally in close proximity to intensive care facilities.</li>
+        <li>Theatre personnel should have appropriate training, experience and access to specialist equipment.</li>
+        <li>It is vital that the theatre can be <strong>appropriately warmed</strong> in order to reduce heat loss.</li>
+        <li>Procedures such as dressing changes may be carried out under <strong>sedation led by an anaesthetist</strong> — but all the necessary resources to convert to general anaesthesia should be <strong>immediately available</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Preoperative assessment</h3>
+      <ul>
+        <li>Knowledge of the <strong>extent of the burn</strong>, associated injuries and details of the <strong>planned surgery</strong> — including positioning needed and estimated blood loss.</li>
+        <li><strong>Coagulopathy</strong> may be present, driven by endothelial injury and the inflammatory cascade, often exacerbated by secondary infection. Its extent can vary from subclinical changes to fulminant <strong>disseminated intravascular coagulation (DIC)</strong>. The need for blood products should be <strong>anticipated early</strong>.</li>
+        <li>Thorough assessment of <strong>circulating volume status and electrolyte abnormalities</strong> — given the large volumes of i.v. fluids often required and the potential for associated renal injury.</li>
+        <li><strong>Nutritional support</strong> should generally be continued throughout the operative period in patients who have been mechanically ventilated before surgery; fasting times kept to a <strong>minimum</strong> in those requiring airway intervention.</li>
+      </ul>
+
+      <h3 class="sub-head">Airway assessment</h3>
+      <ul>
+        <li>Include <strong>clinical examination</strong> and a careful <strong>review of previous anaesthetics</strong>.</li>
+        <li>Although mechanical ventilation may have already been established before transfer to theatre, particular care is required to <strong>prevent accidental extubation</strong> — especially in patients with airway burns or inhalation injuries.</li>
+        <li><strong>Tracheostomy</strong> formation may be indicated for various reasons and is commonly required for patients with complex facial burns in order to maintain skin health around the mouth and nose.</li>
+        <li>Although burns involving the face or neck may not present any airway difficulties initially, subsequent <strong>contractures</strong> may severely limit neck extension and mouth opening.</li>
+        <li>Advanced techniques such as <strong>awake fibre-optic intubation</strong> may be indicated.</li>
+        <li>A <strong>difficult airway trolley with equipment for emergency front-of-neck access</strong> should always be immediately available.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 16 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Intraoperative Management — Monitoring, Ventilation, Blood Loss</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3 class="sub-head">Monitoring</h3>
+      <ul>
+        <li>Monitoring can prove challenging. <strong>ECG electrodes</strong> sometimes require <strong>sutures or skin clips</strong> for reliable contact.</li>
+        <li><strong>Pulse oximetry</strong> and <strong>blood pressure cuff</strong> positioning may also be difficult.</li>
+        <li>Suitable sites for <strong>i.v. access and direct arterial monitoring</strong> may be limited.</li>
+        <li>It is <strong>mandatory to monitor the patient's core temperature</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Minimising heat loss</h3>
+      <ul>
+        <li>Minimising exposure</li>
+        <li>Forced air warmers and heat lamps</li>
+        <li>Humidifying anaesthetic gases</li>
+        <li>Infusing warmed i.v. fluids</li>
+        <li>Maintaining an ambient temperature in theatre of <strong>28–33&deg;C</strong></li>
+      </ul>
+
+      <h3 class="sub-head">Ventilation</h3>
+      <ul>
+        <li>Assess a patient's ventilatory requirements preoperatively and <strong>continue lung protective ventilation</strong> throughout the intraoperative period.</li>
+        <li>Patients who have also suffered an inhalation injury may have <strong>increased requirements for oxygen and PEEP</strong>.</li>
+        <li>For these patients it is particularly important to <strong>avoid alveolar derecruitment with the loss of PEEP</strong> during transfer to a transport or theatre ventilator.</li>
+        <li>As the hypermetabolic response leads to increased oxygen consumption and carbon dioxide production, <strong>higher than expected oxygen concentrations and minute volumes</strong> may be required.</li>
+      </ul>
+
+      <h3 class="sub-head">Blood loss</h3>
+      <ul>
+        <li>Blood loss can be as much as <strong>3.4% of total blood volume for each per cent TBSA excised</strong>.</li>
+        <li>Bleeding risks are increased in patients with:
+          <ul>
+            <li>Infected burn tissue</li>
+            <li>Deeper thickness burns</li>
+            <li>Prolonged operative time</li>
+          </ul>
+        </li>
+        <li>Bleeding risks may be reduced by using:
+          <ul>
+            <li>Limb tourniquets on extremity burns</li>
+            <li>Topical adrenaline</li>
+            <li>Compression bandages</li>
+          </ul>
+        </li>
+        <li>The use of <strong>near-patient coagulation studies such as thromboelastography</strong> may be superior to standard laboratory-based tests in detecting coagulation abnormalities, and may be of value to direct blood product use intraoperatively.</li>
+      </ul>
+
+      <h3 class="sub-head">General vs regional anaesthesia</h3>
+      <ul>
+        <li>Most patients with major burn injuries will require <strong>general anaesthesia</strong> for surgical interventions.</li>
+        <li><strong>Regional anaesthesia</strong>, either alone or in combination with general anaesthesia, may be suitable.</li>
+        <li><strong>Careful evaluation is required before performing neuraxial anaesthesia</strong> because of the increased incidence of coagulopathy and infection in this patient group.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 17 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Thermoregulation</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>Major burn injuries are associated with <strong>thermodysregulation</strong>, with an initial propensity to <strong>hypothermia</strong> driven by heat and fluid loss from the burn wounds themselves.</li>
+        <li>Steps to reduce heat loss during the initial stages of resuscitation apply equally in the operating theatre and the intensive care environment.</li>
+        <li>Most patients with major burns will subsequently develop a <strong>raised core temperature</strong>. This reflects altering of the <strong>hypothalamic setpoint</strong> for thermoregulation by pyrogens such as <strong>interleukin-1 (IL-1)</strong> and <strong>tumour necrosis factor</strong>.</li>
+        <li>More profound hyperthermia, with temperatures exceeding <strong>40&deg;C</strong>, can occasionally occur and may lead to <strong>multiorgan failure</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Management of hyperthermia (core temperature &gt;39.5&deg;C)</h3>
+      <ul>
+        <li>Debulking dressings</li>
+        <li>Antipyretics such as paracetamol</li>
+        <li>Applying ice to non-burned areas</li>
+        <li>Infusion of cooled i.v. fluids</li>
+        <li>Irrigating the bladder and stomach with cold fluids</li>
+        <li>More invasive approaches: <strong>intravascular heat exchange catheters</strong> or <strong>extracorporeal circuits</strong></li>
+      </ul>
+
+      <div class="note warn">
+        <strong>Always investigate hyperthermia</strong> — in major burns it may also be a sign of an altered hypothalamic setpoint, an <strong>infectious complication</strong>, or a <strong>transfusion reaction</strong>.
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 18 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Nutrition</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>Basal metabolic rate can increase significantly after a burn injury — <strong>more than doubling</strong> in patients with burns <strong>&gt;40% TBSA</strong>.</li>
+        <li>If not addressed, this can result in <strong>loss of lean body mass, immune compromise and impaired healing</strong>.</li>
+        <li>There is a direct correlation between loss of lean body mass and adverse events, including <strong>infectious complications and death</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Timing of nutritional support</h3>
+      <ul>
+        <li>Starting enteral nutrition in the hours immediately after injury has been shown to have beneficial effects on stress hormones, improve gut integrity, reduce intensive care length of stay, improve wound healing and reduce wound infections.</li>
+        <li>BBA national standards:
+          <ul>
+            <li>Enteral nutrition should be started <strong>as soon as possible in major burns, ideally within 6–12 h</strong> after the injury.</li>
+            <li><strong>Total body weight loss should not exceed 10%</strong> of the patient's weight at admission.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3 class="sub-head">Route of nutrition</h3>
+      <ul>
+        <li>As with most critically ill patients, the <strong>enteral route is preferred</strong>.</li>
+        <li><strong>Post-pyloric feeding</strong> may be required if gastric stasis is present and impairing calorie delivery. It may also help reduce the risk of aspiration, especially in patients requiring multiple interventions under general anaesthesia.</li>
+        <li><strong>Parenteral nutrition</strong> is rarely required. When used, exercise caution because of associated risks including infection, overfeeding and erratic blood glucose control.</li>
+      </ul>
+
+      <h3 class="sub-head">Caloric requirements</h3>
+      <ul>
+        <li>The aim is to meet substantially increased caloric requirements while <strong>avoiding harmful overfeeding</strong>.</li>
+        <li>Complications of overfeeding: hyperglycaemia, hypertriglyceridaemia, hepatic steatosis, hypercapnoea and prolonged duration of mechanical ventilation.</li>
+        <li>The most accurate method is <strong>indirect calorimetry</strong>, but this remains mainly a research tool.</li>
+        <li>Various formulae have been devised to guide clinicians (see table). Such formulae may under- or overestimate requirements at different times during admission.</li>
+        <li>Given the complexities, <strong>specialist input from a dietician within the burns team is essential</strong>.</li>
+      </ul>
+
+      <div class="table-wrap">
+        <p class="table-hint">Scroll horizontally &#8594;</p>
+        <div class="table-scroll">
+          <table>
+            <caption>Formulae to calculate daily caloric requirements (kcal/day) in patients with burn injuries. TBSA, total body surface area; PBD, post-burn day; V, ventilated.</caption>
+            <thead>
+              <tr><th>Formula</th><th>Calculation (kcal/day)</th><th>Comments</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Harris-Benedict</strong></td>
+                <td>Men: 66.5 + 13.75 (weight kg) + 5 (height cm) &minus; 6.76 (age yrs)<br>Women: 66 + 9.56 (weight kg) + 1.85 (height cm) &minus; 4.68 (age yrs)</td>
+                <td>Multiplied by factor determined by burn size: &lt;20% TBSA &times;1.5; 20–40% TBSA &times;1.6; &gt;40% TBSA &times;1.7</td>
+              </tr>
+              <tr>
+                <td><strong>Toronto</strong></td>
+                <td>&minus;4343 + 10.5 (%TBSA) + 0.23 (caloric intake in last 24 h) + 0.84 (Harris-Benedict unadjusted) + 114 (temp &deg;C) &minus; 4.5 (days after injury)</td>
+                <td>Can be adjusted by activity factor: confined to bed &times;1.2; minimal ambulation &times;1.3; moderate activity &times;1.4</td>
+              </tr>
+              <tr>
+                <td><strong>Curreri</strong></td>
+                <td>25 (weight kg) + 40 (%TBSA)</td>
+                <td>Can overestimate caloric needs</td>
+              </tr>
+              <tr>
+                <td><strong>Hangang</strong></td>
+                <td>867.542 &minus; 5.546 (age yrs) + 13.297 (weight kg) + 4.879 (%TBSA) &minus; 9.844 (PBD) + 500.612 (V)</td>
+                <td>Adjusted for each post-burn day (PBD) and if mechanically ventilated (V=1 if ventilated, V=0 if not)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 class="sub-head">Macronutrients</h3>
+      <ul>
+        <li><strong>Carbohydrates</strong> — generally the preferred energy source, preventing a reliance on muscle proteolysis. However, relying solely on carbohydrates would result in hyperglycaemia. <strong>Glucose should be limited to 55% of total energy requirements</strong>; hyperglycaemia managed with supplemental insulin as required. Relative insulin resistance is commonly observed.</li>
+        <li><strong>Lipids</strong> — excessive delivery can result in accumulation in the liver and impaired immune function. <strong>Lipids should account for no more than 30% of energy delivered</strong>, although some centres recommend a maximum of 15%. <strong>Account for the lipid content of propofol</strong> given the potentially high sedation requirements.</li>
+        <li><strong>Protein</strong> — plays a crucial role in wound repair and maintenance of lean body mass. Increasing protein intake to supraphysiological values does not prevent catabolism of existing protein stores but does prevent a negative nitrogen balance and improve protein synthesis. <strong>Protein 1.5–2 g/kg/day in adults</strong> — often requires protein-enriched feeds under dietetic guidance.</li>
+      </ul>
+
+      <h3 class="sub-head">Micronutrients</h3>
+      <ul>
+        <li>Reserves of trace elements including <strong>copper, selenium, zinc</strong> and <strong>vitamins B, C, D and E</strong> may become depleted because of the intense inflammatory response, exudative losses and haemodilution from i.v. fluid resuscitation.</li>
+        <li>Micronutrients are essential for antioxidant defences, wound healing and immune function.</li>
+        <li>Adequate supplementation often requires <strong>supraphysiological doses</strong>, often <strong>parenterally</strong> because enteral absorption may be limited.</li>
+        <li>Early replacement may reduce infectious complications, improve wound healing and reduce intensive care length of stay.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 19 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Infection &amp; Sepsis</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>Loss of skin — the primary barrier to infection — coupled with relative immunosuppression leads to an increased risk of infectious complications.</li>
+        <li>Infections are an important contributor to the high morbidity and mortality rates after major burns, accounting for an estimated <strong>42–65% of deaths</strong> after burn injury.</li>
+      </ul>
+
+      <h3 class="sub-head">Colonisation vs invasive wound infection</h3>
+      <ul>
+        <li><strong>Colonisation</strong> — low bacterial concentrations on the surface of wounds, without surrounding erythema or cellulitis.</li>
+        <li><strong>Invasive wound infection</strong> — characterised by:
+          <ul>
+            <li>Cellulitis of surrounding healthy tissue</li>
+            <li>Extension of existing burn depth</li>
+            <li>Eschar separation or necrosis</li>
+          </ul>
+        </li>
+        <li>Patients may develop worsening pyrexia or raised inflammatory markers, but this can be difficult to distinguish from the inflammatory response after burns.</li>
+      </ul>
+
+      <h3 class="sub-head">Sepsis criteria in burns (ABA consensus)</h3>
+      <ul>
+        <li>Temperature <strong>&gt;39&deg;C or &lt;36.5&deg;C</strong></li>
+        <li>Heart rate <strong>&gt;110 beats/min</strong></li>
+        <li>Ventilatory frequency <strong>&gt;25 bpm</strong> (or minute ventilation &gt;12 L/min if invasively ventilated)</li>
+        <li><strong>Thrombocytopenia &lt;100 &times; 10<sup>9</sup>/L</strong> (&gt;3 days after initial resuscitation)</li>
+        <li><strong>Hyperglycaemia &gt;11.1 mmol/L</strong> or insulin infusion dose requirement &gt;7 units/h</li>
+        <li><strong>Intolerance of enteral feed</strong></li>
+      </ul>
+
+      <div class="note">
+        Given the difficulty relying on clinical signs and traditional biomarkers such as <strong>C-reactive protein (CRP)</strong>, other markers such as <strong>procalcitonin (PCT)</strong> may have better discriminatory capacity in diagnosing sepsis in patients with major burns. There is also increasing interest in genomic variants, cytokine profiles and epigenetic markers.
+      </div>
+
+      <h3 class="sub-head">Common pathogens</h3>
+      <ul>
+        <li><strong>Early — Gram-positive:</strong> <em>Staphylococcus aureus</em>, <em>Streptococcus</em> and <em>Enterococcus</em> species.</li>
+        <li><strong>Gram-negative:</strong> <em>Pseudomonas aeruginosa</em> can translocate from the gastrointestinal tract or the environment and thrive in the moist environment of a burn wound. Infections typically have a <strong>green/yellow colour and foul smell</strong> and can lead to invasive infection with necrosis.</li>
+        <li>Other Gram-negatives: <em>Acinetobacter</em>, <em>Escherichia coli</em>, <em>Klebsiella</em>.</li>
+        <li><strong>Multiresistant strains</strong> — <em>P. aeruginosa</em>, <em>Acinetobacter</em> species and vancomycin-resistant <em>Enterococcus</em> (VRE) are an increasing concern. Risk factors: use of broad-spectrum antibiotics, colonisation at hospital admission, need for escharotomy, prolonged hospital or ICU stay, and multiple surgical procedures.</li>
+        <li><strong>Fungal</strong> — colonisation and invasive fungal infections are significant problems. Fungal wound infection is <strong>independently associated with increased mortality</strong>. <em>Candida albicans</em> is the most common pathogen, although <em>Aspergillus</em> and non-albicans <em>Candida</em> such as <em>C. tropicalis</em> and <em>C. krusei</em> are becoming more common.</li>
+      </ul>
+
+      <h3 class="sub-head">Management</h3>
+      <ul>
+        <li>Regular clinical review and sampling of wounds and other potential sources of colonisation and infection should guide antimicrobial therapy.</li>
+        <li>Treat with appropriate antibiotics, ideally as advised by the medical microbiology team and based on colonising organisms.</li>
+        <li><strong>Surgical debridement</strong> may be required.</li>
+        <li>Patients with a <strong>delayed presentation or delayed excision</strong> of burn wounds are at highest risk of infective complications.</li>
+      </ul>
+
+      <h3 class="sub-head">Toxic shock syndromes</h3>
+      <ul>
+        <li>Toxin-producing strains of <em>S. aureus</em> can cause <strong>toxic shock syndrome (TSS)</strong>.</li>
+        <li><strong>Streptococcal toxic shock syndrome (STSS)</strong> — caused by group A <em>Streptococcus</em> — has a similar presentation.</li>
+        <li>Additional features beyond the non-specific signs of infection:
+          <ul>
+            <li>Diffuse macular rash</li>
+            <li>Vomiting and diarrhoea</li>
+            <li>Thrombocytopenia, lymphopenia</li>
+            <li>Deranged liver function tests</li>
+          </ul>
+        </li>
+        <li>In addition to standard management of infections, consider antibiotics that directly reduce exotoxin production — such as <strong>clindamycin and linezolid</strong>. The use of <strong>i.v. immunoglobulin</strong> has also been reported.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 20 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Hypermetabolic Response &amp; Pharmacotherapy</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>Although changes in the metabolic and inflammatory response are most pronounced in the acute phase, some changes can persist for <strong>several years</strong> after a burn injury has healed.</li>
+        <li>Persisting metabolic, inflammatory and immune changes can result in an increased risk of developing later problems (see Table, below).</li>
+        <li><strong>Appropriate skin closure, nutritional support and analgesia are fundamental to mitigating this response.</strong></li>
+      </ul>
+
+      <h3 class="sub-head">Beta-blockers</h3>
+      <ul>
+        <li>Beta-adrenergic blockade with drugs such as <strong>propranolol</strong> suppresses the catabolic effects of a burn by:
+          <ul>
+            <li>Reducing energy expenditure</li>
+            <li>Limiting insulin resistance</li>
+            <li>Preventing muscle wasting</li>
+            <li>Acting as anti-inflammatory agents</li>
+          </ul>
+        </li>
+        <li>Must be used with caution in intensive care because of the risk of <strong>cardiovascular instability</strong>.</li>
+        <li>A recent systematic review showed <strong>no benefit</strong> in terms of mortality, length of hospital stay or incidence of sepsis. However, other studies have demonstrated improved wound healing and reduced muscle catabolism.</li>
+      </ul>
+
+      <h3 class="sub-head">Oxandrolone</h3>
+      <ul>
+        <li>An <strong>androgen receptor agonist</strong> which stimulates protein synthesis and muscle growth with much less virilising activity than testosterone — making it more suitable for use in women and children.</li>
+        <li>Used from around <strong>Day 5</strong> after burns, at a dose of <strong>10 mg enterally twice daily</strong> in patients with <strong>&ge;30% TBSA</strong> burns.</li>
+        <li>Aims: minimise weight loss, improve urinary nitrogen balance, increase muscle strength and reduce healing time.</li>
+        <li>Some studies show benefits such as reduced ICU and hospital duration of stay, maintained lean body mass and improved whole body mass.</li>
+        <li><strong>Adverse events:</strong> hepatic injury with increased liver transaminases, renal injury, and skin complications such as cellulitis.</li>
+      </ul>
+
+      <h3 class="sub-head">Long-term effects of burn injuries</h3>
+      <div class="table-wrap">
+        <p class="table-hint">Scroll horizontally &#8594;</p>
+        <div class="table-scroll">
+          <table>
+            <caption>Long-term effects of burn injuries by organ system.</caption>
+            <thead>
+              <tr><th>Organ system</th><th>Effects</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Immune</strong></td>
+                <td>Increased incidence of respiratory infections (influenza, pneumonia); increased hospital admissions with infective diseases; increased mortality from infections</td>
+              </tr>
+              <tr>
+                <td><strong>Cardiovascular</strong></td>
+                <td>Increased risk of ischaemic heart disease, hypertension, heart failure and stroke; reduced exercise tolerance; myocardial fibrosis</td>
+              </tr>
+              <tr>
+                <td><strong>Gastrointestinal</strong></td>
+                <td>Increased risk of disease of alimentary tract, gallbladder, biliary tract and pancreas; increased hospital admissions with diabetes mellitus</td>
+              </tr>
+              <tr>
+                <td><strong>Musculoskeletal</strong></td>
+                <td>Increased fracture risk; joint pain and stiffness; reduced mobility; increased hospital admissions with musculoskeletal disorders</td>
+              </tr>
+              <tr>
+                <td><strong>Central nervous</strong></td>
+                <td>Increased hospital admissions with epilepsy, migraine and nerve problems</td>
+              </tr>
+              <tr>
+                <td><strong>Miscellaneous</strong></td>
+                <td>Increased all-cause mortality; increased cancer risk (perhaps worse in females)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 21 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Pain Management</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>The pain experienced from a burn injury can be <strong>excruciating</strong> and is often difficult to manage.</li>
+        <li>Some studies suggest <strong>higher pain scores during hospital admission are associated with poorer long-term outcomes</strong>, such as increased mental health problems.</li>
+        <li>Given the complexities and challenges of effective pain management, a <strong>specialist pain service should be an integral part of the burns team</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">Causes of pain</h3>
+      <ul>
+        <li>The burn injury itself is usually the most significant source — but there are many others:
+          <ul>
+            <li>Associated injuries</li>
+            <li>Tracheal tubes, invasive lines and catheters</li>
+            <li>Skin autograft donor sites</li>
+            <li>Pressure areas</li>
+            <li>Interventions including position changes</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3 class="sub-head">The three types of pain — a structured approach</h3>
+
+      <div class="note">
+        <strong>1. Background pain</strong><br>
+        A degree of persistent pain after a burn injury. <strong>Multimodal analgesia</strong> should be prescribed to maintain adequate control. Infusions should be titrated to a targeted effect, maximising clinical benefit while avoiding unwanted adverse effects. Assessment: <strong>VAS</strong> (cooperative, communicative patients) or the <strong>Critical Care Pain Observation Tool (CPOT)</strong> in ICU. Non-pharmacological measures: appropriate dressings, comfortable positioning, cutaneous stimulation, acupuncture, cognitive behavioural therapy and music therapy.
+      </div>
+
+      <div class="note">
+        <strong>2. Breakthrough pain</strong><br>
+        Occurs <em>on top of</em> well-controlled background pain — either as an exacerbation of background pain or originating from another source. Can be evoked, spontaneous, predictable or unpredictable. Managed with <strong>boluses of rapid-acting agents</strong>, increases in the rate of opioid infusions, or — if predictable — <strong>anticipatory doses of longer-acting agents</strong>.
+      </div>
+
+      <div class="note">
+        <strong>3. Procedural pain</strong><br>
+        Interventions include dressing changes and mobilisation. Analgesic interventions should be <strong>timed appropriately</strong> to gain maximum benefit from the agent being used. Appropriate agents: opioid boluses, inhaled agents including <strong>nitrous oxide and methoxyflurane</strong>, or analgesedative agents such as <strong>ketamine</strong>. Non-pharmacological methods: hypnosis, virtual reality systems and other distraction techniques.
+      </div>
+
+      <h3 class="sub-head">Pharmacological management</h3>
+      <ul>
+        <li><strong>Opioids</strong> — remain the <strong>mainstay</strong> of pain management in burn injuries. The choice of opioid and method of delivery depends on local preferences and patient factors including renal function and conscious level. <strong>Patient-controlled analgesia (PCA)</strong> is commonly used but relies on a conscious and alert patient. Patients with significant burn injuries often require <strong>large doses</strong>. Adverse effects: ileus, respiratory depression, delirium, hypotension and potentially dependence. A multimodal approach incorporating advice from a pain specialist is advised.</li>
+        <li><strong>Non-steroidal anti-inflammatory drugs</strong> (e.g. ibuprofen, diclofenac) — <em>infrequently used</em> in critically ill patients because of the potential risks of <strong>gastrointestinal haemorrhage and renal impairment</strong>. May benefit selected patients but should be used with caution.</li>
+        <li><strong>Ketamine</strong> — an <strong>NMDA receptor antagonist</strong> with potent analgesic effects. Can be given as an i.v. infusion, often to reduce opioid requirements, or in sedative or anaesthetic doses for painful interventions. May also have a role in <strong>preventing the development of neuropathic pain</strong> — shown to reduce secondary hyperalgesia and wind-up phenomenon in healthy volunteers.</li>
+        <li><strong>Gabapentinoids</strong> (gabapentin, pregabalin) — used in the management of burn pain and pruritus, both acutely and in those who develop chronic symptoms. Evidence of benefit is mainly from observational studies demonstrating improved pain scores and reduced opioid consumption. Given increasing evidence of harm from <strong>dependence, abuse and overdose</strong>, use with caution — especially in patients with a history of alcohol or drug misuse.</li>
+        <li><strong>Dexmedetomidine</strong> — a highly selective &alpha;<sub>2</sub> receptor agonist with both analgesic and sedative effects. Can be used in ICU as part of an analgesic regimen, in combination with general anaesthesia, as a sedative for painful procedures, and as an adjunct in PCA. Common adverse effects: <strong>bradycardia and hypotension</strong>. Recent studies highlight a risk of <strong>pyrexia</strong> — caution is advised in the context of hypermetabolism after burns.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 22 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">Psychological Sequelae &amp; Long-Term Care</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>Survivors of burn injuries can be left with long-lasting mental health problems such as <strong>depression, anxiety, suicidal ideation and post-traumatic stress disorder (PTSD)</strong>.</li>
+        <li>Other consequences include <strong>cognitive impairment, physical limitations, chronic pain and pruritus</strong>.</li>
+        <li>Many of these sequelae are recognised in intensive care survivors as <strong>post-intensive care syndrome (PICS)</strong> — although such effects are likely to be <em>amplified</em> in survivors of major burn injuries, regardless of whether or not they were managed in ICU.</li>
+        <li>Patients with major burns often have:
+          <ul>
+            <li>A prolonged hospital admission</li>
+            <li>Numerous invasive procedures</li>
+            <li>Multiple risk factors for developing delirium</li>
+            <li>Significant pain issues</li>
+          </ul>
+        </li>
+        <li>Furthermore, the event causing the burn injury is frequently distressing.</li>
+      </ul>
+
+      <h3 class="sub-head">Service model</h3>
+      <ul>
+        <li><strong>Psychological support staff should form part of the multidisciplinary team.</strong></li>
+        <li><strong>Routine psychological assessment is advised</strong>, and robust care pathways should be in place to provide help and support to burn victims and their families.</li>
+        <li>This should include access to support groups, charities, websites and opportunities for peer support.</li>
+        <li><strong>Early psychosocial screening</strong> may help identify patients at the highest risk of developing problems after burn injury, allowing prompt intervention to address the psychological, emotional and social challenges these patients may face.</li>
+      </ul>
+
+      <h3 class="sub-head">Contractures</h3>
+      <ul>
+        <li>Approximately <strong>1 in 3 patients</strong> develops at least one contracture following a burn injury, which can limit mobility and function.</li>
+        <li>These can require further surgeries many months after the original injury and cause additional scarring as well as contribute to chronic pain.</li>
+        <li>Careful consideration must be given to <strong>airway management, muscle relaxant choice and positioning during surgery</strong> in these patients.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- 23 -->
+  <section class="acc">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <span class="acc-title">10 High-Yield Case Examples</span><span class="chev" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+
+      <article class="case">
+        <h4><span class="tag">Case 1</span> Parkland in practice</h4>
+        <p><span class="label">Scenario</span>A 70 kg adult with a 40% TBSA flame burn arrives 2 h after injury. No inhalation injury.</p>
+        <p><span class="label">Calculation</span>Parkland 4 mL/kg/%TBSA = 4 &times; 70 &times; 40 = <strong>11,200 mL / 24 h</strong>. Modified Parkland (3 mL) = <strong>8400 mL</strong>. Half the total is given in the first 8 h — counted from <em>time of injury</em>, so 2 h have already elapsed.</p>
+        <p><span class="label">Action</span>Warm balanced crystalloid (Hartmann's) via two large-bore cannulas. Use 4 mL/kg for initial calculation, then titrate to hourly urine output 0.5–1 mL/kg <em>ideal</em> body weight. Subtract any fluid already given. Avoid rigid adherence to a single formula.</p>
+      </article>
+
+      <article class="case">
+        <h4><span class="tag">Case 2</span> Evolving airway from inhalation injury</h4>
+        <p><span class="label">Scenario</span>A patient rescued from an enclosed house fire: hoarse voice, stridor, soot in the oropharynx, singed nasal hair, facial burns.</p>
+        <p><span class="label">Key issue</span>Voice changes, hoarseness and <strong>stridor</strong> are particularly concerning — these signs may not develop until swelling is already obstructing the airway. Fluid resuscitation will worsen oedema over the following hours.</p>
+        <p><span class="label">Action</span>Intubate early. Use a <strong>video-laryngoscope</strong>, plan for a difficult airway including surgical access. Use an <strong>uncut tracheal tube</strong> to allow for further swelling, and a <strong>larger-diameter tube</strong> to facilitate bronchoscopy. If in doubt, discuss with the receiving burns service.</p>
+      </article>
+
+      <article class="case">
+        <h4><span class="tag">Case 3</span> Suxamethonium after 48 hours</h4>
+        <p><span class="label">Scenario</span>Day 5 after a 50% TBSA burn, listed for excision and grafting.</p>
+        <p><span class="label">Key issue</span>Suxamethonium is safe <strong>only up to 48 h</strong> after burn injury. Beyond that, proliferation of extrajunctional acetylcholine receptors predisposes to life-threatening hyperkalaemia.</p>
+        <p><span class="label">Action</span>Avoid suxamethonium. Use <strong>rocuronium 1.2–1.5 mg/kg</strong> for rapid sequence induction — effective paralysis takes about <strong>90 seconds</strong> versus 60 seconds in non-burn patients. Have a difficult airway trolley with front-of-neck access immediately available.</p>
+      </article>
+
+      <article class="case">
+        <h4><span class="tag">Case 4</span> Circumferential chest burn preventing ventilation</h4>
+        <p><span class="label">Scenario</span>Full thickness circumferential chest burn, rising airway pressures, falling cardiac pre-load.</p>
+        <p><span class="label">Key issue</span>Non-compliant eschar prevents adequate ventilation and adversely affects cardiac pre-load. This is a <strong>life-saving procedure before transfer</strong>.</p>
+        <p><span class="label">Action</span>Urgent <strong>escharotomy</strong> — longitudinal incisions from unburned skin to unburned skin, deep enough to reach subcutaneous fat to release the eschar. Requires anaesthesia; diathermy usually minimises blood loss; give prophylactic antibiotics. Fasciotomy (deeper, through fascia) is reserved mainly for high-voltage electrical burns with compartment syndrome.</p>
+      </article>
+
+      <article class="case">
+        <h4><span class="tag">Case 5</span> Fluid creep and colloid rescue</h4>
+        <p><span class="label">Scenario</span>48 h into resuscitation of a 60% TBSA burn. Hourly urine output is 2.5 mL/kg/h. Projected 24 h volumes exceed 6 mL/kg/%TBSA.</p>
+        <p><span class="label">Key issue</span>Over-resuscitation risks hyponatraemia, tissue and pulmonary oedema, cerebral oedema, and abdominal/limb compartment syndromes. High urine output is <em>not</em> a reason to continue the same rate.</p>
+        <p><span class="label">Action</span>Reduce the fluid rate by <strong>25%</strong>. Reassess using peripheral perfusion, MAP, pulse pressure variation, lactate, haematocrit, base excess and intra-abdominal pressures. If volumes will exceed 6 mL/kg/%TBSA, initiate <strong>Colloid Rescue</strong> — replace <strong>one third</strong> of the crystalloid regimen with <strong>4.5% human albumin solution</strong> and continue until 48 h post-injury.</p>
+      </article>
+
+      <article class="case">
+        <h4><span class="tag">Case 6</span> Massive blood loss during excision</h4>
+        <p><span class="label">Scenario</span>Total burn wound excision of 30% TBSA. Persistent tachycardia with falling blood pressure and cardiac filling pressures.</p>
+        <p><span class="label">Key issue</span>Blood loss can be as much as <strong>3.4% of total blood volume for each per cent TBSA excised</strong> — roughly 30 &times; 3.4% ≈ one full blood volume in this case. Risks are higher with infected tissue, deeper burns and prolonged operative time. <strong>Topical adrenaline used surgically can temporarily mask hypovolaemia</strong> by propping up blood pressure.</p>
+        <p><span class="label">Action</span>Anticipate blood products early — coagulopathy may range from subclinical changes to fulminant DIC. Use limb tourniquets, topical adrenaline and compression bandages to reduce bleeding. Consider <strong>thromboelastography</strong> to direct blood product use. Replace volume and transfuse as appropriate once the vasopressor effect wears off.</p>
+      </article>
+
+      <article class="case">
+        <h4><span class="tag">Case 7</span> Suspected sepsis — a diagnostic challenge</h4>
+        <p><span class="label">Scenario</span>Day 7, 50% TBSA burn, temperature 39.2&deg;C, HR 118, ventilatory frequency 28, new green/yellow foul-smelling wound discharge.</p>
+        <p><span class="label">Key issue</span>Fever and raised inflammatory markers are hard to distinguish from the burn inflammatory response. <em>Pseudomonas aeruginosa</em> typically produces green/yellow discharge with a foul smell and can cause invasive infection with necrosis. Infections account for <strong>42–65% of burn deaths</strong>.</p>
+        <p><span class="label">Action</span>Apply the ABA sepsis criteria (temperature &gt;39 or &lt;36.5&deg;C; HR &gt;110; ventilatory frequency &gt;25 or minute ventilation &gt;12 L/min; platelets &lt;100 &times; 10<sup>9</sup>/L; glucose &gt;11.1 mmol/L or insulin &gt;7 units/h; feed intolerance). Consider <strong>procalcitonin</strong> over CRP. Sample wounds and all potential sources. Start targeted antibiotics guided by microbiology; surgical debridement may be needed.</p>
+      </article>
+
+      <article class="case">
+        <h4><span class="tag">Case 8</span> Hyperthermia above 39.5&deg;C</h4>
+        <p><span class="label">Scenario</span>Day 4 in ICU after a 60% TBSA burn, core temperature 40.2&deg;C.</p>
+        <p><span class="label">Key issue</span>Thermodysregulation is common — hypothalamic setpoint is altered by pyrogens including IL-1 and TNF. But <strong>hyperthermia may also signal infection or a transfusion reaction</strong>. Temperatures exceeding 40&deg;C can lead to multiorgan failure.</p>
+        <p><span class="label">Action</span>Actively cool: debulk dressings, give paracetamol, apply ice to non-burned areas, infuse cooled i.v. fluids, irrigate bladder and stomach with cold fluids. Consider intravascular heat exchange catheters or extracorporeal circuits if refractory. <strong>Simultaneously investigate for infection and transfusion reaction.</strong> Note dexmedetomidine may itself cause pyrexia — caution in hypermetabolism.</p>
+      </article>
+
+      <article class="case">
+        <h4><span class="tag">Case 9</span> Nutrition and the hypermetabolic response</h4>
+        <p><span class="label">Scenario</span>Day 1, 45% TBSA burn, intubated and ventilated in ICU.</p>
+        <p><span class="label">Key issue</span>Basal metabolic rate more than doubles with burns &gt;40% TBSA. Loss of lean body mass correlates directly with infectious complications and death. <strong>Total body weight loss should not exceed 10% of admission weight.</strong></p>
+        <p><span class="label">Action</span>Start <strong>enteral nutrition within 6–12 h</strong> — this improves gut integrity, wound healing and reduces ICU length of stay. Continue feeding through the operative period; keep fasting times minimal. Prescribe protein <strong>1.5–2 g/kg/day</strong>, limit glucose to 55% of energy and lipids to &le;30% (account for propofol lipid). Supplement micronutrients (copper, selenium, zinc, vitamins B, C, D, E), often parenterally. Involve the burns dietician. Consider <strong>oxandrolone 10 mg enteral BD from around Day 5</strong> if &ge;30% TBSA — monitor liver and renal function.</p>
+      </article>
+
+      <article class="case">
+        <h4><span class="tag">Case 10</span> Procedural pain for a dressing change</h4>
+        <p><span class="label">Scenario</span>A conscious patient with a 35% TBSA burn requires a ward dressing change. Background pain is well controlled on a multimodal regimen.</p>
+        <p><span class="label">Key issue</span>Pain falls into three categories — <strong>background, breakthrough and procedural</strong>. Procedural pain should be managed with agents <em>timed</em> to peak at the moment of the intervention. Higher pain scores during admission are associated with poorer long-term outcomes, including mental health problems.</p>
+        <p><span class="label">Action</span>Give an opioid bolus timed appropriately, plus <strong>ketamine</strong> (NMDA antagonist — reduces opioid requirements and may prevent neuropathic pain) or an inhaled agent such as nitrous oxide or methoxyflurane. Use non-pharmacological adjuncts — virtual reality, hypnosis, distraction, music therapy. Involve the specialist pain service. Screen early for psychological sequelae (depression, anxiety, PTSD) as part of the multidisciplinary team approach.</p>
+      </article>
+
+    </div></div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <h3>Sources</h3>
+  <div class="src">
+    <p><strong>1. McCann C, Watson A, Barnes D.</strong> Major burns: Part 1. Epidemiology, pathophysiology and initial management. <em>BJA Education</em> 2022; 22(3): 94–103. doi:10.1016/j.bjae.2021.10.001. Advance Access Publication Date: 21 December 2021. St Andrews Centre for Burns &amp; Plastic Surgery, Broomfield Hospital, Chelmsford, UK.</p>
+    <p style="margin-bottom:0;"><strong>2. McGovern C, Puxty K, Paton L.</strong> Major burns: Part 2. Anaesthesia, intensive care and pain management. <em>BJA Education</em> 2022; 22(4): 138–145. doi:10.1016/j.bjae.2022.01.001. Glasgow Royal Infirmary and University of Glasgow, UK.</p>
+  </div>
+  <p class="fine"><strong>Adaptation note:</strong> This is a merged, condensed quick-reference summary of the two source articles above, prepared for educational use by anaesthetists and intensivists. Not all detail from the original articles is reproduced; refer to the full texts for complete guidance and references.</p>
+  <p class="fine"><strong>Disclaimer:</strong> Educational material only — not a substitute for professional clinical judgement. Verify all drug doses, fluid calculations, formulae and referral criteria against local protocols and current national guidance.</p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll(".acc"));
+  var input = document.getElementById("search");
+  var status = document.getElementById("status");
+  var expandAllBtn = document.getElementById("expandAll");
+  var collapseAllBtn = document.getElementById("collapseAll");
+
+  /* Cache original markup + references */
+  sections.forEach(function (sec) {
+    sec._headEl  = sec.querySelector(".acc-head");
+    sec._titleEl = sec.querySelector(".acc-title");
+    sec._bodyEl  = sec.querySelector(".acc-body");
+    sec._innerEl = sec.querySelector(".acc-inner");
+    sec._titleHTML = sec._titleEl.innerHTML;
+    sec._innerHTML = sec._innerEl.innerHTML;
+  });
+
+  /* ---------- Open / close ---------- */
+  function openPanel(sec) {
+    var b = sec._bodyEl;
+    var wasOpen = sec.classList.contains("open");
+    sec.classList.add("open");
+    sec._headEl.setAttribute("aria-expanded", "true");
+    if (wasOpen && b.style.maxHeight === "none") return;
+
+    b.style.maxHeight = b.scrollHeight + "px";
+    var onEnd = function (e) {
+      if (e.propertyName !== "max-height") return;
+      b.removeEventListener("transitionend", onEnd);
+      if (sec.classList.contains("open")) b.style.maxHeight = "none";
+    };
+    b.addEventListener("transitionend", onEnd);
+  }
+
+  function closePanel(sec, instant) {
+    var b = sec._bodyEl;
+    var wasOpen = sec.classList.contains("open");
+    sec.classList.remove("open");
+    sec._headEl.setAttribute("aria-expanded", "false");
+
+    if (instant || !wasOpen) {
+      b.style.maxHeight = "0px";
+      return;
+    }
+    b.style.maxHeight = b.scrollHeight + "px";
+    void b.offsetHeight; /* force reflow */
+    b.style.maxHeight = "0px";
+  }
+
+  sections.forEach(function (sec) {
+    sec._headEl.addEventListener("click", function () {
+      if (sec.classList.contains("open")) closePanel(sec);
+      else openPanel(sec);
+    });
+  });
+
+  /* Open the first section by default */
+  if (sections.length) {
+    sections[0].classList.add("open");
+    sections[0]._headEl.setAttribute("aria-expanded", "true");
+    sections[0]._bodyEl.style.maxHeight = "none";
+  }
+
+  /* ---------- Highlight ---------- */
+  var XHTML = "http://www.w3.org/1999/xhtml";
+
+  function highlight(root, q) {
+    if (!q) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var parent = node.parentNode;
+        if (!parent || parent.namespaceURI !== XHTML) return NodeFilter.FILTER_REJECT;
+        var tag = parent.nodeName;
+        if (tag === "SCRIPT" || tag === "STYLE") return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(q) !== -1
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var i = 0, idx;
+
+      while ((idx = lower.indexOf(q, i)) !== -1) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement("mark");
+        mark.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mark);
+        i = idx + q.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      if (frag.childNodes.length) node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- Search ---------- */
+  function restoreAll() {
+    sections.forEach(function (sec) {
+      sec._titleEl.innerHTML = sec._titleHTML;
+      sec._innerEl.innerHTML = sec._innerHTML;
+    });
+  }
+
+  function resetToDefault() {
+    sections.forEach(function (sec, i) {
+      sec.hidden = false;
+      if (i === 0) {
+        sec.classList.add("open");
+        sec._headEl.setAttribute("aria-expanded", "true");
+        sec._bodyEl.style.maxHeight = "none";
+      } else {
+        closePanel(sec, true);
+      }
+    });
+  }
+
+  function runSearch() {
+    var raw = input.value.trim();
+    var q = raw.toLowerCase();
+
+    restoreAll();
+
+    if (!q) {
+      resetToDefault();
+      status.textContent = "";
+      return;
+    }
+
+    var hits = 0;
+
+    sections.forEach(function (sec) {
+      var hay = (sec._titleEl.textContent + " " + sec._innerEl.textContent).toLowerCase();
+
+      if (hay.indexOf(q) !== -1) {
+        hits++;
+        sec.hidden = false;
+        highlight(sec._titleEl, q);
+        highlight(sec._innerEl, q);
+        openPanel(sec);
+      } else {
+        closePanel(sec, true);
+        sec.hidden = true;
+      }
+    });
+
+    if (hits === 0) {
+      status.textContent = "No matching sections for \u201C" + raw + "\u201D.";
+    } else {
+      status.textContent = hits + (hits === 1 ? " section matches " : " sections match ") + "\u201C" + raw + "\u201D.";
+    }
+  }
+
+  var debounce;
+  input.addEventListener("input", function () {
+    clearTimeout(debounce);
+    debounce = setTimeout(runSearch, 130);
+  });
+  input.addEventListener("search", function () {
+    clearTimeout(debounce);
+    runSearch();
+  });
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      input.value = "";
+      runSearch();
+    }
+  });
+
+  /* ---------- Expand / collapse all ---------- */
+  expandAllBtn.addEventListener("click", function () {
+    sections.forEach(function (sec) {
+      if (!sec.hidden) openPanel(sec);
+    });
+  });
+
+  collapseAllBtn.addEventListener("click", function () {
+    sections.forEach(function (sec) {
+      if (!sec.hidden) closePanel(sec);
+    });
+  });
+})();
+</script>
+</body>
+</html>
