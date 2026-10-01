@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acute Asthma in Adults — Quick Reference for Anaesthetists &amp; Intensivists (SIGN 244)</title>
+<style>
+  :root{
+    --bg:#f4f7fb; --card:#ffffff; --card-2:#fbfcfe; --text:#12181f; --muted:#5b6675;
+    --accent:#0b63c5; --accent-soft:#e7f0fd; --border:#dce3ec;
+    --warn:#9a3412; --warn-bg:#fff6ed; --warn-border:#fed7aa;
+    --ok:#065f46; --ok-bg:#ecfdf5; --ok-border:#a7f3d0;
+    --info-bg:#eef6ff; --info-border:#bfdbfe;
+    --critical:#991b1b; --critical-bg:#fef2f2; --critical-border:#fecaca;
+    --radius:14px; --shadow:0 1px 2px rgba(16,24,40,.05), 0 6px 18px rgba(16,24,40,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1117; --card:#161b22; --card-2:#1b2129; --text:#e6edf3; --muted:#9aa7b4;
+      --accent:#58a6ff; --accent-soft:#132539; --border:#2b3440;
+      --warn:#fdba74; --warn-bg:#2a1a0e; --warn-border:#5c3a1a;
+      --ok:#6ee7b7; --ok-bg:#0f2419; --ok-border:#1c4a34;
+      --info-bg:#10203a; --info-border:#1f3a63;
+      --critical:#fca5a5; --critical-bg:#2a0f0f; --critical-border:#5c1a1a;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;font-size:15.5px;-webkit-text-size-adjust:100%}
+  a{color:var(--accent)}
+  code{background:var(--accent-soft);padding:.1em .35em;border-radius:5px;font-size:.9em;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+  header.top{background:linear-gradient(135deg,#991b1b,#7f1d1d);color:#fff;padding:22px 18px 16px}
+  @media (prefers-color-scheme: dark){header.top{background:linear-gradient(135deg,#3f1212,#2a0c0c)}}
+  .wrap{max-width:1040px;margin:0 auto}
+  header.top h1{margin:0 0 6px;font-size:1.35rem;line-height:1.25;letter-spacing:-.01em}
+  header.top p{margin:0;font-size:.87rem;opacity:.92}
+  .pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:3px 10px;border-radius:999px;font-size:.73rem;font-weight:600;letter-spacing:.02em}
+
+  .searchbar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border);padding:10px 18px;backdrop-filter:blur(8px)}
+  .search-inner{max-width:1040px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .search-input-wrap{position:relative;flex:1 1 260px;min-width:200px}
+  #searchInput{width:100%;padding:10px 34px 10px 36px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:.95rem;font-family:inherit;outline:none}
+  #searchInput:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.95rem;pointer-events:none}
+  #clearSearch{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;padding:4px 6px;border-radius:6px;display:none}
+  #clearSearch:hover{background:var(--accent-soft);color:var(--accent)}
+  .btn{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:10px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  #matchCount{font-size:.78rem;color:var(--muted);white-space:nowrap}
+
+  main{max-width:1040px;margin:0 auto;padding:18px 18px 60px}
+
+  details.section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin:0 0 12px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:70px}
+  details.section[hidden]{display:none}
+  details.section > summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:1.02rem;display:flex;align-items:center;gap:10px;list-style:none;user-select:none}
+  details.section > summary::-webkit-details-marker{display:none}
+  details.section > summary::before{content:"▸";color:var(--accent);font-size:.9rem;flex:none;transition:transform .18s ease;display:inline-block}
+  details.section[open] > summary::before{transform:rotate(90deg)}
+  details.section > summary:hover{background:var(--accent-soft)}
+  .sec-num{flex:none;background:var(--accent-soft);color:var(--accent);font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.02em}
+  .body{padding:2px 16px 18px;border-top:1px solid var(--border)}
+  .body h3{font-size:.95rem;margin:18px 0 8px;color:var(--accent);letter-spacing:.01em}
+  .body h3:first-child{margin-top:14px}
+  .body h4{font-size:.88rem;margin:14px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .body ul,.body ol{margin:6px 0 10px;padding-left:22px}
+  .body li{margin:4px 0}
+  .body p{margin:8px 0}
+  .rec{border-left:3px solid var(--accent);padding:2px 0 2px 12px;margin:10px 0}
+  .rec-id{font-weight:700;color:var(--accent);font-size:.82rem;margin-right:6px}
+  .tagline{font-size:.72rem;color:var(--muted);font-style:italic;margin-top:3px}
+
+  .callout{border-radius:10px;padding:11px 13px;margin:12px 0;font-size:.9rem;border:1px solid}
+  .callout strong{display:block;margin-bottom:3px;font-size:.83rem;text-transform:uppercase;letter-spacing:.04em}
+  .callout.warn{background:var(--warn-bg);border-color:var(--warn-border);color:var(--warn)}
+  .callout.ok{background:var(--ok-bg);border-color:var(--ok-border);color:var(--ok)}
+  .callout.info{background:var(--info-bg);border-color:var(--info-border);color:var(--text)}
+  .callout.info strong{color:var(--accent)}
+  .callout.critical{background:var(--critical-bg);border-color:var(--critical-border);color:var(--critical)}
+  .callout.critical strong{color:var(--critical)}
+
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:10px;margin:12px 0;background:var(--card-2)}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:.88rem}
+  thead th{background:var(--accent-soft);color:var(--text);text-align:left;padding:9px 12px;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);white-space:nowrap}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:nth-child(even){background:rgba(127,127,127,.045)}
+  .scroll-hint{font-size:.72rem;color:var(--muted);margin:-6px 0 12px}
+
+  .flow{margin:14px 0;display:flex;flex-direction:column;gap:0}
+  .flow-step{border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:10px 12px;background:var(--card-2);font-size:.88rem}
+  .flow-step .fs-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:2px}
+  .flow-step b{color:var(--text)}
+  .flow-step.out{border-left-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+  .flow-step.out b{color:var(--ok)}
+  .flow-step.stop{border-left-color:var(--warn);background:var(--warn-bg);color:var(--warn)}
+  .flow-step.stop b{color:var(--warn)}
+  .flow-step.crit{border-left-color:var(--critical);background:var(--critical-bg);color:var(--critical)}
+  .flow-step.crit b{color:var(--critical)}
+  .flow-arrow{text-align:center;color:var(--accent);font-size:1.05rem;line-height:1;padding:6px 0;font-weight:700}
+  .flow-arrow small{display:block;font-size:.7rem;color:var(--muted);font-weight:600;margin-top:2px}
+  .flow-branch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
+  @media (max-width:640px){.flow-branch{grid-template-columns:1fr}}
+  .flow-title{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:20px 0 2px}
+
+  mark.qr-hit{background:#ffe58a;color:#3a2c00;border-radius:3px;padding:0 2px}
+  @media (prefers-color-scheme: dark){mark.qr-hit{background:#7a5c00;color:#ffeaa0}}
+
+  footer.src{max-width:1040px;margin:0 auto;padding:0 18px 60px}
+  .src-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;font-size:.83rem;color:var(--muted);box-shadow:var(--shadow)}
+  .src-card h3{margin:0 0 8px;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
+  .src-card p{margin:5px 0}
+  .src-card .cite{background:var(--card-2);border-left:3px solid var(--accent);padding:9px 12px;border-radius:0 8px 8px 0;color:var(--text);font-size:.82rem;margin:10px 0;line-height:1.5}
+  .no-results{display:none;text-align:center;padding:30px 16px;color:var(--muted);font-size:.92rem;background:var(--card);border:1px dashed var(--border);border-radius:var(--radius)}
+
+  @media print{
+    .searchbar,.btn,#clearSearch{display:none !important}
+    details.section{break-inside:avoid;box-shadow:none}
+    details.section > .body{display:block !important}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>Management of Acute Asthma in Adults</h1>
+    <p>Quick reference for <strong>Anaesthetists &amp; Intensivists</strong> · SIGN 244 / BTS–NICE–SIGN Asthma Pathway</p>
+    <div class="pill-row">
+      <span class="pill">Right Decisions Scotland</span>
+      <span class="pill">Based on BTS/SIGN SIGN 158 (2019)</span>
+      <span class="pill">Emergency &amp; Hospital Management</span>
+      <span class="pill">ICU Escalation Criteria</span>
+    </div>
+  </div>
+</header>
+
+<div class="searchbar">
+  <div class="search-inner">
+    <div class="search-input-wrap">
+      <span class="search-icon">🔍</span>
+      <input id="searchInput" type="search" placeholder="Search: magnesium, salbutamol, ipratropium, ICU, intubation, PEF, discharge…" autocomplete="off" aria-label="Search guideline">
+      <button id="clearSearch" type="button" aria-label="Clear search">×</button>
+    </div>
+    <button class="btn" id="expandAll" type="button">Expand all</button>
+    <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    <span id="matchCount" aria-live="polite"></span>
+  </div>
+</div>
+
+<main id="content">
+
+  <!-- ============ 0. SCOPE & ESSENTIALS ============ -->
+  <details class="section" id="scope" open>
+    <summary><span class="sec-num">00</span> Scope, red flags &amp; immediate priorities</summary>
+    <div class="body">
+      <div class="callout critical">
+        <strong>Acute asthma is a time-critical emergency</strong>
+        All possible initial contact personnel — practice receptionists, ambulance call takers, NHS 24, and out-of-hours providers — should be aware that asthma patients complaining of respiratory symptoms are at risk of becoming seriously unwell very quickly. Such patients should have <b>immediate access to a healthcare professional trained in the emergency treatment of asthma</b>.
+      </div>
+      <div class="callout warn">
+        <strong>Scope of this reference</strong>
+        This quick reference is extracted from the Right Decisions Scotland acute asthma pathway (SIGN 244), which draws on the BTS/SIGN British guideline on the management of asthma (SIGN 158, 2019). It covers the assessment, treatment, monitoring and discharge of adults with acute asthma in the emergency department and in hospital. It is not a substitute for the full guideline or local protocols.
+      </div>
+      <h3>Immediate priorities (hospital &amp; ED)</h3>
+      <ul>
+        <li><b>Oxygen</b> — titrate to maintain SpO₂ 94–98%</li>
+        <li><b>β₂ bronchodilator</b> — salbutamol 5 mg via oxygen-driven nebuliser (or via spacer in mild/moderate ED presentations)</li>
+        <li><b>Ipratropium bromide</b> — 0.5 mg via oxygen-driven nebuliser</li>
+        <li><b>Systemic corticosteroid</b> — prednisolone 40–50 mg orally or IV hydrocortisone 100 mg</li>
+        <li><b>No sedatives of any kind</b></li>
+        <li>Chest X-ray if pneumothorax or consolidation suspected, or if mechanical ventilation is required</li>
+      </ul>
+      <div class="callout critical">
+        <strong>If life-threatening features are present</strong>
+        <ul style="margin:4px 0 0 0;padding-left:18px">
+          <li>Discuss with <b>senior clinician and ICU team</b></li>
+          <li>Consider <b>IV magnesium sulphate 1.2–2 g infusion over 20 minutes</b> (unless already given)</li>
+          <li>Give nebulised β₂ bronchodilator more frequently — salbutamol 5 mg up to every 15–30 minutes, or 10 mg/hour via continuous nebulisation (requires special nebuliser)</li>
+          <li>Measure arterial blood gases</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 1. SEVERITY ASSESSMENT ============ -->
+  <details class="section" id="severity" open>
+    <summary><span class="sec-num">01</span> Recognition &amp; severity assessment</summary>
+    <div class="body">
+      <p>Definitions of increasing levels of severity of acute asthma attacks are provided in the table below. <b>Predicted PEF values should be used only if the recent best PEF (within two years) is unknown.</b></p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Severity</th><th>Criteria</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Moderate acute asthma</b></td>
+              <td>
+                <ul style="margin:0;padding-left:18px">
+                  <li>Increasing symptoms</li>
+                  <li>PEF &gt;50–75% best or predicted</li>
+                  <li><b>No features of acute severe asthma</b></li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Acute severe asthma</b></td>
+              <td>
+                <b>Any one of:</b>
+                <ul style="margin:0;padding-left:18px">
+                  <li>PEF 33–50% best or predicted</li>
+                  <li>Respiratory rate ≥25/min</li>
+                  <li>Heart rate ≥110/min</li>
+                  <li>Inability to complete sentences in one breath</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Life-threatening asthma</b></td>
+              <td>
+                <b>SpO₂ &lt;92% plus any one of the following in a patient with severe asthma:</b>
+                <table style="margin-top:6px;min-width:auto;font-size:.85rem">
+                  <thead><tr><th style="background:transparent;padding:4px 8px;font-size:.72rem">Clinical signs</th><th style="background:transparent;padding:4px 8px;font-size:.72rem">Measurements</th></tr></thead>
+                  <tbody>
+                    <tr><td style="padding:4px 8px;border:0">Altered conscious level</td><td style="padding:4px 8px;border:0">PEF &lt;30% best or predicted</td></tr>
+                    <tr><td style="padding:4px 8px;border:0">Exhaustion</td><td style="padding:4px 8px;border:0">PaO₂ &lt;8 kPa</td></tr>
+                    <tr><td style="padding:4px 8px;border:0">Arrhythmia</td><td style="padding:4px 8px;border:0">‘Normal’ PaCO₂ (4.6–6.0 kPa)</td></tr>
+                    <tr><td style="padding:4px 8px;border:0">Hypotension</td><td style="padding:4px 8px;border:0"></td></tr>
+                    <tr><td style="padding:4px 8px;border:0">Cyanosis</td><td style="padding:4px 8px;border:0"></td></tr>
+                    <tr><td style="padding:4px 8px;border:0">Silent chest</td><td style="padding:4px 8px;border:0"></td></tr>
+                    <tr><td style="padding:4px 8px;border:0">Poor respiratory effort</td><td style="padding:4px 8px;border:0"></td></tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Near-fatal asthma</b></td>
+              <td>
+                Raised PaCO₂ and/or requiring mechanical ventilation with raised inflation pressures
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ Scroll table horizontally on small screens</p>
+
+      <div class="callout info">
+        <strong>Abbreviations</strong>
+        SpO₂ = oxygen saturation measured by pulse oximeter · PaO₂ = partial arterial pressure of oxygen · kPa = kilopascals · PaCO₂ = partial arterial pressure of carbon dioxide
+      </div>
+
+      <h3>Self-treatment &amp; prevention of acute deterioration</h3>
+      <p>Patients with asthma, and all patients with severe asthma, should have an <b>agreed written personalised asthma action plan (PAAP)</b> and their own peak-flow meter, with regular checks of inhaler technique and adherence. They should know when and how to increase their medication and when to seek medical assistance. Written PAAPs can decrease hospitalisation for, and deaths from, asthma.</p>
+      <p>A register of patients at risk may help healthcare professionals in primary care to identify patients who are more likely to die from their asthma. A system should be in place to ensure that such patients are reviewed regularly.</p>
+    </div>
+  </details>
+
+  <!-- ============ 2. ED MANAGEMENT ============ -->
+  <details class="section" id="ed">
+    <summary><span class="sec-num">02</span> Emergency department management</summary>
+    <div class="body">
+      <div class="flow-title">ED algorithm — time-based management</div>
+      <div class="flow">
+        <div class="flow-step">
+          <span class="fs-label">Time 0</span>
+          <b>Measure peak expiratory flow (PEF) and arterial saturations</b>
+        </div>
+        <div class="flow-arrow">▼<small>assess severity</small></div>
+        <div class="flow-branch">
+          <div class="flow-step out">
+            <b>PEF &gt;50–75%</b><br>Moderate asthma
+          </div>
+          <div class="flow-step crit">
+            <b>PEF 33–50%</b><br>Acute severe asthma
+          </div>
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step crit">
+          <b>PEF &lt;33%</b><br>Life-threatening asthma
+        </div>
+        <div class="flow-arrow">▼<small>obtain senior/ICU help now if any life-threatening features are present</small></div>
+        <div class="flow-step">
+          <span class="fs-label">Immediate management</span>
+          <ul style="margin:4px 0 0 0;padding-left:18px">
+            <li>Oxygen to maintain <b>SpO₂ 94–98%</b></li>
+            <li>β₂ bronchodilator with ipratropium via nebuliser (preferably oxygen-driven): <b>salbutamol 5 mg + ipratropium 0.5 mg</b></li>
+            <li><b>Prednisolone 40–50 mg orally</b> or <b>IV hydrocortisone 100 mg</b></li>
+          </ul>
+        </div>
+        <div class="flow-arrow">▼<small>measure arterial blood gases — markers of severity</small></div>
+        <div class="flow-step warn">
+          <b>Markers of severity:</b>
+          <ul style="margin:4px 0 0 0;padding-left:18px">
+            <li>‘Normal’ or raised PaCO₂ (PaCO₂ &gt;4.6 kPa; 35 mmHg)</li>
+            <li>Severe hypoxia (PaO₂ &lt;8 kPa; 60 mmHg)</li>
+            <li>Low pH (or high H⁺)</li>
+          </ul>
+        </div>
+        <div class="flow-arrow">▼<small>at 15 minutes</small></div>
+        <div class="flow-step">
+          <b>Give/repeat salbutamol 5 mg with ipratropium 0.5 mg by oxygen-driven nebuliser</b>
+          <ul style="margin:4px 0 0 0;padding-left:18px">
+            <li>Consider <b>continuous salbutamol nebuliser 5–10 mg/hr</b></li>
+            <li>Consider <b>IV magnesium sulphate 1.2–2 g over 20 minutes</b></li>
+            <li>Correct fluid/electrolytes, especially K⁺ disturbances</li>
+            <li>Chest X-ray</li>
+            <li>Repeat ABG</li>
+          </ul>
+        </div>
+        <div class="flow-arrow">▼<small>decide disposition</small></div>
+        <div class="flow-branch">
+          <div class="flow-step crit">
+            <b>Life-threatening features OR PEF &lt;50%?</b><br><b>YES → Admit</b> — patient accompanied by a nurse or doctor at all times
+          </div>
+          <div class="flow-step out">
+            <b>Life-threatening features OR PEF &lt;50%?</b><br><b>NO →</b> Assess for discharge
+          </div>
+        </div>
+        <div class="flow-arrow">▼<small>if not for immediate admission</small></div>
+        <div class="flow-step">
+          <b>Repeat salbutamol 5 mg nebuliser</b> · Give <b>prednisolone 40–50 mg orally</b>
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-branch">
+          <div class="flow-step crit">
+            <b>Signs of severe asthma OR PEF &lt;50%?</b><br><b>YES → Admit</b>
+          </div>
+          <div class="flow-step out">
+            <b>Signs of severe asthma OR PEF &lt;50%?</b><br><b>NO →</b> Assess recovery
+          </div>
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-branch">
+          <div class="flow-step crit">
+            <b>Patient recovering AND PEF &gt;75%?</b><br><b>NO → Admit</b>
+          </div>
+          <div class="flow-step out">
+            <b>Patient recovering AND PEF &gt;75%?</b><br><b>YES → Potential discharge</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <strong>Discharge from ED — key criteria</strong>
+        <ul style="margin:4px 0 0 0;padding-left:18px">
+          <li>In all patients who received nebulised β₂ bronchodilator prior to presentation, <b>consider an extended observation period prior to discharge</b></li>
+          <li>If PEF &lt;50% on presentation, give <b>prednisolone 40–50 mg/day until recovery (minimum 5 days)</b></li>
+          <li>Ensure treatment supply of inhaled steroid and β₂ bronchodilator, and <b>check inhaler technique</b></li>
+          <li>Arrange <b>GP follow up within 2 working days</b> post discharge</li>
+          <li>Fax or email discharge letter to GP · Refer to asthma liaison nurse/chest clinic</li>
+        </ul>
+      </div>
+      <p><b>Important:</b> Patients who have had &gt;2 salbutamol nebulisers and/or have been treated with IV magnesium for acute asthma on that attendance are <b>not suitable for discharge from ED</b>. A minority of patients who have had &gt;2 salbutamol nebulisers (and who have not received IV magnesium) may be appropriate for discharge, if after extended observation they remain clinically stable, PEF &gt;75% and there are no signs of severe asthma — however this decision should be made by a senior decision maker.</p>
+    </div>
+  </details>
+
+  <!-- ============ 3. HOSPITAL MANAGEMENT ============ -->
+  <details class="section" id="hospital" open>
+    <summary><span class="sec-num">03</span> Hospital management &amp; escalation</summary>
+    <div class="body">
+      <h3>Immediate treatment (in hospital)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Intervention</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td><b>Oxygen</b></td><td>Titrate to maintain <b>SpO₂ 94–98%</b></td></tr>
+            <tr><td><b>β₂ bronchodilator</b></td><td><b>Salbutamol 5 mg</b> via an oxygen-driven nebuliser</td></tr>
+            <tr><td><b>Ipratropium bromide</b></td><td><b>0.5 mg</b> via an oxygen-driven nebuliser</td></tr>
+            <tr><td><b>Systemic corticosteroid</b></td><td><b>Prednisolone 40–50 mg orally</b> or <b>IV hydrocortisone 100 mg</b></td></tr>
+            <tr><td><b>Sedatives</b></td><td><b>No sedatives of any kind</b></td></tr>
+            <tr><td><b>Chest X-ray</b></td><td>If pneumothorax or consolidation suspected, or if patient requires mechanical ventilation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>If life-threatening features are present</h3>
+      <div class="callout critical">
+        <ul style="margin:0;padding-left:18px">
+          <li><b>Discuss with senior clinician and ICU team</b></li>
+          <li>Consider <b>IV magnesium sulphate 1.2–2 g infusion over 20 minutes</b> (unless already given)</li>
+          <li>Give nebulised β₂ bronchodilator more frequently: <b>salbutamol 5 mg up to every 15–30 minutes</b>, or <b>10 mg per hour via continuous nebulisation</b> (requires special nebuliser)</li>
+          <li><b>Measure arterial blood gases</b></li>
+        </ul>
+      </div>
+
+      <h3>Subsequent management</h3>
+      <div class="flow-title">If patient is improving — continue</div>
+      <div class="flow">
+        <div class="flow-step out">
+          <ul style="margin:0;padding-left:18px">
+            <li><b>Oxygen</b> to maintain SpO₂ 94–98%</li>
+            <li><b>Prednisolone 40–50 mg daily</b> or <b>IV hydrocortisone 100 mg 6-hourly</b></li>
+            <li><b>Nebulised β₂ bronchodilator with ipratropium 4–6 hourly</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flow-title">If patient not improving after 15–30 minutes</div>
+      <div class="flow">
+        <div class="flow-step warn">
+          <ul style="margin:0;padding-left:18px">
+            <li><b>Continue oxygen and steroids</b></li>
+            <li>Use <b>continuous nebulisation of salbutamol at 5–10 mg/hour</b> if an appropriate nebuliser is available. Otherwise give nebulised salbutamol 5 mg every 15–30 minutes</li>
+            <li>Continue <b>ipratropium 0.5 mg 4–6 hourly</b> until patient is improving</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flow-title">If patient is still not improving</div>
+      <div class="flow">
+        <div class="flow-step crit">
+          <ul style="margin:0;padding-left:18px">
+            <li><b>Discuss patient with senior clinician and ICU team</b></li>
+            <li>Consider <b>IV magnesium sulphate 1.2–2 g over 20 minutes</b> (unless already given)</li>
+            <li>Senior clinician may consider use of <b>IV β₂ bronchodilator</b> or <b>IV aminophylline</b> or progression to <b>mechanical ventilation</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Monitoring in hospital</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parameter</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><b>PEF</b></td><td>Repeat measurement 15–30 minutes after starting treatment. Chart PEF before and after giving β₂ bronchodilator and at least <b>4 times daily</b> throughout hospital stay.</td></tr>
+            <tr><td><b>Oximetry</b></td><td>Maintain <b>SpO₂ &gt;94–98%</b></td></tr>
+            <tr><td><b>Blood gases</b></td><td>Repeat within <b>1 hour</b> of starting treatment if:<br>· Initial PaO₂ &lt;8 kPa (60 mmHg) unless subsequent SpO₂ &gt;92%, <b>or</b><br>· PaCO₂ normal or raised, <b>or</b><br>· Patient deteriorates</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Transfer to ICU</h3>
+      <div class="callout critical">
+        <strong>Transfer to ICU accompanied by a doctor prepared to intubate if:</strong>
+        <ul style="margin:4px 0 0 0;padding-left:18px">
+          <li>Deteriorating PEF, worsening or persisting hypoxia, or hypercapnia</li>
+          <li>Exhaustion, altered consciousness</li>
+          <li>Poor respiratory effort or respiratory arrest</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 4. DISCHARGE ============ -->
+  <details class="section" id="discharge">
+    <summary><span class="sec-num">04</span> Hospital discharge &amp; follow-up</summary>
+    <div class="body">
+      <p>When discharged from hospital, patients should have:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Requirement</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td><b>Medication stability</b></td><td>Been on discharge medication for <b>12–24 hours</b> and have had <b>inhaler technique checked and recorded</b></td></tr>
+            <tr><td><b>PEF criteria</b></td><td><b>PEF &gt;75% of best or predicted</b> and <b>PEF diurnal variability &lt;25%</b> unless discharge is agreed with respiratory physician</td></tr>
+            <tr><td><b>Medication</b></td><td>Treatment with <b>oral steroids</b> (prednisolone 40–50 mg until recovery — minimum 5 days) and <b>inhaled steroids</b> in addition to bronchodilators</td></tr>
+            <tr><td><b>Equipment &amp; plan</b></td><td><b>Own PEF meter</b> and <b>written asthma action plan</b></td></tr>
+            <tr><td><b>Follow-up</b></td><td><b>GP follow up arranged within 2 working days</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ Scroll table horizontally on small screens</p>
+
+      <div class="callout info">
+        <strong>ICU / ward discharge note</strong>
+        Patients admitted with acute asthma should be reviewed by a healthcare professional trained in asthma management. Ensure a personalised asthma action plan is reviewed and updated, and that the patient has been given steroid cards where appropriate.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 5. DRUG QUICK REFERENCE ============ -->
+  <details class="section" id="drugs">
+    <summary><span class="sec-num">05</span> Drug quick reference</summary>
+    <div class="body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Drug</th><th>Dose / route</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Oxygen</b></td>
+              <td>Titrate to SpO₂ <b>94–98%</b></td>
+              <td>Use controlled supplementary oxygen in all hypoxaemic patients</td>
+            </tr>
+            <tr>
+              <td><b>Salbutamol</b></td>
+              <td>5 mg via oxygen-driven nebuliser<br><small>(ED mild/moderate: via spacer, 1 puff every 60 s up to 10 puffs)</small></td>
+              <td>May repeat every 15–30 min. Continuous nebulisation 5–10 mg/hour if available and not improving. IV salbutamol only by senior clinician decision.</td>
+            </tr>
+            <tr>
+              <td><b>Ipratropium bromide</b></td>
+              <td>0.5 mg via oxygen-driven nebuliser</td>
+              <td>Continue 4–6 hourly until improving</td>
+            </tr>
+            <tr>
+              <td><b>Prednisolone</b></td>
+              <td>40–50 mg orally</td>
+              <td>Continue until recovery — <b>minimum 5 days</b>. Use in all patients with an acute asthma attack.</td>
+            </tr>
+            <tr>
+              <td><b>Hydrocortisone</b></td>
+              <td>100 mg IV</td>
+              <td>Alternative if oral route unavailable; 6-hourly thereafter</td>
+            </tr>
+            <tr>
+              <td><b>Magnesium sulphate</b></td>
+              <td>1.2–2 g IV infusion over 20 minutes</td>
+              <td>Consider in life-threatening features or if not improving. Do not repeat if already given.</td>
+            </tr>
+            <tr>
+              <td><b>Aminophylline</b></td>
+              <td>IV — senior clinician decision only</td>
+              <td>Consider if still not improving; monitor levels if continued</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ Scroll table horizontally on small screens</p>
+      <div class="callout critical">
+        <strong>No sedatives of any kind</strong>
+        Sedatives are contraindicated in acute asthma and may mask or worsen respiratory failure.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 6. TREATMENT — DETAILED DRUG GUIDANCE ============ -->
+  <details class="section" id="treatment">
+    <summary><span class="sec-num">06</span> Treatment of acute asthma — detailed drug guidance</summary>
+    <div class="body">
+      <p>This section reproduces the detailed treatment content from the Right Decisions Scotland pathway (BTS/SIGN 2019). It complements the Drug quick reference above with the evidence base and specific cautions for each therapy.</p>
+
+      <!-- Oxygen -->
+      <h3>Oxygen</h3>
+      <div class="rec">
+        <span class="rec-id">R</span>Give <b>controlled supplementary oxygen</b> to all hypoxaemic patients with acute severe asthma, <b>titrated to maintain an SpO₂ level of 94–98%</b>. Do not delay oxygen administration in the absence of pulse oximetry, but commence monitoring of SpO₂ as soon as it becomes available. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>Many patients with acute severe asthma are hypoxaemic. Supplementary oxygen should be given <b>urgently</b> to hypoxaemic patients, using a face mask, Venturi mask or nasal cannulae with flow rates adjusted as necessary to maintain SpO₂ of <b>94–98%</b>, taking care to <b>avoid overoxygenation</b> which may be detrimental.</li>
+        <li>Emergency oxygen should be available in <b>hospitals, ambulances and primary care</b>.</li>
+        <li><b>Hypercapnia indicates the development of near-fatal asthma</b> and the need for emergency specialist/anaesthetic intervention. In this situation care should be taken to avoid <b>hypoxia as well as overoxygenation</b>.</li>
+      </ul>
+
+      <!-- Beta2 agonists -->
+      <h3>β₂ agonist bronchodilators</h3>
+      <div class="rec">
+        <span class="rec-id">R</span>Use <b>high-dose inhaled β₂ agonists</b> as first-line agents in patients with acute asthma and administer <b>as early as possible</b>. Reserve <b>intravenous β₂ agonists</b> for those patients in whom inhaled therapy cannot be used reliably. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <div class="rec">
+        <span class="rec-id">R</span>In hospital, ambulance and primary care, nebulisers for giving β₂ agonist bronchodilators should preferably be <b>driven by oxygen</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <div class="rec">
+        <span class="rec-id">R</span>In patients with severe asthma that is <b>poorly responsive to an initial bolus dose of β₂ agonist</b>, consider <b>continuous nebulisation</b> with an appropriate nebuliser. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>If intravenous β₂ agonists are used, consider monitoring <b>serum lactate</b> to monitor for toxicity.</li>
+        <li>In patients with acute asthma with <b>acute-severe or life-threatening features</b>, the <b>nebulised route (oxygen-driven)</b> is recommended.</li>
+        <li>In most cases inhaled β₂ agonists given in high doses act quickly to relieve bronchospasm with few side effects.</li>
+        <li><b>Oxygen-driven nebulisers are preferred</b> for nebulising β₂ agonist bronchodilators because of the risk of oxygen desaturation while using air-driven compressors.</li>
+        <li>A flow rate of <b>6 L/min</b> is required to drive most nebulisers. Where oxygen cylinders are used, a <b>high-flow regulator</b> must be fitted.</li>
+        <li>The <b>absence of supplemental oxygen should not prevent nebulised therapy</b> from being administered when appropriate.</li>
+        <li>Repeat doses of β₂ agonists at <b>15–30 minute intervals</b> or give <b>continuous nebulisation of salbutamol at 5–10 mg/hour</b> (requires the appropriate nebuliser) if there is an inadequate response to initial treatment. Higher bolus doses, for example <b>10 mg of salbutamol</b>, are unlikely to be more effective.</li>
+      </ul>
+
+      <!-- Steroids -->
+      <h3>Steroid therapy</h3>
+      <div class="rec">
+        <span class="rec-id">R</span>Give <b>steroids in adequate doses to all patients with an acute asthma attack</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <div class="rec">
+        <span class="rec-id">R</span>Continue <b>prednisolone (40–50 mg daily) until recovery (minimum 5 days)</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <div class="rec">
+        <span class="rec-id">R</span><b>Do not stop inhaled corticosteroids</b> during prescription of oral corticosteroids. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>Steroids reduce <b>mortality, relapses, subsequent hospital admission and requirement for β₂ agonist therapy</b>. The earlier they are given in the acute attack the better the outcome.</li>
+        <li>Steroid tablets are as effective as injected steroids, provided they can be swallowed and retained. <b>Prednisolone 40–50 mg daily</b> or <b>parenteral hydrocortisone 400 mg daily (100 mg six hourly)</b> are as effective as higher doses.</li>
+        <li>Where necessary, soluble prednisolone (sodium phosphate) 5 mg tablets are available. In cases where oral treatment may be a problem, consider <b>intramuscular methylprednisolone (160 mg)</b> as an alternative to a course of oral prednisolone.</li>
+        <li>Following recovery from the acute asthma attack, <b>steroids can be stopped abruptly</b>. Doses do not need tapering provided the patient receives ICS (apart from patients on maintenance steroid treatment or rare instances where steroids are required for three or more weeks).</li>
+      </ul>
+
+      <!-- Ipratropium -->
+      <h3>Ipratropium bromide</h3>
+      <div class="rec">
+        <span class="rec-id">R</span>Add <b>nebulised ipratropium bromide (0.5 mg 4–6 hourly)</b> to β₂ agonist treatment for patients with <b>acute severe or life-threatening asthma</b> or those with a <b>poor initial response to β₂ agonist therapy</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>Combining nebulised ipratropium bromide with a nebulised β₂ agonist produces <b>significantly greater bronchodilation</b> than β₂ agonist alone, leading to <b>faster recovery and shorter duration of admission</b>.</li>
+        <li>Anticholinergic treatment is <b>not necessary and may not be beneficial</b> in milder asthma attacks or after stabilisation.</li>
+      </ul>
+
+      <!-- Magnesium -->
+      <h3>Magnesium sulphate</h3>
+      <div class="rec">
+        <span class="rec-id">R</span><b>Nebulised magnesium sulphate is not recommended</b> for treatment in adults with acute asthma. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <div class="rec">
+        <span class="rec-id">R</span>Consider giving a <b>single dose of intravenous magnesium sulphate</b> to patients with acute severe asthma (<b>PEF &lt;50% best or predicted</b>) who have <b>not had a good initial response to inhaled bronchodilator therapy</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <div class="rec">
+        <span class="rec-id">R</span><b>Magnesium sulphate (1.2–2 g IV infusion over 20 minutes)</b> should only be used <b>following consultation with senior medical staff</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <div class="callout warn">
+        <strong>Safety warning</strong>
+        The safety and efficacy of <b>repeated intravenous (IV) doses</b> of magnesium sulphate have <b>not been assessed</b>. Repeated doses could cause <b>hypermagnesaemia with muscle weakness and respiratory fatigue</b>.
+      </div>
+
+      <!-- Aminophylline -->
+      <h3>Intravenous aminophylline</h3>
+      <div class="rec">
+        <span class="rec-id">R</span>Use <b>IV aminophylline only after consultation with senior medical staff</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>In an acute asthma attack, IV aminophylline is <b>not likely to result in any additional bronchodilation</b> compared with standard care with inhaled bronchodilators and steroids. Side effects such as <b>arrhythmias and vomiting are increased</b> if IV aminophylline is used.</li>
+        <li>Some patients with <b>near-fatal asthma or life-threatening asthma with a poor response to initial therapy</b> may gain additional benefit from IV aminophylline (<b>5 mg/kg loading dose over 20 minutes</b> unless on maintenance oral therapy, then <b>infusion of 0.5–0.7 mg/kg/hr</b>). Such patients are probably rare.</li>
+        <li>If IV aminophylline is given to patients already taking oral aminophylline or theophylline, <b>blood levels should be checked on admission</b>. Levels should be checked <b>daily for all patients on aminophylline infusions</b>.</li>
+      </ul>
+
+      <!-- LTRA -->
+      <h3>Leukotriene receptor antagonists</h3>
+      <p>Current evidence on <b>oral leukotriene receptor antagonists does not support their use</b> in patients with acute asthma. Further studies are required to assess whether IV treatment is effective and safe.</p>
+
+      <!-- Antibiotics -->
+      <h3>Antibiotics</h3>
+      <div class="rec">
+        <span class="rec-id">R</span><b>Routine prescription of antibiotics is not indicated</b> for patients with acute asthma. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>When an infection precipitates an asthma attack it is likely to be <b>viral</b>. The role of bacterial infection has been overestimated.</li>
+        <li>Decision making regarding the use of antibiotics in patients with acute asthma should be guided by <b>objective measures including procalcitonin where available</b>.</li>
+      </ul>
+
+      <!-- Heliox -->
+      <h3>Heliox</h3>
+      <div class="rec">
+        <span class="rec-id">R</span><b>Heliox is not recommended</b> for use in patients with acute asthma <b>outside a clinical trial setting</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>The use of heliox (<b>helium/oxygen mixture in a ratio of 80:20 or 70:30</b>), either as a driving gas for nebulisers, as a breathing gas, or for artificial ventilation in adults with acute asthma, is <b>not supported</b>.</li>
+      </ul>
+
+      <!-- IV fluids -->
+      <h3>Intravenous fluids</h3>
+      <p>There are no controlled trials, observational or cohort studies of differing fluid regimes in patients with acute asthma. Some patients require <b>rehydration and correction of electrolyte imbalance</b>. <b>Hypokalaemia</b> can be caused or exacerbated by β₂ agonist and/or steroid treatment and <b>must be corrected</b>.</p>
+
+      <!-- Furosemide -->
+      <h3>Nebulised furosemide</h3>
+      <p>Although theoretically furosemide may produce bronchodilation, a review of three small trials failed to show any significant benefit of treatment with nebulised furosemide compared to β₂ agonists.</p>
+
+      <!-- Critical care -->
+      <h3>Critical care settings</h3>
+      <p>In adults with acute asthma and a <b>poor response to standard therapy</b> (inhaled bronchodilators, steroids, oxygen and intravenous bronchodilators), other therapies may be considered in the appropriate critical care setting with the appropriate available expertise. There is <b>little high-quality evidence</b> to guide treatment at this stage of an acute asthma attack, and it is important to involve a clinician with the appropriate skills in <b>airway management and critical care support as early as possible</b>.</p>
+      <div class="callout critical">
+        <strong>Indications for admission to intensive care or high-dependency units</strong>
+        Patients requiring <b>ventilatory support</b> and those with <b>acute severe or life-threatening asthma who are failing to respond to therapy</b>, as evidenced by:
+        <ul style="margin:4px 0 0 0;padding-left:18px">
+          <li><b>Deteriorating PEF</b></li>
+          <li><b>Persisting or worsening hypoxia</b></li>
+          <li><b>Hypercapnia</b></li>
+          <li>Arterial blood gas analysis showing <b>fall in pH or rising hydrogen concentration</b></li>
+          <li><b>Exhaustion, feeble respiration</b></li>
+          <li><b>Drowsiness, confusion, altered conscious state</b></li>
+          <li><b>Respiratory arrest</b></li>
+        </ul>
+      </div>
+
+      <!-- ECMO -->
+      <h3>Extracorporeal membrane oxygenation (ECMO)</h3>
+      <div class="rec">
+        <span class="rec-id">R</span>Where available, <b>extracorporeal membrane oxygenation may be considered</b> in adults with <b>near-fatal asthma refractory to conventional ventilator treatment</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>ECMO is thought to help provide adequate gas exchange whilst helping to prevent the <b>barotrauma caused by aggressive mechanical ventilation</b>.</li>
+        <li>Currently there are five centres in the UK with ECMO facilities for adults: <b>Glenfield Hospital, Leicester; Papworth Hospital, Cambridge; Wythenshawe Hospital, Manchester; Guy's &amp; St Thomas' Hospital, London; Royal Brompton &amp; Harefield Hospital, London</b>.</li>
+      </ul>
+
+      <!-- Specialist evaluation / anaesthetist notification -->
+      <h3>Specialist evaluation &amp; anaesthetist notification</h3>
+      <div class="rec">
+        <span class="rec-id">R</span>Adults with asthma <b>not responding to standard treatment</b> should be evaluated by a <b>specialist with the appropriate experience and skills</b> to use and assess medication encountered in critical care settings. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <div class="rec">
+        <span class="rec-id">R</span>In patients with <b>acute severe or life-threatening asthma</b>, <b>anaesthetists and intensivists should be notified as soon as possible</b> if there is <b>no improvement in or deterioration of asthma</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <div class="rec">
+        <span class="rec-id">R</span>All patients <b>transferred to intensive care units should be accompanied by a doctor suitably equipped and skilled to intubate</b> if necessary. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>Not all patients admitted to the ICU need ventilation, but those with <b>worsening hypoxia or hypercapnia, drowsiness or unconsciousness</b>, and those who have had a <b>respiratory arrest</b>, require <b>intermittent positive pressure ventilation</b>.</li>
+        <li>Intubation in such patients is <b>very difficult</b> and should be performed by an <b>anaesthetist or ICU consultant</b>.</li>
+      </ul>
+
+      <!-- NIV -->
+      <h3>Non-invasive ventilation (NIV)</h3>
+      <div class="rec">
+        <span class="rec-id">R</span><b>NIV should only be considered in an ICU or equivalent clinical setting</b>. <span class="tagline">[BTS/SIGN 2019]</span>
+      </div>
+      <ul>
+        <li>NIV is well established in the management of ventilatory failure caused by extrapulmonary restrictive conditions and exacerbations of COPD.</li>
+        <li><b>Hypercapnic respiratory failure developing during an acute asthmatic attack is an indication for urgent ICU admission.</b></li>
+        <li>It is <b>unlikely that NIV would replace intubation</b> in these very unstable patients, but it has been suggested that this treatment can be used safely and effectively.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7. CONTEXT ============ -->
+  <details class="section" id="context">
+    <summary><span class="sec-num">07</span> Context &amp; pathway notes</summary>
+    <div class="body">
+      <h3>What is new / latest updates</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Update</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>23/02/26</b></td>
+              <td>CfSD pathway for severe asthma has been updated</td>
+            </tr>
+            <tr>
+              <td><b>14/05/2025</b></td>
+              <td>Wording added in line with national guidance. Patients who have had &gt;2 salbutamol nebulisers and/or have been treated with IV magnesium for acute asthma on that attendance are <b>not suitable for discharge from ED</b>. A minority of patients who have had &gt;2 salbutamol nebulisers (and who have not received IV magnesium) may be appropriate for discharge if, after extended observation, they remain clinically stable, PEF &gt;75% and there are no signs of severe asthma — however this decision should be made by a <b>senior decision maker</b>.</td>
+            </tr>
+            <tr>
+              <td><b>27/02/2025</b></td>
+              <td>New BTS/NICE/SIGN Asthma Guidance recommends a <b>preferred pathway</b> for chronic asthma management which removes the need for SABA. Patients should be offered a combination ICS with the LABA formoterol (AIR or MART regimens). Patients should <b>NOT</b> be prescribed a SABA on the preferred pathway. Patients already well controlled on traditional ICS/ICS-LABA + SABA using &lt;3 SABA inhalers per year do not need to switch. Patients on SABA monotherapy should be switched to the preferred pathway at the lowest step (AIR).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ Scroll table horizontally on small screens</p>
+
+      <h3>Related pathways</h3>
+      <ul>
+        <li><b>Chronic asthma management</b> — see the BTS/NICE/SIGN NG245 quick reference (diagnosis, monitoring, MART/AIR therapy, risk stratification)</li>
+        <li><b>Difficult &amp; severe asthma</b> — severe asthma pathway for Scotland; biologic assessment tool; structured OCS weaning protocol using PONENTE</li>
+        <li><b>Asthma in pregnancy</b> — continue asthma medicines; use SABA, LABA, ICS and oral theophyllines as normal; do not stop LTRA or LAMA if needed for control</li>
+        <li><b>Occupational asthma</b> — ask about work-related symptoms in adult-onset or poorly controlled asthma</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="no-results" id="noResults">No matching recommendations. Try a different term.</div>
+
+</main>
+
+<footer class="src">
+  <div class="src-card">
+    <h3>Source &amp; citation</h3>
+    <div class="cite">
+      Right Decisions Scotland. <b>Asthma pathway (BTS, NICE, SIGN) [SIGN 244] — Management of acute asthma in adults.</b>
+      Healthcare Improvement Scotland. Available from:
+      <a href="https://www.rightdecisions.scot.nhs.uk/asthma-pathway-bts-nice-sign-sign-244/managing-acute-asthma/management-of-acute-asthma-in-adults/" target="_blank" rel="noopener">rightdecisions.scot.nhs.uk</a>
+    </div>
+    <div class="cite" style="border-left-color:var(--muted)">
+      Content on this page is from the <b>BTS/SIGN British guideline on the management of asthma (SIGN 158), 2019</b>,
+      which underpins the SIGN 244 acute asthma pathway.
+    </div>
+    <p><b>Pathway:</b> Asthma pathway (BTS, NICE, SIGN) [SIGN 244] · Managing acute asthma · Management of acute asthma in adults.</p>
+    <p><b>Source content also drawn from:</b> Management of acute asthma in adults in hospital · Management of acute asthma in adults in the emergency department · Acute asthma in adults (severity definitions) · Asthma in adults (NHS Highland guidelines).</p>
+    <p style="margin-top:12px;font-size:.78rem;border-top:1px solid var(--border);padding-top:10px">
+      <b>Disclaimer:</b> This quick reference is a summarised extract for educational use by anaesthetists and
+      intensivists. It is not a substitute for the full guideline or local protocols. Always check current
+      licensing and the Summary of Product Characteristics before prescribing. Report all suspected adverse
+      reactions to the MHRA via the Yellow Card Scheme. Acute asthma is a time-critical emergency — follow
+      local acute asthma protocols and escalate early.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content     = document.getElementById("content");
+  var sections    = Array.prototype.slice.call(document.querySelectorAll("details.section"));
+  var input       = document.getElementById("searchInput");
+  var clearBtn    = document.getElementById("clearSearch");
+  var matchCount  = document.getElementById("matchCount");
+  var noResults   = document.getElementById("noResults");
+  var expandAll   = document.getElementById("expandAll");
+  var collapseAll = document.getElementById("collapseAll");
+
+  var defaultOpen = sections.map(function (s) { return s.hasAttribute("open"); });
+
+  function clearMarks(root) {
+    var marks = root.querySelectorAll("mark.qr-hit");
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var t = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(t, m);
+    }
+    if (root.normalize) root.normalize();
+  }
+
+  function highlight(root, query) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "MARK") return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(query) !== -1
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text  = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag  = document.createDocumentFragment();
+      var i = 0, idx;
+
+      while ((idx = lower.indexOf(query, i)) !== -1) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement("mark");
+        mark.className = "qr-hit";
+        mark.textContent = text.slice(idx, idx + query.length);
+        frag.appendChild(mark);
+        i = idx + query.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function runSearch() {
+    var raw = input.value.trim();
+    var q   = raw.toLowerCase();
+
+    clearBtn.style.display = raw ? "block" : "none";
+
+    clearMarks(content);
+    sections.forEach(function (s) { s.hidden = false; });
+
+    if (q.length < 2) {
+      matchCount.textContent = "";
+      noResults.style.display = "none";
+      sections.forEach(function (s, i) {
+        if (defaultOpen[i]) s.setAttribute("open", "");
+        else s.removeAttribute("open");
+      });
+      return;
+    }
+
+    var hits = 0;
+    sections.forEach(function (s) {
+      var text = (s.textContent || "").toLowerCase();
+      if (text.indexOf(q) !== -1) {
+        s.hidden = false;
+        s.setAttribute("open", "");
+        hits++;
+      } else {
+        s.hidden = true;
+        s.removeAttribute("open");
+      }
+    });
+
+    highlight(content, q);
+
+    matchCount.textContent = hits + (hits === 1 ? " section" : " sections");
+    noResults.style.display = hits === 0 ? "block" : "none";
+  }
+
+  var debounceTimer;
+  input.addEventListener("input", function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 120);
+  });
+
+  clearBtn.addEventListener("click", function () {
+    input.value = "";
+    runSearch();
+    input.focus();
+  });
+
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      input.value = "";
+      runSearch();
+    }
+  });
+
+  expandAll.addEventListener("click", function () {
+    sections.forEach(function (s) { if (!s.hidden) s.setAttribute("open", ""); });
+  });
+
+  collapseAll.addEventListener("click", function () {
+    sections.forEach(function (s) { s.removeAttribute("open"); });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && document.activeElement !== input) {
+      e.preventDefault();
+      input.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
