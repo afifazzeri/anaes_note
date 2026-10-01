@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PFT Quick Reference — Anaesthesia &amp; Critical Care</title>
+<meta name="description" content="Collapsible, searchable quick reference on pulmonary function tests for anaesthetists and intensivists, based on BJA Education 2019.">
+<style>
+  :root{
+    --bg:#eef2f7;
+    --card:#ffffff;
+    --ink:#0f172a;
+    --muted:#5b6b80;
+    --line:#e2e8f0;
+    --accent:#0d9488;
+    --accent-2:#2563eb;
+    --warn:#dc2626;
+    --good:#15803d;
+    --amber:#b45309;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(15,23,42,.06),0 4px 14px rgba(15,23,42,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  a{color:var(--accent-2)}
+  code{background:#f1f5f9;padding:.1em .35em;border-radius:4px;font-size:.92em}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar{max-width:1040px;margin:0 auto;padding:.7rem 1rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+  .brand{display:flex;align-items:baseline;gap:.5rem;font-weight:800;letter-spacing:-.01em}
+  .brand small{font-weight:500;color:var(--muted);font-size:.78rem}
+  .searchwrap{position:relative;flex:1 1 260px;min-width:200px}
+  #search{
+    width:100%;padding:.6rem .8rem .6rem 2.1rem;border:1px solid var(--line);
+    border-radius:999px;font-size:.95rem;background:#f8fafc;color:var(--ink);outline:none;
+  }
+  #search:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(13,148,136,.15)}
+  .searchwrap::before{
+    content:"⌕";position:absolute;left:.75rem;top:50%;transform:translateY(-52%);
+    color:var(--muted);font-size:1.1rem;pointer-events:none;
+  }
+  .btns{display:flex;gap:.4rem}
+  .btn{
+    border:1px solid var(--line);background:#fff;color:var(--ink);
+    padding:.45rem .7rem;border-radius:999px;font-size:.82rem;cursor:pointer;white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  #count{font-size:.78rem;color:var(--muted);white-space:nowrap}
+
+  /* ---------- layout ---------- */
+  main{max-width:1040px;margin:0 auto;padding:1rem 1rem 4rem}
+  .lede{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.1rem;box-shadow:var(--shadow);margin-bottom:1rem}
+  .lede p{margin:.2rem 0 .6rem;color:var(--muted);font-size:.92rem}
+
+  nav.toc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:.8rem 1rem;margin-bottom:1rem;box-shadow:var(--shadow)}
+  nav.toc h3{margin:0 0 .5rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  nav.toc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem}
+  nav.toc a{
+    display:inline-block;text-decoration:none;font-size:.83rem;padding:.3rem .65rem;
+    border:1px solid var(--line);border-radius:999px;color:var(--ink);background:#f8fafc;
+  }
+  nav.toc a:hover{border-color:var(--accent);color:var(--accent);background:#fff}
+
+  h2{font-size:1.02rem;margin:0}
+  section.sec > h2{
+    font-size:1.15rem;margin:1.6rem 0 .6rem;padding-left:.1rem;
+  }
+
+  /* ---------- collapsible cards ---------- */
+  details.card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);margin-bottom:.6rem;overflow:hidden;
+  }
+  details.card[hidden]{display:none !important}
+  details.card > summary{
+    list-style:none;cursor:pointer;padding:.8rem 1rem;display:flex;gap:.6rem;align-items:center;
+    font-weight:700;font-size:.98rem;user-select:none;
+  }
+  details.card > summary::-webkit-details-marker{display:none}
+  details.card > summary::before{
+    content:"▸";color:var(--accent);font-size:.85rem;flex:0 0 auto;
+    transition:transform .18s ease;display:inline-block;
+  }
+  details.card[open] > summary::before{transform:rotate(90deg)}
+  details.card > summary:hover{background:#f8fafc}
+  details.card[open] > summary{border-bottom:1px solid var(--line)}
+  .body{padding:.85rem 1rem 1.05rem}
+  .body > *:first-child{margin-top:0}
+  .body > *:last-child{margin-bottom:0}
+  .tag{
+    margin-left:auto;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--accent);background:#ccfbf1;border-radius:999px;padding:.15rem .5rem;flex:0 0 auto;
+  }
+  .tag.blue{color:#1d4ed8;background:#dbeafe}
+  .tag.red{color:#b91c1c;background:#fee2e2}
+  .tag.amber{color:#92400e;background:#fef3c7}
+
+  /* ---------- typography ---------- */
+  ul,ol{margin:.4rem 0 .6rem;padding-left:1.15rem}
+  li{margin:.25rem 0}
+  p{margin:.5rem 0}
+  .kv{display:grid;grid-template-columns:minmax(90px,auto) 1fr;gap:.25rem .8rem;font-size:.93rem}
+  .kv dt{font-weight:700;color:var(--accent)}
+  .kv dd{margin:0}
+  .callout{
+    border-left:4px solid var(--accent);background:#f0fdfa;border-radius:0 8px 8px 0;
+    padding:.6rem .8rem;margin:.7rem 0;font-size:.92rem;
+  }
+  .callout.warn{border-color:var(--warn);background:#fef2f2}
+  .callout.amber{border-color:var(--amber);background:#fffbeb}
+  .callout.blue{border-color:var(--accent-2);background:#eff6ff}
+  .callout strong{display:block;margin-bottom:.15rem}
+
+  /* ---------- tables ---------- */
+  .tablewrap{
+    overflow:auto;max-width:100%;border:1px solid var(--line);border-radius:10px;
+    margin:.6rem 0;-webkit-overflow-scrolling:touch;
+  }
+  .tablewrap.tall{max-height:340px}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:.88rem}
+  caption{caption-side:top;text-align:left;font-size:.78rem;color:var(--muted);padding:.45rem .6rem 0}
+  th,td{padding:.5rem .65rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  thead th{background:#f8fafc;position:sticky;top:0;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);z-index:1}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:#fbfdff}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* ---------- figures ---------- */
+  figure{margin:.9rem 0;text-align:center}
+  figure svg{width:100%;height:auto;max-width:100%}
+  figcaption{font-size:.78rem;color:var(--muted);margin-top:.35rem;text-align:left}
+  .figrow{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+  .figrow figure{flex:1 1 200px;max-width:260px;margin:0}
+
+  /* ---------- flow chart ---------- */
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.35rem;margin:.7rem 0}
+  .node{
+    border:1.5px solid var(--accent-2);background:#eff6ff;border-radius:8px;
+    padding:.5rem .7rem;font-size:.88rem;font-weight:600;text-align:center;
+  }
+  .out{
+    border-left:4px solid var(--good);background:#f0fdf4;border-radius:0 8px 8px 0;
+    padding:.45rem .7rem;font-size:.86rem;
+  }
+  .out.bad{border-color:var(--warn);background:#fef2f2}
+  .out.mid{border-color:var(--amber);background:#fffbeb}
+  .arrow{text-align:center;color:var(--muted);font-size:.8rem;font-weight:600;line-height:1.2}
+
+  /* ---------- misc ---------- */
+  mark{background:#fde68a;color:inherit;border-radius:3px;padding:0 .1em}
+  #no-results{
+    display:none;background:#fff;border:1px dashed var(--line);border-radius:var(--radius);
+    padding:1.4rem;text-align:center;color:var(--muted);
+  }
+  #no-results.show{display:block}
+  .pill{display:inline-block;font-size:.75rem;font-weight:700;padding:.1rem .5rem;border-radius:999px;background:#f1f5f9;color:var(--muted);margin-right:.3rem}
+  .refs{font-size:.85rem;color:var(--muted)}
+  .refs li{margin:.4rem 0}
+  footer{max-width:1040px;margin:0 auto;padding:0 1rem 3rem;font-size:.78rem;color:var(--muted)}
+  @media (max-width:520px){
+    .brand small{display:none}
+    .tag{display:none}
+  }
+  @media print{
+    header,.btns,nav.toc{display:none}
+    details.card{break-inside:avoid}
+    details.card > .body{display:block !important}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <div class="brand">PFT Quick Reference <small>Anaesthesia &amp; Critical Care</small></div>
+    <div class="searchwrap">
+      <input id="search" type="search" placeholder="Search — e.g. ppo, TLCO, GOLD, 6MWD, LVRS…" aria-label="Search reference">
+    </div>
+    <div class="btns">
+      <button class="btn" id="expand-all" type="button">Expand all</button>
+      <button class="btn" id="collapse-all" type="button">Collapse all</button>
+    </div>
+    <span id="count"></span>
+  </div>
+</header>
+
+<main id="content">
+
+  <div class="lede">
+    <strong>How to use:</strong>
+    <p>Tap any heading to expand or collapse. Type in the search box to filter and highlight — matching sections open automatically. Press <code>Esc</code> to clear.</p>
+    <span class="pill">Clinical notes only</span>
+    <span class="pill">Based on BJA Education 2019</span>
+    <span class="pill">Not a substitute for local guidelines</span>
+  </div>
+
+  <nav class="toc" aria-label="Contents">
+    <h3>Jump to</h3>
+    <ul>
+      <li><a href="#s1">1 · What PFTs measure</a></li>
+      <li><a href="#s2">2 · How measurements are made</a></li>
+      <li><a href="#s3">3 · Static lung volumes</a></li>
+      <li><a href="#s4">4 · Dynamic volumes &amp; flow–volume loop</a></li>
+      <li><a href="#s5">5 · Airway resistance</a></li>
+      <li><a href="#s6">6 · Transfer factor (TLCO/DLCO)</a></li>
+      <li><a href="#s7">7 · Normal values &amp; statistics</a></li>
+      <li><a href="#s8">8 · Disease patterns</a></li>
+      <li><a href="#s9">9 · Preoperative assessment</a></li>
+      <li><a href="#s10">10 · Lung resection &amp; ppo</a></li>
+      <li><a href="#s11">11 · LVRS</a></li>
+      <li><a href="#s12">12 · Exercise &amp; walking tests</a></li>
+      <li><a href="#s13">13 · Key numbers</a></li>
+      <li><a href="#cases">14 · 10 high-yield cases</a></li>
+      <li><a href="#refs">References</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============ 1 ============ -->
+  <details class="card" id="s1" open>
+    <summary>1 · What PFTs measure <span class="tag">Overview</span></summary>
+    <div class="body">
+      <p>Pulmonary function tests assess <strong>three domains</strong> of the respiratory system. Know which domain a test interrogates before you interpret it.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Domain</th><th>What it tests</th><th>Typical tests</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Respiratory mechanics</strong></td><td>Mechanical behaviour of lungs + chest wall as air moves in and out</td><td>Spirometry, static lung volumes, flow–volume loops, resistance</td></tr>
+            <tr><td><strong>Parenchymal lung function</strong></td><td>Gas transfer across the alveolar–capillary membrane</td><td>Transfer factor (TLCO / DLCO), KCO, VA</td></tr>
+            <tr><td><strong>Cardiopulmonary interaction</strong></td><td>Integrated reserve of heart + lungs</td><td>Walking tests, cardiopulmonary exercise testing (CPET)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>Perioperative bottom line</strong>
+        PFTs describe <em>physiology</em>, not <em>risk</em>. In elective non-thoracic surgery they are poor predictors of postoperative pulmonary complications (PPCs) — clinical factors perform better. Their real value is in thoracic surgery, disease severity grading, and monitoring progressive neuromuscular respiratory failure.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 2 ============ -->
+  <details class="card" id="s2">
+    <summary>2 · How measurements are made (what matters clinically) <span class="tag blue">Methods</span></summary>
+    <div class="body">
+      <div class="kv">
+        <dt>Pressure</dt><dd>Transducers inside the breathing system convert pressure to an electrical signal — small, accurate, fast enough for respiratory measurement.</dd>
+        <dt>Flow</dt><dd>Usually a <strong>pneumotachograph</strong>: a small known resistance in the circuit; the pressure drop across it relates to flow. Resistance is imperceptible to the patient. Mechanical devices are largely obsolete, but <strong>handheld peak-flow meters</strong> (variable orifice) remain useful for asthma monitoring.</dd>
+        <dt>Volume</dt><dd>Spirometer (water-sealed or dry bellows) · impeller/turbine (e.g. Wright respirometer) · <strong>integration of flow over time</strong> (standard in anaesthetic machines and ventilators) · <strong>body plethysmography</strong> · chest/abdominal <strong>impedance belts</strong> (no mouthpiece; usable during sleep; can detect airway obstruction).</dd>
+      </div>
+      <div class="callout amber">
+        <strong>BTPS correction</strong>
+        All techniques measure flow/volume at ambient temperature and pressure. Results must be converted to the volume the gas would occupy at <strong>body temperature, ambient pressure, saturated with water vapour (BTPS)</strong> before comparison with reference values.
+      </div>
+      <p><strong>Anaesthetic relevance:</strong> flow integration is how your anaesthetic machine and ventilator display tidal volume and minute ventilation. Impedance belts and respirometers are the tools available when a mouthpiece is impractical (paediatrics, sleep studies, ICU).</p>
+    </div>
+  </details>
+
+  <!-- ============ 3 ============ -->
+  <details class="card" id="s3">
+    <summary>3 · Static lung volumes <span class="tag blue">Mechanics</span></summary>
+    <div class="body">
+      <p><strong>Static volumes</strong> are measured when no gas is flowing. Two volumes combined are called a <strong>capacity</strong>.</p>
+
+      <figure>
+        <svg viewBox="0 0 430 400" role="img" aria-label="Stacked diagram of static lung volumes and capacities">
+          <!-- bar -->
+          <rect x="80" y="308" width="110" height="72" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+          <rect x="80" y="242" width="110" height="66" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.4"/>
+          <rect x="80" y="212" width="110" height="30" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+          <rect x="80" y="62"  width="110" height="150" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.4"/>
+          <!-- segment labels -->
+          <text x="135" y="348" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">RV</text>
+          <text x="135" y="280" font-size="12" text-anchor="middle" fill="#0f766e" font-weight="700">ERV</text>
+          <text x="135" y="232" font-size="11" text-anchor="middle" fill="#92400e" font-weight="700">VT</text>
+          <text x="135" y="140" font-size="12" text-anchor="middle" fill="#5b21b6" font-weight="700">IRV</text>
+          <!-- baseline -->
+          <line x1="60" y1="380" x2="415" y2="380" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="52" y="384" font-size="10" text-anchor="end" fill="#64748b">0</text>
+          <!-- brackets -->
+          <g stroke="#0d9488" stroke-width="1.4" fill="none">
+            <line x1="205" y1="62" x2="205" y2="242"/><line x1="199" y1="62" x2="211" y2="62"/><line x1="199" y1="242" x2="211" y2="242"/>
+          </g>
+          <text x="215" y="155" font-size="11" fill="#0d9488" font-weight="700">IC</text>
+
+          <g stroke="#2563eb" stroke-width="1.4" fill="none">
+            <line x1="243" y1="62" x2="243" y2="308"/><line x1="237" y1="62" x2="249" y2="62"/><line x1="237" y1="308" x2="249" y2="308"/>
+          </g>
+          <text x="253" y="190" font-size="11" fill="#2563eb" font-weight="700">VC</text>
+
+          <g stroke="#b45309" stroke-width="1.4" fill="none">
+            <line x1="281" y1="242" x2="281" y2="380"/><line x1="275" y1="242" x2="287" y2="242"/><line x1="275" y1="380" x2="287" y2="380"/>
+          </g>
+          <text x="291" y="315" font-size="11" fill="#b45309" font-weight="700">FRC</text>
+
+          <g stroke="#6d28d9" stroke-width="1.4" fill="none">
+            <line x1="319" y1="62" x2="319" y2="380"/><line x1="313" y1="62" x2="325" y2="62"/><line x1="313" y1="380" x2="325" y2="380"/>
+          </g>
+          <text x="329" y="225" font-size="11" fill="#6d28d9" font-weight="700">TLC</text>
+
+          <text x="135" y="396" font-size="10" text-anchor="middle" fill="#64748b">Volume (L, BTPS)</text>
+        </svg>
+        <figcaption><strong>Fig 1 (simplified).</strong> Static lung volumes and capacities. RV is the only volume that cannot be measured by simple spirometry — it requires gas dilution, nitrogen washout, or body plethysmography.</figcaption>
+      </figure>
+
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Term</th><th>Definition</th><th>Clinical note</th></tr></thead>
+          <tbody>
+            <tr><td><strong>VT</strong></td><td>Tidal volume</td><td>~6–8 mL/kg predicted body weight when ventilated</td></tr>
+            <tr><td><strong>IRV</strong></td><td>Inspiratory reserve volume</td><td>Recruitable reserve</td></tr>
+            <tr><td><strong>ERV</strong></td><td>Expiratory reserve volume</td><td>Falls with obesity, ascites, abdominal surgery</td></tr>
+            <tr><td><strong>RV</strong></td><td>Residual volume</td><td><strong>Not measurable by spirometry</strong></td></tr>
+            <tr><td><strong>IC</strong></td><td>= VT + IRV</td><td>Inspiratory capacity</td></tr>
+            <tr><td><strong>FRC</strong></td><td>= ERV + RV</td><td>End-expiratory lung volume; determines oxygen reserve during apnoea</td></tr>
+            <tr><td><strong>VC</strong></td><td>= ERV + VT + IRV</td><td>Vital capacity</td></tr>
+            <tr><td><strong>TLC</strong></td><td>= VC + RV</td><td>Required to diagnose restrictive disease</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Measuring FRC / RV — three techniques</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Technique</th><th>Principle</th><th>Practical points</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Helium dilution</strong><br>(closed circuit)</td>
+              <td>Helium is inert and almost insoluble in blood, so it equilibrates between spirometer and lung without being lost.<br><code>FRC = V<sub>spiro</sub> × (F<sub>He1</sub> − F<sub>He2</sub>) / F<sub>He2</sub></code></td>
+              <td>Start at end-expiration. Connect at maximal exhalation instead → measures <strong>RV</strong> directly. Result termed <strong>FRC<sub>He</sub></strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Nitrogen washout</strong></td>
+              <td>Breathe 100% O₂ from FRC; the nitrogen in the lung is washed out over ~7 min. Exhaled N₂ volume ÷ initial alveolar N₂ fraction = FRC.</td>
+              <td>Correct for tissue N₂ excretion. Requires a leak-free circuit and ~7 min of cooperation.</td>
+            </tr>
+            <tr>
+              <td><strong>Body plethysmography</strong></td>
+              <td>Patient sits in a sealed fixed-volume box breathing from outside. Pressure changes in the box equate to changes in lung volume (Boyle's law).</td>
+              <td>Measures <strong>thoracic gas volume</strong> — includes gas trapped behind closed airways. Also needed to interpret resistance measurements.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <strong>Trap</strong>
+        Gas dilution techniques underestimate lung volume when there is significant air trapping (emphysema, severe asthma) because trapped gas does not equilibrate. Plethysmography gives the larger, more accurate value in these patients.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 4 ============ -->
+  <details class="card" id="s4">
+    <summary>4 · Dynamic lung volumes &amp; the flow–volume loop <span class="tag blue">Mechanics</span></summary>
+    <div class="body">
+      <p>Dynamic volumes are continuous measurements of inspiratory or expiratory flow against <strong>time</strong> or <strong>volume</strong>. The three highest values from at least three attempts are accepted; the best value is reported. Repeating after bronchodilator assesses reversibility.</p>
+
+      <div class="kv">
+        <dt>FEV1</dt><dd>Forced expiratory volume in 1 second — the workhorse index of airflow obstruction and pulmonary reserve.</dd>
+        <dt>FVC</dt><dd>Forced vital capacity — reflects restrictive physiology and effort.</dd>
+        <dt>FEV1/FVC</dt><dd>Ratio — the key discriminator between obstructive (&lt;70% / below LLN) and restrictive (normal or high) patterns.</dd>
+        <dt>PEF</dt><dd>Peak expiratory flow — effort dependent; useful for serial monitoring, not diagnosis.</dd>
+      </div>
+
+      <figure>
+        <div class="figrow">
+          <figure>
+            <svg viewBox="0 0 220 200" role="img" aria-label="Normal flow-volume loop">
+              <line x1="30" y1="100" x2="205" y2="100" stroke="#94a3b8" stroke-width="1.2"/>
+              <line x1="30" y1="18" x2="30" y2="175" stroke="#94a3b8" stroke-width="1.2"/>
+              <text x="34" y="14" font-size="9" fill="#64748b">Expiratory ↑</text>
+              <text x="34" y="170" font-size="9" fill="#64748b">Inspiratory ↓</text>
+              <path d="M180,100 L152,32 L40,100" fill="none" stroke="#2563eb" stroke-width="2"/>
+              <path d="M40,100 C70,165 145,165 180,100" fill="none" stroke="#2563eb" stroke-width="2"/>
+              <text x="126" y="26" font-size="9" fill="#2563eb" font-weight="700">PEF</text>
+              <text x="168" y="116" font-size="9" fill="#64748b">TLC</text>
+              <text x="26" y="116" font-size="9" fill="#64748b">RV</text>
+              <text x="115" y="194" font-size="9" fill="#64748b" text-anchor="middle">Lung volume</text>
+            </svg>
+            <figcaption><strong>A · Normal.</strong> Rapid rise to peak flow, then a near-linear decline as small airways close.</figcaption>
+          </figure>
+
+          <figure>
+            <svg viewBox="0 0 220 200" role="img" aria-label="Obstructive flow-volume loop">
+              <line x1="30" y1="100" x2="205" y2="100" stroke="#94a3b8" stroke-width="1.2"/>
+              <line x1="30" y1="18" x2="30" y2="175" stroke="#94a3b8" stroke-width="1.2"/>
+              <path d="M180,100 L152,32 L40,100" fill="none" stroke="#cbd5e1" stroke-width="1.4"/>
+              <path d="M40,100 C70,165 145,165 180,100" fill="none" stroke="#cbd5e1" stroke-width="1.4"/>
+              <path d="M180,100 L170,50 C155,68 110,92 40,100" fill="none" stroke="#dc2626" stroke-width="2"/>
+              <path d="M40,100 C75,162 145,162 180,100" fill="none" stroke="#dc2626" stroke-width="2"/>
+              <text x="60" y="86" font-size="9" fill="#dc2626" font-weight="700">scooped</text>
+              <text x="115" y="194" font-size="9" fill="#64748b" text-anchor="middle">Lung volume</text>
+            </svg>
+            <figcaption><strong>B · Obstructive</strong> (asthma, COPD). Concave expiratory limb from early intrathoracic airway closure. Grey = normal.</figcaption>
+          </figure>
+
+          <figure>
+            <svg viewBox="0 0 220 200" role="img" aria-label="Fixed large airway obstruction flow-volume loop">
+              <line x1="30" y1="100" x2="205" y2="100" stroke="#94a3b8" stroke-width="1.2"/>
+              <line x1="30" y1="18" x2="30" y2="175" stroke="#94a3b8" stroke-width="1.2"/>
+              <path d="M180,100 L152,32 L40,100" fill="none" stroke="#cbd5e1" stroke-width="1.4"/>
+              <path d="M40,100 C70,165 145,165 180,100" fill="none" stroke="#cbd5e1" stroke-width="1.4"/>
+              <path d="M180,100 L172,58 L55,60 L40,100" fill="none" stroke="#7c3aed" stroke-width="2"/>
+              <path d="M40,100 L52,145 L168,143 L180,100" fill="none" stroke="#7c3aed" stroke-width="2"/>
+              <text x="70" y="52" font-size="9" fill="#7c3aed" font-weight="700">flattened</text>
+              <text x="115" y="194" font-size="9" fill="#64748b" text-anchor="middle">Lung volume</text>
+            </svg>
+            <figcaption><strong>C · Fixed large airway obstruction</strong> (intra- or extrathoracic). Flattened plateau in <em>both</em> phases. Grey = normal.</figcaption>
+          </figure>
+        </div>
+        <figcaption>Fig 2 (simplified). Flow–volume loop patterns. The shape is far more informative than any single number.</figcaption>
+      </figure>
+
+      <div class="callout blue">
+        <strong>Reading the loop in one line</strong>
+        Expiratory scooping = small airway closure → obstruction. Symmetrical flattening = fixed large airway lesion. Narrow loop with preserved shape = restriction.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 5 ============ -->
+  <details class="card" id="s5">
+    <summary>5 · Airway resistance <span class="tag blue">Mechanics</span></summary>
+    <div class="body">
+      <p>Respiratory system resistance is the sum of the reluctance of the thoracic cage and lung tissue to change shape (<strong>tissue resistance</strong>) and resistance to gas flow through the airways (<strong>airway resistance, Raw</strong>).</p>
+      <ul>
+        <li>Raw arises mainly from the <strong>larger airways</strong> (mouth, nose, larynx) — their total cross-sectional area is small compared with the huge combined area of the many small airways.</li>
+        <li>Flow is <strong>turbulent</strong> in the upper and large airways and becomes more <strong>laminar</strong> as velocity falls in small airways.</li>
+        <li>Airway calibre (and therefore resistance) varies with lung volume: resistance is <strong>low at high lung volume</strong> and <strong>high near RV</strong>.</li>
+      </ul>
+
+      <figure>
+        <svg viewBox="0 0 440 290" role="img" aria-label="Relationship between airway resistance, conductance and lung volume">
+          <!-- axes -->
+          <line x1="60" y1="240" x2="400" y2="240" stroke="#94a3b8" stroke-width="1.3"/>
+          <line x1="60" y1="30" x2="60" y2="240" stroke="#94a3b8" stroke-width="1.3"/>
+          <line x1="400" y1="30" x2="400" y2="240" stroke="#94a3b8" stroke-width="1.3"/>
+          <!-- x ticks -->
+          <g font-size="10" fill="#64748b" text-anchor="middle">
+            <text x="60" y="256">0</text>
+            <text x="230" y="256">4</text>
+            <text x="400" y="256">8</text>
+          </g>
+          <text x="230" y="274" font-size="10" fill="#64748b" text-anchor="middle">Lung volume (L)</text>
+          <!-- left ticks -->
+          <g font-size="10" fill="#64748b" text-anchor="end">
+            <text x="54" y="244">0</text><text x="54" y="184">0.1</text><text x="54" y="124">0.2</text><text x="54" y="64">0.3</text>
+          </g>
+          <!-- right ticks -->
+          <g font-size="10" fill="#64748b" text-anchor="start">
+            <text x="406" y="244">0</text><text x="406" y="174">5</text><text x="406" y="104">10</text><text x="406" y="34">15</text>
+          </g>
+          <!-- Raw curve -->
+          <path d="M145,42 C159,68 173,94 187,120 C201,146 216,151 230,156 C244,161 258,169 272,177 C286,185 300,185 315,189 C330,193 343,194 357,198"
+                fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linecap="round"/>
+          <!-- Gaw line -->
+          <line x1="145" y1="212" x2="357" y2="44" stroke="#dc2626" stroke-width="2.4"/>
+          <!-- sGaw line -->
+          <line x1="145" y1="163" x2="357" y2="163" stroke="#15803d" stroke-width="2.4"/>
+          <!-- labels -->
+          <text x="150" y="34" font-size="11" fill="#2563eb" font-weight="700">Raw</text>
+          <text x="330" y="36" font-size="11" fill="#dc2626" font-weight="700">Gaw</text>
+          <text x="300" y="156" font-size="11" fill="#15803d" font-weight="700">sGaw</text>
+          <!-- volume markers -->
+          <g stroke="#94a3b8" stroke-dasharray="3 3">
+            <line x1="145" y1="240" x2="145" y2="252"/>
+            <line x1="230" y1="240" x2="230" y2="252"/>
+            <line x1="357" y1="240" x2="357" y2="252"/>
+          </g>
+          <g font-size="10" fill="#475569" text-anchor="middle" font-weight="700">
+            <text x="145" y="272">RV</text><text x="230" y="272">FRC</text><text x="357" y="272">TLC</text>
+          </g>
+          <!-- axis titles -->
+          <text x="14" y="140" font-size="10" fill="#64748b" transform="rotate(-90 14 140)" text-anchor="middle">Raw (kPa L⁻¹ s)</text>
+          <text x="428" y="140" font-size="10" fill="#64748b" transform="rotate(90 428 140)" text-anchor="middle">Gaw (L s⁻¹ kPa⁻¹)</text>
+        </svg>
+        <figcaption><strong>Fig 3 (simplified).</strong> Raw falls hyperbolically as lung volume rises. Its reciprocal, airway conductance (Gaw), rises linearly. <strong>Only specific conductance (sGaw = Gaw ÷ thoracic gas volume) is independent of lung volume</strong>, making it the best marker of bronchomotor tone.</figcaption>
+      </figure>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Components of respiratory system resistance</h3>
+      <div class="tablewrap tall">
+        <table>
+          <caption>Contribution of each component (kPa L⁻¹ s). Values are typical adult figures.</caption>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th class="num">Contribution</th>
+              <th>Airway resistance</th>
+              <th>Pulmonary resistance</th>
+              <th>Respiratory system resistance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Mouth and pharynx</td><td class="num">0.05</td><td>✔</td><td>✔</td><td>✔</td></tr>
+            <tr><td>Larynx and large airways</td><td class="num">0.05</td><td>✔</td><td>✔</td><td>✔</td></tr>
+            <tr><td>Small airways &lt;3 mm</td><td class="num">0.02</td><td>✔</td><td>✔</td><td>✔</td></tr>
+            <tr><td>Alveoli and lung tissue</td><td class="num">0.02</td><td>—</td><td>✔</td><td>✔</td></tr>
+            <tr><td>Chest wall</td><td class="num">0.12</td><td>—</td><td>—</td><td>✔</td></tr>
+            <tr><td><strong>Total</strong></td><td class="num"><strong>0.26</strong></td><td class="num"><strong>0.12</strong></td><td class="num"><strong>0.14</strong></td><td class="num"><strong>0.26</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="refs" style="margin-top:.2rem">Note the chest wall contributes the single largest share (0.12) — which is why "airway resistance" and "respiratory system resistance" are not interchangeable.</p>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Methods of measuring resistance</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Method</th><th>What it measures</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Body plethysmography</strong></td><td>Airway resistance (Raw) + thoracic gas volume</td><td>Constant-volume box; patient pants against a closed shutter or breathes quietly. Greater Raw → greater box pressure swings. Also gives the thoracic gas volume needed to interpret the resistance value.</td></tr>
+            <tr><td><strong>Interrupter technique</strong></td><td>Airway resistance</td><td>Brief (&lt;100 ms) shutter interruption during inspiration. Alveolar pressure = mouth pressure at zero flow. Non-invasive, quick, no special manoeuvre → usable in children.</td></tr>
+            <tr><td><strong>Pressure–flow method</strong></td><td>Pulmonary resistance (all components except chest wall)</td><td>Invasive: oesophageal balloon manometer reflects pleural pressure, plus mouth pressure and flow. Produces a pressure–flow curve.</td></tr>
+            <tr><td><strong>Forced oscillation</strong></td><td>Total respiratory impedance</td><td>Sine-wave pump/loudspeaker at the mouth. Impedance = resistance + compliance + inertance. At the resonant frequency, compliance and inertance cancel and impedance reflects resistance alone.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>Resistance vs impedance</strong>
+        <em>Resistance</em> describes impairment of constant flow (normal breathing). <em>Impedance</em> describes impairment of oscillating flow.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 6 ============ -->
+  <details class="card" id="s6">
+    <summary>6 · Transfer factor — TLCO / DLCO <span class="tag amber">Parenchyma</span></summary>
+    <div class="body">
+      <p>Oxygen must diffuse across alveolar epithelium, interstitium, basement membrane, capillary endothelium, plasma, and the red cell membrane before combining with haemoglobin. The rate constant for this whole process is the <strong>transfer factor (TL)</strong> — more accurate than "diffusing capacity (DL)" because the final step is a chemical reaction, not diffusion, and the measurement is made at rest (so it is not a "best achieved" capacity).</p>
+
+      <div class="kv">
+        <dt>Units</dt><dd>Europe: <strong>TLCO</strong> in mmol min⁻¹ kPa⁻¹. North America: <strong>DLCO</strong> in mL min⁻¹ mmHg⁻¹. ERS/ATS agreed on DLCO for uniformity, but both terms persist.</dd>
+        <dt>Gases</dt><dd>Oxygen (rarely used — end-capillary PO₂ cannot be measured directly), carbon monoxide (standard surrogate), nitric oxide (better reflects alveolar–capillary membrane properties; promising for the future).</dd>
+      </div>
+
+      <div class="callout blue">
+        <strong>Why carbon monoxide?</strong>
+        CO is a foreign gas — venous blood contains negligible CO. Its reaction with Hb is so rapid and so slowly reversed that pulmonary end-capillary PCO can be assumed to be <strong>zero</strong>. So you only need to measure CO uptake and alveolar CO concentration.
+      </div>
+
+      <p>CO uptake is two processes in series:</p>
+      <ul>
+        <li><strong>Membrane conductance (Dm)</strong> — diffusion across the available membrane</li>
+        <li><strong>Reactive conductance (θ × Vc)</strong> — θ = rate constant for CO + Hb; Vc = volume of Hb in alveolar capillary blood</li>
+      </ul>
+      <p><code>1 / TLCO = 1/Dm + 1/(θ × Vc)</code></p>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Key indices</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Index</th><th>Meaning</th><th>Units / notes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>kCO</strong> (lower case k)</td><td>Rate constant — the measured rate of change of CO concentration</td><td>mmol L⁻¹ min⁻¹</td></tr>
+            <tr><td><strong>KCO</strong> (upper case K)</td><td>kCO corrected for barometric pressure; rate of CO uptake per unit CO driving pressure</td><td>mmol L⁻¹ min⁻¹ kPa⁻¹ — the <em>transfer coefficient</em></td></tr>
+            <tr><td><strong>VA</strong></td><td>Alveolar volume containing CO, measured by helium dilution during the single-breath test</td><td>Litres (BTPS)</td></tr>
+            <tr><td><strong>TLCO</strong></td><td>Total CO uptake per unit time per unit driving pressure</td><td><code>TLCO = KCO × VA</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Single-breath technique (ERS-standardised)</h3>
+      <ol>
+        <li>Exhale fully to <strong>RV</strong>.</li>
+        <li>Inhale a mixture of <strong>0.3% CO + helium</strong> (inert tracer) to near <strong>TLC</strong>.</li>
+        <li>Breath-hold for <strong>8–10 seconds</strong>.</li>
+        <li>Exhale back to RV; after discarding about <strong>750 mL</strong> (dead-space washout), sample alveolar gas and analyse.</li>
+        <li>Helium dilution gives VA and allows calculation of the initial alveolar CO concentration, assuming CO is diluted to the same extent.</li>
+      </ol>
+      <p>Indices obtained: initial and final alveolar CO concentrations, breath-hold time, and VA during breath-hold.</p>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Interpretation — what changes TLCO</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Factor</th><th>Effect on TLCO</th></tr></thead>
+          <tbody>
+            <tr><td>Age, sex, height, ethnicity</td><td>All affect predicted values — always compare with a matched reference population</td></tr>
+            <tr><td>Haemoglobin</td><td><strong>Anaemia lowers TLCO</strong> (reduced CO-carrying capacity). Labs report actual <em>and</em> Hb-adjusted values (adjusted to Hb 146 g/L in men; 134 g/L in women and children &lt;15 yr).</td></tr>
+            <tr><td>Lung volume</td><td>TLCO rises with VA</td></tr>
+            <tr><td>Carboxyhaemoglobin (smoking)</td><td>Raises the back-pressure → lowers measured TLCO</td></tr>
+            <tr><td>Inspired oxygen / altitude</td><td>Alters the driving pressure and reaction kinetics</td></tr>
+            <tr><td>Body position</td><td><strong>Supine increases TLCO</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <strong>The most useful interpretation point</strong>
+        The primary measurements are <strong>KCO and VA</strong>; TLCO is their product. The same TLCO can arise from very different combinations:
+        <ul style="margin-bottom:0">
+          <li>Low KCO + low VA → emphysema (loss of surface area, ventilation–perfusion mismatch)</li>
+          <li>Low VA with preserved KCO → restrictive/chest wall disease</li>
+          <li>Low KCO with near-normal VA → pulmonary vascular disease, anaemia, early ILD</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 7 ============ -->
+  <details class="card" id="s7">
+    <summary>7 · Normal values, % predicted, LLN and z-scores <span class="tag">Interpretation</span></summary>
+    <div class="body">
+      <p>Pulmonary function varies far more with sex, age, height and ethnicity than most blood tests. An individual result is only interpretable against a <strong>matched reference population</strong>.</p>
+      <ul>
+        <li>Historically, normal values came from small, poorly powered studies — mostly Caucasian with a narrow age range — leading to conflicting predicted values.</li>
+        <li>In 2012 the <strong>Global Lung Initiative (GLI)</strong> produced spirometry reference equations from <strong>74,187 healthy non-smokers</strong> (57% female), aged 3–95 yr, worldwide.</li>
+        <li>In 2017 the GLI published all-age reference values for <strong>TLCO in Caucasians</strong>.</li>
+      </ul>
+
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Statistic</th><th>Definition</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Absolute volume (BTPS)</strong></td><td>The raw measurement</td><td>Rarely useful alone — too dependent on height and other factors. The old adage "an FEV1 over a litre is fine" is <strong>no longer tenable</strong>.</td></tr>
+            <tr><td><strong>% predicted</strong></td><td>Patient value ÷ reference population mean × 100</td><td>Standard for grading severity (e.g. GOLD stages)</td></tr>
+            <tr><td><strong>LLN</strong></td><td>Lower limit of normal — the 5th percentile of the reference population</td><td>Below this = abnormal and clinically important. Recommended threshold.</td></tr>
+            <tr><td><strong>z-score</strong></td><td>Number of standard deviations from the reference mean. <code>z = −1.72</code> means 1.72 SD below the mean.</td><td>Better than % predicted for expressing <em>how</em> abnormal. <strong>z = −1.64 is equivalent to the LLN.</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>Why this matters at the bedside</strong>
+        The same number can be normal for one patient and abnormal for another. Always ask: <em>compared with whom?</em> A result is only meaningful alongside the patient's age, sex, height and ethnicity — and alongside the clinical history and examination.
+      </div>
+
+      <p><strong>Test conduct:</strong> three attempts for static/dynamic volumes, best value accepted. Repeat after bronchodilator in airway disease to establish reversibility, which has real management implications.</p>
+    </div>
+  </details>
+
+  <!-- ============ 8 ============ -->
+  <details class="card" id="s8">
+    <summary>8 · Disease patterns — asthma, COPD, ILD, neuromuscular <span class="tag">Diagnosis</span></summary>
+    <div class="body">
+
+      <h3 style="font-size:.95rem;margin:.2rem 0 .3rem">Asthma</h3>
+      <ul>
+        <li>Asthma is a <strong>clinical diagnosis</strong>; tests confirm variable airflow obstruction or airway inflammation.</li>
+        <li>Spirometry may be <strong>normal when asymptomatic</strong>. Diagnosis rests on <strong>reversibility</strong> or rapid changes in FEV1/FVC.</li>
+        <li>More sensitive: challenge tests (methacholine, histamine, mannitol, exercise).</li>
+        <li>Community PEF monitoring with <strong>&gt;20% variability</strong> strongly suggests asthma.</li>
+      </ul>
+      <div class="callout warn">
+        <strong>Anaesthetic relevance</strong>
+        None of these diagnostic tests reliably predict perioperative bronchospasm. That is better predicted by <strong>asthma symptoms in the previous 30 days</strong>.
+      </div>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">COPD</h3>
+      <ul>
+        <li>Also largely clinical, but GOLD recommends spirometry to confirm airflow limitation.</li>
+        <li>Key criterion: <strong>post-bronchodilator FEV1/FVC &lt; 70%</strong>.</li>
+        <li>Caveat: the fixed 70% ratio <strong>over-diagnoses COPD in the elderly</strong>. Many suggest treating the ratio as clinically important only if below the LLN (<strong>z-score &lt; −1.64</strong>) for that patient.</li>
+      </ul>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>GOLD grade</th><th>Post-bronchodilator FEV1 (% predicted)</th></tr></thead>
+          <tbody>
+            <tr><td>GOLD 1 — mild</td><td class="num">≥ 80%</td></tr>
+            <tr><td>GOLD 2 — moderate</td><td class="num">50 – 79%</td></tr>
+            <tr><td>GOLD 3 — severe</td><td class="num">30 – 49%</td></tr>
+            <tr><td>GOLD 4 — very severe</td><td class="num">&lt; 30%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Other patterns</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Condition</th><th>PFT signature</th><th>Why it matters</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>COPD with hyperinflation</strong></td>
+              <td>↑ RV, ↑ FRC (and ↑ TLC)</td>
+              <td>Explains dyspnoea at rest and on exercise; dynamic hyperinflation impairs ventricular filling and respiratory muscle efficiency</td>
+            </tr>
+            <tr>
+              <td><strong>Interstitial lung disease / fibrosis</strong></td>
+              <td>Restrictive: ↓ FVC, normal or ↑ FEV1/FVC, ↓ TLC, <strong>severely ↓ TLCO</strong></td>
+              <td>TLCO reflects parenchymal function</td>
+            </tr>
+            <tr>
+              <td><strong>Emphysema</strong></td>
+              <td>↓ TLCO from reduced surface area for gas exchange</td>
+              <td>Low TLCO + obstructive spirometry</td>
+            </tr>
+            <tr>
+              <td><strong>Neuromuscular disease</strong> (myasthenia gravis, Guillain–Barré)</td>
+              <td>Falling FVC; falling maximal inspiratory/expiratory pressures</td>
+              <td>Used to monitor ventilatory failure — see case 8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout red">
+        <strong>Neuromuscular respiratory failure — the key numbers</strong>
+        Falling SpO2 and hypercapnia are <strong>very late signs</strong>, particularly on supplemental oxygen. Use serial effort-dependent tests instead. An <strong>FVC &lt; 20 mL/kg</strong>, a <strong>30% decrease in FVC</strong>, or falling maximal inspiratory/expiratory pressures are associated with a need for mechanical ventilation.
+      </div>
+
+      <div class="callout amber">
+        <strong>An abnormally low TLCO before surgery</strong>
+        Always investigate further. It suggests impaired gas exchange that will be significantly challenged when added to the normal respiratory changes of general anaesthesia.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 9 ============ -->
+  <details class="card" id="s9">
+    <summary>9 · Preoperative assessment &amp; predicting PPCs <span class="tag red">Periop</span></summary>
+    <div class="body">
+      <ul>
+        <li>Postoperative pulmonary complications (PPCs) are common after major surgery, but <strong>PFTs do not predict them well</strong>.</li>
+        <li>One small study found airflow limitation to be one of seven independent predictors of PPC. Larger, better-validated studies found <strong>clinical factors</strong> — recent respiratory tract infection, low SpO2 — to be superior.</li>
+        <li>Abnormal PFTs may be an <strong>indirect marker</strong> of PPC susceptibility, but cannot alone quantify that risk.</li>
+      </ul>
+
+      <div class="callout blue">
+        <strong>NICE NG45 (routine preoperative tests for elective surgery)</strong>
+        Routine preoperative spirometry is <strong>not recommended for any patient group</strong>. Even patients having intermediate or major/complex surgery who are ASA 3–4 due to known or suspected respiratory disease should be tested only after seeking advice from a senior anaesthetist.
+      </div>
+
+      <p>In practice, an ASA 3–4 patient with respiratory disease has usually already been assessed by respiratory specialists and has existing PFTs. If not, spirometry may be helpful to:</p>
+      <ul>
+        <li>Diagnose and quantify the disease, or</li>
+        <li>Seek evidence of a recent infection that would affect the <em>timing</em> of surgery</li>
+      </ul>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Cardiopulmonary exercise testing (CPET) in risk stratification</h3>
+      <p>CPET objectively quantifies functional capacity to meet the metabolic demands of major surgery. Three measures define physiological reserve:</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Measure</th><th>What it tells you</th><th>Threshold / note</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Peak VO2</strong></td><td>Maximum oxygen consumption just before exhaustion; normalised to body weight</td><td><strong>&lt;10 mL kg⁻¹ min⁻¹ or &lt;35% predicted = high risk</strong> of perioperative death and cardiopulmonary complications (ERS/ESTS/ACCP)</td></tr>
+            <tr><td><strong>Anaerobic threshold (AT)</strong></td><td>Point of disproportionate rise in VCO2 relative to VO2 from lactic acid buffering; ≈ half of peak VO2</td><td>Less dependent on motivation than peak VO2. Reduced AT → cardiac complications (e.g. aortic aneurysm repair)</td></tr>
+            <tr><td><strong>VE/VCO2</strong></td><td>Ventilation required to eliminate a volume of CO2; reflects V/Q relationships and dead space</td><td>Lower = better. Elevated VE/VCO2 → <strong>PPCs</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="refs">A resting adult consumes about <strong>3.5 mL kg⁻¹ min⁻¹ = 1 MET</strong>.</p>
+    </div>
+  </details>
+
+  <!-- ============ 10 ============ -->
+  <details class="card" id="s10">
+    <summary>10 · Lung resection — assessing fitness &amp; calculating ppo <span class="tag red">Thoracics</span></summary>
+    <div class="body">
+      <p>Patients presenting for lung resection often have a combination of lung cancer, cardiovascular disease and impaired lung function (shared risk factor: tobacco). The task is to balance short-term surgical risk (especially PPCs) and long-term risk of pulmonary disability against the risk of death from untreated cancer.</p>
+
+      <p><strong>Historical note:</strong> the "match test" — blowing out a lighted match held 6 inches from an open mouth — was an early bedside measure of FEV1/maximum breathing capacity. Some clinicians held the match at arm's length to correct for height.</p>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">The three assessment domains</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Domain</th><th>Test</th><th>Key thresholds</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Respiratory mechanics</strong></td>
+              <td>FEV1 (good indicator of pulmonary reserve)</td>
+              <td>Preoperative FEV1 <strong>&lt;60% predicted</strong> → significant postoperative complications. Risks rise to <strong>~60% when ppo-FEV1 &lt;30%</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Parenchymal function</strong></td>
+              <td>TLCO</td>
+              <td>TLCO and % ppo-TLCO are <strong>independent prognostic factors for long-term survival</strong> after curative-intent surgery</td>
+            </tr>
+            <tr>
+              <td><strong>Cardiopulmonary reserve</strong></td>
+              <td>Stair climbing, shuttle walk, or formal CPET</td>
+              <td>VO2max <strong>10–15 mL kg⁻¹ min⁻¹</strong> → high risk of complications and mortality vs peak VO2max &gt;20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Simplified ERS/ESTS assessment algorithm</h3>
+      <div class="flow">
+        <div class="node">Cardiac assessment: low-risk or treated patient</div>
+        <div class="arrow">↓</div>
+        <div class="node">Spirometry + transfer factor (FEV1, DLCO)</div>
+        <div class="out">Both &gt;80% predicted → resection up to pneumonectomy</div>
+        <div class="arrow">↓ either one &lt;80% predicted</div>
+        <div class="node">Exercise testing — peak VO2</div>
+        <div class="out bad">&lt;35% predicted or &lt;10 mL kg⁻¹ min⁻¹ → lobectomy or pneumonectomy usually <strong>not recommended</strong>; consider other options</div>
+        <div class="arrow">↓ 35–75% predicted or 10–20 mL kg⁻¹ min⁻¹</div>
+        <div class="node">Split function — ppo-FEV1 and ppo-DLCO</div>
+        <div class="out">Both &gt;30% → resection up to calculated extent</div>
+        <div class="arrow">↓ at least one &lt;30%</div>
+        <div class="node">ppo-peak VO2</div>
+        <div class="out bad">&lt;35% or &lt;10 mL kg⁻¹ min⁻¹ → not recommended</div>
+        <div class="out">&gt;35% or &gt;10 mL kg⁻¹ min⁻¹ → resection up to calculated extent</div>
+        <div class="arrow" style="margin-top:.3rem">If peak VO2 unavailable, stair climbing may substitute — but if altitude reached is &lt;22 m, formal CPET with peak VO2 is strongly recommended.</div>
+      </div>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Calculating ppo (predicted postoperative) values</h3>
+      <p>Four methods exist: (i) anatomical calculation, (ii) ventilation/perfusion scintigraphy, (iii) quantitative CT, (iv) dynamic perfusion MRI. ACCP recommends routine ppo calculation for all lung resections; BTS/SCTS and ERS/ESTS recommend it only when preoperative values do not clearly place the patient in a low-risk category.</p>
+
+      <div class="callout blue">
+        <strong>Anatomical method (best for lobectomy)</strong>
+        Right lung = 10 segments, left lung = 9 segments, total = 19.<br><br>
+        <code>ppo-FEV1 = preop FEV1 × (1 − number of unobstructed segments resected / total number of unobstructed segments)</code><br><br>
+        <strong>Obstructed segments contribute nothing</strong> to the preoperative FEV1 or TLCO, so they must be excluded from both numerator and denominator. Determine obstruction from CT or bronchoscopy. TLCO or VO2max can be substituted for FEV1.
+      </div>
+
+      <div class="callout">
+        <strong>Perfusion method (typically for pneumonectomy)</strong>
+        Uses <em>perfused</em> rather than aerated lung regions — better accounts for non-functioning tissue (emphysematous regions, tumour-obstructed segments) whose removal will not change FEV1 or TLCO.<br><br>
+        <code>ppo-FEV1 = preop FEV1 × (1 − fraction of total perfusion of the lung to be resected)</code><br><br>
+        Requires an extra investigation. TLCO or VO2max may be substituted.
+      </div>
+
+      <p>Convert absolute ppo values to <strong>% predicted</strong> or <strong>z-scores</strong> to quantify the expected postoperative function and counsel the patient on exercise capacity and infection susceptibility.</p>
+
+      <div class="callout amber">
+        <strong>Important caveat</strong>
+        These methods mostly <strong>underestimate</strong> the true ppo values. Therefore any result <em>above</em> the required threshold suggests suitability for resection.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 11 ============ -->
+  <details class="card" id="s11">
+    <summary>11 · Lung volume reduction surgery (LVRS) <span class="tag red">Thoracics</span></summary>
+    <div class="body">
+      <p>LVRS is a <strong>palliative</strong> procedure for severe COPD due to emphysema, usually via VATS, typically a wedge excision of emphysematous lung.</p>
+
+      <p><strong>Proposed mechanisms of benefit:</strong></p>
+      <ul>
+        <li>Improved elastic recoil of remaining lung</li>
+        <li>Reduced chest hyperinflation → improved respiratory muscle efficiency</li>
+        <li>Reduced intrathoracic pressure → improved ventricular filling (less dynamic hyperinflation)</li>
+      </ul>
+
+      <p>Early attempts had high mortality in these sick patients. The <strong>National Emphysema Treatment Trial (NETT)</strong> formally assessed safety, efficacy, risk/benefit and cost-effectiveness.</p>
+      <div class="callout blue">
+        <strong>NETT results</strong>
+        No overall survival benefit vs maximal medical therapy. Improved quality of life, dyspnoea and exercise tolerance in <strong>some</strong> patients. Greatest benefit in those with <strong>low baseline exercise capacity</strong> and <strong>heterogeneous emphysema with predominantly upper-lobe disease</strong> and relatively preserved lung elsewhere. Patients with preoperative <strong>FEV1 or TLCO &lt;20% predicted</strong> had an unacceptably high perioperative mortality.
+      </div>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">NICE selection criteria</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Requirement</th><th>Threshold</th></tr></thead>
+          <tbody>
+            <tr><td>On maximal medical therapy for severe COPD</td><td>Yes</td></tr>
+            <tr><td>Marked limitation of activities of daily living</td><td>Yes</td></tr>
+            <tr><td>FEV1</td><td>&gt; 20% predicted</td></tr>
+            <tr><td>TLCO</td><td>&gt; 20% predicted</td></tr>
+            <tr><td>PaCO2</td><td>&lt; 7.3 kPa</td></tr>
+            <tr><td>Emphysema distribution</td><td>Upper-lobe predominant on high-resolution CT (HRCT)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>HRCT confirms the presence of emphysema and its distribution, and may reveal conditions that contraindicate LVRS. Where HRCT cannot accurately define heterogeneity, <strong>quantitative perfusion scanning</strong> may be required — on the presumption that unperfused lung is unlikely to contribute to gas exchange and can safely be removed. Homogeneous emphysema is less likely to benefit.</p>
+    </div>
+  </details>
+
+  <!-- ============ 12 ============ -->
+  <details class="card" id="s12">
+    <summary>12 · Functional walking tests &amp; CPET <span class="tag blue">Cardiopulmonary</span></summary>
+    <div class="body">
+      <p>Historically, the ability to climb flights of stairs was a functional assessment of cardiopulmonary status. Perioperative mortality and complications both correlate with an <strong>inability to climb steps</strong>.</p>
+
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Test</th><th>Protocol</th><th>Primary outcome</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>6-minute walk test (6MWT)</strong></td>
+              <td>Self-paced walking for 6 min</td>
+              <td>6MWD (metres)</td>
+              <td>Secondary data: SpO2, heart rate, recovery time, Borg dyspnoea/fatigue scores, 6-min walk work (6MWD × body weight). Most healthy subjects: <strong>400–700 m</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Incremental shuttle walk test (ISWT)</strong></td>
+              <td>Externally paced shuttles between two cones 10 m apart; pace increases every minute to an audio signal (12 levels); terminated if the subject cannot keep pace</td>
+              <td>Distance walked (completed shuttles)</td>
+              <td><strong>&gt;400 m is linked to VO2max ≥ 15 mL kg⁻¹ min⁻¹</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Endurance shuttle walk test (ESWT)</strong></td>
+              <td>Initial ISWT determines the pace (usually ~85% of maximal ISWT pace); walk as long as possible at that pace</td>
+              <td>Duration</td>
+              <td>Requires a prior ISWT</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout amber">
+        Globally accepted reference equations from healthy populations for functional walking tests are <strong>not yet available</strong> — interpret with local norms and the individual's baseline.
+      </div>
+
+      <h3 style="font-size:.95rem;margin:.9rem 0 .3rem">Cardiopulmonary exercise testing (CPET)</h3>
+      <p>Requires more resources than a walking test, but is the <strong>gold standard</strong> for combined cardiopulmonary and circulatory function. It records a large number of physiological variables; the clinically most useful are:</p>
+
+      <div class="kv">
+        <dt>Peak VO2</dt><dd>Oxygen consumption measured spirometrically from inspiratory/expiratory oxygen concentrations and minute ventilation; the maximum value just before exhaustion. Normalised to body weight (mL kg⁻¹ min⁻¹). Related to fitness <em>and</em> motivation — different from VO2max, which is difficult to define except in trained athletes.</dd>
+        <dt>Anaerobic threshold</dt><dd>Marked by a disproportionate rise in VCO2 relative to VO2 from lactic acid buffering in muscle. Believed to represent the point at which oxygen delivery to muscle becomes inadequate (an oversimplification, but clinically useful). Occurs at roughly half of peak VO2. Fitter people have a higher AT. <strong>Advantage: less dependent on motivation.</strong></dd>
+        <dt>VE/VCO2</dt><dd>Volume of ventilation required to eliminate a volume of CO2; usually taken at the AT. Reflects the lungs' ability to meet exercise demands and relates to V/Q relationships including dead space. <strong>Lower = better lung health.</strong></dd>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 13 ============ -->
+  <details class="card" id="s13">
+    <summary>13 · Key numbers at a glance <span class="tag amber">Cheat sheet</span></summary>
+    <div class="body">
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Parameter</th><th>Threshold</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>Preoperative FEV1</td><td>&lt; 60% predicted</td><td>Associated with significant postoperative complications</td></tr>
+            <tr><td>ppo-FEV1</td><td>&lt; 30% predicted</td><td>Perioperative risk up to ~60%</td></tr>
+            <tr><td>FEV1 and DLCO</td><td>Both &gt; 80% predicted</td><td>Proceed to resection up to pneumonectomy</td></tr>
+            <tr><td>Peak VO2</td><td>&lt; 10 mL kg⁻¹ min⁻¹ or &lt; 35% predicted</td><td>High risk of perioperative death and cardiopulmonary complications</td></tr>
+            <tr><td>Peak VO2</td><td>10–20 mL kg⁻¹ min⁻¹ or 35–75% predicted</td><td>Proceed to split function testing (ppo-FEV1, ppo-DLCO)</td></tr>
+            <tr><td>ppo-FEV1 &amp; ppo-DLCO</td><td>Both &gt; 30% predicted</td><td>Resection up to calculated extent</td></tr>
+            <tr><td>VO2max</td><td>&gt; 20 mL kg⁻¹ min⁻¹</td><td>Low-risk reference point</td></tr>
+            <tr><td>6MWD (healthy)</td><td>400–700 m</td><td>Normal range</td></tr>
+            <tr><td>ISWT</td><td>&gt; 400 m</td><td>Linked to VO2max ≥ 15 mL kg⁻¹ min⁻¹</td></tr>
+            <tr><td>1 MET</td><td>3.5 mL kg⁻¹ min⁻¹</td><td>Resting adult oxygen consumption</td></tr>
+            <tr><td>Anaerobic threshold</td><td>≈ 50% of peak VO2</td><td>Normal relationship</td></tr>
+            <tr><td>FVC (neuromuscular)</td><td>&lt; 20 mL kg⁻¹, or a 30% fall</td><td>Indicates need for mechanical ventilation</td></tr>
+            <tr><td>COPD diagnosis</td><td>Post-bronchodilator FEV1/FVC &lt; 70%</td><td>Consider LLN / z &lt; −1.64 to avoid over-diagnosis in the elderly</td></tr>
+            <tr><td>LVRS (NETT)</td><td>FEV1 or TLCO &lt; 20% predicted</td><td>Unacceptably high perioperative mortality</td></tr>
+            <tr><td>LVRS (NICE)</td><td>FEV1 &amp; TLCO &gt; 20% predicted, PaCO2 &lt; 7.3 kPa, upper-lobe predominant</td><td>Selection criteria</td></tr>
+            <tr><td>Hb adjustment for TLCO</td><td>146 g/L (men); 134 g/L (women &amp; children &lt; 15 yr)</td><td>Reference for adjusted TLCO reporting</td></tr>
+            <tr><td>Lung segments</td><td>Right 10, left 9, total 19</td><td>Anatomical ppo calculation</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ CASES ============ -->
+  <section class="sec" id="cases">
+    <h2>14 · 10 high-yield case examples</h2>
+
+    <details class="card">
+      <summary>Case 1 — Preoperative spirometry before elective hernia repair <span class="tag">Periop</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> A 68-year-old smoker (ASA 2) is listed for elective inguinal hernia repair. The surgical team requests spirometry "to clear him for surgery." FEV1 returns at 55% predicted.</p>
+        <p><strong>Answer.</strong> NICE NG45 does <strong>not</strong> recommend routine preoperative spirometry for any patient group. Abnormal PFTs are poor predictors of postoperative pulmonary complications; clinical factors (recent respiratory tract infection, low SpO2, functional status) outperform them. Proceed with surgery and optimise modifiable factors — inhaler technique, smoking cessation, physiotherapy, timing around any recent infection. Do not delay surgery on the basis of spirometry alone.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Case 2 — The same ratio in two different patients <span class="tag blue">Interpretation</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> FEV1/FVC = 0.68. Is this COPD?</p>
+        <p><strong>Answer.</strong> Not necessarily. The fixed 70% threshold <strong>over-diagnoses COPD in the elderly</strong>. Compare against the lower limit of normal for that individual — i.e. z-score &lt; −1.64. In a 25-year-old, 0.68 is clearly abnormal; in an 80-year-old it may lie within the normal reference range. Always interpret against a matched reference population (GLI equations, 74,187 healthy non-smokers aged 3–95 yr).</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Case 3 — Asthma: what actually predicts bronchospasm? <span class="tag">Periop</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> A 30-year-old with asthma is asymptomatic, with normal spirometry, listed for elective surgery. Which test predicts intraoperative bronchospasm?</p>
+        <p><strong>Answer.</strong> None of the PFT results. Perioperative bronchospasm is better predicted by <strong>asthma symptoms in the previous 30 days</strong>. Diagnostic tests such as reversibility, challenge testing, or &gt;20% PEF variability are useful for making the diagnosis but are not known to be associated with perioperative bronchospasm. Optimise control, check inhaler technique, consider steroids if there has been a recent exacerbation, and postpone elective surgery during an active exacerbation or recent respiratory tract infection.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Case 4 — Why is my COPD patient breathless? <span class="tag blue">Mechanics</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> FEV1 45% predicted, FEV1/FVC 0.45, TLCO 48% predicted. The patient is breathless at rest and on minimal exertion.</p>
+        <p><strong>Answer.</strong> Obstructive pattern (GOLD 3, FEV1 30–49%) with reduced TLCO suggesting emphysematous loss of gas-exchange surface area. Also measure <strong>RV and FRC</strong> — static hyperinflation explains dyspnoea at rest and on exercise and is an independent therapeutic target. A reduced TLCO before surgery should always be investigated further: it flags impaired gas exchange that will be compounded by the normal respiratory changes of general anaesthesia.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Case 5 — ppo-FEV1 after right upper lobectomy <span class="tag red">Thoracics</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> Preoperative FEV1 = 2.0 L. Right upper lobectomy planned (3 segments). All segments are unobstructed.</p>
+        <p><strong>Answer.</strong> Right lung = 10 segments, left = 9, total = 19.<br>
+        <code>ppo-FEV1 = 2.0 × (1 − 3/19) = 2.0 × 0.842 = 1.68 L</code><br>
+        Then express as % predicted or a z-score for that patient. <strong>Critical detail:</strong> obstructed (non-contributing) segments must be excluded from <em>both</em> numerator and denominator — the formula uses the number of <strong>unobstructed</strong> segments resected over the total number of <strong>unobstructed</strong> segments.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Case 6 — Pneumonectomy: perfusion scintigraphy <span class="tag red">Thoracics</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> Preoperative FEV1 = 1.8 L. The right lung receives 55% of total perfusion. Right pneumonectomy planned.</p>
+        <p><strong>Answer.</strong> <code>ppo-FEV1 = 1.8 × (1 − 0.55) = 0.81 L</code>. Perfusion (V/Q) scintigraphy is preferred for pneumonectomy because it accounts for non-functioning but still ventilated lung. TLCO or VO2max can be substituted into the same equation. Remember: these methods mostly <strong>underestimate</strong> true ppo values, so a result above the threshold favours resection.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Case 7 — Interpreting CPET thresholds <span class="tag">Cardiopulmonary</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> Peak VO2 = 12 mL kg⁻¹ min⁻¹ (40% predicted); AT at 9 mL kg⁻¹ min⁻¹; VE/VCO2 elevated at the AT.</p>
+        <p><strong>Answer.</strong> Peak VO2 of 10–20 mL kg⁻¹ min⁻¹ (or 35–75% predicted) places the patient in the intermediate group → proceed to <strong>split function testing</strong> (ppo-FEV1, ppo-DLCO). Peak VO2 &lt;10 mL kg⁻¹ min⁻¹ or &lt;35% predicted would be high risk for perioperative death and cardiopulmonary complications. AT is less dependent on motivation and normally sits at about half of peak VO2. A raised VE/VCO2 reflects poor ventilatory efficiency and V/Q mismatch, and predicts <strong>postoperative pulmonary complications</strong> (whereas a reduced AT predicts cardiac complications).</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Case 8 — Guillain–Barré: when to ventilate <span class="tag red">ICU</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> A patient with Guillain–Barré syndrome is on the ward. SpO2 is 96% on air and the arterial blood gas is normal.</p>
+        <p><strong>Answer.</strong> Do not be reassured. Falling SpO2 and hypercapnia are <strong>very late signs</strong> of ventilatory insufficiency, especially on supplemental oxygen. Monitor with <strong>serial effort-dependent tests</strong> — FVC is the practical choice because it uses all respiratory muscles. An <strong>FVC &lt; 20 mL/kg</strong>, a <strong>30% decrease in FVC</strong>, or falling maximal inspiratory/expiratory pressures are associated with a need for mechanical ventilation. Also track cough strength, secretion clearance and bulbar function.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Case 9 — Low TLCO: is it the lung or the blood? <span class="tag amber">Parenchyma</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> TLCO = 55% predicted in a patient with a normal chest radiograph who is anaemic (Hb 95 g/L).</p>
+        <p><strong>Answer.</strong> Anaemia reduces the CO-carrying capacity of blood and therefore lowers TLCO. Laboratories report both the actual and the Hb-adjusted value (adjusted to Hb 146 g/L in men; 134 g/L in women and children &lt;15 yr). Always consider the other modifiers: lung volume, carboxyhaemoglobin from smoking, inspired oxygen concentration, altitude, body position (supine increases TLCO), plus age, sex, height and ethnicity. Remember that <strong>KCO and VA are the primary measurements</strong> — the same TLCO from different KCO/VA combinations means different things. Low TLCO also occurs in emphysema (loss of surface area) and is severely impaired in interstitial lung disease and fibrosis.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Case 10 — Is this patient a candidate for LVRS? <span class="tag red">Thoracics</span></summary>
+      <div class="body">
+        <p><strong>Scenario.</strong> A 62-year-old with severe COPD on maximal medical therapy, marked limitation of activities of daily living. FEV1 22% predicted, TLCO 21% predicted, PaCO2 6.5 kPa, upper-lobe-predominant emphysema on HRCT.</p>
+        <p><strong>Answer.</strong> This patient meets the NICE criteria for LVRS assessment: FEV1 and TLCO both &gt;20% predicted, PaCO2 &lt;7.3 kPa, upper-lobe-predominant emphysema on HRCT, on maximal medical therapy with marked ADL limitation. Note that NETT showed <strong>no overall survival benefit</strong> versus maximal medical therapy, but improved quality of life, dyspnoea and exercise tolerance — benefit is greatest in those with low baseline exercise capacity and heterogeneous upper-lobe disease. A preoperative FEV1 <em>or</em> TLCO &lt;20% predicted carries an unacceptably high perioperative mortality.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ REFERENCES ============ -->
+  <section class="sec" id="refs">
+    <h2>Sources</h2>
+    <details class="card" open>
+      <summary>Primary sources &amp; key references</summary>
+      <div class="body refs">
+        <ol>
+          <li><strong>Lumb AB, Ntima NO.</strong> Physiology and conduct of pulmonary function tests. <em>BJA Education</em> 2019;19(7):198–204. <br><span style="font-size:.92em">Source PDF: <code>PIIS2058534919300307.pdf</code></span></li>
+          <li><strong>Ntima NO, Lumb AB.</strong> Pulmonary function tests in anaesthetic practice. <em>BJA Education</em> 2019. doi:10.1016/j.bjae.2019.02.001<br><span style="font-size:.92em">Source PDF: <code>PIIS2058534919300290.pdf</code></span></li>
+          <li>Miller MR, Hankinson J, Brusasco V, et al. Standardisation of spirometry. <em>Eur Respir J</em> 2005;26:319–338.</li>
+          <li>Quanjer PH, Stanojevic S, Cole TJ, et al. Multi-ethnic reference values for spirometry for the 3–95-yr age range: the Global Lung Function 2012 equations. <em>Eur Respir J</em> 2012;40:1324–1343.</li>
+          <li>Stanojevic S, Graham BL, Cooper BG, et al. Official ERS technical standards: Global Lung Function Initiative reference values for the carbon monoxide transfer factor for Caucasians. <em>Eur Respir J</em> 2017;50:1700010.</li>
+          <li>Graham BL, Brusasco V, Burgos F, et al. 2017 ERS/ATS standards for single-breath carbon monoxide uptake in the lung. <em>Eur Respir J</em> 2017;49:1600016.</li>
+          <li>MacIntyre N, Crapo RO, Viegi G, et al. Standardisation of the single-breath determination of carbon monoxide uptake in the lung. <em>Eur Respir J</em> 2005;26:720–735.</li>
+          <li>Brunelli A, Charloux A, Bolliger CT, et al. ERS/ESTS clinical guidelines on fitness for radical therapy in lung cancer patients (surgery and chemo-radiotherapy). <em>Eur Respir J</em> 2009;34:17–41.</li>
+          <li>Brunelli A, Kim AW, Berger KI, Addrizzo-Harris DJ. Physiologic evaluation of the patient with lung cancer being considered for resectional surgery: ACCP evidence-based clinical practice guidelines. <em>Chest</em> 2013;143:e166S–e190S.</li>
+          <li>National Emphysema Treatment Trial Research Group. A randomized trial comparing lung-volume-reduction surgery with medical therapy for severe emphysema. <em>N Engl J Med</em> 2003;348:2059–2073.</li>
+          <li>National Institute for Health and Care Excellence. Routine preoperative tests for elective surgery. NICE guideline NG45, April 2016.</li>
+          <li>Holland AE, Spruit MA, Troosters T, et al. An official ERS/ATS technical standard: field walking tests in chronic respiratory disease. <em>Eur Respir J</em> 2014;44:1428–1446.</li>
+          <li>Win T, Jackson A, Groves AM, et al. Comparison of shuttle walk with measured peak oxygen consumption in patients with operable lung cancer. <em>Thorax</em> 2006;61:57–60.</li>
+          <li>Miskovic AM, Lumb AB. Postoperative pulmonary complications. <em>Br J Anaesth</em> 2017;118:317–334.</li>
+          <li>Hopker JG, Jobson SA, Pandit JJ. Controversies in the physiological basis of the 'anaerobic threshold' and their implications for clinical cardiopulmonary exercise testing. <em>Anaesthesia</em> 2011;66:111–123.</li>
+        </ol>
+        <p style="font-size:.9em">Volume, page and DOI details are reproduced as they appear in the source PDFs. Please verify against the final published version before citing.</p>
+      </div>
+    </details>
+  </section>
+
+  <div id="no-results">No matching sections. Try a different term — e.g. <em>ppo</em>, <em>TLCO</em>, <em>GOLD</em>, <em>6MWD</em>, <em>LVRS</em>.</div>
+
+</main>
+
+<footer>
+  Quick reference compiled from BJA Education 2019 articles on the physiology, conduct and clinical use of pulmonary function tests.
+  For educational use only — not a substitute for local protocols, current guidelines, or clinical judgement.
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content   = document.getElementById('content');
+  var searchBox = document.getElementById('search');
+  var noResults = document.getElementById('no-results');
+  var countEl   = document.getElementById('count');
+  var cards     = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+  var sections  = Array.prototype.slice.call(document.querySelectorAll('section.sec'));
+  var timer;
+
+  /* ---------- highlight helpers ---------- */
+  function clearMarks(root) {
+    var marks = root.querySelectorAll('mark');
+    Array.prototype.forEach.call(marks, function (m) {
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  function highlight(root, term) {
+    if (!term) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        var tag = node.parentNode ? node.parentNode.nodeName : '';
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return node.nodeValue.toLowerCase().indexOf(term) !== -1
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text  = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag  = document.createDocumentFragment();
+      var i = 0, idx;
+
+      while ((idx = lower.indexOf(term, i)) !== -1) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement('mark');
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+        i = idx + term.length;
+      }
+      frag.appendChild(document.createTextNode(text.slice(i)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- search ---------- */
+  function runSearch() {
+    var raw  = searchBox.value.trim();
+    var term = raw.toLowerCase();
+
+    clearMarks(content);
+
+    if (!term) {
+      cards.forEach(function (c) { c.hidden = false; c.open = false; });
+      sections.forEach(function (s) { s.hidden = false; });
+      noResults.classList.remove('show');
+      countEl.textContent = '';
+      return;
+    }
+
+    var visible = 0;
+    cards.forEach(function (c) {
+      var match = c.textContent.toLowerCase().indexOf(term) !== -1;
+      c.hidden = !match;
+      if (match) { c.open = true; visible++; }
+    });
+
+    sections.forEach(function (s) {
+      var hasVisible = s.querySelector('details.card:not([hidden])');
+      s.hidden = !hasVisible;
+    });
+
+    highlight(content, term);
+    noResults.classList.toggle('show', visible === 0);
+    countEl.textContent = visible ? visible + ' section' + (visible === 1 ? '' : 's') : 'no matches';
+  }
+
+  searchBox.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(runSearch, 130);
+  });
+
+  searchBox.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      searchBox.value = '';
+      runSearch();
+    }
+  });
+
+  /* ---------- expand / collapse ---------- */
+  document.getElementById('expand-all').addEventListener('click', function () {
+    cards.forEach(function (c) { if (!c.hidden) c.open = true; });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function () {
+    cards.forEach(function (c) { c.open = false; });
+  });
+
+  /* ---------- anchor links open the target card ---------- */
+  function openTarget(hash) {
+    if (!hash || hash.length < 2) return;
+    var el;
+    try { el = document.querySelector(hash); } catch (err) { return; }
+    if (!el) return;
+    if (el.tagName === 'DETAILS') el.open = true;
+    var parent = el.closest ? el.closest('details') : null;
+    if (parent) parent.open = true;
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      openTarget(a.getAttribute('href'));
+    });
+  });
+
+  window.addEventListener('hashchange', function () {
+    openTarget(location.hash);
+  });
+  openTarget(location.hash);
+
+})();
+</script>
+</body>
+</html>
