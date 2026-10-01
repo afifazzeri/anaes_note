@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GINA 2026 — Quick Reference for Anaesthetists &amp; Intensivists</title>
+<style>
+  :root{
+    --bg:#f5f7f9;
+    --card:#ffffff;
+    --ink:#12232e;
+    --muted:#5a6b78;
+    --line:#dbe3e9;
+    --accent:#0b6b8f;
+    --accent-soft:#e6f2f7;
+    --warn:#b3261e;
+    --warn-soft:#fdeceb;
+    --ok:#1f7a4d;
+    --ok-soft:#e8f5ee;
+    --amber:#8a5a00;
+    --amber-soft:#fdf3e0;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(16,40,55,.06), 0 6px 18px rgba(16,40,55,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e161c; --card:#16222b; --ink:#e6eef3; --muted:#9db0bd;
+      --line:#26363f; --accent:#4fb8dc; --accent-soft:#12303d;
+      --warn:#ff8a80; --warn-soft:#3a1c1a; --ok:#7fd6a8; --ok-soft:#12301f;
+      --amber:#ffc266; --amber-soft:#33260e;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:20px 16px 64px;}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:linear-gradient(135deg,#0b6b8f,#0d4f6b);
+    color:#fff; border-radius:var(--radius); padding:20px 20px 18px;
+    box-shadow:var(--shadow);
+  }
+  header.top h1{margin:0 0 4px; font-size:1.35rem; letter-spacing:-.01em;}
+  header.top p{margin:0; opacity:.9; font-size:.85rem;}
+  .badge{
+    display:inline-block; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3);
+    padding:2px 9px; border-radius:999px; font-size:.7rem; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase; margin-bottom:10px;
+  }
+
+  /* ---------- Controls ---------- */
+  .controls{
+    position:sticky; top:0; z-index:30; background:var(--bg);
+    padding:12px 0 10px; margin-top:14px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  }
+  .searchbox{position:relative; flex:1 1 260px; min-width:200px;}
+  .searchbox input{
+    width:100%; padding:10px 34px 10px 34px; border-radius:999px;
+    border:1px solid var(--line); background:var(--card); color:var(--ink);
+    font-size:.9rem; outline:none;
+  }
+  .searchbox input:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+  .searchbox .icon{position:absolute; left:12px; top:50%; transform:translateY(-50%); opacity:.5; font-size:.9rem;}
+  .searchbox .clear{
+    position:absolute; right:6px; top:50%; transform:translateY(-50%);
+    border:0; background:transparent; color:var(--muted); cursor:pointer;
+    font-size:1rem; padding:4px 8px; border-radius:50%;
+  }
+  .searchbox .clear:hover{background:var(--accent-soft);}
+  .btn{
+    border:1px solid var(--line); background:var(--card); color:var(--ink);
+    padding:9px 14px; border-radius:999px; font-size:.82rem; font-weight:600;
+    cursor:pointer; white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--accent); color:var(--accent);}
+  .status{font-size:.78rem; color:var(--muted); margin:2px 0 0; min-height:1.1em;}
+
+  /* ---------- Nav chips ---------- */
+  nav.chips{display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 18px;}
+  nav.chips a{
+    font-size:.75rem; text-decoration:none; color:var(--muted);
+    border:1px solid var(--line); background:var(--card);
+    padding:5px 10px; border-radius:999px;
+  }
+  nav.chips a:hover{color:var(--accent); border-color:var(--accent);}
+
+  /* ---------- At a glance ---------- */
+  .glance{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px; box-shadow:var(--shadow); margin-bottom:20px;
+  }
+  .glance h2{margin:0 0 12px; font-size:.95rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted);}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px;}
+  .gitem{background:var(--accent-soft); border-radius:10px; padding:10px 12px;}
+  .gitem .k{font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--accent);}
+  .gitem .v{font-size:.88rem; font-weight:600; margin-top:3px; line-height:1.35;}
+
+  /* ---------- Sections ---------- */
+  details.sec{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    margin-bottom:10px; box-shadow:var(--shadow); overflow:hidden;
+  }
+  details.sec > summary{
+    list-style:none; cursor:pointer; padding:14px 16px;
+    display:flex; align-items:center; gap:10px; font-weight:700; font-size:.95rem;
+    user-select:none;
+  }
+  details.sec > summary::-webkit-details-marker{display:none;}
+  details.sec > summary:hover{background:var(--accent-soft);}
+  details.sec > summary .chev{
+    margin-left:auto; transition:transform .18s ease; color:var(--muted); font-size:.8rem;
+  }
+  details.sec[open] > summary .chev{transform:rotate(90deg);}
+  details.sec > summary .num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:24px; height:24px; flex:0 0 24px; border-radius:7px;
+    background:var(--accent); color:#fff; font-size:.75rem; font-weight:700;
+  }
+  .body{padding:0 16px 16px; border-top:1px solid var(--line);}
+  .body > *:first-child{margin-top:14px;}
+  h3{font-size:.85rem; text-transform:uppercase; letter-spacing:.07em; color:var(--accent); margin:18px 0 8px;}
+  h4{font-size:.9rem; margin:14px 0 6px;}
+  p{margin:0 0 10px;}
+  ul,ol{margin:0 0 10px; padding-left:20px;}
+  li{margin-bottom:5px;}
+  li > ul, li > ol{margin-top:5px;}
+  strong{font-weight:700;}
+  code{background:var(--accent-soft); padding:1px 5px; border-radius:4px; font-size:.85em;}
+
+  /* ---------- Callouts ---------- */
+  .note, .danger, .ok, .amber{
+    border-left:4px solid; border-radius:8px; padding:10px 12px; margin:10px 0; font-size:.88rem;
+  }
+  .note{background:var(--accent-soft); border-color:var(--accent);}
+  .danger{background:var(--warn-soft); border-color:var(--warn);}
+  .ok{background:var(--ok-soft); border-color:var(--ok);}
+  .amber{background:var(--amber-soft); border-color:var(--amber);}
+  .note strong, .danger strong, .ok strong, .amber strong{display:block; margin-bottom:2px;}
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    border:1px solid var(--line); border-radius:10px; margin:10px 0 14px;
+    background:var(--card);
+  }
+  table{border-collapse:collapse; width:100%; min-width:560px; font-size:.83rem;}
+  th,td{padding:8px 10px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:var(--accent-soft); font-size:.74rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); position:sticky; top:0;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:var(--accent-soft);}
+  .scrollhint{font-size:.72rem; color:var(--muted); margin:-8px 0 12px;}
+
+  /* ---------- Step diagrams ---------- */
+  .steps-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px; margin:10px 0 6px;}
+  .steps{display:flex; gap:8px; min-width:720px; align-items:stretch;}
+  .step{
+    flex:1 1 0; border-radius:10px; padding:9px 10px; font-size:.78rem;
+    border:1px solid var(--line); background:var(--card); display:flex; flex-direction:column; gap:4px;
+  }
+  .step .lbl{font-size:.66rem; font-weight:800; letter-spacing:.07em; text-transform:uppercase; opacity:.7;}
+  .step .ttl{font-weight:700; font-size:.8rem; line-height:1.3;}
+  .step .desc{font-size:.74rem; color:var(--muted); line-height:1.35;}
+  .s1{background:#eef7fa; border-color:#cfe6ef;}
+  .s2{background:#e3f1f7; border-color:#bcdce8;}
+  .s3{background:#d6eaf3; border-color:#a8d0e0;}
+  .s4{background:#c9e3ef; border-color:#93c5d9;}
+  .s5{background:#fdf0dc; border-color:#f0d6a3;}
+  @media (prefers-color-scheme: dark){
+    .s1{background:#13262e;border-color:#1e3b47}
+    .s2{background:#152c36;border-color:#224653}
+    .s3{background:#17323e;border-color:#265263}
+    .s4{background:#193844;border-color:#2b5f73}
+    .s5{background:#33260e;border-color:#4d3a15}
+  }
+  .reliever{
+    min-width:720px; margin-top:8px; border-radius:10px; padding:8px 12px;
+    background:var(--ok-soft); border:1px dashed var(--ok);
+    font-size:.78rem; font-weight:600;
+  }
+  .diagram-title{font-size:.78rem; font-weight:700; margin:14px 0 2px; color:var(--ink);}
+  .diagram-note{font-size:.73rem; color:var(--muted); margin:4px 0 0;}
+
+  /* ---------- Exacerbation columns ---------- */
+  .cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px; margin:10px 0;}
+  .col{border:1px solid var(--line); border-radius:10px; padding:11px 12px; font-size:.83rem; background:var(--card);}
+  .col h5{margin:0 0 6px; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em;}
+  .col.mild{border-top:4px solid var(--ok);} .col.mild h5{color:var(--ok);}
+  .col.mod{border-top:4px solid var(--amber);} .col.mod h5{color:var(--amber);}
+  .col.sev{border-top:4px solid var(--warn);} .col.sev h5{color:var(--warn);}
+  .col ul{padding-left:18px; margin:0;}
+  .col li{margin-bottom:3px;}
+
+  /* ---------- Cycle ---------- */
+  .cycle{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:12px 0;}
+  .cyc{border-radius:10px; padding:12px; font-size:.82rem; border:1px solid var(--line);}
+  .cyc h5{margin:0 0 6px; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em;}
+  .cyc.a{background:var(--accent-soft);} .cyc.a h5{color:var(--accent);}
+  .cyc.b{background:var(--amber-soft);} .cyc.b h5{color:var(--amber);}
+  .cyc.c{background:var(--ok-soft);} .cyc.c h5{color:var(--ok);}
+  .cyc ul{margin:0; padding-left:17px;}
+
+  /* ---------- Search highlight ---------- */
+  mark.hl{background:#ffe680; color:#3a2c00; padding:0 2px; border-radius:3px;}
+  @media (prefers-color-scheme: dark){ mark.hl{background:#ffd54f; color:#2a2000;} }
+
+  #noResults{
+    text-align:center; padding:40px 16px; color:var(--muted);
+    background:var(--card); border:1px dashed var(--line); border-radius:var(--radius);
+  }
+
+  /* ---------- Footer ---------- */
+  footer.src{
+    margin-top:28px; padding:16px; border-radius:var(--radius);
+    background:var(--card); border:1px solid var(--line); font-size:.8rem; color:var(--muted);
+    box-shadow:var(--shadow);
+  }
+  footer.src h3{margin-top:0;}
+  footer.src p{margin:0 0 8px;}
+  footer.src a{color:var(--accent);}
+  .disclaimer{font-size:.74rem; line-height:1.5; border-top:1px solid var(--line); padding-top:10px; margin-top:10px;}
+
+  @media print{
+    .controls, nav.chips, .clear{display:none;}
+    details.sec{break-inside:avoid; box-shadow:none;}
+    details.sec > .body{display:block !important;}
+    body{background:#fff;}
+  }
+  @media (max-width:640px){
+    header.top h1{font-size:1.1rem;}
+    .body{padding:0 12px 14px;}
+    details.sec > summary{padding:12px; font-size:.88rem;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <span class="badge">Clinical quick reference</span>
+    <h1>GINA 2026 — Asthma for Anaesthetists &amp; Intensivists</h1>
+    <p>Perioperative, emergency and critical-care essentials · Adults, adolescents &amp; children 6–11 years</p>
+  </header>
+
+  <div class="controls">
+    <div class="searchbox">
+      <span class="icon">🔍</span>
+      <input id="search" type="search" placeholder="Search (e.g. prednisolone, silent chest, ipratropium, adrenal)…" autocomplete="off" spellcheck="false">
+      <button class="clear" id="clearBtn" title="Clear" aria-label="Clear search">✕</button>
+    </div>
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+  </div>
+  <p class="status" id="searchStatus"></p>
+
+  <nav class="chips">
+    <a href="#s1">Perioperative</a>
+    <a href="#s2">Exacerbation severity</a>
+    <a href="#s3">Exacerbation management</a>
+    <a href="#s4">Diagnosis &amp; PFT</a>
+    <a href="#s5">Control &amp; risk</a>
+    <a href="#s6">Adults/adolescents steps</a>
+    <a href="#s7">Children 6–11 steps</a>
+    <a href="#s8">Drugs &amp; doses</a>
+    <a href="#s9">Severe asthma</a>
+    <a href="#s10">Special populations</a>
+    <a href="#s11">Cautions</a>
+    <a href="#source">Source</a>
+  </nav>
+
+  <!-- ================= AT A GLANCE ================= -->
+  <section class="glance">
+    <h2>At a glance — numbers you need</h2>
+    <div class="grid">
+      <div class="gitem"><div class="k">O₂ target</div><div class="v">92–95%<br><span style="font-weight:400;font-size:.8rem">Adjust for altitude. Pulse oximetry may over-read in dark skin.</span></div></div>
+      <div class="gitem"><div class="k">SABA (salbutamol)</div><div class="v">4–6 puffs pMDI + spacer, repeat q20 min ×3<br><span style="font-weight:400;font-size:.8rem">or 2.5 mg nebulised</span></div></div>
+      <div class="gitem"><div class="k">Ipratropium</div><div class="v">4 puffs (20 mcg/puff) q20 min<br><span style="font-weight:400;font-size:.8rem">Moderate/severe or poor SABA response</span></div></div>
+      <div class="gitem"><div class="k">Prednisolone — adult</div><div class="v">40–50 mg mane × 5–7 days</div></div>
+      <div class="gitem"><div class="k">Prednisolone — child</div><div class="v">1–2 mg/kg/day (max 40 mg) × 3–5 days</div></div>
+      <div class="gitem"><div class="k">ICS-formoterol ceiling</div><div class="v">&gt;8 inhalations/24 h (6–11 y)<br>&gt;12 inhalations/24 h (≥12 y) → seek care</div></div>
+      <div class="gitem"><div class="k">ICS-SABA ceiling</div><div class="v">Max 6 doses × 2 inhalations / 24 h</div></div>
+      <div class="gitem"><div class="k">SABA overuse flags</div><div class="v">≥3 canisters/yr = ↑ exacerbations<br>≥12 canisters/yr = ↑↑ death risk<br>≥1 canister/month = high risk</div></div>
+      <div class="gitem"><div class="k">Peri-op steroid cover</div><div class="v">Hydrocortisone intra-op if long-term high-dose ICS <em>or</em> OCS &gt;2 weeks in last 6 months</div></div>
+      <div class="gitem"><div class="k">Transfer to ICU</div><div class="v">Drowsy · confused · silent chest</div></div>
+    </div>
+  </section>
+
+  <!-- ================= 1. PERIOPERATIVE ================= -->
+  <details class="sec" id="s1" open>
+    <summary><span class="num">1</span> Perioperative essentials <span class="chev">▶</span></summary>
+    <div class="body">
+      <h3>Before surgery</h3>
+      <ul>
+        <li>Elective surgery should, if possible, be performed when asthma is <strong>well controlled</strong>. Assess symptom control, recent exacerbations, reliever use, inhaler technique and adherence.</li>
+        <li>Confirm the diagnosis is documented (see <a href="#s4">Diagnosis &amp; PFT</a>) — 25–35% of primary-care "asthma" diagnoses are not confirmed objectively.</li>
+        <li>Identify triggers that could be encountered perioperatively: <strong>NSAIDs/aspirin</strong> (aspirin-exacerbated respiratory disease), <strong>beta-blockers</strong>, allergens, tobacco/vaping, air pollution, stress.</li>
+        <li>Screen for <strong>asthma + COPD</strong> (smokers, elderly, biomass exposure). These patients have worse outcomes than asthma or COPD alone and <strong>must</strong> receive ICS-containing treatment — bronchodilator-only therapy increases hospitalisation and death.</li>
+        <li>Screen for comorbidities that worsen control: rhinitis/rhinosinusitis, obesity, obstructive sleep apnoea, GERD, depression/anxiety.</li>
+        <li>Ensure the patient has a <strong>written asthma action plan</strong> and knows their usual maintenance and reliever regimen.</li>
+      </ul>
+
+      <h3>During the perioperative period</h3>
+      <ul>
+        <li><strong>Continue ICS-containing treatment throughout the peri-operative period</strong> — do not stop inhaled steroids.</li>
+        <li><strong>Adrenal suppression cover:</strong> give <strong>hydrocortisone during the operation</strong> for patients on long-term high-dose ICS, and for patients who have used oral corticosteroids for more than 2 weeks in the previous 6 months — to reduce the risk of adrenal crisis.</li>
+        <li>Avoid NSAIDs/aspirin in suspected or confirmed aspirin-exacerbated respiratory disease (AERD).</li>
+        <li>Avoid beta-blockers where possible if they trigger symptoms.</li>
+        <li>Continue the patient's usual reliever; ICS-formoterol can be used before or during allergen exposure and before exercise to prevent symptoms.</li>
+      </ul>
+
+      <div class="danger">
+        <strong>Infection-control / device points</strong>
+        Avoid nebulisers in patients with a respiratory infection or high probability of infection — deliver SABA by <strong>pMDI + spacer</strong> (mouthpiece or tightly fitting face mask). Avoid spirometry in confirmed or suspected COVID-19.
+      </div>
+
+      <h3>Post-operative</h3>
+      <ul>
+        <li>Provide or review an <strong>interim written asthma action plan</strong> and arrange follow-up within 2–7 days (2–5 days in children) if there has been an exacerbation.</li>
+        <li>Check and correct inhaler technique before discharge; confirm adherence to ICS-containing therapy.</li>
+        <li>If a course of OCS was needed, optimise inhaled therapy afterwards to reduce the need for further courses.</li>
+        <li>Check vaccination status for preventable respiratory infections (influenza, pneumococcus, COVID-19, RSV, pertussis) per local age-based advice.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 2. EXACERBATION SEVERITY ================= -->
+  <details class="sec" id="s2">
+    <summary><span class="num">2</span> Acute exacerbation — severity assessment <span class="chev">▶</span></summary>
+    <div class="body">
+      <p>Assess severity <strong>while starting SABA and oxygen</strong>. Check for anaphylaxis. Assess dyspnoea, respiratory rate, accessory muscle use, air entry, pulse rate, oxygen saturation and lung function (e.g. PEF). In children &lt;18 years use a validated score such as <strong>PRAM</strong> (Paediatric Respiratory Assessment Measure).</p>
+
+      <div class="cols">
+        <div class="col mild">
+          <h5>Mild</h5>
+          <ul>
+            <li>Talks in sentences; can lie down; not agitated</li>
+            <li>RR normal or mildly increased</li>
+            <li>No accessory muscle use</li>
+            <li>No wheeze</li>
+            <li>Normal air entry</li>
+            <li>SpO₂ ≥94%</li>
+            <li>PEF &gt;70% best or predicted</li>
+            <li><em>Children &lt;18 y: PRAM 1–3</em></li>
+          </ul>
+        </div>
+        <div class="col mod">
+          <h5>Moderate</h5>
+          <ul>
+            <li>Talks in phrases; prefers sitting; not agitated</li>
+            <li>RR increased, &gt;30/min</li>
+            <li>Accessory muscle use</li>
+            <li>Expiratory wheeze</li>
+            <li>Decreased air entry</li>
+            <li>SpO₂ 92–95%</li>
+            <li>PEF 50–70% best or predicted</li>
+            <li><em>Children &lt;18 y: PRAM 4–7</em></li>
+          </ul>
+        </div>
+        <div class="col sev">
+          <h5>Severe / life-threatening</h5>
+          <ul>
+            <li>Unable to speak, drink or lie down</li>
+            <li>SpO₂ &lt;92% on room air</li>
+            <li>RR &gt;30/min</li>
+            <li>Silent or quiet chest</li>
+            <li>PEF &lt;50% best or predicted</li>
+            <li><em>Children &lt;18 y: PRAM 8–12</em></li>
+            <li><strong>Life-threatening:</strong> drowsy, confused, cyanosed (PRAM 11–12)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="danger">
+        <strong>Immediate ICU / acute-care transfer</strong>
+        Any sign of severe exacerbation → arrange immediate transfer. Transfer to <strong>intensive care</strong> if drowsy, confused, or silent chest. If the patient has anaphylaxis <em>and</em> asthma, give <strong>epinephrine (IM or nasal) first</strong>.
+      </div>
+
+      <h3>Consider alternative diagnoses</h3>
+      <ul>
+        <li>Heart failure, upper airway dysfunction / inducible laryngeal obstruction, inhaled foreign body, pulmonary embolism.</li>
+        <li>Pneumothorax, pneumonia, acute cardiac failure — do not assume all acute breathlessness is asthma.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 3. EXACERBATION MANAGEMENT ================= -->
+  <details class="sec" id="s3">
+    <summary><span class="num">3</span> Acute exacerbation — management (ED / ICU) <span class="chev">▶</span></summary>
+    <div class="body">
+
+      <h3>Initial treatment</h3>
+      <ul>
+        <li><strong>SABA:</strong> salbutamol 4–6 puffs via pMDI + spacer (or 2.5 mg via nebuliser), repeat every 20 minutes for up to 3 doses. Give <strong>1 puff at a time</strong>; shake the inhaler before every puff. If too breathless for a single breath with breath-hold, use tidal breathing.</li>
+        <li><strong>Ipratropium:</strong> add 4 puffs by pMDI + spacer for moderate exacerbations or inadequate response to initial SABA; may be repeated every 20–30 min.</li>
+        <li><strong>Oxygen:</strong> titrate to maintain saturation <strong>92–95%</strong> (adjust targets for altitude).</li>
+        <li><strong>Systemic corticosteroids</strong> (except mild exacerbations):
+          <ul>
+            <li>Adults: prednisolone 40–50 mg each morning × 5–7 days.</li>
+            <li>Children: prednisolone 1–2 mg/kg/day up to 40 mg each morning × 3–5 days.</li>
+            <li>If used for &lt;2 weeks, no need to taper before stopping.</li>
+          </ul>
+        </li>
+        <li><strong>ICS-formoterol alternative:</strong> high-dose budesonide–formoterol was as effective and safe as high-dose salbutamol in ED studies of patients with FEV₁ &gt;30% predicted.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Do NOT do routinely</strong>
+        Do not use sedatives. Do not routinely perform chest X-ray or blood gases. Do not routinely prescribe antibiotics.
+      </div>
+
+      <h3>Monitoring</h3>
+      <ul>
+        <li>Check symptoms and oxygen saturation frequently; titrate treatment according to response.</li>
+        <li><strong>Measure lung function after 1 hour.</strong></li>
+        <li>Transfer to higher-level care if the condition worsens or symptoms fail to respond.</li>
+      </ul>
+
+      <h3>Before discharge / stepping down from acute care</h3>
+      <ul>
+        <li><strong>Prescribe regular maintenance ICS-containing treatment.</strong>
+          <ul>
+            <li>Adults &amp; adolescents: preferred is <strong>Step 4 ICS-formoterol MART</strong> if available; otherwise regular daily medium-dose ICS-LABA (Track 2, Step 4).</li>
+            <li>Children 6–11 y: medium-dose ICS-LABA + ICS-SABA or SABA as needed, <em>or</em> ICS-formoterol MART.</li>
+          </ul>
+        </li>
+        <li><strong>Reduce reliever use to as-needed only</strong> — tell the patient/parent to use it only for symptoms (not regularly), so worsening or improvement can be detected. Regular SABA use can worsen asthma.</li>
+        <li>Check inhaler technique and adherence.</li>
+        <li>Provide an <strong>interim written asthma action plan</strong>.</li>
+        <li>Arrange follow-up within <strong>2–7 days</strong> (2–5 days for children).</li>
+        <li>Consider early specialist referral after hospitalisation, or for repeated emergency visits.</li>
+      </ul>
+
+      <h3>Follow-up (all patients until symptoms and lung function normal)</h3>
+      <ul>
+        <li>Confirm ICS-containing treatment is being taken, and reliever is used <em>as needed</em> rather than regularly.</li>
+        <li>Reassess long-term treatment — for adults/adolescents, preferably switch to <strong>GINA Track 1</strong> (ICS-formoterol reliever) to reduce the risk of another exacerbation.</li>
+        <li>Check adherence, inhaler technique, and provide/review a written action plan.</li>
+        <li>Ask what the patient thinks caused the exacerbation; check risk factors (smoking, allergen exposure, SABA over-use) and vaccination status.</li>
+        <li>Refer for expert advice if &gt;1 exacerbation in the previous year despite medium- or high-dose ICS-LABA.</li>
+      </ul>
+
+      <h3>Oral corticosteroid use in the action plan</h3>
+      <p>A short course of OCS may be considered when:</p>
+      <ul>
+        <li>Symptoms are getting worse over 2–3 days despite using more reliever.</li>
+        <li>Symptoms are rapidly getting worse.</li>
+        <li>Lung function is low (FEV₁ &lt;60% predicted, PEF &lt;60% personal best).</li>
+        <li>Symptoms are worsening in a person with a history of sudden severe exacerbations.</li>
+      </ul>
+      <p>Doses: <strong>adults</strong> prednisolone 40–50 mg each morning × 5–7 days; <strong>children</strong> prednisolone 1–2 mg/kg/day up to 40 mg each morning × 3–5 days. Warn about sleep disturbance, increased appetite, reflux and mood changes. If a prescription is given for home use, the patient should contact their doctor before starting it if possible.</p>
+    </div>
+  </details>
+
+  <!-- ================= 4. DIAGNOSIS ================= -->
+  <details class="sec" id="s4">
+    <summary><span class="num">4</span> Diagnosis &amp; lung function testing <span class="chev">▶</span></summary>
+    <div class="body">
+      <p>Before ICS treatment is started, asthma has <strong>two defining features</strong>:</p>
+      <ol>
+        <li>A history of typical respiratory symptoms that are <strong>variable</strong> (wheeze, difficult breathing, chest tightness, cough), <strong>AND</strong></li>
+        <li><strong>Variable expiratory airflow</strong> — though in long-standing asthma, airflow limitation may become permanent.</li>
+      </ol>
+      <p>Physical examination is often normal; wheezing may be heard, especially during forced expiration. Confirm and document the diagnosis in the medical record.</p>
+
+      <h3>Evidence of variable expiratory airflow</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Test</th><th>Adults</th><th>Children</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bronchodilator responsiveness (reversibility) — spirometry</td>
+              <td>FEV₁ or FVC ↑ ≥12% <strong>and</strong> ≥200 mL from pre-bronchodilator value</td>
+              <td>FEV₁ ↑ ≥12% of predicted value</td>
+            </tr>
+            <tr>
+              <td>Bronchodilator responsiveness — PEF (if spirometry unavailable)</td>
+              <td>PEF ↑ ≥20%</td>
+              <td>PEF ↑ ≥15%</td>
+            </tr>
+            <tr>
+              <td>Excessive average daily PEF variability over 2 weeks</td>
+              <td>&gt;10%</td>
+              <td>&gt;13%</td>
+            </tr>
+            <tr>
+              <td>Response to 4 weeks of ICS treatment</td>
+              <td>FEV₁ or FVC ↑ ≥12% and ≥200 mL (or PEF ↑ ≥20%) vs pre-ICS values</td>
+              <td>FEV₁ ↑ ≥12% predicted (or PEF ↑ ≥15%)</td>
+            </tr>
+            <tr>
+              <td>Positive bronchial challenge test</td>
+              <td colspan="2">Methacholine, hyperventilation, hypertonic saline, mannitol, or exercise</td>
+            </tr>
+            <tr>
+              <td>Excessive variation in lung function between visits</td>
+              <td>FEV₁ changes ≥12% and ≥200 mL (or PEF ≥20%)</td>
+              <td>FEV₁ changes ≥12% (or PEF ≥15%)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll table horizontally if needed.</p>
+
+      <div class="note">
+        <strong>Bronchodilator hold times before testing</strong>
+        SABA ≥4 h · formoterol or salmeterol ≥24 h · vilanterol or indacaterol ≥48 h · LAMA 36–48 h (including combination inhalers) · twice-daily ICS-LABA &gt;24 h · once-daily ICS-LABA &gt;36 h. Use the same peak flow meter and record the highest of three readings each time.
+      </div>
+
+      <h3>Type 2 biomarkers (supportive, not rule-out)</h3>
+      <ul>
+        <li>FeNO: adults/adolescents &gt;50 ppb; children &gt;35 ppb.</li>
+        <li>Blood eosinophils above the national/regional reference range.</li>
+        <li>Lower levels do <strong>not</strong> rule out asthma. Levels vary by sex, age, smoking, time of day and device.</li>
+      </ul>
+
+      <h3>Confirming a previous diagnosis</h3>
+      <ul>
+        <li>If the criteria have not been recorded, confirm by objective tests. In primary care, 25–35% of patients labelled with asthma may not have it.</li>
+        <li>If lung function is normal, repeat the bronchodilator response test when symptomatic or after withholding bronchodilators (see hold times above), if safe.</li>
+        <li>If already on ICS: with frequent symptoms and FEV₁ &lt;70% predicted → step treatment up, then re-measure in 1–2 months; improvement confirms asthma. With few symptoms and FEV₁ &gt;70% → consider stepping down ICS-containing treatment and re-measure in 2–4 weeks, with an action plan and close monitoring.</li>
+      </ul>
+
+      <h3>Diagnosis in specific contexts</h3>
+      <ul>
+        <li><strong>Cough-variant asthma:</strong> cough may be the only symptom, and bronchodilator responsiveness may be negative. Treat with ICS-containing medication. Consider other causes of persistent dry cough (upper airway cough syndrome, chronic sinusitis, GERD, ACE inhibitors, inducible laryngeal obstruction, eosinophilic bronchitis).</li>
+        <li><strong>Occupational / work-aggravated asthma:</strong> ask about workplace allergens/irritants and improvement away from work. Confirm objectively, refer without delay, and stop exposure immediately.</li>
+        <li><strong>Pregnancy:</strong> start or continue ICS-containing treatment; wait until after delivery to confirm the diagnosis. Do <strong>not</strong> stop or reduce ICS, and do <strong>not</strong> perform bronchial challenge testing.</li>
+        <li><strong>Older adults:</strong> under-diagnosed due to poor perception of airflow limitation, or breathlessness attributed to age, heart failure or ischaemic heart disease.</li>
+        <li><strong>Persistent airflow limitation:</strong> distinguish asthma with persistent airflow limitation from COPD using history, symptom pattern and past records; refer if uncertain or if features of both are present.</li>
+        <li><strong>LMIC settings:</strong> PEF meters can be used if spirometry is unavailable; consider endemic respiratory disease (TB, HIV/AIDS-associated lung disease, parasitic/fungal disease).</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 5. CONTROL & RISK ================= -->
+  <details class="sec" id="s5">
+    <summary><span class="num">5</span> Assessing control &amp; future risk <span class="chev">▶</span></summary>
+    <div class="body">
+      <p>Assess asthma at <strong>every visit</strong> — most importantly after an exacerbation and when a new prescription is needed — and at least once a year even if asymptomatic.</p>
+
+      <h3>A. Symptom control (past 4 weeks)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>In the past 4 weeks, has the patient had…</th><th>Well controlled</th><th>Partly controlled</th><th>Uncontrolled</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Daytime symptoms more than twice/week?<br>Night waking due to asthma?<br>SABA reliever needed more than twice/week?*<br>Activity limitation due to asthma?</td>
+              <td>None of these</td>
+              <td>1–2 of these</td>
+              <td>3–4 of these</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">*Only for patients using a SABA reliever (not ICS-formoterol). Do not count SABA taken before exercise.</p>
+
+      <h3>B. Risk factors for exacerbations</h3>
+      <ul>
+        <li><strong>Uncontrolled symptoms</strong> (important risk factor).</li>
+        <li>Over-use of SABA (≥3 × 200-dose canisters/year).</li>
+        <li>Inadequate ICS: none, poor adherence, incorrect inhaler technique.</li>
+        <li>Medical conditions: obesity, chronic rhinosinusitis, GERD, confirmed food allergy; pregnancy.</li>
+        <li>Exposure to allergens (if sensitised), smoking, vaping, air pollution.</li>
+        <li>Major psychological or socioeconomic problems.</li>
+        <li>Poor lung function (especially FEV₁ &lt;60% predicted); large FEV₁ response to bronchodilator.</li>
+        <li>Type 2 markers: higher blood eosinophils, high FeNO.</li>
+        <li>Severe exacerbation in the past year, or ever intubated / ICU admission for asthma.</li>
+      </ul>
+
+      <h3>Risk factors for persistent airflow limitation</h3>
+      <ul>
+        <li>History of preterm birth, low birth weight, rapid infant weight gain, frequent productive cough.</li>
+        <li>Lack of ICS treatment with a history of severe exacerbations.</li>
+        <li>Exposure to tobacco smoke or noxious chemicals.</li>
+        <li>Low FEV₁ at diagnosis.</li>
+        <li>High eosinophil levels in sputum or blood.</li>
+      </ul>
+
+      <h3>Risk factors for medication side-effects</h3>
+      <ul>
+        <li><strong>Systemic:</strong> frequent OCS, long-term high-dose and/or potent ICS, P450 inhibitors (ritonavir, ketoconazole, itraconazole, erythromycin, clarithromycin).</li>
+        <li><strong>Local:</strong> high-dose and/or potent ICS, poor inhaler technique.</li>
+      </ul>
+
+      <h3>What to review at each assessment</h3>
+      <div class="cycle">
+        <div class="cyc a">
+          <h5>Assess</h5>
+          <ul>
+            <li>Diagnosis confirmation if needed</li>
+            <li>Symptom control &amp; modifiable risk factors</li>
+            <li>Comorbidities</li>
+            <li>Inhaler technique &amp; adherence</li>
+            <li>Patient (and carer) preferences and goals</li>
+          </ul>
+        </div>
+        <div class="cyc b">
+          <h5>Adjust</h5>
+          <ul>
+            <li>Treat modifiable risk factors &amp; comorbidities</li>
+            <li>Non-pharmacological strategies</li>
+            <li>Asthma medications including ICS</li>
+            <li>Education &amp; skills training, action plan</li>
+          </ul>
+        </div>
+        <div class="cyc c">
+          <h5>Review</h5>
+          <ul>
+            <li>Symptoms</li>
+            <li>Exacerbations</li>
+            <li>Side-effects</li>
+            <li>Comorbidities</li>
+            <li>Lung function</li>
+            <li>Consider biomarkers</li>
+            <li>Patient (and carer) satisfaction</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Review intervals</h3>
+      <ul>
+        <li>1–3 months after starting treatment, then every 3–12 months.</li>
+        <li>Every <strong>4–6 weeks during pregnancy</strong>.</li>
+        <li>Within <strong>1 week after an exacerbation</strong>.</li>
+        <li>More frequently if risk factors for a fatal exacerbation: previous near-fatal asthma, very severe exacerbation in the last year, current/recent OCS, SABA over-use (especially &gt;1 canister/month), relevant comorbidities.</li>
+        <li>Measure lung function (spirometry, or PEF if unavailable) before starting ICS, 3–6 months later, then at least every 1–2 years.</li>
+      </ul>
+
+      <h3>Investigating poor control despite ICS-containing treatment</h3>
+      <p>Always <strong>check inhaler technique and adherence first</strong>, then work through:</p>
+      <ol>
+        <li><strong>Watch the patient use their inhaler</strong> — compare with a device-specific checklist, correct errors, recheck up to 2–3 times. Discuss adherence barriers empathetically.</li>
+        <li><strong>Confirm the diagnosis.</strong> If lung function is normal during symptoms, consider halving the ICS dose and repeating lung function after 2–3 weeks; consider Type 2 biomarkers.</li>
+        <li><strong>Remove potential risk factors and manage comorbidities</strong> — for adults/adolescents, switch to GINA Track 1 if available; check smoking, beta-blockers, NSAIDs, allergen exposure, rhinitis, obesity, GERD, depression/anxiety.</li>
+        <li><strong>Consider a short-term step-up</strong> using shared decision-making, balancing benefits and risks.</li>
+        <li><strong>Refer for expert advice</strong> if still uncontrolled after 3–6 months on Step 4 — refer earlier if symptoms are severe or the diagnosis is in doubt.</li>
+      </ol>
+
+      <h3>Definitions of severity</h3>
+      <ul>
+        <li><strong>Mild:</strong> well controlled with as-needed ICS-formoterol, or with low-dose daily ICS.</li>
+        <li><strong>Difficult-to-treat:</strong> uncontrolled despite medium- or high-dose ICS-LABA or maintenance OCS, or requiring high-dose treatment to maintain control. Often due to treatable factors (technique, adherence, smoking, comorbidity) or a wrong diagnosis — it does not mean a "difficult patient".</li>
+        <li><strong>Severe:</strong> still uncontrolled despite good adherence to optimised high-dose ICS-LABA and management of contributory factors, or needing high-dose ICS-LABA to maintain control.</li>
+      </ul>
+      <div class="amber">
+        <strong>Patient communication point</strong>
+        Many patients with infrequent symptoms believe their asthma is "mild" and that ICS is unnecessary. Explain that even infrequent symptoms can lead to severe or fatal exacerbations if treated with SABA alone, and that ICS-containing treatment reduces the risk of severe exacerbations by half to two-thirds compared with SABA alone.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 6. ADULT STEPS ================= -->
+  <details class="sec" id="s6">
+    <summary><span class="num">6</span> Treatment steps — adults &amp; adolescents (12+ years) <span class="chev">▶</span></summary>
+    <div class="body">
+
+      <div class="diagram-title">GINA Track 1 — PREFERRED (reliever = low-dose ICS-formoterol)</div>
+      <div class="steps-wrap">
+        <div class="steps">
+          <div class="step s1">
+            <div class="lbl">Steps 1–2</div>
+            <div class="ttl">AIR-only</div>
+            <div class="desc">As-needed low-dose ICS-formoterol, taken whenever needed to relieve symptoms.</div>
+          </div>
+          <div class="step s3">
+            <div class="lbl">Step 3</div>
+            <div class="ttl">MART — low dose</div>
+            <div class="desc">Low-dose maintenance ICS-formoterol + same inhaler as needed.</div>
+          </div>
+          <div class="step s4">
+            <div class="lbl">Step 4</div>
+            <div class="ttl">MART — medium dose</div>
+            <div class="desc">Medium-dose maintenance ICS-formoterol + same inhaler as needed.</div>
+          </div>
+          <div class="step s5">
+            <div class="lbl">Step 5</div>
+            <div class="ttl">Refer / add-on</div>
+            <div class="desc">Expert assessment, phenotyping, add-on treatment for severe asthma.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reliever">RELIEVER (all steps): as-needed low-dose ICS-formoterol — one inhaler, one device, one dose across Steps 1–4.</div>
+      <p class="diagram-note">Example: budesonide-formoterol 160/4.5 mcg or beclometasone-formoterol 100/6 mcg by DPI or pMDI. See <a href="#s8">Drugs &amp; doses</a>.</p>
+
+      <div class="diagram-title">GINA Track 2 — ALTERNATIVE (reliever = ICS-SABA, or SABA if unavailable)</div>
+      <div class="steps-wrap">
+        <div class="steps">
+          <div class="step s1">
+            <div class="lbl">Step 1</div>
+            <div class="ttl">AIR-only</div>
+            <div class="desc">As-needed low-dose ICS-SABA (combination or separate inhalers).</div>
+          </div>
+          <div class="step s2">
+            <div class="lbl">Step 2</div>
+            <div class="ttl">Low-dose maintenance ICS</div>
+            <div class="desc">Daily low-dose ICS + reliever as needed.</div>
+          </div>
+          <div class="step s3">
+            <div class="lbl">Step 3</div>
+            <div class="ttl">Low-dose maintenance ICS-LABA</div>
+            <div class="desc">Daily + reliever as needed.</div>
+          </div>
+          <div class="step s4">
+            <div class="lbl">Step 4</div>
+            <div class="ttl">Medium-dose maintenance ICS-LABA</div>
+            <div class="desc">Daily + reliever as needed.</div>
+          </div>
+          <div class="step s5">
+            <div class="lbl">Step 5</div>
+            <div class="ttl">Refer / add-on</div>
+            <div class="desc">Expert assessment, phenotyping, add-on treatment.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reliever">RELIEVER (all steps): as-needed low-dose ICS-SABA — or, if not available, as-needed SABA.</div>
+      <p class="diagram-note">If SABA is the only reliever available, the patient should take low-dose ICS immediately after each SABA dose (Step 1). Before choosing a SABA-reliever regimen, check whether the patient is likely to adhere to daily ICS — poor adherence effectively leaves them on SABA-only treatment.</p>
+
+      <div class="note">
+        <strong>Why Track 1 is preferred</strong>
+        Strong evidence of reduced severe exacerbations vs Track 2 with similar symptom control, and it is simpler — one medication, one inhaler technique across Steps 1–4.
+      </div>
+
+      <h3>Suggested initial treatment</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Presenting symptoms</th><th>Preferred initial (Track 1)</th><th>Alternative initial (Track 2)</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Infrequent symptoms (≤2 days/week)</td>
+              <td>As-needed low-dose ICS-formoterol</td>
+              <td>As-needed low-dose ICS + SABA (combination or separate inhalers)</td>
+            </tr>
+            <tr>
+              <td>Symptoms &lt;3–5 days/week, normal or mildly reduced lung function</td>
+              <td>As-needed low-dose ICS-formoterol</td>
+              <td>Regular daily low-dose ICS + low-dose ICS-SABA or SABA as needed</td>
+            </tr>
+            <tr>
+              <td>Most days (≥4 days/week), or night waking ≥1×/week, or low lung function</td>
+              <td>Low-dose ICS-formoterol MART</td>
+              <td>Regular daily low-dose ICS-LABA + low-dose ICS-SABA or SABA</td>
+            </tr>
+            <tr>
+              <td>Daily symptoms or night waking ≥1×/week, with low lung function or recent exacerbation</td>
+              <td>Medium-dose ICS-formoterol MART</td>
+              <td>Regular daily medium-dose ICS-LABA + low-dose ICS-SABA or SABA</td>
+            </tr>
+            <tr>
+              <td>Initial presentation during an acute exacerbation</td>
+              <td>Treat exacerbation (with short-course OCS if severe); commence medium-dose MART</td>
+              <td>Treat exacerbation; start medium-dose ICS-LABA + low-dose ICS-SABA or SABA as needed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll table horizontally if needed.</p>
+
+      <h3>Adjusting treatment</h3>
+      <ul>
+        <li>Reassess at every visit; step up or down within the same track using the same reliever.</li>
+        <li>Patients can switch between tracks if needed.</li>
+        <li><strong>Before stepping up</strong>, check adherence, inhaler technique, risk factors and comorbidities.</li>
+        <li>If well controlled for 2–3 months or more, consider stepping down.</li>
+      </ul>
+
+      <h3>Stepping down</h3>
+      <ul>
+        <li>Choose a time with no respiratory infection; patient not travelling, not pregnant.</li>
+        <li>Record symptom control and lung function, provide a written action plan, monitor closely, and plan follow-up.</li>
+        <li>Reduce the maintenance ICS dose by <strong>25–50%</strong> (lower-strength inhaler or fewer inhalations).</li>
+        <li>Review after each step-down and wait 2–3 months before stepping down again.</li>
+        <li><strong>Do not completely stop ICS</strong> in adults or adolescents with asthma.</li>
+      </ul>
+
+      <h3>Other options for some adults and adolescents</h3>
+      <ul>
+        <li><strong>House dust mite sublingual immunotherapy:</strong> consider if house dust mite allergy and asthma not controlled by ICS-containing treatment. Do not use if FEV₁ ≤70% predicted.</li>
+        <li><strong>Leukotriene receptor antagonists</strong> (montelukast, pranlukast, zafirlukast, zileuton): less effective than daily ICS, particularly for preventing exacerbations. Montelukast has been associated with serious mental health effects.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 7. CHILDREN ================= -->
+  <details class="sec" id="s7">
+    <summary><span class="num">7</span> Treatment steps — children 6–11 years <span class="chev">▶</span></summary>
+    <div class="body">
+      <p>Children 6–11 years should <strong>not</strong> be treated with SABA alone — all should receive ICS-containing treatment.</p>
+
+      <div class="diagram-title">Preferred controller pathway</div>
+      <div class="steps-wrap">
+        <div class="steps">
+          <div class="step s1">
+            <div class="lbl">Step 1</div>
+            <div class="ttl">AIR-only</div>
+            <div class="desc">As-needed low-dose ICS-formoterol, <em>or</em> as-needed low-dose ICS-SABA (combination or separate inhalers).</div>
+          </div>
+          <div class="step s2">
+            <div class="lbl">Step 2</div>
+            <div class="ttl">Daily low-dose ICS</div>
+            <div class="desc">Daily low-dose ICS + as-needed reliever.</div>
+          </div>
+          <div class="step s3">
+            <div class="lbl">Step 3</div>
+            <div class="ttl">Medium-dose ICS <em>or</em> low-dose ICS-LABA <em>or</em> low-dose ICS-formoterol MART</div>
+            <div class="desc">Daily maintenance + as-needed reliever.</div>
+          </div>
+          <div class="step s4">
+            <div class="lbl">Step 4</div>
+            <div class="ttl">Medium-dose ICS-LABA <em>or</em> low-dose ICS-formoterol MART</div>
+            <div class="desc">Step 4 MART dose is double the Step 3 dose (still a low daily dose). Or refer for expert advice.</div>
+          </div>
+          <div class="step s5">
+            <div class="lbl">Step 5</div>
+            <div class="ttl">Refer</div>
+            <div class="desc">Phenotypic assessment; higher-dose ICS-LABA or add-on therapy (LAMA, anti-IgE, anti-IL5, anti-IL4Rα).</div>
+          </div>
+        </div>
+      </div>
+      <div class="reliever">RELIEVER: as-needed low-dose ICS-formoterol, or as-needed low-dose ICS-SABA, or as-needed SABA (if AIR not available).</div>
+
+      <h3>Suggested initial treatment</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Presenting symptoms</th><th>Preferred initial treatment</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Infrequent (≤2 days/week)</td>
+              <td>As-needed low-dose ICS-formoterol, <em>or</em> as-needed low-dose ICS-SABA, <em>or</em> low-dose ICS taken whenever SABA is taken</td>
+            </tr>
+            <tr>
+              <td>3–4 days/week</td>
+              <td>Low-dose ICS maintenance (daily) + as-needed SABA or ICS-SABA</td>
+            </tr>
+            <tr>
+              <td>Most days (4–5 days/week), or waking ≥1×/week, or low lung function</td>
+              <td>Low-dose maintenance ICS + SABA/ICS-SABA as needed<br><em>or</em> medium-dose maintenance ICS + SABA/ICS-SABA as needed<br><em>or</em> low-dose ICS-formoterol MART</td>
+            </tr>
+            <tr>
+              <td>Daily symptoms or night waking ≥1×/week, and low lung function or recent exacerbation</td>
+              <td>Medium-dose maintenance ICS-LABA + SABA as needed<br><em>or</em> low-dose ICS-formoterol MART</td>
+            </tr>
+            <tr>
+              <td>Initial presentation during an acute exacerbation</td>
+              <td>Treat exacerbation; start medium-dose ICS-LABA + SABA as needed, <em>or</em> low-dose ICS-formoterol MART</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll table horizontally if needed.</p>
+
+      <h3>Notes on the child pathway</h3>
+      <ul>
+        <li>In Steps 2–5 the child takes maintenance ICS-containing treatment every day; even low-dose ICS reduces severe exacerbations, improves lung function and reduces symptoms compared with no ICS.</li>
+        <li>If stepping up from as-needed low-dose ICS-formoterol, the appropriate next step is <strong>low-dose MART</strong>.</li>
+        <li>In Steps 3–4, options are: medium-dose daily ICS; low-dose daily ICS-LABA; or low-dose ICS-formoterol MART. <strong>ICS-formoterol is the only ICS-LABA that can be used for MART.</strong></li>
+        <li>If Step 4 is needed, consider referral to a paediatric asthma expert.</li>
+        <li>At any step the child may take the reliever before exercise if needed; ICS-formoterol can also be taken before or during allergen exposure.</li>
+        <li>Step-down can be considered after good control for 3 months or more (2–3 months is stated elsewhere in the guide).</li>
+      </ul>
+
+      <h3>Other options / step 5 for children</h3>
+      <ul>
+        <li><strong>Tiotropium</strong> (separate mist inhaler) can be added at Step 4.</li>
+        <li><strong>Leukotriene antagonist</strong> may be used instead of daily ICS at Step 2 (less effective for reducing exacerbations), or added at Steps 3–5. Montelukast has been associated with serious mental health effects in some children.</li>
+        <li><strong>Ragweed sublingual immunotherapy</strong> may be considered before and during ragweed season. Do not use if FEV₁ &lt;80% predicted.</li>
+        <li><strong>Biologics</strong> (6–11 years): anti-IgE (omalizumab), anti-IL5 (mepolizumab), anti-IL4Rα (dupilumab).</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 8. DRUGS & DOSES ================= -->
+  <details class="sec" id="s8">
+    <summary><span class="num">8</span> Drugs, doses &amp; cautions <span class="chev">▶</span></summary>
+    <div class="body">
+
+      <h3>AIR / MART — ICS-formoterol inhalers &amp; doses</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Age group / inhaler</th><th>Step 1–2 (AIR-only)</th><th>Step 3 (MART)</th><th>Step 4 (MART)</th><th>Step 5</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Children 6–11 y</strong><br>Budesonide-formoterol 80/4.5 (100/6) DPI or pMDI, or beclometasone-formoterol 100/6<br><em>Seek care if &gt;8 total inhalations/24 h</em></td>
+              <td>1 inhalation as needed</td>
+              <td>1 inhalation once daily + 1 as needed</td>
+              <td>1 inhalation twice daily + 1 as needed</td>
+              <td>Not recommended</td>
+            </tr>
+            <tr>
+              <td><strong>Adolescents 12–17 y</strong><br>Budesonide-formoterol 160/4.5 (200/6) DPI or pMDI, or beclometasone-formoterol 100/6<br><em>Seek care if &gt;12 total inhalations/24 h</em></td>
+              <td>1 inhalation as needed</td>
+              <td>1 inhalation twice (or once) daily + 1 as needed</td>
+              <td>2 inhalations twice daily + 1 as needed</td>
+              <td>2 inhalations twice daily + 1 as needed</td>
+            </tr>
+            <tr>
+              <td><strong>Adults ≥18 y</strong><br>Budesonide-formoterol 160/4.5 (200/6) DPI or pMDI, or beclometasone-formoterol 100/6<br><em>Seek care if &gt;12 total inhalations/24 h</em></td>
+              <td>1 inhalation as needed</td>
+              <td>1 inhalation twice (or once) daily + 1 as needed</td>
+              <td>2 inhalations twice daily + 1 as needed</td>
+              <td>2 inhalations twice daily + 1 as needed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll table horizontally if needed.</p>
+      <p>For as-needed use, take one inhalation whenever needed; if no improvement after a few minutes, take another. There is no required waiting interval between reliever doses, but seek medical care if more than the daily inhalation limit is needed. Budesonide-formoterol doses are shown as delivered (metered) dose; beclometasone-formoterol as metered dose (delivered 84.6/5 mcg pMDI, 81.9/5 mcg DPI).</p>
+
+      <div class="danger">
+        <strong>Critical safety point</strong>
+        Patients whose maintenance treatment is ICS-LABA with a <strong>non-formoterol</strong> LABA must <strong>not</strong> use ICS-formoterol as their reliever — they should use SABA or ICS-SABA instead.
+      </div>
+
+      <h3>ICS-SABA (anti-inflammatory reliever)</h3>
+      <ul>
+        <li>Budesonide-salbutamol (albuterol) or beclometasone-salbutamol, inhaled pMDI or DPI.</li>
+        <li>Adults and adolescents, GINA Track 2. <strong>Maximum 6 doses</strong>, each of 2 inhalations of 80 mcg budesonide with 90 mcg albuterol, in any 24-hour period.</li>
+        <li>Little evidence in children. <strong>Cannot</strong> be used for MART.</li>
+      </ul>
+
+      <h3>Low, medium and high daily ICS doses — adults &amp; adolescents</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Inhaled corticosteroid</th><th>Low</th><th>Medium</th><th>High</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Beclometasone dipropionate (pMDI)</td><td>200–500</td><td>&gt;500–1000</td><td>&gt;1000</td></tr>
+            <tr><td>Beclometasone dipropionate (DPI or pMDI, extrafine)</td><td>100–200</td><td>&gt;200–400</td><td>&gt;400</td></tr>
+            <tr><td>Budesonide (DPI or pMDI)</td><td>200–400</td><td>&gt;400–800</td><td>&gt;800</td></tr>
+            <tr><td>Ciclesonide (pMDI, extrafine)</td><td>80–160</td><td>&gt;160–320</td><td>&gt;320</td></tr>
+            <tr><td>Fluticasone furoate (DPI)</td><td>100</td><td>200</td><td>—</td></tr>
+            <tr><td>Fluticasone propionate (DPI)</td><td>100–250</td><td>&gt;250–500</td><td>—</td></tr>
+            <tr><td>Fluticasone propionate (pMDI)</td><td>100–250</td><td>&gt;250–500</td><td>—</td></tr>
+            <tr><td>Mometasone furoate (pMDI)</td><td>200–400</td><td>—</td><td>—</td></tr>
+            <tr><td>Mometasone furoate (DPI)</td><td colspan="3">Depends on DPI device</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll table horizontally if needed. Total daily ICS dose in micrograms (metered).</p>
+
+      <h3>Low, medium and high daily ICS doses — children 6–11 years</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Inhaled corticosteroid</th><th>Low</th><th>Medium</th><th>High</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Beclometasone dipropionate (pMDI)</td><td>100–200</td><td>&gt;200–400</td><td>&gt;400</td></tr>
+            <tr><td>Beclometasone dipropionate (pMDI, extrafine)</td><td>50–100</td><td>&gt;100–200</td><td>&gt;200</td></tr>
+            <tr><td>Budesonide (DPI)</td><td>100–200</td><td>&gt;200–400</td><td>&gt;400</td></tr>
+            <tr><td>Budesonide (nebuliser)</td><td>250–500</td><td>&gt;500–1000</td><td>&gt;1000</td></tr>
+            <tr><td>Ciclesonide (pMDI, extrafine)</td><td>80</td><td>&gt;80–160</td><td>&gt;160</td></tr>
+            <tr><td>Fluticasone furoate (DPI)</td><td>50</td><td>—</td><td>—</td></tr>
+            <tr><td>Fluticasone propionate (DPI)</td><td>50–100</td><td>&gt;100–200</td><td>&gt;200</td></tr>
+            <tr><td>Fluticasone propionate (pMDI)</td><td>50–100</td><td>&gt;100–200</td><td>&gt;200</td></tr>
+            <tr><td>Mometasone furoate (pMDI)</td><td>100</td><td>200</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll table horizontally if needed.</p>
+
+      <div class="note">
+        <strong>ICS dosing principles</strong>
+        A low daily dose provides most of the clinical benefit for most patients. High doses are rarely needed and long-term use increases local and systemic side-effects. Use a spacer with ICS by pMDI. These tables are not dose-equivalence tables, and product availability/labelling differs between countries.
+      </div>
+
+      <h3>Key drug classes — clinical points</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Class</th><th>Examples</th><th>Key clinical points</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ICS</strong></td>
+              <td>Beclometasone, budesonide, ciclesonide, fluticasone propionate/furoate, mometasone, triamcinolone</td>
+              <td>Most effective anti-inflammatory therapy. Reduce symptoms, improve lung function, reduce hyperresponsiveness, exacerbations, hospitalisation and death. Local: oropharyngeal candidiasis, dysphonia (rinse mouth, use spacer). Systemic with long-term high dose: osteoporosis, cataract, glaucoma, adrenal suppression — risk increased by P450 inhibitors.</td>
+            </tr>
+            <tr>
+              <td><strong>ICS-LABA</strong></td>
+              <td>Beclometasone-formoterol, budesonide-formoterol, fluticasone furoate-vilanterol, fluticasone propionate-formoterol/salmeterol, mometasone-formoterol, mometasone-indacaterol</td>
+              <td>Adding LABA when low-dose ICS fails improves symptoms, lung function and exacerbations — better than doubling ICS. LABA side-effects: tachycardia, headache, muscle cramps. <strong>LABA must never be used without ICS in asthma.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>SABA</strong></td>
+              <td>Salbutamol (albuterol), terbutaline</td>
+              <td>Quick relief of symptoms/bronchoconstriction and pre-exercise pretreatment. Use <strong>only when needed</strong>, not regularly. Use without ICS is not recommended. Fenoterol is not recommended (cardiovascular adverse effects, asthma mortality). Short-term: tremor, tachycardia. Overuse indicates poor control.</td>
+            </tr>
+            <tr>
+              <td><strong>Short-acting antimuscarinic</strong></td>
+              <td>Ipratropium bromide, oxitropium bromide (may be combined with SABA)</td>
+              <td>Short-term use in acute severe exacerbations — ipratropium + SABA reduces hospital admission vs SABA alone. As a reliever it is less effective than SABA with slower onset. Dry mouth, bitter taste; caution in narrow-angle glaucoma.</td>
+            </tr>
+            <tr>
+              <td><strong>LAMA</strong> (add-on)</td>
+              <td>Tiotropium (≥6 y, mist inhaler); ICS-LABA-LAMA combinations (≥12 y or ≥18 y depending on product)</td>
+              <td>Add if uncontrolled despite medium-dose ICS-LABA. Small improvement in lung function and small reduction in exacerbations (no clinically important symptom benefit). <strong>Increase ICS to at least medium dose before adding a LAMA.</strong> Uncommon: dry mouth, urinary retention.</td>
+            </tr>
+            <tr>
+              <td><strong>LTRA</strong></td>
+              <td>Montelukast, pranlukast, zafirlukast, zileuton</td>
+              <td>Less effective than low-dose ICS; ICS + LTRA less effective than ICS-LABA. Zileuton/zafirlukast: elevated liver enzymes. Montelukast: risk of serious behavioural and mood changes including suicidal ideation — discuss with patient/carers.</td>
+            </tr>
+            <tr>
+              <td><strong>Systemic corticosteroids</strong></td>
+              <td>Prednisone, prednisolone, methylprednisolone, hydrocortisone, dexamethasone</td>
+              <td>Short course for severe acute exacerbations: oral 5–7 days adults, 3–5 days children. If used &gt;2 weeks, reduce gradually. Short-course adverse effects: sepsis, thromboembolism, sleep disturbance, reflux, increased appetite, hyperglycaemia, mood changes; cumulative courses increase later risk of diabetes, osteoporosis, cataract, glaucoma, heart failure. Maintenance use: last resort only.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll table horizontally if needed.</p>
+    </div>
+  </details>
+
+  <!-- ================= 9. SEVERE ASTHMA ================= -->
+  <details class="sec" id="s9">
+    <summary><span class="num">9</span> Step 5 — severe asthma &amp; biologics <span class="chev">▶</span></summary>
+    <div class="body">
+      <p>If uncontrolled symptoms and/or exacerbations persist despite Step 4 (Track 1 or 2): assess causes, optimise treatment including inhaler technique and adherence, and <strong>refer for expert assessment</strong> — including inflammatory phenotype, comorbidities, risk factors and potential add-on treatment. Sputum eosinophil count, where available, may guide treatment in moderate–severe asthma.</p>
+
+      <div class="amber">
+        <strong>High-dose ICS-LABA</strong>
+        May occasionally be needed but should be limited to 3–6 months where possible, because of increased risk of side-effects including adrenal suppression.
+      </div>
+
+      <h3>Add-on options (adults &amp; adolescents)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Agent</th><th>Target / indication</th><th>Age</th><th>Route</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Omalizumab / biosimilar omalizumab-igec</td><td>Anti-immunoglobulin E — severe allergic asthma</td><td>≥6 y</td><td>Subcutaneous</td></tr>
+            <tr><td>Mepolizumab</td><td>Anti-IL-5 — severe eosinophilic asthma</td><td>≥6 y</td><td>Subcutaneous</td></tr>
+            <tr><td>Benralizumab, depemokimab</td><td>Anti-IL-5 / anti-IL-5 receptor α — severe eosinophilic asthma</td><td>≥12 y</td><td>Subcutaneous</td></tr>
+            <tr><td>Reslizumab</td><td>Anti-IL-5 — severe eosinophilic asthma</td><td>≥18 y</td><td>Intravenous</td></tr>
+            <tr><td>Dupilumab</td><td>Anti-IL-4 receptor α — severe eosinophilic asthma / Type 2 airway inflammation / OCS-dependent</td><td>≥6 y</td><td>Subcutaneous</td></tr>
+            <tr><td>Tezepelumab</td><td>Anti-TSLP — severe asthma uncontrolled on high-dose ICS-LABA</td><td>≥12 y</td><td>Subcutaneous</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll table horizontally if needed.</p>
+
+      <h3>Biologic safety notes</h3>
+      <ul>
+        <li>Common: headache, minor injection-site reactions.</li>
+        <li>Rare: anaphylaxis (omalizumab, tezepelumab).</li>
+        <li>Dupilumab: uncommon transient blood eosinophilia (4–13%); rare eosinophilic granulomatosis with polyangiitis after reducing/stopping oral corticosteroids. Not advised if current or past blood eosinophils ≥1500/microlitre.</li>
+        <li>Benralizumab and mepolizumab can significantly reduce maintenance OCS dose.</li>
+        <li>Always check local eligibility criteria and product information.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Remission on biologics</strong>
+        Some patients with severe asthma achieve clinical remission on biologic therapy. Predictors: fewer symptoms, better lung function, little multimorbidity, earlier asthma onset, and no or lower baseline maintenance OCS use.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 10. SPECIAL POPULATIONS ================= -->
+  <details class="sec" id="s10">
+    <summary><span class="num">10</span> Special populations &amp; comorbidities <span class="chev">▶</span></summary>
+    <div class="body">
+
+      <h3>Pregnancy</h3>
+      <ul>
+        <li>Ask all pregnant women and those planning pregnancy about asthma. Monitor asthma every <strong>4–6 weeks</strong> — control often changes during pregnancy.</li>
+        <li>All pregnant women with asthma should receive <strong>ICS-containing treatment</strong>: exacerbations increase the risk of preterm delivery, low birth weight and perinatal mortality, and ICS reduces these risks.</li>
+        <li>Do <strong>not</strong> stop or reduce ICS-containing treatment. ICS and beta-agonists are not associated with increased risk of fetal abnormalities.</li>
+        <li>Do <strong>not</strong> perform bronchial challenge testing during pregnancy.</li>
+        <li>Treat exacerbations as for non-pregnant adults, to avoid fetal hypoxia.</li>
+      </ul>
+
+      <h3>Anaphylaxis &amp; food allergy</h3>
+      <ul>
+        <li>Food allergy may cause anaphylaxis but is rarely a trigger for asthma symptoms. Confirmed food allergy is a risk factor for asthma-related death — good asthma control is essential.</li>
+        <li>Ensure the patient (and carers) has an <strong>anaphylaxis plan</strong>, knows how to avoid the allergen, and knows how to use injectable or nasal epinephrine.</li>
+        <li>If a patient has anaphylaxis and asthma, give <strong>epinephrine (IM or nasal) first</strong>.</li>
+      </ul>
+
+      <h3>Aspirin-exacerbated respiratory disease (AERD)</h3>
+      <ul>
+        <li>A history of asthma exacerbation after aspirin or other NSAIDs strongly suggests AERD. Often associated with severe asthma and nasal polyposis.</li>
+        <li>Advise avoidance of all NSAIDs. Challenge testing only in a specialised centre with resuscitation facilities.</li>
+        <li>Adding a leukotriene receptor antagonist to ICS-containing treatment may improve lung function and reduce symptoms (note montelukast neuropsychiatric concerns).</li>
+        <li>If regular aspirin therapy is indicated, desensitisation is sometimes effective but must only be done under specialist care — significantly increased risk of exacerbation, gastritis and GI bleeding.</li>
+      </ul>
+
+      <h3>Allergic rhinitis &amp; chronic rhinosinusitis</h3>
+      <ul>
+        <li>Allergic rhinitis is very common in asthma — treat with <strong>intranasal corticosteroids</strong> as well as asthma treatment.</li>
+        <li>Chronic rhinosinusitis with nasal polyps is associated with more severe asthma. Treating it reduces nasal symptoms but may not improve asthma control.</li>
+        <li>Biologics (anti-IgE, anti-IL-4Rα, anti-IL-5, anti-IL-5Rα) improve nasal symptoms in patients with chronic rhinosinusitis with nasal polyps and asthma.</li>
+      </ul>
+
+      <h3>Obesity</h3>
+      <p>Asthma is more difficult to control in obesity. Include weight reduction in the treatment plan — even <strong>5–10% weight loss</strong> can improve asthma control.</p>
+
+      <h3>Gastroesophageal reflux disease (GERD)</h3>
+      <p>Asymptomatic GERD is unlikely to cause poor asthma control. Treat symptomatic reflux, but do not treat poorly controlled asthma with anti-reflux therapy unless there is symptomatic reflux.</p>
+
+      <h3>Older adults</h3>
+      <ul>
+        <li>Comorbidities and their treatment may complicate management — review all medicines and check for side-effects.</li>
+        <li>When choosing drugs and devices, consider arthritis, eyesight, inspiratory flow, regimen complexity, and inhaler environmental impact.</li>
+      </ul>
+
+      <h3>Occupational asthma</h3>
+      <p>If asthma was caused by airborne irritants or allergens at work, start ICS treatment immediately, refer as soon as possible for expert care, and eliminate exposure to the cause.</p>
+
+      <h3>Respiratory viruses / COVID-19</h3>
+      <ul>
+        <li>People with well-controlled asthma do not have a higher risk of severe COVID-19 than the general population. However, those with recent OCS use for asthma or hospitalisation with severe asthma have a higher risk of COVID-19-related death.</li>
+        <li>Advise patients to <strong>continue</strong> their asthma medications, including ICS, during a respiratory infection.</li>
+        <li>Avoid nebulisers in patients with a respiratory infection or high probability of infection — use pMDI + spacer with mouthpiece or tightly fitting face mask.</li>
+        <li>Avoid spirometry in confirmed or suspected COVID-19. Check for interactions between antivirals and asthma therapy before prescribing.</li>
+      </ul>
+
+      <h3>Exercise &amp; non-pharmacological strategies</h3>
+      <ul>
+        <li>Encourage regular physical activity — general health benefits, and may slightly improve asthma control and lung function. Advise on managing exercise-induced bronchoconstriction.</li>
+        <li>Do not avoid exercise or laughter. Viral infections and stress are difficult to avoid and must be managed when they occur.</li>
+        <li><strong>Smoking cessation:</strong> strongly encourage at every visit; provide counselling and resources; advise parents/carers not to smoke or vape in rooms or cars used by children with asthma.</li>
+        <li>Allergen avoidance is <strong>not</strong> recommended generally — strategies are complex, expensive, and there are no validated methods to identify those likely to benefit.</li>
+        <li>Guided self-management (symptom and/or PEF monitoring + written action plan + regular review) reduces exacerbation risk.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 11. CAUTIONS ================= -->
+  <details class="sec" id="s11">
+    <summary><span class="num">11</span> Non-recommended treatments &amp; key cautions <span class="chev">▶</span></summary>
+    <div class="body">
+      <div class="danger">
+        <strong>GINA does NOT recommend</strong>
+        <ul style="margin:6px 0 0">
+          <li>Oral salbutamol</li>
+          <li>Oral theophylline</li>
+          <li>Oral epinephrine</li>
+          <li>Inhaled fenoterol (increased cardiovascular adverse effects and asthma mortality)</li>
+          <li>Regular (daily) use of SABA</li>
+          <li>SABA-only treatment of asthma — at any age</li>
+        </ul>
+      </div>
+
+      <h3>Why SABA-only treatment is unsafe</h3>
+      <ul>
+        <li>Most patients with asthma have airway inflammation even with only intermittent or infrequent symptoms.</li>
+        <li>SABA-only treatment is associated with increased risk of exacerbations, worse lung function, and increased risk of asthma death.</li>
+        <li>Regular SABA use increases allergic responses and airway inflammation, and reduces the bronchodilator response to SABA.</li>
+        <li>Over-use (≥3 × 200-dose canisters dispensed in a year) increases severe exacerbation risk vs 0–2 canisters.</li>
+        <li>Dispensing ≥12 canisters in a year (possibly fewer) is associated with increased risk of death due to asthma.</li>
+        <li>Home use of nebulised SABA is also associated with increased risk of asthma death.</li>
+      </ul>
+
+      <h3>Why every patient needs ICS</h3>
+      <ul>
+        <li>Any patient can have a severe exacerbation, even if asthma seems mild.</li>
+        <li>ICS-containing medication markedly reduces risk of hospitalisation and death, and is very effective at preventing severe exacerbations, reducing symptoms, improving lung function and preventing exercise-induced bronchoconstriction.</li>
+        <li>Early treatment with low-dose ICS is associated with better lung function than starting after symptoms have been present for more than 2–4 years.</li>
+        <li>Patients who have a severe exacerbation while not taking ICS have worse long-term lung function than those who have started ICS.</li>
+      </ul>
+
+      <h3>Maintenance oral corticosteroids</h3>
+      <p>Last resort only, at the lowest possible dose, because short- and long-term systemic side-effects are common and serious. Monitor all patients for <strong>adrenal suppression and osteoporosis</strong>.</p>
+
+      <h3>Inhaler technique</h3>
+      <ul>
+        <li>Incorrect use is very common and contributes to poor control, exacerbations and local adverse effects.</li>
+        <li>Choose the device before prescribing — consider arthritis, skills, cost, and (if options are equivalent) environmental impact.</li>
+        <li>Use a spacer with ICS delivered by pMDI.</li>
+        <li>Train with a device-specific checklist; check technique at every opportunity; correct errors by physical demonstration and recheck up to 2–3 times.</li>
+        <li>If FeNO is high, check and correct adherence and inhaler technique <strong>before</strong> considering a step-up.</li>
+      </ul>
+
+      <h3>Adherence</h3>
+      <ul>
+        <li>Poor adherence to ICS-containing treatment causes poor symptom control and increases exacerbation risk.</li>
+        <li>Ask empathically, e.g. <em>"Most patients don't take their inhaler exactly as prescribed. In the last 4 weeks, how many days a week have you been taking it?"</em></li>
+        <li>Check prescription dates, inhaler dose counters and dispensing records.</li>
+        <li>Explore attitudes and beliefs about asthma and medications.</li>
+        <li>Strategies with evidence: shared decision-making on medication choice, comprehensive asthma education with home visits by asthma nurses, directly observed school administration in children, electronic reminders, and prescriber feedback on dispensing records.</li>
+      </ul>
+
+      <h3>Written asthma action plan — must include</h3>
+      <ul>
+        <li>The patient's usual asthma medications.</li>
+        <li>When to increase or add medications and how to do this.</li>
+        <li>How to get urgent medical care if symptoms continue or worsen.</li>
+        <li>Can be handwritten, printed, digital or pictorial — <strong>not</strong> just spoken instructions — and must suit the person's health literacy.</li>
+        <li>Can be based on symptoms and/or (in adults) PEF.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= SOURCE ================= -->
+  <footer class="src" id="source">
+    <h3>Source</h3>
+    <p>
+      Global Initiative for Asthma. <em>Summary Guide for Asthma Management and Prevention for Adults, Adolescents and Children 6–11 Years (2026). A Summary Guide for Health Professionals.</em>
+      Based on the 2026 Global Strategy for Asthma Management and Prevention. Published July 2026. Available from:
+      <a href="https://ginasthma.org" target="_blank" rel="noopener">ginasthma.org</a>
+    </p>
+    <p>
+      Full report: <em>Global Strategy for Asthma Management and Prevention 2026</em>, published 5 May 2026 — available from
+      <a href="https://ginasthma.org/reports" target="_blank" rel="noopener">ginasthma.org/reports</a>.
+      The full report contains the references for statements about medical evidence.
+    </p>
+    <p class="disclaimer">
+      <strong>Disclaimer:</strong> This page is an unofficial, condensed adaptation of the GINA 2026 Summary Guide, reformatted for perioperative and critical care use. It is intended as an evidence-based strategy for asthma diagnosis and management for health professionals and policy-makers. Health professionals are strongly advised to use their own professional judgement and to take into account local and national regulations and guidelines. GINA cannot be held liable or responsible for inappropriate health care associated with the use of this document. Always verify drug doses and local eligibility criteria against current product information.
+    </p>
+  </footer>
+
+  <div id="noResults" hidden>No matching sections. Try a different term.</div>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var sections   = Array.prototype.slice.call(document.querySelectorAll('details.sec'));
+  var searchEl   = document.getElementById('search');
+  var clearBtn   = document.getElementById('clearBtn');
+  var statusEl   = document.getElementById('searchStatus');
+  var noResults  = document.getElementById('noResults');
+  var originals  = new Map();
+
+  /* ---- snapshot original content ---- */
+  sections.forEach(function (sec) {
+    var body = sec.querySelector('.body');
+    if (body) originals.set(body, body.innerHTML);
+    sec.dataset.initialOpen = sec.open ? '1' : '0';
+  });
+
+  /* ---- highlight helpers ---- */
+  function removeMarks(root) {
+    var marks = root.querySelectorAll('mark.hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function highlight(root, term) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p || (p.closest && p.closest('script, style, mark'))) return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(term) !== -1
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var last = 0, idx;
+
+      while ((idx = lower.indexOf(term, last)) !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+        last = idx + term.length;
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---- search ---- */
+  function runSearch() {
+    var raw  = searchEl.value.trim();
+    var term = raw.toLowerCase();
+
+    // reset everything first
+    sections.forEach(function (sec) {
+      var body = sec.querySelector('.body');
+      if (body && originals.has(body)) {
+        body.innerHTML = originals.get(body);
+      }
+      sec.hidden = false;
+      sec.open = sec.dataset.initialOpen === '1';
+    });
+    noResults.hidden = true;
+
+    if (!term) {
+      statusEl.textContent = '';
+      return;
+    }
+
+    var matches = 0;
+
+    sections.forEach(function (sec) {
+      var body = sec.querySelector('.body');
+      var summary = sec.querySelector('summary');
+      var hay = ((summary ? summary.textContent : '') + ' ' + (body ? body.textContent : '')).toLowerCase();
+
+      if (hay.indexOf(term) !== -1) {
+        matches++;
+        sec.hidden = false;
+        sec.open = true;
+        if (body) highlight(body, term);
+      } else {
+        sec.hidden = true;
+      }
+    });
+
+    statusEl.textContent = matches + ' section' + (matches === 1 ? '' : 's') +
+                           ' match “' + raw + '”';
+    noResults.hidden = matches !== 0;
+  }
+
+  /* ---- debounce ---- */
+  var timer = null;
+  searchEl.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(runSearch, 140);
+  });
+
+  clearBtn.addEventListener('click', function () {
+    searchEl.value = '';
+    runSearch();
+    searchEl.focus();
+  });
+
+  /* ---- expand / collapse ---- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    sections.forEach(function (s) { if (!s.hidden) s.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    sections.forEach(function (s) { if (!s.hidden) s.open = false; });
+  });
+
+  /* ---- keyboard shortcuts ---- */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== searchEl) {
+      e.preventDefault();
+      searchEl.focus();
+    }
+    if (e.key === 'Escape' && document.activeElement === searchEl) {
+      searchEl.value = '';
+      runSearch();
+      searchEl.blur();
+    }
+  });
+})();
+</script>
+</body>
+</html>
