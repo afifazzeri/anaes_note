@@ -1,0 +1,2870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICU Management Protocols — Quick Reference</title>
+<style>
+  :root{
+    --bg:#f6f8fa;
+    --card:#ffffff;
+    --text:#1f2328;
+    --muted:#656d76;
+    --accent:#0969da;
+    --accent-soft:#ddf4ff;
+    --border:#d0d7de;
+    --warn-bg:#fff8c5;
+    --warn-bd:#d4a72c;
+    --danger-bg:#ffebe9;
+    --danger-bd:#ff8182;
+    --ok-bg:#dafbe1;
+    --ok-bd:#4ac26b;
+    --shadow:0 1px 3px rgba(27,31,36,.06),0 1px 2px rgba(27,31,36,.04);
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:130px}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+    font-size:15px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--border);
+    padding:12px 16px 10px;
+  }
+  .header-inner{max-width:1040px;margin:0 auto}
+  .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  h1{
+    font-size:1.05rem;margin:0;font-weight:700;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:8px;
+  }
+  h1 .badge{
+    font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    background:var(--accent);color:#fff;padding:3px 7px;border-radius:20px;
+  }
+  .subtitle{font-size:.78rem;color:var(--muted);margin:2px 0 0}
+
+  .search-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .search-wrap{position:relative;flex:1 1 260px;min-width:200px}
+  .search-wrap svg{
+    position:absolute;left:10px;top:50%;transform:translateY(-50%);
+    width:15px;height:15px;fill:var(--muted);pointer-events:none;
+  }
+  #search{
+    width:100%;padding:9px 34px 9px 32px;font-size:.9rem;font-family:inherit;
+    border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--text);
+    outline:none;transition:border-color .15s,box-shadow .15s;
+  }
+  #search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(9,105,218,.15)}
+  #clearBtn{
+    position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    border:0;background:transparent;color:var(--muted);cursor:pointer;
+    font-size:1rem;line-height:1;padding:4px 6px;border-radius:6px;display:none;
+  }
+  #clearBtn:hover{background:#eaeef2;color:var(--text)}
+  .btn{
+    font-family:inherit;font-size:.8rem;font-weight:600;
+    padding:8px 12px;border-radius:8px;border:1px solid var(--border);
+    background:#fff;color:var(--text);cursor:pointer;white-space:nowrap;
+    transition:background .15s,border-color .15s;
+  }
+  .btn:hover{background:#f3f4f6;border-color:#afb8c1}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.primary:hover{background:#0860ca}
+
+  /* ---------- Nav chips ---------- */
+  nav{
+    max-width:1040px;margin:10px auto 0;
+    display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;
+    scrollbar-width:thin;
+  }
+  nav::-webkit-scrollbar{height:5px}
+  nav::-webkit-scrollbar-thumb{background:#c9d1d9;border-radius:4px}
+  nav a{
+    flex:0 0 auto;font-size:.73rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:#fff;border:1px solid var(--border);
+    padding:4px 9px;border-radius:20px;transition:.15s;
+  }
+  nav a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
+
+  .result-count{
+    font-size:.8rem;color:var(--muted);margin:0 0 12px;
+    display:none;
+  }
+  .result-count.show{display:block}
+
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;
+    transition:border-color .15s;
+  }
+  .card:hover{border-color:#afb8c1}
+  .card[hidden]{display:none}
+
+  details > summary{
+    list-style:none;cursor:pointer;padding:13px 16px;
+    display:flex;align-items:center;gap:11px;
+    font-weight:650;font-size:.95rem;user-select:none;
+    transition:background .15s;
+  }
+  details > summary::-webkit-details-marker{display:none}
+  details > summary:hover{background:#f6f8fa}
+  summary .num{
+    flex:0 0 auto;width:24px;height:24px;border-radius:7px;
+    background:var(--accent-soft);color:var(--accent);
+    font-size:.72rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+  }
+  summary .chev{
+    margin-left:auto;flex:0 0 auto;width:14px;height:14px;
+    fill:var(--muted);transition:transform .2s;
+  }
+  details[open] > summary .chev{transform:rotate(90deg)}
+  details[open] > summary{border-bottom:1px solid var(--border);background:#fbfcfd}
+
+  .body{padding:14px 16px 18px}
+  .body > *:first-child{margin-top:0}
+  .body > *:last-child{margin-bottom:0}
+
+  h3{
+    font-size:.83rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--accent);margin:20px 0 8px;padding-bottom:5px;
+    border-bottom:1px solid var(--border);
+  }
+  h3:first-child{margin-top:0}
+  h4{font-size:.86rem;font-weight:700;margin:14px 0 6px;color:var(--text)}
+
+  ul,ol{margin:6px 0 10px;padding-left:20px}
+  li{margin:3px 0}
+  li > ul,li > ol{margin:3px 0}
+  p{margin:6px 0 10px}
+  strong{font-weight:700}
+
+  .kv{font-size:.86rem}
+  .kv li{margin:4px 0}
+
+  /* callouts */
+  .box{
+    border-left:3px solid var(--accent);background:var(--accent-soft);
+    padding:9px 12px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.86rem;
+  }
+  .box.warn{background:var(--warn-bg);border-color:var(--warn-bd)}
+  .box.danger{background:var(--danger-bg);border-color:var(--danger-bd)}
+  .box.ok{background:var(--ok-bg);border-color:var(--ok-bd)}
+  .box strong{display:block;margin-bottom:3px;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+  .box p:last-child,.box ul:last-child{margin-bottom:0}
+
+  mark{background:#fff3b0;color:inherit;padding:1px 2px;border-radius:3px}
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;margin:10px 0;
+    border:1px solid var(--border);border-radius:8px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .table-wrap::-webkit-scrollbar{height:8px}
+  .table-wrap::-webkit-scrollbar-track{background:#f6f8fa}
+  .table-wrap::-webkit-scrollbar-thumb{background:#c9d1d9;border-radius:4px}
+  .table-wrap::-webkit-scrollbar-thumb:hover{background:#afb8c1}
+  table{border-collapse:collapse;width:100%;font-size:.8rem;min-width:480px}
+  th,td{
+    border-bottom:1px solid var(--border);border-right:1px solid var(--border);
+    padding:7px 9px;text-align:left;vertical-align:top;
+  }
+  th:last-child,td:last-child{border-right:0}
+  tr:last-child td{border-bottom:0}
+  th{
+    background:#f6f8fa;font-weight:700;font-size:.72rem;
+    text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
+    position:sticky;top:0;white-space:nowrap;
+  }
+  tbody tr:nth-child(even){background:#fbfcfd}
+  tbody tr:hover{background:#f3f6f9}
+  td.tight{white-space:nowrap}
+
+  /* ---------- Flow diagrams ---------- */
+  .flow{
+    display:flex;flex-direction:column;align-items:center;
+    gap:0;margin:14px 0;padding:14px 10px;
+    background:#fbfcfd;border:1px dashed var(--border);border-radius:10px;
+  }
+  .fnode{
+    width:100%;max-width:480px;text-align:center;
+    padding:9px 13px;border-radius:9px;font-size:.82rem;font-weight:600;
+    border:1.5px solid;line-height:1.4;
+  }
+  .fnode small{display:block;font-weight:500;font-size:.74rem;opacity:.85;margin-top:2px}
+  .fstart{background:var(--accent);border-color:var(--accent);color:#fff}
+  .fdec{background:var(--warn-bg);border-color:var(--warn-bd);border-radius:22px}
+  .fact{background:var(--accent-soft);border-color:#54aeff}
+  .fstop{background:var(--danger-bg);border-color:var(--danger-bd)}
+  .fok{background:var(--ok-bg);border-color:var(--ok-bd)}
+  .farrow{width:2px;height:16px;background:var(--border);position:relative;flex:0 0 auto}
+  .farrow::after{
+    content:"";position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);
+    border-left:4px solid transparent;border-right:4px solid transparent;
+    border-top:6px solid var(--border);
+  }
+  .fbranches{
+    width:100%;max-width:480px;display:flex;flex-direction:column;gap:5px;margin:7px 0;
+  }
+  .fbranch{
+    font-size:.78rem;padding:6px 10px;border-radius:7px;
+    background:#fff;border:1px solid var(--border);display:flex;gap:7px;align-items:flex-start;
+  }
+  .tag{
+    flex:0 0 auto;font-size:.64rem;font-weight:800;letter-spacing:.04em;
+    padding:2px 6px;border-radius:4px;text-transform:uppercase;margin-top:1px;
+  }
+  .tag.yes{background:var(--ok-bg);color:#116329;border:1px solid var(--ok-bd)}
+  .tag.no{background:var(--danger-bg);color:#82071e;border:1px solid var(--danger-bd)}
+  .tag.go{background:var(--accent-soft);color:#0a3069;border:1px solid #54aeff}
+  .fbranch .txt{flex:1}
+
+  /* ---------- Footer ---------- */
+  footer{
+    max-width:1040px;margin:0 auto;padding:24px 16px 50px;
+    border-top:1px solid var(--border);color:var(--muted);font-size:.78rem;
+  }
+  footer h2{
+    font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--text);margin:0 0 8px;
+  }
+  footer ol{padding-left:18px}
+  footer li{margin:5px 0;line-height:1.5}
+  .disclaimer{
+    margin-top:16px;padding:10px 12px;background:#fff8c5;
+    border:1px solid var(--warn-bd);border-radius:8px;color:#5c4708;
+  }
+  .empty{
+    text-align:center;padding:40px 20px;color:var(--muted);font-size:.9rem;
+    display:none;
+  }
+  .empty.show{display:block}
+
+  /* back to top */
+  #top{
+    position:fixed;right:16px;bottom:16px;z-index:90;
+    width:38px;height:38px;border-radius:50%;
+    background:var(--accent);color:#fff;border:0;cursor:pointer;
+    font-size:1rem;box-shadow:0 3px 10px rgba(9,105,218,.35);
+    opacity:0;pointer-events:none;transition:opacity .2s;
+  }
+  #top.show{opacity:1;pointer-events:auto}
+
+  @media (max-width:600px){
+    body{font-size:14.5px}
+    h1{font-size:.98rem}
+    summary{font-size:.88rem;padding:12px 13px}
+    .body{padding:12px 13px 16px}
+    table{font-size:.75rem;min-width:420px}
+    main{padding:14px 11px 50px}
+    header{padding:10px 11px 8px}
+    nav{margin-top:8px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="title-row">
+      <h1><span class="badge">ICU</span> ICU Management Protocols — Quick Reference</h1>
+    </div>
+    <p class="subtitle">Anaesthesia &amp; Intensive Care · Malaysian Society of Intensive Care (MSIC) · Ministry of Health Malaysia</p>
+
+    <div class="search-row">
+      <div class="search-wrap">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/></svg>
+        <input id="search" type="search" placeholder="Search protocols… (e.g. noradrenaline, PEEP, RASS, cuff leak)" autocomplete="off" spellcheck="false">
+        <button id="clearBtn" title="Clear search" aria-label="Clear search">✕</button>
+      </div>
+      <button class="btn" id="expandAll">Expand all</button>
+      <button class="btn" id="collapseAll">Collapse all</button>
+    </div>
+
+    <nav id="nav" aria-label="Section navigation"></nav>
+  </div>
+</header>
+
+<main>
+  <p class="result-count" id="resultCount"></p>
+
+  <!-- ============ 1. ADMISSION, DISCHARGE & TRIAGE ============ -->
+  <section class="card" id="s1">
+    <details>
+      <summary><span class="num">1</span> Admission, Discharge &amp; Triage <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <div class="box">
+          <strong>Core principle</strong>
+          <p>Admission decisions are based on the concept of <em>potential benefit</em>. Admit critically ill patients with a reversible condition who have a reasonable prospect of meaningful recovery. Use a combination of criteria — triage exists to ensure optimal and equitable use of limited resources.</p>
+        </div>
+
+        <h3>Admission policy</h3>
+        <ol class="kv">
+          <li>The patient's attending clinician is responsible for requesting ICU admission.</li>
+          <li>The ICU specialist decides on admission using clinical judgement guided by the admission criteria.</li>
+          <li>The decision to admit or deny admission shall <strong>not</strong> be made at the level of a medical officer.</li>
+          <li>Admissions from the Emergency &amp; Trauma Department or another hospital shall have a primary unit.</li>
+          <li>Admission from other hospitals must be discussed with the ICU specialist prior to transfer.</li>
+          <li>The primary team continues resuscitation while awaiting ICU admission.</li>
+          <li>Patients in ICU remain under the responsibility and ownership of the primary unit. Transfer of care is arranged by the primary unit.</li>
+          <li>Family shall be informed of ICU admission as soon as possible, with further updates when required.</li>
+        </ol>
+
+        <h3>ICU admission criteria — factors to consider</h3>
+        <ul class="kv">
+          <li>Prioritisation according to severity of illness</li>
+          <li>Specific patient needs such as life-supportive therapies</li>
+          <li>Diagnosis</li>
+          <li>Prognosis</li>
+          <li>Potential benefit from interventions</li>
+          <li>Objective parameters at the time of referral</li>
+          <li>Available clinical expertise</li>
+          <li>Bed availability</li>
+        </ul>
+
+        <h3>Admission priority</h3>
+
+        <h4>Priority 1</h4>
+        <ul class="kv">
+          <li>Critically ill, unstable</li>
+          <li>Require life support for organ failure, intensive monitoring and therapies not available elsewhere (invasive ventilation, CRRT, invasive haemodynamic monitoring and interventions)</li>
+          <li>No limitations of treatment</li>
+          <li>High likelihood of benefit</li>
+        </ul>
+
+        <h4>Priority 2A</h4>
+        <ul class="kv">
+          <li>Acutely ill, relatively stable</li>
+          <li>Organ dysfunction requiring intensive monitoring and/or therapies manageable in an intermediate care facility (HDU or PACU)</li>
+          <li>Admit to ICU if early management fails to prevent deterioration, or if no intermediate care facility exists</li>
+          <li>Examples: post-operative patients requiring close monitoring; respiratory insufficiency on intermittent NIV</li>
+        </ul>
+
+        <h4>Priority 2B</h4>
+        <ul class="kv">
+          <li>Critically ill, unstable; require life support for organ failure</li>
+          <li>Significantly lower probability of recovery because of advanced underlying disease</li>
+          <li>May have specific limitations of care, e.g. no CPR</li>
+          <li>Lower likelihood of potential benefit</li>
+          <li>Examples: metastatic cancer in septic shock from hospital-acquired pneumonia with limitations of therapy (e.g. no CPR); decompensated heart failure with deteriorating functional status and multiple hospital admissions</li>
+        </ul>
+
+        <h4>Priority 3 — not appropriate for ICU admission</h4>
+        <ul class="kv">
+          <li>Terminally ill or moribund patients with no possibility of recovery</li>
+          <li>May benefit from palliative care rather than intensive care</li>
+          <li>Examples:
+            <ul>
+              <li>Severe irreversible brain pathology impairing cognition and consciousness, or persistent vegetative state</li>
+              <li>Metastatic cancer unresponsive to chemotherapy and/or radiotherapy</li>
+              <li>End-stage cardiac, respiratory or liver disease with no transplant option</li>
+              <li>Severe disability with poor quality of life</li>
+              <li>Advanced disease of a progressive life-limiting condition (e.g. motor neuron disease with rapid decline, severe Parkinson's disease with reduced independence)</li>
+              <li>Poor response to current treatment (e.g. bowel leak despite multiple laparotomies, recurrent soft tissue/musculoskeletal infections despite multiple surgical interventions, chronic conditions failing to respond such as SLE or HIV)</li>
+              <li>End-stage renal disease with no option or refusal for renal replacement therapy</li>
+              <li>Those who have explicitly stated their wish not to receive life-support therapy</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Triage</h3>
+        <p>Placing patients at their most appropriate level of care when demand exceeds ICU bed availability. Factors to consider:</p>
+        <ul class="kv">
+          <li>Likelihood of benefit</li>
+          <li>Prognosis</li>
+          <li>Life expectancy due to disease</li>
+          <li>Anticipated quality of life</li>
+        </ul>
+
+        <h3>Discharge policy</h3>
+        <ol class="kv">
+          <li>The decision to discharge is made by the ICU specialist.</li>
+          <li>Prior to discharge:
+            <ul>
+              <li>The primary team shall be informed of the management plan including any limitation of treatment.</li>
+              <li>A discharge summary shall be completed.</li>
+              <li>Any limitation of treatment shall be clearly documented, including why and amongst whom these decisions were made.</li>
+              <li>Family shall be informed.</li>
+              <li>The primary team is responsible for receiving and reviewing patients promptly in the ward.</li>
+              <li>Patients requiring a higher level of nursing care may benefit from a step-down unit, if available.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>ICU discharge criteria</h3>
+        <p>Assess continuously to identify patients who no longer need ICU care:</p>
+        <ul class="kv">
+          <li>Stable physiological status, no longer needing ICU monitoring and treatment</li>
+          <li>Stable haemodynamics on low-dose inotropic support</li>
+          <li>Stable respiratory status with oxygen requirement not more than 60%</li>
+          <li>Neurological stability</li>
+          <li>Tracheostomy, not requiring frequent suctioning</li>
+          <li>Chronic mechanical ventilation (e.g. motor neuron disease, cervical spine injury) with the acute critical problem resolved</li>
+          <li>Deteriorating or irreversible physiological status where active interventions are no longer beneficial — withdrawal of therapy should be initiated; patient may be discharged to the ward if an ICU bed is required</li>
+        </ul>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 2. VASOACTIVE AGENTS ============ -->
+  <section class="card" id="s2">
+    <details>
+      <summary><span class="num">2</span> Vasoactive Agents in Acute Circulatory Failure <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <h3>General principles</h3>
+        <ol class="kv">
+          <li>Initiate vasopressors promptly in severe hypotension, especially undifferentiated shock, after excluding obstructive shock.</li>
+          <li>It is appropriate to initiate vasoactive agents while ensuring optimal fluid resuscitation in severe hypotension.</li>
+          <li>Titrate the dose to achieve adequate tissue perfusion.</li>
+          <li>Aim for MAP 60–65 mmHg (or &gt; 70 mmHg in chronic hypertension) if there is evidence of inadequate tissue perfusion.</li>
+          <li>Main route is via a central venous catheter; peripheral administration may be considered in low doses.</li>
+          <li>Invasive blood pressure monitoring is preferred — allows immediate recognition of change and precise titration.</li>
+          <li>Monitor regularly for complications, e.g. arrhythmias and peripheral ischaemia.</li>
+          <li>Echocardiography is useful in the diagnosis and management of shock.</li>
+          <li>Consider advanced haemodynamic studies, e.g. cardiac output monitoring, in refractory shock.</li>
+        </ol>
+
+        <h3>Septic shock</h3>
+        <ol class="kv">
+          <li>Predominantly caused by vasodilatation and relative hypovolaemia. Myocardial depression is often present although cardiac output is elevated.</li>
+          <li><strong>Noradrenaline is the vasoactive agent of choice</strong> — venoconstriction (↑preload), arterial vasoconstriction, positive inotropy, improved cardiac output and improved renal perfusion.</li>
+          <li>Consider adding a second vasoactive agent (e.g. vasopressin or adrenaline) when noradrenaline &gt; 15–20 mcg/min does not achieve targets.</li>
+          <li>Consider adding IV hydrocortisone 50 mg q6h following a bolus of 100 mg when noradrenaline dose reaches 15–20 mcg/min.</li>
+          <li>Consider adding IV dobutamine (2–5 mcg/kg/min) in the presence of myocardial depression, and if noradrenaline dose is &lt; 15–20 mcg/min.</li>
+          <li>Wean vasoactive agents once targets are optimised. Consider weaning noradrenaline first before vasopressin.</li>
+        </ol>
+
+        <h3>Anaphylactic shock</h3>
+        <ol class="kv">
+          <li>Acute, multi-system disorder (predominantly heart, lung, vasculature) from sudden release of mediators from mast cells, basophils and macrophages into the circulation.</li>
+          <li>Stop the suspected offending agent.</li>
+          <li>Administer IV adrenaline in boluses of 0.05–0.1 mg. If no response, administer infusion at 0.1 mcg/kg/min. Adrenaline is preferred as it reverses peripheral vasodilatation and reduces oedema.</li>
+          <li>Administer IV crystalloid 20 mL/kg rapidly. Avoid colloids.</li>
+          <li>May consider H1 anti-histamine, IV chlorpheniramine 10 mg, to counter histamine-mediated vasodilatation and bronchoconstriction. No evidence for H2 anti-histamine.</li>
+          <li>May consider IV hydrocortisone 200 mg stat to shorten a protracted reaction.</li>
+        </ol>
+
+        <h3>Neurogenic shock</h3>
+        <ol class="kv">
+          <li>Secondary to spinal cord injury or disease — lack of sympathetic tone causing vasogenic and cardiogenic instability.</li>
+          <li>Fluid resuscitation is required to restore intravascular volume.</li>
+          <li><strong>Noradrenaline</strong> is recommended as the initial agent for its alpha and beta activity.</li>
+          <li>Add adrenaline if a second vasopressor is needed.</li>
+        </ol>
+
+        <h3>Cardiogenic shock</h3>
+        <ol class="kv">
+          <li>Inadequate tissue perfusion due to myocardial depression or structural abnormality.</li>
+          <li>Causes: left ventricular failure (most common), right ventricular failure, structural heart disease, arrhythmias.</li>
+          <li>Early echocardiography is recommended for diagnosis and monitoring of therapy.</li>
+          <li>Early cardiology consult if there is an indication for rescue revascularisation.</li>
+          <li>Perform test for fluid responsiveness and correct hypovolaemia in those who are fluid responsive.</li>
+          <li>The vasoactive agent of choice remains unclear — little evidence guides one agent over another.</li>
+        </ol>
+
+        <h4>LV failure — pathophysiological states</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Peripheral circulation</th><th>Volume status</th><th>Profile</th></tr>
+            </thead>
+            <tbody>
+              <tr><td rowspan="2">Cold</td><td>Wet</td><td><strong>Classic cardiogenic shock</strong> — low CO, high SVR, high LV filling pressure, systolic and diastolic dysfunction</td></tr>
+              <tr><td>Dry</td><td><strong>Euvolemic cardiogenic shock</strong> — low CO, high SVR, normal filling pressure, systolic dysfunction</td></tr>
+              <tr><td>Warm</td><td>Wet</td><td><strong>Vasodilatory cardiogenic shock or mixed shock</strong> — low CO, low/normal SVR, high filling pressure</td></tr>
+              <tr><td>Warm</td><td>Dry</td><td><strong>Vasodilatory shock (not cardiogenic)</strong> — high CO, low SVR, low filling pressure</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Initial vasoactive agent by type of cardiogenic shock</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Type</th><th>Vasoactive / management</th><th>Rationale</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cold and wet <small>(low CO, high SVR)</small></td>
+                <td>Noradrenaline or dopamine · Inotrope</td>
+                <td>Noradrenaline preferred in hypotension and arrhythmias; dopamine preferred in bradycardia. Consider adding inotrope when stabilised and after revascularisation (MI only).</td>
+              </tr>
+              <tr>
+                <td>Cold and dry <small>(low CO, normal filling pressure)</small></td>
+                <td>Noradrenaline or dopamine · Inotrope · Small fluid boluses</td>
+                <td>Same as above. Small fluid bolus may be given if fluid responsive.</td>
+              </tr>
+              <tr>
+                <td>Vasodilatory warm and wet / mixed</td>
+                <td>Noradrenaline</td>
+                <td>Low SVR subtype. Consider haemodynamic-guided therapy.</td>
+              </tr>
+              <tr>
+                <td>Right ventricular failure in shock</td>
+                <td>Fluid boluses · Noradrenaline, dopamine, vasopressin · Inotrope</td>
+                <td>Goals: optimise preload, reduce PVR (RV afterload). Dopamine for bradycardia. Vasopressin may raise SVR but has no effect on PVR. Inhaled pulmonary vasodilators may be considered.</td>
+              </tr>
+              <tr>
+                <td>Normotensive shock (symptomatic)</td>
+                <td>Dobutamine, milrinone, or levosimendan</td>
+                <td>SBP &gt; 90 mmHg with relatively high SVR. Dobutamine preferred in isolated LV dysfunction; levosimendan or milrinone preferred with increased PVR and RV dysfunction, or on beta-blockers (action independent of beta-adrenergic receptors).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Septic shock management algorithm</h3>
+        <div class="flow">
+          <div class="fnode fstart">SHOCK<small>Hypotension · Signs of tissue hypoperfusion</small></div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Is hypovolaemia obvious?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Fluid resuscitation <em>(need not assess for fluid responsiveness)</em></span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Assess fluid responsiveness</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag go">Fluid responsive</span><span class="txt">Consider fluid bolus 10 mL/kg in absence of fluid overload</span></div>
+            <div class="fbranch"><span class="tag no">Non-responsive</span><span class="txt">Avoid fluid bolus</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">MAP ≥ 60–65 mmHg with adequate tissue perfusion?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Continue current therapy</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Start IV noradrenaline up to 15–20 mcg/min</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">MAP ≥ 60–65 mmHg with adequate tissue perfusion?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Continue current therapy</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">IV hydrocortisone 100 mg bolus, then 50 mg q6h</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Noradrenaline ≥ 15–20 mcg/min?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Add IV dobutamine</span></div>
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Assess for myocardial depression <small>(echocardiography or cardiac output monitoring)</small></span></div>
+          </div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Add IV adrenaline</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Add IV dobutamine</span></div>
+          </div>
+        </div>
+        <div class="box">
+          <strong>Notes</strong>
+          <p>* Consider echocardiography. ** Echocardiography or cardiac output monitoring.</p>
+        </div>
+
+        <h3>Fluid responsiveness</h3>
+        <ol class="kv">
+          <li>Defined as the ability of the left ventricle to increase stroke volume by 10–15% after rapid bolus fluid administration.</li>
+          <li>Cardiac output or its indicators should be assessed accurately during the test.</li>
+          <li>Common indicators: pulse pressure change measured by arterial blood pressure, LV outflow tract (LVOT) velocity time integral (VTI) on echocardiography, carotid Doppler flow on transoesophageal echocardiography, or cardiac output on pulse contour analysis.</li>
+          <li>Transthoracic echocardiography LVOT VTI for stroke volume estimation requires expertise.</li>
+          <li><strong>Passive leg raising (PLR) is the preferred method</strong> — it does not involve additional fluid administration.</li>
+        </ol>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Method</th><th>Main limitations</th></tr></thead>
+            <tbody>
+              <tr><td>Pulse pressure / stroke volume variations</td><td>Cannot be used in spontaneous breathing, cardiac arrhythmias, low tidal volume / low lung compliance</td></tr>
+              <tr><td>Inferior vena cava diameter variation</td><td>Cannot be used in spontaneous breathing, low tidal volume / low lung compliance</td></tr>
+              <tr><td>Passive leg raising (PLR)</td><td>Requires continuous and real-time cardiac output measurement, e.g. echocardiography, pulse contour analysis, oesophageal Doppler, or changes in end-tidal CO₂</td></tr>
+              <tr><td>Mini fluid challenge (100 mL)</td><td>Requires a precise technique for measuring cardiac output, e.g. pulse contour analysis</td></tr>
+              <tr><td>End-expiratory occlusion test</td><td>Intubated patients</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Passive leg raising (PLR) technique</h4>
+        <ol class="kv">
+          <li>Measure haemodynamic effects (stroke volume or cardiac output) following leg elevation up to 45°.</li>
+          <li>Position patient from semi-recumbent to PLR position using automatic motion of the bed.</li>
+          <li>Assess the haemodynamic effect within 30–90 s after the onset of the test.</li>
+        </ol>
+
+        <h3>Dose and haemodynamic effects of vasoactive agents</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Drug</th><th>Infusion dose</th><th>α1</th><th>β1</th><th>β2</th><th>Dopamine</th><th>Haemodynamic effects</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Noradrenaline</td><td class="tight">0.01–1.5 µg/kg/min</td><td>++++</td><td>++</td><td>+</td><td>–</td><td>↑SVR, ↑CO</td></tr>
+              <tr><td>Vasopressin</td><td class="tight">0.03–0.04 U/min</td><td colspan="4">Stimulates V1 receptors in vascular smooth muscle</td><td>↑SVR, +PVR</td></tr>
+              <tr><td>Adrenaline</td><td class="tight">0.01–1.5 µg/kg/min</td><td>++++</td><td>++++</td><td>++</td><td>–</td><td>↑CO, ↑SVR</td></tr>
+              <tr><td>Dopamine</td><td class="tight">0.5–2 µg/kg/min</td><td>–</td><td>+</td><td>–</td><td>+++</td><td>↑CO</td></tr>
+              <tr><td>Dopamine</td><td class="tight">5–10 µg/kg/min</td><td>++</td><td>++</td><td>+</td><td>++</td><td>↑CO, ↑SVR</td></tr>
+              <tr><td>Dopamine</td><td class="tight">10–20 µg/kg/min</td><td>++++</td><td>+</td><td>–</td><td>++</td><td>↑SVR, ↑CO</td></tr>
+              <tr><td>Phenylephrine</td><td class="tight">0.1–10 µg/kg/min</td><td>+++</td><td>–</td><td>–</td><td>–</td><td>↑SVR</td></tr>
+              <tr><td>Dobutamine</td><td class="tight">2.5–20 µg/kg/min</td><td>–</td><td>++++</td><td>++</td><td>–</td><td>↑CO, ↓SVR, ↓PVR</td></tr>
+              <tr><td>Milrinone</td><td class="tight">0.125–0.75 µg/kg/min</td><td colspan="4">PD-3 inhibitor</td><td>↑CO, ↓SVR, ↓PVR</td></tr>
+              <tr><td>Levosimendan</td><td class="tight">0.05–0.2 µg/kg/min</td><td colspan="4">Myofilament Ca²⁺ sensitiser, PD-3 inhibitor</td><td>↑CO, ↓SVR, ↓PVR</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted)">SVR: systemic vascular resistance · PVR: pulmonary vascular resistance · CO: cardiac output · PD: phosphodiesterase</p>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 3. SEVERE HYPOXAEMIC RESPIRATORY FAILURE ============ -->
+  <section class="card" id="s3">
+    <details>
+      <summary><span class="num">3</span> Severe Hypoxaemic Respiratory Failure <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <div class="box">
+          <strong>Definition</strong>
+          <p>Severe hypoxaemic respiratory failure is defined by <strong>PₐO₂/FᵢO₂ &lt; 100–150 mmHg</strong>. The primary aim of ventilatory support is adequate gas exchange while minimising ventilator-induced lung injury (VILI).</p>
+        </div>
+
+        <h3>Principles</h3>
+        <ol class="kv">
+          <li>No outcome advantage of volume- vs pressure-controlled ventilation.</li>
+          <li>Institute protective lung ventilation (PLV) as the initial strategy. Target tidal volume ≤ 6 mL/kg ideal body weight, plateau pressure (Pplat) ≤ 30 cmH₂O, and accept a lower PₐO₂.</li>
+          <li>Lung recruitment manoeuvre is reserved for patients who show 'PEEP responsiveness'.</li>
+          <li>Prolonged prone positioning (&gt; 16 hours) should be considered in the early phase.</li>
+          <li>Muscle paralysis with a neuromuscular blocking agent (NMBA) may be considered in the early phase of ventilation.</li>
+          <li>Extracorporeal membrane oxygenation (ECMO) may be considered as rescue therapy, based on clinician expertise, case by case.</li>
+          <li>Non-invasive ventilation (NIV) should be avoided in patients with PₐO₂/FᵢO₂ &lt; 200 — associated with a high failure rate.</li>
+        </ol>
+
+        <h3>Ventilatory strategy</h3>
+        <ol class="kv">
+          <li>Adhere to protective lung ventilation strategy.</li>
+          <li>Optimise mean alveolar pressure.</li>
+          <li>Perform lung recruitment manoeuvre if applicable and select optimal PEEP.</li>
+          <li>Prone positioning.</li>
+          <li>Use neuromuscular blocking agent.</li>
+        </ol>
+
+        <h4>Initial ventilator settings</h4>
+        <ol class="kv">
+          <li><strong>Ideal body weight (IBW):</strong><br>
+            Male = 50 + 0.91 [height (cm) − 152.4] kg<br>
+            Female = 45.5 + 0.91 [height (cm) − 152.4] kg</li>
+          <li>Mode: pressure-controlled (PCV) or volume-controlled ventilation (VCV).</li>
+          <li>Target tidal volume (Vt) 6 mL/kg IBW with Pplat ≤ 30 cmH₂O.</li>
+          <li>Set initial PEEP at 10–15 cmH₂O.</li>
+          <li>In PCV, aim for a driving pressure not more than 15 cmH₂O.</li>
+          <li>In VCV:
+            <ul>
+              <li>Pplat should be measured every 4 hours in passively ventilated patients (no spontaneous breathing).</li>
+              <li>If Pplat &gt; 30 cmH₂O, decrease Vt by 1 mL/kg until target achieved or a minimum 4 mL/kg Vt is reached.</li>
+            </ul>
+          </li>
+          <li>In patients with high respiratory drive resulting in Vt &gt; 6 mL/kg and patient–ventilator dyssynchrony, consider muscle paralysis to prevent patient self-inflicted lung injury (P-SILI).</li>
+          <li>Use the lowest FᵢO₂ to achieve adequate oxygenation. Allow permissive hypoxaemia: accept PₐO₂ ≥ 55 mmHg or SpO₂ ≥ 88%.</li>
+          <li>Accept permissive hypercapnia with pH &gt; 7.1. Respiratory rate may be increased to a maximum of 35/min. <strong>Contraindications to permissive hypercapnia:</strong> intracranial hypertension, acute coronary artery disease, arrhythmias, right heart failure, worsening pulmonary hypertension.</li>
+        </ol>
+
+        <h3>Mean alveolar pressure</h3>
+        <ol class="kv">
+          <li>Optimise mean alveolar pressure:
+            <ul>
+              <li>Increase inspiratory time (Tᵢ):
+                <ul>
+                  <li>In VCV: decrease inspiratory flow rate or add inspiratory pause.</li>
+                  <li>In PCV: Tᵢ is directly set in seconds or adjusted as I:E ratio.</li>
+                  <li>May require deep sedation — potential to cause air trapping with haemodynamic consequences or barotrauma.</li>
+                </ul>
+              </li>
+              <li>Optimise PEEP and inspiratory pressure.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>Lung recruitment</h3>
+        <h4>Non-recruitable pathologies</h4>
+        <ul class="kv">
+          <li>Focal lung injury, e.g. lung contusion, focal pneumonia</li>
+          <li>Pulmonary ARDS</li>
+        </ul>
+
+        <h4>Assess 'PEEP responsiveness'</h4>
+        <ol class="kv">
+          <li>Increase PEEP to 15 cmH₂O for 30 minutes.</li>
+          <li>High potential recruiters demonstrate at the end of trial:
+            <ul>
+              <li>Increase in PₐO₂/FᵢO₂</li>
+              <li>Decrease in PₐCO₂</li>
+              <li>Increase in respiratory system compliance (C_Rs) by measuring dynamic compliance (C_dyn)</li>
+            </ul>
+          </li>
+        </ol>
+        <div class="box">
+          <strong>Dynamic compliance</strong>
+          <p>C_dyn = Vt delivered ÷ (P_peak − PEEP) — automatically measured in some ventilators.</p>
+        </div>
+
+        <div class="box warn">
+          <strong>Non-recruiters</strong>
+          <p>Do <strong>not</strong> perform lung recruitment manoeuvre. Keep PEEP 10–15 cmH₂O. Consider prone positioning and muscle paralysis.</p>
+        </div>
+
+        <h4>Recruitment manoeuvre in recruiters</h4>
+        <ul class="kv">
+          <li>Additional sedation, paralysis or both may be required. Monitor for hypotension. Transient desaturation may be expected.</li>
+          <li>Types of recruitment manoeuvre:
+            <ul>
+              <li><strong>Sustained high pressure inflation</strong> — CPAP 30–50 cmH₂O for 20–40 s with zero pressure support.</li>
+              <li><strong>Extended sigh</strong> — stepwise increase in PEEP and reduction in tidal volume over 2 minutes; used in VCV.</li>
+              <li><strong>Staircase recruitment manoeuvre (SRM)</strong> — PCV with stepwise increase in PEEP every 2 min, keeping driving pressure constant, up to a peak inspiratory pressure (PIP) of 45–50 cmH₂O.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Vt (mL/kg IBW)</th><th>PEEP/CPAP</th><th>Duration (sec)</th></tr></thead>
+            <tbody>
+              <tr><td>6</td><td>15</td><td>30</td></tr>
+              <tr><td>4</td><td>20</td><td>30</td></tr>
+              <tr><td>2</td><td>25</td><td>30</td></tr>
+              <tr><td>0</td><td>30</td><td>30</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Staircase recruitment manoeuvre (SRM) protocol</h4>
+        <ul class="kv">
+          <li>PCV with driving pressure 15 cmH₂O, RR 10/min, I:E 1:1, FᵢO₂ 1.0.</li>
+          <li>Start with PEEP 20 cmH₂O.</li>
+          <li>Increase PEEP by 5 cmH₂O every 2 min until PIP 45–50 cmH₂O and PEEP 30–35 cmH₂O.</li>
+          <li>Alternative: stepwise increase in PEEP with return to baseline between each increase.</li>
+        </ul>
+
+        <h4>Determining optimum PEEP after recruitment</h4>
+        <ol class="kv">
+          <li>Set PEEP at 20 cmH₂O and reduce stepwise (1 cmH₂O every 3 min) to achieve a maximal decrease in PₐO₂ or C_Rs.</li>
+          <li>A PₐO₂ reduction of &gt; 10% or a reduction in C_Rs indicates de-recruitment and collapse pressure.</li>
+          <li>Repeat recruitment with sustained high pressure inflation (CPAP 30–50 cmH₂O for 20–40 s with zero pressure support).</li>
+          <li>Optimal PEEP is at 2 cmH₂O above the collapse pressure.</li>
+        </ol>
+
+        <div class="box warn">
+          <strong>Post-recruitment assessment</strong>
+          <p>If PₐO₂/FᵢO₂ ≤ 150 mmHg, start deep sedation and prone ventilation. Consider NMBA.</p>
+        </div>
+
+        <h3>Early prone positioning</h3>
+        <ol class="kv">
+          <li>Severe hypoxaemic patients should be placed prone within 24 hours for at least 16 consecutive hours.</li>
+          <li>Measure ABG and respiratory compliance 1 hour before turning supine and within 4 hours following supine position.</li>
+          <li>Prone position is no longer required when there is sustained improvement of oxygenation, defined as PₐO₂/FᵢO₂ &gt; 150 mmHg with FᵢO₂ &lt; 0.6 and PEEP 10–15 cmH₂O at 4 hours upon turning supine.</li>
+          <li>Patient may be placed prone again at any time before the 4-hour assessment if oxygenation criteria are not met.</li>
+          <li>Complications: desaturation, hypotension, pressure ulcers, unplanned extubation, facial and airway oedema, catheter dislodgement.</li>
+        </ol>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Absolute contraindications</th><th>Relative contraindications</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Spine instability · Raised ICP</td>
+                <td>Severe haemodynamic instability or arrhythmias · Open abdominal wounds · Multiple trauma with unstabilised fractures · Pregnancy · Pulmonary haemorrhage · Facial trauma</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Neuromuscular blocking agents</h3>
+        <ol class="kv">
+          <li>Muscle paralysis may be considered in the early phase of severe hypoxaemia in selected patients, e.g. ventilatory dyssynchrony or prone position.</li>
+          <li>Current evidence supports using cisatracurium besylate for not more than 48 hours.</li>
+          <li>No consensus on depth of paralysis. Titrating to achieve 'Train of Four' count of 2/4 with a peripheral nerve stimulator may be reasonable.</li>
+          <li>Concerns: neuropathy and the need for deep sedation.</li>
+        </ol>
+
+        <h3>Non-ventilatory strategy</h3>
+        <ol class="kv">
+          <li>Conservative fluid management using fluid restriction and diuretics may improve oxygenation.</li>
+          <li>The use of corticosteroids cannot be recommended with the current level of evidence.</li>
+          <li>Consider echocardiography to assess right heart function:
+            <ul>
+              <li>Acute cor pulmonale in severe hypoxaemic failure may require right heart inotropic support and afterload reduction.</li>
+              <li>RV protective ventilation strategy: limit Pplat &lt; 27 cmH₂O; limit driving P &lt; 15 cmH₂O; target PₐCO₂ &lt; 60 mmHg; decrease PEEP if RV dysfunction; prone positioning.</li>
+            </ul>
+          </li>
+          <li>Refractory hypoxaemia may be secondary to patent or reopened foramen ovale with cardiac shunt.</li>
+        </ol>
+
+        <h3>Lung recruitment algorithm</h3>
+        <div class="flow">
+          <div class="fnode fact">ΔP 15 cmH₂O · RR 10/min · I:E 1:1 · FᵢO₂ 1.0 · <strong>PEEP 20 cmH₂O × 2 min</strong></div>
+          <div class="farrow"></div>
+          <div class="fnode fact">ΔP 15 · RR 10 · I:E 1:1 · FᵢO₂ 1.0 · <strong>PEEP 25 cmH₂O × 2 min</strong></div>
+          <div class="farrow"></div>
+          <div class="fnode fact">ΔP 15 · RR 10 · I:E 1:1 · FᵢO₂ 1.0 · <strong>PEEP 30 cmH₂O × 2 min</strong></div>
+          <div class="fbranches"><div class="fbranch"><span class="tag go">Lung recruitment</span><span class="txt">Complete the stepwise PEEP escalation above</span></div></div>
+          <div class="farrow"></div>
+          <div class="fnode fact">ΔP 15 · RR 10 · I:E 1:1 · FᵢO₂ 1.0 · <strong>PEEP 20 cmH₂O × 2 min</strong></div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Reduce PEEP by 1 cmH₂O every 3 min<br><small>Determine closing pressure using: best oxygenation method or best compliance method</small></div>
+          <div class="farrow"></div>
+          <div class="fnode fok">Set optimum PEEP 2 cmH₂O above closing pressure</div>
+          <div class="farrow"></div>
+          <div class="fnode fact">Repeat recruitment manoeuvre with sustained high pressure inflation (depending on the peak pressure used during initial recruitment) for 20–30 s</div>
+          <div class="farrow"></div>
+          <div class="fnode fstart">Ventilate with aims: Pplat ≤ 30 cmH₂O · Vt ≤ 6 mL/kg IBW</div>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted)">ΔP = driving pressure</p>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 4. WEANING ============ -->
+  <section class="card" id="s4">
+    <details>
+      <summary><span class="num">4</span> Weaning from Mechanical Ventilation <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <div class="box">
+          <strong>Definition</strong>
+          <p>Weaning begins as soon as the underlying cause for mechanical ventilation has sufficiently improved, the level of ventilatory support is reduced, and transition to spontaneous breathing is initiated.</p>
+        </div>
+
+        <h3>Principles</h3>
+        <ol class="kv">
+          <li>Weaning begins as soon as the underlying cause has sufficiently improved.</li>
+          <li>Benefits of early weaning should be weighed against risks associated with failed extubation.</li>
+          <li>Weaning requires a sedation protocol aiming for light sedation and a rehabilitation protocol directed towards early mobilisation.</li>
+          <li>Assess patients' readiness to wean on a daily basis.</li>
+          <li>Perform SBT in patients who pass readiness to wean; assess for extubation in those who pass the SBT.</li>
+          <li>Perform a cuff leak test in patients at high risk of post-extubation stridor.</li>
+          <li>Initiate NIV weaning in selected patients at high risk of weaning failure.</li>
+        </ol>
+
+        <h3>Classification of weaning</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Definition</th><th>Incidence in ICU</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Simple</strong> — pass first SBT and successfully extubated</td><td>50–67%</td></tr>
+              <tr><td><strong>Difficult</strong> — require up to 3 SBTs, or up to 7 days to pass an SBT</td><td>26–39%</td></tr>
+              <tr><td><strong>Prolonged</strong> — fail &gt; 3 SBTs, or require &gt; 7 days to wean</td><td>6–14%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Assessment of readiness to wean</h3>
+        <p>Assess daily after resolution of the disease process. Clinical criteria for SBT readiness:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Domain</th><th>Criteria</th></tr></thead>
+            <tbody>
+              <tr><td>Spontaneous respiratory effort</td><td>Present</td></tr>
+              <tr><td>Respiratory stability</td><td>PₐO₂/FᵢO₂ ≥ 150 or SpO₂ &gt; 90% on FᵢO₂ &lt; 0.5 and PEEP 5–8 cmH₂O<br><em>(In chronic hypoxaemia, PₐO₂/FᵢO₂ ≥ 120 is acceptable)</em></td></tr>
+              <tr><td>Cardiovascular stability</td><td>HR &lt; 140 · SBP &gt; 90 and &lt; 180 mmHg · minimal or no vasopressors (noradrenaline or adrenaline &lt; 0.15 µg/kg/min) · no ongoing myocardial ischaemia · pH &gt; 7.25</td></tr>
+              <tr><td>Haematology</td><td>Hb &gt; 7.0 g/dL (preferable)</td></tr>
+              <tr><td>Temperature</td><td>&lt; 38.5 °C (preferable)</td></tr>
+              <tr><td>Neurological</td><td>Awake and alert or easily arousable (preferable)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Spontaneous breathing trial (SBT)</h3>
+        <ol class="kv">
+          <li>SBT identifies patients likely to fail liberation from mechanical ventilation.</li>
+          <li>Patient spontaneously breathes through the endotracheal tube for a set period, with or without minimal ventilatory support.</li>
+          <li>Ideally the patient should be awake on minimal or no sedative infusion.</li>
+          <li>Methods:
+            <ul>
+              <li><strong>Without ventilatory support:</strong> T-piece trial — disconnect ETT from ventilator, provide humidified oxygen via T-piece.</li>
+              <li><strong>With minimal ventilator support</strong> (additional support may overcome ETT resistance):
+                <ul>
+                  <li>Low-level pressure support (5–8 cmH₂O) and PEEP (1–5 cmH₂O) — <strong>preferred</strong></li>
+                  <li>CPAP (5 cmH₂O) with zero pressure support</li>
+                  <li>Automatic tube compensation (available in some ventilators)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>A duration of 30 min for an initial trial is usually sufficient. For patients who failed previous SBTs or on prolonged ventilation, longer trials up to 2 hours may be required.</li>
+        </ol>
+
+        <h4>Criteria to stop SBT</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>General</th><th>Neurological</th><th>Respiratory</th><th>Cardiovascular</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Excessive sweating · agitation · anxiety</td>
+                <td>Confusion · use of accessory muscles · thoraco-abdominal paradox</td>
+                <td>Sustained increase in RR &gt; 35/min · PₐO₂ &lt; 60 mmHg or SpO₂ &lt; 90% · increase in PₐCO₂ &gt; 10 mmHg · pH &lt; 7.25 or pH decrease by &gt; 0.1 · RSBI &gt; 105 <em>(RSBI = RR ÷ tidal volume in litres)</em></td>
+                <td>HR &gt; 140/min or increase &gt; 20% · SBP &gt; 180 or &lt; 90 mmHg (or change by &gt; 20%) · new onset arrhythmias</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ol class="kv" start="7">
+          <li>Assess for extubation if the patient passes SBT.</li>
+          <li>Terminate immediately if SBT fails and provide supportive mode of ventilation with higher settings. Do not repeat SBT for the next 24 hours and approach as a difficult-to-wean patient.</li>
+        </ol>
+
+        <h3>Extubation criteria</h3>
+        <h4>Ability to protect airway</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Level of consciousness</th><th>Cough strength</th><th>Quantity of secretions</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Preferably alert, awake, follows commands<br>Pass 4-tasks test: open eyes · follow examiner with eyes · grasp hand · stick out tongue<br><em>In traumatic brain injury, GCS ≥ 8/15 is acceptable when neurological status is stable</em></td>
+                <td>Semi-objective assessment:<br>0 = no cough<br>1 = audible air movement only<br>2 = weak, barely audible cough<br>3 = clearly audible cough<br>4 = stronger cough<br>5 = multiple sequential strong coughs<br><strong>Strength &lt; 2 is associated with higher risk of extubation failure</strong></td>
+                <td>Higher risk of extubation failure:<br>· moderate to abundant secretions<br>· frequency of suctioning &lt; 2 hours</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Cuff leak test</h4>
+        <p>Perform as a surrogate marker of laryngeal oedema in patients at high risk of post-extubation stridor:</p>
+        <ul class="kv">
+          <li>Traumatic intubation</li>
+          <li>Duration of intubation ≥ 7 days</li>
+          <li>Excessively large ETT (≥ 7.5 mm in women, ≥ 8.5 mm in men)</li>
+          <li>Excessive ETT mobility (psychomotor agitation or ETT not anchored properly)</li>
+          <li>Reintubation after unplanned extubation</li>
+        </ul>
+
+        <p><strong>Technique:</strong></p>
+        <ol class="kv">
+          <li>Use volume-controlled ventilation and record inspiratory tidal volume.</li>
+          <li>Deflate cuff and average the cuff leak volume over 6 breaths.</li>
+          <li>Calculate cuff leak volume (CLV) = difference between inspired tidal volume and average expired tidal volume. <strong>CLV &lt; 110 mL or &lt; 15–20% of delivered tidal volume indicates a failed cuff leak test.</strong></li>
+        </ol>
+
+        <div class="box">
+          <strong>Failed cuff leak test</strong>
+          <p>Systemic steroids 4 hours prior to extubation reduce risk of post-extubation stridor and reintubation. Recommended: single dose IV methylprednisolone 40 mg. Alternative: IV dexamethasone 8 mg. A repeat cuff leak test is not required after steroid administration.</p>
+        </div>
+
+        <h3>Difficult-to-wean</h3>
+        <ol class="kv">
+          <li>Provide ventilator management that encourages spontaneous breathing while avoiding respiratory fatigue.</li>
+          <li>Use pressure support (PS) as the weaning method — continuous gradual reduction of PS by 2 cmH₂O at a time, once or twice daily. Once PS is reduced to minimal level, repeat SBT daily.</li>
+          <li>Strategies before resuming SBT:
+            <ul>
+              <li>Place patient in upright position for the SBT</li>
+              <li>Suction airway secretions</li>
+              <li>Optimise nutrition — avoid over- or underfeeding</li>
+              <li>Ensure adequate nocturnal rest with daytime respiratory muscle training</li>
+              <li>Aim for negative balance in patients with positive cumulative fluid balance</li>
+              <li>Consider longer SBT duration of up to 2 hours</li>
+            </ul>
+          </li>
+          <li>Identify and treat causes of weaning failure with detailed physical examination and investigations.</li>
+          <li>Consider tracheostomy in patients unable to wean within 1–3 weeks.</li>
+        </ol>
+
+        <h4>Causes of weaning failure</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>System</th><th>Causes</th></tr></thead>
+            <tbody>
+              <tr><td>Cardiovascular</td><td>Heart failure · myocardial ischaemia</td></tr>
+              <tr><td>Respiratory</td><td>Pneumonia · pulmonary oedema · bronchospasm · kinked or blocked tube · excessive secretions</td></tr>
+              <tr><td>Abdomen</td><td>Abdominal distension causing splinting</td></tr>
+              <tr><td>CNS (depressed central drive)</td><td>Sedatives or analgesics · CNS haemorrhage or infarction · encephalitis</td></tr>
+              <tr><td>Peripheral nervous system</td><td>Critical illness neuropathy or myopathy · Guillain-Barré syndrome, myasthenia gravis (usually apparent before weaning)</td></tr>
+              <tr><td>Sepsis</td><td>Unresolved or new bout</td></tr>
+              <tr><td>Metabolic</td><td>Hypokalaemia · hypomagnesaemia · hypophosphataemia · severe hypothyroidism or myxoedema (rare but treatable) · metabolic alkalosis</td></tr>
+              <tr><td>Nutrition</td><td>Over- or underfeeding</td></tr>
+              <tr><td>Neuropsychological</td><td>Delirium · anxiety · depression</td></tr>
+              <tr><td>Haematology</td><td>Anaemia</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>NIV weaning</h3>
+        <ol class="kv">
+          <li>NIV for weaning can only be successful in patients with good airway protection, strong cough and manageable secretions.</li>
+          <li>Potential candidates at high risk for weaning failure:
+            <ul>
+              <li>COPD</li>
+              <li>Congestive heart failure</li>
+              <li>Elderly &gt; 65 years</li>
+              <li>Hypercapnia during SBT</li>
+              <li>Failed &gt; 1 SBT</li>
+            </ul>
+          </li>
+          <li>Start NIV immediately after extubation and maintain for at least 24 hours.</li>
+          <li><strong>Do not delay reintubation in patients who fail NIV.</strong></li>
+        </ol>
+
+        <h3>High-flow nasal cannula (HFNC) oxygen</h3>
+        <ul class="kv">
+          <li>Consider HFNC oxygen in patients with post-extubation hypoxaemic respiratory failure, if available.</li>
+        </ul>
+
+        <h3>Prolonged mechanical ventilation (PMV)</h3>
+        <ol class="kv">
+          <li>Common consensus definition: requirement of ventilation &gt; 21 days for at least 6 hours a day.</li>
+          <li>These patients will require a tracheostomy.</li>
+          <li>Identify factors that are potentially reversible.</li>
+          <li>Perform increases in duration of SBT with frequent assessment for signs of failure. Suggested approach:
+            <ul>
+              <li>Assess for readiness to wean when PS has been gradually reduced to 10–12 cmH₂O.</li>
+              <li>Perform SBT using trachemask for a specified duration, e.g. 2 hours.</li>
+              <li>If SBT successful, perform daily SBT of progressively longer duration, e.g. 4 hours, 6 hours, etc.</li>
+              <li>Lengthen the SBT duration if the patient feels comfortable and wishes to continue at the end of the SBT.</li>
+              <li>Do not repeat the SBT for at least another 24 hours if SBT fails.</li>
+              <li>Eventual goal: reach 24 hours and be completely liberated from the ventilator.</li>
+            </ul>
+          </li>
+          <li>Patients requiring PMV should not be considered permanently ventilator-dependent until at least 3 months of weaning attempts have failed, unless respiratory failure is due to an irreversible process.</li>
+        </ol>
+
+        <h3>Weaning algorithm</h3>
+        <div class="flow">
+          <div class="fnode fstart">Invasive mechanical ventilation</div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Resolution of disease?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Continue invasive mechanical ventilation</span></div>
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Assess readiness to wean</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Spontaneous breathing trial</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">Fail</span><span class="txt">Difficult to wean — consider PSV as weaning method</span></div>
+            <div class="fbranch"><span class="tag yes">Pass</span><span class="txt">Assess ability to protect airway</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Ability to protect airway?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Consider tracheostomy</span></div>
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Assess risk of post-extubation stridor</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">High risk of post-extubation stridor?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Cuff leak test → <strong>Absent:</strong> single dose systemic steroids 4 hours before extubation · <strong>Present:</strong> proceed</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Assess risk of extubation failure</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">High risk of extubation failure?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Extubate to NIV (NIV weaning)</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Extubate</span></div>
+          </div>
+        </div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 5. PAIN, SEDATION, DELIRIUM ============ -->
+  <section class="card" id="s5">
+    <details>
+      <summary><span class="num">5</span> Pain, Sedation &amp; Delirium <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <h3>Principles</h3>
+        <ol class="kv">
+          <li>Focus first on analgesia, then sedation.</li>
+          <li>Practise analgesic-first sedation — use an analgesic (usually an opioid) prior to a sedative to reach the sedation goal.</li>
+          <li>Aim for light sedation unless contraindicated.</li>
+          <li>Titrate analgesic and sedative drugs to a defined target, using the lowest effective dose.</li>
+          <li>Identify risk factors and implement effective preventive measures for delirium.</li>
+          <li>Assess pain, sedation and delirium objectively using validated monitoring tools.</li>
+          <li>Employ pharmacological and non-pharmacological strategies to manage pain, agitation and delirium.</li>
+        </ol>
+
+        <h3>Pain</h3>
+        <ol class="kv">
+          <li>Use validated scales: Behavioral Pain Score (BPS) or Critical Care Pain Observational Tool (CPOT) in the unconscious; Visual Analogue Score (VAS) in conscious patients.</li>
+          <li>Assess pain at least 4 hourly.</li>
+          <li>Institute pain management when pain score is: <strong>BPS ≥ 5</strong> · <strong>CPOT ≥ 3</strong> · <strong>VAS ≥ 3</strong></li>
+          <li>Opioid-based analgesia remains the mainstay.</li>
+          <li>Consider adjuncts to reduce opioid dose and/or severity of pain: paracetamol (IV/PO/PR); IV ketamine in post-surgical patients.</li>
+          <li>Patient-controlled analgesia (PCA) can be provided for awake and cooperative patients.</li>
+          <li>Use an analgesic prior to a procedure that may cause pain, with the lowest effective dose, timed so that peak effect coincides with the procedure.</li>
+          <li>Use gabapentin or carbamazepine with opioids for neuropathic pain, e.g. Guillain-Barré syndrome.</li>
+          <li>Consider regional analgesia in selected surgical or trauma patients, e.g. thoracic epidural in post-operative abdominal aortic aneurysm surgery or traumatic rib fractures.</li>
+          <li>Non-pharmacological interventions may complement conventional approaches: music therapy, relaxation techniques, massage therapy.</li>
+        </ol>
+
+        <h4>Pharmacological agents for pain</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Drug</th><th>Bolus dose</th><th>Infusion dose</th><th>Max dose</th><th>Side effects</th></tr></thead>
+            <tbody>
+              <tr><td>IV Fentanyl</td><td>0.35–0.5 µg/kg</td><td>0.5–2 µg/kg/h</td><td>—</td><td>Cumulative in hepatic impairment</td></tr>
+              <tr><td>IV Morphine</td><td>2–4 mg</td><td>2–10 mg/h</td><td>—</td><td>Cumulative in renal and hepatic impairment (avoid if GFR &lt; 20) · ileus with high doses</td></tr>
+              <tr><td>IV Ketamine</td><td>0.1–0.35 mg/kg</td><td>0.1–0.5 mg/kg/h</td><td>—</td><td>Dissociative disorder with higher doses</td></tr>
+              <tr><td>IV/PO Paracetamol</td><td>IV: 500 mg–1 g or 15 mg/kg q6h<br>PO: 500 mg–1 g q6h</td><td>—</td><td>4 g/day</td><td>Hypotension (IV) · liver dysfunction</td></tr>
+              <tr><td>IV Remifentanil <em>(cost consideration)</em></td><td>0.5 µg/kg (loading)</td><td>0.05–0.5 µg/kg/min</td><td>—</td><td>Rigidity · bradycardia · hyperalgesia</td></tr>
+              <tr><td>IV/PO Oxycodone</td><td>IV/SC: 5–10 mg q4–6h<br>PO: 5–10 mg q4–6h</td><td>2 mg/h</td><td>&gt; 60 yrs: 2.5–5 mg q4–6h</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Sedation</h3>
+        <ol class="kv">
+          <li>Aim for light sedation unless contraindicated.</li>
+          <li>Aim for deep sedation (revised Riker −2 to −3 or RASS −3 to −5) in the following patients; reassess daily need and wean when no longer required:
+            <ul>
+              <li>Head injury on cerebral protection</li>
+              <li>Post cardiac arrest care</li>
+              <li>On high vasopressors or inotropes</li>
+              <li>On high ventilatory settings</li>
+            </ul>
+          </li>
+          <li>If deep sedation is required, add either IV infusion of midazolam or propofol or both.</li>
+          <li>Consider dexmedetomidine in patients unable to wean off the ventilator due to agitated delirium.</li>
+          <li>Use benzodiazepines to provide amnesia for procedures or in patients with anxiety, seizures, alcohol withdrawal or palliation.</li>
+        </ol>
+
+        <h4>Pharmacological agents for sedation and agitation</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Drug</th><th>Bolus dose</th><th>Infusion dose</th><th>Max dose</th><th>Side effects</th></tr></thead>
+            <tbody>
+              <tr><td>IV Fentanyl ("high" dose)</td><td>100–200 µg/hr</td><td>50–500 µg/hr</td><td>—</td><td>Cumulative in hepatic impairment</td></tr>
+              <tr><td>IV Propofol 1%</td><td>1–2 mg/kg</td><td>50–200 mg/h</td><td>4 mg/kg/h up to 48–72 hours</td><td>Cumulative in hepatic impairment · fatty liver · hypotension · hypertriglyceridaemia · pancreatitis · propofol infusion syndrome · infection</td></tr>
+              <tr><td>IV Midazolam</td><td>0.01–0.05 mg/kg</td><td>0.02–0.1 mg/kg/h</td><td>—</td><td>Respiratory depression · hypotension · delirium · agitation</td></tr>
+              <tr><td>IV Dexmedetomidine</td><td>—</td><td>0.2–0.7 µg/kg/h</td><td>1.5 µg/kg/h</td><td>Hypotension · bradycardia · loss of airway reflex</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Delirium</h3>
+        <ol class="kv">
+          <li>Diagnosed when there is alteration or fluctuation in mental status, inattention and disorganised thinking. Three forms: hypoactive (44%), hyperactive (2%), mixed (54%).</li>
+          <li>Identify risk factors as soon as the patient is admitted to ICU.</li>
+          <li>Use validated screening tool — Confusion Assessment Method for the Intensive Care Unit (CAM-ICU). Perform objective assessment when RASS &gt; −3 or revised Riker &gt; −2.</li>
+          <li>Non-pharmacological approaches to prevent delirium:
+            <ul>
+              <li>Correct physiological derangements</li>
+              <li>Avoid physical restraints</li>
+              <li>Perform early mobilisation</li>
+              <li>Protect sleep cycles — cluster care activities, decrease stimuli at night</li>
+              <li>Improve environmental conditions — orientation, noise reduction, adjustment of light</li>
+              <li>Use visual and hearing aids, if applicable</li>
+            </ul>
+          </li>
+          <li>Pharmacologic agents are not used to prevent or treat delirium, but to control symptoms in hyperactive delirium.</li>
+        </ol>
+
+        <h4>Pharmacological agents for symptom management in delirium</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Drug</th><th>Dosage</th><th>Max dose</th><th>Side effects</th></tr></thead>
+            <tbody>
+              <tr><td>IV/IM/PO Haloperidol</td><td>0.5–10 mg q4–6h or PRN</td><td>100 mg/day</td><td>Extrapyramidal symptoms · prolonged QT syndrome · neuroleptic malignant syndrome · rhabdomyolysis</td></tr>
+              <tr><td>PO Chlorpromazine</td><td>6.25–25 mg q6–8h</td><td>500 mg/day</td><td>Drowsiness · anticholinergic effects</td></tr>
+              <tr><td>PO Olanzapine</td><td>2.5 mg q24h (increment of 5 mg daily)</td><td>20 mg/day</td><td>Drowsiness · anticholinergic effects</td></tr>
+              <tr><td>PO Quetiapine</td><td>25 mg q12h (increment of daily dose of 25 mg)</td><td>400 mg/day</td><td>Drowsiness · anticholinergic effects</td></tr>
+              <tr><td>PO Risperidone</td><td>0.5 mg q12h, increase by 1 mg/day every 2–3 days</td><td>6 mg/day</td><td>Renal and hepatic adjustments (max 0.5 mg q12h) · drowsiness · anticholinergic effects</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Pain–Sedation–Delirium algorithm</h3>
+        <div class="flow">
+          <div class="fnode fstart">1. Assess Pain</div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">BPS ≥ 5 · CPOT ≥ 3 · VAS ≥ 3</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">IV morphine or fentanyl ± adjunct analgesic</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Reassess 2 hourly</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fstart">2. Assess Sedation</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag go">Oversedated</span><span class="txt">RASS −2 to −1 · Revised Riker −1 to +1 → Withhold sedative to achieve RASS −2 to +1 or revised Riker −1 to +1. May restart at 50% of the infusion rate once target is achieved.</span></div>
+            <div class="fbranch"><span class="tag go">Target</span><span class="txt">RASS −2 to +1 · Revised Riker −1 to +1 → Continue analgesic/sedation and reassess</span></div>
+            <div class="fbranch"><span class="tag go">Undersedated</span><span class="txt">RASS &gt; +1 · Revised Riker &gt; +1<br><strong>Haemodynamically unstable:</strong> add IV midazolam (lowest infusion rate to achieve effect) or "high" dose fentanyl<br><strong>Haemodynamically stable:</strong> continue analgesic/sedation and add IV propofol or dexmedetomidine<br><strong>Deep sedation required:</strong> add IV midazolam infusion or propofol or both</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fstart">3. Assess Delirium</div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">RASS &gt; −3 · Revised Riker &gt; −2</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">Absent</span><span class="txt">Reassess 8 hours later</span></div>
+            <div class="fbranch"><span class="tag yes">Present</span><span class="txt">Perform CAM-ICU Delirium Assessment</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fact">Non-pharmacological management: correct physiological derangements · avoid physical restraints · perform early mobilisation · protect sleep cycle · improve environmental conditions (noise reduction, adjustment of light) · use of visual and hearing aids, if applicable<br><br>Symptomatic pharmacological management (in hyperactive delirium)</div>
+        </div>
+
+        <h3>Appendix 1 — Behavioural Pain Scale (BPS)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Item</th><th>Description</th><th>Score</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="4">Facial expression</td><td>Relaxed</td><td>1</td></tr>
+              <tr><td>Partially tightened (brow lowering)</td><td>2</td></tr>
+              <tr><td>Fully tightened (eyelid closing)</td><td>3</td></tr>
+              <tr><td>Grimacing</td><td>4</td></tr>
+              <tr><td rowspan="4">Upper limb movements</td><td>No movement</td><td>1</td></tr>
+              <tr><td>Partially bent</td><td>2</td></tr>
+              <tr><td>Fully bent with finger flexion</td><td>3</td></tr>
+              <tr><td>Permanently retracted</td><td>4</td></tr>
+              <tr><td rowspan="4">Compliance with mechanical ventilation</td><td>Tolerating movement</td><td>1</td></tr>
+              <tr><td>Coughing but tolerating ventilation for most of the time</td><td>2</td></tr>
+              <tr><td>Fighting ventilator</td><td>3</td></tr>
+              <tr><td>Unable to control ventilation</td><td>4</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted)">BPS score ranges from 0 (no pain) to 12 (maximum pain).</p>
+
+        <h3>Appendix 2 — Critical Care Pain Observational Tool (CPOT)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Item</th><th>Score</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="3">Facial expression</td><td>0</td><td>Relaxed or neutral, no muscle tension</td></tr>
+              <tr><td>1</td><td>Tense — frowning, brow lowering, orbit tightening, or any other change (e.g. opening eyes or tearing during nociceptive procedures)</td></tr>
+              <tr><td>2</td><td>Grimacing — all previous facial movements PLUS eyelid tightly closed (patient may have mouth opening or biting ETT)</td></tr>
+              <tr><td rowspan="3">Body movements</td><td>0</td><td>Absence of movements or normal position (does not mean absence of pain) — no movement aimed toward pain site or made for protection</td></tr>
+              <tr><td>1</td><td>Protection — slow, cautious movements, touching or rubbing pain site, seeking attention through movement</td></tr>
+              <tr><td>2</td><td>Restlessness — pulling tube, attempting to sit up, moving limbs/thrashing, not following commands, striking at staff, trying to climb out of bed</td></tr>
+              <tr><td rowspan="2">Compliance with ventilator (intubated)<br><em>OR</em><br>Vocalisation (non-intubated)</td><td>0</td><td>Tolerating ventilator or movement — alarms not activated, easy to ventilate<br><em>or</em> talking in normal tone or no sound</td></tr>
+              <tr><td>1</td><td>Coughing but tolerating — alarms may be activated but stop spontaneously<br><em>or</em> sighing or moaning</td></tr>
+              <tr><td></td><td>2</td><td>Fighting ventilator — asynchrony, alarms activated frequently<br><em>or</em> crying out, sobbing</td></tr>
+              <tr><td rowspan="3">Muscle tension <em>(passive flexion/extension of upper limb at rest or when being turned)</em></td><td>0</td><td>Relaxed — no resistance to passive movements</td></tr>
+              <tr><td>1</td><td>Tense, rigid — resistance to passive movements</td></tr>
+              <tr><td>2</td><td>Very tense or very rigid — strong resistance to passive movements, inability to complete them</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted)">CPOT score ranges from 0 (no pain) to 8 (maximum pain).</p>
+
+        <h3>Appendix 3 — Richmond Agitation Sedation Scale (RASS)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Scale</th><th>Term</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>+4</td><td>Combative</td><td>Overtly combative, violent, immediate danger to staff</td></tr>
+              <tr><td>+3</td><td>Very agitated</td><td>Pulls or removes tube(s) or catheter(s); aggressive</td></tr>
+              <tr><td>+2</td><td>Agitated</td><td>Frequent non-purposeful movement, fights ventilator</td></tr>
+              <tr><td>+1</td><td>Restless</td><td>Anxious but movements not aggressive or vigorous</td></tr>
+              <tr><td>0</td><td>Alert and calm</td><td>—</td></tr>
+              <tr><td>−1</td><td>Drowsy</td><td>Not fully alert, but has sustained awakening (eye-opening/eye contact) to voice (&gt; 10 seconds)</td></tr>
+              <tr><td>−2</td><td>Light sedation</td><td>Briefly awakens with eye contact to voice (&lt; 10 seconds)</td></tr>
+              <tr><td>−3</td><td>Moderate sedation</td><td>Movement or eye opening to voice (but no eye contact)</td></tr>
+              <tr><td>−4</td><td>Deep sedation</td><td>No response to voice, but movement or eye opening to physical stimulation</td></tr>
+              <tr><td>−5</td><td>Unarousable</td><td>No response to voice or physical stimulation</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Appendix 4 — Revised Riker Sedation Agitation Scale</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Scale</th><th>Term</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>+3</td><td>Agitated and restless</td><td>When awakened or otherwise, pulling at ETT, trying to remove catheters, or requires physical restraints</td></tr>
+              <tr><td>+2</td><td>Awake but mildly agitated</td><td>Anxious but mildly agitated. Attempts to sit up but calms down with verbal instructions</td></tr>
+              <tr><td>+1</td><td>Awake and calm</td><td>Awake, calm and easily follows commands</td></tr>
+              <tr><td>0</td><td>Aroused by voice and remains calm</td><td>Awakens easily to verbal stimuli. Remains awake, calm and easily follows commands</td></tr>
+              <tr><td>−1</td><td>Aroused by movement</td><td>Contact for at least 10 seconds but drifts off to sleep</td></tr>
+              <tr><td>−2</td><td>Aroused by painful stimuli</td><td>Localising or flexion to pain. Does not communicate or follow commands</td></tr>
+              <tr><td>−3</td><td>Unarousable</td><td>Extension, minimal or no response to painful stimuli</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Appendix 5 — CAM-ICU Delirium worksheet</h3>
+        <div class="flow">
+          <div class="fnode fstart">1. Acute change or fluctuating course of mental status</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">CAM-ICU negative — NO DELIRIUM</span></div>
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Proceed to step 2</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fact">2. Inattention — Ask patient to squeeze your hand when you say the letter "A". Read the sequence of letters: <strong>S A V E A H A A R T</strong>. Error: no hand squeeze with "A" or squeeze with letter other than "A". Use picture if unable to complete.</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">0–2 errors</span><span class="txt">CAM-ICU negative — NO DELIRIUM</span></div>
+            <div class="fbranch"><span class="tag yes">&gt; 2 errors</span><span class="txt">Proceed to step 3</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fact">3. Altered level of consciousness — Review current RASS or revised Riker score</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">RASS / Riker ≠ 0</span><span class="txt">CAM-ICU positive — DELIRIUM PRESENT</span></div>
+            <div class="fbranch"><span class="tag no">RASS / Riker = 0</span><span class="txt">Proceed to step 4</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fact">4. Disorganised thinking<br><br>Ask these questions:<br>1. Will a stone float on water?<br>2. Are there fish in the sea?<br>3. Does 1 kg weigh more than 2 kg?<br>4. Can you use a hammer to pound a nail?<br><br>Command (Say to patient):<br>Hold up this many fingers (hold up 2 fingers).<br>Now do the same with the other hand (don't demonstrate).<br>Or: Add one more finger (if patient unable to move both arms).</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">0–1 error</span><span class="txt">CAM-ICU negative — NO DELIRIUM</span></div>
+            <div class="fbranch"><span class="tag yes">&gt; 1 error</span><span class="txt">CAM-ICU positive — DELIRIUM PRESENT</span></div>
+          </div>
+        </div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 6. NUTRITION ============ -->
+  <section class="card" id="s6">
+    <details>
+      <summary><span class="num">6</span> Nutritional Therapy <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <h3>Key points</h3>
+        <ol class="kv">
+          <li>Assess nutritional risk.</li>
+          <li>Commence enteral nutrition within 24–48 hours upon ICU admission.</li>
+          <li>Aim only for 70–80% of targeted calories within 72 hours.</li>
+          <li>Aim to provide protein of at least 1.2 g/kg/day.</li>
+          <li>Prescribe parenteral nutrition after 5–7 days if enteral nutrition is not feasible.</li>
+          <li>Avoid overfeeding.</li>
+          <li>Identify patients at risk of refeeding syndrome.</li>
+        </ol>
+
+        <h3>Nutritional risk</h3>
+        <ol class="kv">
+          <li>Assess nutritional status clinically to identify malnutrition or risk of malnutrition.</li>
+          <li>Considered at high risk for malnutrition:
+            <ul>
+              <li>ICU stay &gt; 2 days and mechanically ventilated</li>
+              <li>Underfed for &gt; 5 days</li>
+              <li>Pre-existing severe chronic disease</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>Enteral nutrition (EN)</h3>
+        <ol class="kv">
+          <li>Initiate EN within 24–48 hours of ICU admission if the GI tract is functioning and the patient is adequately resuscitated.</li>
+          <li>Delay EN in:
+            <ul>
+              <li>Shock with haemodynamic instability</li>
+              <li>Severe hypoxaemia and acidosis</li>
+              <li>Active upper GI bleeding</li>
+              <li>Acute bowel ischaemia</li>
+              <li>Abdominal compartment syndrome</li>
+              <li>Gastric residual volume &gt; 500 mL/6 hours</li>
+            </ul>
+          </li>
+          <li>Aim to achieve only 70–80% of targeted calories in the first 72 hours of admission (early phase of acute illness).</li>
+          <li>Provide EN via nasogastric or orogastric tube size 10–12 Fr after confirming correct placement by:
+            <ul>
+              <li>Chest radiograph</li>
+              <li>Aspiration of gastric contents</li>
+              <li>Measuring pH of aspirate using pH indicator strip (if available)</li>
+            </ul>
+          </li>
+          <li>Ensure head of bed elevated at least 30 degrees during feeding.</li>
+          <li>Administration methods:
+            <ul>
+              <li><strong>Continuous:</strong> hourly rate using a feeding pump for 24 hours</li>
+              <li><strong>Intermittent:</strong> feeding pump over a few hours with rest period, e.g. feeding over 4 hours with 2 hours rest</li>
+              <li><strong>Bolus:</strong> by gravity over 15 min every 3–4 hours</li>
+            </ul>
+          </li>
+          <li>Enteral formulation:
+            <ul>
+              <li>Use standard polymeric isocaloric or near-isocaloric of 1–1.5 kcal/mL</li>
+              <li>Consider diabetic-specific formula with low glycaemic index in diabetics</li>
+              <li>Consider a calorie-dense formula in patients with fluid restriction</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h4>Calorie and protein requirement</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>BMI</th><th>Weight used</th><th>Calories and protein target per day</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Underweight (BMI &lt; 18.5)</td>
+                <td>Adjusted body weight = Ideal BW + Actual BW ÷ 2</td>
+                <td>20–25 kcal/kg · 1.2–2 g/kg</td>
+              </tr>
+              <tr>
+                <td>Normal weight (BMI 18.5–29.9)</td>
+                <td>Actual body weight</td>
+                <td>20–25 kcal/kg · 1.2–2 g/kg</td>
+              </tr>
+              <tr>
+                <td>Obese (BMI ≥ 30)</td>
+                <td>Actual body weight or ideal body weight</td>
+                <td>Calories: BMI 30–50 → 11–14 kcal/kg actual BW; BMI &gt; 50 → 22–25 kcal/kg IBW<br>Protein: BMI 30–40 → 2–2.5 g/kg IBW; BMI &gt; 40 → up to 2.5 g/kg IBW</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Feeding intolerance</h4>
+        <p>Defined as high gastric residual volume (GRV), abdominal distension, vomiting, diarrhoea, or reduced passage of stools.</p>
+
+        <p><strong>A. GRV &gt; 300 mL</strong></p>
+        <ul class="kv">
+          <li>Use a prokinetic agent:
+            <ul>
+              <li>IV erythromycin 125 mg q6h or 250 mg q12h, or</li>
+              <li>IV metoclopramide 10 mg q8h</li>
+            </ul>
+          </li>
+          <li>Combination of both agents improves gastric tolerance and may be considered. Both are associated with QT prolongation.</li>
+          <li>Review the need for prokinetics after 48 hours.</li>
+        </ul>
+
+        <p><strong>B. Diarrhoea</strong></p>
+        <ul class="kv">
+          <li>Defined as &gt; 2–3 liquid stools per day or &gt; 250 g liquid stool per day.</li>
+          <li>Do not routinely interrupt feeding for diarrhoea.</li>
+          <li>Contributing factors: type/amount of fibre in formula · osmolality of formula · delivery mode · EN contamination · medications (antibiotics, PPI, prokinetics, laxatives) · <em>Clostridium difficile</em> infection · intra-abdominal collections following abdominal surgery</li>
+          <li>Management: review medications and dietary formula · send stools for <em>C. difficile</em> toxin assays · monitor serum electrolytes · rule out abdominal pathology</li>
+          <li>If diarrhoea persists, consider adding soluble fibre supplement into standard feeds or use small peptide semi-elemental formula.</li>
+        </ul>
+
+        <h4>Monitoring and special situations</h4>
+        <ol class="kv">
+          <li>Monitor blood glucose: keep between 8–10 mmol/L. Start insulin if blood glucose &gt; 10 mmol/L.</li>
+          <li><strong>Trophic feeding</strong> (10–20 mL/h or up to 500 kcal/day) should be considered in:
+            <ul>
+              <li>Resolving shock (minimal or decreasing vasopressors or inotropes)</li>
+              <li>Prone position</li>
+              <li>Intra-abdominal hypertension without abdominal compartment syndrome</li>
+            </ul>
+          </li>
+          <li>Fasting:
+            <ul>
+              <li>In intubated patients, do not withhold feeding for procedures in ICU or operating theatre or extubation.</li>
+              <li>Feeds should be aspirated prior to transport, procedures or extubation.</li>
+              <li>For non-intubated patients, follow the fasting protocol as per general anaesthesia.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h4>Safe practice for enteral nutrition</h4>
+        <ul class="kv">
+          <li>Use sterile water for formula reconstitution and tube flushing.</li>
+          <li>Flush feeding tubes with at least 20–30 mL of water at the end of feeding.</li>
+          <li>Flush volume should be included in daily fluid intake.</li>
+          <li>Hang time duration:
+            <ul>
+              <li>Closed system (ready to hang): 24 hours or per manufacturer's recommendation</li>
+              <li>Sterile decanted formula: 8 hours</li>
+              <li>Powdered reconstituted formula: 4 hours</li>
+            </ul>
+          </li>
+          <li>Change administration set every 24 hours.</li>
+          <li>Opened decanted formula must be refrigerated and discarded within 12 hours if not used.</li>
+        </ul>
+
+        <h3>Parenteral nutrition (PN)</h3>
+        <ol class="kv">
+          <li>Indications:
+            <ul>
+              <li>As soon as possible in patients who are severely malnourished and EN is not feasible</li>
+              <li>After 5–7 days in patients not deemed malnourished on admission and EN is not feasible</li>
+              <li>Supplemental PN if &gt; 60% of energy and protein requirement via EN is not met after 7–10 days</li>
+            </ul>
+          </li>
+          <li>Dosing:
+            <ul>
+              <li>Start with non-protein calories ≤ 20 kcal/kg/day with protein ≥ 1.2 g/kg/day. Increase gradually and aim to achieve target within 5–7 days.</li>
+              <li>Macronutrients per day: carbohydrate 2–5 g/kg · lipids 0.75–1.5 g/kg · proteins 1.2–2.0 g/kg</li>
+              <li>Carbohydrate-to-lipid ratio should be 60:40 or 70:30</li>
+              <li>Prescribe electrolytes based on daily serum levels</li>
+              <li>Add trace elements and vitamins</li>
+            </ul>
+          </li>
+          <li>Administration:
+            <ul>
+              <li>High osmolality via a dedicated lumen of a central line</li>
+              <li>Low osmolality (&lt; 850 mOsmol/L) can be administered via peripheral line</li>
+              <li>Change administration set every 24 hours</li>
+            </ul>
+          </li>
+          <li>Monitoring:
+            <ul>
+              <li>2-hourly blood glucose. Target 8–10 mmol/L</li>
+              <li>Daily serum potassium, phosphate, calcium and magnesium</li>
+              <li>Biweekly liver function test</li>
+              <li>Weekly serum triglycerides. Target &lt; 4.5 mmol/L</li>
+            </ul>
+          </li>
+          <li>Discontinuation: discontinue PN when patient receives &gt; 60% of targeted calories enterally.</li>
+        </ol>
+
+        <h3>Refeeding syndrome (RFS)</h3>
+        <p>Biochemical changes, clinical manifestations and complications due to severe shift of fluid and electrolytes when a malnourished patient is fed enterally or parenterally.</p>
+
+        <h4>Risk factors</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Risk level</th><th>Criteria</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>High risk</strong><br>(1 or more major)</td>
+                <td>BMI &lt; 16.5 kg/m² · unintentional weight loss &gt; 15% in previous 3–6 months · little or no nutritional intake for &gt; 10 days</td>
+              </tr>
+              <tr>
+                <td><strong>High risk</strong><br>(2 or more minor)</td>
+                <td>BMI &lt; 18.5 kg/m² · unintentional weight loss &gt; 10% in previous 3–6 months · little or no nutritional intake for &gt; 5 days · history of alcohol abuse or drugs including insulin, chemotherapy or diuretics</td>
+              </tr>
+              <tr>
+                <td><strong>Extreme high risk</strong></td>
+                <td>BMI &lt; 14 kg/m² · little or no nutritional intake for &gt; 15 days</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Prevention and management</h4>
+        <ol class="kv">
+          <li>Identify patients at risk.</li>
+          <li>Check phosphate, potassium and magnesium levels.</li>
+          <li>Provide immediately before and during the first 10 days of feeding: oral thiamine 200 mg q24h, vitamin B complex 1–2 tablets q12h, and multivitamins q24h.</li>
+          <li>If patients are unable to tolerate orally, administer parenteral thiamine 200–300 mg q24h for 3 days followed by oral thiamine.</li>
+          <li>Start feeding at 10 kcal/kg/day. Slowly increase by 5 kcal/kg/day every 4–5 days. In extreme high risk, start feeding at 5 kcal/kg/day.</li>
+          <li>Rehydrate carefully and monitor fluid balance.</li>
+          <li>Correct levels of potassium, phosphate and magnesium along with feeding.</li>
+        </ol>
+
+        <h3>Feeding protocol</h3>
+        <div class="flow">
+          <div class="fnode fstart">ICU admission<small>Intact GI tract / stable haemodynamics → Start EN within 24–48 h</small></div>
+          <div class="farrow"></div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag go">Continuous</span><span class="txt">Start 20 mL/h → Aspirate at end of 4 h. If aspirate &gt; 300 mL → feeding intolerance. If ≤ 300 mL → continue at 20 mL/h, aspirate every 4 h. Increase by 20 mL/h every 12 h. <strong>Maximum 80 mL/h.</strong></span></div>
+            <div class="fbranch"><span class="tag go">Intermittent</span><span class="txt">Start 25 mL/h for 4 h, rest 2 h → Aspirate at end of 6 h. If &gt; 300 mL → feeding intolerance. If ≤ 300 mL → continue 24 mL/h for 4 h, rest 2 h, then aspirate at end of rest period. Increase by 25 mL/h every 12 h. <strong>Maximum 100 mL/h.</strong></span></div>
+            <div class="fbranch"><span class="tag go">Bolus</span><span class="txt">Start 50 mL/3 h → Aspirate &gt; 300 mL before next bolus feed → feeding intolerance. If ≤ 300 mL → continue 50 mL/3 h. Increase by 50 mL/3 h every 12 h. <strong>Maximum 250 mL/3 h.</strong></span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fstop">Feeding intolerance: GRV &gt; 300 mL or vomiting</div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Step</th><th>1st episode</th><th>2nd episode</th><th>3rd episode or more</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Action</td>
+                <td>
+                  1. Check gastric tube position<br>
+                  2. Return aspirates up to 200 mL. Discard excess.<br>
+                  3. Maintain EN at the same rate<br>
+                  4. If aspirates &gt; 500 mL, withhold feeding for 1 cycle and start prokinetics
+                </td>
+                <td>
+                  1. Return aspirates up to 200 mL. Discard excess.<br>
+                  2. Decrease rate by 20 or 25 mL/h. If patient already on 20–25 mL/h, reduce rate to 10 mL/h<br>
+                  3. Start prokinetics<br>
+                  4. Consider continuous or intermittent feeding if patient is on bolus feeding
+                </td>
+                <td>
+                  1. Return aspirates up to 200 mL. Discard excess.<br>
+                  2. Withhold feeds for 1 cycle<br>
+                  3. Restart at lower rate or at 10 mL/h<br>
+                  4. Continue prokinetics
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box">
+          <strong>Key points</strong>
+          <ul>
+            <li>Aim only for 70–80% of targeted calories in the first 72 hours.</li>
+            <li>Continuous feeding is preferred over intermittent or bolus feeding.</li>
+            <li>Consider bolus feeding only in stable patients — non-ventilated with an anticipated ICU stay of &lt; 48–72 hours, or previously on continuous/intermittent feeding.</li>
+            <li>Maximum volume depends on caloric requirements and osmolality of formula (e.g. Ensure 1 kcal/mL, Nepro 2 kcal/mL).</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 7. EARLY MOBILISATION ============ -->
+  <section class="card" id="s7">
+    <details>
+      <summary><span class="num">7</span> Early Mobilisation <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <h3>Key points</h3>
+        <ol class="kv">
+          <li>Initiate early mobility within 24–48 hours of admission in the absence of contraindications.</li>
+          <li>Assess appropriateness by weighing risks of adverse events against benefits.</li>
+          <li>Step-up progression of mobilisation based on conscious level, functional capability and endurance.</li>
+          <li>Implement early mobilisation in combination with pain, sedation and delirium management.</li>
+        </ol>
+
+        <h3>General</h3>
+        <ol class="kv">
+          <li>Assess patients within 24–48 hours of ICU admission for early mobilisation.</li>
+          <li><strong>Very early (&lt; 24 hours) and intensive out-of-bed mobilisation has been shown to be harmful in acute stroke patients.</strong></li>
+          <li>Contraindications to early mobility:
+            <ul>
+              <li><strong>Cardiovascular instability:</strong> SBP &lt; 90 mmHg, HR &gt; 120/min, unstable cardiac rhythm, use of 2 or more vasoactive agents</li>
+              <li><strong>Neurological instability:</strong> acute traumatic brain injury, acute intracranial bleed, unstable spinal cord injury, or any new neurological deterioration</li>
+              <li><strong>Respiratory instability:</strong> FᵢO₂ &gt; 0.6, PEEP &gt; 10 cmH₂O, RR &gt; 35/min</li>
+            </ul>
+          </li>
+          <li>Early mobilisation activities require a multidisciplinary team comprising clinicians, physiotherapists and nurses.</li>
+          <li>Consult the ICU specialist when there is uncertainty about safety.</li>
+          <li>Inform patients and families of the importance of early mobility.</li>
+        </ol>
+
+        <h3>Activities</h3>
+        <ol class="kv">
+          <li>Level of activity and mobilisation should be guided by conscious state, strength, endurance and safety criteria.</li>
+          <li>Passive and active activities:
+            <ul>
+              <li><strong>Passive:</strong> movements performed by the physiotherapist, e.g. flexion and extension of limb joints</li>
+              <li><strong>Active:</strong> patient assists using their own muscle strength
+                <ul>
+                  <li>In-bed exercises (while sitting or lying in bed): rolling, bridging, upper limb weight training</li>
+                  <li>Out-of-bed exercises: sitting at the edge of the bed, sitting out-of-bed, standing, marching on the spot, walking</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>In all patients, unless contraindicated:
+            <ul>
+              <li>Alternate supine position with right and left lateral positions 2 hourly</li>
+              <li>Perform passive range of motion exercises</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h4>Activity progression in conscious patients</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>State of patient</th><th>Activities</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Alert, responds to 3 of the 5 commands:<br>· open or close eyes<br>· look when asked to<br>· open mouth and protrude tongue<br>· nod head<br>· raise eyebrows</td>
+                <td>Breathing exercises · active resistance exercises · exercise for trunk control, e.g. sit up unsupported · duration of activity at least 20 mins</td>
+              </tr>
+              <tr>
+                <td>Alert and able to move arm against gravity</td>
+                <td>Sit at edge of bed with legs in dependent position while providing support to upper body</td>
+              </tr>
+              <tr>
+                <td>Alert and able to move legs against gravity</td>
+                <td>Stand at bedside with support · transfer to chair by pivoting or taking 1–2 small steps · sit on chair for 1–2 hours · walk with assistance, using a walker if needed · walk independently</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ul class="kv">
+          <li>Encourage self-care activities whenever feasible.</li>
+          <li>Cycle ergometer exercise or neuromuscular electrical stimulation may be used as adjuncts to improve muscle strength and preserve muscle mass.</li>
+          <li>As the patient demonstrates increasing consciousness and strength, progress to the next level.</li>
+          <li>For level II activity and above, refer to physiotherapist with the aim of rehabilitation towards functional recovery.</li>
+          <li>Mobility team is required when sitting patient at edge of bed or during active transfer to chair, standing or walking.</li>
+        </ul>
+
+        <h3>Safety</h3>
+        <p><strong>Terminate any physical activity if any of the following develop:</strong></p>
+        <ul class="kv">
+          <li>Oxygen saturation &lt; 90%</li>
+          <li>Hypotension: SBP &lt; 90 mmHg, associated with dizziness and/or diaphoresis</li>
+          <li>Hypertension: SBP &gt; 170 mmHg</li>
+          <li>Heart rate &gt; 120 or presence of dysrhythmias</li>
+          <li>Respiratory rate &gt; 30 or change in breathing pattern with increased use of accessory muscles or nasal flaring</li>
+          <li>Chest pain</li>
+          <li>Patient requests to stop</li>
+        </ul>
+
+        <p><strong>Safety measures for walking activities:</strong></p>
+        <ul class="kv">
+          <li>Adequate staff assistance</li>
+          <li>Tubes and catheters are secured</li>
+          <li>Wheelchair readily available to allow resting period and safe return to bed</li>
+          <li>Full oxygen tank</li>
+        </ul>
+
+        <h3>Appendix — Safety considerations for active mobilisation</h3>
+        <p style="font-size:.8rem">
+          <strong>Low risk</strong> — proceed as usual as per ICU protocol and procedures.<br>
+          <strong>▲ Potential risk</strong> — potential risk and consequences are higher than low risk but may be outweighed by potential benefits. If mobilised, do so gradually and cautiously.<br>
+          <strong>● Significant risk</strong> — significant potential risk or consequences of an adverse event.
+        </p>
+
+        <h4>Respiratory considerations</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Parameter</th><th>In-bed exercises</th><th>Out-of-bed exercises</th></tr></thead>
+            <tbody>
+              <tr><td>Intubation / endotracheal tube</td><td>●</td><td>●</td></tr>
+              <tr><td>Tracheostomy tube</td><td>●</td><td>●</td></tr>
+              <tr><td>FᵢO₂ ≤ 0.6</td><td>●</td><td>●</td></tr>
+              <tr><td>FᵢO₂ &gt; 0.6</td><td>●</td><td>●</td></tr>
+              <tr><td>SpO₂ ≥ 90%</td><td>●</td><td>●</td></tr>
+              <tr><td>SpO₂ &lt; 90%</td><td>●</td><td>●</td></tr>
+              <tr><td>Respiratory rate ≤ 30 bpm</td><td>●</td><td>●</td></tr>
+              <tr><td>Respiratory rate &gt; 30 bpm</td><td>●</td><td>●</td></tr>
+              <tr><td>PEEP ≤ 10 cmH₂O</td><td>●</td><td>●</td></tr>
+              <tr><td>PEEP &gt; 10 cmH₂O</td><td>●</td><td>●</td></tr>
+              <tr><td>Ventilator dyssynchrony</td><td>●</td><td>●</td></tr>
+              <tr><td>Prone</td><td>●</td><td>●</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Cardiovascular considerations</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Parameter</th><th>In-bed exercises</th><th>Out-of-bed exercises</th></tr></thead>
+            <tbody>
+              <tr><td>IV anti-HPT for hypertensive emergency</td><td>●</td><td>●</td></tr>
+              <tr><td>MAP below target</td><td>△</td><td>●</td></tr>
+              <tr><td>MAP within target with no/low support</td><td>●</td><td>●</td></tr>
+              <tr><td>MAP within target with moderate support</td><td>△</td><td>△</td></tr>
+              <tr><td>MAP within target with high support</td><td>●</td><td>●</td></tr>
+              <tr><td>Pulmonary hypertension</td><td>△</td><td>△</td></tr>
+              <tr><td>Stable tachyarrhythmias with ventricular rate &gt; 150/min</td><td>△</td><td>●</td></tr>
+              <tr><td>Ventricular rate 120–150/min</td><td>△</td><td>△</td></tr>
+              <tr><td>Ventricular rate &lt; 120/min</td><td>●</td><td>●</td></tr>
+              <tr><td>Bradycardia requiring treatment or awaiting pacing</td><td>●</td><td>●</td></tr>
+              <tr><td>Bradycardia not requiring treatment or pacing</td><td>△</td><td>△</td></tr>
+              <tr><td>Shock of any cause with lactate &lt; 4 mmol/L</td><td>△</td><td>△</td></tr>
+              <tr><td>Known or suspected acute DVT/PE</td><td>△</td><td>△</td></tr>
+              <tr><td>Cardiac ischaemia (ongoing chest pain and/or dynamic ECG changes)</td><td>△</td><td>●</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 8. STRESS ULCER PROPHYLAXIS ============ -->
+  <section class="card" id="s8">
+    <details>
+      <summary><span class="num">8</span> Stress Ulcer Prophylaxis <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <div class="box">
+          <strong>Introduction</strong>
+          <p>Stress ulcers develop in critically ill patients due to hypotension, ischaemic and reperfusion injuries. GI mucosal damage ranges from gastric erosions to ulcers, resulting in occult to clinically significant bleeding. Maintaining adequate systemic perfusion and early enteral nutrition may play a role in preventing stress ulcers.</p>
+        </div>
+
+        <h3>Principles</h3>
+        <ol class="kv">
+          <li>Administer stress ulcer prophylaxis (SUP) <strong>only</strong> in patients with risk factors.</li>
+          <li>Reassess daily the need to continue SUP.</li>
+          <li>Discontinue SUP when risk factors have resolved.</li>
+        </ol>
+
+        <h3>Risk factors</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Risk</th><th>Conditions</th><th>Indication for SUP</th></tr></thead>
+            <tbody>
+              <tr><td>Low</td><td>No risk factors</td><td>No</td></tr>
+              <tr><td>Moderate</td><td>Chronic NSAID/aspirin use · peptic ulcer disease &gt; 1 year</td><td>To be considered</td></tr>
+              <tr>
+                <td>High</td>
+                <td>
+                  Mechanical ventilation for greater than 48 hours<br>
+                  Coagulopathy: INR &gt; 1.5, APTT &gt; 2× control, platelets &lt; 50,000/mm³<br>
+                  Traumatic brain injury with GCS &lt; 10 or spinal cord injury<br>
+                  Significant burn injury (total body surface area &gt; 30%)<br>
+                  Acute liver failure<br>
+                  Renal replacement therapy<br>
+                  Use of 2 antiplatelets (clopidogrel, aspirin, ticagrelor, dipyridamole)<br>
+                  History of upper GI bleed or gastric ulcer in the last 1 year<br>
+                  Any 2 of the following:<br>
+                  &nbsp;&nbsp;i. sepsis<br>
+                  &nbsp;&nbsp;ii. high dose corticosteroid:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;- hydrocortisone &gt; 250 mg/day<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;- prednisolone &gt; 60 mg/day<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;- methylprednisolone 50 mg/day<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;- dexamethasone 10 mg/day<br>
+                  &nbsp;&nbsp;iii. ICU stay &gt; 7 days<br>
+                  &nbsp;&nbsp;iv. occult bleeding of &gt; 6 days
+                </td>
+                <td>Indicated</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Drugs</h3>
+        <h4>No previous GI ulcers</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Renal function</th><th>Nil by mouth</th><th>Enterally fed</th></tr></thead>
+            <tbody>
+              <tr><td>Normal renal function</td><td>IV Ranitidine 50 mg q8h</td><td>T. Ranitidine 150 mg q12h</td></tr>
+              <tr><td>CrCl &gt; 30 mL/min</td><td>IV Ranitidine 50 mg q12h</td><td>T. Ranitidine 150 mg q24h</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Previous GI ulcers or on proton pump inhibitors (PPI)</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nil by mouth</th><th>Enterally fed</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>
+                  Either:<br>
+                  a. IV Pantoprazole 40 mg q24h<br>
+                  b. IV Omeprazole 40 mg q24h<br>
+                  c. IV Esomeprazole 40 mg q24h
+                </td>
+                <td>
+                  Either:<br>
+                  a. T. Pantoprazole 40 mg q24h*<br>
+                  b. T. Omeprazole 40 mg q24h<br>
+                  c. T. Esomeprazole 40 mg q24h
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted)">* T. Pantoprazole is enteric coated.</p>
+
+        <ol class="kv" start="3">
+          <li>Discontinue when risk factors have resolved and the patient is tolerating enteral feeding.</li>
+          <li>Treating active upper GI bleed:
+            <ul>
+              <li>PPI remains the mainstay of treatment.</li>
+              <li>Give a loading dose of 80 mg followed by an infusion of 8 mg/h over 48–72 h. Change infusion to q12h dosing for 2 weeks followed by q24h dosing for 4 weeks.</li>
+              <li>Concurrent endoscopy or surgery may be indicated.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>Appendix — Extemporaneous preparation of pantoprazole</h3>
+        <p><strong>Dosage form:</strong> Solution · <strong>Strength:</strong> 2 mg/mL · <strong>Stability:</strong> 62 days · <strong>Storage:</strong> Refrigerate</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ingredients</th><th>Quantity</th></tr></thead>
+            <tbody>
+              <tr><td>Pantoprazole sodium 40 mg</td><td>5 tablets</td></tr>
+              <tr><td>Sodium bicarbonate powder</td><td>7.5 g</td></tr>
+              <tr><td>Distilled water</td><td>100 mL</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Procedure:</strong></p>
+        <ol class="kv">
+          <li>Crush tablets in a mortar to fine powder.</li>
+          <li>Levigate the powder with small amounts of distilled water till a smooth paste is formed.</li>
+          <li>Add more distilled water to the paste until liquid is formed.</li>
+          <li>Add the sodium bicarbonate powder. Stir until sodium bicarbonate and pantoprazole completely dissolve.</li>
+          <li>Make up the final volume with distilled water.</li>
+        </ol>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 9. VTE ============ -->
+  <section class="card" id="s9">
+    <details>
+      <summary><span class="num">9</span> Venous Thromboembolism (VTE) Prophylaxis <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <h3>Key points</h3>
+        <ol class="kv">
+          <li>Assess bleeding risk before initiating pharmacological prophylaxis.</li>
+          <li>Select a pharmacological agent based on its pharmacokinetics and the risk of developing VTE.</li>
+          <li>Use mechanical prophylaxis when pharmacological prophylaxis is contraindicated.</li>
+          <li>There is no role for routine screening for DVT.</li>
+        </ol>
+
+        <h3>Pharmacological prophylaxis</h3>
+        <ol class="kv">
+          <li>All patients admitted to ICU should receive pharmacological prophylaxis, either UFH or LMWH, within 24 hours of admission unless contraindicated.</li>
+          <li>Contraindications:
+            <div class="table-wrap" style="margin-top:6px">
+              <table>
+                <thead><tr><th>Absolute contraindications</th><th>Relative contraindications</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Active major bleed (at least 2 units of blood or blood products to be transfused in 24 hrs) · inherited bleeding disorders · active peptic ulcer disease</td>
+                    <td>Recent head and neck surgery, neurosurgery or eye surgery · recent gastrointestinal or genito-urinary surgery · recent CNS bleed · uncontrolled BP ≥ 230/130 mmHg · acute liver failure</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+          <li>Weigh the risk of VTE against bleeding before initiating prophylaxis.</li>
+        </ol>
+
+        <h4>Risk factors</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Risk factors of VTE</th><th>Risk factors of bleeding</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Non-surgical:</strong><br>
+                  Active malignancy · previous VTE · immobilisation &gt; 3 days · known thrombophilic conditions · obesity BMI &gt; 30 kg/m² · ischaemic stroke · acute myocardial infarction · elderly &gt; 60 years · cardiac or respiratory failure · sepsis · rheumatologic disorder · ongoing hormonal therapy · pregnancy and post-partum
+                </td>
+                <td>
+                  Active gastrointestinal ulcer · significant bleed in the last 3 months* · platelets &lt; 75 × 10⁹/L · age &gt; 85 years · PT &gt; 2× normal · CrCl &lt; 30 mL/min · acute stroke · central neuraxial blockade within previous 4 hours or expected in 12 hours · concurrent use of anticoagulant · bleeding disorder · uncontrolled systolic hypertension (230 or higher)
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Surgical:</strong><br>
+                  Orthopaedic (hip or knee arthroplasty, hip, pelvic or femur fracture) · multiple trauma · acute spinal cord injury · surgery in patient with multiple risk factors · abdominal-pelvic surgery for malignancy
+                </td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted)">* Defined as bleeding associated with a decrease in Hb by &gt; 2 g/dL, required blood transfusion &gt; 2 units, occurred in a critical site (intracranial, intraocular, retroperitoneal, spinal or pericardial).</p>
+
+        <ol class="kv" start="4">
+          <li>Use LMWH in patients with risk factors and UFH in those without the above risk factors.</li>
+          <li>Dose adjustment of LMWH may be required in:
+            <ul>
+              <li>CrCl &lt; 30 mL/min</li>
+              <li>BMI &lt; 30 kg/m²</li>
+              <li>BMI &gt; 30 kg/m²</li>
+              <li>Increased risk of bleeding</li>
+            </ul>
+          </li>
+          <li>Reassess VTE and bleeding risk daily.</li>
+          <li>Discuss with the surgeon before initiating pharmacological prophylaxis in patients with traumatic brain injury or at high risk of post-operative bleed.</li>
+          <li>Continue pharmacological prophylaxis until the patient is fully ambulatory or discharged from hospital.</li>
+        </ol>
+
+        <h4>Pharmacological thromboprophylaxis — practical considerations</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Parameter</th><th>UFH</th><th>LMWH (Enoxaparin)</th><th>Remarks</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Standard dose</td>
+                <td>S/C 5000 IU q8h or q12h</td>
+                <td>S/C 40 mg q24h</td>
+                <td rowspan="2">Dose based on BMI: BMI &lt; 20 kg/m² → S/C 5000 IU q12h (UFH) / S/C 20 mg q24h (LMWH); BMI &gt; 30 kg/m² → S/C 5000 IU q8h (UFH) / S/C 40 mg q12h (LMWH). In BMI &gt; 30 with high risk of bleeding, UFH is preferred given the ease of reversal.</td>
+              </tr>
+              <tr>
+                <td>Dose adjustment by BMI</td>
+                <td colspan="2">As per remarks</td>
+              </tr>
+              <tr>
+                <td>Renal adjusted dose (mL/min)</td>
+                <td>CrCl &gt; 30: no dose adjustment<br>CrCl 20–30: no dose adjustment<br>CrCl &lt; 20: no dose adjustment</td>
+                <td>S/C 40 mg q24h<br>S/C 20 mg q24h<br>Do not use LMWH</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Monitoring</td>
+                <td>Platelet · haemoglobin</td>
+                <td>Platelet · haemoglobin · renal function</td>
+                <td>Monitor anti-Xa factor to guide dosing in critically ill if possible</td>
+              </tr>
+              <tr>
+                <td>Reversal in severe bleeding or urgent surgery</td>
+                <td>IV protamine sulphate 1 mg per 100 IU of heparin (max 50 mg) over 10 mins if heparin given in the last 8 hours. <em>Complete immediate reversal.</em></td>
+                <td>IV protamine sulphate 1 mg per 1 mg of enoxaparin (max 50 mg) over 10 mins. Half the dose if the last dose of LMWH was between 8–12 hrs. <em>Partial immediate reversal.</em></td>
+                <td>Other causes of bleeding should be considered (altered pharmacokinetics, drug interactions or incorrect dose)</td>
+              </tr>
+              <tr>
+                <td>Withholding before surgery/procedures with high risk of bleeding</td>
+                <td>4 hours from the last dose</td>
+                <td>12 hours from the last dose</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Mechanical prophylaxis</h3>
+        <ol class="kv">
+          <li>Provide mechanical prophylaxis with either intermittent pneumatic compression (IPC) or graduated compression stockings (GCS) when pharmacological prophylaxis is contraindicated.</li>
+          <li>IPC is preferred over GCS in patients at high risk of VTE.</li>
+          <li>Contraindications to mechanical prophylaxis:
+            <ul>
+              <li>Severe arterial insufficiency or peripheral arterial disease</li>
+              <li>Congestive heart failure</li>
+              <li>Recent or acute DVT/PE</li>
+              <li>Acute fractures of the lower limbs</li>
+              <li>Loss of skin integrity</li>
+              <li>Recent skin graft</li>
+              <li>Post-operative venous ligation</li>
+              <li>Morbid obesity making it difficult to correctly fit the stockings</li>
+              <li>Oedema or deformity of the lower limb</li>
+              <li>Diabetic neuropathy</li>
+            </ul>
+          </li>
+          <li>Ensure proper fit and optimal compliance of mechanical devices.</li>
+          <li>Assess skin integrity of the lower limbs and pressure areas every nursing shift.</li>
+          <li>Initiate pharmacological prophylaxis once bleeding risk subsides.</li>
+        </ol>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 10. MDRO ============ -->
+  <section class="card" id="s10">
+    <details>
+      <summary><span class="num">10</span> Prevention &amp; Control of Multi-Drug Resistant Organisms <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <div class="box">
+          <strong>Introduction</strong>
+          <p>Early identification of patients colonised or infected with multi-drug resistant organisms (MDRO) is important to minimise the risk of transmission. MDROs covered: MRSA, VRE, and multi-drug resistant gram-negative organisms (MDR <em>Acinetobacter baumannii</em>, MDR <em>Pseudomonas aeruginosa</em>, ESBL, and carbapenem-resistant Enterobacteriaceae [CRE]).</p>
+        </div>
+
+        <h3>Principles</h3>
+        <ol class="kv">
+          <li>Identify patients at risk.</li>
+          <li>Adhere to hand hygiene.</li>
+          <li>Use personal protective equipment.</li>
+          <li>Place in a single room or cohort for suspected or confirmed cases.</li>
+          <li>Intensify cleaning and disinfection of environment and equipment.</li>
+          <li>Comply with antimicrobial stewardship.</li>
+          <li>Provide education and training updates to healthcare professionals.</li>
+        </ol>
+
+        <h3>Risk factors</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>MRSA</th><th>VRE</th><th>MDR gram-negative bacilli including resistant Enterobacteriaceae</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Previous MRSA infection or colonisation · frequent hospital admissions · recent broad-spectrum antibiotic (carbapenem, quinolones, 3rd/4th generation cephalosporins) · recent admission in a hospital with high prevalence of MRSA · from long-term care facility · areas where community-acquired MRSA is prevalent · chronic disease and impaired functional status · from high-risk units (ICU/nephrology/haematology/solid-organ transplant unit)</td>
+                <td>Contact with patient colonised or infected · on dialysis · prolonged or broad-spectrum antibiotic use, specifically vancomycin · with invasive devices · on urinary catheters · chronic disease and impaired functional status · from high-risk units (ICU/burns/neurosurgery/solid-organ transplant unit)</td>
+                <td>Contact with patient colonised or infected · prolonged hospital stay · with invasive devices · with chronic wounds · from high-risk units (ICU/HDU/burns/spinal unit)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Hand hygiene</h3>
+        <ul class="kv">
+          <li>Hand hygiene is the most important measure in preventing transmission of microorganisms.</li>
+          <li>Use either 70% alcohol-based hand rub or antiseptic soap and water.</li>
+          <li>Use soap and water if hands are visibly dirty or soiled with blood or other body fluids.</li>
+          <li>Remove jewellery, watch or rings with ridges or stones prior to hand hygiene.</li>
+          <li>Observe the <strong>5 moments of hand hygiene</strong>:
+            <ol>
+              <li>Before touching a patient</li>
+              <li>Before any procedure</li>
+              <li>After procedure or body fluid exposure risk</li>
+              <li>After touching a patient</li>
+              <li>After touching a patient's surroundings</li>
+            </ol>
+          </li>
+          <li>Hand hygiene should always be performed:
+            <ul>
+              <li>Before donning and after removal of gloves</li>
+              <li>Before and after using computer keyboard in a clinical area</li>
+              <li>After leaving patient-care area including isolation rooms during an outbreak</li>
+            </ul>
+          </li>
+          <li>Reinforce the importance of hand hygiene in an outbreak setting.</li>
+          <li>Audit compliance and provide immediate feedback to healthcare personnel.</li>
+        </ul>
+
+        <h3>Personal protective equipment (PPE)</h3>
+        <p>PPE includes aprons, gowns, gloves, surgical mask and eye shields used alone or in combination to protect healthcare personnel (HCP) from contact with transmissible organisms. Selection is based on the extent of patient contact. Perform hand hygiene before donning PPE.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>PPE</th><th>Specification</th><th>Indication</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Plastic apron</td>
+                <td>Non-sterile, single use and disposable</td>
+                <td>During care activities involving minimal patient contact where there is low risk of contaminating the HCP's arms, e.g. examining patient, airway suctioning</td>
+              </tr>
+              <tr>
+                <td>Gown</td>
+                <td>Fluid resistant, single use and disposable, long sleeved</td>
+                <td>During care activities involving close patient contact with risk of contaminating HCP's arms, e.g. dressing large or complex wounds, hygiene care of incontinent patient, turning and positioning of patient</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Isolation</h3>
+        <ul class="kv">
+          <li>Isolate patients colonised or infected with MDRO in single rooms.</li>
+          <li>Cohort patients if single rooms are not available. Cohorting = placing patients infected or colonised with the same organism in the same area.</li>
+          <li>Prioritise single room isolation to patients with:
+            <ul>
+              <li>CRE, VRE or MRSA</li>
+              <li>Incontinence of faeces or urine</li>
+              <li>Open or draining wounds</li>
+              <li>Enterostomies</li>
+              <li>Copious respiratory secretions</li>
+            </ul>
+          </li>
+          <li>Staff nursing patients with MDRO should not have contact with other patients.</li>
+          <li>Appropriate signage should be placed outside the door to alert HCP of contact precautions.</li>
+        </ul>
+
+        <h4>Discontinuation of isolation precautions</h4>
+        <ul class="kv">
+          <li>Shedding of MDRO may be intermittent and their presence may not always be detected by active surveillance culture.</li>
+          <li>Continue contact precautions for the duration of admission.</li>
+        </ul>
+
+        <h3>Equipment and patient care items</h3>
+        <ul class="kv">
+          <li>Remove non-essential equipment from the room.</li>
+          <li>Minimise consumable items placed in the room, e.g. syringes, needles and gauze.</li>
+          <li>Use disposable items whenever possible.</li>
+          <li>Dedicate reusable equipment to a single patient, e.g. thermometer, blood pressure cuff, infusion pumps, stethoscope.</li>
+          <li>Clean and disinfect equipment shared between patients, e.g. hoist and armchairs.</li>
+          <li>Use a dedicated trolley for sponging and cleaning.</li>
+        </ul>
+
+        <h3>Environmental cleaning</h3>
+        <ul class="kv">
+          <li>Increase cleaning frequency.</li>
+          <li>Clean and disinfect frequently touched surfaces (bedrails, drip stands, nursing tables, trolleys, doorknobs, tap handles, switches) at least once every nursing shift. This involves either:
+            <ul>
+              <li><strong>2-in-1 clean:</strong> commercially prepared combination of detergent and 1000 ppm chlorine solution or impregnated wipes</li>
+              <li><strong>2-step clean:</strong> clean with detergent or detergent-impregnated wipes, then disinfect with 1000 ppm chlorine solution or impregnated wipes</li>
+            </ul>
+          </li>
+          <li>Perform terminal cleaning after patient discharge:
+            <ul>
+              <li>Terminal cleaning process should be monitored and supervised</li>
+              <li>Remove curtains prior to cleaning</li>
+              <li>Cleaning should include walls, bed, frequently touched surfaces and all equipment</li>
+              <li>Discard unused consumables that cannot be disinfected</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Antimicrobial stewardship</h3>
+        <p>Coordinated interventions to ensure appropriate use of antimicrobials. When antimicrobials are prescribed ensure:</p>
+        <ul class="kv">
+          <li>Adequate dose and the shortest duration for efficacy.</li>
+          <li>Use the narrowest spectrum whenever possible.</li>
+          <li>De-escalate when cultures are available.</li>
+        </ul>
+
+        <h3>Education</h3>
+        <ul class="kv">
+          <li>Education of all staff, including cleaning staff, should be intensified.</li>
+          <li>Reinforce standard and contact precautions.</li>
+        </ul>
+
+        <h3>Screening and surveillance</h3>
+        <ul class="kv">
+          <li>Contact screening is done to reduce the risk of transmission of MDRO:
+            <ul>
+              <li>Screen patients in close contact for more than 24 hours with a CRE or VRE confirmed case. Send rectal swab.</li>
+              <li>Screening for other MDRO depends on local hospital infection control policy.</li>
+              <li>Isolate or cohort contacts pending screening result.</li>
+            </ul>
+          </li>
+          <li>Active surveillance cultures should be considered in outbreak settings:
+            <ul>
+              <li>Screen for CRE, VRE or MRSA in high-risk patients admitted to the unit. Send rectal swabs for CRE or VRE and nasal swabs for MRSA.</li>
+              <li>Screening for other MDRO depends on local hospital infection control policy.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Other considerations</h3>
+        <ul class="kv">
+          <li><strong>Support staff</strong> (radiographer, physiotherapist, pharmacist, dialysis nurse, dietitian): inform of patient's status. Support staff to attend to the patient last in the unit except in emergencies.</li>
+          <li><strong>Visitors:</strong> all visitors are directed to perform hand hygiene before and after contact with patient or environment. Visitors are not required to wear PPE unless involved in patient care.</li>
+          <li><strong>Patient's movement:</strong> keep to a minimum. If transportation is required (radiology, operating theatre, another facility), the receiving unit should be informed of the patient's status.</li>
+          <li><strong>Upon discharge:</strong> receiving wards should be informed early, for isolation or cohorting purposes.</li>
+        </ul>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 11. WITHHOLDING/WITHDRAWING ============ -->
+  <section class="card" id="s11">
+    <details>
+      <summary><span class="num">11</span> Withholding &amp; Withdrawing Life-Sustaining Treatment <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <h3>Key principles</h3>
+        <ol class="kv">
+          <li>Abide by the principles of medical ethics when making end-of-life decisions.</li>
+          <li>Assess patient's decision-making capacity on end-of-life decisions. Patients with limited or absent capacity: families become surrogate decision-makers.</li>
+          <li>Respect patient's autonomy except in cases of non-beneficial medical treatment.</li>
+          <li>Implement a palliative care plan once withholding or withdrawing LST is decided upon.</li>
+          <li>Document clearly all decisions on withholding or withdrawing LST in the clinical records.</li>
+          <li>Treat dying patients with respect, dignity and compassion.</li>
+        </ol>
+
+        <h3>Ethical principles</h3>
+        <ol class="kv">
+          <li>Principles that underpin end-of-life (EOL) medical decisions:
+            <ul>
+              <li><strong>Respect for autonomy:</strong> acting in accordance with what the patient wants</li>
+              <li><strong>Beneficence:</strong> acting to benefit the patient</li>
+              <li><strong>Non-maleficence:</strong> causing no harm to the patient</li>
+              <li><strong>Distributive justice:</strong> paying attention to fairness and equity</li>
+            </ul>
+          </li>
+          <li>These principles are used individually or collectively to frame the discussion on EOL; one does not supersede the other.</li>
+          <li>The principles may conflict, for example:
+            <ul>
+              <li>Between respect for autonomy and beneficence: a terminal cancer patient who insists all LST be provided although it will not benefit him.</li>
+              <li>Between beneficence and justice: providing invasive mechanical ventilation in a patient with decompensated heart failure who has had multiple hospital admissions in the last 6 months and is dyspnoeic at rest, versus allocation of an ICU bed for a polytrauma patient.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>Decision-making capacity</h3>
+        <ol class="kv">
+          <li>Assess patient's decision-making capacity before discussing EOL. Includes ability to comprehend, appreciate, rationalise and express choice of treatment.</li>
+          <li>Most ICU patients do not have decision-making capacity; families become the surrogate decision-maker.</li>
+          <li>Standards used by surrogates:
+            <ul>
+              <li><strong>Substituted judgement:</strong> decision of the patient if he/she had capacity</li>
+              <li><strong>Best interest:</strong> decision based on potential benefits and burdens of treatment vs. patient's values and beliefs</li>
+            </ul>
+          </li>
+          <li>EOL decisions are shared medical decisions made by clinicians and concurred by family members.</li>
+        </ol>
+
+        <h3>Autonomy and obligation to treat</h3>
+        <ol class="kv">
+          <li>Once decision-making capacity is established, patient's autonomy must be respected even though survival may be implicated.</li>
+          <li>In cases of non-beneficial medical treatment, clinicians are not obliged to initiate or continue LST.</li>
+          <li>The MMA Code of Ethics 2001 states: <em>"where death is deemed to be imminent and where curative or life-prolonging treatment appears to be futile, ensure that death occurs with dignity and comfort. Such futile therapy could be withheld, withdrawn or one may allow irreversible pathology to continue without active resuscitation. One should always take into consideration any advance directives and the wishes of the family in this regard. In any circumstance, if therapy is considered to be life saving, it should never be withheld."</em></li>
+        </ol>
+
+        <h3>Care of the dying patient</h3>
+        <ul class="kv">
+          <li>All dying patients should be afforded the same standard of care as other patients.</li>
+          <li>They should be treated with dignity, respect and compassion.</li>
+          <li>Their privacy and confidentiality should be respected at all times.</li>
+        </ul>
+
+        <h3>Candidates for withholding/withdrawal of LST</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Description / examples</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Imminent death</strong></td>
+                <td>Severe acute illness clearly not responding to therapy; reversal or cure unlikely despite continued optimal therapy, e.g. septic shock with multi-organ failure</td>
+              </tr>
+              <tr>
+                <td><strong>2. Terminal condition</strong></td>
+                <td>Progressive terminal disease incompatible with survival longer than 3–6 months, e.g. end-stage respiratory disease on long-term oxygen therapy with severe community-acquired pneumonia; end-stage cardiac, respiratory or liver disease with no transplant option; metastatic cancer unresponsive to treatment</td>
+              </tr>
+              <tr>
+                <td><strong>3. Severe and irreversible condition impairing cognition and consciousness</strong> but death may not occur in months</td>
+                <td>Patient is often planned not to receive CPR or other resuscitative measures in the event of deterioration, e.g. persistent vegetative state post cardiac arrest, severe dementia, severe stroke with poor cognitive recovery</td>
+              </tr>
+              <tr>
+                <td><strong>4. Advanced age with poor functional status</strong> due to chronic organic dysfunction</td>
+                <td>Multiple co-morbidities with deteriorating physical performance</td>
+              </tr>
+              <tr>
+                <td><strong>5. Severe disability with poor quality of life</strong></td>
+                <td>Stroke with minimal conscious state or dense paralysis; decompensated heart failure with ongoing shortness of breath at rest despite optimal therapy</td>
+              </tr>
+              <tr>
+                <td><strong>6. Advanced diseases of progressive life-limiting conditions</strong></td>
+                <td>Motor neuron disease with rapid decline in physical status; severe Parkinson's disease with reduced independence and needing assistance for ADLs</td>
+              </tr>
+              <tr>
+                <td><strong>7. Patient's stated wish against initiation or continuation of life support therapy</strong></td>
+                <td>Includes patients who have given clear advance care directives</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Practical issues</h3>
+        <h4>1. Medical team consensus</h4>
+        <p>The intensive care team and the primary team should agree on EOL decisions.</p>
+
+        <h4>2. Communication with patient and relatives</h4>
+        <ul class="kv">
+          <li>It is best that the same clinician (specialist/consultant) involved in the active care of the patient deals with the family. He/she should be someone who frequently communicates with the family and has established a rapport. A witness (nurse or doctor) should be present during these discussions.</li>
+          <li>Respect that each patient and family will differ in how much input they wish to have in the decision-making process.</li>
+          <li>In the event of disagreement, allow time for repeated discussions and negotiations. Failing this, consider:
+            <ul>
+              <li><strong>Time-limited trial (TLT):</strong> a goal-directed trial of any intervention limited by predetermined outcomes evaluated at planned intervals</li>
+              <li>Second medical opinion from another clinician from a similar specialty</li>
+              <li>Facilitation by a third party, e.g. spiritual advisor</li>
+            </ul>
+          </li>
+          <li>Patients and families must be given sufficient time to reach decisions on EOL.</li>
+        </ul>
+
+        <h4>3. Management plan for withdrawal of life-sustaining treatment</h4>
+        <p>A clear management plan is essential. It should be conveyed to the family, with emphasis on maintenance of comfort. Components:</p>
+        <ul class="kv">
+          <li>Maintain current support until the patient and family have had adequate time together.</li>
+          <li>Ensure other healthcare professionals (primary team, physiotherapist, dietitian) are aware of the withdrawal plan. Cease all investigations, e.g. blood taking and X-rays.</li>
+          <li>Ensure pain and other symptoms (e.g. dyspnoea) are well controlled. Morphine is the most commonly used opioid for analgesia and comfort. <strong>There is no maximum dose.</strong> Large doses of opioids may be required for comfort and may unintentionally hasten death. This "double effect" of opioids is acceptable.</li>
+          <li>Manage airway secretions using glycopyrrolate, positioning in lateral position, and frequent suctioning.</li>
+          <li>Discontinue all treatment that does not contribute towards comfort, e.g. antibiotics, blood transfusions. Feeding and intravenous fluids may be discontinued unless specifically requested by family.</li>
+          <li>Maintain patient's personal hygiene and dignity at all times, e.g. diaper soiling is dealt with immediately.</li>
+          <li>Withdrawal of vasopressors may result in immediate death. Families should be aware and nearby.</li>
+          <li>Withdrawal of mechanical ventilation may be carried out either as:
+            <ul>
+              <li><strong>Terminal weaning:</strong> ventilator settings are reduced while leaving the endotracheal tube in situ</li>
+              <li><strong>Terminal extubation</strong></li>
+            </ul>
+          </li>
+          <li>Disable all monitor and ventilator alarms. Demedicalise the patient and allow family members to be close by.</li>
+        </ul>
+
+        <h4>4. Other considerations</h4>
+        <ul class="kv">
+          <li>Family should be given unrestricted access to the patient.</li>
+          <li>Non-invasive ventilation may be used as a palliative care technique to minimise dyspnoea in conscious patients.</li>
+          <li>Neuromuscular blockade makes assessment of comfort impossible and should not be used in intubated patients.</li>
+          <li>Consider terminal sedation with benzodiazepines only when high doses of opioid are inadequate for comfort.</li>
+        </ul>
+
+        <h4>5. Documentation</h4>
+        <p>Document all decisions regarding withdrawal and withholding of treatment, including the basis of the decision and amongst whom it was reached.</p>
+
+        <h4>6. Notification of death</h4>
+        <p>Death should be communicated in direct language, gently.</p>
+
+        <h4>7. Bereavement</h4>
+        <p>Provide bereavement support to the family and healthcare providers if necessary.</p>
+
+        <h3>Process of withholding or withdrawal of LST</h3>
+        <div class="flow">
+          <div class="fnode fstart">Clinical deterioration / non-response to treatment OR patient's desire to limit treatment</div>
+          <div class="farrow"></div>
+          <div class="fnode fact">Assessment</div>
+          <div class="farrow"></div>
+          <div class="fnode fact">Disclosure</div>
+          <div class="farrow"></div>
+          <div class="fnode fact">Discussion with family</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">Conflict</span><span class="txt">Options: time-limited trial · second opinion · transfer of care</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Consensus to withdraw LST?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Continue current management and reassess</span></div>
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Management plan on practical aspects of withdrawal/withholding</span></div>
+          </div>
+        </div>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 12. INVASIVE VENTILATION IN NON-CRITICAL CARE AREAS ============ -->
+  <section class="card" id="s12">
+    <details>
+      <summary><span class="num">12</span> Invasive Ventilation in Non-Critical Care Areas <svg class="chev" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg></summary>
+      <div class="body">
+
+        <div class="box warn">
+          <strong>Introduction</strong>
+          <p>Invasive mechanical ventilation in wards should be <strong>discouraged</strong>. However, some patients are ventilated in the general ward due to limited resources. Clinical considerations and principles of medical ethics should guide decisions on ventilating patients in the ward.</p>
+        </div>
+
+        <h3>Principles</h3>
+        <ol class="kv">
+          <li>Interdisciplinary discussion is essential when a decision is made to ventilate patients in the ward.</li>
+          <li>The decision to ventilate patients in non-critical care areas should be reached on the basis of clinical and ethical considerations.</li>
+          <li>Clinical considerations are based on the patient's probable clinical outcome, premorbid status and burden of treatment.</li>
+          <li>Level of monitoring and care of these patients should be provided accordingly.</li>
+        </ol>
+
+        <h3>Categories of patients ventilated outside critical care areas</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Description</th><th>Admission/discharge criteria (Chapter 1)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1</strong></td><td>Patients who have a reasonable prospect of meaningful recovery with good quality of life</td><td>Priority 1 and 2A</td></tr>
+              <tr><td><strong>2</strong></td><td>Patients whose initial prospect of meaningful recovery is uncertain</td><td>Priority 2B</td></tr>
+              <tr><td><strong>3</strong></td><td>Patients with minimal or no prospect of meaningful recovery</td><td>Priority 3</td></tr>
+              <tr><td><strong>4</strong></td><td>Patients for chronic ventilation or "home ventilation"</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Category 1</h4>
+        <ul class="kv">
+          <li>Make every effort to admit them to ICU.</li>
+          <li>Admit them to other critical care areas within the hospital while awaiting ICU bed availability.</li>
+          <li>Arrange for inter-hospital transfer to another ICU if a critical care bed is unavailable within the hospital. The arrangement and transport should preferably be done by the ICU team.</li>
+          <li>A Category 1 patient should be given priority for ICU admission over an elective surgical patient.</li>
+        </ul>
+
+        <h4>Category 2</h4>
+        <ul class="kv">
+          <li>Specialists from the ICU team and primary unit should discuss the benefits vs. burdens and risks of ventilation prior to intubation, including the possibility of limitation of care at 24–48 hours if no improvement is observed.</li>
+          <li>Involve families in decision-making and inform them of the treatment plan.</li>
+          <li>If the joint decision is to intubate and ventilate:
+            <ul>
+              <li>Admit to ICU if bed is available</li>
+              <li>If bed not available, assess progress at 24–48 hours and consider ICU admission if there is clinical improvement</li>
+              <li>If patient is ventilated in the ward, manage as per Category 3 patient if there is deterioration</li>
+            </ul>
+          </li>
+          <li>Continue care of the patient in the ward if the joint decision is not to ventilate.</li>
+          <li>Document the decision clearly in the case notes.</li>
+          <li>Seek a second medical opinion to resolve differences if conflicts arise among the teams.</li>
+        </ul>
+
+        <h4>Category 3</h4>
+        <ul class="kv">
+          <li>Consider withholding or withdrawal of therapy while continuing comfort care.</li>
+        </ul>
+
+        <h4>Category 4</h4>
+        <ul class="kv">
+          <li>Continue ventilation in the ward while preparing for home ventilation.</li>
+          <li>If the patient deteriorates, re-assess the indication for ICU admission and manage accordingly.</li>
+        </ul>
+
+        <h3>Care in the ward</h3>
+        <ul class="kv">
+          <li>The primary team is responsible for the care of the patient in the ward.</li>
+          <li>The ICU team should review the patient daily.</li>
+        </ul>
+
+        <h4>Minimum requirements — staffing</h4>
+        <p>Nurses should be trained and privileged on basic care and safety issues in caring for patients on mechanical ventilation, e.g.:</p>
+        <ul class="kv">
+          <li>Tracheal suctioning</li>
+          <li>Bag-valve-mask ventilation</li>
+          <li>Nebulisation</li>
+          <li>Recognition of life-threatening events, e.g. desaturation, ETT blockage, disconnection or dislodgement of ETT</li>
+          <li>Infection control measures</li>
+        </ul>
+
+        <h4>Minimum requirements — monitoring</h4>
+        <ul class="kv">
+          <li>Blood pressure, pulse rate and respiratory rate hourly</li>
+          <li>SpO₂ — continuous if available</li>
+          <li>ECG — continuous if available</li>
+          <li>Level of consciousness</li>
+          <li>Arterial blood gases as indicated</li>
+          <li>Other standard nursing monitoring</li>
+        </ul>
+
+        <h4>Minimum requirements — equipment (readily available)</h4>
+        <ul class="kv">
+          <li>Yankauer suction</li>
+          <li>Suction catheters</li>
+          <li>Vacuum suction apparatus</li>
+          <li>Laryngoscopes</li>
+          <li>Endotracheal tubes and tapes</li>
+          <li>Oral airways</li>
+          <li>Bag-valve-masks</li>
+          <li>Resuscitation trolley</li>
+        </ul>
+
+        <h4>Procedures of care</h4>
+        <ul class="kv">
+          <li>Elevate head of bed 30 degrees unless contraindicated</li>
+          <li>Ensure endotracheal or tracheostomy and nasogastric tubes are firmly secured</li>
+          <li>Perform tracheal and oropharyngeal suctioning q4h or more often if necessary</li>
+          <li>Position the patient at least 4 hourly</li>
+          <li>Perform general, eye and oral hygiene regularly</li>
+          <li>Ensure a functioning nasogastric tube for gastric decompression and nutritional support</li>
+          <li>Perform chest and limb physiotherapy</li>
+        </ul>
+
+        <h3>Referral for ventilation algorithm</h3>
+        <div class="flow">
+          <div class="fnode fstart">Referred for ventilation</div>
+          <div class="farrow"></div>
+          <div class="fnode fact">Assess and categorise patient as 1, 2, 3 or 4</div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Category 4?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Condition stable? → Yes: continue ventilation in ward ± plan for home ventilation · No: reassess and recategorise to 1, 2 or 3</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Category 3?</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Category 3?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Initiate discussion on withdrawal of therapy and end-of-life care</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Category 2?</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">Category 2?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Discussion between ICU and primary team on intubation and ventilation → Consensus to ventilate? → Yes: admit ICU if bed available, ventilate in ward · No: continue ward management</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Category 1</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fdec">ICU bed available?</div>
+          <div class="fbranches">
+            <div class="fbranch"><span class="tag yes">Yes</span><span class="txt">Admit ICU</span></div>
+            <div class="fbranch"><span class="tag no">No</span><span class="txt">Reassess within 24–48 hours and recategorise to Category 1 or 3</span></div>
+          </div>
+          <div class="farrow"></div>
+          <div class="fnode fok">Admit other critical care areas while awaiting ICU bed, or transfer to another hospital</div>
+        </div>
+
+        <h3>Appendix 1 — Examples by category</h3>
+        <h4>Category 1</h4>
+        <p>Patients who have a reasonable prospect of meaningful recovery with good quality of life.</p>
+
+        <h4>Category 2 — examples</h4>
+        <ul class="kv">
+          <li>Metastatic cancer in septic shock secondary to hospital-acquired pneumonia but with some limitations of therapy, e.g. no CPR</li>
+          <li>Decompensated heart failure with deteriorating functional status and multiple hospital admissions</li>
+          <li>Some but not all patients in the Gold Standards Framework Proactive Identification Guidance (Appendix 2)</li>
+        </ul>
+
+        <h4>Category 3 — examples</h4>
+        <ul class="kv">
+          <li>Irreversible brain damage impairing cognition and consciousness, or persistent vegetative state</li>
+          <li>End-stage cardiac, respiratory and liver disease with no transplant option</li>
+          <li>Metastatic cancer unresponsive to chemotherapy and/or radiotherapy</li>
+          <li>Severe disability with poor quality of life</li>
+          <li>Poor response to current treatment, e.g. recurrent bowel leaks despite multiple laparotomies, recurrent soft tissue or musculoskeletal infections despite multiple surgical interventions, or chronic medical conditions which fail to respond to treatment such as SLE and HIV</li>
+          <li>Advanced disease or progressive life-limiting conditions such as motor neuron disease, advanced Parkinson's disease, multiple sclerosis</li>
+          <li>End-stage renal disease with no option or refusal for renal replacement therapy</li>
+          <li>Explicitly stated wish not to receive life support therapy and refusal of treatment</li>
+        </ul>
+
+        <h4>Category 4 — examples</h4>
+        <ul class="kv">
+          <li>Guillain-Barré syndrome</li>
+          <li>Complete tetraplegia in high cervical spinal cord injury</li>
+          <li>Motor neuron disease</li>
+          <li>Mitochondrial myopathies</li>
+        </ul>
+
+        <h3>Appendix 2 — A guide to identifying patients for supportive and palliative care</h3>
+        <p style="font-size:.8rem">Ref: The Gold Standards Framework Proactive Identification Guidance UK, 6th Edition, Dec 2016.</p>
+
+        <h4>General indicators of decline and increasing needs</h4>
+        <ul class="kv">
+          <li>General physical decline, increasing dependence and need for support</li>
+          <li>Decreasing response to treatments, decreasing reversibility</li>
+          <li>Repeated unplanned hospital admissions</li>
+          <li>Patient choice for no further active treatment and focus on quality of life</li>
+          <li>Advanced disease — unstable, deteriorating, complex symptom burden</li>
+          <li>Progressive weight loss (&gt; 10%) in past six months</li>
+          <li>Presence of significant multi-morbidities</li>
+          <li>Sentinel event, e.g. serious fall, bereavement, transfer to nursing home</li>
+          <li>Decreasing activity — functional performance status declining (e.g. Barthel score), limited self-care, in bed or chair 50% of day and increasing dependence in most activities of daily living</li>
+          <li>Serum albumin &lt; 25 g/L</li>
+        </ul>
+
+        <h4>Specific clinical indicators</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Condition</th><th>Indicators</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Cancer</strong></td>
+                <td>Deteriorating performance status and functional ability due to metastatic cancer, multi-morbidities or not amenable to treatment — if spending more than 50% of time in bed/living down, prognosis estimated in months. Persistent symptoms despite optimal palliative oncology. More specific prognostic predictors for cancer are available, e.g. Palliative Performance Scale (PPS).</td>
+              </tr>
+              <tr>
+                <td><strong>Heart disease</strong> (at least 2 of the indicators below)</td>
+                <td>CHF NYHA Stage 3 or 4 with ongoing symptoms despite optimal HF therapy — shortness of breath at rest on minimal exertion. Difficult ongoing physical or psychological symptoms despite optimal tolerated therapy. Repeated admissions with heart failure — 3 admissions in 6 months, or a single admission aged over 75 (50% 1-year mortality). Additional features include hyponatraemia &lt; 135 mmol/L, high BP, declining renal function, anaemia, etc.</td>
+              </tr>
+              <tr>
+                <td><strong>COPD</strong> (at least 2 of the indicators below)</td>
+                <td>Recurrent hospital admissions (at least 3 in last year due to COPD). Fulfils long-term oxygen therapy criteria (PₐO₂ &lt; 7.3 kPa). MRC grade 4/5 — shortness of breath after 100 metres on level. Required ICU/NIV during hospital admission. Disease assessed to be very severe (e.g. FEV₁ &lt; 30% predicted), persistent symptoms despite optimal therapy, too unwell for surgery or pulmonary rehabilitation. Other factors, e.g. right heart failure, anorexia, cachexia, &gt; 6 weeks steroids in preceding 6 months, requires palliative medication for breathlessness, still smoking.</td>
+              </tr>
+              <tr>
+                <td><strong>Chronic kidney disease Stage 4 or 5</strong> (deteriorating with at least 2 of the indicators below)</td>
+                <td>Repeated unplanned admissions (more than 3/year). Difficult physical or psychological symptoms that have not responded to specific treatments. Patients with poor tolerance of dialysis with change of modality. Symptomatic renal failure in patients who have chosen not to dialyse — nausea and vomiting, anorexia, pruritus, reduced functional status, intractable fluid overload. Patients choosing the "no dialysis" option (conservative), dialysis withdrawal, or not opting for dialysis if transplant has failed.</td>
+              </tr>
+              <tr>
+                <td><strong>Liver disease</strong></td>
+                <td>Hepatocellular carcinoma. Advanced cirrhosis with complications including: refractory ascites, encephalopathy, other adverse factors including malnutrition, severe comorbidities, hepatorenal syndrome, bacterial infection, current bleeds, raised INR, hyponatraemia — unless they are a candidate for liver transplantation or amenable to treatment of underlying condition.</td>
+              </tr>
+              <tr>
+                <td><strong>General neurological diseases</strong></td>
+                <td>Progressive deterioration in physical and/or cognitive function despite optimal therapy. Swallowing problems (dysphagia) leading to recurrent aspiration pneumonia, sepsis, breathlessness or respiratory failure. Symptoms which are complex and too difficult to control. Speech problems: increasing difficulty in communication and progressive dysphasia.</td>
+              </tr>
+              <tr>
+                <td><strong>Parkinson's disease</strong></td>
+                <td>Drug treatment less effective or increasingly complex regime of drug treatments. Dyskinesias, mobility problems and falls. Reduced independence, needs ADL help. Psychiatric signs (depression, anxiety, hallucinations, psychosis). Condition less well controlled with increasing "off" periods. Similar pattern to frailty.</td>
+              </tr>
+              <tr>
+                <td><strong>Motor neurone disease</strong></td>
+                <td>Marked rapid decline in physical status. Significant complex symptoms and medical complications. First episode of aspiration pneumonia. Low vital capacity (below 70% predicted spirometry), or initiation of NIV. Increased cognitive difficulties. Mobility problems and falls. Weight loss. Communication difficulties.</td>
+              </tr>
+              <tr>
+                <td><strong>Multiple sclerosis</strong></td>
+                <td>Significant complex symptoms and medical complications. Communication difficulties, e.g. dysarthria + fatigue. Dysphagia + poor nutritional status. Cognitive impairment, notably the onset of dementia.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Frailty, dementia, multi-morbidity</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Domain</th><th>Indicators</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Frailty</strong> — for older people with complexity and multiple comorbidities, the surprise question must triangulate with a tier of indicators, e.g. through Comprehensive Geriatric Assessment (CGA)</td>
+                <td>Multiple morbidities. PRISMA-7 questionnaire — at least 3 of the following: aged over 85, male; any health problems that limit activity?; do you need someone to help you on a regular basis?; do you have health problems that require you to stay at home?; in case of need can you count on someone close to you?; do you regularly use a stick, walker or wheelchair to get about? Deteriorating performance score. Weakness, weight loss, exhaustion. Slow walking speed — takes more than 5 seconds to walk 4 m. Timed Up and Go test (TUGT) — time to stand up from chair, walk 3 m, turn and walk back.</td>
+              </tr>
+              <tr>
+                <td><strong>Dementia</strong> — triggers indicating a later stage</td>
+                <td>Unable to walk without assistance, AND urinary and faecal incontinence, AND no consistently meaningful conversation, AND unable to do activities of daily living (ADL). Plus any of the following: weight loss, urinary tract infection, severe pressure sores stage 3 or 4, recurrent fever, reduced oral intake, aspiration pneumonia. Barthel score &gt; 3.</td>
+              </tr>
+              <tr>
+                <td><strong>Stroke</strong></td>
+                <td>Use of validated scale such as NIHSS recommended. Cognitive impairment / post-stroke dementia. Persistent vegetative state, minimal conscious state or dense paralysis. Medical complications, or lack of improvement within 3 months of onset. Other factors, e.g. old age, male, heart disease, stroke sub-type, hyperglycaemia, dementia, renal failure.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </details>
+  </section>
+
+  <div class="empty" id="empty">No protocols match your search.</div>
+</main>
+
+<footer>
+  <h2>Source &amp; Citation</h2>
+  <p>
+    This quick reference is derived from the clinical content of:
+  </p>
+  <p>
+    <strong>Malaysian Society of Intensive Care.</strong> <em>ICU Management Protocols.</em> Kuala Lumpur: Malaysian Society of Intensive Care, in collaboration with the Ministry of Health Malaysia. ISBN (Pusat Kebangsaan ISBN Malaysia). Source document: <code>ICUProtocolManagement-41.pdf</code>.
+  </p>
+  <p>
+    Writing Committee (Chairperson &amp; Editor: Dr Shanti Rudra Deva; Co-Chairperson: Dr Tai Li Ling), with contributions from the intensivists of the Department of Anaesthesia and Intensive Care, Hospital Kuala Lumpur, Hospital Sultan Ismail, Hospital Raja Permaisuri Bainun, Hospital Queen Elizabeth 1, Hospital Tengku Ampuan Rahimah, Hospital Pulau Pinang, Hospital Sultanah Aminah, Hospital Sultanah Nur Zahirah, Hospital Tengku Ampuan Afzan, Hospital Melaka, Hospital Umum Sarawak, and Universiti Putra Malaysia.
+  </p>
+
+  <h2>Key references cited in the source</h2>
+  <ol>
+    <li>Nates JL, et al. ICU admission, discharge, and triage guidelines. <em>Crit Care Med</em> 2016;44(8):1553-1602.</li>
+    <li>Rhodes A, et al. Surviving Sepsis Campaign: International guidelines for management of sepsis and septic shock: 2016. <em>Crit Care Med</em> 2017;45(3):486-552.</li>
+    <li>Fan E, et al. Acute respiratory distress syndrome: Advances in diagnosis and treatment. <em>JAMA</em> 2018;319(7):698-710.</li>
+    <li>Guérin C, et al. Prone positioning in severe acute respiratory distress syndrome. <em>N Engl J Med</em> 2013;368:2159-68.</li>
+    <li>Papazian L, et al. Neuromuscular blockers in early acute respiratory distress syndrome. <em>N Engl J Med</em> 2010;363:1107-16.</li>
+    <li>Ouellette DR, et al. Liberation from mechanical ventilation in critically ill adults. <em>Chest</em> 2017;151(1):166-180.</li>
+    <li>Devlin JW, et al. Guidelines for the prevention and management of pain, agitation/sedation, delirium, immobility, and sleep disruption in adult patients in the ICU. <em>Crit Care Med</em> 2018;46(9):e825-e873.</li>
+    <li>Reintam Blaser A, et al. Early enteral nutrition in critically ill patients: ESICM clinical practice guidelines. <em>Intensive Care Med</em> 2017;43:380-389.</li>
+    <li>McClave SA, et al. Guidelines for the provision and assessment of nutrition support therapy in the adult critically ill patient: SCCM and A.S.P.E.N. <em>JPEN</em> 2016;40(2):159-211.</li>
+    <li>Hodgson CL, et al. Expert consensus and recommendations on safety criteria for active mobilisation of mechanically ventilated critically ill adults. <em>Crit Care</em> 2014;18:658.</li>
+    <li>Krag M, et al. Stress ulcer prophylaxis versus placebo or no prophylaxis in critically ill patients. <em>Intensive Care Med</em> 2014;40(1):11-22.</li>
+    <li>Guyatt GH, et al. Executive summary: Antithrombotic therapy and prevention of thrombosis, 9th ed: ACCP evidence-based clinical practice guidelines. <em>Chest</em> 2012;141(2 Suppl):7S-47S.</li>
+    <li>Lobo SM, et al. Decision-making on withholding or withdrawing life support in the ICU: A worldwide perspective. <em>Chest</em> 2017;152(2):321-329.</li>
+    <li>National operational policy of anaesthesia and intensive care services. MOH Malaysia 2013.</li>
+  </ol>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> The content of the source book has been produced in good faith to guide medical practitioners. However, practitioners are advised to keep abreast of current evidence-based practices that are constantly evolving and to take into account local issues and limitations. This quick reference is a condensed derivative for educational use and does not replace the full protocol document or clinical judgement.
+  </div>
+</footer>
+
+<button id="top" title="Back to top" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  "use strict";
+
+  var cards      = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var searchEl   = document.getElementById('search');
+  var clearBtn   = document.getElementById('clearBtn');
+  var nav        = document.getElementById('nav');
+  var emptyEl    = document.getElementById('empty');
+  var countEl    = document.getElementById('resultCount');
+  var topBtn     = document.getElementById('top');
+
+  /* ---------- Build navigation chips ---------- */
+  cards.forEach(function(card){
+    var summary = card.querySelector('summary');
+    var numEl   = summary.querySelector('.num');
+    var label   = summary.textContent.replace(numEl ? numEl.textContent : '', '').trim();
+    // strip trailing chevron whitespace
+    label = label.replace(/\s+/g,' ').trim();
+
+    var a = document.createElement('a');
+    a.href = '#' + card.id;
+    a.textContent = (numEl ? numEl.textContent + '. ' : '') + label;
+    a.addEventListener('click', function(){
+      // ensure the card is open when navigating
+      var d = card.querySelector('details');
+      if(d) d.open = true;
+    });
+    nav.appendChild(a);
+  });
+
+  /* ---------- Expand / collapse all ---------- */
+  document.getElementById('expandAll').addEventListener('click', function(){
+    document.querySelectorAll('.card details').forEach(function(d){ d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    document.querySelectorAll('.card details').forEach(function(d){ d.open = false; });
+  });
+
+  /* ---------- Search ---------- */
+  var HIGHLIGHT_TAG = 'MARK';
+
+  function clearHighlights(root){
+    var marks = root.querySelectorAll('mark');
+    for(var i=0;i<marks.length;i++){
+      var m = marks[i];
+      var t = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(t, m);
+    }
+    root.normalize();
+  }
+
+  function escapeRegExp(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function highlight(root, term){
+    if(!term) return;
+    var re = new RegExp(escapeRegExp(term), 'gi');
+    var walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function(node){
+          if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var pn = node.parentNode;
+          if(!pn) return NodeFilter.FILTER_REJECT;
+          var name = pn.nodeName;
+          if(name === 'MARK' || name === 'SCRIPT' || name === 'STYLE' || name === 'SUMMARY') {
+            // allow inside summary for chip-free highlight; but reject MARK to avoid nesting
+            if(name === 'MARK' || name === 'SCRIPT' || name === 'STYLE') return NodeFilter.FILTER_REJECT;
+          }
+          if(!node.nodeValue.toLowerCase().includes(term)) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    var nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      re.lastIndex = 0;
+      while((m = re.exec(text)) !== null){
+        if(m.index > last){
+          frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        }
+        var mark = document.createElement(HIGHLIGHT_TAG);
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        if(m[0].length === 0) re.lastIndex++;
+      }
+      if(last < text.length){
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  var debounceTimer = null;
+
+  function runSearch(){
+    var q = searchEl.value.trim();
+    var term = q.toLowerCase();
+
+    clearBtn.style.display = q ? 'block' : 'none';
+
+    // clear previous highlights everywhere
+    cards.forEach(function(card){ clearHighlights(card); });
+
+    if(!term){
+      cards.forEach(function(card){
+        card.hidden = false;
+        var d = card.querySelector('details');
+        if(d) d.open = false;
+      });
+      emptyEl.classList.remove('show');
+      countEl.classList.remove('show');
+      return;
+    }
+
+    var matches = 0;
+    cards.forEach(function(card){
+      var text = card.textContent.toLowerCase();
+      var hit  = text.indexOf(term) !== -1;
+
+      card.hidden = !hit;
+
+      var d = card.querySelector('details');
+      if(d) d.open = hit;
+
+      if(hit){
+        matches++;
+        highlight(card, term);
+      }
+    });
+
+    emptyEl.classList.toggle('show', matches === 0);
+    countEl.textContent = matches + (matches === 1 ? ' protocol matches' : ' protocols match') + ' "' + q + '"';
+    countEl.classList.add('show');
+  }
+
+  searchEl.addEventListener('input', function(){
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 140);
+  });
+
+  clearBtn.addEventListener('click', function(){
+    searchEl.value = '';
+    runSearch();
+    searchEl.focus();
+  });
+
+  searchEl.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      searchEl.value = '';
+      runSearch();
+    }
+  });
+
+  /* ---------- Back to top ---------- */
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 400) topBtn.classList.add('show');
+    else topBtn.classList.remove('show');
+  }, {passive:true});
+
+  topBtn.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  /* ---------- Open the first card by default ---------- */
+  var firstDetails = document.querySelector('.card details');
+  if(firstDetails) firstDetails.open = true;
+
+})();
+</script>
+</body>
+</html>
