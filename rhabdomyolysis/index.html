@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rhabdomyolysis — Anaesthetic &amp; ICU Quick Reference</title>
+<style>
+  :root{
+    --bg:#f4f7fa;
+    --card:#ffffff;
+    --text:#1e293b;
+    --muted:#64748b;
+    --accent:#0f766e;
+    --accent-2:#0d9488;
+    --accent-soft:#e6f4f1;
+    --border:#e2e8f0;
+    --warn:#b45309;
+    --warn-bg:#fff7ed;
+    --warn-border:#fed7aa;
+    --danger:#b91c1c;
+    --danger-bg:#fef2f2;
+    --danger-border:#fecaca;
+    --mark:#fde68a;
+    --shadow:0 1px 2px rgba(15,23,42,.06), 0 4px 12px rgba(15,23,42,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f172a;
+      --card:#1e293b;
+      --text:#e2e8f0;
+      --muted:#94a3b8;
+      --accent:#5eead4;
+      --accent-2:#2dd4bf;
+      --accent-soft:#134e4a;
+      --border:#334155;
+      --warn:#fdba74;
+      --warn-bg:#422006;
+      --warn-border:#78350f;
+      --danger:#fca5a5;
+      --danger-bg:#450a0a;
+      --danger-border:#7f1d1d;
+      --mark:#a16207;
+      --shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px 64px}
+
+  /* ---------- Header ---------- */
+  header{padding:28px 0 14px}
+  h1{
+    margin:0 0 6px;
+    font-size:clamp(1.4rem,4vw,2rem);
+    line-height:1.2;
+    letter-spacing:-.02em;
+  }
+  h1 .dot{color:var(--accent)}
+  .subtitle{margin:0;color:var(--muted);font-size:.95rem}
+  .tagline{
+    display:inline-block;
+    margin-top:10px;
+    padding:3px 10px;
+    border-radius:999px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    font-size:.75rem;
+    font-weight:600;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- Search bar ---------- */
+  .searchbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--bg);
+    padding:10px 0 12px;
+    margin-top:8px;
+  }
+  .search-inner{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .search-field{
+    position:relative;
+    flex:1 1 260px;
+    min-width:0;
+  }
+  .search-field svg{
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    width:16px;height:16px;
+    stroke:var(--muted);
+    fill:none;
+    stroke-width:2;
+    pointer-events:none;
+  }
+  #search{
+    width:100%;
+    padding:11px 38px 11px 36px;
+    font-size:1rem;
+    font-family:inherit;
+    color:var(--text);
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    outline:none;
+    box-shadow:var(--shadow);
+    transition:border-color .15s, box-shadow .15s;
+  }
+  #search:focus{
+    border-color:var(--accent-2);
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--accent-2) 25%, transparent);
+  }
+  #clearBtn{
+    position:absolute;
+    right:6px;top:50%;
+    transform:translateY(-50%);
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    font-size:1.2rem;
+    line-height:1;
+    padding:6px 9px;
+    cursor:pointer;
+    border-radius:6px;
+    display:none;
+  }
+  #clearBtn:hover{background:var(--accent-soft);color:var(--accent)}
+  .btn{
+    padding:10px 12px;
+    font-size:.82rem;
+    font-weight:600;
+    font-family:inherit;
+    color:var(--accent);
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    cursor:pointer;
+    white-space:nowrap;
+    box-shadow:var(--shadow);
+    transition:background .15s,border-color .15s;
+  }
+  .btn:hover{background:var(--accent-soft);border-color:var(--accent-2)}
+  #status{
+    flex-basis:100%;
+    min-height:0;
+    font-size:.8rem;
+    color:var(--muted);
+    padding-left:2px;
+  }
+  #status.active{min-height:1.2em}
+
+  /* ---------- Cards ---------- */
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin:0 0 10px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .card[hidden]{display:none}
+  .card > summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 16px;
+    font-weight:650;
+    font-size:1.02rem;
+    letter-spacing:-.01em;
+    user-select:none;
+    transition:background .12s;
+  }
+  .card > summary::-webkit-details-marker{display:none}
+  .card > summary:hover{background:var(--accent-soft)}
+  .card > summary:focus-visible{outline:2px solid var(--accent-2);outline-offset:-2px}
+  .card > summary .num{
+    flex:0 0 auto;
+    width:24px;height:24px;
+    display:grid;place-items:center;
+    border-radius:7px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    font-size:.75rem;
+    font-weight:700;
+  }
+  .card > summary .title{flex:1 1 auto}
+  .card > summary .chev{
+    flex:0 0 auto;
+    width:9px;height:9px;
+    border-right:2px solid var(--muted);
+    border-bottom:2px solid var(--muted);
+    transform:rotate(45deg);
+    transition:transform .2s ease;
+    margin-right:4px;
+  }
+  .card[open] > summary .chev{transform:rotate(-135deg)}
+  .content{
+    padding:2px 16px 18px;
+    border-top:1px solid var(--border);
+    font-size:.95rem;
+  }
+  .content > :first-child{margin-top:14px}
+  .content p{margin:0 0 10px}
+  .content ul,.content ol{margin:0 0 10px;padding-left:20px}
+  .content li{margin:0 0 6px}
+  .content li::marker{color:var(--accent-2)}
+  .content h4{
+    margin:16px 0 8px;
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    color:var(--muted);
+  }
+  strong{font-weight:650}
+  .hl{color:var(--accent);font-weight:650}
+
+  /* ---------- Key points list ---------- */
+  ul.key{list-style:none;padding:0;margin:0}
+  ul.key li{
+    position:relative;
+    padding:9px 12px 9px 38px;
+    margin:0 0 8px;
+    background:var(--accent-soft);
+    border-radius:9px;
+    font-size:.94rem;
+  }
+  ul.key li::before{
+    content:"";
+    position:absolute;
+    left:14px;top:16px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--accent-2);
+  }
+
+  /* ---------- Callouts ---------- */
+  .callout{
+    border-radius:10px;
+    padding:12px 14px;
+    margin:12px 0;
+    font-size:.92rem;
+    border-left:4px solid;
+  }
+  .callout p:last-child,.callout ul:last-child{margin-bottom:0}
+  .callout .label{
+    display:block;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    margin-bottom:5px;
+  }
+  .callout.warn{background:var(--warn-bg);border-color:var(--warn);color:var(--text)}
+  .callout.warn .label{color:var(--warn)}
+  .callout.danger{background:var(--danger-bg);border-color:var(--danger);color:var(--text)}
+  .callout.danger .label{color:var(--danger)}
+  .callout.info{background:var(--accent-soft);border-color:var(--accent-2);color:var(--text)}
+  .callout.info .label{color:var(--accent)}
+
+  /* ---------- Cause grid (Table 1, simplified) ---------- */
+  .grid2{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:12px;
+    margin:12px 0;
+  }
+  .cause{
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+    background:color-mix(in srgb, var(--card) 92%, var(--accent-soft));
+  }
+  .cause h5{
+    margin:0;
+    padding:9px 13px;
+    font-size:.78rem;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    color:#fff;
+  }
+  .cause.traumatic h5{background:#b45309}
+  .cause.nontraumatic h5{background:#0f766e}
+  .cause ul{
+    list-style:none;
+    margin:0;
+    padding:10px 13px;
+    font-size:.9rem;
+  }
+  .cause li{
+    margin:0 0 7px;
+    padding-left:14px;
+    position:relative;
+  }
+  .cause li::before{
+    content:"";
+    position:absolute;
+    left:0;top:.55em;
+    width:5px;height:5px;
+    border-radius:50%;
+    background:var(--accent-2);
+  }
+  .cause li:last-child{margin-bottom:0}
+
+  /* ---------- Scrollable tables ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin:12px 0;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:460px;
+    font-size:.9rem;
+  }
+  thead th{
+    position:sticky;
+    top:0;
+    background:var(--accent-soft);
+    color:var(--accent);
+    text-align:left;
+    font-size:.75rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:10px 13px;
+    border-bottom:1px solid var(--border);
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:9px 13px;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--card) 94%, var(--border))}
+  td.val{font-weight:650;color:var(--accent)}
+  .scroll-hint{
+    font-size:.75rem;
+    color:var(--muted);
+    margin:-6px 0 10px;
+    font-style:italic;
+  }
+
+  /* ---------- Highlight ---------- */
+  mark{
+    background:var(--mark);
+    color:inherit;
+    border-radius:3px;
+    padding:0 2px;
+  }
+
+  /* ---------- Source ---------- */
+  .source{
+    margin-top:26px;
+    padding:16px 18px;
+    border-radius:12px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-left:4px solid var(--accent-2);
+    box-shadow:var(--shadow);
+    font-size:.85rem;
+    color:var(--muted);
+  }
+  .source h4{
+    margin:0 0 8px;
+    font-size:.72rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  .source p{margin:0 0 8px}
+  .source p:last-child{margin-bottom:0}
+  .source .cite{color:var(--text)}
+  .disclaimer{
+    margin-top:10px;
+    font-size:.78rem;
+    font-style:italic;
+  }
+
+  @media (max-width:520px){
+    .content{padding:2px 13px 16px;font-size:.93rem}
+    .card > summary{padding:13px 13px;font-size:.98rem}
+    .btn{padding:9px 10px;font-size:.78rem}
+  }
+  @media print{
+    .searchbar{display:none}
+    .card{break-inside:avoid;box-shadow:none}
+    details > .content{display:block !important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Rhabdomyolysis <span class="dot">·</span> Quick Reference</h1>
+    <p class="subtitle">For anaesthetists and intensivists — recognition, investigation and management</p>
+    <span class="tagline">Searchable · Collapsible</span>
+  </header>
+
+  <div class="searchbar">
+    <div class="search-inner">
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+        <input id="search" type="search" placeholder="Search — e.g. potassium, mannitol, CK, fasciotomy…" autocomplete="off" spellcheck="false" aria-label="Search the quick reference">
+        <button id="clearBtn" type="button" aria-label="Clear search">×</button>
+      </div>
+      <button class="btn" id="expandAll" type="button">Expand all</button>
+      <button class="btn" id="collapseAll" type="button">Collapse all</button>
+      <div id="status" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- ============ 1. KEY POINTS ============ -->
+  <details class="card" open>
+    <summary><span class="num">1</span><span class="title">Key points</span><span class="chev"></span></summary>
+    <div class="content">
+      <ul class="key">
+        <li>Rhabdomyolysis is characterised by <strong>breakdown of skeletal muscle</strong> with release of myoglobin and other intracellular proteins and electrolytes into the circulation.</li>
+        <li><strong>Creatine kinase (CK)</strong> concentration is the most useful indicator of muscle damage.</li>
+        <li><strong>Hyperkalaemia can be life-threatening</strong> and needs prompt management.</li>
+        <li><strong>Acute kidney injury (AKI) is common.</strong></li>
+        <li><strong>Fluid resuscitation is the mainstay of management.</strong></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 2. OVERVIEW ============ -->
+  <details class="card">
+    <summary><span class="num">2</span><span class="title">Definition &amp; overview</span><span class="chev"></span></summary>
+    <div class="content">
+      <p>Rhabdomyolysis is characterised by <strong>skeletal muscle disintegration</strong> and the release of myoglobin and other intracellular proteins and electrolytes into the circulation. Typically CK levels are markedly elevated, and muscle pain and myoglobinuria may occur.</p>
+      <p>The condition ranges from <strong>asymptomatic to life-threatening</strong>, with associated hyperkalaemia and acute kidney injury (AKI).</p>
+      <div class="callout info">
+        <span class="label">Historical note</span>
+        <p>Bywaters and Beall first associated AKI with crush injury during the London Blitz. They described four air-raid casualties with oliguria and pigmented casts after crush injury — all four developed AKI and died within about a week.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 3. CAUSES ============ -->
+  <details class="card">
+    <summary><span class="num">3</span><span class="title">Causes</span><span class="chev"></span></summary>
+    <div class="content">
+      <p>Rhabdomyolysis can be <strong>traumatic or non-traumatic</strong>.</p>
+
+      <div class="grid2">
+        <div class="cause traumatic">
+          <h5>Traumatic</h5>
+          <ul>
+            <li>Crush injury and trauma — earthquakes, collapsed buildings, road traffic collisions</li>
+            <li>Compartment syndrome — alcohol-associated immobility, prolonged collapse, perioperative positioning, prolonged tourniquet use</li>
+            <li>Electrocution</li>
+          </ul>
+        </div>
+        <div class="cause nontraumatic">
+          <h5>Non-traumatic</h5>
+          <ul>
+            <li>Exertional — strenuous exercise, seizures</li>
+            <li>Body temperature changes — malignant hyperthermia, neuroleptic malignant syndrome, hypothermia</li>
+            <li>Genetic defects — from disorders of glycolysis or gluconeogenesis to mitochondrial disorders</li>
+            <li>Drugs or toxins — statins, alcohol, heroin, cocaine</li>
+            <li>Infections — influenza A and B, EBV, HIV, <em>Streptococcus pyogenes</em>, <em>Staphylococcus aureus</em></li>
+            <li>Metabolic and electrolyte disorders — non-ketotic hyperosmotic state, diabetic ketoacidosis</li>
+            <li>Idiopathic</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="scroll-hint">One review of 26 ICU patients found the cause was ischaemic by vascular obstruction (50%), crush injury by trauma (23%), sepsis (11.5%), heat stroke/hyperthermia (11.5%), and hyponatraemia in a single patient.</p>
+
+      <h4>Anaesthetic &amp; critical care relevance</h4>
+      <ul>
+        <li><strong>Alcohol</strong> is commonly associated. Coma — from alcohol or other causes — leads to prolonged muscle compression and ischaemia. Alcohol also damages the sarcolemma directly and can cause myopathy, leading to non-traumatic rhabdomyolysis. Chronic abuse renders muscle vulnerable to further damage.</li>
+        <li><strong>Recreational drugs:</strong> 24% of patients presenting with cocaine-related disorders in one emergency department developed rhabdomyolysis. In another study, 60% of ED patients with rhabdomyolysis tested positive for cocaine or amphetamine, and 45% were clinically intoxicated.</li>
+        <li><strong>Statins:</strong> widespread use; can cause rhabdomyolysis secondary to myopathy. Cerivastatin was withdrawn from the USA in 2001 (rhabdomyolysis rate 16–80× higher than other statins). Fatal rhabdomyolysis with statins is rare — fewer than one death per million prescriptions.</li>
+        <li><strong>Anaesthesia</strong> obscures the pain and paraesthesia of prolonged muscle compression that would disturb a conscious patient. Risk factors: prolonged immobility, tourniquets, non-invasive arterial pressure cuffs, poor perioperative positioning. Compression of discrete muscle groups may occur in the lower limbs in the lithotomy position, or at pressure points during pronation. Take particular care to prevent localised pressure effects in these at-risk patients.</li>
+        <li><strong>Disasters:</strong> incidence rises after wars or natural disasters. The term <em>&ldquo;renal disaster&rdquo;</em> describes a disaster where a substantial number of victims survive with major traumatic lesions, resulting in crush syndrome and renal failure.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 4. PATHOPHYSIOLOGY ============ -->
+  <details class="card">
+    <summary><span class="num">4</span><span class="title">Pathophysiology</span><span class="chev"></span></summary>
+    <div class="content">
+      <p>Rhabdomyolysis involves either <strong>direct sarcolemmic injury</strong> (usually trauma) or <strong>depletion of ATP within the myocyte</strong>.</p>
+      <ol>
+        <li>ATP stores maintain the ionic gradients across the cell membrane, including the <strong>calcium ATPase pumps</strong>.</li>
+        <li>ATP depletion impairs pump function → <strong>increased sarcoplasmic calcium</strong>.</li>
+        <li>Raised intracellular calcium → <strong>persistent contraction of the myofibril</strong>.</li>
+        <li>Sustained contraction → further energy depletion, activation of <strong>calcium-dependent neutral proteases and phospholipases</strong> → eventual disintegration of the myocyte.</li>
+      </ol>
+    </div>
+  </details>
+
+  <!-- ============ 5. METABOLIC DERANGEMENTS ============ -->
+  <details class="card">
+    <summary><span class="num">5</span><span class="title">Metabolic derangements</span><span class="chev"></span></summary>
+    <div class="content">
+      <p>After myocyte injury, intracellular contents are released into the circulation. <strong>Hyperkalaemia, hyperuricaemia and hyperphosphataemia</strong> can all develop rapidly.</p>
+      <ul>
+        <li><strong>Phosphate</strong> binds calcium → calcium-phosphate deposition in soft tissue.</li>
+        <li><strong>Calcium</strong> is lost from serum by entering damaged muscle cells → <strong>hypocalcaemia</strong>.</li>
+        <li><strong>Ischaemic muscle</strong> uses anaerobic metabolism (pyruvate → lactate) → <strong>metabolic acidosis</strong>.</li>
+        <li><strong>Hyperuricaemia</strong> results from metabolism of purines from disintegrated cell nuclei.</li>
+      </ul>
+      <div class="callout danger">
+        <span class="label">High-risk combination</span>
+        <p>The combination of <strong>hyperkalaemia + hypocalcaemia + acidosis</strong> is particularly dangerous.</p>
+      </div>
+      <h4>Recovery phase</h4>
+      <p>About <strong>one-third of patients develop hypercalcaemia</strong> during recovery. This may occur due to release of vitamin D stores from injured muscle, providing substrate for excess 1,25-dihydroxyvitamin D<sub>3</sub> production. Hypercalcaemia may be exacerbated if excess calcium was administered during the acute hypocalcaemic phase.</p>
+    </div>
+  </details>
+
+  <!-- ============ 6. MYOGLOBIN & AKI ============ -->
+  <details class="card">
+    <summary><span class="num">6</span><span class="title">Myoglobin &amp; acute kidney injury</span><span class="chev"></span></summary>
+    <div class="content">
+      <h4>Myoglobin handling</h4>
+      <p>Myoglobin is a dark red, haem-containing protein that stores and transports oxygen in muscle. Only small levels are normally present in plasma — this small amount is bound to plasma proteins and very little crosses the glomerulus. Myoglobin has a <strong>small molecular weight and is easily filtered</strong>. When this transport mechanism is overwhelmed, the renal threshold for free myoglobin is exceeded and <strong>myoglobin appears in the urine</strong>.</p>
+
+      <h4>Incidence</h4>
+      <p>During intensive care, the reported incidence of AKI after rhabdomyolysis may be as high as <strong>65%</strong>.</p>
+
+      <h4>Mechanisms</h4>
+      <ul>
+        <li><strong>Tubular obstruction</strong> — within the renal tubules, myoglobin interacts with the protein Tamm–Horsfall to form brown granular casts. This process is favoured when the urine is acidic; myoglobin may have no nephrotoxic effect when the urine is alkaline. Obstruction may be compounded by urate deposition from hyperuricaemia.</li>
+        <li><strong>Direct and ischaemic tubular injury</strong> — the haem group from myoglobin has been implicated in lipid peroxidation, with accompanying cytotoxic effects.</li>
+        <li><strong>Intrarenal vasoconstriction</strong> — scavenging of the vasodilator nitric oxide by myoglobin causes a deficit, compounding kidney injury. Renal blood flow is further reduced by hypovolaemia, activation of the renin–angiotensin system and additional vascular mediators.</li>
+      </ul>
+
+      <div class="callout info">
+        <span class="label">RIFLE criteria study</span>
+        <p>In a 44-month retrospective study of 135 consecutive patients with rhabdomyolysis, RIFLE criteria stratified AKI severity. At admission: <strong>44% no AKI</strong>, <strong>15% risk</strong>, <strong>24% injury</strong>, <strong>17% failure</strong>. These categories were associated with increasing magnitude of volume depletion, potassium, phosphate, urea and anion gap, and predicted differences in length of stay, dialysis, discharge creatinine, and rate of normalisation of admission creatinine.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 7. CLINICAL FEATURES ============ -->
+  <details class="card">
+    <summary><span class="num">7</span><span class="title">Clinical manifestation</span><span class="chev"></span></summary>
+    <div class="content">
+      <p>A <strong>high level of suspicion</strong> is required in patients suffering trauma, crush injury, or prolonged immobilisation.</p>
+      <ul>
+        <li><strong>Specific muscle group affected:</strong> history of weakness, myalgia and swelling in the affected limbs. Severe pain may limit passive limb movement and there may be reduced range of active movement.</li>
+        <li><strong>Compartment syndrome or crush injury:</strong> muscles may be tense and swollen, leading to nerve injury with sensory loss.</li>
+        <li><strong>Diffuse muscle injury</strong> (e.g. drugs): general malaise with diffuse myalgia and non-specific deterioration.</li>
+        <li><strong>Urine colour:</strong> rarely, patients volunteer that their urine has changed to a red or brown colour.</li>
+        <li><strong>Drugs:</strong> commonly offending drugs — statins, alcohol, heroin, cocaine — should be identified and withdrawn.</li>
+      </ul>
+      <div class="callout warn">
+        <span class="label">Watch for late deterioration</span>
+        <p>Clinical observations may initially be normal, or normalise after fluid resuscitation, only to <strong>deteriorate hours later</strong> as the condition progresses. Regular observations, <strong>including hourly urine output</strong>, are required to detect deterioration promptly.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 8. INVESTIGATIONS ============ -->
+  <details class="card">
+    <summary><span class="num">8</span><span class="title">Investigations</span><span class="chev"></span></summary>
+    <div class="content">
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only" style="position:absolute;left:-9999px">Investigations in rhabdomyolysis and possible findings</caption>
+          <thead>
+            <tr><th scope="col">Investigation</th><th scope="col">Possible findings</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Creatine kinase</td><td class="val">&gt;5000 units litre<sup>−1</sup></td></tr>
+            <tr><td>Serum and urine myoglobin</td><td class="val">Present</td></tr>
+            <tr><td>Urinary dipstick + pH</td><td class="val">Positive for blood</td></tr>
+            <tr><td>Urea and creatinine</td><td class="val">Raised</td></tr>
+            <tr><td>Potassium</td><td class="val">Raised</td></tr>
+            <tr><td>Calcium</td><td class="val">Low</td></tr>
+            <tr><td>Phosphate, uric acid</td><td class="val">Raised</td></tr>
+            <tr><td>Coagulation studies</td><td class="val">Prolonged in severe cases</td></tr>
+            <tr><td>Blood gas</td><td class="val">Lactic acidosis</td></tr>
+            <tr><td>Calculation of anion gap</td><td class="val">Raised</td></tr>
+            <tr><td>ECG</td><td class="val">Changes of hyperkalaemia</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">Scroll the table horizontally on narrow screens →</p>
+
+      <h4>Creatine kinase (CK)</h4>
+      <ul>
+        <li>Rhabdomyolysis is typically diagnosed when <strong>CK &gt; 5000 units litre<sup>−1</sup></strong> — five times the normal upper limit.</li>
+        <li>Myoglobin levels peak <em>before</em> CK rises, but myoglobin is metabolised rapidly at sites outside the kidney, making <strong>CK a more reliable marker</strong>.</li>
+        <li>CK is predominantly the skeletal muscle (<strong>MM</strong>) fraction rather than the myocardial (<strong>MB</strong>) fraction. A rise in CK-MB represents the small amount found in skeletal muscle, not cardiac injury.</li>
+        <li>CK typically peaks <strong>24–72 h</strong> after onset. If CK continues to rise beyond this period, consider an <strong>undiagnosed compartment syndrome</strong>.</li>
+      </ul>
+
+      <h4>Myoglobin</h4>
+      <ul>
+        <li>Serum and urine myoglobin can be measured directly, but not all laboratories offer this.</li>
+        <li>Detectable in urine when serum concentration exceeds the renal threshold of <strong>0.5–1.5 mg dl<sup>−1</sup></strong>; directly visible as reddish-brown urine when concentration exceeds <strong>100 mg dl<sup>−1</sup></strong>.</li>
+        <li>The rise in serum myoglobin precedes CK, and myoglobin is metabolised rapidly — levels may be undetectable by the time urine is tested. The assay for myoglobinuria is also insensitive, reducing detection frequency.</li>
+        <li><strong>Absence of myoglobinuria does not exclude rhabdomyolysis</strong> — in a study of 475 patients diagnosed by CK levels, myoglobinuria was detected in only 19%.</li>
+      </ul>
+
+      <h4>Urinary dipstick</h4>
+      <ul>
+        <li>Positive for blood in the presence of myoglobin, with a <strong>sensitivity of 81%</strong> for detecting rhabdomyolysis; far more frequent than a positive assay for myoglobinuria.</li>
+        <li><strong>False positives</strong> occur if urinary red cells are present (e.g. trauma), impairing reliability.</li>
+        <li>A rapid bedside test that can be used <strong>serially</strong> to assess resolution of myoglobinuria — a useful endpoint for fluid resuscitation.</li>
+      </ul>
+
+      <h4>Other</h4>
+      <ul>
+        <li>A <strong>metabolic acidosis with a high anion gap</strong> is commonly reported in rhabdomyolysis with associated AKI.</li>
+        <li><strong>Arterial blood gas</strong> allows monitoring of trends in pH and serum lactate to guide fluid resuscitation. Base excess and potassium can be used to make decisions about renal replacement therapy.</li>
+        <li><strong>Coagulation studies</strong> should be taken to exclude disseminated intravascular coagulation, which may occur in the more severe spectrum of rhabdomyolysis.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 9. MANAGEMENT ============ -->
+  <details class="card">
+    <summary><span class="num">9</span><span class="title">Management</span><span class="chev"></span></summary>
+    <div class="content">
+      <div class="callout info">
+        <span class="label">Mainstay</span>
+        <p><strong>Early fluid resuscitation</strong> is the most important measure in the prevention of AKI. Large volume depletion occurs due to sequestration of water by injured muscle.</p>
+      </div>
+
+      <h4>Monitoring</h4>
+      <ul>
+        <li><strong>Bladder catheterisation</strong> is required to monitor urine output accurately.</li>
+        <li><strong>Invasive monitoring</strong> — arterial and central venous pressure monitoring — should be considered to guide fluid resuscitation.</li>
+        <li>More advanced flow monitoring should be decided on the individual unit's preference and local availability.</li>
+        <li>Most studies target urine output of <strong>3 mL kg<sup>−1</sup> h<sup>−1</sup></strong> or <strong>&gt;300 mL h<sup>−1</sup></strong>.</li>
+      </ul>
+
+      <h4>Fluid choice</h4>
+      <p>Normal saline, compound sodium lactate (Hartmann's) and sodium bicarbonate have all been used in the literature as resuscitation fluids, with comparative merits and disadvantages:</p>
+      <ul>
+        <li><strong>Compound sodium lactate</strong> may aid urinary alkalinisation but should probably be avoided because it contains potassium.</li>
+        <li><strong>Normal saline</strong> is devoid of potassium and is more appropriate, but may contribute to hyperchloraemic acidosis.</li>
+      </ul>
+      <p>Volume resuscitation <strong>with polyuria should be continued until myoglobinuria is cleared</strong>, supported by a negative urinary dipstick for blood.</p>
+
+      <h4>Urinary alkalinisation — sodium bicarbonate</h4>
+      <ul>
+        <li><strong>Theoretical advantage:</strong> reduced precipitation of Tamm–Horsfall protein complexes in the alkaline urinary environment.</li>
+        <li><strong>Disadvantage:</strong> alkalinisation reduces ionised calcium, which may further exacerbate hypocalcaemia induced by phosphate–calcium precipitation.</li>
+        <li><strong>Administration:</strong> boluses of 50–100 mmol, or as 1.26% in volume resuscitation. The advantage of 1.26% sodium bicarbonate is avoidance of the hyperchloraemic acidosis associated with large volumes of sodium chloride infusion.</li>
+        <li><strong>Target urinary pH &gt; 6.5.</strong></li>
+        <li><strong>Evidence:</strong> lacking — a recent systematic review found no level 1–3 evidence to support its use in preventing AKI in rhabdomyolysis.</li>
+      </ul>
+
+      <h4>Mannitol</h4>
+      <ul>
+        <li><strong>Theoretical benefits:</strong> flushes nephrotoxic agents through the tubules, extracts fluid accumulated in injured muscle, and acts as a free radical scavenger.</li>
+        <li><strong>Caveat:</strong> may exacerbate hypovolaemia — therefore reserve for when urine output remains low despite normovolaemia.</li>
+        <li><strong>Monitoring:</strong> plasma osmolality and osmolal gap should be monitored. Discontinue if there is no improvement in urine output, or if the osmolal gap increases above <strong>55 mOsm kg<sup>−1</sup></strong>.</li>
+        <li><strong>Other diuretics</strong> are not appropriate in this setting.</li>
+        <li><strong>Evidence:</strong> again, no level 1–3 evidence to support mannitol for prevention of AKI.</li>
+      </ul>
+
+      <h4>Hyperkalaemia</h4>
+      <div class="callout danger">
+        <span class="label">Most life-threatening electrolyte abnormality</span>
+        <p>Of all the electrolyte abnormalities in rhabdomyolysis, <strong>hyperkalaemia is the most life-threatening</strong> and should be monitored and treated promptly.</p>
+      </div>
+      <ul>
+        <li><strong>Hyperkalaemic ECG changes:</strong> treat with <strong>calcium gluconate 10 mL of 10%</strong>.</li>
+        <li><strong>Potassium &gt; 6.5 mmol L<sup>−1</sup>:</strong> give <strong>insulin 10 IU in 50 mL of 50% dextrose over 15 min</strong> and <strong>nebulised salbutamol 10 mg</strong>.</li>
+      </ul>
+
+      <h4>Hypocalcaemia</h4>
+      <p>Should <strong>not</strong> be treated unless the patient becomes symptomatic or in the treatment of hyperkalaemia, as normocalcaemia usually occurs spontaneously.</p>
+
+      <h4>Renal replacement therapy</h4>
+      <p>Reserved for the management of <strong>hyperkalaemia, acidosis, or volume overload</strong>.</p>
+
+      <h4>Crush victims / mass disasters</h4>
+      <p>The European Renal Best Practice and Renal Disaster Relief Task Force of the International Society of Nephrology has produced recommendations for the management of crush victims in mass disasters. As the evidence base is sparse, these are based on retrospective analyses, case reports, position statements and expert judgement — representing a low grade of evidence. They describe basic life-saving interventions in the disaster field: <strong>early fluid resuscitation, extrication</strong>, and the medical and logistical recommendations that apply to major disasters.</p>
+    </div>
+  </details>
+
+  <!-- ============ 10. COMPARTMENT SYNDROME ============ -->
+  <details class="card">
+    <summary><span class="num">10</span><span class="title">Compartment syndrome</span><span class="chev"></span></summary>
+    <div class="content">
+      <p>Where compartment syndrome is suspected, initial management should focus on <strong>prompt diagnosis and relief of compartmental pressures</strong>.</p>
+      <ul>
+        <li><strong>Remove external pressure</strong> — dressings, casts, or rubble at trauma scenes.</li>
+        <li><strong>Oxygen</strong> should be administered.</li>
+        <li><strong>Analgesia</strong> — offered as pain often appears out of proportion to the injury sustained.</li>
+        <li><strong>Avoid hypotension</strong> — it further reduces limb perfusion.</li>
+        <li><strong>Urgent fasciotomy</strong> is commonly the definitive therapy and should be performed early. Delays in performing fasciotomy increase morbidity, including the need for amputation.</li>
+      </ul>
+      <div class="callout warn">
+        <span class="label">After fasciotomy</span>
+        <p>Patients should be closely monitored with <strong>serial CK levels and hourly urine output</strong> to detect impending rhabdomyolysis and AKI. High-risk patients with multiple injuries should be cared for in a <strong>critical care environment</strong>. Medical and surgical management of patients with established rhabdomyolysis should occur <strong>simultaneously</strong>.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 11. PROGNOSIS ============ -->
+  <details class="card">
+    <summary><span class="num">11</span><span class="title">Prognosis</span><span class="chev"></span></summary>
+    <div class="content">
+      <ul>
+        <li>Intensive care mortality from rhabdomyolysis has been reported as <strong>22% without AKI</strong> and <strong>59% with AKI</strong>.</li>
+        <li>However, the <strong>majority of survivors recover good renal function</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ SOURCE ============ -->
+  <div class="source">
+    <h4>Source</h4>
+    <p class="cite">Williams J, Thorpe C. <strong>Rhabdomyolysis.</strong> <em>Continuing Education in Anaesthesia, Critical Care &amp; Pain</em>, Volume 14, Number 4, 2014, p. 165.</p>
+    <p>Declaration of interest: none declared.</p>
+    <p class="disclaimer">This quick reference is a summary of the clinical content for educational use and does not replace local guidelines, full-text review, or clinical judgement.</p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var cards      = Array.prototype.slice.call(document.querySelectorAll("details.card"));
+  var searchEl   = document.getElementById("search");
+  var clearBtn   = document.getElementById("clearBtn");
+  var statusEl   = document.getElementById("status");
+  var expandAll  = document.getElementById("expandAll");
+  var collapseAll= document.getElementById("collapseAll");
+
+  // Store original markup + initial open state so searches are non-destructive
+  var originals = new Map();
+  cards.forEach(function (card) {
+    var content = card.querySelector(".content");
+    originals.set(card, {
+      html: content.innerHTML,
+      open: card.hasAttribute("open")
+    });
+  });
+
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function resetCard(card) {
+    var content = card.querySelector(".content");
+    content.innerHTML = originals.get(card).html;
+  }
+
+  function highlight(card, query) {
+    var content = card.querySelector(".content");
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) {
+      if (n.nodeValue && n.nodeValue.trim() !== "") nodes.push(n);
+    }
+
+    var re = new RegExp(escapeRegExp(query), "gi");
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      re.lastIndex = 0;
+      if (!re.test(text)) return;
+
+      re.lastIndex = 0;
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+
+      while ((m = re.exec(text)) !== null) {
+        if (m.index > last) {
+          frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        }
+        var mark = document.createElement("mark");
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        if (m[0].length === 0) re.lastIndex++; // guard against zero-length match
+      }
+      if (last < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function runSearch() {
+    var query = searchEl.value.trim();
+    clearBtn.style.display = query ? "block" : "none";
+
+    if (query.length < 2) {
+      cards.forEach(function (card) {
+        resetCard(card);
+        card.hidden = false;
+        card.open = originals.get(card).open;
+      });
+      statusEl.textContent = "";
+      statusEl.classList.remove("active");
+      return;
+    }
+
+    var matches = 0;
+
+    cards.forEach(function (card) {
+      resetCard(card);
+
+      var haystack = (card.querySelector("summary").textContent + " " +
+                      card.querySelector(".content").textContent).toLowerCase();
+      var hit = haystack.indexOf(query.toLowerCase()) !== -1;
+
+      if (hit) {
+        matches++;
+        card.hidden = false;
+        card.open = true;
+        highlight(card, query);
+      } else {
+        card.hidden = true;
+      }
+    });
+
+    statusEl.classList.add("active");
+    if (matches === 0) {
+      statusEl.textContent = 'No sections match \u201C' + query + '\u201D';
+    } else {
+      statusEl.textContent = matches + (matches === 1 ? " section matches " : " sections match ") +
+                             '\u201C' + query + '\u201D';
+    }
+  }
+
+  // Debounced input handling
+  var timer = null;
+  searchEl.addEventListener("input", function () {
+    clearTimeout(timer);
+    timer = setTimeout(runSearch, 140);
+  });
+
+  searchEl.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      searchEl.value = "";
+      runSearch();
+      searchEl.blur();
+    }
+  });
+
+  clearBtn.addEventListener("click", function () {
+    searchEl.value = "";
+    runSearch();
+    searchEl.focus();
+  });
+
+  expandAll.addEventListener("click", function () {
+    cards.forEach(function (card) { if (!card.hidden) card.open = true; });
+  });
+
+  collapseAll.addEventListener("click", function () {
+    cards.forEach(function (card) { card.open = false; });
+  });
+
+  // "/" focuses search, unless already typing in a field
+  document.addEventListener("keydown", function (e) {
+    var tag = (e.target.tagName || "").toLowerCase();
+    if (e.key === "/" && tag !== "input" && tag !== "textarea") {
+      e.preventDefault();
+      searchEl.focus();
+      searchEl.select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
