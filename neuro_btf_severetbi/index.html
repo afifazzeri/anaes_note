@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Severe TBI — Anaesthesia &amp; Critical Care Quick Reference (BTF 4th Ed.)</title>
+<style>
+  :root{
+    --bg:#eef2f7;
+    --panel:#ffffff;
+    --panel-2:#f7f9fc;
+    --text:#15202b;
+    --muted:#5c6c7d;
+    --line:#d9e2ec;
+    --accent:#0b64c4;
+    --accent-soft:#e7f0fb;
+    --l1:#b3261e;
+    --l1-soft:#fdecea;
+    --l2a:#a85f00;
+    --l2a-soft:#fdf2e2;
+    --l2b:#0b64c4;
+    --l2b-soft:#e7f0fb;
+    --l3:#2f7d32;
+    --l3-soft:#e9f5ea;
+    --insuf:#64748b;
+    --insuf-soft:#eef1f5;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(16,32,48,.06), 0 6px 18px rgba(16,32,48,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1620;
+      --panel:#161f2b;
+      --panel-2:#1b2635;
+      --text:#e6edf5;
+      --muted:#9db0c4;
+      --line:#2a3849;
+      --accent:#57a4f0;
+      --accent-soft:#12293f;
+      --l1:#ff8a80; --l1-soft:#3a1a18;
+      --l2a:#ffc46b; --l2a-soft:#3a2a12;
+      --l2b:#7fbcf7; --l2b-soft:#12293f;
+      --l3:#8bd48f; --l3-soft:#16301a;
+      --insuf:#a9b6c4; --insuf-soft:#222d3a;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  a{color:var(--accent)}
+  code{background:var(--panel-2);padding:.1em .35em;border-radius:4px;font-size:.9em}
+
+  /* ---------- layout ---------- */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px 72px}
+  header.hero{
+    background:linear-gradient(160deg,var(--accent) 0%, #0a3f78 100%);
+    color:#fff;
+    padding:28px 0 22px;
+    margin-bottom:18px;
+  }
+  @media (prefers-color-scheme: dark){
+    header.hero{background:linear-gradient(160deg,#123a63 0%, #0a1c2e 100%);}
+  }
+  header.hero .wrap{padding-bottom:0}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.82;margin:0 0 6px}
+  h1{margin:0 0 8px;font-size:clamp(20px,3.4vw,29px);line-height:1.2}
+  .sub{margin:0;opacity:.9;font-size:14px;max-width:70ch}
+  .badges{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  .badge{
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.25);
+    padding:4px 10px;border-radius:999px;font-size:12px;
+  }
+
+  /* ---------- toolbar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:10px;
+    margin:0 0 16px;
+    display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  }
+  .search-box{position:relative;flex:1 1 260px;min-width:200px}
+  .search-box svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.5}
+  #search{
+    width:100%;
+    padding:10px 34px 10px 34px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:var(--panel-2);
+    color:var(--text);
+    font-size:15px;
+    outline:none;
+  }
+  #search:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .btn{
+    border:1px solid var(--line);
+    background:var(--panel-2);
+    color:var(--text);
+    padding:9px 13px;
+    border-radius:9px;
+    font-size:13px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn:active{transform:translateY(1px)}
+
+  /* ---------- toc ---------- */
+  .toc{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px}
+  .toc a{
+    font-size:12.5px;
+    text-decoration:none;
+    background:var(--panel);
+    border:1px solid var(--line);
+    color:var(--text);
+    padding:5px 10px;border-radius:999px;
+  }
+  .toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ---------- group headings ---------- */
+  h2.group{
+    font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);margin:26px 0 10px;padding-bottom:6px;
+    border-bottom:2px solid var(--line);
+  }
+
+  /* ---------- cards ---------- */
+  details.card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    margin:0 0 9px;
+    overflow:hidden;
+  }
+  details.card[hidden]{display:none}
+  details.card>summary{
+    list-style:none;cursor:pointer;
+    padding:13px 44px 13px 14px;
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    position:relative;
+    font-weight:600;
+    font-size:15px;
+  }
+  details.card>summary::-webkit-details-marker{display:none}
+  details.card>summary:hover{background:var(--panel-2)}
+  details.card>summary::after{
+    content:"";
+    position:absolute;right:16px;top:50%;
+    width:8px;height:8px;
+    border-right:2px solid var(--muted);
+    border-bottom:2px solid var(--muted);
+    transform:translateY(-70%) rotate(45deg);
+    transition:transform .18s ease;
+  }
+  details.card[open]>summary::after{transform:translateY(-25%) rotate(225deg)}
+  .num{
+    flex:0 0 auto;
+    width:24px;height:24px;border-radius:7px;
+    background:var(--accent-soft);color:var(--accent);
+    display:grid;place-items:center;font-size:12.5px;font-weight:700;
+  }
+  .title{flex:1 1 auto;min-width:150px}
+  .card-body{padding:2px 16px 18px;border-top:1px solid var(--line)}
+
+  /* ---------- level chips ---------- */
+  .chip{
+    display:inline-block;
+    font-size:11px;font-weight:700;letter-spacing:.03em;
+    padding:2.5px 8px;border-radius:6px;white-space:nowrap;
+    border:1px solid transparent;
+  }
+  .c1{background:var(--l1-soft);color:var(--l1);border-color:var(--l1)}
+  .c2a{background:var(--l2a-soft);color:var(--l2a);border-color:var(--l2a)}
+  .c2b{background:var(--l2b-soft);color:var(--l2b);border-color:var(--l2b)}
+  .c3{background:var(--l3-soft);color:var(--l3);border-color:var(--l3)}
+  .cins{background:var(--insuf-soft);color:var(--insuf);border-color:var(--insuf)}
+
+  /* ---------- content blocks ---------- */
+  h4{
+    margin:16px 0 7px;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  h4:first-child{margin-top:12px}
+  ul{margin:6px 0;padding-left:19px}
+  li{margin:4px 0}
+  p{margin:8px 0}
+  .rec{
+    border-left:4px solid var(--accent);
+    background:var(--panel-2);
+    border-radius:0 8px 8px 0;
+    padding:10px 13px;
+    margin:10px 0;
+  }
+  .rec.warn{border-left-color:var(--l1);background:var(--l1-soft)}
+  .rec.caution{border-left-color:var(--l2a);background:var(--l2a-soft)}
+  .rec .lvl-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:5px}
+  .note{
+    font-size:13.5px;color:var(--muted);
+    background:var(--panel-2);border:1px dashed var(--line);
+    border-radius:8px;padding:9px 12px;margin:10px 0;
+  }
+
+  /* ---------- scrollable tables ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);
+    border-radius:9px;
+    margin:10px 0;
+    background:var(--panel);
+  }
+  .table-wrap table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px}
+  .table-wrap th,.table-wrap td{
+    text-align:left;padding:8px 11px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  .table-wrap thead th{
+    background:var(--panel-2);
+    font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--muted);position:sticky;top:0;
+  }
+  .table-wrap tbody tr:last-child td{border-bottom:none}
+  .table-wrap tbody tr:hover{background:var(--panel-2)}
+  .scroll-hint{font-size:11.5px;color:var(--muted);margin:-4px 0 10px}
+
+  /* ---------- flow diagrams ---------- */
+  .flow{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+    padding:14px;margin:10px 0;
+    background:var(--panel-2);
+    border:1px solid var(--line);border-radius:10px;
+  }
+  .fnode{
+    flex:1 1 150px;min-width:140px;
+    background:var(--panel);
+    border:1.5px solid var(--accent);
+    border-radius:9px;
+    padding:9px 11px;
+    font-size:13px;font-weight:600;text-align:center;
+  }
+  .fnode small{display:block;font-weight:400;color:var(--muted);font-size:11.5px;margin-top:3px}
+  .fnode.ghost{border-style:dashed;border-color:var(--line);color:var(--muted);font-weight:500}
+  .fnode.q{border-color:var(--line);font-weight:500}
+  .farrow{color:var(--accent);font-weight:700;font-size:17px;flex:0 0 auto}
+  .fstack{display:flex;flex-direction:column;gap:7px;flex:1 1 220px;min-width:200px}
+
+  /* ---------- misc ---------- */
+  #no-results{
+    display:none;text-align:center;padding:34px 16px;color:var(--muted);
+    background:var(--panel);border:1px dashed var(--line);border-radius:var(--radius);
+  }
+  #no-results.show{display:block}
+  footer{
+    margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--muted);
+  }
+  footer strong{color:var(--text)}
+  .src{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 16px;box-shadow:var(--shadow);
+  }
+  @media print{
+    .toolbar,.toc,header.hero .badges{display:none}
+    details.card{break-inside:avoid}
+    details.card>summary::after{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Anaesthesia &amp; Critical Care Quick Reference</p>
+    <h1>Management of Severe Traumatic Brain Injury</h1>
+    <p class="sub">Adult severe TBI (GCS 3–8 after resuscitation) — in-hospital treatments, monitoring and physiological thresholds. Distilled from the Brain Trauma Foundation Guidelines, 4th Edition.</p>
+    <div class="badges">
+      <span class="badge">18 topics</span>
+      <span class="badge">11 treatments</span>
+      <span class="badge">3 monitoring</span>
+      <span class="badge">4 thresholds</span>
+      <span class="badge">Evidence levels preserved</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ================= TOOLBAR ================= -->
+  <div class="toolbar">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Search topics, drugs, thresholds…  (press /)" autocomplete="off" aria-label="Search guidelines">
+    </div>
+    <button class="btn" id="expand-all" type="button">Expand all</button>
+    <button class="btn" id="collapse-all" type="button">Collapse all</button>
+  </div>
+
+  <!-- ================= TOC ================= -->
+  <nav class="toc" aria-label="Contents">
+    <a href="#framework">Frameworks &amp; grading</a>
+    <a href="#t1">Craniectomy</a>
+    <a href="#t2">Hypothermia</a>
+    <a href="#t3">Hyperosmolar</a>
+    <a href="#t4">CSF drainage</a>
+    <a href="#t5">Ventilation</a>
+    <a href="#t6">Sedation</a>
+    <a href="#t7">Steroids</a>
+    <a href="#t8">Nutrition</a>
+    <a href="#t9">Infection</a>
+    <a href="#t10">DVT</a>
+    <a href="#t11">Seizures</a>
+    <a href="#m12">ICP monitoring</a>
+    <a href="#m13">CPP monitoring</a>
+    <a href="#m14">Advanced monitoring</a>
+    <a href="#x15">BP thresholds</a>
+    <a href="#x16">ICP thresholds</a>
+    <a href="#x17">CPP thresholds</a>
+    <a href="#x18">ACM thresholds</a>
+    <a href="#source">Source</a>
+  </nav>
+
+  <div id="no-results">No topics match your search. Try a drug name, e.g. <em>propofol</em>, <em>mannitol</em>, or a threshold, e.g. <em>22 mm Hg</em>.</div>
+
+  <!-- =========================================================
+       FRAMEWORKS
+  ========================================================== -->
+  <h2 class="group" data-group>How to read this</h2>
+
+  <details class="card" id="framework" open>
+    <summary><span class="num">§</span><span class="title">Analytic frameworks &amp; levels of evidence</span><span class="chip cins">Orientation</span></summary>
+    <div class="card-body">
+
+      <h4>1 · Treatments</h4>
+      <div class="flow">
+        <div class="fnode">Adults with TBI</div>
+        <div class="farrow">→</div>
+        <div class="fstack">
+          <div class="fnode q">Q1 · Clinical outcomes<small>mortality · neurological function</small></div>
+          <div class="fnode q">Q2 · Harms</div>
+          <div class="fnode q">Q3 · Intermediate outcomes<small>e.g. ICP lowering</small></div>
+        </div>
+      </div>
+
+      <h4>2 · Monitoring</h4>
+      <p class="scroll-hint">Monitoring itself does not change outcome — it changes treatment. The “black box” (Q4) marks studies that never measured what treatment followed the monitor reading.</p>
+      <div class="flow">
+        <div class="fnode">Monitoring<small>ICP · CPP · ACM</small></div>
+        <div class="farrow">→</div>
+        <div class="fnode">Treatment change</div>
+        <div class="farrow">→</div>
+        <div class="fstack">
+          <div class="fnode q">Q1 · Clinical outcomes</div>
+          <div class="fnode q">Q2 / Q5 · Harms</div>
+          <div class="fnode q">Q3 · Intermediate outcomes</div>
+        </div>
+      </div>
+      <div class="flow">
+        <div class="fnode">Monitoring</div>
+        <div class="farrow">→</div>
+        <div class="fnode ghost">Black box<small>treatment not measured</small></div>
+        <div class="farrow">→</div>
+        <div class="fnode q">Q4 · Outcomes</div>
+      </div>
+
+      <h4>3 · Thresholds</h4>
+      <div class="flow">
+        <div class="fnode">Patients with TBI who are monitored</div>
+        <div class="farrow">→</div>
+        <div class="fnode">Value from monitoring<small>ICP · CPP · BP · SjO₂ · PbO₂</small></div>
+        <div class="farrow">→</div>
+        <div class="fstack">
+          <div class="fnode q">Q1 · Better clinical outcome</div>
+          <div class="fnode q">Q2 · Worse outcome / harm</div>
+          <div class="fnode q">Q3 · Intermediate outcomes</div>
+        </div>
+      </div>
+
+      <h4>Levels of recommendation (4th Edition)</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Level</th><th>Basis</th></tr></thead>
+          <tbody>
+            <tr><td><span class="chip c1">Level I</span></td><td>High-quality body of evidence</td></tr>
+            <tr><td><span class="chip c2a">Level II A</span></td><td>Moderate-quality body of evidence</td></tr>
+            <tr><td><span class="chip c2b">Level II B</span></td><td>Class 2 studies, direct evidence, overall <em>low</em> quality</td></tr>
+            <tr><td><span class="chip c3">Level III</span></td><td>Class 3 studies, or Class 2 studies providing only indirect evidence</td></tr>
+            <tr><td><span class="chip cins">Insufficient</span></td><td>No studies, or quality limitations preclude a conclusion → <strong>no recommendation made</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">The <strong>level of recommendation is driven by the quality of the body of evidence</strong>, not by the class of the individual studies. A single Class 1 study may support a Level I, a Level II, or no recommendation at all depending on applicability, consistency and precision.</p>
+
+      <h4>Scope</h4>
+      <ul>
+        <li>Adult, <strong>severe</strong> TBI (GCS 3–8) — in-hospital management only.</li>
+        <li>Topics are limited to those that are <strong>TBI-specific</strong>; general trauma/ICU good practice is excluded.</li>
+        <li>Recommendations are made <strong>only where evidence exists</strong> — this is not a complete clinical protocol.</li>
+        <li>This edition is transitional: the BTF is moving to a <strong>“Living Guidelines”</strong> model of continuous literature monitoring.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- =========================================================
+       PART I — TREATMENTS
+  ========================================================== -->
+  <h2 class="group" data-group>Part I · Treatments</h2>
+
+  <!-- 1 DC -->
+  <details class="card" id="t1">
+    <summary><span class="num">1</span><span class="title">Decompressive craniectomy</span><span class="chip c2a">Level II A</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I</span><span>Insufficient evidence to support a Level I recommendation.</span></div>
+      </div>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip c2a">Level II A</span></div>
+        <strong>Bifrontal DC is NOT recommended</strong> to improve outcomes (GOS-E at 6 months) in severe TBI with <em>diffuse injury without mass lesions</em> and ICP elevation &gt;20 mm Hg for &gt;15 minutes within a 1-hour period refractory to first-tier therapies. <em>However</em>, the procedure reduces ICP and minimises ICU days.
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c2a">Level II A</span></div>
+        A <strong>large frontotemporoparietal DC</strong> (not less than 12 × 15 cm, or 15 cm diameter) is recommended <strong>over a small frontotemporoparietal DC</strong> for reduced mortality and improved neurological outcomes.
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>Design / N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Cooper 2011 (DECRA)</td>
+              <td>Class 1 RCT, N=155<br>DC 73 vs no DC 82</td>
+              <td>Worse GOS-E at 6 months with DC — OR 1.84 (95% CI 1.05–3.24), p=0.03.<br>Mean ICP after randomisation 14.4 vs 19.1 mm Hg, p&lt;0.001.<br>ICU days 13 vs 18, p&lt;0.001.<br>Mortality at 6 months 19% vs 18%.<br><em>Post hoc</em> adjustment for baseline pupil reactivity → differences no longer significant.</td>
+            </tr>
+            <tr>
+              <td>Jiang 2005</td>
+              <td>Class 2 RCT, N=486<br>Standard (12×15 cm) vs limited (6×8 cm)</td>
+              <td>GOS 4–5: 39.8% vs 28.6%, p=0.05. Mortality 26.2% vs 35.1%, p&lt;0.05 (favouring larger flap).</td>
+            </tr>
+            <tr>
+              <td>Qiu 2009</td>
+              <td>Class 2 RCT, N=74<br>Large (15 cm) vs routine temporoparietal</td>
+              <td>Mortality at 1 month 27% vs 57%, p=0.010. Good outcome (GOS 4–5) at 1 year 56.8% vs 32.4%, p=0.035. More delayed haematoma and subdural effusion with larger DC.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>Committee caveat:</strong> the RESCUEicp results may alter these recommendations — check <code>https://braintrauma.org/coma/guidelines</code> for updates before applying.</p>
+    </div>
+  </details>
+
+  <!-- 2 Hypothermia -->
+  <details class="card" id="t2">
+    <summary><span class="num">2</span><span class="title">Prophylactic hypothermia</span><span class="chip c2b">Level II B</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I</span><span class="chip cins">Level II A</span><span>Insufficient evidence to support either.</span></div>
+      </div>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip c2b">Level II B</span></div>
+        <strong>Early (within 2.5 hours), short-term (48 hours post-injury) prophylactic hypothermia is NOT recommended</strong> to improve outcomes in patients with diffuse injury. There is insufficient evidence to make a recommendation outside these conditions.
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>Design / N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Clifton 2011 (NABIS:H II)</td>
+              <td>Class 1 RCT, N=97<br>Hypothermia 52 vs normothermia 45</td>
+              <td>Mortality 12/52 vs 8/45 — RR 1.30 (95% CI 0.58–2.52), p=0.52.<br>Poor outcome RR 1.08 (95% CI 0.76–1.53), p=0.67.<br>Subgroups: diffuse injury 70% vs 50% poor outcome (p=0.09); <em>surgically evacuated haematoma</em> 33% vs 69% (p=0.02, favouring hypothermia).<br>Study stopped for futility.</td>
+            </tr>
+            <tr>
+              <td>Clifton 2001</td>
+              <td>Class 2 RCT, N=392</td>
+              <td>Mortality 28% vs 27%, p=0.79. Severe disability/vegetative/dead 57% in both groups. Trend to harm in patients hypothermic on arrival randomised to normothermia.</td>
+            </tr>
+            <tr>
+              <td>Jiang 2000</td>
+              <td>Class 2 RCT, N=87 (China)</td>
+              <td>Mortality at 1 year 25.6% vs 45.5%; better GOS at 1 year 46.5% vs 27.3%, p&lt;0.05.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="note"><strong>Why no meta-analysis this edition:</strong> the hypothermia protocols differed in clinically important ways — target temperature (32–33 °C to 33–35 °C), cooling duration (24 h to 14 days), and rewarming rate (spontaneous to 1 °C/hour). Pooling was judged inappropriate. There is <strong>insufficient</strong> evidence on duration of cooling and on head-only vs systemic cooling.</p>
+    </div>
+  </details>
+
+  <!-- 3 Hyperosmolar -->
+  <details class="card" id="t3">
+    <summary><span class="num">3</span><span class="title">Hyperosmolar therapy</span><span class="chip cins">Insufficient</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II / III</span></div>
+        Although hyperosmolar therapy may lower ICP, there was <strong>insufficient evidence about effects on clinical outcomes</strong> to support a specific recommendation, or to support use of any specific hyperosmolar agent, in severe TBI.
+      </div>
+      <p>The Committee is universally of the view that hyperosmolar agents are useful — but current literature does not meet contemporary evidence-based criteria. The 3rd Edition recommendations are <em>restated</em> below for recognition only; they are <strong>not supported</strong> by evidence meeting current standards.</p>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip c2a">Carried over — not currently evidence-supported</span></div>
+        <ul>
+          <li>Mannitol is effective for control of raised ICP at <strong>0.25–1 g/kg</strong> body weight.</li>
+          <li><strong>Avoid arterial hypotension</strong> (systolic BP &lt; 90 mm Hg).</li>
+          <li>Restrict mannitol use <em>prior to ICP monitoring</em> to patients with signs of transtentorial herniation, or progressive neurological deterioration not attributable to extracranial causes.</li>
+        </ul>
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>Design / N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Mangat 2014</td>
+              <td>Class 2 retrospective cohort, N=73<br>Hypertonic saline vs mannitol</td>
+              <td>2-week mortality not significantly different (OR 0.50, 95% CI 0.05–5.51, p=0.56).<br>Cumulative ICP burden 15.2% vs 36.5%, p=0.003.<br>Daily ICP burden 0.3 vs 1.3 hours/day, p=0.001.<br>ICU days 8.5 vs 9.8, p=0.004.<br>HTS more effective at lowering ICP burden; no mortality effect.</td>
+            </tr>
+            <tr>
+              <td>Cottenceau 2011</td>
+              <td>Class 3 RCT, N=47</td>
+              <td>No significant difference in time with ICP &gt;20 mm Hg, or GOS at 6 months.</td>
+            </tr>
+            <tr>
+              <td>Ichai 2009</td>
+              <td>Class 3 RCT, N=34<br>Sodium lactate vs mannitol</td>
+              <td>ICP significantly lower with sodium lactate (p=0.016); better 1-year GOS but not powered for this.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- 4 CSF drainage -->
+  <details class="card" id="t4">
+    <summary><span class="num">4</span><span class="title">Cerebrospinal fluid (EVD) drainage</span><span class="chip c3">Level III</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c3">Level III</span></div>
+        <ul>
+          <li>An EVD system <strong>zeroed at the midbrain with continuous drainage</strong> of CSF may be considered to lower ICP burden more effectively than intermittent use.</li>
+          <li>Use of CSF drainage to lower ICP in patients with an <strong>initial GCS &lt; 6 during the first 12 hours after injury</strong> may be considered.</li>
+        </ul>
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>Design / N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Nwachuku 2013</td>
+              <td>Class 3 retrospective cohort, N=62<br>Continuous (open) vs intermittent (closed)</td>
+              <td>Area under ICP curve 962.7 vs 608.8, p&lt;0.0001.<br>Area under ICP curve above 20 mm Hg 59.7 vs 17.2, p=0.0002.<br>6-month survival 71.0% vs 77.4%, p=0.56; favourable GOS 42% vs 26%, p=0.35.<br>Closed EVD → significantly higher ICP burden.</td>
+            </tr>
+            <tr>
+              <td>Griesdale 2010</td>
+              <td>Class 3 retrospective cohort, N=171<br>EVD 93 vs no EVD 73</td>
+              <td>In-hospital mortality, all patients OR 2.76 (95% CI 1.07–7.08), p=0.04.<br><strong>GCS &lt; 6: OR 0.76 (0.18–3.2), p=0.71</strong> (favouring EVD).<br><strong>GCS ≥ 6: OR 5.6 (1.7–18.4), p&lt;0.01</strong> (harm).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Both studies were single-centre, retrospective, and underpowered to detect infrequent complications. Continuous drainage may be superior for ICP lowering, but this needs multi-institutional verification with complications assessed.</p>
+    </div>
+  </details>
+
+  <!-- 5 Ventilation -->
+  <details class="card" id="t5">
+    <summary><span class="num">5</span><span class="title">Ventilation therapies (hyperventilation)</span><span class="chip c2b">Level II B</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II A</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip c2b">Level II B</span></div>
+        <strong>Prolonged prophylactic hyperventilation with PaCO₂ ≤ 25 mm Hg is NOT recommended.</strong>
+      </div>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip c2a">Carried over from 3rd Edition — not currently evidence-supported</span></div>
+        <ul>
+          <li>Hyperventilation is recommended as a <strong>temporising measure</strong> for reduction of elevated ICP.</li>
+          <li>Hyperventilation <strong>should be avoided during the first 24 hours</strong> after injury, when CBF is often critically reduced.</li>
+          <li>If hyperventilation is used, monitor <strong>SjO₂ or BtpO₂</strong> to monitor oxygen delivery.</li>
+        </ul>
+      </div>
+
+      <h4>Key evidence — Muizelaar 1991</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Design</th><th>Groups</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Class 2 RCT, N=113</td>
+              <td>Control PaCO₂ 35 ± 2 mm Hg (n=41)<br>HV PaCO₂ 25 ± 2 mm Hg (n=36)<br>HV + tromethamine (n=36)</td>
+              <td>3 months: HV worse, p&lt;0.03. 6 months: HV worse, p&lt;0.05. 12 months: not statistically significant.<br>Effect driven by patients with motor GCS 4–5; no difference in motor score 1–3.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Normal ventilation is the goal in the absence of cerebral herniation; normal PaCO₂ 35–45 mm Hg. CBF is linearly responsive to PaCO₂ between 20 and 80 mm Hg.</p>
+    </div>
+  </details>
+
+  <!-- 6 Sedation -->
+  <details class="card" id="t6">
+    <summary><span class="num">6</span><span class="title">Anaesthetics, analgesics &amp; sedatives</span><span class="chip c2b">Level II B</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II A</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip c2b">Level II B</span></div>
+        <ul>
+          <li>Administration of <strong>barbiturates to induce burst suppression</strong> on EEG as <em>prophylaxis</em> against intracranial hypertension is <strong>not recommended</strong>.</li>
+          <li><strong>High-dose barbiturates are recommended</strong> to control elevated ICP refractory to maximum standard medical and surgical treatment. <strong>Haemodynamic stability is essential before and during barbiturate therapy.</strong></li>
+          <li><strong>Propofol is recommended for control of ICP</strong>, but <strong>not</strong> for improvement in mortality or 6-month outcomes. Caution is required — high-dose propofol can produce significant morbidity.</li>
+        </ul>
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Drug / question</th><th>Study</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Prophylactic barbiturates</td>
+              <td>Ward 1985<br>Class 2 RCT, N=53</td>
+              <td>No significant difference in mortality or 1-year GOS. <strong>Hypotension (SBP &lt; 80 mm Hg) in 54% vs 7%, p&lt;0.001.</strong></td>
+            </tr>
+            <tr>
+              <td>Barbiturates for refractory ICP</td>
+              <td>Eisenberg 1988<br>Class 2 RCT, N=73</td>
+              <td>ICP more likely to be controlled on barbiturates (odds ~2×). Survival in responders 92% vs 17% in non-responders. <strong>No benefit if hypotensive prior to randomisation.</strong></td>
+            </tr>
+            <tr>
+              <td>Propofol vs morphine</td>
+              <td>Kelly 1999<br>Class 2 RCT, N=42</td>
+              <td>Favourable 6-month outcome 52.5% vs 47.4%. ICP and therapy intensity level lower on day 3 with propofol, p&lt;0.05. No mortality effect. <em>Post hoc</em>: high-dose propofol favourable outcome 70% vs 38.5% low-dose, p&lt;0.05.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>Propofol infusion syndrome</strong> — hyperkalaemia, hepatomegaly, lipaemia, metabolic acidosis, myocardial failure, rhabdomyolysis, renal failure and death. Extreme caution with doses &gt;5 mg/kg/hour or any dose exceeding 48 hours in critically ill adults. The Cochrane review concluded there is no evidence that barbiturates improve outcome, and that the hypotensive effect offsets any ICP-lowering benefit on cerebral perfusion pressure.</p>
+    </div>
+  </details>
+
+  <!-- 7 Steroids -->
+  <details class="card" id="t7">
+    <summary><span class="num">7</span><span class="title">Steroids</span><span class="chip c1">Level I — contraindicated</span></summary>
+    <div class="card-body">
+      <div class="rec warn">
+        <div class="lvl-line"><span class="chip c1">Level I</span></div>
+        <strong>The use of steroids is not recommended for improving outcome or reducing ICP.</strong> In patients with severe TBI, <strong>high-dose methylprednisolone was associated with increased mortality and is contraindicated.</strong>
+      </div>
+
+      <h4>Key evidence — CRASH trial</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Outcome</th><th>Methylprednisolone vs placebo</th></tr></thead>
+          <tbody>
+            <tr><td>Design</td><td>Class 1 RCT — 10,008 patients, 239 hospitals, 49 countries. Severe TBI subgroup 3,966. Stopped early for harm.</td></tr>
+            <tr><td>2-week mortality — severe TBI</td><td>39.8% vs 34.8% — RR 1.14 (95% CI 1.05–1.23), p=0.0013</td></tr>
+            <tr><td>2-week mortality — all patients</td><td>21.1% vs 17.9% — RR 1.18 (95% CI 1.09–1.27), p=0.0001</td></tr>
+            <tr><td>6-month mortality</td><td>25.7% vs 22.3% (95% CI 1.07–1.24; p=0.0001)</td></tr>
+            <tr><td>Unfavourable outcome at 6 months</td><td>38.1% vs 36.3% — RR 1.05 (95% CI 0.99–1.10), p=0.079</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">The increased mortality was not due to infection or gastrointestinal bleeding. Earlier smaller RCTs (Saul 1981, Marshall 1998 with tirilazad mesylate, N=957) also found no benefit. Quality of the body of evidence: <strong>high</strong>.</p>
+    </div>
+  </details>
+
+  <!-- 8 Nutrition -->
+  <details class="card" id="t8">
+    <summary><span class="num">8</span><span class="title">Nutrition</span><span class="chip c2a">Level II A</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c2a">Level II A</span></div>
+        Feeding patients to attain <strong>basal caloric replacement at least by the fifth day and, at most, by the seventh day post-injury</strong> is recommended to decrease mortality.
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c2b">Level II B</span></div>
+        <strong>Transgastric jejunal feeding</strong> is recommended to reduce the incidence of ventilator-associated pneumonia.
+      </div>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip cins">Glycaemic control</span><span class="chip cins">Vitamins/supplements</span></div>
+        Evidence was <strong>inconsistent and insufficient</strong> to support a recommendation on glycaemic control, and <strong>insufficient</strong> for vitamins and supplements.
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Question</th><th>Study</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td rowspan="3">Timing of feeding</td>
+              <td>Hartl 2008<br>Class 2 retrospective cohort, N=797</td>
+              <td>Not fed within 7 days — OR 4.10 (95% CI 1.80–9.32) for 2-week mortality, p=0.0008.<br>Never fed within 5 days — OR 2.06 (95% CI 1.04–4.06), p=0.04.</td>
+            </tr>
+            <tr>
+              <td>Rapp 1983<br>Class 2 RCT, N=38</td>
+              <td>8 deaths in enteral group vs 0 in parenteral group in first 18 days, p&lt;0.001.</td>
+            </tr>
+            <tr>
+              <td>Taylor 1999<br>Class 2 RCT, N=82</td>
+              <td>Trend to better 3-month GOS with accelerated feeding; no difference at 6 months; fewer infections.</td>
+            </tr>
+            <tr>
+              <td>Method of feeding</td>
+              <td>Acosta-Escribano 2010<br>Class 2 RCT, N=104</td>
+              <td>Transpyloric vs gastric: lower incidence of all pneumonia — OR 0.3 (95% CI 0.1–0.7), p=0.01. Late pneumonia OR 0.2 (0.1–0.9), p=0.02. Greater delivered volume (92% vs 84%), p&lt;0.01.</td>
+            </tr>
+            <tr>
+              <td rowspan="3">Glycaemic control</td>
+              <td>Bilotta 2008 (N=97)</td>
+              <td>More hypoglycaemic episodes with intensive insulin (p&lt;0.0001); no mortality difference.</td>
+            </tr>
+            <tr>
+              <td>Coester 2010 (N=88)</td>
+              <td>No benefit in neurological outcome, mortality, infection or ICU stay; significantly more hypoglycaemia.</td>
+            </tr>
+            <tr>
+              <td>Yang 2009 (N=240)</td>
+              <td>No mortality difference; reduced infection (31.4% vs 46.2%, p&lt;0.05), fewer NICU days, better 6-month GOS.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- 9 Infection -->
+  <details class="card" id="t9">
+    <summary><span class="num">9</span><span class="title">Infection prophylaxis (VAP &amp; EVD)</span><span class="chip c2a">Level II A / III</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c2a">Level II A</span></div>
+        <ul>
+          <li><strong>Early tracheostomy is recommended to reduce mechanical ventilation days</strong> when the overall benefit is felt to outweigh the complications. However, there is <strong>no evidence that early tracheostomy reduces mortality or the rate of nosocomial pneumonia</strong>.</li>
+          <li><strong>Povidone-iodine oral care is NOT recommended</strong> to reduce VAP, and <strong>may cause an increased risk of acute respiratory distress syndrome</strong>.</li>
+        </ul>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c3">Level III</span></div>
+        <strong>Antimicrobial-impregnated catheters may be considered</strong> to prevent catheter-related infections during EVD.
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Approach</th><th>Study</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td rowspan="2">Timing of tracheostomy</td>
+              <td>Bouderka 2004<br>Class 2 RCT, N=62</td>
+              <td>Pneumonia 58% vs 61.3%, p=0.79; death 38.7% vs 22.5%, p=0.27. Fewer overall ventilation days with early tracheostomy; ICU days not reduced.</td>
+            </tr>
+            <tr>
+              <td>Sugerman 1997<br>Class 2 RCT, N=67 TBI</td>
+              <td>No significant difference in pneumonia or death.</td>
+            </tr>
+            <tr>
+              <td rowspan="2">Povidone-iodine oral care</td>
+              <td>Seguin 2006<br>Class 2 RCT, N=98</td>
+              <td>VAP: PI 8% vs saline 39% (p=0.003) vs control 42% (p=0.001). Single site, unblinded.</td>
+            </tr>
+            <tr>
+              <td>Seguin 2014<br>Class 1 RCT, N=179</td>
+              <td><strong>Failed to replicate:</strong> VAP 31% vs 28% — RR 1.11 (95% CI 0.67–1.82), p=0.69. TBI subgroup 32% vs 25%, p=0.346. <strong>ARDS: 5 vs 0 cases, p=0.06.</strong></td>
+            </tr>
+            <tr>
+              <td>Prophylactic antibiotics</td>
+              <td>Sirvent 1997<br>Class 2 RCT, N=100 (86% TBI)</td>
+              <td>Pneumonia 24% vs 50% (significant); <strong>no difference in mortality</strong>. Recommendation <em>not</em> carried forward — harms of resistant organisms.</td>
+            </tr>
+            <tr>
+              <td>Antimicrobial-impregnated catheters</td>
+              <td>Wang 2013 meta-analysis<br>N=3,038</td>
+              <td>Overall CFI rate 3.6% vs 13.7% — OR 0.25 (95% CI 0.12–0.52), p&lt;0.05. 20-day infection rate HR 0.52 (0.29–0.95). Catheter colonisation OR 0.37 (0.21–0.64).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- 10 DVT -->
+  <details class="card" id="t10">
+    <summary><span class="num">10</span><span class="title">Deep vein thrombosis prophylaxis</span><span class="chip c3">Level III</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip c3">Level III</span></div>
+        <ul>
+          <li><strong>LMWH or low-dose unfractionated heparin may be used in combination with mechanical prophylaxis.</strong> However, there is an <strong>increased risk for expansion of intracranial haemorrhage</strong>.</li>
+          <li>In addition to compression stockings, pharmacologic prophylaxis may be considered <strong>if the brain injury is stable</strong> and the benefit is considered to outweigh the risk of increased intracranial haemorrhage.</li>
+          <li><strong>Insufficient evidence</strong> regarding the preferred agent, dose, or timing of pharmacologic prophylaxis.</li>
+        </ul>
+      </div>
+
+      <h4>Key evidence (all Class 3 — indirect, mixed-severity populations)</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Kwiat 2012</td><td>1,215</td>
+              <td>Progression of bleed 42% vs 24%, p&lt;0.0001. Progression after LMWH 14.5%. Neurosurgical intervention 14.5% vs 4.9%, p&lt;0.001. VTE 9.1% vs 3.1%, p&lt;0.001. <em>Risk may exceed benefit.</em></td>
+            </tr>
+            <tr>
+              <td>Mohseni 2012</td><td>78</td>
+              <td>Mortality 5% vs 19%, p=0.001. VTE 11% vs 30%; OR for VTE in control 3.5 (95% CI 1.0–12.1), p=0.002. No adverse outcomes reported.</td>
+            </tr>
+            <tr>
+              <td>Scudday 2011</td><td>812</td>
+              <td>VTE 1% vs 3%, p=0.019. Injury progression 6% vs 3%, p=0.055 (not significant).</td>
+            </tr>
+            <tr>
+              <td>Daley 2015</td><td>271 (craniotomy)</td>
+              <td>No significant difference in VTE, ventilation days or LOS. Significantly higher in-hospital mortality in untreated group.</td>
+            </tr>
+            <tr>
+              <td>Farooqui 2013 (protocol)</td><td>236</td>
+              <td>DVT 0% vs 5.6%, p=0.0080. PE and increase in ICH not significantly different.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">TBI is associated with up to <strong>54% incidence of DVT</strong> without prophylaxis, and <strong>25% in isolated TBI</strong> treated with sequential compression devices alone. Age, subarachnoid haemorrhage, ISS &gt; 15 and extremity injury are predictors.</p>
+    </div>
+  </details>
+
+  <!-- 11 Seizures -->
+  <details class="card" id="t11">
+    <summary><span class="num">11</span><span class="title">Seizure prophylaxis</span><span class="chip c2a">Level II A</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c2a">Level II A</span></div>
+        <ul>
+          <li>Prophylactic use of <strong>phenytoin or valproate is NOT recommended for preventing late post-traumatic seizures</strong>.</li>
+          <li><strong>Phenytoin IS recommended to decrease the incidence of early PTS (within 7 days of injury)</strong>, when the overall benefit is felt to outweigh the complications associated with such treatment. However, <strong>early PTS have not been associated with worse outcomes</strong>.</li>
+          <li><strong>Insufficient evidence</strong> to recommend levetiracetam over phenytoin regarding efficacy in preventing early PTS or toxicity.</li>
+        </ul>
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>Design / N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Temkin 1990</td>
+              <td>Class 2 RCT, N=404<br>Phenytoin vs placebo</td>
+              <td><strong>Early PTS reduced from 14.2% to 3.6%</strong>, RR 0.27 (95% CI 0.12–0.62), p&lt;0.001.<br>Late PTS: 21.5% vs 15.7% at day 8–1 year, p&gt;0.2 — <em>no significant effect</em>.</td>
+            </tr>
+            <tr>
+              <td>Temkin 1999</td>
+              <td>Class 2 RCT, N=379<br>Phenytoin vs valproate</td>
+              <td>Early PTS 1.5% vs 4.5%. Late PTS no significant difference. Trend toward higher mortality in valproate groups.</td>
+            </tr>
+            <tr>
+              <td>Dikmen 1991</td>
+              <td>Class 2 RCT, N=244 (severe TBI subgroup 71)</td>
+              <td>At 1 month, phenytoin group performed significantly <em>more poorly</em> on neurobehavioural measures; no significant effect at 12 months.</td>
+            </tr>
+            <tr>
+              <td>Inaba 2013</td>
+              <td>Class 2 prospective observational, N=813<br>Levetiracetam vs phenytoin</td>
+              <td>No difference in seizure rate (1.5% vs 1.5%, p=0.997), adverse drug reactions (7.9% vs 10.3%), or mortality (5.4% vs 3.7%).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Risk factors for early PTS: GCS ≤ 10, immediate seizures, post-traumatic amnesia &gt; 30 min, linear or depressed skull fracture, penetrating head injury, subdural/epidural/intracerebral haematoma, cortical contusion, age ≤ 65, chronic alcoholism.</p>
+    </div>
+  </details>
+
+  <!-- =========================================================
+       PART II — MONITORING
+  ========================================================== -->
+  <h2 class="group" data-group>Part II · Monitoring</h2>
+
+  <!-- 12 ICP monitoring -->
+  <details class="card" id="m12">
+    <summary><span class="num">12</span><span class="title">Intracranial pressure monitoring</span><span class="chip c2b">Level II B</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II A</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c2b">Level II B</span></div>
+        Management of severe TBI patients using information from ICP monitoring is recommended to <strong>reduce in-hospital and 2-week post-injury mortality</strong>.
+      </div>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip c2a">Carried over from 3rd Edition — not currently evidence-supported</span></div>
+        <ul>
+          <li>ICP should be monitored in <strong>all salvageable patients with severe TBI (GCS 3–8 after resuscitation) and an abnormal CT scan</strong> — i.e. haematomas, contusions, swelling, herniation, or compressed basal cisterns.</li>
+          <li>ICP monitoring is indicated in severe TBI with a <strong>normal CT scan if two or more</strong> of the following: age &gt; 40 years, unilateral or bilateral motor posturing, systolic BP &lt; 90 mm Hg.</li>
+        </ul>
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>Design / N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Chesnut 2012 (BEST TRIP)</td>
+              <td>Class 1 RCT, N=324<br>ICP-monitored vs imaging/clinical exam</td>
+              <td>6-month mortality 39% vs 41%, p=0.6. Unfavourable outcome 17% vs 17%. Favourable 44% vs 39%, p=0.4. <strong>No difference between strategies.</strong> Conducted in Bolivia and Ecuador.</td>
+            </tr>
+            <tr>
+              <td>Alali 2013</td>
+              <td>Class 2 retrospective cohort, N=10,628<br>155 trauma centres</td>
+              <td>ICP monitoring associated with significantly lower odds of death — adjusted OR 0.44 (95% CI 0.31–0.63), p&lt;0.0001. Effect more pronounced under age 65.</td>
+            </tr>
+            <tr>
+              <td>Farahvar 2012</td>
+              <td>Class 2 retrospective cohort, N=1,307</td>
+              <td>Adjusted OR for 2-week mortality 0.64 (95% CI 0.41–1.00), p=0.05 (adults).</td>
+            </tr>
+            <tr>
+              <td>Talving 2013</td>
+              <td>Class 2 prospective cohort, N=216</td>
+              <td>Adjusted OR mortality 0.15 (95% CI −0.03 to 0.74), p=0.019. Mortality due to brain herniation OR 0.34 (0.10–0.87), p=0.046.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Evidence from the multi-centre Class 1 RCT <strong>tempers but does not negate</strong> the observational data. Intracranial hypertension is an important secondary insult and its alleviation is pivotal to good care. The RCT was conducted in settings with limited pre-hospital care and where monitors are uncommon — applicability concerns have been raised.</p>
+    </div>
+  </details>
+
+  <!-- 13 CPP monitoring -->
+  <details class="card" id="m13">
+    <summary><span class="num">13</span><span class="title">Cerebral perfusion pressure monitoring</span><span class="chip c2b">Level II B</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c1">Level I</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c2b">Level II B</span></div>
+        Management of severe TBI patients using <strong>guidelines-based recommendations for CPP monitoring</strong> is recommended to <strong>decrease 2-week mortality</strong>.
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>Design / N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Gerber 2013</td>
+              <td>Class 2 retrospective cohort, N=2,320<br>22 New York State trauma centres</td>
+              <td>Age-adjusted 2-week mortality fell 22.4% (2001–03) → 19.7% (04–06) → <strong>13.3% (07–09)</strong>.<br>CPP monitoring compliance rose from 14.6% → 34.2% → <strong>48.2%</strong> — the largest increase of all guideline components analysed.</td>
+            </tr>
+            <tr>
+              <td>Huang 2006</td>
+              <td>Class 3 retrospective cohort, N=213</td>
+              <td>ICP-targeted therapy had higher mortality than CPP-targeted (p=0.02) and modified-CPP-targeted (p=0.03) groups. No difference between CPP &gt;70 and CPP &gt;60 groups.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">CPP is the gradient across the cerebral vascular bed: normally MAP − JVP, but in TBI it is effectively <strong>MAP − mean ICP</strong>. It can only be calculated when ICP is known.</p>
+    </div>
+  </details>
+
+  <!-- 14 ACM -->
+  <details class="card" id="m14">
+    <summary><span class="num">14</span><span class="title">Advanced cerebral monitoring</span><span class="chip c3">Level III</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II</span><span>Insufficient evidence. Although patients with desaturations identified by advanced monitoring have poorer outcomes, Level II evidence showed <strong>no improvement in outcomes for monitored patients</strong>.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c3">Level III</span></div>
+        <strong>Jugular bulb monitoring of arteriovenous oxygen content difference (AVDO₂)</strong>, as a source of information for management decisions, may be considered to <strong>reduce mortality and improve outcomes at 3 and 6 months post-injury</strong>.
+      </div>
+      <p class="note">The Level III recommendation for <strong>brain tissue oxygen monitoring has been removed</strong> because of higher-quality, contradictory evidence acquired since the 3rd Edition. Transcranial Doppler autoregulation monitoring and microdialysis glutamate monitoring each had only a single Class 3 study — insufficient to recommend.</p>
+
+      <h4>Key evidence — PbO₂ monitoring (inconsistent)</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>Design / N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Martini 2009</td>
+              <td>Class 2 retrospective cohort, N=629</td>
+              <td>Mortality 29.3% (ICP + PbO₂) vs 22.5% (ICP only), p=0.12. <strong>No difference</strong>; FIM lower and hospital costs higher in the PbO₂ group.</td>
+            </tr>
+            <tr>
+              <td>Narotam 2009</td>
+              <td>Class 3 prospective vs historical, N=96</td>
+              <td>Mean GOS at 6 months higher with PbO₂ guidance (3.55 vs 2.71, p&lt;0.01). OR for good outcome 2.09 (95% CI 1.03–4.24).</td>
+            </tr>
+            <tr>
+              <td>Spiotta 2010</td>
+              <td>Class 3 prospective vs historical, N=123</td>
+              <td>Mortality at 3 months 25.7% vs 45.3%, p&lt;0.05. Favourable outcome 64.3% vs 39.6%, p=0.01.</td>
+            </tr>
+            <tr>
+              <td>McCarthy 2009</td>
+              <td>Class 3 prospective cohort, N=145</td>
+              <td>Mortality 31% vs 36%, p=0.52 — <strong>no difference</strong>. GOS at 24 months worse in the monitored group (2% vs 13% moderate disability/recovered, p=0.04).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Key evidence — AVDO₂ / SjO₂ monitoring</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>Cruz 1998</td><td>353</td><td>Mortality 9% (monitored per jugular venous saturation) vs 30% (CPP management alone).</td></tr>
+            <tr><td>Le Roux 1997</td><td>32</td><td>Limited improvement in elevated AVDO₂ after treatment was significantly associated with delayed cerebral infarction and unfavourable outcome.</td></tr>
+            <tr><td>Robertson 1993 &amp; 1995</td><td>116 / 177</td><td>Desaturation episodes (SjO₂ &lt; 50%) relate to mortality and 3-month GOS.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- =========================================================
+       PART III — THRESHOLDS
+  ========================================================== -->
+  <h2 class="group" data-group>Part III · Thresholds</h2>
+
+  <!-- 15 BP -->
+  <details class="card" id="x15">
+    <summary><span class="num">15</span><span class="title">Blood pressure thresholds</span><span class="chip c3">Level III</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c3">Level III</span></div>
+        Maintaining <strong>SBP ≥ 100 mm Hg for patients 50–69 years old</strong>, or <strong>≥ 110 mm Hg for patients 15–49 or over 70 years old</strong>, may be considered to decrease mortality and improve outcomes.
+      </div>
+
+      <h4>Key evidence — Berry 2012</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Age group</th><th>Optimal hypotension threshold</th><th>Adjusted OR for death</th></tr></thead>
+          <tbody>
+            <tr><td>15–49 years</td><td>110 mm Hg</td><td>1.98 (95% CI 1.65–2.39), p&lt;0.0001</td></tr>
+            <tr><td>50–69 years</td><td>100 mm Hg</td><td>2.20 (95% CI 1.46–3.31), p=0.0002</td></tr>
+            <tr><td>≥ 70 years</td><td>110 mm Hg</td><td>1.92 (95% CI 1.35–2.74), p=0.0003</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Class 2 retrospective cohort, N=15,733 (26.9% with GCS ≤ 8). This is <strong>indirect</strong> evidence (mixed moderate/severe TBI, not reported separately), which is why it supports only Level III. The traditional threshold of SBP &lt; 90 mm Hg should be reconsidered. Butcher 2007 (N=6,801, IMPACT database) suggested targeting SBP 120–150 mm Hg and MAP 85–110 mm Hg.</p>
+    </div>
+  </details>
+
+  <!-- 16 ICP thresholds -->
+  <details class="card" id="x16">
+    <summary><span class="num">16</span><span class="title">Intracranial pressure thresholds</span><span class="chip c2b">Level II B</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II A</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c2b">Level II B</span></div>
+        <strong>Treating ICP above 22 mm Hg is recommended</strong>, because values above this level are associated with increased mortality.
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c3">Level III</span></div>
+        A <strong>combination of ICP values and clinical and brain CT findings</strong> may be used to make management decisions.
+      </div>
+
+      <h4>Key evidence — Sorrentino 2012</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parameter</th><th>Threshold</th><th>For</th></tr></thead>
+          <tbody>
+            <tr><td>ICP</td><td><strong>22 mm Hg</strong></td><td>Reduced mortality (χ²=58.18, p&lt;0.001) <em>and</em> favourable outcome (χ²=18.15, p&lt;0.001)</td></tr>
+            <tr><td>ICP (subgroups &gt;55 y and women)</td><td>18 mm Hg</td><td>Favourable outcome — <em>subgroup analysis, underpowered, not used for recommendation</em></td></tr>
+            <tr><td>CPP</td><td>70 mm Hg</td><td>Mortality and favourable outcome</td></tr>
+            <tr><td>PRx (pressure reactivity index)</td><td>0.25 / 0.05</td><td>0.25 for reduced mortality; 0.05 for increased favourable outcome</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Class 2 retrospective cohort, N=459, single centre (Cambridge, UK), data 1992–2009. Because it is a <em>single</em> study it yields only low-quality body of evidence — hence Level II B rather than Level II A. <strong>Patients can herniate at ICP below 20–25 mm Hg</strong>; the likelihood depends on the location of an intracranial mass lesion (temporal/temporoparietal lesions and clot size &gt; 30 cc carry higher herniation risk). CT classification may shift the tolerable ICP threshold (reported range 22–36 mm Hg).</p>
+      <p class="note"><strong>Committee caveat:</strong> RESCUEicp results may affect this recommendation — check <code>https://braintrauma.org/coma/</code> for updates.</p>
+    </div>
+  </details>
+
+  <!-- 17 CPP thresholds -->
+  <details class="card" id="x17">
+    <summary><span class="num">17</span><span class="title">Cerebral perfusion pressure thresholds</span><span class="chip c2b">Level II B</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II A</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c2b">Level II B</span></div>
+        The recommended target CPP value for survival and favourable outcomes is <strong>between 60 and 70 mm Hg</strong>. Whether 60 or 70 mm Hg is the minimum optimal threshold is unclear and may depend on the patient's autoregulatory status.
+      </div>
+      <div class="rec caution">
+        <div class="lvl-line"><span class="chip c3">Level III</span></div>
+        <strong>Avoiding aggressive attempts to maintain CPP above 70 mm Hg with fluids and pressors</strong> may be considered, because of the risk of adult respiratory failure.
+      </div>
+
+      <h4>Key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>Design / N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Allen 2014</td>
+              <td>Class 2 retrospective cohort, N=1,757</td>
+              <td>Survivors: CPP &gt; 60 → 84.0%; CPP 50–60 → 83.6%; <strong>CPP &lt; 50 → 62.3%</strong>. RR low vs high 2.35 (95% CI 1.88–2.95), p&lt;0.0001.</td>
+            </tr>
+            <tr>
+              <td>Sorrentino 2012</td>
+              <td>Class 2 retrospective cohort, N=459</td>
+              <td>70 mm Hg optimal for mortality and neurological outcome; 75 mm Hg in patients &gt; 55 years. In preserved autoregulation (PRx &lt; 0.05), no difference between CPP ≥ 70 and &lt; 70. In impaired autoregulation (PRx ≥ 0.05), CPP &lt; 70 → significantly poorer outcomes.</td>
+            </tr>
+            <tr>
+              <td>Robertson 1999</td>
+              <td>Class 3 RCT, N=189<br>CPP &gt; 70 vs ICP-targeted (CPP &gt; 50)</td>
+              <td>No difference in neurological outcome at 3 or 6 months. <strong>ARDS 15% vs 3.3%, p=0.007.</strong> Jugular desaturations more frequent in the ICP protocol group (OR 2.367, p=0.012).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Views have evolved: Rosner advocated very high CPP; Robertson found CPP &gt; 70 mm Hg associated with respiratory complications and poorer outcome. Optimal CPP may need to be individualised to the patient's pressure-reactivity status.</p>
+    </div>
+  </details>
+
+  <!-- 18 ACM thresholds -->
+  <details class="card" id="x18">
+    <summary><span class="num">18</span><span class="title">Advanced cerebral monitoring thresholds</span><span class="chip c3">Level III</span></summary>
+    <div class="card-body">
+      <div class="rec">
+        <div class="lvl-line"><span class="chip cins">Level I / II</span><span>Insufficient evidence.</span></div>
+      </div>
+      <div class="rec">
+        <div class="lvl-line"><span class="chip c3">Level III</span></div>
+        <strong>Jugular venous saturation of &lt; 50% may be a threshold to avoid</strong> in order to reduce mortality and improve outcomes.
+      </div>
+
+      <h4>Jugular venous saturation (SjO₂) — key evidence</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>N</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Robertson 1993</td><td>116</td>
+              <td>Mortality: <strong>no desaturation episodes 18% · one episode 46% · multiple episodes 71%</strong>.</td>
+            </tr>
+            <tr>
+              <td>Robertson 1995</td><td>177</td>
+              <td>39% of patients had ≥ 1 desaturation episode. Causes split roughly equally: systemic (hypotension, hypoxia, hypocarbia, anaemia) 51 episodes; cerebral (elevated ICP, vasospasm) 54 episodes. Deaths: no episodes 21%, one 37%, multiple 69%.</td>
+            </tr>
+            <tr>
+              <td>Cormio 1999</td><td>450</td>
+              <td>Mean SjO₂ &gt; 75% associated with significantly worse outcomes (death/vegetative 49%, severe disability 26%).</td>
+            </tr>
+            <tr>
+              <td>Stocchetti 2004</td><td>229</td>
+              <td>Favourable outcome group had significantly higher mean AVDO₂ (4.3 vs 3.8 vs 3.6 vol %), p=0.001.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Brain tissue oxygen (PbO₂) — thresholds suggested but NOT recommended</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Study</th><th>N</th><th>Suggested threshold</th></tr></thead>
+          <tbody>
+            <tr><td>Eriksson 2012 (Class 2)</td><td>32</td><td>29 mm Hg most predictive of survival in first 72 h</td></tr>
+            <tr><td>Chang 2009</td><td>27</td><td>&lt; 20 mm Hg — RR of poor outcome 2.8–4.6 if ≥ 20% of hourly values below this</td></tr>
+            <tr><td>Stiefel 2006</td><td>—</td><td>Mortality 30% (&gt; 25 mm Hg), 43% (&lt; 20), 50% (&lt; 15), 60% (&lt; 20 not improved by resuscitation)</td></tr>
+            <tr><td>Bardt 1998 / Valadka 1998 / van den Brink 2000</td><td>35 / 34 / 101</td><td><strong>Duration matters:</strong> PbO₂ &lt; 5 mm Hg for 30 min, &lt; 10 mm Hg for 1 h 45 min, or &lt; 15 mm Hg for 4 h each associated with ~50% risk of death</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">The 3rd Edition's Level III recommendation on brain tissue oxygen monitoring was <strong>revised/removed</strong> based on reconsideration of the body of evidence. Unresolved issues: precise thresholds, whether a threshold model is even correct, and how probe distance from focal lesions affects readings.</p>
+    </div>
+  </details>
+
+  <!-- =========================================================
+       SOURCE
+  ========================================================== -->
+  <h2 class="group" data-group>Reference</h2>
+  <details class="card" id="source" open>
+    <summary><span class="num">§</span><span class="title">Source document</span><span class="chip cins">Citation</span></summary>
+    <div class="card-body">
+      <div class="src">
+        <p style="margin-top:0"><strong>Brain Trauma Foundation.</strong> <em>Guidelines for the Management of Severe Traumatic Brain Injury, 4th Edition.</em></p>
+        <p style="margin-bottom:4px">Authors: Carney N, Totten AM, O'Reilly C, Ullman JS, Hawryluk GWJ, Bell MJ, Bratton SL, Chesnut R, Harris OA, Kissoon N, Rubiano AM, Shutter L, Tasker RC, Vavilala MS, Wilberger J, Wright DW, Ghajar J.</p>
+        <p style="margin-bottom:4px">Produced with the Pacific Northwest Evidence-based Practice Center, Oregon Health &amp; Science University. Reviewed for evidence-based integrity and endorsed by the American Association of Neurological Surgeons (AANS) and the Congress of Neurological Surgeons (CNS).</p>
+        <p style="margin-bottom:4px">Funding: U.S. Army Contracting Command, Aberdeen Proving Ground, Natick Contracting Division (Contract W911QY-14-C-0086, awarded to Stanford University, with subcontracts to the Brain Trauma Foundation and Oregon Health &amp; Science University); and the Brain Trauma Foundation.</p>
+        <p style="margin:0"><strong>Living Guidelines updates:</strong> <code>https://braintrauma.org/coma/guidelines</code></p>
+      </div>
+
+      <p class="note"><strong>Important.</strong> This page is a faithful condensation of the source document's recommendations, evidence tables and stated rationale. It is a quick reference only and does <em>not</em> replace the full guideline, local protocols, or clinical judgement. The source explicitly states that adherence to these guidelines does not necessarily assure a successful medical outcome, that they should not be considered inclusive of all proper procedures, and that decisions are appropriately made only by a competent licensed physician in light of each patient's individual circumstances and available resources.</p>
+
+      <h4>Evidence counts in the 4th Edition</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Evidence class</th><th>Publications used</th></tr></thead>
+          <tbody>
+            <tr><td>Class 1</td><td>5</td></tr>
+            <tr><td>Class 2</td><td>46</td></tr>
+            <tr><td>Class 3</td><td>136</td></tr>
+            <tr><td>Meta-analyses</td><td>2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">94 new studies were added in the 7 years between the 3rd and 4th Editions.</p>
+    </div>
+  </details>
+
+  <footer>
+    <p><strong>Quick reference · Severe TBI · Brain Trauma Foundation Guidelines, 4th Edition.</strong></p>
+    <p>Built as a static HTML page — drop it into a GitHub repository, enable GitHub Pages, and it will serve as-is. No build step, no dependencies, no external requests.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var searchInput = document.getElementById('search');
+  var cards       = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+  var groups      = Array.prototype.slice.call(document.querySelectorAll('h2.group'));
+  var noResults   = document.getElementById('no-results');
+
+  /* Pre-index searchable text once, for speed */
+  cards.forEach(function(c){
+    if(!c.dataset.search){
+      c.dataset.search = c.textContent.toLowerCase().replace(/\s+/g,' ');
+    }
+  });
+
+  function applyFilter(){
+    var q = searchInput.value.trim().toLowerCase();
+    var visible = 0;
+
+    cards.forEach(function(c){
+      var match = !q || c.dataset.search.indexOf(q) !== -1;
+      if(match){
+        c.hidden = false;
+        visible++;
+        if(q.length >= 2){ c.open = true; }
+      } else {
+        c.hidden = true;
+        c.open = false;
+      }
+    });
+
+    /* Hide group headings whose cards are all filtered out */
+    groups.forEach(function(g){
+      var anyVisible = false;
+      var n = g.nextElementSibling;
+      while(n && n.tagName !== 'H2'){
+        if(n.classList && n.classList.contains('card') && !n.hidden){ anyVisible = true; break; }
+        n = n.nextElementSibling;
+      }
+      g.style.display = anyVisible ? '' : 'none';
+    });
+
+    noResults.classList.toggle('show', visible === 0 && q.length > 0);
+  }
+
+  /* Debounced input */
+  var t = null;
+  searchInput.addEventListener('input', function(){
+    clearTimeout(t);
+    t = setTimeout(applyFilter, 110);
+  });
+
+  /* "/" focuses search */
+  document.addEventListener('keydown', function(e){
+    if(e.key === '/' && document.activeElement !== searchInput){
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+    if(e.key === 'Escape' && document.activeElement === searchInput){
+      searchInput.value = '';
+      applyFilter();
+      searchInput.blur();
+    }
+  });
+
+  /* Expand / collapse all */
+  document.getElementById('expand-all').addEventListener('click', function(){
+    cards.forEach(function(c){ if(!c.hidden) c.open = true; });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    cards.forEach(function(c){ c.open = false; });
+  });
+
+  /* Open the card targeted by a hash link */
+  function openFromHash(){
+    if(!location.hash) return;
+    var el = document.querySelector(location.hash);
+    if(el && el.tagName === 'DETAILS'){ el.open = true; }
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+})();
+</script>
+</body>
+</html>
