@@ -1,0 +1,2341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antimicrobial Therapy in the Adult ICU — Quick Reference (2023)</title>
+<meta name="description" content="Collapsible quick reference for anaesthetists and intensivists, based on the Guide to Antimicrobial Therapy in the Adult ICU 2023, Malayan Society of Intensive Care.">
+<style>
+:root{
+  --bg:#f4f6f9;
+  --card:#ffffff;
+  --ink:#171a21;
+  --muted:#5b6472;
+  --line:#e2e6ee;
+  --line-strong:#cbd2de;
+  --accent:#b8890b;
+  --accent-2:#ffd34d;
+  --accent-soft:#fff7e0;
+  --dark:#1d1d2b;
+  --danger:#b3261e;
+  --danger-soft:#fdecea;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.05), 0 6px 18px rgba(16,24,40,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#12141a; --card:#1a1d25; --ink:#e8ebf1; --muted:#9aa3b2;
+    --line:#2a2f3a; --line-strong:#3a4150; --accent:#e3b341; --accent-2:#ffd34d;
+    --accent-soft:#2a2415; --dark:#0e1015; --danger:#ff8a80; --danger-soft:#2c1a18;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+a{color:var(--accent); text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- Header ---------- */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(180deg,var(--card),var(--card));
+  border-bottom:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+.topbar-inner{
+  max-width:1180px; margin:0 auto; padding:.7rem 1rem;
+  display:flex; flex-wrap:wrap; gap:.75rem 1rem; align-items:center;
+}
+.brand{display:flex; align-items:center; gap:.75rem; min-width:0; flex:1 1 320px}
+.brand svg{width:46px; height:46px; flex:0 0 auto}
+.brand h1{font-size:1.02rem; margin:0; line-height:1.25; letter-spacing:.1px}
+.brand p{margin:.15rem 0 0; font-size:.74rem; color:var(--muted); letter-spacing:.2px}
+.controls{display:flex; gap:.4rem; align-items:center; flex:1 1 320px; justify-content:flex-end}
+#search{
+  flex:1 1 200px; min-width:150px; max-width:420px;
+  padding:.55rem .8rem; font-size:.9rem; color:var(--ink);
+  background:var(--bg); border:1px solid var(--line-strong); border-radius:10px; outline:none;
+}
+#search:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(184,137,11,.15)}
+.btn{
+  padding:.5rem .7rem; font-size:.78rem; font-weight:600; cursor:pointer;
+  background:var(--bg); color:var(--ink); border:1px solid var(--line-strong);
+  border-radius:9px; white-space:nowrap;
+}
+.btn:hover{border-color:var(--accent); color:var(--accent)}
+
+/* ---------- Layout ---------- */
+main{max-width:1180px; margin:0 auto; padding:1rem 1rem 3rem}
+.count{font-size:.78rem; color:var(--muted); padding:.4rem .2rem}
+
+/* ---------- TOC ---------- */
+.toc{
+  max-width:1180px; margin:.9rem auto 0; padding:0 1rem;
+  display:flex; flex-wrap:wrap; gap:.35rem;
+}
+.toc a{
+  font-size:.75rem; font-weight:600; letter-spacing:.2px;
+  padding:.34rem .6rem; border-radius:999px;
+  background:var(--card); border:1px solid var(--line); color:var(--muted);
+}
+.toc a:hover{border-color:var(--accent); color:var(--accent); text-decoration:none}
+
+/* ---------- Sections ---------- */
+details.section{
+  background:var(--card); border:1px solid var(--line);
+  border-radius:var(--radius); margin:.65rem 0; overflow:hidden;
+  box-shadow:var(--shadow);
+}
+details.section > summary{
+  cursor:pointer; list-style:none; padding:.8rem 1rem;
+  display:flex; align-items:center; gap:.6rem;
+  font-weight:700; font-size:.98rem; letter-spacing:.1px;
+  user-select:none;
+}
+details.section > summary::-webkit-details-marker{display:none}
+details.section > summary::before{
+  content:"▸"; color:var(--accent); font-size:1rem; flex:0 0 auto;
+  transition:transform .16s ease; display:inline-block;
+}
+details.section[open] > summary::before{transform:rotate(90deg)}
+details.section > summary:hover{background:var(--accent-soft)}
+details.section > summary .num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:1.5rem; height:1.5rem; flex:0 0 auto;
+  background:var(--accent); color:#1a1a1a; border-radius:7px;
+  font-size:.72rem; font-weight:800;
+}
+.body{padding:.2rem 1rem 1.1rem; border-top:1px solid var(--line)}
+.body h3{
+  font-size:.82rem; text-transform:uppercase; letter-spacing:.6px;
+  color:var(--accent); margin:1.1rem 0 .45rem;
+}
+.body h4{font-size:.9rem; margin:.9rem 0 .35rem}
+.body p{margin:.45rem 0}
+.body ul,.body ol{margin:.45rem 0 .45rem 1.15rem; padding:0}
+.body li{margin:.22rem 0}
+.small{font-size:.82rem; color:var(--muted)}
+.key{
+  background:var(--accent-soft); border-left:3px solid var(--accent);
+  padding:.6rem .8rem; border-radius:0 9px 9px 0; margin:.6rem 0;
+}
+.warn{
+  background:var(--danger-soft); border-left:3px solid var(--danger);
+  padding:.6rem .8rem; border-radius:0 9px 9px 0; margin:.6rem 0;
+}
+ol.steps{counter-reset:s; list-style:none; margin-left:0}
+ol.steps > li{
+  position:relative; padding-left:2rem; margin:.55rem 0;
+}
+ol.steps > li::before{
+  counter-increment:s; content:counter(s);
+  position:absolute; left:0; top:.1rem;
+  width:1.35rem; height:1.35rem; border-radius:50%;
+  background:var(--dark); color:var(--accent-2);
+  font-size:.68rem; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* ---------- Tables ---------- */
+.table-wrap{
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  border:1px solid var(--line); border-radius:11px; margin:.7rem 0;
+  background:var(--card);
+}
+.table-wrap table{border-collapse:collapse; width:100%; min-width:660px; font-size:.83rem}
+.table-wrap table.narrow{min-width:420px}
+.table-wrap caption{
+  caption-side:top; text-align:left; padding:.55rem .7rem .35rem;
+  font-size:.76rem; font-weight:700; letter-spacing:.4px;
+  text-transform:uppercase; color:var(--muted);
+}
+.table-wrap th,.table-wrap td{
+  padding:.5rem .65rem; border-bottom:1px solid var(--line);
+  text-align:left; vertical-align:top;
+}
+.table-wrap thead th{
+  background:rgba(184,137,11,.10); font-weight:700; font-size:.78rem;
+  white-space:nowrap; border-bottom:1px solid var(--line-strong);
+}
+.table-wrap tbody tr:last-child td{border-bottom:none}
+.table-wrap tbody tr:nth-child(even){background:rgba(127,127,127,.035)}
+.tag{
+  display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.4px;
+  padding:.1rem .38rem; border-radius:5px; background:var(--accent-soft);
+  color:var(--accent); border:1px solid rgba(184,137,11,.3); white-space:nowrap;
+}
+.tag.alt{background:rgba(127,127,127,.1); color:var(--muted); border-color:var(--line-strong)}
+mark.hl{background:var(--accent-2); color:#1a1a1a; border-radius:3px; padding:0 1px}
+
+/* ---------- Footer ---------- */
+footer{
+  max-width:1180px; margin:0 auto; padding:1.5rem 1rem 3rem;
+  border-top:1px solid var(--line); font-size:.8rem; color:var(--muted);
+}
+footer strong{color:var(--ink)}
+footer ol{margin:.5rem 0 0 1.1rem; padding:0}
+footer li{margin:.2rem 0}
+.hidden{display:none !important}
+@media (max-width:640px){
+  .brand h1{font-size:.92rem}
+  .body{padding:.2rem .75rem 1rem}
+  details.section > summary{padding:.7rem .75rem; font-size:.9rem}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <svg viewBox="0 0 100 100" role="img" aria-label="Quadrant emblem">
+        <circle cx="50" cy="50" r="46" fill="#ffd34d"/>
+        <path d="M50 50 L50 4 A46 46 0 0 0 4 50 Z" fill="#1d1d2b"/>
+        <path d="M50 50 L96 50 A46 46 0 0 0 50 4 Z" fill="#f0b400"/>
+        <path d="M50 50 L50 96 A46 46 0 0 0 96 50 Z" fill="#c98f00"/>
+        <path d="M50 50 L4 50 A46 46 0 0 0 50 96 Z" fill="#3a3a52"/>
+        <circle cx="50" cy="50" r="13" fill="#ffffff"/>
+        <circle cx="50" cy="50" r="7.5" fill="#ffd34d"/>
+      </svg>
+      <div>
+        <h1>Antimicrobial Therapy in the Adult ICU — Quick Reference</h1>
+        <p>4th edition · 2023 · Malayan Society of Intensive Care (MSIC)</p>
+      </div>
+    </div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search: meropenem, VAP, colistin, CRE…" autocomplete="off" aria-label="Search the quick reference">
+      <button class="btn" id="expandAll" type="button">Expand all</button>
+      <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <a href="#ams">Stewardship</a>
+  <a href="#prophylaxis">Prophylaxis</a>
+  <a href="#resistance">MDR Gram-negatives</a>
+  <a href="#scap">sCAP</a>
+  <a href="#aspiration">Aspiration / Abscess</a>
+  <a href="#hapvap">HAP / VAP</a>
+  <a href="#tb">Tuberculosis</a>
+  <a href="#ie">Endocarditis</a>
+  <a href="#diarrhoea">Diarrhoea / CDI</a>
+  <a href="#pancreatitis">Pancreatitis</a>
+  <a href="#biliary">Biliary</a>
+  <a href="#liver">Liver abscess</a>
+  <a href="#iai">Intra-abdominal</a>
+  <a href="#cns">CNS</a>
+  <a href="#uti">Urinary</a>
+  <a href="#ssti">Skin &amp; soft tissue</a>
+  <a href="#clabsi">CLABSI</a>
+  <a href="#candida">Candidiasis</a>
+  <a href="#melioidosis">Melioidosis</a>
+  <a href="#lepto">Leptospirosis</a>
+  <a href="#malaria">Malaria</a>
+  <a href="#app-renal">Renal dosing</a>
+  <a href="#app-albumin">Hypoalbuminaemia</a>
+  <a href="#app-infusion">β-lactam infusion</a>
+  <a href="#app-polymyxin">Polymyxins</a>
+  <a href="#app-tdm">TDM</a>
+  <a href="#app-obesity">Obesity</a>
+  <a href="#app-pregnancy">Pregnancy</a>
+</nav>
+
+<main>
+<div class="count" id="count" aria-live="polite"></div>
+
+<!-- ============ 1. STEWARDSHIP ============ -->
+<details class="section" id="ams" open>
+<summary><span class="num">1</span> Antimicrobial Stewardship &amp; Dose Optimisation</summary>
+<div class="body">
+  <p class="key"><strong>Core aim:</strong> the right drug, at the right time, at the right dose, for the right duration — eradicate infection while minimising resistance selection, adverse effects and cost. <strong>Rapid source control is as important as the antibiotic.</strong></p>
+
+  <h3>The seven stewardship steps</h3>
+  <ol class="steps">
+    <li><strong>Rapid identification of infection.</strong> Make a clinical diagnosis before any antimicrobial. Obtain specimens for culture <em>before</em> the first dose, but do not delay therapy waiting for results — they are rarely available in the first 24 h. CRP and procalcitonin have suboptimal sensitivity/specificity; molecular diagnostics may give faster organism identification.</li>
+    <li><strong>Appropriate empirical therapy.</strong> Base on regularly updated <em>local</em> incidence and susceptibility data (community <em>and</em> hospital-acquired). Take recent antimicrobial exposure into account.</li>
+    <li><strong>Minimise time to first dose.</strong>
+      <ul>
+        <li><em>Septic shock, febrile neutropenia, bacterial meningitis:</em> start immediately after obtaining specimens — or before, if the procedure will be delayed.</li>
+        <li><em>Possible sepsis without shock:</em> obtain appropriate specimens/investigations first.</li>
+      </ul>
+    </li>
+    <li><strong>Optimise dose and interval</strong> — critically ill patients have altered pharmacokinetics (see PK/PD table and appendices).</li>
+    <li><strong>De-escalation.</strong> When culture and sensitivity are available, choose the susceptible agent with the narrowest spectrum, least toxicity and lowest cost. Discontinue empirical therapy if testing or clinical correlation does not support infection.</li>
+    <li><strong>Appropriate duration.</strong> <strong>7 days</strong> is generally appropriate — including septic shock ± bacteraemia and MDR organisms. Tailor to site/type of infection, source control, response and immune status. Procalcitonin-guided therapy shortens duration in units where courses exceed 10 days.</li>
+    <li><strong>IV → PO conversion.</strong> Proven efficacy, safety and economic benefit; eliminates IV-related adverse events, improves comfort and mobility, enables earlier discharge.</li>
+  </ol>
+
+  <h3>PK/PD classification of antibiotics</h3>
+  <div class="table-wrap">
+    <table>
+      <caption>Optimal PK/PD indices and dosing strategy</caption>
+      <thead>
+        <tr><th>Kill characteristic</th><th>Optimal PK parameter</th><th>Goal / application</th><th>Examples</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Time-dependent</strong></td>
+          <td>T &gt; MIC<br><span class="small">% of dosing interval above MIC</span></td>
+          <td>Maximise duration of exposure → <strong>extended / continuous infusion</strong></td>
+          <td>Penicillins, cephalosporins, carbapenems</td>
+        </tr>
+        <tr>
+          <td><strong>Concentration-dependent</strong></td>
+          <td>C<sub>max</sub> / MIC</td>
+          <td>Maximise concentration → <strong>higher maintenance dose</strong>, once-daily dosing</td>
+          <td>Aminoglycosides</td>
+        </tr>
+        <tr>
+          <td><strong>Concentration-dependent with time dependence</strong></td>
+          <td>AUC<sub>0–24</sub> / MIC</td>
+          <td>Optimise total drug amount → <strong>loading dose</strong>, TDM</td>
+          <td>Glycopeptides (vancomycin), polymyxins</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Key pharmacokinetic changes in the critically ill</h3>
+  <ul>
+    <li><strong>Hydrophilic antibiotics</strong> (β-lactams, aminoglycosides, glycopeptides, polymyxins): low V<sub>d</sub>, predominantly renal clearance, poor intracellular penetration — but <em>increased</em> V<sub>d</sub> and altered clearance in critical illness → <strong>give a loading dose</strong> and monitor levels.</li>
+    <li><strong>Hypoalbuminaemia</strong> → ↑ free fraction of highly protein-bound drugs (ceftriaxone, cloxacillin, ertapenem, vancomycin) → ↑ V<sub>d</sub> and clearance → reduced exposure. ‎Ertapenem is <em>not</em> recommended in critically ill patients with hypoalbuminaemia.</li>
+    <li><strong>Augmented renal clearance (ARC)</strong> — CrCl ≥ 130 mL/min/1.73 m², common in sepsis, burns, polytrauma, TBI, febrile neutropenia. Subtherapeutic β-lactam/vancomycin levels are significantly correlated with ARC → increase dose and monitor levels. An 8-hour urine collection confirms ARC.</li>
+    <li><strong>Extracorporeal therapies.</strong> CRRT and SLED increase V<sub>d</sub> and eliminate hydrophilic, low-protein-bound drugs — loading dose needed; maintenance depends on mode, dose delivered, blood/dialysate flow, filter material and surface area. Time-dependent drugs are more affected by SLED than intermittent HD (prolonged sub-MIC periods) — give supplemental doses during/after SLED or prolong infusion. <strong>No single RRT dosing guideline fits all modalities.</strong></li>
+    <li><strong>ECMO.</strong> Limited data. Sequestration in the circuit, ↑ V<sub>d</sub>, ↓ elimination and direct membrane adsorption. Small-V<sub>d</sub> hydrophilic drugs are prone to haemodilution and adsorption; lipophilic, highly protein-bound drugs with large V<sub>d</sub> (e.g. voriconazole) are sequestered in the circuit. Use TDM where available.</li>
+  </ul>
+
+  <h3>IV → PO conversion</h3>
+  <div class="table-wrap">
+    <table class="narrow">
+      <thead><tr><th>Consider conversion after adequate parenteral therapy</th><th>Do <em>not</em> convert</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <ul>
+              <li>Osteomyelitis</li>
+              <li>Septic arthritis</li>
+              <li>Infected implant or prosthesis</li>
+              <li>Necrotising soft tissue infection</li>
+              <li>Complicated orbital cellulitis (abscess or other complication)</li>
+              <li>Intra-abdominal infection <em>without</em> deep-seated collections</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Endocarditis</li>
+              <li>Central nervous system infections (meningitis, brain abscess)</li>
+              <li><em>Staphylococcus aureus</em> bacteraemia</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Re-evaluation at 48–72 hours</h3>
+  <p>Re-assess empirical therapy at 48–72 h or when cultures return. If the patient is improving and definitive source control has been achieved, <strong>5–7 days</strong> is usually sufficient. Prolonged therapy increases resistance risk; exceptions include complicated <em>S. aureus</em> infection, osteomyelitis and infective endocarditis.</p>
+  <p><strong>If there is poor clinical response at 48–72 h, consider:</strong></p>
+  <ul>
+    <li>Secondary (superadded) infection</li>
+    <li>Resistant organisms</li>
+    <li>Inadequate source control (undrained abscess, retained infected prosthesis)</li>
+    <li>Inadequate penetration of antimicrobial to the site</li>
+    <li>Inadequate spectrum of coverage</li>
+    <li>Inadequate dose or interval</li>
+    <li><strong>Non-infective causes</strong> — DVT, acute myocardial or pulmonary infarction, acute pancreatitis, hyperthyroidism, Addisonian crisis, malignancy, CNS haemorrhage</li>
+  </ul>
+  <p class="small">Caution: in-vitro susceptibility ≠ clinical effectiveness — e.g. <strong>ESCAPPM</strong> organisms (Enterobacter, Serratia, Citrobacter freundii, Aeromonas, Proteus vulgaris, Providencia, Morganella). AmpC induction can cause resistance on therapy.</p>
+</div>
+</details>
+
+<!-- ============ 2. PROPHYLAXIS ============ -->
+<details class="section" id="prophylaxis">
+<summary><span class="num">2</span> Prophylaxis &amp; Empirical Therapy — Principles</summary>
+<div class="body">
+  <h3>Surgical antimicrobial prophylaxis</h3>
+  <ul>
+    <li><strong>Timing:</strong> IV prophylaxis within <strong>30–60 minutes</strong> before surgical incision or tourniquet inflation. <strong>Vancomycin within 120 minutes</strong> of incision (longer infusion time).</li>
+    <li>If the patient is already on an appropriate antimicrobial for another infection, an extra dose may be given within 60 minutes of incision.</li>
+    <li><strong>Intraoperative redosing</strong> (interval timed from the first operative dose) if surgery lasts <strong>&gt; 4 hours</strong> or blood loss <strong>&gt; 1.5 L</strong>.</li>
+    <li><strong>Discontinue within 24 hours</strong> unless a known infection is being treated.</li>
+    <li>Do <strong>not</strong> give additional prophylactic antibiotics after the incision is closed in clean and clean-contaminated procedures — this applies whether or not a drain is present.</li>
+    <li>Clean surgery generally does not require prophylaxis unless an implant/foreign body is placed, bone grafting is performed, or extensive dissection/high expected blood loss is anticipated.</li>
+  </ul>
+  <p class="small">Non-surgical prophylaxis examples: infective endocarditis in valvular heart disease undergoing dental procedures; encapsulated organisms in asplenic patients.</p>
+
+  <h3>Choosing empirical therapy — three pillars</h3>
+  <h4>1. Likely causative organism</h4>
+  <ul>
+    <li>Community vs nosocomial. Identify the most likely source.</li>
+    <li>Use local epidemiological data and laboratory surveillance; know community/hospital/ICU resistance profiles.</li>
+    <li>Assess risk factors for MDR organisms (MDR Gram-negative bacilli, MRSA, VRE).</li>
+  </ul>
+  <h4>2. Patient factors</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Factor</th><th>Examples / implications</th></tr></thead>
+      <tbody>
+        <tr><td>Exposure history</td><td>Travel (malaria), rice farmers (<em>Burkholderia pseudomallei</em>), fishermen (<em>Vibrio vulnificus</em>), IVDU (<em>S. aureus</em>), contaminated soil/water (leptospirosis)</td></tr>
+        <tr><td>Co-morbidities</td><td>Diabetes → melioidosis; chronic lung disease → <em>P. aeruginosa</em>; valvular heart disease → endocarditis</td></tr>
+        <tr><td>Severity of illness</td><td>Septic shock → antimicrobials <strong>within 1 hour</strong></td></tr>
+        <tr><td>Prior antimicrobials / prolonged admission</td><td>Both are risk factors for resistant organisms</td></tr>
+        <tr><td>Immunosuppression</td><td>Malignancy, post-splenectomy, unvaccinated, malnourished, steroids or immunosuppressants → broad-spectrum therapy ± antifungal</td></tr>
+        <tr><td>Renal / hepatic dysfunction</td><td>Alters clearance — after the loading dose, adjust maintenance dose and interval</td></tr>
+        <tr><td>Obesity, pregnancy, lactation</td><td>Adjust doses in obesity; check antimicrobial risk category in pregnancy</td></tr>
+        <tr><td>Allergy</td><td>Consider alternatives</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h4>3. Antimicrobial profile</h4>
+  <ul>
+    <li><strong>Route:</strong> IV for severe infection — oral absorption is unpredictable. Intrathecal or inhalational routes may improve target-site concentration.</li>
+    <li><strong>Tissue penetration:</strong> aminoglycosides and glycopeptides penetrate poorly — aminoglycosides should <em>not</em> be used as monotherapy; higher plasma glycopeptide levels are needed for adequate tissue penetration. β-lactams and quinolones penetrate well, but higher doses are still needed for CNS infection.</li>
+    <li><strong>Post-antibiotic effect (PAE):</strong> persistent suppression of growth after serum concentration falls below MIC — aminoglycosides, fluoroquinolones and carbapenems have PAE against Gram-negative bacteria.</li>
+    <li><strong>Ecological profile:</strong> limit agents that select resistant organisms — e.g. third-generation cephalosporins select ESBL-producing Enterobacterales.</li>
+    <li><strong>Adverse events:</strong> weigh risk–benefit case by case; monitor serum levels for drugs with serious toxicity (e.g. aminoglycosides).</li>
+  </ul>
+</div>
+</details>
+
+<!-- ============ 3. RESISTANCE ============ -->
+<details class="section" id="resistance">
+<summary><span class="num">3</span> MDR Gram-Negative Pathogens — CRE, AmpC-E, DTR-<em>P. aeruginosa</em></summary>
+<div class="body">
+  <h3>Carbapenem-resistant Enterobacterales (CRE)</h3>
+  <ul>
+    <li>Mechanisms: carbapenemase production, or non-carbapenemase enzymes with amplification of β-lactamase genes plus outer membrane porin disruption.</li>
+    <li>Most common carbapenemase variants in Malaysia: <strong>NDM-1</strong> and <strong>OXA-48</strong>.</li>
+    <li>Risk factors for colonisation: underlying co-morbidity, prior antimicrobial exposure, indwelling catheters/devices, prolonged ICU or hospital stay, co-colonisation with other MDR organisms. Carbapenem use is a risk factor (15–75% of colonised patients).</li>
+    <li>Colonisation may persist up to <strong>12 months</strong>; most Malaysian hospitals continue surveillance for a year. In high-incidence settings, active surveillance with pre-emptive contact isolation reduces transmission. Screening: rectal/perianal swab, molecular method.</li>
+  </ul>
+  <div class="table-wrap">
+    <table>
+      <caption>CRE — pathogen-specific therapy (all IV, 7 days)</caption>
+      <thead><tr><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            Polymyxin E (Colistin) <strong>4.5 million units q12h</strong><br>OR<br>
+            Polymyxin B <strong>15,000 units/kg q12h</strong>
+          </td>
+          <td>
+            Ceftazidime/Avibactam <strong>2.5 g q8h</strong><br>PLUS<br>
+            Aztreonam <strong>2 g q8h</strong>
+          </td>
+          <td>
+            NDM-1 is the predominant variant in Malaysia. Aztreonam is <em>not</em> required for non-NDM infections (e.g. OXA-48). Ceftazidime/Avibactam + Aztreonam is first-line in international guidelines but is <strong>not currently in the MOH formulary</strong>. Refer to Appendix D for polymyxin loading doses. Polymyxin B is active and less nephrotoxic; however, <strong>Polymyxin E (colistin) is preferred in urinary tract infection</strong>.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>AmpC β-lactamase-producing Enterobacterales (AmpC-E)</h3>
+  <ul>
+    <li>Emerging in ICU. β-lactam exposure can trigger a cascade leading to significant AmpC production and resistance.</li>
+    <li>Mechanisms: inducible chromosomal AmpC genes; non-inducible chromosomal; plasmid-mediated.</li>
+    <li class="warn"><strong>Avoid 3rd-generation cephalosporins</strong> (ceftriaxone, ceftazidime) for <em>Enterobacter cloacae</em>, <em>Klebsiella aerogenes</em> or <em>Citrobacter freundii</em> — <strong>even if the isolate tests susceptible</strong>. Resistance emergence after ceftriaxone exposure occurs in ~8–40% of infections caused by these organisms.</li>
+    <li>Carbapenems give reliable coverage against AmpC hyperproducers. <strong>Cefepime</strong> is an alternative — weak AmpC inducer and withstands AmpC hydrolysis.</li>
+  </ul>
+  <div class="table-wrap">
+    <table>
+      <caption>AmpC-E — pathogen-specific therapy (7 days)</caption>
+      <thead><tr><th>Organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Enterobacter cloacae, Klebsiella aerogenes, Citrobacter freundii, Serratia</em> spp., <em>Aeromonas</em> spp., <em>Proteus vulgaris, Providencia</em> spp., <em>Morganella morganii</em></td>
+          <td>Cefepime <strong>2 g q8h</strong></td>
+          <td>Meropenem <strong>1 g q8h</strong></td>
+          <td>Ertapenem may be considered for targeted therapy once the patient is clinically stable with adequate source control. Cefepime carries a higher risk of neurotoxicity in the elderly, in renal impairment and with inappropriate dosing.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Difficult-to-treat <em>Pseudomonas aeruginosa</em> (DTR-PA)</h3>
+  <p><strong>Definition:</strong> non-susceptibility to <em>all</em> of — piperacillin/tazobactam, ceftazidime, cefepime, aztreonam, meropenem, imipenem/cilastatin, ciprofloxacin and levofloxacin.</p>
+  <p class="small">Mechanisms: decreased outer-membrane porin expression, AmpC hyperproduction, efflux pump upregulation, penicillin-binding protein target mutations. In an observational study of 200 patients, favourable outcomes occurred in 81% receiving ceftolozane/tazobactam.</p>
+  <div class="table-wrap">
+    <table>
+      <caption>DTR-PA — pathogen-specific therapy (7 days)</caption>
+      <thead><tr><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Polymyxin E (Colistin) <strong>4.5 million units q12h</strong><br>OR<br>Polymyxin B <strong>15,000 units/kg q12h</strong></td>
+          <td>Ceftolozane/Tazobactam <strong>1.5–3 g q8h</strong><br>OR<br>Ceftazidime/Avibactam <strong>2.5 g q8h</strong></td>
+          <td>Higher-dose ceftolozane/tazobactam required in HAP/VAP. See Appendix D for polymyxin loading doses. Polymyxin B is active and less nephrotoxic; <strong>colistin preferred in UTI</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 4. sCAP ============ -->
+<details class="section" id="scap">
+<summary><span class="num">4</span> Severe Community-Acquired Pneumonia (sCAP)</summary>
+<div class="body">
+  <p class="key">sCAP = pneumonia requiring respiratory (invasive/non-invasive) or vasopressor support. In Malaysia it is one of the three leading causes of ICU admission, with <strong>~35% hospital mortality</strong>. Mortality risk factors: advanced age, co-morbidities, severity of illness on admission.</p>
+
+  <h3>Common pathogens</h3>
+  <p><em>S. pneumoniae</em>, <em>H. influenzae</em>, <em>Legionella</em>, <em>Mycoplasma pneumoniae</em>, <em>Chlamydia pneumoniae</em>, respiratory viruses (COVID-19, influenza A &amp; B). In Southeast Asia, <em>Klebsiella pneumoniae</em>, <em>Burkholderia pseudomallei</em> and <em>Mycobacterium tuberculosis</em> are identified in a higher proportion.</p>
+
+  <h3>Treatment principles</h3>
+  <ul>
+    <li><strong>Combination β-lactam + macrolide</strong> achieves better outcomes; most patients improve within 48–72 h.</li>
+    <li>If not responding, consider parapneumonic effusion, empyema, lung abscess — or non-infective causes (congestive heart failure, pulmonary embolism, neoplasm, pulmonary haemorrhage).</li>
+    <li>Empyema requires prolonged antibiotics; VATS debridement (VATS-D) reduces antibiotic duration and hospital stay.</li>
+    <li>A recent single-centre RCT showed benefit from early hydrocortisone in sCAP without contraindications to steroids — further studies needed before routine use.</li>
+  </ul>
+
+  <h3>Specimens</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Specimen</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Sputum / tracheal aspirate — Gram stain, culture &amp; sensitivity</td><td>Good specimen has &lt; 10 epithelial cells per field</td></tr>
+        <tr><td>Serum <em>Mycoplasma</em> serology; urine <em>Legionella</em> antigen</td><td>Mycoplasma titre ≥ 1:80 is considered significant</td></tr>
+        <tr><td>Throat swab for influenza (rapid molecular assay / NAAT)</td><td>In intubated patients send tracheal aspirate for influenza PCR — better yield</td></tr>
+        <tr><td>Bronchoalveolar lavage (BAL)</td><td>Not indicated except in non-resolving pneumonia</td></tr>
+        <tr><td>Blood culture &amp; sensitivity</td><td>Yield is generally low</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Confirm availability of rapid tests with your local laboratory.</p>
+
+  <h3>Pleural fluid — Light's criteria for exudate</h3>
+  <p>Exudate if <em>at least one</em> of: pleural fluid : serum protein &gt; 0.5 <strong>or</strong> absolute pleural fluid protein &gt; 30 g/L; pleural fluid : serum LDH &gt; 0.6; pleural fluid LDH &gt; two-thirds the upper limit of normal serum value.</p>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Parapneumonic effusion — classification and management</caption>
+      <thead>
+        <tr>
+          <th>Characteristic</th><th>Normal</th>
+          <th>Uncomplicated parapneumonic</th><th>Complicated parapneumonic</th><th>Empyema</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Appearance</td><td>Clear</td><td>Clear, slightly turbid</td><td>Cloudy</td><td>Pus</td></tr>
+        <tr><td>pH</td><td>7.60–7.64</td><td>&gt; 7.30</td><td>&lt; 7.20</td><td>N/A</td></tr>
+        <tr><td>Glucose (mmol/L)</td><td>Similar to plasma</td><td>&gt; 3.3</td><td>&lt; 2.2</td><td>N/A</td></tr>
+        <tr><td>Pleural fluid : serum glucose</td><td>1.0</td><td>&gt; 0.5</td><td>&lt; 0.5</td><td>N/A</td></tr>
+        <tr><td>LDH (IU/L)</td><td>&lt; 50% of plasma</td><td>&lt; 700</td><td>&gt; 1000</td><td>N/A</td></tr>
+        <tr><td>Polymorphonuclear count (cells/mL)</td><td>&lt; 1000 leucocytes/mm³</td><td>&lt; 15,000</td><td>&gt; 125,000</td><td>N/A</td></tr>
+        <tr><td>Microbiology</td><td>—</td><td>Negative</td><td>May be positive</td><td>May be positive</td></tr>
+        <tr><td>Treatment</td><td>—</td><td>Antibiotics</td><td>Antibiotics + drainage</td><td>Antibiotics + drainage</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Empirical therapy — parapneumonic effusion / empyema</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Streptococcus pneumoniae</em>, <em>Streptococcus milleri</em>, <em>Cutibacterium</em> spp., <em>Staphylococcus aureus</em></td>
+          <td>Amoxicillin/Clavulanate <strong>1.2 g q8h</strong></td>
+          <td>Ceftriaxone <strong>1 g q12h</strong> PLUS Metronidazole <strong>500 mg q8h</strong></td>
+          <td>
+            Penicillin hypersensitivity: respiratory fluoroquinolone (levofloxacin, moxifloxacin) + metronidazole.<br>
+            <strong>Duration:</strong><br>
+            • Uncomplicated parapneumonic effusion — 1–2 weeks<br>
+            • Complicated parapneumonic effusion — 2–3 weeks (+ drainage)<br>
+            • Empyema — 4–6 weeks (+ drainage)<br>
+            Optimal duration after VATS-D is unknown; generally ~3–7 days.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><em>Pneumocystis jirovecii</em> pneumonia</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Trimethoprim/Sulfamethoxazole <strong>5 mg/kg (TMP component) q6–8h × 21 days</strong></td>
+          <td>Pentamidine <strong>4 mg/kg/day</strong><br>OR<br>Primaquine <strong>30 mg q24h</strong> PO PLUS Clindamycin <strong>600–900 mg q8h × 21 days</strong></td>
+          <td>
+            Give prednisolone 15–30 min <em>before</em> antimicrobials:<br>
+            40 mg q12h × 5 days → 40 mg q24h × 5 days → 20 mg q24h × 11 days.<br>
+            Consider alternative therapy if intolerant to TMP-SMX.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 5. ASPIRATION ============ -->
+<details class="section" id="aspiration">
+<summary><span class="num">5</span> Aspiration Pneumonia &amp; Lung Abscess</summary>
+<div class="body">
+  <ul>
+    <li><strong>Aspiration pneumonia</strong> = entry of gastric or oropharyngeal contents into the lower airways. <strong>Chemical pneumonitis</strong> = non-infectious inflammatory reaction to irritative gastric contents.</li>
+    <li class="warn"><strong>Antimicrobials are not indicated in aspiration without evidence of infection.</strong></li>
+    <li>Consider antibiotics in chemical pneumonitis if it fails to resolve within <strong>48 hours</strong>, in patients with small bowel obstruction, or on acid suppression therapy.</li>
+  </ul>
+
+  <h3>Lung abscess</h3>
+  <ul>
+    <li><strong>Definition:</strong> liquefactive necrosis of lung parenchyma with cavity formation caused by microbial infection.</li>
+    <li><strong>Primary</strong> — from an existing parenchymal process (aspiration pneumonia, necrotising pneumonia).</li>
+    <li><strong>Secondary</strong> — bronchial obstruction (foreign body, neoplasm), co-existing lung disease (bronchiectasis, cystic fibrosis) or haematogenous dissemination (infective endocarditis, Lemierre's disease).</li>
+    <li>Aspiration-related abscesses are typically <strong>polymicrobial</strong>: <em>Bacteroides</em>, <em>Prevotella</em>, <em>Peptostreptococcus</em>, <em>Fusobacterium</em>, <em>Streptococcus</em>.</li>
+    <li>Less commonly complicating monomicrobial infection with pyogenic bacteria — <em>S. aureus</em>, <em>Klebsiella pneumoniae</em>, <em>P. aeruginosa</em>.</li>
+  </ul>
+</div>
+</details>
+
+<!-- ============ 6. HAP/VAP ============ -->
+<details class="section" id="hapvap">
+<summary><span class="num">6</span> Hospital-Acquired &amp; Ventilator-Associated Pneumonia</summary>
+<div class="body">
+  <ul>
+    <li><strong>HAP:</strong> pneumonia occurring <strong>48 hours after hospitalisation</strong>.</li>
+    <li><strong>VAP:</strong> pneumonia occurring <strong>48 hours after invasive mechanical ventilation</strong>.</li>
+  </ul>
+
+  <h3>Risk factors for MDR organisms</h3>
+  <ul>
+    <li>Prior IV antibiotics within <strong>90 days</strong></li>
+    <li>Previous colonisation or infection with an MDR organism</li>
+    <li>Additional MDR-VAP risks: septic shock at VAP onset; ARDS or acute RRT preceding VAP; ≥ 5 days hospitalisation before VAP onset</li>
+  </ul>
+  <p class="small">Malaysian Registry of Intensive Care (2020–2021): the commonest isolates were <em>Acinetobacter</em> spp., <em>Klebsiella pneumoniae</em> and <em>Pseudomonas aeruginosa</em>.</p>
+
+  <h3>Key management points</h3>
+  <ul>
+    <li><strong>Duration should not exceed 7 days</strong> — including MDR organisms. Longer may be appropriate with delayed clinical response.</li>
+    <li>In suspected VAP, <strong>non-invasive sampling</strong> (endotracheal aspirate) is preferred over BAL.</li>
+    <li class="warn">A positive respiratory culture does <strong>not</strong> distinguish true pathogen from coloniser — interpret in context to avoid unnecessary prescribing.</li>
+  </ul>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Respiratory specimen interpretation</caption>
+      <thead><tr><th>Specimen</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Tracheal aspirate culture &amp; sensitivity</td><td>Semiquantitative. Good sample has &lt; 10 epithelial cells per power field</td></tr>
+        <tr><td>Bronchoalveolar lavage (BAL)</td><td>Quantitative culture: 10⁴ or 10⁵ cfu/mL to diagnose VAP</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Empirical therapy — HAP/VAP without MDR risk factors (7 days)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>S. pneumoniae</em>, <em>H. influenzae</em>, <em>S. aureus</em>, <em>K. pneumoniae</em>, <em>P. aeruginosa</em></td>
+          <td>Amoxicillin/Clavulanate <strong>1.2 g q8h</strong><br>OR<br>Ceftriaxone <strong>1 g q12h</strong></td>
+          <td>Cefepime <strong>2 g q8h</strong><br>OR<br>Piperacillin/Tazobactam <strong>4.5 g q6h</strong></td>
+          <td>Consider alternative therapy if shock or chronic lung disease (↑ risk of <em>P. aeruginosa</em>). Cefepime: higher neurotoxicity risk in elderly, renal impairment, inappropriate dosing.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Pathogen-specific therapy in HAP/VAP</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Organism</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Stenotrophomonas maltophilia</em></td>
+          <td>Trimethoprim/Sulfamethoxazole <strong>5 mg/kg (TMP) q8h × 7 days</strong></td>
+          <td>Levofloxacin <strong>750 mg q24h</strong><br>OR Moxifloxacin <strong>400 mg q24h</strong><br>OR Ceftazidime <strong>2 g q8h</strong></td>
+          <td>Consider alternative if intolerant to TMP-SMX.</td>
+        </tr>
+        <tr>
+          <td>Carbapenem-resistant <em>P. aeruginosa</em> (CRPA)</td>
+          <td>Polymyxin E <strong>4.5 MU q12h</strong> OR Polymyxin B <strong>15,000 units/kg q12h × 7 days</strong></td>
+          <td>Ceftolozane/Tazobactam <strong>3 g q8h × 7 days</strong></td>
+          <td>Appendix D for loading doses. Polymyxin B less nephrotoxic.</td>
+        </tr>
+        <tr>
+          <td>AmpC-E (<em>E. cloacae, K. aerogenes, C. freundii, Serratia, Aeromonas, P. vulgaris, Providencia, M. morganii</em>)</td>
+          <td>Cefepime <strong>2 g q8h × 7 days</strong></td>
+          <td>Meropenem <strong>1 g q8h</strong> OR Imipenem <strong>500 mg q6h × 7 days</strong></td>
+          <td><strong>Intrinsic imipenem resistance:</strong> <em>Proteus</em> spp., <em>Providencia</em> spp., <em>Morganella morganii</em>. Cefepime neurotoxicity caution.</td>
+        </tr>
+        <tr>
+          <td>Carbapenem-resistant <em>Acinetobacter baumannii</em> (CRAB)</td>
+          <td>Polymyxin E <strong>4.5 MU q12h</strong> OR Polymyxin B <strong>15,000 units/kg q12h</strong><br>PLUS<br>Ampicillin/Sulbactam <strong>9 g q8h × 7 days</strong></td>
+          <td>—</td>
+          <td>Ampicillin/Sulbactam infused over <strong>4 hours</strong>. Appendix D for polymyxin loading doses.</td>
+        </tr>
+        <tr>
+          <td>Carbapenem-resistant Enterobacterales (CRE)</td>
+          <td>Polymyxin E <strong>4.5 MU q12h</strong> OR Polymyxin B <strong>15,000 units/kg q12h × 7 days</strong></td>
+          <td>Ceftazidime/Avibactam <strong>2.5 g q8h</strong> PLUS Aztreonam <strong>2 g q8h × 7 days</strong></td>
+          <td>Ceftazidime/Avibactam + Aztreonam is first-line internationally but is not currently in the MOH formulary.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 7. TB ============ -->
+<details class="section" id="tb">
+<summary><span class="num">7</span> Pulmonary Tuberculosis</summary>
+<div class="body">
+  <h3>Respiratory specimens</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Test</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Sputum / tracheal aspirate — direct smear for acid-fast bacilli</td><td>Minimum <strong>2 samples</strong></td></tr>
+        <tr><td>Mycobacterial culture &amp; sensitivity</td><td>Gold standard for TB diagnosis and detection of drug resistance</td></tr>
+        <tr><td>Xpert Ultra</td><td>Lower limit of detection for pulmonary TB (15.6 cfu/mL of sputum)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Tuberculous pleural effusion</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Characteristic</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Straw-coloured; pH 7.3–7.4; glucose similar to plasma; LDH &gt; 500 IU/L; leucocytes 1000–6000 cells/mL (predominantly lymphocytes); adenosine deaminase (ADA) &gt; 40 IU/L</td>
+          <td>
+            Turbid fluid, low glucose, pH &lt; 7.2 and elevated ADA indicate <strong>tuberculous empyema</strong>.<br>
+            AFB by Ziehl-Neelsen stain is positive in only <strong>5%</strong>.<br>
+            Solid media culture (e.g. Löwenstein-Jensen) positive in <strong>12–30%</strong>.<br>
+            Xpert MTB on pleural fluid: specificity 98%, sensitivity only <strong>28.6%</strong>.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Intensive phase regimen (8 weeks)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Drug</th><th>Dose</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Isoniazid (PO)</td><td>—</td><td rowspan="4">
+          <strong>Pyridoxine 10–30 mg q24h</strong> to prevent isoniazid-induced neuropathy. High-risk patients (pregnancy, HIV, elderly, diabetes, alcoholism, malnutrition, chronic kidney disease) should receive <strong>30 mg/day</strong>. Refer to text for continuation-phase duration.
+        </td></tr>
+        <tr><td>Rifampicin (PO)</td><td>10 (8–12) mg/kg/day</td></tr>
+        <tr><td>Ethambutol (PO)</td><td>15 (15–20) mg/kg/day</td></tr>
+        <tr><td>Pyrazinamide (PO)</td><td>25 (20–30) mg/kg/day</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Intensive phase = 8 weeks (2 months), followed by the continuation phase.</p>
+</div>
+</details>
+
+<!-- ============ 8. ENDOCARDITIS ============ -->
+<details class="section" id="ie">
+<summary><span class="num">8</span> Infective Endocarditis</summary>
+<div class="body">
+  <h3>Empirical therapy — native valve &amp; prosthetic valve ≥ 12 months post-surgery</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Staphylococcus</em> spp., <em>Streptococcus</em> spp., <em>Enterococcus</em> spp.</td>
+          <td>
+            Ampicillin <strong>2 g q4h</strong><br>OR Benzylpenicillin <strong>3 million units q4h</strong><br>PLUS Gentamicin <strong>3 mg/kg q24h</strong><br>PLUS OPTIONAL Cloxacillin <strong>2 g q4h</strong>
+          </td>
+          <td>Penicillin allergy:<br>Vancomycin <strong>15–20 mg/kg q12h</strong> PLUS Gentamicin <strong>3 mg/kg q24h</strong></td>
+          <td>Consider cloxacillin in intravenous drug users. Refer to Appendix E for gentamicin monitoring.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Empirical therapy — prosthetic valve &lt; 12 months post-surgery</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Preferred</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            Vancomycin <strong>15–20 mg/kg q12h</strong><br>PLUS Gentamicin <strong>3 mg/kg q24h</strong><br>PLUS Rifampicin <strong>300–450 mg q12h PO</strong><br>PLUS OPTIONAL Cefepime <strong>2 g q8h</strong> OR Piperacillin/Tazobactam <strong>4.5 g q6h</strong>
+          </td>
+          <td>
+            Appendix E for vancomycin and gentamicin loading/monitoring.<br>
+            To avoid resistance, rifampicin is added <strong>only</strong> in prosthetic valve endocarditis, started <strong>3–5 days after</strong> vancomycin and gentamicin.<br>
+            Concomitant vancomycin + gentamicin ↑ nephrotoxicity and ototoxicity — narrow the spectrum once cultures return.<br>
+            Antipseudomonal β-lactam indicated if local epidemiology suggests non-HACEK Gram-negative bacilli.<br>
+            Cefepime neurotoxicity caution.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Pathogen-specific therapy</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Organism</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Streptococcus viridans</em>, <em>Streptococcus bovis</em> — <strong>highly penicillin susceptible (MIC ≤ 0.125 mg/L)</strong></td>
+          <td>Benzylpenicillin <strong>3 MU q4h</strong> OR Ceftriaxone <strong>1 g q12h</strong><br><span class="small">4 weeks (native), 6 weeks (prosthetic)</span></td>
+          <td>2-week regimen (native): Benzylpenicillin <strong>3 MU q4h</strong> OR Ceftriaxone <strong>1 g q12h</strong> PLUS Gentamicin <strong>3 mg/kg q24h</strong></td>
+          <td>Preferred (4-week) therapy recommended for patients &gt; 65 years, impaired renal function, deafness, known cardiac or extracardiac abscess, prosthetic valves. Alternative (2-week) recommended in the absence of heart failure, extrapulmonary metastatic infection, aortic/mitral involvement, meningitis, MRSA, prosthetic valves.</td>
+        </tr>
+        <tr>
+          <td><em>S. viridans</em>, <em>S. bovis</em> — <strong>relatively resistant (0.125 ≤ MIC &lt; 2.0 mg/L)</strong></td>
+          <td>Benzylpenicillin <strong>4 MU q4h × 4 weeks</strong> PLUS Gentamicin <strong>3 mg/kg q24h × 2 weeks</strong></td>
+          <td>Ceftriaxone <strong>1 g q12h × 4 weeks</strong> PLUS Gentamicin <strong>3 mg/kg q24h × 2 weeks</strong></td>
+          <td>Prosthetic valve endocarditis: total duration <strong>6 weeks</strong>.</td>
+        </tr>
+        <tr>
+          <td><em>S. viridans</em>, <em>S. bovis</em> — <strong>highly resistant (MIC ≥ 2.0 mg/L)</strong></td>
+          <td colspan="2">Treat as resistant enterococcal endocarditis</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><em>Staphylococcus aureus</em> — native valve</td>
+          <td>Methicillin-susceptible: Cloxacillin <strong>2 g q4h × 4–6 weeks</strong></td>
+          <td>Methicillin-resistant: Vancomycin <strong>15–20 mg/kg q12h × 4–6 weeks</strong></td>
+          <td>
+            Uncomplicated <strong>right-sided MSSA</strong> endocarditis may be shortened to <strong>2 weeks</strong> if all of: no left-sided endocarditis; no metastatic infection or empyema; vegetations &lt; 10 mm; no severe immunosuppression (CD4 &lt; 200 cells/mL).
+          </td>
+        </tr>
+        <tr>
+          <td>HACEK group — <em>Haemophilus</em>, <em>Aggregatibacter</em>, <em>Cardiobacterium hominis</em>, <em>Eikenella corrodens</em>, <em>Kingella</em> spp.</td>
+          <td>Ceftriaxone <strong>1 g q12h</strong></td>
+          <td>Ampicillin/Sulbactam <strong>3 g q6h</strong></td>
+          <td>Duration: native valve <strong>4 weeks</strong>; prosthetic valve <strong>6 weeks</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 9. DIARRHOEA ============ -->
+<details class="section" id="diarrhoea">
+<summary><span class="num">9</span> Infectious Diarrhoea &amp; <em>Clostridioides difficile</em></summary>
+<div class="body">
+  <h3>Acute infectious diarrhoea</h3>
+  <ul>
+    <li>Most cases in adults are self-limiting. Causes: viruses (norovirus, rotavirus), bacteria (<em>Salmonella</em>, <em>Shigella</em>, enterotoxigenic <em>E. coli</em>), protozoa (<em>Cryptosporidium</em>, <em>Giardia</em>, <em>Cyclospora</em>, <em>Entamoeba</em>).</li>
+    <li>Relevant history: stool characteristics, food ingestion, water exposure, travel, animal exposure.</li>
+    <li class="warn"><strong>Antimicrobials are not recommended</strong> in clinically stable patients without hypovolaemia (mild–moderate disease).</li>
+    <li>Consider empirical treatment in: significant hypovolaemia (severe disease), immunocompromised hosts, immunocompetent hosts with high-grade fever, severe symptoms, or bloody diarrhoea.</li>
+  </ul>
+  <div class="table-wrap">
+    <table>
+      <caption>Stool specimen</caption>
+      <thead><tr><th>Test</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Stool for ova and parasites</td><td>Recommended in persistent or bloody diarrhoea, or during waterborne outbreaks</td></tr>
+        <tr><td>Stool culture &amp; sensitivity</td><td>≥ 5 mL of diarrhoeal stool in a clean leak-proof container. Sensitivity &gt; 95% for enteric bacterial pathogens. Negative culture for <em>Salmonella</em>, <em>Shigella</em>, <em>Campylobacter</em> rules out infection (excretion is continuous)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><em>Clostridioides difficile</em> infection (CDI)</h3>
+  <ul>
+    <li><strong>Definition:</strong> ≥ 3 watery stools per day with a positive <em>C. difficile</em> toxin. The commonest infectious cause of diarrhoea in ICU; may cause fulminant colitis, toxic megacolon and death.</li>
+    <li><strong>Major risk factor:</strong> antibiotic use — clindamycin, cephalosporins, quinolones, penicillin.</li>
+    <li><strong>Diagnosis:</strong> stool toxin detection. Colonoscopy findings of pseudomembranous colitis may aid diagnosis when lab confirmation is delayed or negative.</li>
+    <li>Discontinue the offending antibiotic whenever possible.</li>
+    <li><strong>Recurrence</strong> in up to 27% — defined as symptom recurrence with a positive stool test within 8 weeks of completing therapy with symptom resolution. Patients excrete <em>C. difficile</em> for weeks after recovery — an infection-control challenge. Risk factors: age ≥ 65, immunocompromised, severe CDI. Fidaxomicin reduces recurrence but is not available locally.</li>
+  </ul>
+  <div class="table-wrap">
+    <table>
+      <caption>CDI treatment</caption>
+      <thead><tr><th>Category</th><th>Regimen</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Non-severe / severe CDI</td>
+          <td>Vancomycin <strong>125 mg q6h PO × 10 days</strong></td>
+          <td rowspan="2">
+            <strong>Non-severe:</strong> WBC &lt; 15 × 10⁹/L, serum creatinine &lt; 132 µmol/L<br>
+            <strong>Severe:</strong> WBC ≥ 15 × 10⁹/L, serum creatinine &gt; 132 µmol/L<br>
+            <strong>Fulminant:</strong> shock with peritonitis, ileus or megacolon<br>
+            In ileus, consider adding rectal instillation of vancomycin <strong>500 mg in 100 mL normal saline q6h</strong> via enema.<br>
+            Oral vancomycin is not available — injection vancomycin is given via the oral route.
+          </td>
+        </tr>
+        <tr>
+          <td>Fulminant CDI</td>
+          <td>Vancomycin <strong>500 mg q6h PO</strong><br>PLUS<br>Metronidazole <strong>500 mg q8h IV</strong><br>× 10–14 days</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 10. PANCREATITIS ============ -->
+<details class="section" id="pancreatitis">
+<summary><span class="num">10</span> Severe Acute Pancreatitis &amp; Infected Pancreatic Necrosis</summary>
+<div class="body">
+  <ul>
+    <li class="warn"><strong>Prophylactic antibiotics are NOT recommended</strong> in severe acute pancreatitis — they do not reduce morbidity or mortality.</li>
+    <li>Antibiotics to prevent infection in <strong>sterile</strong> pancreatic necrosis are also not recommended.</li>
+    <li>Infected pancreatic necrosis with persistent organ failure carries high mortality. Diagnosis can be challenging — the clinical picture cannot distinguish other infections, persistent inflammation or necrosis.</li>
+    <li>Drugs that penetrate pancreatic necrosis well: <strong>β-lactams</strong> (ceftazidime, cefepime, piperacillin/tazobactam), <strong>carbapenems</strong>, <strong>quinolones</strong> and <strong>metronidazole</strong>.</li>
+    <li>Consider antifungal coverage if multiple risk factors for invasive candidiasis are present.</li>
+    <li>If not responding to antimicrobials, consider percutaneous or endoscopic drainage of pancreatic necrosis, peripancreatic collections, pseudocysts and abscesses.</li>
+  </ul>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Enterobacterales (<em>E. coli</em>, <em>Klebsiella</em>, <em>Proteus</em>), <em>P. aeruginosa</em>, <em>Enterococcus</em> spp., <em>Bacteroides</em> spp.</td>
+          <td>Piperacillin/Tazobactam <strong>4.5 g q6h</strong><br>OR<br>Cefepime <strong>2 g q8–12h</strong> PLUS Metronidazole <strong>500 mg q8h</strong></td>
+          <td>Imipenem <strong>500 mg q6h</strong> OR Meropenem <strong>1 g q8h</strong><br><br>PLUS OPTIONAL antifungal:<br>Anidulafungin D1 200 mg → 100 mg q24h<br>OR Caspofungin D1 70 mg → 50 mg q24h<br>OR Micafungin 100 mg q24h</td>
+          <td>Duration guided by repeated clinical and serial radiological assessment. Cefepime neurotoxicity caution.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 11. BILIARY ============ -->
+<details class="section" id="biliary">
+<summary><span class="num">11</span> Acute Cholecystitis &amp; Cholangitis</summary>
+<div class="body">
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Enterobacterales (<em>E. coli</em>, <em>Klebsiella</em>, <em>Enterobacter</em>), <em>P. aeruginosa</em>, <em>Enterococcus</em> spp., <em>Streptococcus</em> spp., anaerobes (<em>B. fragilis</em>, <em>C. perfringens</em>)</td>
+          <td>Piperacillin/Tazobactam <strong>4.5 g q6h</strong><br>OR<br>Cefepime <strong>2 g q8–12h</strong> PLUS Metronidazole <strong>500 mg q8h</strong><br>× 7–10 days</td>
+          <td>Imipenem <strong>500 mg q6h</strong> OR Meropenem <strong>1 g q8h</strong><br>× 7–10 days</td>
+          <td>
+            Consider enterococcal cover in the immunocompromised (solid organ transplant, steroid therapy), prior endoscopic sphincterotomy, previous antibiotic use.<br>
+            <strong>Shorter duration:</strong><br>
+            • Post-cholecystectomy for perforated, emphysematous or necrotic gallbladder — 4–7 days<br>
+            • Acute cholangitis with controlled source — 4–7 days<br>
+            Cefepime neurotoxicity caution.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 12. LIVER ABSCESS ============ -->
+<details class="section" id="liver">
+<summary><span class="num">12</span> Liver Abscess</summary>
+<div class="body">
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Enterobacterales (<em>E. coli</em>, <em>K. pneumoniae</em>), <em>Streptococcus milleri</em>, <em>Enterococcus</em> spp., <em>S. aureus</em>, anaerobes (<em>Bacteroides</em>, <em>Fusobacterium</em>, <em>Actinomyces</em>, <em>C. perfringens</em>)</td>
+          <td>Amoxicillin/Clavulanate <strong>1.2 g q8h</strong><br>OR<br>Ceftriaxone <strong>1 g q12h</strong> PLUS Metronidazole <strong>500 mg q8h</strong><br>× 4–6 weeks</td>
+          <td>Piperacillin/Tazobactam <strong>4.5 g q6h</strong><br>OR<br>Cefepime <strong>2 g q8h</strong> PLUS Metronidazole <strong>500 mg q8h</strong><br>× 4–6 weeks</td>
+          <td>
+            Consider alternative therapy if haemodynamically unstable.<br>
+            Consider carbapenem when <strong>melioidosis</strong> is suspected or with recent antibiotic use.<br>
+            If <em>Entamoeba histolytica</em> suspected, add Metronidazole <strong>750 mg q8h IV</strong>.<br>
+            Cefepime neurotoxicity caution.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 13. IAI ============ -->
+<details class="section" id="iai">
+<summary><span class="num">13</span> Intra-Abdominal Infections</summary>
+<div class="body">
+  <h3>Classification</h3>
+  <ul>
+    <li><strong>Uncomplicated IAI</strong> — infection originating from an abdominal organ without extension to the peritoneum (e.g. acute appendicitis).</li>
+    <li><strong>Complicated IAI</strong> — extension into the peritoneum → localised peritonitis with abscess, or diffuse peritonitis.</li>
+    <li>Community-acquired IAIs: narrower-spectrum empirical therapy is adequate. Hospital-acquired IAIs often involve MDR organisms.</li>
+  </ul>
+  <h4>Diffuse peritonitis</h4>
+  <ul>
+    <li><strong>Primary / spontaneous bacterial peritonitis (SBP)</strong> — bacterial translocation across an intact gut wall.</li>
+    <li><strong>Secondary</strong> — microbial contamination through a perforation, laceration or necrotic GI segment.</li>
+    <li><strong>Tertiary</strong> — persistent or recurrent infection ≥ 48 h after appropriate management of primary or secondary peritonitis.</li>
+  </ul>
+  <p class="key">Cornerstones of treatment: <strong>early recognition, adequate source control and appropriate antimicrobial therapy</strong>. After adequate source control, antimicrobials may be stopped in uncomplicated IAI. In complicated IAI, therapy is usually continued after source control and duration tailored to response; if source control is suboptimal, treatment is prolonged.</p>
+
+  <h3>Peritoneal fluid specimen</h3>
+  <ul>
+    <li>Paracentesis to determine whether ascitic fluid infection is present in septic patients with ascites. Cultures from in-situ abdominal drains may be inaccurate due to contamination risk.</li>
+    <li>The decision to start early empirical antibiotics for suspected ascitic fluid infection is based largely on the <strong>absolute neutrophil count</strong>, since culture takes 24–48 h.</li>
+  </ul>
+  <div class="table-wrap">
+    <table>
+      <caption>Characteristics of ascitic fluid infection</caption>
+      <thead>
+        <tr><th>Condition</th><th>Polymorphs (cells/mm³)</th><th>Bacterial culture</th><th>Glucose (mmol/L)</th><th>Protein (g/dL)</th><th>LDH (IU/L)</th><th>Treatment</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Spontaneous bacterial peritonitis (SBP)</td>
+          <td>≥ 250</td>
+          <td>Positive (usually 1 type of organism)<br>Poor yield for Gram stain</td>
+          <td>&gt; 2.7</td>
+          <td>&lt; 1.0</td>
+          <td>&lt; 225</td>
+          <td>Antibiotics</td>
+          <td>Inoculate peritoneal fluid into blood culture bottles at bedside to improve sensitivity</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Hospital-acquired IAI — antifungal therapy</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Candida albicans</em>, <em>Candida</em> non-albicans</td>
+          <td>Fluconazole <strong>400 mg q24h</strong></td>
+          <td>
+            Anidulafungin D1 200 mg → 100 mg q24h<br>OR<br>
+            Caspofungin D1 70 mg → 50 mg q24h<br>OR<br>
+            Micafungin <strong>100 mg q24h</strong>
+          </td>
+          <td>
+            Consider antifungal therapy in: recurrent gastroduodenal perforations; anastomotic leaks; necrotising pancreatitis; no clinical improvement despite antibiotics.<br>
+            <strong>Fluconazole first-line in:</strong> haemodynamically stable patients; azole-susceptible <em>Candida</em> colonisation; no prior azole exposure.<br>
+            <strong>Consider echinocandins in:</strong> haemodynamically unstable patients; prior azole exposure.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Duration depends on source control and patient response; de-escalate once cultures are available. Consider <em>Enterococcus</em> cover in recurrent IAIs, prior antimicrobial therapy, immunocompromised patients, valvular heart disease, prosthetic valves or intravascular devices.</p>
+</div>
+</details>
+
+<!-- ============ 14. CNS ============ -->
+<details class="section" id="cns">
+<summary><span class="num">14</span> Central Nervous System Infections</summary>
+<div class="body">
+  <h3>General approach</h3>
+  <ul>
+    <li>Acute CNS infections have high morbidity and mortality. Approach: early recognition, rapid diagnostic tests, prompt antimicrobials and adjunctive therapy.</li>
+    <li>Classical bacterial meningitis: fever, headache, neck stiffness, then altered mental status — but most patients do <em>not</em> present with the full spectrum.</li>
+    <li>Perform <strong>lumbar puncture</strong> for CSF analysis and <strong>blood cultures</strong>. Choice of empirical antibiotic depends on age, immune status and predisposing conditions.</li>
+    <li>The antibiotic must be bactericidal, penetrate the CNS and achieve adequate CSF concentration (immune activity in CSF is poor).</li>
+    <li><strong>Corticosteroids</strong> significantly reduce hearing loss and neurological sequelae but not overall mortality. Give <strong>dexamethasone before or with the first dose</strong> of empirical antibiotic in all adults with acute bacterial meningitis. Discontinue if the organism is not <em>H. influenzae</em>, <em>S. pneumoniae</em> or <em>M. tuberculosis</em>.</li>
+    <li>Viral encephalitis presents similarly but with more prominent neurological symptoms — altered sensorium, focal signs, seizures. Until CSF analysis suggests otherwise, empirical therapy includes <strong>acyclovir</strong> (specific only for herpes simplex and varicella zoster).</li>
+    <li><strong>Healthcare-associated ventriculitis/meningitis</strong> — associated with EVDs, lumbar drains, craniotomy/plasty, VP shunts. Likely organisms: MDR Gram-negative bacilli and staphylococci.</li>
+    <li>LP and blood cultures before antibiotics. LP is crucial for aetiology and should be done after neurological examination <strong>without delaying antimicrobials</strong>. CT to rule out raised ICP before LP. CSF analysed within 1 hour (or stored at 4–8 °C).</li>
+    <li>PCR is standard for viruses associated with aseptic meningitis/encephalitis. Serology may be more appropriate for suspected arbovirus (West Nile, St. Louis, Eastern equine, Japanese encephalitis).</li>
+  </ul>
+
+  <h3>Cerebrospinal fluid specimen</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Test</th><th>Minimum volume (mL)*</th></tr></thead>
+      <tbody>
+        <tr><td>Microscopy and stain (Gram, India ink, Ziehl-Neelsen)</td><td>1</td></tr>
+        <tr><td>Biochemistry</td><td>1</td></tr>
+        <tr><td>Culture &amp; sensitivity (aerobic and anaerobic)</td><td>2</td></tr>
+        <tr><td>Latex agglutination: <em>S. pneumoniae</em>, group B streptococcus, <em>H. influenzae</em> type B, <em>N. meningitidis</em> groups A, B, C, Y, W135, <em>E. coli</em> K1, <em>Listeria monocytogenes</em></td><td>1</td></tr>
+        <tr><td>Viral PCR and/or serology: HSV 1 &amp; 2, VZV, Japanese B encephalitis, CMV, EBV, Nipah, HHV-6, enterovirus, human parechovirus</td><td>3</td></tr>
+        <tr><td>Parasite PCR: <em>Toxoplasma gondii</em></td><td>3</td></tr>
+        <tr><td><em>Mycobacterium tuberculosis</em> PCR and culture</td><td>3</td></tr>
+        <tr><td>Fungal antigen and culture: <em>Aspergillus fumigatus</em>, <em>Cryptococcus neoformans</em></td><td>1</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">*Volumes may vary between laboratories.</p>
+
+  <h3>CSF interpretation in CNS infections</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th><th>Normal</th><th>Bacterial meningitis</th><th>Viral meningitis / encephalitis</th><th>Tuberculous meningitis</th><th>Fungal meningitis</th><th>Meningitis/ventriculitis with drains or shunts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Pressure (cmH₂O)</td><td>10–20</td><td>&gt; 30</td><td>Normal or ↑</td><td>↑↑</td><td>↑</td><td>—</td></tr>
+        <tr><td>Appearance</td><td>Clear</td><td>Turbid</td><td>Clear</td><td>Fibrin web</td><td>Clear or turbid</td><td>Clear or turbid</td></tr>
+        <tr><td>Protein (g/L)</td><td>0.18–0.45</td><td>&gt; 1.0</td><td>Normal or ↑</td><td>1.0–5.0</td><td>0.2–5.0</td><td>Normal or ↑</td></tr>
+        <tr><td>Glucose (mmol/L)</td><td>2.5–3.5</td><td>&lt; 2.2</td><td>Normal or ↓</td><td>↓↓</td><td>↓</td><td>↓</td></tr>
+        <tr><td>CSF : serum glucose ratio</td><td>0.6</td><td>&lt; 0.4</td><td>&gt; 0.6</td><td>&lt; 0.5</td><td>&lt; 0.5</td><td>&lt; 0.5</td></tr>
+        <tr><td>Cell count/mm³ (predominant cell)</td><td>0–5 lymphocytes (70%) and monocytes (30%)</td><td>&gt; 1000 polymorphs</td><td>5–1000 lymphocytes and monocytes</td><td>&lt; 500 lymphocytes</td><td>10–500 lymphocytes</td><td>&gt; 15 polymorphs; WBC:RBC ratio &lt; 1:100 (normal 1:500)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Notes: partial antibiotic treatment may alter CSF parameters. Neutropenic patients may lack a characteristic polymorph response. Neutrophils may predominate early in viral illness. A cell count index &gt; 1 (ratio of WBC:RBC in CSF to blood) is suggestive. A positive CSF culture may represent a contaminant — clinical correlation required.</p>
+
+  <h3>Community-acquired meningoencephalitis</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>S. pneumoniae</em>, <em>N. meningitidis</em>, <em>H. influenzae</em>, aerobic Gram-negative bacilli, HSV, VZV, enteroviruses, Japanese B encephalitis, adenovirus, CMV, EBV</td>
+          <td>
+            Ceftriaxone <strong>2 g q12h</strong><br>OR<br>Cefotaxime <strong>2 g q6h</strong><br>PLUS<br>Acyclovir <strong>10 mg/kg q8h × 14 days</strong>
+          </td>
+          <td>
+            Add <strong>vancomycin</strong> in cephalosporin-resistant <em>S. pneumoniae</em> (MIC ≥ 2 mg/L).<br>
+            Give dexamethasone <strong>10 mg q6h × 4 days</strong>, 20 minutes before or with the first antibiotic dose. Omit if antibiotics have already been started. Discontinue if the organism is not <em>H. influenzae</em> or <em>S. pneumoniae</em>.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Healthcare-associated ventriculitis and meningitis</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>S. aureus</em>, coagulase-negative staphylococcus (CoNS), <em>Propionibacterium acnes</em></td>
+          <td>Cloxacillin <strong>2 g q4h</strong> PLUS Vancomycin <strong>15–20 mg/kg q12h</strong></td>
+          <td>
+            Appendix E for vancomycin loading/monitoring.<br>
+            Consider alternative therapy in haemodynamically unstable patients, or recent antibiotic exposure (especially β-lactams or fluoroquinolones) within 90 days.<br>
+            <strong>Duration:</strong><br>
+            • CoNS or <em>P. acnes</em> with no/minimal CSF pleocytosis, normal CSF glucose, few clinical symptoms — <strong>10 days</strong><br>
+            • CoNS or <em>P. acnes</em> with significant pleocytosis, low CSF glucose, systemic symptoms — <strong>10–14 days</strong><br>
+            • <em>S. aureus</em> or Gram-negative bacilli — <strong>10–14 days</strong>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Brain abscess</h3>
+  <ul>
+    <li>Sources: contiguous foci (mastoiditis, otitis media, sinusitis), haematogenous spread (endocarditis, lung abscess, skin/dental infection, cyanotic heart disease), or post-neurosurgical. Source unknown in <strong>15%</strong>, especially immunocompromised hosts.</li>
+    <li>Difficult to diagnose clinically — neuroimaging is necessary.</li>
+    <li>Empirical therapy based on mechanism of infection, host immune status and abscess penetration. Attempt aspirate (stereotactic CT or surgery) or culture for directed therapy.</li>
+    <li>Surgical drainage may be needed, especially for lesions <strong>&gt; 2.5 cm</strong>. Repeat neuroimaging within 2 weeks (or earlier) to monitor response.</li>
+    <li>Dexamethasone may be considered in selected cases to reduce mass effect (raised ICP) or neurological decline.</li>
+  </ul>
+  <div class="table-wrap">
+    <table>
+      <caption>Brain abscess — pathogen-specific therapy</caption>
+      <thead><tr><th>Organism</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Listeria monocytogenes</em></td>
+          <td>Ampicillin <strong>2 g q4h</strong></td>
+          <td>Trimethoprim/Sulfamethoxazole <strong>5 mg/kg (TMP) q6h</strong></td>
+          <td>Duration: minimum <strong>6 weeks</strong></td>
+        </tr>
+        <tr>
+          <td><em>Candida albicans</em></td>
+          <td>Amphotericin B <strong>0.7–1.0 mg/kg q24h</strong></td>
+          <td>—</td>
+          <td>Continue until resolution of CNS signs/symptoms, CSF and radiological abnormalities. May step down to fluconazole <strong>400–800 mg/day</strong> IV/PO after initial response.</td>
+        </tr>
+        <tr>
+          <td><em>Toxoplasma gondii</em></td>
+          <td>Trimethoprim/Sulfamethoxazole <strong>5 mg/kg (TMP) q6h</strong></td>
+          <td>
+            Pyrimethamine PO D1 200 mg → 50 mg q24h (BW &lt; 60 kg) or 75 mg q24h (BW ≥ 60 kg)<br>PLUS Clindamycin <strong>600 mg q6h IV</strong><br>PLUS Folinic acid <strong>10–25 mg q24h PO</strong>
+          </td>
+          <td>
+            Acute infection: minimum <strong>6 weeks</strong> (longer if extensive).<br>
+            Maintenance in HIV: TMP-SMX (80/400 mg) 2 tabs q12h until asymptomatic and CD4 &gt; 200 cells/mm³ with suppressed HIV RNA &gt; 6 months on ART.
+          </td>
+        </tr>
+        <tr>
+          <td><em>Cryptococcus neoformans</em></td>
+          <td>
+            <strong>Induction:</strong> Amphotericin B <strong>0.7–1.0 mg/kg q24h</strong> PLUS Flucytosine <strong>25 mg/kg q6h PO</strong> × minimum 2 weeks
+          </td>
+          <td>Amphotericin B monotherapy with induction extended to 4 weeks if flucytosine not tolerated</td>
+          <td>
+            Adjust flucytosine in renal dysfunction; hepatotoxic and myelotoxic.<br>
+            <strong>Consolidation:</strong> Fluconazole <strong>400 mg q24h IV</strong> × minimum 8 weeks.<br>
+            <strong>Maintenance:</strong> Fluconazole <strong>200 mg q24h PO</strong> × minimum 1 year.
+          </td>
+        </tr>
+        <tr>
+          <td>Mucorales</td>
+          <td>Amphotericin B <strong>0.7–1.0 mg/kg q24h</strong></td>
+          <td>—</td>
+          <td>May step down to oral posaconazole after clinical improvement. Duration: minimum <strong>6–8 weeks</strong> until clinical and radiographic response.</td>
+        </tr>
+        <tr>
+          <td><em>Mycobacterium tuberculosis</em></td>
+          <td colspan="2">Refer to the Tuberculosis chapter</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 15. UTI ============ -->
+<details class="section" id="uti">
+<summary><span class="num">15</span> Urinary Tract Infection</summary>
+<div class="body">
+  <h3>Definitions</h3>
+  <ul>
+    <li><strong>UTI:</strong> significant bacteriuria with signs/symptoms attributable to the urinary tract and no alternate source.</li>
+    <li><strong>Asymptomatic bacteriuria:</strong> ≥ 1 bacterial species with ≥ 10⁵ cfu/mL in a patient <em>without</em> signs or symptoms. <strong>Do not treat</strong>, except in pregnancy and before invasive urological procedures (TURP, ureteroscopy, lithotripsy).</li>
+    <li><strong>Sterile pyuria:</strong> persistent white cells in urine without bacteria. Common in catheterised patients, no predictive value, no treatment warranted.</li>
+    <li><strong>CAUTI:</strong> symptoms/signs consistent with UTI with no other source, with ≥ 1 bacterial species at ≥ 10³ cfu/mL in a catheterised patient — or in a patient whose catheter was removed within the past 48 h. Treat with antimicrobials <strong>and remove or change the catheter</strong>.</li>
+    <li><strong>Complicated UTI:</strong> cystitis or pyelonephritis with underlying anatomical/functional abnormality (nephrolithiasis, strictures, stents, urinary diversion, neurogenic bladder), or in immunocompromised patients and males.</li>
+  </ul>
+
+  <h3>Acute pyelonephritis</h3>
+  <ul>
+    <li>Presume in flank pain or tenderness (± fever) with urinalysis showing bacteriuria and/or pyuria.</li>
+    <li>Cornerstones: antimicrobial therapy and source control.</li>
+    <li>Imaging (ultrasound or CT) to identify obstruction, abscess or necrotising infection (emphysematous pyelonephritis).</li>
+    <li>Hydronephrosis → percutaneous or endourological drainage. Abscess → drainage if large enough or the patient remains unstable. Emphysematous pyelonephritis usually requires partial or total nephrectomy.</li>
+    <li>Corticomedullary and perinephric abscesses usually arise from ascending infection. Renal abscesses <strong>&gt; 5 cm</strong> should be considered for image-guided aspiration or surgical drainage.</li>
+    <li><em>S. aureus</em> is the most likely organism in renal cortical abscesses (haematogenous spread) — often multiple and not drainable.</li>
+  </ul>
+
+  <h3>Urine specimen collection</h3>
+  <ul>
+    <li>Aseptic technique; send within <strong>1 hour</strong> of collection (bacteria proliferate in warm fresh urine, increasing counts). If not sent immediately, store at <strong>4 °C</strong> (may affect leucocyte counts).</li>
+    <li>If catheterisation is needed, discard the first few mL and collect the rest in a sterile container.</li>
+    <li>If already catheterised: clamp the catheter, clean the sampling port with 70% alcohol, collect <strong>10 mL</strong>.</li>
+    <li class="warn"><strong>Do not</strong> take samples from the drainage bag — high risk of bacterial overgrowth causing false positives.</li>
+    <li>In-and-out catheterisation is acceptable in uncatheterised patients. In long-term catheters, <strong>replace the catheter before collecting</strong>.</li>
+  </ul>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Diagnostic criteria — catheterised patient</caption>
+      <thead><tr><th>Symptom</th><th>Bacteriuria (cfu/mL)</th><th>Pyuria</th><th>No. of species</th><th>Nitrite</th><th>Comments</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Present</td><td>≥ 10³</td>
+          <td>Common in catheterised patients and has no predictive value</td>
+          <td>≤ 2</td><td>Undetected</td>
+          <td>Treat as UTI. Remove catheter if possible.</td>
+        </tr>
+        <tr>
+          <td>Absent</td>
+          <td colspan="5">
+            Routine urine culture in asymptomatic catheterised patients is <strong>not recommended</strong>.<br>
+            Asymptomatic significant bacteriuria: single specimen ≥ 10⁵ cfu/mL; specimen by in-and-out catheter ≥ 10² cfu/mL.<br>
+            Treat asymptomatic significant bacteriuria in pregnancy and before invasive urological procedures (TURP, ureteroscopy, lithotripsy).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Diagnostic criteria — without catheter</caption>
+      <thead><tr><th>Symptom</th><th>Bacteriuria (cfu/mL)</th><th>Pyuria (WBC/mm³)</th><th>No. of species</th><th>Nitrite</th><th>Comments</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Present</td>
+          <td>
+            ≥ 10³ in pregnant women and acute uncomplicated cystitis in women<br>
+            ≥ 10⁴ in acute uncomplicated pyelonephritis in women<br>
+            ≥ 10⁴ in complicated UTI in men<br>
+            ≥ 10⁵ in complicated UTI in women
+          </td>
+          <td>≥ 10</td>
+          <td>≤ 2</td>
+          <td>Detected (only positive in nitrite-producing bacteria — <em>E. coli</em>, <em>Serratia</em>, <em>Klebsiella</em>, <em>Proteus</em>)</td>
+          <td>Treat as UTI.</td>
+        </tr>
+        <tr>
+          <td>Absent</td>
+          <td colspan="5">
+            Asymptomatic significant bacteriuria: 2 consecutive (&gt; 24 h apart) mid-stream urine specimens growing ≥ 10⁵ cfu/mL of the same species in women, and ≥ 10³ cfu/mL in men.<br>
+            Treat in pregnancy and before invasive urological procedures.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Complicated UTI or acute complicated pyelonephritis — candiduria</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Candida albicans</em>, <em>Candida</em> spp.</td>
+          <td>Fluconazole <strong>400 mg q24h</strong></td>
+          <td>
+            Micafungin <strong>100 mg q24h</strong><br>OR<br>
+            Anidulafungin D1 200 mg → 100 mg q24h<br>OR<br>
+            Caspofungin D1 70 mg → 50 mg q24h<br>OR<br>
+            Amphotericin B <strong>0.3–0.6 mg/kg q24h</strong>
+          </td>
+          <td>
+            Candiduria is often asymptomatic and a common coloniser. Treat only in neutropenia or before urological procedures.<br>
+            Remove indwelling catheter if possible.<br>
+            Use alternative therapy with recent azole exposure (within 3 months), known azole-resistant <em>Candida</em> colonisation, or fluconazole intolerance.<br>
+            Duration: <strong>14 days</strong>.<br>
+            Echinocandins do not achieve adequate urine concentrations, though clinical reports indicate successful eradication of candiduria.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Renal and perinephric abscess</strong> — organisms: Enterobacterales (<em>E. coli</em>, <em>Klebsiella</em>, <em>Enterobacter</em>, <em>Proteus</em>, <em>Serratia</em>), MSSA, MRSA. Treat as acute complicated pyelonephritis; duration determined by extent of infection and clinical response.</p>
+</div>
+</details>
+
+<!-- ============ 16. SSTI ============ -->
+<details class="section" id="ssti">
+<summary><span class="num">16</span> Skin &amp; Soft Tissue Infections</summary>
+<div class="body">
+  <p>Range from simple superficial infections to severe necrotising infections (necrotising fasciitis, gas gangrene, toxic shock syndrome). Imaging may help when the diagnosis is uncertain or to delineate extent.</p>
+
+  <h3>Necrotising fasciitis</h3>
+  <ul>
+    <li>Life-threatening invasive soft tissue infection involving superficial dermis, subcutaneous tissue and deeper fascia and muscle. May involve extremities, parapharyngeal space, abdominal wall or perineum (Fournier's gangrene).</li>
+    <li class="warn"><strong>Surgical intervention is the primary therapeutic modality</strong> — most patients require recurrent debridement.</li>
+  </ul>
+  <div class="table-wrap">
+    <table class="narrow">
+      <thead><tr><th>Type</th><th>Microbiology</th><th>Typical setting</th></tr></thead>
+      <tbody>
+        <tr><td>Type 1</td><td>Polymicrobial</td><td>Peripheral vascular disease, alcoholics, diabetes, chronic kidney disease, post-surgical</td></tr>
+        <tr><td>Type 2</td><td>Monomicrobial — <em>Streptococcus pyogenes</em> or <em>Staphylococcus aureus</em></td><td>—</td></tr>
+        <tr><td>Type 3</td><td>Clostridial myonecrosis (gas gangrene)</td><td>Penetrating wounds or crush injuries with local devascularisation; can rapidly progress to death</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Wound specimens</h3>
+  <ul>
+    <li>Wound infections should be diagnosed <strong>clinically</strong>. Chronic wounds have colonising organisms but this does not mean the wound is infected.</li>
+    <li>Culture only when signs and symptoms of <strong>deep</strong> infection are present.</li>
+    <li>Swab viable wound tissue, not necrotic tissue or pus; at least 1 cm² of viable tissue required. Clean the wound with sterile saline first to increase bacterial adherence; rotate the swab in a zigzag across the entire wound.</li>
+    <li><strong>Levine's technique:</strong> rotate the swab over 1 cm² of cleansed wound with enough pressure to express exudate from within the tissue.</li>
+    <li>Send pus for culture if debridement or incision and drainage is performed, and/or if there is a discrete collection or drainage.</li>
+  </ul>
+
+  <h3>Non-purulent cellulitis</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>β-haemolytic streptococci (<em>S. pyogenes</em>, <em>S. agalactiae</em>, <em>S. dysgalactiae</em>), <em>S. aureus</em></td>
+          <td>Cloxacillin <strong>2 g q4–6h × 5–7 days</strong></td>
+          <td>Amoxicillin/Clavulanate <strong>1.2 g q8h × 5–7 days</strong></td>
+          <td>Cloxacillin is preferred empirically to cover possible <em>S. aureus</em>. Give <strong>2 g q4h</strong> in bacteraemia. If streptococci are cultured, switch to benzylpenicillin <strong>4 million units q6h</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Necrotising fasciitis, Fournier's gangrene, Ludwig's angina, clostridial myonecrosis</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <em>Streptococcus</em> spp., anaerobes, <em>Peptostreptococcus</em>, <em>Fusobacterium</em> spp., <em>Prevotella</em> spp., <em>Bacteroides</em> spp.
+          </td>
+          <td>
+            Amoxicillin/Clavulanate <strong>1.2 g q8h</strong><br>OR<br>
+            Ampicillin/Sulbactam <strong>3 g q6h</strong><br>PLUS<br>
+            Clindamycin <strong>900 mg q8h</strong><br>× 5–7 days
+          </td>
+          <td>
+            Piperacillin/Tazobactam <strong>4.5 g q6h</strong><br>OR<br>
+            Cefepime <strong>2 g q8h</strong> PLUS Metronidazole <strong>500 mg q8h</strong><br>PLUS<br>
+            Clindamycin <strong>900 mg q8h</strong><br>× 5–7 days
+          </td>
+          <td>
+            Consider alternative therapy in haemodynamically unstable patients despite surgery and antibiotics, recent antibiotic exposure, diabetics, elderly or immunosuppressed.<br>
+            Longer duration of preferred therapy may be required for severe infection or slow response.<br>
+            If <em>Clostridium</em> spp. or β-haemolytic streptococcus is confirmed, switch to benzylpenicillin <strong>4 million units q4h</strong>.<br>
+            Clindamycin is added for <strong>toxin suppression</strong> in toxic shock syndrome; discontinue once clinically and haemodynamically stable for at least 48–72 h.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 17. CLABSI ============ -->
+<details class="section" id="clabsi">
+<summary><span class="num">17</span> Central Line-Associated Bloodstream Infection (CLABSI)</summary>
+<div class="body">
+  <h3>Definitions</h3>
+  <ul>
+    <li><strong>CLABSI:</strong> laboratory-confirmed bloodstream infection not related to infection at another site, developing within <strong>48 hours of central line insertion</strong>. Diagnosis requires a positive blood culture <em>and</em> collaborative clinical and microbiological review.</li>
+    <li><strong>CRBSI:</strong> bloodstream infection attributed to any intravascular catheter (central venous, peripheral or intra-arterial). Diagnosed when the same organism grows from paired peripheral and catheter-lumen samples with either:
+      <ul>
+        <li>Quantitative cultures — 3-fold greater colony count from the catheter sample, or</li>
+        <li>Differential time to positivity — catheter growth detected at least 2 hours earlier than the peripheral sample.</li>
+      </ul>
+    </li>
+    <li>This section deals only with CLABSI associated with <strong>short-term CVCs</strong>. Suspect CLABSI with fever, chills ± hypotension and bacteraemia with no other possible site — catheter removal is warranted.</li>
+    <li>Initial empirical choice depends on severity of illness, risk factors and likely pathogens. In the Malaysian Registry of Intensive Care 2021 report, <strong>Gram-negative organisms predominate</strong> — so empirical Gram-negative cover is recommended.</li>
+    <li>Duration is generally <strong>7 days</strong> in the absence of distant complications.</li>
+    <li><strong>Complicated CLABSI:</strong> persistent bacteraemia/fungaemia despite CVC removal and appropriate therapy, or suppurative thrombophlebitis, or metastatic foci (endocarditis, septic arthritis, osteomyelitis, epidural abscess, septic emboli).</li>
+  </ul>
+
+  <h3>Blood cultures</h3>
+  <ul>
+    <li>Take <strong>before</strong> starting antibiotics. Avoid contamination with normal skin flora — <em>Corynebacterium</em> spp., <em>Propionibacterium</em> spp., CoNS, <em>Bacillus</em> sp., <em>Micrococcus</em> sp. In some circumstances these may be clinically significant — clinical correlation required.</li>
+    <li><strong>Venepuncture is the preferred site</strong>; avoid sampling from an intravascular device unless diagnosing CRBSI.</li>
+    <li>Minimum <strong>20 mL</strong> of blood — 10 mL each into aerobic and anaerobic bottles. Increasing to 40–60 mL from different venepuncture sites (2–3 pairs) increases yield further.</li>
+    <li><strong>Skin antisepsis:</strong> 2% chlorhexidine in 70% isopropyl alcohol, circular scrubbing motion spiralling out from the planned site. Use a fresh swab for each scrub; use 2–3 scrubs.</li>
+  </ul>
+
+  <h3>Empirical therapy</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Likely organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Gram-negative bacilli — <em>Klebsiella</em> spp., <em>P. aeruginosa</em>, <em>E. coli</em></td>
+          <td>Cefepime <strong>2 g q8h</strong><br>OR<br>Piperacillin/Tazobactam <strong>4.5 g q6h</strong><br>PLUS OPTIONAL Gram-positive cover (below)</td>
+          <td>Meropenem <strong>1 g q8h</strong><br>OR<br>Imipenem <strong>500 mg q6h</strong><br>PLUS OPTIONAL Gram-positive cover</td>
+          <td rowspan="2">
+            Consider alternative therapy in neutropenia, sepsis with haemodynamic instability, or colonisation with MDR organisms.<br>
+            Consider MRSA coverage in patients with prior MRSA colonisation or on long-term haemodialysis.<br>
+            Appendix E for vancomycin loading and monitoring.
+          </td>
+        </tr>
+        <tr>
+          <td>CoNS, <em>S. aureus</em> (MSSA/MRSA), <em>E. faecalis</em>, <em>E. faecium</em></td>
+          <td>Cloxacillin <strong>2 g q4h</strong></td>
+          <td>Vancomycin <strong>15–20 mg/kg q12h</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Pathogen-specific therapy (duration generally 7 days)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Organism</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Pseudomonas aeruginosa</em></td>
+          <td>Cefepime <strong>2 g q8h</strong><br>OR<br>Piperacillin/Tazobactam <strong>4.5 g q6h</strong></td>
+          <td>Meropenem <strong>1 g q8h</strong><br>OR<br>Imipenem <strong>500 mg q6h</strong></td>
+          <td>Duration <strong>7 days</strong>. Cefepime neurotoxicity caution.</td>
+        </tr>
+        <tr>
+          <td><em>Acinetobacter baumannii</em></td>
+          <td>Ampicillin/Sulbactam <strong>9 g q8h</strong></td>
+          <td>Polymyxin E <strong>4.5 MU q12h</strong> OR Polymyxin B <strong>15,000 units/kg q12h</strong> PLUS Ampicillin/Sulbactam <strong>9 g q8h</strong></td>
+          <td>Use alternative therapy for CRAB. Appendix D for polymyxin loading doses. Polymyxin B is active and less nephrotoxic. Duration <strong>7 days</strong>.</td>
+        </tr>
+        <tr>
+          <td><em>Enterobacter</em> spp., <em>Serratia</em> spp., <em>Citrobacter</em> spp., <em>Proteus</em> spp.</td>
+          <td>Meropenem <strong>1 g q8h</strong><br>OR<br>Imipenem <strong>500 mg q6h</strong></td>
+          <td>Cefepime <strong>2 g q8h</strong></td>
+          <td><em>Proteus</em> spp. is intrinsically resistant to imipenem. De-escalate to cefepime if susceptible. Duration <strong>7 days</strong>.</td>
+        </tr>
+        <tr>
+          <td><em>Stenotrophomonas maltophilia</em></td>
+          <td>Trimethoprim/Sulfamethoxazole <strong>5 mg/kg (TMP) q8h</strong></td>
+          <td>Levofloxacin <strong>750 mg q24h</strong></td>
+          <td>Consider alternative if intolerant to TMP-SMX. Duration <strong>7 days</strong>.</td>
+        </tr>
+        <tr>
+          <td><em>Burkholderia cepacia</em></td>
+          <td>Trimethoprim/Sulfamethoxazole <strong>5 mg/kg (TMP) q8h</strong></td>
+          <td>Ceftazidime <strong>2 g q8h</strong></td>
+          <td>Consider alternative if intolerant to TMP-SMX. Duration <strong>7 days</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 18. CANDIDIASIS ============ -->
+<details class="section" id="candida">
+<summary><span class="num">18</span> Invasive Candidiasis</summary>
+<div class="body">
+  <ul>
+    <li>Conventional blood culture remains the gold standard despite limited sensitivity (<strong>75% in candidaemia</strong>, <strong>5–20% in intra-abdominal candidiasis</strong>) and prolonged time to positivity.</li>
+    <li>Non-culture diagnostics — serological (mannan/antimannan, 1,3-β-D-glucan), molecular (<em>Candida</em>-specific PCR) and T2 magnetic resonance <em>Candida</em> assay (T2Candida) — may be useful adjuncts but are costly and not routinely available.</li>
+    <li>In persistent fever or candidaemia despite appropriate treatment, <strong>rule out ongoing foci</strong>: endocarditis, infected intravascular catheters, abscesses within solid organs.</li>
+  </ul>
+
+  <div class="table-wrap">
+    <table class="narrow">
+      <caption>Four types of antifungal therapy</caption>
+      <thead><tr><th>Type</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1. Prophylactic</strong></td><td>Asymptomatic patients at high risk of fungal infection. In ICUs with invasive candidiasis rates &gt; 5%, start prophylaxis in recurrent GI surgery and leaks, or patients undergoing transplantation.</td></tr>
+        <tr><td><strong>2. Empirical</strong></td><td>Unexplained sepsis with risk factors for invasive candidiasis.</td></tr>
+        <tr><td><strong>3. Pre-emptive</strong></td><td>Unexplained sepsis with risk factors <em>and</em> radiological or non-culture evidence of invasive candidiasis.</td></tr>
+        <tr><td><strong>4. Targeted</strong></td><td>When culture and sensitivity results are available.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Empirical therapy</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Patient profile</th><th>Regimen</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Haemodynamically <strong>stable</strong> AND no risk factors for resistant <em>Candida</em> spp.</td>
+          <td>Fluconazole D1 <strong>800 mg</strong> → <strong>400 mg q24h</strong></td>
+          <td rowspan="2">
+            <strong>Risk factors for azole-resistant <em>Candida</em>:</strong><br>
+            • Previous azole exposure within the last 3 months<br>
+            • Previous abdominal surgery<br>
+            • Solid organ tumours<br>
+            • Haematopoietic transplant<br>
+            • Chemotherapy with extensive mucositis<br>
+            No documented superiority of one echinocandin over another.
+          </td>
+        </tr>
+        <tr>
+          <td>Haemodynamically <strong>unstable</strong> OR risk factors for resistant <em>Candida</em> spp.</td>
+          <td>
+            Anidulafungin D1 <strong>200 mg</strong> → <strong>100 mg q24h</strong><br>OR<br>
+            Caspofungin D1 <strong>70 mg</strong> → <strong>50 mg q24h</strong><br>OR<br>
+            Micafungin <strong>100 mg q24h</strong><br>OR<br>
+            Amphotericin B <strong>0.7–1.0 mg/kg q24h</strong>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Pathogen-specific therapy</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Organism</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Candida albicans</em></td>
+          <td>Fluconazole D1 <strong>800 mg</strong> → <strong>400 mg q24h</strong></td>
+          <td>
+            Anidulafungin D1 200 mg → 100 mg q24h<br>OR<br>
+            Caspofungin D1 70 mg → 50 mg q24h<br>OR<br>
+            Micafungin 100 mg q24h<br>OR<br>
+            Amphotericin B 0.7–1.0 mg/kg q24h
+          </td>
+          <td>
+            Repeat blood cultures every 48–72 h until negative. Duration without metastatic complications: <strong>14 days from the first negative blood culture</strong>.<br>
+            With metastatic complications, duration is based on site, clinical improvement and resolution of lesions on imaging.<br>
+            Perform echocardiography to rule out endocarditis. Ophthalmic examination within 1 week of diagnosis to rule out endophthalmitis.<br>
+            Anidulafungin is preferred in liver impairment (extrahepatic metabolism).
+          </td>
+        </tr>
+        <tr>
+          <td><em>C. parapsilosis</em>, <em>C. tropicalis</em>, <em>C. lusitaniae</em></td>
+          <td>Fluconazole D1 <strong>800 mg</strong> → <strong>400 mg q24h</strong></td>
+          <td>Amphotericin B <strong>0.7–1.0 mg/kg q24h</strong></td>
+          <td><em>C. lusitaniae</em> may be resistant to amphotericin B.</td>
+        </tr>
+        <tr>
+          <td><em>C. glabrata</em>, <em>C. krusei</em>, <em>C. auris</em></td>
+          <td>
+            Anidulafungin D1 200 mg → 100 mg q24h<br>OR<br>
+            Caspofungin D1 70 mg → 50 mg q24h<br>OR<br>
+            Micafungin 100 mg q24h
+          </td>
+          <td>Amphotericin B <strong>0.7–1.0 mg/kg q24h</strong></td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 19. MELIOIDOSIS ============ -->
+<details class="section" id="melioidosis">
+<summary><span class="num">19</span> Melioidosis (<em>Burkholderia pseudomallei</em>)</summary>
+<div class="body">
+  <ul>
+    <li>Diverse presentations: pneumonia, localised cutaneous lesion, bacteraemia without evident focus, septic arthritis, osteomyelitis, sepsis with multiple organ abscesses.</li>
+    <li><strong>Risk factors:</strong> diabetes mellitus, hazardous alcohol use, chronic kidney disease, chronic lung disease, immunosuppression from disease or therapy, occupational/recreational exposure to surface water and mud (rice farmers, construction workers). Only <strong>20%</strong> have no identifiable risk factor.</li>
+    <li><em>B. pseudomallei</em> is intrinsically resistant to multiple antimicrobials; <strong>prolonged therapy is required for cure</strong>.</li>
+    <li><strong>Treatment:</strong> IV intensive phase of at least 2 weeks, followed by an oral eradication phase of at least 3 months, depending on site of infection.</li>
+    <li><strong>Diagnosis:</strong> culture is the mainstay; blood cultures are positive in &gt; 50%. Serology alone is unreliable — always vigorously seek culture confirmation.</li>
+    <li>CT or ultrasound of abdomen and pelvis is required in culture-positive melioidosis to detect abscesses. Deep-seated abscesses may need drainage; infected joints may need surgical intervention.</li>
+  </ul>
+
+  <h3>Phase 1 — initial intensive phase</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Preferred</th><th>Alternative</th><th>Optional add-on</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Meropenem <strong>1 g q8h</strong><br>(<strong>2 g q8h</strong> for CNS infection)<br>OR<br>Imipenem <strong>500 mg q6h</strong></td>
+          <td>Ceftazidime <strong>2 g q6h</strong></td>
+          <td>
+            Trimethoprim/Sulfamethoxazole IV/PO (in cutaneous melioidosis, osteomyelitis, septic arthritis, CNS infection, deep-seated collections):<br>
+            &lt; 40 kg — 160/800 mg q12h<br>
+            40–60 kg — 240/1200 mg q12h<br>
+            &gt; 60 kg — 320/1600 mg q12h
+          </td>
+          <td>
+            Carbapenem preferred in severe disease: higher in-vitro bacterial killing (enhanced cell wall penetration), better post-antibiotic effect, decreased endotoxin release.<br>
+            De-escalate to ceftazidime after clinical improvement.<br>
+            Evidence for G-CSF is weak.<br>
+            TMP-SMX is added for tissue penetration and to limit emergence of resistance.<br>
+            Add folic acid <strong>5 mg q24h PO</strong> if on TMP-SMX.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Phase 2 — eradication phase</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            Trimethoprim/Sulfamethoxazole PO:<br>
+            &lt; 40 kg — 160/800 mg q12h<br>
+            40–60 kg — 240/1200 mg q12h<br>
+            &gt; 60 kg — 320/1600 mg q12h
+          </td>
+          <td>
+            Amoxicillin/Clavulanate PO:<br>
+            &lt; 60 kg — 1250 mg q8h<br>
+            &gt; 60 kg — 1875 mg q8h<br>OR<br>
+            Doxycycline <strong>100 mg q12h PO</strong>
+          </td>
+          <td>Consider alternative if intolerant to TMP-SMX. Add folic acid <strong>5 mg q24h PO</strong> if on TMP-SMX.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>2020 Revised Darwin Melioidosis Treatment Duration</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Determining focus</th><th>Minimum intensive phase (weeks)</th><th>Eradication phase (months)</th></tr></thead>
+      <tbody>
+        <tr><td>Skin abscess</td><td>2</td><td>3</td></tr>
+        <tr><td>Bacteraemia with no focus</td><td>2</td><td>3</td></tr>
+        <tr><td>Unilateral unilobar pneumonia without lymphadenopathy<sup>a</sup>, no ICU admission and no bacteraemia</td><td>2</td><td>3</td></tr>
+        <tr><td>Multilobar unilateral or bilateral pneumonia without lymphadenopathy<sup>a</sup>, without ICU admission and without bacteraemia<br>OR unilateral unilobar pneumonia without lymphadenopathy<sup>a</sup>, with ICU admission but without bacteraemia</td><td>3</td><td>3</td></tr>
+        <tr><td>Pneumonia with either lymphadenopathy<sup>a</sup> or ICU admission<br>OR multilobar unilateral or bilateral pneumonia with bacteraemia</td><td>4</td><td>3</td></tr>
+        <tr><td>Deep-seated collection<sup>b</sup>, septic arthritis</td><td>4<sup>c</sup></td><td>3</td></tr>
+        <tr><td>Osteomyelitis</td><td>6</td><td>6</td></tr>
+        <tr><td>Central nervous system infection</td><td>8</td><td>6</td></tr>
+        <tr><td>Arterial infection (mycotic aneurysm)</td><td>8<sup>c</sup></td><td>6 (may be lifelong)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">
+    <sup>a</sup> Hilar or mediastinal lymph node enlargement &gt; 10 mm diameter.<br>
+    <sup>b</sup> Abscess anywhere other than skin, lungs, bone, CNS or vasculature.<br>
+    <sup>c</sup> Intensive phase duration is timed from the date of the most recent drainage or resection where culture of the drainage specimen or resected material grew <em>B. pseudomallei</em>, or where no specimen was sent for culture. The clock is <strong>not</strong> reset if the specimen is culture-negative.<br>
+    If concurrent oral therapy is not indicated during the intensive phase, start oral eradication therapy at the beginning of the final week of planned IV therapy, with eradication duration timed from the day after the last IV therapy.
+  </p>
+</div>
+</details>
+
+<!-- ============ 20. LEPTOSPIROSIS ============ -->
+<details class="section" id="lepto">
+<summary><span class="num">20</span> Leptospirosis</summary>
+<div class="body">
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Severity</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Severe disease</strong></td>
+          <td>Benzylpenicillin <strong>1.5 million units q6h</strong><br>OR<br>Ceftriaxone <strong>1 g q12h</strong><br>× 7 days</td>
+          <td>—</td>
+          <td rowspan="2">Insufficient evidence to support the routine use of corticosteroids in pulmonary haemorrhage.</td>
+        </tr>
+        <tr>
+          <td><strong>Mild disease</strong></td>
+          <td>
+            Azithromycin <strong>500 mg q24h PO × 3 days</strong><br>OR<br>
+            Doxycycline <strong>100 mg q12h PO × 5–7 days</strong><br>OR<br>
+            Amoxicillin <strong>500 mg q8h PO × 7 days</strong>
+          </td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ 21. MALARIA ============ -->
+<details class="section" id="malaria">
+<summary><span class="num">21</span> Malaria</summary>
+<div class="body">
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Organisms</th><th>Preferred</th><th>Alternative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>P. falciparum</em>, <em>P. knowlesi</em>, <em>P. vivax</em>, <em>P. ovale</em>, <em>P. malariae</em></td>
+          <td>
+            Artesunate <strong>2.4 mg/kg IV</strong> at 0, 12 and 24 hours (minimum 3 doses), then <strong>q24h × 7 days</strong><br>PLUS<br>
+            Doxycycline <strong>100 mg q12h PO × 7 days</strong>
+          </td>
+          <td>
+            Quinine dihydrochloride <strong>20 mg/kg</strong> in 250 mL D5% over 4 hours, then <strong>10 mg/kg q8h</strong><br>PLUS<br>
+            Doxycycline <strong>100 mg q12h PO × 7 days</strong>
+          </td>
+          <td>
+            If artesunate is not readily available, start quinine first to avoid delay. Monitor blood sugars and QT interval on quinine.<br>
+            Switch to oral Artemisinin Combination Therapy (artemether/lumefantrine 20/120 mg) once the patient tolerates orally and after 24 hours of IV artesunate (total 3 doses).<br>
+            <strong>In pregnancy:</strong> IV artesunate + clindamycin <strong>300–600 mg q8h PO × 7 days</strong> (doxycycline contraindicated).<br>
+            <strong><em>P. falciparum:</em></strong> add primaquine <strong>0.75 mg/kg PO</strong> (max 45 mg) on day 1 in addition to artesunate/quinine — except in pregnancy.<br>
+            <strong><em>P. vivax:</em></strong> add primaquine <strong>0.5 mg/kg PO</strong> (max 30 mg) q24h for 14 days to prevent relapse by eliminating hepatic hypnozoites.<br>
+            <strong>Screen for G6PD deficiency before starting primaquine.</strong>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ APPENDIX A ============ -->
+<details class="section" id="app-renal">
+<summary><span class="num">A</span> Appendix A — Dosage Adjustment for Renal Impairment</summary>
+<div class="body">
+  <h3>Cockcroft-Gault equation</h3>
+  <ul>
+    <li><strong>Males:</strong> CrCl (mL/min) = [(140 − age) × IBW (kg) × 1.23] ÷ serum creatinine (µmol/L)</li>
+    <li><strong>Females:</strong> CrCl (mL/min) = [(140 − age) × IBW (kg) × 1.04] ÷ serum creatinine (µmol/L)</li>
+    <li>IBW = ideal body weight. In obese patients use adjusted body weight (AdjBW). If BMI &lt; 18.5 kg/m², use actual body weight.</li>
+    <li>Alternative: GFR by CKD-EPI equation with removal of body surface area normalisation.</li>
+  </ul>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Selected adjusted maintenance doses (refer to local protocol for full list)</caption>
+      <thead>
+        <tr><th>Antimicrobial / normal dose</th><th>CrCl 31–50</th><th>CrCl 10–30</th><th>CrCl &lt; 10</th><th>Renal replacement therapy</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Acyclovir 10 mg/kg q8h (infuse over 1 hour)</td>
+          <td>10 mg/kg q12h</td>
+          <td>10 mg/kg q24h</td>
+          <td>5 mg/kg q24h</td>
+          <td>HD: 5 mg/kg q24h<br>CWH: 10 mg/kg q24h<br>CWHD/CVWHDF: 10 mg/kg q12h</td>
+        </tr>
+        <tr>
+          <td>Amoxicillin/Clavulanate 1.2 g q8h</td>
+          <td>Unchanged</td>
+          <td>1.2 g q12h</td>
+          <td>1.2 g q12h</td>
+          <td>HD: 1.2 g q12h<br>CWH/CVWHD/CVWHDF: 1.2 g q8–12h</td>
+        </tr>
+        <tr>
+          <td>Streptomycin 12–15 mg/kg q24h (max 1 g; 500–750 mg in elderly and body weight &lt; 50 kg)</td>
+          <td>Unchanged</td>
+          <td>12–15 mg/kg q48h</td>
+          <td colspan="2">HD/CVWH/CVWHD/CVWHDF: 12–15 mg/kg q48h</td>
+        </tr>
+        <tr>
+          <td>Trimethoprim/Sulfamethoxazole 5 mg/kg (TMP component) q6–8h (higher dose for PCP)</td>
+          <td>5 mg/kg q8–12h</td>
+          <td>5 mg/kg q12–24h</td>
+          <td>5–10 mg/kg q24h</td>
+          <td>CWH: 5 mg/kg q12h<br>CWHD/CVWHD: 5 mg/kg q8–12h<br>HD: 5–10 mg/kg q24h</td>
+        </tr>
+        <tr>
+          <td>Vancomycin</td>
+          <td colspan="4">Refer to Appendix E</td>
+        </tr>
+        <tr>
+          <td>Voriconazole<br>D1: 6 mg/kg q12h; day 2 onwards: 4 mg/kg q12h</td>
+          <td colspan="3">
+            Use oral formulation — the IV carrier vehicle (sulfobutylether-β-cyclodextrin, SBECD) accumulates when CrCl &lt; 50 mL/min.<br>
+            BW &gt; 40 kg: 400 mg q12h PO on day 1, then 200 mg q12h<br>
+            BW &lt; 40 kg: 200 mg q12h PO on day 1, then 100 mg q12h
+          </td>
+          <td>HD/CVWH/CVWHD/CVWHDF: as per oral dosing for CrCl &lt; 50 mL/min</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Abbreviations: AD = after dialysis; BW = body weight; CrCl = creatinine clearance; CVWH = continuous venovenous haemofiltration; CVWHD = continuous venovenous haemodialysis; CVWHDF = continuous venovenous haemodiafiltration; HD = haemodialysis; IBW = ideal body weight; LD = loading dose; MD = maintenance dose; PCP = <em>Pneumocystis</em> pneumonia; SLED = sustained low-efficiency dialysis. All antimicrobials require stat doses except cefepime, ceftazidime, imipenem, meropenem and piperacillin/tazobactam, which require loading doses for extended infusion. All are given IV unless stated otherwise. If HD is not significantly delayed, give the dose after HD and omit the supplemental dose; if HD is significantly delayed, give the scheduled dose and a supplemental dose after dialysis.</p>
+</div>
+</details>
+
+<!-- ============ APPENDIX B ============ -->
+<details class="section" id="app-albumin">
+<summary><span class="num">B</span> Appendix B — Dosage Adjustment for Hypoalbuminaemia</summary>
+<div class="body">
+  <p><strong>Hypoalbuminaemia (serum albumin ≤ 25 g/L)</strong> reduces protein binding of highly protein-bound antimicrobials (ceftriaxone, cloxacillin, ertapenem, vancomycin), causing altered pharmacokinetics. The increased free (unbound) fraction raises V<sub>d</sub> and drug clearance, which can reduce antimicrobial exposure and compromise the pharmacodynamic target.</p>
+  <p class="warn"><strong>Ertapenem is not recommended</strong> in critically ill patients with hypoalbuminaemia.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Antibiotic</th><th>Standard ICU dose</th><th>Loading dose</th><th>Recommended maintenance dose</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Ceftriaxone</td>
+          <td>1 g q12h</td>
+          <td>2 g</td>
+          <td>
+            Normal renal function (CrCl ≥ 40): <strong>1 g q8h</strong> (start 8 h after LD)<br>
+            Renal impairment (CrCl &lt; 40): <strong>1 g q12h</strong> (start 12 h after LD)<br>
+            ARC (CrCl ≥ 130 mL/min/1.73 m²): <strong>2 g q12h</strong> (start 12 h after LD) OR continuous infusion <strong>2–4 g over 24 h</strong> (start immediately after LD)
+          </td>
+          <td>For susceptible isolates with MIC &lt; 1 mg/L. Intermittent LD/MD infused over 30 minutes.</td>
+        </tr>
+        <tr>
+          <td>Cloxacillin</td>
+          <td>2 g q4h</td>
+          <td>2 g</td>
+          <td>Continuous infusion: <strong>2 g over 4 hours q4h</strong> (12 g/day)</td>
+          <td>LD infused over 30 minutes. MD immediately after LD.</td>
+        </tr>
+        <tr>
+          <td>Vancomycin</td>
+          <td>15–20 mg/kg q12h</td>
+          <td>20–30 mg/kg</td>
+          <td><strong>1.5 g q12h</strong> (start 12 h after LD)</td>
+          <td>Infusion rate should not exceed 10 mg/min. Trough target 15–20 mg/L; AUC<sub>0–24</sub>/MIC target 400–600.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ APPENDIX C ============ -->
+<details class="section" id="app-infusion">
+<summary><span class="num">C</span> Appendix C — β-Lactam Extended / Continuous Infusion</summary>
+<div class="body">
+  <p>β-lactams exhibit <strong>time-dependent</strong> killing — the duration for which free drug concentration remains above the MIC correlates with bacterial killing.</p>
+  <ul>
+    <li>TDM-guided dosing is recommended in critically ill patients because of uncertainty in pharmacodynamic targets.</li>
+    <li>Without TDM, <strong>extended infusion over 40–50% of the dosing interval</strong> can achieve the PK/PD target. <strong>Continuous infusion for 100% of the interval</strong> may be needed for serious infections or pathogens with elevated MIC.</li>
+    <li>Drug stability (which may differ between manufacturers) determines the choice between extended and continuous infusion. Given stability and feasibility concerns, extended infusion is often used to maximise PK/PD.</li>
+  </ul>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Antibiotic</th><th>Loading dose (over 30 minutes)</th><th>Maintenance dose (over 4 hours, immediately after loading dose)</th></tr></thead>
+      <tbody>
+        <tr><td>Cefepime</td><td>2 g</td><td>1 g or 2 g in 50 mL normal saline</td></tr>
+        <tr><td>Ceftazidime</td><td>2 g</td><td>1 g or 2 g in 50 mL normal saline</td></tr>
+        <tr><td>Imipenem</td><td>1 g</td><td>500 mg in 100 mL NS; 1 g in 200 mL NS (maximum concentration 5 mg/mL)</td></tr>
+        <tr><td>Meropenem</td><td>1 g or 2 g</td><td>500 mg or 1 g in 50 mL NS; 2 g in 100 mL NS (maximum concentration 20 mg/mL)</td></tr>
+        <tr><td>Piperacillin/Tazobactam</td><td>4.5 g</td><td>4.5 g or 2.25 g in 50 mL normal saline</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ APPENDIX D ============ -->
+<details class="section" id="app-polymyxin">
+<summary><span class="num">D</span> Appendix D — Polymyxins Dosing Guide</summary>
+<div class="body">
+  <p>Polymyxins are polypeptide antibiotics used for MDR organisms such as CRAB, CRE and CRPA. Some organisms are intrinsically resistant: <em>Serratia</em> spp., <em>Proteus</em> spp., <em>Providencia</em> spp., <em>Morganella</em> spp., <em>Burkholderia cepacia</em>.</p>
+  <ul>
+    <li>Hydrophilic drugs with concentration-dependent <em>and</em> time-dependent kill characteristics.</li>
+    <li><strong>Polymyxin B</strong> is administered in its active form and requires <strong>no renal dose adjustment</strong> (non-renal clearance).</li>
+    <li><strong>Polymyxin E (colistin)</strong> is an inactive prodrug and <strong>requires dose adjustment in renal impairment</strong>. Both have the same spectrum of activity.</li>
+  </ul>
+
+  <h3>Polymyxin E (Colistin) — loading dose</h3>
+  <div class="table-wrap">
+    <table class="narrow">
+      <thead><tr><th>Ideal body weight (kg)*</th><th>Loading dose (million units)</th></tr></thead>
+      <tbody>
+        <tr><td>≥ 75</td><td>9 MU</td></tr>
+        <tr><td>61–74</td><td>8 MU</td></tr>
+        <tr><td>51–60</td><td>7 MU</td></tr>
+        <tr><td>≤ 50</td><td>6 MU</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">*Dilute in 100 mL normal saline and infuse over 30–60 minutes. Refer to Appendix F for IBW calculation.</p>
+
+  <h3>Polymyxin E (Colistin) — maintenance dose</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>CrCl (mL/min)</th><th>Maintenance dose</th><th>Start after LD (hours)</th></tr></thead>
+      <tbody>
+        <tr><td>&gt; 50</td><td>4.5 MU q12h</td><td>12</td></tr>
+        <tr><td>31–50</td><td>3 MU q12h</td><td>12</td></tr>
+        <tr><td>10–30</td><td>2.5 MU q12h</td><td>12</td></tr>
+        <tr><td>&lt; 10</td><td>2 MU q12h</td><td>12</td></tr>
+        <tr><td>HD</td><td>2 MU q12h + 1.5 MU after dialysis</td><td>8</td></tr>
+        <tr><td>SLED 4 hours</td><td>2 MU q12h + 1.5 MU after SLED</td><td>8</td></tr>
+        <tr><td>SLED 6 hours</td><td>2 MU q12h + 2.5 MU after SLED</td><td>8</td></tr>
+        <tr><td>CVVH / CVVHD / CVVHDF</td><td>4 MU q8h*</td><td>8</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Dilute in 50–100 mL normal saline, infuse over 30–60 minutes. *Cease this regimen when CRRT is stopped, to prevent toxicity.</p>
+
+  <h3>Polymyxin B — loading dose</h3>
+  <div class="table-wrap">
+    <table class="narrow">
+      <thead><tr><th>Dose</th><th>Dilution</th><th>Administration</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>25,000 units/kg*<br>Maximum dose 2,000,000 units (2 MU)</td>
+          <td>Central line: dilute in 100 mL D5%<br>Peripheral line: dilute in 500 mL D5%</td>
+          <td>Infuse over 1–2 hours</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Polymyxin B — maintenance dose</h3>
+  <div class="table-wrap">
+    <table class="narrow">
+      <thead><tr><th>Dose</th><th>Dilution</th><th>Administration</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>15,000 units/kg* q12h<br>Maximum 2,000,000 units (2 MU) per day</td>
+          <td>Central line: dilute in 50 mL D5%<br>Peripheral line: dilute in 250 mL D5%</td>
+          <td>Infuse over 60–90 minutes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">*Use actual body weight. <strong>No dose adjustment required in renal impairment</strong> — polymyxin B is predominantly cleared by non-renal mechanisms.</p>
+</div>
+</details>
+
+<!-- ============ APPENDIX E ============ -->
+<details class="section" id="app-tdm">
+<summary><span class="num">E</span> Appendix E — Therapeutic Drug Dosing &amp; Monitoring</summary>
+<div class="body">
+  <h3>Aminoglycosides</h3>
+  <p>Concentration-dependent killing — higher doses increase the rate and extent of bacterial kill. Optimal bactericidal activity occurs at <strong>8–10 × MIC</strong>.</p>
+
+  <h4>Single daily dosing &amp; synergy dosing</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th rowspan="2">CrCl (mL/min)</th><th colspan="2">Single daily dosing</th><th colspan="2">Synergy dosing for gentamicin (e.g. bacterial endocarditis)</th>
+        </tr>
+        <tr><th>Gentamicin</th><th>Amikacin</th><th>CrCl (mL/min)</th><th>Dose and interval</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>≥ 80</td><td>5 mg/kg q24h</td><td>15 mg/kg q24h</td><td>≥ 60</td><td>1 mg/kg q8h or 3 mg/kg q24h</td></tr>
+        <tr><td>60–79</td><td>4 mg/kg q24h</td><td>12 mg/kg q24h</td><td>—</td><td>—</td></tr>
+        <tr><td>40–59</td><td>3.5 mg/kg q24h</td><td>7.5 mg/kg q24h</td><td>40–59</td><td>1 mg/kg q12h or 2 mg/kg q24h</td></tr>
+        <tr><td>30–39</td><td>2.5 mg/kg q24h</td><td>4 mg/kg q24h</td><td>20–39</td><td>1 mg/kg q24h</td></tr>
+        <tr><td>20–29</td><td>4 mg/kg q48h</td><td>7.5 mg/kg q48h</td><td>—</td><td>—</td></tr>
+        <tr><td>&lt; 20</td><td>3 mg/kg q48h</td><td>4 mg/kg q48h</td><td>&lt; 20</td><td>1 mg/kg q24h, then redose based on TDM</td></tr>
+        <tr><td>HD</td><td>2 mg/kg then redose per TDM</td><td>8 mg/kg then redose per TDM</td><td>HD</td><td>1 mg/kg q24h then redose per TDM</td></tr>
+        <tr><td>CVVH / CVVHDF</td><td>LD 3 mg/kg then 2 mg/kg q24–48h</td><td>LD 10 mg/kg then 7.5 mg/kg q24–48h</td><td>CVVH / CVVHDF</td><td>LD 3 mg/kg then 1 mg/kg q24h</td></tr>
+        <tr><td>ECMO</td><td colspan="3">Insufficient data to recommend optimal dosing — use TDM-guided dosing</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Weight used for dosing</h4>
+  <div class="table-wrap">
+    <table class="narrow">
+      <thead><tr><th>Patient</th><th>Weight</th></tr></thead>
+      <tbody>
+        <tr><td>Normal weight / malnourished</td><td>Actual body weight (ABW)</td></tr>
+        <tr><td>ABW &gt; 20% above IBW</td><td>Adjusted body weight (AdjBW)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Sampling</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Setting</th><th>Timing</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Normal renal function</td>
+          <td>
+            • Single daily dosing: at the 2nd dose (post 2 hours and post 6 hours)<br>
+            • Conventional dosing (e.g. 8-hourly):<br>
+            &nbsp;&nbsp;– Pre (trough): 30 minutes before the next dose<br>
+            &nbsp;&nbsp;– Post (peak): 30 minutes after completion of a 30-minute infusion (after the next dose)<br>
+            • Repeat assay: at least once weekly
+          </td>
+        </tr>
+        <tr>
+          <td>Renal impairment</td>
+          <td>
+            • Initial trough monitoring 24 hours after the 1st dose<br>
+            • Post level after the second dose to determine the subsequent dose<br>
+            • Repeat assay: more frequently if renal function is changing or with other nephrotoxic drugs
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Vancomycin</h3>
+  <p>Exhibits exposure-dependent (AUC-dependent) killing. Target <strong>AUC<sub>0–24</sub>/MIC ≥ 400</strong>; higher exposures are advocated in critically ill patients with septic shock. Trough concentrations are used as an alternate indicator. For a pathogen with MIC 1 mg/L, a minimum trough of <strong>15–20 mg/L</strong> is recommended to achieve AUC<sub>0–24</sub>/MIC ≥ 400.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Renal function</th><th>Dose (use actual body weight)</th><th>Assay</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Normal</td>
+          <td>LD 20–25 mg/kg (max 2 g/dose); MD 15–20 mg/kg q12h (start 12 h after LD)</td>
+          <td>Initial: pre-level 30 minutes before the 4th dose; post 1 hour after completion of the 4th dose. Repeat weekly if haemodynamically stable; earlier if unstable.</td>
+        </tr>
+        <tr>
+          <td>CrCl 30–50 mL/min</td>
+          <td>LD 20–25 mg/kg (max 2 g/dose); MD 15–20 mg/kg q24h (start 24 h after LD)</td>
+          <td>Initial assay 24 h after the first MD; subsequent assays depend on CrCl and the initial reading.</td>
+        </tr>
+        <tr>
+          <td>CrCl &lt; 30 mL/min</td>
+          <td>LD 20–25 mg/kg (max 2 g/dose), then redose based on TDM</td>
+          <td>Initial assay 24 h after the loading dose.</td>
+        </tr>
+        <tr>
+          <td>HD</td>
+          <td>Most patients require 5–10 mg/kg IV post-HD as a supplemental dose</td>
+          <td>If LD before HD, initial level 24 h after HD; if LD after HD, initial level 24 h after LD. Repeat at least weekly.</td>
+        </tr>
+        <tr>
+          <td>CVVH / CVVHD / CVVHDF</td>
+          <td>LD 20–25 mg/kg (max 2 g/dose); MD from 12 h after LD — or 500 mg q8h (MIC ≤ 1 mg/L; effluent rate &lt; 30 mL/kg/h)</td>
+          <td>Pre-level (trough) taken 30 minutes before the second MD.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ APPENDIX F ============ -->
+<details class="section" id="app-obesity">
+<summary><span class="num">F</span> Appendix F — Antimicrobial Dosing in Obesity (BMI ≥ 30 kg/m²)</summary>
+<div class="body">
+  <p>Obese patients have a significant increase in fat mass with a smaller increase in lean tissue, making dosing weight difficult to determine. V<sub>d</sub> determines the <strong>loading dose</strong>; clearance determines the <strong>maintenance dose</strong>.</p>
+  <ul>
+    <li>Oral bioavailability does not change.</li>
+    <li><strong>Hydrophilic antibiotics</strong> (β-lactams, glycopeptides): no change in V<sub>d</sub> (limited distribution into fat) → loading dose unaffected.</li>
+    <li><strong>Lipophilic antibiotics</strong> (fluoroquinolones, macrolides): large increases in V<sub>d</sub> → larger loading doses required.</li>
+    <li>Renal and hepatic clearance of many drugs is increased → maintenance dose based on adjusted body weight.</li>
+  </ul>
+
+  <div class="table-wrap">
+    <table class="narrow">
+      <thead><tr><th>Abbreviation</th><th>Term</th><th>Estimation (kg)</th></tr></thead>
+      <tbody>
+        <tr><td>ABW</td><td>Actual body weight</td><td>—</td></tr>
+        <tr><td>IBW</td><td>Ideal body weight</td><td>Male: 50 + [0.91 × (height in cm − 152.4)]<br>Female: 45.5 + [0.91 × (height in cm − 152.4)]</td></tr>
+        <tr><td>AdjBW</td><td>Adjusted body weight</td><td>IBW + [0.4 × (ABW − IBW)]</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small"><strong>Example:</strong> a 160 kg man, height 170 cm (BMI 55.4 kg/m²): ABW 160 kg, IBW 66 kg, AdjBW 103.6 kg.</p>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Selected antimicrobials — weight to use for dosing</caption>
+      <thead><tr><th>Antimicrobial</th><th>ABW</th><th>IBW</th><th>AdjBW</th><th>Remarks</th></tr></thead>
+      <tbody>
+        <tr><td>Acyclovir</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Amikacin</td><td>—</td><td>—</td><td>✓</td><td>Initial dose based on AdjBW; TDM guides subsequent doses</td></tr>
+        <tr><td>Amphotericin B (conventional)</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Amphotericin B (liposomal)</td><td>✓</td><td>—</td><td>✓</td><td>AdjBW for empirical therapy; ABW for confirmed fungal infection</td></tr>
+        <tr><td>Ampicillin</td><td colspan="3">Insufficient data in obesity — consider upper limit of normal dosing in severe infection: 2 g IV q4h</td><td>—</td></tr>
+        <tr><td>Anidulafungin</td><td colspan="3">ABW &lt; 140 kg — standard dose (LD 200 mg, MD 100 mg q24h). ABW ≥ 140 kg — 25% increase (LD 250 mg, MD 125 mg q24h)</td><td>—</td></tr>
+        <tr><td>Benzylpenicillin</td><td colspan="3">Consider upper limit of normal dosing in severe infection: 3–4 MU IV q4–6h</td><td>—</td></tr>
+        <tr><td>Cefazolin</td><td colspan="3">Consider upper limit of normal dosing in severe infection: 2 g IV q6h</td><td>—</td></tr>
+        <tr><td>Ceftriaxone</td><td colspan="3">Consider 2 g IV q24h or 2 g IV q12h in severe infection</td><td>See Appendix B for hypoalbuminaemia</td></tr>
+        <tr><td>Ciprofloxacin</td><td colspan="3">Consider upper limit of normal dosing in severe infection: 400 mg IV q8h or 750 mg PO q12h</td><td>—</td></tr>
+        <tr><td>Clindamycin</td><td colspan="3">600 mg IV/PO q6h or 900 mg IV/PO q8h</td><td>—</td></tr>
+        <tr><td>Daptomycin</td><td>✓</td><td>—</td><td>—</td><td>Monitor creatinine kinase — higher incidence of myopathy</td></tr>
+        <tr><td>Ertapenem</td><td colspan="3">Use standard dose: 1 g IV q24h</td><td>—</td></tr>
+        <tr><td>Ethambutol</td><td>—</td><td>✓</td><td>—</td><td>Maximum daily dose 1.6 g PO</td></tr>
+        <tr><td>Fluconazole</td><td>—</td><td>✓</td><td>—</td><td>LD 12 mg/kg IV (max 1.6 g); MD 6 mg/kg IV q24h (max 1.6 g). Monitor liver function closely at high doses</td></tr>
+        <tr><td>Flucytosine</td><td>✓</td><td>✓</td><td>✓</td><td>Use IBW in non-life-threatening infection; AdjBW in severe infection</td></tr>
+        <tr><td>Ganciclovir</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Gentamicin</td><td>—</td><td>—</td><td>✓</td><td>Initial dose based on AdjBW; TDM guides subsequent doses</td></tr>
+        <tr><td>Isoniazid</td><td>—</td><td>✓</td><td>—</td><td>Maximum daily dose 300 mg PO</td></tr>
+        <tr><td>Linezolid</td><td colspan="3">Use standard dose: 600 mg IV/PO q12h</td><td>—</td></tr>
+        <tr><td>Meropenem</td><td colspan="3">Use standard dose with extended infusion: LD 1 g IV over 30 minutes; MD 1–2 g IV q8h over 4 hours</td><td>—</td></tr>
+        <tr><td>Metronidazole</td><td colspan="3">Use standard dose: 500 mg IV q8h</td><td>—</td></tr>
+        <tr><td>Micafungin</td><td colspan="3">BMI &gt; 45 kg/m²: 150 mg IV q24h. Weight &gt; 115 kg: 200 mg IV q24h</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+<!-- ============ APPENDIX G ============ -->
+<details class="section" id="app-pregnancy">
+<summary><span class="num">G</span> Appendix G — Antimicrobial Use in Pregnancy &amp; Lactation</summary>
+<div class="body">
+  <p class="warn">This is a summary only. Always confirm with a current teratology reference and involve obstetrics where appropriate.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Antimicrobial</th><th>Pregnancy category / risk</th><th>Lactation</th></tr></thead>
+      <tbody>
+        <tr><td>Acyclovir</td><td>B</td><td>Present in human milk; compatible</td></tr>
+        <tr><td>Amikacin</td><td>D</td><td>Insufficient data; caution</td></tr>
+        <tr><td>Amoxicillin/Clavulanate</td><td>B</td><td>Present in human milk; compatible</td></tr>
+        <tr><td>Amphotericin B</td><td>B</td><td>Insufficient data; caution</td></tr>
+        <tr><td>Ampicillin</td><td>B</td><td>Present in human milk; compatible</td></tr>
+        <tr><td>Ampicillin/Sulbactam</td><td>B</td><td>Present in human milk; compatible</td></tr>
+        <tr><td>Anidulafungin</td><td>No human data; animal data suggest low risk</td><td>Present in human milk; compatible</td></tr>
+        <tr><td>Artesunate</td><td>Limited data for 1st trimester</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Azithromycin</td><td>Compatible</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Benzylpenicillin</td><td>B</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Caspofungin</td><td>No human data; animal data suggest low risk</td><td>Insufficient data; caution</td></tr>
+        <tr><td>Cefepime</td><td>Compatible</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Cefotaxime</td><td>B</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Cefuroxime</td><td>Compatible</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Ciprofloxacin</td><td>C</td><td>Present in human milk; not recommended</td></tr>
+        <tr><td>Clindamycin</td><td>B</td><td>Present in human milk; not recommended</td></tr>
+        <tr><td>Cloxacillin</td><td>Compatible</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Doxycycline</td><td><strong>Contraindicated in 2nd and 3rd trimesters</strong></td><td>Present in human milk; compatible for short courses</td></tr>
+        <tr><td>Ertapenem</td><td>No human data; probably compatible</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Ethambutol</td><td>B</td><td>Present in human milk; compatible</td></tr>
+        <tr><td>Fluconazole</td><td>Human data suggest risk</td><td>Present in human milk; compatible</td></tr>
+        <tr><td>Gentamicin</td><td>D</td><td>Present in human milk; compatible</td></tr>
+        <tr><td>Imipenem/Cilastatin</td><td>Limited human data; animal data suggest low risk</td><td>Insufficient data; caution</td></tr>
+        <tr><td>Isoniazid</td><td>C</td><td>Present in human milk; compatible</td></tr>
+        <tr><td>Levofloxacin</td><td>Human data suggest low risk</td><td>Present in human milk; not recommended</td></tr>
+        <tr><td>Linezolid</td><td>Compatible; maternal benefit &gt; embryo/fetal risk</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Meropenem</td><td>Limited human data; animal data suggest low risk</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Metronidazole</td><td>Human data suggest low risk</td><td>Present in human milk; not recommended</td></tr>
+        <tr><td>Micafungin</td><td>No human data; animal data suggest moderate risk</td><td>Insufficient data; caution</td></tr>
+        <tr><td>Piperacillin/Tazobactam</td><td>Compatible</td><td>Compatible</td></tr>
+        <tr><td>Pyrazinamide</td><td>Compatible; maternal benefit &gt; embryo/fetal risk</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Rifampicin</td><td>Compatible</td><td>Compatible</td></tr>
+        <tr><td>Streptomycin</td><td>Human data suggest low risk</td><td>Compatible</td></tr>
+        <tr><td>Trimethoprim/Sulfamethoxazole</td><td>May cause fetal harm</td><td>Present in human milk; not recommended</td></tr>
+        <tr><td>Vancomycin</td><td>Compatible</td><td>Present in human milk; caution</td></tr>
+        <tr><td>Voriconazole</td><td>Can cause fetal harm</td><td>Insufficient data</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>FDA pregnancy risk categories</h3>
+  <div class="table-wrap">
+    <table class="narrow">
+      <thead><tr><th>Category</th><th>Interpretation</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td>Generally acceptable. Controlled studies in pregnant women show no evidence of fetal risk.</td></tr>
+        <tr><td>B</td><td>May be acceptable. Either animal studies show no risk but human studies are not available, or animal studies showed minor risks and human studies showed no risk.</td></tr>
+        <tr><td>C</td><td>Use with caution if benefits outweigh risks. Animal studies show risk and human studies are unavailable, or neither animal nor human studies have been done.</td></tr>
+        <tr><td>D</td><td>Use in life-threatening emergencies when no safer drug is available. Positive evidence of human fetal risk.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</details>
+
+</main>
+
+<footer>
+  <p><strong>Source and attribution</strong></p>
+  <p>
+    This quick reference is a condensed, re-formatted summary of the clinical content of:
+    <strong>“Guide to Antimicrobial Therapy in the Adult ICU 2023” (4th edition)</strong>,
+    published by the <strong>Malayan Society of Intensive Care (MSIC)</strong>.
+    ISBN 978-967-11414-5-7. Cover design by Sujani Sad. Downloadable from
+    <a href="http://www.msic.org.my" rel="noopener">www.msic.org.my</a>.
+  </p>
+  <p><strong>Key source references cited in the guide include:</strong></p>
+  <ol>
+    <li>Antibiotic stewardship in critical care. <em>BJA Education</em> 2017;17(4):111–116.</li>
+    <li>Antimicrobial stewardship in the Intensive Care Unit. <em>Adv Ther</em> 2021;38:164–179.</li>
+    <li>Protocol on Antimicrobial Stewardship (AMS) Programme in Healthcare Facilities, 2nd ed. 2022, Ministry of Health, Malaysia.</li>
+    <li>CDC Guideline for Prevention of Surgical Site Infection. <em>JAMA Surg</em> 2017;152(8):784–791.</li>
+    <li>IDSA/ATS Clinical Practice Guidelines: Community-acquired pneumonia. <em>Am J Respir Crit Care Med</em> 2019;200(7):e45–67.</li>
+    <li>ERS/ESICM/ESCMID/ALAT guidelines for severe community-acquired pneumonia. <em>Intensive Care Med</em> 2023.</li>
+    <li>Management of adults with hospital-acquired and ventilator-associated pneumonia: 2016 IDSA/ATS guidelines. <em>Clin Infect Dis</em> 2016;63(5):e61–e111.</li>
+    <li>IDSA 2023 Guidance on the treatment of antimicrobial-resistant Gram-negative infections.</li>
+    <li>ESCMID guidelines for the treatment of infections caused by multidrug-resistant Gram-negative bacilli. <em>Clin Microbiol Infect</em> 2022;28(4):521–547.</li>
+    <li>ESCMID guideline: diagnosis and treatment of acute bacterial meningitis. <em>Clin Microbiol Infect</em> 2016;22:S37–S62.</li>
+    <li>2017 IDSA Clinical practice guidelines for healthcare-associated ventriculitis and meningitis. <em>Clin Infect Dis</em> 2017;64(6):e34–e65.</li>
+    <li>2015 ESC Guidelines for the management of infective endocarditis. <em>Eur Heart J</em> 2015;36(44):3075–3128.</li>
+    <li>IDSA/SHEA 2021 Focused update guidelines on management of <em>C. difficile</em> infection in adults. <em>Clin Infect Dis</em> 2021;73:e1029–e1044.</li>
+    <li>2017 IDSA Clinical Practice Guidelines for diagnosis and management of infectious diarrhea. <em>Clin Infect Dis</em> 2017;65(12):e45–e80.</li>
+    <li>IDSA: Diagnosis and management of complicated intra-abdominal infection in adults and children. <em>Clin Infect Dis</em> 2010;50:133–164.</li>
+    <li>Practice guidelines for the diagnosis and management of skin and soft tissue infections: 2014 IDSA update. <em>Clin Infect Dis</em> 2014;59(2):e10–52.</li>
+    <li>ESICM/ESCMID task force on practical management of invasive candidiasis in critically ill patients. <em>Intensive Care Med</em> 2019;45:789–805.</li>
+    <li>2020 Review and revision of the 2015 Darwin melioidosis treatment guideline. <em>PLoS Negl Trop Dis</em> 2020.</li>
+    <li>Guidelines for the diagnosis, management, prevention and control of leptospirosis in Malaysia 2011; Management Guidelines of Malaria in Malaysia, MOH 2013.</li>
+    <li>National Antibiotic Guideline 2019, Ministry of Health, Malaysia.</li>
+    <li>The Sanford Guide to Antimicrobial Therapy 2023.</li>
+    <li>Antimicrobial therapeutic drug monitoring in critically ill adult patients: A Position Paper. <em>Intensive Care Med</em> 2020;46(6):1127–1153.</li>
+    <li>The Renal Drug Handbook, 5th ed. 2019, Taylor &amp; Francis Group.</li>
+    <li>Drugs in Pregnancy and Lactation, 10th ed. Briggs &amp; Freeman, Wolters Kluwer.</li>
+  </ol>
+  <p style="margin-top:1rem">
+    <strong>Disclaimer:</strong> This page is a study/practice aid only. It is not a substitute for the full
+    guideline, local antibiograms, institutional protocols or specialist clinical judgement. Always verify
+    doses, renal adjustments and contraindications against the original document and your local formulary
+    before prescribing.
+  </p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var sections   = Array.prototype.slice.call(document.querySelectorAll("details.section"));
+  var searchBox  = document.getElementById("search");
+  var countEl    = document.getElementById("count");
+  var expandBtn  = document.getElementById("expandAll");
+  var collapseBtn= document.getElementById("collapseAll");
+  var tocLinks   = Array.prototype.slice.call(document.querySelectorAll(".toc a"));
+
+  /* ---------- highlight helpers ---------- */
+  function clearHighlights() {
+    var marks = document.querySelectorAll("mark.hl");
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function highlight(root, term) {
+    if (!term) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "MARK") return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(term);
+      if (idx === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+      while (idx !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var mark = document.createElement("mark");
+        mark.className = "hl";
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+        last = idx + term.length;
+        idx = lower.indexOf(term, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- filtering ---------- */
+  function updateCount(n) {
+    if (!countEl) return;
+    if (searchBox.value.trim() === "") {
+      countEl.textContent = sections.length + " sections — tap a heading to expand, or use the search box.";
+    } else {
+      countEl.textContent = n + " of " + sections.length + " sections match your search.";
+    }
+  }
+
+  function runSearch() {
+    clearHighlights();
+    var term = searchBox.value.trim().toLowerCase();
+    var shown = 0;
+
+    sections.forEach(function (sec) {
+      var text = (sec.textContent || "").toLowerCase();
+      var match = !term || text.indexOf(term) !== -1;
+
+      if (match) {
+        sec.classList.remove("hidden");
+        shown++;
+        if (term) {
+          sec.open = true;
+          highlight(sec, term);
+        }
+      } else {
+        sec.classList.add("hidden");
+      }
+    });
+    updateCount(shown);
+  }
+
+  var debounceTimer = null;
+  if (searchBox) {
+    searchBox.addEventListener("input", function () {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(runSearch, 130);
+    });
+    searchBox.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        searchBox.value = "";
+        runSearch();
+      }
+    });
+  }
+
+  if (expandBtn) {
+    expandBtn.addEventListener("click", function () {
+      sections.forEach(function (s) { s.open = true; });
+    });
+  }
+  if (collapseBtn) {
+    collapseBtn.addEventListener("click", function () {
+      sections.forEach(function (s) { s.open = false; });
+    });
+  }
+
+  /* ---------- TOC: open the target section ---------- */
+  tocLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      var id = link.getAttribute("href").slice(1);
+      var target = document.getElementById(id);
+      if (target && target.tagName === "DETAILS") {
+        target.open = true;
+        target.classList.remove("hidden");
+      }
+    });
+  });
+
+  /* ---------- deep link on load ---------- */
+  if (location.hash) {
+    var el = document.getElementById(location.hash.slice(1));
+    if (el && el.tagName === "DETAILS") el.open = true;
+  }
+
+  updateCount(sections.length);
+})();
+</script>
+</body>
+</html>
