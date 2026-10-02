@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leptospirosis — Anaesthesia &amp; Critical Care Quick Reference</title>
+<meta name="description" content="Collapsible, searchable clinical quick reference on leptospirosis for anaesthetists and intensivists, based on the Ministry of Health Malaysia 2011 guidelines.">
+<style>
+  :root{
+    --bg:#f4f7f9;
+    --panel:#ffffff;
+    --panel-2:#f8fbfc;
+    --ink:#11212b;
+    --muted:#5b6b76;
+    --line:#dce4e9;
+    --accent:#0b6ea8;
+    --accent-2:#0d8a7a;
+    --accent-soft:#e9f3fa;
+    --warn:#b3261e;
+    --warn-soft:#fdecea;
+    --ok:#0d7a52;
+    --ok-soft:#e8f6ef;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(16,32,44,.06), 0 10px 24px rgba(16,32,44,.05);
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1317;
+      --panel:#151d23;
+      --panel-2:#1a242b;
+      --ink:#e7eef3;
+      --muted:#9db0bb;
+      --line:#2a3740;
+      --accent:#5cb8ea;
+      --accent-2:#4fd3bb;
+      --accent-soft:#13262f;
+      --warn:#ff9d95;
+      --warn-soft:#2b1715;
+      --ok:#63d3a3;
+      --ok-soft:#12291f;
+      --shadow:none;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:color-mix(in srgb, var(--panel) 88%, transparent);
+    backdrop-filter:saturate(180%) blur(10px);
+    -webkit-backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:.7rem clamp(.8rem,3vw,1.6rem) .8rem;
+  }
+  .brand{display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap}
+  .brand h1{font-size:1.05rem; margin:0; letter-spacing:-.01em}
+  .brand .tag{
+    font-size:.68rem; text-transform:uppercase; letter-spacing:.09em;
+    color:var(--accent); background:var(--accent-soft);
+    border:1px solid color-mix(in srgb,var(--accent) 25%, transparent);
+    padding:.12rem .45rem; border-radius:999px; font-weight:700;
+  }
+  .brand .sub{font-size:.78rem; color:var(--muted); width:100%}
+
+  .controls{display:flex; gap:.5rem; align-items:center; margin-top:.6rem; flex-wrap:wrap}
+  .searchwrap{position:relative; flex:1 1 260px; min-width:200px}
+  .searchwrap svg{
+    position:absolute; left:.6rem; top:50%; transform:translateY(-50%);
+    width:15px; height:15px; stroke:var(--muted); fill:none; stroke-width:2;
+  }
+  #search{
+    width:100%; padding:.5rem .7rem .5rem 2rem;
+    font-size:.9rem; color:var(--ink);
+    background:var(--panel-2);
+    border:1px solid var(--line); border-radius:9px;
+    outline:none;
+  }
+  #search:focus{border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%, transparent)}
+  .btn{
+    font:inherit; font-size:.8rem; font-weight:600;
+    padding:.45rem .7rem; border-radius:9px; cursor:pointer;
+    background:var(--panel-2); color:var(--ink);
+    border:1px solid var(--line);
+  }
+  .btn:hover{border-color:var(--accent); color:var(--accent)}
+  .status{font-size:.78rem; color:var(--muted); min-width:6rem}
+
+  /* ---------- Layout ---------- */
+  main{
+    max-width:1000px; margin:0 auto;
+    padding:1.1rem clamp(.7rem,3vw,1.6rem) 3rem;
+    display:flex; flex-direction:column; gap:.7rem;
+  }
+  .callout{
+    background:var(--accent-soft);
+    border:1px solid color-mix(in srgb,var(--accent) 22%, transparent);
+    border-left:4px solid var(--accent);
+    border-radius:var(--radius);
+    padding:.7rem .9rem; font-size:.85rem; color:var(--ink);
+  }
+  .callout strong{color:var(--accent)}
+
+  /* ---------- Collapsible sections ---------- */
+  details.section{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    scroll-margin-top:120px;
+  }
+  details.section > summary{
+    cursor:pointer; list-style:none;
+    display:flex; align-items:center; gap:.65rem;
+    padding:.75rem .9rem;
+    font-weight:700; font-size:.95rem; letter-spacing:-.005em;
+    background:linear-gradient(to bottom, var(--panel-2), var(--panel));
+  }
+  details.section > summary::-webkit-details-marker{display:none}
+  details.section > summary::before{
+    content:"";
+    flex:none; width:9px; height:9px;
+    border-right:2.2px solid var(--accent);
+    border-bottom:2.2px solid var(--accent);
+    transform:rotate(-45deg);
+    transition:transform .18s ease;
+    margin-left:.15rem;
+  }
+  details.section[open] > summary::before{transform:rotate(45deg)}
+  details.section > summary:hover{color:var(--accent)}
+  details.section > summary .badge{
+    margin-left:auto; font-size:.66rem; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--muted);
+    border:1px solid var(--line); border-radius:999px; padding:.1rem .45rem;
+  }
+  .body{
+    padding:.2rem 1rem 1.05rem;
+    border-top:1px solid var(--line);
+    font-size:.9rem;
+  }
+  .body > *:first-child{margin-top:.75rem}
+  h3{
+    font-size:.82rem; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--accent); margin:1.15rem 0 .45rem;
+  }
+  h3:first-child{margin-top:.5rem}
+  p{margin:.5rem 0}
+  ul,ol{margin:.45rem 0; padding-left:1.15rem}
+  li{margin:.22rem 0}
+  li > ul, li > ol{margin:.2rem 0}
+  strong{font-weight:700}
+  em{color:var(--muted); font-style:italic}
+  code{
+    font-family:var(--mono); font-size:.83em;
+    background:var(--accent-soft); color:var(--accent);
+    padding:.08em .35em; border-radius:5px;
+  }
+  .muted{color:var(--muted)}
+  .small{font-size:.8rem}
+
+  /* ---------- Pills / flags ---------- */
+  .pill{
+    display:inline-block; font-size:.7rem; font-weight:700;
+    padding:.1rem .45rem; border-radius:999px;
+    letter-spacing:.03em; vertical-align:.05em;
+  }
+  .pill.red{background:var(--warn-soft); color:var(--warn); border:1px solid color-mix(in srgb,var(--warn) 30%,transparent)}
+  .pill.green{background:var(--ok-soft); color:var(--ok); border:1px solid color-mix(in srgb,var(--ok) 30%,transparent)}
+  .pill.blue{background:var(--accent-soft); color:var(--accent); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+
+  .alert{
+    background:var(--warn-soft);
+    border:1px solid color-mix(in srgb,var(--warn) 28%, transparent);
+    border-left:4px solid var(--warn);
+    border-radius:10px;
+    padding:.6rem .8rem; margin:.7rem 0;
+    font-size:.85rem;
+  }
+  .alert strong{color:var(--warn)}
+  .note{
+    background:var(--panel-2);
+    border:1px dashed var(--line);
+    border-radius:10px;
+    padding:.6rem .8rem; margin:.7rem 0;
+    font-size:.82rem; color:var(--muted);
+  }
+
+  /* ---------- Scrollable tables ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin:.7rem 0;
+    background:var(--panel);
+  }
+  .table-wrap::-webkit-scrollbar{height:9px}
+  .table-wrap::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--muted) 40%,transparent); border-radius:9px}
+  table{border-collapse:collapse; width:100%; font-size:.83rem}
+  caption{
+    caption-side:top; text-align:left;
+    font-size:.76rem; color:var(--muted);
+    padding:.45rem .7rem .3rem;
+  }
+  th,td{
+    border-bottom:1px solid var(--line);
+    padding:.5rem .65rem; text-align:left; vertical-align:top;
+  }
+  thead th{
+    background:var(--panel-2);
+    font-size:.72rem; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--muted); white-space:nowrap; position:sticky; top:0;
+  }
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:color-mix(in srgb,var(--panel-2) 55%, transparent)}
+  td.wrap{min-width:220px}
+  .t-scroll-hint{font-size:.72rem; color:var(--muted); margin:.15rem 0 .6rem}
+
+  /* ---------- Timeline diagram ---------- */
+  .timeline{
+    display:flex; align-items:stretch; gap:.45rem;
+    margin:.8rem 0 .4rem;
+  }
+  .tl-card{
+    flex:1 1 0; min-width:0;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-top:3px solid var(--accent);
+    border-radius:10px;
+    padding:.6rem .7rem;
+    font-size:.8rem;
+  }
+  .tl-card h4{
+    margin:0 0 .35rem; font-size:.78rem; letter-spacing:.02em;
+    color:var(--accent); text-transform:uppercase;
+  }
+  .tl-card:nth-of-type(3){border-top-color:var(--accent-2)}
+  .tl-card:nth-of-type(3) h4{color:var(--accent-2)}
+  .tl-card ul{padding-left:1rem; margin:.25rem 0}
+  .tl-card li{margin:.12rem 0}
+  .tl-arrow{
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent); font-size:1.1rem; flex:none; opacity:.7;
+  }
+  @media (max-width:760px){
+    .timeline{flex-direction:column}
+    .tl-arrow{transform:rotate(90deg); padding:.05rem 0}
+  }
+
+  /* ---------- Search highlight ---------- */
+  mark.hit{
+    background:#ffe066; color:#12212b;
+    border-radius:3px; padding:0 1px;
+  }
+  @media (prefers-color-scheme: dark){
+    mark.hit{background:#c9a227; color:#0d1317}
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site{
+    border-top:1px solid var(--line);
+    background:var(--panel);
+    padding:1.2rem clamp(.8rem,3vw,1.6rem) 2rem;
+    font-size:.8rem; color:var(--muted);
+  }
+  footer.site .inner{max-width:1000px; margin:0 auto}
+  footer.site a{color:var(--accent); text-decoration:none; word-break:break-word}
+  footer.site a:hover{text-decoration:underline}
+  footer.site h3{color:var(--ink); font-size:.72rem}
+
+  @media print{
+    header.site{position:static}
+    .controls{display:none}
+    details.section{box-shadow:none; break-inside:avoid}
+    details.section > summary::before{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">
+    <h1>Leptospirosis — Quick Reference</h1>
+    <span class="tag">Anaesthesia &amp; Critical Care</span>
+    <span class="sub">Based on <em>Guidelines for the Diagnosis, Management, Prevention and Control of Leptospirosis in Malaysia</em>, Ministry of Health Malaysia, 2011.</span>
+  </div>
+  <div class="controls">
+    <div class="searchwrap">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      <input id="search" type="search" placeholder="Search this reference (e.g. penicillin, Jarisch, PCR, Weil)…" autocomplete="off" aria-label="Search clinical content">
+    </div>
+    <button class="btn" id="expandAll" type="button">Expand all</button>
+    <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    <span class="status" id="status" role="status" aria-live="polite"></span>
+  </div>
+</header>
+
+<main>
+
+  <div class="callout">
+    <strong>How to use:</strong> every heading below is collapsible. Type in the search box to filter —
+    matching sections open automatically and hits are highlighted. Press <code>Esc</code> to clear.
+    Press <code>/</code> to jump to the search box.
+  </div>
+
+  <!-- ================= 1. OVERVIEW ================= -->
+  <details class="section" id="overview" open>
+    <summary>1 · Overview, transmission &amp; risk <span class="badge">Basics</span></summary>
+    <div class="body">
+      <ul>
+        <li><strong>Zoonosis</strong> caused by pathogenic spirochaetes of the genus <em>Leptospira</em>
+          (<em>L. interrogans</em>; &gt;200 serovars in 25 serogroups).</li>
+        <li><strong>Incubation period:</strong> usually <strong>10 days</strong> (range <strong>2–30 days</strong>).</li>
+        <li><strong>Transmission:</strong> contact of skin, mucosa or conjunctiva with water or soil contaminated by the
+          urine of infected rodents, carrier or diseased animals. Ingestion of contaminated water may also cause infection.
+          <strong>No documented human-to-human transmission.</strong></li>
+        <li><strong>Seasonality:</strong> usually seasonal, beginning with the rainy season and declining as rainfall recedes;
+          outbreaks are associated with heavy rainfall and flooding. Sporadic cases occur year-round.</li>
+        <li><strong>Severity:</strong> case-fatality estimates worldwide range from <strong>&lt;5% to 30%</strong>.
+          Severe leptospirosis is commonly fatal if aggressive management is not instituted early.</li>
+        <li><strong>Notifiable in Malaysia</strong> under the Prevention and Control of Infectious Diseases Act 1988 since
+          <strong>9 December 2010</strong>.</li>
+      </ul>
+
+      <h3>High-risk groups (exposure history to elicit)</h3>
+      <ul>
+        <li>Agricultural workers, sewerage workers, livestock handlers, pet shop workers</li>
+        <li>Military personnel, search &amp; rescue workers, disaster relief workers (e.g. during floods)</li>
+        <li>Outdoor/recreational activities — water recreation, jungle trekking, adventure trips, outdoor sports</li>
+        <li>Travellers not previously exposed to the bacteria in their environment</li>
+        <li>People with chronic disease and open skin wounds</li>
+      </ul>
+
+      <div class="note">
+        <strong>History is paramount.</strong> The guideline states that leptospirosis is difficult to distinguish from other
+        diseases on clinical grounds alone — a history of possible exposure is essential to aid clinical diagnosis.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 2. CLINICAL MANIFESTATIONS ================= -->
+  <details class="section" id="clinical">
+    <summary>2 · Clinical manifestations &amp; red flags <span class="badge">Recognise</span></summary>
+    <div class="body">
+      <p>Clinical manifestations are highly variable. The guideline describes <strong>four broad clinical categories</strong>:</p>
+      <ol>
+        <li>A mild, influenza-like illness (ILI)</li>
+        <li><strong>Weil's syndrome</strong> — jaundice, renal failure, haemorrhage and myocarditis with arrhythmias</li>
+        <li><strong>Meningitis / meningoencephalitis</strong></li>
+        <li><strong>Pulmonary haemorrhage with respiratory failure</strong></li>
+      </ol>
+
+      <div class="alert">
+        <strong>Differential trap — "the Great Mimicker".</strong> Confusion is particularly common in the tropics with
+        <strong>dengue and other haemorrhagic fevers, malaria, typhoid, melioidosis and influenza</strong>.
+        Presentations may also <strong>overlap as the infection progresses</strong>.
+      </div>
+
+      <h3>Clinical case definition — acute febrile illness with exposure history, plus ANY of:</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>Annex-free summary of the guideline's clinical case description (§7.1)</caption>
+          <thead><tr><th>Symptom / sign</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Headache</td><td>Often severe</td></tr>
+            <tr><td>Myalgia</td><td><strong>Particularly calf muscles and lumbar region</strong></td></tr>
+            <tr><td>Arthralgia</td><td>—</td></tr>
+            <tr><td>Conjunctival suffusion</td><td>Classic but easily missed</td></tr>
+            <tr><td>Meningeal irritation</td><td>Meningitis / meningoencephalitis</td></tr>
+            <tr><td>Anuria or oliguria and/or proteinuria</td><td>Renal involvement</td></tr>
+            <tr><td>Jaundice</td><td>Part of Weil's syndrome</td></tr>
+            <tr><td>Haemorrhages</td><td>From the intestines and lungs</td></tr>
+            <tr><td>Cardiac arrhythmia or failure</td><td>Myocarditis</td></tr>
+            <tr><td>Skin rash</td><td>—</td></tr>
+            <tr><td>Gastrointestinal symptoms</td><td>Nausea, vomiting, abdominal pain, diarrhoea</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="t-scroll-hint">↔ Table scrolls horizontally on narrow screens.</p>
+
+      <h3>Red flags for critical care review</h3>
+      <ul>
+        <li><span class="pill red">Airway / Neuro</span> Meningeal irritation, meningoencephalitis, altered mental status</li>
+        <li><span class="pill red">Respiratory</span> Pulmonary haemorrhage with respiratory failure</li>
+        <li><span class="pill red">Renal</span> Oliguria / anuria, proteinuria, rising creatinine</li>
+        <li><span class="pill red">Haemorrhagic</span> Intestinal and pulmonary bleeding</li>
+        <li><span class="pill red">Cardiac</span> Arrhythmia or cardiac failure (myocarditis)</li>
+        <li><span class="pill red">Hepatic</span> Jaundice (Weil's syndrome)</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 3. CASE CLASSIFICATION ================= -->
+  <details class="section" id="classification">
+    <summary>3 · Case classification (clinical / probable / confirmed) <span class="badge">Definitions</span></summary>
+    <div class="body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Classification</th><th>Criteria</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Clinical case</strong><br><span class="muted small">(suspected)</span></td>
+              <td class="wrap">Acute febrile illness with a history of exposure to water and/or an environment possibly
+                contaminated with infected animal urine, <strong>with ANY</strong> of the symptoms/signs listed in section 2
+                (headache; myalgia of calf/lumbar region; arthralgia; conjunctival suffusion; meningeal irritation;
+                anuria/oliguria and/or proteinuria; jaundice; haemorrhages from intestines and lungs; cardiac arrhythmia or
+                failure; skin rash; GI symptoms).</td>
+            </tr>
+            <tr>
+              <td><strong>Probable case</strong></td>
+              <td class="wrap">A clinical case <strong>AND</strong> a positive ELISA / other rapid test.</td>
+            </tr>
+            <tr>
+              <td><strong>Confirmed case</strong></td>
+              <td class="wrap">A suspected <strong>OR</strong> probable case with <strong>any one</strong> of:
+                <ul>
+                  <li><strong>MAT</strong> — single serum titre <strong>≥ 1:400</strong></li>
+                  <li><strong>MAT</strong> paired sera — <strong>four-fold or greater rise</strong> in titre</li>
+                  <li><strong>Positive PCR</strong> (sample taken within <strong>10 days</strong> of disease onset)</li>
+                  <li><strong>Positive culture</strong> for pathogenic leptospires — blood within <strong>7 days</strong> of onset;
+                      urine after the <strong>10th day</strong></li>
+                  <li>Demonstration of leptospires in tissues using <strong>immunohistochemical staining</strong>
+                      (e.g. post-mortem cases)</li>
+                  <li>Where laboratory capacity is not well established: positive by <strong>two different rapid
+                      diagnostic tests</strong></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small"><strong>Cases that require confirmation:</strong> all hospitalised cases and all suspected
+        leptospirosis death cases.</p>
+    </div>
+  </details>
+
+  <!-- ================= 4. LAB DIAGNOSIS ================= -->
+  <details class="section" id="labs">
+    <summary>4 · Laboratory diagnosis &amp; timing windows <span class="badge">Diagnostics</span></summary>
+    <div class="body">
+
+      <h3>Biphasic illness vs. diagnostic yield</h3>
+      <div class="timeline">
+        <div class="tl-card">
+          <h4>Week 1 — acute / leptospiraemic phase</h4>
+          <ul>
+            <li><strong>Blood &amp; CSF culture</strong> — best yield</li>
+            <li><strong>PCR</strong> on whole blood / urine — best yield</li>
+            <li>Serology (ELISA / MAT) may still be <strong>negative</strong></li>
+          </ul>
+        </div>
+        <div class="tl-arrow" aria-hidden="true">➜</div>
+        <div class="tl-card">
+          <h4>Days 5–10 onward — immune phase</h4>
+          <ul>
+            <li><strong>IgM appears</strong> → ELISA / rapid test turns positive</li>
+            <li><strong>MAT</strong> titre rises</li>
+            <li><strong>Urine culture</strong> from day ≥ 7</li>
+            <li>Severe syndromes declare themselves (Weil's, meningitis, pulmonary haemorrhage)</li>
+          </ul>
+        </div>
+        <div class="tl-arrow" aria-hidden="true">➜</div>
+        <div class="tl-card">
+          <h4>Convalescent sample (≥ 1 week later)</h4>
+          <ul>
+            <li>Repeat serum for <strong>four-fold rise in MAT titre</strong></li>
+            <li>Follow-up samples give epidemiological information (presumptive infecting serogroup)</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small muted">Adapted from Figure 1 of the guideline (biphasic nature of leptospirosis with the relevant
+        investigations at each stage). Specimens 1 &amp; 2 = acute-phase serology; 3 = convalescent-phase sample (may detect a
+        delayed immune response); 4 &amp; 5 = follow-up samples.</p>
+
+      <h3>Key laboratory notes</h3>
+      <ul>
+        <li><strong>MAT is the gold standard / cornerstone of serodiagnosis</strong> because of its unsurpassed diagnostic
+          (serovar/serogroup) specificity compared with other currently available tests. A <strong>second serum sample must
+          be taken</strong> to detect a four-fold or greater rise in titre.</li>
+        <li><strong>Rapid test kits:</strong> any leptospirosis rapid test kit used <strong>must be validated / approved by
+          IMR</strong>. Where laboratory capacity is limited, two different rapid tests positive can confirm a case.</li>
+        <li><strong>ELISA / other rapid tests detect IgM.</strong> Presence of IgM may indicate current <em>or recent</em>
+          infection. Serum may be positive <strong>5–10 days after onset</strong> but usually not before.
+          <strong>IgM-class antibodies may remain detectable for several years.</strong></li>
+        <li>If the initial sample was taken early, the <strong>ELISA may be positive but MAT negative</strong> — a follow-up
+          sample is required.</li>
+        <li>Tests may be negative if the infecting serogroup does not react with the Patoc 1 serovar strain used as antigen.</li>
+        <li><strong>Antibiotics given from the beginning of the illness may delay the immune and antibody response.</strong></li>
+        <li>Culture sensitivity is usually <strong>&lt;30%</strong>; it is <strong>not useful to guide management</strong> —
+          it is done mainly for epidemiological surveillance. Isolation followed by typing informs which leptospires are
+          circulating in an area.</li>
+        <li><strong>Leptospires die quickly in urine</strong> — a clean urine sample should be inoculated into appropriate
+          culture medium <strong>not more than 2 hours after voiding</strong>. Survival in acid urine may be increased by
+          making it neutral.</li>
+        <li>Isolation is also possible from blood (first 7 days) or CSF (days 4–10) during acute illness, from urine
+          (days ≥ 7) and from tissue samples using special media. Inoculation of young guinea pigs, hamsters or gerbils can
+          also be carried out.</li>
+        <li><strong>Post-mortem diagnosis:</strong> in addition to serology and culture, leptospires can be demonstrated in
+          tissues using <strong>PCR or immunohistochemical staining</strong>, notably by direct immunofluorescence.</li>
+      </ul>
+
+      <h3>Sample collection &amp; transport — clinical specimens</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>Adapted from Annex 1, Table 1 (clinical sample collection and transportation)</caption>
+          <thead>
+            <tr><th>Test</th><th>Specimen</th><th>Container</th><th>Storage &amp; transport</th><th>Where to send</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ELISA or any other rapid immunodiagnostic kit</td>
+              <td>Serum</td>
+              <td>Plain tube (3 mL)</td>
+              <td>Ambient. If delay unavoidable, store at 4–8 °C</td>
+              <td>Hospital with facilities, <strong>or</strong> IMR, <strong>or</strong> MKAK (community outbreak)</td>
+            </tr>
+            <tr>
+              <td>MAT</td>
+              <td>Serum (same sample as ELISA can be used for MAT). A repeat convalescent sample (at least 1 week later) is
+                necessary to confirm cases</td>
+              <td>Plain tube (3 mL)</td>
+              <td>Ambient, or 4–8 °C if delay is unavoidable</td>
+              <td>IMR; MKAK (community outbreak)</td>
+            </tr>
+            <tr>
+              <td>PCR <span class="small muted">(a)</span></td>
+              <td>Whole blood</td>
+              <td>EDTA tube (2 mL)</td>
+              <td>Ambient, or 4–8 °C if delay is unavoidable</td>
+              <td>IMR; MKAK (community outbreak)</td>
+            </tr>
+            <tr>
+              <td>PCR <span class="small muted">(b)</span></td>
+              <td>Midstream urine</td>
+              <td>Sterile container</td>
+              <td>Ambient, or 4–8 °C if delay is unavoidable</td>
+              <td>IMR; MKAK (community outbreak)</td>
+            </tr>
+            <tr>
+              <td>Culture</td>
+              <td>Blood<br>CSF / body fluids<br>Tissue</td>
+              <td>Heparin tube (4–5 mL)<br>Sterile container<br>Sterile container</td>
+              <td>Ambient<br>Ambient<br>Ambient</td>
+              <td>IMR</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="t-scroll-hint">↔ Table scrolls horizontally on narrow screens.</p>
+      <ul class="small">
+        <li><strong>PCR:</strong> best done during the first week of symptoms. Sensitivity is low once seroconversion has occurred.</li>
+        <li><strong>Urine PCR:</strong> only useful if taken <strong>≥ 7 days</strong> after onset <em>and prior to antibiotics</em>.</li>
+        <li><strong>Culture:</strong> best sensitivity during the first week of symptoms and prior to antibiotic administration.</li>
+        <li>Each sample should be properly labelled and sent to the laboratory as early as possible. If delayed, store at
+          4–8 °C (<strong>except samples for culture</strong>).</li>
+      </ul>
+
+      <h3>Sample collection &amp; transport — post-mortem specimens</h3>
+      <p class="small">Post-mortem should be performed under strictly aseptic technique.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Test</th><th>Specimen</th><th>Container</th><th>Transport condition</th><th>Where to send</th></tr></thead>
+          <tbody>
+            <tr>
+              <td rowspan="3">PCR</td>
+              <td>Intracardiac blood</td><td>EDTA</td>
+              <td rowspan="3">Ambient temperature, or 4–8 °C if delay unavoidable</td>
+              <td rowspan="3">IMR</td>
+            </tr>
+            <tr><td>Tissues (brain, lung, liver, heart, kidneys)</td><td>Sterile container</td></tr>
+            <tr><td>CSF</td><td>Sterile container</td></tr>
+            <tr>
+              <td rowspan="2">Culture</td>
+              <td>Blood</td><td>Heparin tubes</td>
+              <td rowspan="2">Ambient temperature</td>
+              <td rowspan="2">IMR</td>
+            </tr>
+            <tr><td>Tissues, CSF</td><td>Sterile container</td></tr>
+            <tr>
+              <td>Immunohistochemistry</td>
+              <td>Tissues</td>
+              <td>Paraffin blocks or slides with mounted tissue sections (microtomised tissues 4–40 µm)</td>
+              <td>Ambient temperature</td>
+              <td>IMR</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="t-scroll-hint">↔ Table scrolls horizontally on narrow screens.</p>
+
+      <div class="note">
+        <strong>Laboratory contacts</strong><br>
+        IMR — 03-26162504 (Leptospirosis lab); 03-26162658 (Bacteriology Unit)<br>
+        MKAK — 03-61261329 / 1330 (Bacteriology Unit)
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 5. TREATMENT ================= -->
+  <details class="section" id="treatment">
+    <summary>5 · Treatment <span class="badge">Antibiotics</span></summary>
+    <div class="body">
+      <div class="alert">
+        <strong>Early treatment with antibiotics is essential.</strong>
+      </div>
+
+      <h3>Adults</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Severity</th><th>Regimen</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Severe cases</strong></td>
+              <td class="wrap">High-dose <strong>IV C-penicillin 2 million units 6-hourly for 5–7 days</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Less severe cases</strong></td>
+              <td class="wrap">Oral antibiotics such as <strong>doxycycline 2 mg/kg up to 100 mg 12-hourly for 5–7 days</strong>;
+                <strong>tetracycline</strong>, <strong>ampicillin</strong> or <strong>amoxicillin</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Alternatives</strong></td>
+              <td class="wrap">Third-generation cephalosporins such as <strong>ceftriaxone</strong> and <strong>cefotaxime</strong>,
+                and <strong>quinolone</strong> antibiotics, may also be effective</td>
+            </tr>
+            <tr>
+              <td><strong>Supportive</strong></td>
+              <td class="wrap">Monitoring and supportive care as appropriate, e.g. <strong>dialysis</strong>,
+                <strong>mechanical ventilation</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert">
+        <strong>Jarisch–Herxheimer reactions may occur after the start of antimicrobial therapy.</strong>
+        It has also been described in patients with leptospirosis in the paediatric table.
+      </div>
+
+      <h3>Paediatrics</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Preferred</th><th>Alternative</th><th>Comments</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="wrap">
+                <strong>Penicillin G</strong><br>
+                &gt; 8 years: Penicillin <strong>100,000 U/kg/dose IV 6-hourly × 7 days</strong><br><br>
+                &lt; 8 years:<br>
+                <strong>Ampicillin 75–100 mg/kg/dose oral 6-hourly × 7 days</strong><br>
+                <em>or</em><br>
+                <strong>Amoxicillin 50 mg/kg/dose oral 6–8 hourly × 7 days</strong>
+              </td>
+              <td class="wrap">
+                <strong>Doxycycline 4 mg/kg/dose oral 12-hourly × 7 days</strong>
+              </td>
+              <td class="wrap">
+                Doxycycline: use in <strong>moderate to severe disease</strong>; caution in impaired renal function;
+                Jarisch–Herxheimer reaction has been described in patients with leptospirosis.<br><br>
+                &lt; 8 years: doxycycline used for <strong>only mild disease</strong> — can cause permanent discolouration of teeth.<br><br>
+                <strong>Ampicillin / amoxicillin:</strong> 2nd-line agent or for patients &lt; 8 years.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="t-scroll-hint">↔ Table scrolls horizontally on narrow screens.</p>
+    </div>
+  </details>
+
+  <!-- ================= 6. ICU / PERIOPERATIVE ================= -->
+  <details class="section" id="icu">
+    <summary>6 · ICU &amp; perioperative considerations <span class="badge">Critical care</span></summary>
+    <div class="body">
+      <p class="small muted">
+        The 2011 guideline is not an anaesthesia text. The points below organise its clinical content for critical care use;
+        items marked <span class="pill blue">inferred</span> are clinical inferences drawn from the guideline's severity
+        categories and case definition, not verbatim recommendations.
+      </p>
+
+      <h3>Severe phenotypes to anticipate on ICU admission</h3>
+      <ul>
+        <li><strong>Weil's syndrome</strong> — jaundice + renal failure + haemorrhage + myocarditis with arrhythmias.
+          Anticipate <strong>dialysis</strong> (the guideline explicitly lists dialysis under supportive care).</li>
+        <li><strong>Pulmonary haemorrhage with respiratory failure</strong> — anticipate <strong>mechanical ventilation</strong>
+          (explicitly listed under supportive care).</li>
+        <li><strong>Meningitis / meningoencephalitis</strong> — meningeal irritation is a case-definition criterion;
+          <span class="pill blue">inferred</span> consider impaired consciousness and airway protection.</li>
+        <li><strong>Myocarditis with arrhythmias or cardiac failure</strong> — continuous rhythm awareness; cardiovascular
+          instability may complicate induction and positive-pressure ventilation.</li>
+      </ul>
+
+      <h3>Organ support explicitly named in the guideline</h3>
+      <ul>
+        <li>Dialysis</li>
+        <li>Mechanical ventilation</li>
+        <li>"Monitoring and supportive care as appropriate"</li>
+      </ul>
+
+      <h3>Practical points for the perioperative / ICU team</h3>
+      <ul>
+        <li><strong>Antibiotics are time-critical</strong> — "early treatment with antibiotics is essential". Do not delay
+          definitive therapy while awaiting MAT confirmation.</li>
+        <li><strong>Be ready for a Jarisch–Herxheimer reaction</strong> after the first antimicrobial dose — it is explicitly
+          flagged in the guideline for both adults and children.</li>
+        <li><strong>Interpret serology with the timeline in mind.</strong> An early sample can be ELISA-positive but
+          MAT-negative; a follow-up sample is required. Antibiotics started at the outset may delay the immune/antibody
+          response.</li>
+        <li><strong>Do not rely on culture to guide management</strong> — sensitivity is usually &lt;30% and culture is
+          performed mainly for epidemiological surveillance.</li>
+        <li><strong>Collect the convalescent serum</strong> at least 1 week later — confirmation of hospitalised cases
+          depends on it.</li>
+        <li><strong>Any suspected leptospirosis death</strong> requires laboratory confirmation; post-mortem PCR and
+          immunohistochemistry on tissues are available (IMR).</li>
+        <li><span class="pill blue">inferred</span> Severe disease is commonly fatal if aggressive management is not
+          instituted at an early stage — a low threshold for ICU referral and organ-support planning is appropriate.</li>
+        <li><span class="pill blue">inferred</span> Occupational/recreational exposure history, water and flood exposure, and
+          rodent contact should be actively elicited if not already documented — it is "paramount to aid clinical diagnosis".</li>
+      </ul>
+
+      <div class="note">
+        <strong>Fluid, electrolyte and renal considerations:</strong> the guideline lists <strong>anuria or oliguria and/or
+        proteinuria</strong>, and <strong>renal failure</strong> as part of the clinical picture and Weil's syndrome
+        respectively, with <strong>dialysis</strong> as supportive care. Beyond this the source document does not specify
+        fluid or electrolyte targets.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 7. PROPHYLAXIS ================= -->
+  <details class="section" id="prophylaxis">
+    <summary>7 · Prophylaxis &amp; post-exposure therapy <span class="badge">Prevention</span></summary>
+    <div class="body">
+      <div class="note">
+        The cost-effectiveness and risk-versus-benefit of antibiotic prophylaxis for leptospirosis
+        <strong>remains unclear</strong>.
+      </div>
+
+      <h3>Pre-exposure prophylaxis</h3>
+      <p class="small">May be considered for people at high risk of exposure to potentially contaminated sources — e.g.
+        soldiers going into jungles, rescue teams, persons involved in activities in possible high-risk areas such as
+        adventure sports.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Drug</th><th>Dose</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Doxycycline</strong></td>
+              <td>200 mg stat dose, then <strong>weekly</strong> throughout the stay</td>
+              <td rowspan="2">For pregnant women and those allergic to doxycycline, use azithromycin.
+                Benefit remains controversial — balance against potential side effects (e.g. doxycycline-induced
+                photosensitivity, nausea).</td>
+            </tr>
+            <tr>
+              <td><strong>Azithromycin</strong></td>
+              <td>500 mg stat dose, then <strong>weekly</strong> throughout the stay</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Empirical treatment for post-exposure</h3>
+      <p class="small">In an outbreak there may be a role for post-exposure prophylaxis for those exposed to a common source
+        as the index case.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Drug</th><th>Dose</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Doxycycline</strong></td>
+              <td>200 mg stat dose, then <strong>100 mg BD for 5–7 days</strong> for those symptomatic with the first onset of fever</td>
+            </tr>
+            <tr>
+              <td><strong>Azithromycin</strong><br><span class="small muted">(pregnant women and those allergic to doxycycline)</span></td>
+              <td>1 g on Day 1, followed by <strong>500 mg daily for 2 days</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert">
+        <strong>Note:</strong> the role of prophylaxis in children has <strong>not been adequately studied</strong>.
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 8. PREVENTION ================= -->
+  <details class="section" id="prevention">
+    <summary>8 · Prevention &amp; exposure advice <span class="badge">Counselling</span></summary>
+    <div class="body">
+      <p>Prevention and control should be targeted at (a) the infection source, (b) the route of transmission between the
+        infection source and the human host, or (c) prompt and proper treatment of infection.</p>
+
+      <h3>Advice for persons with occupational or recreational exposure to potentially contaminated water or soil</h3>
+      <ul>
+        <li>Wear waterproof protective clothing such as rubber boots and gloves.</li>
+        <li>Cover skin lesions with waterproof dressings.</li>
+        <li>Wash with clean water immediately after exposure.</li>
+        <li>Seek immediate medical treatment if symptoms develop within the incubation period.</li>
+      </ul>
+
+      <h3>General public messages</h3>
+      <ul>
+        <li>Keep homes and premises free from rodents.</li>
+        <li>Vaccinate pets against leptospirosis.</li>
+        <li>Promote cleanliness at recreational areas, food premises and housing areas.</li>
+        <li>Interagency collaboration (local authorities, PERHILITAN, JPV, JLN, etc.) to maintain cleanliness, especially
+          rodent control.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 9. SOURCE ================= -->
+  <details class="section" id="source">
+    <summary>9 · Source &amp; references <span class="badge">Citation</span></summary>
+    <div class="body">
+      <h3>Primary source</h3>
+      <p>
+        Ministry of Health Malaysia. <em>Guidelines for the Diagnosis, Management, Prevention and Control of Leptospirosis
+        in Malaysia.</em> Zoonosis Sector, Disease Control Division, Ministry of Health Malaysia; 2011.
+        (Foreword by Dr. Lokman Hakim B. Sulaiman, Director of Disease Control.)
+      </p>
+      <p class="small">
+        Companion web reference:
+        <a href="https://sites.google.com/moh.gov.my/nag/contents/section-a-adult/a16-tropical-infections?authuser=0" target="_blank" rel="noopener">
+          Ministry of Health Malaysia — National Antibiotic Guideline, Section A (Adult), A16: Tropical Infections
+        </a>
+      </p>
+
+      <h3>References cited within the guideline</h3>
+      <ol class="small">
+        <li>World Health Organization. <em>Human leptospirosis: guidance for diagnosis, surveillance and control</em>; 2003.</li>
+        <li>World Health Organization. <em>Report of the First Meeting of the Leptospirosis Burden Epidemiology Reference
+          Group.</em> Geneva; 2010.</li>
+        <li>Heymann DL, editor. <em>Control of Communicable Diseases Manual.</em> 18th ed. Washington, DC: American Public
+          Health Association; 2004.</li>
+        <li>Levett PN. Leptospirosis. <em>Clinical Microbiology Reviews.</em> 2001;14(2):296–326.</li>
+      </ol>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <h3>Source</h3>
+    <p>
+      Ministry of Health Malaysia. <em>Guidelines for the Diagnosis, Management, Prevention and Control of Leptospirosis in
+      Malaysia.</em> Zoonosis Sector, Disease Control Division, Ministry of Health Malaysia; 2011.
+    </p>
+    <p>
+      Companion web reference:
+      <a href="https://sites.google.com/moh.gov.my/nag/contents/section-a-adult/a16-tropical-infections?authuser=0" target="_blank" rel="noopener">
+        MOH Malaysia — National Antibiotic Guideline, Section A (Adult), A16: Tropical Infections
+      </a>
+    </p>
+    <p class="small">
+      This page is a condensed clinical quick reference for anaesthetists and intensivists. It is not a substitute for the
+      full national guideline or for local institutional protocols. Always confirm drug doses against your formulary and
+      local policy. Content marked "inferred" is clinical interpretation, not verbatim guideline text.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('details.section'));
+  var originals = new Map();
+  var defaults = new Map();
+
+  sections.forEach(function (s) {
+    originals.set(s, s.innerHTML);
+    defaults.set(s, s.hasAttribute('open'));
+  });
+
+  var input   = document.getElementById('search');
+  var status  = document.getElementById('status');
+  var expand  = document.getElementById('expandAll');
+  var collapse= document.getElementById('collapseAll');
+
+  function escapeRegExp(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  /* ---- Highlight all case-insensitive occurrences of `term` inside `root` ---- */
+  function highlight(root, term) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK' || tag === 'NOSCRIPT') {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    var needle = term.toLowerCase();
+    var hits = 0;
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      if (lower.indexOf(needle) === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var i = 0, idx;
+
+      while ((idx = lower.indexOf(needle, i)) !== -1) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'hit';
+        mark.textContent = text.slice(idx, idx + needle.length);
+        frag.appendChild(mark);
+        i = idx + needle.length;
+        hits++;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    return hits;
+  }
+
+  /* ---- Restore original markup (clears all highlights) ---- */
+  function restoreAll() {
+    sections.forEach(function (s) {
+      s.innerHTML = originals.get(s);
+    });
+  }
+
+  function applySearch() {
+    var q = input.value.trim();
+
+    restoreAll();
+
+    if (q.length < 2) {
+      sections.forEach(function (s) {
+        s.open = defaults.get(s);
+      });
+      status.textContent = '';
+      document.body.dataset.searching = '0';
+      return;
+    }
+
+    var matchedSections = 0;
+    var totalHits = 0;
+
+    sections.forEach(function (s) {
+      var hits = highlight(s, q);
+      if (hits > 0) {
+        matchedSections++;
+        totalHits += hits;
+        s.open = true;
+      } else {
+        s.open = false;
+      }
+    });
+
+    if (matchedSections === 0) {
+      status.textContent = 'No matches';
+    } else {
+      status.textContent = matchedSections + ' section' + (matchedSections > 1 ? 's' : '') +
+                           ' · ' + totalHits + ' hit' + (totalHits > 1 ? 's' : '');
+    }
+    document.body.dataset.searching = '1';
+  }
+
+  /* ---- Debounce ---- */
+  var timer = null;
+  input.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(applySearch, 130);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      input.value = '';
+      applySearch();
+      input.blur();
+    }
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      var first = document.querySelector('details.section[open]');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  /* ---- Keyboard shortcut: "/" focuses search ---- */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== input &&
+        !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+
+  /* ---- Expand / collapse all ---- */
+  expand.addEventListener('click', function () {
+    sections.forEach(function (s) { s.open = true; });
+  });
+
+  collapse.addEventListener('click', function () {
+    sections.forEach(function (s) { s.open = false; });
+  });
+
+  /* ---- Keep at least the anchor target open when navigating via hash ---- */
+  window.addEventListener('hashchange', function () {
+    var el = document.querySelector(location.hash);
+    if (el && el.tagName === 'DETAILS') el.open = true;
+  });
+})();
+</script>
+</body>
+</html>
