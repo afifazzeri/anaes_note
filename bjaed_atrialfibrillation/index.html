@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perioperative Atrial Fibrillation — Anaesthesia &amp; ICU Quick Reference</title>
+<style>
+  :root{
+    --bg:#eef2f7;
+    --card:#ffffff;
+    --ink:#12263a;
+    --muted:#5b6b7c;
+    --brand:#4c1d95;
+    --brand2:#0e7490;
+    --line:#d7e0ea;
+    --soft:#f5f8fc;
+    --hl:#ffe680;
+    --warn:#b45309;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    font-size:16px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    background:linear-gradient(135deg,#4c1d95 0%,#0e7490 100%);
+    color:#fff;
+    padding:26px 18px 22px;
+    box-shadow:0 2px 12px rgba(18,38,58,.18);
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+  header h1{
+    margin:0 0 4px;
+    font-size:1.55rem;
+    letter-spacing:.2px;
+  }
+  header .sub{
+    margin:0 0 16px;
+    font-size:.92rem;
+    opacity:.9;
+  }
+  .searchbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+  }
+  .searchbar input{
+    flex:1 1 260px;
+    min-width:0;
+    padding:11px 14px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.35);
+    background:rgba(255,255,255,.95);
+    font-size:1rem;
+    color:var(--ink);
+    outline:none;
+  }
+  .searchbar input:focus{
+    box-shadow:0 0 0 3px rgba(255,255,255,.45);
+  }
+  .btn{
+    padding:10px 14px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.45);
+    background:rgba(255,255,255,.14);
+    color:#fff;
+    font-size:.86rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:background .15s;
+  }
+  .btn:hover{background:rgba(255,255,255,.28)}
+  #searchStatus{
+    margin:10px 0 0;
+    font-size:.84rem;
+    min-height:1.2em;
+    opacity:.95;
+  }
+
+  /* ---------- Layout ---------- */
+  main{
+    max-width:1080px;
+    margin:20px auto 40px;
+    padding:0 14px;
+  }
+
+  /* ---------- Accordion ---------- */
+  details.sec{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin-bottom:12px;
+    box-shadow:0 1px 3px rgba(18,38,58,.06);
+    overflow:hidden;
+  }
+  details.sec > summary{
+    cursor:pointer;
+    list-style:none;
+    padding:14px 16px;
+    font-weight:700;
+    font-size:1.02rem;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(180deg,#ffffff,#f7fafd);
+    border-bottom:1px solid transparent;
+    user-select:none;
+  }
+  details.sec[open] > summary{
+    border-bottom:1px solid var(--line);
+  }
+  details.sec > summary::-webkit-details-marker{display:none}
+  details.sec > summary::before{
+    content:"▶";
+    font-size:.7rem;
+    color:var(--brand2);
+    transition:transform .2s ease;
+    flex:0 0 auto;
+  }
+  details.sec[open] > summary::before{transform:rotate(90deg)}
+  summary:hover{background:#f0f6fb}
+  .sec-body{padding:14px 16px 18px}
+  .sec-body > *:first-child{margin-top:0}
+  .sec-body > *:last-child{margin-bottom:0}
+  .hidden{display:none !important}
+
+  h3{
+    font-size:.95rem;
+    margin:20px 0 8px;
+    color:var(--brand);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+  }
+  h3:first-child{margin-top:0}
+  ul{margin:8px 0 8px 0;padding-left:20px}
+  li{margin-bottom:5px}
+  p{margin:8px 0}
+
+  /* ---------- Key number chips ---------- */
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:10px 0;
+  }
+  .chip{
+    display:inline-block;
+    padding:6px 11px;
+    border-radius:999px;
+    background:#eef2ff;
+    border:1px solid #d6ddf7;
+    color:#3730a3;
+    font-size:.83rem;
+    font-weight:600;
+    line-height:1.35;
+  }
+  .chip.teal{background:#e6f6f8;border-color:#c5e8ee;color:#0e5f70}
+  .chip.amber{background:#fef4e6;border-color:#f6dfbd;color:#8a5300}
+
+  /* ---------- Callouts ---------- */
+  .callout{
+    border-left:4px solid var(--brand2);
+    background:var(--soft);
+    padding:10px 14px;
+    border-radius:0 10px 10px 0;
+    margin:12px 0;
+    font-size:.94rem;
+  }
+  .callout.warn{
+    border-left-color:var(--warn);
+    background:#fff8ed;
+  }
+  .callout strong{color:var(--brand)}
+
+  /* ---------- Tables ---------- */
+  .tablewrap{
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin:12px 0;
+    background:#fff;
+    max-height:70vh;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:620px;
+    font-size:.9rem;
+  }
+  thead th{
+    position:sticky;
+    top:0;
+    z-index:2;
+    background:#e8eff7;
+    color:var(--brand);
+    text-align:left;
+    padding:10px 12px;
+    font-size:.82rem;
+    text-transform:uppercase;
+    letter-spacing:.4px;
+    border-bottom:1px solid var(--line);
+  }
+  tbody td{
+    padding:10px 12px;
+    border-bottom:1px solid #eef2f7;
+    vertical-align:top;
+  }
+  tbody tr:nth-child(even){background:#fafcfe}
+  tbody tr:last-child td{border-bottom:none}
+  td.phase{
+    font-weight:700;
+    white-space:nowrap;
+    color:#fff;
+    width:1%;
+    font-size:.8rem;
+    letter-spacing:.3px;
+  }
+  td.phase.pre{background:#4c1d95}
+  td.phase.intra{background:#1d4ed8}
+  td.phase.post{background:#0e7490}
+  td.phase.long{background:#166534}
+  .table-hint{
+    font-size:.78rem;
+    color:var(--muted);
+    margin:-6px 0 12px;
+  }
+
+  /* ---------- Diagrams ---------- */
+  .fig{
+    background:linear-gradient(180deg,#f8fafd,#eef4fa);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 14px 18px;
+    margin:14px 0;
+  }
+  .fig-title{
+    font-size:.8rem;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    color:var(--brand);
+    margin-bottom:12px;
+    text-align:center;
+  }
+  .paths{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:12px;
+    align-items:start;
+  }
+  .path{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .node{
+    background:#1d4ed8;
+    color:#fff;
+    border-radius:8px;
+    padding:9px 10px;
+    font-size:.82rem;
+    font-weight:600;
+    text-align:center;
+    line-height:1.3;
+    box-shadow:0 1px 2px rgba(18,38,58,.12);
+  }
+  .node.trigger{background:#4c1d95}
+  .node.mid{background:#2563eb}
+  .node.alt{background:#0e7490}
+  .arrow{
+    text-align:center;
+    color:#64748b;
+    font-size:1rem;
+    line-height:1;
+    padding:5px 0;
+  }
+  .converge{
+    margin:6px auto 0;
+    max-width:420px;
+    background:#6d28d9;
+    color:#fff;
+    border-radius:8px;
+    padding:10px;
+    text-align:center;
+    font-weight:700;
+    font-size:.9rem;
+  }
+  .final{
+    margin:0 auto;
+    max-width:420px;
+    background:#0f766e;
+    color:#fff;
+    border-radius:8px;
+    padding:10px;
+    text-align:center;
+    font-weight:700;
+    font-size:.95rem;
+    letter-spacing:.4px;
+  }
+
+  .grid3{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:12px;
+  }
+  .panel{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+  }
+  .panel h4{
+    margin:0 0 8px;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    color:#fff;
+    background:var(--brand);
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:999px;
+  }
+  .panel.intra h4{background:#1d4ed8}
+  .panel.post h4{background:#0e7490}
+  .panel ul{padding-left:18px;margin:6px 0 0;font-size:.88rem}
+
+  /* ---------- Footer ---------- */
+  footer{
+    max-width:1080px;
+    margin:0 auto 50px;
+    padding:0 14px;
+    font-size:.84rem;
+    color:var(--muted);
+  }
+  footer .ref{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:4px solid var(--brand);
+    border-radius:0 10px 10px 0;
+    padding:14px 16px;
+    margin-bottom:12px;
+  }
+  footer .ref strong{color:var(--ink)}
+  .disclaimer{
+    font-size:.78rem;
+    line-height:1.5;
+    border-top:1px solid var(--line);
+    padding-top:12px;
+  }
+
+  mark.hl{
+    background:var(--hl);
+    color:inherit;
+    border-radius:3px;
+    padding:0 2px;
+  }
+
+  @media (max-width:520px){
+    header h1{font-size:1.25rem}
+    .sec-body{padding:12px 12px 16px}
+    table{font-size:.84rem}
+    thead th,tbody td{padding:8px 9px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Perioperative Atrial Fibrillation</h1>
+    <p class="sub">Quick reference for anaesthetists &amp; intensivists · prevention, risk stratification, and management</p>
+    <div class="searchbar">
+      <input id="search" type="search" placeholder="Search… e.g. amiodarone, rate control, magnesium, anticoagulation  (press / )" aria-label="Search the quick reference">
+      <button class="btn" id="expandAll" type="button">Expand all</button>
+      <button class="btn" id="collapseAll" type="button">Collapse all</button>
+      <button class="btn" id="clearBtn" type="button">Clear</button>
+    </div>
+    <p id="searchStatus" aria-live="polite"></p>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ 1. AT A GLANCE ============ -->
+  <details class="sec" open>
+    <summary>1 · At a glance — key numbers</summary>
+    <div class="sec-body">
+      <div class="chips">
+        <span class="chip">Peak onset ~48 h post-op</span>
+        <span class="chip">70% occur in first 4 days</span>
+        <span class="chip">Non-cardiac surgery: 3–8% (≥45 y)</span>
+        <span class="chip">Non-cardiac thoracic: up to 30%</span>
+        <span class="chip">Cardiac surgery: up to 80%</span>
+        <span class="chip teal">Isolated CABG: 15–40%</span>
+        <span class="chip teal">Isolated valve: 37–50%</span>
+        <span class="chip teal">Mitral valve: ~50%</span>
+        <span class="chip amber">CABG + valve: up to 70%</span>
+      </div>
+
+      <div class="callout">
+        <strong>Bottom line:</strong> AF is the most common serious perioperative arrhythmia. It increases morbidity,
+        mortality, ICU and hospital length of stay, readmission and total healthcare cost.
+        Most POAF is <strong>self-limiting</strong> (mean 11–12 h; 80% revert spontaneously within 24 h) — so
+        <strong>rate control first</strong> in the stable patient, and <strong>synchronised DC cardioversion</strong>
+        if unstable.
+      </div>
+
+      <h3>Definition &amp; timing</h3>
+      <ul>
+        <li>POAF = AF occurring after any surgery, typically within <strong>7 days</strong>, peaking around <strong>48 h</strong>.</li>
+        <li>Up to <strong>70%</strong> of cases occur in the initial 4 days.</li>
+        <li>Late-onset POAF (up to 30 days) occurs in <strong>4%</strong> of cardiac surgery patients after hospital discharge.</li>
+        <li>Two peak-risk windows after cardiac surgery: <strong>immediately after surgery</strong> and at <strong>48 h</strong>.</li>
+        <li>AF is also the most common arrhythmia encountered in the <strong>ICU</strong>.</li>
+      </ul>
+
+      <h3>Why it matters</h3>
+      <ul>
+        <li>Thromboembolic events including <strong>stroke</strong>.</li>
+        <li>Perioperative cardiac complications: <strong>MI, congestive heart failure</strong>.</li>
+        <li>Longer hospital and ICU stay, higher readmission rate, higher total healthcare costs.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 2. PATHOGENESIS ============ -->
+  <details class="sec">
+    <summary>2 · Pathogenesis</summary>
+    <div class="sec-body">
+      <p>
+        The pathophysiology of POAF after non-cardiac surgery is not fully understood and is likely multifactorial.
+        Increased <strong>sympathetic nervous system activation</strong> from surgical stress or pain, with catecholamine
+        release, is a significant mechanism. After cardiac surgery, <strong>inflammatory changes in cardiac tissue</strong>
+        also correlate with POAF (raised CRP, white cell count and interleukins).
+      </p>
+
+      <div class="fig">
+        <div class="fig-title">Fig 1 (simplified) · Pathogenesis of perioperative atrial fibrillation</div>
+
+        <div class="chips" style="justify-content:center">
+          <span class="chip">Surgical stress / pain</span>
+          <span class="chip">Hypercarbia</span>
+          <span class="chip">Hypoxaemia</span>
+          <span class="chip">Hyper-/hypovolaemia</span>
+          <span class="chip">Anaemia / hypotension</span>
+          <span class="chip">Electrolyte / metabolic disturbance</span>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="paths">
+          <div class="path">
+            <div class="node trigger">Sympathetic activation</div>
+            <div class="arrow">↓</div>
+            <div class="node mid">↑ Catecholamines</div>
+          </div>
+
+          <div class="path">
+            <div class="node trigger">Pulmonary vasoconstriction</div>
+            <div class="arrow">↓</div>
+            <div class="node mid">↑ Right heart pressures</div>
+            <div class="arrow">↓</div>
+            <div class="node mid">Right atrial dilation</div>
+          </div>
+
+          <div class="path">
+            <div class="node trigger">Myocardial cellular ischaemia</div>
+            <div class="arrow">↓</div>
+            <div class="node mid">Altered atrial conduction velocities &amp; ↑ anisotropy</div>
+          </div>
+
+          <div class="path">
+            <div class="node trigger">Altered cellular conduction</div>
+          </div>
+        </div>
+
+        <div class="arrow">↓</div>
+        <div class="converge">↑ Arrhythmogenicity</div>
+        <div class="arrow">↓</div>
+        <div class="final">ATRIAL FIBRILLATION</div>
+      </div>
+
+      <p>
+        <strong>Hypoxaemia</strong> acts through interrelated mechanisms: direct cellular ischaemia altering atrial
+        conduction velocity and refractoriness with increased anisotropy; and pulmonary vasoconstriction
+        (also from hypercarbia) raising right heart pressures and dilating the right atrium, altering conduction
+        through atrial tissue and dispersing electrical activity.
+      </p>
+      <p>
+        <strong>Other contributory factors:</strong> direct surgical irritation or injury, hyper- or hypovolaemia,
+        intraoperative hypotension, anaemia, hypercarbia and metabolic imbalances.
+      </p>
+    </div>
+  </details>
+
+  <!-- ============ 3. RISK FACTORS ============ -->
+  <details class="sec">
+    <summary>3 · Risk factors by perioperative phase</summary>
+    <div class="sec-body">
+      <p class="table-hint">Scroll the table horizontally and vertically if needed. Headers stay pinned.</p>
+
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>Phase</th><th>Risk factor</th><th>Detail / magnitude</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="phase pre" rowspan="9">Pre-op</td>
+              <td>Advanced age</td>
+              <td>Independent risk factor regardless of surgery type. Mean age 67 y for new-onset atrial arrhythmia after non-cardiothoracic surgery.</td>
+            </tr>
+            <tr><td>Male sex</td><td>Increases risk after both cardiac and non-cardiac surgery.</td></tr>
+            <tr><td>High BMI</td><td>Risk factor for new-onset AF after cardiac surgery.</td></tr>
+            <tr><td>Hypertension</td><td>Thought to act via higher left atrial pressure from LV diastolic dysfunction → atrial remodelling and dilation.</td></tr>
+            <tr><td>Diabetes mellitus</td><td>Multivariate OR 1.46 for AF; inflammation-mediated risk.</td></tr>
+            <tr><td>Obstructive sleep apnoea</td><td>Independent predictor of POAF after cardiac surgery.</td></tr>
+            <tr><td>Pre-existing cardiac disease</td><td>CAD, cardiomyopathy, CHF, valvular disease (mitral disease ↑ LA size), pericardial disease; depressed LVEF.</td></tr>
+            <tr><td>Hepatic dysfunction</td><td>Elevated MELD score and fulminant hepatic failure are independent predictors of AF after liver transplantation.</td></tr>
+            <tr><td>Renal dysfunction</td><td>Associated with POAF after cardiac / CABG surgery.</td></tr>
+
+            <tr>
+              <td class="phase intra" rowspan="4">Intra-op</td>
+              <td>Type of surgery — cardiac</td>
+              <td>Isolated CABG 15–40%; isolated valve 37–50%; mitral valve ~50%; combined CABG + valve up to 70%.</td>
+            </tr>
+            <tr>
+              <td>Type of surgery — non-cardiac</td>
+              <td>Non-cardiac thoracic up to 30%; open abdominal 12.5% (&gt;65 y) and 25% (&gt;85 y). Other procedures: transplant 4.8%, vascular 1.2%, orthopaedic 0.51%, head &amp; neck 0.24%. Laparoscopic abdominal surgery has a lower incidence than open.</td>
+            </tr>
+            <tr>
+              <td>Cardiopulmonary bypass (CPB)</td>
+              <td>Increases POAF risk via duration of myocardial ischaemia (possibly inadequate cardioprotection), adverse effects of cardioplegia, iatrogenic atrial injury from cannulation, inflammatory response and sympathetic activation.</td>
+            </tr>
+            <tr><td>Longer aortic cross-clamp time</td><td>Associated with increased POAF risk.</td></tr>
+
+            <tr>
+              <td class="phase post" rowspan="6">Post-op</td>
+              <td>Beta-blocker discontinuation</td>
+              <td>Withholding or failing to restart in a timely manner increases risk. Continuation throughout the perioperative period, or initiation after cardiac surgery, reduces POAF by <strong>51–68%</strong>.</td>
+            </tr>
+            <tr>
+              <td>ACE inhibitor discontinuation</td>
+              <td>Withdrawal increases risk. A 2019 systematic review found ACEI therapy did not significantly reduce stroke, hospital length of stay or perioperative mortality; avoid ACEIs in patients at risk of vasoplegic syndrome.</td>
+            </tr>
+            <tr>
+              <td>Electrolyte imbalance</td>
+              <td>Hypomagnesaemia is controversial as a cause; ESC guidelines do not support prophylactic magnesium to prevent AF. Correct potassium and magnesium promptly.</td>
+            </tr>
+            <tr>
+              <td>Critical illness</td>
+              <td>Triggers in ICU: systemic inflammation, sepsis, hypovolaemia, hypoxaemia, electrolyte imbalances. Disease severity and therapeutic catecholamines are linked to new-onset AF.</td>
+            </tr>
+            <tr>
+              <td>Vasoactive drugs</td>
+              <td>Adrenaline (epinephrine) and dopamine have the highest potential to trigger new-onset AF (chronotropic effect augmenting atrial ectopic discharges). In vasoplegic shock after cardiac surgery, noradrenaline carries a higher AF incidence than vasopressin.</td>
+            </tr>
+            <tr>
+              <td>ICU-related</td>
+              <td>Increased left atrial size on bedside echocardiography and increased length of ICU stay are associated with new-onset AF / POAF.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 4. RISK PREDICTION ============ -->
+  <details class="sec">
+    <summary>4 · Identification &amp; risk prediction</summary>
+    <div class="sec-body">
+      <p>
+        More accurate prediction of individual risk is paramount to prevention and guided treatment, because of the
+        increased morbidity and mortality associated with POAF. There is <strong>no consensus</strong> on an accepted
+        risk model to predict POAF.
+      </p>
+
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Score / tool</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CHA₂DS₂-VASc</strong></td><td>Designed for thromboembolic risk in AF; prospectively and retrospectively validated for predicting AF after cardiac surgery.</td></tr>
+            <tr><td><strong>POAF score</strong></td><td>In a retrospective single-centre analysis of several predictive models, the POAF score performed best.</td></tr>
+            <tr><td><strong>HATCH</strong></td><td>One of the established predictive models for POAF.</td></tr>
+            <tr><td><strong>COM-AF</strong></td><td>Combines highly predictive variables from the POAF, CHA₂DS₂-VASc and HATCH models; found to have the best discrimination ability compared with the individual models.</td></tr>
+            <tr><td><strong>Machine learning (ML)</strong></td><td>Promising. Classical logistic regression struggles with multicollinearity and large numbers of variables; ML models can analyse different correlations and incorporate multiple demographic and clinical variables. A 2023 review of &gt;10 separate models concluded ML can aid prediction of POAF after cardiac surgery and may offer an advantage over conventional risk scores.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>High-risk settings to flag preoperatively:</strong> advanced age, mitral valve surgery,
+        combined CABG + valve surgery, open abdominal surgery in the elderly, non-cardiac thoracic surgery,
+        CPB, and any patient on chronic beta-blockers or ACEIs.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 5. PREVENTION ============ -->
+  <details class="sec">
+    <summary>5 · Prevention &amp; risk reduction</summary>
+    <div class="sec-body">
+      <div class="callout">
+        <strong>Foundation:</strong> maintain homeostasis — <strong>euvolaemia</strong> and
+        <strong>electrolyte balance</strong> at all times. Correct any electrolyte abnormality promptly, regardless of
+        perioperative phase. Potassium and magnesium supplementation are especially critical.
+      </div>
+
+      <div class="fig">
+        <div class="fig-title">Fig 2 (simplified) · Prevention / risk-reduction strategies by phase</div>
+        <div class="grid3">
+          <div class="panel">
+            <h4>Preoperative</h4>
+            <ul>
+              <li>Continue beta-blocker therapy if already prescribed</li>
+              <li>High-dose statin therapy 7 days before cardiac surgery</li>
+              <li>Optimisation of chronic illnesses / patient risk factors</li>
+              <li>Correct electrolytes; optimise volume status</li>
+            </ul>
+          </div>
+          <div class="panel intra">
+            <h4>Intraoperative</h4>
+            <ul>
+              <li>Avoid / treat known risk factors and triggers (hypoxaemia, hypercarbia, hypotension)</li>
+              <li>Vasopressin has lower AF incidence than noradrenaline as pressor of choice</li>
+              <li>Dexmedetomidine use</li>
+              <li>Steroid use</li>
+              <li>Regional anaesthesia</li>
+              <li>Atrial pacing after cardiac surgery</li>
+              <li>Posterior pericardiotomy</li>
+            </ul>
+          </div>
+          <div class="panel post">
+            <h4>Postoperative</h4>
+            <ul>
+              <li>Initiation of beta-blocker therapy after cardiac surgery unless contraindicated</li>
+              <li>Amiodarone or non-dihydropyridine calcium channel blockers as second-line agents</li>
+              <li>Prompt correction of electrolytes; avoid unnecessary catecholamines</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="table-hint">Scroll for full detail.</p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>Strategy</th><th>Setting / timing</th><th>Evidence &amp; effect</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Beta-blockers</strong><br>(metoprolol, carvedilol)</td>
+              <td>Continue through perioperative period; start early post-op in cardiac surgery patients not already taking them</td>
+              <td>Reduces POAF by <strong>51–68%</strong></td>
+              <td>Class I recommendation (Society of Cardiovascular Anesthesiologists; European Association of Cardiothoracic Anaesthetists). <em>No data supporting new preoperative or intraoperative initiation.</em></td>
+            </tr>
+            <tr>
+              <td><strong>Amiodarone</strong></td>
+              <td>Second-line when beta-blockers are contraindicated; increased-risk patients</td>
+              <td>Reduces AF after cardiac surgery by <strong>57%</strong> vs placebo; number needed to treat 7.4</td>
+              <td>Class IIa in increased-risk patients. High success at maintaining sinus rhythm but significant adverse effects: bradycardia, hypotension, pulmonary toxicity, thyroid and liver dysfunction with chronic use.</td>
+            </tr>
+            <tr>
+              <td><strong>Non-dihydropyridine calcium channel blockers</strong></td>
+              <td>Alternative if beta-blockers not tolerated or contraindicated</td>
+              <td>Older meta-analysis: decrease in supraventricular arrhythmias, OR 0.62 (95% CI 0.41–0.93)</td>
+              <td>Limited by association with increased atrioventricular block and low output syndrome.</td>
+            </tr>
+            <tr>
+              <td><strong>Vasopressin vs noradrenaline</strong></td>
+              <td>Vasoplegic shock after cardiac surgery</td>
+              <td>Lower incidence of AF and significantly fewer patients needing renal replacement therapy for AKI in the vasopressin group (double-blind RCT); confirmed by follow-up meta-analysis</td>
+              <td>Pressor choice may influence POAF development.</td>
+            </tr>
+            <tr>
+              <td><strong>Statins</strong> (atorvastatin)</td>
+              <td>Started 7 days before cardiac surgery requiring CPB</td>
+              <td>Relative risk reduction of <strong>39%</strong> (small RCT)</td>
+              <td>Unclear overall results.</td>
+            </tr>
+            <tr>
+              <td><strong>Atrial pacing / posterior pericardiotomy</strong></td>
+              <td>Cardiac surgery</td>
+              <td>Cochrane review: may be useful in preventing POAF</td>
+              <td>Consider if there are contraindications to beta-blockers, amiodarone, or both.</td>
+            </tr>
+            <tr>
+              <td><strong>Anti-inflammatory strategies</strong><br>(NSAIDs, steroids, colchicine)</td>
+              <td>Cardiac surgery (steroids); thoracic surgery studied with colchicine</td>
+              <td>NSAIDs decrease odds of AF. Colchicine (COPPS trial): 12% vs 22%, relative risk reduction 45% (95% CI 34–94%). Meta-analysis of 31 RCTs (&gt;1900 patients): significant reduction in POAF with steroids — class IIb recommendation in European guidelines.</td>
+              <td><strong>COP-AF trial:</strong> colchicine did <em>not</em> considerably reduce clinically important AF in major non-cardiac thoracic surgery.</td>
+            </tr>
+            <tr>
+              <td><strong>Dexmedetomidine vs propofol</strong></td>
+              <td>Sedation after cardiac surgery</td>
+              <td>New-onset AF <strong>13.6% vs 36.4%</strong>; lower median ICU length of stay; increased incidence of hypotension</td>
+              <td>Possible mechanisms: reduced inflammatory response, lower sympathetic tone, altered calcium currents increasing effective refractory period.</td>
+            </tr>
+            <tr>
+              <td><strong>Magnesium</strong></td>
+              <td>Perioperative supplementation</td>
+              <td>Meta-analysis of 20 RCTs (&gt;2400 participants): effective in reducing POAF after CABG</td>
+              <td><strong>Controversial.</strong> Hypomagnesaemia is known to cause supraventricular tachycardia after cardiac surgery, but the most recent ESC guidelines do <em>not</em> support prophylactic magnesium to prevent AF.</td>
+            </tr>
+            <tr>
+              <td><strong>Regional anaesthesia</strong></td>
+              <td>Perioperative</td>
+              <td>Limited data to support routine use to reduce sympathetic tone and AF incidence</td>
+              <td>Thoracic epidural anaesthesia historically described; may play a role in non-cardiac surgery but the need for systemic heparinisation limits use in cardiac surgery. Limited data on newer regional blocks.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 6. PROGNOSIS ============ -->
+  <details class="sec">
+    <summary>6 · Prognosis — complications &amp; risk estimates</summary>
+    <div class="sec-body">
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Outcome</th><th>Risk estimate</th><th>Source / detail</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Stroke (30 days)</strong></td><td>OR 3.51 (95% CI 1.45–8.52)</td><td>POISE trial (&gt;8000 non-cardiac surgery patients); persisted after adjusting for other risk factors.</td></tr>
+            <tr><td><strong>Stroke (1 year after discharge)</strong></td><td>Cumulative risk 1.47% vs 0.36%; HR 2.0 (95% CI 1.7–2.3)</td><td>Cohort of &gt;1.6 million non-cardiac surgery patients; 0.78% developed POAF.</td></tr>
+            <tr><td><strong>Congestive heart failure</strong></td><td>RR 3.9 (95% CI 2.9–5.3)</td><td rowspan="5">Complications associated with POAF.</td></tr>
+            <tr><td><strong>Myocardial infarction</strong></td><td>RR 4.2 (95% CI 2.7–6.6)</td></tr>
+            <tr><td><strong>Cardiac arrest</strong></td><td>RR 8.0 (95% CI 3.9–16)</td></tr>
+            <tr><td><strong>Bacterial pneumonia</strong></td><td>RR 7.4 (95% CI 5.5–9.9)</td></tr>
+            <tr><td><strong>Hospital length of stay</strong></td><td>Increase of 2.5 days (95% CI 1.9–3.1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 7. MANAGEMENT ============ -->
+  <details class="sec">
+    <summary>7 · Management of established POAF</summary>
+    <div class="sec-body">
+      <div class="callout warn">
+        <strong>First principle:</strong> identify and manage the likely mechanism(s) causing AF.
+        Rhythm or rate control attempts are less likely to be effective if modifiable risk factors
+        (hypoxaemia, hypercarbia, hypotension, volume status, electrolytes, pain, catecholamines) have not been addressed.
+      </div>
+
+      <h3>Initial management</h3>
+      <p class="table-hint">Scroll for full detail.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Clinical scenario</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="phase" style="background:#b91c1c">Unstable</td>
+              <td>
+                <strong>Haemodynamic instability, symptoms, or both → synchronised DC cardioversion.</strong>
+                <ul>
+                  <li>Consider pharmacological cardioversion if the patient is haemodynamically stable but cannot obtain adequate rate control, or is intolerant of rate-control medication.</li>
+                  <li>Recommend consultation with an electrophysiologist.</li>
+                  <li>Options: amiodarone, procainamide, flecainide, propafenone, vernakalant (Europe only — not FDA approved; studied specifically in POAF after cardiac surgery; ESC class IIb).</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="phase" style="background:#166534">Stable &amp; asymptomatic</td>
+              <td>
+                <strong>Typically self-limiting → pharmacological rate control.</strong>
+                <ul>
+                  <li>Beta-blockers (standard first choice, particularly with concomitant ischaemic heart disease).</li>
+                  <li>Alternatives: amiodarone, non-dihydropyridine calcium channel blockers (e.g. diltiazem), digoxin — tailored to patient characteristics and comorbidities.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Rate control targets</h3>
+      <ul>
+        <li>Optimal target is unclear; recent guidelines suggest <strong>&lt;100 beats min⁻¹</strong> in stable or chronic AF (based on AFFIRM and RACE II).</li>
+        <li><strong>&lt;80 beats min⁻¹</strong> may be beneficial in symptomatic patients or those with reduced left ventricular systolic function.</li>
+        <li>Specifically <strong>after cardiac surgery</strong>: target <strong>&lt;100 beats min⁻¹</strong> in asymptomatic patients.</li>
+      </ul>
+
+      <h3>Rate vs rhythm control</h3>
+      <ul>
+        <li>In the general population with asymptomatic, haemodynamically stable AF, conversion to sinus rhythm was historically the treatment of choice — but increasing evidence shows <strong>no clinical benefit over rate control</strong>.</li>
+        <li>The AFFIRM trial (2002, &gt;4000 patients with non-valvular AF and increased stroke/death risk) showed <strong>no difference</strong> in survival, complications or duration of hospital stay between rate and rhythm control (using beta-blockers, calcium channel blockers or digoxin).</li>
+        <li>POAF is commonly self-limited (mean 11–12 h), with minimal acute haemodynamic alteration; <strong>80% convert back to sinus rhythm spontaneously within the first 24 h</strong> of onset. This supports initial rate control to allow possible spontaneous cardioversion.</li>
+      </ul>
+
+      <h3>Long-term management</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Strategy</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Electrical or pharmacological cardioversion</strong></td><td>For persistent AF; drug choice tailored to specific comorbidities, route and time course.</td></tr>
+            <tr>
+              <td><strong>Ablation therapy</strong></td>
+              <td>
+                <ul>
+                  <li>Pulmonary vein isolation (PVI) — surgical (e.g. MAZE), catheter-based, or hybrid approach.</li>
+                  <li>Beneficial for rhythm control in patients with known AF in the perioperative period; surgical/catheter/hybrid ablation provides a long-term treatment option for symptomatic, drug-refractory AF.</li>
+                  <li>More effective than pharmacological rhythm control at maintaining long-term sinus rhythm, and confers a mortality benefit in patients with concomitant CHF (CABANA trial).</li>
+                </ul>
+              </td>
+            </tr>
+            <tr><td><strong>Anticoagulation</strong></td><td>For primary risk prevention of thromboembolic sequelae — see section 8.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 8. ANTICOAGULATION ============ -->
+  <details class="sec">
+    <summary>8 · Anticoagulation &amp; thromboembolic risk</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Anticoagulation has been a mainstay for prevention of thromboembolic events associated with AF, especially as an initial measure in the acute setting.</li>
+        <li>The decision to start anticoagulation, and drug choice (based on <strong>pharmacokinetics and reversibility</strong>), is challenging in POAF: it requires balancing therapy in the <strong>hypercoagulable postoperative state</strong> against a high bleeding risk if postoperative surgical haemostasis is inadequate.</li>
+        <li>Most guidelines recommend starting anticoagulation in POAF <strong>persisting more than 48 h</strong>.</li>
+        <li>Assess the balance of risks and benefits using:
+          <ul>
+            <li><strong>CHA₂DS₂-VASc</strong> — thrombotic risk</li>
+            <li><strong>HAS-BLED</strong> — bleeding risk</li>
+          </ul>
+        </li>
+        <li><strong>Left atrial appendage exclusion</strong> — via surgical ligation (can be performed with other cardiac surgery in patients with known AF before surgery) or minimally invasive catheter-based occlusion — is an option to reduce thromboembolic risk in patients at high risk or known to be intolerant of anticoagulation.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 9. SUMMARY TABLE ============ -->
+  <details class="sec">
+    <summary>9 · Summary — management of postoperative AF</summary>
+    <div class="sec-body">
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Stage</th><th>Management</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="phase" style="background:#b91c1c">Initial — unstable</td>
+              <td>
+                <ul>
+                  <li>Synchronised DC cardioversion</li>
+                  <li>Consider pharmacological cardioversion if haemodynamically stable but unable to obtain adequate rate control or intolerant to rate-control medication (consult electrophysiologist; amiodarone, procainamide, flecainide, propafenone, vernakalant [Europe only])</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="phase" style="background:#166534">Initial — stable</td>
+              <td>
+                <ul>
+                  <li>Typically self-limiting</li>
+                  <li>Pharmacological rate control: beta-blockers, amiodarone, non-dihydropyridine calcium channel blockers, digoxin</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="phase long">Long term</td>
+              <td>
+                <ul>
+                  <li>Electrical or pharmacological cardioversion</li>
+                  <li>Ablation therapy — PVI via surgical, catheter-based or hybrid approach; more effective at maintaining longer-term rhythm control than pharmacological management</li>
+                  <li>Anticoagulation for primary risk prevention of thromboembolic sequelae</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 10. CONCLUSION ============ -->
+  <details class="sec">
+    <summary>10 · Clinical bottom line</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Perioperative AF is one of the most common arrhythmias, with far-reaching effects on individual morbidity and mortality and on the healthcare system.</li>
+        <li><strong>Appropriate risk identification</strong> followed by institution of prevention strategies is imperative — and in the perioperative setting should involve a multidisciplinary approach (anaesthetists, surgeons, cardiac electrophysiologists), especially in high-risk patients.</li>
+        <li><strong>Machine learning</strong> risk prediction models are promising tools for increasing accuracy of POAF prediction.</li>
+        <li>If POAF develops, acute management typically involves <strong>rate control</strong>, unless the arrhythmia leads to haemodynamic instability or significant symptoms.</li>
+        <li>In haemodynamically significant AF, perform <strong>early synchronised DC cardioversion</strong>; pharmacologic antiarrhythmic therapy can be instituted in consultation with cardiology colleagues.</li>
+        <li>Long-term management of persistent AF may also require <strong>anticoagulation and ablation therapy</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <div class="ref">
+    <strong>Source</strong><br>
+    Haysley J, Soliman-Aboumarie H, Huang J, Kalra DK. <em>Perioperative atrial fibrillation.</em>
+    BJA Education (2024). Article PII: S2058-5349(24)00125-2.
+    <br><br>
+    <span style="font-size:.8rem">
+      Figures 1 and 2 in this quick reference are simplified, web-adapted representations of Figure 1
+      (Pathogenesis of perioperative atrial fibrillation) and Figure 2 (Prevention and risk-reduction strategies)
+      from the source article. All clinical content, thresholds and risk estimates are taken from the source article.
+    </span>
+  </div>
+  <p class="disclaimer">
+    <strong>Disclaimer:</strong> This is a quick-reference educational summary for anaesthetists and intensivists.
+    It is not a substitute for the full article, local institutional protocols, or current national/international
+    guidelines. Always verify drug doses, contraindications and anticoagulation decisions against local policy and
+    the latest guidance, and involve the multidisciplinary team in complex cases.
+  </p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var searchInput = document.getElementById('search');
+  var status = document.getElementById('searchStatus');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main details.sec'));
+  var expandAllBtn = document.getElementById('expandAll');
+  var collapseAllBtn = document.getElementById('collapseAll');
+  var clearBtn = document.getElementById('clearBtn');
+
+  /* ---------- Highlight helpers ---------- */
+  function clearMarks(root) {
+    var marks = root.querySelectorAll('mark.hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function highlight(root, term) {
+    if (!term) return;
+    var walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName ? p.nodeName.toLowerCase() : '';
+          if (tag === 'script' || tag === 'style' || tag === 'mark') return NodeFilter.FILTER_REJECT;
+          if (p.closest && p.closest('script, style, mark')) return NodeFilter.FILTER_REJECT;
+          return node.nodeValue.toLowerCase().indexOf(term) !== -1
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
+        }
+      }
+    );
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var pos = 0;
+      var idx;
+
+      while ((idx = lower.indexOf(term, pos)) !== -1) {
+        if (idx > pos) frag.appendChild(document.createTextNode(text.slice(pos, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+        pos = idx + term.length;
+      }
+      if (pos < text.length) frag.appendChild(document.createTextNode(text.slice(pos)));
+
+      if (node.parentNode) node.parentNode.replaceChild(frag, node);
+    }
+  }
+
+  /* ---------- Search ---------- */
+  var timer = null;
+
+  function runSearch() {
+    var raw = searchInput.value.trim();
+    var term = raw.toLowerCase();
+
+    clearMarks(document.body);
+
+    if (term.length < 2) {
+      sections.forEach(function (s) { s.classList.remove('hidden'); });
+      status.textContent = '';
+      return;
+    }
+
+    var hits = 0;
+    sections.forEach(function (s) {
+      // textContent includes collapsed content, so search works while closed
+      var text = s.textContent.toLowerCase();
+      if (text.indexOf(term) !== -1) {
+        s.classList.remove('hidden');
+        s.open = true;
+        highlight(s, term);
+        hits++;
+      } else {
+        s.classList.add('hidden');
+        s.open = false;
+      }
+    });
+
+    if (hits === 0) {
+      status.textContent = 'No sections match “' + raw + '”. Try a different term.';
+    } else {
+      status.textContent = hits + (hits === 1 ? ' section matches ' : ' sections match ') + '“' + raw + '”.';
+    }
+  }
+
+  searchInput.addEventListener('input', function () {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(runSearch, 150);
+  });
+
+  /* ---------- Buttons ---------- */
+  expandAllBtn.addEventListener('click', function () {
+    sections.forEach(function (s) { if (!s.classList.contains('hidden')) s.open = true; });
+  });
+
+  collapseAllBtn.addEventListener('click', function () {
+    sections.forEach(function (s) { s.open = false; });
+  });
+
+  clearBtn.addEventListener('click', function () {
+    searchInput.value = '';
+    clearMarks(document.body);
+    sections.forEach(function (s) { s.classList.remove('hidden'); });
+    status.textContent = '';
+    searchInput.focus();
+  });
+
+  /* ---------- Keyboard shortcut: "/" focuses search ---------- */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+    if (e.key === 'Escape' && document.activeElement === searchInput) {
+      clearBtn.click();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
