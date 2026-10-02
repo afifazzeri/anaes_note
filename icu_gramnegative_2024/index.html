@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MDR Gram-Negatives — Quick Reference for Anaesthetists &amp; Intensivists</title>
+<style>
+  :root{
+    --bg:#f4f6f8;
+    --card:#ffffff;
+    --ink:#16212b;
+    --muted:#5b6b7a;
+    --line:#d7dee5;
+    --accent:#0b6e6e;
+    --accent-2:#0e5c8a;
+    --pref:#0f7a3d;
+    --less:#a8620a;
+    --warn:#b3261e;
+    --chip:#eef3f6;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(16,32,48,.06),0 6px 18px rgba(16,32,48,.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:15px;
+    line-height:1.55;
+    -webkit-text-size-adjust:100%;
+  }
+  header.top{
+    background:linear-gradient(135deg,#0b6e6e,#0e5c8a);
+    color:#fff;
+    padding:22px 20px 18px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+  header.top h1{margin:0 0 4px;font-size:1.35rem;letter-spacing:.2px;}
+  header.top p{margin:0;font-size:.85rem;opacity:.9;}
+  .badge{
+    display:inline-block;background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    padding:2px 9px;border-radius:999px;font-size:.72rem;margin-top:8px;
+  }
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(244,246,248,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:10px 20px;
+  }
+  .toolbar .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .search-box{position:relative;flex:1 1 320px;min-width:220px;}
+  .search-box input{
+    width:100%;padding:10px 34px 10px 36px;
+    border:1px solid var(--line);border-radius:10px;
+    font-size:.92rem;background:#fff;color:var(--ink);
+    outline:none;transition:border-color .15s, box-shadow .15s;
+  }
+  .search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(11,110,110,.12);}
+  .search-box .icon{
+    position:absolute;left:12px;top:50%;transform:translateY(-50%);
+    color:var(--muted);font-size:.95rem;pointer-events:none;
+  }
+  .search-box .clear{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);
+    border:0;background:transparent;color:var(--muted);cursor:pointer;
+    font-size:1.05rem;line-height:1;padding:4px 6px;border-radius:6px;
+  }
+  .search-box .clear:hover{background:var(--chip);}
+  .btn{
+    border:1px solid var(--line);background:#fff;color:var(--ink);
+    padding:9px 13px;border-radius:10px;font-size:.82rem;cursor:pointer;
+    white-space:nowrap;transition:background .15s,border-color .15s;
+  }
+  .btn:hover{background:var(--chip);border-color:#c3ced7;}
+  .hits{font-size:.78rem;color:var(--muted);white-space:nowrap;}
+
+  /* ---------- Cards ---------- */
+  main{padding:18px 20px 60px;}
+  details.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+  details.card[hidden]{display:none;}
+  details.card > summary{
+    list-style:none;cursor:pointer;
+    padding:14px 16px;
+    display:flex;align-items:center;gap:12px;
+    font-weight:650;font-size:.98rem;
+    background:#fff;
+    border-left:4px solid var(--accent);
+    user-select:none;
+  }
+  details.card > summary::-webkit-details-marker{display:none;}
+  details.card > summary:hover{background:#f8fbfc;}
+  details.card[open] > summary{border-bottom:1px solid var(--line);}
+  .sum-icon{
+    flex:0 0 auto;width:24px;height:24px;border-radius:7px;
+    background:var(--chip);color:var(--accent);
+    display:grid;place-items:center;font-size:.8rem;font-weight:700;
+  }
+  .sum-text{flex:1 1 auto;}
+  .sum-sub{display:block;font-weight:400;font-size:.76rem;color:var(--muted);margin-top:1px;}
+  .chev{
+    flex:0 0 auto;color:var(--muted);font-size:.75rem;transition:transform .2s;
+  }
+  details.card[open] .chev{transform:rotate(90deg);}
+  .card-body{padding:14px 16px 18px;}
+  .card-body > *:first-child{margin-top:0;}
+  .card-body > *:last-child{margin-bottom:0;}
+
+  h3{
+    font-size:.9rem;text-transform:uppercase;letter-spacing:.6px;
+    color:var(--accent);margin:20px 0 8px;
+  }
+  h4{font-size:.9rem;margin:16px 0 6px;}
+  p{margin:8px 0;}
+  ul{margin:8px 0;padding-left:20px;}
+  li{margin:4px 0;}
+  small{color:var(--muted);}
+
+  /* ---------- Callouts ---------- */
+  .note{
+    border-left:4px solid var(--accent-2);
+    background:#f2f8fc;border-radius:0 8px 8px 0;
+    padding:10px 13px;margin:12px 0;font-size:.88rem;
+  }
+  .warn{border-left-color:var(--warn);background:#fdf3f2;}
+  .pearl{border-left-color:var(--less);background:#fdf8ef;}
+  .note strong{color:var(--ink);}
+  .note .tag{
+    display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.5px;
+    text-transform:uppercase;color:#fff;background:var(--accent-2);
+    padding:1px 7px;border-radius:5px;margin-right:6px;vertical-align:1px;
+  }
+  .warn .tag{background:var(--warn);}
+  .pearl .tag{background:var(--less);}
+
+  /* ---------- Chips ---------- */
+  .chip{
+    display:inline-block;background:var(--chip);border:1px solid var(--line);
+    border-radius:999px;padding:2px 9px;font-size:.75rem;margin:2px 3px 2px 0;
+    color:#33414d;
+  }
+  .chip.pref{background:#e9f6ee;border-color:#bde3cb;color:#0f5f31;}
+  .chip.less{background:#fdf3e3;border-color:#f0d6a8;color:#8a5209;}
+  .chip.no{background:#fdeceb;border-color:#f4c7c3;color:#9b1f18;}
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);border-radius:10px;
+    margin:12px 0;background:#fff;
+  }
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:.85rem;}
+  th,td{padding:9px 11px;text-align:left;vertical-align:top;border-bottom:1px solid #eaeff3;}
+  thead th{
+    background:#f1f6f8;color:#20313d;font-weight:650;
+    position:sticky;top:0;font-size:.78rem;text-transform:uppercase;letter-spacing:.4px;
+    white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:0;}
+  tbody tr:nth-child(even){background:#fafcfd;}
+  td ul{margin:0;padding-left:16px;}
+  .col-site{white-space:nowrap;font-weight:600;}
+  .p{color:var(--pref);font-weight:650;}
+  .l{color:var(--less);font-weight:650;}
+
+  /* ---------- Flow diagrams ---------- */
+  .flow{
+    background:#f8fbfc;border:1px dashed #c8d6de;border-radius:12px;
+    padding:16px;margin:14px 0;
+    display:flex;flex-direction:column;align-items:center;gap:0;
+  }
+  .flow-title{
+    font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;
+    color:var(--accent);margin-bottom:14px;text-align:center;
+  }
+  .node{
+    border-radius:10px;padding:9px 14px;text-align:center;
+    font-size:.85rem;border:1px solid var(--line);background:#fff;
+    box-shadow:0 1px 2px rgba(16,32,48,.05);max-width:100%;
+  }
+  .node-root{
+    background:var(--accent);color:#fff;border-color:var(--accent);
+    font-weight:650;
+  }
+  .node-head{
+    background:#e7f1f5;border-color:#bcd4de;color:#0d4a5c;font-weight:650;
+  }
+  .node-branch{
+    background:#fff4e2;border-color:#f0d6a8;color:#7a4a08;font-weight:650;
+  }
+  .node-red{
+    background:#fdeceb;border-color:#f0c2be;color:#8f1d17;font-weight:650;
+  }
+  .node-yellow{
+    background:#fff8e1;border-color:#efdc9a;color:#7a5a05;font-weight:650;
+  }
+  .node-out{
+    background:#fff;text-align:left;width:100%;
+  }
+  .arrow{
+    width:2px;height:16px;background:#b9c8d2;position:relative;flex:0 0 auto;
+  }
+  .arrow::after{
+    content:"";position:absolute;left:-4px;bottom:-1px;
+    border-left:5px solid transparent;border-right:5px solid transparent;
+    border-top:7px solid #b9c8d2;
+  }
+  .split{
+    display:flex;gap:16px;flex-wrap:wrap;justify-content:center;
+    width:100%;align-items:flex-start;
+  }
+  .branch{
+    flex:1 1 270px;min-width:250px;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .out-row{
+    display:flex;gap:8px;align-items:baseline;
+    padding:3px 0;font-size:.84rem;
+  }
+  .out-row + .out-row{border-top:1px dashed #e6edf1;}
+  .out-label{
+    flex:0 0 auto;font-size:.68rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:.5px;padding:1px 6px;border-radius:5px;
+  }
+  .out-label.pref{background:#e9f6ee;color:#0f5f31;}
+  .out-label.less{background:#fdf3e3;color:#8a5209;}
+  .out-label.no{background:#fdeceb;color:#9b1f18;}
+  .out-val{flex:1 1 auto;}
+  .flow-foot{
+    margin-top:12px;font-size:.78rem;color:var(--muted);text-align:center;
+    border-top:1px dashed #d5e0e6;padding-top:10px;width:100%;
+  }
+  .plus{font-weight:700;color:var(--warn);}
+
+  /* ---------- Empty state / footer ---------- */
+  #empty{
+    display:none;text-align:center;padding:40px 20px;color:var(--muted);
+    background:#fff;border:1px dashed var(--line);border-radius:var(--radius);
+  }
+  #empty.show{display:block;}
+  footer{
+    border-top:1px solid var(--line);background:#fff;
+    padding:24px 20px 40px;font-size:.82rem;color:var(--muted);
+  }
+  footer h4{color:var(--ink);font-size:.85rem;margin:0 0 8px;}
+  footer ol{padding-left:18px;margin:6px 0;}
+  footer li{margin:3px 0;}
+  footer a{color:var(--accent-2);}
+  mark.hl{background:#ffe680;color:inherit;padding:0 1px;border-radius:2px;}
+
+  @media (max-width:640px){
+    body{font-size:14px;}
+    header.top h1{font-size:1.12rem;}
+    .toolbar{padding:8px 12px;}
+    main{padding:14px 12px 50px;}
+    details.card > summary{padding:12px 12px;font-size:.92rem;}
+    .card-body{padding:12px 12px 16px;}
+    .branch{min-width:100%;}
+  }
+  @media print{
+    .toolbar, .chev{display:none;}
+    details.card{break-inside:avoid;box-shadow:none;}
+    details.card > summary{border-left-color:#000;}
+    body{background:#fff;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>MDR Gram-Negative Infections — ICU Quick Reference</h1>
+    <p>Anaesthetist &amp; Intensivist pocket guide · adapted from the MSIDC Consensus Guidelines (1st Edition, 2024)</p>
+    <span class="badge">Malaysia · Adults (paediatric notes included)</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input id="search" type="search" placeholder="Search drug, organism, site… e.g. cefiderocol, NDM, cystitis" autocomplete="off" aria-label="Search guideline">
+      <button class="clear" id="clearBtn" title="Clear" aria-label="Clear search">✕</button>
+    </div>
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <span class="hits" id="hits"></span>
+  </div>
+</div>
+
+<main class="wrap">
+
+<!-- ============ DURATION ============ -->
+<details class="card" open>
+  <summary>
+    <span class="sum-icon">⏱</span>
+    <span class="sum-text">Duration of Therapy
+      <span class="sum-sub">Shorten appropriately — duration is the same for MDRO and susceptible organisms</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Infection</th><th>Suggested duration</th></tr></thead>
+        <tbody>
+          <tr><td class="col-site">Uncomplicated cystitis</td><td>3 – 5 days</td></tr>
+          <tr><td class="col-site">Complicated UTI</td><td>5 – 10 days</td></tr>
+          <tr><td class="col-site">Complicated intra-abdominal infection</td><td>5 – 10 days</td></tr>
+          <tr><td class="col-site">Pneumonia / Bacteraemia</td><td>7 – 10 days</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li>Duration is calculated from <strong>initiation of an appropriate agent</strong>.</li>
+      <li>Individualise by: infection site, source control, underlying comorbidities, initial response to therapy.</li>
+      <li>Shorter courses reduce selection pressure without compromising outcomes.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ SEVERITY / AMS ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">⚖</span>
+    <span class="sum-text">Severity Assessment &amp; IV-to-Oral Conversion
+      <span class="sum-sub">Triage "mild" vs "high-burden" and when to step down</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+
+    <h3>Infection severity</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Category</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site">Mild</td>
+            <td>Skin &amp; soft tissue infection · Urinary tract infection · Catheter-related infection incl. bloodstream infection
+              <br><small>Become <strong>severe</strong> if organ dysfunction or septic shock develops.</small></td>
+          </tr>
+          <tr>
+            <td class="col-site">Moderate–severe</td>
+            <td>Infection causing organ dysfunction · Septic shock · Moderate–severe pneumonia · Infective endocarditis · Meningitis · Ventriculitis · Necrotising fasciitis</td>
+          </tr>
+          <tr>
+            <td class="col-site">High-burden</td>
+            <td>Infective endocarditis · Meningitis · Any infection <em>prior to source control</em> (abscess, necrotising fasciitis, osteomyelitis, prosthetic infection)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>Bone &amp; joint infection and prosthetic joint infection may be mild or moderate depending on the patient's condition.</small></p>
+
+    <h3>Antimicrobial stewardship essentials</h3>
+    <ul>
+      <li><strong>Document the indication</strong> — specify the clinical diagnosis (pneumonia, UTI, AGE, line-related BSI, meningitis).</li>
+      <li><strong>Cultures before antibiotics</strong> — obtain appropriate cultures based on the diagnosis and site.</li>
+      <li><strong>Review at 72 hours</strong> and document. <strong>Streamline at 48–72 h</strong> to narrowest effective agent based on susceptibility.</li>
+      <li><strong>Source control</strong> — always consider drainage/debridement/removal of infected devices.</li>
+      <li>Monotherapy preferred unless combination therapy is proven necessary for efficacy, synergy, or resistance suppression.</li>
+      <li>Distinguish <em>infection</em> from <em>colonisation/contamination</em> — critically evaluate microbiology alongside clinical presentation.</li>
+    </ul>
+
+    <h3>IV → PO conversion</h3>
+    <p>Optimal window: <strong>48–96 hours</strong> of IV therapy (allows review of microbiology and clinical response).</p>
+    <p><strong>Criteria — all must be met:</strong></p>
+    <ul>
+      <li>Signs of clinical improvement</li>
+      <li>Able to tolerate oral therapy</li>
+      <li>Good compliance to oral therapy</li>
+      <li>No condition requiring higher tissue concentrations of antibiotic</li>
+    </ul>
+    <div class="note">
+      <span class="tag">Suitable</span> Pneumonia · Skin &amp; soft tissue infection · Urinary tract infection · Uncomplicated Gram-negative bacteraemia · Intra-abdominal infection without deep-seated collections
+    </div>
+    <div class="note warn">
+      <span class="tag">Consult ID/AMS first</span> Osteomyelitis · Septic arthritis · Infected implant or prosthesis · Necrotising soft tissue infection · Melioidosis · Deep-seated infection (abscess/empyema) · Complicated orbital cellulitis
+    </div>
+  </div>
+</details>
+
+<!-- ============ AmpC ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">A</span>
+    <span class="sum-text">AmpC β-Lactamase-Producing Enterobacterales
+      <span class="sum-sub">Enterobacter cloacae complex · Klebsiella aerogenes · Citrobacter freundii</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+
+    <h3>Key microbiology</h3>
+    <ul>
+      <li>AmpC = Ambler <strong>class C</strong> β-lactamase. Hydrolyses multiple β-lactams <strong>except cefepime and carbapenems</strong>.</li>
+      <li><strong>Inducible chromosomal expression:</strong> isolates initially appear susceptible to ceftriaxone, cefotaxime, ceftazidime — but resistance can be induced after a few doses.</li>
+      <li>No national surveillance programme for AmpC in Malaysia.</li>
+    </ul>
+
+    <h4>Risk of clinically significant inducible AmpC</h4>
+    <p>
+      <span class="chip no">Moderate–high risk (~20%)</span>
+      Enterobacter cloacae complex · Klebsiella aerogenes · Citrobacter freundii
+    </p>
+    <p>
+      <span class="chip">Lower risk (&lt;5%)</span>
+      Serratia marcescens · Providencia spp. · Morganella morganii
+    </p>
+
+    <h3>Treatment — moderate-risk organisms (~20%)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Infection site</th><th>Preferred</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site">Uncomplicated cystitis</td>
+            <td>
+              <span class="p">Nitrofurantoin PO</span><br>OR<br>
+              <span class="p">Trimethoprim/Sulfamethoxazole PO</span><br>OR<br>
+              <span class="p">Single-dose aminoglycoside IV</span> (gentamicin/amikacin)
+            </td>
+            <td>Confirm susceptibility before choosing regimen.</td>
+          </tr>
+          <tr>
+            <td class="col-site">Acute pyelonephritis / cUTI</td>
+            <td>
+              <span class="p">Trimethoprim/Sulfamethoxazole PO</span><br>OR<br>
+              <span class="p">Once-daily aminoglycoside IV</span> (TDM required)<br>OR<br>
+              <span class="p">Cefepime IV</span>
+            </td>
+            <td>Confirm susceptibility before choosing regimen.</td>
+          </tr>
+          <tr>
+            <td class="col-site">Outside urinary tract — <strong>cefepime susceptible</strong></td>
+            <td><span class="p">Cefepime IV</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="col-site">Outside urinary tract — <strong>cefepime SDD</strong> (susceptible dose-dependent)</td>
+            <td>
+              <span class="p">Cefepime IV</span><br>OR<br>
+              <span class="p">Carbapenem IV</span> (ertapenem / meropenem / imipenem-cilastatin)
+            </td>
+            <td>Carbapenem preferred in high-burden infection. <strong>Refer to ID physician / clinical microbiologist.</strong></td>
+          </tr>
+          <tr>
+            <td class="col-site">Outside urinary tract — <strong>cefepime resistant</strong></td>
+            <td><span class="p">Carbapenem IV</span> (ertapenem / meropenem / imipenem-cilastatin)</td>
+            <td><strong>Refer to ID physician / clinical microbiologist.</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Treatment — lower-risk organisms (&lt;5%)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Infection site</th><th>Preferred</th><th>Less preferred</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site">Uncomplicated cystitis</td>
+            <td>Nitrofurantoin PO · TMP-SMX PO · Single-dose aminoglycoside IV</td>
+            <td>Ciprofloxacin PO</td>
+          </tr>
+          <tr>
+            <td class="col-site">Acute pyelonephritis / cUTI</td>
+            <td>TMP-SMX PO · Once-daily aminoglycoside IV (TDM) · Ceftriaxone or cefotaxime IV</td>
+            <td>Ciprofloxacin PO</td>
+          </tr>
+          <tr>
+            <td class="col-site">Outside urinary tract — non-severe</td>
+            <td colspan="2">As per susceptibility testing</td>
+          </tr>
+          <tr>
+            <td class="col-site">Outside urinary tract — severe / high-burden</td>
+            <td colspan="2"><span class="p">Cefepime IV</span> — refer to ID/clinical microbiologist if cefepime non-susceptible (SDD or resistant)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <span class="tag">If already on empirical β-lactam</span>
+      If the patient is already on an empirical β-lactam (e.g. ceftriaxone, ceftazidime) that tests susceptible <em>in vitro</em> and clinical improvement is observed, the course may be completed — but oral step-down to one of the preferred agents above is preferred.
+    </div>
+
+    <div class="note warn">
+      <span class="tag">Do not use</span>
+      <strong>Piperacillin-tazobactam is NOT recommended</strong> for infections caused by Enterobacterales at moderate-to-high risk of clinically significant inducible AmpC production (Enterobacter cloacae complex, Klebsiella aerogenes, Citrobacter freundii).
+    </div>
+
+    <p><small><strong>Paediatric considerations:</strong> antibiotic options similar to adults.</small></p>
+  </div>
+</details>
+
+<!-- ============ ESBL ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">E</span>
+    <span class="sum-text">ESBL-Producing Enterobacterales
+      <span class="sum-sub">E. coli · Klebsiella pneumoniae · Proteus mirabilis</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+
+    <h3>Key microbiology</h3>
+    <ul>
+      <li>Plasmid-mediated β-lactamases that hydrolyse penicillin, 3rd- and 4th-generation cephalosporins and monobactams — <strong>but not carbapenems or cephamycins</strong>.</li>
+      <li>NARSS 2022: almost <strong>a quarter</strong> of <em>E. coli</em> and <em>K. pneumoniae</em> clinical isolates from Malaysian healthcare settings are resistant to 3rd-generation cephalosporins.</li>
+      <li>High prevalence of ESBL genes reported among Malaysian <em>K. pneumoniae</em> isolates (bla<sub>SHV</sub>, bla<sub>TEM</sub>, bla<sub>CTX-M-1</sub>).</li>
+    </ul>
+
+    <h3>Treatment</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Infection site</th><th>Preferred</th><th>Less preferred</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site">Uncomplicated cystitis</td>
+            <td>
+              <span class="p">Nitrofurantoin PO</span><br>OR<br>
+              <span class="p">Trimethoprim/Sulfamethoxazole PO</span>
+            </td>
+            <td>
+              Ciprofloxacin PO<br>OR<br>
+              Single-dose aminoglycoside IV (gentamicin/amikacin)<br>OR<br>
+              Fosfomycin PO <em>(E. coli only)</em><br>OR<br>
+              Ertapenem IV <em>(if no other available options)</em>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-site">Acute pyelonephritis / cUTI</td>
+            <td>
+              <span class="p">Trimethoprim/Sulfamethoxazole PO</span><br>OR<br>
+              <span class="p">Ciprofloxacin PO</span>
+            </td>
+            <td>
+              Once-daily aminoglycoside IV (TDM required)<br>OR<br>
+              Carbapenem IV (ertapenem / meropenem / imipenem-cilastatin) <em>(if no other available options)</em>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-site">Infection outside urinary tract</td>
+            <td><span class="p">Carbapenem IV</span> (ertapenem / meropenem / imipenem-cilastatin)</td>
+            <td>
+              <strong>Critically ill + hypoalbuminaemia (&lt;25 g/L):</strong> consider <strong>meropenem IV</strong> or <strong>imipenem-cilastatin IV</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note warn">
+      <span class="tag">Do not use</span>
+      <strong>Piperacillin-tazobactam</strong> is NOT recommended for ESBL infections, <em>regardless of susceptibility</em>.<br>
+      <strong>Cefepime</strong> is NOT recommended for ESBL infections, <em>regardless of susceptibility</em>.
+    </div>
+
+    <div class="note">
+      <span class="tag">Single exception</span>
+      For <strong>uncomplicated cystitis</strong>, you may consider completing the empirical piperacillin-tazobactam or cefepime course if the organism tests susceptible, clinical improvement is observed, and oral step-down is not an option.
+    </div>
+
+    <p><small><strong>Paediatric considerations:</strong> options similar to adults. Oral fosfomycin is not used routinely in children &lt;12 years. Paediatric ID consultation advisable.</small></p>
+  </div>
+</details>
+
+<!-- ============ CRE ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">C</span>
+    <span class="sum-text">Carbapenem-Resistant Enterobacterales (CRE)
+      <span class="sum-sub">NDM-dominant in Malaysia · CAZ-AVI ± aztreonam · cefiderocol</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+
+    <h3>Key microbiology</h3>
+    <ul>
+      <li>CRE = intermediate (I) or resistant (R) to one or more carbapenems.</li>
+      <li><em>Proteus</em> spp., <em>Morganella</em> spp. and <em>Providencia</em> spp. have <strong>intrinsic elevated imipenem MIC</strong> — use meropenem, doripenem or ertapenem results to determine CRE status for these organisms.</li>
+      <li>Predominant CRE: <strong>Klebsiella pneumoniae</strong> &gt; <em>Enterobacter</em> spp. &gt; <em>E. coli</em>. Meropenem resistance in <em>K. pneumoniae</em> rose from 2.3% (2018) to 5.0% (2022).</li>
+      <li><strong>Carbapenemase gene distribution in Malaysia (IMR, 2016–2021, &gt;10,000 isolates):</strong></li>
+    </ul>
+    <p>
+      <span class="chip no">NDM 83.6%</span>
+      <span class="chip">OXA-48 10.8%</span>
+      <span class="chip">IMP 1.5%</span>
+      <span class="chip">KPC 0.3%</span>
+      <span class="chip">VIM 0.3%</span>
+    </p>
+
+    <h3>CP-CRE vs non-CP-CRE</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Type</th><th>Definition / notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site">CP-CRE</td>
+            <td>Produces carbapenemase enzyme(s). Detectable by phenotypic tests (mCIM) or molecular tests (PCR). Targeted for intensive IPC efforts.</td>
+          </tr>
+          <tr>
+            <td class="col-site">Non-CP-CRE</td>
+            <td>No carbapenemase production; resistance via porin modification and efflux pumps. <strong>Intrinsic resistance to a specific carbapenem is NOT considered carbapenem resistance</strong> (e.g. <em>Proteus mirabilis</em> intrinsically resistant to imipenem but susceptible to other carbapenems is not CRE).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Non-CP CRE susceptible to meropenem / imipenem</h3>
+    <div class="note">
+      <span class="tag">Regimen</span>
+      CRE susceptible to meropenem and imipenem (<strong>MIC ≤1 µg/mL</strong>) and non-susceptible to ertapenem (MIC ≥1 µg/mL):<br>
+      <strong>High-dose carbapenem with 3–4 hour extended infusion</strong> — Meropenem IV <em>or</em> Imipenem IV.
+    </div>
+
+    <h3>CRE non-susceptible to all carbapenems — urinary source</h3>
+
+    <div class="flow">
+      <div class="flow-title">CRE · Urinary source</div>
+      <div class="node node-root">Urinary source</div>
+      <div class="arrow"></div>
+      <div class="split">
+
+        <div class="branch">
+          <div class="node node-head">Cystitis</div>
+          <div class="arrow"></div>
+          <div class="node node-out">
+            <div class="out-row"><span class="out-label pref">Preferred</span><span class="out-val">Nitrofurantoin <sup>a</sup></span></div>
+            <div class="out-row"><span class="out-label pref">OR</span><span class="out-val">TMP-SMX (Bactrim) <sup>a</sup></span></div>
+            <div class="out-row"><span class="out-label less">Less preferred</span><span class="out-val">Fosfomycin <sup>a,b</sup> <em>(if E. coli)</em></span></div>
+            <div class="out-row"><span class="out-label less">OR</span><span class="out-val">Ciprofloxacin <sup>a</sup></span></div>
+            <div class="out-row"><span class="out-label less">OR</span><span class="out-val">Gentamicin / Amikacin <sup>a</sup> (single dose)</span></div>
+          </div>
+        </div>
+
+        <div class="branch">
+          <div class="node node-head">Pyelonephritis / Complicated UTI</div>
+          <div class="arrow"></div>
+          <div class="node node-out">
+            <div class="out-row"><span class="out-label pref">Preferred</span><span class="out-val">TMP-SMX (Bactrim) <sup>a</sup></span></div>
+            <div class="out-row"><span class="out-label pref">OR</span><span class="out-val">Ciprofloxacin <sup>a</sup></span></div>
+            <div class="out-row"><span class="out-label pref">OR</span><span class="out-val">Ceftazidime-avibactam</span></div>
+            <div class="out-row"><span class="out-label pref">OR</span><span class="out-val">Cefiderocol</span></div>
+            <div class="out-row"><span class="out-label less">Less preferred</span><span class="out-val">Gentamicin / Amikacin Q24H <sup>a,c</sup></span></div>
+            <div class="out-row"><span class="out-label less">OR</span><span class="out-val">Colistin</span></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="flow-foot">
+        <sup>a</sup> Confirm susceptibility before choosing the antibiotic. &nbsp;·&nbsp;
+        <sup>b</sup> Fosfomycin is not suitable for Enterobacterales other than <em>E. coli</em> (FosA gene deactivates it). &nbsp;·&nbsp;
+        <sup>c</sup> Aminoglycosides — refer to pharmacist for TDM monitoring.
+      </div>
+    </div>
+
+    <h3>CRE non-susceptible to all carbapenems — infection outside urinary tract / UTI with systemic involvement</h3>
+
+    <div class="flow">
+      <div class="flow-title">CRE · Systemic / non-urinary infection</div>
+      <div class="node node-root">Infection outside urinary tract / UTI with systemic involvement</div>
+      <div class="arrow"></div>
+      <div class="split">
+
+        <div class="branch">
+          <div class="node node-head">Ceftazidime-avibactam <span style="color:#0f7a3d">SENSITIVE</span></div>
+          <div class="arrow"></div>
+          <div class="node node-out">
+            <div class="out-row"><span class="out-label pref">Preferred</span><span class="out-val">Ceftazidime-avibactam</span></div>
+            <div class="out-row"><span class="out-label less">Less preferred</span><span class="out-val">Cefiderocol</span></div>
+            <div class="out-row"><span class="out-label less">OR</span><span class="out-val">Tigecycline (high dose)</span></div>
+            <div class="out-row"><span class="out-label less">OR</span><span class="out-val">Polymyxin B</span></div>
+            <div class="out-row"><span class="out-label no">Note</span><span class="out-val">Combination therapy highly recommended based on AST</span></div>
+          </div>
+        </div>
+
+        <div class="branch">
+          <div class="node node-red">Ceftazidime-avibactam <span style="color:#b3261e">RESISTANT</span></div>
+          <div class="arrow"></div>
+          <div class="split" style="gap:12px">
+            <div class="branch" style="min-width:200px">
+              <div class="node node-yellow">Presumed / confirmed NDM-producing</div>
+              <div class="arrow"></div>
+              <div class="node node-out">
+                <div class="out-row"><span class="out-label pref">Preferred</span><span class="out-val">Ceftazidime-avibactam <span class="plus">PLUS</span> Aztreonam</span></div>
+                <div class="out-row"><span class="out-label pref">OR</span><span class="out-val">Cefiderocol</span></div>
+                <div class="out-row"><span class="out-label less">Less preferred</span><span class="out-val">Tigecycline (high dose)</span></div>
+                <div class="out-row"><span class="out-label less">OR</span><span class="out-val">Polymyxin B</span></div>
+                <div class="out-row"><span class="out-label no">Note</span><span class="out-val">Combination therapy highly recommended based on AST</span></div>
+              </div>
+            </div>
+            <div class="branch" style="min-width:200px">
+              <div class="node node-red">Unknown mechanism of resistance</div>
+              <div class="arrow"></div>
+              <div class="node node-out">
+                <div class="out-row"><span class="out-label pref">Preferred</span><span class="out-val">Cefiderocol</span></div>
+                <div class="out-row"><span class="out-label less">Less preferred</span><span class="out-val">Tigecycline (high dose)</span></div>
+                <div class="out-row"><span class="out-label less">OR</span><span class="out-val">Polymyxin B</span></div>
+                <div class="out-row"><span class="out-label no">Note</span><span class="out-val">Combination therapy highly recommended based on AST</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="flow-foot">
+        <strong>If meropenem MIC ≤8 mg/L, consider adding meropenem as part of combination therapy.</strong><br>
+        Give ceftazidime-avibactam and aztreonam <strong>simultaneously</strong> — both are Y-site compatible.
+      </div>
+    </div>
+
+    <h3>Combination therapy — companion drug selection</h3>
+    <p>In moderate-to-severe infection (high-burden), combination therapy is preferred when using <strong>tigecycline, polymyxins or cefiderocol</strong>. Choose the companion based on susceptibility testing:</p>
+    <ul>
+      <li>IV aminoglycosides (once-daily dosing)</li>
+      <li>IV meropenem (if MIC ≤8 mg/L — highest dose with extended infusion over 3–4 hours)</li>
+      <li>IV tigecycline <em>or</em> polymyxins <em>or</em> cefiderocol</li>
+    </ul>
+    <p><strong>Referral to an ID physician / clinical microbiologist is recommended.</strong></p>
+
+    <div class="note warn">
+      <span class="tag">Avoid</span>
+      <strong>Tigecycline</strong> should be avoided in bacteraemia (low blood levels due to extensive tissue distribution).
+    </div>
+
+    <h3>Clinical pearls</h3>
+    <div class="note pearl">
+      <span class="tag">Cefiderocol</span>
+      Most literature recommends <strong>monotherapy</strong>. However, emerging cefiderocol resistance is associated with NDM-type metallo-β-lactamase producers.
+    </div>
+    <div class="note pearl">
+      <span class="tag">Polymyxins</span>
+      Did not demonstrate better clinical success and were associated with worse side effects (e.g. kidney injury) compared with novel β-lactam/β-lactamase inhibitors such as ceftazidime-avibactam. <strong>However, polymyxin remains the drug of choice where newer antibiotics are not available.</strong>
+    </div>
+    <div class="note pearl">
+      <span class="tag">ESCMID guidance</span>
+      <ul style="margin:6px 0 0">
+        <li>Polymyxins as <strong>monotherapy</strong> only in non-severe / low-risk CRE infection, when susceptibility is demonstrated.</li>
+        <li>Otherwise, <strong>combination therapy</strong> with more than one in-vitro active drug (polymyxin, aminoglycoside, tigecycline or fosfomycin) — no specific combination is recommended.</li>
+        <li>May consider combination with meropenem if meropenem MIC ≤8 mg/L (high-dose extended infusion).</li>
+      </ul>
+    </div>
+    <div class="note pearl">
+      <span class="tag">Combination data</span>
+      Polymyxin B + tigecycline: rapid and sustained bactericidal killing up to 120 h — promising for carbapenem-resistant <em>E. coli</em>.<br>
+      Polymyxin B + IV fosfomycin: rapid bacterial killing in KPC-producing CRE.<br>
+      Tigecycline: combination with polymyxin B assists rapid and sustained bacterial killing.
+    </div>
+
+    <p><small><strong>Paediatric considerations:</strong> options similar to adults. Safety and efficacy of IV ceftolozane-tazobactam and IV cefiderocol in children is not established. Tigecycline not recommended in children unless no alternative. Oral fosfomycin not used routinely &lt;12 years. Paediatric ID consult advisable.</small></p>
+  </div>
+</details>
+
+<!-- ============ CRAB ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">B</span>
+    <span class="sum-text">Carbapenem-Resistant <em>Acinetobacter baumannii</em> (CRAB)
+      <span class="sum-sub">High-dose sulbactam backbone · mostly colonisers — don't treat</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+
+    <div class="note warn">
+      <span class="tag">Critical</span>
+      <em>A. baumannii</em> isolated from clinical specimens are <strong>mostly colonisers</strong>. Clinical correlation is essential to avoid unnecessary antibiotic therapy. <strong>If coloniser — DO NOT treat.</strong>
+    </div>
+
+    <h3>Key microbiology</h3>
+    <ul>
+      <li>Ubiquitous Gram-negative coccobacillus; significant cause of nosocomial infection. Fimbriae enable attachment and biofilm formation; under dry conditions it develops thicker cell walls, surviving long in the environment.</li>
+      <li>Nationwide carbapenem resistance rate has steadily ranged around <strong>50–60%</strong> (2009–2022), mainly due to <strong>OXA-23</strong> carbapenemase.</li>
+      <li>International clone II predominates among CRAB isolates in Malaysia.</li>
+      <li>Environmental contamination, healthcare workers' hands and patient isolates show identical resistance patterns/PFGE profiles — indicating a possible ICU transmission route.</li>
+    </ul>
+
+    <h4>MDR <em>A. baumannii</em> definition</h4>
+    <p>Isolates testing I or R to at least 1 drug in at least 3 of these categories:</p>
+    <ul>
+      <li>Extended-spectrum cephalosporins (ceftazidime, cefotaxime, ceftriaxone, cefepime)</li>
+      <li>Fluoroquinolones (ciprofloxacin, levofloxacin)</li>
+      <li>Aminoglycosides (amikacin, gentamicin, tobramycin)</li>
+      <li>Carbapenems (imipenem, meropenem, doripenem)</li>
+      <li>β-lactam/β-lactamase inhibitor combinations (piperacillin; piperacillin-tazobactam)</li>
+      <li>Ampicillin/sulbactam</li>
+    </ul>
+
+    <h3>Treatment</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Severity</th><th>Regimen</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site">Mild — susceptible to amp/sulbactam</td>
+            <td><span class="p">Ampicillin-sulbactam IV monotherapy</span> — <strong>6 g sulbactam/day</strong></td>
+          </tr>
+          <tr>
+            <td class="col-site">Mild — non-susceptible to amp/sulbactam</td>
+            <td>
+              <span class="p">Ampicillin-sulbactam IV</span> — <strong>9 g sulbactam/day</strong><br>
+              <span class="plus">PLUS</span> Minocycline PO/IV <sup>*</sup> OR Polymyxin B IV
+            </td>
+          </tr>
+          <tr>
+            <td class="col-site">Moderate to severe infection</td>
+            <td>
+              <span class="p">Ampicillin-sulbactam IV</span> — <strong>9 g sulbactam/day</strong><br>
+              <span class="plus">PLUS</span> Minocycline PO/IV <sup>*</sup> OR Polymyxin B IV
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small><sup>*</sup> Minocycline has low serum and urinary concentrations.</small></p>
+
+    <div class="note">
+      <span class="tag">Colistin vs polymyxin B</span>
+      <strong>Polymyxin B preferred over colistin</strong> for infection sites other than UTI, because:<br>
+      • Polymyxin B is administered in its <strong>active form</strong>, whereas colistin is given as the inactive prodrug colistimethate sodium (CMS) → better PK and higher plasma levels with polymyxin B.<br>
+      • Polymyxin B is predominantly <strong>non-renally cleared</strong> → potentially lower rates of nephrotoxicity.<br>
+      <strong>Colistin is preferred for UTI</strong> — the prodrug CMS is renally cleared, achieving higher urinary drug levels.
+    </div>
+
+    <h3>Clinical pearls</h3>
+    <div class="note pearl">
+      <span class="tag">Sulbactam dose</span>
+      High dose is favoured over standard-dose ampicillin-sulbactam (4 g sulbactam/day). Use <strong>6 g sulbactam/day for mild</strong> and <strong>9 g/day for moderate–severe</strong> infections. Rationale: high-dose sulbactam saturates the PBPs of <em>A. baumannii</em> more effectively.
+    </div>
+    <div class="note pearl">
+      <span class="tag">Extensively resistant CRAB</span>
+      Cefiderocol may be used (e.g. when susceptible only to cefiderocol), but it is preferable to combine with <strong>high-dose ampicillin-sulbactam</strong> — even if non-susceptibility to ampicillin-sulbactam is demonstrated. Data are scarce in paediatrics.
+    </div>
+    <div class="note warn">
+      <span class="tag">Do not use</span>
+      <strong>Nebulised polymyxin</strong> for HAP/VAP caused by CRAB — not recommended.<br>
+      <strong>Meropenem + colistin combination</strong> — based on the AIDA and OVERCOME studies, this was not better than colistin monotherapy.<br>
+      <strong>Meropenem + polymyxin + amp-sulbactam triple therapy</strong> — avoid; may lead to more toxicity (e.g. neurotoxicity from dual β-lactam therapy + polymyxin).
+    </div>
+
+    <p><small><strong>Paediatric considerations:</strong> options similar to adults. IV minocycline only for children &gt;8 years old. Tigecycline not recommended in children unless no alternative. Paediatric ID consult advisable.</small></p>
+  </div>
+</details>
+
+<!-- ============ PSEUDOMONAS ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">P</span>
+    <span class="sum-text">MDR / DTR <em>Pseudomonas aeruginosa</em>
+      <span class="sum-sub">Ceftolozane-tazobactam · ceftazidime-avibactam · cefiderocol</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+
+    <h3>Key microbiology</h3>
+    <ul>
+      <li>Aerobic Gram-negative bacillus found ubiquitously in soil, plants and hospital water reservoirs (showers, sinks, toilet water). Spreads via contaminated water, hands, equipment or surfaces.</li>
+      <li>NARSS 2022: overall resistance rates to all antibiotics tested were <strong>&lt;10%</strong>; colistin resistance fell to 1.3% (from 8.2% in 2021).</li>
+      <li>ATLAS programme (Malaysia, 2013–2019): susceptibility to ceftazidime 83.4%, cefepime 87.1%, piperacillin-tazobactam 81.6%, imipenem 78.6%, meropenem 83.4%; ceftazidime-avibactam 93.1%, colistin 95.6%.</li>
+      <li>MDR phenotype in 11.7% of isolates (higher than the Asia-Pacific INFORM rate of 7.1%). These MDR isolates: 100% susceptible to colistin but only 44.7% susceptible to ceftazidime-avibactam.</li>
+      <li>Carbapenem resistance is <strong>not primarily carbapenemase-mediated</strong> — acquired β-lactamases absent in most isolates (83.7%). Mechanisms: OprD alterations, efflux pump changes, chromosomal AmpC overproduction.</li>
+    </ul>
+
+    <h4>Definitions</h4>
+    <p><strong>MDR <em>P. aeruginosa</em>:</strong> non-susceptibility to at least one antibiotic in at least three of the following classes:</p>
+    <ul>
+      <li>Traditional extended-spectrum cephalosporins (ceftazidime, cefepime)</li>
+      <li>Fluoroquinolones (ciprofloxacin, levofloxacin)</li>
+      <li>Aminoglycosides (amikacin, gentamicin, tobramycin)</li>
+      <li>Carbapenems (imipenem, meropenem, doripenem)</li>
+      <li>Traditional β-lactam–β-lactamase inhibitor (piperacillin-tazobactam)</li>
+    </ul>
+    <p><strong>DTR (difficult-to-treat) <em>P. aeruginosa</em>:</strong> treatment-limiting resistance to <em>all</em> first-line agents — all β-lactams including carbapenems and β-lactamase inhibitor combinations, and fluoroquinolones.</p>
+
+    <h3>Treatment</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Scenario</th><th>Preferred</th><th>Less preferred</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site">MDR PA — not susceptible to any carbapenem, but susceptible to other non-carbapenem β-lactams (pip-tazo, ceftazidime, cefepime) and fluoroquinolones</td>
+            <td><span class="p">High-dose extended-infusion therapy</span> (see Prolonged Infusion section)</td>
+            <td>Fluoroquinolones IV/PO (ciprofloxacin / levofloxacin)</td>
+          </tr>
+          <tr>
+            <td class="col-site">DTR PA — cystitis</td>
+            <td>
+              <span class="p">Ceftolozane-tazobactam IV</span><br>OR<br>
+              <span class="p">Ceftazidime-avibactam IV</span>
+            </td>
+            <td>
+              Single-dose amikacin IV<br>OR<br>
+              Colistin IV<br>OR<br>
+              Cefiderocol IV
+            </td>
+          </tr>
+          <tr>
+            <td class="col-site">DTR PA — acute pyelonephritis / cUTI</td>
+            <td>
+              <span class="p">Ceftolozane-tazobactam IV</span><br>OR<br>
+              <span class="p">Ceftazidime-avibactam IV</span>
+            </td>
+            <td>
+              Once-daily amikacin IV (TDM required)<br>OR<br>
+              Colistin IV <sup>*</sup><br>OR<br>
+              Cefiderocol IV
+            </td>
+          </tr>
+          <tr>
+            <td class="col-site">DTR PA — infection outside urinary tract</td>
+            <td colspan="2">Confirm susceptibility before choosing. Newer BLBLI / cefiderocol per AST; refer to ID for DTR isolates.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small><sup>*</sup> IV colistin should be used instead of IV polymyxin B for UTI — it achieves adequate urinary concentration.</small></p>
+
+    <div class="note warn">
+      <span class="tag">Avoid</span>
+      <strong>Oral fosfomycin</strong> for <em>P. aeruginosa</em> — high likelihood of clinical failure due to the intrinsic <em>fosA</em> gene.<br>
+      <strong>IV gentamicin</strong> — no longer recommended for <em>P. aeruginosa</em>; no CLSI breakpoints available.
+    </div>
+
+    <h3>Clinical pearls</h3>
+    <div class="note pearl">
+      <span class="tag">CAZ-AVI vs C/T</span>
+      Newer BLBLIs should be reserved for DTR <em>P. aeruginosa</em>. Ceftazidime-avibactam and ceftolozane-tazobactam may be comparable in safety and efficacy. However, the most recent CACTUS data suggest <strong>ceftolozane-tazobactam may be the better option</strong>, with lesser impact on the microbiome.
+    </div>
+    <div class="note pearl">
+      <span class="tag">Combination therapy</span>
+      Most support comes from observational data; a recent subanalysis of a randomised controlled trial does <strong>not</strong> support combination therapy for DTR <em>P. aeruginosa</em>.
+    </div>
+    <div class="note warn">
+      <span class="tag">Nebulised</span>
+      Nebulised antibiotics are <strong>not recommended</strong> for respiratory infections caused by DTR <em>P. aeruginosa</em>.
+    </div>
+
+    <p><small><strong>Paediatric considerations:</strong> options similar to adults. Paediatric ID consult advisable for DTR <em>Pseudomonas</em> — safety and efficacy of IV ceftolozane-tazobactam and IV cefiderocol in children is not established.</small></p>
+  </div>
+</details>
+
+<!-- ============ STENOTROPHOMONAS ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">S</span>
+    <span class="sum-text"><em>Stenotrophomonas maltophilia</em>
+      <span class="sum-sub">TMP-SMX first line · intrinsically carbapenem-resistant</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+
+    <h3>Key microbiology</h3>
+    <ul>
+      <li>Ubiquitous non-fermenting Gram-negative rod closely related to <em>Pseudomonas</em> spp. Isolated from sinks, water, fomites, plants and hospital equipment.</li>
+      <li>Emerging cause of healthcare-associated infection. Prevalence in a Malaysian tertiary centre reported at 6.9%.</li>
+      <li><strong>Most isolates from clinical specimens are colonisers</strong> — however, isolation in the immunocompromised and patients with chronic illness warrants antibiotic therapy.</li>
+      <li><strong>Intrinsically resistant</strong> to penicillins, cephalosporins (excluding ceftazidime), aztreonam and carbapenems.</li>
+      <li>Ceftazidime breakpoints against <em>S. maltophilia</em> were removed from CLSI M100 due to lack of supporting data and poor reproducibility.</li>
+    </ul>
+
+    <h3>Treatment</h3>
+    <div class="note warn">
+      <span class="tag">If coloniser</span> DO NOT treat.
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Line</th><th>Regimen</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site"><span class="p">Preferred</span></td>
+            <td><strong>Trimethoprim/Sulfamethoxazole IV/PO</strong></td>
+          </tr>
+          <tr>
+            <td class="col-site"><span class="l">Less preferred</span></td>
+            <td>
+              <strong>Cefiderocol IV</strong><br>OR<br>
+              <strong>Ceftazidime-avibactam IV <span class="plus">PLUS</span> Aztreonam IV</strong><br>
+              <small>Administer these two drugs simultaneously — both are Y-site compatible.</small>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <span class="tag">Combination</span>
+      In moderate-to-severe infections, combination therapy is preferred when using TMP-SMX or cefiderocol — at least until clinical improvement is seen. Choose the companion based on susceptibility testing:
+      <ul style="margin:6px 0 0">
+        <li>Levofloxacin IV/PO</li>
+        <li>Minocycline IV/PO <em>(has low serum and urine concentrations)</em></li>
+      </ul>
+    </div>
+
+    <h3>Clinical pearls</h3>
+    <div class="note warn">
+      <span class="tag">Polymyxins</span>
+      No established breakpoint for polymyxins against <em>S. maltophilia</em> — do not use.
+    </div>
+    <div class="note pearl">
+      <span class="tag">Tetracyclines</span>
+      Tigecycline, minocycline and doxycycline distribute rapidly into tissue, resulting in low serum and urine concentrations. Therefore they are <strong>not recommended for UTI</strong> and should only be used as <strong>part of combination therapy for bacteraemia</strong>.<br>
+      CLSI provides breakpoints only for <strong>minocycline</strong> — none for tigecycline or doxycycline.
+    </div>
+
+    <p><small><strong>Paediatric considerations:</strong> options similar to adults. TMP-SMX doses are higher in children — TMP 12–15 mg/kg/day. When considering IV TMP-SMX in neonates, exercise caution due to the potential risks of hyperbilirubinaemia and kernicterus. IV minocycline is not recommended in children &lt;8 years. Paediatric ID consult advisable.</small></p>
+  </div>
+</details>
+
+<!-- ============ ICU DOSING ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">💉</span>
+    <span class="sum-text">ICU Drug Dosing &amp; Prolonged Infusion
+      <span class="sum-sub">Adults with normal renal function · extended-infusion practicalities</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+
+    <h3>Dosing table — adults, normal renal &amp; liver function</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Class</th><th>Drug</th><th>Clinical condition</th><th>Dose</th><th>Prolonged infusion</th><th>Remarks</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3">β-lactam / β-lactamase inhibitor</td>
+            <td>Piperacillin-tazobactam</td>
+            <td>MDR <em>P. aeruginosa</em></td>
+            <td>4.5 g IV Q6H</td>
+            <td>Administer over 4 hours</td>
+            <td>Although susceptible, pip-tazo has reduced potency in CR-<em>Pseudomonas</em>. High dose (4.5 g Q6H) + extended infusion (3 h or continuous) needed to optimise exposure.</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Ampicillin-sulbactam</td>
+            <td>Mild infection, susceptible</td>
+            <td>3 g (1 g sulbactam/dose) IV Q4H over 30 min</td>
+            <td>—</td>
+            <td rowspan="2">IDSA suggests total daily doses of <strong>6 g sulbactam/day</strong> for sulbactam-susceptible isolates (as monotherapy) and <strong>9 g/day</strong> when sulbactam-resistant or unable to be determined, as combination therapy. May administer as continuous infusion: ampicillin/sulbactam 27 g (9 g sulbactam) IV Q24H.</td>
+          </tr>
+          <tr>
+            <td>Mild infection, not susceptible · Moderate–severe infection</td>
+            <td>9 g (3 g sulbactam/dose) IV Q8H over 4 h</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Tetracyclines</td>
+            <td>Minocycline</td>
+            <td><em>S. maltophilia</em> &amp; combination therapy for CRAB</td>
+            <td>200 mg IV/PO BD</td>
+            <td>—</td>
+            <td>Monotherapy not recommended for bloodstream and urinary tract infections.</td>
+          </tr>
+          <tr>
+            <td>Tigecycline</td>
+            <td>Combination therapy for CRE</td>
+            <td>200 mg stat, then 100 mg Q12H</td>
+            <td>—</td>
+            <td>Extensive tissue distribution → low blood levels. Not a good choice for bacteraemia, especially with intravascular sources.</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Polypeptides</td>
+            <td>Polymyxin B <small>(500,000 IU / 50 mg per vial)</small></td>
+            <td>CRE, CRAB, DTR-PA</td>
+            <td>LD 2.0–2.5 mg/kg (20,000–25,000 IU/kg) IV stat<br>MD 1.25–1.5 mg/kg (12,500–15,000 IU/kg) Q12H</td>
+            <td>—</td>
+            <td>Obese patients: use adjusted body weight; daily dose not exceeding 250 mg.</td>
+          </tr>
+          <tr>
+            <td>Colistin (Polymyxin E) <small>1 MU/vial</small></td>
+            <td>CRE, CRAB, DTR-PA (urinary source)</td>
+            <td>LD 9 MU stat<br>MD 4.5 MU Q12H (12 h after LD)</td>
+            <td>—</td>
+            <td>Renal dose adjustment required for MD. Use adjusted body weight to calculate CrCl. Consider limiting dose to 360 mg (9 MU) daily to avoid nephrotoxicity.</td>
+          </tr>
+          <tr>
+            <td>Sulfonamide</td>
+            <td>Trimethoprim-sulfamethoxazole</td>
+            <td>Cystitis<br>All other infections</td>
+            <td>160/800 mg (2 tabs/vials) IV/PO Q12H<br>8–12 mg/kg/day TMP PO/IV in 2–3 divided doses</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Newer β-lactam / β-lactamase inhibitor</td>
+            <td>Ceftolozane-tazobactam</td>
+            <td>Cystitis<br>All other infections</td>
+            <td>1.5 g IV Q8H over 1 h<br>3 g IV Q8H</td>
+            <td>3 g IV Q8H over 3 hours</td>
+            <td>Extended infusion over 3 h may be necessary for severe DTR-PA.</td>
+          </tr>
+          <tr>
+            <td>Ceftazidime-avibactam</td>
+            <td>All infections</td>
+            <td>2.5 g IV Q8H</td>
+            <td>Over 3 hours</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Monobactam</td>
+            <td>Aztreonam</td>
+            <td>CRE, as combination therapy with ceftazidime-avibactam</td>
+            <td>2 g IV Q8H</td>
+            <td>Over 3 hours</td>
+            <td>Y-site compatible with ceftazidime-avibactam — administer simultaneously.</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Cephalosporins</td>
+            <td>Ceftazidime</td>
+            <td>Any infections</td>
+            <td>2 g Q6–8H</td>
+            <td>2 g over 4 hours</td>
+            <td>Prolonged infusion recommended for severe/high-burden disease.</td>
+          </tr>
+          <tr>
+            <td>Cefepime</td>
+            <td>Cystitis<br>All other infections</td>
+            <td>1 g IV Q8H<br>2 g IV Q8H</td>
+            <td>2 g over 3–4 hours</td>
+            <td>Prolonged infusion recommended for severe/high-burden disease and cefepime SDD isolates.</td>
+          </tr>
+          <tr>
+            <td>Cephalosporin (siderophore)</td>
+            <td>Cefiderocol <sup>*</sup></td>
+            <td>CRE, DTR-PA, CRAB</td>
+            <td>2 g IV Q8H</td>
+            <td>—</td>
+            <td><sup>*</sup> Not registered in Malaysia and not listed in MOH drug formulary — import permit required.</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Fluoroquinolones</td>
+            <td>Levofloxacin</td>
+            <td>Any infections</td>
+            <td>750 mg IV/PO OD</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Ciprofloxacin</td>
+            <td>Cystitis<br>All other infections</td>
+            <td>400 mg IV Q12H / 500 mg PO Q12H<br>400 mg IV Q8H / 750 mg PO Q12H</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td rowspan="3">Carbapenems</td>
+            <td>Meropenem</td>
+            <td>Non-CNS (AmpC/ESBL)<br>Cystitis (CRE) / CNS infection (AmpC/ESBL)<br>All other infections (CRE)</td>
+            <td>1 g IV Q8H<br>2 g IV Q8H<br>2 g IV Q8H</td>
+            <td>Over 3 hours</td>
+            <td>High-dose extended-infusion meropenem if MIC ≤8 mg/L as part of combination therapy for CRE and severe CRAB infections.</td>
+          </tr>
+          <tr>
+            <td>Imipenem</td>
+            <td>Cystitis<br>All other infections</td>
+            <td>500 mg IV Q6H</td>
+            <td>Over 3 hours</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Ertapenem</td>
+            <td>As indicated</td>
+            <td>1 g IV Q24H</td>
+            <td>—</td>
+            <td>Poor activity against <em>Pseudomonas</em>, <em>Enterococcus</em>, <em>Acinetobacter</em>, <em>S. maltophilia</em>. Not for CNS infection.</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Aminoglycosides</td>
+            <td>Gentamicin</td>
+            <td>Cystitis<br>Pyelonephritis / cUTI</td>
+            <td>5 mg/kg IV Q24H single dose<br>7 mg/kg IV Q24H single daily dose</td>
+            <td>—</td>
+            <td rowspan="2">Subsequent doses and dosing interval based on TDM.</td>
+          </tr>
+          <tr>
+            <td>Amikacin</td>
+            <td>Cystitis<br>Pyelonephritis / cUTI</td>
+            <td>15 mg/kg IV Q24H single dose<br>15 mg/kg/dose IV Q24H single daily dose</td>
+            <td>—</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>Imipenem-cilastatin-relebactam (MDR PA, 1.25 g Q6H) is <strong>not registered in Malaysia</strong> and not listed in the MOH drug formulary.</small></p>
+
+    <h3>Prolonged / extended infusion — the principles</h3>
+    <div class="note">
+      <span class="tag">Definition</span>
+      Administration of drugs through prolonged infusion can be achieved by the <strong>extended method</strong> (infusion over 3–4 hours during a dosing interval) or through <strong>continuous infusion</strong> (constant IV infusion over 24 hours, or sequential infusions over 6, 8 or 12 hours). Particularly important for <strong>time-dependent antibiotics</strong> such as β-lactams.
+    </div>
+    <p><strong>Why:</strong> prolonged infusion increases the fraction of time that free drug concentrations remain above the MIC (%fT&gt;MIC), improving efficacy of time-dependent antibiotics.</p>
+
+    <h4>When to use prolonged infusion</h4>
+    <ul>
+      <li><strong>Less susceptible pathogens</strong> with higher baseline MIC or propensity to develop resistance on therapy — <em>P. aeruginosa</em>, <em>A. baumannii</em>, CRE.</li>
+      <li><strong>Altered pharmacokinetics:</strong>
+        <ul>
+          <li>Critically ill patients</li>
+          <li>Augmented renal clearance (ARC) — CrCl ≥120 mL/min (risk factors: young patients, traumatic brain injury)</li>
+          <li>Obese patients</li>
+          <li>Hypoalbuminaemia (for highly protein-bound drugs)</li>
+        </ul>
+      </li>
+      <li><strong>Difficult penetration sites:</strong> CNS infection, bone and joint infection, pneumonia.</li>
+    </ul>
+
+    <div class="note warn">
+      <span class="tag">Loading dose</span>
+      An initial loading dose is <strong>essential</strong> to rapidly attain therapeutic concentration — typically given over 30–60 minutes. Loading doses are often higher than standard doses and are <strong>not affected by renal function</strong>. Subsequent doses should commence immediately after the loading dose (not at the next scheduled time).
+    </div>
+
+    <h3>Drug stability for prolonged infusion</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Drug</th><th>Diluent</th><th>Stability</th><th>Remarks</th></tr></thead>
+        <tbody>
+          <tr><td>Ampicillin-sulbactam</td><td>NS / D5</td><td>8 h (NS) · 2 h (D5)</td><td>Conc: 45 mg/mL (NS) · 30 mg/mL (D5)</td></tr>
+          <tr><td>Piperacillin-tazobactam</td><td>NS / D5</td><td>24 h</td><td>1 vial (20 mL) in 50 mL diluent</td></tr>
+          <tr><td>Ceftazidime</td><td>NS / D5</td><td>12 h</td><td>Conc ≤40 mg/mL</td></tr>
+          <tr><td>Cefepime</td><td>NS / D5</td><td>24 h</td><td>Conc ≤40 mg/mL</td></tr>
+          <tr><td>Ceftolozane-tazobactam</td><td>NS / D5</td><td>24 h</td><td>In 100 mL diluent</td></tr>
+          <tr><td>Ceftazidime-avibactam</td><td>NS / D5</td><td>12 h</td><td>Conc ≤40 mg/mL</td></tr>
+          <tr><td>Cefiderocol</td><td>NS / D5</td><td>12 h</td><td>In 100 mL diluent, or 62.5 mg/mL</td></tr>
+          <tr><td>Imipenem-cilastatin</td><td>NS / D5</td><td>4 h</td><td>Conc 5 mg/mL</td></tr>
+          <tr><td>Meropenem</td><td>NS / D5</td><td>8 h (NS) · 1 h (D5)</td><td>Conc ≤20 mg/mL</td></tr>
+          <tr><td>Aztreonam</td><td>NS / D5</td><td>48 h</td><td>Conc ≤20 mg/mL</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>Stability and maximum concentration allowed may differ between brands — please refer to your pharmacy for clarification.</small></p>
+
+    <h3>Selected renal dose adjustments (adults)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Drug</th><th>Normal</th><th>CrCl 31–50</th><th>CrCl 15–30</th><th>CrCl &lt;15 / HD</th></tr></thead>
+        <tbody>
+          <tr><td>Ceftazidime-avibactam</td><td>2.5 g Q8H</td><td>1.25 g Q8H</td><td>0.94 g Q12H</td><td>0.94 g Q24H (post dialysis)</td></tr>
+          <tr><td>Ceftolozane-tazobactam</td><td>3 g Q8H</td><td>1.5 g Q8H</td><td>750 mg Q8H</td><td>750 mg load then 150 mg Q8H (post dialysis)</td></tr>
+          <tr><td>Aztreonam</td><td>2 g Q6–8H</td><td>2 g Q8H</td><td>2 g Q12H</td><td>2 g Q24H</td></tr>
+          <tr><td>Cefepime</td><td>2 g Q8H</td><td>2 g Q12H</td><td>2 g Q24H</td><td>2 g Q24H (post dialysis)</td></tr>
+          <tr><td>Ciprofloxacin (IV)</td><td>400 mg Q8–12H</td><td>400 mg Q12H</td><td>400 mg Q24H</td><td>400 mg Q24H</td></tr>
+          <tr><td>Levofloxacin</td><td>750 mg OD</td><td>750 mg Q48H</td><td>500 mg Q48H</td><td>500 mg Q48H</td></tr>
+          <tr><td>Meropenem</td><td>1–2 g Q8H</td><td>1 g Q12H</td><td>500 mg Q12H</td><td>500 mg Q24H</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>Choose the dose based on clinical condition first, then adjust for renal function. Always apply clinical judgement and refer to your facility's renal dosing guidelines.</small></p>
+  </div>
+</details>
+
+<!-- ============ IPC ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">🛡</span>
+    <span class="sum-text">Infection Prevention &amp; Control — ICU Essentials
+      <span class="sum-sub">Precautions, isolation, screening, un-tagging, sinks &amp; drains</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+
+    <h3>Transmission routes</h3>
+    <p>MDR GN transmission from an infected/colonised patient to another patient occurs via <strong>direct contact</strong> (body fluid contamination) and <strong>indirect contact</strong> (contaminated shared equipment, healthcare workers' hands, visitors, contaminated door handles, sinks, toilets, bed rails and other environmental surfaces).</p>
+
+    <h3>Precautions by organism</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Organism</th><th>Precaution</th></tr></thead>
+        <tbody>
+          <tr><td class="col-site">AmpC</td><td>Standard precautions. Strict adherence to 5 moments of hand hygiene; PPE based on risk assessment.</td>
+          </tr>
+          <tr><td class="col-site">ESBL</td><td>Standard + contact precaution (based on risk assessment for onward transmission). Alert/tag in notes or EMR. In limited-resource settings, the IPC team may re-stratify based on local prevalence.</td></tr>
+          <tr><td class="col-site">CRE</td><td>Contact + standard precaution. <strong>More aggressive interventions (e.g. screening contacts) reserved for CP-CRE.</strong> Non-CP CRE may still warrant targeted IPC interventions (e.g. contact precautions in acute care).</td></tr>
+          <tr><td class="col-site">CRAB</td><td>Contact + standard precaution.</td></tr>
+          <tr><td class="col-site">MDR / DTR <em>P. aeruginosa</em></td><td>Contact + standard precaution.</td></tr>
+          <tr><td class="col-site"><em>S. maltophilia</em></td><td>Standard precautions. Strict hand hygiene; PPE based on risk assessment; shared equipment disinfected between patients.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Contact precaution bundle</h3>
+    <ul>
+      <li><strong>Signage</strong> clearly displayed outside the room.</li>
+      <li><strong>Yellow clinical waste bin</strong> inside the room.</li>
+      <li><strong>Dedicated equipment</strong> where possible (BP cuffs, oximeter probes). Shared equipment disinfected with hospital-approved disinfectant between patients.</li>
+      <li><strong>Dedicated nursing staff</strong> recommended.</li>
+      <li><strong>PPE cart outside the room</strong> containing: disposable gloves · long-sleeved gowns/aprons · hospital-approved disinfectant wipes · alcohol-based hand rub.</li>
+      <li>Strict adherence to the <strong>5 moments of hand hygiene</strong>; hand hygiene before and after glove use; change gloves between patients and when moving from dirty to clean areas.</li>
+      <li><strong>Gowns removed before leaving</strong> the patient care area/surroundings.</li>
+    </ul>
+    <p><strong>Patient environment:</strong> in a single room it is the entire room; in a multi-bed room it is the area behind the patient curtain.</p>
+
+    <h3>Patient placement</h3>
+    <p>In order of preference:</p>
+    <ol>
+      <li>Single room with attached bathroom (priority)</li>
+      <li>Single room without attached bathroom</li>
+      <li>Cohort in a dedicated cubicle/area with attached bathroom — for patients colonised/infected with the same resistant organism</li>
+      <li>If general ward isolation is the only option: dedicated toilet/commode and an isolation tray/trolley beside the bed strongly recommended</li>
+    </ol>
+    <p><strong>Minimum spatial requirement:</strong> 1.5 m between beds in a standard multi-bedded room.</p>
+    <p><strong>Risk assessment for onward transmission</strong> (to prioritise single-room placement):</p>
+    <ul>
+      <li>Copious or uncontained drainage from wounds/abscesses</li>
+      <li>Dressings or drains requiring changing</li>
+      <li>Faecal or urinary incontinence</li>
+      <li>Indwelling urinary catheter / intermittent clean catheterisation</li>
+      <li>Abdominal drainage / intestinal stoma / fistula</li>
+      <li>Tracheostomy / ventilated / uncontained sputum</li>
+      <li>≥2 invasive devices in situ requiring frequent access</li>
+    </ul>
+
+    <h3>Skin disinfectant &amp; environmental cleaning</h3>
+    <ul>
+      <li><strong>Daily antiseptic bathing</strong> with chlorhexidine or octenisan 2% throughout admission — reduces skin MDRO bioburden, lowering hospital-acquired infection risk and environmental contamination. Selection and dilution per hospital committee and manufacturer's recommendation (contact time, amount, frequency).</li>
+      <li><strong>Daily cleaning</strong> of patient environment and bathroom, emphasising high-touch surfaces.</li>
+      <li><strong>Enhanced cleaning</strong> (increased frequency of high-touch surface cleaning, plus certain low-touch areas) for patients infected/colonised with <strong>CRE, CRAB or DTR-Pseudomonas</strong>.</li>
+      <li><strong>Terminal cleaning</strong> after discharge; fabric or disposable curtains must be changed on discharge.</li>
+      <li>Clean from cleaner areas to dirtier areas.</li>
+    </ul>
+
+    <h3>Equipment disinfection — Spaulding classification</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Category</th><th>Description</th><th>Cleaning required</th></tr></thead>
+        <tbody>
+          <tr><td class="col-site">Critical</td><td>Objects that enter normally sterile tissue or the vascular system</td><td>Sterilisation</td></tr>
+          <tr><td class="col-site">Semi-critical</td><td>Objects that contact mucous membranes or non-intact skin</td><td>High-level disinfection</td></tr>
+          <tr><td class="col-site">Non-critical</td><td>Objects that contact intact skin but not mucous membranes</td><td>Intermediate- or low-level disinfection</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>All staff cleaning critical and semi-critical equipment should be trained and credentialed. Cleaning of non-critical items (infusion pumps, glucometers, BP cuffs, monitors) requires clear protocols/SOPs and designated responsibility.</small></p>
+
+    <h3>Active surveillance</h3>
+    <ul>
+      <li>Entry, weekly and exit screening for colonisation may be considered, especially during an outbreak.</li>
+      <li>Discuss with ID/IPC — for CRE and other carbapenemase-producing organisms, screening should be guided by local epidemiology and risk assessment, considering:
+        <ul>
+          <li>History of previous CRE infection/colonisation</li>
+          <li>Contacts of CRE cases</li>
+          <li>Recent hospitalisation in wards/facilities endemic with CRE or with CRE outbreaks</li>
+          <li>Increased risk of acquisition: extended hospitalisation, multiple/recent exposures to broad-spectrum antibiotics, indwelling devices (CVL, CBD, biliary or wound drains), mechanical ventilation, ICU admission, burns, organ/stem-cell transplant, respiratory patients on long-term antibiotics</li>
+        </ul>
+      </li>
+      <li>Limited benefit in active surveillance for carbapenemase-producing <em>Acinetobacter</em> (CPA) and <em>Pseudomonas</em> (CPP) outside outbreaks or case follow-up.</li>
+    </ul>
+
+    <h4>Screening samples for CPE — in order of preference</h4>
+    <ol>
+      <li>Faeces</li>
+      <li>Rectal swab + inguinal swab</li>
+      <li>Rectal swab alone</li>
+      <li>Peri-anal (e.g. neutropenic patient)</li>
+    </ol>
+    <p>If symptoms are present or clinically relevant, also send appropriate samples from endotracheal tube, enterostomy, urinary catheter or wound.</p>
+    <p><strong>Pre-emptive isolation and contact precautions</strong> should be implemented until screening culture results are available.</p>
+
+    <h3>Decolonisation</h3>
+    <div class="note warn">
+      <span class="tag">Not recommended</span>
+      There is insufficient evidence to recommend decolonisation in patients with MDR GN infection.
+    </div>
+
+    <h3>Un-tagging — clearance criteria</h3>
+    <p>Patients may remain colonised for at least 6–12 months, and some considerably longer — particularly with ongoing/repeated healthcare contact and/or antibiotic use.</p>
+    <p><strong>Risk factors for prolonged carriage</strong> (use in risk assessment):</p>
+    <ul>
+      <li>Exposure to antibiotics since initial infection/colonisation</li>
+      <li>Number of hospital admissions (e.g. multiple hospitalisations)</li>
+      <li>Presence of an invasive device</li>
+      <li>Higher Charlson's comorbidity score</li>
+      <li>Admission from another facility — especially where CRE is endemic or there is ongoing transmission/outbreak</li>
+      <li>Admission from, or discharge to, a long-term care facility</li>
+    </ul>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Organism</th><th>Isolation duration &amp; un-tagging criteria</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site">CRE / CPE</td>
+            <td>
+              Isolation for <strong>at least 1 year</strong>. Un-tagging may be considered after 1 year since the last positive culture, provided the patient:
+              <ul>
+                <li>Does not have an active infection</li>
+                <li>Is not on active treatment for CRE infection</li>
+                <li>Has no risk for prolonged CRE carriage</li>
+                <li>Has at least <strong>2 consecutive negative rectal swabs taken ≥1 week apart</strong></li>
+              </ul>
+              Earlier removal from contact precautions may be made after consultation with ID/IPC following a complete risk assessment.<br>
+              <strong>Despite release, an alert (tag) should remain in the medical record</strong> that CPE has previously been isolated.
+            </td>
+          </tr>
+          <tr>
+            <td class="col-site">CPA / CPP</td>
+            <td>
+              Exact duration of isolation is not known; contact precautions throughout hospitalisation. On subsequent admissions, risk-assess for ongoing colonisation and onward transmission to decide whether to continue contact precautions and repeat screening — considering ward (e.g. ICU), reason for admission, and individual risk factors for prolonged colonisation (e.g. COPD with history of CPP colonisation).<br>
+              <strong>Alert (tag) should remain in the medical record.</strong> Monitor for signs/symptoms of infection and investigate immediately if infection is suspected.
+            </td>
+          </tr>
+          <tr>
+            <td class="col-site">ESBL</td>
+            <td>
+              Protocols differ by hospital policy — from no isolation at all to a tag duration of 3–6 months.<br>
+              <strong>Consider off-tag</strong> if negative rectal swabs at D0, D7 and D14 after completion of treatment.<br>
+              On subsequent admissions, risk-assess as for CPP/CPA.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Decisions for de-isolation and un-tagging of all MDRO cases should be made after consultation with the ID or IPC team, based on institutional risks, priorities and resources.</p>
+
+    <h3>Communication, training &amp; audit</h3>
+    <ul>
+      <li>Patient status and required precautions must be clearly communicated to all staff involved in care; documented in clinical notes and referral letters; IT-based hospitals may tag MDRO status in the EMR.</li>
+      <li>All staff involved in patient care should receive training on standard and transmission-based precautions. Cleaning staff require environmental (daily and terminal) cleaning training.</li>
+      <li>Regular audits: hand hygiene compliance, transmission-based precautions practices, environmental cleaning (visual and fluorescent markers). Provide feedback to key stakeholders.</li>
+    </ul>
+
+    <h3>Patients, visitors &amp; movement</h3>
+    <ul>
+      <li>Provide information leaflets to ward staff, patients and visitors as appropriate.</li>
+      <li>Encourage all visitors to perform hand hygiene before entering and leaving the patient's room; advise patients and visitors to avoid contact with other patients.</li>
+      <li>Staff should remove gloves and gowns before leaving patients' rooms; both staff and patients perform hand hygiene when leaving the room.</li>
+      <li>Minimise risk of environmental contamination during patient transport.</li>
+      <li><strong>Day care / dialysis / outpatient:</strong> contact precautions at the bedside, examination chair, or whenever providing direct patient care; dedicated toilet or commode chair if applicable; clean the examination couch/trolley/chair and shared equipment after the patient leaves and before the next patient.</li>
+    </ul>
+
+    <h3>NICU — additional measures</h3>
+    <ul>
+      <li>Strict expressed breast milk (EBM) and formula milk preparation and protocol</li>
+      <li>Strict milk room, including sink cleaning protocol</li>
+      <li>Incubator change and cleaning protocol</li>
+      <li>Immediate diaper disposal after changing to prevent environmental contamination</li>
+      <li>Weighing scale cleaning and disinfection protocol between patient use</li>
+      <li>Antiseptic bath or wipes for newborns: still lacking evidence and there are concerns about adverse events — may be considered in an outbreak situation. Chlorhexidine concentrations from 0.1% to 2% have been reported.</li>
+    </ul>
+
+    <h3>Surge / outbreak</h3>
+    <ul>
+      <li>Refer to ID/IPC for outbreak investigation and formation of the outbreak management team.</li>
+      <li>Look for causes of the surge/outbreak and implement control measures.</li>
+      <li>Contaminated environments or equipment may be the cause — enhanced control measures may be needed. Discuss with ID/IPC and microbiologists before environmental sampling.</li>
+      <li><strong>CRE outbreak:</strong> investigate milk preparation rooms, especially in ICU.</li>
+      <li><strong>CRAB outbreak:</strong> observe and improve environmental and equipment cleaning/disinfection. Radical terminal cleaning including working areas and equipment, plus environmental swabs, may help halt the outbreak.</li>
+      <li><strong><em>Pseudomonas</em> outbreak:</strong> investigate water source contamination — all sinks, IV fluid or heparin saline, medication trolley. In VAP outbreaks, also investigate respiratory/suction tubing.</li>
+    </ul>
+
+    <h3>Sinks, drains &amp; plumbing</h3>
+    <p>Sink drainpipes become colonised with highly consequential MDR bacteria, which then cause hospital-acquired infections. Bacteria initially colonise the elbows of the drainpipe and slowly spread to the strainers. Water hitting the strainer can splash onto surrounding counters and the floor up to <strong>three feet</strong> away.</p>
+    <h4>General measures</h4>
+    <ul>
+      <li>Alcohol-based hand rub is the preferred method for cleaning hands when not visibly dirty.</li>
+      <li>Regularly clean and disinfect surfaces near drains — sink basin, faucet, handles, surrounding countertop — at least daily or more frequently.</li>
+      <li>Designated hand-washing sinks are <strong>for hand washing only</strong>. Do not dispose of clinical waste, patient specimens, liquid nutritional supplements or beverages down the sink.</li>
+      <li>Sinks should be positioned at sufficient distance so they do not contaminate patients, clean supplies or adjacent counters through splashing.</li>
+      <li>Add sink splash guards. Hand-washing sinks should be free-standing or wall-mounted, at least 1 metre from any fixed work surface, or separated by a splash barrier.</li>
+      <li>Avoid placing patient care or personal items on counters next to sinks.</li>
+      <li>Do not place sinks next to medication preparation areas unless splash barriers are in place.</li>
+    </ul>
+    <h4>Design</h4>
+    <ul>
+      <li>Trapless sinks are recommended.</li>
+      <li>Prevent faucets/taps from discharging directly above the drain (angle water away or offset the faucet from the drain).</li>
+      <li>Aerators and strainers are associated with increased contamination risk due to biofilm capture — risk-assess whether they should be removed.</li>
+      <li>Use sinks with adequate depth and regulated maximum water flow to prevent splashing.</li>
+    </ul>
+    <h4>Chemical disinfection of sinks</h4>
+    <ul>
+      <li>May reduce pathogen burden in contaminated drains and reduce contaminated splashing.</li>
+      <li>Hydrogen peroxide vapour, and pouring disinfectants such as bleach, hydrogen peroxide or acetic acid down sink drains, have been shown to decrease bioburden and may be useful in outbreak response — but regrowth occurs within a few days.</li>
+      <li>The most appropriate disinfection method remains unclear; no single agent has been found superior and ideal concentrations are unknown. Some solutions may erode the plumbing — discuss with engineers.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ PITFALLS ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">⚠</span>
+    <span class="sum-text">Pitfalls &amp; "Do Not Do" Summary
+      <span class="sum-sub">The fastest way to avoid a prescribing error</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Organism</th><th>Avoid</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-site">Moderate-risk AmpC<br><small>(Enterobacter cloacae complex, K. aerogenes, C. freundii)</small></td>
+            <td>Piperacillin-tazobactam</td>
+            <td>Not recommended at moderate–high risk of clinically significant inducible AmpC production.</td>
+          </tr>
+          <tr>
+            <td class="col-site">ESBL</td>
+            <td>Piperacillin-tazobactam · Cefepime</td>
+            <td>Not recommended regardless of susceptibility. <em>Exception:</em> uncomplicated cystitis if susceptible + clinical improvement + no oral step-down option.</td>
+          </tr>
+          <tr>
+            <td class="col-site">CRE</td>
+            <td>Tigecycline for bacteraemia</td>
+            <td>Extensive tissue distribution → low blood levels; poor choice for intravascular sources.</td>
+          </tr>
+          <tr>
+            <td class="col-site">CRE</td>
+            <td>Polymyxin monotherapy in severe infection</td>
+            <td>Reserve monotherapy for non-severe/low-risk CRE infection when susceptibility is demonstrated.</td>
+          </tr>
+          <tr>
+            <td class="col-site">CRAB</td>
+            <td>Treating colonisation · Nebulised polymyxin · Meropenem + colistin · Meropenem + polymyxin + amp-sulbactam</td>
+            <td>Most isolates are colonisers. Nebulised antibiotics not recommended. AIDA/OVERCOME showed no benefit for meropenem + colistin. Triple therapy increases toxicity (e.g. neurotoxicity).</td>
+          </tr>
+          <tr>
+            <td class="col-site">CRAB / <em>S. maltophilia</em></td>
+            <td>Minocycline/tetracyclines as monotherapy for bloodstream or urinary infection</td>
+            <td>Low serum and urinary concentrations.</td>
+          </tr>
+          <tr>
+            <td class="col-site"><em>P. aeruginosa</em></td>
+            <td>Oral fosfomycin · IV gentamicin · Nebulised antibiotics</td>
+            <td>Intrinsic <em>fosA</em> gene → high failure. No CLSI breakpoints for gentamicin. Nebulised antibiotics not recommended.</td>
+          </tr>
+          <tr>
+            <td class="col-site"><em>S. maltophilia</em></td>
+            <td>Polymyxins · Tetracyclines for UTI</td>
+            <td>No established polymyxin breakpoint. Tetracyclines have low urinary concentrations and are only for combination therapy in bacteraemia.</td>
+          </tr>
+          <tr>
+            <td class="col-site">All MDR GN</td>
+            <td>Decolonisation regimens</td>
+            <td>Insufficient evidence to recommend decolonisation in MDR GN infection.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<!-- ============ PAEDIATRIC ============ -->
+<details class="card">
+  <summary>
+    <span class="sum-icon">🧒</span>
+    <span class="sum-text">Paediatric Dosing Notes
+      <span class="sum-sub">Neonates &amp; children — key differences from adult practice</span>
+    </span>
+    <span class="chev">▶</span>
+  </summary>
+  <div class="card-body">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Drug</th><th>Neonates (≤28 days)</th><th>Paediatric (&gt;28 days – 18 y)</th><th>Remarks</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Ampicillin-sulbactam</td>
+            <td>≤D7 OL: 150 mg/kg/day (50 mg/kg/day sulbactam) divided Q12H<br>&gt;D7 OL: 300 mg/kg/day (100 mg/kg/day sulbactam) divided Q6H</td>
+            <td>300 mg/kg/day (100 mg/kg/day sulbactam) divided Q6H (max 1 g/dose sulbactam)</td>
+            <td>For CRAB, efficacy is attributed to the sulbactam component. Sulbactam 100 mg/kg/day used for CRAB in neonates/children. Prolonged infusion over 4 h highly recommended in less susceptible pathogens, altered PK and severe infection.</td>
+          </tr>
+          <tr>
+            <td>Cefepime</td>
+            <td>100 mg/kg/day divided Q12H – 150 mg/kg/day divided Q8H</td>
+            <td>100–150 mg/kg/day divided Q8H (max 2 g/dose)</td>
+            <td>Use high doses for <em>Pseudomonas</em> infections.</td>
+          </tr>
+          <tr>
+            <td>Ceftazidime</td>
+            <td>≤29 wk: 50 mg/kg Q12H (≤D28 OL), 50 mg/kg Q8H (≥D29 OL)<br>30–36 wk: 50 mg/kg Q12H (≤D14 OL), 50 mg/kg Q8H (≥D15 OL)</td>
+            <td>150–200 mg/kg/day divided Q8H (max 6 g/day)</td>
+            <td>Higher doses of 300 mg/kg/day divided Q8H (max 12 g/day) may be used in cystic fibrosis.</td>
+          </tr>
+          <tr>
+            <td>Ceftazidime-avibactam</td>
+            <td>≥37 wk: 50 mg/kg Q12H (≤D7 OL), 50 mg/kg Q8H (≥D8 OL)</td>
+            <td>3 to &lt;6 months: 50 (40/10) mg/kg Q8H<br>6 months to &lt;18 y: 62.5 (50/12.5) mg/kg Q8H</td>
+            <td>Infuse over 2 hours. No safety/efficacy data in infants &lt;3 months.</td>
+          </tr>
+          <tr>
+            <td>Colistimethate sodium (Polymyxin E)</td>
+            <td>200,000–300,000 units/kg/day divided Q8H</td>
+            <td>200,000–300,000 units/kg/day divided Q8H</td>
+            <td>FDA/EMA recommendations may be suboptimal in paediatrics; higher doses have been used in infants and children. Renal dose adjustment for AKI. Use adjusted body weight for obese patients.</td>
+          </tr>
+          <tr>
+            <td>Meropenem</td>
+            <td>&lt;32 wk: 20 mg/kg Q12H (&lt;D14 OL), 20 mg/kg Q8H (&lt;D14 OL), 30 mg/kg Q8H (&lt;D14 OL)<br>&gt;32 wk: 20 mg/kg Q8H (&lt;D14 OL), 30 mg/kg Q8H (&lt;D14 OL)<br>Meningitis: 40 mg/kg/dose at the age-specific interval</td>
+            <td>Standard: 60 mg/kg/day divided Q8H<br>Serious (CNS, CF): 120 mg/kg/day divided Q8H (max 2 g/dose)</td>
+            <td>A 4-hour infusion is recommended for improved efficacy and better clinical outcomes. Meropenem is preferred over imipenem-cilastatin for CNS infection.</td>
+          </tr>
+          <tr>
+            <td>Piperacillin-tazobactam</td>
+            <td>≤29 wk: 100 mg/kg Q12H (≤D28 OL), 100 mg/kg Q8H (≥D29 OL)<br>30–36 wk: 100 mg/kg Q12H (≤D14 OL), 100 mg/kg Q8H (≥D15 OL)<br>37–44 wk: 100 mg/kg Q12H (≤D7 OL), 100 mg/kg Q8H (≥D8 OL)</td>
+            <td>300–400 mg/kg/day divided Q6H (piperacillin dose; max 16 g piperacillin/day)</td>
+            <td>Reduced potency in carbapenem-resistant PA. If used, extended infusion over 4 h needed to optimise exposure.</td>
+          </tr>
+          <tr>
+            <td>Polymyxin B</td>
+            <td>15,000–40,000 units/kg/day divided Q12H</td>
+            <td>&gt;28 days – 2 y: 15,000–45,000 units/kg/day divided Q12H<br>≥2 y: use adult dosing</td>
+            <td>Obese patients: adjusted body weight. No renal dose adjustment for maintenance. Not recommended for UTI.</td>
+          </tr>
+          <tr>
+            <td>Trimethoprim-sulfamethoxazole</td>
+            <td>Generally avoided in neonates due to adverse effects — consult ID</td>
+            <td>TMP 12–15 mg/kg/day IV/PO divided Q8H</td>
+            <td>Contraindicated in G6PD deficiency. Monotherapy may be used in mild infection; combination therapy with a second agent recommended for severe infection.</td>
+          </tr>
+          <tr>
+            <td>Tigecycline</td>
+            <td>Avoid in neonates</td>
+            <td>Avoid; if necessary — 8–11 y: 1.2 mg/kg Q12H (max 50 mg/dose); 12–17 y: 50 mg Q12H (max 50 mg/dose)</td>
+            <td>Use in children not recommended unless alternative treatment is unsuitable.</td>
+          </tr>
+          <tr>
+            <td>Cefiderocol · Ceftolozane-tazobactam</td>
+            <td colspan="2">Safety and efficacy in neonates/children not established.</td>
+            <td>Paediatric ID consult advisable.</td>
+          </tr>
+          <tr>
+            <td>Minocycline</td>
+            <td colspan="2">Safety and efficacy in neonates not established. IV/oral 4 mg/kg/day divided Q12H (max 200 mg/dose). Only for children &gt;8 years old.</td>
+            <td>Monotherapy not recommended for bloodstream and urinary tract infections.</td>
+          </tr>
+          <tr>
+            <td>Fosfomycin (oral)</td>
+            <td colspan="2">Not used routinely. Consult ID. 2 g PO × 1 dose (where used).</td>
+            <td>Not used routinely in children under 12 years old.</td>
+          </tr>
+          <tr>
+            <td>Ertapenem</td>
+            <td>Safety and efficacy in neonates not established</td>
+            <td>30 mg/kg/day divided Q12H (max 500 mg/dose)</td>
+            <td>Not routinely used in infants &lt;3 months. Poor activity against <em>Pseudomonas</em>, <em>Enterococcus</em>, <em>Acinetobacter</em>, <em>S. maltophilia</em>. Not for CNS infection.</td>
+          </tr>
+          <tr>
+            <td>Aztreonam</td>
+            <td>Not used routinely — consult ID</td>
+            <td>90–120 mg/kg/day divided Q8H (max 8 g/day)</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Amikacin</td>
+            <td>≤29 wk: 14 mg/kg Q48H (≤D7 OL), 12 mg/kg Q36H (D8–D28 OL), 12 mg/kg Q24H (≥D29)<br>30–34 wk: 12 mg/kg Q36H (≤D7 OL), 12 mg/kg Q24H (≥D8 OL)<br>≥35 wk: 12 mg/kg Q24H</td>
+            <td>15–20 mg/kg Q24H</td>
+            <td>Adjust based on serum concentrations. Neonates — trough &lt;5 µg/mL, peak 20–30 µg/mL; paediatric — trough &lt;1 µg/mL, peak 60 µg/mL. Use with caution in renal insufficiency and family history of ototoxicity.</td>
+          </tr>
+          <tr>
+            <td>Levofloxacin</td>
+            <td>Safety and efficacy not established</td>
+            <td>16–20 mg/kg/day divided Q12H (max 750 mg/day)</td>
+            <td>Monotherapy recommended for mild infection; combination with a second active agent for serious infection.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><small>If paediatric doses exceed recommended adult doses, cap the doses at the adult dose. Cefiderocol and imipenem-cilastatin-relebactam are not registered in Malaysia.</small></p>
+  </div>
+</details>
+
+<div id="empty">
+  <strong>No matching content.</strong><br>
+  Try a different term — e.g. <em>cefiderocol</em>, <em>NDM</em>, <em>cystitis</em>, <em>un-tagging</em>, <em>sulbactam</em>.
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h4>Source &amp; citation</h4>
+    <p>
+      Malaysian Society of Infectious Diseases and Chemotherapy (MSIDC).
+      <em>Consensus Guidelines on the Treatment of Multidrug Resistant Gram Negatives</em>, First Edition.
+      Kuala Lumpur: MSIDC; 2024.
+    </p>
+    <p>
+      Published by the Malaysian Society of Infectious Diseases and Chemotherapy, c/o Department of Medical Microbiology &amp; Immunology,
+      Faculty of Medicine, 16th Floor, Pre-Clinical Building, Jalan Yaacob Latif, Bandar Tun Razak, Cheras 56000, Kuala Lumpur, Malaysia.
+      First published 2024. Copyright © MSIDC 2024. All rights reserved.
+    </p>
+    <p>
+      This guideline was made possible by an educational grant from Pfizer Malaysia Sdn Bhd. The sponsor provided financial support but had no influence
+      over the content. The content and opinions expressed are solely those of the expert panel.
+    </p>
+
+    <h4>Disclaimer</h4>
+    <p>
+      The recommendations in the source guideline are based on current medical knowledge and practices, which are subject to change as new information
+      becomes available. The guidelines do not cover all possible clinical scenarios and do not include comprehensive drug information such as
+      contraindications, precautions and drug–drug interactions. Clinical practice requires that users understand the individual clinical situation and
+      exercise independent professional judgement when basing therapy on these guidelines. For complicated situations, this document is not a substitute
+      for appropriate expert advice. The authors and publishers of the source guideline will not be held liable for any direct, indirect, consequential or
+      other damages arising therefrom.
+    </p>
+    <p>
+      This HTML page is a condensed, unofficial quick-reference adaptation for educational use by anaesthetists and intensivists. It is not a substitute
+      for the full guideline or for specialist advice. Always confirm antimicrobial susceptibility results, local resistance patterns, drug availability and
+      dosing (including renal adjustment and therapeutic drug monitoring) with your pharmacy, microbiology and infectious diseases teams.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var searchInput   = document.getElementById('search');
+  var clearBtn      = document.getElementById('clearBtn');
+  var expandAllBtn  = document.getElementById('expandAll');
+  var collapseAllBtn= document.getElementById('collapseAll');
+  var hitsEl        = document.getElementById('hits');
+  var emptyEl       = document.getElementById('empty');
+  var cards         = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+
+  /* ---------- highlight helpers ---------- */
+  function clearMarks(root){
+    var marks = root.querySelectorAll('mark.hl');
+    for (var i = 0; i < marks.length; i++){
+      var m = marks[i];
+      var p = m.parentNode;
+      if (!p) continue;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    }
+  }
+
+  function markMatches(root, term){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [], n;
+    while ((n = walker.nextNode())){
+      var p = n.parentNode;
+      if (!p) continue;
+      var tag = p.nodeName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') continue;
+      if (!n.nodeValue || n.nodeValue.toLowerCase().indexOf(term) === -1) continue;
+      nodes.push(n);
+    }
+    for (var k = 0; k < nodes.length; k++){
+      var node = nodes[k];
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var i = 0, idx;
+      while ((idx = lower.indexOf(term, i)) !== -1){
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mk = document.createElement('mark');
+        mk.className = 'hl';
+        mk.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mk);
+        i = idx + term.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      node.parentNode.replaceChild(frag, node);
+    }
+  }
+
+  /* ---------- search ---------- */
+  function runSearch(){
+    var q = searchInput.value.trim().toLowerCase();
+
+    for (var i = 0; i < cards.length; i++){
+      clearMarks(cards[i]);
+    }
+
+    if (q.length < 2){
+      for (var j = 0; j < cards.length; j++){
+        cards[j].hidden = false;
+      }
+      emptyEl.classList.remove('show');
+      hitsEl.textContent = '';
+      return;
+    }
+
+    var count = 0;
+    for (var m = 0; m < cards.length; m++){
+      var card = cards[m];
+      var match = card.textContent.toLowerCase().indexOf(q) !== -1;
+      if (match){
+        count++;
+        card.hidden = false;
+        card.open = true;
+        markMatches(card, q);
+      } else {
+        card.hidden = true;
+      }
+    }
+
+    if (count > 0){
+      emptyEl.classList.remove('show');
+      hitsEl.textContent = count + (count === 1 ? ' section' : ' sections') + ' matched';
+    } else {
+      emptyEl.classList.add('show');
+      hitsEl.textContent = 'no matches';
+    }
+  }
+
+  var debounce;
+  searchInput.addEventListener('input', function(){
+    clearTimeout(debounce);
+    debounce = setTimeout(runSearch, 130);
+  });
+
+  searchInput.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      searchInput.value = '';
+      runSearch();
+    }
+  });
+
+  clearBtn.addEventListener('click', function(){
+    searchInput.value = '';
+    runSearch();
+    searchInput.focus();
+  });
+
+  expandAllBtn.addEventListener('click', function(){
+    for (var i = 0; i < cards.length; i++){
+      if (!cards[i].hidden) cards[i].open = true;
+    }
+  });
+
+  collapseAllBtn.addEventListener('click', function(){
+    for (var i = 0; i < cards.length; i++){
+      cards[i].open = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>
