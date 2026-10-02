@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>aSAH Quick Reference — Anaesthesia &amp; Critical Care</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{
+    --bg:#f4f7fa; --card:#ffffff; --ink:#15202b; --muted:#5c6b7a;
+    --line:#dde5ee; --accent:#0b6ea8; --accent-dk:#0a3d5c;
+    --red:#b3261e; --red-bg:#fdecea; --amber:#a86200; --amber-bg:#fff6e5;
+    --green:#0e7c66; --green-bg:#e7f5f1; --blue-bg:#eaf3fa;
+    --radius:10px;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);line-height:1.55;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 14px 70px}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:linear-gradient(135deg,#0a3d5c 0%,#0b6ea8 60%,#0e8fb8 100%);
+    color:#fff;padding:22px 14px 20px;
+  }
+  header.top .inner{max-width:1060px;margin:0 auto}
+  header.top h1{margin:0 0 4px;font-size:1.32rem;letter-spacing:.2px}
+  header.top p{margin:0;font-size:.86rem;opacity:.9}
+  .badges{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .badge{
+    font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+    padding:2px 8px;border-radius:999px;
+  }
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:30;
+    background:rgba(244,247,250,.94);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:10px 14px;
+  }
+  .toolbar .inner{max-width:1060px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .searchbox{position:relative;flex:1 1 260px;min-width:200px}
+  .searchbox input{
+    width:100%;padding:9px 34px 9px 34px;border:1px solid var(--line);border-radius:8px;
+    font-size:.92rem;background:#fff;color:var(--ink);outline:none;
+  }
+  .searchbox input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(11,110,168,.13)}
+  .searchbox .ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.9rem}
+  .searchbox .clr{
+    position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;padding:4px 6px;border-radius:6px;
+  }
+  .searchbox .clr:hover{background:#eef3f8;color:var(--ink)}
+  .btn{
+    border:1px solid var(--line);background:#fff;color:var(--accent-dk);
+    padding:8px 12px;border-radius:8px;font-size:.82rem;cursor:pointer;white-space:nowrap;
+  }
+  .btn:hover{background:var(--blue-bg);border-color:#bcd6e8}
+  .count{font-size:.78rem;color:var(--muted);white-space:nowrap}
+
+  /* ---------- Cards ---------- */
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    margin:12px 0;overflow:hidden;box-shadow:0 1px 2px rgba(16,40,60,.04);
+  }
+  .card[hidden]{display:none}
+  .card > summary{
+    cursor:pointer;list-style:none;padding:12px 14px;
+    display:flex;align-items:center;gap:10px;
+    font-weight:650;font-size:.98rem;color:var(--accent-dk);
+    background:#fbfdff;user-select:none;
+  }
+  .card > summary::-webkit-details-marker{display:none}
+  .card > summary:hover{background:#f2f8fd}
+  .card[open] > summary{border-bottom:1px solid var(--line)}
+  .chev{
+    display:inline-block;transition:transform .18s ease;color:var(--accent);
+    font-size:.8rem;flex:0 0 auto;
+  }
+  .card[open] .chev{transform:rotate(90deg)}
+  .summary-tag{
+    margin-left:auto;font-size:.66rem;font-weight:700;letter-spacing:.6px;
+    text-transform:uppercase;padding:2px 7px;border-radius:999px;flex:0 0 auto;
+  }
+  .t-red{background:var(--red-bg);color:var(--red)}
+  .t-amber{background:var(--amber-bg);color:var(--amber)}
+  .t-green{background:var(--green-bg);color:var(--green)}
+  .t-blue{background:var(--blue-bg);color:var(--accent)}
+
+  .body{padding:12px 14px 16px;font-size:.9rem}
+  .body > *:first-child{margin-top:0}
+  .body > *:last-child{margin-bottom:0}
+  .body p{margin:.5em 0}
+  .body ul,.body ol{margin:.4em 0 .7em;padding-left:1.15em}
+  .body li{margin:.22em 0}
+  .body h4{margin:1em 0 .35em;font-size:.83rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+  .body strong{color:#0d2436}
+
+  /* callouts */
+  .note{
+    border-left:4px solid var(--accent);background:var(--blue-bg);
+    padding:8px 11px;border-radius:0 7px 7px 0;margin:.7em 0;font-size:.87rem;
+  }
+  .note.warn{border-left-color:var(--red);background:var(--red-bg)}
+  .note.caution{border-left-color:#c98a00;background:var(--amber-bg)}
+  .note.ok{border-left-color:var(--green);background:var(--green-bg)}
+  .note b{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px;opacity:.85}
+
+  /* number grid */
+  .nums{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:8px;margin:.4em 0}
+  .num{
+    border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:#fbfdff;
+  }
+  .num b{display:block;font-size:.98rem;color:var(--accent-dk);line-height:1.25}
+  .num span{display:block;font-size:.72rem;color:var(--muted);margin-top:2px}
+
+  /* tables */
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:8px;margin:.6em 0}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:.85rem}
+  th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:#f2f8fd;color:var(--accent-dk);font-size:.75rem;text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:nth-child(even){background:#fafcfe}
+  .tw.small table{min-width:420px}
+
+  /* bar chart */
+  .chart{margin:.5em 0 .2em}
+  .bar-row{display:flex;align-items:center;gap:10px;margin:5px 0}
+  .bar-label{flex:0 0 190px;font-size:.8rem;color:#243545}
+  .bar-track{flex:1 1 auto;background:#eef3f8;border-radius:5px;height:20px;overflow:hidden;min-width:70px}
+  .bar{height:100%;border-radius:5px;display:flex;align-items:center;justify-content:flex-end;
+       padding-right:6px;color:#fff;font-size:.7rem;font-weight:700;min-width:34px}
+  .chart-note{font-size:.74rem;color:var(--muted);margin-top:6px}
+  @media (max-width:560px){
+    .bar-label{flex:0 0 118px;font-size:.72rem}
+  }
+
+  /* svg figure */
+  figure{margin:.7em 0;padding:0}
+  figure svg{width:100%;height:auto;display:block;background:#fbfdff;border:1px solid var(--line);border-radius:8px}
+  figcaption{font-size:.75rem;color:var(--muted);margin-top:6px;line-height:1.45}
+
+  mark.hl{background:#ffe680;color:#2a2200;padding:0 1px;border-radius:2px}
+
+  .empty{display:none;text-align:center;color:var(--muted);padding:26px 10px;font-size:.9rem}
+  .empty.show{display:block}
+
+  footer.src{
+    margin-top:26px;padding:14px;border:1px dashed var(--line);border-radius:var(--radius);
+    background:#fbfdff;font-size:.78rem;color:var(--muted);
+  }
+  footer.src h3{margin:0 0 6px;font-size:.82rem;color:var(--accent-dk);text-transform:uppercase;letter-spacing:.6px}
+  footer.src ol{margin:.3em 0;padding-left:1.3em}
+  footer.src li{margin:.25em 0}
+  footer.src a{color:var(--accent);text-decoration:none;word-break:break-word}
+  footer.src a:hover{text-decoration:underline}
+
+  .disclaimer{
+    font-size:.74rem;color:var(--muted);text-align:center;margin-top:14px;line-height:1.5;
+  }
+
+  @media print{
+    .toolbar,header.top .badges{display:none}
+    body{background:#fff}
+    .card{break-inside:avoid;box-shadow:none}
+    .card > summary{background:#fff}
+    mark.hl{background:none;color:inherit}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <h1>Aneurysmal Subarachnoid Hemorrhage — Quick Reference</h1>
+    <p>Anaesthesia &amp; Neurocritical Care • Clinical notes only</p>
+    <div class="badges">
+      <span class="badge">Neuro-emergency</span>
+      <span class="badge">Clipping</span>
+      <span class="badge">Coiling</span>
+      <span class="badge">ICP / CPP</span>
+      <span class="badge">Vasospasm</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="inner">
+    <div class="searchbox">
+      <span class="ico">🔍</span>
+      <input id="search" type="search" placeholder="Search — e.g. nimodipine, PaCO2, adenosine, temporary clip…" autocomplete="off" aria-label="Search clinical notes">
+      <button class="clr" id="clearBtn" type="button" title="Clear" aria-label="Clear search">✕</button>
+    </div>
+    <button class="btn" id="expandAll" type="button">Expand all</button>
+    <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<div class="wrap" id="content">
+
+<!-- ============ 1. CRITICAL NUMBERS ============ -->
+<details class="card" open>
+  <summary><span class="chev">▸</span><span class="title">Critical Numbers &amp; Thresholds</span><span class="summary-tag t-red">Quick</span></summary>
+  <div class="body">
+    <div class="nums">
+      <div class="num"><b>SBP &lt; 160 mmHg</b><span>Until aneurysm secured</span></div>
+      <div class="num"><b>MAP &lt; 110 mmHg</b><span>Until aneurysm secured</span></div>
+      <div class="num"><b>CPP 60–70 mmHg</b><span>Maintain</span></div>
+      <div class="num"><b>PaCO₂ 30–35 mmHg</b><span>Normo → mild hypocarbia</span></div>
+      <div class="num"><b>Glucose 80–180 mg/dL</b><span>Avoid hyperglycaemia</span></div>
+      <div class="num"><b>Temp: avoid hyperthermia</b><span>Hypothermia NOT recommended</span></div>
+      <div class="num"><b>Nimodipine 60 mg q4h</b><span>Start &lt;48 h, continue 21 days</span></div>
+      <div class="num"><b>Temporary clip ≤ 10 min</b><span>MCA territory tolerance</span></div>
+      <div class="num"><b>BP +10–20%</b><span>During temporary clipping</span></div>
+      <div class="num"><b>Adenosine 0.3–0.5 mg/kg</b><span>≈1 min moderate hypotension</span></div>
+      <div class="num"><b>GCS ≤ 8</b><span>Intubate</span></div>
+      <div class="num"><b>H&amp;H ≥ 2 or GCS ≤ 12</b><span>EVD placement threshold</span></div>
+      <div class="num"><b>Rebleed 4–14%</b><span>Within first 24 h</span></div>
+      <div class="num"><b>Vasospasm day 3–14</b><span>→ delayed cerebral ischaemia</span></div>
+      <div class="num"><b>Hydrocephalus 20–30%</b><span>~20% need VP shunt</span></div>
+      <div class="num"><b>Hyponatraemia up to 30%</b><span>CSW &gt; SIADH</span></div>
+      <div class="num"><b>QTc &gt; 550 ms</b><span>Risk of torsades de pointes</span></div>
+      <div class="num"><b>No extubation within 1 h</b><span>→ immediate head CT</span></div>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 2. PRESENTATION ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Clinical Presentation &amp; Focal Localising Signs</span><span class="summary-tag t-blue">Diagnosis</span></summary>
+  <div class="body">
+    <p><strong>Classic:</strong> sudden-onset severe headache ("thunderclap", "worst headache of my life"). Half of patients lose consciousness. Also nausea/vomiting, nuchal rigidity, photophobia.</p>
+    <p><strong>Examination:</strong> hypertension and signs of meningismus are common.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Neurological finding</th><th>Likely source</th></tr></thead>
+        <tbody>
+          <tr><td>Third nerve (CN III) palsy</td><td>Posterior communicating artery aneurysm</td></tr>
+          <tr><td>Sixth nerve (CN VI) palsy</td><td>Elevated ICP</td></tr>
+          <tr><td>Hemiparesis and aphasia</td><td>Middle cerebral artery aneurysm</td></tr>
+          <tr><td>Retinal / pre-retinal haemorrhages</td><td>Elevated ICP</td></tr>
+          <tr><td>Bilateral leg weakness and abulia</td><td>Anterior communicating artery aneurysm</td></tr>
+          <tr><td>Brainstem signs</td><td>Basilar artery aneurysm</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note warn">
+      <b>Do not miss</b>
+      Initial haemorrhage is the primary cause of death, followed by rebleeding. About 10–15% die before hospitalisation and 25% die within the first 48 hours.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 3. DIAGNOSIS ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Diagnostic Pathway</span><span class="summary-tag t-blue">Diagnosis</span></summary>
+  <div class="body">
+    <ul>
+      <li><strong>Non-contrast CT</strong> is the cornerstone. Sensitivity is highest in the first 6 hours and falls to <strong>58% by day 5</strong>.</li>
+      <li><strong>Lumbar puncture</strong> if CT is normal. Classic findings: elevated opening pressure, elevated red blood cell count, and <strong>xanthochromia</strong> from haemoglobin breakdown products.</li>
+      <li>Once SAH is confirmed, determine the aetiology with angiography — <strong>digital subtraction angiography (DSA)</strong> or <strong>CT angiography</strong>.</li>
+    </ul>
+    <div class="note">
+      <b>Reminder</b>
+      aSAH is a neurological emergency. Elevated blood pressure on presentation is associated with greater haematoma expansion, neurological deterioration, death and dependency.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 4. GRADING ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Grading Scales — Hunt &amp; Hess and Modified Fisher</span><span class="summary-tag t-blue">Diagnosis</span></summary>
+  <div class="body">
+    <h4>Hunt &amp; Hess (prognosis / outcome)</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Grade</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>Unruptured aneurysm</td></tr>
+          <tr><td>I</td><td>Asymptomatic, or minimal headache and slight nuchal rigidity</td></tr>
+          <tr><td>Ia</td><td>Fixed neurological deficit without other signs of SAH</td></tr>
+          <tr><td>II</td><td>Moderate to severe headache, nuchal rigidity, no deficit other than cranial nerve palsy</td></tr>
+          <tr><td>III</td><td>Drowsiness, confusion, or mild focal deficit</td></tr>
+          <tr><td>IV</td><td>Stupor, moderate to severe hemiparesis, early decerebrate rigidity, vegetative state</td></tr>
+          <tr><td>V</td><td>Deep coma, decerebrate rigidity, moribund appearance</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted)">Higher score correlates with lower survival. <strong>H&amp;H ≥ 2</strong> is a common threshold for EVD placement.</p>
+
+    <h4>Modified Fisher Grade (mFG) — risk of vasospasm / delayed cerebral ischaemia</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Grade</th><th>CT appearance</th></tr></thead>
+        <tbody>
+          <tr><td>mFG 0</td><td>No SAH or IVH</td></tr>
+          <tr><td>mFG 1</td><td>Minimal SAH, no IVH</td></tr>
+          <tr><td>mFG 2</td><td>Minimal SAH with bilateral IVH</td></tr>
+          <tr><td>mFG 3</td><td>Thick SAH (completely filling ≥1 cistern or fissure) without bilateral IVH</td></tr>
+          <tr><td>mFG 4</td><td>Thick SAH with bilateral IVH</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 5. LOCATIONS ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Aneurysm Locations &amp; Relative Incidence</span><span class="summary-tag t-blue">Anatomy</span></summary>
+  <div class="body">
+    <p>Aneurysms are typically located at <strong>branching points within the circle of Willis</strong>. Most rupture between <strong>50–55 years</strong> of age.</p>
+    <div class="chart">
+      <div class="bar-row"><span class="bar-label">Anterior communicating a.</span><div class="bar-track"><div class="bar" style="width:100%;background:#b3261e">30%</div></div></div>
+      <div class="bar-row"><span class="bar-label">Posterior communicating a.</span><div class="bar-track"><div class="bar" style="width:83%;background:#c1440e">25%</div></div></div>
+      <div class="bar-row"><span class="bar-label">Middle cerebral a.</span><div class="bar-track"><div class="bar" style="width:67%;background:#d16a00">20%</div></div></div>
+      <div class="bar-row"><span class="bar-label">Lateral carotid bifurcation</span><div class="bar-track"><div class="bar" style="width:27%;background:#e0a020">8%</div></div></div>
+      <div class="bar-row"><span class="bar-label">Basilar tip</span><div class="bar-track"><div class="bar" style="width:23%;background:#e5ae35">7%</div></div></div>
+      <div class="bar-row"><span class="bar-label">Pericallosal a.</span><div class="bar-track"><div class="bar" style="width:13%;background:#eec15a">4%</div></div></div>
+      <div class="bar-row"><span class="bar-label">Posterior inferior cerebellar a.</span><div class="bar-track"><div class="bar" style="width:10%;background:#f2d27a;color:#4a3a00">3%</div></div></div>
+    </div>
+    <p class="chart-note">Simplified from the incidence heat-map in the source. Common sites: anterior cerebral, anterior communicating, posterior communicating, middle cerebral, and basilar arteries.</p>
+    <div class="note caution">
+      <b>Risk factors for rupture</b>
+      Aneurysm size and location (larger, posterior circulation), <strong>smoking</strong> (most important preventable), hypertension, genetic/family history, prior aSAH, moderate-to-heavy alcohol use, sympathomimetics (methamphetamine, cocaine), oestrogen deficiency, antithrombotic therapy.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 6. CARDIAC ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Cardiac Complications — Neurogenic Stunned Myocardium</span><span class="summary-tag t-red">Complication</span></summary>
+  <div class="body">
+    <ul>
+      <li>SAH can cause large, <strong>reversible myocardial "stunning"</strong> injury; mechanism is thought to be catecholamine-mediated.</li>
+      <li><strong>Troponin</strong> commonly rises, typically <em>below</em> the diagnostic threshold for myocardial infarction. Peak troponin correlates with severity of neurological injury and myocardial dysfunction.</li>
+      <li>Echocardiography resembles <strong>Takotsubo cardiomyopathy</strong>: apical and midventricular akinesis with preserved base; ejection fraction commonly <strong>10–30%</strong>. Variant forms with midventricular or basal akinesis also occur.</li>
+      <li>Dysfunction is reversible with a good recovery profile.</li>
+      <li><strong>ECG:</strong> classic deep "canyon" T waves, nonspecific T-wave changes, QT prolongation, ST-segment depression, U waves.</li>
+      <li><strong>QTc &gt; 550 ms</strong> occurs especially in severe SAH and is associated with malignant ventricular rhythms including <strong>torsades de pointes</strong>.</li>
+    </ul>
+    <div class="note">
+      <b>Management</b>
+      Supportive. Enhanced invasive cardiovascular monitoring (echocardiography, pulmonary artery catheter) and cardiovascular medications — inotropes, vasopressors, antiarrhythmics. If ventricular function is adequate, non-ischaemic ECG patterns need no specific intervention beyond attention to the possibility of dysrhythmias.
+    </div>
+    <div class="note caution">
+      <b>Anaesthetic caution</b>
+      Beta-blockers (labetalol, esmolol) should be used with caution in stress-induced cardiomyopathy.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 7. EARLY MGMT: AIRWAY ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Early Management — Oxygenation, Ventilation &amp; EVD</span><span class="summary-tag t-amber">Early</span></summary>
+  <div class="body">
+    <p>Initial management focuses on stabilising life-threatening conditions, optimising cerebral perfusion, and minimising further neurological injury.</p>
+    <h4>Oxygenation &amp; ventilation</h4>
+    <ul>
+      <li>Ensure adequate oxygenation, ventilation and a patent airway.</li>
+      <li><strong>Hypoxia worsens brain injury</strong> — avoid. It induces cerebral vasoconstriction and ischaemia.</li>
+      <li><strong>Both hypo- and hypercarbia worsen neurological outcome.</strong> Hypercarbia causes cerebral vasodilation → intracranial hypertension and decreased cerebral perfusion.</li>
+    </ul>
+    <h4>Indications for tracheal intubation</h4>
+    <ul>
+      <li>Comatose patient with <strong>GCS ≤ 8</strong></li>
+      <li>Hypoxia or hypoventilation</li>
+      <li>Haemodynamic instability</li>
+      <li>Deep sedation or general anaesthesia needed for imaging</li>
+    </ul>
+    <h4>Restoration of cerebral perfusion</h4>
+    <ul>
+      <li>Early <strong>external ventricular drain (EVD)</strong> lowers raised ICP and restores cerebral perfusion; it also facilitates surgical exposure during clipping.</li>
+      <li>Common thresholds for EVD placement: <strong>ventriculomegaly with GCS ≤ 12</strong>, and <strong>Hunt &amp; Hess grade ≥ 2</strong>.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 8. BP + NIMODIPINE ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Blood Pressure Control &amp; Nimodipine</span><span class="summary-tag t-red">Early</span></summary>
+  <div class="body">
+    <h4>Blood pressure control</h4>
+    <ul>
+      <li>Strict control is critical: maintain <strong>SBP &lt; 160 mmHg</strong> or <strong>MAP &lt; 110 mmHg</strong>.</li>
+      <li>Common pharmacological choices: intravenous <strong>nicardipine, esmolol, labetalol, clevidipine</strong>.</li>
+      <li><strong>Avoid nitroprusside</strong> — risk of increased cerebral blood volume and ICP.</li>
+      <li><strong>Avoid hypotension</strong> as well.</li>
+    </ul>
+    <h4>Nimodipine</h4>
+    <ul>
+      <li><strong>60 mg orally or via nasogastric tube every 4 hours</strong> — improves outcomes in aSAH; standard of care.</li>
+      <li>Start <strong>within 48 hours</strong> of aSAH and continue for <strong>21 days</strong>.</li>
+      <li>Proposed neuroprotective mechanisms: dilation of small arteries not visible on angiograms; reduction of calcium-dependent excitotoxicity; decreased platelet aggregation.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 9. OTHER EARLY ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Anticoagulation Reversal, Seizure Prophylaxis &amp; Supportive Care</span><span class="summary-tag t-amber">Early</span></summary>
+  <div class="body">
+    <h4>Reversal of anticoagulation</h4>
+    <ul>
+      <li>Discontinue all antithrombotic agents and reverse anticoagulation as needed.</li>
+    </ul>
+    <h4>Seizure prophylaxis</h4>
+    <ul>
+      <li>Prophylactic antiseizure medications after aSAH are <strong>controversial</strong> — they have been associated with <strong>worse neurological and cognitive outcomes</strong>.</li>
+    </ul>
+    <h4>General supportive measures</h4>
+    <ul>
+      <li>Adequate analgesia for headache and neck pain</li>
+      <li>Maintenance of <strong>euvolemia</strong> with crystalloids and monitoring of urine output</li>
+      <li>DVT prophylaxis with intermittent pneumatic compression devices</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 10. TREATMENT OPTIONS ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Treatment Options — Clipping vs Coiling</span><span class="summary-tag t-green">Treatment</span></summary>
+  <div class="body">
+    <div class="tw">
+      <table>
+        <thead><tr><th></th><th>Surgical clipping</th><th>Endovascular coiling</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Technique</strong></td>
+            <td>Craniotomy; clip placed across the neck of the aneurysm</td>
+            <td>Coils placed into the aneurysm lumen → thrombus formation and obliteration of the sac. Also stent-assisted and balloon-assisted coiling</td>
+          </tr>
+          <tr>
+            <td><strong>Preferred when</strong></td>
+            <td>Large intraparenchymal haematoma; middle cerebral artery aneurysm; patients unlikely to be compliant with long-term follow-up</td>
+            <td>Geriatric patients, especially high-grade aSAH from rupture of basilar apex aneurysms</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 660 250" role="img" aria-label="Simplified diagram comparing surgical clipping and endovascular coiling of an intracranial aneurysm">
+        <!-- ===== Panel A : Clipping ===== -->
+        <text x="30" y="24" font-size="15" font-weight="700" fill="#0a3d5c">A. Surgical clipping</text>
+        <!-- parent vessel -->
+        <rect x="30" y="162" width="270" height="34" rx="17" fill="#f3cccc" stroke="#a85050" stroke-width="2"/>
+        <!-- neck -->
+        <rect x="142" y="146" width="46" height="22" fill="#f3cccc" stroke="#a85050" stroke-width="2"/>
+        <!-- dome -->
+        <path d="M 130 150 C 130 70, 200 70, 200 150 Z" fill="#e39a9a" stroke="#a85050" stroke-width="2"/>
+        <!-- clip blades -->
+        <rect x="118" y="136" width="100" height="10" rx="5" fill="#4b5563"/>
+        <rect x="118" y="152" width="100" height="10" rx="5" fill="#4b5563"/>
+        <!-- spring / handle -->
+        <rect x="214" y="140" width="10" height="18" fill="#4b5563"/>
+        <circle cx="234" cy="149" r="14" fill="none" stroke="#4b5563" stroke-width="6"/>
+        <!-- labels -->
+        <text x="165" y="106" font-size="11" fill="#5c3b3b" text-anchor="middle">Aneurysm sac</text>
+        <text x="255" y="188" font-size="11" fill="#5c3b3b">Parent artery</text>
+        <text x="168" y="228" font-size="11" fill="#37474f" text-anchor="middle">Clip across the neck</text>
+
+        <!-- divider -->
+        <line x1="330" y1="20" x2="330" y2="238" stroke="#dde5ee" stroke-width="2"/>
+
+        <!-- ===== Panel B : Coiling ===== -->
+        <text x="360" y="24" font-size="15" font-weight="700" fill="#0a3d5c">B. Endovascular coiling</text>
+        <rect x="360" y="162" width="270" height="34" rx="17" fill="#f3cccc" stroke="#a85050" stroke-width="2"/>
+        <rect x="472" y="146" width="46" height="22" fill="#f3cccc" stroke="#a85050" stroke-width="2"/>
+        <path d="M 460 150 C 460 70, 530 70, 530 150 Z" fill="#f7d7d7" stroke="#a85050" stroke-width="2"/>
+        <!-- microcatheter -->
+        <path d="M 372 179 L 470 179 L 495 150" fill="none" stroke="#607d8b" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round"/>
+        <!-- coils -->
+        <ellipse cx="495" cy="136" rx="30" ry="8" fill="none" stroke="#8b2e2e" stroke-width="3"/>
+        <ellipse cx="495" cy="121" rx="24" ry="7" fill="none" stroke="#8b2e2e" stroke-width="3"/>
+        <ellipse cx="495" cy="107" rx="17" ry="6" fill="none" stroke="#8b2e2e" stroke-width="3"/>
+        <ellipse cx="495" cy="95" rx="10" ry="5" fill="none" stroke="#8b2e2e" stroke-width="3"/>
+        <text x="495" y="106" font-size="11" fill="#5c3b3b" text-anchor="middle" opacity="0">coils</text>
+        <text x="585" y="188" font-size="11" fill="#5c3b3b" text-anchor="middle">Parent artery</text>
+        <text x="495" y="228" font-size="11" fill="#37474f" text-anchor="middle">Coils fill the sac → thrombosis</text>
+      </svg>
+      <figcaption>Simplified schematic (not to scale). <strong>A.</strong> A clip is placed across the neck of the aneurysm after isolating the feeding vessels. <strong>B.</strong> Coils are delivered into the aneurysm lumen via a microcatheter, promoting thrombus formation and obliteration of the sac. Stent- and balloon-assisted coiling are additional endovascular options.</figcaption>
+    </figure>
+  </div>
+</details>
+
+<!-- ============ 11. ANAESTHETIC GOALS ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Anaesthetic Goals for Surgical Clipping</span><span class="summary-tag t-amber">Anaesthesia</span></summary>
+  <div class="body">
+    <ul>
+      <li>Preventing <strong>rebleeding</strong></li>
+      <li>Maintaining <strong>cerebral perfusion</strong></li>
+      <li>Facilitating surgical exposure by preventing / managing <strong>brain swelling</strong></li>
+      <li>Facilitating intraoperative neurophysiological monitoring (<strong>IONM</strong>)</li>
+      <li>Facilitating <strong>temporary aneurysm clipping</strong></li>
+      <li>Anticipating and managing <strong>aneurysm rupture</strong></li>
+      <li>Ensuring <strong>smooth emergence</strong> and neurological assessment</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 12. INDUCTION ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Induction of Anaesthesia</span><span class="summary-tag t-amber">Anaesthesia</span></summary>
+  <div class="body">
+    <ul>
+      <li>Primary goal: <strong>avoid hypertension</strong> in response to laryngoscopy and intubation — it increases the risk of rebleeding.</li>
+      <li>Strategies: ensure adequate anaesthetic depth <em>before</em> laryngoscopy; use short-acting opioids or antihypertensive agents alongside induction drugs.</li>
+      <li><strong>Hypotension following induction increases the risk of cerebral ischaemia</strong> and should be aggressively treated with vasopressors.</li>
+      <li>A <strong>pre-induction arterial line</strong> allows continuous blood pressure monitoring — consider in most patients, especially those with cardiac dysfunction, elevated troponin levels, and haemodynamic instability.</li>
+      <li>Avoid hypo- and hypercarbia during bag-mask ventilation.</li>
+      <li><strong>Succinylcholine</strong> may be used for rapid sequence induction, if needed.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 13. MONITORING ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Intraoperative Monitoring</span><span class="summary-tag t-amber">Anaesthesia</span></summary>
+  <div class="body">
+    <div class="tw">
+      <table>
+        <thead><tr><th>Monitor</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Standard ASA monitors</td><td>Baseline requirement</td></tr>
+          <tr><td>Arterial line</td><td>Continuous BP plus frequent arterial blood gases, glucose and electrolytes. <strong>Ideally inserted prior to induction</strong>; may be deferred until post-induction for patient comfort or team preference in patients at low risk for aneurysm rupture</td></tr>
+          <tr><td>Central venous catheter</td><td>Usually <strong>not needed</strong> unless postoperative infusion of vasopressors and inotropes is anticipated</td></tr>
+          <tr><td>Large-bore peripheral access</td><td>Secure in preparation for <strong>high blood loss</strong></td></tr>
+          <tr><td>ICP / CPP</td><td>Monitor if an external ventricular drain is present</td></tr>
+          <tr><td>IONM (SSEP, MEP)</td><td>Early detection of cerebral ischaemia; dictates choice of anaesthetic agents</td></tr>
+          <tr><td>EEG</td><td>May be needed if burst suppression is required during temporary clipping</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 14. MAINTENANCE ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Anaesthesia Maintenance &amp; Haemodynamic Targets</span><span class="summary-tag t-amber">Anaesthesia</span></summary>
+  <div class="body">
+    <ul>
+      <li>Choice of agents depends on neurological status, comorbidities, treatment approach (clipping vs coiling) and the need for IONM. A <strong>balanced technique</strong> with inhaled and intravenous agents is commonly used.</li>
+      <li><strong>Propofol</strong> maintains coupling between cerebral metabolic rate of oxygen (CMRO₂) and cerebral blood flow (CBF).</li>
+      <li><strong>Inhaled anaesthetics</strong> have a dose-dependent effect on CBF: at &lt; 1 MAC they decrease CBF; at higher doses they cause cerebral vasodilation with uncoupling of CMRO₂ and CBF. The vasodilatory effect can be minimised by <strong>hyperventilation</strong>.</li>
+    </ul>
+    <h4>Haemodynamic goals</h4>
+    <div class="nums">
+      <div class="num"><b>SBP &lt; 160 mmHg</b><span>Before aneurysm secured</span></div>
+      <div class="num"><b>MAP &lt; 110 mmHg</b><span>Before aneurysm secured</span></div>
+      <div class="num"><b>CPP &gt; 60–70 mmHg</b><span>Maintain throughout</span></div>
+    </div>
+    <div class="note warn">
+      <b>Avoid hypertension before the aneurysm is secured</b>
+      Critical periods: placement of skull pins, patient positioning, and surgical stimulation.
+    </div>
+    <div class="note ok">
+      <b>During temporary clip placement</b>
+      Raise blood pressure by <strong>10–20%</strong> to ensure perfusion through collateral vessels. Blood pressure can be normalised after the aneurysm is secured.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 15. ICP / BRAIN RELAXATION ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">ICP Management &amp; Brain Relaxation</span><span class="summary-tag t-red">ICP</span></summary>
+  <div class="body">
+    <p>Strategies to facilitate surgical exposure:</p>
+    <ul>
+      <li>Maintaining an adequate depth of anaesthesia and analgesia</li>
+      <li>Optimising haemodynamic parameters</li>
+      <li>Optimising patient positioning to facilitate <strong>cerebral venous drainage</strong></li>
+      <li>Maintaining <strong>normocarbia to moderate hypocarbia (PaCO₂ 30–35 mmHg)</strong>. Brief hyperventilation to PaCO₂ &lt; 30 mmHg may be used if other ICP-reduction manoeuvres fail.</li>
+      <li>Hyperosmolar therapy — intravenous <strong>mannitol, furosemide, or hypertonic saline</strong></li>
+      <li><strong>CSF drainage</strong> via an external ventricular drain</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 16. TEMPORARY CLIPPING ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Temporary Clipping</span><span class="summary-tag t-red">Intraop</span></summary>
+  <div class="body">
+    <p>A temporary clip may be placed on the feeding vessel to facilitate dissection and accurate placement of a permanent clip around the neck of the aneurysm.</p>
+    <div class="note">
+      <b>Tolerance</b>
+      Clip application for a duration of <strong>up to 10 minutes</strong> is usually well tolerated without ischaemia of the middle cerebral artery territory.
+    </div>
+    <h4>Strategies to prevent ischaemic damage</h4>
+    <ul>
+      <li>Inducing temporary hypertension to promote collateral flow (<strong>10–20% increase in SBP</strong>)</li>
+      <li>Avoiding prolonged temporary clipping (usually <strong>&gt; 10 minutes</strong>)</li>
+      <li>Reducing CMRO₂ using <strong>burst suppression</strong></li>
+      <li>Using <strong>IONM</strong> to detect ischaemia and alert to a signal change</li>
+    </ul>
+    <div class="note warn">
+      <b>Not recommended</b>
+      Intraoperative <strong>hypothermia</strong> for neuroprotection is not recommended. Similarly, <strong>hyperthermia should be avoided</strong>.
+    </div>
+    <div class="note caution">
+      <b>Glycaemic control</b>
+      Intraoperative hyperglycaemia worsens neurological outcomes and should be avoided. No specific threshold is advised, but periodic glucose monitoring and maintaining blood glucose <strong>between 80 and 180 mg/dL</strong> is recommended.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 17. ADENOSINE ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Adenosine-Induced Temporary Flow Arrest</span><span class="summary-tag t-red">Intraop</span></summary>
+  <div class="body">
+    <ul>
+      <li>Useful in controlling bleeding if the aneurysm ruptures intraoperatively before clipping — the induced flow arrest provides a clear surgical field and allows the surgeon to control the source of bleeding.</li>
+      <li>A negative dromotropic and chronotropic agent with <strong>rapid onset and short duration</strong>; causes hypotension and can cause brief asystole of variable duration.</li>
+      <li><strong>Dose 0.3–0.5 mg/kg</strong> → approximately <strong>1 minute</strong> of moderate hypotension.</li>
+      <li>Recovery may be preceded by transient arrhythmias including <strong>atrial fibrillation, ventricular tachycardia, or atrial flutter</strong>.</li>
+      <li>May cause <strong>bronchospasm</strong> in patients with reactive airways disease.</li>
+    </ul>
+    <div class="note warn">
+      <b>Avoid in</b>
+      Coronary artery disease or abnormalities of the cardiac conduction system.
+    </div>
+    <div class="note ok">
+      <b>Check the result</b>
+      Intraoperative ICG video or conventional angiography are useful to check the status of the aneurysm and the patency of nearby arteries after clipping.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 18. EMERGENCE ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Emergence &amp; Postoperative Ventilation</span><span class="summary-tag t-amber">Anaesthesia</span></summary>
+  <div class="body">
+    <ul>
+      <li>Ensure a <strong>smooth emergence</strong> without coughing, straining, and hypertension.</li>
+      <li>Coughing and straining increase intrathoracic pressure and cause transient increases in both cerebral arterial and venous pressure — can cause oedema, bleeding, and a rise in ICP.</li>
+      <li>Short-acting opioids can be titrated to spontaneous ventilation towards the end of the procedure. <strong>Remifentanil or dexmedetomidine</strong> infusions may be continued throughout emergence to reduce airway reactivity.</li>
+      <li><strong>Avoid nitrous oxide</strong> — increased risks of pneumocephalus and postoperative nausea/vomiting.</li>
+      <li><strong>Lidocaine 1–1.5 mg/kg IV</strong> is effective for reducing airway reflexes.</li>
+      <li>Hypertension increases the risk of intracerebral haemorrhage after craniotomy and should be aggressively treated.</li>
+    </ul>
+    <h4>Agents for emergence hypertension</h4>
+    <div class="tw small">
+      <table>
+        <thead><tr><th>Class</th><th>Agents</th></tr></thead>
+        <tbody>
+          <tr><td>Beta-blockers</td><td>Labetalol, esmolol — <em>caution in stress-induced cardiomyopathy</em></td></tr>
+          <tr><td>Calcium channel blockers / vasodilators</td><td>Diltiazem, nicardipine, clevidipine, hydralazine</td></tr>
+          <tr><td>Alpha-2 agonist</td><td>Dexmedetomidine used during the procedure or prior to closing can reduce the response to emergence and hypertension in the PACU</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Deferring extubation — discuss with the neurosurgical team</h4>
+    <p>Indications for postoperative ventilation include (but are not limited to):</p>
+    <ul>
+      <li>Preoperative intubation</li>
+      <li>Low preoperative GCS</li>
+      <li>Extremely long surgery (&gt; 8–10 h)</li>
+      <li>Posterior circulation / posterior cranial fossa, or surgery close to the brainstem</li>
+      <li>High risk for the development of cerebral oedema</li>
+    </ul>
+    <p>The anaesthetic is still weaned off to allow a clinical neurological evaluation.</p>
+    <div class="note warn">
+      <b>Key safety net</b>
+      In patients where planned extubation cannot be performed within <strong>1 hour post-surgery</strong>, an <strong>immediate head CT</strong> should be performed.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 19. ENDOVASCULAR ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Anaesthetic Considerations for Endovascular Coiling</span><span class="summary-tag t-green">Anaesthesia</span></summary>
+  <div class="body">
+    <p>Goals are similar to surgical clipping with the following <strong>exceptions</strong>:</p>
+    <ul>
+      <li><strong>IONM is not commonly used</strong></li>
+      <li><strong>Interventions to reduce brain swelling are not needed</strong></li>
+      <li><strong>Patient immobility</strong>, especially during coil deployment, is critical</li>
+      <li><strong>Heparin</strong> is commonly administered for anticoagulation and may need to be reversed</li>
+    </ul>
+    <p>Although monitored anaesthesia care may be used for diagnostic angiography, <strong>general anaesthesia (GA) is usually preferred</strong> for endovascular coiling.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Advantages of GA</th><th>Disadvantages of GA</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <ul style="margin:0;padding-left:1.1em">
+                <li>Immobility during the procedure</li>
+                <li>Patient comfort during a stimulating procedure</li>
+                <li>Easier to control comorbidities or neurological condition</li>
+                <li>Airway protection and control of ventilation (PaCO₂ manipulation, apnoea)</li>
+              </ul>
+            </td>
+            <td>
+              <ul style="margin:0;padding-left:1.1em">
+                <li>Haemodynamic instability during intubation, extubation, or both</li>
+                <li>Anaesthetic-induced hypotension causing cerebral hypoperfusion</li>
+                <li>Inability to monitor the patient's neurological status</li>
+                <li>Complications from coughing and straining during extubation</li>
+                <li>Delayed emergence or impaired neuro exam due to residual anaesthetic drugs</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      With GA, the same requirements for induction/intubation and emergence/extubation apply as during open craniotomy for aneurysmal clipping.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 20. REBLEEDING ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Early Complication — Rebleeding</span><span class="summary-tag t-red">Complication</span></summary>
+  <div class="body">
+    <ul>
+      <li>Patients with aSAH are at increased risk of early rebleeding — <strong>4–14% in the first 24 hours</strong>.</li>
+      <li>Characterised by <strong>acute deterioration of neurological status</strong> accompanied by the appearance of <strong>new haemorrhage on head CT</strong>.</li>
+      <li>To reduce risk, the ruptured aneurysm should be treated via surgical clipping or endovascular coiling <strong>as soon as possible, ideally within the first 24 hours</strong> after symptom onset.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 21. VASOSPASM ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Early Complication — Vasospasm &amp; Delayed Cerebral Ischaemia</span><span class="summary-tag t-red">Complication</span></summary>
+  <div class="body">
+    <ul>
+      <li>Cerebral vasospasm is a devastating complication of aSAH.</li>
+      <li>Typically occurs <strong>between 3 and 14 days post-haemorrhage</strong> and results in <strong>delayed cerebral ischaemia</strong>.</li>
+      <li>Monitoring and treatment of vasospasm to prevent delayed cerebral ischaemia is a mainstay of critical care management — along with maintenance of adequate CPP and prevention of brain herniation.</li>
+      <li>Nimodipine (see above) is standard of care for outcome improvement.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 22. HYDROCEPHALUS ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Early Complication — Hydrocephalus &amp; Elevated ICP</span><span class="summary-tag t-red">Complication</span></summary>
+  <div class="body">
+    <ul>
+      <li>Affects <strong>20–30%</strong> of patients with aSAH, from obstruction of CSF flow and decreased CSF absorption.</li>
+      <li><strong>CSF diversion via an external ventricular drain</strong> is often needed.</li>
+      <li>About <strong>20%</strong> of patients need long-term CSF diversion (<strong>ventriculoperitoneal shunt</strong>) for chronic hydrocephalus.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 23. SODIUM ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Sodium Disorders — Hyponatraemia (CSW vs SIADH) and Diabetes Insipidus</span><span class="summary-tag t-amber">Complication</span></summary>
+  <div class="body">
+    <h4>Hyponatraemia</h4>
+    <ul>
+      <li>Occurs in up to <strong>30%</strong> of patients with aSAH.</li>
+      <li>More likely due to <strong>cerebral salt-wasting syndrome (CSW)</strong> from release of natriuretic peptide than SIADH.</li>
+    </ul>
+    <div class="tw">
+      <table>
+        <thead><tr><th></th><th>Cerebral salt wasting (CSW)</th><th>SIADH</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Triad / features</strong></td>
+            <td>Hyponatraemia, <strong>volume contraction</strong>, high urine Na⁺ (&gt; 50 mmol/L); correlated with symptomatic vasospasms</td>
+            <td><strong>Normovolaemia or mild hypervolaemia</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Treatment</strong></td>
+            <td colspan="2">Management: administration of <strong>isotonic and/or hypertonic fluids</strong>, using <strong>intravascular normovolaemia and normonatraemia</strong> as the end point. SIADH is treated by volume restriction.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted)">Cause is often iatrogenic, related to hyperosmolar therapy (hypertonic saline or mannitol).</p>
+
+    <h4>Central diabetes insipidus</h4>
+    <ul>
+      <li>Can be caused by hypothalamic/pituitary ischaemia from delayed cerebral ischaemia related to vasospasm, or reduced cerebral perfusion in the setting of intracranial hypertension.</li>
+      <li><strong>Hypernatraemia in the subacute phase of SAH is associated with poor outcomes.</strong></li>
+      <li>ADH is synthesised in the supraoptic nuclei of the hypothalamus and transported to the supraoptic-hypophyseal tract in the posterior pituitary.</li>
+      <li><strong>Rarely arises intraoperatively</strong> — usually occurs <strong>12–48 hours postoperatively</strong>.</li>
+      <li>Clinical picture: <strong>polyuria with rising serum sodium and serum osmolality</strong>.</li>
+      <li><strong>Diagnosis:</strong> urine output &gt; 250 mL for 2 hours, Na &gt; 140, and low urine osmolality or urine specific gravity &lt; 1.005.</li>
+      <li><strong>Treatment:</strong> intravenous DDAVP (desamino D-arginine vasopressin) <strong>1–2 mcg</strong> and volume repletion.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 24. CARDIAC ICU ============ -->
+<details class="card">
+  <summary><span class="chev">▸</span><span class="title">Cardiac Complications — Critical Care Management</span><span class="summary-tag t-red">ICU</span></summary>
+  <div class="body">
+    <ul>
+      <li>Serious cardiac complications associated with SAH include <strong>stress-induced cardiomyopathy and associated arrhythmias</strong>.</li>
+      <li>Supportive measures:
+        <ul>
+          <li>Enhanced invasive cardiovascular monitoring (echocardiography, pulmonary artery catheter, etc.)</li>
+          <li>Cardiovascular medications — inotropes, vasopressors, and antiarrhythmic medications</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="note caution">
+      <b>Caution</b>
+      Beta-blockers (labetalol, esmolol) — advised caution in stress-induced cardiomyopathy.
+    </div>
+  </div>
+</details>
+
+<div class="empty" id="empty">No matching section. Try a different term (e.g. <em>nimodipine</em>, <em>PaCO2</em>, <em>adenosine</em>).</div>
+
+<!-- ============ SOURCES ============ -->
+<footer class="src">
+  <h3>Source</h3>
+  <p style="margin:.2em 0 .6em">
+    Morgan T, Rabai F, Bojaxhi E. <em>Aneurysmal Subarachnoid Hemorrhage Part 1: Epidemiology, Pathophysiology, Diagnosis, Cardiac Complications</em> and <em>Part 2: Management and Anesthetic Considerations</em>. OpenAnesthesia. Last updated 07/18/2023.
+  </p>
+  <p style="margin:.2em 0 .4em"><strong>References cited in the source documents:</strong></p>
+  <ol>
+    <li>Sharma D. Perioperative management of aneurysmal subarachnoid hemorrhage: A narrative review. <em>Anesthesiology.</em> 2020;133:1283–1305.</li>
+    <li>Singer RJ, Ogilvy CS, Rordorf G. Aneurysmal subarachnoid hemorrhage: Treatment and prognosis. In: Post T (ed). <em>UpToDate.</em> 2023.</li>
+    <li>Todd MM, Hindman BJ, Clarke WR, et al. Intraoperative hypothermia for aneurysm surgery trial (IHAST) investigators. Mild intraoperative hypothermia during surgery for intracranial aneurysm. <em>N Engl J Med.</em> 2005;352(2):135–45.</li>
+    <li>Lemkull BP, Drummond JC, Patel PM, et al. Anesthesia for neurologic surgery and neurointerventions. In: Gropper MA, Miller RD (eds). <em>Miller's Anesthesia.</em> 9th ed. Elsevier; 2020:1868–1910.</li>
+    <li>D'Souza S. Aneurysmal subarachnoid hemorrhage. <em>J Neurosurg Anesthesiol.</em> 2015;27(3):222–40.</li>
+    <li>Tsao CW, Aday AW, Almarzooq ZI, et al. Heart disease and stroke statistics — 2022 update. <em>Circulation.</em> 2022;145(8):e153–639.</li>
+    <li>Ko NU, Engelhard K. Neurocritical care. In: Gropper MA, Miller RD (eds). <em>Miller's Anesthesia.</em> 9th ed. Elsevier; 2020:2671–93.</li>
+    <li>Singer RJ, Ogilvy CS, Rordorf G. Aneurysmal subarachnoid hemorrhage: Epidemiology, risk factors and pathogenesis. In: Post T (ed). <em>UpToDate.</em> 2023.</li>
+    <li>Singer RJ, Ogilvy CS, Rordorf G. Aneurysmal subarachnoid hemorrhage: Clinical manifestation and diagnosis. In: Post T (ed). <em>UpToDate.</em> 2023.</li>
+    <li>Claassen J, Bernardini GL, Kreiter K, et al. Effect of cisternal and ventricular blood on risk of delayed cerebral ischemia after subarachnoid hemorrhage: the Fisher scale revisited. <em>Stroke.</em> 2001;32:2012–20.</li>
+    <li>Bihorac A, Ozrazgat-Baslanti T, Mahanna E, et al. Long-term outcomes for different forms of stress cardiomyopathy after surgical treatment for subarachnoid hemorrhage. <em>Anesth Analg.</em> 2016;122(5):1594–602.</li>
+  </ol>
+  <p style="margin:.6em 0 0">
+    Source documents licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+    Figure 1 (Part 2) — Roberto Stefini, Wikimedia Commons, CC BY-SA 4.0. Figure 2 (Part 2) — DocJBrigham, Wikimedia Commons, CC BY-SA 4.0.
+    Figure 2 (Part 1) — Gangadhar TC et al., Wikimedia Commons, CC BY 2.0. Figure 1 (Part 1) — Wikimedia Commons.
+  </p>
+</footer>
+
+<p class="disclaimer">
+  Quick-reference summary for educational use by anaesthetists and intensivists. Not a substitute for
+  institutional protocols, full guidelines, or clinical judgement. Always verify drug doses and thresholds locally.
+</p>
+
+</div><!-- /wrap -->
+
+<script>
+(function () {
+  "use strict";
+
+  var cards     = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+  var input     = document.getElementById('search');
+  var clearBtn  = document.getElementById('clearBtn');
+  var countEl   = document.getElementById('count');
+  var emptyEl   = document.getElementById('empty');
+  var expandAll = document.getElementById('expandAll');
+  var collapseAll = document.getElementById('collapseAll');
+
+  /* ---------- highlight helpers ---------- */
+  function clearHighlights() {
+    var marks = document.querySelectorAll('mark.hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function highlight(root, term) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    var re = new RegExp(escapeRegExp(term), 'gi');
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      re.lastIndex = 0;
+      if (!re.test(text)) return;
+      re.lastIndex = 0;
+
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      while ((m = re.exec(text)) !== null) {
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        if (m[0].length === 0) re.lastIndex++;
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- search ---------- */
+  var debounceTimer = null;
+
+  function runSearch() {
+    var q = input.value.trim();
+    clearHighlights();
+
+    if (!q) {
+      cards.forEach(function (c) { c.hidden = false; });
+      countEl.textContent = '';
+      emptyEl.classList.remove('show');
+      return;
+    }
+
+    var needle = q.toLowerCase();
+    var hits = 0;
+
+    cards.forEach(function (card) {
+      var hay = card.textContent.toLowerCase();
+      if (hay.indexOf(needle) !== -1) {
+        card.hidden = false;
+        card.open = true;
+        highlight(card, q);
+        hits++;
+      } else {
+        card.hidden = true;
+      }
+    });
+
+    countEl.textContent = hits + (hits === 1 ? ' match' : ' matches');
+    emptyEl.classList.toggle('show', hits === 0);
+  }
+
+  input.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 120);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      input.value = '';
+      runSearch();
+      input.blur();
+    }
+  });
+
+  clearBtn.addEventListener('click', function () {
+    input.value = '';
+    runSearch();
+    input.focus();
+  });
+
+  /* ---------- expand / collapse ---------- */
+  expandAll.addEventListener('click', function () {
+    cards.forEach(function (c) { if (!c.hidden) c.open = true; });
+  });
+
+  collapseAll.addEventListener('click', function () {
+    cards.forEach(function (c) { c.open = false; });
+  });
+
+  /* ---------- deep link: ?q=term ---------- */
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var q0 = params.get('q');
+    if (q0) {
+      input.value = q0;
+      runSearch();
+    }
+  } catch (err) { /* no-op */ }
+})();
+</script>
+
+</body>
+</html>
