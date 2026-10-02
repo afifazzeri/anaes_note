@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OSA Quick Reference — Anaesthetist &amp; Intensivist</title>
+<meta name="description" content="Perioperative and critical care quick reference for obstructive sleep apnoea, adapted from the Malaysian CPG Management of Obstructive Sleep Apnoea (MaHTAS 2023).">
+<style>
+:root{
+  --bg:#f4f7fb; --card:#ffffff; --text:#16202c; --muted:#657a90;
+  --accent:#0b6bcb; --accent-soft:#e7f0fb; --border:#dde6ef;
+  --fstart:#e8f0fe; --fstartline:#a8c7fa;
+  --fdec:#fff5e6; --fdecline:#f0b775;
+  --fact:#e8f6ec; --factline:#a8d5b5;
+  --fwarn:#fdecea; --fwarnline:#f0a9a2;
+  --mark:#fff2a8;
+  --shadow:0 1px 2px rgba(16,32,52,.06),0 6px 18px rgba(16,32,52,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141a; --card:#171e26; --text:#e3eaf2; --muted:#93a5b8;
+    --accent:#5aa9ff; --accent-soft:#16283c; --border:#28323e;
+    --fstart:#16283c; --fstartline:#2f5680;
+    --fdec:#33260f; --fdecline:#7a5a1e;
+    --fact:#122a1d; --factline:#2d5c40;
+    --fwarn:#331816; --fwarnline:#7a3b34;
+    --mark:#6b5a00;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 14px 60px}
+
+/* ---------- Header ---------- */
+header{
+  background:linear-gradient(135deg,#0b6bcb,#0a4f96);
+  color:#fff; padding:20px 0 16px; box-shadow:var(--shadow);
+}
+@media (prefers-color-scheme: dark){
+  header{background:linear-gradient(135deg,#123a63,#0b2745)}
+}
+header .wrap{padding-bottom:0}
+h1{margin:0 0 4px;font-size:1.35rem;letter-spacing:-.01em}
+.sub{margin:0;font-size:.82rem;opacity:.9}
+.badges{margin-top:9px;display:flex;flex-wrap:wrap;gap:6px}
+.badge{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);
+  padding:2px 8px;border-radius:999px;font-size:.7rem;letter-spacing:.02em}
+
+/* ---------- Toolbar ---------- */
+.toolbar{
+  position:sticky; top:0; z-index:50; background:var(--card);
+  border-bottom:1px solid var(--border); padding:9px 0; box-shadow:var(--shadow);
+}
+.toolbar .wrap{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding-bottom:0}
+.searchbox{position:relative;flex:1 1 240px;min-width:200px}
+.searchbox input{
+  width:100%; padding:9px 34px 9px 32px; border-radius:9px; font-size:.9rem;
+  border:1px solid var(--border); background:var(--bg); color:var(--text); outline:none;
+}
+.searchbox input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.searchbox .ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  color:var(--muted);font-size:.85rem;pointer-events:none}
+.searchbox .clr{position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;
+  padding:3px 6px;border-radius:6px;display:none}
+.searchbox .clr:hover{background:var(--bg)}
+.btn{
+  border:1px solid var(--border);background:var(--bg);color:var(--text);
+  padding:8px 11px;border-radius:9px;font-size:.78rem;cursor:pointer;font-weight:600;
+  white-space:nowrap;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.count{font-size:.75rem;color:var(--muted);white-space:nowrap}
+
+/* ---------- Nav chips ---------- */
+.nav{display:flex;gap:6px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:thin}
+.nav a{
+  flex:0 0 auto;text-decoration:none;font-size:.74rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft);border:1px solid transparent;
+  padding:5px 10px;border-radius:999px;
+}
+.nav a:hover{border-color:var(--accent)}
+
+/* ---------- Cards ---------- */
+details.card{
+  background:var(--card);border:1px solid var(--border);border-radius:13px;
+  margin:11px 0;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:72px;
+}
+details.card[hidden]{display:none}
+details.card > summary{
+  list-style:none;cursor:pointer;padding:13px 16px;display:flex;gap:11px;align-items:center;
+  font-weight:700;font-size:.98rem;
+}
+details.card > summary::-webkit-details-marker{display:none}
+details.card > summary::after{
+  content:"▸";margin-left:auto;color:var(--muted);font-size:1rem;transition:transform .18s;
+}
+details.card[open] > summary::after{transform:rotate(90deg)}
+details.card > summary:hover{background:var(--accent-soft)}
+.sec-ico{
+  flex:0 0 26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent);
+  display:grid;place-items:center;font-size:.8rem;font-weight:800;
+}
+.card-body{padding:2px 16px 16px;border-top:1px solid var(--border)}
+.card-body > *:first-child{margin-top:12px}
+
+/* ---------- Typography ---------- */
+h3{font-size:.86rem;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);
+  margin:18px 0 7px;font-weight:800}
+h4{font-size:.9rem;margin:14px 0 6px}
+p{margin:7px 0}
+ul,ol{margin:7px 0;padding-left:19px}
+li{margin:4px 0}
+small,.small{font-size:.78rem;color:var(--muted)}
+mark{background:var(--mark);color:inherit;padding:0 2px;border-radius:3px}
+code{background:var(--bg);border:1px solid var(--border);padding:1px 5px;border-radius:5px;font-size:.85em}
+
+/* ---------- Callouts ---------- */
+.note,.warn,.key{
+  border-left:4px solid var(--accent);background:var(--accent-soft);
+  padding:9px 12px;border-radius:0 9px 9px 0;margin:11px 0;font-size:.87rem;
+}
+.warn{border-left-color:#d9534f;background:var(--fwarn)}
+.key{border-left-color:#2e9e5b;background:var(--fact)}
+.note b,.warn b,.key b{font-weight:800}
+.rec{
+  border:1px dashed var(--accent);background:var(--accent-soft);border-radius:9px;
+  padding:9px 12px;margin:12px 0;font-size:.85rem;
+}
+.rec .tag{
+  display:inline-block;font-size:.65rem;font-weight:800;letter-spacing:.05em;
+  background:var(--accent);color:#fff;padding:2px 7px;border-radius:999px;margin-bottom:5px;
+}
+
+/* ---------- Tables ---------- */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);
+  border-radius:10px;margin:12px 0;background:var(--card)}
+.tw table{border-collapse:collapse;width:100%;min-width:520px;font-size:.82rem}
+.tw caption{
+  caption-side:top;text-align:left;padding:8px 11px;font-size:.74rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.tw th,.tw td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.tw thead th{background:var(--accent-soft);color:var(--accent);font-weight:800;white-space:nowrap;
+  position:sticky;top:0}
+.tw tbody tr:last-child td{border-bottom:0}
+.tw tbody tr:hover{background:var(--bg)}
+.tw .num{white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* ---------- Flow diagrams ---------- */
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px;margin:14px 0}
+.fnode{
+  width:100%;max-width:560px;text-align:center;padding:9px 12px;border-radius:10px;
+  font-size:.82rem;line-height:1.35;border:1px solid var(--fstartline);background:var(--fstart);
+}
+.fnode b{display:block;font-size:.85rem;margin-bottom:1px}
+.fd{background:var(--fdec);border-color:var(--fdecline);font-weight:700}
+.fa{background:var(--fact);border-color:var(--factline)}
+.fw{background:var(--fwarn);border-color:var(--fwarnline)}
+.farrow{color:var(--muted);font-size:.85rem;line-height:1;font-weight:700}
+.fbranch{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;max-width:560px}
+.fbranch > div{display:flex;flex-direction:column;gap:5px;align-items:center}
+.flabel{
+  font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--muted);font-weight:800;
+}
+.fsplit{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;width:100%;max-width:620px}
+.fsplit > div{display:flex;flex-direction:column;gap:5px;align-items:center}
+@media (max-width:560px){
+  .fbranch,.fsplit{grid-template-columns:1fr}
+  .fsplit .fnode,.fbranch .fnode{max-width:100%}
+}
+
+/* ---------- Misc ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+.kv{font-size:.84rem}
+.kv dt{font-weight:800;color:var(--accent);margin-top:9px}
+.kv dd{margin:1px 0 0;padding-left:0}
+.pill{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 7px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);margin-right:4px}
+.pill.red{background:var(--fwarn);color:#b3372f}
+.pill.green{background:var(--fact);color:#1f7a45}
+footer{
+  margin-top:26px;padding:18px;border-radius:13px;background:var(--card);
+  border:1px solid var(--border);font-size:.8rem;color:var(--muted);box-shadow:var(--shadow);
+}
+footer h3{color:var(--text);margin-top:0}
+footer ol{padding-left:20px}
+footer li{margin:3px 0}
+.noresult{display:none;padding:26px;text-align:center;color:var(--muted);font-size:.9rem}
+@media print{
+  .toolbar,.nav{display:none}
+  details.card{break-inside:avoid;box-shadow:none}
+  .card-body{display:block!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Obstructive Sleep Apnoea — Quick Reference</h1>
+    <p class="sub">Perioperative &amp; critical care summary for anaesthetists and intensivists</p>
+    <div class="badges">
+      <span class="badge">MaHTAS CPG 2023</span>
+      <span class="badge">Adults &amp; children</span>
+      <span class="badge">Screening · Airway · Postop · ICU</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <div class="searchbox">
+      <span class="ico">🔍</span>
+      <input id="q" type="search" placeholder="Search: STOP-BANG, TIVA, extubation, ORID, OHS…" autocomplete="off" aria-label="Search">
+      <button class="clr" id="clr" aria-label="Clear search">✕</button>
+    </div>
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <nav class="nav" aria-label="Section navigation">
+    <a href="#s1">Screening</a>
+    <a href="#s2">Diagnosis</a>
+    <a href="#s3">Pre-op</a>
+    <a href="#s4">Intra-op</a>
+    <a href="#s5">Post-op / ICU</a>
+    <a href="#s6">PAP &amp; NIV</a>
+    <a href="#s7">Paediatrics</a>
+    <a href="#s8">Special groups</a>
+    <a href="#s9">Algorithms</a>
+    <a href="#s10">Appendices</a>
+    <a href="#refs">Source</a>
+  </nav>
+
+  <div class="noresult" id="noresult">No matching content. Try another term.</div>
+
+  <!-- ============ 1. SCREENING ============ -->
+  <details class="card" id="s1" open>
+    <summary><span class="sec-ico">1</span> Screening &amp; Risk Stratification</summary>
+    <div class="card-body">
+
+      <div class="rec">
+        <span class="tag">KEY RECOMMENDATION</span>
+        <b>STOP-BANG</b> should be used for screening adults with clinical suspicion of OSA — including
+        <b>preoperatively</b>. <b>Epworth Sleepiness Scale (ESS)</b> may be used to assess daytime sleepiness.
+      </div>
+
+      <h3>STOP-BANG items</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Letter</th><th>Item</th><th>Threshold</th></tr></thead>
+          <tbody>
+            <tr><td class="num"><b>S</b></td><td>Snoring — loud enough to be heard through closed doors</td><td>Yes</td></tr>
+            <tr><td class="num"><b>T</b></td><td>Tiredness / fatigue / sleepiness during daytime</td><td>Yes</td></tr>
+            <tr><td class="num"><b>O</b></td><td>Observed apnoea — stopped breathing during sleep</td><td>Yes</td></tr>
+            <tr><td class="num"><b>P</b></td><td>High blood Pressure (or on treatment)</td><td>Yes</td></tr>
+            <tr><td class="num"><b>B</b></td><td>BMI</td><td>&gt; 35 kg/m²</td></tr>
+            <tr><td class="num"><b>A</b></td><td>Age</td><td>&gt; 50 years</td></tr>
+            <tr><td class="num"><b>N</b></td><td>Neck circumference</td><td>&gt; 40 cm</td></tr>
+            <tr><td class="num"><b>G</b></td><td>Gender</td><td>Male</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">Score <b>≥ 3 = high risk</b> · Score &lt; 3 = low risk.
+      A Malay-validated version is available in the CPG.</p>
+
+      <div class="note">
+        <b>Referral trigger:</b> clinical suspicion of OSA ± cardiometabolic risk factors <b>and STOP-BANG ≥ 3</b>
+        → refer for a diagnostic sleep test.
+      </div>
+
+      <h3>Performance of screening tools (pooled)</h3>
+      <div class="tw">
+        <table>
+          <caption>Sensitivity / specificity by AHI threshold</caption>
+          <thead>
+            <tr><th>Tool</th><th>AHI &gt; 5</th><th>AHI &gt; 10</th><th>AHI &gt; 15</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>STOP-BANG</b></td><td class="num">88% / 42%</td><td class="num">90% / 36%</td><td class="num">93% / 35%</td></tr>
+            <tr><td>Berlin Questionnaire</td><td class="num">76% / 59%</td><td class="num">76% / 44%</td><td class="num">84% / 38%</td></tr>
+            <tr><td>STOP Questionnaire</td><td class="num">87% / 42%</td><td class="num">89% / 32%</td><td class="num">90% / 28%</td></tr>
+            <tr><td>Epworth Sleepiness Scale</td><td class="num">54% / 65%</td><td class="num">47% / 62%</td><td class="num">58% / 60%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small"><b>Interpretation:</b> STOP-BANG is highly <b>sensitive but poorly specific</b> — excellent for
+      ruling out, poor for ruling in. A negative score does not exclude OSA.</p>
+
+      <h3>Clinical suspicion — symptoms</h3>
+      <div class="grid2">
+        <div>
+          <h4>Daytime</h4>
+          <ul>
+            <li>Excessive daytime sleepiness</li>
+            <li>Unrefreshed sleep, tiredness / fatigue</li>
+            <li>Early morning headache, dry mouth</li>
+            <li>Poor attention / concentration, memory impairment</li>
+            <li>Mood disturbance or irritability</li>
+            <li>Decreased libido / erectile dysfunction</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Night-time</h4>
+          <ul>
+            <li>Snoring</li>
+            <li>Witnessed apnoea (cessation of breathing)</li>
+            <li>Gasping / choking</li>
+            <li>Nocturia</li>
+            <li>Difficulty initiating and maintaining sleep</li>
+            <li>Fragmented sleep (frequent wakening)</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Clinical signs</h3>
+      <p>Raised blood pressure · large neck circumference · obesity · crowded oropharynx
+      (modified Mallampati grade 3–4) · micrognathia / retrognathia · high-arched palate ·
+      enlarged tonsils · macroglossia.</p>
+
+      <h3>Preoperative screening specifics</h3>
+      <ul>
+        <li>OSA screening should be part of the <b>standard pre-anaesthetic evaluation</b>.</li>
+        <li>Alternative tools: <b>P-SAP</b> score, Berlin Questionnaire, ASA checklist.</li>
+        <li>STOP-BANG score <b>5–8</b> correlates with AHI &gt; 15/hr (OR 2.9 vs score 3–4);
+            score 3–4 alone did not correlate with AHI &gt; 15/hr.</li>
+        <li><b>Insufficient evidence to cancel or delay surgery</b> to confirm OSA, unless there is
+            evidence of <b>uncontrolled systemic disease</b>.</li>
+        <li>Mandatory preoperative PSG is <b>not</b> recommended (inadequate evidence) — most surgical
+            patients are undiagnosed and lack time for formal testing.</li>
+      </ul>
+
+      <div class="warn">
+        <b>Do not delay:</b> a high STOP-BANG score alone is not a reason to cancel. Optimise comorbidities and
+        plan postoperative monitoring instead.
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============ 2. DIAGNOSIS ============ -->
+  <details class="card" id="s2">
+    <summary><span class="sec-ico">2</span> Diagnosis &amp; Severity Grading</summary>
+    <div class="card-body">
+
+      <div class="rec">
+        <span class="tag">KEY RECOMMENDATION</span>
+        OSA should be diagnosed using <b>polysomnography (PSG) level 1, 2 or 3</b>. PSG should be performed
+        within <b>6 months</b> of initial consultation. Scoring by trained personnel; interpretation verified
+        by a trained specialist.
+      </div>
+
+      <h3>Sleep study levels</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Level</th><th>Description</th><th>Channels</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="num"><b>1</b></td><td>Full attended PSG</td><td>≥ 7 (EEG, EOG, EMG, ECG, airflow, effort, SpO₂)</td><td>Diagnostic (gold standard)</td></tr>
+            <tr><td class="num"><b>2</b></td><td>Full unattended PSG</td><td>≥ 7</td><td>Diagnostic</td></tr>
+            <tr><td class="num"><b>3</b></td><td>Portable monitor / HSAT (partial PSG)</td><td>≥ 4 (effort, airflow, HR/ECG, SpO₂)</td><td>Diagnostic (uncomplicated cases)</td></tr>
+            <tr><td class="num"><b>4</b></td><td>Continuous single/dual bio-parameter</td><td>≥ 1 (SpO₂ ± effort)</td><td><b>Screening only</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small"><b>Caveat:</b> portable monitors use apnoeas + hypopnoeas / <i>total recording time</i>
+      (vs total sleep time for PSG) and therefore tend to <b>underestimate severity</b>. They cannot assess
+      sleep quality or non-respiratory sleep disorders.</p>
+
+      <div class="note">
+        <b>Level 1 PSG (attended) is indicated</b> in: significant cardiorespiratory disease · potential
+        respiratory muscle weakness (neuromuscular disease) · awake hypoventilation or suspected
+        sleep-related hypoventilation · chronic opioid use · history of smoking · severe insomnia.
+        <br><br>
+        A second PSG may be considered if the first is negative but clinical suspicion persists.
+      </div>
+
+      <h3>Diagnostic criteria (ICSD-3)</h3>
+      <ul>
+        <li><b>AHI ≥ 5/hr</b> <i>with</i> typical symptoms <i>or</i> associated medical/psychiatric disorder, <b>OR</b></li>
+        <li><b>AHI ≥ 15/hr</b> even in the absence of symptoms.</li>
+      </ul>
+
+      <h3>Severity — adults</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>AHI (events/hr)</th><th>Severity</th><th>Perioperative implication</th></tr></thead>
+          <tbody>
+            <tr><td class="num">&lt; 5</td><td>No OSA</td><td>Routine care</td></tr>
+            <tr><td class="num">5–15</td><td>Mild</td><td>Screen &amp; monitor; caution with sedatives/opioids</td></tr>
+            <tr><td class="num">15–30</td><td>Moderate</td><td>PAP therapy indicated; higher postop risk</td></tr>
+            <tr><td class="num">&gt; 30</td><td>Severe</td><td>Highest risk — PAP, close postop monitoring, consider critical care</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Severity — children</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>AHI (events/hr)</th><th>Severity</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1–5</td><td>Mild</td></tr>
+            <tr><td class="num">5–10</td><td>Moderate</td></tr>
+            <tr><td class="num">&gt; 10</td><td>Severe</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">Paediatric diagnosis: symptoms <b>plus</b> AHI ≥ 2 or obstructive apnoea index ≥ 1,
+      <b>or</b> AHI ≥ 1 (including central events).</p>
+
+    </div>
+  </details>
+
+  <!-- ============ 3. PREOPERATIVE ============ -->
+  <details class="card" id="s3" open>
+    <summary><span class="sec-ico">3</span> Preoperative Management</summary>
+    <div class="card-body">
+
+      <div class="rec">
+        <span class="tag">KEY RECOMMENDATION</span>
+        Patients at risk of OSA should be <b>screened preoperatively</b>. The preferred screening tool is
+        <b>STOP-BANG</b>.
+      </div>
+
+      <h3>Risk quantification</h3>
+      <ul>
+        <li>OSA is an <b>independent risk factor for difficult intubation</b>
+            (OR 3.46, 95% CI 2.32–5.16) and <b>difficult mask ventilation</b> (OR 3.39, 95% CI 2.74–4.18)
+            compared with non-OSA patients.</li>
+        <li>No significant difference in supraglottic airway failure rates between OSA and non-OSA.</li>
+        <li>Known or suspected OSA should be treated as an independent risk factor for difficult
+            intubation, difficult mask ventilation, or both — <b>prepare accordingly</b>.</li>
+      </ul>
+
+      <h3>Preoperative checklist</h3>
+      <ul>
+        <li>Screen with STOP-BANG (or P-SAP / Berlin / ASA checklist).</li>
+        <li>Document known OSA, prior PAP settings and adherence, and last sleep study results.</li>
+        <li>Assess for uncontrolled systemic disease — the only clear reason to delay surgery.</li>
+        <li>Confirm availability of a <b>PAP device</b> (hospital-supplied or patient's own) for the
+            perioperative period.</li>
+        <li>Consider difficult airway precautions and appropriate equipment.</li>
+        <li>Plan postoperative monitoring level and analgesia strategy (opioid-sparing) <i>before</i> induction.</li>
+      </ul>
+
+      <div class="key">
+        <b>Untreated OSA patients with optimised comorbidities may proceed to surgery</b>, provided
+        strategies to minimise postoperative complications are implemented.
+      </div>
+
+      <h3>Paediatric preoperative assessment</h3>
+      <ul>
+        <li>Detailed medical history: screening questionnaire, review of records, clinical risk factors,
+            comorbidities, targeted physical examination.</li>
+        <li>Document from PSG: severity, lowest and duration of oxygen desaturation, CO₂ measurement.</li>
+        <li><b>Lowest oxygen desaturation &lt; 70% → refer for further cardiopulmonary assessment.</b></li>
+        <li>Sedative premedication with <b>caution</b>; if given, monitor with continuous pulse oximetry.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 4. INTRAOPERATIVE ============ -->
+  <details class="card" id="s4" open>
+    <summary><span class="sec-ico">4</span> Intraoperative Management</summary>
+    <div class="card-body">
+
+      <h3>Anaesthetic technique — preferences</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Agent / technique</th><th>Recommendation</th><th>Rationale</th></tr></thead>
+          <tbody>
+            <tr><td><b>Regional anaesthesia</b></td><td><span class="pill green">Preferred</span> over general anaesthesia where applicable</td><td>Reduced incidence of major complications; fewer adverse respiratory events</td></tr>
+            <tr><td><b>TIVA</b></td><td><span class="pill green">Preferred</span> over volatile anaesthesia</td><td>Significantly reduced PACU recovery time across OSA severity; recovery time increased with severity on volatile agents</td></tr>
+            <tr><td><b>IV benzodiazepines</b></td><td><span class="pill red">Caution</span></td><td>Increased risk of adverse respiratory events during sedation</td></tr>
+            <tr><td><b>Opioids / propofol</b> (procedural sedation)</td><td><span class="pill red">Caution</span></td><td>Increased risk of adverse respiratory events</td></tr>
+            <tr><td><b>Neuromuscular blocking agents</b></td><td><span class="pill red">Caution</span></td><td>Increased risk of residual blockade, hypoxaemia, respiratory failure. Insufficient evidence to prefer any specific reversal agent</td></tr>
+            <tr><td><b>Inhalational agents</b></td><td>No specific recommendation</td><td>Lack of evidence on residual effects</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Short-acting vs standard agents</h3>
+      <div class="note">
+        A randomised triple-blind trial found <b>no difference</b> between desflurane–remifentanil and
+        sevoflurane–fentanyl in mean supine AHI on the first and third postoperative nights.
+        However, the prevalence of <b>severe OSA on the third postoperative night was significantly higher</b>
+        than preoperatively (<b>OR 7.00, 95% CI 2.07–23.60</b>) — suggesting monitoring should continue for
+        <b>at least three postoperative nights</b>.
+      </div>
+
+      <h3>Airway management</h3>
+      <ul>
+        <li>Anticipate and prepare for <b>difficult mask ventilation and difficult intubation</b>.</li>
+        <li>Ensure availability of: fibreoptic bronchoscope, video laryngoscope, difficult airway cart.</li>
+        <li>Adequate preoxygenation; consider ramped position in obese patients.</li>
+        <li>Awake extubation is advocated in the paediatric OSA population.</li>
+        <li>Opioid-sparing technique preferred.</li>
+      </ul>
+
+      <h3>Sedation outside the operating theatre</h3>
+      <div class="key">
+        In bariatric patients undergoing pre-operative oesophagogastroduodenoscopy, use of a
+        <b>sealed nasal positive airway pressure mask</b> (vs passive oxygenating device) significantly
+        reduced desaturation events and produced a higher median lowest SpO₂ — despite these patients having
+        higher BMI, higher ASA class and greater likelihood of OSA.
+      </div>
+
+      <h3>Key intraoperative summary</h3>
+      <ul>
+        <li>Regional &gt; general anaesthesia, where applicable.</li>
+        <li>TIVA &gt; volatile anaesthesia.</li>
+        <li>IV benzodiazepine with caution during sedation.</li>
+        <li>OSA is associated with difficult mask ventilation and intubation — plan the airway.</li>
+        <li>Extubate awake; consider continued PAP/BiPAP postoperatively.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 5. POSTOPERATIVE ============ -->
+  <details class="card" id="s5" open>
+    <summary><span class="sec-ico">5</span> Postoperative &amp; ICU Monitoring</summary>
+    <div class="card-body">
+
+      <div class="rec">
+        <span class="tag">KEY RECOMMENDATION</span>
+        Patients with, or suspected of having, a high risk of OSA should be <b>monitored closely
+        postoperatively</b>. Hospitals should have suitable <b>PAP devices available for perioperative use</b>,
+        or ensure patients bring their own device.
+      </div>
+
+      <h3>Quantified postoperative risk</h3>
+      <div class="tw">
+        <table>
+          <caption>OSA vs non-OSA surgical patients</caption>
+          <thead><tr><th>Outcome</th><th>Effect size</th></tr></thead>
+          <tbody>
+            <tr><td>Postoperative respiratory failure</td><td class="num">OR 2.42 (95% CI 1.53–3.84)</td></tr>
+            <tr><td>Postoperative cardiac events</td><td class="num">OR 1.63 (95% CI 1.16–2.29)</td></tr>
+            <tr><td>Unplanned transfer to ICU</td><td class="num">OR 2.46 (95% CI 1.29–4.68)</td></tr>
+            <tr><td>Opioid-induced respiratory depression (OIRD)</td><td class="num">OR 1.4 (95% CI 1.2–1.7)</td></tr>
+            <tr><td>Higher morphine-equivalent daily dose in OIRD</td><td class="num">MD 2.8 (95% CI 0.4–5.3)</td></tr>
+            <tr><td>Postoperative complications (high-risk STOP-BANG)</td><td class="num">OR 3.93 (95% CrI 1.85–7.77)</td></tr>
+            <tr><td>Length of hospital stay (high-risk STOP-BANG)</td><td class="num">MD +2.01 days (95% CrI 0.77–3.24)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>PACU findings</h3>
+      <ul>
+        <li>Adverse respiratory events: <b>39%</b> in high-risk (STOP-BANG &gt; 3) vs <b>10%</b> in low-risk
+            (p &lt; 0.001).</li>
+        <li>Inability to breathe deeply: <b>34%</b> vs <b>9%</b> (p = 0.001).</li>
+        <li>Median PACU stay: <b>120 min</b> vs <b>99 min</b> (p = 0.035).</li>
+        <li>High-risk patients presented with mild–moderate hypoxaemia.</li>
+      </ul>
+
+      <div class="warn">
+        <b>85% of opioid-induced respiratory depression occurs within the first 24 postoperative hours.</b>
+        Patients with pre-existing cardiac or respiratory disease, or OSA, are at increased risk.
+      </div>
+
+      <h3>Postoperative care bundle</h3>
+      <ul>
+        <li><b>PAP device:</b> hospital should supply, or the patient brings their own.</li>
+        <li>Patients should <b>wear their PAP device at appropriate times</b> during their hospital stay —
+            both preoperatively and postoperatively.</li>
+        <li>Continue BiPAP/CPAP at preoperative settings in the paediatric population.</li>
+        <li><b>Continuous monitoring</b> strongly recommended in OSA patients — general or critical care ward.</li>
+        <li>Do <b>not</b> discharge to an unmonitored setting after anaesthesia recovery until the patient is
+            no longer at risk of postoperative respiratory complications.</li>
+        <li>Analgesia: NSAIDs and paracetamol; opioid-sparing. Consider local peripheral nerve blocks and
+            central neuraxial anaesthesia when indicated.</li>
+        <li>Dexmedetomidine is associated with an overall perioperative opioid-sparing effect in children
+            undergoing adenotonsillectomy.</li>
+      </ul>
+
+      <h3>Suggested critical care admission criteria (paediatric, CPG consensus)</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Factor</th><th>Criteria</th></tr></thead>
+          <tbody>
+            <tr><td><b>Patient</b></td><td>Neuromuscular disorder · craniofacial anomalies · requirement of oxygen preoperatively</td></tr>
+            <tr><td><b>Surgical</b></td><td>Surgery near or above the diaphragm</td></tr>
+            <tr><td><b>Anaesthetic</b></td><td>Postoperative IV narcotic or patient-controlled analgesia</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Follow-up after upper airway surgery</h3>
+      <ul>
+        <li>A follow-up <b>PSG may be considered 3 months after surgery</b> for reassessment.</li>
+        <li>Surgical success = postoperative AHI reduction ≥ 50% <b>and/or</b> AHI &lt; 20/hr.</li>
+        <li>Surgical cure = AHI &lt; 5/hr after any sleep surgery.</li>
+        <li>Assess clinically on a periodic basis — OSA may recur postoperatively.</li>
+        <li>Repeat PSG/HSAT may be considered after a <b>10–20% change in weight</b>, or after at least
+            3 months of recovery following weight-loss surgery.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 6. PAP & NIV ============ -->
+  <details class="card" id="s6">
+    <summary><span class="sec-ico">6</span> PAP Therapy, CPAP/BiPAP &amp; Ventilation Notes</summary>
+    <div class="card-body">
+
+      <h3>Core principles</h3>
+      <ul>
+        <li>PAP is the <b>gold standard</b> and primary therapy across the spectrum of OSA severity.</li>
+        <li>Two types: <b>CPAP</b> and <b>BiPAP</b>; both may be automated (APAP) or fixed-pressure.</li>
+        <li><b>Nasal mask is the preferred interface.</b></li>
+        <li>PAP should be offered upon diagnosis, especially in moderate to severe OSA.</li>
+      </ul>
+
+      <h3>When to switch CPAP → BiPAP</h3>
+      <ul>
+        <li>Patient complains of being uncomfortable or intolerant to high CPAP pressures, <b>or</b></li>
+        <li>CPAP level is <b>≥ 15 cm H₂O</b> and respiratory disturbances continue.</li>
+      </ul>
+
+      <h3>APAP vs fixed CPAP</h3>
+      <ul>
+        <li>APAP increased machine usage by approximately <b>13 minutes/night</b> (MD 0.21 hr/night,
+            95% CI 0.11–0.31).</li>
+        <li>Small reduction in ESS (MD −0.44 units, 95% CI −0.72 to −0.16) — <b>not clinically significant</b>.</li>
+        <li>Fixed CPAP achieved slightly lower AHI (MD 0.48/hr, 95% CI 0.16–0.80).</li>
+        <li>Adverse events: nasal blockage, dry mouth, pressure intolerance, mask leak.</li>
+      </ul>
+
+      <h3>Adherence interventions</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Intervention</th><th>Increase in CPAP usage</th></tr></thead>
+          <tbody>
+            <tr><td>Behavioural</td><td class="num">+1.31 hr/night (95% CI 0.95–1.66)</td></tr>
+            <tr><td>Educational</td><td class="num">+0.85 hr/night (95% CI 0.32–1.39)</td></tr>
+            <tr><td>Mixed</td><td class="num">+0.82 hr/night (95% CI 0.20–1.43)</td></tr>
+            <tr><td>Supportive</td><td class="num">+0.70 hr/night (95% CI 0.36–1.05)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">Telemonitoring has also been shown to improve adherence.</p>
+
+      <h3>Cardiometabolic effects relevant to the intensivist</h3>
+      <ul>
+        <li><b>Resistant hypertension:</b> CPAP reduced 24-hour SBP by MD −5.06 mmHg (95% CI −7.89 to −2.13)
+            and 24-hour DBP by MD −4.21 mmHg (95% CI −6.5 to −1.93).</li>
+        <li><b>Arterial stiffness:</b> improved pulse wave velocity (MD −0.44, 95% CI −0.76 to −0.12).</li>
+        <li><b>Stroke prevention:</b> benefit seen with <b>good adherence</b> (&gt; 4 hours and ≥ 70% of usage
+            days) in moderate to severe OSA (OR 0.530 and 0.505 respectively).</li>
+        <li>CPAP did not improve major adverse cardiovascular events overall; interpretation limited by
+            risk of bias.</li>
+        <li><b>Depression:</b> significant improvement in psychological symptoms, particularly with
+            &gt; 4 hours/night use.</li>
+      </ul>
+
+      <h3>Obesity Hypoventilation Syndrome (OHS)</h3>
+      <div class="note">
+        <b>Definition:</b> obesity (BMI ≥ 30 kg/m²) <b>+</b> daytime hypercapnia
+        (PaCO₂ ≥ 45 mmHg) <b>+</b> sleep-disordered breathing <b>+</b> exclusion of alternative causes of
+        alveolar hypoventilation.
+        <br><br>
+        Approximately <b>90% of patients with OHS have OSA</b>. OHS is typically diagnosed during an episode
+        of acute-on-chronic hypercapnic respiratory failure.
+      </div>
+      <div class="rec">
+        <span class="tag">KEY RECOMMENDATION</span>
+        <b>CPAP is the preferred initial treatment</b> in stable ambulatory patients with OHS and severe OSA.
+        CPAP was conditionally recommended over NIV: similar effectiveness, less costly, fewer resources.
+      </div>
+      <p class="small">No significant difference between NIV and CPAP in mortality, resolution of hypercapnia,
+      PaO₂ improvement, supplemental oxygen requirement, AHI change or daytime sleepiness.</p>
+
+      <h3>Complications to monitor on PAP</h3>
+      <ul>
+        <li>Nasal bridge pressure sores</li>
+        <li>Oronasal dryness</li>
+        <li>Eye irritation / discomfort</li>
+        <li>Flattening of the midface (long-term interface use on growing facial structures in children)</li>
+        <li>Mask interface and humidification issues</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 7. PAEDIATRICS ============ -->
+  <details class="card" id="s7">
+    <summary><span class="sec-ico">7</span> Paediatric Perioperative Care</summary>
+    <div class="card-body">
+
+      <div class="rec">
+        <span class="tag">KEY RECOMMENDATION</span>
+        Perioperative assessment should be thorough in children at high risk of, or diagnosed with, OSA.
+        Paediatric patients at increased perioperative risk from OSA should be <b>closely monitored following
+        recovery from anaesthesia</b>.
+      </div>
+
+      <h3>Screening &amp; diagnosis</h3>
+      <ul>
+        <li><b>Paediatric Sleep Questionnaire (PSQ)</b> is the screening tool of choice.
+            Score <b>≥ 8</b> indicates sleep-related breathing disorder.</li>
+        <li>PSQ sensitivity: 73% (mild), 80% (moderate), 89% (severe). Validated in English and Malay.</li>
+        <li><b>PSG level 1</b> is the diagnostic gold standard — use paediatric scoring criteria.</li>
+        <li>If level 1 PSG is unavailable, <b>overnight pulse oximetry</b> may be used as an alternative.</li>
+      </ul>
+      <p class="small">Oximetry thresholds suggesting moderate-to-severe OSA: ≥ 3 clusters of desaturation
+      events and ≥ 3 SpO₂ drops below 90%; ODI₄ &gt; 2 episodes/hr with symptoms (PPV 84% for AHI &gt; 1/hr).
+      Technical requirements: sufficient recording capacity and short averaging time (&lt; 3 seconds at HR 80 bpm).</p>
+
+      <h3>High-risk groups to screen</h3>
+      <p>Obesity · prematurity · adenotonsillar hypertrophy (and family history) · nasal septum deviation ·
+      allergic rhinitis · craniofacial anomalies · midface hypoplasia in craniosynostosis syndromes ·
+      mandibular hypoplasia ± cleft palate · neuromuscular disorder · achondroplasia · Chiari malformation ·
+      Down syndrome · Ehlers-Danlos syndrome · mucopolysaccharidoses · Prader-Willi syndrome.</p>
+
+      <h3>Perioperative management</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Phase</th><th>Key actions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Preoperative</b></td>
+              <td>Detailed history + screening questionnaire + targeted examination · document PSG severity, lowest and duration of desaturation, CO₂ · <b>lowest SpO₂ &lt; 70% → cardiopulmonary assessment</b> · sedative premedication with caution + continuous pulse oximetry</td>
+            </tr>
+            <tr>
+              <td><b>Intraoperative</b></td>
+              <td>No evidence/consensus for a specific technique · difficult airway adjuncts available (fibreoptic bronchoscope, video laryngoscope, difficult airway cart) · <b>opioid-sparing technique preferred</b> · <b>awake extubation advocated</b></td>
+            </tr>
+            <tr>
+              <td><b>Postoperative</b></td>
+              <td>Continuous monitoring strongly recommended (general or critical care ward) · continue BiPAP/CPAP at preoperative settings · NSAIDs and paracetamol; consider peripheral nerve blocks and central neuraxial anaesthesia · dexmedetomidine is opioid-sparing · do not discharge to unmonitored setting until no longer at risk</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Critical care admission considerations</h3>
+      <ul>
+        <li><b>Patient factors:</b> neuromuscular disorder, craniofacial anomalies, preoperative oxygen requirement.</li>
+        <li><b>Surgical factors:</b> surgery near or above the diaphragm.</li>
+        <li><b>Anaesthetic factors:</b> postoperative IV narcotic or patient-controlled analgesia.</li>
+      </ul>
+
+      <h3>Treatment overview (for context)</h3>
+      <ul>
+        <li><b>Adenotonsillectomy (AT)</b> is the treatment of choice for OSA due to adenotonsillar hypertrophy
+            (~75% surgical success).</li>
+        <li>Post-AT residual disease → reassess upper airway and multilevel obstruction; consider lingual
+            tonsillectomy, supraglottoplasty, epiglottopexy, tracheostomy.</li>
+        <li><b>CPAP</b> is offered if persistent symptoms/signs after surgery, or surgery is contraindicated.
+            Nasal CPAP is preferred; manage by experienced multidisciplinary clinicians.</li>
+        <li>Oral montelukast and/or nasal corticosteroids may be considered.</li>
+      </ul>
+
+      <h3>Follow-up</h3>
+      <ul>
+        <li>Monitor between <b>6 weeks and 12 months</b> after each treatment intervention.</li>
+        <li>Assess symptoms, objective OSA severity, cardiovascular/CNS complications, quality of life,
+            enuresis, growth rate.</li>
+        <li>Reassessment intervals: persistent SDB symptoms or at risk of persistent OSA → 26 weeks after AT;
+            mild OSA on montelukast/nasal steroids → after 12 weeks; post-RME → 12 months (or earlier if
+            symptoms persist).</li>
+        <li>Repeat PAP titration at least annually, or earlier if clinically indicated.</li>
+        <li>Mask fit must be assessed at least <b>6-monthly</b> because children grow rapidly.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 8. SPECIAL GROUPS ============ -->
+  <details class="card" id="s8">
+    <summary><span class="sec-ico">8</span> Special Groups</summary>
+    <div class="card-body">
+
+      <h3>Pregnancy</h3>
+      <ul>
+        <li>Worldwide prevalence of OSA in pregnancy: <b>15%</b> (95% CI 12–18); per trimester 15–19%.</li>
+        <li>Associated risks (OR):
+          pregnancy-induced hypertension <b>1.97</b> · pre-eclampsia <b>2.35</b> ·
+          gestational diabetes <b>1.55</b> · pulmonary oedema <b>6.35</b> ·
+          Caesarean section <b>1.42</b> · postoperative wound complications <b>1.87</b> ·
+          preterm birth <b>1.62</b> · NICU admission <b>1.28</b>.</li>
+        <li>Screening questionnaires perform <b>poorly to fairly</b> in pregnancy
+            (Berlin: sensitivity 0.66 / specificity 0.62; ESS: 0.44 / 0.62). None accurately identify OSA.</li>
+        <li>Level 1 PSG is the gold standard, but is time-consuming, labour-intensive and costly.
+            <b>AASM home PSG guidance excludes pregnant women.</b></li>
+        <li>CPAP in pregnancy: a small RCT in gestational diabetes showed significantly lower rates of
+            preterm delivery, unplanned Caesarean section and NICU admissions. A cohort study in hypertensive
+            disorders showed reduced severe hypertension and improved lowest SpO₂ and ESS after one month.</li>
+      </ul>
+      <div class="rec">
+        <span class="tag">KEY RECOMMENDATION</span>
+        Pregnant women with suspected OSA based on symptoms and signs should be referred for further
+        management by a <b>multidisciplinary specialist team</b>.
+      </div>
+
+      <h3>Craniofacial anomalies</h3>
+      <ul>
+        <li>Pierre Robin Sequence (micrognathia, retrognathia, glossoptosis ± cleft lip/palate) carries a
+            high OSA risk; obstruction can be severe and cause intermittent hypoxia with long-term cognitive
+            impairment.</li>
+        <li>Almost 30% of children with syndromic cleft lip/palate screen positive for OSA.</li>
+        <li>Cephalometric risk markers: Class II skeletal pattern (reduced SNB, increased ANB), more vertical
+            growth (increased MP-SN), reduced upper airway sagittal width (reduced PNS-AD1/PNS-AD2).</li>
+        <li><b>Treatment principle:</b> secure a safe airway. Tracheostomy may be necessary in neonates/infants
+            with severe obstruction until corrective surgery. Surgical options include mandibular distraction
+            osteogenesis, AT and rapid maxillary expansion.</li>
+        <li>Non-surgical: nasal CPAP, oxygen therapy, proton pump inhibitors (if surgery not possible or in
+            mild–moderate OSA).</li>
+      </ul>
+      <div class="rec">
+        <span class="tag">KEY RECOMMENDATION</span>
+        Patients with OSA and craniofacial anomalies should be assessed for the <b>benefit and risk of a
+        surgical intervention</b>.
+      </div>
+
+      <h3>Down syndrome</h3>
+      <ul>
+        <li>Prevalence of OSA: <b>45–82%</b>.</li>
+        <li>Mechanisms: midfacial and mandibular hypoplasia with soft tissue crowding, adenotonsillar
+            hypertrophy, relative macroglossia and glossoptosis, laryngomalacia, subglottic and tracheal
+            stenosis.</li>
+        <li>Infants and children &lt; 2 years tend to have more severe disease than those ≥ 2 years
+            (p = 0.005). Of those monitored, 78% had moderate or severe OSA at some point.</li>
+        <li>AT is a mainstay; significant improvement in obstructive AHI and minimum SpO₂ — but
+            <b>almost half have persistent OSA postoperatively</b>.</li>
+      </ul>
+      <div class="rec">
+        <span class="tag">KEY RECOMMENDATION</span>
+        Patients with Down syndrome should be <b>screened for OSA and treated accordingly</b>.
+      </div>
+
+      <h3>Obesity hypoventilation syndrome</h3>
+      <p>See <a href="#s6">PAP Therapy &amp; Ventilation Notes</a> — BMI ≥ 30 kg/m², PaCO₂ ≥ 45 mmHg,
+      sleep-disordered breathing, exclusion of other causes. CPAP is the preferred initial treatment in
+      stable ambulatory patients with severe OSA.</p>
+
+    </div>
+  </details>
+
+  <!-- ============ 9. ALGORITHMS ============ -->
+  <details class="card" id="s9">
+    <summary><span class="sec-ico">9</span> Simplified Algorithms</summary>
+    <div class="card-body">
+
+      <h3>Algorithm 1 — Adult OSA pathway</h3>
+      <div class="flow">
+        <div class="fnode"><b>Clinical suspicion of OSA</b></div>
+        <div class="farrow">▼</div>
+        <div class="fnode fd">Screening with STOP-BANG — score ≥ 3?</div>
+        <div class="fbranch">
+          <div>
+            <span class="flabel">No</span>
+            <div class="fnode fw">Consider other diagnosis &amp; treat accordingly<br><small>Still highly suspicious? (risk factors, maxillofacial abnormalities) → proceed to assessment</small></div>
+          </div>
+          <div>
+            <span class="flabel">Yes</span>
+            <div class="fnode fa">Assessment* / referral to ORL or Respiratory for PSG</div>
+          </div>
+        </div>
+        <div class="farrow">▼</div>
+        <div class="fnode fd">AHI ≥ 5/hr?</div>
+        <div class="fbranch">
+          <div>
+            <span class="flabel">No</span>
+            <div class="fnode fw">Re-assess for other diagnosis &amp; treat accordingly</div>
+          </div>
+          <div>
+            <span class="flabel">Yes</span>
+            <div class="fnode fa">Lifestyle modification &amp; weight management</div>
+          </div>
+        </div>
+        <div class="farrow">▼</div>
+        <div class="fnode fa"><b>PAP therapy ± Surgery**</b></div>
+        <div class="fbranch">
+          <div>
+            <span class="flabel">Tolerate &amp; compliant</span>
+            <div class="fnode">Continue periodic follow-up</div>
+          </div>
+          <div>
+            <span class="flabel">PAP intolerant / non-compliant</span>
+            <div class="fnode fw">Refer for surgical management or oral appliances</div>
+          </div>
+        </div>
+      </div>
+      <p class="small">* May include endoscopic upper airway evaluation.
+      ** Preferably managed by a multidisciplinary team; certain cases may receive upper airway surgery earlier.</p>
+
+      <h3>Algorithm 2 — Surgical pathway (adults)</h3>
+      <div class="flow">
+        <div class="fnode fw"><b>PAP intolerant or non-compliant</b></div>
+        <div class="farrow">▼</div>
+        <div class="fnode fd">BMI ≥ 35 kg/m²?</div>
+        <div class="fbranch">
+          <div>
+            <span class="flabel">Yes</span>
+            <div class="fnode fa">Refer for bariatric surgery</div>
+          </div>
+          <div>
+            <span class="flabel">No</span>
+            <div class="fnode fd">Presence of dentofacial deformity?</div>
+          </div>
+        </div>
+        <div class="fbranch">
+          <div>
+            <span class="flabel">Yes</span>
+            <div class="fnode fa">Refer to OMFS → Maxillary expansion or MMA → PSG at 3–6 months post-surgery</div>
+          </div>
+          <div>
+            <span class="flabel">No</span>
+            <div class="fnode fa">Refer to ORL → DISE / FNMM</div>
+          </div>
+        </div>
+        <div class="farrow">▼</div>
+        <div class="fnode fd">Significant concentric palatal collapse?</div>
+        <div class="fbranch">
+          <div>
+            <span class="flabel">Yes</span>
+            <div class="fnode fa">Surgery (uni- or multilevel) on nasal / palate / oropharynx / tongue → PSG at 3 months post-surgery → surgical success? → follow-up / PAP reconsideration</div>
+          </div>
+          <div>
+            <span class="flabel">No</span>
+            <div class="fnode fw">PAP therapy &amp; follow-up</div>
+          </div>
+        </div>
+      </div>
+      <p class="small">BMI = body mass index; DISE = drug-induced sleep endoscopy; FNMM = fibre-optic nasal
+      endoscopy with Müller's manoeuvre; MFT = myofunctional therapy; MMA = maxillomandibular advancement;
+      OMFS = oral and maxillofacial surgeon; ORL = otorhinolaryngologist.</p>
+
+      <h3>Algorithm 3 — Paediatric OSA pathway</h3>
+      <div class="flow">
+        <div class="fnode"><b>Child with clinical suspicion / high risk* of OSA</b></div>
+        <div class="farrow">▼</div>
+        <div class="fnode fd">PSQ screening — score ≥ 8?</div>
+        <div class="fbranch">
+          <div>
+            <span class="flabel">No</span>
+            <div class="fnode fw">Refer to paediatrician &amp; treat accordingly</div>
+          </div>
+          <div>
+            <span class="flabel">Yes</span>
+            <div class="fnode fa">Assessment by paediatrician + upper airway examination by ORL</div>
+          </div>
+        </div>
+        <div class="farrow">▼</div>
+        <div class="fnode fd">Adenotonsillar hypertrophy ± skeletal discrepancy? / High risk for OSA?</div>
+        <div class="farrow">▼</div>
+        <div class="fnode fa"><b>PSG (level 1) or overnight pulse oximetry</b></div>
+        <div class="fsplit">
+          <div>
+            <span class="flabel">Mild — AHI 1–5</span>
+            <div class="fnode">Trial of medications → follow-up by paediatrician / ORL</div>
+          </div>
+          <div>
+            <span class="flabel">Moderate — AHI 5–10</span>
+            <div class="fnode">Adenotonsillectomy → follow-up by paediatrician / ORL / OMFS / orthodontist</div>
+          </div>
+          <div>
+            <span class="flabel">Severe — AHI &gt; 10</span>
+            <div class="fnode fw">Refer respiratory paediatrician for CPAP</div>
+          </div>
+        </div>
+        <div class="farrow">▼</div>
+        <div class="fnode fd">Persistent symptoms &amp; signs of OSA</div>
+        <div class="farrow">▼</div>
+        <div class="fnode fw">Refer to respiratory paediatrician &amp; ORL for reassessment</div>
+      </div>
+      <p class="small">* Obesity, craniofacial anomalies, Down syndrome, etc.
+      Moderate to severe OSA and those with adenotonsillar hypertrophy ± skeletal discrepancy warrant
+      multidisciplinary assessment.</p>
+
+    </div>
+  </details>
+
+  <!-- ============ 10. APPENDICES ============ -->
+  <details class="card" id="s10">
+    <summary><span class="sec-ico">10</span> Bedside Appendices</summary>
+    <div class="card-body">
+
+      <h3>Modified Mallampati grading</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Grade</th><th>Structures visible</th><th>Airway concern</th></tr></thead>
+          <tbody>
+            <tr><td class="num"><b>1</b></td><td>Soft palate, fauces, uvula, anterior and posterior pillars</td><td>Low risk</td></tr>
+            <tr><td class="num"><b>2</b></td><td>Soft palate, fauces, uvula</td><td>Low risk</td></tr>
+            <tr><td class="num"><b>3</b></td><td>Soft palate and base of uvula</td><td><b>Increased risk</b></td></tr>
+            <tr><td class="num"><b>4</b></td><td>Soft palate not visible</td><td><b>Increased risk</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">Grades 3–4 form part of the clinical findings of OSA (crowded oropharynx).</p>
+
+      <h3>Tonsillar grading</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Size</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="num"><b>0</b></td><td>Absence of tonsillar tissue</td></tr>
+            <tr><td class="num"><b>1</b></td><td>Within the pillars</td></tr>
+            <tr><td class="num"><b>2</b></td><td>Extended to the pillars</td></tr>
+            <tr><td class="num"><b>3</b></td><td>Extended past the pillars</td></tr>
+            <tr><td class="num"><b>4</b></td><td>Extended to the midline</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>ASA Physical Status Classification</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Class</th><th>Definition</th><th>Examples (adult)</th></tr></thead>
+          <tbody>
+            <tr><td class="num"><b>I</b></td><td>A normal healthy patient</td><td>Healthy, non-smoking, no or minimal alcohol use</td></tr>
+            <tr><td class="num"><b>II</b></td><td>A patient with mild systemic disease</td><td>Current smoker, social alcohol drinker, pregnancy, obesity (30 &lt; BMI &lt; 40), well-controlled DM/HTN, mild lung disease</td></tr>
+            <tr><td class="num"><b>III</b></td><td>A patient with severe systemic disease</td><td>Substantive functional limitations; poorly controlled DM or HTN, COPD, morbid obesity (BMI ≥ 40), active hepatitis, alcohol dependence, implanted pacemaker, moderate reduction of ejection fraction, ESRD on regular dialysis, history (&gt; 3 months) of MI, CVA, TIA or CAD/stents</td></tr>
+            <tr><td class="num"><b>IV</b></td><td>Severe systemic disease that is a constant threat to life</td><td>Recent (&lt; 3 months) MI, CVA, TIA or CAD/stents, ongoing cardiac ischaemia or severe valve dysfunction, severe reduction of ejection fraction, shock, sepsis, DIC, ARD or ESRD not on regular dialysis</td></tr>
+            <tr><td class="num"><b>V</b></td><td>A moribund patient not expected to survive without the operation</td><td>Ruptured abdominal/thoracic aneurysm, massive trauma, intracranial bleed with mass effect, ischaemic bowel with significant cardiac pathology or multiple organ/system dysfunction</td></tr>
+            <tr><td class="num"><b>VI</b></td><td>A declared brain-dead patient whose organs are being removed for donor purposes</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">Paediatric examples include: mild/moderate OSA (ASA II), severe OSA (ASA III).
+      The addition of "E" denotes emergency surgery.</p>
+
+      <h3>Epworth Sleepiness Scale (ESS) — scoring</h3>
+      <ul>
+        <li>8 situations scored 0–3 (0 = would never doze, 3 = high chance of dozing); total 0–24.</li>
+        <li><b>Score ≥ 11 = high risk</b> (excessive daytime sleepiness).</li>
+        <li>Situations: sitting and reading · watching TV · sitting inactive in a public place ·
+            as a passenger in a car for an hour · lying down to rest in the afternoon · sitting and talking to
+            someone · sitting quietly after lunch without alcohol · in a car stopped for a few minutes in
+            traffic.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ REFERENCES ============ -->
+  <details class="card" id="refs">
+    <summary><span class="sec-ico">§</span> Source &amp; References</summary>
+    <div class="card-body">
+
+      <div class="key">
+        <b>Primary source:</b><br>
+        Malaysian Health Technology Assessment Section (MaHTAS), Medical Development Division,
+        Ministry of Health Malaysia. <i>Management of Obstructive Sleep Apnoea</i>. Putrajaya: MaHTAS; 2023.
+        eISBN 978-967-2887-57-7. MOH/P/PAK/503.22(GU)-e.
+        <br><br>
+        Available at: <code>moh.gov.my</code> · <code>acadmed.org.my</code> ·
+        <code>sleepsocietymalaysia.org</code> · <code>mpaeds.my</code>
+      </div>
+
+      <p class="small">This quick reference is an adaptation for anaesthetists and intensivists. It is not a
+      substitute for the full CPG, which remains the definitive document. Reference numbers below correspond
+      to the numbered bibliography in the source CPG.</p>
+
+      <ol class="small">
+        <li>Marcus CL, Brooks LJ, Draper KA, et al. Diagnosis and management of childhood obstructive sleep apnea syndrome. <i>Pediatrics</i>. 2012;130(3):576-584.</li>
+        <li>Kapur VK, Auckley DH, Chowdhuri S, et al. Clinical Practice Guideline for Diagnostic Testing for Adult Obstructive Sleep Apnea: An AASM Clinical Practice Guideline. <i>J Clin Sleep Med</i>. 2017;13(3):479-504.</li>
+        <li>American Academy of Sleep Medicine. <i>International Classification of Sleep Disorders</i>, 3rd ed. Darien, IL: AASM; 2014.</li>
+        <li>Patil SP, Ayappa IA, Caples SM, et al. Treatment of Adult Obstructive Sleep Apnea with Positive Airway Pressure: An AASM Clinical Practice Guideline. <i>J Clin Sleep Med</i>. 2019;15(2):335-343.</li>
+        <li>Summary of AASM Clinical Guidelines for the Manual Titration of Positive Airway Pressure in Patients with Obstructive Sleep Apnea — Updated July 2012. American Association of Sleep Technologists.</li>
+        <li>Kent D, Stanley J, Aurora RN, et al. Referral of adults with obstructive sleep apnea for surgical consultation: an AASM clinical practice guideline. <i>J Clin Sleep Med</i>. 2021;17(12):2499-2505.</li>
+        <li>Chung F, Memtsoudis SG, Ramachandran SK, et al. Society of Anesthesia and Sleep Medicine Guidelines on Preoperative Screening and Assessment of Adult Patients With Obstructive Sleep Apnea. <i>Anesth Analg</i>. 2016;123(2):452-473.</li>
+        <li>Memtsoudis SG, Cozowicz C, Nagappa M, et al. Society of Anesthesia and Sleep Medicine Guideline on Intraoperative Management of Adult Patients With Obstructive Sleep Apnea. <i>Anesth Analg</i>. 2018;127(4):967-987.</li>
+        <li>Nagappa M, Wong DT, Cozowicz C, et al. Is obstructive sleep apnea associated with difficult airway? Evidence from a systematic review and meta-analysis. <i>PLoS One</i>. 2018;13(10):e0204904.</li>
+        <li>Albrecht E, Bayon V, Hirotsu C, et al. Impact of short-acting vs. standard anaesthetic agents on obstructive sleep apnoea: a randomised, controlled, triple-blind trial. <i>Anaesthesia</i>. 2021;76(1):45-53.</li>
+        <li>Stewart M, Estephan L, Thaler A, et al. Reduced Recovery Times with Total Intravenous Anesthesia in Patients with Obstructive Sleep Apnea. <i>Laryngoscope</i>. 2021;131(4):925-931.</li>
+        <li>Dimou F, Huynh S, Dakin G, et al. Nasal positive pressure with the SuperNO₂ VA™ device decreases sedation-related hypoxemia during pre-bariatric surgery EGD. <i>Surg Endosc</i>. 2019;33(11):3828-3832.</li>
+        <li>Hai F, Porhomayon J, Vermont L, et al. Postoperative complications in patients with obstructive sleep apnea: a meta-analysis. <i>J Clin Anesth</i>. 2014;26(8):591-600.</li>
+        <li>Gupta K, Nagappa M, Prasad A, et al. Risk factors for opioid-induced respiratory depression in surgical patients: a systematic review and meta-analyses. <i>BMJ Open</i>. 2018;8(12):e024086.</li>
+        <li>Nagappa M, Patra J, Wong J, et al. Association of STOP-Bang Questionnaire as a Screening Tool for Sleep Apnea and Postoperative Complications: A Systematic Review and Bayesian Meta-analysis. <i>Anesth Analg</i>. 2017;125(4):1301-1308.</li>
+        <li>Xará D, Mendonça J, Pereira H, et al. Adverse respiratory events after general anesthesia in patients at high risk of obstructive sleep apnea syndrome. <i>Braz J Anesthesiol</i>. 2015;65(5):359-366.</li>
+        <li>Patino M, Sadhasivam S, Mahmoud M. Obstructive sleep apnoea in children: perioperative considerations. <i>Br J Anaesth</i>. 2013;111(Suppl 1):i83-i95.</li>
+        <li>Kaditis AG, Alonso Alvarez ML, Boudewyns A, et al. Obstructive sleep disordered breathing in 2- to 18-year-old children: diagnosis and management. <i>Eur Respir J</i>. 2016;47(1):69-94.</li>
+        <li>Practice guidelines for the perioperative management of patients with obstructive sleep apnea: an updated report by the ASA Task Force. <i>Anesthesiology</i>. 2014;120(2):268-286.</li>
+        <li>Adler AC, Daszkowski A, Tan JC, et al. The Association of Dexmedetomidine on Perioperative Opioid Consumption in Children Undergoing Adenotonsillectomy With and Without Obstructive Sleep Apnea. <i>Anesth Analg</i>. 2021;133(5):1260-1268.</li>
+        <li>Wu CR, Tu YK, Chuang LP, et al. Diagnostic meta-analysis of the Pediatric Sleep Questionnaire, OSA-18, and pulse oximetry in detecting pediatric obstructive sleep apnea syndrome. <i>Sleep Med Rev</i>. 2020;54:101355.</li>
+        <li>Kaditis A, Kheirandish-Gozal L, Gozal D. Pediatric OSAS: Oximetry can provide answers when polysomnography is not available. <i>Sleep Med Rev</i>. 2016;27:96-105.</li>
+        <li>Liu L, Su G, Wang S, et al. The prevalence of obstructive sleep apnea and its association with pregnancy-related health outcomes: a systematic review and meta-analysis. <i>Sleep Breath</i>. 2019;23(2):399-412.</li>
+        <li>Tantrakul V, Numthavaj P, Guilleminault C, et al. Performance of screening questionnaires for obstructive sleep apnea during pregnancy: A systematic review and meta-analysis. <i>Sleep Med Rev</i>. 2017;36:96-106.</li>
+        <li>Chirakalwasan N, Amnakkittikul S, Wanitcharoenkul E, et al. Continuous Positive Airway Pressure Therapy in Gestational Diabetes With Obstructive Sleep Apnea: A Randomized Controlled Trial. <i>J Clin Sleep Med</i>. 2018;14(3):327-336.</li>
+        <li>Stajić D, Ilić D, Vuković J, et al. The effect of continuous positive airway pressure treatment on hypertensive disorder in pregnant women with obstructive sleep apnea. <i>Sleep Breath</i>. 2022;26(1):297-305.</li>
+        <li>Mokhlesi B, Masa JF, Brozek JL, et al. Evaluation and Management of Obesity Hypoventilation Syndrome. An Official American Thoracic Society Clinical Practice Guideline. <i>Am J Respir Crit Care Med</i>. 2019;200(3):e6-e24.</li>
+        <li>Masa JF, Mokhlesi B, Benitez I, et al. Long-term clinical effectiveness of CPAP versus non-invasive ventilation in patients with obesity hypoventilation syndrome: a multicentre, open-label, randomised controlled trial. <i>Lancet</i>. 2019;393(10182):1721-1732.</li>
+        <li>Soghier I, Brozek JL, Afshar M, et al. Noninvasive Ventilation versus CPAP as Initial Treatment of Obesity Hypoventilation Syndrome. <i>Ann Am Thorac Soc</i>. 2019;16(10):1295-1303.</li>
+        <li>Nerfeldt P, Sundelin A. Obstructive sleep apnea in children with Down syndrome — prevalence and evaluation of surgical treatment. <i>Int J Pediatr Otorhinolaryngol</i>. 2020;133:109968.</li>
+        <li>Maris M, Verhulst S, Wojciechowski M, et al. Outcome of adenotonsillectomy in children with Down syndrome and obstructive sleep apnoea. <i>Arch Dis Child</i>. 2017;102(4):331-336.</li>
+      </ol>
+
+    </div>
+  </details>
+
+  <footer>
+    <h3>Disclaimer</h3>
+    <p>This quick reference is a condensed adaptation of the <i>Management of Obstructive Sleep Apnoea</i>
+    clinical practice guideline (MaHTAS, Ministry of Health Malaysia, 2023). It is intended as an
+    <b>aide-mémoire for anaesthetists and intensivists</b> and does not override clinical judgement.
+    Decisions must be individualised to the patient, in consultation with the patient and their family or
+    guardians, taking into account locally available management options. Always consult the full CPG and
+    institutional protocols.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+  var qInput = document.getElementById('q');
+  var clrBtn = document.getElementById('clr');
+  var countEl = document.getElementById('count');
+  var noResult = document.getElementById('noresult');
+
+  /* --- store original markup + default open state --- */
+  var originals = new Map();
+  var defaults  = new Map();
+  cards.forEach(function(c){
+    var body = c.querySelector('.card-body');
+    originals.set(c, body.innerHTML);
+    defaults.set(c, c.hasAttribute('open'));
+  });
+
+  /* --- expand / collapse all --- */
+  document.getElementById('expandAll').addEventListener('click', function(){
+    cards.forEach(function(c){ if(!c.hidden) c.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    cards.forEach(function(c){ c.open = false; });
+  });
+
+  /* --- nav links open their target card --- */
+  document.querySelectorAll('.nav a').forEach(function(a){
+    a.addEventListener('click', function(){
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    });
+  });
+
+  /* --- print: open everything --- */
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){ c.open = true; });
+  });
+
+  /* --- search helpers --- */
+  function escapeRegExp(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function restore(){
+    cards.forEach(function(c){
+      c.querySelector('.card-body').innerHTML = originals.get(c);
+    });
+  }
+
+  function highlight(root, regex){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) {
+      if (n.nodeValue && regex.test(n.nodeValue)) nodes.push(n);
+      regex.lastIndex = 0;
+    }
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      regex.lastIndex = 0;
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      while ((m = regex.exec(text)) !== null) {
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var mark = document.createElement('mark');
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        if (m[0].length === 0) regex.lastIndex++;
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      if (node.parentNode) node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function runSearch(rawTerm){
+    var term = rawTerm.trim();
+
+    if (term.length < 2){
+      restore();
+      cards.forEach(function(c){
+        c.hidden = false;
+        c.open = defaults.get(c);
+      });
+      countEl.textContent = '';
+      clrBtn.style.display = 'none';
+      noResult.style.display = 'none';
+      return;
+    }
+
+    clrBtn.style.display = 'block';
+    restore();
+
+    var regex = new RegExp(escapeRegExp(term), 'gi');
+    var lc = term.toLowerCase();
+    var hits = 0;
+
+    cards.forEach(function(c){
+      var body = c.querySelector('.card-body');
+      var haystack = (c.querySelector('summary').textContent + ' ' + body.textContent).toLowerCase();
+
+      if (haystack.indexOf(lc) !== -1){
+        hits++;
+        c.hidden = false;
+        c.open = true;
+        highlight(body, regex);
+      } else {
+        c.hidden = true;
+        c.open = false;
+      }
+    });
+
+    countEl.textContent = hits + (hits === 1 ? ' section' : ' sections');
+    noResult.style.display = hits === 0 ? 'block' : 'none';
+  }
+
+  var timer = null;
+  qInput.addEventListener('input', function(){
+    clearTimeout(timer);
+    var v = qInput.value;
+    timer = setTimeout(function(){ runSearch(v); }, 130);
+  });
+
+  clrBtn.addEventListener('click', function(){
+    qInput.value = '';
+    runSearch('');
+    qInput.focus();
+  });
+
+  /* --- keyboard shortcut: "/" focuses search --- */
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== qInput){
+      e.preventDefault();
+      qInput.focus();
+      qInput.select();
+    }
+    if (e.key === 'Escape' && document.activeElement === qInput){
+      qInput.value = '';
+      runSearch('');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
