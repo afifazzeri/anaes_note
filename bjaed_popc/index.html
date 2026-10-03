@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postoperative Pulmonary Complications — Quick Reference</title>
+<style>
+  :root{
+    --bg:#f4f7fa;
+    --card:#ffffff;
+    --ink:#16232e;
+    --muted:#5b6b7a;
+    --line:#dce5ee;
+    --accent:#0f766e;
+    --accent-2:#0d5f59;
+    --accent-soft:#e6f4f2;
+    --good:#15803d;
+    --good-soft:#e3f6e9;
+    --fair:#b45309;
+    --fair-soft:#fdf1dc;
+    --weak:#6b7280;
+    --weak-soft:#eef1f4;
+    --danger:#b91c1c;
+    --danger-soft:#fde8e8;
+    --hl:#ffe680;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(16,32,48,.06),0 6px 18px rgba(16,32,48,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e151b;
+      --card:#151f27;
+      --ink:#e6edf3;
+      --muted:#9db0c0;
+      --line:#26343f;
+      --accent:#3fd0bd;
+      --accent-2:#2bb5a3;
+      --accent-soft:#11302e;
+      --good:#5fd08a; --good-soft:#12301f;
+      --fair:#f0b357; --fair-soft:#33260f;
+      --weak:#9aa7b3; --weak-soft:#1e2831;
+      --danger:#f79a9a; --danger-soft:#341616;
+      --hl:#7a5c00;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--card) 92%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:10px 16px;
+  }
+  @supports not (backdrop-filter: blur(10px)){
+    header.top{background:var(--card)}
+  }
+  .top-inner{max-width:1080px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .brand{display:flex;flex-direction:column;min-width:180px;flex:1}
+  .brand h1{margin:0;font-size:1rem;letter-spacing:-.01em;line-height:1.25}
+  .brand span{font-size:.72rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+  .searchbox{position:relative;flex:1 1 260px;max-width:420px}
+  .searchbox input{
+    width:100%;padding:9px 34px 9px 34px;border-radius:999px;
+    border:1px solid var(--line);background:var(--bg);color:var(--ink);
+    font-size:.92rem;outline:none;
+  }
+  .searchbox input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .searchbox .ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.9rem}
+  .searchbox .clr{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);
+    border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;padding:4px 8px;border-radius:50%;
+  }
+  .searchbox .clr:hover{background:var(--accent-soft);color:var(--accent)}
+  .tools{display:flex;gap:6px}
+  .tools button{
+    font:inherit;font-size:.78rem;padding:7px 11px;border-radius:8px;cursor:pointer;
+    border:1px solid var(--line);background:var(--bg);color:var(--muted);
+  }
+  .tools button:hover{border-color:var(--accent);color:var(--accent)}
+
+  main{max-width:1080px;margin:0 auto;padding:18px 16px 80px}
+  .lede{
+    background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 25%, transparent);
+    border-radius:var(--radius);padding:12px 16px;margin:0 0 18px;
+    font-size:.9rem;color:var(--ink);
+  }
+  .lede b{color:var(--accent-2)}
+
+  details.card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    margin:0 0 12px;box-shadow:var(--shadow);overflow:hidden;
+  }
+  details.card[hidden]{display:none}
+  details.card>summary{
+    cursor:pointer;list-style:none;padding:14px 16px;
+    display:flex;align-items:center;gap:12px;font-weight:600;font-size:1rem;
+    user-select:none;
+  }
+  details.card>summary::-webkit-details-marker{display:none}
+  details.card>summary:hover{background:var(--accent-soft)}
+  details.card>summary .num{
+    flex:0 0 auto;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+    background:var(--accent);color:#fff;font-size:.78rem;font-weight:700;
+  }
+  details.card>summary .t{flex:1}
+  details.card>summary .chev{
+    flex:0 0 auto;color:var(--muted);transition:transform .18s ease;font-size:.8rem;
+  }
+  details.card[open]>summary .chev{transform:rotate(90deg)}
+  details.card[open]>summary{border-bottom:1px solid var(--line)}
+  .body{padding:4px 16px 18px}
+
+  details.sub{
+    border:1px solid var(--line);border-radius:10px;margin:10px 0;background:color-mix(in srgb,var(--bg) 60%, transparent);
+  }
+  details.sub>summary{
+    cursor:pointer;list-style:none;padding:9px 12px;font-weight:600;font-size:.9rem;
+    display:flex;align-items:center;gap:8px;color:var(--accent-2);
+  }
+  details.sub>summary::-webkit-details-marker{display:none}
+  details.sub>summary::before{content:"▸";font-size:.7rem;transition:transform .15s}
+  details.sub[open]>summary::before{transform:rotate(90deg)}
+  details.sub .subbody{padding:0 12px 12px}
+
+  h3{font-size:.95rem;margin:16px 0 6px;color:var(--accent-2)}
+  h4{font-size:.86rem;margin:12px 0 4px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  p{margin:6px 0}
+  ul,ol{margin:6px 0 6px 20px;padding:0}
+  li{margin:3px 0}
+  small{color:var(--muted)}
+
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px;margin:10px 0}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:.85rem}
+  th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--accent-soft);color:var(--accent-2);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:color-mix(in srgb,var(--accent-soft) 45%, transparent)}
+
+  .pill{display:inline-block;padding:1px 7px;border-radius:999px;font-size:.7rem;font-weight:700;letter-spacing:.03em;white-space:nowrap}
+  .p-good{background:var(--good-soft);color:var(--good)}
+  .p-fair{background:var(--fair-soft);color:var(--fair)}
+  .p-weak{background:var(--weak-soft);color:var(--weak)}
+  .p-no{background:var(--danger-soft);color:var(--danger)}
+
+  .grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin:10px 0}
+  .box{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:color-mix(in srgb,var(--bg) 55%, transparent)}
+  .box h4{margin:0 0 6px;color:var(--accent-2);font-size:.78rem}
+  .box ul{margin:0 0 0 16px;font-size:.85rem}
+
+  .kpi{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:12px 0}
+  .kpi .k{background:var(--accent-soft);border-radius:10px;padding:10px 12px;border:1px solid color-mix(in srgb,var(--accent) 20%, transparent)}
+  .kpi .k b{display:block;font-size:1.25rem;color:var(--accent-2);line-height:1.2}
+  .kpi .k span{font-size:.76rem;color:var(--muted)}
+
+  /* ---- simple diagrams ---- */
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:12px 0}
+  .flow .step{
+    flex:1 1 130px;min-width:130px;background:var(--accent-soft);
+    border:1px solid color-mix(in srgb,var(--accent) 25%, transparent);
+    border-radius:10px;padding:9px 10px;font-size:.8rem;text-align:center;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .flow .step b{display:block;color:var(--accent-2);font-size:.82rem}
+  .flow .arrow{display:flex;align-items:center;color:var(--muted);font-size:1rem;flex:0 0 auto}
+
+  .timeline{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:12px 0}
+  .phase{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .phase .ph{padding:7px 10px;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff}
+  .phase.a .ph{background:#0f766e}
+  .phase.b .ph{background:#1d6fa5}
+  .phase.c .ph{background:#7c5cbf}
+  .phase ul{margin:8px 10px 10px 24px;font-size:.83rem}
+
+  .bars{margin:12px 0}
+  .bar-row{display:grid;grid-template-columns:120px 1fr 56px;gap:8px;align-items:center;margin:6px 0;font-size:.8rem}
+  .bar-track{background:var(--weak-soft);border-radius:999px;height:16px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:999px}
+  .bar-row.low .bar-fill{background:var(--good)}
+  .bar-row.mid .bar-fill{background:var(--fair)}
+  .bar-row.high .bar-fill{background:var(--danger)}
+  .bar-row .val{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+  .bar-label{font-size:.74rem;color:var(--muted);margin:2px 0 8px}
+
+  .note{
+    border-left:3px solid var(--accent);background:var(--accent-soft);
+    padding:8px 12px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.86rem;
+  }
+  .note.warn{border-left-color:var(--fair);background:var(--fair-soft)}
+  .note.danger{border-left-color:var(--danger);background:var(--danger-soft)}
+
+  .check{list-style:none;margin:8px 0;padding:0}
+  .check li{display:flex;gap:9px;align-items:flex-start;padding:5px 0;border-bottom:1px dashed var(--line);font-size:.86rem}
+  .check li:last-child{border-bottom:0}
+  .check input{margin-top:3px;accent-color:var(--accent);flex:0 0 auto;width:16px;height:16px}
+
+  mark.hl{background:var(--hl);color:#1a1a1a;border-radius:3px;padding:0 2px}
+
+  #noresults{display:none;text-align:center;padding:40px 16px;color:var(--muted);font-size:.9rem}
+  #noresults.on{display:block}
+
+  .refs{font-size:.85rem}
+  .refs li{margin:8px 0}
+  .refs .file{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;color:var(--muted)}
+
+  footer{max-width:1080px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:.78rem}
+
+  #totop{
+    position:fixed;right:16px;bottom:16px;z-index:60;display:none;
+    border:1px solid var(--line);background:var(--card);color:var(--accent);
+    border-radius:50%;width:42px;height:42px;cursor:pointer;font-size:1.05rem;
+    box-shadow:var(--shadow);
+  }
+  #totop.on{display:block}
+
+  @media (max-width:560px){
+    .brand h1{font-size:.92rem}
+    .bar-row{grid-template-columns:92px 1fr 48px;font-size:.74rem}
+    table{min-width:460px}
+  }
+  @media print{
+    header.top,#totop,.tools,.searchbox{display:none!important}
+    details.card{border:1px solid #ccc;box-shadow:none;break-inside:avoid}
+    details.card>summary{background:#f2f2f2}
+    .body{display:block!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <h1>Postoperative Pulmonary Complications</h1>
+      <span>Anaesthesia &amp; Critical Care Quick Reference</span>
+    </div>
+    <div class="searchbox">
+      <span class="ico">🔍</span>
+      <input id="search" type="search" placeholder="Search… e.g. ARISCAT, PEEP, neostigmine" aria-label="Search reference" autocomplete="off">
+      <button class="clr" id="clearBtn" title="Clear search" aria-label="Clear search">✕</button>
+    </div>
+    <div class="tools">
+      <button id="expandAll" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+
+  <p class="lede">
+    <b>How to use:</b> tap any section to expand. Use the search box to filter — matching sections open automatically and
+    matches are highlighted. Tables scroll sideways on small screens. All figures carry the strength of evidence from the
+    source reviews.
+  </p>
+
+  <!-- ============ 1. DEFINITION & BURDEN ============ -->
+  <details class="card" open>
+    <summary><span class="num">1</span><span class="t">Definition &amp; Clinical Burden</span><span class="chev">▶</span></summary>
+    <div class="body">
+
+      <h3>Definition</h3>
+      <p>Pulmonary abnormalities after surgery that result in <b>identifiable disease or dysfunction</b> and
+      <b>adversely affect the patient's clinical outcome</b>. Definitions vary between trials (a major source of
+      heterogeneity), but the core composite is:</p>
+      <div class="grid">
+        <div class="box"><h4>Core components</h4>
+          <ul>
+            <li>Respiratory failure</li>
+            <li>Pneumonia / respiratory infection</li>
+            <li>Atelectasis</li>
+            <li>Pleural effusion</li>
+            <li>Pneumothorax</li>
+            <li>Bronchospasm</li>
+            <li>Aspiration pneumonitis</li>
+          </ul>
+        </div>
+        <div class="box"><h4>Sometimes counted separately</h4>
+          <ul>
+            <li>ARDS</li>
+            <li>Pulmonary embolism</li>
+            <li>Pulmonary oedema</li>
+            <li>Exacerbation of pre-existing lung disease</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Why it matters</h3>
+      <div class="kpi">
+        <div class="k"><b>&lt;1–23%</b><span>Incidence after major surgery (definition-dependent)</span></div>
+        <div class="k"><b>~1 in 5</b><span>30-day mortality with a PPC (14–30%) vs 0.2–3% without</span></div>
+        <div class="k"><b>+13–17 d</b><span>Additional length of stay</span></div>
+        <div class="k"><b>~$25,498</b><span>Incremental cost per admission after GI surgery</span></div>
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Outcome</th><th>With PPC</th><th>Without PPC</th></tr></thead>
+          <tbody>
+            <tr><td>30-day mortality</td><td>14–30%</td><td>0.2–3%</td></tr>
+            <tr><td>90-day mortality</td><td>24.4%</td><td>1.2%</td></tr>
+            <tr><td>1-year mortality</td><td>45.9%</td><td>8.7%</td></tr>
+            <tr><td>5-year mortality</td><td>71.4%</td><td>41.1%</td></tr>
+            <tr><td>Cost impact</td><td colspan="2">Pneumonia +41%; respiratory failure +47% (tertiary centre data)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        PPCs are the <b>most important independent determinant of 30-day mortality</b> after non-cardiothoracic surgery,
+        and are at least as common as cardiac complications. In elderly patients they may predict long-term mortality
+        better than cardiac complications.
+      </div>
+
+      <p><small>Incidence: up to <b>12.5%</b> of elective postoperative patients; <b>5.8%</b> after major abdominal
+      surgery. Postoperative respiratory failure is the most common serious PPC; atelectasis is the most frequent.</small></p>
+
+      <h3>EPCO definitions (composite outcome measures)</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Complication</th><th>Working definition</th></tr></thead>
+          <tbody>
+            <tr><td><b>Respiratory failure</b></td><td>Postop PaO₂ &lt;8 kPa (60 mmHg) on room air, PaO₂:FiO₂ &lt;40 kPa (300 mmHg), or SpO₂ &lt;90% requiring oxygen therapy</td></tr>
+            <tr><td><b>Atelectasis</b></td><td>Lung opacification with mediastinal / hilar / hemidiaphragmatic shift toward the affected area and compensatory over-inflation of adjacent lung</td></tr>
+            <tr><td><b>Pneumonia</b></td><td>Antibiotics for suspected respiratory infection <i>plus</i> ≥1 of: new/changed sputum, new/changed lung opacities, fever, WCC &gt;12 × 10⁹ L⁻¹</td></tr>
+            <tr><td><b>Pleural effusion</b></td><td>CXR: blunted costophrenic angle, loss of sharp ipsilateral hemidiaphragm silhouette upright, displacement of adjacent structures, or hazy supine hemithorax with preserved vascular shadows</td></tr>
+            <tr><td><b>Pneumothorax</b></td><td>Air in pleural space with no vascular bed surrounding visceral pleura</td></tr>
+            <tr><td><b>Bronchospasm</b></td><td>Newly detected expiratory wheeze treated with bronchodilators</td></tr>
+            <tr><td><b>Aspiration pneumonitis</b></td><td>Acute lung injury after inhalation of regurgitated gastric contents</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 2. RISK FACTORS ============ -->
+  <details class="card">
+    <summary><span class="num">2</span><span class="t">Risk Factors</span><span class="chev">▶</span></summary>
+    <div class="body">
+
+      <h3>Preoperative — patient factors</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Factor</th><th>Evidence</th><th>Key numbers / mechanism</th></tr></thead>
+          <tbody>
+            <tr><td><b>Age &gt;60 y</b></td><td><span class="pill p-good">Good</span></td><td>OR 2.1 (60–69 y); 3.1 (70–79 y); 5.1–5.63 (&gt;80 y vs &lt;50 y) for pneumonia. ↓ physiological reserve, ↑ closing capacity, ↓ V/Q ratio</td></tr>
+            <tr><td><b>ASA ≥ II</b></td><td><span class="pill p-good">Good</span></td><td>Independent predictor</td></tr>
+            <tr><td><b>Functional dependency</b></td><td><span class="pill p-good">Good</span></td><td>Total dependence → OR 2.83 (1.98–2.87) for pneumonia</td></tr>
+            <tr><td><b>Congestive heart failure</b></td><td><span class="pill p-good">Good</span></td><td>Significant independent risk factor</td></tr>
+            <tr><td><b>COPD</b></td><td><span class="pill p-good">Good</span></td><td>OR 1.79 (1.44–2.22). Risk parallels severity (FEV₁ 50–80% → FEV₁ &lt;50%). Worst prognosis with pulmonary hypertension / right heart failure</td></tr>
+            <tr><td><b>Smoking</b></td><td><span class="pill p-fair">Fair</span></td><td>Up to 6-fold vs never-smokers; OR 1.28 (1.17–1.42) if smoking within 1 y. Dose-dependent with pack-years (&gt;60 pack-y: OR 1.82)</td></tr>
+            <tr><td><b>Recent URTI (&lt;1 month)</b></td><td><span class="pill p-fair">Fair</span></td><td>OR 5.5 (2.6–11.5) — <b>delay elective surgery</b> in symptomatic patients / those on antibiotics</td></tr>
+            <tr><td><b>Obstructive sleep apnoea</b></td><td><span class="pill p-fair">Fair</span></td><td>Difficult airway postop, hypoxia, aspiration pneumonia, reintubation, longer LOS. &gt;2× risk of acute respiratory failure after non-cardiac surgery</td></tr>
+            <tr><td><b>Pulmonary hypertension</b></td><td><span class="pill p-fair">Fair</span></td><td>High rates of respiratory failure, mechanical ventilation, prolonged ICU stay</td></tr>
+            <tr><td><b>Delirium / alcohol use</b></td><td><span class="pill p-fair">Fair</span></td><td>Moderate increase</td></tr>
+            <tr><td><b>Weight loss &gt;10%</b></td><td><span class="pill p-fair">Fair</span></td><td>Moderate increase</td></tr>
+            <tr><td><b>Disseminated cancer</b></td><td><span class="pill p-fair">Fair</span></td><td>Moderate increase</td></tr>
+            <tr><td>Obesity alone (incl. morbid)</td><td><span class="pill p-no">Not linked</span></td><td>No convincing link — <i>but</i> obesity hypoventilation syndrome is associated with complications</td></tr>
+            <tr><td>Well-controlled asthma</td><td><span class="pill p-no">Not linked</span></td><td>No increased risk</td></tr>
+            <tr><td>Restrictive lung disease</td><td><span class="pill p-no">Not linked</span></td><td>No studies show a link</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Preoperative — investigations</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Test</th><th>Evidence</th><th>Interpretation</th></tr></thead>
+          <tbody>
+            <tr><td><b>Serum albumin &lt;30 g/L</b></td><td><span class="pill p-good">Good</span></td><td>Important predictor — marker of poor nutrition / chronic ill health and expiratory muscle weakness. Nutritional support has <i>not</i> been shown to reduce PPCs</td></tr>
+            <tr><td><b>SpO₂ &lt;96% on air</b></td><td><span class="pill p-fair">Fair</span></td><td>Weak association; <b>SpO₂ ≤90% → ~10× risk</b> (91–95% → ~2×). Cheap, validated in ARISCAT/PERISCOPE</td></tr>
+            <tr><td><b>Haemoglobin &lt;100 g/L</b></td><td><span class="pill p-fair">Fair</span></td><td>~3-fold increase in PPC risk</td></tr>
+            <tr><td><b>Abnormal chest radiograph</b></td><td><span class="pill p-fair">Fair</span></td><td>OR 3.2 (1.1–9.4) if abnormal — but poorly predictive when normal; not routine</td></tr>
+            <tr><td>Serum creatinine &gt;220 µmol/L</td><td><span class="pill p-weak">Insufficient</span></td><td>Weak link with impaired renal function</td></tr>
+            <tr><td>Urea &gt;7.5 mmol/L</td><td><span class="pill p-weak">Insufficient</span></td><td>Weak link</td></tr>
+            <tr><td>Spirometry (FEV₁:FVC &lt;50%)</td><td><span class="pill p-weak">Weak</span></td><td>Useful to diagnose/quantify COPD but <b>not an effective independent predictor</b> of PPCs in non-cardiothoracic surgery</td></tr>
+            <tr><td>Arterial blood gases</td><td><span class="pill p-weak">Weak</span></td><td>Hypercarbia not independently associated with PPCs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <b>NICE guidance:</b> spirometry and ABGs only at the request of a senior anaesthetist for ASA III/IV patients with
+        confirmed or suspected respiratory disease. Do <b>not</b> offer chest X-ray routinely before elective surgery.
+      </div>
+
+      <h3>Intraoperative — surgical factors</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Factor</th><th>Evidence</th><th>Key numbers</th></tr></thead>
+          <tbody>
+            <tr><td><b>Prolonged surgery (&gt;3 h)</b></td><td><span class="pill p-good">Good</span></td><td>OR 4.9 (2.4–10.1) for &gt;2 h; OR 9.7 (4.7–19.9) for &gt;3 h</td></tr>
+            <tr><td><b>Emergency surgery</b></td><td><span class="pill p-good">Good</span></td><td>2–6× increased risk vs elective</td></tr>
+            <tr><td><b>Surgical site</b></td><td><span class="pill p-good">Good</span></td><td>Pneumonia OR: AAA repair 4.29 (3.34–5.50); thoracic 3.92; upper abdominal 2.68; neck 2.30; neurosurgery 2.14; major vascular 1.29. Upper abdominal incision up to 15× risk vs lower abdominal</td></tr>
+            <tr><td><b>Re-operation</b></td><td><span class="pill p-good">Good</span></td><td>4–7× increase vs single procedure</td></tr>
+            <tr><td>Open vs laparoscopic</td><td><span class="pill p-good">Good</span></td><td>Laparoscopic upper &amp; lower GI → fewer PPCs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Intraoperative — anaesthetic factors</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Factor</th><th>Evidence</th><th>Key numbers / mechanism</th></tr></thead>
+          <tbody>
+            <tr><td><b>General anaesthesia</b> (vs regional)</td><td><span class="pill p-fair">Fair</span></td><td>OR 1.83 (1.35–2.46) vs regional or combined. Pneumonia RR 0.45 (0.26–0.79) favouring neuraxial; OR 1.56 for GA vs RA in &gt;200,000 veterans</td></tr>
+            <tr><td><b>Residual neuromuscular block</b></td><td><span class="pill p-fair">Fair</span></td><td>TOF ratio &lt;0.9 common after GA. Impairs upper airway dilator muscles, cough and swallow reflexes → aspiration, respiratory failure, atelectasis, post-extubation hypoxia, negative-pressure pulmonary oedema. Dose-dependent relationship with NMBA</td></tr>
+            <tr><td><b>Neostigmine reversal</b></td><td><span class="pill p-fair">Fair</span></td><td>Dose-dependent increase in PPC risk; excess acetylcholine → genioglossus weakness, pharyngeal incoordination. Risk ↑ when given without quantitative monitoring</td></tr>
+            <tr><td>Failed / no peripheral nerve monitoring</td><td><span class="pill p-fair">Fair</span></td><td>Independent risk factor</td></tr>
+            <tr><td>Large intraoperative fluid volumes</td><td><span class="pill p-fair">Fair</span></td><td>Associated with pneumonia and pulmonary oedema, longer LOS</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 3. RISK MODELS ============ -->
+  <details class="card">
+    <summary><span class="num">3</span><span class="t">Risk Prediction Models</span><span class="chev">▶</span></summary>
+    <div class="body">
+
+      <p>Many models exist; none is universally agreed or simple enough for routine bedside use. The three best-validated
+      prospective, multicentre models are shown below.</p>
+
+      <details class="sub" open>
+        <summary>ARISCAT — Assess Respiratory Risk in Surgical Patients in Catalonia</summary>
+        <div class="subbody">
+          <p>Seven-variable regression model; stratifies into low / intermediate / high risk.</p>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Independent variable</th></tr></thead>
+              <tbody>
+                <tr><td>Low preoperative SpO₂ (&lt;96%)</td></tr>
+                <tr><td>Respiratory infection in the last month</td></tr>
+                <tr><td>Age</td></tr>
+                <tr><td>Preoperative anaemia (Hb &lt;100 g/L)</td></tr>
+                <tr><td>Intrathoracic / upper abdominal surgery</td></tr>
+                <tr><td>Duration of procedure &gt;2 h</td></tr>
+                <tr><td>Emergency surgery</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="bars">
+            <div class="bar-label">PPC incidence in the validation cohort</div>
+            <div class="bar-row low"><span>Low risk</span><span class="bar-track"><span class="bar-fill" style="width:3.8%"></span></span><span class="val">1.6%</span></div>
+            <div class="bar-row mid"><span>Intermediate</span><span class="bar-track"><span class="bar-fill" style="width:31.6%"></span></span><span class="val">13.3%</span></div>
+            <div class="bar-row high"><span>High risk</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="val">42.1%</span></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>PERISCOPE — external validation of ARISCAT</summary>
+        <div class="subbody">
+          <p>Good discrimination with <b>c-statistic 0.80 (95% CI 0.78–0.82)</b>. Secondary analysis (n = 5384) produced a
+          score for <b>postoperative respiratory failure (PRF)</b>.</p>
+          <p><b>PRF incidence: 4.2%.</b> Independent variables differ slightly from ARISCAT:</p>
+          <ul>
+            <li>Low preoperative SpO₂</li>
+            <li>≥1 preoperative respiratory symptom</li>
+            <li>Chronic liver disease</li>
+            <li>Congestive heart failure</li>
+            <li>Intrathoracic / upper abdominal surgery</li>
+            <li>Procedure &gt;2 h</li>
+            <li>Emergency surgery</li>
+          </ul>
+          <div class="bars">
+            <div class="bar-label">PRF incidence by risk group</div>
+            <div class="bar-row low"><span>Low</span><span class="bar-track"><span class="bar-fill" style="width:5.9%"></span></span><span class="val">1.1%</span></div>
+            <div class="bar-row mid"><span>Intermediate</span><span class="bar-track"><span class="bar-fill" style="width:24.5%"></span></span><span class="val">4.6%</span></div>
+            <div class="bar-row high"><span>High</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="val">18.8%</span></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Upper abdominal incision model (Scholes et al.)</summary>
+        <div class="subbody">
+          <p>Prospective cohort, n = 268, upper abdominal incisions only. Five independent risk factors:</p>
+          <ul>
+            <li>Duration of anaesthesia</li>
+            <li>Surgical category</li>
+            <li>Respiratory co-morbidity</li>
+            <li>Current smoker</li>
+            <li>Predicted maximal oxygen uptake (V̇O₂max)</li>
+          </ul>
+          <p>Score ≤2.02 → OR 8.41 (3.33–21.26) for PPC. <b>Requires external validation before clinical use.</b></p>
+        </div>
+      </details>
+
+      <div class="note warn">
+        <b>Bottom line:</b> models have advanced understanding but lack of consensus and complexity mean they remain
+        impractical for routine clinical use. Use them to inform — not replace — clinical judgement and consent.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 4. PATHOPHYSIOLOGY ============ -->
+  <details class="card">
+    <summary><span class="num">4</span><span class="t">Pathophysiology — Why PPCs Happen</span><span class="chev">▶</span></summary>
+    <div class="body">
+
+      <h3>Onset: the moment consciousness is lost</h3>
+      <p>Adverse respiratory effects of general anaesthesia begin <b>immediately after induction</b> and the respiratory
+      system may take <b>up to 6 weeks</b> to return to its preoperative state after major surgery.</p>
+
+      <div class="flow">
+        <div class="step"><b>Induction of GA</b>↓ central drive, ↓ response to hypoxia/hypercapnia</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>↓ FRC 15–20%</b>vs awake supine volume; cephalad diaphragm shift, ↑ spinal curvature, ↓ chest wall CSA</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>Atelectasis</b>in &gt;75% receiving GA + NMBD; dependent regions on CT</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>V/Q mismatch &amp; shunt</b>↑ high and low V/Q areas → impaired CO₂ elimination and oxygenation</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>PPC</b>pneumonia, respiratory failure</div>
+      </div>
+
+      <h3>Mechanisms of atelectasis</h3>
+      <div class="grid">
+        <div class="box"><h4>1. Compression</h4><p>Direct compression of lung tissue by the displaced diaphragm and reduced chest wall cross-sectional area.</p></div>
+        <div class="box"><h4>2. Airway closure</h4><p>FRC falls below closing volume → small airways collapse in dependent regions.</p></div>
+        <div class="box"><h4>3. Absorption</h4><p>Rapid gas absorption from alveoli behind narrowed/closed airways — <b>exacerbated by high FiO₂</b>.</p></div>
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Preoxygenation FiO₂</th><th>Atelectasis on CT after induction</th></tr></thead>
+          <tbody>
+            <tr><td>1.0</td><td>5.6%</td></tr>
+            <tr><td>0.8</td><td>1.3%</td></tr>
+            <tr><td>0.6</td><td>0.2%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><small>Even 20% nitrogen in the inspired gas helps prevent alveolar collapse. Use of "hyperoxia" (FiO₂ 0.8)
+      throughout GA for surgical site infection reduction does <b>not</b> increase postoperative atelectasis.</small></p>
+
+      <h3>Postoperative contributors</h3>
+      <div class="grid">
+        <div class="box"><h4>Respiratory muscle dysfunction</h4>
+          <ul>
+            <li>Pain limits excursion; diaphragm splinting</li>
+            <li>Disruption of neurally mediated diaphragmatic function after visceral handling</li>
+            <li>Rapid shallow breathing, ↓ FRC and vital capacity</li>
+          </ul>
+        </div>
+        <div class="box"><h4>Impaired clearance</h4>
+          <ul>
+            <li>Opioids + anaesthesia inhibit cough reflex</li>
+            <li>Impaired mucociliary transport (persists postoperatively, worse with tracheal tube)</li>
+            <li>Dry gases → mucus plugging; sputum retention is common</li>
+          </ul>
+        </div>
+        <div class="box"><h4>Result</h4>
+          <p>Reduced FRC + residual atelectasis + ineffective cough + abnormal respiratory control =
+          <b>ideal situation for PPCs to develop.</b></p>
+        </div>
+      </div>
+
+      <div class="note">
+        <b>Key insight for weaning:</b> conditions that promote atelectasis — high FiO₂ and low/zero PEEP — are often
+        used <i>during emergence</i>. Current weaning practice can therefore <b>counteract</b> good intraoperative lung
+        protection and create de novo atelectasis at extubation.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 5. PREOPERATIVE ============ -->
+  <details class="card">
+    <summary><span class="num">5</span><span class="t">Preoperative Strategies</span><span class="chev">▶</span></summary>
+    <div class="body">
+
+      <div class="timeline">
+        <div class="phase a">
+          <div class="ph">Preoperative</div>
+          <ul>
+            <li>Optimise cardiorespiratory disease</li>
+            <li>Early smoking cessation</li>
+            <li>Prehabilitation / IMT</li>
+            <li>Correct anaemia</li>
+          </ul>
+        </div>
+        <div class="phase b">
+          <div class="ph">Intraoperative</div>
+          <ul>
+            <li>Shorter surgery</li>
+            <li>Monitored NMBA use</li>
+            <li>Lung-protective ventilation</li>
+            <li>Neuraxial where suitable</li>
+          </ul>
+        </div>
+        <div class="phase c">
+          <div class="ph">Postoperative</div>
+          <ul>
+            <li>Effective analgesia</li>
+            <li>Early mobilisation</li>
+            <li>Lung expansion techniques</li>
+            <li>Oral hygiene</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Optimising respiratory disease</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Condition</th><th>Action</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td><b>COPD</b></td><td>Continue inhaled β₂-agonists and anticholinergics; preoperative inhaled bronchodilators may improve and maintain postoperative function; short-term systemic or inhaled corticosteroids can improve preoperative lung function</td><td><span class="pill p-fair">Fair</span></td></tr>
+            <tr><td><b>Asthma</b></td><td>Continue treatment to achieve best possible peak flow before surgery</td><td><span class="pill p-fair">Fair</span></td></tr>
+            <tr><td><b>Infection</b></td><td>Antibiotics <b>only</b> when infection present: new/changed sputum, positive microbiology, new/changed opacities, fever, WCC &gt;12 × 10⁹ L⁻¹</td><td>—</td></tr>
+            <tr><td><b>Recent URTI</b></td><td>Delay elective surgery if symptomatic or on antibiotics (OR 5.5)</td><td><span class="pill p-fair">Fair</span></td></tr>
+            <tr><td><b>Severe OSA</b></td><td>Preoperative CPAP; consider mandibular advancement device and weight loss</td><td><span class="pill p-fair">Fair</span></td></tr>
+            <tr><td><b>Congestive heart failure</b></td><td>Cardiology optimisation to minimise symptoms and maximise functional capacity</td><td><span class="pill p-good">Good</span></td></tr>
+            <tr><td><b>Preoperative anaemia</b></td><td>Identify cause; oral/i.v. iron, B₁₂, folate; erythropoietin is an option but itself associated with perioperative complications. Avoid autologous transfusion where possible</td><td><span class="pill p-good">Good</span></td></tr>
+            <tr><td><b>Oral care</b></td><td>Perioperative dental care + chlorhexidine rinse reduces postoperative pneumonia in cardiac surgery — unproven in non-cardiothoracic surgery</td><td><span class="pill p-weak">Weak</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Smoking cessation</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Cessation period</th><th>Effect on PPCs</th></tr></thead>
+          <tbody>
+            <tr><td>&lt;2 weeks before surgery</td><td>Risk similar to current smokers; rates may actually be <b>higher</b> — transient ↑ mucus production as bronchial irritation resolves and mucociliary activity improves</td></tr>
+            <tr><td>2–4 weeks</td><td>RR 1.2 vs current smokers (no clear benefit)</td></tr>
+            <tr><td><b>&gt;4 weeks</b></td><td>RR 0.77 (0.61–0.96) — slight decrease; ~23% reduction</td></tr>
+            <tr><td><b>&gt;8 weeks</b></td><td>~47% reduction; incidence approaches that of non-smokers</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><small>Maximise the cessation period. Surgery is a <b>"teachable moment"</b> — patients are almost 3× more likely to
+      remain smoke-free at 12 months with intensive vs minimal cessation support.</small></p>
+
+      <h3>Prehabilitation / inspiratory muscle training (IMT)</h3>
+      <ul>
+        <li><b>Technique:</b> inspiratory threshold pressure loading — patient generates an inspiratory pressure against a chamber to open the valve.</li>
+        <li><b>Effect:</b> inspiratory muscle strength improves significantly and is preserved early postoperatively → assists lung expansion and forceful expiratory manoeuvres for secretion clearance.</li>
+        <li><b>Evidence:</b> preoperative aerobic exercise + IMT reduced PPCs (RR 0.4, 0.23–0.72) and LOS in cardiac and abdominal surgery — <b>not</b> joint replacement. A later meta-analysis: RR 0.48 (0.26–0.89). Cochrane review confirms reduced atelectasis and pneumonia, but quality of evidence is low–moderate (blinding impossible).</li>
+        <li><b>Practical:</b> time-consuming and expensive (repeated physiotherapist supervision) — reserve for very high-risk patients.</li>
+      </ul>
+
+      <p><span class="pill p-weak">Insufficient data</span> for prehabilitation exercise programmes as a whole;
+      <span class="pill p-fair">Fair</span> for optimisation of existing cardiorespiratory disease and early smoking cessation.</p>
+    </div>
+  </details>
+
+  <!-- ============ 6. INTRAOPERATIVE ============ -->
+  <details class="card">
+    <summary><span class="num">6</span><span class="t">Intraoperative Strategies</span><span class="chev">▶</span></summary>
+    <div class="body">
+
+      <h3>Surgical</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Strategy</th><th>Evidence</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td><b>Minimally invasive techniques</b></td><td><span class="pill p-fair">Fair</span></td><td>Bariatric population: open gastric bypass OR 1.92 (1.54–2.38) vs laparoscopic. Mechanisms: ↓ blood loss, pain, inflammation, quicker respiratory recovery, ↓ atelectasis on CXR. Benefit in general (non-obese) population unclear</td></tr>
+            <tr><td><b>Shorter operative time</b></td><td><span class="pill p-good">Good</span></td><td>Duration &gt;3 h is a strong independent risk factor. For high-risk patients, a senior surgeon to minimise operative time is reasonable</td></tr>
+            <tr><td><b>Selective nasogastric tubes</b></td><td><span class="pill p-good">Good</span></td><td>Routine NGT → ↑ atelectasis and pneumonia; abdominal surgery patients 5–8× more likely to have a PPC. Use only for: PONV, inability to tolerate oral intake, symptomatic abdominal distension</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Ventilation — lung-protective strategy</h3>
+      <div class="note">
+        <b>Ventilator-associated lung injury mechanisms:</b> alveolar overdistension (volutrauma) · increased transpulmonary
+        pressure (barotrauma) · cyclic opening and closing of alveoli (atelectotrauma).
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Parameter</th><th>Recommendation</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><b>Tidal volume</b></td><td><b>6–8 mL/kg predicted (ideal) body weight</b></td><td>Robust evidence for low V<sub>T</sub>. Always set on predicted, not actual, body weight. Extremes of weight and female sex are risk factors for inadvertent high-volume ventilation</td></tr>
+            <tr><td><b>PEEP</b></td><td>Start ≤2 cm H₂O in healthy lungs having open/peripheral surgery; 5 cm H₂O may be protective; higher levels for challenging patients</td><td>Ideal level remains controversial. Zero PEEP is harmful. High PEEP (&gt;10 cm H₂O) may cause haemodynamic compromise and may be harmful without benefit (PROVHILO: RR 1.01)</td></tr>
+            <tr><td><b>Recruitment manoeuvre</b></td><td>Perform before applying/increasing PEEP if atelectasis suspected; plateau "opening pressure" ~40 cm H₂O for 7–8 s in non-obese healthy lungs</td><td>Bag-squeezing is discouraged; use ventilator-driven alveolar recruitment. Optimal technique undefined; avoid harm in acute respiratory failure (ART trial)</td></tr>
+            <tr><td><b>FiO₂</b></td><td>Avoid 1.0. Target saturations ≥92% with FiO₂ ~0.4 where possible; up to 0.6 acceptable</td><td>High FiO₂ causes absorption atelectasis and surfactant impairment. Even 20% nitrogen is protective</td></tr>
+            <tr><td><b>Respiratory rate</b></td><td>Titrate to normocarbia</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Predicted body weight (ARDS Network formulae)</h4>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Sex</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr><td>Men</td><td>50 + 0.91 × (height in cm − 152.4)</td></tr>
+            <tr><td>Women</td><td>45.5 + 0.91 × (height in cm − 152.4)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details class="sub">
+        <summary>Protective ventilation in obese patients</summary>
+        <div class="subbody">
+          <ul>
+            <li>V<sub>T</sub> 6–8 mL/kg <b>predicted</b> body weight</li>
+            <li>PEEP ≥5 cm H₂O with appropriate recruitment manoeuvres</li>
+            <li>Opening pressure may need up to <b>55 cm H₂O</b></li>
+            <li>Respiratory rate to control CO₂ and maintain normal pH</li>
+            <li>Fluid loading before RM and high PEEP reduces cardiovascular compromise</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Neuromuscular blockade</h3>
+      <ul>
+        <li>Poor use of NMBAs — failure to monitor correctly or excessive dosing — is associated with increased PPC risk.</li>
+        <li>Residual block (TOF ratio &lt;0.9) frequently persists after GA despite reversal agents.</li>
+        <li><b>Quantitative monitoring</b> (e.g. acceleromyography) reduces PPC risk and is superior to qualitative assessment.</li>
+        <li>Neostigmine reversal is associated with a dose-dependent increase in PPC risk — most likely because larger doses are used to reverse deep block. Proper use with quantitative monitoring is likely to reduce PPCs.</li>
+        <li>Sugammadex reliably reverses deep rocuronium/vecuronium block; no studies yet show it reduces PPCs. Linked to laryngospasm and negative-pressure pulmonary oedema if given early with a supraglottic airway.</li>
+        <li>Remifentanil reduces the need for muscle relaxation in appropriate cases, but no studies show reduced PPC incidence.</li>
+      </ul>
+
+      <h3>Anaesthetic technique</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Intervention</th><th>Evidence</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td><b>Neuraxial blockade</b></td><td><span class="pill p-fair">Fair</span></td><td>vs GA: pneumonia OR 0.61 (0.48–0.76); respiratory failure OR 0.41 (0.23–0.73). No difference in orthopaedic procedures. May benefit high pulmonary risk patients (OSA, COPD) but evidence inconsistent</td></tr>
+            <tr><td><b>Volatile agents in COPD</b></td><td>—</td><td>Effective bronchodilators — <b>except desflurane</b>, which can cause coughing, bronchospasm and laryngospasm</td></tr>
+            <tr><td><b>Supraglottic airway</b></td><td>—</td><td>Reduced airway irritation vs ETT; also better mucociliary transport</td></tr>
+            <tr><td><b>Goal-directed fluid therapy</b></td><td><span class="pill p-weak">Insufficient</span></td><td>Avoids excessive liberal or restrictive administration that risks organ hypoperfusion. Large volumes → pneumonia and pulmonary oedema</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 7. POSTOPERATIVE ============ -->
+  <details class="card">
+    <summary><span class="num">7</span><span class="t">Postoperative Strategies</span><span class="chev">▶</span></summary>
+    <div class="body">
+
+      <h3>Analgesia</h3>
+      <ul>
+        <li>Pain — especially from upper abdominal wounds — compromises pulmonary function, coughing and mobilisation → atelectasis and pneumonia.</li>
+        <li><b>Thoracic epidural analgesia</b> may reduce respiratory muscle dysfunction and pain-related hypoventilation in upper abdominal surgery, facilitating early extubation and reducing respiratory failure risk.</li>
+        <li>Reduces PPCs by about <b>one third</b> in open AAA repair, coronary bypass and abdominal surgery.</li>
+        <li>Particularly beneficial in <b>severe COPD</b> having major abdominal surgery (improved analgesia, reduced opioid consumption).</li>
+        <li>Epidural opioids reduced atelectasis (RR 0.53, 0.33–0.85) but not pneumonia vs systemic opioids; epidural local anaesthetic reduced pulmonary infection (RR 0.36, 0.31–0.65) but not atelectasis.</li>
+        <li><b>Weigh risks:</b> pneumothorax, phrenic nerve paralysis, nerve damage, epidural haematoma.</li>
+        <li>In known/suspected OSA, reduce opioid doses — opioid dose correlates with postoperative OSA severity.</li>
+      </ul>
+
+      <h3>Lung expansion techniques</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Technique</th><th>Evidence</th><th>Comment</th></tr></thead>
+          <tbody>
+            <tr><td><b>Lung expansion therapy (any)</b></td><td><span class="pill p-good">Good</span></td><td>Reduces PPCs after abdominal surgery</td></tr>
+            <tr><td>Chest physiotherapy, deep breathing, cough, postural drainage, percussion/vibration, suctioning, ambulation</td><td><span class="pill p-good">Good</span></td><td>Bundle approach is most effective</td></tr>
+            <tr><td><b>Incentive spirometry</b></td><td><span class="pill p-weak">Weak alone</span></td><td>Most convenient and inexpensive. Alone has not been shown to reduce PPCs after thoracic/cardiac/abdominal surgery — more beneficial as part of a bundle</td></tr>
+            <tr><td><b>Nasal CPAP</b></td><td><span class="pill p-fair">Fair</span></td><td>Early treatment of postop hypoxaemia after major abdominal surgery may reduce need for intubation and pneumonia incidence. Particularly good for OSA or those unable to perform spirometry/deep breathing</td></tr>
+            <tr><td><b>Nasal high-flow oxygen</b></td><td><span class="pill p-weak">Insufficient</span></td><td>Easily implemented, well tolerated, effective for postop hypoxaemia — but more evidence needed on PPC prevention</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>I COUGH bundle — a working postoperative programme</h3>
+      <div class="grid">
+        <div class="box"><h4>I — Incentive spirometry</h4><p>10× per hour (3–5 efforts per set) during waking hours until discharge. Device always within reach. Four-hourly documentation of volumes. Practise technique preoperatively.</p></div>
+        <div class="box"><h4>C — Cough &amp; deep breathe</h4><p>Every 2 hours.</p></div>
+        <div class="box"><h4>O — Oral hygiene</h4><p>Twice-daily teeth brushing and mouthwash.</p></div>
+        <div class="box"><h4>U — Understanding</h4><p>Preoperative education via leaflet and video.</p></div>
+        <div class="box"><h4>G — Get moving</h4><p>Sit in a chair or head of bed elevated &gt;30°; mobilise three times a day.</p></div>
+        <div class="box"><h4>H — Head of bed</h4><p>Elevated &gt;30°.</p></div>
+      </div>
+      <p><small>Reduces pneumonia and unplanned reintubation in general and vascular surgical patients. A combination of
+      physiotherapy, mobilisation and oral hygiene is more beneficial than any single component.</small></p>
+
+      <h3>Nasogastric tubes</h3>
+      <ul>
+        <li>Identified repeatedly as a risk factor for PPCs.</li>
+        <li>Abdominal surgery patients are 5–8× more likely to have a PPC if an NGT is used perioperatively.</li>
+        <li>Meta-analyses show <b>no benefit</b> from routine NGT placement after elective or emergency open abdominal surgery.</li>
+        <li><b>Reserve for symptom relief or specific surgical reasons.</b></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 8. WEANING ============ -->
+  <details class="card">
+    <summary><span class="num">8</span><span class="t">Weaning from Mechanical Ventilation in the Operating Room</span><span class="chev">▶</span></summary>
+    <div class="body">
+
+      <div class="note">
+        <b>Why this matters:</b> most patients are extubated in the operating room, yet there is <b>no definitive standard</b>
+        for weaning. Expert consensus (2019) gave only <b>weak</b> recommendations for weaning and extubation. Poorly chosen
+        emergence settings (high FiO₂, zero PEEP) can undo good intraoperative lung protection.
+      </div>
+
+      <p><small>Systematic review: 14 RCTs, 1719 patients — 7 studies addressed the weaning phase exclusively, 7 addressed
+      weaning plus induction/maintenance. Overall quality of evidence: <b>low</b>.</small></p>
+
+      <h3>What the evidence shows</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Strategy</th><th>Atelectasis</th><th>Oxygenation</th><th>Lung volumes</th><th>PPCs</th><th>Evidence quality</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>PSV + PEEP + low FiO₂</b></td>
+              <td>Improved</td><td>Improved</td><td>Improved</td><td>—</td>
+              <td><span class="pill p-fair">Moderate–high (atelectasis)<br>Low (volumes)</span></td>
+            </tr>
+            <tr>
+              <td><b>Low FiO₂ alone</b></td>
+              <td>Improved</td><td>Improved</td><td>No benefit</td><td>—</td>
+              <td><span class="pill p-weak">Low–moderate</span></td>
+            </tr>
+            <tr>
+              <td><b>Fixed PEEP</b></td>
+              <td>No improvement</td><td>No improvement</td><td>—</td><td>—</td>
+              <td><span class="pill p-fair">Moderate–high</span></td>
+            </tr>
+            <tr>
+              <td><b>Individualised PEEP + low FiO₂</b></td>
+              <td>Improved</td><td>Improved</td><td>—</td><td>Possibly reduced (39% vs 48%; RR 0.80, 0.65–0.99)</td>
+              <td><span class="pill p-fair">Moderate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Suggested weaning bundle</h3>
+      <div class="flow">
+        <div class="step"><b>PSV</b>Pressure support titrated to maintain tidal volume similar to pre-emergence</div>
+        <div class="arrow">+</div>
+        <div class="step"><b>Individualised PEEP</b>Not fixed, not zero. Titrate to lung mechanics / EIT / compliance</div>
+        <div class="arrow">+</div>
+        <div class="step"><b>Low FiO₂</b>Avoid 1.0; aim for the lowest FiO₂ maintaining target saturations</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>Extubate</b>After full reversal of neuromuscular block and return of airway reflexes</div>
+      </div>
+
+      <h3>Mechanisms supporting this approach</h3>
+      <ul>
+        <li><b>PSV</b> increases driving pressure during inspiration → tidal recruitment, promotes lung expansion, reduces work of breathing. Level of support can be titrated to match ventilatory and oxygenation requirements.</li>
+        <li><b>PEEP</b> counters airway closure and maintains end-expiratory lung volume, preventing or reversing atelectasis during emergence.</li>
+        <li><b>Low FiO₂</b> avoids absorption atelectasis and surfactant impairment.</li>
+        <li>Resumption of spontaneous ventilation without ventilatory support during emergence <b>decreases lung volumes</b> — hence the need to actively recruit and maintain volume through the weaning phase.</li>
+      </ul>
+
+      <div class="note warn">
+        <b>Recruitment manoeuvres:</b> evidence does not consistently support their clinical utility during weaning, and they
+        are not safe across all scenarios (ART trial showed harm in acute respiratory failure). Bag-squeezing is discouraged;
+        if used, ventilator-driven alveolar recruitment should be performed with the shortest effective time, lowest
+        effective pressure and fewest number of breaths.
+      </div>
+
+      <div class="note">
+        <b>Bottom line:</b> based on low-quality evidence, wean patients after surgery with a combination of
+        <b>PSV, individualised PEEP and low FiO₂</b>, pending more definitive studies.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 9. CHECKLIST ============ -->
+  <details class="card">
+    <summary><span class="num">9</span><span class="t">Bedside Checklist</span><span class="chev">▶</span></summary>
+    <div class="body">
+
+      <h3>Preoperative</h3>
+      <ul class="check">
+        <li><input type="checkbox"><span>Screen for PPC risk: age, ASA, functional status, COPD/CHF, smoking, recent URTI, OSA, SpO₂ on air, albumin, Hb</span></li>
+        <li><input type="checkbox"><span>Optimise COPD/asthma — continue inhalers, consider short-term steroids</span></li>
+        <li><input type="checkbox"><span>Advise smoking cessation ≥4 weeks (ideally ≥8 weeks) before surgery</span></li>
+        <li><input type="checkbox"><span>Delay elective surgery if symptomatic URTI or on antibiotics</span></li>
+        <li><input type="checkbox"><span>Identify and treat anaemia (target Hb ≥100 g/L)</span></li>
+        <li><input type="checkbox"><span>Consider preoperative IMT/prehabilitation for very high-risk patients</span></li>
+        <li><input type="checkbox"><span>Start CPAP preoperatively in severe OSA; assess compliance</span></li>
+        <li><input type="checkbox"><span>Antibiotics only if infection is present — not prophylactically for PPC prevention</span></li>
+      </ul>
+
+      <h3>Intraoperative</h3>
+      <ul class="check">
+        <li><input type="checkbox"><span>Set V<sub>T</sub> 6–8 mL/kg <b>predicted</b> body weight</span></li>
+        <li><input type="checkbox"><span>PEEP: avoid zero; start low in healthy lungs, titrate up for obesity/pneumoperitoneum/lung disease</span></li>
+        <li><input type="checkbox"><span>Keep FiO₂ as low as compatible with SpO₂ ≥92% — avoid 1.0</span></li>
+        <li><input type="checkbox"><span>Recruitment manoeuvre if atelectasis suspected, before increasing PEEP</span></li>
+        <li><input type="checkbox"><span>Quantitative neuromuscular monitoring if NMBA used</span></li>
+        <li><input type="checkbox"><span>Ensure full reversal — TOF ratio ≥0.9 before extubation</span></li>
+        <li><input type="checkbox"><span>Avoid neostigmine unless needed and guided by monitoring</span></li>
+        <li><input type="checkbox"><span>Goal-directed fluid therapy — avoid overload</span></li>
+        <li><input type="checkbox"><span>Nasogastric tube only if indicated — not routine</span></li>
+        <li><input type="checkbox"><span>Consider neuraxial technique where appropriate</span></li>
+        <li><input type="checkbox"><span>Minimise operative time, especially in high-risk patients</span></li>
+      </ul>
+
+      <h3>Weaning &amp; emergence</h3>
+      <ul class="check">
+        <li><input type="checkbox"><span>Wean on PSV, not unsupported spontaneous ventilation</span></li>
+        <li><input type="checkbox"><span>Individualised PEEP during weaning — avoid zero PEEP</span></li>
+        <li><input type="checkbox"><span>Low FiO₂ during emergence — avoid 1.0</span></li>
+        <li><input type="checkbox"><span>Confirm full neuromuscular recovery before extubation</span></li>
+        <li><input type="checkbox"><span>Suction and clear secretions; encourage cough at extubation</span></li>
+      </ul>
+
+      <h3>Postoperative</h3>
+      <ul class="check">
+        <li><input type="checkbox"><span>Effective analgesia — consider thoracic epidural for upper abdominal/open AAA/cardiac surgery</span></li>
+        <li><input type="checkbox"><span>Reduce opioid doses in known/suspected OSA</span></li>
+        <li><input type="checkbox"><span>Head of bed &gt;30°; sit out of bed; mobilise 3× daily</span></li>
+        <li><input type="checkbox"><span>Incentive spirometry 10×/hour while awake; document volumes 4-hourly</span></li>
+        <li><input type="checkbox"><span>Deep breathe and cough every 2 hours</span></li>
+        <li><input type="checkbox"><span>Oral hygiene — teeth brushing and mouthwash twice daily</span></li>
+        <li><input type="checkbox"><span>Consider CPAP for postoperative hypoxaemia (especially OSA or unable to do spirometry)</span></li>
+        <li><input type="checkbox"><span>Avoid routine nasogastric tube; remove as soon as clinically appropriate</span></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 10. REFERENCES ============ -->
+  <details class="card">
+    <summary><span class="num">10</span><span class="t">References</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <ol class="refs">
+        <li>
+          Davies OJ, Husain T, Stephens RCM. <b>Postoperative pulmonary complications following non-cardiothoracic surgery.</b>
+          <i>BJA Education</i>. 2017;17(10):327–333.
+          <br><span class="file">Source file: PIIS2058534917301701.pdf</span>
+        </li>
+        <li>
+          Miskovic A, Lumb AB. <b>Postoperative pulmonary complications.</b>
+          <i>British Journal of Anaesthesia</i>. 2017;118(3):317–334. doi:10.1093/bja/aex002
+          <br><span class="file">Source file: PIIS0007091217302015.pdf</span>
+        </li>
+        <li>
+          Abbott M, Pereira SM, Sanders N, Girard M, Sankar A, Sklar MC. <b>Weaning from mechanical ventilation in the
+          operating room: a systematic review.</b> <i>British Journal of Anaesthesia</i>. 2024. Advance Access publication
+          29 May 2024. doi:10.1016/j.bja.2024.03.043. PROSPERO CRD42022379145.
+          <br><span class="file">Source file: PIIS0007091224002630.pdf</span>
+        </li>
+      </ol>
+      <p><small>All clinical content in this quick reference is derived from the three sources above. This is a summary aid
+      for qualified clinicians and does not replace local guidelines, full-text review, or clinical judgement.</small></p>
+    </div>
+  </details>
+
+  <div id="noresults">
+    <p><b>No matching sections.</b></p>
+    <p>Try a shorter term — e.g. <i>PEEP</i>, <i>atelectasis</i>, <i>ARISCAT</i>, <i>smoking</i>.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>Quick reference compiled from <i>BJA Education</i> 2017, <i>British Journal of Anaesthesia</i> 2017 and 2024.
+  For educational use by anaesthetists and intensivists. Verify against local protocols.</p>
+</footer>
+
+<button id="totop" title="Back to top" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  "use strict";
+
+  var content   = document.getElementById('content');
+  var cards     = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+  var subs      = Array.prototype.slice.call(document.querySelectorAll('details.sub'));
+  var searchEl  = document.getElementById('search');
+  var clearBtn  = document.getElementById('clearBtn');
+  var noResults = document.getElementById('noresults');
+  var totop     = document.getElementById('totop');
+
+  /* ---------- Expand / collapse ---------- */
+  document.getElementById('expandAll').addEventListener('click', function(){
+    cards.forEach(function(c){ if(!c.hidden) c.open = true; });
+    subs.forEach(function(s){ s.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    cards.forEach(function(c){ c.open = false; });
+    subs.forEach(function(s){ s.open = false; });
+  });
+
+  /* ---------- Highlight helpers ---------- */
+  function clearHighlights(){
+    var marks = content.querySelectorAll('mark.hl');
+    for (var i = 0; i < marks.length; i++){
+      var m = marks[i];
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function escapeRegExp(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function highlight(root, term){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [], n;
+    while ((n = walker.nextNode())){
+      if (!n.nodeValue || !n.nodeValue.trim()) continue;
+      if (n.parentNode && n.parentNode.nodeName === 'MARK') continue;
+      if (n.parentNode && n.parentNode.nodeName === 'SCRIPT') continue;
+      if (n.nodeValue.toLowerCase().indexOf(term) !== -1) nodes.push(n);
+    }
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var i = 0, pos;
+      while ((pos = lower.indexOf(term, i)) !== -1){
+        if (pos > i) frag.appendChild(document.createTextNode(text.slice(i, pos)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(pos, pos + term.length);
+        frag.appendChild(mark);
+        i = pos + term.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- Search ---------- */
+  var timer = null;
+
+  function runSearch(raw){
+    var term = (raw || '').trim().toLowerCase();
+    clearHighlights();
+
+    if (!term){
+      cards.forEach(function(c){ c.hidden = false; });
+      subs.forEach(function(s){ s.hidden = false; });
+      noResults.classList.remove('on');
+      return;
+    }
+
+    var hits = 0;
+    cards.forEach(function(card){
+      var text = card.textContent.toLowerCase();
+      if (text.indexOf(term) !== -1){
+        card.hidden = false;
+        card.open = true;
+        hits++;
+        highlight(card, term);
+        /* open nested subsections that themselves match */
+        var nested = card.querySelectorAll('details.sub');
+        for (var k = 0; k < nested.length; k++){
+          if (nested[k].textContent.toLowerCase().indexOf(term) !== -1) nested[k].open = true;
+        }
+      } else {
+        card.hidden = true;
+        card.open = false;
+      }
+    });
+
+    noResults.classList.toggle('on', hits === 0);
+  }
+
+  searchEl.addEventListener('input', function(){
+    clearTimeout(timer);
+    var v = searchEl.value;
+    timer = setTimeout(function(){ runSearch(v); }, 140);
+  });
+
+  clearBtn.addEventListener('click', function(){
+    searchEl.value = '';
+    runSearch('');
+    searchEl.focus();
+  });
+
+  /* "/" focuses search */
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== searchEl){
+      e.preventDefault();
+      searchEl.focus();
+    }
+    if (e.key === 'Escape' && document.activeElement === searchEl){
+      searchEl.value = '';
+      runSearch('');
+      searchEl.blur();
+    }
+  });
+
+  /* ---------- Back to top ---------- */
+  window.addEventListener('scroll', function(){
+    totop.classList.toggle('on', window.scrollY > 500);
+  }, { passive: true });
+
+  totop.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>
