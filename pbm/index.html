@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PBM Quick Reference — Anaesthesia &amp; Intensive Care</title>
+<style>
+  :root{
+    --bg:#f7f8fa;
+    --card:#ffffff;
+    --ink:#16202b;
+    --muted:#5b6b7c;
+    --line:#e2e7ee;
+    --red:#b3121b;
+    --red-soft:#fdecec;
+    --blue:#0b5c8a;
+    --blue-soft:#eaf4fb;
+    --amber:#8a5a00;
+    --amber-soft:#fff5e0;
+    --green:#0d6b45;
+    --green-soft:#e8f6ef;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1419; --card:#161c23; --ink:#e6edf3; --muted:#9aa9b8;
+      --line:#26303a; --red:#ff6b6b; --red-soft:#2a1518; --blue:#6cc0ea;
+      --blue-soft:#12222e; --amber:#e3b25c; --amber-soft:#2a2113;
+      --green:#5fd4a0; --green-soft:#12261e;
+      --shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px 80px}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:linear-gradient(135deg,#8f0d15,#c0182a 55%,#e0524f);
+    color:#fff; padding:26px 16px 22px; margin-bottom:18px;
+  }
+  header.top .inner{max-width:1080px;margin:0 auto}
+  header.top h1{margin:0 0 6px;font-size:1.45rem;letter-spacing:-.3px}
+  header.top p{margin:0;opacity:.9;font-size:.85rem}
+  .tagline{
+    display:inline-block;margin-top:10px;padding:3px 10px;border-radius:999px;
+    background:rgba(255,255,255,.18);font-size:.72rem;font-weight:600;letter-spacing:.4px;text-transform:uppercase
+  }
+
+  /* ---------- Search bar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:40;background:var(--bg);
+    padding:10px 0 12px;border-bottom:1px solid var(--line);margin-bottom:16px;
+  }
+  .toolbar .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .searchbox{position:relative;flex:1 1 260px;min-width:200px}
+  .searchbox input{
+    width:100%;padding:11px 36px 11px 38px;border-radius:10px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);font-size:.95rem;outline:none;
+  }
+  .searchbox input:focus{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
+  .searchbox .ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.5}
+  .searchbox .clr{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;
+    cursor:pointer;font-size:1rem;color:var(--muted);padding:4px 6px;border-radius:6px;display:none
+  }
+  .searchbox .clr:hover{background:var(--red-soft);color:var(--red)}
+  .btn{
+    padding:10px 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);
+    color:var(--ink);font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap
+  }
+  .btn:hover{border-color:var(--red);color:var(--red)}
+  .status{font-size:.8rem;color:var(--muted);margin-top:8px;min-height:18px}
+
+  /* ---------- Quick numbers ---------- */
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:8px}
+  .qcard{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;box-shadow:var(--shadow);border-left:4px solid var(--red)
+  }
+  .qcard .k{font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:700}
+  .qcard .v{font-size:1rem;font-weight:700;margin-top:3px;color:var(--red)}
+  .qcard .n{font-size:.76rem;color:var(--muted);margin-top:3px}
+
+  /* ---------- Modules ---------- */
+  details.module{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden
+  }
+  details.module>summary{
+    cursor:pointer;list-style:none;padding:14px 46px 14px 16px;position:relative;
+    font-weight:700;font-size:1rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap
+  }
+  details.module>summary::-webkit-details-marker{display:none}
+  details.module>summary::after{
+    content:"";position:absolute;right:18px;top:50%;width:8px;height:8px;
+    border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+    transform:translateY(-70%) rotate(45deg);transition:transform .18s
+  }
+  details.module[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
+  details.module>summary:hover{background:var(--red-soft)}
+  details.module[open]>summary{border-bottom:1px solid var(--line)}
+  .body{padding:14px 16px 18px}
+  .num{
+    display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;
+    border-radius:7px;background:var(--red);color:#fff;font-size:.76rem;font-weight:800;padding:0 6px
+  }
+  h3.sec{
+    font-size:.78rem;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);
+    margin:18px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--line)
+  }
+  h3.sec:first-child{margin-top:2px}
+  h4.sub{font-size:.92rem;margin:14px 0 6px}
+
+  details.sub{border:1px solid var(--line);border-radius:9px;margin:8px 0;background:transparent}
+  details.sub>summary{cursor:pointer;padding:9px 34px 9px 12px;font-weight:600;font-size:.88rem;position:relative;list-style:none;border-radius:9px}
+  details.sub>summary::-webkit-details-marker{display:none}
+  details.sub>summary::after{
+    content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;
+    border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+    transform:translateY(-70%) rotate(45deg);transition:transform .18s
+  }
+  details.sub[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
+  details.sub>summary:hover{background:var(--red-soft)}
+  details.sub .subbody{padding:2px 12px 12px}
+
+  ul.tight{margin:6px 0 6px 0;padding-left:20px}
+  ul.tight li{margin:3px 0}
+  ol.tight{margin:6px 0;padding-left:22px}
+  ol.tight li{margin:3px 0}
+  p.note{font-size:.84rem;color:var(--muted);margin:6px 0}
+
+  /* ---------- Tables ---------- */
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:9px;margin:8px 0}
+  table.tbl{border-collapse:collapse;width:100%;min-width:540px;font-size:.84rem}
+  table.tbl caption{
+    caption-side:top;text-align:left;padding:8px 10px;font-size:.75rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:.5px;color:var(--muted);background:var(--bg)
+  }
+  table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.tbl thead th{background:var(--bg);font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  table.tbl tbody tr:last-child td{border-bottom:0}
+  table.tbl tbody tr:nth-child(even){background:rgba(127,127,127,.035)}
+  .scroll-hint{font-size:.72rem;color:var(--muted);margin:-4px 0 8px;display:block}
+
+  /* ---------- Chips / badges ---------- */
+  .chip{
+    display:inline-block;padding:2px 8px;border-radius:999px;font-size:.7rem;font-weight:700;
+    letter-spacing:.3px;white-space:nowrap
+  }
+  .chip.red{background:var(--red-soft);color:var(--red)}
+  .chip.blue{background:var(--blue-soft);color:var(--blue)}
+  .chip.green{background:var(--green-soft);color:var(--green)}
+  .chip.amber{background:var(--amber-soft);color:var(--amber)}
+
+  /* ---------- Callouts ---------- */
+  .call{border-radius:9px;padding:10px 12px;margin:10px 0;font-size:.85rem;border-left:4px solid}
+  .call.red{background:var(--red-soft);border-color:var(--red)}
+  .call.blue{background:var(--blue-soft);border-color:var(--blue)}
+  .call.amber{background:var(--amber-soft);border-color:var(--amber)}
+  .call.green{background:var(--green-soft);border-color:var(--green)}
+  .call b{font-weight:700}
+
+  /* ---------- Flow diagram (simplified) ---------- */
+  .flow{display:flex;flex-direction:column;gap:0;margin:10px 0}
+  .fstep{
+    border:1px solid var(--line);border-left:4px solid var(--red);border-radius:9px;
+    background:var(--bg);padding:10px 12px;font-size:.85rem;position:relative
+  }
+  .fstep .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:800}
+  .fstep .txt{font-weight:600;margin-top:2px}
+  .fstep .det{font-size:.79rem;color:var(--muted);margin-top:3px}
+  .farrow{text-align:center;color:var(--red);font-size:1.05rem;line-height:1;margin:4px 0}
+  .fbranch{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:620px){.fbranch{grid-template-columns:1fr}}
+  .fbranch .yes{border-left-color:var(--green)}
+  .fbranch .no{border-left-color:var(--muted)}
+
+  /* ---------- Pillars ---------- */
+  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+  .pillar{
+    border:1px solid var(--line);border-radius:var(--radius);padding:12px 13px;background:var(--bg);
+    border-top:4px solid var(--red)
+  }
+  .pillar:nth-child(2){border-top-color:var(--blue)}
+  .pillar:nth-child(3){border-top-color:var(--green)}
+  .pillar .pn{font-size:.7rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
+  .pillar .pt{font-weight:700;margin:4px 0 5px;font-size:.9rem}
+  .pillar .pd{font-size:.79rem;color:var(--muted)}
+
+  /* ---------- Footer ---------- */
+  footer.src{
+    margin-top:28px;padding:16px;border-radius:var(--radius);border:1px dashed var(--line);
+    background:var(--card);font-size:.82rem;color:var(--muted)
+  }
+  footer.src b{color:var(--ink)}
+  footer.src ol{margin:8px 0 0;padding-left:20px}
+  footer.src li{margin:3px 0}
+
+  [hidden]{display:none!important}
+  mark{background:#ffe58a;color:#000;border-radius:3px;padding:0 2px}
+  @media print{
+    .toolbar,.btn{display:none!important}
+    details.module{break-inside:avoid;box-shadow:none}
+    details{open:true}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <h1>Patient Blood Management — Quick Reference</h1>
+    <p>Anaesthetist &amp; Intensivist bedside summary · Ministry of Health Malaysia consensus (2024)</p>
+    <span class="tagline">3 Pillars · Massive Haemorrhage · Perioperative · Critical Care · Cardiothoracic · Obstetrics</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ================= TOOLBAR ================= -->
+  <div class="toolbar">
+    <div class="row">
+      <div class="searchbox">
+        <span class="ico">🔍</span>
+        <input id="search" type="search" placeholder="Search (e.g. tranexamic, fibrinogen, platelet, ACS, ROTEM)  —  press /" autocomplete="off">
+        <button class="clr" id="clr" title="Clear">✕</button>
+      </div>
+      <button class="btn" id="expandAll">Expand all</button>
+      <button class="btn" id="collapseAll">Collapse all</button>
+    </div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <!-- ================= QUICK NUMBERS ================= -->
+  <details class="module" open>
+    <summary><span class="num">★</span> Quick Numbers — Default Triggers &amp; Targets</summary>
+    <div class="body">
+      <div class="qgrid">
+        <div class="qcard"><div class="k">RBC — general ICU</div><div class="v">Hb ≤ 7 g/dL</div><div class="n">Target 7–9 g/dL</div></div>
+        <div class="qcard"><div class="k">RBC — ACS</div><div class="v">Hb &gt; 8 g/dL</div><div class="n">Stable angina &gt; 7 g/dL</div></div>
+        <div class="qcard"><div class="k">RBC — TBI</div><div class="v">7–9 g/dL</div><div class="n">&gt; 9 if cerebral ischaemia</div></div>
+        <div class="qcard"><div class="k">RBC — SAH / stroke</div><div class="v">8–10 / &gt; 9 g/dL</div><div class="n">SAH / acute ischaemic stroke</div></div>
+        <div class="qcard"><div class="k">Platelet — prophylaxis</div><div class="v">&lt; 10 ×10⁹/L</div><div class="n">&lt; 20 if sepsis / CVC · &lt; 50 before invasive</div></div>
+        <div class="qcard"><div class="k">Fibrinogen</div><div class="v">&gt; 1.5 g/L</div><div class="n">Obstetric target ~2.0 g/L</div></div>
+        <div class="qcard"><div class="k">INR / PT-APTT</div><div class="v">≤ 1.5 ×</div><div class="n">INR ≤ 2 usually safe for procedures</div></div>
+        <div class="qcard"><div class="k">Ionised calcium</div><div class="v">&gt; 1.1 mmol/L</div><div class="n">Replace during massive transfusion</div></div>
+        <div class="qcard"><div class="k">Tranexamic acid</div><div class="v">1 g / 10 min → 1 g / 8 h</div><div class="n">Give within 3 hours</div></div>
+        <div class="qcard"><div class="k">MTP fixed pack</div><div class="v">1 : 1 : 1 : 1</div><div class="n">PRBC : FFP : Cryo : Platelet</div></div>
+        <div class="qcard"><div class="k">pH / Temp / Lactate</div><div class="v">7.35–7.45 · &gt;36°C · ≤2</div><div class="n">Normothermia, normal base excess</div></div>
+        <div class="qcard"><div class="k">CPB haematocrit</div><div class="v">21–24 %</div><div class="n">If DO₂ &gt; 273 mL O₂/min/m²</div></div>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><div class="pn">Pillar 1</div><div class="pt">Optimise anaemia &amp; iron</div><div class="pd">Screen, diagnose and treat anaemia / iron deficiency early — before the bleed, not after.</div></div>
+        <div class="pillar"><div class="pn">Pillar 2</div><div class="pt">Minimise blood loss</div><div class="pd">Meticulous haemostasis, TXA, cell salvage, restrictive phlebotomy, normothermia.</div></div>
+        <div class="pillar"><div class="pn">Pillar 3</div><div class="pt">Harness the patient's own blood</div><div class="pd">ANH, cell salvage, tolerance of anaemia, restrictive transfusion triggers.</div></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= MODULE A: MASSIVE HAEMORRHAGE ================= -->
+  <details class="module" open>
+    <summary><span class="num">A</span> Massive Haemorrhage &amp; Massive Transfusion</summary>
+    <div class="body">
+
+      <h3 class="sec">Definitions</h3>
+      <div class="tw">
+        <table class="tbl">
+          <caption>Definitions</caption>
+          <thead><tr><th style="width:34%">Term</th><th>Criteria</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Massive haemorrhage</b></td>
+              <td>
+                • Active ongoing bleeding at <b>150 mL/min</b> with haemodynamic instability (SBP &lt; 90 mmHg and/or HR &gt; 110/min)<br>
+                • Loss of <b>50% of blood volume within 3 hours</b><br>
+                • Loss of <b>total blood volume in 24 hours</b>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Massive transfusion</b></td>
+              <td>
+                • Transfusion of <b>&gt; 50% total blood volume in 3 hours</b><br>
+                • Transfusion of <b>&gt; total blood volume in 24 hours</b>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Volume estimation</h3>
+
+      <details class="sub" open>
+        <summary>Anatomical method</summary>
+        <div class="subbody">
+          <span class="scroll-hint">↔ scroll table</span>
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Injury</th><th>Approx. blood loss</th></tr></thead>
+              <tbody>
+                <tr><td>Closed pelvic fracture</td><td>2000–4000 mL</td></tr>
+                <tr><td>Closed femoral fracture</td><td>1000–1500 mL</td></tr>
+                <tr><td>Closed tibial fracture</td><td>500–1000 mL</td></tr>
+                <tr><td>Closed humerus fracture</td><td>500–1000 mL</td></tr>
+                <tr><td>Haematoma size of an adult fist</td><td>500 mL</td></tr>
+                <tr><td>Fractured ribs</td><td>150 mL each</td></tr>
+                <tr><td>One blood-filled hemithorax</td><td>2000 mL</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">In open fractures, blood loss may be <b>twice</b> the estimate of closed fractures.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Physical / visual method (pictorial guide, simplified)</summary>
+        <div class="subbody">
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Item</th><th>Approx. volume</th></tr></thead>
+              <tbody>
+                <tr><td>Maternity pad (21 × 7.5 cm) — light / moderate / soaked</td><td>30 / 60 / 90 mL</td></tr>
+                <tr><td>Blue sheet + soaked maternity pad</td><td>150 mL</td></tr>
+                <tr><td>Abdominal pad (15 × 20 cm) — partial / soaked</td><td>50 / 100 mL</td></tr>
+                <tr><td>Surgical gauze (7 × 7 cm) — small / medium / large</td><td>10 / 30 / 250 mL</td></tr>
+                <tr><td>Kidney dish (full)</td><td>500 mL</td></tr>
+                <tr><td>Floor spill — ~50 cm diameter</td><td>500 mL</td></tr>
+                <tr><td>Floor spill — ~100 cm diameter</td><td>1500 mL</td></tr>
+                <tr><td>PPH — on bed only</td><td>1000 mL</td></tr>
+                <tr><td>PPH — spillage to floor</td><td>2000 mL</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>ATLS classification of haemorrhagic shock</summary>
+        <div class="subbody">
+          <span class="scroll-hint">↔ scroll table</span>
+          <div class="tw">
+            <table class="tbl">
+              <thead>
+                <tr><th>Parameter</th><th>Class 1</th><th>Class 2 (mild)</th><th>Class 3 (moderate)</th><th>Class 4 (severe)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Approx. blood loss</td><td>&lt; 15%</td><td>15–30%</td><td>31–45%</td><td>&gt; 45%</td></tr>
+                <tr><td>Blood pressure</td><td>Normal</td><td>Normal</td><td>Normal / decreased</td><td>Decreased</td></tr>
+                <tr><td>Heart rate</td><td>Normal</td><td>Normal / increased</td><td>Increased</td><td>Greatly increased</td></tr>
+                <tr><td>Pulse pressure</td><td>Normal</td><td>Decreased</td><td>Decreased</td><td>Decreased</td></tr>
+                <tr><td>Respiratory rate</td><td>Normal</td><td>Normal</td><td>Normal / increased</td><td>Increased</td></tr>
+                <tr><td>GCS</td><td>Normal</td><td>Normal</td><td>Decreased</td><td>Decreased</td></tr>
+                <tr><td>Urine output</td><td>Normal</td><td>Normal</td><td>Decreased</td><td>Greatly decreased</td></tr>
+                <tr><td>Base deficit</td><td>0 to −2 mEq/L</td><td>−2 to −6 mEq/L</td><td>−6 to −10 mEq/L</td><td>−10 mEq/L or less</td></tr>
+                <tr><td>Blood products</td><td>Monitor</td><td>Possible</td><td>Yes</td><td>Massive Transfusion Protocol</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Limitations in the elderly, patients with comorbidities and those on beta-blockers.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Shock Index (SI) and variants</summary>
+        <div class="subbody">
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Index</th><th>Equation</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>SI</td><td>HR / SBP</td><td>Normal 0.5–0.7 in healthy adults; rising SI = worse severity, mortality, fluid and vasopressor need, transfusion requirement</td></tr>
+                <tr><td>Modified SI (MSI)</td><td>HR / MAP</td><td>MAP substituted for SBP</td></tr>
+                <tr><td>Paediatric adjusted (SIPA)</td><td>HR / SBP</td><td>Cut-offs: age 4–6 &gt; 1.22 · 7–12 &gt; 1.0 · 13–16 &gt; 0.9</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <h3 class="sec">Predicting the need for massive transfusion</h3>
+
+      <details class="sub">
+        <summary>ABC score — Assessment of Blood Consumption</summary>
+        <div class="subbody">
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Item</th><th>Points</th></tr></thead>
+              <tbody>
+                <tr><td>Positive FAST</td><td>1</td></tr>
+                <tr><td>SBP ≤ 90 mmHg in ED</td><td>1</td></tr>
+                <tr><td>HR ≥ 120 in ED</td><td>1</td></tr>
+                <tr><td>Penetrating mechanism</td><td>1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Score ≥ 2 predicts need for massive transfusion (sensitivity 75%, specificity 86%). Score 0–1: less likely.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Prince of Wales Hospital / Rainer (PWH) score</summary>
+        <div class="subbody">
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Item</th><th>Points</th></tr></thead>
+              <tbody>
+                <tr><td>SBP &lt; 90 mmHg</td><td>3</td></tr>
+                <tr><td>GCS ≤ 8</td><td>1</td></tr>
+                <tr><td>HR &gt; 120 bpm</td><td>1</td></tr>
+                <tr><td>Displaced pelvic fracture</td><td>1</td></tr>
+                <tr><td>CT or FAST positive</td><td>2</td></tr>
+                <tr><td>Base deficit &gt; 5 mmol/L</td><td>1</td></tr>
+                <tr><td>Hb ≤ 7 g/dL</td><td>10</td></tr>
+                <tr><td>Hb 7.1–10 g/dL</td><td>1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Total &gt; 6 indicates need for MTP (sensitivity 31.5%, specificity 99.7%).</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>TASH score — Trauma Associated Severe Haemorrhage</summary>
+        <div class="subbody">
+          <span class="scroll-hint">↔ scroll table</span>
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Item</th><th>Value</th><th>Points</th></tr></thead>
+              <tbody>
+                <tr><td rowspan="2">Gender</td><td>Male</td><td>1</td></tr>
+                <tr><td>Female</td><td>0</td></tr>
+                <tr><td rowspan="3">Systolic BP</td><td>&lt; 100 mmHg</td><td>4</td></tr>
+                <tr><td>&lt; 120 mmHg</td><td>1</td></tr>
+                <tr><td>&gt; 120 mmHg</td><td>0</td></tr>
+                <tr><td rowspan="2">Heart rate</td><td>&lt; 120 bpm</td><td>2</td></tr>
+                <tr><td>&gt; 120 bpm</td><td>0</td></tr>
+                <tr><td>Clinically unstable pelvic fracture</td><td>—</td><td>6</td></tr>
+                <tr><td>Open / dislocated femur fracture</td><td>—</td><td>3</td></tr>
+                <tr><td>FAST positive for intra-abdominal fluid</td><td>—</td><td>3</td></tr>
+                <tr><td rowspan="6">Haemoglobin</td><td>&lt; 7 g/dL</td><td>8</td></tr>
+                <tr><td>&lt; 9 g/dL</td><td>6</td></tr>
+                <tr><td>&lt; 10 g/dL</td><td>4</td></tr>
+                <tr><td>&lt; 11 g/dL</td><td>3</td></tr>
+                <tr><td>&lt; 12 g/dL</td><td>2</td></tr>
+                <tr><td>&gt; 12 g/dL</td><td>0</td></tr>
+                <tr><td rowspan="4">Base excess</td><td>&lt; −10 mmol/L</td><td>4</td></tr>
+                <tr><td>&lt; −6 mmol/L</td><td>3</td></tr>
+                <tr><td>&lt; −2 mmol/L</td><td>1</td></tr>
+                <tr><td>&gt; −2 mmol/L</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Score 18 ≈ 50% probability of massive transfusion. Derived mainly from blunt trauma; may be delayed by awaiting lab results.</p>
+        </div>
+      </details>
+
+      <h3 class="sec">Massive Transfusion Protocol (MTP) — simplified flow</h3>
+      <div class="flow">
+        <div class="fstep">
+          <div class="lbl">Step 1 — Activation</div>
+          <div class="txt">Attending clinician (preferably Consultant / Specialist) activates MTP</div>
+          <div class="det">Based on clinical scoring tool + clinical judgement (mechanism of injury, anatomy, physiology, rate of haemorrhage). A Medical Officer acts as Coordinator.</div>
+        </div>
+        <div class="farrow">▼</div>
+        <div class="fstep">
+          <div class="lbl">Step 2 — Laboratory</div>
+          <div class="txt">Send GXM (EDTA 10 mL) + request form + baseline bloods</div>
+          <div class="det">FBC · Coagulation profile · Fibrinogen · RFT/electrolytes · LFT · Troponin · CK · Arterial/venous blood gas. Provide: clinician name, coordinator name &amp; contact, patient identifiers, location, clinical diagnosis, score.</div>
+        </div>
+        <div class="farrow">▼</div>
+        <div class="fstep">
+          <div class="lbl">Step 3 — Fixed pack (ratio 1:1:1:1)</div>
+          <div class="txt">4 units PRBC · 4 units FFP · 4 units cryoprecipitate · 4 units platelet</div>
+          <div class="det">Subsequent packs prepared immediately after the first, or on request. Availability: cross-matched O on site; first-stage crossmatch 30 min; full crossmatch 45 min; FFP/cryo 30 min; platelets immediate.</div>
+        </div>
+        <div class="farrow">▼</div>
+        <div class="fstep">
+          <div class="lbl">Step 4 — Reassess bleeding control &amp; need for further transfusion</div>
+          <div class="txt">Simultaneously achieve surgical / radiological haemostasis + pharmacological adjuncts</div>
+        </div>
+        <div class="farrow">▼</div>
+        <div class="fbranch">
+          <div class="fstep yes">
+            <div class="lbl">YES</div>
+            <div class="txt">Continue MTP or convert to T-MTP</div>
+            <div class="det">Clinician requests continuation / conversion</div>
+          </div>
+          <div class="fstep no">
+            <div class="lbl">NO</div>
+            <div class="txt">Deactivate MTP</div>
+            <div class="det">Inform blood bank clearly — anatomical (bleeding controlled), physiological (haemodynamic stabilisation), laboratory/POCT (improving &amp; stabilising)</div>
+          </div>
+        </div>
+      </div>
+      <p class="note">Adapted from Hospital Sungai Buloh. Local variation expected depending on setting and resources.</p>
+
+      <details class="sub">
+        <summary>Targeted MTP (T-MTP) — how it differs</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li>Rapid availability of blood products (like MTP) but <b>no fixed ratio</b> — clinician determines desired ratio, type and amount.</li>
+            <li>Guided by objective clinical assessment plus POCT: FBC, blood gas, INR, fibrinogen, viscoelastic assays (TEG / ROTEM).</li>
+            <li>Individualises transfusion → reduces unnecessary transfusions and complications.</li>
+            <li>MTP and T-MTP may be <b>activated interchangeably</b> when necessary.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3 class="sec">Optimisation, monitoring &amp; resuscitation targets</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Parameter</th><th>Target</th></tr></thead>
+          <tbody>
+            <tr><td>Temperature</td><td>Normothermia</td></tr>
+            <tr><td>pH</td><td>7.35 – 7.45</td></tr>
+            <tr><td>Base excess</td><td>Normalisation (−2 to +2)</td></tr>
+            <tr><td>Lactate</td><td>≤ 2 mmol/L</td></tr>
+            <tr><td>Ionised calcium</td><td>&gt; 1.1 mmol/L</td></tr>
+            <tr><td>Platelet count</td><td>&gt; 50 × 10⁹/L</td></tr>
+            <tr><td>PT / APTT</td><td>&lt; 1.5 × normal</td></tr>
+            <tr><td>INR</td><td>≤ 1.5</td></tr>
+            <tr><td>Fibrinogen</td><td>&gt; 1.5 g/L</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><b>Optimise:</b> haemostasis · oxygenation · cardiac output · tissue perfusion · metabolic derangements · prevent hypothermia · prevent further coagulopathy.
+      <br><b>Monitor every 30–60 min:</b> FBC, coagulation screen, ionised calcium, arterial/venous blood gases.</p>
+
+      <h3 class="sec">Pharmacological adjuncts</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Agent</th><th>Indication / dose</th><th>Grade</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Calcium</b><br>(chloride or gluconate)</td>
+              <td>Monitor ionised calcium regularly; correct hypocalcaemia. Citrate chelates calcium → worsens coagulopathy and mortality.</td>
+              <td><span class="chip red">1C</span></td>
+            </tr>
+            <tr>
+              <td><b>Tranexamic acid</b></td>
+              <td>Trauma with bleeding / at risk: <b>1 g over 10 min, then 1 g over 8 h</b>, as soon as possible and <b>within 3 h</b> of injury. Consider first dose en-route to hospital.<br>PPH: as soon as possible, <b>no more than 3 h</b> after childbirth; second dose if bleeding continues after 30 min or restarts within 24 h.</td>
+              <td><span class="chip red">1A</span> <span class="chip amber">1C</span> <span class="chip blue">1B</span></td>
+            </tr>
+            <tr>
+              <td><b>PCC</b></td>
+              <td>Based on standard laboratory coagulation parameters and/or viscoelastic evidence of functional coagulation factor deficiency. Risk–benefit assessment required.</td>
+              <td><span class="chip red">1C</span></td>
+            </tr>
+            <tr>
+              <td><b>Desmopressin</b></td>
+              <td><b>0.3 µg/kg</b> in severe bleeding on platelet-inhibiting drugs or with von Willebrand disease.</td>
+              <td><span class="chip amber">2C</span></td>
+            </tr>
+            <tr>
+              <td><b>Vitamin K ± PCC ± FFP</b></td>
+              <td>Life-threatening bleeding on warfarin with INR ≥ 1.5: stop warfarin immediately and give IV vitamin K and/or PCC and/or FFP.</td>
+              <td><span class="chip red">1C</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details class="sub">
+        <summary>Anticoagulant reversal &amp; replacement</summary>
+        <div class="subbody">
+          <span class="scroll-hint">↔ scroll table</span>
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Drug</th><th>Target</th><th>Monitoring</th><th>Reversal / replacement</th></tr></thead>
+              <tbody>
+                <tr><td>Warfarin</td><td>II, VII, IX, X; protein C &amp; S</td><td>INR</td><td>Vitamin K · PCC · FFP</td></tr>
+                <tr><td>UFH</td><td>IIa, Xa (and VIIa, IXa, XIa, XIIa)</td><td>APTT</td><td>Protamine sulfate</td></tr>
+                <tr><td>LMWH</td><td>IIa, Xa</td><td>Anti-factor Xa</td><td>Protamine sulfate</td></tr>
+                <tr><td>Fondaparinux</td><td>Xa</td><td>Anti-factor Xa</td><td>PCC</td></tr>
+                <tr><td>Dabigatran</td><td>IIa (thrombin)</td><td>APTT · TT · dTT · ECT</td><td>Idarucizumab · PCC</td></tr>
+                <tr><td>Rivaroxaban</td><td>Xa</td><td>Anti-factor Xa</td><td>Andexanet alfa · PCC</td></tr>
+                <tr><td>Apixaban</td><td>Xa</td><td>Anti-factor Xa</td><td>Andexanet alfa · PCC</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <h3 class="sec">Complications of massive transfusion</h3>
+      <details class="sub">
+        <summary>Recognise and manage</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li><b>Hypothermia</b> — impairs platelet and coagulation factor function, enzyme inhibition, fibrinolysis, reduced citrate and hepatic metabolism, reduced drug clearance. Prevent: remove wet clothing, raise ambient temperature, heating blankets/lamps, heated humidified oxygen, validated inline blood/fluid warmers.</li>
+            <li><b>Acidosis / alkalosis</b> — acidosis from hypoperfusion impairs haemostasis; citrate metabolised to bicarbonate may cause metabolic alkalosis. Continue resuscitation.</li>
+            <li><b>Citrate toxicity, hypocalcaemia, hypomagnesaemia</b> — large citrate load + reduced metabolism (hypothermia, hypoperfusion). Hypocalcaemia worsens coagulopathy, cardiac function and systemic vascular resistance.</li>
+            <li><b>Hyperkalaemia</b> — potassium leaks from stored PRBCs; worsened by tissue damage, renal insufficiency and acidosis.</li>
+            <li><b>Coagulopathy</b> — dilution, consumption of clotting factors and fibrinolysis; exacerbated by hypothermia. Monitor with laboratory tests and point-of-care testing.</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ================= MODULE B: PERIOPERATIVE ================= -->
+  <details class="module">
+    <summary><span class="num">B</span> Perioperative (Anaesthesia)</summary>
+    <div class="body">
+
+      <h3 class="sec">Preoperative anaemia optimisation</h3>
+      <ul class="tight">
+        <li>All patients for <b>major surgery</b> (anticipated blood loss &gt; 500 mL): FBC, serum ferritin, group &amp; screen (GSH).</li>
+        <li>Preoperative anaemia should be identified, evaluated and managed to minimise RBC transfusion — associated with transfusion risks, increased ICU and hospital length of stay.</li>
+        <li>Evaluate as early as possible; coordinate surgical scheduling with optimisation of Hb and iron stores.</li>
+        <li><b>Non-urgent elective surgery should be postponed</b> until anaemia is investigated and treated — allow at least <b>4 weeks</b> (2–4 weeks typically needed to optimise Hb).</li>
+        <li>Time interval between diagnosis of anaemia and cancer surgery should be <b>individualised</b> — delay has measurable impact on survival (e.g. breast cancer optimal within 90 days; colorectal 3–6 weeks; head &amp; neck within 67 days).</li>
+      </ul>
+
+      <h4 class="sub">Iron therapy</h4>
+      <ul class="tight">
+        <li>Iron deficiency anaemia or depleted stores: treat with <b>iron alone</b>.</li>
+        <li>Anaemia of chronic disease / inflammation: addition of ESAs may be indicated — <b>ESA must be combined with iron therapy</b>.</li>
+        <li>Suboptimal iron stores (ferritin &lt; 100 µg/L) with anticipated substantial blood loss: preoperative iron therapy.</li>
+        <li>Enteral and parenteral iron formulations should be accessible to all disciplines.</li>
+      </ul>
+
+      <h3 class="sec">Preoperative optimisation of haemostasis</h3>
+      <ul class="tight">
+        <li>Assess bleeding risk with a <b>validated bleeding assessment tool</b> (e.g. ISTH Bleeding Assessment Tool).</li>
+        <li>Coagulation screen <b>not routine</b> unless history suggestive of bleeding disorder or comorbidity with bleeding risk.</li>
+        <li><b>Aspirin monotherapy</b> can be continued for most invasive non-cardiac surgery including neuraxial anaesthesia.</li>
+        <li><b>DAPT</b> can be continued for low bleeding risk procedures; <b>high bleeding risk procedures should be postponed</b> on DAPT.</li>
+      </ul>
+
+      <details class="sub">
+        <summary>Anticoagulant / antiplatelet cessation timing</summary>
+        <div class="subbody">
+          <span class="scroll-hint">↔ scroll table</span>
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Days before surgery</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>−8</td><td>Stop prasugrel</td></tr>
+                <tr><td>−7 to −6</td><td>Stop warfarin, clopidogrel. Stop aspirin for high bleeding risk* or patients refusing transfusion</td></tr>
+                <tr><td>−5</td><td>For patients previously on warfarin, start UFH or therapeutic-dose LMWH*</td></tr>
+                <tr><td>−4</td><td>Stop ticagrelor</td></tr>
+                <tr><td>−3</td><td>Stop DOACs (dabigatran, apixaban, edoxaban)</td></tr>
+                <tr><td>−2</td><td>Stop LMWH. Stop DOACs (rivaroxaban)</td></tr>
+                <tr><td>−1</td><td>Stop abciximab 12 h before · stop UFH 6 h before · stop eptifibatide &amp; tirofiban 4 h before</td></tr>
+                <tr><td>Day 0</td><td>Continue aspirin for normal or low bleeding risk patients</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">
+            * High bleeding risk: complex/redo surgery, severe renal impairment, haematological disorders, hereditary platelet dysfunction. Bridging warfarin with UFH/LMWH is indicated in high thrombotic risk.<br>
+            <b>Renal impairment:</b> stop warfarin &amp; DOACs one day earlier; stop LMWH earlier than above.<br>
+            Warfarin generally stopped 5 days before elective procedure. DOAC: 24 h before low-risk procedure, 48 h before higher-risk procedure (normal renal function). UFH withheld 4–6 h; LMWH 12–24 h prior.
+          </p>
+        </div>
+      </details>
+
+      <h3 class="sec">Intraoperative initiatives</h3>
+      <ul class="tight">
+        <li><b>Prevent hypothermia</b> (Grade A).</li>
+        <li>Position patient to promote <b>good venous return</b>.</li>
+        <li><b>Acute normovolaemic haemodilution (ANH)</b> — consider where substantial blood loss anticipated, especially rare blood group or religious belief (Grade C).</li>
+        <li><b>Intraoperative cell salvage</b> — recommended where possible (Grade C).</li>
+        <li><b>Tranexamic acid</b> — IV recommended in non-cardiac surgery with anticipated substantial blood loss (Grade B). Give prophylactically before incision when anticipated blood loss &gt; 500 mL.</li>
+        <li>Suspected coagulopathy: guide transfusion by coagulation assays or <b>viscoelastic testing</b> (TEG/ROTEM) where available.</li>
+      </ul>
+      <div class="call blue">
+        <b>TXA evidence:</b> POISE-3 — composite bleeding outcome 30 days was 24% lower with TXA vs placebo (9.1% vs 11.7%); however the cardiovascular composite safety outcome did <b>not</b> meet non-inferiority. Balance risk vs benefit.
+      </div>
+
+      <h3 class="sec">Intraoperative decisions for transfusion</h3>
+      <ul class="tight">
+        <li>In the absence of haemodynamic instability, use a <b>restrictive</b> transfusion strategy — but clinical situation dictates.</li>
+        <li><b>Do not</b> give prophylactic blood products preoperatively without evidence of a bleeding phenotype. Investigate abnormal coagulation profiles before surgery.</li>
+        <li>RBC transfusion should not be dictated by an Hb "trigger" alone — assess clinical status.</li>
+        <li>Absent acute myocardial or cerebrovascular ischaemia: postoperative transfusion may be inappropriate if Hb &gt; 8 g/dL.</li>
+        <li>Do not transfuse if Hb ≥ 10 g/dL.</li>
+        <li>Postoperative acute myocardial or cerebrovascular ischaemia with Hb 7–10 g/dL: transfuse a <b>single unit</b> of RBC then reassess clinical efficacy.</li>
+        <li>Generally, platelet ≥ 50 × 10⁹/L or INR ≤ 2 allows invasive procedures without serious bleeding; lower counts / higher INRs may be tolerated.</li>
+        <li>Seek specialist / transfusion medicine / haematology advice for intracranial, intraocular and neuraxial procedures, and for platelets &lt; 100 × 10⁹/L or coagulopathy.</li>
+        <li><b>rFVIIa</b> and <b>PCC</b>: prophylactic or routine therapeutic use not recommended outside licensed indications. rFVIIa may be considered in life-threatening haemorrhage after conventional measures fail. PCC limited to licensed indications (e.g. warfarin reversal) — consult haematologist/transfusion physician.</li>
+      </ul>
+
+      <h3 class="sec">Postoperative initiatives</h3>
+      <ul class="tight">
+        <li>Implement <b>restrictive phlebotomy</b> — reduce frequency and volume of blood draws.</li>
+        <li>Routine blood investigations are not advisable; request only with clear indications.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ================= MODULE C: CRITICAL CARE ================= -->
+  <details class="module">
+    <summary><span class="num">C</span> Critical Care (ICU)</summary>
+    <div class="body">
+
+      <h3 class="sec">RBC transfusion thresholds by subgroup</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Group</th><th>Threshold / target</th></tr></thead>
+          <tbody>
+            <tr><td><b>General intensive care</b></td><td>Transfusion threshold <b>≤ 7 g/dL</b>; target Hb <b>7–9 g/dL</b> as default for all critically ill patients, unless comorbidities or acute illness modify decision-making. Triggers should <b>not exceed 9 g/dL</b> in most critically ill patients.</td></tr>
+            <tr><td><b>Sepsis / septic shock</b></td><td>Restrictive threshold <b>7 g/dL</b> recommended over liberal <b>9 g/dL</b>.</td></tr>
+            <tr><td><b>Acute coronary syndrome</b></td><td>Maintain Hb <b>&gt; 8 g/dL</b>.</td></tr>
+            <tr><td><b>Stable angina</b></td><td>Maintain Hb <b>&gt; 7 g/dL</b>.</td></tr>
+            <tr><td><b>Traumatic brain injury</b></td><td>Target Hb <b>7–9 g/dL</b>; <b>&gt; 9 g/dL</b> if evidence of cerebral ischaemia.</td></tr>
+            <tr><td><b>Subarachnoid haemorrhage</b></td><td>Target Hb <b>8–10 g/dL</b>.</td></tr>
+            <tr><td><b>Acute ischaemic stroke</b></td><td>Maintain Hb <b>above 9 g/dL</b>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="tight">
+        <li>Transfuse a <b>single unit</b> of RBC, then reassess clinically to determine need for further transfusion.</li>
+        <li>RBC transfusion should <b>not</b> be used to assist weaning from mechanical ventilation when Hb &gt; 7 g/dL.</li>
+      </ul>
+
+      <details class="sub">
+        <summary>RBC algorithm — simplified</summary>
+        <div class="subbody">
+          <div class="flow">
+            <div class="fstep"><div class="lbl">Q1</div><div class="txt">Is the patient anaemic and haemodynamically stable?</div></div>
+            <div class="farrow">▼</div>
+            <div class="fstep"><div class="lbl">Q2</div><div class="txt">Is the Hb &gt; 9 g/dL?</div><div class="det">Yes → <b>DO NOT TRANSFUSE</b></div></div>
+            <div class="farrow">▼</div>
+            <div class="fstep"><div class="lbl">Q3</div><div class="txt">Does the patient have acute coronary syndrome or neurological injury?</div></div>
+            <div class="farrow">▼</div>
+            <div class="fbranch">
+              <div class="fstep yes">
+                <div class="lbl">Yes</div>
+                <div class="txt">Ischaemic heart disease / neurocritical care targets</div>
+                <div class="det">ACS → Hb &gt; 8 g/dL · Stable angina → &gt; 7 g/dL · TBI ± cerebral ischaemia → &gt; 9 g/dL · SAH → &gt; 8 g/dL</div>
+              </div>
+              <div class="fstep no">
+                <div class="lbl">No</div>
+                <div class="txt">General critical care — target Hb &gt; 7 g/dL</div>
+                <div class="det">Be less confident using 7 g/dL trigger (target 7–9) if elderly with significant cardiorespiratory comorbidities. Be more confident if &lt; 55 years and illness severity relatively low.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <h3 class="sec">Alternatives &amp; blood conservation</h3>
+      <ul class="tight">
+        <li>Recombinant erythropoiesis-stimulating agents should <b>not</b> be routinely used in critically ill anaemic patients.</li>
+        <li>In the absence of clear evidence of iron deficiency, routine iron supplementation is <b>not</b> recommended during critical illness.</li>
+        <li>Consider blood conservation devices to reduce phlebotomy-associated blood loss; paediatric sampling tubes can be effective. Avoid or reduce routine blood investigations in stable patients.</li>
+      </ul>
+
+      <h3 class="sec">Blood components</h3>
+      <ul class="tight">
+        <li><b>FFP / cryoprecipitate:</b> routine use in critically ill patients with coagulopathy is <b>not advised</b>. Identify and treat underlying causes. FFP may be independently associated with ARDS and acute lung injury. Patients with INR ≤ 2 may not benefit from FFP and can generally undergo ICU invasive procedures without serious bleeding.</li>
+        <li><b>Platelets:</b> in the absence of acute bleeding, transfusion may be appropriate at &lt; 10 × 10⁹/L. Higher count (&lt; 20 × 10⁹/L) may be considered with severe sepsis or haemostatic abnormalities. Prophylactic platelet transfusion for elective CVC placement if &lt; 20 × 10⁹/L. Platelets &gt; 50 × 10⁹/L generally allow ICU invasive procedures.</li>
+      </ul>
+      <div class="tw">
+        <table class="tbl">
+          <caption>Suggested indications for platelet transfusion</caption>
+          <thead><tr><th>Platelet threshold</th><th>Indication</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 10 × 10⁹/L</td><td>Prophylaxis in non-bleeding</td></tr>
+            <tr><td>&lt; 20 × 10⁹/L</td><td>Prophylaxis in non-bleeding with severe sepsis / haemostatic abnormalities; central venous catheter placement</td></tr>
+            <tr><td>&lt; 50 × 10⁹/L</td><td>Invasive procedures within the ICU</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Antifibrinolytic</h3>
+      <ul class="tight">
+        <li>Acutely bleeding critically ill trauma patients: <b>TXA within 3 hours of injury</b> (1 g bolus followed by 1 g infusion over 8 hours, per CRASH-2 regimen).</li>
+        <li>Critically ill patients with upper gastrointestinal bleeding: consider TXA.</li>
+        <li>Delayed TXA administration is less efficacious and may carry potential risks.</li>
+      </ul>
+
+      <details class="sub">
+        <summary>Causes of anaemia in the critically ill</summary>
+        <div class="subbody">
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Pathophysiological</th><th>Iatrogenic</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>
+                    • Inflammation → impaired erythropoiesis, reduced RBC maturation and lifespan<br>
+                    • Endogenous kidney dysfunction with low erythropoietin<br>
+                    • Altered iron metabolism<br>
+                    • Nutritional deficiency (iron, folate, B12)<br>
+                    • Fluid shift due to sepsis<br>
+                    • Impaired/insufficient enteral feeding<br>
+                    • Occult bleeding<br>
+                    • Coagulation disorder due to thrombocytopenia and liver synthesis disorder
+                  </td>
+                  <td>
+                    • Frequency and volume of phlebotomies<br>
+                    • Haemolysis due to extracorporeal therapies (CRRT, ECMO)<br>
+                    • Blood volume discarded<br>
+                    • Invasive procedures<br>
+                    • Coagulation disorders due to pharmacotherapy<br>
+                    • Major haemorrhages<br>
+                    • Fluid resuscitation in septic patients<br>
+                    • Surgical interventions
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ================= MODULE D: CARDIOTHORACIC ================= -->
+  <details class="module">
+    <summary><span class="num">D</span> Cardiothoracic (CPB &amp; Cardiac ICU)</summary>
+    <div class="body">
+
+      <h3 class="sec">Preoperative recommendations</h3>
+      <ul class="tight">
+        <li>All patients planned for cardiac surgery with <b>Hb &lt; 13 g/dL</b> should be evaluated for iron deficiency anaemia (IDA) — iron studies (serum iron, TIBC, TSAT, serum ferritin) and reticulocyte haemoglobin (CHr or Ret-He).</li>
+        <li>IDA present if ferritin &lt; 30 µg/L (&lt; 100 µg/L with coexisting inflammatory disease) or reticulocyte Hb &lt; 25 pg.</li>
+        <li>Non-IDA patients: evaluate aetiology of anaemia.</li>
+        <li>Anaemic cardiac surgery patients may be considered for iron supplement (oral or IV) — <span class="chip amber">Class IIb</span>.</li>
+        <li>ESAs with iron supplement for preoperative non-IDA in elective cardiac surgery — <span class="chip blue">Class IIa</span>.</li>
+        <li>Allogeneic packed cell transfusion unlikely to improve oxygen transport when Hb &gt; 10 g/dL — <b>not recommended</b> <span class="chip red">Class III, Level B-R</span>.</li>
+        <li>Appropriate duration of cessation of antiplatelet agent before elective cardiac surgery is recommended to reduce bleeding <span class="chip red">Class I, Level B-NR</span>.</li>
+      </ul>
+
+      <h3 class="sec">Intraoperative recommendations</h3>
+      <ul class="tight">
+        <li>Reduce haemodilution: reduce fluid infusion, priming volume and other CPB strategies <span class="chip red">Class I, Level C</span>.</li>
+        <li><b>Red cell salvage</b> for blood conservation in CPB <span class="chip blue">Class II, Level B</span>.</li>
+        <li>Ultrafiltration / modified ultrafiltration (MUF) to minimise haemodilution <span class="chip amber">Class IIb, Level B</span>.</li>
+        <li>Biocompatible ECC coating may reduce perioperative bleeding and transfusion <span class="chip amber">Class IIb, Level B</span>.</li>
+        <li>Haematocrit <b>21–24%</b> may be considered during CPB when adequate DO₂ (&gt; 273 mL O₂/min/m²) is maintained <span class="chip amber">Class IIb, Level B</span>.</li>
+        <li>Leucocyte-depleted packed cells during CPB to reduce infectious complications <span class="chip red">Class I, Level B</span>.</li>
+        <li>Synthetic antifibrinolytics (TXA or EACA) indicated to reduce blood loss and transfusion <span class="chip red">Class I, Level A</span>. TXA reduces bleeding and transfusion in off-pump CABG <span class="chip blue">Class IIa, Level B-R</span>.</li>
+        <li><b>Restrictive</b> perioperative allogeneic transfusion strategy preferred <span class="chip red">Class I, Level A</span>.</li>
+        <li>Prophylactic plasma in cardiac surgery without coagulopathy <b>not indicated</b> <span class="chip red">Class I, Level B-R</span>.</li>
+        <li>Point-of-care viscoelastic testing (ROTEM/TEG) recommended <span class="chip blue">Class IIa, Level B</span>.</li>
+        <li>ANH may reduce postoperative transfusion <span class="chip blue">Class IIa, Level A</span>. Retrograde autologous priming (RAP) should be used whenever possible <span class="chip red">Class I, Level B-R</span>.</li>
+        <li>Topical antifibrinolytic agents at the surgical site after CPB reasonable to limit chest tube drainage and transfusion <span class="chip blue">Class IIa, Level B-R</span>.</li>
+      </ul>
+
+      <h3 class="sec">Postoperative recommendations</h3>
+      <ul class="tight">
+        <li>Transfuse packed cells based on <b>clinical condition</b>, not a fixed Hb threshold <span class="chip red">Class I, Level B</span>.</li>
+        <li>Platelet concentrate if bleeding with platelet &lt; 50 × 10⁹/L, or on antiplatelet therapy with bleeding complications <span class="chip blue">Class IIa, Level C</span>.</li>
+        <li>PCC or FFP if bleeding related to coagulation factor deficiency <span class="chip blue">Class IIa, Level B</span>.</li>
+        <li>Fibrinogen substitution if bleeding with fibrinogen &lt; 1.5 g/L <span class="chip amber">Class IIb, Level B</span>.</li>
+        <li>Off-label rFVIIa may be considered for refractory non-surgical bleeding <span class="chip amber">Class IIb, Level B</span>.</li>
+        <li>Prophylactic DDAVP <b>not</b> recommended; consider in bleeding patients with platelet dysfunction (inherited or acquired) <span class="chip blue">Class IIa, Level C</span>.</li>
+        <li>Restrictive perioperative allogeneic transfusion strategy preferred <span class="chip red">Class I, Level A</span>.</li>
+      </ul>
+
+      <h3 class="sec">Haematocrit management on CPB</h3>
+      <ul class="tight">
+        <li>Haemodilution is an inevitable consequence of CPB with conventional priming volumes; degree relates to patient's initial red cell mass and circuit prime volume.</li>
+        <li><b>Advantages of moderate haemodilution:</b> reduced blood viscosity, improved microcirculatory flow, reduced risk of hypertension at higher bypass flow, reduced haemolysis.</li>
+        <li><b>Harmful effects:</b> peri/postoperative anaemia, tissue oedema, organ dysfunction (e.g. acute kidney injury). Severe haemodilution may occur in smaller patients.</li>
+        <li>HCT 21–24% considered adequate when DO₂ (&gt; 273 mL O₂/min/m²) maintained. If HCT &lt; 21%, PRBCs may be transfused based on evidence of inadequate organ perfusion: decreased cerebral oximetry &gt; 20% from baseline, reduced urine output, increasing lactate, worsening acidosis, high vasopressor requirements.</li>
+        <li>PRBCs <b>not</b> recommended if HCT &gt; 24% unless worsening clinical condition or bleeding.</li>
+        <li>Antithrombin concentrate is more effective than FFP in restoring heparin responsiveness and reduces FFP transfusion and volume overload.</li>
+        <li>To attenuate harmful effects of haemodilution, improve oxygen delivery during CPB by increasing pump flow.</li>
+      </ul>
+      <div class="call blue">
+        <b>Formulae</b><br>
+        CPB HCT = (preop HCT × PBV) / (PBV + CPB prime volume)<br>
+        DO₂ = pump flow × (Hb × 1.36 × SaO₂) + (0.003 × PaO₂)
+      </div>
+
+      <details class="sub">
+        <summary>Intraoperative targeted transfusion algorithm (ROTEM / TEG)</summary>
+        <div class="subbody">
+          <div class="flow">
+            <div class="fstep">
+              <div class="lbl">Step 1 — Rule out residual heparin</div>
+              <div class="txt">ROTEM: INTEM CT &gt; 240 s and HEPTEM CT/INTEM CT &lt; 0.9 · TEG: R &gt; hTEG R × 1.25</div>
+              <div class="det">→ <b>Give protamine</b></div>
+            </div>
+            <div class="farrow">▼</div>
+            <div class="fstep">
+              <div class="lbl">Step 2 — Consider thrombin formation deficit</div>
+              <div class="txt">ROTEM: EXTEM CT &gt; 100 s · INTEM CT &gt; 240 s · TEG: hTEG R &gt; 12 min</div>
+              <div class="det">→ <b>PCC 20–25 IU/kg</b> over 10–15 min, <b>or</b> FFP 10–15 mL/kg</div>
+            </div>
+            <div class="farrow">▼</div>
+            <div class="fstep">
+              <div class="lbl">Step 3 — Consider fibrinogen deficiency</div>
+              <div class="txt">ROTEM: FIBTEM A10 &lt; 10 mm · EXTEM A10 &lt; 40 mm · TEG: MA &lt; 40 mm and FF &lt; 8 mm</div>
+              <div class="det">→ <b>Cryoprecipitate 6–12 U</b> or fibrinogen concentrate 30–60 mg/kg if available</div>
+            </div>
+            <div class="farrow">▼</div>
+            <div class="fstep">
+              <div class="lbl">Step 4 — Consider thrombocytopenia</div>
+              <div class="txt">ROTEM: FIBTEM A10 &gt; 10 mm · EXTEM A10 &lt; 40 mm · TEG: MA &lt; 40 mm and FF &gt; 8 mm</div>
+              <div class="det">→ <b>Platelet concentrate 4 units</b> of PLT per 60–70 kg ± DDAVP 0.3 mcg/kg</div>
+            </div>
+            <div class="farrow">▼</div>
+            <div class="fstep">
+              <div class="lbl">Step 5 — Consider hyperfibrinolysis</div>
+              <div class="txt">ROTEM: INTEM or EXTEM ML &gt; 7% @ 30 min OR ML &gt; 15% @ 60 min · TEG: LY 30 &gt; 7.5%</div>
+              <div class="det">→ <b>IV tranexamic acid 30–100 mg/kg</b> or topical TXA before sternum closure</div>
+            </div>
+          </div>
+          <div class="call amber">
+            <b>If at risk for postoperative bleeding:</b> measure Hb, platelet count, fibrinogen level and INR <b>30 minutes prior to separation from CPB</b>.
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Targeted algorithm — excessive microvascular bleeding</summary>
+        <div class="subbody">
+          <div class="call blue"><b>Check and optimise first:</b> T &gt; 36 °C · pH &gt; 7.2 · iCa &gt; 1.0 mmol/L · Hb &gt; 8.0 g/dL</div>
+          <span class="scroll-hint">↔ scroll table</span>
+          <div class="tw">
+            <table class="tbl">
+              <thead><tr><th>Findings</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>Hb &lt; 8 g/dL</td><td>Transfuse packed cells to Hb &gt; 8 g/dL</td></tr>
+                <tr><td>PLT &lt; 50,000/µL</td><td>Transfuse platelets to &gt; 50,000/µL or until haemostasis</td></tr>
+                <tr><td>ACT &gt; 1.5</td><td>Transfuse FFP 10–15 mL/kg or "low dose" PCC</td></tr>
+                <tr><td>Fibrinogen &lt; 150 mg/dL</td><td>Transfuse cryoprecipitate or fibrinogen concentrate to fibrinogen &gt; 150 mg/dL</td></tr>
+                <tr><td>ACT &gt; baseline</td><td>Check heparin level to guide additional protamine</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Adapted from Society of Cardiovascular Anaesthesiologists 2019 ROTEM/TEG/non-ROTEM/TEG-based Cardiac Surgery Intraoperative Targeted Transfusion Algorithm.<br>
+          If bleeding persists despite normal ROTEM/TEG → consider surgical re-exploration.<br>
+          PCC for post-CPB bleeding is off-label; if volume status is a concern, PCC may be considered over FFP.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Criteria for re-exploration for mediastinal bleeding (adult)</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li><b>Suspected cardiac tamponade</b></li>
+            <li><b>Persistent bleeding — chest drainage:</b>
+              <ul class="tight">
+                <li>&gt; 500 mL during the first hour</li>
+                <li>&gt; 400 mL during each of the first 2 hours</li>
+                <li>&gt; 300 mL during each of the first 3 hours</li>
+                <li>&gt; 1000 mL total during the first 4 hours</li>
+                <li>&gt; 1200 mL total during the first 5 hours</li>
+              </ul>
+            </li>
+            <li><b>Excessive bleeding (&gt; 300 mL/h)</b> after initial cessation of blood loss</li>
+            <li><b>Sudden massive bleeding (≥ 500 mL in &lt; 1 hour)</b> with haemodynamic instability</li>
+          </ul>
+          <p class="note">Kirklin and Barret-Boyes criteria.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>CPB blood conservation techniques</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li>Haematocrit management on CPB; selection of appropriate tubing sizes</li>
+            <li>Retrograde and antegrade autologous priming</li>
+            <li>Vacuum-assisted venous return (VAVR)</li>
+            <li>Microplegia</li>
+            <li>Cell salvage</li>
+            <li>Ultrafiltration (MUF / ZBUF / CUF)</li>
+            <li>Pump blood collection post-CPB</li>
+            <li>Biocompatible coating of ECC circuit</li>
+            <li>Minimally invasive extracorporeal circuit (MiECC)</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ================= MODULE E: OBSTETRICS ================= -->
+  <details class="module">
+    <summary><span class="num">E</span> Obstetrics &amp; Gynaecology (PPH focus)</summary>
+    <div class="body">
+
+      <h3 class="sec">Definitions</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+          <tbody>
+            <tr><td><b>Anaemia in pregnancy</b></td><td>Hb &lt; 11 g/dL (WHO)</td></tr>
+            <tr><td><b>Anaemia — postnatal</b></td><td>Hb &lt; 10 g/dL</td></tr>
+            <tr><td><b>Anaemia — non-pregnant woman</b></td><td>Hb &lt; 12 g/dL</td></tr>
+            <tr><td><b>Primary PPH</b></td><td>Within first 24 hours after delivery</td></tr>
+            <tr><td><b>Secondary PPH</b></td><td>After 24 hours until 6 weeks post-delivery</td></tr>
+            <tr><td><b>PPH</b></td><td>&gt; 500 mL after vaginal delivery; &gt; 1000 mL after abdominal delivery. Practical clinical definition: any blood loss sufficient to cause haemodynamic instability.</td></tr>
+            <tr><td><b>Massive PPH</b></td><td>Blood loss &gt; 1500 mL</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tw">
+        <table class="tbl">
+          <caption>Classification of anaemia severity in pregnancy</caption>
+          <thead><tr><th>Severity</th><th>Haemoglobin</th></tr></thead>
+          <tbody>
+            <tr><td>Mild</td><td>10 – 10.9 g/dL</td></tr>
+            <tr><td>Moderate</td><td>7 – 9.9 g/dL</td></tr>
+            <tr><td>Severe</td><td>&lt; 7.0 g/dL</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">WHO recognises "mild" is a misnomer — iron deficiency is already advanced by the time anaemia is detected. Target Hb <b>&gt; 13 g/dL</b> for patients undergoing major surgery, including obstetric patients at risk of operative birth and major PPH.</p>
+
+      <h3 class="sec">Detection &amp; management of anaemia</h3>
+      <ul class="tight">
+        <li>FBC at booking, 35–36 weeks, monthly Hb and at 1 month postpartum. More frequent (every 2–4 weeks) if monitoring response to iron therapy.</li>
+        <li>Laboratory tests: FBC · serum ferritin · serum iron, TIBC, TSAT (if anaemia of inflammation / iron sequestration) · RET-He if available (can replace ferritin and iron studies).</li>
+        <li><b>Oral iron prophylaxis:</b> 40–80 mg elemental iron once daily, as early as possible if tolerated. If intolerant, every-other-day dosing. Avoid divided dosing (increases hepcidin, reduces absorption).</li>
+        <li><b>Therapeutic oral iron for IDA:</b> 100–200 mg elemental iron once daily, in the morning. Do not exceed once-daily dosing. Expected rise 1.0–2.0 g/dL per month; continue <b>6 months</b> after normalisation to replenish stores.</li>
+        <li><b>Parenteral iron:</b> moderate–severe IDA from second trimester who fail/intolerant of oral iron or non-compliant. Avoid in first trimester. IV route only (IM not recommended). 200 mg raises Hb by 1.5–2.0 g/dL per week. Max single dose 20 mg/kg (iron sucrose 7 mg/kg).</li>
+        <li><b>ESA:</b> consider in moderate–severe anaemia not responding to parenteral iron, after consultation with haematologist; use in combination with iron therapy.</li>
+      </ul>
+      <div class="tw">
+        <table class="tbl">
+          <caption>Laboratory diagnosis of iron deficiency</caption>
+          <thead><tr><th>Test</th><th>Interpretation</th></tr></thead>
+          <tbody>
+            <tr><td>Serum ferritin (µg/L)</td><td>&lt; 30 confirms IDA (labile — rises in inflammation or hepatocellular injury). &lt; 100 indicates low iron store → give iron therapy. &gt; 100 with TSAT &lt; 20% may indicate ID in an inflammatory state.</td></tr>
+            <tr><td>TSAT (%) = serum iron / TIBC × 100</td><td>&lt; 20% suggests inadequate iron supply for haemoglobin synthesis and red cell production. &lt; 15% is characteristic but not diagnostic unless combined with serum ferritin.</td></tr>
+            <tr><td>RET-He (pg)</td><td>&lt; 27.2 pg suggestive of iron deficiency</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Minimising intrapartum blood loss (Pillar 2)</h3>
+      <ul class="tight">
+        <li>Modified active management of third stage: prophylactic IM oxytocin 10 IU, or IV oxytocin 5 IU slow bolus, or IM Syntometrine 500 µg/5 IU (if not contraindicated) after delivery of the anterior fetal shoulder.</li>
+        <li>Delayed cord clamping — not earlier than 1 minute but before 5 minutes from fetal delivery.</li>
+        <li>Palpate uterus and ensure well contracted; deliver placenta via controlled cord traction (CCT); document timing of placental delivery.</li>
+      </ul>
+
+      <h4 class="sub">Tranexamic acid in PPH</h4>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Dose &amp; timing</th></tr></thead>
+          <tbody>
+            <tr><td>
+              <b>Loading:</b> 1 g in 100 mL 0.9% NaCl over 10 minutes<br>
+              <b>Maintenance:</b> 1 g in 100 mL 0.9% NaCl over 8 hours<br>
+              <b>Or</b> 1 g in 10 mL 0.9% NaCl (100 mg/mL) at 1 mL/min over 10 minutes, with a second IV 1 g dose if bleeding persists after 30 minutes or restarts within 24 hours of completing the first dose.
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Give <b>as early as possible and within 3 hours</b> of onset of PPH. Slow infusion required (rate &gt; 1 mL/min risks transient hypotension). Effect lasts 7–8 hours in serum. Benefit decreases by ~10% for every 15-minute delay; no benefit after 3 hours. May be used prophylactically with uterotonics in high-risk patients.</p>
+
+      <h4 class="sub">Other measures</h4>
+      <ul class="tight">
+        <li><b>Point-of-care testing</b> (ROTEM/TEG) — rapid bedside assessment of all stages of coagulation; safely guides transfusion, especially in massive bleeding; surrogate measure for fibrinogen.</li>
+        <li><b>Cell salvage</b> — reduces allogeneic transfusion and related adverse events; cost-effective where high transfusion rates predicted; leukofiltration reduces amniotic fluid contaminants.</li>
+        <li><b>Interventional radiology</b> — uterine artery embolisation or iliac balloon occlusion in haemodynamically stable patients to manage severe postpartum blood loss and conserve fertility.</li>
+        <li><b>Recombinant Factor VIIa</b> — not licensed for massive bleeding in the maternal population in Malaysia; limit to massive bleeding where standard obstetric, surgical, radiological and transfusion interventions have failed. Prerequisites: haematocrit &gt; 24%, fibrinogen &gt; 0.5–1.0 g/L, platelets &gt; 50 × 10⁹/L, pH ≥ 7.2. Use in consultation with a haematologist.</li>
+      </ul>
+
+      <h3 class="sec">Red cell transfusion — non-bleeding obstetric patients</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Haemoglobin</th><th>Recommendation</th></tr></thead>
+          <tbody>
+            <tr><td>&gt; 9 g/dL</td><td>Red cell transfusion is usually inappropriate</td></tr>
+            <tr><td>7–9 g/dL</td><td>Not associated with reduction in mortality. Decision based on relieving clinical signs and symptoms of anaemia, availability of other therapies, expected time frame before delivery and risk of haemorrhage.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Massive Transfusion Protocol — obstetrics</h3>
+      <ul class="tight">
+        <li>Each O&amp;G department must develop and maintain an MTP including access to RBC and the dose, timing and ratio of blood component therapy.</li>
+        <li>Massive haemorrhage must be recognised early; MTP activation must be early.</li>
+        <li>Fibrinogen levels approaching <b>2 g/L</b> are associated with severe haemorrhage — early cryoprecipitate or fibrinogen concentrate indicated.</li>
+        <li>Measure early and frequently: temperature · acid-base status · ionised calcium · haemoglobin · platelet count · PT/INR · APTT · fibrinogen.</li>
+        <li>When no further need for blood products — inform blood bank to <b>deactivate MTP</b>. Regular clinical audit of MTP in pregnancy.</li>
+      </ul>
+      <div class="tw">
+        <table class="tbl">
+          <caption>Suggested blood component doses in major obstetric haemorrhage requiring massive transfusion</caption>
+          <thead><tr><th>Component</th><th>Dose</th></tr></thead>
+          <tbody>
+            <tr><td>FFP</td><td>15 mL/kg</td></tr>
+            <tr><td>Platelets</td><td>1 adult therapeutic dose</td></tr>
+            <tr><td>Cryoprecipitate</td><td>1 unit / 10 kg body weight (total 3–4 g)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tw">
+        <table class="tbl">
+          <caption>Values indicative of critical physiologic derangement</caption>
+          <thead><tr><th>Parameter</th><th>Critical value</th></tr></thead>
+          <tbody>
+            <tr><td>Temperature</td><td>&lt; 35 °C</td></tr>
+            <tr><td>pH / base excess / lactate</td><td>pH &lt; 7.2 · base excess worse than −6 · lactate &gt; 4 mmol/L</td></tr>
+            <tr><td>Ionised calcium</td><td>&lt; 1.1 mmol/L</td></tr>
+            <tr><td>Platelet count</td><td>&lt; 50 × 10⁹/L</td></tr>
+            <tr><td>PT / INR / APTT</td><td>&gt; 1.5 × normal</td></tr>
+            <tr><td>Fibrinogen</td><td>&lt; 2.0 g/L</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details class="sub">
+        <summary>Heavy menstrual bleeding (HMB) — brief</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li><b>Non-hormonal:</b> tranexamic acid (reduces menstrual loss by ~50%); NSAIDs (reduce loss + analgesia).</li>
+            <li><b>Hormonal:</b> LNG-IUS first-line (up to 96% reduction at 1 year); cyclical COCP (~50% reduction); cyclical oral progestogens (short-term); injectable progestogens (DMPA); GnRH analogues.</li>
+            <li><b>Surgical:</b> hysteroscopy (diagnostic + therapeutic in same setting).</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ================= MODULE F: NEONATAL & PAEDIATRIC ================= -->
+  <details class="module">
+    <summary><span class="num">F</span> Neonatal &amp; Paediatric</summary>
+    <div class="body">
+
+      <h3 class="sec">RBC transfusion</h3>
+      <ul class="tight">
+        <li>Restrictive transfusion strategy suggested in neonates and paediatric patients, including the critically ill.</li>
+        <li>Decision should not be dictated by Hb concentration alone — consider underlying condition (acquired/congenital heart disease, respiratory disease), anaemia-related signs and symptoms, and response to previous transfusions.</li>
+        <li>Use an age-specific procedural guideline covering Hb reference ranges, transfusion volume and rate, monitoring during and after transfusion, transfusion technique (e.g. syringe pumps), and recognition/reporting of adverse events.</li>
+      </ul>
+      <div class="tw">
+        <table class="tbl">
+          <caption>Haemodynamically stable paediatric patients (excluding neonates)</caption>
+          <thead><tr><th>Hb</th><th>Recommendation</th></tr></thead>
+          <tbody>
+            <tr><td>70–90 g/L</td><td>RBC transfusion may be appropriate — base decision on need to relieve clinical signs and symptoms of anaemia</td></tr>
+            <tr><td>&gt; 90 g/L</td><td>RBC transfusion often unnecessary and may be inappropriate</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Iron supplementation &amp; ESAs</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Group</th><th>Recommendation</th></tr></thead>
+          <tbody>
+            <tr><td>Preterm / low birth weight infants</td><td>Iron supplementation necessary to achieve recommended nutrient intake. Routine supplementation in excess of recommended intake to reduce transfusion incidence is <b>not supported</b>.</td></tr>
+            <tr><td>Infants &amp; children</td><td>If adequate/recommended daily intake cannot be met by diet, iron supplementation advised. Iron deficiency: iron supplements + dietary modification.</td></tr>
+            <tr><td>Surgical patients</td><td>Preoperative iron therapy recommended in consultation with paediatric haematology for those with/at risk of IDA. Identify, evaluate and manage preoperative anaemia where substantial blood loss anticipated. Evaluate early to coordinate surgery with optimisation of Hb and iron stores.</td></tr>
+            <tr><td>Critically ill</td><td>Receive iron supplementation as necessary to achieve recommended nutrient intake.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Blood components</h3>
+      <ul class="tight">
+        <li>Decision based not only on laboratory investigations but also on assessment of clinical condition — consider active bleeding, medications affecting coagulation, congenital and acquired bleeding disorders.</li>
+      </ul>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Component / group</th><th>Threshold or indication</th></tr></thead>
+          <tbody>
+            <tr><td>Platelets — oncology (chemotherapy, HSCT)</td><td>Prophylaxis at &lt; 10 × 10⁹/L in absence of risk factors; &lt; 20 × 10⁹/L with risk factors (fever, minor bleeding)</td></tr>
+            <tr><td>Platelets — surgical</td><td>Generally ≥ 50 × 10⁹/L for invasive procedures (threshold varies by institution)</td></tr>
+            <tr><td>Platelets — critically ill</td><td>10 × 10⁹/L stable non-bleeding · 20 × 10⁹/L non-bleeding with risk factors (sepsis, renal failure, medications) · 50 × 10⁹/L for invasive procedures · higher thresholds with active bleeding</td></tr>
+            <tr><td>FFP</td><td>In surgery, only indicated for active bleeding where coagulopathy is a contributing factor. Guided by clinical assessment plus point-of-care or laboratory testing.</td></tr>
+            <tr><td>Cryoprecipitate</td><td>Haemostatic support during massive blood loss · low fibrinogen with active bleeding before/during invasive procedure · dysfibrinogenaemia</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Special considerations</h3>
+      <ul class="tight">
+        <li><b>Placental transfusion:</b> preterm infants — deferring cord clamping 30 s to 1 min may reduce transfusion volume and incidence of intraventricular haemorrhage. Term infants — deferring at least 1 min likely reduces risk of iron deficiency at 3–6 months.</li>
+        <li><b>HDFN:</b> consider IVIg; assess promptly after birth; intensive phototherapy for those at high risk of severe jaundice; weekly IVIg course considered for fetuses at high risk of early hydrops or death.</li>
+        <li><b>Prevention of hypothermia</b> in paediatric surgery: air forced warming blanket, fluid warmer, radiant heater.</li>
+        <li><b>Intraoperative cell salvage</b> may be considered in major paediatric surgery — requires local procedural guideline and trained staff.</li>
+      </ul>
+
+      <details class="sub">
+        <summary>Selection of blood products</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li><b>Fresh RBCs (&lt; 5 days):</b> intrauterine transfusion (&lt; 5 days if available), exchange transfusion. RBC &lt; 14 days can be used in transfusion-dependent patients (e.g. thalassaemia).</li>
+            <li><b>Kell antigen:</b> where possible, K-negative RBC for all females of childbearing potential who are K-negative or whose K status is unknown — includes fetal transfusion.</li>
+            <li><b>Irradiated cellular products</b> (absolute): intrauterine transfusion and recipients of prior IUT up to 6 months of age; suspected/known severe congenital T-cell immunodeficiency; severe acquired T-cell dysfunction; HLA-matched cellular blood products. <i>Relative:</i> neonatal exchange transfusion (if no critical delay); very low birth weight neonates (especially &lt; 28 weeks or &lt; 900 g); certain chemotherapy patients.</li>
+            <li>Stem cells must <b>not</b> be irradiated. Hyperkalaemia may occur with large volumes of irradiated blood — use as fresh as possible (&lt; 7 days) and within 24 hours of irradiation.</li>
+            <li><b>CMV-negative products:</b> intrauterine transfusion; preterm neonates (up to 28 days after expected date of delivery); severe combined immunodeficiency who are CMV negative; stem cell transplant with CMV-negative donor and recipient; granulocyte transfusions for CMV-seronegative/unknown recipients. In urgent situations, use CMV-unscreened leucodepleted components to avoid delay.</li>
+            <li><b>HPA-matched platelets</b> for known/suspected fetal and neonatal alloimmune thrombocytopenia: urgent transfusion if platelets &lt; 30 × 10⁹/L in term infant or &lt; 50 × 10⁹/L in preterm infant, even without clinically significant bleeding; with active bleeding, higher threshold (100 × 10⁹/L for intracranial bleeding, 50 × 10⁹/L for other sites). Consult paediatric haematologist. Check platelet count response within 12 hours. Random donor platelets if antigen-matched unavailable. IVIg may be considered.</li>
+            <li><b>HLA-matched platelets</b> for platelet refractoriness from non-immune causes (splenomegaly, infection) — fresh, ABO-compatible, single-donor apheresis platelets. Screen for HLA antibodies if cause unclear. Avoid platelet transfusion in inherited platelet disorders (Bernard Soulier, Glanzmann) if possible; if unavoidable use HLA-matched.</li>
+            <li><b>Washed RBCs:</b> removes antibodies, plasma proteins, additive solutions, electrolytes, metabolites, cytokines. Contains 10–20% less RBCs but depleted of 99% of plasma proteins. May be considered for severe transfusion reactions including IgA deficiency.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Non-pharmacologic blood conservation — phlebotomy loss</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li>Use "as-needed" rather than routine sampling</li>
+            <li>Meticulous avoidance of blood overdraw</li>
+            <li>Return of void volumes to sampling lines</li>
+            <li>Use of closed inline sampling devices</li>
+            <li>Judicious use and "on-time" removal of sampling lines</li>
+            <li>Optimal sampling technique and sample handling to minimise rejection</li>
+            <li>Laboratory equipment using the smallest possible sample volumes</li>
+            <li>Non-invasive techniques and point-of-care devices</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Fetal transfusion &amp; products for intrauterine transfusion</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li>Manage pregnancies at risk of fetal anaemia/thrombocytopenia in facilities with expertise in ultrasound imaging and invasive fetal interventions, with access to specific blood products and neonatal intensive care.</li>
+            <li>Assess with Doppler ultrasound of the fetal middle cerebral artery peak systolic velocity to determine need for fetal blood sampling and IUT.</li>
+            <li>Prior pregnancy with fetal/neonatal intracranial haemorrhage or thrombocytopenia due to FNAIT — manage with IVIg. Fetal blood sampling to assess IVIg response, balancing risk of sampling against bleeding risk from suboptimal IVIg response.</li>
+          </ul>
+          <div class="tw">
+            <table class="tbl">
+              <caption>Products for intrauterine transfusion</caption>
+              <thead><tr><th>Both RBCs and platelets</th><th>RBCs</th><th>Platelets</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Leucodepleted; irradiated to prevent TA-GvHD</td>
+                  <td>&lt; 5 days old; group O RhD negative (or ABO identical with fetus); RhD and Kell negative, and RBC antigen negative for maternal alloantibodies; IAT crossmatch compatible with mother's plasma</td>
+                  <td>Compatible with any maternal alloantibody (e.g. anti-HPA)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ================= MODULE G: MEDICAL ================= -->
+  <details class="module">
+    <summary><span class="num">G</span> Medical Subspecialties (brief)</summary>
+    <div class="body">
+
+      <h3 class="sec">General medical transfusion</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Hb</th><th>Recommendation</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 7 g/dL</td><td>RBC transfusion likely appropriate; may not be required in well-compensated patients or where other specific treatment is available</td></tr>
+            <tr><td>7–10 g/dL</td><td>Decision based on clinical assessment (treat symptoms &amp; signs)</td></tr>
+            <tr><td>&gt; 10 g/dL</td><td>Likely unnecessary and usually inappropriate</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="tight">
+        <li>Decision not based on Hb alone — use clinical status. Single-unit policy followed by reassessment where indicated.</li>
+        <li>Treat the underlying cause of anaemia. Iron therapy for iron deficiency anaemia regardless of whether transfusion is required.</li>
+        <li><b>FFP:</b> routine use in medical patients with coagulopathy (including liver impairment) not recommended — coagulation tests correlate poorly with bleeding risk in liver impairment. Assess and treat underlying causes; tailor decision on a case basis.</li>
+        <li><b>Cryoprecipitate / fibrinogen concentrate:</b> routine use not recommended. Assess and treat underlying coagulopathy/DIC. Specialist opinion advised for DIC management.</li>
+        <li><b>Platelets:</b> establish and treat the cause. Consider for prevention and treatment in bleeding patients with thrombocytopenia or platelet dysfunction. Not all causes require transfusion — contraindicated in TTP and HIT. Avoid long-term platelet prophylaxis (alloimmunisation, refractoriness).</li>
+      </ul>
+
+      <h3 class="sec">Cardiovascular</h3>
+      <div class="tw">
+        <table class="tbl">
+          <caption>Acute coronary syndrome</caption>
+          <thead><tr><th>Hb</th><th>Recommendation</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 8 g/dL</td><td>RBC transfusion may be associated with reduced mortality and is likely appropriate</td></tr>
+            <tr><td>8–10 g/dL</td><td>Effect on mortality uncertain; may be associated with increased risk of recurrent MI. Transfuse with caution after careful risk–benefit consideration</td></tr>
+            <tr><td>&gt; 10 g/dL</td><td>May not be recommended — association with increased mortality</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="tight">
+        <li><b>Chronic heart failure:</b> increased risk of transfusion-associated circulatory overload — consider in all transfusion decisions. Where indicated, single unit of RBC followed by reassessment of clinical efficacy and fluid status. Identify and treat absolute and functional iron deficiency to improve functional/performance status.</li>
+        <li><b>ESA in CHF:</b> significantly reduce mortality; improve 6-minute walk test distance and NYHA functional class; no significant difference in stroke, MI or other thromboembolic events.</li>
+      </ul>
+
+      <h3 class="sec">Nephrology — CKD</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Recommendation</th></tr></thead>
+          <tbody>
+            <tr><td>Evaluate potential benefits of avoiding transfusions, ESA therapy and anaemia-related symptoms against risks of harm when initiating iron supplementation.</td></tr>
+            <tr><td>Adult CKD with anaemia not on iron or ESA: consider a trial of IV or oral iron to a targeted Hb if TSAT ≤ 30% and ferritin ≤ 500 ng/mL.</td></tr>
+            <tr><td>Non-dialysed CKD: consider IV iron dosed to a target ferritin 400–600 µg/L to minimise need for other anaemia management.</td></tr>
+            <tr><td>Dialysed CKD: consider protocolised IV iron supplementation unless ferritin &gt; 700 µg/L or TSAT &gt; 40%.</td></tr>
+            <tr><td>Concurrent absolute or functional iron deficiency makes ESA less effective at maintaining targeted Hb.</td></tr>
+            <tr><td>ESA therapy to a Hb target of 10–11 g/dL reduces RBC transfusion.</td></tr>
+            <tr><td>Do not initiate ESA in non-dialysis CKD with Hb ≥ 10.0 g/dL. Initiate ESA in dialysed CKD when Hb is between 9.0–10.0 g/dL.</td></tr>
+            <tr><td>Do not use ESAs to maintain Hb &gt; 11.5 g/dL, or to increase Hb above 13 g/dL (increased morbidity).</td></tr>
+            <tr><td><b>Target Hb in CKD with anaemia: 10.0–11.5 g/dL.</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Gastroenterology</h3>
+      <ul class="tight">
+        <li><b>Acute GI loss:</b> well-compensated patients follow general transfusion guidelines; critically bleeding patients follow the massive haemorrhage / massive transfusion module. Restrictive transfusion reduces mortality compared with liberal transfusion.</li>
+        <li><b>Inflammatory bowel disease:</b> IV iron may be required in patients intolerant of oral iron or to avoid aggravating intestinal inflammation.</li>
+        <li><b>Ascites in cirrhosis (large-volume paracentesis):</b> necessity of plasma expansion remains controversial. Suggest albumin 6–8 g per litre of fluid removed when ≥ 5 litres of ascites are removed (Grade 2B). Suggest against albumin if &lt; 5 litres removed (Grade 2C).</li>
+      </ul>
+
+      <h3 class="sec">Haematology</h3>
+      <details class="sub">
+        <summary>Chemotherapy &amp; haemopoietic stem cell transplant</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li>Restrictive RBC transfusion threshold <b>7–8 g/dL</b> for haemodynamically stable adults; <b>8 g/dL</b> with existing cardiovascular disease.</li>
+            <li>ESAs may be offered for chemotherapy-associated anaemia when cancer treatment is <b>not curative</b> in intent and Hb &lt; 10 g/dL (strong recommendation).</li>
+            <li>ESAs should <b>not</b> be offered when cancer treatment is curative in intent.</li>
+            <li>Iron replacement may improve Hb response and reduce RBC transfusions in patients receiving ESA with or without iron deficiency — monitor iron, TIBC, transferrin saturation or ferritin at baseline and periodically.</li>
+            <li>HSCT recipients are at risk of TA-GvHD — receive irradiated cellular blood products (gamma rays 25 Gy or X-rays).</li>
+            <li><b>Prophylactic platelets:</b> trigger 10 × 10⁹/L in intensive chemotherapy. One adult therapeutic dose once daily for adults and children &gt; 15 kg. Increase threshold to 20 × 10⁹/L if febrile and/or on antibiotics for suspected bacterial or fungal infection. Not required for bone marrow aspiration or trephine biopsy (apply local pressure). For lumbar puncture, central line insertion, percutaneous organ biopsies and most invasive surgery, increase platelets to &gt; 50 × 10⁹/L.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Myelodysplastic syndromes (MDS)</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li>Supportive care for all patients with symptomatic cytopenias.</li>
+            <li>Red cell transfusions to improve symptomatic anaemia; transfusion policies including Hb thresholds should take clinical factors into account.</li>
+            <li>IPSS Low / Intermediate-1 (or IPSS-R very low, low or intermediate with score up to 3.5) with symptomatic anaemia, or asymptomatic anaemia and Hb &lt; 100 g/L: consider a trial of ESA.</li>
+            <li>Stable MDS not on intensive chemotherapy and without signs of bleeding: <b>no</b> prophylactic platelet transfusions.</li>
+            <li>Thrombopoietin receptor agonists may reduce bleeding events in thrombocytopenic patients with low or intermediate-1 risk MDS.</li>
+            <li>Do not allow Hb to rise above 120 g/L.</li>
+            <li>Consider iron chelation therapy after 20 units of red cells, or when ferritin &gt; 1000 µg/L, in suitable lower-risk patients.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Thalassaemia</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li><b>Transfusion-dependent thalassaemia (TDT):</b> lifelong regular transfusions every 2–5 weeks to maintain pre-transfusion Hb 95–105 g/L. Higher target 110–120 g/L may be appropriate for heart disease, clinically significant extramedullary haematopoiesis or other conditions, or inadequate marrow suppression at the lower level. Keep post-transfusion Hb below 140–150 g/L. Use leucodepleted packed red cells (pre-storage filtration strongly recommended).</li>
+            <li>All patients should have RBC phenotyping; phenotype-specific packed cells considered in certain high-risk blood groups. Luspatercept may reduce transfusion requirement in non-transfusion-dependent thalassaemia.</li>
+            <li><b>Initiation criteria for TDT:</b> confirmed diagnosis + Hb &lt; 70 g/L on 2 occasions &gt; 2 weeks apart (excluding other contributory causes), OR clinical criteria irrespective of Hb — significant symptoms of anaemia, poor growth/failure to thrive, complications from excessive intramedullary haematopoiesis (pathological fractures, facial changes), clinically significant extramedullary haematopoiesis.</li>
+            <li><b>Non-transfusion-dependent thalassaemia (NTDT):</b> Hb level should not be an indicator for initiating transfusion therapy, except in considerably severe anaemia (Hb &lt; 5 g/dL). Occasional transfusions for anticipated acute stress, Hb drop or blood loss (pregnancy, surgery, infections). More frequent transfusions considered for declining Hb with profound splenic enlargement (&gt; 3 cm/year during maximal growth), growth failure, poor school performance, diminished exercise tolerance, failure of secondary sexual development, bony changes, frequent haemolytic crisis (HbH disease), poor quality of life — with reassessment for tapering/withdrawal when sustained benefit achieved.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Autoimmune haemolytic anaemia (AIHA)</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li>Autoantibody usually reacts with all normal red cells — finding compatible blood is almost impossible.</li>
+            <li>The autoantibody may mask a red cell alloantibody capable of causing a haemolytic transfusion reaction.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Community-dwelling elderly</summary>
+        <div class="subbody">
+          <ul class="tight">
+            <li>Prevalence of anaemia increases with age. Non-transfusion interventions are not significant for reducing mortality, improving functional status or preventing thromboembolic events.</li>
+            <li>Multifactorial aetiologies — thorough investigation leads to correct diagnosis and management.</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ================= MODULE H: NURSING / PRACTICAL ================= -->
+  <details class="module">
+    <summary><span class="num">H</span> Practical Transfusion Safety (Nursing / Bedside)</summary>
+    <div class="body">
+
+      <h3 class="sec">Before transfusion — the "rights"</h3>
+      <ul class="tight">
+        <li>Right blood group · Right blood product · Right patient · Right duration · Right place (acute setting) · Right vascular access</li>
+      </ul>
+      <ul class="tight">
+        <li>Emergency blood crossmatch form filled and sent as required; consent signed by patient or qualified representative.</li>
+        <li>Blood and blood product volume prescribed by doctor in patient notes.</li>
+        <li>Appropriate blood box used for transport.</li>
+        <li>Baseline vital signs recorded accurately: HR, temperature, RR, BP.</li>
+      </ul>
+
+      <h3 class="sec">Administration</h3>
+      <ul class="tight">
+        <li>Use standard in-line blood filters; smaller filter (microaggregate) for platelets and FFP in special conditions.</li>
+        <li>Set should not be used for more than <b>4 hours</b> (bacterial contamination risk).</li>
+        <li>IV set must be primed with 0.9% normal saline or the prior blood product.</li>
+        <li>If an administration set has previously been used for red cells, it <b>should not</b> be used for platelets.</li>
+        <li>Transfusion volume and rate administered as prescribed.</li>
+      </ul>
+
+      <h3 class="sec">Monitoring during transfusion</h3>
+      <ul class="tight">
+        <li>Vital signs (HR, temperature, RR, BP) checked and recorded at <b>15 minutes, 30 minutes and hourly</b> throughout, and after completion.</li>
+        <li>Observe continuously for signs of transfusion reactions: apnoea or tachypnoea · tachycardia, bradycardia or arrhythmia · cyanosis · significant change in systolic BP · significant change in temperature · haemoglobinuria · rashes.</li>
+      </ul>
+      <div class="call red">
+        <b>Adverse reaction suspected:</b> stop the infusion immediately → inform doctor STAT → send post-transfusion specimens of blood, urine and the balance transfused blood bag for transfusion reaction evaluation in the blood bank.
+      </div>
+
+      <h3 class="sec">After transfusion</h3>
+      <ul class="tight">
+        <li>Document volume of all blood and blood products transfused in the intake &amp; output chart and nursing notes.</li>
+        <li>Ensure blood investigations for laboratory assessment are taken: FBC, PT/APTT, INR, fibrinogen.</li>
+        <li>Return unused blood and blood products to the blood bank immediately if no appropriate storage is available.</li>
+        <li>Vital signs checked and recorded after completion of the transfusion.</li>
+      </ul>
+
+      <h3 class="sec">General considerations</h3>
+      <ul class="tight">
+        <li>Each hospital should comply with its own local Massive Transfusion Protocol (MTP).</li>
+        <li>The ward shall ensure only <b>validated blood warmers</b> are used.</li>
+        <li>A blood transfusion checklist should be used and completed for every blood and blood product transfusion.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ================= ABBREVIATIONS ================= -->
+  <details class="module">
+    <summary><span class="num">i</span> Abbreviations</summary>
+    <div class="body">
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Abbreviation</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>ABC</td><td>Assumption of Blood Consumption (score)</td></tr>
+            <tr><td>ACS</td><td>Acute Coronary Syndrome</td></tr>
+            <tr><td>ANH</td><td>Acute Normovolaemic Haemodilution</td></tr>
+            <tr><td>ATLS</td><td>Advanced Trauma Life Support</td></tr>
+            <tr><td>CPB</td><td>Cardiopulmonary Bypass</td></tr>
+            <tr><td>DAPT</td><td>Dual Antiplatelet Therapy</td></tr>
+            <tr><td>DOAC</td><td>Direct Oral Anticoagulant</td></tr>
+            <tr><td>ECC</td><td>Extracorporeal Circuit</td></tr>
+            <tr><td>ESA</td><td>Erythropoietin Stimulating Agent</td></tr>
+            <tr><td>FAST</td><td>Focused Assessment with Sonography for Trauma</td></tr>
+            <tr><td>FBC</td><td>Full Blood Count</td></tr>
+            <tr><td>FFP</td><td>Fresh Frozen Plasma</td></tr>
+            <tr><td>GXM / GSH</td><td>Group and Crossmatch / Group Screen and Hold</td></tr>
+            <tr><td>HCT</td><td>Haematocrit</td></tr>
+            <tr><td>HDFN</td><td>Haemolytic Disease of the Fetus and Newborn</td></tr>
+            <tr><td>HMB</td><td>Heavy Menstrual Bleeding</td></tr>
+            <tr><td>HSCT</td><td>Haemopoietic Stem Cell Transplant</td></tr>
+            <tr><td>ID / IDA</td><td>Iron Deficiency / Iron Deficiency Anaemia</td></tr>
+            <tr><td>INR</td><td>International Normalised Ratio</td></tr>
+            <tr><td>IUT</td><td>Intrauterine Transfusion</td></tr>
+            <tr><td>LMWH</td><td>Low Molecular Weight Heparin</td></tr>
+            <tr><td>MDS</td><td>Myelodysplastic Syndrome</td></tr>
+            <tr><td>MTP</td><td>Massive Transfusion Protocol</td></tr>
+            <tr><td>PCC</td><td>Prothrombin Complex Concentrate</td></tr>
+            <tr><td>PBM</td><td>Patient Blood Management</td></tr>
+            <tr><td>POCT</td><td>Point of Care Testing</td></tr>
+            <tr><td>PPH</td><td>Postpartum Haemorrhage</td></tr>
+            <tr><td>PRBC</td><td>Packed Red Blood Cells</td></tr>
+            <tr><td>PWH</td><td>Prince of Wales Hospital / Rainer score</td></tr>
+            <tr><td>RET-He</td><td>Reticulocyte Haemoglobin Equivalent</td></tr>
+            <tr><td>rFVIIa</td><td>Recombinant Activated Factor VII</td></tr>
+            <tr><td>ROTEM</td><td>Rotational Thromboelastometry</td></tr>
+            <tr><td>SI</td><td>Shock Index</td></tr>
+            <tr><td>TACO</td><td>Transfusion-Associated Circulatory Overload</td></tr>
+            <tr><td>TASH</td><td>Trauma Associated Severe Haemorrhage (score)</td></tr>
+            <tr><td>TEG</td><td>Thromboelastography</td></tr>
+            <tr><td>T-MTP</td><td>Targeted Massive Transfusion Protocol</td></tr>
+            <tr><td>TRALI</td><td>Transfusion Related Acute Lung Injury</td></tr>
+            <tr><td>TSAT</td><td>Transferrin Saturation</td></tr>
+            <tr><td>TXA</td><td>Tranexamic Acid</td></tr>
+            <tr><td>UFH</td><td>Unfractionated Heparin</td></tr>
+            <tr><td>VAVR</td><td>Vacuum-Assisted Venous Return</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= SOURCE ================= -->
+  <footer class="src">
+    <b>Source / Citation</b>
+    <p style="margin:8px 0 0">
+      Medical Development Division, Ministry of Health Malaysia. <i>Consensus Statement on Patient Blood Management.</i>
+      MOH/P/PAK/537.24(GU)-e. Published March 2024. eISBN 978-967-26348-5-0.
+      Available from the National Library of Malaysia and the Institute of Medical Research library and Resource Unit.
+    </p>
+    <p style="margin:8px 0 0"><b>Submodules referenced in this quick reference:</b></p>
+    <ol>
+      <li>Submodule 1 — Obstetrics &amp; Gynaecology</li>
+      <li>Submodule 2 — Perioperative</li>
+      <li>Submodule 3 — Neonatal &amp; Paediatric</li>
+      <li>Submodule 4 — Massive Haemorrhage</li>
+      <li>Submodule 5 — Cardiothoracic</li>
+      <li>Submodule 6 — Critical Care</li>
+      <li>Submodule 7 — Medical</li>
+      <li>Submodule 8 — Nursing</li>
+    </ol>
+    <p style="margin:10px 0 0;font-size:.78rem">
+      This page is a condensed clinical quick-reference for anaesthetists and intensivists. It does not replace the full consensus document,
+      local hospital protocols, or clinical judgement. Always follow your local Massive Transfusion Protocol and institutional guidelines.
+    </p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var modules   = Array.prototype.slice.call(document.querySelectorAll('details.module'));
+  var searchEl  = document.getElementById('search');
+  var clrEl     = document.getElementById('clr');
+  var statusEl  = document.getElementById('status');
+  var expandBtn = document.getElementById('expandAll');
+  var collBtn   = document.getElementById('collapseAll');
+
+  // remember default open state
+  modules.forEach(function(m){
+    m.dataset.defaultOpen = m.hasAttribute('open') ? 'true' : 'false';
+  });
+
+  function setAllNested(detailsEl, open){
+    detailsEl.querySelectorAll('details.sub').forEach(function(d){ d.open = open; });
+  }
+
+  function runSearch(){
+    var q = (searchEl.value || '').trim().toLowerCase();
+    clrEl.style.display = q ? 'block' : 'none';
+
+    if (q.length < 2){
+      modules.forEach(function(m){
+        m.hidden = false;
+        m.open = m.dataset.defaultOpen === 'true';
+        setAllNested(m, false);
+      });
+      statusEl.textContent = '';
+      return;
+    }
+
+    var hits = 0;
+    modules.forEach(function(m){
+      var match = m.textContent.toLowerCase().indexOf(q) !== -1;
+      m.hidden = !match;
+      if (match){
+        hits++;
+        m.open = true;
+        // open nested sections that contain the term; otherwise keep closed
+        m.querySelectorAll('details.sub').forEach(function(d){
+          d.open = d.textContent.toLowerCase().indexOf(q) !== -1;
+        });
+      }
+    });
+
+    statusEl.textContent = hits
+      ? hits + ' section' + (hits === 1 ? '' : 's') + ' matching “' + q + '”'
+      : 'No matches for “' + q + '”. Try: tranexamic, fibrinogen, platelet, ROTEM, ACS, PPH, cell salvage.';
+  }
+
+  var t;
+  searchEl.addEventListener('input', function(){
+    clearTimeout(t);
+    t = setTimeout(runSearch, 120);
+  });
+
+  clrEl.addEventListener('click', function(){
+    searchEl.value = '';
+    runSearch();
+    searchEl.focus();
+  });
+
+  expandBtn.addEventListener('click', function(){
+    modules.forEach(function(m){
+      if (!m.hidden){
+        m.open = true;
+        setAllNested(m, true);
+      }
+    });
+  });
+
+  collBtn.addEventListener('click', function(){
+    modules.forEach(function(m){
+      m.open = false;
+      setAllNested(m, false);
+    });
+  });
+
+  // "/" focuses search
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== searchEl &&
+        !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){
+      e.preventDefault();
+      searchEl.focus();
+      searchEl.select();
+    }
+    if (e.key === 'Escape' && document.activeElement === searchEl){
+      searchEl.value = '';
+      runSearch();
+      searchEl.blur();
+    }
+  });
+
+  // keep deep-linked sections working
+  if (location.hash){
+    var target = document.querySelector(location.hash);
+    if (target){
+      var parent = target.closest('details');
+      while (parent){ parent.open = true; parent = parent.parentElement.closest('details'); }
+      target.scrollIntoView({block:'start'});
+    }
+  }
+})();
+</script>
+</body>
+</html>
