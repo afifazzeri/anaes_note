@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liver Intensive Care — Quick Reference for Anaesthetists &amp; Intensivists</title>
+<style>
+  :root{
+    --bg:#f6f8fa;
+    --card:#ffffff;
+    --border:#d0d7de;
+    --text:#1f2328;
+    --muted:#59636e;
+    --accent:#0969da;
+    --red:#b42318;
+    --red-bg:#fdecea;
+    --blue:#1f5fa8;
+    --blue-bg:#e8f1fb;
+    --amber:#9a6700;
+    --amber-bg:#fdf4e0;
+    --green:#1a7f37;
+    --green-bg:#e6f4ea;
+    --mark:#fff3a3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px 80px;}
+
+  /* ---------- Sticky header ---------- */
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+    padding:10px 16px;
+  }
+  .top-inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  .brand{font-weight:700;font-size:15px;letter-spacing:-.01em;white-space:nowrap;}
+  .brand small{display:block;font-weight:400;font-size:11.5px;color:var(--muted);letter-spacing:0;}
+  .searchbox{position:relative;flex:1 1 240px;min-width:200px;}
+  .searchbox input{
+    width:100%;padding:8px 32px 8px 32px;border:1px solid var(--border);
+    border-radius:8px;font-size:14px;background:#fff;color:var(--text);
+  }
+  .searchbox input:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent;}
+  .searchbox .ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px;}
+  .searchbox .clr{
+    position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:15px;padding:4px 6px;border-radius:6px;
+  }
+  .searchbox .clr:hover{background:#eef1f4;}
+  .btn{
+    border:1px solid var(--border);background:#fff;color:var(--text);
+    padding:7px 11px;border-radius:8px;font-size:12.5px;cursor:pointer;white-space:nowrap;
+  }
+  .btn:hover{background:#eef1f4;}
+
+  /* ---------- Title block ---------- */
+  .title-block{padding:22px 0 6px;}
+  .title-block h1{font-size:22px;margin:0 0 6px;letter-spacing:-.02em;}
+  .title-block p{margin:0;color:var(--muted);font-size:13.5px;}
+
+  /* ---------- TOC ---------- */
+  .toc{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 4px;}
+  .toc a{
+    font-size:12px;text-decoration:none;color:var(--accent);
+    background:#fff;border:1px solid var(--border);border-radius:999px;padding:4px 10px;
+  }
+  .toc a:hover{background:#eaf3ff;border-color:#b6d8ff;}
+
+  /* ---------- Cards / details ---------- */
+  details.card{
+    background:var(--card);border:1px solid var(--border);border-radius:10px;
+    margin:12px 0;overflow:hidden;
+  }
+  details.card[open]{box-shadow:0 1px 2px rgba(31,35,40,.06);}
+  details.card > summary{
+    list-style:none;cursor:pointer;padding:12px 14px;
+    font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:9px;
+    background:#fff;user-select:none;
+  }
+  details.card > summary::-webkit-details-marker{display:none;}
+  details.card > summary:hover{background:#f6f8fa;}
+  details.card > summary::before{
+    content:"›";display:inline-block;font-size:19px;line-height:1;
+    color:var(--muted);transition:transform .18s ease;transform:rotate(0deg);
+  }
+  details.card[open] > summary::before{transform:rotate(90deg);}
+  details.card > summary .tag{
+    margin-left:auto;font-size:10.5px;font-weight:600;color:var(--muted);
+    border:1px solid var(--border);border-radius:999px;padding:1px 8px;background:#f6f8fa;
+  }
+  .body{padding:2px 16px 18px;border-top:1px solid var(--border);}
+  .body h3{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:16px 0 6px;}
+  .body h3:first-child{margin-top:14px;}
+  .body p{margin:8px 0;}
+  ul,ol{margin:8px 0;padding-left:20px;}
+  li{margin:3px 0;}
+  li > ul, li > ol{margin:4px 0;}
+  strong{font-weight:650;}
+  .lead{color:var(--muted);font-size:13.5px;}
+  mark{background:var(--mark);padding:0 1px;border-radius:2px;}
+
+  /* ---------- Callouts ---------- */
+  .callout{
+    border-left:4px solid var(--accent);background:#f0f6ff;
+    padding:9px 12px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13.5px;
+  }
+  .callout.warn{border-left-color:var(--red);background:var(--red-bg);}
+  .callout.tip{border-left-color:var(--green);background:var(--green-bg);}
+  .callout .lbl{font-weight:700;display:block;margin-bottom:2px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;}
+  .callout.warn .lbl{color:var(--red);}
+  .callout.tip .lbl{color:var(--green);}
+  .callout .lbl{color:var(--accent);}
+
+  /* ---------- Tables ---------- */
+  .tw{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:1px solid var(--border);border-radius:8px;margin:12px 0;background:#fff;
+  }
+  .tw table{border-collapse:collapse;width:100%;min-width:640px;font-size:13px;}
+  .tw th,.tw td{border-bottom:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top;}
+  .tw thead th{background:#f6f8fa;font-weight:650;position:sticky;top:0;white-space:nowrap;font-size:12.5px;}
+  .tw tbody tr:last-child td{border-bottom:0;}
+  .tw tbody tr:hover{background:#fafbfc;}
+  .tw td.k{font-weight:650;white-space:nowrap;}
+  .scroll-hint{font-size:11.5px;color:var(--muted);margin:-6px 0 10px;}
+
+  /* ---------- Grade pills ---------- */
+  .pill{display:inline-block;font-size:11px;font-weight:650;border-radius:999px;padding:1px 8px;white-space:nowrap;}
+  .pill.g1{background:var(--green-bg);color:var(--green);}
+  .pill.g2{background:var(--amber-bg);color:var(--amber);}
+  .pill.g3{background:#ffe9e3;color:var(--red);}
+
+  /* ---------- O'Grady diagram ---------- */
+  .og-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border:1px solid var(--border);border-radius:10px;background:#fff;}
+  .og{min-width:660px;display:grid;grid-template-columns:150px repeat(3,minmax(160px,1fr));}
+  .og > div{padding:10px 12px;border-bottom:1px solid var(--border);font-size:12.5px;}
+  .og > div:nth-child(4n){border-right:0;}
+  .og .rowlab{
+    font-weight:650;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--muted);background:#f6f8fa;display:flex;align-items:center;
+  }
+  .og .hd{font-weight:700;font-size:13px;text-align:center;letter-spacing:.06em;border-bottom:0;}
+  .og .h-hyper{background:var(--red-bg);color:var(--red);}
+  .og .h-acute{background:var(--blue-bg);color:var(--blue);}
+  .og .h-sub{background:var(--amber-bg);color:var(--amber);}
+  .og .cell-hyper{background:#fffafa;}
+  .og .cell-acute{background:#fafcff;}
+  .og .cell-sub{background:#fffdf7;}
+  .og ul{margin:0;padding-left:16px;}
+  .og ul li{margin:2px 0;}
+  .og .mini{width:100%;border-collapse:collapse;font-size:12px;}
+  .og .mini td{border:0;padding:1px 0;vertical-align:top;}
+  .og .mini td:first-child{color:var(--muted);padding-right:6px;white-space:nowrap;}
+  .og .mini td:last-child{font-weight:650;text-align:right;white-space:nowrap;}
+  .og-note{font-size:11.5px;color:var(--muted);margin-top:-4px;}
+
+  /* ---------- Two column list ---------- */
+  .cols2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 22px;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    margin-top:26px;padding:18px;border:1px solid var(--border);border-radius:10px;
+    background:#fff;font-size:12.5px;color:var(--muted);
+  }
+  footer h3{margin:0 0 8px;font-size:13px;color:var(--text);}
+  footer ol{padding-left:20px;}
+  footer a{color:var(--accent);}
+  .disc{margin-top:10px;font-size:11.5px;line-height:1.5;}
+
+  #no-results{
+    display:none;padding:16px;margin:12px 0;text-align:center;color:var(--muted);
+    background:#fff;border:1px dashed var(--border);border-radius:10px;font-size:13.5px;
+  }
+  [hidden]{display:none !important;}
+
+  @media (max-width:600px){
+    .brand small{display:none;}
+    .title-block h1{font-size:18px;}
+    details.card > summary{font-size:13.5px;padding:11px 12px;}
+    .body{padding:2px 12px 16px;}
+  }
+  @media print{
+    header.top{position:static;}
+    details.card{break-inside:avoid;}
+    details.card > summary::before{display:none;}
+    .toc,.searchbox{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">Liver Intensive Care
+      <small>Quick reference · Anaesthesia &amp; ICM</small>
+    </div>
+    <div class="searchbox">
+      <span class="ico">🔍</span>
+      <input id="search" type="search" placeholder="Search (e.g. ammonia, terlipressin, paracetamol, ACLF…)" autocomplete="off" spellcheck="false" aria-label="Search reference">
+      <button class="clr" id="clr" title="Clear" aria-label="Clear search">✕</button>
+    </div>
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="title-block">
+    <h1>Liver Intensive Care — Quick Reference</h1>
+    <p>Deranged liver biochemistry in the general ICU · Adapted from Van Eldere A, Pirani T. <em>Anaesthesia</em> 2023;78:884–901.</p>
+  </div>
+
+  <nav class="toc" id="toc" aria-label="Contents"></nav>
+
+  <div id="no-results">No matching section. Try a different term (e.g. <em>ammonia</em>, <em>ACLF</em>, <em>paracetamol</em>).</div>
+
+  <main id="main">
+
+  <!-- ============ 1. OVERVIEW ============ -->
+  <details class="card" id="overview" open>
+    <summary>1 · Overview — the four presentations <span class="tag">core</span></summary>
+    <div class="body">
+      <ul>
+        <li>Liver injury or failure occurs in <strong>up to 20% of ICU admissions</strong> and is associated with <strong>poor prognosis</strong>.</li>
+        <li>The <strong>commonest cause of abnormal LFTs in ICU patients with no previous liver disease</strong> is liver injury secondary to <strong>systemic disease or its treatment</strong>.</li>
+        <li>Timely recognition and initiation of appropriate management are the most important steps in minimising adverse outcome.</li>
+      </ul>
+
+      <h3>Distinguish four main presentations</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Presentation</th><th>Key discriminators</th><th>Management focus</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="k">Acute liver failure (ALF)</td>
+              <td>No underlying chronic liver disease + jaundice + coagulopathy (INR &gt;1.5) + hepatic encephalopathy</td>
+              <td>Neuroprotection, ammonia control, early transplant-centre referral</td>
+            </tr>
+            <tr>
+              <td class="k">Cirrhosis with acute decompensation (AD)</td>
+              <td>First episode of GI bleed, ascites, encephalopathy, jaundice (or combination)</td>
+              <td>Treat precipitant, prevent progression to ACLF</td>
+            </tr>
+            <tr>
+              <td class="k">Acute-on-chronic liver failure (ACLF)</td>
+              <td>AD <em>plus</em> organ failure; 28-day mortality &gt;15%</td>
+              <td>Organ support, sepsis control, consider transplant assessment</td>
+            </tr>
+            <tr>
+              <td class="k">Secondary liver dysfunction</td>
+              <td>Critical illness / treatment-related (sepsis, shock, drugs, TPN)</td>
+              <td>Treat underlying disease; supportive care</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ scroll table horizontally on small screens</p>
+
+      <div class="callout tip">
+        <span class="lbl">Pattern + timing = aetiology</span>
+        The <strong>pattern</strong> (hepatocellular vs cholestatic vs synthetic) and the <strong>timing</strong> of derangement on admission or during the ICU stay point towards specific aetiologies and direct investigation and referral.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 2. LFT INTERPRETATION ============ -->
+  <details class="card" id="lfts">
+    <summary>2 · Interpreting deranged liver biochemistry <span class="tag">table 1</span></summary>
+    <div class="body">
+      <p class="lead">"LFTs" is a misnomer — not every test reflects <em>function</em>.</p>
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Pattern</th><th>Representative abnormality</th><th>Differential diagnosis</th><th>Non-hepatic sources &amp; caveats</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="k">Hepatocellular<br>(transaminitis)</td>
+              <td>↑↑ AST &amp; ALT (± bilirubin); near-normal or mildly raised ALP &amp; GGT</td>
+              <td>
+                <strong>Primary hepatic:</strong>
+                <ul>
+                  <li>Viral — HAV, HBV (incl. reactivation), HDV, HEV, HSV, EBV, CMV, adenovirus, VZV</li>
+                  <li>Toxins — paracetamol, ecstasy, mushrooms, cocaine</li>
+                  <li>Hereditary — Wilson's disease</li>
+                  <li>Pregnancy — HELLP, AFLP, pre-eclampsia</li>
+                  <li>Autoimmune hepatitis</li>
+                  <li>Vascular — Budd–Chiari syndrome</li>
+                  <li>Drugs — statins, anti-TB medication</li>
+                  <li>Alcoholic hepatitis — <strong>AST:ALT &gt; 2</strong></li>
+                </ul>
+              </td>
+              <td>
+                AST is also found in cardiac &amp; skeletal muscle, kidney, brain, pancreas, lung, leucocytes and red cells.
+                <br><br>If AST is raised, <strong>check ALT</strong> — it should be normal or only minimally elevated in rhabdomyolysis or myocardial infarction.
+                <br><br><strong>AST &gt; 500</strong> → suspect an alternative disease.
+                <br><br>Transaminases <strong>&gt; 15–20 × ULN</strong> → suspect toxin.
+              </td>
+            </tr>
+            <tr>
+              <td class="k">Cholestatic /<br>obstructive</td>
+              <td>↑↑ ALP &amp; GGT (± bilirubin); near-normal or mild–moderate ↑ ALT &amp; AST</td>
+              <td>
+                <strong>Intrahepatic:</strong>
+                <ul>
+                  <li>Malignancy — metastases, Hodgkin disease</li>
+                  <li>Primary sclerosing cholangitis</li>
+                  <li>Primary biliary cholangitis</li>
+                  <li>Secondary sclerosing cholangitis in the critically ill</li>
+                  <li>Sickle cell disease</li>
+                  <li>Infiltrative — sarcoid, amyloid</li>
+                  <li>Congestive cardiac failure</li>
+                  <li>Genetic bile-transporter defects</li>
+                  <li>Intrahepatic cholestasis of pregnancy</li>
+                  <li>Total parenteral nutrition</li>
+                  <li>Drug-induced cholestasis (e.g. antibiotics)</li>
+                  <li>Sepsis</li>
+                </ul>
+                <strong>Extrahepatic:</strong>
+                <ul>
+                  <li>Choledocholithiasis</li>
+                  <li>Benign bile duct stricture</li>
+                  <li>Cholangitis</li>
+                  <li>Pancreatitis with complications (e.g. pseudocyst)</li>
+                  <li>Pancreatic malignancy</li>
+                  <li>Cholangiocarcinoma</li>
+                </ul>
+              </td>
+              <td>
+                ALP is also present in <strong>bone, placenta, kidneys and intestines</strong>. If ALP is raised, <strong>check GGT</strong> to confirm a hepatic source.
+                <br><br>Isolated ALP → investigate bone pathology in the absence of pregnancy.
+                <br><br>Isolated / predominant GGT rise occurs with <strong>enzyme induction</strong> — chronic alcohol, rifampicin, phenytoin.
+              </td>
+            </tr>
+            <tr>
+              <td class="k">Bilirubin —<br>unconjugated</td>
+              <td>Predominantly unconjugated hyperbilirubinaemia</td>
+              <td>
+                <ul>
+                  <li>Impaired hepatic uptake / reduced delivery — congestive cardiac failure, drugs</li>
+                  <li>Impaired conjugation — Gilbert's syndrome, drug-induced enzyme inhibition</li>
+                </ul>
+              </td>
+              <td>Increased production: haemolysis, large haematoma, dyserythropoiesis.</td>
+            </tr>
+            <tr>
+              <td class="k">Bilirubin —<br>conjugated</td>
+              <td>Predominantly conjugated hyperbilirubinaemia (usually with other LFT abnormalities)</td>
+              <td>Hypoxic, viral, drug- or toxin-mediated liver injury.</td>
+              <td>
+                Slow to settle or a progressive rise raises concern about <strong>poor hepatic regeneration</strong> — not an isolated finding, may be seen as other LFTs improve.
+                <br><br>Isolated hyperbilirubinaemia ± mildly raised AST with no other enzyme abnormality → investigate for haemolysis.
+              </td>
+            </tr>
+            <tr>
+              <td class="k">Synthetic /<br>detoxification</td>
+              <td>↑ INR, prolonged PT, low albumin, ↑ ammonia</td>
+              <td>Deterioration in synthetic and detoxification function — interpret alongside other tests to distinguish:</td>
+              <td>
+                <strong>Decompensated chronic liver disease</strong> with poor synthetic function <em>vs.</em> <strong>ALF</strong> with acute reduction in synthetic function.
+                <br><br>Also consider: warfarin, DIC, protein-losing enteropathy, malnutrition, nephrotic syndrome, malabsorption of fat-soluble vitamins.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <span class="lbl">Pitfalls</span>
+        Bilirubin alone <strong>cannot</strong> distinguish hepatocellular from cholestatic disease. The term "LFTs" is misleading — only bilirubin, albumin, PT/INR and glucose are markers of <em>synthetic</em> function (glucose reflecting gluconeogenesis).
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 3. HISTORY & INVESTIGATIONS ============ -->
+  <details class="card" id="workup">
+    <summary>3 · Focused history &amp; targeted investigations <span class="tag">table 2</span></summary>
+    <div class="body">
+      <p class="lead">Not every patient needs the full panel at the outset — but awareness of it is essential.</p>
+
+      <h3>History</h3>
+      <div class="cols2">
+        <ul>
+          <li><strong>Drugs</strong> — history spanning up to 6 months
+            <ul>
+              <li>Paracetamol and other OTC products containing paracetamol</li>
+              <li>Herbal therapies and food supplements</li>
+              <li>Anabolic steroids</li>
+            </ul>
+          </li>
+          <li><strong>Immunosuppressants / chemotherapy</strong> or history of cancer in past 5 years</li>
+          <li><strong>Recreational drugs</strong> — drug, frequency of use, source</li>
+          <li><strong>Alcohol</strong> — quantity, duration, previous abstinence and support to achieve it</li>
+          <li><strong>Psychiatric history</strong> — diagnosis, treatment, previous suicide attempts, inpatient care, community support, age at diagnosis</li>
+        </ul>
+        <ul>
+          <li><strong>Travel history</strong> — location, duration, activities undertaken</li>
+          <li><strong>Occupation</strong></li>
+          <li><strong>Recent dietary history</strong> — new food, new supplements, uncooked meats and shellfish</li>
+          <li><strong>Pregnancy</strong> — previous pre-eclampsia or hyperemesis; natural or assisted conception</li>
+          <li><strong>Previous episodes of jaundice</strong> including childhood jaundice</li>
+          <li><strong>Family history</strong> of liver disease or genetic disorders (e.g. haemochromatosis)</li>
+        </ul>
+      </div>
+
+      <h3>Investigations</h3>
+      <div class="cols2">
+        <ul>
+          <li><strong>Viral</strong>
+            <ul>
+              <li>Anti-HAV IgM Ab</li>
+              <li>HBsAg (may be absent at presentation), IgM anti-core, HBeAb, HBV DNA</li>
+              <li>Delta Ab</li>
+              <li>Anti-HEV IgM Ab*</li>
+              <li>HSV, EBV, CMV, Adenovirus</li>
+              <li>Anti-VZV IgM, VZV DNA, Parvovirus B19 DNA</li>
+            </ul>
+          </li>
+          <li><strong>Autoimmune</strong>
+            <ul>
+              <li>Anti-nuclear Ab, anti-smooth muscle Ab, anti-liver kidney microsomal Ab, ANCA</li>
+            </ul>
+          </li>
+          <li><strong>Overdose and toxins</strong>
+            <ul>
+              <li>Paracetamol level</li>
+              <li>Salicylate level</li>
+              <li>Toxicology screen (ecstasy/cocaine)</li>
+            </ul>
+          </li>
+          <li><strong>Genetic / metabolic</strong>
+            <ul>
+              <li>Alpha 1-antitrypsin</li>
+              <li>Ferritin</li>
+              <li>Caeruloplasmin</li>
+              <li>Urine copper</li>
+              <li>Cholestasis genetics**</li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li><strong>Imaging</strong>
+            <ul>
+              <li>Liver ultrasound ± CT abdomen (triple phase) — liver architecture and volume, presence of ascites, blood supply in and out of the liver, features of portal hypertension, splenomegaly, evidence of visceral ischaemia or pancreatitis, lymphadenopathy, evidence of malignancy</li>
+              <li>Chest X-ray</li>
+              <li>CT brain if evidence of altered GCS</li>
+              <li>MRCP if cholestatic</li>
+            </ul>
+          </li>
+          <li><strong>Other</strong>
+            <ul>
+              <li>Alpha fetoprotein, lipid profile, thyroid function tests</li>
+              <li>Amylase or lipase</li>
+              <li>Echocardiogram — low cardiac output state, congestive heart failure, diastolic dysfunction, pulmonary hypertension</li>
+              <li>Creatine kinase</li>
+              <li>Coombs test for haemolysis</li>
+              <li>Liver biopsy</li>
+              <li>Prothrombotic screen (if evidence of vascular thrombosis, e.g. de novo portal vein thrombosis)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <p class="og-note">* Particularly in the context of pregnancy. &nbsp; ** May only be done in tertiary centres.</p>
+    </div>
+  </details>
+
+  <!-- ============ 4. O'GRADY DIAGRAM ============ -->
+  <details class="card" id="ogrady" open>
+    <summary>4 · O'Grady sub-classification of acute liver failure <span class="tag">figure 1</span></summary>
+    <div class="body">
+      <p class="lead">Categorised by the <strong>jaundice-to-encephalopathy time</strong>. These timelines give vital clues to aetiology and prognosis without emergency liver transplantation ("transplant-free survival").</p>
+
+      <div class="og-scroll">
+        <div class="og">
+          <!-- header row -->
+          <div class="rowlab"></div>
+          <div class="hd h-hyper">HYPERACUTE</div>
+          <div class="hd h-acute">ACUTE</div>
+          <div class="hd h-sub">SUBACUTE</div>
+
+          <!-- timing -->
+          <div class="rowlab">Jaundice → encephalopathy</div>
+          <div class="cell-hyper"><strong>&lt; 7 days</strong></div>
+          <div class="cell-acute"><strong>8–28 days</strong></div>
+          <div class="cell-sub"><strong>29 days – 12 weeks</strong></div>
+
+          <!-- aetiology -->
+          <div class="rowlab">Typical aetiology</div>
+          <div class="cell-hyper">
+            <ul>
+              <li>Paracetamol / ecstasy</li>
+              <li>Viral — HAV, HBV, HEV</li>
+              <li>Pregnancy-related</li>
+              <li>Hypoxic hepatitis</li>
+              <li>Heat stroke</li>
+            </ul>
+          </div>
+          <div class="cell-acute">
+            <ul>
+              <li>HLH</li>
+              <li>Non-paracetamol drugs</li>
+              <li>Viral — HBV</li>
+              <li>Autoimmune hepatitis</li>
+              <li>Budd–Chiari</li>
+            </ul>
+          </div>
+          <div class="cell-sub">
+            <ul>
+              <li>Drugs — antibiotics, immunotherapy</li>
+              <li>"Seronegative" hepatitis</li>
+              <li>Infiltrative</li>
+            </ul>
+          </div>
+
+          <!-- clinical presentation -->
+          <div class="rowlab">Clinical presentation</div>
+          <div class="cell-hyper">
+            <table class="mini">
+              <tr><td>Coagulopathy</td><td>+++</td></tr>
+              <tr><td>Hepatic encephalopathy</td><td>+++</td></tr>
+              <tr><td>Jaundice</td><td>+</td></tr>
+              <tr><td>Survival without transplant</td><td>Best</td></tr>
+            </table>
+          </div>
+          <div class="cell-acute">
+            <table class="mini">
+              <tr><td>Coagulopathy</td><td>++</td></tr>
+              <tr><td>Hepatic encephalopathy</td><td>++</td></tr>
+              <tr><td>Jaundice</td><td>++</td></tr>
+              <tr><td>Survival without transplant</td><td>Intermediate</td></tr>
+            </table>
+          </div>
+          <div class="cell-sub">
+            <table class="mini">
+              <tr><td>Coagulopathy</td><td>+</td></tr>
+              <tr><td>Hepatic encephalopathy</td><td>+</td></tr>
+              <tr><td>Jaundice</td><td>+++</td></tr>
+              <tr><td>Survival without transplant</td><td>Worst</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <p class="og-note">Adapted from O'Grady et al. (1993). HAV, hepatitis A virus; HBV, hepatitis B virus; HEV, hepatitis E virus; HLH, haemophagocytic lymphohistiocytosis. ↔ scroll the diagram horizontally on small screens.</p>
+
+      <div class="callout">
+        <span class="lbl">Clinical trap</span>
+        <strong>Subacute liver failure</strong> can easily be mistaken for chronic liver disease because of its protracted presentation — it requires a high index of suspicion and thorough history. Wilson's disease, hepatitis B and autoimmune hepatitis can all present acutely with features of ALF and must be actively excluded.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 5. ALF ============ -->
+  <details class="card" id="alf">
+    <summary>5 · Acute liver failure (ALF)</summary>
+    <div class="body">
+      <h3>Definition</h3>
+      <p>A rare, life-threatening clinical syndrome resulting from a catastrophic liver insult in an individual <strong>without underlying chronic liver disease</strong>, presenting with:</p>
+      <ul>
+        <li><strong>Jaundice</strong></li>
+        <li><strong>Coagulopathy</strong> — INR &gt; 1.5</li>
+        <li><strong>Altered consciousness due to hepatic encephalopathy</strong></li>
+      </ul>
+      <p>Patients presenting <strong>without</strong> hepatic encephalopathy are considered to have <strong>acute liver injury</strong>. Multisystem manifestations and presentation with multiorgan failure are common.</p>
+
+      <h3>Epidemiology &amp; aetiology</h3>
+      <ul>
+        <li>In ~<strong>20%</strong> of cases in the Western world the aetiology is not identified — <strong>indeterminate / seronegative ALF</strong>.</li>
+        <li>Hepatic encephalopathy marks the transition from acute liver injury to acute liver failure and may qualify the patient for listing for emergency liver transplantation.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 6. ACUTE DECOMPENSATION ============ -->
+  <details class="card" id="ad">
+    <summary>6 · Acute decompensation of cirrhosis</summary>
+    <div class="body">
+      <ul>
+        <li>First episode of acute decompensation occurs at a prevalence of <strong>5–7% per year</strong> in patients with compensated cirrhosis/chronic liver disease.</li>
+        <li>Characterised by development of:
+          <ul>
+            <li>Gastrointestinal haemorrhage</li>
+            <li>Ascites</li>
+            <li>Hepatic encephalopathy</li>
+            <li>Jaundice</li>
+            <li>Or a combination of any of these</li>
+          </ul>
+        </li>
+        <li>Marked by a significant increase in mortality — <strong>median survival ~2 years</strong>.</li>
+        <li>Patients present to ICU/critical care outreach with haemodynamic instability, electrolyte disturbance (hyponatraemia) and/or need for airway protection due to acute variceal haemorrhage or hepatic encephalopathy.</li>
+        <li><strong>Up to 30%</strong> of patients with acute decompensation deteriorate into ACLF.</li>
+      </ul>
+      <div class="callout tip">
+        <span class="lbl">Management aim</span>
+        Prompt recognition and appropriate management of the <strong>precipitant</strong> and the <strong>complications</strong> of acute decompensation may facilitate re-compensation and prevent deterioration into ACLF.
+      </div>
+      <p class="lead">Compensated cirrhosis may be undiagnosed due to lack of symptoms, or as a result of successful treatment/withdrawal of the precipitant (e.g. diuretic-controlled ascites in a patient maintaining abstinence from alcohol).</p>
+    </div>
+  </details>
+
+  <!-- ============ 7. ACLF ============ -->
+  <details class="card" id="aclf">
+    <summary>7 · Acute-on-chronic liver failure (ACLF) <span class="tag">table 3</span></summary>
+    <div class="body">
+      <h3>Definition (European / EASL-CLIF)</h3>
+      <p>"An episode of acute decompensation in a cirrhotic patient, accompanied by <strong>organ failure</strong> and involving short-term mortality."</p>
+      <ul>
+        <li>Clinically distinct from acute decompensation alone.</li>
+        <li>Associated with mortality <strong>&gt; 15% at 28 days</strong> compared with acute decompensation alone, rising with the number of failing organs.</li>
+        <li>Definitions differ internationally (East vs West).</li>
+        <li>An organ failure score (CLIF-C OF score) is used to identify and grade organ failure and assess mortality risk.</li>
+        <li>The precipitant is <strong>not identified in up to 40%</strong> of patients.</li>
+      </ul>
+
+      <h3>Grades &amp; 90-day mortality</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Grade</th><th>Characteristics</th><th>90-day mortality</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="k"><span class="pill g1">No ACLF</span></td><td>No organ failure, or single non-kidney organ failure, creatinine &lt; 134 µmol/L, no hepatic encephalopathy</td><td>9.8%</td></tr>
+            <tr><td class="k"><span class="pill g2">ACLF 1a</span></td><td>Single renal failure</td><td>40.8%*</td></tr>
+            <tr><td class="k"><span class="pill g2">ACLF 1b</span></td><td>Single non-kidney organ failure, kidney dysfunction and/or hepatic encephalopathy grade 1–2</td><td>40.8%*</td></tr>
+            <tr><td class="k"><span class="pill g3">ACLF 2</span></td><td>Two organ failures</td><td>55.2%</td></tr>
+            <tr><td class="k"><span class="pill g3">ACLF 3</span></td><td>Three or more organ failures</td><td>78.4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="og-note">Adapted from EASL 2018 and Moreau et al. 2013. *Source table reports 40.8% for ACLF grade 1 (1a/1b). ↔ scroll table horizontally.</p>
+    </div>
+  </details>
+
+  <!-- ============ 8. SECONDARY LIVER DYSFUNCTION ============ -->
+  <details class="card" id="secondary">
+    <summary>8 · Liver dysfunction secondary to critical illness / treatment</summary>
+    <div class="body">
+      <p class="lead">The most frequent cause of abnormal LFTs in ICU patients with no previous liver disease.</p>
+
+      <h3>Systemic diseases affecting the liver</h3>
+      <ul>
+        <li>Infections</li>
+        <li>Congestive cardiac failure, cardiogenic shock and hypoxic respiratory failure</li>
+        <li>Haemophagocytic syndromes</li>
+        <li>Infiltrative diseases — malignancy and lymphoma</li>
+      </ul>
+      <p>Liver failure from systemic disease <strong>does not routinely qualify for emergency liver transplantation</strong> — management relies predominantly on supportive care and treatment of the underlying disease.</p>
+
+      <h3>Patterns of secondary injury</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Pattern</th><th>Mechanism / features</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Progressive cholestasis</td><td>Reduced secretion and/or flow of bile. Linked to impaired bile flow and bile acid excretion due to downregulation of hepatobiliary transporters associated with inflammation from major surgery, trauma or sepsis. Probably develops early in the ICU stay.</td></tr>
+            <tr><td class="k">Sclerosing cholangitis</td><td>Destruction or scarring of bile ducts. In a small proportion of ICU patients cholestasis is irreversible and progressive, eventually leading to cirrhosis. At-risk: severe trauma or burn injury, severe respiratory and/or haemodynamic failure. Diagnosed by irregular strictures, dilatations, beading or destruction of intrahepatic bile ducts on MRCP or ERCP. Liver transplantation may be the only definitive treatment, but may not be possible if "too sick to transplant".</td></tr>
+            <tr><td class="k">Hypoxic hepatitis</td><td>Brisk transaminitis — <strong>transaminases &gt; 20 × ULN</strong> in hospitalised patients should prompt this diagnosis, particularly in cardiac, circulatory or respiratory failure. Also associated with sepsis and respiratory failure. Rule out an underlying or de novo cardiac condition. ~<strong>one-third</strong> subsequently develop cholestatic liver injury.</td></tr>
+            <tr><td class="k">Drug-induced liver injury / TPN cholestasis</td><td>Incidence data lacking. High index of suspicion; monitor the effect of withdrawing the suspected treatment while providing supportive care. More severe reactions such as <strong>DRESS</strong> (drug-related eosinophilia and systemic symptoms) can rapidly progress to acute liver failure — take a thorough drug history spanning the preceding 6 months and maintain a high index of suspicion even after resolution of rash; prompt early referral to dermatology and the local transplant centre.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <span class="lbl">Management</span>
+        For hypoxic hepatitis and cholestasis related to critical illness, management is based on <strong>treating the underlying disease and optimising supportive care</strong>.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 9. HEPATIC ENCEPHALOPATHY ============ -->
+  <details class="card" id="he">
+    <summary>9 · Hepatic encephalopathy &amp; ammonia management</summary>
+    <div class="body">
+      <h3>Recognition</h3>
+      <ul>
+        <li>Screen for and recognise hepatic encephalopathy — it may be subtle and difficult to detect in milder forms.</li>
+        <li>In ALF, it marks the transition from acute liver injury to acute liver failure and potentially qualifies the patient for emergency liver transplantation listing.</li>
+        <li>Grade with the <strong>West Haven criteria (1–4)</strong>; in ICU, <strong>GCS</strong> is often used for ease of assessment and communication.</li>
+        <li>Rapid progression (as in hyperacute liver failure) contributes significantly to morbidity — cerebral oedema, raised ICP/intracranial hypertension, uncal herniation — and mortality.</li>
+        <li><strong>Avoid sedatives and anxiolytics</strong> — they mask symptoms of clinically significant cerebral oedema.</li>
+        <li>Regular reassessment and <strong>early tracheal intubation</strong> (neuroprotection + airway protection from aspiration) is recommended. A GCS &lt; 8 need not be achieved before intubation if the trajectory is deteriorating consciousness, particularly with agitation and/or aggression.</li>
+      </ul>
+
+      <h3>Ammonia in ALF</h3>
+      <ul>
+        <li>Ammonia level correlates with severity of hepatic encephalopathy and risk of complications from increased ICP.</li>
+        <li>Sustained high ammonia levels are associated with increased risk of major cerebral complications (cerebral oedema, intracranial hypertension).</li>
+        <li>Higher risk of progressive hepatic encephalopathy: younger patients, multiorgan failure, and particularly those with high systemic inflammatory response scores.</li>
+        <li><strong>Early initiation of CRRT for hyperammonaemia is recommended.</strong> Ammonia clearance correlates with ultrafiltration rate; target doses of <strong>45–60 mL/kg/h</strong> (rarely <strong>90 mL/kg/h</strong>).</li>
+        <li>Start CRRT at ammonia <strong>100–150 µmol/L</strong> in sedated patients, or if presenting with overt hepatic encephalopathy, to prevent progression.</li>
+        <li>Do <strong>not</strong> wait for standard CRRT indications (fluid overload, hyperkalaemia, progressive uraemia).</li>
+      </ul>
+
+      <h3>Raised ICP</h3>
+      <ul>
+        <li>Grade 3–4 encephalopathy: screen for clinical signs of raised ICP (<strong>hyperreflexia, clonus, pupillary dilatation</strong>) multiple times daily.</li>
+        <li>CT imaging if concerns about cerebral oedema or intracranial haemorrhage.</li>
+        <li>Neuroprotective measures and rescue therapies (e.g. hypertonic saline) should follow a similar stepwise protocol to non-hepatic raised ICP.</li>
+        <li>Invasive ICP monitoring is used infrequently and limited to specialist liver failure centres.</li>
+        <li>Evidence for non-invasive screening (transcranial Doppler, optic nerve sheath diameter) remains limited.</li>
+      </ul>
+
+      <h3>Hepatic encephalopathy in AD / ACLF</h3>
+      <ul>
+        <li>Less likely that hyperammonaemia causes significant cerebral oedema and intracranial hypertension than in ALF.</li>
+        <li>Degree of hyperammonaemia is associated with severity of hepatic encephalopathy and overall illness, and is an <strong>independent risk factor for mortality</strong>.</li>
+        <li>CRRT may not be required for emergency neurological reasons, but may speed resolution of hepatic encephalopathy and liberation from the ventilator.</li>
+        <li>Seek and treat precipitating factors: hyponatraemia, constipation, gastrointestinal bleed, thiamine deficiency, sepsis.</li>
+        <li>Also exclude other causes of altered mental state, e.g. intracranial bleeding.</li>
+      </ul>
+      <div class="callout warn">
+        <span class="lbl">Caveat</span>
+        A <strong>low or normal ammonia</strong> in a cirrhotic patient with altered sensorium should prompt investigation for other causes — but does <strong>not</strong> exclude hepatic encephalopathy. Differentiating hepatic encephalopathy from delirium in ICU can be challenging.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 10. FLUIDS & HAEMODYNAMICS ============ -->
+  <details class="card" id="haemo">
+    <summary>10 · Fluid resuscitation &amp; haemodynamic optimisation</summary>
+    <div class="body">
+      <h3>ALF</h3>
+      <ul>
+        <li>Often presents with <strong>hyperlactataemia</strong> — from impaired clearance due to liver failure <em>and</em> tissue hypoperfusion/hypovolaemia.</li>
+        <li>Marked <strong>distributive shock</strong> from cytokine and pro-inflammatory mediator release; hyperdynamic circulation, particularly in paracetamol overdose.</li>
+        <li><strong>Early, aggressive fluid resuscitation</strong> is required. Crystalloid is chosen over colloid.</li>
+        <li>Guidelines suggest <strong>saline</strong> as the initial fluid (either before switching to balanced crystalloids, or throughout resuscitation) to keep sodium within the normal range as a neuroprotective measure.</li>
+        <li><strong>Avoid hyperchloraemia</strong> — risk of precipitating AKI.</li>
+        <li><strong>Limit lactate-containing fluids</strong> (e.g. Hartmann's) — inability to metabolise the exogenous lactate load.</li>
+        <li>Assess volume status with clinical examination plus invasive and non-invasive haemodynamic modalities. <strong>Central venous saturations are not useful</strong> in hyperdynamic presentations.</li>
+        <li><strong>Avoid fluid overload</strong> — elevated right heart pressures impair venous outflow from the liver, negatively impacting hepatic regeneration (congestive hepatopathy), and compound gut congestion and renal dysfunction.</li>
+      </ul>
+
+      <h3>Vasopressors &amp; MAP targets</h3>
+      <ul>
+        <li>Once adequately fluid resuscitated, vasopressors are often needed for reduced systemic vascular resistance.</li>
+        <li><strong>Noradrenaline is first choice</strong>; add <strong>terlipressin or vasopressin</strong> as second drug when the noradrenaline dose rises above ~0.3 µg/kg/min.</li>
+        <li>No consensus on optimal MAP target. Individualise; <strong>60–65 mmHg</strong> is reasonable initially. In ALF, higher MAP targets may be needed to optimise cerebral perfusion pressure.</li>
+        <li>In cirrhosis, MAP <strong>55–60 mmHg</strong> may be appropriate if end-organ perfusion remains adequate. Cirrhotic patients are hyperdynamic with decreased SVR and effective central hypovolaemia — they may have relatively low arterial pressure despite elevated cardiac output.</li>
+        <li>Hypoxic hepatitis may present with significant (bi)ventricular cardiac dysfunction — advanced monitoring (TOE, pulmonary artery catheter) may guide optimisation.</li>
+        <li>Fragile haemodynamic balance in cirrhosis is easily disturbed by infection or fluid overload. Frequently used parameters to assess fluid responsiveness are <strong>less reliable</strong> in decompensated cirrhosis — initiate haemodynamic monitoring and assess trends.</li>
+      </ul>
+
+      <h3>Ascites, adrenal function &amp; albumin</h3>
+      <ul>
+        <li><strong>Tense ascites</strong> may impair venous return — consider limited paracentesis with albumin replacement (<strong>human albumin solution 20%, 8 g per litre of ascites drained</strong>) to improve haemodynamics, renal function or respiratory embarrassment.</li>
+        <li><strong>Cirrhotic cardiomyopathy</strong> may first be discovered during ICU admission — routinely consider formal transthoracic echocardiography in all patients where primary liver pathology (acute, chronic or acute-on-chronic) is suspected.</li>
+        <li>Adrenal dysfunction (short Synacthen testing) is seen in <strong>&gt; 50%</strong> of ALF cases. Start <strong>hydrocortisone 200 mg/day</strong> when vasopressor doses escalate; wean when haemodynamic stability consistently recovers (to mitigate risks of sepsis and viral reactivation, e.g. CMV, HSV).</li>
+        <li>Albumin is predominantly used to correct hypovolaemia and prevent circulatory dysfunction in (decompensated) cirrhosis. Recent large-scale studies show <strong>no benefit</strong> in infection, kidney dysfunction or death from routine use to target higher serum albumin levels in hospitalised patients.</li>
+        <li>Existing evidence supports albumin only for: <strong>spontaneous bacterial peritonitis</strong>, <strong>replacement fluid for large-volume paracentesis</strong>, and <strong>with a vasopressor (typically terlipressin) in presumed hepatorenal syndrome</strong> in ward settings. No proven mortality benefit in sepsis, although short-term positive haemodynamic effects are seen. <strong>Crystalloids remain the recommended fluid therapy.</strong></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 11. RENAL ============ -->
+  <details class="card" id="renal">
+    <summary>11 · Renal failure, AKI &amp; CRRT</summary>
+    <div class="body">
+      <h3>ALF</h3>
+      <ul>
+        <li>AKI is common, especially in paracetamol-related ALF. Other risk factors: increasing age, systemic inflammatory response/infection, hypotension.</li>
+        <li>Prioritise active screening for and prompt treatment of infection, and correction of hypotension.</li>
+        <li>Main ICU CRRT indications: uraemia, fluid overload, hyperkalaemia. In ALF, CRRT is also used for <strong>hyperammonaemia and hepatic encephalopathy</strong>, correction of metabolic acidosis/electrolyte imbalance, and even temperature control — so it tends to be started early, often on ICU admission.</li>
+      </ul>
+
+      <h3>AKI in cirrhosis (International Club of Ascites definition)</h3>
+      <ul>
+        <li>Increase in serum creatinine <strong>≥ 0.3 mg/dL (≥ 26.5 µmol/L) within 48 h</strong>, <em>or</em></li>
+        <li>Percentage increase in serum creatinine <strong>≥ 50% from baseline</strong> known or presumed to have occurred within the previous 7 days.</li>
+        <li>Occurs in up to <strong>50%</strong> of hospitalised patients; associated with poor outcomes in AD and ACLF.</li>
+        <li>Even minor changes in serum creatinine should be investigated — creatinine <strong>underestimates</strong> kidney function in this sarcopenic population.</li>
+        <li>A serum creatinine from the previous <strong>3 months</strong> can be used as baseline if no value from the previous 7 days is available.</li>
+      </ul>
+
+      <h3>Hepatorenal syndrome (HRS-AKI)</h3>
+      <ul>
+        <li>A specific type of AKI occurring in patients with cirrhosis and ascites; one phenotype of renal dysfunction resulting from splanchnic vasodilation, reduction in effective circulating volume and renal vasoconstriction. Systemic inflammation in ACLF is thought to exacerbate this.</li>
+        <li>A <strong>diagnosis of exclusion</strong> — based on the proposed pathophysiology it should respond to improved renal perfusion with vasoconstrictors.</li>
+        <li><strong>Non-HRS-AKI</strong> (pre-renal, renal, post-renal) also affects cirrhotic patients and must be actively ruled out and treated — e.g. hypovolaemia, inflammatory tubular injury of sepsis, drug-induced tubular damage.</li>
+        <li>In critical care, overlap between HRS-AKI and non-HRS-AKI is highly probable — adopt a pragmatic approach, often with <strong>simultaneous rather than stepwise</strong> implementation of therapies.</li>
+        <li>Perform urinalysis, microscopy and renal ultrasound to rule out obstruction.</li>
+        <li>HRS types 1 and 2 definitions have now largely been superseded.</li>
+      </ul>
+
+      <h3>Management of AKI</h3>
+      <ul>
+        <li>Minimise risk factors — radiocontrast, NSAIDs; discontinue diuretics and beta-blockers (may contribute to reduced cardiac output).</li>
+        <li>Aggressively treat precipitants — sepsis, gastrointestinal haemorrhage.</li>
+        <li>Optimise circulating volume with IV crystalloids or albumin, then attend to renal perfusion with <strong>terlipressin or noradrenaline</strong>, and/or drainage of tense ascites (to relieve intra-abdominal hypertension).</li>
+        <li>These treatments are often commenced on the ward — <strong>failure to respond</strong> should alert clinicians to potential progression to ACLF and the associated high short-term mortality risk.</li>
+        <li>CRRT indications in ACLF are the same as for other ICU patients, but ammonia clearance and management of severe hepatic encephalopathy may be the primary aim. Timing of initiation remains an individualised decision with no consensus guidance — further studies are required.</li>
+      </ul>
+
+      <h3>Anticoagulation for CRRT</h3>
+      <ul>
+        <li>Controversial in significant liver dysfunction and multiorgan failure.</li>
+        <li>Citrate accumulation in severe liver failure with MOF is a concern, but it has been used successfully in observational studies — if regional citrate anticoagulation is used, adopt <strong>enhanced monitoring of calcium and metabolic parameters</strong>.</li>
+        <li>In marked metabolic disarray related to liver failure, options are <strong>no anticoagulation</strong> or <strong>prostacyclin</strong>. Heparin may not be an option with severe thrombocytopenia and high bleeding risk.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 12. COAGULATION ============ -->
+  <details class="card" id="coag">
+    <summary>12 · Coagulation &amp; thromboprophylaxis</summary>
+    <div class="body">
+      <ul>
+        <li>Prolonged INR/PT in acute and chronic liver failure represents underlying <strong>synthetic dysfunction</strong> and provides <strong>no indication of bleeding risk</strong>.</li>
+        <li>In ALF, most patients have a <strong>"normal" coagulation state</strong> as a result of rebalanced haemostasis.</li>
+        <li><strong>Laboratory clotting parameters should not deter</strong> initiation of thromboprophylaxis.</li>
+        <li>Thromboprophylaxis: consider on daily review, individualised case by case. Use <strong>platelet count and fibrinogen level</strong> as a guide.</li>
+        <li>Anticoagulation for confirmed clots should be discussed with local haematologists, hepatologists and specialist liver centres.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 13. INFECTION ============ -->
+  <details class="card" id="infection">
+    <summary>13 · Infection &amp; spontaneous bacterial peritonitis</summary>
+    <div class="body">
+      <ul>
+        <li>Cirrhotic patients are immunocompromised and highly susceptible to infection, especially with <strong>multidrug-resistant organisms</strong>.</li>
+        <li>The type of infection and typical culprit organisms are similar in acute decompensation and ACLF.</li>
+        <li>Infection in the context of ACLF is associated with <strong>high mortality</strong>; prevalence of infection either as the trigger or complicating ACLF is as high as <strong>50%</strong>.</li>
+        <li>Treatment should be based on <strong>local bacterial resistance profiles</strong> and severity of infection.</li>
+        <li>In critically unwell patients with AD and ACLF, start <strong>broad-spectrum antibiotics empirically</strong>, with early consideration of antifungals.</li>
+        <li>De-escalate and target therapy once the culprit organism is known.</li>
+        <li><strong>Clinical signs of deteriorating or persistent multiorgan failure remain the most sensitive markers for sepsis</strong> — biomarkers for earlier initiation and appropriate antimicrobial use are still under research.</li>
+      </ul>
+
+      <h3>Spontaneous bacterial peritonitis (SBP)</h3>
+      <ul>
+        <li>Diagnosed when ascitic fluid neutrophil count <strong>≥ 250 cells/mm³</strong>, even if culture negative.</li>
+        <li>Also diagnosed when ascitic fluid neutrophil count <strong>&lt; 250 cells/mm³ PLUS positive cultures AND signs of systemic inflammation or infection</strong>.</li>
+        <li>Treat with broad-spectrum antibiotics (at least third-generation cephalosporins) <strong>plus albumin 20%: 1.5 g/kg on the day of diagnosis and 1 g/kg on day 3</strong> of infection.</li>
+      </ul>
+
+      <h3>ALF — infection prevention/treatment</h3>
+      <ul>
+        <li>Commence empirical antibiotics if haemodynamic deterioration and/or increasing encephalopathy with a hyperinflammatory phenotype.</li>
+        <li>Consider antifungals if continued deterioration or prolonged admission with multiorgan failure. Use biomarkers such as beta-D-glucan to guide duration of treatment.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 14. NUTRITION ============ -->
+  <details class="card" id="nutrition">
+    <summary>14 · Metabolism &amp; nutrition</summary>
+    <div class="body">
+      <ul>
+        <li>Monitor and correct <strong>hypoglycaemia</strong>; screen for and correct hyper- and hypoglycaemia.</li>
+        <li><strong>Enteral nutrition preferred over total parenteral nutrition.</strong></li>
+        <li>Monitor ammonia closely while feeding, particularly in hyperacute liver failure. A <strong>rapid rise in ammonia</strong> may necessitate discontinuation or deferring of feed while ammonia management is optimised.</li>
+        <li>Ensure adequate supplementation with IV high-potency B and C vitamins (<strong>Pabrinex®</strong>).</li>
+        <li>High prevalence of <strong>malnutrition and trace element deficiency</strong> — ensure early assessment of nutritional status and early initiation of enteral nutrition or trophic feed if insufficient oral intake (first 24–48 h).</li>
+        <li><strong>Protein target: 1.2–2.0 g/kg (ideal body weight)/day</strong> in critically ill cirrhotic patients, in consultation with dieticians.</li>
+        <li>Monitor for <strong>refeeding syndrome</strong>.</li>
+        <li><strong>Do not restrict protein</strong> in cirrhotic patients with hepatic encephalopathy.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 15. AETIOLOGY-SPECIFIC ============ -->
+  <details class="card" id="specific">
+    <summary>15 · Aetiology-specific therapies <span class="tag">table 7</span></summary>
+    <div class="body">
+      <div class="tw">
+        <table>
+          <thead><tr><th>Therapy</th><th>ALF</th><th>AD / ACLF</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="k">N-acetylcysteine (NAC)</td>
+              <td>
+                <strong>Paracetamol-induced ALF:</strong> all patients with a recent or staggered history of overdose should be commenced on treatment; continue for up to 5 days or when INR &lt; 1.5.
+                <br><br>
+                <strong>Non-paracetamol or unknown aetiology:</strong> start NAC as per paracetamol protocol; continue up to 5 days or when INR &lt; 1.5. <em>INR may be prolonged by NAC — take this into account if all other parameters of injury improve while INR remains &gt; 1.5.</em>
+              </td>
+              <td>Use is mainly restricted to cases of superadded acute injury and transaminitis, e.g. hypoxic hepatitis, although the evidence remains unclear.</td>
+            </tr>
+            <tr>
+              <td class="k">Corticosteroids</td>
+              <td>Indicated in specific aetiologies, e.g. autoimmune hepatitis, HLH and haematological malignancy. Initiated when doses of vasopressors escalate. Low threshold to screen for chronic relative adrenal insufficiency; no standard recommendations for steroid use in this context.</td>
+              <td>Indicated for specific aetiologies (e.g. autoimmune hepatitis). Steroids should be initiated if a diagnosis of <strong>severe alcoholic hepatitis</strong> is made (compatible history + severity score ± biopsy) and response reviewed at 7 days (dose equivalent to <strong>40 mg prednisolone</strong>).</td>
+            </tr>
+            <tr>
+              <td class="k">Antibiotics &amp; antivirals</td>
+              <td>Initiate <strong>pre-emptive treatment</strong> (before confirmatory tests) if history is compatible with conditions such as herpes simplex, hepatitis B or leptospirosis. Seek guidance from infectious diseases or microbiology specialists.</td>
+              <td>Initiate treatment for viral hepatitis under guidance from local hepatologists or microbiology specialists.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ scroll table horizontally on small screens</p>
+    </div>
+  </details>
+
+  <!-- ============ 16. AIRWAY & RESPIRATORY ============ -->
+  <details class="card" id="airway">
+    <summary>16 · Airway &amp; respiratory considerations <span class="tag">table 7</span></summary>
+    <div class="body">
+      <div class="tw">
+        <table>
+          <thead><tr><th>Supportive management</th><th>ALF</th><th>AD / ACLF</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="k">Airway &amp; breathing</td>
+              <td>
+                <ul>
+                  <li>Hyperventilation is common in spontaneously breathing patients with ALF (a compensatory mechanism to reduce cerebral blood flow). This <strong>must not be suppressed</strong> or indeed (routinely) replicated when the patient is intubated.</li>
+                  <li>Adopt anaesthetic induction strategies that minimise spikes in ICP.</li>
+                  <li>Target lung protective ventilation (<strong>6–8 mL/kg</strong> tidal volume) per routine critical care practice.</li>
+                  <li>Aim for <strong>PaO₂ 10–12 kPa</strong> and <strong>PaCO₂ 4.5–5.5 kPa</strong> for neuroprotection.</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Consider elective intubation for vomiting or variceal bleed (prevent aspiration and perform safe endoscopy), particularly when hepatic encephalopathy is present.</li>
+                  <li>Prepare for difficult airway in cases of haematemesis.</li>
+                  <li>Consider paracentesis or thoracocentesis with <strong>20% human albumin replacement</strong> if ventilation affected by large volume ascites or hepatic hydrothorax (<strong>100 mL for every 2.5 L drained</strong>).</li>
+                  <li>Consider impact of ascites when planning extubation, e.g. extubate to high-flow oxygen.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ scroll table horizontally on small screens</p>
+    </div>
+  </details>
+
+  <!-- ============ 17. EXTRAHEPATIC ============ -->
+  <details class="card" id="extrahepatic">
+    <summary>17 · Occult extrahepatic manifestations <span class="tag">table 5</span></summary>
+    <div class="body">
+      <p class="lead">Systemic manifestations that may impact on overall ICU management of patients with liver disease.</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>System &amp; manifestation</th><th>Relevance</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="k">Cardiovascular</td>
+              <td>
+                <ul>
+                  <li><strong>Hyperdynamic circulation</strong> — high cardiac output and low SVR. A "normal" cardiac output may therefore be suboptimal for the given clinical context (e.g. sepsis).</li>
+                  <li><strong>Cirrhotic cardiomyopathy</strong> — systolic dysfunction, impaired diastolic relaxation and electrophysiological disturbances.</li>
+                  <li>Systolic dysfunction unmasked by increased systemic vascular resistance or afterload.</li>
+                  <li>Blunted contractile response to stress.</li>
+                  <li>NT-proBNP or troponin (T or I) can be used to quantify (sub)clinical heart failure and predict risk of cardiac mortality.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="k">Respiratory</td>
+              <td>
+                <ul>
+                  <li><strong>Hepatic hydrothorax</strong> — recurrent re-accumulation of pleural effusion. If multiple/prolonged pleural drainage is needed, consider complications of portal hypertension and refer for advanced therapies such as TIPS.</li>
+                  <li><strong>Hepatopulmonary syndrome</strong> — dyspnoea, platypnoea, hypoxaemia and orthodeoxia. If difficulty weaning from oxygen, screen for intra-cardiac and intra-pulmonary arteriovenous shunts and pulmonary vascular dilatation using bubble echocardiography. Patients display features of portal hypertension but may have fairly preserved liver function.</li>
+                  <li><strong>Porto-pulmonary hypertension</strong> (pulmonary hypertension associated with portal hypertension) — dyspnoea, fatigue, collapse, raised jugular venous pressures, peripheral oedema, or found incidentally on examination or echocardiography. Consider diagnostic right heart catheterisation and refer to specialist centres if difficulty weaning off the ventilator, or echo features suggestive of raised right ventricular systolic pressure &gt; 45 mmHg, elevated tricuspid regurgitant velocity or right ventricular dysfunction.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ scroll table horizontally on small screens</p>
+    </div>
+  </details>
+
+  <!-- ============ 18. REFERRAL ============ -->
+  <details class="card" id="referral">
+    <summary>18 · When to refer to a specialist / transplant centre <span class="tag">table 6</span></summary>
+    <div class="body">
+      <div class="callout tip">
+        <span class="lbl">Key principle</span>
+        It is <strong>not expected</strong> that patients will neatly fulfil all criteria before discussions can be had about current management, interpretation of investigations, suitability for transfer or transplant, and prognostication. <strong>Early discussion with a liver specialist or transplant centre is strongly encouraged.</strong>
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Acute liver failure (ALF)</th><th>Acute decompensation / ACLF</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>
+                <p>For ANY patient presenting with ALF, <strong>early discussion and advice from a specialist centre is encouraged</strong>. Especially consider referral for:</p>
+                <p><strong>Paracetamol-induced ALF if:</strong></p>
+                <ul>
+                  <li>Arterial pH &lt; 7.30 or HCO₃⁻ &lt; 18</li>
+                  <li>INR &gt; 3.0 on day 2 or &gt; 4.0 thereafter</li>
+                  <li>Oliguria and/or acute kidney injury</li>
+                  <li>Altered level of consciousness</li>
+                  <li>Hypoglycaemia</li>
+                  <li>Elevated arterial lactate &gt; 4 mmol/L unresponsive to fluid resuscitation</li>
+                </ul>
+                <p><strong>Non-paracetamol-induced ALF if:</strong></p>
+                <ul>
+                  <li>pH &lt; 7.30 or HCO₃⁻ &lt; 18 mmol/L</li>
+                  <li>INR &gt; 1.8</li>
+                  <li>Oliguria/renal failure or Na &lt; 130 mmol/L</li>
+                  <li>Encephalopathy, hypoglycaemia or metabolic acidosis</li>
+                  <li>Bilirubin &gt; 300 µmol/L</li>
+                  <li>Shrinking liver size</li>
+                </ul>
+              </td>
+              <td>
+                <p>Ideally <strong>early in the course of admission (within 3–7 days)</strong>, or for advice re: investigations or management immediately after admission, especially if high CLIF-SOFA score.</p>
+                <ul>
+                  <li>Patient with known chronic liver disease already on waiting list for orthotopic liver transplant</li>
+                  <li>Unclear whether subacute ALF vs. index presentation of AD of chronic liver disease in view of short history</li>
+                  <li>If <strong>ACLF grade &gt; 2</strong> — for consideration of appropriateness for expedited transplant assessment</li>
+                  <li>If worsening clinical trajectory or static multiorgan failure in the first week of admission including worsening liver profile despite aggressive treatment</li>
+                  <li>For specialist management such as TIPS, transjugular biopsy, complex interventional radiology</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ scroll table horizontally on small screens</p>
+    </div>
+  </details>
+
+  <!-- ============ 19. EXTRACORPOREAL SUPPORT ============ -->
+  <details class="card" id="extracorporeal">
+    <summary>19 · Extracorporeal liver support &amp; transplantation</summary>
+    <div class="body">
+      <ul>
+        <li>Despite advances in intensive care, mortality remains high in severe acute or chronic liver failure.</li>
+        <li><strong>Emergency transplantation for ALF</strong> is a recognised life-saving intervention for patients who meet poor prognostic criteria and have no contraindications.</li>
+        <li>More recently, transplantation may be a <strong>"rescue" intervention</strong> with reasonable success rates for some critically ill patients with ACLF. Identifying who is most suitable remains challenging; the impact on organ availability and resource utilisation is undetermined.</li>
+      </ul>
+
+      <h3>Non-biological devices</h3>
+      <ul>
+        <li>Molecular adsorbent recirculating system (MARS), single-pass albumin dialysis and plasma exchange have received most attention.</li>
+        <li><strong>Plasma exchange:</strong> a clear mortality benefit has been demonstrated in patients with ALF who met poor prognostic criteria but did not receive a liver transplant, randomised to plasma exchange or standard care. Plasma exchange with fresh frozen plasma is therefore now an <strong>established intervention in selected patients in transplant centres</strong>. Efficacy in ACLF is unclear and is under evaluation in a multicentre randomised trial (NCT03702920).</li>
+        <li><strong>Extracorporeal albumin dialysis</strong> (e.g. MARS): consistent reports of improvement in liver biochemistry, renal biochemistry and severity of hepatic encephalopathy, but <strong>no definitive evidence from RCTs of meaningful mortality benefit</strong> — therefore not consistently adopted.</li>
+        <li>An international expert consensus identified highly select scenarios where albumin dialysis could be considered — mainly for symptom management and as a bridge to transplant, and only in expert centres.</li>
+        <li>In the UK, aside from plasma exchange for ALF, <strong>CRRT is the only other extracorporeal system in routine use</strong> in liver failure patients.</li>
+      </ul>
+
+      <h3>Novel / biological therapies</h3>
+      <p>Use of hepatocytes, promotion of hepatic regeneration using stem cells, and alteration in immune activation remain under investigation and are available in <strong>trial settings only</strong>.</p>
+    </div>
+  </details>
+
+  <!-- ============ 20. TAKE-HOME ============ -->
+  <details class="card" id="takehome" open>
+    <summary>20 · Take-home points <span class="tag">summary</span></summary>
+    <div class="body">
+      <ol>
+        <li>Abnormal liver enzymes are common in ICU patients and merit further investigation. Most frequently they are <strong>secondary to systemic disease (or its treatment)</strong> and improve as the underlying disease is treated.</li>
+        <li>Vital treatments such as antimicrobials and anti-epileptic drugs should merit re-evaluation once all other causes have been ruled out and liver dysfunction persists.</li>
+        <li>Early diagnosis of underlying liver disease requires an index of suspicion guided by <strong>history, nature of presentation and pattern of enzyme abnormalities</strong>.</li>
+        <li>In patients with no discernible evidence of underlying liver disease, <strong>rapidly progressive coagulopathy and deterioration in consciousness</strong> should alert to ALF and prompt urgent referral to the local liver transplant centre.</li>
+        <li>Extrahepatic organ failure in critical care patients with chronic liver disease carries significant mortality, <strong>rising with the number of organs failing</strong>.</li>
+        <li>Recognising imminent deterioration early, with pre-emptive or early admission to critical care for enhanced monitoring and timely initiation of generic supportive therapies, provides the best chance of successful recovery.</li>
+        <li>Knowledge of cardiac and respiratory complications of cirrhosis is invaluable in understanding the clinical trajectory and determining prognosis without transplantation.</li>
+        <li>ICU management is largely <strong>supportive</strong> — but specific treatments must be started promptly if the index of suspicion is high (e.g. NAC for suspected paracetamol overdose).</li>
+        <li>In established ALF or ACLF, apply critical-care-specific principles: <strong>ammonia and hepatic encephalopathy management</strong> in ALF, and <strong>prompt suspicion and treatment of sepsis</strong> in all patients with liver failure.</li>
+        <li>Understand <strong>rebalanced haemostasis</strong> — standard laboratory tests do not represent bleeding risk. Earlier use of CRRT may be considered in renal failure.</li>
+        <li><strong>Early specialist/transplant-centre advice is strongly recommended for all patients</strong>, or referral to take over management if appropriate.</li>
+      </ol>
+    </div>
+  </details>
+
+  </main>
+
+  <footer>
+    <h3>References &amp; sources</h3>
+    <ol>
+      <li>Van Eldere A, Pirani T. <strong>Liver intensive care for the general intensivist.</strong> <em>Anaesthesia</em> 2023; <strong>78</strong>: 884–901. doi:10.1111/anae.15946 <span style="color:#59636e;">(primary source for all content on this page — Tables 1, 2, 3, 5, 6, 7 and Figure 1 are adapted from this article)</span></li>
+      <li>Liver Function Tests — Life in the Fast Lane (LITFL). <a href="https://litfl.com/liver-function-tests/" target="_blank" rel="noopener noreferrer">https://litfl.com/liver-function-tests/</a></li>
+      <li>Laboratory assessment of liver function — Deranged Physiology. <a href="https://derangedphysiology.com/main/cicm-primary-exam/liver-physiology/Chapter-311/laboratory-assessment-liver-function" target="_blank" rel="noopener noreferrer">https://derangedphysiology.com/main/cicm-primary-exam/liver-physiology/Chapter-311/laboratory-assessment-liver-function</a></li>
+    </ol>
+    <p class="disc">
+      <strong>Disclaimer:</strong> This is a condensed educational quick reference for anaesthetists and intensivists. It is not a substitute for the full source article, local guidelines, or clinical judgement. Doses, thresholds and referral criteria should be verified against current local protocols and the original publication before clinical use. Content summarised from Van Eldere &amp; Pirani, <em>Anaesthesia</em> 2023;78:884–901, © 2023 The Authors, published by John Wiley &amp; Sons Ltd on behalf of the Association of Anaesthetists.
+    </p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var main     = document.getElementById('main');
+  var cards    = Array.prototype.slice.call(main.querySelectorAll('details.card'));
+  var input    = document.getElementById('search');
+  var clr      = document.getElementById('clr');
+  var noRes    = document.getElementById('no-results');
+  var toc      = document.getElementById('toc');
+
+  /* ---------- remember default open state ---------- */
+  cards.forEach(function(c){ c.dataset.defaultOpen = c.open ? '1' : '0'; });
+
+  /* ---------- build table of contents ---------- */
+  cards.forEach(function(c, i){
+    var summary = c.querySelector('summary');
+    if(!summary) return;
+    var label = summary.textContent.replace(/\s+/g,' ').trim();
+    // strip trailing tag text
+    var tag = summary.querySelector('.tag');
+    if(tag){ label = label.replace(tag.textContent,'').trim(); }
+
+    var a = document.createElement('a');
+    a.href = '#' + c.id;
+    a.textContent = label;
+    a.addEventListener('click', function(ev){
+      ev.preventDefault();
+      c.open = true;
+      c.scrollIntoView({behavior:'smooth', block:'start'});
+      history.replaceState(null, '', '#' + c.id);
+    });
+    toc.appendChild(a);
+  });
+
+  /* ---------- expand / collapse all ---------- */
+  document.getElementById('expandAll').addEventListener('click', function(){
+    cards.forEach(function(c){ if(!c.hidden) c.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    cards.forEach(function(c){ c.open = false; });
+  });
+
+  /* ---------- highlight helpers ---------- */
+  function clearMarks(root){
+    var marks = root.querySelectorAll('mark');
+    Array.prototype.forEach.call(marks, function(m){
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  function highlight(root, term){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode ? node.parentNode.nodeName : '';
+        if(p === 'SCRIPT' || p === 'STYLE' || p === 'MARK' || p === 'TEXTAREA') return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(term) !== -1
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var nodes = [], n;
+    while((n = walker.nextNode())) nodes.push(n);
+
+    nodes.forEach(function(node){
+      var text  = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag  = document.createDocumentFragment();
+      var start = 0, idx = lower.indexOf(term);
+
+      while(idx !== -1){
+        if(idx > start) frag.appendChild(document.createTextNode(text.slice(start, idx)));
+        var mark = document.createElement('mark');
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+        start = idx + term.length;
+        idx = lower.indexOf(term, start);
+      }
+      if(start < text.length) frag.appendChild(document.createTextNode(text.slice(start)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- filter ---------- */
+  var timer = null;
+
+  function applyFilter(){
+    var q = input.value.trim().toLowerCase();
+
+    clearMarks(main);
+    clr.hidden = (q.length === 0);
+
+    if(!q){
+      cards.forEach(function(c){
+        c.hidden = false;
+        c.open = c.dataset.defaultOpen === '1';
+      });
+      noRes.style.display = 'none';
+      return;
+    }
+
+    var visible = 0;
+    cards.forEach(function(c){
+      var match = c.textContent.toLowerCase().indexOf(q) !== -1;
+      c.hidden = !match;
+      if(match){ visible++; c.open = true; }
+    });
+
+    noRes.style.display = visible ? 'none' : 'block';
+
+    if(q.length >= 2) highlight(main, q);
+  }
+
+  input.addEventListener('input', function(){
+    clearTimeout(timer);
+    timer = setTimeout(applyFilter, 130);
+  });
+
+  clr.addEventListener('click', function(){
+    input.value = '';
+    applyFilter();
+    input.focus();
+  });
+
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ input.value = ''; applyFilter(); }
+  });
+
+  clr.hidden = true;
+
+  /* ---------- deep link support ---------- */
+  if(location.hash){
+    var target = document.querySelector(location.hash);
+    if(target && target.tagName === 'DETAILS'){
+      target.open = true;
+      setTimeout(function(){ target.scrollIntoView({behavior:'smooth', block:'start'}); }, 60);
+    }
+  }
+})();
+</script>
+</body>
+</html>
