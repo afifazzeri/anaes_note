@@ -6,201 +6,245 @@
 <title>Anaesthesia Reference Contents</title>
 <style>
   :root {
-    --cyan: #0891b2;
-    --cyan-dark: #0e7490;
-    --yellow: #facc15;
-    --ink: #1a2e35;
-    --muted: #6b8a95;
-    --line: #e2eef2;
-    --bg: #f8fdfe;
+    --cyan: #0e9dbd;
+    --cyan-dark: #0b6b83;
+    --yellow: #fcd34d;
+    --yellow-soft: #fde68a;
+    --ink: #1f3a42;
+    --body: #33525c;
+    --muted: #7b949c;
+    --line: #e8f1f4;
+    --bg: #ffffff;
+    --tint: #f8fcfd;
   }
+
   * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
   body {
     margin: 0;
     font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
     color: var(--ink);
     background: var(--bg);
-    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* HEADER */
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* ---------- HEADER ---------- */
   header {
-    background: var(--cyan);
-    color: #fff;
-    padding: 1.6rem 1.5rem 1.4rem;
-    border-bottom: 4px solid var(--yellow);
+    background: linear-gradient(180deg, #f2fafc 0%, #ffffff 100%);
+    border-bottom: 3px solid var(--yellow-soft);
+    padding: 2.2rem 0 1.7rem;
   }
   header h1 {
-    margin: 0 0 0.3rem;
-    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.2rem, 3.4vw, 1.5rem);
     font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--cyan-dark);
   }
   header p {
     margin: 0;
-    opacity: 0.92;
     font-size: 0.85rem;
-    max-width: 650px;
+    color: var(--muted);
+    max-width: 60ch;
   }
 
-  /* SEARCH BAR */
+  /* ---------- SEARCH ---------- */
   .search-wrap {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0.9rem 1.5rem 0.6rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.94);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .search-wrap .wrap {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
   }
   .search-wrap input {
     width: 100%;
-    padding: 0.6rem 0.9rem;
-    border: 1.5px solid var(--line);
-    border-radius: 8px;
-    font-size: 0.9rem;
+    padding: 0.6rem 1rem 0.6rem 2.35rem;
     font-family: inherit;
-    background: #fff;
-    outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
-  }
-  .search-wrap input:focus {
-    border-color: var(--cyan);
-    box-shadow: 0 0 0 3px rgba(8,145,178,0.12);
-  }
-
-  /* MAIN */
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0.4rem 1.5rem 3rem;
-  }
-
-  /* LEGEND */
-  .legend {
-    background: #fff;
+    font-size: 0.875rem;
+    color: var(--ink);
+    background: var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237b949c' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.6-3.6'/%3E%3C/svg%3E") no-repeat 0.9rem center / 15px 15px;
     border: 1px solid var(--line);
-    border-left: 4px solid var(--yellow);
-    border-radius: 6px;
-    padding: 0.7rem 0.9rem;
-    font-size: 0.8rem;
-    color: #5a6b72;
-    margin-bottom: 1.4rem;
+    border-radius: 999px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+  }
+  .search-wrap input::placeholder { color: #a8bcc3; }
+  .search-wrap input:focus {
+    background-color: #fff;
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(14, 157, 189, 0.1);
   }
 
-  /* SECTION */
+  /* ---------- MAIN ---------- */
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 1.8rem 1.5rem 4rem;
+  }
+
+  /* ---------- LEGEND ---------- */
+  .legend {
+    background: var(--tint);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--yellow);
+    border-radius: 8px;
+    padding: 0.75rem 0.95rem;
+    font-size: 0.79rem;
+    line-height: 1.5;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .legend strong { color: var(--body); }
+
+  /* ---------- SECTION HEADINGS ---------- */
   h2 {
-    font-size: 0.98rem;
-    color: var(--cyan-dark);
-    margin: 1.2rem 0 0.35rem;
-    padding-bottom: 0.25rem;
-    border-bottom: 2px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 2rem 0 0.55rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.78rem;
     font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--cyan-dark);
+    border-bottom: 1px solid var(--line);
+  }
+  h2::before {
+    content: "";
+    flex: none;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--yellow);
   }
   h2:first-of-type { margin-top: 0; }
 
-  /* LISTS */
+  /* ---------- LISTS ---------- */
   ul {
     list-style: none;
+    margin: 0;
     padding: 0;
-    margin: 0 0 0.3rem 0;
   }
   li {
-    margin-bottom: 0.18rem;
-    font-size: 0.88rem;
+    font-size: 0.875rem;
+    color: var(--body);
+    padding: 0.22rem 0;
   }
   ul.sub {
-    padding-left: 1.2rem;
-    margin-top: 0.1rem;
-    margin-bottom: 0.3rem;
+    margin: 0.25rem 0 0.35rem 0.4rem;
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--line);
   }
   ul.sub li {
     font-size: 0.83rem;
     color: var(--muted);
-    margin-bottom: 0.12rem;
+    padding: 0.16rem 0;
   }
 
-  /* LINKS */
+  /* ---------- LINKS ---------- */
   a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
     transition: color 0.15s;
   }
-  a:hover { color: var(--cyan); }
-
-  /* FILE LINKS (UNDERLINE + ALERT EMOJI) */
   a.has-file {
-    text-decoration: underline;
-    color: var(--cyan);
+    color: var(--cyan-dark);
     font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(14, 157, 189, 0.3);
+    text-underline-offset: 3px;
+    transition: color 0.15s, text-decoration-color 0.15s;
   }
   a.has-file::after {
-    content: " 🚨";
-    font-size: 0.9em;
+    content: "🚨";
+    margin-left: 0.35em;
+    font-size: 0.85em;
   }
   a.has-file:hover {
-    color: var(--cyan-dark);
+    color: var(--cyan);
+    text-decoration-color: currentColor;
   }
 
-  /* FOOTER */
-  footer {
-    background: var(--cyan-dark);
-    color: #d4f4fa;
-    padding: 1.2rem 1.5rem;
-    font-size: 0.78rem;
-    border-top: 4px solid var(--yellow);
-    margin-top: 2rem;
-  }
-  footer .wrap {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  footer p { margin: 0 0 0.4rem; }
-  footer a {
-    color: var(--yellow);
-    text-decoration: underline;
-  }
-  footer a:hover { color: #fff; }
-
-  /* EMPTY STATE */
+  /* ---------- EMPTY STATE ---------- */
   .no-results {
     display: none;
+    padding: 2.5rem 1rem;
     text-align: center;
-    padding: 2rem 1rem;
+    font-size: 0.875rem;
     color: var(--muted);
-    font-size: 0.9rem;
   }
   .no-results.show { display: block; }
+  .no-results strong { color: var(--body); }
+  .no-results span { font-size: 0.8rem; }
 
+  /* ---------- FOOTER ---------- */
+  footer {
+    margin-top: 3rem;
+    padding: 1.7rem 0;
+    background: var(--tint);
+    border-top: 1px solid var(--line);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  footer p { margin: 0; }
+
+  /* ---------- MOBILE ---------- */
   @media (max-width: 500px) {
-    header { padding: 1.2rem 1rem 1rem; }
-    .search-wrap { padding: 0.7rem 1rem 0.4rem; }
-    main { padding: 0.3rem 1rem 2rem; }
-    ul.sub { padding-left: 0.9rem; }
+    .wrap,
+    main { padding-left: 1.05rem; padding-right: 1.05rem; }
+    header { padding: 1.6rem 0 1.3rem; }
+    main { padding-top: 1.4rem; padding-bottom: 3rem; }
+    h2 { margin-top: 1.6rem; }
+    ul.sub { padding-left: 0.7rem; margin-left: 0.2rem; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Anaesthesia Reference Contents</h1>
-  <p>A structured index of anaesthesia, critical care and perioperative medicine topics.</p>
+  <div class="wrap">
+    <h1>Anaesthesia Reference Contents</h1>
+    <p>A structured index of anaesthesia, critical care and perioperative medicine topics.</p>
+  </div>
 </header>
 
 <div class="search-wrap">
-  <input type="search" id="search" placeholder="Search topics…" aria-label="Search topics">
+  <div class="wrap">
+    <input type="search" id="search" placeholder="Search topics…" aria-label="Search topics">
+  </div>
 </div>
 
 <main>
 
   <div class="legend">
-    <strong>Note:</strong> Topics with an <strong>underline</strong> and <strong>🚨 alert emoji</strong> have an available note or file. All other topics are placeholders and will be added in due course.
+    <strong>Note:</strong> Topics with an <strong>underline</strong> and a <strong>🚨 alert emoji</strong> have an available note or file. All other topics are placeholders and will be added in due course.
   </div>
 
   <!-- 1 -->
   <h2>1. Good Practice and Safety</h2>
-  <li>
-      <a href="panduan_solat_pesakit/index.html" class="has-file">Panduan Solat Pesakit untuk pesakit</a>
-  </li>
-  <li>
-      <a href="consent_mma/index.html" class="has-file">Consent MMA Guideline</a>
-  </li>
+  <ul>
+    <li><a href="panduan_solat_pesakit/index.html" class="has-file">Panduan Solat Pesakit untuk pesakit</a></li>
+    <li><a href="consent_mma/index.html" class="has-file">Consent MMA Guideline</a></li>
+  </ul>
 
   <!-- 2 -->
   <h2>2. Preoperative Considerations</h2>
@@ -211,93 +255,55 @@
   <!-- 4 -->
   <h2>4. At-Risk Populations</h2>
   <ul>
-    <li> ICU patient
-       <ul class="sub">
-         <li>
-           <a href="icu_fungal/index.html" class="has-file">Fungal & anti-fungal</a>
-         </li>
-         <li>
-           <a href="icu_protocol_malaysia/index.html" class="has-file">ICU protocol</a>
-         </li>
-         <li>
-           <a href="icu_abx_2023/index.html" class="has-file">ICU antimicrobial antibiotic malaysia 2023</a>
-         </li>
-         <li>
-           <a href="icu_gramnegative_2024/index.html" class="has-file">ICU gram negative antibiotic malaysia 2024</a>
-         </li>
-         <li>
-           <a href="icu_leptospirosis_2011/index.html" class="has-file">leptospirosis cpg malaysia 2011 + NAG 2026</a>
-         </li>
-       </ul>
-    <li>Obesity
+    <li>ICU patient
+      <ul class="sub">
+        <li><a href="icu_fungal/index.html" class="has-file">Fungal &amp; anti-fungal</a></li>
+        <li><a href="icu_protocol_malaysia/index.html" class="has-file">ICU protocol</a></li>
+        <li><a href="icu_abx_2023/index.html" class="has-file">ICU antimicrobial antibiotic malaysia 2023</a></li>
+        <li><a href="icu_gramnegative_2024/index.html" class="has-file">ICU gram negative antibiotic malaysia 2024</a></li>
+        <li><a href="icu_leptospirosis_2011/index.html" class="has-file">leptospirosis cpg malaysia 2011 + NAG 2026</a></li>
+      </ul>
     </li>
-    <li>The Malnourished Patient
-    </li>
-    <li>Considerations for the Older Patient
-    </li>
-    <li>Learning Disabilities and/or Autism
-    </li>
+    <li>Obesity</li>
+    <li>The Malnourished Patient</li>
+    <li>Considerations for the Older Patient</li>
+    <li>Learning Disabilities and/or Autism</li>
   </ul>
 
   <!-- 5 -->
   <h2>5. Cardiovascular Disease</h2>
-  <li>
-      <a href="bjaed_atrialfibrillation/index.html" class="has-file">BJAED atrial fibrillation 2024</a>
-</li>
-  <li>
-      <a href="aha_pe/index.html" class="has-file">AHA Pulmonary Embolism 2026</a>
-  </li>
-<ul>
+  <ul>
+    <li><a href="bjaed_atrialfibrillation/index.html" class="has-file">BJAED atrial fibrillation 2024</a></li>
+    <li><a href="aha_pe/index.html" class="has-file">AHA Pulmonary Embolism 2026</a></li>
     <li>Preoperative Management Of Coronary Stents</li>
   </ul>
 
   <!-- 6 -->
   <h2>6. Respiratory Disease</h2>
-<ul>
-  <li>
-      <a href="asthma_cpg/index.html" class="has-file">Asthma CPG 2024 2nd edition</a>
-</li>
-  <li>
-      <a href="asthma_bts/index.html" class="has-file">Asthma BTS/NICE/SIGN </a>
-  </li>
-  <li>
-      <a href="asthma_gina/index.html" class="has-file">Asthma GINA 2026</a>
-</li>
-    <li>
-      <a href="icu_ards/index.html" class="has-file">acute respiratory distress syndrome (ARDS)</a>
-    </li>
-  <li>
-      <a href="aprv_ards/index.html" class="has-file">airway pressure release ventilation (aprv)</a>
-    </li>
-  <li>
-      <a href="cpg_osa/index.html" class="has-file">CPG MSIA OSA 2023</a>
-  </li>
-   <li>
-      <a href="bjaed_smoking/index.html" class="has-file">Smoking & Anaesthesia 2019 bjaed</a>
-    </li>
-  <li>
-      <a href="bjaed_popc/index.html" class="has-file">Post Op Pulmonary Complication POPC 2017 bjaed</a>
-  </li>
-  <li>
-      <a href="bjaed_pft/index.html" class="has-file">Pulmonary function test 2019 bjaed</a>
-    </li>
+  <ul>
+    <li><a href="asthma_cpg/index.html" class="has-file">Asthma CPG 2024 2nd edition</a></li>
+    <li><a href="asthma_bts/index.html" class="has-file">Asthma BTS/NICE/SIGN</a></li>
+    <li><a href="asthma_gina/index.html" class="has-file">Asthma GINA 2026</a></li>
+    <li><a href="icu_ards/index.html" class="has-file">acute respiratory distress syndrome (ARDS)</a></li>
+    <li><a href="aprv_ards/index.html" class="has-file">airway pressure release ventilation (aprv)</a></li>
+    <li><a href="cpg_osa/index.html" class="has-file">CPG MSIA OSA 2023</a></li>
+    <li><a href="bjaed_smoking/index.html" class="has-file">Smoking &amp; Anaesthesia 2019 bjaed</a></li>
+    <li><a href="bjaed_popc/index.html" class="has-file">Post Op Pulmonary Complication POPC 2017 bjaed</a></li>
+    <li><a href="bjaed_pft/index.html" class="has-file">Pulmonary function test 2019 bjaed</a></li>
   </ul>
+
   <!-- 7 -->
-<h2>7. Renal Disease</h2>
-<ul>
-  <li>
-    <a href="icu_rrt/index.html" class="has-file">Renal Replacement Therapy in ICU</a>
-  </li>
-  <li>
-    <a href="rhabdomyolysis/index.html" class="has-file">Rhabdomyolysis BJAED 2014</a>
-  </li>
-</ul>
+  <h2>7. Renal Disease</h2>
+  <ul>
+    <li><a href="icu_rrt/index.html" class="has-file">Renal Replacement Therapy in ICU</a></li>
+    <li><a href="rhabdomyolysis/index.html" class="has-file">Rhabdomyolysis BJAED 2014</a></li>
+  </ul>
 
   <!-- 8 -->
   <h2>8. Hepatic Disease</h2>
-   <li>
-    <a href="liver_intensive_care/index.html" class="has-file">Liver disease ICU</a>
-  </li>
+  <ul>
+    <li><a href="liver_intensive_care/index.html" class="has-file">Liver disease ICU</a></li>
+  </ul>
 
   <!-- 9 -->
   <h2>9. Endocrine and Metabolic Disease</h2>
@@ -308,23 +314,15 @@
   <!-- 11 -->
   <h2>11. Haematology</h2>
   <ul>
-    <li>
-      <a href="regional_anticoagulation/" class="has-file">Anticoagulation and Regional Anaesthesia</a>
-    </li>
-    <li>
-      <a href="pbm/index.html" class="has-file">Patient Blood Management (PBM) 2024 malaysia</a>
-    </li>
-    <li>
-      <a href="bjaed_thrombocytopenia/index.html" class="has-file">Perioperative platelet low thrombocytopenia bjaed</a>
-    </li>
+    <li><a href="regional_anticoagulation/" class="has-file">Anticoagulation and Regional Anaesthesia</a></li>
+    <li><a href="pbm/index.html" class="has-file">Patient Blood Management (PBM) 2024 malaysia</a></li>
+    <li><a href="bjaed_thrombocytopenia/index.html" class="has-file">Perioperative platelet low thrombocytopenia bjaed</a></li>
   </ul>
 
   <!-- 12 -->
   <h2>12. Neurological and Muscular Disorders</h2>
-  <li>
-      <a href="status_epilepticus/index.html" class="has-file"> Status Epilepticus </a>
-    </li>
   <ul>
+    <li><a href="status_epilepticus/index.html" class="has-file">Status Epilepticus</a></li>
     <li>Autonomic dysfunction</li>
     <li>Cervical spine injury</li>
     <li>Chronic spinal cord lesion</li>
@@ -348,9 +346,7 @@
   <!-- 18 -->
   <h2>18. Specific Circumstances</h2>
   <ul>
-    <li>
-      <a href="bjaed_ora_poisoning/index.html" class="has-file">Oral poisoning BJAED 2010</a>
-    </li>
+    <li><a href="bjaed_ora_poisoning/index.html" class="has-file">Oral poisoning BJAED 2010</a></li>
     <li>18.1 Oncological consideration</li>
   </ul>
 
@@ -358,18 +354,10 @@
   <h2>19. Cardiac Anaesthesia</h2>
   <ul>
     <li>Non cardiac surgery</li>
-    <li>
-      <a href="aha_noncardiacsurgery_cardiac_problem/index.html" class="has-file">AHA 2024 Perioperative Cardiovascular Management for Noncardiac Surgery</a>
-    </li>
-    <li>
-      <a href="cardiac_pacemaker_2024_AHA/index.html" class="has-file">Pacemaker patient</a>
-    </li>
-    <li>
-      <a href="ctc_empyema/index.html" class="has-file">Empyema Guideline</a>
-    </li>
-    <li>
-      <a href="cpg_infective_endocarditis/index.html" class="has-file">CPG Infective Endocarditis (2017)</a>
-    </li>
+    <li><a href="aha_noncardiacsurgery_cardiac_problem/index.html" class="has-file">AHA 2024 Perioperative Cardiovascular Management for Noncardiac Surgery</a></li>
+    <li><a href="cardiac_pacemaker_2024_AHA/index.html" class="has-file">Pacemaker patient</a></li>
+    <li><a href="ctc_empyema/index.html" class="has-file">Empyema Guideline</a></li>
+    <li><a href="cpg_infective_endocarditis/index.html" class="has-file">CPG Infective Endocarditis (2017)</a></li>
   </ul>
 
   <!-- 20 -->
@@ -377,16 +365,10 @@
 
   <!-- 21 -->
   <h2>21. Neurosurgery</h2>
-  <li>
-      <a href="neuro_btf_severetbi/index.html" class="has-file">management of severe TBI 4th edition</a>
-    </li>
-  <li>
-      <a href="neuro_openanaes_SAH/index.html" class="has-file"> anaesthesia for SAH open anaesthesia 2023</a>
-    </li>
-  <li>
-      <a href="cpg_braindeath/index.html" class="has-file"> Brain death CPG Malaysia 2024</a>
-    </li>
   <ul>
+    <li><a href="neuro_btf_severetbi/index.html" class="has-file">management of severe TBI 4th edition</a></li>
+    <li><a href="neuro_openanaes_SAH/index.html" class="has-file">anaesthesia for SAH open anaesthesia 2023</a></li>
+    <li><a href="cpg_braindeath/index.html" class="has-file">Brain death CPG Malaysia 2024</a></li>
     <li>BIS by age</li>
   </ul>
 
@@ -403,12 +385,8 @@
   <h2>24. Plastic and Burns Surgery</h2>
   <ul>
     <li>Burn injury</li>
-    <li>
-      <a href="atotw_burn/index.html" class="has-file"> 2024 atotw burn</a>
-    </li>
-    <li>
-      <a href="bjaed_burn/index.html" class="has-file"> 2021&2022 bjaed burn</a>
-    </li>
+    <li><a href="atotw_burn/index.html" class="has-file">2024 atotw burn</a></li>
+    <li><a href="bjaed_burn/index.html" class="has-file">2021 &amp; 2022 bjaed burn</a></li>
     <li>Pediatric burn</li>
   </ul>
 
@@ -417,9 +395,6 @@
 
   <!-- 26 -->
   <h2>26. Bariatric Surgery</h2>
-  <ul>
-    <li>Dr Laila cme</li>
-  </ul>
 
   <!-- 27 -->
   <h2>27. Liver Procedures</h2>
@@ -451,23 +426,17 @@
   <!-- 35 -->
   <h2>35. Obstetric Anaesthesia and Analgesia</h2>
   <ul>
-         <li>
-           <a href="obs_hemorrhage/index.html" class="has-file">obs hemorrhage</a>
-         </li>
-    <li>
-      <a href="labour_epidural_caeser/index.html" class="has-file">management of epidural topup --> LSCS </a>
-    </li>
+    <li><a href="obs_hemorrhage/index.html" class="has-file">obs hemorrhage</a></li>
+    <li><a href="labour_epidural_caeser/index.html" class="has-file">management of epidural topup → LSCS</a></li>
     <li>Peripartum cardiomyopathy (bjaed 2024)</li>
   </ul>
 
   <!-- 36 -->
-<h2>36. Paediatric and Neonatal Anaesthesia</h2>
-<ul>
-  <li>
-    <a href="peds_urti/index.html" class="has-file">URTI</a>
-  </li>
-  <li>Mediastinal mass</li>
-</ul>
+  <h2>36. Paediatric and Neonatal Anaesthesia</h2>
+  <ul>
+    <li><a href="peds_urti/index.html" class="has-file">URTI</a></li>
+    <li>Mediastinal mass</li>
+  </ul>
 
   <!-- 37 -->
   <h2>37. Geriatric Elderly Anaesthesia</h2>
@@ -478,14 +447,9 @@
 
   <!-- 38 -->
   <h2>38. The Major Trauma Patient</h2>
-
   <ul>
-    <li>
-      <a href="cpg_trauma_abdomen/index.html" class="has-file">CPG ABDOMINAL TRAUMA 2025</a>
-    </li>
-    <li>
-      <a href="bjaed_trauma_icu/index.html" class="has-file">major trauma in icu</a>
-    </li>
+    <li><a href="cpg_trauma_abdomen/index.html" class="has-file">CPG ABDOMINAL TRAUMA 2025</a></li>
+    <li><a href="bjaed_trauma_icu/index.html" class="has-file">major trauma in icu</a></li>
   </ul>
 
   <!-- 39 -->
@@ -505,22 +469,19 @@
 
   <!-- 43 -->
   <h2>43. Chronic Pain</h2>
-  <li>
-      <a href="bjaed_crps/index.html" class="has-file">CRPS BJAED 2017</a>
-    </li>
+  <ul>
+    <li><a href="bjaed_crps/index.html" class="has-file">CRPS BJAED 2017</a></li>
+  </ul>
 
   <div class="no-results" id="noResults">
     <strong>No matching topics.</strong><br>
-    <span style="font-size:0.8rem;">Try a different term — e.g. “obesity”, “cardiac”, “paediatric” or “pain”.</span>
+    <span>Try a different term — e.g. “obesity”, “cardiac”, “paediatric” or “pain”.</span>
   </div>
 
 </main>
 
 <footer>
   <div class="wrap">
-    <p><strong>Quick links:</strong></p>
-    <p>• <a href="regional_anticoagulation/">Anticoagulation and Regional Anaesthesia</a></p>
-    <p>• <a href="cardiac_pacemaker_2024_AHA/index.html">Cardiac Pacemaker — Periprocedural Management</a></p>
     <p>All topic titles and descriptions on this page are original, condensed wording written for personal study and revision. Nothing here replaces clinical judgement, local protocols or the original source documents.</p>
   </div>
 </footer>
