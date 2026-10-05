@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oral Poisoning — Anaesthesia &amp; ICU Quick Reference</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --fg:#1f2328;
+    --muted:#59636e;
+    --border:#d1d9e0;
+    --canvas:#f6f8fa;
+    --accent:#0969da;
+    --danger:#cf222e;
+    --normal-line:#e36209;
+    --highrisk-line:#cf222e;
+    --mark:#fff8c5;
+    --mark-fg:#1f2328;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1117;
+      --fg:#e6edf3;
+      --muted:#9198a1;
+      --border:#30363d;
+      --canvas:#161b22;
+      --accent:#4493f8;
+      --danger:#f85149;
+      --normal-line:#f0883e;
+      --highrisk-line:#f85149;
+      --mark:#9e6a03;
+      --mark-fg:#ffffff;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;
+    font-size:15px;
+    line-height:1.55;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:20px 16px 60px;}
+
+  header.site{border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:18px;}
+  header.site h1{font-size:1.5rem;margin:0 0 4px;letter-spacing:-.01em;}
+  header.site .sub{margin:0 0 14px;color:var(--muted);font-size:.9rem;}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .toolbar input[type="search"]{
+    flex:1 1 260px;min-width:180px;
+    padding:7px 12px;
+    font-size:.92rem;
+    color:var(--fg);
+    background:var(--canvas);
+    border:1px solid var(--border);
+    border-radius:6px;
+    outline:none;
+  }
+  .toolbar input[type="search"]:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(9,105,218,.15);
+  }
+  .toolbar button{
+    padding:6px 12px;
+    font-size:.85rem;
+    font-weight:500;
+    color:var(--fg);
+    background:var(--canvas);
+    border:1px solid var(--border);
+    border-radius:6px;
+    cursor:pointer;
+  }
+  .toolbar button:hover{border-color:var(--muted);}
+  .hint{margin:8px 0 0;font-size:.82rem;color:var(--muted);min-height:1.1em;}
+
+  details.card{
+    border:1px solid var(--border);
+    border-radius:8px;
+    margin-bottom:12px;
+    background:var(--bg);
+    overflow:hidden;
+  }
+  details.card > summary{
+    list-style:none;
+    cursor:pointer;
+    padding:10px 14px;
+    background:var(--canvas);
+    font-weight:600;
+    font-size:.98rem;
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    user-select:none;
+  }
+  details.card > summary::-webkit-details-marker{display:none;}
+  details.card > summary::before{
+    content:"▸";
+    display:inline-block;
+    color:var(--muted);
+    font-size:.9rem;
+    transition:transform .15s ease;
+    transform-origin:45% 50%;
+  }
+  details.card[open] > summary::before{transform:rotate(90deg);}
+  details.card > summary:hover{background:color-mix(in srgb, var(--canvas) 70%, var(--border));}
+  .card-body{padding:4px 16px 16px;}
+  .card-body h3{
+    font-size:.86rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--muted);
+    margin:16px 0 6px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:3px;
+  }
+  .card-body h3:first-child{margin-top:10px;}
+  ul{margin:6px 0 6px;padding-left:20px;}
+  li{margin:3px 0;}
+  ul ul{margin:3px 0;}
+  p{margin:6px 0;}
+  strong{font-weight:600;}
+  .tag{
+    display:inline-block;
+    font-size:.72rem;
+    font-weight:600;
+    padding:1px 6px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:var(--canvas);
+    color:var(--muted);
+    margin-left:6px;
+    vertical-align:middle;
+  }
+  .alert{
+    border-left:3px solid var(--danger);
+    background:color-mix(in srgb, var(--danger) 7%, transparent);
+    padding:8px 12px;
+    border-radius:0 6px 6px 0;
+    margin:10px 0;
+  }
+  .note{
+    border-left:3px solid var(--accent);
+    background:color-mix(in srgb, var(--accent) 7%, transparent);
+    padding:8px 12px;
+    border-radius:0 6px 6px 0;
+    margin:10px 0;
+    font-size:.92rem;
+  }
+
+  /* ---------- tables ---------- */
+  .table-wrap{
+    overflow:auto;
+    max-height:420px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    margin:10px 0;
+    -webkit-overflow-scrolling:touch;
+  }
+  table{border-collapse:collapse;width:100%;font-size:.84rem;}
+  table.wide{min-width:860px;}
+  table.slim{min-width:420px;}
+  th,td{
+    border-bottom:1px solid var(--border);
+    border-right:1px solid var(--border);
+    padding:6px 9px;
+    text-align:left;
+    vertical-align:top;
+  }
+  th:last-child,td:last-child{border-right:none;}
+  tr:last-child td{border-bottom:none;}
+  thead th{
+    background:var(--canvas);
+    font-weight:600;
+    position:sticky;
+    top:0;
+    z-index:1;
+  }
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--canvas) 55%, transparent);}
+  caption{
+    caption-side:top;
+    text-align:left;
+    font-size:.8rem;
+    color:var(--muted);
+    padding:0 0 6px;
+  }
+  .scroll-note{font-size:.78rem;color:var(--muted);margin:-4px 0 8px;}
+
+  /* ---------- simple flow diagram ---------- */
+  .flow{margin:12px 0;font-size:.88rem;}
+  .flow-node{
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:6px 10px;
+    background:var(--canvas);
+    display:inline-block;
+    font-weight:600;
+  }
+  .flow-row{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin-top:10px;}
+  .flow-path{
+    flex:1 1 220px;
+    border:1px solid var(--border);
+    border-left:3px solid var(--muted);
+    border-radius:0 6px 6px 0;
+    padding:8px 10px;
+    background:var(--bg);
+  }
+  .flow-path.safe{border-left-color:#1a7f37;}
+  .flow-path.tox{border-left-color:var(--danger);}
+  .flow-path .title{font-weight:600;display:block;margin-bottom:2px;}
+  .flow-sub{
+    margin-top:8px;
+    padding:6px 8px;
+    border-radius:6px;
+    font-size:.84rem;
+    background:var(--canvas);
+  }
+  .flow-sub.danger{background:color-mix(in srgb, var(--danger) 10%, transparent);}
+  .arrow{color:var(--muted);font-weight:600;}
+
+  /* ---------- nomogram ---------- */
+  figure{margin:14px 0;}
+  figure svg{width:100%;height:auto;max-width:560px;display:block;margin:0 auto;}
+  figcaption{font-size:.8rem;color:var(--muted);text-align:center;margin-top:6px;}
+  .grid-line{stroke:var(--border);stroke-width:1;}
+  .axis-line{stroke:var(--muted);stroke-width:1.2;}
+  .tick-text{fill:var(--muted);font-size:9px;font-family:inherit;}
+  .axis-title{fill:var(--muted);font-size:10px;font-family:inherit;}
+  .ln-normal{stroke:var(--normal-line);stroke-width:2.2;fill:none;}
+  .ln-high{stroke:var(--highrisk-line);stroke-width:2.2;fill:none;}
+  .legend-box{fill:var(--canvas);stroke:var(--border);}
+  .legend-text{fill:var(--fg);font-size:9.5px;font-family:inherit;}
+  .uncertain{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3;opacity:.7;}
+  .uncertain-text{fill:var(--muted);font-size:8.5px;font-family:inherit;}
+
+  mark.hl{background:var(--mark);color:var(--mark-fg);border-radius:2px;padding:0 1px;}
+
+  footer.site{
+    margin-top:26px;
+    padding-top:14px;
+    border-top:1px solid var(--border);
+    font-size:.82rem;
+    color:var(--muted);
+  }
+  footer.site strong{color:var(--fg);}
+  [hidden]{display:none !important;}
+
+  @media (max-width:520px){
+    body{font-size:14.5px;}
+    header.site h1{font-size:1.25rem;}
+    .card-body{padding:2px 12px 14px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <h1>Oral Poisoning — Quick Reference</h1>
+    <p class="sub">For anaesthetists &amp; intensivists · clinical notes only · collapsible &amp; searchable</p>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search: charcoal, QRS, naloxone, dialysis, oxalic…" autocomplete="off" spellcheck="false" aria-label="Search clinical content">
+      <button type="button" id="expandAll">Expand all</button>
+      <button type="button" id="collapseAll">Collapse all</button>
+    </div>
+    <p class="hint" id="resultCount" aria-live="polite"></p>
+  </header>
+
+  <main id="content">
+
+    <!-- ================= KEY POINTS ================= -->
+    <details class="card" open>
+      <summary>Key points</summary>
+      <div class="card-body">
+        <ul>
+          <li>The mainstay of treatment of poisoning is <strong>resuscitation and supportive care</strong>.</li>
+          <li>Consider poisoning in any patient with <strong>bizarre behaviour</strong>, a <strong>reduced conscious level</strong>, or <strong>unexplained physiological instability</strong>.</li>
+          <li><strong>Ipecac is no longer recommended</strong> in the treatment of acute poisoning.</li>
+          <li><strong>Activated charcoal</strong> should be given within <strong>60 min</strong> of ingestion of poison, but may have an effect for up to <strong>2 h or longer</strong> post-ingestion.</li>
+          <li><strong>Acetaminophen (paracetamol) levels are mandatory in all cases of adult overdose.</strong></li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= INITIAL APPROACH ================= -->
+    <details class="card" open>
+      <summary>Initial approach to the poisoned patient</summary>
+      <div class="card-body">
+        <ul>
+          <li>All cases are managed as <strong>acute medical emergencies using an ABC approach</strong>, regardless of the agent used.</li>
+          <li><strong>Rare exceptions:</strong>
+            <ul>
+              <li><strong>Organophosphates</strong> — health-care workers must first protect themselves from the agent.</li>
+              <li><strong>Cyanide</strong> — the antidote for cyanide is required immediately.</li>
+            </ul>
+          </li>
+          <li>Every case requires: <strong>resuscitation</strong> · <strong>risk assessment</strong> · <strong>substance identification</strong> · <strong>specific treatment (if available)</strong> · <strong>a period of observation</strong>.</li>
+          <li>A focused, detailed poisoning history and examination identify specific physical signs; then use antidotes and laboratory tests selectively.</li>
+          <li><strong>Most poisoned patients require supportive treatment only.</strong></li>
+        </ul>
+
+        <h3>Risk assessment</h3>
+        <ul>
+          <li>Obtain specific information from ambulance personnel or witnesses about the <strong>nature, timing and amount</strong> of drug or poison.</li>
+          <li><strong>One-third of cases involve more than one toxin</strong>; alcohol is a common contributing factor.</li>
+          <li>Check the patient's clothing for <strong>notes or blister packets</strong> — a clue to the quantity and type of drug ingested.</li>
+          <li>In deliberate self-harm, there may be <strong>previous hospital admissions</strong> to aid diagnosis.</li>
+          <li>Contact the <strong>general practitioner</strong> for previous history — family or witness sources are often unreliable.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= SUPPORTIVE CARE ================= -->
+    <details class="card" open>
+      <summary>Supportive care and monitoring</summary>
+      <div class="card-body">
+        <ul>
+          <li>Monitor suspected exposure in an <strong>appropriate clinical environment</strong>.</li>
+          <li>Where coma is inevitable, <strong>intubate pre-emptively or at the first sign of deterioration in level of consciousness</strong>.</li>
+          <li>Tracheal intubation protects the airway and allows <strong>early administration of activated charcoal via a nasogastric tube</strong> if required.</li>
+          <li>Patients at risk of <strong>cardiac instability and acidosis</strong>: continuous ECG and invasive arterial pressure monitoring with regular blood gas analysis.</li>
+          <li>Check <strong>body temperature and serum glucose</strong>; give i.v. dextrose if required.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= TOXIDROMES ================= -->
+    <details class="card" open>
+      <summary>Toxidromes — specific signs in poisoning and overdose</summary>
+      <div class="card-body">
+        <p class="scroll-note">Table scrolls horizontally and vertically.</p>
+        <div class="table-wrap">
+          <table class="wide">
+            <thead>
+              <tr>
+                <th>Toxidrome</th>
+                <th>Drug</th>
+                <th>Common findings</th>
+                <th>Other signs and symptoms</th>
+                <th>Potential treatments</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Anticholinergic</strong></td>
+                <td>Scopolamine, atropine</td>
+                <td>Altered mental status, dilated pupils, urinary retention, hyperthermia, dry mucous membranes</td>
+                <td>Seizures, dysrhythmias, rhabdomyolysis</td>
+                <td>Physostigmine; sedation with benzodiazepines, cooling, supportive management</td>
+              </tr>
+              <tr>
+                <td><strong>Cholinergic</strong></td>
+                <td>Organophosphates; carbamates</td>
+                <td>Salivation, lacrimation, sweating, nausea, vomiting, urination, defaecation, muscle weakness, bronchorrhoea</td>
+                <td>Bradycardia, dilated or constricted pupils, seizures, respiratory failure, paralysis</td>
+                <td>Airway protection and IPPV, atropine, pralidoxime</td>
+              </tr>
+              <tr>
+                <td><strong>Opioid</strong></td>
+                <td>Heroin, morphine</td>
+                <td>CNS and respiratory depression, small pupils</td>
+                <td>Hypothermia, bradycardia, respiratory arrest, acute lung injury</td>
+                <td>Airway protection, IPPV, naloxone</td>
+              </tr>
+              <tr>
+                <td><strong>Salicylates</strong></td>
+                <td>Aspirin</td>
+                <td>Altered mental status, respiratory alkalosis, metabolic acidosis, tinnitus, hyperpnoea, tachycardia, sweating</td>
+                <td>Low-grade fever, ketonuria, acute lung injury</td>
+                <td>Multi-dose activated charcoal, alkalinization of urine, K<sup>+</sup> repletion, haemodialysis, hydration</td>
+              </tr>
+              <tr>
+                <td><strong>Serotonin syndrome</strong></td>
+                <td>Meperidine; MAOI, SSRI, TCA</td>
+                <td>Altered mental status, increased muscle tone, hyperreflexia, hyperthermia</td>
+                <td>Intermittent whole-body tremor</td>
+                <td>Cooling, benzodiazepines</td>
+              </tr>
+              <tr>
+                <td><strong>Sympathomimetic</strong></td>
+                <td>Cocaine; amphetamine</td>
+                <td>Agitation, dilated pupils, excessive sweating, tachycardia, hypertension, hyperthermia</td>
+                <td>Seizures, rhabdomyolysis, myocardial infarction, cardiac arrest, hyperthermia</td>
+                <td>Cooling, sedation with benzodiazepines, hydration</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <!-- ================= INVESTIGATIONS ================= -->
+    <details class="card" open>
+      <summary>Investigations</summary>
+      <div class="card-body">
+        <ul>
+          <li><strong>Acetaminophen level is mandatory in all cases of adult overdose</strong> — take at <strong>4 h post-exposure</strong>.</li>
+          <li><strong>Salicylate levels are not recommended in the asymptomatic patient.</strong></li>
+          <li>Screening for substances of abuse: rapid commercial urine kits.</li>
+          <li>Other laboratory tests: full blood count, urea and electrolytes, lactate, liver function tests, coagulation studies.</li>
+          <li>Specific agents (e.g. methanol, carbamazepine): plasma levels <strong>4-hourly</strong> to refine risk assessment and gauge response to enhanced elimination.</li>
+          <li><strong>Chest radiograph</strong> — may show pulmonary oedema, suggestive of poisoning with narcotics or salicylates.</li>
+          <li><strong>Abdominal radiograph</strong> — can identify packets of drugs in "body packers".</li>
+          <li>Radiological investigations are otherwise <strong>rarely required</strong> in acute poisoning.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= DECONTAMINATION ================= -->
+    <details class="card" open>
+      <summary>Gastric decontamination</summary>
+      <div class="card-body">
+        <div class="note">
+          Much debate surrounds the "decontamination triangle" of <strong>forced emesis, gastric lavage and single-dose activated charcoal</strong>. Decontamination strategies are <strong>not without side-effects</strong> — consider the risk:benefit ratio before administration.
+          <br><strong>AACT / EAPCCT: gastrointestinal decontamination should not be administered routinely.</strong>
+        </div>
+
+        <h3>Induced emesis (ipecac)</h3>
+        <ul>
+          <li>Ipecac induces vomiting by direct gastrointestinal effects and central nervous system actions.</li>
+          <li>Dose: <strong>30 ml in adults followed by 240 ml water</strong>. Emesis typically occurs within <strong>20 min</strong> and persists <strong>30–120 min</strong>.</li>
+          <li>Compared with single-dose activated charcoal, ipecac conveys <strong>no benefit</strong>, whether given alone or combined with charcoal.</li>
+          <li>Side-effects: prolonged time in the Emergency Department and increased incidence of <strong>aspiration pneumonitis</strong>.</li>
+          <li><strong>Its use is no longer recommended.</strong></li>
+        </ul>
+
+        <h3>Gastric lavage</h3>
+        <ul>
+          <li>Large-bore orogastric tube (<strong>30–40 F</strong>); instill and re-aspirate several litres of water until no more pill fragments are identified.</li>
+          <li>Patients must be able to <strong>protect their own airway</strong>.</li>
+          <li>Drug absorption is <strong>not reduced</strong> if lavage is commenced 1 h or more after ingestion.</li>
+          <li>Paradoxically, one study suggested lavage promotes <strong>post-pyloric transfer</strong> of poison into the small intestine, where it is more rapidly absorbed.</li>
+          <li>No data demonstrate improved clinical outcome; use is associated with <strong>significant morbidity and mortality</strong> — gastrointestinal perforation and aspiration.</li>
+        </ul>
+
+        <h3>Activated charcoal (AC)</h3>
+        <ul>
+          <li>Most drugs and chemicals are absorbed by AC; weak <strong>van der Waals forces</strong> bind the substance in the GI tract. Numerous particles provide a large surface area that prevents further absorption.</li>
+          <li>Give <strong>orally</strong>, or <strong>nasogastrically via a 16 F tube</strong> in the intubated patient.</li>
+          <li>Charcoal : toxin ratio <strong>10 : 1</strong>; usual dose <strong>25–50 g</strong>, or <strong>1 g kg<sup>−1</sup></strong> in a child.</li>
+          <li>Give <strong>within 1 h</strong> of poison ingestion. Efficacy is time-dependent: nearly <strong>90% reduction in absorption at 30 min</strong>, falling to <strong>30% at 1 h</strong>. Reduces acetaminophen absorption up to <strong>2 h</strong> after ingestion.</li>
+          <li>Unpalatable and can cause vomiting — in children it can be mixed with ice cream. Warn patients that stools will be <strong>black</strong>.</li>
+          <li><strong>Not recommended</strong> in poisoning with: lithium, iron, alcohol, methanol, ethylene glycol, petroleum distillates, corrosives, acids, or alkalis.</li>
+          <li><strong>Repeated doses</strong> of 25 g every 4–6 h can benefit poisoning with slow-release formulations: salicylate, barbiturates, theophylline, quinine, digoxin, carbamazepine, phenytoin, dapsone. Multiple doses interrupt the <strong>enterohepatic circulation</strong>, reducing plasma levels and duration of toxicity.</li>
+          <li>Major but rare adverse effect of repeat dosing: <strong>acute bowel obstruction from charcoal concretions</strong>, particularly likely in the presence of an anticholinergic ileus.</li>
+        </ul>
+
+        <h3>Whole bowel irrigation (WBI)</h3>
+        <ul>
+          <li>Aims to reduce the time available for ingested substances to be absorbed.</li>
+          <li><strong>Polyethylene glycol (PEG) 1.5–2 litres per hour</strong>, best administered through a <strong>12 F feeding tube</strong>. Elevate the head of the bed to <strong>45°</strong> to prevent aspiration.</li>
+          <li>If emesis occurs, discontinue for <strong>30 min</strong> and restart at <strong>half the normal rate</strong>. Metoclopramide can help as an anti-emetic due to its prokinetic effects.</li>
+          <li>Administer until the <strong>effluent is clear</strong>.</li>
+          <li>Not used routinely. Consider where poisoning includes <strong>sustained-release or enteric-coated tablets</strong>, or drugs for which charcoal is ineffective: alcohols, boric acid, cyanide, iron, lithium, hydrocarbons, acids, alkalis.</li>
+          <li>Used with some success in <strong>body packers, heavy metal and battery ingestion</strong>.</li>
+          <li><strong>Contraindicated</strong> in: unprotected airway, haemodynamic instability, bowel obstruction, bowel perforation, or ileus.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= ENHANCED ELIMINATION ================= -->
+    <details class="card" open>
+      <summary>Increased elimination</summary>
+      <div class="card-body">
+        <h3>Alkaline diuresis</h3>
+        <ul>
+          <li>Enhances elimination of <strong>weak acids</strong> such as salicylates and some herbicides.</li>
+          <li>Sodium bicarbonate is administered; measure urine pH and keep it <strong>7.5–8.5</strong>.</li>
+          <li>Weak acids become charged in alkaline urine, producing a concentration gradient that draws more toxin into the renal tubular system.</li>
+          <li><strong>Hypokalaemia</strong> can result — correct aggressively.</li>
+          <li>Use with caution in patients with <strong>renal impairment or cardiac disease</strong>.</li>
+        </ul>
+
+        <h3>Haemodialysis</h3>
+        <ul>
+          <li>Helpful in <strong>ethylene glycol, methanol, lithium, theophylline and salicylate</strong> poisoning.</li>
+          <li>Usefulness depends on the pharmacological properties of the ingested drug. The drug or poison should have:
+            <ul>
+              <li>low volume of distribution (<strong>&lt; 1 litre kg<sup>−1</sup></strong>)</li>
+              <li>low molecular weight (<strong>&lt; 500 Da</strong>)</li>
+              <li>low protein binding</li>
+              <li>low water solubility</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= ACETAMINOPHEN ================= -->
+    <details class="card" open>
+      <summary>Acetaminophen (paracetamol)</summary>
+      <div class="card-body">
+        <ul>
+          <li>Responsible for <strong>30,000 UK hospital admissions a year</strong> and <strong>345 deaths per annum</strong>. Often one component of a <strong>mixed overdose</strong>.</li>
+          <li>Produces the toxic metabolite <strong>NAPQI</strong> (<em>N</em>-acetyl-p-benzoquinone imine), which is neutralized by <strong>glutathione</strong>. Depletion of glutathione results in NAPQI toxicity to hepatocytes.</li>
+          <li><strong>Patients particularly at risk:</strong>
+            <ul>
+              <li>Chronic alcoholics</li>
+              <li>Those taking antiepileptic drugs — carbamazepine, phenytoin (enzyme inducers)</li>
+              <li>Patients receiving anti-tuberculosis treatment (produce more NAPQI)</li>
+              <li>Reduced glutathione stores: HIV, malnutrition, terminal malignancy</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Metabolism — simplified</h3>
+        <div class="flow">
+          <div class="flow-node">Acetaminophen</div>
+          <div class="flow-row">
+            <div class="flow-path safe">
+              <span class="title">Glucuronidation / sulphation</span>
+              Conjugates formed → excreted (non-toxic)
+            </div>
+            <div class="flow-path tox">
+              <span class="title">Monooxygenase hydroxylation</span>
+              <span class="arrow">→</span> <strong>NAPQI</strong> (toxic metabolite)
+              <div class="flow-sub">Glutathione conjugation → S-glutathione (detoxified)</div>
+              <div class="flow-sub danger"><strong>Glutathione depleted</strong> → reaction with proteins and nucleic acids → <strong>hepatocyte toxicity</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Management</h3>
+        <ul>
+          <li>A recent Cochrane review concluded that <strong>activated charcoal is more effective than gastric lavage or ipecac</strong> in reducing acetaminophen absorption.</li>
+          <li><strong>N-acetylcysteine (NAC)</strong> should be given, but the optimum dosing regimen remains uncertain.</li>
+          <li>NAC may reduce mortality in patients with <strong>fulminant liver failure</strong>.</li>
+          <li>The superiority of NAC over <strong>methionine</strong> is unproven; <strong>5% of patients receiving NAC develop anaphylactoid reactions</strong>.</li>
+          <li>Current Toxbase advice: <strong>high-risk patients should receive NAC at lower plasma acetaminophen concentrations</strong>.</li>
+          <li>Patients who develop fulminant liver failure may be offered life-saving <strong>liver transplantation</strong>; selection criteria need refinement based on long-term outcome data.</li>
+        </ul>
+
+        <h3>Treatment nomogram (simplified)</h3>
+        <figure>
+          <svg viewBox="0 0 520 285" role="img" aria-label="Simplified acetaminophen treatment nomogram showing normal and high-risk treatment lines against hours after ingestion">
+            <!-- horizontal grid (log scale, halving values) -->
+            <line class="grid-line" x1="40" y1="20"     x2="480" y2="20"></line>
+            <line class="grid-line" x1="40" y1="57.6"   x2="480" y2="57.6"></line>
+            <line class="grid-line" x1="40" y1="95.1"   x2="480" y2="95.1"></line>
+            <line class="grid-line" x1="40" y1="132.7"  x2="480" y2="132.7"></line>
+            <line class="grid-line" x1="40" y1="170.3"  x2="480" y2="170.3"></line>
+            <line class="grid-line" x1="40" y1="207.8"  x2="480" y2="207.8"></line>
+            <!-- vertical grid -->
+            <line class="grid-line" x1="40"  y1="20" x2="40"  y2="240"></line>
+            <line class="grid-line" x1="110" y1="20" x2="110" y2="240"></line>
+            <line class="grid-line" x1="180" y1="20" x2="180" y2="240"></line>
+            <line class="grid-line" x1="250" y1="20" x2="250" y2="240"></line>
+            <line class="grid-line" x1="320" y1="20" x2="320" y2="240"></line>
+            <line class="grid-line" x1="390" y1="20" x2="390" y2="240"></line>
+            <line class="grid-line" x1="460" y1="20" x2="460" y2="240"></line>
+            <!-- axes -->
+            <line class="axis-line" x1="40" y1="240" x2="480" y2="240"></line>
+            <line class="axis-line" x1="40" y1="20"  x2="40"  y2="240"></line>
+            <!-- y labels -->
+            <text class="tick-text" x="34" y="23"    text-anchor="end">200</text>
+            <text class="tick-text" x="34" y="60.6"  text-anchor="end">100</text>
+            <text class="tick-text" x="34" y="98.1"  text-anchor="end">50</text>
+            <text class="tick-text" x="34" y="135.7" text-anchor="end">25</text>
+            <text class="tick-text" x="34" y="173.3" text-anchor="end">12.5</text>
+            <text class="tick-text" x="34" y="210.8" text-anchor="end">6.25</text>
+            <!-- x labels -->
+            <text class="tick-text" x="40"  y="254" text-anchor="middle">0</text>
+            <text class="tick-text" x="110" y="254" text-anchor="middle">4</text>
+            <text class="tick-text" x="180" y="254" text-anchor="middle">8</text>
+            <text class="tick-text" x="250" y="254" text-anchor="middle">12</text>
+            <text class="tick-text" x="320" y="254" text-anchor="middle">16</text>
+            <text class="tick-text" x="390" y="254" text-anchor="middle">20</text>
+            <text class="tick-text" x="460" y="254" text-anchor="middle">24</text>
+            <!-- axis titles -->
+            <text class="axis-title" x="260" y="272" text-anchor="middle">Hours after ingestion</text>
+            <text class="axis-title" x="14" y="130" text-anchor="middle" transform="rotate(-90 14 130)">Plasma acetaminophen (mg/L)</text>
+            <!-- 15 h uncertainty marker -->
+            <line class="uncertain" x1="302.5" y1="20" x2="302.5" y2="240"></line>
+            <text class="uncertain-text" x="306" y="234">&gt; 15 h: prognostic accuracy uncertain</text>
+            <!-- treatment lines -->
+            <line class="ln-normal" x1="110" y1="20"    x2="460" y2="207.8"></line>
+            <line class="ln-high"   x1="110" y1="57.6"  x2="425" y2="226.7"></line>
+            <!-- legend -->
+            <rect class="legend-box" x="310" y="22" width="170" height="46" rx="4"></rect>
+            <line class="ln-normal" x1="318" y1="38" x2="344" y2="38"></line>
+            <text class="legend-text" x="350" y="41.5">Normal treatment line</text>
+            <line class="ln-high" x1="318" y1="55" x2="344" y2="55"></line>
+            <text class="legend-text" x="350" y="58.5">High-risk treatment line</text>
+          </svg>
+          <figcaption>Simplified from Fig 2, Acetaminophen nomogram (permission from Prof. P.A. Routledge, Therapeutics and Toxicology Centre, Cardiff University). Always confirm against local protocol / Toxbase.</figcaption>
+        </figure>
+
+        <h3>Indicative plasma thresholds (mg L<sup>−1</sup>)</h3>
+        <div class="table-wrap" style="max-height:none;">
+          <table class="slim">
+            <thead>
+              <tr>
+                <th>Hours after ingestion</th>
+                <th>Normal treatment line</th>
+                <th>High-risk treatment line</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>4</td><td>200</td><td>100</td></tr>
+              <tr><td>6</td><td>141</td><td>71</td></tr>
+              <tr><td>8</td><td>100</td><td>50</td></tr>
+              <tr><td>10</td><td>71</td><td>35</td></tr>
+              <tr><td>12</td><td>50</td><td>25</td></tr>
+              <tr><td>16</td><td>25</td><td>12.5</td></tr>
+              <tr><td>20</td><td>12.5</td><td>6.3</td></tr>
+              <tr><td>24</td><td>6.3</td><td>3.1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="scroll-note">Values plotted on a semi-log scale; the treatment line halves approximately every 4 h. Levels taken &lt; 4 h after ingestion cannot be interpreted against the nomogram.</p>
+      </div>
+    </details>
+
+    <!-- ================= SALICYLATES ================= -->
+    <details class="card" open>
+      <summary>Salicylates</summary>
+      <div class="card-body">
+        <ul>
+          <li><strong>Presentation:</strong> tinnitus, deafness, hyperventilation, epigastric pain, vomiting, hyperthermia, sweating, dehydration, respiratory alkalosis, metabolic acidosis, and electrolyte disturbances.</li>
+          <li><strong>Agitation and confusion may indicate developing cerebral oedema, which can be fatal.</strong></li>
+          <li><strong>Treatment:</strong> rehydration, treatment of acid–base disturbance, and close monitoring of plasma levels.</li>
+          <li>Activated charcoal should be administered <strong>as soon as possible, even in delayed presentations</strong>.</li>
+          <li>The use of multi-dose activated charcoal is <strong>debatable</strong>, but should be considered if the plasma salicylate level continues to increase, or if a slow-release preparation has been taken.</li>
+          <li><strong>Alkalinization of the urine</strong> should be considered in patients with signs of toxicity or with plasma levels <strong>&gt; 300 mg litre<sup>−1</sup></strong>.</li>
+          <li>In patients with levels <strong>&gt; 700 mg litre<sup>−1</sup></strong>, <strong>haemodialysis</strong> should be considered.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= BENZODIAZEPINES ================= -->
+    <details class="card" open>
+      <summary>Benzodiazepines</summary>
+      <div class="card-body">
+        <ul>
+          <li>Deaths associated with benzodiazepine overdose are due to <strong>mixed overdose</strong>, especially alcohol and other drugs.</li>
+          <li>Clinical manifestations: <strong>drowsiness, respiratory depression, dysarthria and ataxia</strong>.</li>
+          <li><strong>Coma is not common</strong> but is most often seen in the elderly or in patients who have ingested alcohol or other drugs.</li>
+          <li>Treatment is <strong>supportive</strong>.</li>
+          <li><strong>Flumazenil is controversial</strong> — it has many side-effects and is rarely indicated. Adverse effects: ventricular tachycardia, raising intracranial pressure, withdrawal in chronic abusers, and seizures if used in the presence of tricyclic antidepressants.</li>
+          <li>It can be used to reverse benzodiazepine coma so as to avoid intubation, but this should be limited to situations of <strong>benzodiazepine-only overdose where no other drugs have been taken</strong>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= OPIATES ================= -->
+    <details class="card" open>
+      <summary>Opiates / opioids</summary>
+      <div class="card-body">
+        <ul>
+          <li>Increasing doses progressively produce <strong>euphoria → pinpoint pupils → sedation → respiratory depression → apnoea</strong>.</li>
+          <li><strong>Complications:</strong> hypotension, convulsions, non-cardiogenic pulmonary oedema, and <strong>compartment syndrome from prolonged immobility</strong>.</li>
+          <li>Where rhabdomyolysis is suspected, measure <strong>serum CK and urinary myoglobin</strong>.</li>
+          <li><strong>Naloxone:</strong> 100 µg boluses i.v. to a maximum of <strong>2 mg</strong>; aim to reverse the opiate effect and reverse respiratory depression.</li>
+          <li>The antidote can precipitate an <strong>acute agitated withdrawal state</strong> — staff should be mindful of their own safety.</li>
+          <li>Routes: i.v., i.m., s.c., or tracheal.</li>
+          <li><strong>Short half-life (20 min if given i.v.)</strong> — an infusion may be needed, since respiratory depression may reoccur.</li>
+          <li>Rarely causes ventricular dysrhythmias, hypertension, and drowsiness at very high doses.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= TCA ================= -->
+    <details class="card" open>
+      <summary>Tricyclic antidepressants (TCA)</summary>
+      <div class="card-body">
+        <ul>
+          <li>Cause <strong>250 fatalities each year in the UK</strong>.</li>
+          <li>Predominant cause of death: <strong>cardiac depression by sodium channel blockade</strong> with resultant decrease in cardiac output.</li>
+          <li><strong>Presentation:</strong> sinus tachycardia, mydriasis, coma, hyperreflexia, convulsions, ECG changes, and hypotension.</li>
+        </ul>
+        <div class="alert">
+          <strong>QRS interval &gt; 120 ms indicates cardiac toxicity</strong> and is predictive of ventricular arrhythmias and seizures.
+        </div>
+        <ul>
+          <li><strong>Treatment:</strong> prevent absorption using activated charcoal.</li>
+          <li><strong>Sodium bicarbonate</strong> — loading dose <strong>8.4% 1–2 ml kg<sup>−1</sup></strong>, followed by an infusion or intermittent bolus.</li>
+          <li>Sodium bicarbonate should be given <strong>even in the absence of a significant metabolic acidosis</strong> — it helps stabilize the Na channels in the myocardium and prevent cardiotoxicity.</li>
+          <li><strong>Convulsions:</strong> benzodiazepines initially; anaesthesia with <strong>propofol</strong> may be required.</li>
+          <li><strong>Phenytoin</strong> is the anti-arrhythmic of choice; <strong>glucagon</strong> can help if there is evidence of myocardial depression.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= SSRI ================= -->
+    <details class="card" open>
+      <summary>Selective serotonin reuptake inhibitors (SSRI) &amp; serotonin syndrome</summary>
+      <div class="card-body">
+        <ul>
+          <li>Drugs include <strong>citalopram, fluoxetine, fluvoxamine, paroxetine, sertraline</strong>.</li>
+          <li>Most common features of overdose: nausea, vomiting, agitation, tremor, nystagmus, drowsiness, dysrhythmias, and mild hypertension.</li>
+          <li><strong>Convulsions have been reported up to 10 h post-ingestion.</strong></li>
+          <li>Co-administration with drugs that release serotonin or affect its reuptake — <strong>cocaine, tricyclics, MAOIs, MDMA</strong> — may result in <strong>serotonin syndrome</strong>.</li>
+        </ul>
+
+        <h3>Serotonin syndrome</h3>
+        <ul>
+          <li><strong>Triad:</strong> altered mental status, neuromuscular hyperactivity, and autonomic instability.</li>
+          <li>Similar in presentation to neuroleptic malignant syndrome — <strong>hyperpyrexia, acidosis, arrhythmias and rhabdomyolysis</strong> are seen.</li>
+          <li>Treatment is supportive but should include <strong>activated charcoal up to 1 h post-ingestion</strong>.</li>
+          <li>Convulsions: <strong>benzodiazepines and phenytoin</strong>.</li>
+          <li><strong>Cyproheptadine and chlorpromazine</strong> are 5-HT<sub>2A</sub> antagonists and have been used successfully, but there are <strong>no controlled trials</strong> supporting either agent.</li>
+          <li>Suspected rhabdomyolysis: urinary alkalinization and volume replacement may reduce renal failure. Fluid resuscitation including <strong>225 mmol of 8.4% sodium bicarbonate over 2 h</strong> is given to increase urine pH to <strong>&gt; 7</strong>.</li>
+          <li>If renal failure occurs, <strong>haemodialysis or haemofiltration</strong> is required.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= METHANOL / ETHYLENE GLYCOL ================= -->
+    <details class="card" open>
+      <summary>Methanol and ethylene glycol</summary>
+      <div class="card-body">
+        <ul>
+          <li>Poisoning results in a <strong>severe high anion gap metabolic acidosis</strong>.</li>
+          <li>Both are metabolized via <strong>alcohol dehydrogenase</strong>, forming acids — <strong>formic</strong> (methanol), <strong>glycolic and oxalic</strong> (ethylene glycol) — which accumulate and are responsible for neurological damage and death.</li>
+          <li><strong>Ethanol</strong> (oral or nasogastric) can be used because of its greater affinity for alcohol dehydrogenase. However, maintaining plasma alcohol levels in the correct range is difficult and time-consuming, particularly if the patient is undergoing dialysis.</li>
+          <li><strong>Fomepizole</strong> blocks the metabolism of methanol and ethylene glycol and can be injected <strong>12-hourly</strong>. It is <strong>expensive and not widely available</strong>.</li>
+          <li>Folate deficiency in primates predicts a poor outcome in methanol toxicity — give <strong>folate 1 mg kg<sup>−1</sup> day<sup>−1</sup> for 48 h</strong>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ================= ANTIDOTES ================= -->
+    <details class="card" open>
+      <summary>Common antidotes</summary>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table class="slim">
+            <thead>
+              <tr>
+                <th>Indicated in poisoning with</th>
+                <th>Antidote</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Benzodiazepines</td><td>Flumazenil</td></tr>
+              <tr><td>Ethylene glycol, methanol</td><td>Fomepizole and ethanol (10% for i.v. use)</td></tr>
+              <tr><td>Organophosphates</td><td>Atropine</td></tr>
+              <tr><td>Warfarin</td><td>Factor II, VII, IX, X concentrate</td></tr>
+              <tr><td>Cyanide</td><td>Dicobalt edetate, hydroxocobalamin</td></tr>
+              <tr><td>Digoxin</td><td>Digibind</td></tr>
+              <tr><td>β-Blockers</td><td>Glucagon</td></tr>
+              <tr><td>Methaemoglobinaemia</td><td>Methylene blue</td></tr>
+              <tr><td>Acetaminophen</td><td><em>N</em>-acetylcysteine</td></tr>
+              <tr><td>Opiate</td><td>Naloxone</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <!-- ================= SUMMARY ================= -->
+    <details class="card" open>
+      <summary>Summary / take-home</summary>
+      <div class="card-body">
+        <ul>
+          <li>Acute poisoning is relatively common and causes significant morbidity and mortality.</li>
+          <li>NPIS and Toxbase provide a <strong>24 h information service</strong> for all aspects of poisoning.</li>
+          <li><strong>Treatment of poisoning remains largely supportive.</strong></li>
+          <li>Few drugs have antidotes — treatment is aimed at <strong>reducing further absorption</strong>, <strong>increasing elimination</strong>, and <strong>treating the side-effects</strong>.</li>
+          <li>Gastric decontamination with activated charcoal is <strong>time-dependent</strong> but can significantly reduce drug absorption.</li>
+          <li><strong>Forced emesis and gastric lavage are no longer recommended.</strong></li>
+        </ul>
+      </div>
+    </details>
+
+  </main>
+
+  <footer class="site">
+    <p><strong>Source:</strong> Ward C, Sair M. <em>Oral poisoning: an update.</em> Continuing Education in Anaesthesia, Critical Care &amp; Pain 2010;10(1):6–10. (BJA Education.)</p>
+    <p>Quick-reference adaptation for anaesthetists and intensivists — clinical content only. Diagrams simplified for screen display. Always check current local protocols and Toxbase / NPIS guidance before treating.</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var content     = document.getElementById("content");
+  var searchInput = document.getElementById("search");
+  var resultCount = document.getElementById("resultCount");
+  var cards       = Array.prototype.slice.call(document.querySelectorAll("details.card"));
+
+  /* remember the initial open/closed state of each card */
+  cards.forEach(function (card) {
+    card.dataset.initialOpen = card.open ? "1" : "0";
+  });
+
+  /* ---------- highlight helpers ---------- */
+  function clearHighlights(root) {
+    var marks = root.querySelectorAll("mark.hl");
+    Array.prototype.forEach.call(marks, function (m) {
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  function highlight(root, term) {
+    if (!term) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var tag = node.parentNode && node.parentNode.nodeName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "MARK") return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(term) !== -1
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var i = 0, idx;
+
+      while ((idx = lower.indexOf(term, i)) !== -1) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement("mark");
+        mark.className = "hl";
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+        i = idx + term.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- filter ---------- */
+  function applyFilter() {
+    var raw = searchInput.value.trim();
+    var q = raw.toLowerCase();
+
+    clearHighlights(content);
+
+    var visible = 0;
+
+    cards.forEach(function (card) {
+      var match = !q || card.textContent.toLowerCase().indexOf(q) !== -1;
+      card.hidden = !match;
+
+      if (match) {
+        visible++;
+        if (q) card.open = true;
+      } else if (!q) {
+        card.open = card.dataset.initialOpen === "1";
+      }
+    });
+
+    if (!q) {
+      resultCount.textContent = "";
+      return;
+    }
+
+    resultCount.textContent = visible === 0
+      ? "No sections match \u201C" + raw + "\u201D"
+      : visible + " of " + cards.length + " sections match \u201C" + raw + "\u201D";
+
+    if (visible > 0) {
+      cards.forEach(function (card) {
+        if (!card.hidden) highlight(card, q);
+      });
+    }
+  }
+
+  /* ---------- events ---------- */
+  var timer = null;
+  searchInput.addEventListener("input", function () {
+    clearTimeout(timer);
+    timer = setTimeout(applyFilter, 140);
+  });
+
+  searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      searchInput.value = "";
+      applyFilter();
+    }
+  });
+
+  document.getElementById("expandAll").addEventListener("click", function () {
+    cards.forEach(function (card) { if (!card.hidden) card.open = true; });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function () {
+    cards.forEach(function (card) { card.open = false; });
+  });
+
+  /* "/" focuses search */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && document.activeElement !== searchInput &&
+        !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) {
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
+
+  applyFilter();
+})();
+</script>
+</body>
+</html>
