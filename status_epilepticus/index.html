@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Epilepsy &amp; Anaesthesia — Quick Reference for Anaesthetists and Intensivists</title>
+<style>
+  :root{
+    --bg:#ffffff; --bg-subtle:#f6f8fa; --fg:#1f2328; --muted:#59636e;
+    --border:#d1d9e0; --border-strong:#b7c0c9; --accent:#0969da;
+    --accent-soft:#ddf4ff; --mark:#fff8c5;
+    --warn-bg:#fff8f0; --warn-border:#f0b849;
+    --danger-bg:#fff1f0; --danger-border:#e5534b;
+    --ok-bg:#f0fff4; --ok-border:#2da44e;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;
+    font-size:16px;line-height:1.55;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 16px 80px;}
+
+  header.site{border-bottom:1px solid var(--border);
+    background:linear-gradient(180deg,#f6f8fa,#ffffff);
+    padding:22px 0 18px;margin-bottom:20px;}
+  header.site .wrap{padding-bottom:0;}
+  h1{font-size:1.5rem;line-height:1.25;margin:0 0 6px;}
+  .sub{color:var(--muted);margin:0 0 14px;font-size:.92rem;}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    position:sticky;top:0;z-index:20;background:var(--bg);
+    padding:10px 0;border-bottom:1px solid var(--border);}
+  .searchbox{position:relative;flex:1 1 340px;min-width:220px;}
+  .searchbox svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.5;}
+  input[type="search"]{width:100%;padding:9px 12px 9px 34px;
+    border:1px solid var(--border-strong);border-radius:8px;
+    font-size:.95rem;background:var(--bg);color:var(--fg);}
+  input[type="search"]:focus{outline:2px solid var(--accent);outline-offset:-1px;}
+  button{padding:8px 12px;border:1px solid var(--border-strong);
+    background:var(--bg-subtle);color:var(--fg);border-radius:8px;
+    font-size:.85rem;font-weight:500;cursor:pointer;white-space:nowrap;}
+  button:hover{background:#eef1f4;}
+  button:active{transform:translateY(1px);}
+  #count{font-size:.82rem;color:var(--muted);margin-left:auto;white-space:nowrap;}
+
+  details.card{border:1px solid var(--border);border-radius:10px;
+    background:var(--bg);margin:0 0 12px;overflow:hidden;}
+  details.card[hidden]{display:none;}
+  details.card > summary{list-style:none;cursor:pointer;
+    padding:12px 16px;background:var(--bg-subtle);
+    font-weight:600;font-size:1rem;display:flex;align-items:center;
+    gap:10px;user-select:none;border-bottom:1px solid transparent;}
+  details.card > summary::-webkit-details-marker{display:none;}
+  details.card > summary::before{content:"";width:0;height:0;
+    border-left:6px solid var(--muted);
+    border-top:5px solid transparent;border-bottom:5px solid transparent;
+    transition:transform .15s ease;flex:0 0 auto;}
+  details.card[open] > summary::before{transform:rotate(90deg);}
+  details.card[open] > summary{border-bottom-color:var(--border);}
+  details.card > summary:hover{background:#eef1f4;}
+  details.card > summary .tag{margin-left:auto;font-size:.7rem;
+    font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+    color:var(--accent);background:var(--accent-soft);
+    border-radius:999px;padding:2px 9px;}
+  .card-body{padding:14px 16px 18px;}
+
+  h3{font-size:.95rem;margin:18px 0 8px;}
+  h3:first-child{margin-top:0;}
+  h4{font-size:.88rem;margin:14px 0 6px;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.04em;}
+  p{margin:0 0 10px;}
+  ul,ol{margin:0 0 10px;padding-left:22px;}
+  li{margin:3px 0;}
+  code{background:var(--bg-subtle);border:1px solid var(--border);
+    border-radius:5px;padding:1px 5px;font-size:.85em;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
+  mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px;}
+  .muted{color:var(--muted);font-size:.87rem;}
+
+  .callout{border:1px solid var(--border);border-left-width:4px;
+    border-radius:8px;padding:10px 14px;margin:12px 0;
+    background:var(--bg-subtle);font-size:.9rem;}
+  .callout p:last-child,.callout ul:last-child{margin-bottom:0;}
+  .callout.key{background:var(--accent-soft);border-color:var(--accent);}
+  .callout.warn{background:var(--warn-bg);border-color:var(--warn-border);}
+  .callout.danger{background:var(--danger-bg);border-color:var(--danger-border);}
+  .callout.ok{background:var(--ok-bg);border-color:var(--ok-border);}
+  .callout strong:first-child{display:block;margin-bottom:2px;}
+
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:1px solid var(--border);border-radius:8px;
+    margin:10px 0 6px;background:var(--bg);}
+  table{border-collapse:collapse;width:100%;min-width:660px;font-size:.87rem;}
+  thead th{background:var(--bg-subtle);text-align:left;font-weight:600;
+    font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;
+    color:var(--muted);padding:9px 12px;
+    border-bottom:1px solid var(--border-strong);white-space:nowrap;}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--border);
+    vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even){background:#fbfcfd;}
+  td.dose{font-weight:600;white-space:nowrap;}
+  .scroll-hint{font-size:.75rem;color:var(--muted);margin:0 0 14px;}
+
+  footer{margin-top:36px;padding-top:18px;
+    border-top:1px solid var(--border);font-size:.85rem;color:var(--muted);}
+  footer h2{font-size:.95rem;color:var(--fg);margin:0 0 8px;}
+  footer ol{padding-left:20px;}
+  footer li{margin:6px 0;}
+  footer a{color:var(--accent);}
+
+  #no-results{border:1px dashed var(--border-strong);border-radius:10px;
+    padding:28px 16px;text-align:center;color:var(--muted);font-size:.92rem;}
+  #no-results[hidden]{display:none;}
+
+  @media (max-width:600px){
+    h1{font-size:1.22rem;}
+    #count{margin-left:0;width:100%;}
+    .card-body{padding:12px 12px 16px;}
+    table{font-size:.82rem;}
+    thead th,tbody td{padding:8px 9px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <h1>Epilepsy &amp; Anaesthesia — Quick Reference</h1>
+    <p class="sub">
+      For anaesthetists and intensivists · Perioperative and critical care management of patients with epilepsy.
+      <br><span class="muted">Press <code>/</code> to search · click any heading to expand · tables scroll sideways.</span>
+    </p>
+
+    <div class="toolbar">
+      <div class="searchbox">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.5 4.5 0 1 0-9 0 4.5 4.5 0 0 0 9 0Z"/>
+        </svg>
+        <input id="search" type="search" placeholder="Search: status epilepticus, propofol, lamotrigine, midazolam…" autocomplete="off" aria-label="Search">
+      </div>
+      <button id="expand-all" type="button">Expand all</button>
+      <button id="collapse-all" type="button">Collapse all</button>
+      <span id="count" aria-live="polite"></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="content">
+
+  <!-- ============ 1. BACKGROUND ============ -->
+  <details class="card" open>
+    <summary>1 · Epilepsy — key facts for anaesthetists <span class="tag">Basics</span></summary>
+    <div class="card-body">
+      <h3>Epidemiology</h3>
+      <ul>
+        <li>~50 million people worldwide; estimated prevalence of active epilepsy <strong>4–10 per 1000</strong>.</li>
+        <li>In the UK, ~<strong>600,000</strong> people have a diagnosis of epilepsy and take antiepileptic medication.</li>
+        <li>All anaesthetists will regularly encounter patients with epilepsy.</li>
+      </ul>
+
+      <h3>Diagnosis</h3>
+      <ul>
+        <li>Conventionally diagnosed after <strong>two unprovoked seizures occurring at least 24 h apart</strong>.</li>
+        <li>After two non-febrile seizures, <strong>&gt;70%</strong> will have another seizure within 4 years; only 40–50% after a single unprovoked seizure.</li>
+        <li>Relies on convincing history, witnessed seizures, EEG and neuroimaging (CT/MRI).</li>
+        <li><strong>&gt;60%</strong> may have normal investigations (idiopathic epilepsy) — diagnosis is often difficult.</li>
+        <li>Believed that <strong>5–30%</strong> of people diagnosed with epilepsy in the UK may have an incorrect diagnosis.</li>
+      </ul>
+
+      <h3>Classification</h3>
+      <p>More than <strong>40 different types</strong> of epilepsy (≥29 syndromes + ~12 clinically distinct groups). Common causes include congenital neurological/metabolic conditions, traumatic brain injury, stroke, brain tumours and CNS infections.</p>
+      <p>Seizures are subdivided into <strong>focal</strong> (limited to one hemisphere) and <strong>generalized</strong> (rapidly engage bilaterally distributed networks).</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Seizure type</th><th>UK prevalence</th></tr></thead>
+          <tbody>
+            <tr><td>Tonic–clonic</td><td>60%</td></tr>
+            <tr><td>Complex focal</td><td>20%</td></tr>
+            <tr><td>Mixed (several types)</td><td>12%</td></tr>
+            <tr><td>Simple focal</td><td>3%</td></tr>
+            <tr><td>Other</td><td>&lt;5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">← scroll table horizontally on small screens →</p>
+
+      <h3>Prognosis</h3>
+      <ul>
+        <li>Idiopathic epilepsy with well-controlled seizures → normal lifespan.</li>
+        <li>Poor seizure control → higher incidence of accidents, suicides and <strong>SUDEP</strong> (sudden unexpected death in epilepsy).</li>
+        <li><strong>SUDEP risk factors:</strong> male sex, long duration of epilepsy, frequent tonic–clonic seizures, AED polytherapy.</li>
+        <li>Patients should be counselled on treatment and lifestyle choices to avoid poor seizure control and minimise SUDEP risk.</li>
+      </ul>
+
+      <div class="callout key">
+        <strong>Remission definition (NICE NG217)</strong>
+        Individuals are no longer considered to have epilepsy if they have remained <strong>seizure-free for at least 10 years off antiepileptic medicines</strong>, with no known risk factors associated with a high probability (≥75%) of future seizures.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 2. AEDs ============ -->
+  <details class="card">
+    <summary>2 · Antiepileptic drugs (AEDs) — mechanisms &amp; perioperative implications <span class="tag">Pharmacology</span></summary>
+    <div class="card-body">
+
+      <h3>Mechanism of action</h3>
+      <p>AEDs work via either <strong>suppression of excitatory impulses</strong> or <strong>facilitation of inhibitory impulses</strong> in the brain.</p>
+
+      <h4>Excitatory synapse targets</h4>
+      <ul>
+        <li><strong>Voltage-gated Na⁺ channels:</strong> phenytoin, carbamazepine, valproic acid, felbamate, rufinamide, lamotrigine, lacosamide, topiramate, zonisamide, oxcarbazepine.</li>
+        <li><strong>α2δ subunit of L-type Ca²⁺ channels:</strong> gabapentin, pregabalin.</li>
+        <li><strong>SV2A:</strong> levetiracetam.</li>
+        <li><strong>AMPA/kainate receptors:</strong> topiramate.</li>
+        <li><strong>NMDA receptor (K⁺ efflux):</strong> felbamate.</li>
+      </ul>
+
+      <h4>Inhibitory synapse targets</h4>
+      <ul>
+        <li><strong>GABA-T (GABA transaminase):</strong> vigabatrin (irreversible).</li>
+        <li><strong>GAT1 (GABA transporter):</strong> tiagabine.</li>
+        <li><strong>GABA-A receptor:</strong> benzodiazepines, barbiturates, felbamate, topiramate, zonisamide.</li>
+      </ul>
+
+      <h3>Common AEDs — key characteristics</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Drug</th><th>Protein binding</th><th>Enzyme effect</th><th>Half-life (h)</th><th>Key adverse effects</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Carbamazepine</td><td>75%</td><td>Broad-spectrum inducer</td><td>9–15</td><td>Diplopia, nystagmus, ataxia, hyponatraemia, rash</td></tr>
+            <tr><td>Clonazepam</td><td>85%</td><td>Induces CYP2B</td><td>20–60</td><td>Sedation</td></tr>
+            <tr><td>Ethosuximide</td><td>0%</td><td>None</td><td>30–60</td><td>Nausea, vomiting, drowsiness, ataxia</td></tr>
+            <tr><td>Gabapentin</td><td>0%</td><td>None</td><td>5–7</td><td>Drowsiness, encephalopathy, weight gain, oedema</td></tr>
+            <tr><td>Lamotrigine</td><td>55%</td><td>Induces UGTs</td><td>12–62</td><td>Rash, Stevens–Johnson syndrome (especially with valproate)</td></tr>
+            <tr><td>Levetiracetam</td><td>&lt;10%</td><td>None</td><td>6–8</td><td>Irritability, behaviour change, somnolence</td></tr>
+            <tr><td>Oxcarbazepine</td><td>40%</td><td>Mixed inducer/inhibitor</td><td>9</td><td>Hyponatraemia, rash, interaction with OCPs</td></tr>
+            <tr><td>Phenobarbital</td><td>45%</td><td>Broad-spectrum inducer</td><td>75–110</td><td>Sedation, respiratory depression, hypotension</td></tr>
+            <tr><td>Phenytoin</td><td>90%</td><td>Broad-spectrum inducer</td><td>9–36</td><td>Gingival hyperplasia, hirsutism, hypotension/arrhythmias (i.v.)</td></tr>
+            <tr><td>Topiramate</td><td>15%</td><td>Mixed inducer/inhibitor</td><td>12–24</td><td>Nephrolithiasis, metabolic acidosis, language dysfunction</td></tr>
+            <tr><td>Valproate</td><td>90%</td><td>Broad-spectrum inhibitor</td><td>6–18</td><td>Thrombocytopenia, hepatic failure, weight gain</td></tr>
+            <tr><td>Vigabatrin</td><td>0%</td><td>None</td><td>5–7</td><td>Visual field defects, weight gain</td></tr>
+            <tr><td>Zonisamide</td><td>40%</td><td>None</td><td>63</td><td>Nephrolithiasis, rash, irritability</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">← scroll table horizontally on small screens →</p>
+
+      <div class="callout warn">
+        <strong>Perioperative principle</strong>
+        Minimise disruption to AED regimes. Ensure the patient has taken their scheduled AED on the morning of surgery. If the patient cannot resume oral AEDs postoperatively, seek early neurology input — i.v. forms of phenytoin, sodium valproate and levetiracetam exist; carbamazepine can be given rectally.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 3. PREOP ============ -->
+  <details class="card">
+    <summary>3 · Preoperative evaluation <span class="tag">Clinical</span></summary>
+    <div class="card-body">
+      <h3>Specific considerations in patients with epilepsy</h3>
+
+      <h4>Associated comorbidities</h4>
+      <ul>
+        <li>For epilepsy of defined aetiology, there may be important effects on other organ systems.</li>
+        <li>Congenital syndromes often have multisystem involvement.</li>
+        <li>Epilepsy secondary to stroke is associated with other significant cardiovascular disease.</li>
+      </ul>
+
+      <h4>Seizure type and frequency</h4>
+      <ul>
+        <li>Establish how well epilepsy is controlled to predict risk of postoperative seizure.</li>
+        <li>Awareness of the patient's normal seizure pattern helps determine if postoperative events are part of their underlying disorder.</li>
+      </ul>
+
+      <h4>Antiepileptic medication</h4>
+      <ul>
+        <li>Establish current drug therapy, dosage regimes, time of most recent dose, and any recent changes.</li>
+        <li>Minimise disruption to treatment regimes.</li>
+        <li>Ensure the patient has taken their scheduled medication on the morning of surgery.</li>
+      </ul>
+
+      <h4>Driving licence status</h4>
+      <ul>
+        <li>Patients with epilepsy may hold a driving licence if <strong>seizure-free for 1 year</strong> (or seizures only in sleep, or simple focal seizures with no functional impairment).</li>
+        <li>A perioperative seizure in a licence holder has significant implications.</li>
+        <li>DVLA provides detailed advice (www.gov.uk/government/organisations/driver-and-vehicle-licensing-agency).</li>
+      </ul>
+
+      <h4>Preoperative tests</h4>
+      <ul>
+        <li>Follow NICE guidelines based on age, surgical severity and ASA status.</li>
+        <li><strong>No specific recommendations for routine AED level measurement.</strong> Exceptions: poorly controlled epilepsy, history of unstable AED levels, and before major gastrointestinal surgery to establish baseline levels.</li>
+        <li>Consultation with the patient's neurologist is probably appropriate in such circumstances.</li>
+      </ul>
+
+      <div class="callout key">
+        <strong>NICE NG217 — referral after first seizure</strong>
+        Refer urgently (within 2 weeks) for assessment after a first suspected seizure. In adults, refer to a clinician with expertise in assessing first seizures and diagnosing epilepsy.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 4. INTRAOP ============ -->
+  <details class="card">
+    <summary>4 · Conduct of anaesthesia — agent choice &amp; interactions <span class="tag">Clinical</span></summary>
+    <div class="card-body">
+
+      <h3>I.V. anaesthetic agents</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Agent</th><th>Recommendation</th><th>Rationale</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Thiopental</strong></td><td>Safe — established treatment for refractory status epilepticus</td><td>Powerful anticonvulsant at anaesthetic doses</td></tr>
+            <tr><td><strong>Propofol</strong></td><td>Widely used — safe</td><td>Anticonvulsant at anaesthetic doses; excitatory movements on induction/emergence are usually easy to distinguish from seizures</td></tr>
+            <tr><td><strong>Etomidate</strong></td><td><strong>Avoid</strong></td><td>Reported more frequent postoperative seizures; prolongs seizures in ECT</td></tr>
+            <tr><td><strong>Ketamine</strong></td><td><strong>Avoid as co-induction</strong> — proconvulsant at low doses; anticonvulsant at anaesthetic doses</td><td>Proconvulsant properties at low doses</td></tr>
+            <tr><td><strong>Benzodiazepines</strong></td><td><strong>Safe</strong></td><td>Potent anticonvulsants</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">← scroll table horizontally on small screens →</p>
+
+      <h3>Inhalation anaesthetics</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Agent</th><th>Recommendation</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nitrous oxide</strong></td><td>Safe</td><td>Provokes seizures in animal models but not replicated in humans</td></tr>
+            <tr><td><strong>Most volatile agents</strong></td><td>Safe</td><td>Cause burst suppression on EEG</td></tr>
+            <tr><td><strong>Enflurane</strong></td><td><strong>Avoid</strong></td><td>Can produce epileptiform discharges and postoperative seizures</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Opioids</h3>
+      <ul>
+        <li>All possess some degree of proconvulsant activity (used to enhance EEG activity during seizure focus localisation).</li>
+        <li>Most have a long history of safe use.</li>
+        <li><strong>Alfentanil:</strong> particularly potent enhancer of EEG activity — <strong>avoid or use with caution</strong>.</li>
+        <li><strong>Meperidine (pethidine):</strong> <strong>avoid</strong> — metabolite normeperidine is a potent proconvulsant.</li>
+        <li><strong>Tramadol:</strong> <strong>avoid</strong> — lowers seizure threshold (inhibits monoamine reuptake).</li>
+      </ul>
+
+      <h3>Neuromuscular blockers</h3>
+      <ul>
+        <li><strong>Succinylcholine:</strong> safe (except after prolonged status epilepticus — may cause dangerous hyperkalaemia).</li>
+        <li><strong>Non-depolarising NMBs:</strong> safe, but enzyme-inducing AEDs may cause <strong>resistance to aminosteroid NMBs</strong> (rocuronium, pancuronium, vecuronium). Monitor neuromuscular block with a nerve stimulator — dose and frequency may need adjustment.</li>
+        <li><strong>Laudanosine</strong> (atracurium metabolite): epileptogenic potential, but seizures only reported in animal studies.</li>
+      </ul>
+
+      <h3>Antiemetics</h3>
+      <div class="callout danger">
+        <strong>Avoid dopamine antagonists</strong>
+        Phenothiazines (prochlorperazine), benzamides (metoclopramide) and butyrophenones (droperidol) are associated with extrapyramidal effects and acute dystonic reactions that may be confused with seizure activity.
+      </div>
+
+      <h3>Local anaesthetics</h3>
+      <ul>
+        <li>Regional techniques are <strong>safe</strong> and may help minimise disruption of normal AED regimes.</li>
+        <li>Pay close attention to safe dosing — local anaesthetics can readily cross the blood–brain barrier and cause seizures if plasma levels are too high.</li>
+      </ul>
+
+      <h3>Seizures under anaesthesia</h3>
+      <p>Relatively rare, but may occur with poorly controlled epilepsy or high-risk surgery (e.g. neurosurgery). Difficult to diagnose, especially if NMBs have been used.</p>
+      <h4>Suggestive signs</h4>
+      <ul>
+        <li>Increasing end-tidal CO₂</li>
+        <li>Tachycardia, hypertension</li>
+        <li>Increased muscle tone, pupillary dilatation</li>
+        <li>Increased oxygen consumption</li>
+      </ul>
+      <h4>Immediate management</h4>
+      <ul>
+        <li>Deepen anaesthesia</li>
+        <li>100% oxygen</li>
+        <li>Correct precipitating factors: hypoglycaemia, hypoxia, hypercarbia</li>
+        <li>Consider differential diagnoses</li>
+        <li>EEG may help with diagnosis if available</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 5. POSTOP ============ -->
+  <details class="card">
+    <summary>5 · Postoperative care &amp; seizures <span class="tag">Clinical</span></summary>
+    <div class="card-body">
+
+      <h3>Postoperative care priorities</h3>
+      <ul>
+        <li>Minimise disruption of normal AED regime.</li>
+        <li>I.V. forms of phenytoin, sodium valproate and levetiracetam exist; carbamazepine can be given rectally.</li>
+        <li>Seek early neurologist input if the patient is likely to be unable to resume oral AEDs.</li>
+      </ul>
+
+      <h3>Drug interactions to consider when prescribing</h3>
+      <ul>
+        <li><strong>Enzyme-inducing AEDs</strong> can reduce serum concentrations of multiple drugs, including some antimicrobials, paracetamol and fentanyl.</li>
+        <li>Conversely, some antimicrobials can increase AED serum concentrations by inhibiting metabolism → risk of AED toxicity.</li>
+        <li>Highly protein-bound AEDs can compete with other protein-bound drugs for binding sites, altering free drug levels.</li>
+        <li>Avoid proconvulsant drugs: tramadol, meperidine, ketamine.</li>
+        <li>Avoid dopamine antagonists (haloperidol, antiemetics) — extrapyramidal side-effects.</li>
+        <li><strong>Check all postoperative medications for safety before prescribing.</strong></li>
+      </ul>
+
+      <h3>Postoperative seizures — differential diagnosis</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Category</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Epileptic seizure</strong></td><td>Underlying epilepsy; post-neurosurgery; eclampsia; metabolic disturbance; alcohol withdrawal</td></tr>
+            <tr><td><strong>Non-epileptic</strong></td><td>Postoperative shivering; acute dystonic drug reaction (dopamine antagonists); psychogenic non-epileptic seizure; syncopal episode</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">← scroll table horizontally on small screens →</p>
+
+      <h3>Management of postoperative seizures</h3>
+      <ul>
+        <li>ABC approach; determine likely cause; terminate seizures with benzodiazepines.</li>
+        <li>If seizure resolution does not occur with benzodiazepine therapy, give a <strong>loading dose of phenytoin (18 mg/kg)</strong> and seek neurology advice.</li>
+        <li>Patients with known epilepsy should be informed of the event — may affect driving/lifestyle.</li>
+        <li>In patients without known epilepsy: correct precipitating factors (metabolic disturbances, drug effects) and refer for urgent neurology opinion.</li>
+        <li>Diagnosis of a first seizure postoperatively should be made cautiously — multiple other pathologies may mimic a seizure.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 6. STATUS EPILEPTICUS ============ -->
+  <details class="card">
+    <summary>6 · Status epilepticus — definition, management ladder &amp; ICU care <span class="tag">Critical care</span></summary>
+    <div class="card-body">
+
+      <h3>Definition</h3>
+      <ul>
+        <li>Conventionally: <strong>&gt;30 min</strong> of continuous seizure activity or sequential seizures without full recovery of consciousness between seizures.</li>
+        <li>Recognised that after <strong>5 min</strong> of continuous seizure activity, spontaneous resolution is unlikely — treatment advised to start at this time point.</li>
+        <li><strong>Refractory SE:</strong> fails to respond to benzodiazepines and first-line antiepileptics.</li>
+        <li><strong>Super-refractory SE:</strong> seizure activity on EEG continues despite general anaesthesia.</li>
+        <li><strong>Non-convulsive SE (NCSE):</strong> EEG evidence of uncontrolled seizures without clinically apparent tonic–clonic convulsions. May occur with uncontrolled absence or complex partial seizures, or in unconscious ICU patients. Underlying aetiology in ICU: advanced CSE or underlying neurological condition (encephalitis, TBI, post-cardiac arrest).</li>
+      </ul>
+
+      <div class="callout danger">
+        <strong>Complications of refractory CSE</strong>
+        Excitotoxic CNS injury, hyperthermia, pulmonary oedema, arrhythmias, cardiovascular collapse, metabolic derangement, acute kidney and liver injury, rhabdomyolysis, fractures. High mortality — less than one-third return to premorbid functioning.
+      </div>
+
+      <h3>Emergency pharmacological management ladder</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Stage</th><th>Timing</th><th>Treatment</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Premonitory</strong></td>
+              <td>Prehospital or &lt;5 min</td>
+              <td>Diazepam 10–20 mg PR (can repeat once after 15 min)<br><em>OR</em><br>Midazolam 10 mg buccally</td>
+            </tr>
+            <tr>
+              <td><strong>Early</strong></td>
+              <td>5–10 min</td>
+              <td>Lorazepam 0.1 mg/kg i.v. (can repeat once after 10–20 min)<br>Give usual AEDs if already on treatment<br>Glucose 50 mL 50% i.v. and thiamine 250 mg i.v. if alcohol abuse/malnutrition</td>
+            </tr>
+            <tr>
+              <td><strong>Established</strong></td>
+              <td>5–30 min</td>
+              <td>Phenytoin i.v. 15–18 mg/kg at 50 mg/min<br><em>OR</em> fosphenytoin i.v. 15–20 mg PE/kg at 50–100 mg PE/min<br><em>OR</em> phenobarbital i.v. 10–15 mg/kg at 100 mg/min<br><em>OR both</em></td>
+            </tr>
+            <tr>
+              <td><strong>Refractory</strong></td>
+              <td>&gt;30 min</td>
+              <td>General anaesthesia: propofol, thiopentone, midazolam, or ketamine<br>Continue for 12–24 h after last clinical or EEG seizure, then taper</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">← scroll table horizontally on small screens →</p>
+
+      <h3>NICE NG217 — status epilepticus recommendations</h3>
+      <ul>
+        <li>Provide resuscitation and <strong>immediate emergency treatment</strong> for convulsive status epilepticus (seizures ≥5 min).</li>
+        <li>Follow the person's individualised emergency management plan if immediately available.</li>
+        <li>If no plan: give a benzodiazepine (buccal midazolam or rectal diazepam) immediately as first-line in the community, <em>or</em> use <strong>i.v. lorazepam</strong> if i.v. access and resuscitation facilities are immediately available.</li>
+        <li>If no response to first benzodiazepine dose: call emergency services (community) or seek expert guidance (hospital). Give a <strong>second dose of benzodiazepine</strong> if seizure does not stop within 5–10 min.</li>
+        <li>If no response to <strong>2 doses of benzodiazepine</strong>, give i.v. second-line treatment: <strong>levetiracetam, phenytoin, or sodium valproate</strong>. Levetiracetam may be quicker to administer and have fewer adverse effects.</li>
+        <li>If no response to second-line: consider an <strong>alternative second-line option</strong> under expert guidance.</li>
+        <li>If no response to second-line options: consider third-line under expert guidance — <strong>phenobarbital or general anaesthesia</strong>.</li>
+        <li>After an episode, agree an emergency management plan if not already in place and there is concern SE may recur.</li>
+      </ul>
+
+      <h3>ICU management (derangedphysiology.com / ICS guidance)</h3>
+      <ul>
+        <li><strong>First line:</strong> benzodiazepine boluses every 2–5 min (lorazepam appears superior) — <strong>earlier is better</strong>; late benzodiazepine therapy is less effective.</li>
+        <li><strong>Second line:</strong> midazolam infusion; phenytoin/fosphenytoin; phenobarbital; levetiracetam.</li>
+        <li><strong>Third line (refractory):</strong> propofol infusion, midazolam infusion, or thiopentone infusion. <strong>Continuous EEG monitoring becomes mandatory</strong> at this stage.</li>
+        <li>No clear evidence that any general anaesthetic agent is superior in refractory SE. Propofol may wear off faster and offer a better chance of early extubation.</li>
+        <li>Once burst suppression is achieved, there is probably <strong>no benefit from adding more traditional antiepileptic drugs</strong>.</li>
+        <li>Once seizures resolve, wait <strong>12 hours</strong> before weaning the anaesthetic infusion.</li>
+        <li><strong>Fourth line:</strong> little evidence.</li>
+        <li><strong>Fifth line:</strong> hypothermia, ketogenic diet, deep brain stimulation, surgical management (e.g. callosotomy).</li>
+      </ul>
+
+      <div class="callout key">
+        <strong>ICS 2025 guidance (Mullhi et al.)</strong>
+        The Intensive Care Society has published a comprehensive, multi-specialty framework for the acute management of SE in adult patients, covering both the acute ward and ICU. It emphasises early management and an investigative framework to determine the underlying aetiology.
+      </div>
+
+      <h3>Emergency investigations for SE</h3>
+      <ul>
+        <li>Arterial blood gases</li>
+        <li>Venous blood: glucose, calcium, magnesium, renal and liver function, full blood count, clotting screen, AED level assay, toxicology screen</li>
+        <li>Microbiology, lumbar puncture and brain imaging as indicated by presentation and likely aetiology</li>
+        <li><strong>EEG</strong> is useful to monitor seizure activity in the anaesthetised and paralysed patient</li>
+        <li>Seek neurologist opinion if non-epileptic seizures are suspected</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7. EPILEPSY SURGERY ============ -->
+  <details class="card">
+    <summary>7 · Anaesthesia for epilepsy surgery <span class="tag">Specialist</span></summary>
+    <div class="card-body">
+      <h3>Overview</h3>
+      <ul>
+        <li>Patients with epilepsy refractory to AEDs may be suitable for surgery to remove the epileptogenic foci.</li>
+        <li>Two situations: <strong>implantation of intracranial electrodes</strong> and <strong>resection of the epileptic focus</strong>.</li>
+      </ul>
+
+      <h3>Electrode implantation surgery</h3>
+      <ul>
+        <li>Commonly performed under general anaesthesia with propofol or low levels of inhaled agent.</li>
+        <li>Generally recommended that <strong>benzodiazepines be avoided</strong> to prevent abolition of interictal epileptiform activity.</li>
+        <li>Intraoperative pharmacoactivation (to encourage seizure activity under anaesthesia to identify the seizure focus) may occasionally precipitate generalised seizures.</li>
+        <li>Management of generalised seizures: cold saline to exposed brain, small doses of propofol (10–30 mg), or anticonvulsant drugs, or both.</li>
+        <li>Patients subsequently undergo telemetry monitoring to localise the focus before planned craniotomy and resection.</li>
+      </ul>
+
+      <h3>Resection surgery</h3>
+      <ul>
+        <li>Often had accurate presurgical localisation using CT, MRI, SPECT, PET, MEG, and may have intracortical/subdural electrodes in situ.</li>
+        <li>Facilitated by general anaesthesia or local anaesthesia (“awake craniotomy”) if indicated.</li>
+        <li>Awake craniotomy may be preferable when the epileptogenic zone is anatomically close to eloquent areas — allows cognitive testing to identify critical functional regions.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 8. SPECIAL POPULATIONS ============ -->
+  <details class="card">
+    <summary>8 · Special populations — pregnancy, children, comorbidities <span class="tag">Clinical</span></summary>
+    <div class="card-body">
+
+      <h3>Women of childbearing age</h3>
+      <ul>
+        <li>Counsel regarding risk of teratogenicity from AEDs and potential interaction between AEDs and oral contraceptive drugs.</li>
+        <li>Some AEDs linked to fetal malformations; data especially from newer drugs are limited.</li>
+        <li>There are <strong>definite risks to the fetus and mother if a woman has a tonic–clonic seizure during pregnancy</strong>.</li>
+        <li>2006–8 UK Confidential Enquiries into Maternal Deaths recorded <strong>14 deaths during pregnancy as a consequence of epilepsy</strong>.</li>
+        <li>Decisions regarding epilepsy treatment during pregnancy are complex — consult a neurologist and obstetrician.</li>
+      </ul>
+
+      <div class="callout warn">
+        <strong>MHRA safety measures (NICE NG217)</strong>
+        <ul>
+          <li><strong>Valproate:</strong> Must not be started for the first time in people (male or female) younger than 55 years, unless 2 specialists independently agree and document no other effective/tolerated treatment.</li>
+          <li><strong>Women and girls of childbearing potential:</strong> Valproate only if other treatment options are unsuccessful, risks/benefits fully discussed, and the Pregnancy Prevention Programme is in place.</li>
+          <li><strong>Men:</strong> Advise effective contraception (condoms plus contraception used by a female sexual partner) throughout valproate treatment and for 3 months after stopping. Men planning a family within the next year should discuss potential fertility risks and treatment options.</li>
+          <li><strong>Topiramate:</strong> Should not be used in women and girls of childbearing potential unless the conditions of the Pregnancy Prevention Programme are fulfilled.</li>
+        </ul>
+      </div>
+
+      <h3>Pregnancy monitoring</h3>
+      <ul>
+        <li>Refer women and girls with epilepsy who are planning pregnancy or are pregnant to an <strong>epilepsy specialist team</strong> for review of AED options.</li>
+        <li>Ensure information about care during pregnancy is shared between the epilepsy specialist team, specialist obstetric team and primary care.</li>
+        <li>Explain the importance of adherence — do not stop medication without medical supervision.</li>
+        <li>For those taking carbamazepine, lamotrigine, levetiracetam, oxcarbazepine, phenobarbital or phenytoin, monitor and adjust dosages following MHRA safety advice.</li>
+        <li>If dosing is changed during pregnancy, make an antenatal plan to return to pre-conception dosages — begin in the first few days after birth.</li>
+      </ul>
+
+      <h3>Children</h3>
+      <ul>
+        <li>Refer all children under 3 years with suspected or confirmed epilepsy to a tertiary paediatric epilepsy service within 2 weeks.</li>
+        <li>Children under 4 years with myoclonic seizures should be referred to a tertiary paediatric neurologist.</li>
+        <li>Infantile spasms: seek guidance from and refer to a tertiary paediatric neurologist within 24 hours.</li>
+      </ul>
+
+      <h3>Comorbidities</h3>
+      <ul>
+        <li>Higher prevalence of mental health difficulties, learning disabilities, neurodevelopmental comorbidities (ADHD, autism) and dementia, and higher risk of suicide in people with epilepsy.</li>
+        <li>Provide coordinated care using a multidisciplinary team approach.</li>
+        <li>Review neurodevelopment, cognitive function, mental health, social and emotional wellbeing, and learning disabilities as part of routine management.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 9. SUDEP ============ -->
+  <details class="card">
+    <summary>9 · SUDEP &amp; reducing epilepsy-related death <span class="tag">Safety</span></summary>
+    <div class="card-body">
+      <h3>SUDEP — key points</h3>
+      <ul>
+        <li>Sudden death of a seemingly healthy individual with epilepsy, usually during or immediately after a tonic–clonic seizure.</li>
+        <li>Mechanisms incompletely understood: seizure-related respiratory depression, cardiac arrhythmias, cerebral depression, autonomic dysfunction all implicated.</li>
+        <li>Risk factors: male sex, long duration of epilepsy, frequent tonic–clonic seizures, AED polytherapy.</li>
+        <li>Lifetime risk estimated between <strong>7% and 12%</strong>; higher in severe drug-resistant epilepsy, particularly with uncontrolled tonic–clonic seizures.</li>
+      </ul>
+
+      <h3>Potentially modifiable risk factors (NICE NG217)</h3>
+      <ul>
+        <li>Non-adherence to medication</li>
+        <li>Alcohol and drug misuse</li>
+        <li>Focal to bilateral tonic–clonic or generalised tonic–clonic seizures</li>
+        <li>Uncontrolled seizures</li>
+        <li>Living alone</li>
+        <li>Sleeping alone without supervision</li>
+      </ul>
+
+      <h3>Interventions</h3>
+      <ul>
+        <li>Discuss individual risk of epilepsy-related death (including SUDEP) from diagnosis onwards.</li>
+        <li>Support people to take medications as prescribed.</li>
+        <li>Discuss night-time supervision or monitors for those with nocturnal seizures at higher risk.</li>
+        <li>Explain that uncontrolled seizures increase the risk of epilepsy-related death, particularly for generalised tonic–clonic or focal to bilateral tonic–clonic seizures.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 10. SERVICE & TRANSITION ============ -->
+  <details class="card">
+    <summary>10 · Service provision, monitoring &amp; transition <span class="tag">Systems</span></summary>
+    <div class="card-body">
+
+      <h3>Monitoring and review</h3>
+      <ul>
+        <li>Arrange regular (<strong>at least annual</strong>) monitoring reviews for adults with epilepsy and: a learning disability; drug-resistant epilepsy; high SUDEP risk; serious comorbidity; taking AEDs with long-term side effects or drug interactions (including sodium valproate); or women/girls taking high-risk teratogenic AEDs.</li>
+        <li>Children and young people: agree a frequency of regular reviews, <strong>at least every 12 months</strong>.</li>
+        <li>Consider monitoring AED levels if: uncontrolled seizures; side effects; specific clinical condition needing closer supervision (e.g. pregnancy, renal failure); or poor adherence.</li>
+      </ul>
+
+      <h3>Discontinuing AEDs</h3>
+      <ul>
+        <li>After <strong>2 years seizure-free</strong>, carry out an individualised assessment of risk of seizure recurrence if AEDs are discontinued.</li>
+        <li>Discuss individualised risk, preferences and lifestyle (including driving implications).</li>
+        <li>If discontinuing: reduce gradually — typically over <strong>at least 3 months</strong> for most medicines; longer for benzodiazepines and barbiturates.</li>
+        <li>For multiple AEDs, discontinue one at a time.</li>
+        <li>If seizures recur during or after discontinuation, reverse the last dose reduction and seek guidance from the epilepsy specialist.</li>
+        <li>After epilepsy surgery, discontinue AEDs under the guidance of the epilepsy surgery centre.</li>
+      </ul>
+
+      <h3>Epilepsy specialist nurses</h3>
+      <ul>
+        <li>Ensure all people with epilepsy have access to an epilepsy specialist nurse — central role in information, education and support; point of contact for other services.</li>
+        <li>Offer an information and care-planning session including emotional wellbeing and self-management strategies.</li>
+        <li>For people with ongoing seizures, offer epilepsy specialist nurse sessions <strong>at least twice a year</strong> and after emergency department visits.</li>
+      </ul>
+
+      <h3>Transition from children's to adults' services</h3>
+      <ul>
+        <li>Involve young people in planning their transition; tailor individually.</li>
+        <li>Begin planning early for those with complex or additional needs.</li>
+        <li>Paediatric and adult multidisciplinary teams should jointly review diagnosis and management plan.</li>
+        <li>Cover: driving, sports, adherence, comorbidities, education/work, emotional wellbeing, independent living, effects on neurodevelopment, alcohol/drug risks, safety/SUDEP, reproductive health, sleep, social aspects and stigma.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div id="no-results" hidden>No sections match your search. Try a different term.</div>
+
+</main>
+
+<footer class="wrap">
+  <h2>Sources</h2>
+  <ol>
+    <li>
+      <strong>Perks A, Cheema S, Mohanraj R.</strong> Anaesthesia and epilepsy. <em>Br J Anaesth</em> 2012; 108: 562–71.
+      (Adult epilepsy and anaesthesia — key points, perioperative management, drug interactions, status epilepticus.)
+    </li>
+    <li>
+      <strong>National Institute for Health and Care Excellence.</strong> Epilepsies in children, young people and adults.
+      NICE guideline NG217. Published 27 April 2022; last updated 5 August 2026.
+      www.nice.org.uk/guidance/ng217
+    </li>
+    <li>
+      <strong>Mullhi R, Hayton T, Midgley-Hunt A, Trimble M, Chaudhary UJ, Samarasekera S, France J, Veenith T.</strong>
+      Guidance for: The acute management of status epilepticus in adult patients. <em>J Intensive Care Soc</em> 2025 May 8;26(2):249–262.
+      doi:10.1177/17511437251321338.
+    </li>
+    <li>
+      <strong>Deranged Physiology.</strong> Management of Status Epilepticus in ICU.
+      <a href="https://derangedphysiology.com/main/required-reading/neurological-intensive-care/Chapter-311/management-status-epilepticus-icu">derangedphysiology.com</a>
+    </li>
+  </ol>
+  <p class="muted">
+    Quick reference for trained clinicians only. Always check current local guidelines and the full source documents before prescribing.
+  </p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var cards   = Array.prototype.slice.call(document.querySelectorAll("main details.card"));
+  var search  = document.getElementById("search");
+  var countEl = document.getElementById("count");
+  var noRes   = document.getElementById("no-results");
+  var expand  = document.getElementById("expand-all");
+  var collapse= document.getElementById("collapse-all");
+
+  function clearHighlights(root) {
+    var marks = root.querySelectorAll("mark");
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function highlight(root, term) {
+    if (!term) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "MARK") return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    var lower = term.toLowerCase();
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var idx = text.toLowerCase().indexOf(lower);
+      if (idx === -1) return;
+
+      var mark = document.createElement("mark");
+      mark.textContent = text.slice(idx, idx + term.length);
+
+      var frag = document.createDocumentFragment();
+      if (idx > 0) frag.appendChild(document.createTextNode(text.slice(0, idx)));
+      frag.appendChild(mark);
+      var rest = text.slice(idx + term.length);
+      if (rest) frag.appendChild(document.createTextNode(rest));
+
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function applySearch() {
+    var term = search.value.trim();
+    var lowerTerm = term.toLowerCase();
+
+    cards.forEach(clearHighlights);
+
+    var visible = 0;
+    cards.forEach(function (card) {
+      var match = !lowerTerm || card.textContent.toLowerCase().indexOf(lowerTerm) !== -1;
+      card.hidden = !match;
+      if (match) {
+        visible++;
+        if (lowerTerm) {
+          card.open = true;
+          highlight(card, term);
+        }
+      }
+    });
+
+    if (lowerTerm) {
+      countEl.textContent = visible + " of " + cards.length + " sections match";
+      noRes.hidden = visible !== 0;
+    } else {
+      countEl.textContent = "";
+      noRes.hidden = true;
+    }
+  }
+
+  var timer = null;
+  search.addEventListener("input", function () {
+    clearTimeout(timer);
+    timer = setTimeout(applySearch, 120);
+  });
+
+  search.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      search.value = "";
+      applySearch();
+      search.blur();
+    }
+  });
+
+  expand.addEventListener("click", function () {
+    cards.forEach(function (c) { if (!c.hidden) c.open = true; });
+  });
+  collapse.addEventListener("click", function () {
+    cards.forEach(function (c) { c.open = false; });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    var tag = (e.target && e.target.nodeName) || "";
+    if (e.key === "/" && tag !== "INPUT" && tag !== "TEXTAREA") {
+      e.preventDefault();
+      search.focus();
+      search.select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
