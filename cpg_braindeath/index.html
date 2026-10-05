@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brain Death Quick Reference — Anaesthesia &amp; Intensive Care</title>
+<meta name="description" content="Collapsible, searchable quick reference for anaesthetists and intensivists, based on the Malaysian Consensus Statement on Brain Death 2024.">
+<style>
+  :root{
+    --bg:#f4f7fa; --surface:#ffffff; --surface-2:#f7fafc;
+    --ink:#16212e; --muted:#5b6b7f;
+    --line:#dde5ee; --line-strong:#9fb2c4;
+    --accent:#0b6b8f; --accent-soft:#e8f4f9;
+    --ok-bg:#eafaf3; --warn-bg:#fff7e8; --danger-bg:#fdeeee;
+    --pos-fg:#047857; --neg-fg:#b91c1c; --ind-fg:#b45309;
+    --mark-bg:#ffe08a; --mark-fg:#3a2c00;
+    --radius:12px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1720; --surface:#16202b; --surface-2:#1b2733;
+      --ink:#e6edf5; --muted:#9db0c4;
+      --line:#26333f; --line-strong:#3d5266;
+      --accent:#4bb8dd; --accent-soft:#122b36;
+      --ok-bg:#0f2b22; --warn-bg:#2c2210; --danger-bg:#2c1616;
+      --pos-fg:#6ee7b7; --neg-fg:#fca5a5; --ind-fg:#fcd34d;
+      --mark-bg:#8a6f16; --mark-fg:#fff3cf;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink); line-height:1.55; font-size:16px;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  a{color:var(--accent)}
+
+  /* ---------- Header ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:60;
+    background:linear-gradient(180deg,#0b3d5c,#0b6b8f);
+    color:#fff; padding:14px 0 12px;
+    box-shadow:0 2px 14px rgba(0,0,0,.18);
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 16px}
+  .title{font-size:1.05rem; font-weight:800; letter-spacing:.2px; margin:0}
+  .subtitle{font-size:.78rem; opacity:.85; margin:2px 0 0}
+  .searchrow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px}
+  .searchbox{position:relative; flex:1 1 260px; min-width:190px}
+  .searchbox svg{position:absolute; left:11px; top:50%; transform:translateY(-50%); opacity:.85; pointer-events:none}
+  .searchbox input{
+    width:100%; padding:10px 12px 10px 34px; border-radius:10px; font-size:.95rem;
+    border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.14); color:#fff; outline:none;
+  }
+  .searchbox input::placeholder{color:rgba(255,255,255,.72)}
+  .searchbox input:focus{background:rgba(255,255,255,.24); border-color:#fff}
+  .btn{
+    border:1px solid rgba(255,255,255,.45); background:rgba(255,255,255,.10); color:#fff;
+    padding:9px 12px; border-radius:10px; font-size:.82rem; font-weight:600; cursor:pointer;
+    white-space:nowrap; transition:background .15s;
+  }
+  .btn:hover{background:rgba(255,255,255,.24)}
+  .btn:active{transform:translateY(1px)}
+  .status{font-size:.78rem; opacity:.9; margin-top:8px; min-height:1em}
+
+  /* ---------- Chips ---------- */
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 12px}
+  .chip{
+    font-size:.76rem; padding:5px 10px; border-radius:999px; text-decoration:none;
+    background:var(--surface); border:1px solid var(--line); color:var(--muted); font-weight:600;
+  }
+  .chip:hover{border-color:var(--accent); color:var(--accent)}
+
+  /* ---------- Cards ---------- */
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    margin-bottom:10px; overflow:hidden; scroll-margin-top:160px;
+  }
+  .card[hidden]{display:none !important}
+  .card > summary{
+    list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px;
+    padding:12px 14px; font-weight:650; user-select:none;
+  }
+  .card > summary::-webkit-details-marker{display:none}
+  .card > summary:hover{background:var(--surface-2)}
+  .card[open] > summary{border-bottom:1px solid var(--line); background:var(--surface-2)}
+  .num{
+    flex:none; width:26px; height:26px; border-radius:8px; background:var(--accent-soft); color:var(--accent);
+    display:grid; place-items:center; font-size:.78rem; font-weight:800;
+  }
+  .chev{
+    margin-left:auto; flex:none; width:9px; height:9px;
+    border-right:2px solid var(--muted); border-bottom:2px solid var(--muted);
+    transform:rotate(45deg); transition:transform .18s ease;
+  }
+  .card[open] .chev{transform:rotate(-135deg)}
+  .body{padding:6px 16px 16px}
+  .body > *:first-child{margin-top:10px}
+
+  /* ---------- Content primitives ---------- */
+  .h{
+    font-size:.82rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--accent); margin:16px 0 6px;
+  }
+  ul.tight{margin:6px 0; padding-left:20px}
+  ul.tight li{margin:4px 0}
+  ol.tight{margin:6px 0; padding-left:22px}
+  ol.tight li{margin:5px 0}
+  p{margin:8px 0}
+  .muted{color:var(--muted); font-size:.86rem}
+  .box{
+    border-left:4px solid var(--accent); background:var(--accent-soft);
+    padding:9px 12px; border-radius:8px; margin:10px 0; font-size:.9rem;
+  }
+  .box.warn{border-color:#d97706; background:var(--warn-bg)}
+  .box.danger{border-color:#dc2626; background:var(--danger-bg)}
+  .box.ok{border-color:#059669; background:var(--ok-bg)}
+  .box .lbl{
+    display:block; font-size:.74rem; font-weight:800; letter-spacing:.06em;
+    text-transform:uppercase; margin-bottom:3px; opacity:.85;
+  }
+  .reflex{border-top:1px solid var(--line); padding:10px 0}
+  .reflex:first-of-type{border-top:none}
+  .reflex h4{margin:0 0 4px; font-size:.93rem; font-weight:700}
+  .pitfall{
+    background:var(--warn-bg); border-left:3px solid #d97706; border-radius:6px;
+    padding:6px 10px; font-size:.84rem; margin:6px 0 0;
+  }
+  .pitfall strong{color:var(--ink)}
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow:auto; max-height:70vh; border:1px solid var(--line);
+    border-radius:10px; margin:10px 0; background:var(--surface);
+    -webkit-overflow-scrolling:touch;
+  }
+  table{border-collapse:collapse; width:100%; min-width:460px; font-size:.87rem}
+  th,td{padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
+  thead th{
+    position:sticky; top:0; z-index:2; background:var(--surface-2);
+    font-weight:700; border-bottom:2px solid var(--line-strong);
+  }
+  tbody tr:nth-child(even){background:var(--surface-2)}
+  tbody tr:last-child td{border-bottom:none}
+  td.k{font-weight:650; white-space:nowrap}
+  .tick{text-align:center; color:var(--muted)}
+
+  /* ---------- Algorithm ---------- */
+  .algo{
+    background:var(--surface-2); border:1px solid var(--line); border-radius:12px;
+    padding:18px 12px; margin:10px 0;
+  }
+  .node{
+    background:var(--surface); border:1.5px solid var(--line-strong); border-radius:10px;
+    padding:10px 12px; text-align:center; font-size:.87rem; max-width:640px; margin:0 auto;
+  }
+  .node.start{border-color:var(--accent); background:var(--accent-soft); font-weight:650}
+  .node.key{border-color:var(--accent); font-weight:700}
+  .node.ok{border-color:#059669; background:var(--ok-bg); font-weight:700; color:var(--pos-fg)}
+  .node.bad{border-color:#dc2626; background:var(--danger-bg); font-weight:700; color:var(--neg-fg)}
+  .arrow{width:2px; height:20px; background:var(--line-strong); margin:5px auto; position:relative}
+  .arrow::after{
+    content:""; position:absolute; left:50%; bottom:-7px; transform:translateX(-50%);
+    border-left:6px solid transparent; border-right:6px solid transparent;
+    border-top:8px solid var(--line-strong);
+  }
+  .branch{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:4px}
+  .col{display:flex; flex-direction:column}
+  .tag{
+    align-self:center; font-size:.72rem; font-weight:800; letter-spacing:.07em;
+    text-transform:uppercase; padding:3px 11px; border-radius:999px;
+    border:1.5px solid var(--line-strong); color:var(--muted);
+  }
+  .tag.pos{color:var(--pos-fg); border-color:#059669; background:var(--ok-bg)}
+  .tag.neg{color:var(--neg-fg); border-color:#dc2626; background:var(--danger-bg)}
+  .tag.ind{color:var(--ind-fg); border-color:#d97706; background:var(--warn-bg)}
+  .mini{font-size:.76rem; color:var(--muted); text-align:center; margin-top:8px; line-height:1.6}
+  .mini b{color:var(--ink)}
+
+  /* ---------- Footer ---------- */
+  footer{margin:26px 0 40px}
+  .cite{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px; font-size:.85rem; color:var(--muted);
+  }
+  .cite strong{color:var(--ink); display:block; margin-bottom:6px; font-size:.9rem}
+  .cite p{margin:6px 0}
+  .cite em{color:var(--ink)}
+
+  mark{background:var(--mark-bg); color:var(--mark-fg); border-radius:3px; padding:0 2px}
+
+  @media (max-width:760px){
+    .branch{grid-template-columns:1fr; gap:18px}
+    .body{padding:4px 12px 14px}
+    .card > summary{padding:11px 12px; font-size:.94rem}
+    .title{font-size:.98rem}
+  }
+  @media print{
+    .topbar{position:static}
+    .chips,.searchrow,.chev{display:none}
+    .card{break-inside:avoid}
+    .card > .body{display:block !important}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <h1 class="title">Brain Death — Quick Reference for Anaesthetists &amp; Intensivists</h1>
+    <p class="subtitle">Clinical summary of the Malaysian Consensus Statement on Brain Death 2024</p>
+    <div class="searchrow">
+      <label class="searchbox">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <input id="q" type="search" placeholder="Search: apnoea, caloric, CTA, 6 hours, barbiturate…" autocomplete="off" aria-label="Search the quick reference">
+      </label>
+      <button class="btn" id="expandAll" type="button">Expand all</button>
+      <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    </div>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <nav class="chips" aria-label="Jump to section">
+    <a class="chip" href="#s1">Definition</a>
+    <a class="chip" href="#s2">Preconditions</a>
+    <a class="chip" href="#s3">Exclusions</a>
+    <a class="chip" href="#s4">Coma</a>
+    <a class="chip" href="#s5">Brainstem reflexes</a>
+    <a class="chip" href="#s6">Apnoea test</a>
+    <a class="chip" href="#s7">Certification</a>
+    <a class="chip" href="#s8">Paediatrics</a>
+    <a class="chip" href="#s9">Pregnancy</a>
+    <a class="chip" href="#s10">Pitfalls &amp; drugs</a>
+    <a class="chip" href="#s11">Ancillary tests</a>
+    <a class="chip" href="#s12">Who certifies</a>
+    <a class="chip" href="#s13">Checklist</a>
+    <a class="chip" href="#s14">Algorithm</a>
+  </nav>
+
+  <div id="content">
+
+    <!-- 1 -->
+    <details class="card" id="s1" open>
+      <summary><span class="num">1</span><span>Definition &amp; Key Principle</span><span class="chev"></span></summary>
+      <div class="body">
+        <div class="box">
+          <span class="lbl">Definition</span>
+          Brain death is the <strong>irreversible cessation of all functions of the entire brain, including the brainstem</strong>. It is a <strong>clinical diagnosis</strong>.
+        </div>
+        <ul class="tight">
+          <li>Adults with brain death will eventually develop asystole regardless of treatment given.</li>
+          <li>MRI shows diffuse swelling with tentorial and foraminal herniation; angiographic studies show absent blood flow.</li>
+          <li>Post-mortem: widespread brain necrosis with swelling of the hemispheres and brainstem — incompatible with life.</li>
+          <li>No confirmatory investigation is required in the usual case scenario — the exception is when certain aspects of the clinical tests cannot be reliably performed or evaluated (assessing physician's judgement, case-by-case).</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 2 -->
+    <details class="card" id="s2" open>
+      <summary><span class="num">2</span><span>Preconditions — <em>all</em> must be fulfilled</span><span class="chev"></span></summary>
+      <div class="body">
+        <ul class="tight">
+          <li>Patient is in <strong>deep coma, apnoeic and on mechanical ventilation, for at least 12 hours</strong>.</li>
+          <li>The <strong>cause of coma is fully established</strong> and sufficient to explain the patient's condition. Brain imaging is <strong>highly recommended</strong> — at least a CT brain.</li>
+          <li>There is <strong>irremediable brain damage</strong>.</li>
+          <li>Patient is <strong>haemodynamically stable</strong>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 3 -->
+    <details class="card" id="s3" open>
+      <summary><span class="num">3</span><span>Exclusions — do <em>not</em> proceed if present</span><span class="chev"></span></summary>
+      <div class="body">
+        <div class="box danger">
+          <span class="lbl">Exclude</span>
+          <ul class="tight" style="margin:0">
+            <li>Coma due to <strong>metabolic or endocrine disturbances</strong>, <strong>drug intoxication</strong> and <strong>primary hypothermia</strong> (core temperature &lt; 35&nbsp;°C).</li>
+            <li>When certain neurological disorders <strong>cannot be excluded</strong>: Guillain–Barré syndrome, locked-in syndrome, botulism, organophosphate poisoning.</li>
+            <li><strong>Coma of undetermined cause.</strong></li>
+            <li><strong>Preterm neonates.</strong></li>
+          </ul>
+        </div>
+        <p class="muted">Patients who do not meet all the criteria shall <strong>not</strong> be considered for brain death certification.</p>
+      </div>
+    </details>
+
+    <!-- 4 -->
+    <details class="card" id="s4">
+      <summary><span class="num">4</span><span>Clinical Criterion 1 — Deep Coma</span><span class="chev"></span></summary>
+      <div class="body">
+        <ul class="tight">
+          <li><strong>GCS 3/15</strong> — unresponsive and unreceptive.</li>
+          <li>Absence of coordinated eye movements and motor activity, <strong>including decorticate or decerebrate posturing</strong>.</li>
+          <li><strong>No spontaneous motor activity</strong> (excluding spinal reflexes) and <strong>no epileptic seizures</strong>.</li>
+          <li><strong>No motor response to pain.</strong></li>
+          <li>In the newborn: <strong>no sucking and rooting reflex</strong>.</li>
+        </ul>
+        <p class="muted">During the observation period the patient must remain deeply comatose with no respiratory effort and no abnormal posture or movements in the cranial nerve distribution.</p>
+      </div>
+    </details>
+
+    <!-- 5 -->
+    <details class="card" id="s5" open>
+      <summary><span class="num">5</span><span>Clinical Criterion 2 — Absent Brainstem Reflexes (a–g)</span><span class="chev"></span></summary>
+      <div class="body">
+        <p class="muted">Tests the reflex pathways of the mesencephalon, pons and medulla oblongata in a <strong>rostral-to-caudal</strong> direction. All must be absent.</p>
+
+        <div class="reflex">
+          <h4>a. Pupillary light reflex</h4>
+          <p><strong>Test:</strong> absent response to bright light in <strong>both</strong> eyes. Pupil size may be mid-position (4–6&nbsp;mm) to fully dilated. Round, oval or irregularly shaped pupils are compatible with brain death.</p>
+          <p class="pitfall"><strong>Pitfalls:</strong> many drugs influence pupil size but light response remains intact; exclude pre-existing iris abnormality or previous surgery; topical ocular drugs and corneal/eyeball trauma may produce non-reactive pupils.</p>
+        </div>
+
+        <div class="reflex">
+          <h4>b. Oculo-cephalic reflex</h4>
+          <p><strong>Test:</strong> perform <strong>only when there is no fracture or instability of the cervical spine</strong> — in head injury the cervical spine must be imaged first. Fast, vigorous turning of the head from mid-position to 90° on <strong>both</strong> sides. <strong>Any eye movement must be absent.</strong></p>
+          <p class="pitfall"><strong>Pitfalls:</strong> after closed head injury or facial trauma, lid oedema and chemosis of the conjunctivae may restrict globe movement.</p>
+        </div>
+
+        <div class="reflex">
+          <h4>c. Motor response in cranial nerve distribution</h4>
+          <p><strong>Test:</strong> pressure stimulus to the supraorbital nerve, or deep pressure on both condyles at the level of the temporo-mandibular joints. <strong>Absent grimace response.</strong></p>
+        </div>
+
+        <div class="reflex">
+          <h4>d. Corneal reflex</h4>
+          <p><strong>Test:</strong> both eyes tested with a cotton swab. <strong>Absent blink response.</strong></p>
+        </div>
+
+        <div class="reflex">
+          <h4>e. Vestibulo-ocular reflex (caloric test)</h4>
+          <p><strong>Test:</strong> visualise the external auditory meatus with an otoscope first. Head elevated to <strong>30°</strong>. Irrigate each external auditory canal with <strong>50&nbsp;ml of ice water</strong>. Allow <strong>1 minute</strong> after irrigation and at least <strong>5 minutes between testing each side</strong>. <strong>Absent eye movement</strong> to cold caloric stimulus.</p>
+          <p class="pitfall"><strong>Pitfalls:</strong> clotted blood or cerumen may diminish the response; basal fracture of the petrous bone abolishes the response unilaterally (may be identified by an ecchymotic mastoid process — Battle's sign); certain drugs may diminish or abolish the response.</p>
+        </div>
+
+        <div class="reflex">
+          <h4>f. Oro-pharyngeal reflex</h4>
+          <p><strong>Test:</strong> stimulate the posterior pharynx bilaterally. <strong>Absent gag response.</strong></p>
+        </div>
+
+        <div class="reflex">
+          <h4>g. Tracheo-bronchial reflex</h4>
+          <p><strong>Test:</strong> pass a suction catheter down the endotracheal tube at least to the level of the carina. <strong>Absent cough response</strong> to tracheo-bronchial wall stimulation.</p>
+        </div>
+
+        <div class="box warn">
+          <span class="lbl">If any test cannot be performed</span>
+          Severe facial and neck trauma may limit interpretation of all brainstem reflexes. If any test from a–g cannot be performed, <strong>ancillary testing is strongly recommended</strong>. A "Lazarus sign" — spontaneous motor responses of spinal origin — may be seen.
+        </div>
+      </div>
+    </details>
+
+    <!-- 6 -->
+    <details class="card" id="s6" open>
+      <summary><span class="num">6</span><span>Clinical Criterion 3 — Apnoea Test</span><span class="chev"></span></summary>
+      <div class="body">
+        <div class="h">Protocol</div>
+        <ol class="tight">
+          <li>Patient must be in a stable cardiovascular and respiratory state.</li>
+          <li>Baseline PaCO₂ between <strong>35–45 mmHg</strong>.</li>
+          <li>Pre-oxygenate with <strong>100% O₂ for 10 minutes</strong>.</li>
+          <li><strong>Disconnect from the ventilator.</strong></li>
+          <li>Deliver 100% O₂ via one of: <strong>tracheal catheter</strong> (not for paediatrics) · <strong>CPAP on the mechanical ventilator</strong> · <strong>T-piece or resuscitation bag with a functioning PEEP valve connected to the ETT</strong>.</li>
+          <li>Monitor O₂ saturation with pulse oximetry.</li>
+          <li>Measure PaCO₂ at <strong>5 minutes</strong>, and again at approximately <strong>8 minutes</strong> if PaCO₂ has not exceeded 60&nbsp;mmHg.</li>
+          <li>Reconnect to the ventilator after the test.</li>
+          <li>Disconnection shall <strong>not exceed 10–15 minutes</strong> at any one time, provided the patient remains haemodynamically stable.</li>
+        </ol>
+
+        <div class="h">Result interpretation</div>
+        <div class="box ok">
+          <span class="lbl">Positive</span>
+          <strong>No respiratory effort at a PaCO₂ ≥ 60 mmHg.</strong>
+        </div>
+        <div class="box warn">
+          <span class="lbl">Indeterminate</span>
+          If there is significant <strong>hypotension, marked desaturation or unstable cardiac arrhythmias</strong> during testing: immediately draw an arterial blood sample, reconnect to the ventilator and analyse the arterial blood gas. If PaCO₂ did not exceed 60&nbsp;mmHg, the result is <strong>indeterminate</strong>. It is at the physician's discretion to repeat the test or rely on an ancillary test to finalise the clinical diagnosis.
+        </div>
+        <div class="box">
+          <span class="lbl">Chronic lung disease</span>
+          Baseline PaCO₂ may already be above 40&nbsp;mmHg. The apnoea test is then considered <strong>positive if there is no respiratory effort at a PaCO₂ 20&nbsp;mmHg above the baseline PaCO₂</strong>.
+        </div>
+      </div>
+    </details>
+
+    <!-- 7 -->
+    <details class="card" id="s7" open>
+      <summary><span class="num">7</span><span>Assessment &amp; Certification — Timing &amp; Time of Death</span><span class="chev"></span></summary>
+      <div class="body">
+        <ul class="tight">
+          <li>Assessment carried out by <strong>two NSR-accredited specialists</strong> qualified in diagnosing brain death.</li>
+          <li><strong>Repeat assessment and certification at least 6 hours and up to 24 hours after the first</strong> — not necessarily by the same pair of specialists.</li>
+          <li><strong>Paediatric patients: a minimum of 24 hours is required.</strong></li>
+        </ul>
+
+        <div class="h">Paperwork &amp; time of death</div>
+        <ul class="tight">
+          <li>The Brain Death Certification form is filled by the first set of doctors (<strong>A and B</strong>) and completed by the second set (<strong>C and D</strong>) — or by A and B if the same doctors perform the second test.</li>
+          <li><strong>Time of death is declared by the doctors performing the second test.</strong></li>
+          <li>If the second test cannot be carried out 6 hours later, the <strong>time of death is when the second test is completed</strong>.</li>
+          <li>If the patient develops <strong>asystole before the second test</strong>, the time of death is taken <strong>at the point of asystole</strong>.</li>
+          <li>If an ancillary test is required, clinical tests that <em>can</em> be performed must still be performed twice as recommended. Certification of death follows the second clinical test, taking into account both clinical and ancillary tests.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 8 -->
+    <details class="card" id="s8">
+      <summary><span class="num">8</span><span>Paediatric &amp; Neonatal Considerations</span><span class="chev"></span></summary>
+      <div class="body">
+        <ul class="tight">
+          <li><strong>No recommendations can be made for preterm infants &lt; 37 weeks of gestational age.</strong></li>
+          <li>For term newborns or older: <strong>ancillary tests are required</strong> when component(s) of the clinical examination and apnoea test cannot be fully completed (e.g. cyanotic heart disease, uncertainty of clinical findings, or suspected medication effects interfering with evaluation).</li>
+        </ul>
+
+        <div class="h">Ancillary tests in children</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Age</th><th>Timing from unresponsive coma</th><th>Ancillary test</th></tr></thead>
+            <tbody>
+              <tr><td>Term newborns (&gt;37 weeks gestation) to 30 days of age</td><td>At least 24 hours</td><td>Electroencephalogram (EEG)</td></tr>
+              <tr><td>31 days – 18 years old</td><td>At least 24 hours</td><td>EEG and cerebral blood flow (CBF) radionuclide studies have equal sensitivity</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted">Reduction of the observation period between the two examinations is permitted for both age groups if EEG or CBF is consistent with brain death.</p>
+
+        <div class="h">Timing of examinations in children</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Age</th><th>Timing of first examination</th><th>Examination interval</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Term newborns (&gt;37 weeks gestation) to 30 days of age</td>
+                <td>24 hours after birth <strong>OR</strong> 24 hours post CPR or severe brain injury</td>
+                <td>At least 24 hours <strong>OR</strong> shortened because an ancillary study at the first examination showed brain death</td>
+              </tr>
+              <tr>
+                <td>31 days – 18 years old</td>
+                <td>24 hours post CPR or severe brain injury</td>
+                <td>12 to 24 hours <strong>OR</strong> shortened because an ancillary study at the first examination showed brain death</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted">Note: the general certification section states a minimum of 24 hours between examinations in paediatric patients.</p>
+      </div>
+    </details>
+
+    <!-- 9 -->
+    <details class="card" id="s9">
+      <summary><span class="num">9</span><span>Brain Death Certification in Pregnant Women</span><span class="chev"></span></summary>
+      <div class="body">
+        <ul class="tight">
+          <li>The <strong>same preconditions and exclusion criteria apply</strong>.</li>
+          <li>Brain death testing in a pregnant patient is <strong>the same as for adults</strong>.</li>
+          <li><strong>Somatic support may be continued</strong> in the presence of a viable foetus (<strong>&gt; 24 weeks gestation</strong>) in consultation with immediate family members and with approval of the <strong>hospital ethics committee</strong>, with every effort made to prevent harmful effects to the foetus.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 10 -->
+    <details class="card" id="s10">
+      <summary><span class="num">10</span><span>Pitfalls — Movements, Drugs &amp; Acid–Base</span><span class="chev"></span></summary>
+      <div class="body">
+
+        <div class="h">1. Spontaneous and reflex movements in brain death</div>
+        <p>These are <strong>spinal in origin</strong> and <strong>do not preclude the diagnosis of brain death</strong>. The most common are <strong>finger jerks</strong>. Also seen: undulating toe flexion sign (snapping the big toe leads to undulating movement of the other toes), triple flexion response, persistent Babinski response, Lazarus sign, pronation–extension reflex, and facial myokymia.</p>
+        <p class="muted">They generally occur during the apnoea test, or are triggered by forceful flexion of the neck, rotation of the body, or by the ventilator synchronous with pulmonary insufflation. They do not occur spontaneously.</p>
+
+        <div class="h">2. Common confounders to remember</div>
+        <ol class="tight">
+          <li>Severe facial trauma.</li>
+          <li>Pre-existing pupillary abnormalities.</li>
+          <li>Toxic levels of sedative drugs, aminoglycosides, tricyclic antidepressants, anticonvulsants, chemotherapeutic drugs, neuromuscular blocking agents.</li>
+          <li>Sleep apnoea or severe pulmonary disease resulting in chronic retention of carbon dioxide.</li>
+          <li>Spontaneous and reflex movements (see above).</li>
+        </ol>
+
+        <div class="h">3. Drugs — a reasonable approach</div>
+        <ul class="tight">
+          <li>If screening tests reveal traces of a drug <strong>below the therapeutic range</strong> → brain death can be determined.</li>
+          <li>If the drug or poison <strong>cannot be quantified but is certain</strong> → observe for at least <strong>5 × the elimination half-life</strong>, provided excretion is not affected by other drugs or organ dysfunction.</li>
+          <li>If the drug is <strong>unknown but suspicion is high</strong> → observe for <strong>48 hours</strong> for a change in brainstem reflexes and motor response before proceeding with brain death tests.</li>
+        </ul>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Drug</th><th>Elimination T½ (hours)</th><th>Therapeutic range</th></tr></thead>
+            <tbody>
+              <tr><td>Lorazepam</td><td>10–20</td><td>0.1–0.3 µg/ml</td></tr>
+              <tr><td>Midazolam</td><td>2–5</td><td>50–150 ng/ml</td></tr>
+              <tr><td>Diazepam</td><td>40</td><td>0.2–0.8 µg/ml</td></tr>
+              <tr><td>Carbamazepine</td><td>10–60</td><td>2–10 µg/ml</td></tr>
+              <tr><td>Phenobarbitone</td><td>100</td><td>20–40 µg/ml</td></tr>
+              <tr><td>Pentobarbitone**</td><td>10</td><td>1–5 µg/ml</td></tr>
+              <tr><td>Thiopentone</td><td>10</td><td>6–35 µg/ml</td></tr>
+              <tr><td>Morphine</td><td>2–3</td><td>70–450 ng/ml</td></tr>
+              <tr><td>Phenytoin</td><td>22</td><td>10–20 mg/L</td></tr>
+              <tr><td>Valproic acid</td><td>4–16</td><td>50–100 mcg/mL</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box warn">
+          <span class="lbl">** High-dose barbiturates</span>
+          Depressed neuronal activity <em>and</em> decreased cerebral blood flow may occur. A confirmatory angiogram may be <strong>erroneously positive for absent flow</strong>. The clinical diagnosis of brain death should only be allowed if serum barbiturate levels have decreased to levels at which it is highly improbable that brainstem function is depressed.
+        </div>
+
+        <div class="h">4. Drug-induced acid–base abnormalities</div>
+        <p><strong>Determination of brain death should be deferred in the presence of severe acidosis or alkalosis.</strong></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Pattern</th><th>Drugs</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Metabolic acidosis</td><td>Acetaminophen · ethanol, methanol, ethylene glycol · salicylates · isoniazid · cyanide, cocaine, toluene</td></tr>
+              <tr><td class="k">Respiratory acidosis</td><td>Opiates · ethanol and other alcohols · barbiturates</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <!-- 11 -->
+    <details class="card" id="s11">
+      <summary><span class="num">11</span><span>Ancillary Testing</span><span class="chev"></span></summary>
+      <div class="body">
+        <p class="muted">Ancillary laboratory tests are <strong>not usually mandatory</strong>. They may be useful when clinical tests cannot be reliably performed, and in certain instances where children are involved. The main objective is to demonstrate the <strong>absence of cerebral circulation</strong> or <strong>absence of cerebral electrical activity</strong>.</p>
+
+        <div class="h">A. CT Angiography (CTA) — 4-point scoring</div>
+        <p>Score 1 point for each of the following vessels that <strong>does not opacify</strong>:</p>
+        <ul class="tight">
+          <li>Cortical branches of the <strong>right</strong> middle cerebral artery (MCA)</li>
+          <li>Cortical branches of the <strong>left</strong> middle cerebral artery (MCA)</li>
+          <li><strong>Right</strong> internal cerebral vein (ICV)</li>
+          <li><strong>Left</strong> internal cerebral vein (ICV)</li>
+        </ul>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Total score</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td class="k">4 (all absent)</td><td><strong>Suggests cerebral circulatory arrest</strong></td></tr>
+              <tr><td class="k">0 (all present)</td><td><strong>Excludes cerebral circulatory arrest</strong></td></tr>
+              <tr><td class="k">1–3 (1–3 absent vessels)</td><td><strong>Inconclusive</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="h">CTA acquisition protocol</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Phases (3)</td><td>1. Non-contrasted CT (NCCT) · 2. 20 seconds post contrast (early contrast enhancement) · 3. 60 seconds post contrast (delayed contrast enhancement)</td></tr>
+              <tr><td class="k">Scan parameters</td><td>120 kV, 300 mAs, 200-mm FOV, 512 × 512 matrix</td></tr>
+              <tr><td class="k">Contrast</td><td>Single bolus injection, 50 ml (300–370 mg iodine/ml)</td></tr>
+              <tr><td class="k">Flow rate</td><td>3 ml/sec</td></tr>
+              <tr><td class="k">Coverage</td><td>Skull base to vertex</td></tr>
+              <tr><td class="k">Scan direction</td><td>Caudo-cranial</td></tr>
+              <tr><td class="k">Scan thickness</td><td>1.0 mm</td></tr>
+              <tr><td class="k">Reconstruction thickness</td><td>5 mm slice thickness</td></tr>
+              <tr><td class="k">Reconstruction format</td><td>Axial &amp; coronal &amp; sagittal Maximum Intensity Projection (MIP)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box warn">
+          <span class="lbl">Timing is critical</span>
+          An increase in intracranial pressure leading to cerebral circulatory arrest is a major consideration. To avoid false negatives and repetitive examinations, an interval of <strong>at least 12 hours after clinical suspicion of brain death</strong> before CTA is recommended. False negatives can also occur in craniotomies, children with large fontanelles, or open-skull defects. <strong>CTA is the ancillary test of choice</strong> for adults and suitable paediatric patients. If indeterminate or negative, repeat CTA after at least 12 hours, or perform an EEG.
+        </div>
+
+        <div class="h">B. Conventional angiography (Digital Subtraction Angiography, DSA)</div>
+        <ul class="tight">
+          <li>If there is <strong>no flow seen beyond the skull base after the first run</strong>, this indicates absence of cerebral blood circulation — this must be <strong>confirmed by a second run, 30 minutes after the first</strong>.</li>
+          <li>If <strong>both runs show no flow</strong> in the intracranial vessels beyond the skull base, absence of cerebral blood circulation is confirmed.</li>
+        </ul>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Phases</td><td>First run · Second run (30-minute interval)</td></tr>
+              <tr><td class="k">Imaging parameters</td><td>70 kV, 103 mAs, 512 × 512 matrix</td></tr>
+              <tr><td class="k">Contrast volume / strength</td><td>50–70 ml (300–370 mg iodine/ml)</td></tr>
+              <tr><td class="k">Flow rate</td><td>Hand injection</td></tr>
+              <tr><td class="k">Coverage</td><td>Skull base to vertex</td></tr>
+              <tr><td class="k">Image projection</td><td>Towne, lateral</td></tr>
+              <tr><td class="k">Frame rate</td><td>3 frames per second</td></tr>
+              <tr><td class="k">Conclusion</td><td>Suggests cerebral circulatory arrest = absence of arterial opacification above the skull base in <strong>both</strong> runs. Excludes = arterial opacification above the skull base in both runs. Indeterminate = opacification in either run or other specified reason.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="h">Pitfalls — CTA and DSA</div>
+        <ol class="tight">
+          <li>Raised ICP leading to circulatory arrest is a major consideration. Conditions rendering ICP <strong>lower than mean arterial pressure</strong> (e.g. presence of craniotomy) lead to inconclusive CTA given its high sensitivity for vessel visualisation. If inconclusive, discuss further with the primary team.</li>
+          <li>False negatives occur if CTA or DSA is performed <strong>too early</strong> after clinical suspicion of brain death, as ICP may not have risen sufficiently. Observe the <strong>12-hour delay</strong>.</li>
+          <li>There is <strong>insufficient evidence</strong> to make a consensus recommendation for cerebral CT angiography as an ancillary investigation to support the clinical diagnosis of brain death in patients receiving <strong>extracorporeal membrane oxygenation (ECMO)</strong>.</li>
+        </ol>
+
+        <div class="h">C. Nuclear imaging (radionuclide CBF study)</div>
+        <ul class="tight">
+          <li><strong>Tc-99m HMPAO</strong> (technetium-99m radiolabelled hexamethyl-propylene amine oxime) is the widely accepted study.</li>
+          <li>It crosses the blood–brain barrier and is retained by parenchyma after conversion from a lipophilic to a hydrophilic form.</li>
+          <li>Classic appearance of a positive study: <strong>"hollow skull phenomenon"</strong> or <strong>"hot nose sign"</strong> — due to absent brain circulation with preservation of external carotid flow.</li>
+        </ul>
+
+        <div class="h">D. EEG — absence of brain electrical activity</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Technical requirement</th><th>Specification</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Electrodes</td><td>Minimum of 8 scalp electrodes; distance between electrodes at least 10 cm</td></tr>
+              <tr><td class="k">Inter-electrode impedance</td><td>Between 100 and 10,000 Ω</td></tr>
+              <tr><td class="k">System integrity</td><td>The integrity of the entire recording system should be tested</td></tr>
+              <tr><td class="k">Sensitivity</td><td>Increased to at least 2 µV for 30 minutes, with inclusion of appropriate calibrations</td></tr>
+              <tr><td class="k">Filters</td><td>High-frequency filter setting not below 30 Hz; low-frequency setting not above 1 Hz</td></tr>
+              <tr><td class="k">Reactivity</td><td>Must demonstrate a lack of reactivity to intense somatosensory or audio-visual stimuli</td></tr>
+              <tr><td class="k">Recording</td><td>No brain electrical activity during at least 30 minutes of recording; must adhere to technical specifications for brain death</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="h">E. Paediatric ancillary testing — radiology</div>
+        <ul class="tight">
+          <li>Generally, paediatric patients <strong>do not require ancillary studies</strong> to establish brain death, and ancillary studies <strong>do not substitute</strong> for neurological examination.</li>
+          <li>May be useful at <strong>37 weeks of gestation to 30 days of life</strong> when concern exists about the validity of the clinical examination — but is <strong>less sensitive</strong> in this age group than in older children.</li>
+          <li>Requests for patients aged <strong>31 days to 18 years</strong> may be made when: component(s) of the examination or apnoea test cannot be safely completed; results of the examination cannot be established; medication(s) interfere with evaluation/examination; or the observation period has to be shortened.</li>
+          <li>Available modalities: conventional angiography, nuclear medicine, cross-sectional studies (CTA and MRI), and transcranial doppler ultrasound. The Paediatric AAP 2011 guidelines have <strong>not</strong> recommended MR angiography or transcranial doppler as ancillary studies.</li>
+          <li><strong>Radionuclide CBF study:</strong> a portable radionuclide camera is not available in Malaysia and transfer of young or unstable children to Nuclear Medicine imposes safety issues. This modality is reserved for hospitals where a static machine is available — <strong>transportation of ill children to another facility is not advocated</strong>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 12 -->
+    <details class="card" id="s12">
+      <summary><span class="num">12</span><span>Who Certifies &amp; Where</span><span class="chev"></span></summary>
+      <div class="body">
+        <div class="h">Qualification of doctors certifying brain death</div>
+        <ul class="tight">
+          <li>Each hospital is recommended to have a <strong>subcommittee to appoint and review</strong> doctors authorised to certify brain death in that hospital.</li>
+          <li>Two specialists are considered qualified if they are <strong>NSR-accredited</strong> and have <strong>clinical experience in conducting brain death assessment</strong>.</li>
+          <li>They should preferably be: anaesthesiologists, paediatric anaesthesiologists, intensivists, paediatric intensivists, neurologists, paediatric neurologists, neurosurgeons, paediatric neurosurgeons, or paediatric internal medicine specialists.</li>
+          <li>Hospitals without qualified specialists must <strong>liaise with a relevant clinician from another tertiary hospital</strong> for further advice and management.</li>
+          <li><strong>Doctors involved in organ transplantation are not allowed to be involved in brain death certification.</strong></li>
+        </ul>
+
+        <div class="h">Criteria for hospitals performing certification</div>
+        <p>Brain death certification must be done in areas of the hospital with <strong>full facilities for intensive cardiopulmonary care</strong> of comatose patients, which include <strong>ventilation, cardiac monitor and blood gas analysis machine</strong>.</p>
+
+        <div class="h">Committee &amp; governance</div>
+        <ul class="tight">
+          <li>All hospitals where brain death certification is carried out shall have a committee functioning as a <strong>coordinating body</strong>, responsible for general policies, training and accrediting staff, counselling, and overseeing the facilities available.</li>
+          <li>The brain death guideline shall be <strong>reviewed every 5–10 years</strong> as necessary to accommodate new knowledge and latest clinical practice.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 13 -->
+    <details class="card" id="s13">
+      <summary><span class="num">13</span><span>Certification Checklist (condensed)</span><span class="chev"></span></summary>
+      <div class="body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Item</th><th class="tick">1st assessment<br>(A &amp; B)</th><th class="tick">2nd assessment<br>(C &amp; D)</th></tr></thead>
+            <tbody>
+              <tr><td>Patient in deep coma, apnoeic and on ventilation for at least 12 hours</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Drugs excluded</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Hypothermia excluded (core temp &lt; 35 °C)</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Metabolic causes excluded</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Endocrine causes excluded</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Haemodynamic stability</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Pupillary light reflex absent</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Oculo-cephalic reflex absent</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Motor response in cranial nerve distribution absent</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Corneal reflex absent</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Vestibulo-ocular reflex (caloric test) absent</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Oro-pharyngeal reflex absent</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Tracheo-bronchial reflex absent</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Apnoea test — pre-test PaCO₂ (mmHg)</td><td class="tick">____</td><td class="tick">____</td></tr>
+              <tr><td>Apnoea test — post-test PaCO₂ (mmHg)</td><td class="tick">____</td><td class="tick">____</td></tr>
+              <tr><td>Apnoea confirmed</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td>Ancillary test required? Type / result</td><td class="tick">☐</td><td class="tick">☐</td></tr>
+              <tr><td><strong>Do the above tests confirm brain death?</strong></td><td class="tick">☐ Yes ☐ No</td><td class="tick">☐ Yes ☐ No</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box">
+          <span class="lbl">Record</span>
+          Date of death: ____________ &nbsp;·&nbsp; Time of death: ____________ &nbsp;·&nbsp; Name, signature and stamp of certifying doctors.
+        </div>
+      </div>
+    </details>
+
+    <!-- 14 -->
+    <details class="card" id="s14">
+      <summary><span class="num">14</span><span>Brain Death Algorithm</span><span class="chev"></span></summary>
+      <div class="body">
+        <div class="algo">
+          <div class="node start">Deep coma, unresponsive and unreceptive, Glasgow Coma Score (GCS) 3/15<br>Apnoeic on ventilator &gt; 12 hours</div>
+          <div class="arrow"></div>
+
+          <div class="node">Clear cause of coma</div>
+          <div class="arrow"></div>
+
+          <div class="node">Hypothermia, intoxication, depressant drugs, neuromuscular blocking agents, severe electrolyte, acid–base or endocrine abnormalities are excluded</div>
+          <div class="arrow"></div>
+
+          <div class="node">Family informed of brain death testing</div>
+          <div class="arrow"></div>
+
+          <div class="node key">Absent brain stem reflexes <em>and</em> positive apnoea test</div>
+
+          <div class="branch">
+            <div class="col">
+              <span class="tag pos">Positive</span>
+              <div class="arrow"></div>
+              <div class="node ok">Clear diagnosis of death</div>
+            </div>
+
+            <div class="col">
+              <span class="tag ind">Indeterminate</span>
+              <div class="arrow"></div>
+              <div class="node">Consider ancillary testing</div>
+              <div class="mini">
+                <b>Positive</b> → Clear diagnosis of death<br>
+                <b>Negative</b> → Reassessment / Re-evaluation
+              </div>
+            </div>
+
+            <div class="col">
+              <span class="tag neg">Negative</span>
+              <div class="arrow"></div>
+              <div class="node bad">Reassessment / Re-evaluation</div>
+            </div>
+          </div>
+        </div>
+        <p class="muted">Adapted from the Brain Death Algorithm, Appendix 4 of the Malaysian Consensus Statement on Brain Death 2024.</p>
+      </div>
+    </details>
+
+  </div><!-- /#content -->
+
+  <footer>
+    <div class="cite">
+      <strong>Source / Reference</strong>
+      <p>
+        Bahagian Perkembangan Perubatan, Kementerian Kesihatan Malaysia &amp; Malaysian Society of Neurosciences (Persatuan Neurosains Malaysia).
+        <em>The Malaysian Consensus Statement on Brain Death 2024.</em> Published 2025 (1st edition 1993; 2nd edition 2003).
+        ISBN 978-967-26294-5-0. MOH/P/PAK/578.25(HB)-e.
+        Developed in collaboration with the Surgical Services Unit (Transplantation Services), Medical Services Development Section, Medical Development Division, Ministry of Health Malaysia.
+      </p>
+      <p>
+        Electronic version available at:
+        <a href="https://www.moh.gov.my/" target="_blank" rel="noopener">https://www.moh.gov.my/</a> ·
+        <a href="https://www.neuro.org.my/" target="_blank" rel="noopener">https://www.neuro.org.my/</a>
+      </p>
+      <p><em>All rights reserved. No part of the source publication may be reproduced or distributed in any form or by any means without prior written permission from the Ministry of Health Malaysia.</em></p>
+      <p><strong>Disclaimer:</strong> This page is an educational quick-reference summary of the clinical content of the consensus statement, prepared for anaesthetists and intensivists. It is not a substitute for the full consensus document, local hospital policy, or clinical judgement.</p>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var content  = document.getElementById('content');
+  var input    = document.getElementById('q');
+  var statusEl = document.getElementById('status');
+  var ORIGINAL = content.innerHTML;
+
+  /* ---------- Search ---------- */
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function highlight(root, re) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      re.lastIndex = 0;
+      if (!re.test(text)) return;
+      re.lastIndex = 0;
+
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      while ((m = re.exec(text)) !== null) {
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var mark = document.createElement('mark');
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        if (m[0].length === 0) re.lastIndex++;
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  var searchTimer = null;
+  function runSearch() {
+    var q = input.value.trim();
+    content.innerHTML = ORIGINAL;
+
+    if (!q) {
+      statusEl.textContent = '';
+      return;
+    }
+
+    var re = new RegExp(escapeRegExp(q), 'gi');
+    var cards = Array.prototype.slice.call(content.querySelectorAll('details.card'));
+    var hits = 0;
+
+    cards.forEach(function (card) {
+      var match = card.textContent.toLowerCase().indexOf(q.toLowerCase()) !== -1;
+      if (match) {
+        hits++;
+        card.hidden = false;
+        card.open = true;
+      } else {
+        card.hidden = true;
+      }
+    });
+
+    highlight(content, re);
+
+    statusEl.textContent = hits === 0
+      ? 'No matching sections for "' + q + '"'
+      : hits + (hits === 1 ? ' section matches "' : ' sections match "') + q + '"';
+  }
+
+  input.addEventListener('input', function () {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(runSearch, 140);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      input.value = '';
+      runSearch();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== input) {
+      e.preventDefault();
+      input.focus();
+    }
+  });
+
+  /* ---------- Expand / collapse all ---------- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    content.querySelectorAll('details.card').forEach(function (d) {
+      if (!d.hidden) d.open = true;
+    });
+  });
+
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    content.querySelectorAll('details.card').forEach(function (d) { d.open = false; });
+  });
+
+  /* ---------- Chip navigation: open target details ---------- */
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var id = (chip.getAttribute('href') || '').slice(1);
+      var el = document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
