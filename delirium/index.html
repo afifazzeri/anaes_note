@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postoperative Delirium &amp; POCD — Anaesthetist / Intensivist Quick Reference</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-alt:#f6f8fa;
+    --border:#d0d7de;
+    --border-soft:#e6eaef;
+    --text:#1f2328;
+    --muted:#59636e;
+    --accent:#0969da;
+    --accent-soft:#ddf4ff;
+    --green:#1a7f37;
+    --green-soft:#dafbe1;
+    --amber:#9a6700;
+    --amber-soft:#fff8c5;
+    --red:#cf222e;
+    --red-soft:#ffebe9;
+    --purple:#8250df;
+    --radius:10px;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1117;
+      --bg-alt:#161b22;
+      --border:#30363d;
+      --border-soft:#21262d;
+      --text:#e6edf3;
+      --muted:#9198a1;
+      --accent:#4493f8;
+      --accent-soft:#0c2d6b;
+      --green:#3fb950;
+      --green-soft:#0f2f1a;
+      --amber:#d29922;
+      --amber-soft:#3a2d00;
+      --red:#f85149;
+      --red-soft:#3d1417;
+      --purple:#a371f7;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;
+    font-size:15px;
+    line-height:1.6;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 20px 80px}
+
+  /* ---------- Header ---------- */
+  header.top{
+    border-bottom:1px solid var(--border);
+    padding-bottom:16px;
+    margin-bottom:20px;
+  }
+  header.top h1{
+    font-size:1.55rem;
+    margin:0 0 4px;
+    letter-spacing:-0.01em;
+  }
+  header.top p.sub{
+    margin:0;
+    color:var(--muted);
+    font-size:0.86rem;
+  }
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .badge{
+    font-size:0.72rem;
+    padding:3px 9px;
+    border-radius:999px;
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    color:var(--muted);
+    white-space:nowrap;
+  }
+
+  /* ---------- Controls ---------- */
+  .controls{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--bg);
+    padding:12px 0;
+    margin-bottom:8px;
+    border-bottom:1px solid var(--border-soft);
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+  }
+  .search-wrap{
+    position:relative;
+    flex:1 1 320px;
+    min-width:240px;
+  }
+  .search-wrap input{
+    width:100%;
+    padding:9px 12px 9px 34px;
+    font-size:0.9rem;
+    font-family:inherit;
+    color:var(--text);
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:8px;
+    outline:none;
+  }
+  .search-wrap input:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-soft);
+  }
+  .search-wrap svg{
+    position:absolute;
+    left:10px;top:50%;
+    transform:translateY(-50%);
+    opacity:.55;
+    pointer-events:none;
+  }
+  button.btn{
+    font-family:inherit;
+    font-size:0.8rem;
+    padding:8px 12px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--bg-alt);
+    color:var(--text);
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  button.btn:hover{border-color:var(--accent);color:var(--accent)}
+  .result-count{
+    font-size:0.78rem;
+    color:var(--muted);
+    width:100%;
+  }
+
+  /* ---------- Cards / details ---------- */
+  details.card{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:var(--bg);
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+  details.card > summary{
+    cursor:pointer;
+    padding:12px 16px;
+    font-weight:600;
+    font-size:0.97rem;
+    background:var(--bg-alt);
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    user-select:none;
+  }
+  details.card > summary::-webkit-details-marker{display:none}
+  details.card > summary::before{
+    content:"";
+    width:0;height:0;
+    border-left:6px solid var(--muted);
+    border-top:5px solid transparent;
+    border-bottom:5px solid transparent;
+    transition:transform .15s ease;
+    flex:none;
+  }
+  details.card[open] > summary::before{transform:rotate(90deg)}
+  details.card > summary:hover{color:var(--accent)}
+  details.card > summary .tag{
+    margin-left:auto;
+    font-size:0.68rem;
+    font-weight:600;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:2px 8px;
+    background:var(--bg);
+  }
+  .card-body{padding:14px 16px 18px;border-top:1px solid var(--border-soft)}
+  .card-body > *:first-child{margin-top:0}
+  .card-body > *:last-child{margin-bottom:0}
+
+  h3{font-size:0.9rem;margin:18px 0 8px;letter-spacing:.01em}
+  h3:first-child{margin-top:0}
+  h4{font-size:0.84rem;margin:14px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  p{margin:0 0 10px}
+  ul,ol{margin:0 0 10px;padding-left:20px}
+  li{margin-bottom:4px}
+  small{color:var(--muted)}
+  code{
+    font-family:var(--mono);
+    font-size:0.83em;
+    background:var(--bg-alt);
+    border:1px solid var(--border-soft);
+    border-radius:5px;
+    padding:1px 5px;
+  }
+
+  /* ---------- Callouts ---------- */
+  .callout{
+    border-left:4px solid var(--accent);
+    background:var(--bg-alt);
+    border-radius:0 8px 8px 0;
+    padding:10px 14px;
+    margin:12px 0;
+    font-size:0.88rem;
+  }
+  .callout.warn{border-left-color:var(--amber)}
+  .callout.danger{border-left-color:var(--red)}
+  .callout.good{border-left-color:var(--green)}
+  .callout strong{font-weight:650}
+  .callout p:last-child{margin-bottom:0}
+
+  /* ---------- Tables (scrollable) ---------- */
+  .table-scroll{
+    max-height:400px;
+    overflow:auto;
+    border:1px solid var(--border);
+    border-radius:8px;
+    margin:10px 0 14px;
+  }
+  .table-scroll.tall{max-height:520px}
+  table{
+    border-collapse:collapse;
+    width:100%;
+    font-size:0.83rem;
+    min-width:520px;
+  }
+  thead th{
+    position:sticky;
+    top:0;
+    z-index:2;
+    background:var(--bg-alt);
+    text-align:left;
+    font-weight:650;
+    padding:9px 12px;
+    border-bottom:1px solid var(--border);
+    white-space:nowrap;
+  }
+  td{
+    padding:8px 12px;
+    border-bottom:1px solid var(--border-soft);
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:var(--bg-alt)}
+  .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* ---------- Evidence pills ---------- */
+  .pill{
+    display:inline-block;
+    font-size:0.7rem;
+    font-weight:650;
+    padding:1px 7px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .pill.ok{background:var(--green-soft);color:var(--green);border:1px solid var(--green)}
+  .pill.mid{background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber)}
+  .pill.no{background:var(--red-soft);color:var(--red);border:1px solid var(--red)}
+  .pill.neutral{background:var(--bg-alt);color:var(--muted);border:1px solid var(--border)}
+
+  /* ---------- Diagrams ---------- */
+  figure.diagram{
+    margin:14px 0;
+    padding:14px;
+    background:var(--bg-alt);
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+  }
+  figure.diagram figcaption{
+    font-size:0.76rem;
+    color:var(--muted);
+    margin-top:10px;
+    line-height:1.5;
+  }
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .flow-step{
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:9px 12px;
+    font-size:0.84rem;
+    font-weight:600;
+    text-align:center;
+  }
+  .flow-arrow{
+    text-align:center;
+    color:var(--muted);
+    font-size:1rem;
+    line-height:1.2;
+    padding:2px 0;
+  }
+  .flow-outer{
+    display:flex;
+    gap:10px;
+    align-items:stretch;
+  }
+  .flow-col{flex:1;display:flex;flex-direction:column}
+  .flow-side{
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    text-align:center;
+    font-size:0.72rem;
+    font-weight:650;
+    letter-spacing:.05em;
+    color:var(--purple);
+    background:var(--bg);
+    border:1px dashed var(--purple);
+    border-radius:8px;
+    padding:8px 4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    gap:12px;
+    align-items:center;
+  }
+  .box{
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px 12px;
+    background:var(--bg);
+    font-size:0.82rem;
+  }
+  .box h5{
+    margin:0 0 6px;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--muted);
+  }
+  .box ul{padding-left:16px;margin:0}
+  .box li{margin-bottom:2px}
+  .arrow-mid{font-size:1.4rem;color:var(--muted);text-align:center}
+  svg.chart{width:100%;height:auto;display:block;max-height:300px}
+
+  /* ---------- Highlights ---------- */
+  mark{
+    background:var(--amber-soft);
+    color:inherit;
+    padding:0 2px;
+    border-radius:3px;
+    box-shadow:inset 0 -2px 0 var(--amber);
+  }
+  .hidden{display:none !important}
+  .no-results{
+    display:none;
+    padding:24px;
+    text-align:center;
+    color:var(--muted);
+    border:1px dashed var(--border);
+    border-radius:10px;
+    font-size:0.9rem;
+  }
+  .no-results.show{display:block}
+
+  /* ---------- References ---------- */
+  .refs{font-size:0.84rem}
+  .refs ol{padding-left:22px}
+  .refs li{margin-bottom:12px}
+  .refs .src-title{font-weight:600}
+  .refs .src-meta{color:var(--muted);font-size:0.79rem;display:block;margin-top:2px}
+
+  footer{
+    margin-top:32px;
+    padding-top:16px;
+    border-top:1px solid var(--border);
+    font-size:0.78rem;
+    color:var(--muted);
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:16px 12px 60px}
+    header.top h1{font-size:1.25rem}
+    .two-col{grid-template-columns:1fr}
+    .arrow-mid{transform:rotate(90deg)}
+    .flow-side{writing-mode:horizontal-tb}
+  }
+  @media print{
+    .controls{display:none}
+    details.card{break-inside:avoid}
+    details.card > .card-body{display:block !important}
+    .table-scroll{max-height:none;overflow:visible}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>Postoperative Delirium &amp; Postoperative Cognitive Dysfunction</h1>
+  <p class="sub">Quick reference for anaesthetists &amp; intensivists — risk, recognition, prevention, and management</p>
+  <div class="badges">
+    <span class="badge">Incidence 2–3% general surgery</span>
+    <span class="badge">Up to 70% hip fracture</span>
+    <span class="badge">30-day mortality 7–10%</span>
+    <span class="badge">+2–3 days hospital stay</span>
+    <span class="badge">Multicomponent prevention NNT 14</span>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.5 4.5 0 1 0-9 0 4.5 4.5 0 0 0 9 0Z"/>
+    </svg>
+    <input id="search" type="search" placeholder="Search — e.g. dexmedetomidine, BIS, benzodiazepine, hip fracture, NNT…" autocomplete="off" aria-label="Search reference">
+  </div>
+  <button class="btn" id="expandAll" type="button">Expand all</button>
+  <button class="btn" id="collapseAll" type="button">Collapse all</button>
+  <div class="result-count" id="resultCount"></div>
+</div>
+
+<div class="no-results" id="noResults">No matching sections. Try a different term.</div>
+
+<!-- ============================================================= -->
+<!-- 1. AT A GLANCE -->
+<!-- ============================================================= -->
+<details class="card block" open>
+  <summary>1. At a glance — the numbers that matter <span class="tag">Epidemiology</span></summary>
+  <div class="card-body">
+
+    <div class="callout">
+      <p><strong>Definition.</strong> Delirium is an acute, fluctuating disturbance of attention and awareness (DSM-5). Postoperative delirium typically presents on <strong>postoperative days 2–5</strong> and may occur up to <strong>30 days</strong> after surgery.</p>
+    </div>
+
+    <h3>Incidence by population</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Population / procedure</th><th class="num">Incidence of POD</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>General surgical population</td><td class="num">2.5–3%</td><td>Baseline risk</td></tr>
+          <tr><td>Age &gt;60–70 yr</td><td class="num">10–20%</td><td>Age is a dominant risk factor</td></tr>
+          <tr><td>Elective extremity surgery</td><td class="num">2.5–3%</td><td>Lower-risk surgery</td></tr>
+          <tr><td>Truncal (abdominal / pelvic) surgery</td><td class="num">10–20%</td><td>Higher-risk surgery</td></tr>
+          <tr><td>Emergency surgery</td><td class="num">20–45%</td><td>1.5–3× comparable elective surgery</td></tr>
+          <tr><td>Complex surgery requiring critical care (cardiothoracic, hepatic)</td><td class="num">20–50%</td><td>ICU admission is itself a risk</td></tr>
+          <tr><td>Neck of femur fracture repair</td><td class="num">up to 70%</td><td>Frail elderly + pain + emergency + limited optimisation</td></tr>
+          <tr><td>General medical ward / ICU (all-comers)</td><td class="num">14% / up to 82%</td><td>Context-dependent range</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Consequences</h3>
+    <ul>
+      <li><strong>Length of stay:</strong> +2–3 days in hospital; +2 days in ITU.</li>
+      <li><strong>Mortality:</strong> 30-day mortality <strong>7–10%</strong> vs <strong>~1%</strong> without delirium.</li>
+      <li><strong>Discharge destination:</strong> 2–3× higher risk of needing a care facility.</li>
+      <li><strong>Function:</strong> significant functional decline; increased dependency in basic ADLs; falls and pressure injuries.</li>
+      <li><strong>Cost:</strong> estimated additional <strong>USD 2,000–8,000 per case</strong>.</li>
+      <li><strong>Subtypes:</strong> hypoactive ~<strong>71%</strong> (easily missed), hyperactive, and mixed.</li>
+    </ul>
+
+    <div class="callout warn">
+      <p><strong>Hypoactive delirium is the trap.</strong> Anhedonia, decreased alertness, and quiet withdrawal are more common than agitation. Screen actively — do not wait for the patient to become combative.</p>
+    </div>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- 2. RECOGNITION -->
+<!-- ============================================================= -->
+<details class="card block">
+  <summary>2. Recognition &amp; screening <span class="tag">Diagnosis</span></summary>
+  <div class="card-body">
+
+    <h3>DSM-5 core criteria</h3>
+    <ol>
+      <li>Disturbance in <strong>attention</strong> and <strong>awareness</strong>.</li>
+      <li>Develops over a <strong>short period</strong> and tends to <strong>fluctuate</strong> over the day.</li>
+      <li>Additional cognitive disturbance (memory deficit, disorientation, language, visuospatial).</li>
+      <li>Not better explained by another neurocognitive disorder; not in coma.</li>
+    </ol>
+
+    <h3>Bedside symptoms to look for</h3>
+    <ul>
+      <li>Change in arousal — drowsiness, reduced arousal, or hypervigilance.</li>
+      <li>Delayed awakening from anaesthesia.</li>
+      <li>Abrupt worsening confusion over hours to days; difficulty tracking conversation or following instructions.</li>
+      <li>Disorganised, slow, or rapid speech; quick-changing emotions; irritability; refusal to engage with care.</li>
+      <li>New paranoid thoughts or delusions; illusions or hallucinations.</li>
+      <li>Motor changes — slowed/decreased movement, purposeless fidgeting, inability to maintain posture.</li>
+      <li>Sleep–wake cycle reversal; decreased appetite; new urinary or faecal incontinence.</li>
+      <li><strong>Fluctuation</strong> of symptoms over minutes to hours.</li>
+    </ul>
+
+    <h3>Validated screening tools</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Tool</th><th>Setting</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>4AT</strong></td><td>Ward / general</td><td>4 tests: alertness, 2 brief cognitive screens, acuity of change. Rapid, no specialist training required.</td></tr>
+          <tr><td><strong>3D-CAM</strong></td><td>Ward / general</td><td>3-minute diagnostic interview based on the CAM algorithm.</td></tr>
+          <tr><td><strong>CAM-ICU</strong></td><td>Intensive care</td><td>Validated in critically ill / ventilated patients.</td></tr>
+          <tr><td><strong>Nu-DESC</strong></td><td>PACU</td><td>Nursing Delirium Screening Scale; used by PACU staff.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <p><strong>Caveats.</strong> Neither 3D-CAM nor CAM-ICU reliably distinguishes <em>syndromal</em> from <em>subsyndromal</em> delirium. Delirium is frequently misdiagnosed as depression or dementia. A focused staff education programme improves recognition.</p>
+    </div>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- 3. RISK FACTORS -->
+<!-- ============================================================= -->
+<details class="card block">
+  <summary>3. Risk factors &amp; risk stratification <span class="tag">Assessment</span></summary>
+  <div class="card-body">
+
+    <h3>Multifactorial model</h3>
+    <figure class="diagram">
+      <div class="two-col">
+        <div class="box">
+          <h5>Predisposing — vulnerability</h5>
+          <ul>
+            <li>Advanced age</li>
+            <li>Pre-existing cognitive impairment / dementia</li>
+            <li>Complex comorbidities (ASA, Charlson)</li>
+            <li>Nursing home residence</li>
+            <li>Functional dependence</li>
+            <li>Sensory deficits (vision, hearing)</li>
+            <li>Neurological, cardiac, respiratory, metabolic disease</li>
+            <li>Polypharmacy</li>
+          </ul>
+        </div>
+        <div class="arrow-mid">＋</div>
+        <div class="box">
+          <h5>Precipitating — insult</h5>
+          <ul>
+            <li>Emergency surgery</li>
+            <li>Sleep disruption</li>
+            <li>Significant intraoperative blood loss</li>
+            <li>Poorly controlled pain</li>
+            <li>Infection / sepsis</li>
+            <li>Metabolic derangement, dehydration</li>
+            <li>Constipation, urinary retention</li>
+            <li>Benzodiazepines, anticholinergics</li>
+          </ul>
+        </div>
+      </div>
+      <figcaption><strong>Simplified multifactorial model.</strong> A highly vulnerable patient may develop delirium after a minor insult (e.g. UTI); a low-vulnerability patient may require a major insult (e.g. overwhelming sepsis). Prevention targets the modifiable precipitating factors.</figcaption>
+    </figure>
+
+    <h3>Risk prediction scores</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Score</th><th>Components</th><th>Performance / notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Inouye (admission-based)</strong></td>
+            <td>MMSE, APACHE II, vision score, BUN/creatinine ratio</td>
+            <td>Validated in hip surgery: 0 risk factors → &lt;1% risk; &gt;2 risk factors → &gt;30% risk</td>
+          </tr>
+          <tr>
+            <td><strong>Kim (hip fracture, 9-item)</strong></td>
+            <td>Preoperative delirium, dementia, age, medical comorbidity, ASA grade, functional dependence, smoking, SIRS, preoperative mobility aid use</td>
+            <td>Derived from &gt;6,000 hip fracture patients</td>
+          </tr>
+          <tr>
+            <td><strong>DELPHI (10-item)</strong></td>
+            <td>Weighted hospital-information items</td>
+            <td>Internal validation n=553 surgical patients; PPV 70%, NPV 95%. Single centre — needs external validation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <p><strong>Limitation of scores:</strong> most are validated in medical patients or a single surgical type, weakening transferability to the general surgical population. Use them to <em>stratify</em>, not to rule out.</p>
+    </div>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- 4. PATHOPHYSIOLOGY -->
+<!-- ============================================================= -->
+<details class="card block">
+  <summary>4. Pathophysiology — the working hypotheses <span class="tag">Mechanism</span></summary>
+  <div class="card-body">
+
+    <h3>Neuroinflammation</h3>
+    <ul>
+      <li>Surgery raises systemic inflammatory mediators (CRP, IL-6) that remain elevated postoperatively.</li>
+      <li>Elevated <strong>preoperative</strong> CRP and IL-6 also predict delirium — pre-existing pathology contributes.</li>
+      <li>Peripheral inflammation → loss of blood–brain barrier integrity → translocation of inflammatory cells and mediators into the CNS.</li>
+      <li>Consequences: loss of synaptic plasticity, neuro-apoptosis, impaired neurogenesis.</li>
+      <li>Amyloid-β deposition has been proposed, but multiple surgeries under GA were <em>not</em> associated with increased brain amyloid in older adults; abnormal cortical thickening was reported.</li>
+    </ul>
+
+    <h3>Neurotransmitter disturbance</h3>
+    <ul>
+      <li><strong>Acetylcholine:</strong> low preoperative and postoperative acetylcholinesterase activity is an independent risk factor; centrally acting anticholinergics (e.g. amitriptyline) increase risk.</li>
+      <li><strong>Dopamine:</strong> receptor and transporter gene polymorphisms alter delirium risk (confirmed in meta-analysis).</li>
+      <li><strong>Monoamines:</strong> altered metabolism reported, but not confirmed as independent risk factor on multivariable analysis.</li>
+    </ul>
+
+    <h3>Subclinical cerebral vascular events</h3>
+    <ul>
+      <li>Hypertension, atrial fibrillation, and previous stroke are risk factors.</li>
+      <li>Radiological cerebral ischaemia in <strong>7–10%</strong> of older surgical patients → more than double the risk of delirium (covert stroke).</li>
+      <li>Cerebral perfusion pressure: every 10 mmHg reduction was associated with double the delirium risk in lung transplant patients; pressure above the autoregulatory limit is also an independent risk factor.</li>
+    </ul>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- 5. PREVENTION -->
+<!-- ============================================================= -->
+<details class="card block">
+  <summary>5. Prevention — preoperative <span class="tag">Interventions</span></summary>
+  <div class="card-body">
+
+    <h3>Avoid perioperative polypharmacy</h3>
+    <ul>
+      <li>Polypharmacy is an independent risk factor in older patients; drug–drug interactions compound risk.</li>
+      <li>Review and deprescribe agents with direct deliriogenic potential before surgery.</li>
+    </ul>
+
+    <h3>Avoid prolonged fluid fasting (&gt;6 h)</h3>
+    <ul>
+      <li>2 h clear fluid fasting is recommended to allow gastric emptying, but practice often exceeds this.</li>
+      <li>Prolonged fasting causes dehydration and unnecessary IV fluids.</li>
+      <li>Fluid fasting &gt;6 h is an independent risk factor for delirium — <strong>odds ratio 10.6</strong>.</li>
+    </ul>
+
+    <h3>Comprehensive geriatric assessment (CGA)</h3>
+    <ul>
+      <li>Multidisciplinary evaluation of medical, functional, psychological, and social needs before surgery.</li>
+      <li>Individualised optimisation plan made in advance.</li>
+      <li>Clinical trial: preoperative CGA and optimisation reduced delirium incidence from <strong>24% → 11%</strong>.</li>
+    </ul>
+
+    <h3>Preoperative pain management</h3>
+    <ul>
+      <li>Preoperative pain is associated with <strong>1.5–3×</strong> higher risk of postoperative delirium.</li>
+      <li>Pain imposes direct cognitive burden, triggers acute stress response, and increases complications (e.g. atelectasis).</li>
+      <li>Fascia iliaca block for neck of femur fracture: pooled data suggest reduced delirium risk.</li>
+      <li>Early surgical repair of femur fractures reduces pain and may reduce delirium, though evidence is limited.</li>
+    </ul>
+
+  </div>
+</details>
+
+<details class="card block">
+  <summary>6. Prevention — intraoperative <span class="tag">Interventions</span></summary>
+  <div class="card-body">
+
+    <div class="table-scroll tall">
+      <table>
+        <thead>
+          <tr><th>Intervention</th><th>Evidence</th><th>Effect / numbers</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dexmedetomidine</strong></td>
+            <td><span class="pill ok">Effective</span> Meta-analysis</td>
+            <td>Intraoperative + postoperative infusion: OR <strong>0.35</strong> for delirium. Noncardiac surgery: RR <strong>0.61</strong>, <strong>NNT 10</strong>. Prophylactic <code>0.1 µg/kg/h</code> in ICU patients &gt;65 yr after noncardiac surgery reduced delirium.</td>
+          </tr>
+          <tr>
+            <td><strong>Paracetamol</strong></td>
+            <td><span class="pill ok">Effective</span> Clinical trial</td>
+            <td>1 g every 6 h for 2 days: delirium <strong>28% → 10%</strong>, <strong>NNT 5.6</strong> (cardiac surgery).</td>
+          </tr>
+          <tr>
+            <td><strong>NSAIDs (parecoxib)</strong></td>
+            <td><span class="pill ok">Effective</span> Clinical trial</td>
+            <td>Parecoxib 40 mg every 12 h for 3 days: delirium <strong>11% → 6%</strong>, <strong>NNT 20</strong> (hip/knee). Observational cohort &gt;1 million patients: OR <strong>0.85</strong>. Note: renal safety not reported in the trial.</td>
+          </tr>
+          <tr>
+            <td><strong>Neuraxial / regional anaesthesia</strong></td>
+            <td><span class="pill mid">Cohort data</span></td>
+            <td>Two large observational studies (40,000 and 1 million patients) report regional anaesthesia independently associated with <strong>20–40% lower</strong> delirium incidence. Meta-analysis of hip fracture trials found mostly no difference but was underpowered.</td>
+          </tr>
+          <tr>
+            <td><strong>Multimodal opioid-sparing analgesia</strong></td>
+            <td><span class="pill ok">Recommended</span></td>
+            <td>Higher postoperative pain scores and longer-acting opioids both increase delirium risk. Multimodal analgesia is likely the optimal strategy.</td>
+          </tr>
+          <tr>
+            <td><strong>Avoid benzodiazepines</strong></td>
+            <td><span class="pill no">Avoid</span> Cohort</td>
+            <td>Perioperative benzodiazepine administration: <strong>2–2.5×</strong> higher delirium risk. Midazolam identified as a risk factor in surgical and ICU patients. Discourage routine premedication — except pre-existing anxiety or benzodiazepine/alcohol withdrawal.</td>
+          </tr>
+          <tr>
+            <td><strong>Avoid gabapentinoids</strong></td>
+            <td><span class="pill mid">Balance</span> Cohort</td>
+            <td>Perioperative gabapentinoids: OR <strong>1.26</strong> for delirium. Must be balanced against opioid-sparing benefit. A randomised trial found gabapentin did not reduce delirium in older surgical patients.</td>
+          </tr>
+          <tr>
+            <td><strong>Avoid scopolamine</strong></td>
+            <td><span class="pill no">Avoid</span> Guidelines</td>
+            <td>Anticholinergic antiemetic; case reports of scopolamine-induced delirium; expert guidelines recommend avoiding in older patients.</td>
+          </tr>
+          <tr>
+            <td><strong>Depth of anaesthesia monitoring (BIS)</strong></td>
+            <td><span class="pill mid">Equivocal</span> Meta-analyses</td>
+            <td>MacKenzie 2018 and Bocskai 2020: monitoring reduced delirium. Miao 2019 (BIS only, &gt;60 yr): OR 0.69, <strong>P = 0.05 — not statistically significant</strong>. See Section 10.</td>
+          </tr>
+          <tr>
+            <td><strong>TIVA vs volatile agent</strong></td>
+            <td><span class="pill neutral">No difference</span></td>
+            <td>Cochrane meta-analysis of 5 trials: no significant difference in delirium. Overall quality of evidence very low (bias, inconsistency). Volatile agents may induce/exacerbate neuroinflammation in laboratory models.</td>
+          </tr>
+          <tr>
+            <td><strong>Ketamine (sub-hypnotic)</strong></td>
+            <td><span class="pill neutral">No difference</span></td>
+            <td>0.2–0.5 mg/kg at induction: no increased delirium risk. Quality of evidence low. Large multicentre trial (0.5 vs 1.0 mg/kg vs saline): no difference in delirium, but higher rates of hallucinations and nightmares with each dose increment.</td>
+          </tr>
+          <tr>
+            <td><strong>Xenon</strong></td>
+            <td><span class="pill neutral">No difference</span></td>
+            <td>One small off-pump CABG trial favoured xenon over sevoflurane (HR 4.2 for sevoflurane), but larger trials in cardiac surgery and hip fracture found no difference.</td>
+          </tr>
+          <tr>
+            <td><strong>Minimally invasive surgery</strong></td>
+            <td><span class="pill mid">Conflicting</span></td>
+            <td>Reduces pain, stress, and inflammatory response, but cohort evidence on delirium is conflicting. Requires more robust study.</td>
+          </tr>
+          <tr>
+            <td><strong>Strict BP control / haemodynamics</strong></td>
+            <td><span class="pill mid">Equivocal</span></td>
+            <td>No consistent association between intraoperative hypotension and delirium. Higher vasopressor requirement is associated with delirium in high-risk surgery (may reflect cardiovascular compromise). Pilot trial targeting MAP &gt;90% of baseline: no significant difference.</td>
+          </tr>
+          <tr>
+            <td><strong>Goal-directed fluid therapy</strong></td>
+            <td><span class="pill neutral">No difference</span></td>
+            <td>Earlier observational study suggested 75% reduction in spinal surgery; recent RCT (n=180) found no significant difference. Small studies, likely underpowered.</td>
+          </tr>
+          <tr>
+            <td><strong>Transfusion strategy</strong></td>
+            <td><span class="pill neutral">No difference</span></td>
+            <td>Small RCT of liberal vs restrictive thresholds: no difference. Observational studies show a dose-dependent association between transfusion volume and delirium — likely confounded by blood loss and haemodynamic instability.</td>
+          </tr>
+          <tr>
+            <td><strong>Avoid hypothermia</strong></td>
+            <td><span class="pill mid">Association</span> Cohort</td>
+            <td>Cardiac surgery patients who developed delirium had lower minimum intraoperative temperature (34.5 °C vs 35 °C, P = 0.035). Whether milder hypothermia matters is unclear.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout good">
+      <p><strong>Intraoperative bottom line:</strong> the strongest evidence-based levers are <strong>dexmedetomidine</strong>, <strong>paracetamol</strong>, <strong>NSAIDs</strong>, and <strong>multimodal opioid-sparing analgesia</strong> — plus <strong>avoiding benzodiazepines, gabapentinoids, and scopolamine</strong>.</p>
+    </div>
+
+  </div>
+</details>
+
+<details class="card block">
+  <summary>7. Prevention — postoperative <span class="tag">Interventions</span></summary>
+  <div class="card-body">
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Intervention</th><th>Evidence</th><th>Effect / numbers</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Multicomponent non-pharmacological care</strong></td>
+            <td><span class="pill ok">Effective</span> Meta-analysis (14 studies)</td>
+            <td>OR <strong>0.46</strong>, <strong>NNT 14.3</strong>. Variable risk of bias across included studies.</td>
+          </tr>
+          <tr>
+            <td><strong>Reorientation alone</strong></td>
+            <td><span class="pill ok">Effective</span> Clinical trial</td>
+            <td>Reduced incidence of overt delirium by <strong>40%</strong>.</td>
+          </tr>
+          <tr>
+            <td><strong>Melatonin</strong></td>
+            <td><span class="pill ok">Effective</span> Meta-analysis</td>
+            <td>Perioperative administration associated with <strong>~40–45% lower</strong> risk of postoperative delirium.</td>
+          </tr>
+          <tr>
+            <td><strong>Ramelteon</strong></td>
+            <td><span class="pill ok">Effective</span> Network meta-analysis</td>
+            <td>Pooled finding favoured ramelteon, OR <strong>0.07</strong>.</td>
+          </tr>
+          <tr>
+            <td><strong>Antipsychotic prophylaxis</strong></td>
+            <td><span class="pill mid">Benefit vs harm unclear</span></td>
+            <td>Network meta-analysis: olanzapine OR <strong>0.25</strong>, risperidone OR <strong>0.27</strong>; haloperidol no benefit. Safety concerns limit clinical value.</td>
+          </tr>
+          <tr>
+            <td><strong>High-dose dexamethasone</strong></td>
+            <td><span class="pill mid">Cardiac surgery only</span></td>
+            <td>Meta-analysis of 3 cardiac surgery RCTs: up to 100 mg associated with <strong>~20% reduction</strong> in delirium. Safety profile in noncardiac patients unclear.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The multicomponent delirium prevention bundle</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Strategy</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Sensory enhancement — ensure glasses, hearing aids, listening amplifiers</td></tr>
+          <tr><td class="num">2</td><td>Mobility enhancement — ambulate at least twice daily if possible</td></tr>
+          <tr><td class="num">3</td><td>Cognitive orientation and therapeutic activities tailored to the individual</td></tr>
+          <tr><td class="num">4</td><td>Pain control with scheduled paracetamol if appropriate</td></tr>
+          <tr><td class="num">5</td><td>Cognitive stimulation tailored to interests and mental status</td></tr>
+          <tr><td class="num">6</td><td>Simple communication standards to prevent escalation of behaviours</td></tr>
+          <tr><td class="num">7</td><td>Nutritional and fluid repletion enhancement</td></tr>
+          <tr><td class="num">8</td><td>Sleep enhancement — daytime sleep hygiene, relaxation, night-time routine</td></tr>
+          <tr><td class="num">9</td><td>Medication review and appropriate medication management</td></tr>
+          <tr><td class="num">10</td><td>Daily interdisciplinary team rounding to reinforce interventions</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <p><strong>Framework.</strong> Prevention is best delivered as a protocolised pathway (see Section 9) with multidisciplinary ownership — enthusiastic leadership, stakeholder participation, and efficient pathway management are prerequisites for success.</p>
+    </div>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- 8. TREATMENT -->
+<!-- ============================================================= -->
+<details class="card block">
+  <summary>8. Treatment of established delirium <span class="tag">Management</span></summary>
+  <div class="card-body">
+
+    <div class="callout danger">
+      <p><strong>There is no effective pharmacotherapy that shortens delirium or improves its prognosis.</strong> Risk reduction is the most important part of management.</p>
+    </div>
+
+    <h3>Step 1 — Find and treat the underlying cause</h3>
+    <p>First-line treatment is assessment and management of underlying causes:</p>
+    <ul>
+      <li>Infection</li>
+      <li>Pain</li>
+      <li>Dehydration</li>
+      <li>Metabolic derangement</li>
+      <li>Constipation</li>
+      <li>Urinary retention</li>
+    </ul>
+
+    <h3>Step 2 — Non-pharmacological measures</h3>
+    <ul>
+      <li>Reorientation strategies; involve family members where available.</li>
+      <li>Encourage mobility; avoid strict bed rest.</li>
+      <li>Optimise nutrition and fluid therapy.</li>
+      <li>Sleep hygiene and daytime/night-time routines.</li>
+      <li>Medication review.</li>
+    </ul>
+
+    <h3>Step 3 — Pharmacological, with caution</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Agent</th><th>Role</th><th>Evidence &amp; cautions</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Antipsychotics</strong></td>
+            <td>First-line for agitation symptoms only</td>
+            <td>Do <strong>not</strong> shorten delirium duration or improve adverse outcomes (multiple meta-analyses). Safety signal: in &gt;350,000 patients with neurocognitive disorders, antipsychotics <strong>doubled the risk of death</strong>. In palliative care, neither haloperidol nor risperidone reduced delirium severity, and antipsychotics were associated with significantly shorter survival. Short-term risk profile in surgical patients is unclear — weigh potential harm.</td>
+          </tr>
+          <tr>
+            <td><strong>Benzodiazepines</strong></td>
+            <td><span class="pill no">Avoid</span></td>
+            <td>Previously used for hyperactive agitation; increasingly recognised as <strong>worsening</strong> delirium symptoms. Avoid except for withdrawal states.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- 9. FRAMEWORK DIAGRAM -->
+<!-- ============================================================= -->
+<details class="card block">
+  <summary>9. Optimisation framework — the pathway <span class="tag">Diagram</span></summary>
+  <div class="card-body">
+
+    <figure class="diagram">
+      <div class="flow-outer">
+        <div class="flow-col">
+          <div class="flow-step">Preoperative risk assessment &amp; optimisation</div>
+          <div class="flow-arrow">▼</div>
+          <div class="flow-step">Perioperative risk reduction</div>
+          <div class="flow-arrow">▼</div>
+          <div class="flow-step">Recognition &amp; management of established delirium</div>
+          <div class="flow-arrow">▼</div>
+          <div class="flow-step">Post-discharge care &amp; specialist follow-up</div>
+        </div>
+        <div class="flow-side">Multidisciplinary team involvement</div>
+      </div>
+      <figcaption><strong>Proposed framework for optimising management of postoperative delirium.</strong> The multidisciplinary team runs vertically through every step — the pathway fails if it is owned by one specialty alone.</figcaption>
+    </figure>
+
+    <h3>Applying the framework</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Phase</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Preoperative</strong></td>
+            <td>Quantify delirium risk; comprehensive geriatric assessment; deprescribe deliriogenic drugs; avoid prolonged fluid fasting; treat preoperative pain; plan for high-risk surgery.</td>
+          </tr>
+          <tr>
+            <td><strong>Intraoperative</strong></td>
+            <td>Multimodal opioid-sparing analgesia; consider dexmedetomidine, paracetamol, NSAIDs; avoid benzodiazepines, gabapentinoids, scopolamine; maintain normothermia; consider depth-of-anaesthesia monitoring.</td>
+          </tr>
+          <tr>
+            <td><strong>Postoperative</strong></td>
+            <td>Screen actively (4AT / 3D-CAM / CAM-ICU) — especially for hypoactive delirium; multicomponent non-pharmacological bundle; melatonin/ramelteon; treat underlying causes; antipsychotics only for distressing agitation.</td>
+          </tr>
+          <tr>
+            <td><strong>Post-discharge</strong></td>
+            <td>Specialist follow-up; cognitive and functional review; recognise that delirium is associated with long-term cognitive trajectory change.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- 10. DEPTH OF ANAESTHESIA CONTROVERSY -->
+<!-- ============================================================= -->
+<details class="card block">
+  <summary>10. Depth of anaesthesia &amp; BIS — the controversy <span class="tag">Evidence</span></summary>
+  <div class="card-body">
+
+    <div class="callout">
+      <p><strong>Question:</strong> does deliberately targeting deep anaesthesia cause delirium? Current evidence is <strong>contradictory</strong>, and whether — and for whom — deep anaesthesia is deliriogenic remains unanswered.</p>
+    </div>
+
+    <h3>The Balanced Anaesthesia Delirium substudy</h3>
+    <ul>
+      <li>515-patient substudy of the 6,644-patient Balanced Anaesthesia trial.</li>
+      <li>Adults &gt;60 yr, major noncardiac surgery, general anaesthesia with a volatile agent, nitrous oxide excluded.</li>
+      <li>Compared targeting <strong>BIS 35 (deep)</strong> vs <strong>BIS 50 (light)</strong>.</li>
+    </ul>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Outcome</th><th class="num">BIS 35 (deep)</th><th class="num">BIS 50 (light)</th><th class="num">P value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Syndromal delirium</td><td class="num">28%</td><td class="num">19%</td><td class="num"><strong>P = 0.010</strong></td></tr>
+          <tr><td>Subsyndromal delirium</td><td class="num">45%</td><td class="num">49%</td><td class="num">P = 0.278 (NS)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>But the effect was driven by East Asian centres</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Site group</th><th class="num">BIS 35</th><th class="num">BIS 50</th><th class="num">Difference (95% CI)</th><th class="num">P</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Asia</strong></td><td class="num">29.4%</td><td class="num">17.7%</td><td class="num">+11.7% (3.0–20.1)</td><td class="num"><strong>0.006</strong></td></tr>
+          <tr><td><strong>Outside Asia</strong></td><td class="num">24.6%</td><td class="num">21.8%</td><td class="num">+2.8% (−13.9–18.9)</td><td class="num">0.724</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>BIS–MAC relationship by site</h3>
+    <figure class="diagram">
+      <svg class="chart" viewBox="0 0 620 300" role="img" aria-label="Simplified schematic of BIS versus MAC fraction by site group">
+        <!-- axes -->
+        <line x1="70" y1="250" x2="580" y2="250" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.5"/>
+        <line x1="70" y1="250" x2="70" y2="30" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.5"/>
+        <!-- y label -->
+        <text x="24" y="150" fill="currentColor" font-size="12" font-family="sans-serif" transform="rotate(-90 24 150)" text-anchor="middle">BIS</text>
+        <!-- x label -->
+        <text x="325" y="285" fill="currentColor" font-size="12" font-family="sans-serif" text-anchor="middle">MAC fraction (volatile dose)</text>
+        <!-- y ticks -->
+        <text x="60" y="54" fill="currentColor" font-size="11" font-family="sans-serif" text-anchor="end">60</text>
+        <text x="60" y="104" fill="currentColor" font-size="11" font-family="sans-serif" text-anchor="end">50</text>
+        <text x="60" y="154" fill="currentColor" font-size="11" font-family="sans-serif" text-anchor="end">40</text>
+        <text x="60" y="204" fill="currentColor" font-size="11" font-family="sans-serif" text-anchor="end">30</text>
+        <!-- steep line: East Asian -->
+        <line x1="150" y1="60" x2="330" y2="225" stroke="#0969da" stroke-width="3" stroke-linecap="round"/>
+        <!-- shallow line: non-East Asian -->
+        <line x1="150" y1="70" x2="540" y2="195" stroke="#8250df" stroke-width="3" stroke-linecap="round"/>
+        <!-- labels -->
+        <text x="345" y="232" fill="#0969da" font-size="12" font-weight="600" font-family="sans-serif">East Asian sites</text>
+        <text x="345" y="248" fill="#0969da" font-size="10.5" font-family="sans-serif">small ↑ MAC → large ↓ BIS</text>
+        <text x="470" y="176" fill="#8250df" font-size="12" font-weight="600" font-family="sans-serif">Other sites</text>
+        <text x="470" y="192" fill="#8250df" font-size="10.5" font-family="sans-serif">large ↑ MAC → smaller ↓ BIS</text>
+      </svg>
+      <figcaption><strong>Simplified schematic</strong> (not to scale) of the BIS–MAC relationship. At East Asian sites, much smaller changes in MAC produced the BIS change, and larger BIS differences were achieved between groups. The steeper slope suggests possible increased sensitivity to volatile agents — but could also reflect differences in patient characteristics across sites.</figcaption>
+    </figure>
+
+    <h3>Possible explanations for the site difference</h3>
+    <ul>
+      <li><strong>Pharmacogenetic variation.</strong> <code>CYP2E1*7</code> — an important P450 enzyme in volatile anaesthetic metabolism — is carried by nearly <strong>34%</strong> of the East Asian population vs <strong>&lt;2%</strong> in other populations.</li>
+      <li>Genome-wide association studies in medicine are overwhelmingly performed in populations of European descent; Asian populations (50% of the world, 4.3 billion people) are under-represented.</li>
+      <li>Differences in medical care, patient status, or other genetic factors cannot be excluded.</li>
+    </ul>
+
+    <h3>Why BIS is an imperfect depth monitor</h3>
+    <ul>
+      <li>Proprietary processed EEG indices lack a neurobiological foundation — a single number cannot represent a precise brain state for every patient, drug combination, age, sex, ethnicity, and comorbidity profile.</li>
+      <li>BIS readings <strong>decrease below 50</strong> with succinylcholine or rocuronium in awake volunteers.</li>
+      <li><strong>Falsely high</strong> BIS readings occur: older adults have higher BIS than younger adults at equivalent age-adjusted MAC. This would theoretically promote excessive anaesthetic administration to vulnerable older adults.</li>
+      <li>Time delay in EEG index calculation, effects of noxious stimulation, and transient alpha power loss all degrade reliability — especially when reliability is most needed.</li>
+    </ul>
+
+    <h3>Reconciling the substudy with the parent trial</h3>
+    <ul>
+      <li>In the substudy, delirium was strongly associated with adverse outcomes: 3× unplanned ICU admission, median 2 extra hospital days (8 vs 6), 6× myocardial infarction (6% vs 1%), 2× 1-year mortality (12% vs 6%).</li>
+      <li>If this held in the parent trial, delirium should have mediated worse outcomes in the deep anaesthesia group — but the <strong>larger parent trial found no significant difference</strong> in death, major morbidity, quality of recovery (days 1, 2, 3, 30), or global health/disability at 30 days and 1 year.</li>
+    </ul>
+
+    <div class="callout warn">
+      <p><strong>Three possible interpretations:</strong></p>
+      <ol style="margin-bottom:0">
+        <li>Unrecognised bias or noise at some substudy sites — the delirium finding may not be true.</li>
+        <li>True heterogeneity across sites (e.g. subpopulation genetic susceptibility) — the finding is correct but does not generalise.</li>
+        <li>The delirium-reducing effect is real and generalised, but anaesthetic-related delirium does not causally mediate other adverse outcomes.</li>
+      </ol>
+    </div>
+
+    <h3>Other trials</h3>
+    <ul>
+      <li><strong>ENGAGES:</strong> randomised to usual care vs avoidance of EEG suppression — <strong>no significant difference</strong> in postoperative delirium. Limitation: small difference in median EEG suppression duration between groups (7 vs 13 min).</li>
+      <li>The Balanced Anaesthesia Delirium substudy achieved an even smaller absolute difference in EEG suppression (2 vs 6 min), so EEG suppression duration does not explain the contrasting findings.</li>
+      <li>Studies comparing regional anaesthesia (possibly with sedation) vs general anaesthesia, mostly orthopaedic, generally found no significant difference in delirium — making a profound effect of moderate volatile exposure reduction biologically surprising.</li>
+    </ul>
+
+    <h3>Limitations to consider before changing practice</h3>
+    <ul>
+      <li>In the low BIS group, patients were ~50% more likely to have a cardiovascular disease history (29% vs 20%) — an imbalanced vulnerability, since cardiovascular disease is a delirium risk factor. No baseline-adjusted analysis was performed.</li>
+      <li>Delirium has no gold standard diagnosis; marked variation in incidence across sites, exclusion of some patients with preoperative delirium, and a high combined syndromal + subsyndromal incidence (70.5%).</li>
+      <li>Neither 3D-CAM nor CAM-ICU was designed to distinguish syndromal from subsyndromal delirium.</li>
+      <li>Type 1 errors / false positives occur commonly even in well-conducted trials — replication is needed before clinical implementation.</li>
+    </ul>
+
+    <div class="callout good">
+      <p><strong>Practical position:</strong> current routine anaesthetic practice is probably <em>not</em> associated with increased delirium risk, whereas deliberately targeting deep anaesthesia for a prolonged duration might be — possibly especially in particular patient populations who may be vulnerable due to genetic susceptibility or comorbidities.</p>
+    </div>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- 11. POCD -->
+<!-- ============================================================= -->
+<details class="card block">
+  <summary>11. Postoperative cognitive dysfunction (POCD) <span class="tag">Separate entity</span></summary>
+  <div class="card-body">
+
+    <div class="callout">
+      <p><strong>POCD is not delirium.</strong> It refers to a decline in cognitive function following surgery as measured by neuropsychological testing — ideally with preoperative baseline testing for reference. It does not yet correspond to a specific clinical diagnosis.</p>
+    </div>
+
+    <h3>Incidence</h3>
+    <ul>
+      <li>Patients older than 65 years: approximately <strong>25.8% at 1 week</strong> and <strong>9.9% at 3 months</strong> after surgery.</li>
+    </ul>
+
+    <h3>Risk factors</h3>
+    <ul>
+      <li>Increasing age</li>
+      <li>Pre-existing cognitive impairment</li>
+      <li>Lower education level</li>
+    </ul>
+
+    <h3>Outcomes</h3>
+    <ul>
+      <li>Reduced quality of life.</li>
+      <li>Increased mortality.</li>
+    </ul>
+
+    <h3>Nomenclature — current terminology</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Term</th><th>Source / context</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Mild cognitive impairment</strong> (amnesic subtype)</td><td>National Institute on Aging / Alzheimer's Association</td><td>Interim period between normal cognition and dementia</td></tr>
+          <tr><td><strong>Mild neurocognitive disorder</strong></td><td>DSM-5</td><td>Community terminology — not used for perioperative impairment</td></tr>
+          <tr><td><strong>Major neurocognitive disorder</strong></td><td>DSM-5</td><td>Equivalent to dementia</td></tr>
+          <tr><td><strong>Perioperative cognitive disorders</strong></td><td>International Perioperative Cognition Nomenclature Working Group (Br J Anaesth)</td><td>New consensus definition for the anaesthesia/surgery context</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Aetiology</h3>
+    <ul>
+      <li>POCD appears to be <strong>independent of the type of surgery and anaesthetic</strong>.</li>
+      <li>Proposed mechanisms include inflammation, endothelial dysfunction, and cerebral protection failure.</li>
+      <li>Cognitive decline also occurs with age and in the community, independent of surgery — which complicates attribution.</li>
+    </ul>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- 12. QUICK CHECKLIST -->
+<!-- ============================================================= -->
+<details class="card block">
+  <summary>12. One-page checklist <span class="tag">Summary</span></summary>
+  <div class="card-body">
+
+    <h4>Preoperative</h4>
+    <ul>
+      <li>☐ Quantify delirium risk (age, cognition, comorbidity, function, sensory deficits)</li>
+      <li>☐ Comprehensive geriatric assessment if high risk</li>
+      <li>☐ Review and stop deliriogenic drugs (benzodiazepines, anticholinergics, scopolamine)</li>
+      <li>☐ Avoid fluid fasting &gt;6 h</li>
+      <li>☐ Treat preoperative pain (consider fascia iliaca block for NOF fracture)</li>
+      <li>☐ Consider early surgery for hip fracture</li>
+    </ul>
+
+    <h4>Intraoperative</h4>
+    <ul>
+      <li>☐ Multimodal opioid-sparing analgesia</li>
+      <li>☐ Consider dexmedetomidine infusion</li>
+      <li>☐ Consider paracetamol and/or NSAID unless contraindicated</li>
+      <li>☐ Avoid benzodiazepines and gabapentinoids</li>
+      <li>☐ Maintain normothermia</li>
+      <li>☐ Consider depth-of-anaesthesia monitoring — evidence is equivocal</li>
+      <li>☐ No clear evidence favouring TIVA over volatile, or a specific BP/fluid/transfusion target</li>
+    </ul>
+
+    <h4>Postoperative</h4>
+    <ul>
+      <li>☐ Screen actively for delirium — remember hypoactive subtype (71%)</li>
+      <li>☐ Multicomponent non-pharmacological bundle (NNT 14.3)</li>
+      <li>☐ Reorientation, mobility, sensory aids, sleep hygiene, hydration, nutrition</li>
+      <li>☐ Consider melatonin or ramelteon</li>
+      <li>☐ Treat underlying causes: infection, pain, dehydration, metabolic, constipation, retention</li>
+      <li>☐ Antipsychotics for distressing agitation only — do not shorten delirium, safety concerns</li>
+      <li>☐ Avoid benzodiazepines for delirium symptoms</li>
+    </ul>
+
+  </div>
+</details>
+
+<!-- ============================================================= -->
+<!-- REFERENCES -->
+<!-- ============================================================= -->
+<details class="card block refs" open>
+  <summary>Sources <span class="tag">References</span></summary>
+  <div class="card-body">
+    <ol>
+      <li>
+        <span class="src-title">Whitlock EL, Gross ER, King CR, Avidan MS. Anaesthetic depth and delirium: a challenging balancing act.</span>
+        <span class="src-meta"><em>British Journal of Anaesthesia</em> 2021;127(5):667–671. doi: 10.1016/j.bja.2021.08.003. Advance Access Publication Date: 6 September 2021. © 2021 British Journal of Anaesthesia. Published by Elsevier Ltd. All rights reserved.<br>
+        Editorial accompanying: Evered LA et al. Anaesthetic depth and delirium after major surgery: a randomised clinical trial. <em>Br J Anaesth</em> 2021;127:704–712.</span>
+      </li>
+      <li>
+        <span class="src-title">Jin Z, Hu J, Ma D. Postoperative delirium: perioperative assessment, risk reduction, and management.</span>
+        <span class="src-meta"><em>British Journal of Anaesthesia</em> 2020;125(4):492–504 (pages 1–13 of source PDF). doi: 10.1016/j.bja.2020.06.063. © 2021 British Journal of Anaesthesia. Published by Elsevier Ltd. All rights reserved.<br>
+        Affiliations: Division of Anaesthetics, Pain Medicine and Intensive Care, Department of Surgery and Cancer, Faculty of Medicine, Imperial College London, Chelsea &amp; Westminster Hospital, London, UK; Department of Anesthesiology, Luoyang Central Hospital Affiliated to Zhengzhou University, Henan, China.</span>
+      </li>
+      <li>
+        <span class="src-title">Postoperative delirium and postoperative cognitive dysfunction. Anaesthesia Tutorial of the Week.</span>
+        <span class="src-meta">Authors: Anaesthetic Registrar and Anaesthetic Consultant, Fiona Stanley Hospital, Western Australia. Edited by Alex Konstantatos, Anaesthetic Consultant, Alfred Hospital, Victoria, Australia. Published 7 August 2018. Source file: 385_english.pdf.</span>
+      </li>
+      <li>
+        <span class="src-title">Goeller JK, Bartels K. Improving prediction to prevent perioperative morbidity.</span>
+        <span class="src-meta"><em>British Journal of Anaesthesia</em> 2021;127(5):671–674. doi: 10.1016/j.bja.2021.08.004. Advance Access Publication Date: 7 September 2021. © 2021 British Journal of Anaesthesia. Published by Elsevier Ltd. All rights reserved.</span>
+      </li>
+    </ol>
+    <p style="margin-top:14px"><small>This quick reference is a summary of the cited sources for educational use by anaesthetists and intensivists. It does not replace clinical judgement, local guidelines, or the full text of the original articles. Verify drug doses against local formularies before prescribing.</small></p>
+  </div>
+</details>
+
+<footer>
+  Quick reference compiled from the cited sources · Clinical summary only · Verify all doses and thresholds locally.
+</footer>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var blocks       = Array.prototype.slice.call(document.querySelectorAll('.block'));
+  var searchInput  = document.getElementById('search');
+  var resultCount  = document.getElementById('resultCount');
+  var noResults    = document.getElementById('noResults');
+  var expandBtn    = document.getElementById('expandAll');
+  var collapseBtn  = document.getElementById('collapseAll');
+
+  // Store original markup for clean restore on every keystroke
+  blocks.forEach(function (b, i) {
+    b.dataset.orig = b.innerHTML;
+    b.dataset.idx = i;
+  });
+
+  function escapeRegExp(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function highlight(root, regex) {
+    var walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          var p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName;
+          if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(function (node) {
+      var text = node.nodeValue;
+      if (!regex.test(text)) return;
+      regex.lastIndex = 0;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+      var match;
+
+      while ((match = regex.exec(text)) !== null) {
+        if (match.index > last) {
+          frag.appendChild(document.createTextNode(text.slice(last, match.index)));
+        }
+        var mark = document.createElement('mark');
+        mark.textContent = match[0];
+        frag.appendChild(mark);
+        last = match.index + match[0].length;
+
+        if (match[0].length === 0) regex.lastIndex++;
+      }
+
+      if (last < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function openAncestors(el) {
+    var node = el.parentNode;
+    while (node && node !== document.body) {
+      if (node.tagName === 'DETAILS') node.open = true;
+      node = node.parentNode;
+    }
+  }
+
+  function reset() {
+    blocks.forEach(function (b) {
+      b.innerHTML = b.dataset.orig;
+      b.classList.remove('hidden');
+      // restore original open/closed state
+      if (b.dataset.wasOpen === '1') b.open = true;
+      else if (b.dataset.wasOpen === '0') b.open = false;
+    });
+    resultCount.textContent = '';
+    noResults.classList.remove('show');
+  }
+
+  function runSearch(rawQuery) {
+    var query = rawQuery.trim();
+
+    if (query.length < 2) {
+      reset();
+      return;
+    }
+
+    var regex = new RegExp(escapeRegExp(query), 'gi');
+    var matches = 0;
+
+    blocks.forEach(function (b) {
+      // Record original open state once
+      if (b.dataset.wasOpen === undefined) {
+        b.dataset.wasOpen = b.open ? '1' : '0';
+      }
+
+      // Restore clean markup, then test
+      b.innerHTML = b.dataset.orig;
+      var text = b.textContent || '';
+
+      if (regex.test(text)) {
+        regex.lastIndex = 0;
+        matches++;
+        b.classList.remove('hidden');
+        openAncestors(b);
+        highlight(b, regex);
+      } else {
+        regex.lastIndex = 0;
+        b.classList.add('hidden');
+      }
+    });
+
+    noResults.classList.toggle('show', matches === 0);
+    resultCount.textContent = matches === 0
+      ? 'No matches for "' + query + '"'
+      : matches + (matches === 1 ? ' section matches ' : ' sections match ') + '"' + query + '"';
+  }
+
+  var debounceTimer;
+  searchInput.addEventListener('input', function (e) {
+    clearTimeout(debounceTimer);
+    var value = e.target.value;
+    debounceTimer = setTimeout(function () { runSearch(value); }, 120);
+  });
+
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      reset();
+    }
+  });
+
+  expandBtn.addEventListener('click', function () {
+    document.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+
+  collapseBtn.addEventListener('click', function () {
+    document.querySelectorAll('details.card').forEach(function (d) { d.open = false; });
+  });
+
+})();
+</script>
+</body>
+</html>
