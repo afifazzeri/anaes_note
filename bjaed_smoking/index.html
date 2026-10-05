@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smoking &amp; Anaesthesia — Anaesthetist / Intensivist Quick Reference</title>
+<style>
+  :root{
+    --border:#d0d7de;
+    --text:#1f2328;
+    --muted:#57606a;
+    --accent:#0969da;
+    --subtle:#f6f8fa;
+    --warn-bg:#fff8c5;
+    --warn-bd:#d4a72c;
+    --danger:#cf222e;
+    --hb:#a40e26;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;
+    font-size:15px;line-height:1.6;color:var(--text);background:var(--subtle);
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 16px;}
+
+  /* ---------- Sticky header ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    background:rgba(246,248,250,.96);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+    padding:14px 0 12px;
+  }
+  h1{font-size:20px;line-height:1.25;margin:0 0 2px;letter-spacing:-.01em;}
+  .sub{margin:0 0 10px;font-size:13px;color:var(--muted);}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  #search{
+    flex:1 1 320px;min-width:200px;
+    padding:8px 12px;font-size:14px;font-family:inherit;
+    border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text);
+  }
+  #search:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:var(--accent);}
+  button{
+    font:inherit;font-size:13px;padding:7px 12px;cursor:pointer;
+    background:#fff;border:1px solid var(--border);border-radius:6px;color:var(--text);
+  }
+  button:hover{background:var(--subtle);border-color:#afb8c1;}
+  .status{margin:8px 0 0;font-size:12.5px;color:var(--muted);min-height:1em;}
+
+  /* ---------- Cards (collapsible) ---------- */
+  main{padding-top:16px;padding-bottom:8px;}
+  .card{
+    background:#fff;border:1px solid var(--border);border-radius:8px;
+    margin:0 0 12px;overflow:hidden;
+  }
+  .card>summary{
+    cursor:pointer;list-style:none;padding:12px 16px;
+    font-weight:600;font-size:15.5px;display:flex;align-items:center;gap:9px;
+    user-select:none;
+  }
+  .card>summary::-webkit-details-marker{display:none;}
+  .card>summary::before{
+    content:"";flex:none;width:0;height:0;
+    border-left:5px solid var(--muted);
+    border-top:4.5px solid transparent;
+    border-bottom:4.5px solid transparent;
+    transition:transform .15s ease;
+  }
+  .card[open]>summary::before{transform:rotate(90deg);}
+  .card>summary:hover{background:var(--subtle);}
+  .card[open]>summary{border-bottom:1px solid var(--border);}
+  .card-body{padding:14px 16px 18px;}
+
+  /* ---------- Content ---------- */
+  .card-body h3{
+    font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--muted);margin:18px 0 6px;font-weight:700;
+  }
+  .card-body h3:first-child{margin-top:2px;}
+  ul{margin:6px 0 10px;padding-left:20px;}
+  li{margin:3px 0;}
+  p{margin:8px 0;}
+  strong{font-weight:650;}
+  code{background:var(--subtle);padding:.15em .35em;border-radius:4px;font-size:.9em;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  mark{background:#fff3b0;color:inherit;padding:0 1px;border-radius:2px;}
+
+  .kp{
+    background:var(--subtle);border-left:4px solid var(--accent);
+    padding:10px 14px;border-radius:0 6px 6px 0;margin:8px 0 14px;
+  }
+  .kp ul{margin:0;padding-left:18px;}
+  .warn{
+    background:var(--warn-bg);border-left:4px solid var(--warn-bd);
+    padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0;
+  }
+  .warn p{margin:4px 0;}
+
+  /* stat chips */
+  .chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:12px 0 4px;}
+  .chip{background:var(--subtle);border:1px solid var(--border);border-radius:6px;padding:8px 10px;}
+  .chip b{display:block;font-size:15px;color:var(--accent);line-height:1.3;}
+  .chip span{display:block;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+  /* ---------- Tables (scrollable) ---------- */
+  .table-wrap{
+    overflow:auto;max-height:430px;
+    border:1px solid var(--border);border-radius:6px;margin:10px 0 6px;
+    -webkit-overflow-scrolling:touch;
+  }
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px;background:#fff;}
+  thead th{
+    position:sticky;top:0;z-index:2;background:var(--subtle);
+    text-align:left;font-weight:650;font-size:12.5px;letter-spacing:.02em;
+    padding:9px 12px;border-bottom:1px solid var(--border);white-space:nowrap;
+  }
+  tbody td{padding:8px 12px;border-bottom:1px solid #eaeef2;vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even){background:#fbfcfd;}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .table-note{font-size:12.5px;color:var(--muted);margin:2px 0 0;}
+
+  /* ---------- Figure ---------- */
+  figure{margin:14px 0 8px;}
+  figure svg{width:100%;height:auto;max-width:600px;display:block;margin:0 auto;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:8px;text-align:center;}
+  .grid line{stroke:#eaeef2;stroke-width:1;}
+  .axis{stroke:#57606a;stroke-width:1.5;}
+  .p50line{stroke:#8c959f;stroke-width:1;stroke-dasharray:4 4;}
+  .curve-hb{fill:none;stroke:var(--hb);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round;}
+  .curve-co{fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round;}
+  .dot-hb{fill:var(--hb);}
+  .dot-co{fill:var(--accent);}
+  .tick text{font-size:11px;fill:var(--muted);}
+  .axis-title{font-size:11.5px;fill:var(--muted);}
+  .lbl{font-size:13px;font-weight:700;}
+  .lbl-hb{fill:var(--hb);}
+  .lbl-co{fill:var(--accent);}
+
+  /* ---------- Footer ---------- */
+  footer{padding:6px 16px 40px;}
+  .source{
+    background:#fff;border:1px solid var(--border);border-radius:8px;
+    padding:14px 16px;font-size:13.5px;
+  }
+  .source h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 8px;}
+  .source p{margin:6px 0;}
+  .fine{color:var(--muted);font-size:12.5px;}
+
+  [hidden]{display:none !important;}
+
+  @media (max-width:560px){
+    body{font-size:14.5px;}
+    h1{font-size:18px;}
+    .card>summary{font-size:14.5px;padding:11px 13px;}
+    .card-body{padding:12px 13px 16px;}
+  }
+  @media print{
+    .topbar{position:static;}
+    .controls{display:none;}
+    .card{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <h1>Smoking &amp; Anaesthesia</h1>
+    <p class="sub">Quick reference for anaesthetists &amp; intensivists &middot; based on <em>BJA Education</em> 2019;19(1):1&ndash;6</p>
+    <div class="controls">
+      <input id="search" type="search" autocomplete="off" spellcheck="false"
+             placeholder="Search… e.g. COHb, laryngospasm, varenicline, FEV1, anastomotic" aria-label="Search reference">
+      <button id="expandAll" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+    </div>
+    <p id="status" class="status" aria-live="polite"></p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ 1. KEY POINTS ============ -->
+  <details class="card" open>
+    <summary>Key clinical points</summary>
+    <div class="card-body">
+      <div class="kp">
+        <ul>
+          <li>Smoking increases the risk of perioperative morbidity and mortality in a <strong>dose-dependent</strong> manner.</li>
+          <li>RCoA advice: people who smoke should <strong>quit several weeks before surgery</strong> and should be especially encouraged <strong>not to smoke on the day of operation</strong>.</li>
+          <li>There are <strong>&gt;4500 chemicals</strong> in cigarette smoke; the majority have detrimental effects on human body systems.</li>
+          <li>The <strong>preoperative assessment clinic</strong> is an opportunity to discuss and encourage smoking cessation.</li>
+          <li>E-cigarettes are used by <strong>2.3 million adults</strong> in the UK, but the long-term harm caused is unknown.</li>
+        </ul>
+      </div>
+
+      <h3>Numbers to remember</h3>
+      <div class="chips">
+        <div class="chip"><b>2&ndash;12%</b><span>COHb in arterial blood of smokers (non-smokers &lt;1.5%)</span></div>
+        <div class="chip"><b>~300&times;</b><span>Affinity of carbon monoxide for haemoglobin vs oxygen</span></div>
+        <div class="chip"><b>4 h / 30 min</b><span>Half-life of carbon monoxide (breathing air) / nicotine</span></div>
+        <div class="chip"><b>1.38&times;</b><span>30-day mortality in current smokers (95% CI 1.11&ndash;1.72)</span></div>
+        <div class="chip"><b>&ge;4 weeks</b><span>Cessation before surgery gives the largest treatment effect</span></div>
+        <div class="chip"><b>RR 25.7</b><span>Perioperative bronchospasm — young smokers with chronic bronchitis</span></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 2. PATHOPHYSIOLOGY ============ -->
+  <details class="card" open>
+    <summary>Smoke constituents &amp; pathophysiology</summary>
+    <div class="card-body">
+
+      <h3>Carbon monoxide (gaseous phase)</h3>
+      <ul>
+        <li>Main component of the <strong>gaseous phase</strong>; directly impairs oxygen delivery to tissues.</li>
+        <li>Inhalation &rarr; increased carboxyhaemoglobin (COHb): <strong>2&ndash;12%</strong> in smokers vs <strong>&lt;1.5%</strong> in non-smokers.</li>
+        <li>CO has ~<strong>300-fold greater affinity</strong> for haemoglobin than oxygen, so COHb formation is favoured over oxyhaemoglobin.</li>
+        <li>The COHb dissociation curve is shifted far to the <strong>left</strong> of the oxyhaemoglobin curve &mdash; P<sub>50</sub> is greatly reduced.</li>
+        <li>COHb also causes a <strong>left shift of the oxyhaemoglobin curve</strong> (partly via reduced 2,3-DPG), further impairing oxygen unloading in tissues.</li>
+        <li>Net effect: hypoxaemia and <strong>reduced physiological reserve</strong> to maintain P<sub>O₂</sub> during physiological stress.</li>
+      </ul>
+      <div class="warn">
+        <p><strong>Pulse oximetry pitfall:</strong> most saturation monitors cannot distinguish oxyhaemoglobin from COHb and will read an <strong>erroneously high SpO₂</strong> in the presence of significant COHb. Use co-oximetry (arterial blood gas analyser) to quantify COHb.</p>
+      </div>
+
+      <figure>
+        <svg viewBox="0 0 520 320" role="img" aria-labelledby="figTitle figDesc">
+          <title id="figTitle">Oxyhaemoglobin and carboxyhaemoglobin dissociation curves</title>
+          <desc id="figDesc">The carboxyhaemoglobin dissociation curve lies far to the left of the oxyhaemoglobin dissociation curve, showing the much greater affinity of carbon monoxide for haemoglobin.</desc>
+
+          <g class="grid">
+            <line x1="60" y1="20"    x2="500" y2="20"/>
+            <line x1="60" y1="82.5"  x2="500" y2="82.5"/>
+            <line x1="60" y1="145"   x2="500" y2="145"/>
+            <line x1="60" y1="207.5" x2="500" y2="207.5"/>
+            <line x1="133.3" y1="20" x2="133.3" y2="270"/>
+            <line x1="206.7" y1="20" x2="206.7" y2="270"/>
+            <line x1="280"   y1="20" x2="280"   y2="270"/>
+            <line x1="353.3" y1="20" x2="353.3" y2="270"/>
+            <line x1="426.7" y1="20" x2="426.7" y2="270"/>
+          </g>
+
+          <line class="p50line" x1="60" y1="145" x2="500" y2="145"/>
+
+          <!-- curves -->
+          <polyline class="curve-co"
+            points="60,270 61.8,145 63.7,85.5 67.3,47.8 71,36 78.3,31.3 96.7,25.5 133.3,22.8 206.7,21.5 353.3,20.8 500,20.5"/>
+          <polyline class="curve-hb"
+            points="60,270 78.3,269.3 96.7,264.3 115,251.8 133.3,230.8 151.7,203.3 170,173.5 188.3,145 206.7,120.3 243.3,83.8 280,61.5 316.7,47.8 353.3,39.3 390,34 426.7,30.3 463.3,27.8 500,26"/>
+
+          <circle class="dot-co" cx="61.8"  cy="145" r="3.5"/>
+          <circle class="dot-hb" cx="188.3" cy="145" r="3.5"/>
+
+          <text class="lbl lbl-co" x="104" y="62">CO-Hb</text>
+          <text class="lbl lbl-hb" x="252" y="118">Hb</text>
+
+          <!-- axes -->
+          <line class="axis" x1="60" y1="20" x2="60" y2="270"/>
+          <line class="axis" x1="60" y1="270" x2="500" y2="270"/>
+
+          <g class="tick">
+            <text x="52" y="24"  text-anchor="end">100</text>
+            <text x="52" y="149" text-anchor="end">50</text>
+            <text x="52" y="274" text-anchor="end">0</text>
+            <text x="60"    y="288" text-anchor="middle">0</text>
+            <text x="133.3" y="288" text-anchor="middle">2</text>
+            <text x="206.7" y="288" text-anchor="middle">4</text>
+            <text x="280"   y="288" text-anchor="middle">6</text>
+            <text x="353.3" y="288" text-anchor="middle">8</text>
+            <text x="426.7" y="288" text-anchor="middle">10</text>
+            <text x="500"   y="288" text-anchor="middle">12</text>
+          </g>
+          <text class="axis-title" x="280" y="310" text-anchor="middle">Oxygen partial pressure (kPa)</text>
+          <text class="axis-title" x="16" y="145" text-anchor="middle" transform="rotate(-90 16 145)">Haemoglobin saturation (%)</text>
+        </svg>
+        <figcaption>Fig. 1 &mdash; P<sub>50</sub> of the COHb dissociation curve is greatly reduced compared with the oxyhaemoglobin curve: the affinity of carbon monoxide for haemoglobin far exceeds that of oxygen.</figcaption>
+      </figure>
+
+      <h3>Nicotine (particulate phase)</h3>
+      <ul>
+        <li>Main component of the <strong>particulate phase</strong>; a typical cigarette contains <strong>~2 mg</strong>.</li>
+        <li>Readily absorbed across the alveolar membrane; crosses the blood&ndash;brain barrier and reaches the cerebral circulation within <strong>20 s</strong>.</li>
+        <li>Stimulates nicotinic acetylcholine receptors &rarr; release of noradrenaline, adrenaline, vasopressin, serotonin, dopamine and &beta;-endorphin.</li>
+        <li>Increases cardiac output and the risk of <strong>tachyarrhythmias</strong>; at higher doses the stimulant effect diminishes and a sedative/depressant effect predominates.</li>
+        <li>Half-life <strong>30 min</strong>; metabolised by CYP2A6/CYP2B6 to metabolites including <strong>cotinine</strong> (active, detectable up to 20 h).</li>
+        <li>Highly <strong>addictive</strong> in humans.</li>
+      </ul>
+
+      <h3>Tar</h3>
+      <ul>
+        <li>The nicotine-free remainder of the particulate phase.</li>
+        <li>Composition and toxicity vary widely between tobacco sources, so tar yield is only a <strong>crude measure</strong> of toxic potential.</li>
+        <li>Machine-measured yields (high/medium/low) poorly simulate human smoking &mdash; smokers can increase intake by blocking ventilation holes or taking deeper/more frequent puffs.</li>
+      </ul>
+
+      <h3>Table 1 &mdash; Other chemical constituents of cigarette smoke</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Chemical group</th><th>Examples</th><th>Common biological effects</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Polycyclic hydrocarbons</td><td>Naphthalene, fluorene, phenanthrene</td><td>Respiratory tract inflammation and liver dysfunction</td></tr>
+            <tr><td>Nitrosamines</td><td>Nicotine-derived nitrosamine</td><td>Procarcinogen; immunosuppressant via TNF-&alpha; and interleukin modulation</td></tr>
+            <tr><td>Aza-arenes</td><td>Quinolene</td><td>Hepatic carcinogen demonstrated in animal studies</td></tr>
+            <tr><td>Aromatic amines</td><td>Toluidine, anisidine</td><td>Bladder carcinogen</td></tr>
+            <tr><td>Ammonia</td><td>&mdash;</td><td>Corrosive to mucous membranes at high levels; respiratory tract inflammation</td></tr>
+            <tr><td>Pyridine</td><td>&mdash;</td><td>Headache, dizziness, amnesia; irritant to eyes, nose, throat and skin</td></tr>
+            <tr><td>Other gases</td><td>Butadiene, acrolein, isoprene, benzene</td><td>Carcinogens</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Scroll the table horizontally and vertically as needed.</p>
+    </div>
+  </details>
+
+  <!-- ============ 3. SYSTEMIC EFFECTS ============ -->
+  <details class="card">
+    <summary>Systemic clinical effects relevant to the perioperative period</summary>
+    <div class="card-body">
+
+      <h3>Cardiovascular</h3>
+      <ul>
+        <li>Smoking is the <strong>largest preventable cause</strong> of cardiovascular morbidity and mortality.</li>
+        <li><strong>3&ndash;4&times; increase in coronary heart disease.</strong></li>
+        <li>Sympathomimetic effects of nicotine plus CO-mediated reduction in oxyhaemoglobin upset the myocardial oxygen supply/demand balance.</li>
+        <li>Increased incidence of cardiac dysrhythmias with arterial COHb as low as <strong>4&ndash;5%</strong>.</li>
+        <li>Adverse lipid profile, endothelial injury and development of atherosclerotic plaques.</li>
+        <li>Independent risk factor for <strong>peripheral vascular disease, thromboembolic disease and stroke</strong>.</li>
+        <li>Strong positive dose-dependent correlation with <strong>subarachnoid haemorrhage</strong> &mdash; association appears greater in women than men.</li>
+        <li>Risk falls in a dose-dependent manner with cessation.</li>
+      </ul>
+
+      <h3>Respiratory</h3>
+      <ul>
+        <li>Cause of <strong>90% of lung cancers</strong>; around <strong>20% of smokers</strong> develop COPD.</li>
+        <li>COPD: small airway obstruction, reduced FEV<sub>1</sub>, emphysematous and bullous change.</li>
+        <li>Acute reduction in airway diameter (bronchoconstrictive reflex to inhaled particles).</li>
+        <li>Premature small airway closure in expiration &rarr; increased closing volume and altered V/Q relationships.</li>
+        <li>Hypersensitive airway reflexes &rarr; increased perioperative <strong>cough, breath-holding, laryngospasm</strong>.</li>
+        <li>Increased mucus production and viscosity with impaired mucociliary clearance &rarr; sputum retention, <strong>pneumonia and respiratory failure</strong>.</li>
+      </ul>
+
+      <h3>Gastro-intestinal</h3>
+      <ul>
+        <li>Relaxation of the lower oesophageal sphincter &rarr; increased <strong>GORD</strong> and peptic ulcer disease.</li>
+        <li><strong>Reduced</strong> postoperative nausea and vomiting in smokers &mdash; possibly increased metabolism of volatile agents via CYP2E1.</li>
+        <li>Increased incidence of Crohn's disease; reduced incidence of ulcerative colitis.</li>
+      </ul>
+
+      <h3>Other systems</h3>
+      <ul>
+        <li>Impaired immune function &rarr; <strong>poorer wound healing</strong> and increased wound infection rates.</li>
+        <li>Abnormal bone metabolism &rarr; fracture healing may be delayed.</li>
+      </ul>
+
+      <h3>Passive / involuntary smoking</h3>
+      <ul>
+        <li>WHO definition: exposure to second-hand tobacco smoke &mdash; a mixture of exhaled mainstream smoke and sidestream smoke from a smouldering cigarette, diluted with ambient air.</li>
+        <li>Involves inhaling carcinogens and other toxic components; effects are not limited to the smoker.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 4. PHARMACOLOGY ============ -->
+  <details class="card">
+    <summary>Pharmacology &amp; drug interactions</summary>
+    <div class="card-body">
+      <ul>
+        <li>Nicotine and polycyclic aromatic hydrocarbons <strong>induce the cytochrome P450 system</strong>, particularly <strong>CYP1A1, CYP1A2 and CYP2E1</strong>.</li>
+        <li>Altered metabolism of: <strong>theophylline, caffeine, haloperidol, propranolol</strong> and <strong>volatile agents</strong>.</li>
+        <li>Consistently <strong>greater postoperative opioid requirements</strong> in patients who smoke &mdash; mechanism poorly understood and not simply increased substrate metabolism. Likely contributors: altered pain thresholds and receptor-mediated effects.</li>
+        <li>Chronic nicotine use may alter the <strong>number and sensitivity of postsynaptic nicotinic acetylcholine receptors</strong>.</li>
+        <li><strong>Neuromuscular blocking agents:</strong> small studies show inconsistent results; there is currently <strong>no clear evidence</strong> that patients who smoke require altered dosing.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 5. PERIOPERATIVE COMPLICATIONS ============ -->
+  <details class="card">
+    <summary>Perioperative complications</summary>
+    <div class="card-body">
+
+      <h3>Intraoperative</h3>
+      <p>In a study of &gt;26,000 patients (26% smokers), there was an increased incidence of <strong>all specific respiratory adverse events</strong> in smokers: reintubation after planned extubation, laryngospasm, bronchospasm, aspiration, hypoventilation and hypoxaemia, and pulmonary oedema.</p>
+      <div class="chips">
+        <div class="chip"><b>RR 1.8</b><span>Any respiratory complication &mdash; all smokers</span></div>
+        <div class="chip"><b>RR 2.3</b><span>Younger patients who smoke (16&ndash;39 yr)</span></div>
+        <div class="chip"><b>RR 6.3</b><span>Young, obese patients who smoke</span></div>
+        <div class="chip"><b>RR 25.7</b><span>Perioperative bronchospasm &mdash; younger smokers with chronic bronchitis</span></div>
+      </div>
+
+      <h3>Postoperative</h3>
+      <ul>
+        <li>Meta-analyses show increased <strong>postoperative mortality</strong> and increased rates of <strong>all cardiac, pulmonary and septic complications</strong>.</li>
+        <li>Clear <strong>dose&ndash;response relationship</strong> between amount smoked and morbidity.</li>
+        <li>Current smokers are <strong>1.38&times; more likely to die within 30 days</strong> (95% CI 1.11&ndash;1.72).</li>
+        <li>Findings consistent across cardiac, vascular, thoracic, general, urology, orthopaedic and plastic reconstructive surgery.</li>
+        <li>In general surgery, smoking is an <strong>independent risk factor for anastomotic breakdown</strong>.</li>
+        <li>Also associated with increased ICU admission, emergency hospital readmission and longer inpatient postoperative stay.</li>
+      </ul>
+
+      <h3>Table 2 &mdash; Adverse effects of smoking on 30-day postoperative morbidity</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Morbidity</th><th>Odds ratio (95% confidence interval)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Pneumonia</td><td class="num">2.09 (1.80&ndash;2.43)</td></tr>
+            <tr><td>Unplanned intubation</td><td class="num">1.87 (1.58&ndash;2.21)</td></tr>
+            <tr><td>Mechanical ventilation</td><td class="num">1.53 (1.31&ndash;1.79)</td></tr>
+            <tr><td>Cardiac arrest</td><td class="num">1.57 (1.10&ndash;2.25)</td></tr>
+            <tr><td>Myocardial infarction</td><td class="num">1.80 (1.11&ndash;2.92)</td></tr>
+            <tr><td>Stroke</td><td class="num">1.73 (1.18&ndash;2.53)</td></tr>
+            <tr><td>Superficial wound infection</td><td class="num">1.30 (1.20&ndash;1.42)</td></tr>
+            <tr><td>Deep wound infection</td><td class="num">1.42 (1.21&ndash;1.68)</td></tr>
+            <tr><td>Organ space infection</td><td class="num">1.38 (1.20&ndash;1.60)</td></tr>
+            <tr><td>Septic shock</td><td class="num">1.55 (1.29&ndash;1.87)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Quantifying this increased 30-day mortality and the broad range of serious smoking-related complications may improve the clinician's ability to motivate cessation before elective surgery.</p>
+    </div>
+  </details>
+
+  <!-- ============ 6. CESSATION ============ -->
+  <details class="card">
+    <summary>Smoking cessation &mdash; timing, benefits &amp; interventions</summary>
+    <div class="card-body">
+
+      <h3>Perioperative timing</h3>
+      <ul>
+        <li>Stopping before surgery <strong>reduces postoperative complications</strong>.</li>
+        <li>1980s cardiac surgery studies suggested quitting within 8 weeks increased pulmonary complications; a <strong>more recent meta-analysis found no increase</strong> in complications in those quitting within 2 months of surgery.</li>
+        <li>Trials of <strong>at least 4 weeks</strong> cessation showed a significantly larger treatment effect on perioperative morbidity and mortality than shorter trials &mdash; <strong>the longer the period of cessation, the greater the benefit</strong>.</li>
+        <li>Even brief abstinence helps: carbon monoxide half-life is 4 h (breathing air) and nicotine half-life 30 min, so short abstinence avoids some acute cardiovascular effects.</li>
+        <li>It is not clear whether cessation within hours or days reduces complications, but there is <strong>no clear evidence of harm</strong> &mdash; cessation should be encouraged at any time.</li>
+      </ul>
+
+      <h3>Effects of cessation</h3>
+      <ul>
+        <li>Cough and wheeze decrease within <strong>weeks</strong>; mucociliary clearance starts to improve after a week, but lung inflammation takes much longer to subside.</li>
+        <li>Goblet cell hyperplasia regresses and alveolar macrophages decrease; however <strong>alveolar destruction, smooth muscle hyperplasia and fibrosis may be permanent</strong>.</li>
+        <li>All-cause mortality in patients with coronary artery disease falls by approximately <strong>one third</strong>; this takes several months to accrue.</li>
+        <li>Risk of coronary heart disease and cerebrovascular disease approaches that of never-smokers within <strong>10&ndash;15 years</strong>.</li>
+        <li>Rate of decline of FEV<sub>1</sub> slows &mdash; the younger the patient at quitting, the slower the decline, eventually approaching never-smokers.</li>
+        <li>Largest survival benefit in those quitting under 30 yr; even quitting at 60 yr may give up to <strong>3 years</strong> of survival benefit.</li>
+      </ul>
+
+      <h3>Very Brief Advice (VBA) &mdash; Ask, Advise, Act</h3>
+      <ul>
+        <li><strong>ASK</strong> and record smoking history. Typically reported in <strong>pack-years</strong> = packs per day &times; years smoked (1 pack-year = 20 cigarettes/day for 1 yr).</li>
+        <li><strong>ADVISE</strong> that the most effective way to quit is a combination of medication and specialist support.</li>
+        <li><strong>ACT</strong> on the patient's response: give information, refer and prescribe.</li>
+      </ul>
+      <div class="warn">
+        <p>NICE guidance: when patients who smoke access secondary care services they should be identified and offered <strong>intensive support to quit</strong>. Combined <strong>behavioural support + pharmacotherapy</strong> is more effective than either alone. Refer to the local NHS Stop Smoking Service.</p>
+        <p>Brief advice from a physician increases quit rates. Preoperative intensive cessation interventions produced a <strong>10-fold relative risk of quitting</strong> compared with usual care &mdash; surgery is a powerful <strong>&ldquo;teachable moment&rdquo;</strong>.</p>
+      </div>
+
+      <h3>Pharmacological options (licensed in the UK)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Agent</th><th>Form / mechanism</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nicotine replacement therapy (NRT)</td>
+              <td>Patches or shorter-acting forms: lozenges, chewing gum, nasal spray</td>
+              <td>Proven efficacy</td>
+            </tr>
+            <tr>
+              <td>Bupropion (oral)</td>
+              <td>Nicotinic receptor antagonist with dopaminergic and adrenergic actions</td>
+              <td>May work by blocking nicotine effects, relieving withdrawal, or reducing depressed mood</td>
+            </tr>
+            <tr>
+              <td>Varenicline (oral)</td>
+              <td>Nicotinic receptor partial agonist; binds less effectively than nicotine</td>
+              <td>Proven efficacy</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Electronic cigarettes</h3>
+      <ul>
+        <li>Used by <strong>2.3 million adults</strong> in the UK; a battery heats a solvent and disperses an aerosol containing nicotine, water and sometimes flavouring &mdash; nicotine delivered <strong>without combustion</strong>.</li>
+        <li>Current opinion: e-cigarettes are likely <strong>less harmful than cigarettes</strong>.</li>
+        <li>However, the aerosol has been found to contain <strong>heavy metals, polycyclic hydrocarbons, nitrosamines, volatile organic compounds and inorganic compounds</strong>.</li>
+        <li>E-cigarettes help some people to quit, but <strong>no RCTs</strong> have compared their effectiveness with established pharmacotherapy for promoting and maintaining cessation.</li>
+      </ul>
+    </div>
+  </details>
+
+</main>
+
+<footer class="wrap">
+  <div class="source">
+    <h2>Source</h2>
+    <p>Carrick MA, Robson JM, Thomas C. <strong>Smoking and anaesthesia.</strong> <em>BJA Education</em>. 2019;19(1):1&ndash;6. doi: <a href="https://doi.org/10.1016/j.bjae.2018.09.005" target="_blank" rel="noopener">10.1016/j.bjae.2018.09.005</a></p>
+    <p class="fine">Accepted 26 September 2018 &middot; &copy; 2018 British Journal of Anaesthesia. Published by Elsevier Ltd.</p>
+    <p class="fine">This page is an educational quick-reference summary derived from the above article. It is not a substitute for clinical judgement or local guidelines &mdash; always consult the original article and current local protocols.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var cards   = Array.prototype.slice.call(document.querySelectorAll("details.card"));
+  var originals = new Map();
+  cards.forEach(function (c) { originals.set(c, c.innerHTML); });
+
+  var input  = document.getElementById("search");
+  var status = document.getElementById("status");
+  var savedOpen = null;
+
+  /* ---------- helpers ---------- */
+
+  function resetCards() {
+    cards.forEach(function (c) {
+      c.innerHTML = originals.get(c);
+      c.hidden = false;
+      if (savedOpen && savedOpen.has(c)) {
+        c.open = savedOpen.get(c);
+      }
+    });
+  }
+
+  function clearHighlights(card) {
+    card.querySelectorAll("mark").forEach(function (m) {
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  function highlight(card, query) {
+    var walker = document.createTreeWalker(
+      card,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          var el = node.parentElement;
+          if (!el) return NodeFilter.FILTER_REJECT;
+          var tag = el.nodeName;
+          if (tag === "SCRIPT" || tag === "STYLE" || tag === "MARK") return NodeFilter.FILTER_REJECT;
+          if (el.closest("svg")) return NodeFilter.FILTER_REJECT;
+          if (!node.nodeValue || node.nodeValue.toLowerCase().indexOf(query) === -1) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var i = 0, idx;
+
+      while ((idx = lower.indexOf(query, i)) !== -1) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement("mark");
+        mark.textContent = text.slice(idx, idx + query.length);
+        frag.appendChild(mark);
+        i = idx + query.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- search ---------- */
+
+  function runSearch() {
+    var raw = input.value;
+    var q = raw.trim().toLowerCase();
+
+    if (q === "") {
+      resetCards();
+      savedOpen = null;
+      status.textContent = "";
+      return;
+    }
+
+    if (!savedOpen) {
+      savedOpen = new Map();
+      cards.forEach(function (c) { savedOpen.set(c, c.open); });
+    }
+
+    var matches = 0;
+
+    cards.forEach(function (card) {
+      /* restore pristine markup, then test */
+      card.innerHTML = originals.get(card);
+
+      var text = (card.textContent || "").toLowerCase();
+
+      if (text.indexOf(q) !== -1) {
+        matches++;
+        card.hidden = false;
+        card.open = true;
+        highlight(card, q);
+      } else {
+        card.hidden = true;
+      }
+    });
+
+    status.textContent = matches === 0
+      ? 'No matches for “' + raw.trim() + '”.'
+      : matches + (matches === 1 ? " section matches " : " sections match ") + '“' + raw.trim() + '”.';
+  }
+
+  var debounce;
+  input.addEventListener("input", function () {
+    clearTimeout(debounce);
+    debounce = setTimeout(runSearch, 120);
+  });
+  input.addEventListener("search", runSearch); // native clear (x) button
+
+  /* ---------- expand / collapse ---------- */
+
+  document.getElementById("expandAll").addEventListener("click", function () {
+    cards.forEach(function (c) { if (!c.hidden) c.open = true; });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function () {
+    cards.forEach(function (c) { c.open = false; });
+  });
+
+  /* keyboard shortcut: "/" focuses search */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && document.activeElement !== input) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+    if (e.key === "Escape" && document.activeElement === input) {
+      input.value = "";
+      runSearch();
+    }
+  });
+})();
+</script>
+</body>
+</html>
