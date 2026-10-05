@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRPS — Quick Reference for Anaesthetists &amp; Intensivists</title>
+<meta name="description" content="Collapsible, searchable quick reference on complex regional pain syndrome (CRPS) for anaesthetists and intensivists, based on BJA Education 2017.">
+<style>
+  :root{
+    --bg:#ffffff;
+    --fg:#1f2328;
+    --muted:#59636e;
+    --border:#d1d9e0;
+    --accent:#0969da;
+    --accent-soft:#ddf4ff;
+    --surface:#f6f8fa;
+    --mark:#fff8c5;
+    --radius:8px;
+    --shadow:0 1px 0 rgba(27,31,36,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1117;
+      --fg:#e6edf3;
+      --muted:#9198a1;
+      --border:#30363d;
+      --accent:#4493f8;
+      --accent-soft:#121d2f;
+      --surface:#161b22;
+      --mark:#5c4a00;
+      --shadow:none;
+    }
+  }
+
+  *{box-sizing:border-box}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    margin:0 auto;
+    max-width:1000px;
+    padding:0 1rem 5rem;
+    background:var(--bg);
+    color:var(--fg);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Header ---------- */
+  .site-header{
+    padding:1.6rem 0 1rem;
+    border-bottom:1px solid var(--border);
+  }
+  .site-header h1{
+    margin:0 0 .3rem;
+    font-size:1.55rem;
+    line-height:1.25;
+    letter-spacing:-.01em;
+  }
+  .site-header .sub{
+    margin:0;
+    color:var(--muted);
+    font-size:.9rem;
+  }
+  .badges{margin-top:.7rem;display:flex;flex-wrap:wrap;gap:.4rem}
+  .badge{
+    font-size:.72rem;
+    padding:.15rem .5rem;
+    border:1px solid var(--border);
+    border-radius:999px;
+    background:var(--surface);
+    color:var(--muted);
+    white-space:nowrap;
+  }
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{
+    position:sticky;
+    top:0;
+    z-index:20;
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    align-items:center;
+    padding:.7rem 0;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
+    margin-bottom:1rem;
+  }
+  #search{
+    flex:1 1 260px;
+    min-width:180px;
+    padding:.5rem .7rem;
+    font-size:.9rem;
+    color:var(--fg);
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:6px;
+  }
+  #search:focus{
+    outline:2px solid var(--accent);
+    outline-offset:-1px;
+    border-color:var(--accent);
+  }
+  #search::placeholder{color:var(--muted)}
+  .toolbar button{
+    padding:.45rem .7rem;
+    font-size:.82rem;
+    color:var(--fg);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:6px;
+    cursor:pointer;
+    transition:border-color .12s,color .12s;
+  }
+  .toolbar button:hover{border-color:var(--accent);color:var(--accent)}
+  .toolbar button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  #count{
+    font-size:.8rem;
+    color:var(--muted);
+    width:100%;
+  }
+
+  /* ---------- Sections ---------- */
+  details.section{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    margin-bottom:.75rem;
+    background:var(--bg);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  details.section.hidden{display:none}
+
+  details.section > summary{
+    display:flex;
+    align-items:center;
+    gap:.55rem;
+    padding:.7rem .9rem;
+    font-size:.95rem;
+    font-weight:600;
+    background:var(--surface);
+    cursor:pointer;
+    list-style:none;
+    user-select:none;
+  }
+  details.section > summary::-webkit-details-marker{display:none}
+  details.section > summary::before{
+    content:"▸";
+    color:var(--accent);
+    font-size:.8rem;
+    line-height:1;
+    transition:transform .15s ease;
+    flex:0 0 auto;
+  }
+  details.section[open] > summary::before{transform:rotate(90deg)}
+  details.section[open] > summary{
+    border-bottom:1px solid var(--border);
+    border-radius:var(--radius) var(--radius) 0 0;
+  }
+  details.section > summary:hover{color:var(--accent)}
+
+  .num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:1.35rem;
+    height:1.35rem;
+    padding:0 .3rem;
+    font-size:.72rem;
+    font-weight:700;
+    color:var(--accent);
+    background:var(--accent-soft);
+    border-radius:999px;
+    flex:0 0 auto;
+  }
+
+  .s-content{
+    padding:.9rem 1rem 1.1rem;
+  }
+  .s-content > :first-child{margin-top:0}
+  .s-content > :last-child{margin-bottom:0}
+
+  /* ---------- Typography ---------- */
+  h3{
+    margin:1.1rem 0 .4rem;
+    font-size:.92rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--muted);
+  }
+  h4{margin:.9rem 0 .3rem;font-size:.95rem}
+  p{margin:.5rem 0}
+  ul,ol{margin:.5rem 0;padding-left:1.2rem}
+  li{margin:.22rem 0}
+  code{
+    font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    font-size:.85em;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:4px;
+    padding:.05em .3em;
+  }
+
+  .callout{
+    border:1px solid var(--border);
+    border-left:3px solid var(--accent);
+    border-radius:var(--radius);
+    background:var(--surface);
+    padding:.65rem .8rem;
+    margin:.6rem 0;
+    font-size:.9rem;
+  }
+
+  .keypoints{list-style:none;padding-left:0}
+  .keypoints li{
+    position:relative;
+    padding-left:1.15rem;
+    margin:.4rem 0;
+  }
+  .keypoints li::before{
+    content:"●";
+    position:absolute;
+    left:0;
+    top:.05rem;
+    font-size:.6rem;
+    color:var(--accent);
+  }
+
+  .footnote{
+    font-size:.78rem;
+    color:var(--muted);
+    margin-top:.6rem;
+  }
+
+  /* ---------- Tables (horizontally scrollable) ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    margin:.7rem 0;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:600px;
+    font-size:.86rem;
+  }
+  th,td{
+    padding:.5rem .7rem;
+    text-align:left;
+    vertical-align:top;
+    border-bottom:1px solid var(--border);
+  }
+  th{
+    background:var(--surface);
+    font-weight:600;
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:rgba(127,127,127,.035)}
+  .scroll-hint{
+    font-size:.74rem;
+    color:var(--muted);
+    margin:-.3rem 0 .6rem;
+  }
+
+  /* ---------- Flow diagram (simplified Fig. 1) ---------- */
+  .flow{
+    display:flex;
+    flex-direction:column;
+    gap:.45rem;
+    margin:.8rem 0 .4rem;
+  }
+  .fnode{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:var(--surface);
+    padding:.65rem .85rem;
+  }
+  .fnode strong{display:block;font-size:.92rem}
+  .ftag{
+    display:block;
+    font-size:.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--accent);
+    margin-bottom:.15rem;
+  }
+  .fsub{
+    display:block;
+    font-size:.82rem;
+    color:var(--muted);
+    margin-top:.15rem;
+  }
+  .farrow{
+    text-align:center;
+    font-size:.74rem;
+    color:var(--muted);
+    line-height:1;
+    padding:.1rem 0;
+  }
+  .fgrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+    gap:.55rem;
+  }
+  .fcard{
+    border:1px solid var(--border);
+    border-left:3px solid var(--accent);
+    border-radius:var(--radius);
+    background:var(--bg);
+    padding:.6rem .7rem;
+  }
+  .fcard h4{
+    margin:0 0 .15rem;
+    font-size:.88rem;
+    color:var(--fg);
+  }
+  .fhint{
+    margin:0 0 .35rem;
+    font-size:.76rem;
+    font-style:italic;
+    color:var(--muted);
+  }
+  .fcard ul{margin:0;padding-left:1rem;font-size:.82rem}
+  .fcard li{margin:.15rem 0}
+  .fnode ul{margin:.3rem 0 0;padding-left:1.1rem;font-size:.85rem}
+
+  /* ---------- Search highlighting ---------- */
+  mark.hl{
+    background:var(--mark);
+    color:inherit;
+    border-radius:2px;
+    padding:0 .08em;
+  }
+
+  #noResults{
+    display:none;
+    padding:1rem;
+    text-align:center;
+    color:var(--muted);
+    border:1px dashed var(--border);
+    border-radius:var(--radius);
+    font-size:.9rem;
+  }
+  #noResults.show{display:block}
+
+  /* ---------- Source ---------- */
+  .source{
+    margin-top:1.6rem;
+    padding:1rem;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:var(--surface);
+    font-size:.85rem;
+    color:var(--muted);
+  }
+  .source h2{
+    margin:0 0 .5rem;
+    font-size:.95rem;
+    color:var(--fg);
+  }
+  .source blockquote{
+    margin:.5rem 0;
+    padding-left:.8rem;
+    border-left:3px solid var(--border);
+  }
+  .source a{color:var(--accent)}
+
+  @media (max-width:520px){
+    .site-header h1{font-size:1.3rem}
+    body{font-size:15px}
+  }
+
+  @media print{
+    .toolbar{display:none}
+    details.section{break-inside:avoid}
+    details.section > summary{list-style:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Complex Regional Pain Syndrome (CRPS)</h1>
+  <p class="sub">Quick reference for anaesthetists &amp; intensivists — mechanism-based assessment and management</p>
+  <div class="badges">
+    <span class="badge">Clinical diagnosis · IASP criteria</span>
+    <span class="badge">No specific diagnostic test</span>
+    <span class="badge">Multidisciplinary care</span>
+    <span class="badge">Mechanism-based treatment</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <input id="search" type="search" placeholder="Search this reference… (ketamine, allodynia, vitamin C, bisphosphonate…)" autocomplete="off" aria-label="Search the reference">
+  <button id="expandAll" type="button">Expand all</button>
+  <button id="collapseAll" type="button">Collapse all</button>
+  <span id="count" role="status" aria-live="polite"></span>
+</div>
+
+<main id="content">
+
+  <!-- ============ 1. AT A GLANCE ============ -->
+  <details class="section" open>
+    <summary><span class="num">1</span> At a glance</summary>
+    <div class="s-content">
+      <div class="callout">
+        <strong>Definition —</strong> CRPS is a post-traumatic disorder characterised by
+        <strong>nondermatomal</strong>, severe, continuous pain in the affected limb, associated with
+        sensory, vasomotor, sudomotor/oedema and motor/trophic disturbances. The pain is regionally
+        restricted (cannot be related to a specific dermatome) and disproportionate to the inciting event.
+      </div>
+
+      <ul class="keypoints">
+        <li><strong>Clinical diagnosis.</strong> Use the IASP clinical diagnostic criteria. There is <em>no</em> diagnostic test specific for CRPS.</li>
+        <li><strong>Multifactorial pathophysiology.</strong> Recent studies point to CRPS being an exaggerated inflammatory response to trauma or surgery, with both peripheral and central mechanisms.</li>
+        <li><strong>Multidisciplinary treatment.</strong> Adequate pain management + physiotherapy + psychological evaluation and intervention.</li>
+        <li><strong>Emerging paradigm.</strong> Expect a shift from symptomatic to mechanism-based treatment.</li>
+        <li><strong>Incidence</strong> 5.5–26.2 per 100 000 person-years. Women affected 3–4× more often than men; highest incidence in women aged 61–70 yr.</li>
+        <li><strong>Triggers.</strong> Usually trauma (mostly fractures) or surgery. Upper extremity affected more often than lower. Usually limited to one extremity.</li>
+        <li><strong>Types.</strong> Type I = no demonstrable nerve lesion; Type II = demonstrable nerve lesion. They do <em>not</em> differ in clinical presentation or treatment choice — "CRPS" is used as a general term for both.</li>
+        <li><strong>Impact.</strong> Can severely reduce quality of life and lead to substantial physical and social disability — early recognition matters.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 2. CLINICAL PRESENTATION ============ -->
+  <details class="section" open>
+    <summary><span class="num">2</span> Clinical presentation</summary>
+    <div class="s-content">
+      <p>Patients typically present with <strong>severe, continuous pain</strong> in a glove- or stocking-like
+      distribution, usually preceded by injury or surgery. Signs and symptoms can vary over the course of
+      the disease.</p>
+
+      <p class="scroll-hint">↔ Table scrolls horizontally on small screens.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th>Patient may report (symptoms)</th>
+              <th>Examination may show (signs)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Pain</strong></td>
+              <td>Severe, continuous, glove-/stocking-like distribution; disproportionate to the inciting event; <strong>increase of symptoms after exercise</strong></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>Sensory</strong></td>
+              <td>(Hyper)sensitivity to painful and non-painful stimuli — hyperaesthesia and/or allodynia</td>
+              <td>Allodynia and/or hyperalgesia (pinprick, light touch, deep somatic pressure, joint movement)</td>
+            </tr>
+            <tr>
+              <td><strong>Vasomotor</strong></td>
+              <td>Difference in skin temperature between affected and contralateral limb; skin colour changes</td>
+              <td>Temperature asymmetry and/or colour change/asymmetry versus the contralateral limb</td>
+            </tr>
+            <tr>
+              <td><strong>Sudomotor / oedema</strong></td>
+              <td>Altered sweating patterns between limbs; swelling of the affected limb</td>
+              <td>Oedema and/or sweating changes or asymmetry</td>
+            </tr>
+            <tr>
+              <td><strong>Motor</strong></td>
+              <td>Loss of range of motion, tremor, dystonia, weakness</td>
+              <td>Reduced range of motion versus contralateral limb; tremor; dystonia; weakness</td>
+            </tr>
+            <tr>
+              <td><strong>Trophic</strong></td>
+              <td>Changes in hair and nail growth of the affected limb</td>
+              <td>Altered hair, nail and skin growth/trophic changes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Phenotypes</h3>
+      <ul>
+        <li>Patients are often described as having <strong>warm</strong>, <strong>intermediate</strong> or <strong>cold</strong> CRPS, based on reported and measured skin temperature differences between the affected and contralateral limb.</li>
+        <li>Signs and symptoms may reflect the underlying pathophysiological mechanism (inflammation, pain/sensory disturbance, vasomotor disturbance, motor disturbance, psychological disturbance).</li>
+        <li>It is important to recognise <strong>which mechanism is most prominent</strong>, so that therapy can be targeted at it (see section 5).</li>
+        <li>Hypothesis of the authors: in the majority of patients — especially those with warm (acute) CRPS — <strong>inflammation is the most prominent mechanism</strong>; other mechanisms result from ongoing inflammation. Over time, inflammation may disappear in some patients, leaving different forms of rest damage.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 3. DIAGNOSIS ============ -->
+  <details class="section" open>
+    <summary><span class="num">3</span> Diagnosis</summary>
+    <div class="s-content">
+      <p><strong>There is no gold standard</strong> for the diagnosis of CRPS. History and physical examination
+      are the cornerstones of appropriate diagnosis and management.</p>
+      <p>The most commonly used criteria are the <strong>new IASP clinical diagnostic criteria</strong>
+      (Budapest criteria), which are based on observed and patient-reported signs and symptoms.</p>
+
+      <h3>IASP clinical diagnostic criteria</h3>
+      <p class="scroll-hint">↔ Table scrolls horizontally on small screens.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Criterion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td>Continuing pain, which is disproportionate to any inciting event.</td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td>Must report <strong>at least one symptom in three of the four</strong> following categories: sensory · vasomotor · sudomotor/oedema · motor/trophic.</td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td>Must display <strong>at least one sign at time of evaluation in two or more</strong> of the following categories: sensory · vasomotor · sudomotor/oedema · motor/trophic.</td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td>There is no other diagnosis that better explains the signs and symptoms.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Category detail — symptoms vs signs</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Reported symptom (need ≥1 in 3 of 4)</th>
+              <th>Sign at evaluation (need ≥1 in ≥2 of 4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sensory</strong></td>
+              <td>Reports of hyperaesthesia and/or allodynia</td>
+              <td>Evidence of hyperalgesia (to pinprick) and/or allodynia (to light touch and/or deep somatic pressure and/or joint movement)</td>
+            </tr>
+            <tr>
+              <td><strong>Vasomotor</strong></td>
+              <td>Reports of temperature asymmetry and/or skin colour changes and/or skin colour asymmetry</td>
+              <td>Evidence of temperature asymmetry and/or skin colour changes and/or asymmetry</td>
+            </tr>
+            <tr>
+              <td><strong>Sudomotor / oedema</strong></td>
+              <td>Reports of oedema and/or sweating changes and/or sweating asymmetry</td>
+              <td>Evidence of oedema and/or sweating changes and/or sweating asymmetry</td>
+            </tr>
+            <tr>
+              <td><strong>Motor / trophic</strong></td>
+              <td>Reports of decreased range of motion and/or motor dysfunction (weakness, tremor, dystonia) and/or trophic changes (hair, nail, skin)</td>
+              <td>Evidence of decreased range of motion and/or motor dysfunction (weakness, tremor, dystonia) and/or trophic changes (hair, nail, skin)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Differential diagnosis</h3>
+      <p>The differential diagnosis is extensive and can be summarised into five categories. Most have
+      similar presentations, which occasionally makes the diagnosis of CRPS a challenge.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Neuropathic pain-like syndromes</strong></td>
+              <td>Peripheral (poly)neuropathy · nerve entrapment · radiculopathy · post-herpetic neuralgia · de-afferentation pain post-cerebrovascular accident · plexopathy · motor neuron disease</td>
+            </tr>
+            <tr>
+              <td><strong>Vascular diseases</strong></td>
+              <td>Thrombosis · acrocyanosis · atherosclerosis · Raynaud's phenomenon · erythromelalgia</td>
+            </tr>
+            <tr>
+              <td><strong>Inflammation</strong></td>
+              <td>Erysipelas · inflammation not otherwise specified · bursitis · seronegative arthritis · rheumatological diseases</td>
+            </tr>
+            <tr>
+              <td><strong>Myofascial pain syndromes</strong></td>
+              <td>Overuse · disuse · tennis elbow · repetitive strain injury · fibromyalgia</td>
+            </tr>
+            <tr>
+              <td><strong>Psychiatric problems</strong></td>
+              <td>Somatoform pain disorders · Münchhausen syndrome</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Role of additional tests</h3>
+      <ul>
+        <li>As the pathophysiology is still not completely understood, there is <strong>limited use for additional clinical and laboratory tests</strong> in diagnosing CRPS.</li>
+        <li>Tests may be used to <strong>exclude other disorders</strong> that could explain the signs and symptoms, or to <strong>monitor</strong> CRPS signs and symptoms.</li>
+        <li>Example: <strong>quantitative sensory testing</strong> — mostly used in research settings to quantify sensory disturbances found on physical examination.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 4. PATHOPHYSIOLOGY ============ -->
+  <details class="section">
+    <summary><span class="num">4</span> Pathophysiology (brief)</summary>
+    <div class="s-content">
+      <p>The exact pathophysiology is still unknown. Both <strong>peripheral and central mechanisms</strong>
+      are thought to play a role in the initiation and maintenance of CRPS. The disease appears to be
+      multifactorial with a multi-mechanism pathophysiology, requiring a multimodal workup and treatment.</p>
+
+      <div class="fgrid">
+        <div class="fcard">
+          <h4>Exaggerated inflammation</h4>
+          <p class="fhint">Most prominent in warm/acute CRPS</p>
+          <ul>
+            <li>General markers (CRP, WBC, IL-6, ESR) are usually <em>not</em> elevated in plasma.</li>
+            <li>Yet "classic signs of inflammation" are often displayed: pain, redness, increased temperature, swelling, loss of function.</li>
+            <li>Higher pro-inflammatory cytokines (IL-6, TNF-α) in <strong>blister fluid</strong> of the affected limb; also elevated in serum, plasma and CSF.</li>
+            <li>Pro-inflammatory cytokines can activate and sensitise peripheral nociceptors → pain and hyperalgesia.</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <h4>Neurogenic inflammation</h4>
+          <p class="fhint">Explains oedema, vasodilation, sweating</p>
+          <ul>
+            <li>Increased CGRP and substance P in serum vs healthy controls.</li>
+            <li>CGRP → neurogenic dilatation of arterioles.</li>
+            <li>Substance P → plasma protein extravasation.</li>
+            <li>Together these could explain redness and swelling.</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <h4>Autoimmune hypothesis</h4>
+          <p class="fhint">Suggestive but unproven</p>
+          <ul>
+            <li>Passive transfer of CRPS patient serum IgG induces behavioural changes in mice.</li>
+            <li>CRPS serum stains rodent sympathetic ganglia.</li>
+            <li>Small group experienced pain relief with low-dose IV immunoglobulin.</li>
+            <li>More positive anti-nuclear antibody tests than healthy blood-bank donors.</li>
+            <li><strong>Caveat:</strong> Witebsky's criteria are not fulfilled — CRPS may be more an autoimmune <em>condition</em> than an autoimmune <em>disease</em>.</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <h4>Deep-tissue ischaemia–reperfusion</h4>
+          <p class="fhint">Tested in a chronic post-ischaemia pain model</p>
+          <ul>
+            <li>Proposes deep-tissue ischaemia and inflammation caused by microvascular ischaemia–reperfusion injury.</li>
+            <li>Could explain abnormal pain sensations such as allodynia.</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <h4>Genetics</h4>
+          <p class="fhint">Predisposition</p>
+          <ul>
+            <li>HLA-DQ1 frequency significantly higher in CRPS patients than controls (Dutch cohort).</li>
+            <li>HLA-B62 and HLA-DQ8 associated with CRPS with fixed dystonia.</li>
+            <li>HLA-DR13 associated with multifocal/generalised tonic dystonia of CRPS.</li>
+            <li>Certain HLA loci may be involved in susceptibility to certain phenotypes.</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <h4>Cortical reorganisation</h4>
+          <p class="fhint">Central mechanism</p>
+          <ul>
+            <li>Occurs in primary somatosensory cortex (S1) and motor cortex.</li>
+            <li>Changes in S1 correlate with pain intensity and mechanical hyperalgesia.</li>
+            <li>Reversal of S1 reorganisation correlates with pain reduction.</li>
+            <li>Could explain the glove-/stocking-like spread of pain and hyperalgesia rather than nerve-territory distribution.</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <h4>Small-fibre neuropathy</h4>
+          <p class="fhint">Similarity to small-fibre-predominant polyneuropathies</p>
+          <ul>
+            <li>Decrease in epidermal nerve fibres and in sweat gland and vascular innervation.</li>
+            <li>Could explain neuropathic pain, trophic and vasomotor dysfunction.</li>
+            <li>Antidromic release of CGRP and substance P by these small fibres in response to trauma/inflammation.</li>
+            <li>Unclear whether small-fibre loss is a result or a cause of CRPS.</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <h4>Psychological factors</h4>
+          <p class="fhint">Not implicated in onset</p>
+          <ul>
+            <li>Most studies show <strong>no association</strong> between onset of CRPS and depression, anxiety, paranoia, hostility/anger.</li>
+            <li>Some evidence for the influence of stressful life events before onset.</li>
+            <li>These factors may still play a role in <strong>maintenance</strong> of the disease.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 5. TREATMENT ============ -->
+  <details class="section" open>
+    <summary><span class="num">5</span> Treatment — mechanism-based algorithm</summary>
+    <div class="s-content">
+      <p>Effective treatment options in CRPS are limited and consist of both non-invasive and invasive
+      therapies. <strong>Start with active physical therapy / physiotherapy</strong> — it has been shown to
+      reduce pain and improve function. Medication is added to physiotherapy, and the choice of medication
+      should be based on the mechanism deemed most prominent in that specific case.</p>
+
+      <!-- Simplified treatment algorithm -->
+      <div class="flow" role="img" aria-label="Simplified mechanism-based treatment algorithm for CRPS">
+
+        <div class="fnode">
+          <span class="ftag">Step 1</span>
+          <strong>Confirm the diagnosis</strong>
+          <span class="fsub">IASP clinical criteria · exclude the differential diagnosis</span>
+        </div>
+
+        <div class="farrow">▼</div>
+
+        <div class="fnode">
+          <span class="ftag">Step 2 · in all patients</span>
+          <strong>Active physical rehabilitation / physiotherapy</strong>
+          <span class="fsub">Reduces pain and improves function — the foundation of treatment</span>
+        </div>
+
+        <div class="farrow">▼</div>
+
+        <div class="fnode">
+          <span class="ftag">Step 3</span>
+          <strong>Identify the most prominent pathophysiological mechanism</strong>
+          <span class="fsub">Target therapy at that mechanism</span>
+        </div>
+
+        <div class="fgrid">
+          <div class="fcard">
+            <h4>Inflammation</h4>
+            <p class="fhint">Warm, oedematous, acute CRPS</p>
+            <ul>
+              <li>Free-radical scavengers (DMSO, acetylcysteine)*</li>
+              <li>Bisphosphonates — strong evidence</li>
+              <li>Other immunomodulators — conflicting evidence</li>
+            </ul>
+          </div>
+
+          <div class="fcard">
+            <h4>Pain / sensory disturbance</h4>
+            <p class="fhint">Allodynia, hyperalgesia, spontaneous pain</p>
+            <ul>
+              <li>Nociceptive: WHO analgesic ladder — <em>bar strong opioids</em></li>
+              <li>Neuropathic: gabapentin</li>
+              <li>Intractable, long-standing: low-dose IV ketamine — monitor LFTs</li>
+            </ul>
+          </div>
+
+          <div class="fcard">
+            <h4>Vasomotor disturbance</h4>
+            <p class="fhint">"Cold" CRPS</p>
+            <ul>
+              <li>Calcium channel blocker</li>
+              <li>Alpha-sympathetic blocker</li>
+              <li>PDE-5 inhibitor</li>
+              <li>Short-term trial — stop if no effect</li>
+            </ul>
+          </div>
+
+          <div class="fcard">
+            <h4>Motor disturbance</h4>
+            <p class="fhint">Tremor, dystonia, weakness</p>
+            <ul>
+              <li>Oral muscle relaxants first</li>
+              <li>Intrathecal baclofen for dystonia — likely effective, but invasive with side effects</li>
+            </ul>
+          </div>
+
+          <div class="fcard">
+            <h4>Psychological disturbance</h4>
+            <p class="fhint">Chronic pain behaviour, poor coping</p>
+            <ul>
+              <li>Refer to a multidisciplinary team including a psychologist</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="farrow">▼ if insufficient, despite adequate treatment of the underlying mechanism</div>
+
+        <div class="fnode">
+          <span class="ftag">Step 4 · invasive options</span>
+          <ul>
+            <li><strong>Sympathetic blocks</strong> (stellate ganglion, thoracic sympathetic, lumbar sympathetic): <em>negative</em> recommendation in the EBGD guidelines on CRPS type I (updated 2014).</li>
+            <li><strong>Spinal cord stimulation (SCS):</strong> may be considered if patients do not respond to pharmacological treatments or rehabilitation therapies. RCT evidence for effect on (neuropathic) pain and health-related quality of life. Currently the <strong>only therapy with a multi-mechanism action</strong> in CRPS — positive effect on both the somatosensory system and vasomotor disturbances.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="footnote">* Free-radical scavengers (dimethyl sulphoxide or acetylcysteine) are advised in the Netherlands for inflammatory symptoms, but have not gained general international acceptance.</p>
+
+      <h3>Medication summary</h3>
+      <p class="scroll-hint">↔ Table scrolls horizontally on small screens.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Agent(s)</th>
+              <th>Target mechanism</th>
+              <th>Key notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Free-radical scavengers</td>
+              <td>Dimethyl sulphoxide (DMSO), acetylcysteine</td>
+              <td>Inflammation</td>
+              <td>Advised in the Netherlands; not generally accepted internationally.</td>
+            </tr>
+            <tr>
+              <td>Immunomodulators</td>
+              <td>Bisphosphonates</td>
+              <td>Inflammation</td>
+              <td><strong>Strong evidence</strong> for use.</td>
+            </tr>
+            <tr>
+              <td>Immunomodulators</td>
+              <td>Glucocorticoids, TNF-α antagonists, thalidomide, immunoglobulin</td>
+              <td>Inflammation</td>
+              <td>Evidence often conflicting and insufficient to advise standard use.</td>
+            </tr>
+            <tr>
+              <td>Analgesics</td>
+              <td>WHO analgesic ladder (<em>bar strong opioids</em>)</td>
+              <td>Nociceptive pain</td>
+              <td>Insufficient evidence in CRPS, but treating nociceptive pain along the ladder seems wise.</td>
+            </tr>
+            <tr>
+              <td>Co-analgesics</td>
+              <td>Gabapentin</td>
+              <td>Neuropathic pain</td>
+              <td>Shown to reduce pain symptoms; supported by the limited available evidence for neuropathic pain in CRPS.</td>
+            </tr>
+            <tr>
+              <td>Co-analgesics</td>
+              <td>Low-dose IV ketamine</td>
+              <td>Intractable pain in long-standing CRPS</td>
+              <td>Dose and treatment length still unclear. <strong>Monitor liver function frequently</strong>; stop immediately if liver enzymes increase.</td>
+            </tr>
+            <tr>
+              <td>Vasodilators</td>
+              <td>Calcium channel blocker, alpha-sympathetic blocker, PDE-5 inhibitor</td>
+              <td>Vasomotor disturbance / "cold" CRPS</td>
+              <td>Short-term treatment; stop the medication if no effect is achieved.</td>
+            </tr>
+            <tr>
+              <td>Muscle relaxants / spasmolytics</td>
+              <td>Oral muscle relaxants; intrathecal baclofen</td>
+              <td>Motor disturbance / dystonia</td>
+              <td>Intrathecal baclofen likely has a positive effect on dystonia, but given side effects and invasiveness, try oral muscle relaxants first.</td>
+            </tr>
+            <tr>
+              <td>Psychological intervention</td>
+              <td>Multidisciplinary referral incl. psychologist</td>
+              <td>Psychological problems, chronic pain behaviour, poor coping</td>
+              <td>Consider when there are indications for psychological problems or inability to cope with the disease.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 6. PREVENTION ============ -->
+  <details class="section">
+    <summary><span class="num">6</span> Prevention</summary>
+    <div class="s-content">
+      <p>As treatment options for CRPS are limited, prevention would be the best medicine.</p>
+      <ul>
+        <li>Supplementation with <strong>vitamin C &gt; 500 mg day<sup>−1</sup></strong>, initiated <strong>immediately after injury or surgery</strong> and continued for <strong>45–50 days</strong>, has been shown to reduce the risk of developing CRPS.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7. PROGNOSIS ============ -->
+  <details class="section">
+    <summary><span class="num">7</span> Prognosis &amp; social impact</summary>
+    <div class="s-content">
+      <ul>
+        <li>The prognosis and outcome of CRPS remain <strong>difficult to predict</strong>.</li>
+        <li><strong>Resolution rates:</strong> ~74% in the 1st year, falling to ~36% after 6 years.</li>
+        <li><strong>Social impact is significant.</strong> In one CRPS population study:
+          <ul>
+            <li>31% permanent inability to work</li>
+            <li>28% partial inability to work (i.e. requiring work adaptations)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 8. ANAESTHETIST / INTENSIVIST CHECKLIST ============ -->
+  <details class="section">
+    <summary><span class="num">8</span> Anaesthetist / intensivist checklist</summary>
+    <div class="s-content">
+      <p>Practical points drawn from the clinical content above — for use at the bedside and in the
+      perioperative period.</p>
+      <ul class="keypoints">
+        <li><strong>Think of CRPS</strong> in any patient with disproportionately severe, continuous, non-dermatomal limb pain after trauma, fracture or surgery — especially if sensory, vasomotor, sudomotor/oedema or motor/trophic changes coexist.</li>
+        <li><strong>Document objectively:</strong> temperature and colour asymmetry vs the contralateral limb, sweating asymmetry, oedema, range of motion, tremor/dystonia, hair/nail/skin changes, allodynia/hyperalgesia.</li>
+        <li><strong>Use the IASP criteria</strong> — ≥1 symptom in 3 of 4 categories and ≥1 sign in ≥2 of 4 categories, with no better alternative diagnosis.</li>
+        <li><strong>Exclude mimics</strong> before labelling: neuropathic, vascular, inflammatory, myofascial and psychiatric causes.</li>
+        <li><strong>Do not rely on bloods or imaging</strong> to make the diagnosis — general inflammatory markers are usually normal.</li>
+        <li><strong>Start physiotherapy early</strong> and refer to a multidisciplinary team (pain physician, physiotherapist, psychologist).</li>
+        <li><strong>Avoid strong opioids</strong> for nociceptive pain; use the WHO ladder. Gabapentin for a neuropathic component.</li>
+        <li><strong>Ketamine infusions</strong> (low-dose IV, long-standing/intractable CRPS): dose and duration unclear — monitor LFTs frequently and stop immediately if liver enzymes rise.</li>
+        <li><strong>Sympathetic blocks are not recommended</strong> by the EBGD guidelines; spinal cord stimulation is the invasive option of choice for refractory patients.</li>
+        <li><strong>Consider vitamin C prophylaxis</strong> (&gt;500 mg day<sup>−1</sup> for 45–50 days) after relevant injury or surgery.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div id="noResults">No matching content. Try a different term (e.g. <em>gabapentin</em>, <em>allodynia</em>, <em>vitamin C</em>).</div>
+
+</main>
+
+<!-- ============ SOURCE ============ -->
+<section class="source">
+  <h2>Source</h2>
+  <p>This quick reference is a condensed, restructured summary of the clinical content of the following article. All statements are drawn from that source; consult the full text for details and references.</p>
+  <blockquote>
+    <p><strong>Complex regional pain syndrome.</strong> <em>BJA Education</em> (Oxford University Press), 2017.<br>
+    PII: <code>S2058-5349(17)30160-9</code><br>
+    Corresponding author affiliation: Center for Pain Medicine, Department of Anaesthesia, Erasmus MC University Medical Center Rotterdam, Postbus 2040, 3000CA Rotterdam, the Netherlands.<br>
+    Source file: <code>PIIS2058534917301609.pdf</code></p>
+  </blockquote>
+  <p>Educational quick reference only — not a substitute for the full article, local guidelines, or clinical judgement. Verify all drug doses against local protocols before prescribing.</p>
+</section>
+
+<script>
+(function () {
+  "use strict";
+
+  var content     = document.getElementById("content");
+  var input       = document.getElementById("search");
+  var countEl     = document.getElementById("count");
+  var noResults   = document.getElementById("noResults");
+  var sections    = Array.prototype.slice.call(document.querySelectorAll("details.section"));
+
+  /* ---- store pristine markup + default open state ---- */
+  var originals = new Map();
+  sections.forEach(function (d) {
+    d.dataset.defaultOpen = d.open ? "true" : "false";
+    var summary = d.querySelector("summary");
+    var body    = d.querySelector(".s-content");
+    originals.set(d, {
+      summary: summary ? summary.innerHTML : "",
+      body:    body ? body.innerHTML : ""
+    });
+  });
+
+  function restore(d) {
+    var o = originals.get(d);
+    if (!o) return;
+    var summary = d.querySelector("summary");
+    var body    = d.querySelector(".s-content");
+    if (summary && summary.innerHTML !== o.summary) summary.innerHTML = o.summary;
+    if (body && body.innerHTML !== o.body) body.innerHTML = o.body;
+  }
+
+  /* ---- highlight every occurrence of q inside root ---- */
+  function highlight(root, q) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        var parent = node.parentNode;
+        if (!parent) return NodeFilter.FILTER_REJECT;
+        var tag = parent.nodeName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "MARK") return NodeFilter.FILTER_REJECT;
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(q) !== -1
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text  = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag  = document.createDocumentFragment();
+      var i = 0, idx;
+
+      while ((idx = lower.indexOf(q, i)) !== -1) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mark = document.createElement("mark");
+        mark.className = "hl";
+        mark.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mark);
+        i = idx + q.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      if (frag.childNodes.length) node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---- main search routine ---- */
+  function runSearch() {
+    var q = input.value.trim().toLowerCase();
+
+    /* reset */
+    sections.forEach(function (d) {
+      restore(d);
+      d.classList.remove("hidden");
+    });
+
+    if (!q) {
+      sections.forEach(function (d) {
+        d.open = d.dataset.defaultOpen === "true";
+      });
+      countEl.textContent = "";
+      noResults.classList.remove("show");
+      return;
+    }
+
+    var visible = 0, matches = 0;
+
+    sections.forEach(function (d) {
+      if (d.textContent.toLowerCase().indexOf(q) !== -1) {
+        d.classList.remove("hidden");
+        d.open = true;
+        visible++;
+        highlight(d, q);
+        matches += d.querySelectorAll("mark.hl").length;
+      } else {
+        d.classList.add("hidden");
+      }
+    });
+
+    if (visible) {
+      countEl.textContent = matches + " match" + (matches === 1 ? "" : "es") +
+                            " in " + visible + " section" + (visible === 1 ? "" : "s");
+      noResults.classList.remove("show");
+    } else {
+      countEl.textContent = "No matches";
+      noResults.classList.add("show");
+    }
+  }
+
+  /* ---- events ---- */
+  var t;
+  input.addEventListener("input", function () {
+    clearTimeout(t);
+    t = setTimeout(runSearch, 90);
+  });
+
+  document.getElementById("expandAll").addEventListener("click", function () {
+    sections.forEach(function (d) { if (!d.classList.contains("hidden")) d.open = true; });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function () {
+    sections.forEach(function (d) { d.open = false; });
+  });
+
+  /* "/" focuses the search box */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && document.activeElement !== input) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+    if (e.key === "Escape" && document.activeElement === input) {
+      input.value = "";
+      runSearch();
+      input.blur();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
