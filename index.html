@@ -3,19 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
 <title>Anaesthesia Reference Contents</title>
+<script>
+  // Set theme before paint to avoid flash
+  (function(){
+    try {
+      var t = localStorage.getItem('anaes-theme');
+      if(!t){
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch(e){}
+  })();
+</script>
 <style>
+  /* ============ THEME TOKENS ============ */
   :root {
-    --cyan: #0e9dbd;
-    --cyan-dark: #0b6b83;
-    --yellow: #fcd34d;
-    --yellow-soft: #fde68a;
-    --ink: #1f3a42;
-    --body: #33525c;
-    --muted: #7b949c;
-    --line: #e8f1f4;
-    --bg: #ffffff;
-    --tint: #f8fcfd;
+    --primary:        #0e7490;
+    --primary-bright: #0891b2;
+    --primary-soft:   #06b6d4;
+    --accent:         #fbbf24;
+    --accent-soft:    #fde68a;
+
+    --bg:             #ffffff;
+    --surface:        #f5fbfd;
+    --surface-2:      #eef8fb;
+    --header-bg:      linear-gradient(180deg, #eefafd 0%, #ffffff 100%);
+    --search-bg:      rgba(255,255,255,0.92);
+
+    --ink:            #0f3540;
+    --body:           #2c4f5b;
+    --muted:          #74909a;
+    --line:           #e3eff3;
+    --line-strong:    #cfe4ea;
+    --link:           #0e7490;
+  }
+
+  html[data-theme="dark"] {
+    --primary:        #22d3ee;
+    --primary-bright: #38dcf0;
+    --primary-soft:   #67e8f9;
+    --accent:         #fcd34d;
+    --accent-soft:    #a37a12;
+
+    --bg:             #0a1216;
+    --surface:        #101c22;
+    --surface-2:      #16262e;
+    --header-bg:      linear-gradient(180deg, #0f2027 0%, #0a1216 100%);
+    --search-bg:      rgba(10,18,22,0.92);
+
+    --ink:            #e2f5fa;
+    --body:           #a6c6cf;
+    --muted:          #6c8791;
+    --line:           #1c2e36;
+    --line-strong:    #243a44;
+    --link:           #4fdcf0;
   }
 
   * { box-sizing: border-box; }
@@ -26,10 +69,11 @@
     margin: 0;
     font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
     font-size: 16px;
-    line-height: 1.55;
+    line-height: 1.45;
     color: var(--ink);
     background: var(--bg);
     -webkit-font-smoothing: antialiased;
+    transition: background-color .25s ease, color .25s ease;
   }
 
   .wrap {
@@ -39,182 +83,235 @@
     padding-right: 1.5rem;
   }
 
-  /* ---------- HEADER ---------- */
+  /* ============ HEADER ============ */
   header {
-    background: linear-gradient(180deg, #f2fafc 0%, #ffffff 100%);
-    border-bottom: 3px solid var(--yellow-soft);
-    padding: 2.2rem 0 1.7rem;
+    background: var(--header-bg);
+    border-bottom: 3px solid var(--accent-soft);
+    padding: 1.8rem 0 1.4rem;
+    transition: background .25s ease, border-color .25s ease;
+  }
+  header .wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
   }
   header h1 {
-    margin: 0 0 0.35rem;
-    font-size: clamp(1.2rem, 3.4vw, 1.5rem);
+    margin: 0 0 0.3rem;
+    font-size: clamp(1.15rem, 3.3vw, 1.45rem);
     font-weight: 700;
     letter-spacing: -0.01em;
-    color: var(--cyan-dark);
+    color: var(--primary);
+    transition: color .25s ease;
   }
   header p {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--muted);
-    max-width: 60ch;
+    max-width: 55ch;
   }
 
-  /* ---------- SEARCH ---------- */
+  /* ============ THEME TOGGLE ============ */
+  .theme-toggle {
+    flex: none;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    cursor: pointer;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    color: var(--primary);
+    transition: background-color .2s ease, border-color .2s ease,
+                color .2s ease, transform .15s ease;
+  }
+  .theme-toggle:hover {
+    background: var(--surface-2);
+    transform: rotate(-12deg);
+  }
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--primary-bright);
+    outline-offset: 2px;
+  }
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .theme-toggle .icon-moon { display: none; }
+  html[data-theme="dark"] .theme-toggle .icon-sun  { display: none; }
+  html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+
+  /* ============ SEARCH ============ */
   .search-wrap {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.94);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    background: var(--search-bg);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
+    transition: background-color .25s ease, border-color .25s ease;
   }
   .search-wrap .wrap {
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
   }
   .search-wrap input {
     width: 100%;
-    padding: 0.6rem 1rem 0.6rem 2.35rem;
+    padding: 0.55rem 1rem 0.55rem 2.3rem;
     font-family: inherit;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: var(--ink);
-    background: var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237b949c' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.6-3.6'/%3E%3C/svg%3E") no-repeat 0.9rem center / 15px 15px;
-    border: 1px solid var(--line);
+    background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2374909a' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.6-3.6'/%3E%3C/svg%3E") no-repeat 0.85rem center / 15px 15px;
+    border: 1px solid var(--line-strong);
     border-radius: 999px;
     outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+    transition: border-color .15s, box-shadow .15s, background-color .25s ease, color .25s ease;
   }
-  .search-wrap input::placeholder { color: #a8bcc3; }
+  .search-wrap input::placeholder { color: var(--muted); }
   .search-wrap input:focus {
-    background-color: #fff;
-    border-color: var(--cyan);
-    box-shadow: 0 0 0 3px rgba(14, 157, 189, 0.1);
+    background-color: var(--bg);
+    border-color: var(--primary-bright);
+    box-shadow: 0 0 0 3px rgba(8,145,178,0.14);
   }
 
-  /* ---------- MAIN ---------- */
+  /* ============ MAIN ============ */
   main {
     max-width: 880px;
     margin: 0 auto;
-    padding: 1.8rem 1.5rem 4rem;
+    padding: 1.5rem 1.5rem 3.5rem;
   }
 
-  /* ---------- LEGEND ---------- */
+  /* ============ LEGEND ============ */
   .legend {
-    background: var(--tint);
+    background: var(--surface);
     border: 1px solid var(--line);
-    border-left: 3px solid var(--yellow);
-    border-radius: 8px;
-    padding: 0.75rem 0.95rem;
-    font-size: 0.79rem;
-    line-height: 1.5;
+    border-left: 3px solid var(--accent);
+    border-radius: 7px;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.77rem;
+    line-height: 1.45;
     color: var(--muted);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+    transition: background-color .25s ease, border-color .25s ease;
   }
   .legend strong { color: var(--body); }
 
-  /* ---------- SECTION HEADINGS ---------- */
+  /* ============ SECTION HEADINGS ============ */
   h2 {
     display: flex;
     align-items: center;
-    gap: 0.55rem;
-    margin: 2rem 0 0.55rem;
-    padding-bottom: 0.5rem;
-    font-size: 0.78rem;
+    gap: 0.5rem;
+    margin: 1.5rem 0 0.4rem;
+    padding-bottom: 0.32rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.075em;
     text-transform: uppercase;
-    color: var(--cyan-dark);
+    color: var(--primary);
     border-bottom: 1px solid var(--line);
+    transition: color .25s ease, border-color .25s ease;
   }
   h2::before {
     content: "";
     flex: none;
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: var(--yellow);
+    background: var(--accent);
   }
   h2:first-of-type { margin-top: 0; }
 
-  /* ---------- LISTS ---------- */
+  /* ============ LISTS (compact) ============ */
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
   li {
-    font-size: 0.875rem;
+    font-size: 0.845rem;
+    line-height: 1.42;
     color: var(--body);
-    padding: 0.22rem 0;
+    padding: 0.06rem 0;
   }
   ul.sub {
-    margin: 0.25rem 0 0.35rem 0.4rem;
-    padding-left: 0.9rem;
+    margin: 0.1rem 0 0.2rem 0.35rem;
+    padding-left: 0.8rem;
     border-left: 1px solid var(--line);
   }
   ul.sub li {
-    font-size: 0.83rem;
+    font-size: 0.795rem;
+    line-height: 1.4;
     color: var(--muted);
-    padding: 0.16rem 0;
+    padding: 0.04rem 0;
   }
 
-  /* ---------- LINKS ---------- */
+  /* ============ LINKS ============ */
   a {
     color: inherit;
     text-decoration: none;
-    transition: color 0.15s;
+    transition: color .15s;
   }
   a.has-file {
-    color: var(--cyan-dark);
+    color: var(--link);
     font-weight: 600;
     text-decoration: underline;
-    text-decoration-color: rgba(14, 157, 189, 0.3);
-    text-underline-offset: 3px;
-    transition: color 0.15s, text-decoration-color 0.15s;
+    text-decoration-color: rgba(8,145,178,0.3);
+    text-underline-offset: 2.5px;
+    transition: color .15s, text-decoration-color .15s;
   }
   a.has-file::after {
     content: "🚨";
-    margin-left: 0.35em;
-    font-size: 0.85em;
+    margin-left: 0.3em;
+    font-size: 0.82em;
   }
   a.has-file:hover {
-    color: var(--cyan);
+    color: var(--primary-bright);
     text-decoration-color: currentColor;
   }
 
-  /* ---------- EMPTY STATE ---------- */
+  /* ============ EMPTY STATE ============ */
   .no-results {
     display: none;
     padding: 2.5rem 1rem;
     text-align: center;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: var(--muted);
   }
   .no-results.show { display: block; }
   .no-results strong { color: var(--body); }
-  .no-results span { font-size: 0.8rem; }
+  .no-results span { font-size: 0.78rem; }
 
-  /* ---------- FOOTER ---------- */
+  /* ============ FOOTER ============ */
   footer {
-    margin-top: 3rem;
-    padding: 1.7rem 0;
-    background: var(--tint);
+    margin-top: 2.5rem;
+    padding: 1.4rem 0;
+    background: var(--surface);
     border-top: 1px solid var(--line);
-    font-size: 0.75rem;
-    line-height: 1.6;
+    font-size: 0.73rem;
+    line-height: 1.55;
     color: var(--muted);
+    transition: background-color .25s ease, border-color .25s ease;
   }
   footer p { margin: 0; }
 
-  /* ---------- MOBILE ---------- */
+  /* ============ MOBILE ============ */
   @media (max-width: 500px) {
     .wrap,
-    main { padding-left: 1.05rem; padding-right: 1.05rem; }
-    header { padding: 1.6rem 0 1.3rem; }
-    main { padding-top: 1.4rem; padding-bottom: 3rem; }
-    h2 { margin-top: 1.6rem; }
-    ul.sub { padding-left: 0.7rem; margin-left: 0.2rem; }
+    main { padding-left: 1rem; padding-right: 1rem; }
+    header { padding: 1.4rem 0 1.1rem; }
+    main { padding-top: 1.2rem; padding-bottom: 2.8rem; }
+    h2 { margin-top: 1.3rem; }
+    ul.sub { padding-left: 0.65rem; margin-left: 0.2rem; }
+    .theme-toggle { width: 34px; height: 34px; }
   }
 </style>
 </head>
@@ -222,8 +319,20 @@
 
 <header>
   <div class="wrap">
-    <h1>Anaesthesia Reference Contents</h1>
-    <p>A structured index of anaesthesia, critical care and perioperative medicine topics.</p>
+    <div>
+      <h1>Anaesthesia Reference Contents</h1>
+      <p>A structured index of anaesthesia, critical care and perioperative medicine topics.</p>
+    </div>
+    <button id="themeToggle" class="theme-toggle" type="button"
+            aria-label="Switch between light and dark theme" title="Toggle theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.2"/>
+        <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 14.4A8.6 8.6 0 0 1 9.6 3.5a8.6 8.6 0 1 0 10.9 10.9Z"/>
+      </svg>
+    </button>
   </div>
 </header>
 
@@ -490,6 +599,17 @@
 (function(){
   "use strict";
 
+  /* ---------- THEME TOGGLE ---------- */
+  var root   = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+
+  toggle.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('anaes-theme', next); } catch(e){}
+  });
+
+  /* ---------- SEARCH / FILTER ---------- */
   var search    = document.getElementById('search');
   var noResults = document.getElementById('noResults');
   var main      = document.querySelector('main');
@@ -501,7 +621,7 @@
     // 1. Show/hide every list item based on its own text
     var allLis = main.querySelectorAll('li');
     allLis.forEach(function(li){
-      var text = li.textContent.toLowerCase();
+      var text  = li.textContent.toLowerCase();
       var match = !q || text.indexOf(q) !== -1;
       li.style.display = match ? '' : 'none';
     });
@@ -525,16 +645,13 @@
       var hasVisibleLi = false;
 
       if(next && next.tagName === 'UL'){
-        var lis = next.querySelectorAll('li');
-        lis.forEach(function(li){
+        next.querySelectorAll('li').forEach(function(li){
           if(li.style.display !== 'none') hasVisibleLi = true;
         });
       }
 
-      // If the section has a list, base visibility on the list.
-      // If it has no list, show it only when the query is empty or the heading matches.
       var headingMatches = h2.textContent.toLowerCase().indexOf(q) !== -1;
-      var showSection = false;
+      var showSection;
 
       if(next && next.tagName === 'UL'){
         showSection = hasVisibleLi;
@@ -550,13 +667,12 @@
       if(showSection) visibleCount++;
     });
 
-    // 4. Also count visible list items for the empty state
+    // 4. Count visible list items for the empty state
     var anyVisible = false;
     main.querySelectorAll('li').forEach(function(li){
       if(li.style.display !== 'none') anyVisible = true;
     });
 
-    // If there are no list items at all, fall back to section visibility
     if(main.querySelectorAll('li').length === 0){
       anyVisible = visibleCount > 0;
     }
