@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solat & Bersuci Pesakit — Rujukan Pantas ICU / Anestesiologi</title>
+<meta name="description" content="Rujukan pantas solat dan bersuci bagi pesakit untuk pakar anestesiologi dan perubatan intensif. Berasaskan panduan JAKIM.">
+<style>
+:root{
+  --bg:#f5f7f6;
+  --card:#ffffff;
+  --ink:#16211d;
+  --muted:#5d6b66;
+  --line:#dde5e1;
+  --brand:#0f6b52;
+  --brand-soft:#e6f2ee;
+  --brand-2:#0d5a8f;
+  --accent:#b8860b;
+  --warn:#a33b1f;
+  --warn-soft:#fdf0eb;
+  --ok:#0f6b52;
+  --ok-soft:#e6f2ee;
+  --radius:12px;
+  --shadow:0 1px 2px rgba(16,32,27,.06), 0 6px 18px rgba(16,32,27,.06);
+  --maxw:1080px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1513;
+    --card:#161e1b;
+    --ink:#e8efec;
+    --muted:#9fb0aa;
+    --line:#2a3733;
+    --brand:#4fbf9c;
+    --brand-soft:#14322a;
+    --brand-2:#6bb6ea;
+    --accent:#e0b64b;
+    --warn:#e88a6c;
+    --warn-soft:#2e1a14;
+    --ok:#4fbf9c;
+    --ok-soft:#14322a;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px 80px}
+
+/* ---------- HEADER ---------- */
+header{
+  background:linear-gradient(135deg,var(--brand) 0%, #0b4f3d 100%);
+  color:#fff;
+  padding:28px 16px 22px;
+  margin-bottom:18px;
+}
+@media (prefers-color-scheme: dark){
+  header{background:linear-gradient(135deg,#123f34 0%, #0b2a23 100%);}
+}
+header .inner{max-width:var(--maxw);margin:0 auto}
+header h1{
+  margin:0 0 6px;
+  font-size:clamp(1.25rem,3.4vw,1.75rem);
+  letter-spacing:-.02em;
+  line-height:1.25;
+}
+header p{margin:0;opacity:.9;font-size:.92rem;max-width:70ch}
+.badges{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.badge{
+  font-size:.72rem;font-weight:600;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.22);
+  padding:3px 9px;border-radius:999px;
+  letter-spacing:.01em;
+}
+
+/* ---------- TOOLBAR ---------- */
+.toolbar{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:saturate(160%) blur(10px);
+  -webkit-backdrop-filter:saturate(160%) blur(10px);
+  border-bottom:1px solid var(--line);
+  padding:10px 16px;
+  margin:0 -16px 18px;
+}
+.toolbar .inner{max-width:var(--maxw);margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.searchbox{position:relative;flex:1 1 260px;min-width:200px}
+.searchbox input{
+  width:100%;
+  padding:10px 34px 10px 36px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--ink);
+  font-size:.95rem;
+  font-family:inherit;
+  outline:none;
+}
+.searchbox input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.searchbox .icon{
+  position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  color:var(--muted);font-size:.95rem;pointer-events:none;
+}
+.searchbox .clear{
+  position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  border:0;background:transparent;color:var(--muted);cursor:pointer;
+  font-size:1.1rem;padding:4px 8px;border-radius:6px;display:none;
+}
+.searchbox .clear:hover{background:var(--brand-soft);color:var(--brand)}
+.btn{
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--ink);
+  font-family:inherit;
+  font-size:.82rem;font-weight:600;
+  padding:9px 13px;border-radius:10px;
+  cursor:pointer;white-space:nowrap;
+  transition:.15s;
+}
+.btn:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+.hitcount{font-size:.78rem;color:var(--muted);white-space:nowrap}
+
+/* ---------- CARDS ---------- */
+details.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  margin-bottom:10px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  scroll-margin-top:80px;
+}
+details.card > summary{
+  list-style:none;
+  cursor:pointer;
+  padding:14px 46px 14px 16px;
+  position:relative;
+  font-weight:700;
+  font-size:1rem;
+  display:flex;align-items:center;gap:10px;
+  user-select:none;
+}
+details.card > summary::-webkit-details-marker{display:none}
+details.card > summary::after{
+  content:"›";
+  position:absolute;right:18px;top:50%;
+  transform:translateY(-50%) rotate(90deg);
+  font-size:1.5rem;line-height:1;
+  color:var(--muted);
+  transition:transform .22s ease;
+}
+details.card[open] > summary::after{transform:translateY(-50%) rotate(-90deg)}
+details.card > summary:hover{background:var(--brand-soft)}
+details.card[open] > summary{border-bottom:1px solid var(--line)}
+.num{
+  flex:0 0 auto;
+  width:26px;height:26px;border-radius:8px;
+  background:var(--brand);color:#fff;
+  font-size:.78rem;font-weight:700;
+  display:grid;place-items:center;
+}
+.body{padding:4px 16px 18px;font-size:.94rem}
+.body > :first-child{margin-top:10px}
+
+/* ---------- TYPOGRAPHY ---------- */
+h3{
+  font-size:.82rem;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--brand);margin:18px 0 8px;font-weight:800;
+}
+h3:first-child{margin-top:10px}
+h4{font-size:.93rem;margin:14px 0 6px;color:var(--ink)}
+p{margin:8px 0}
+ul,ol{margin:8px 0;padding-left:20px}
+li{margin:5px 0}
+li::marker{color:var(--brand);font-weight:700}
+strong{font-weight:700}
+code{
+  background:var(--brand-soft);color:var(--brand);
+  padding:1px 6px;border-radius:5px;
+  font-size:.86em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-weight:600;
+}
+
+/* ---------- CALLOUTS ---------- */
+.note{
+  border-left:3px solid var(--brand);
+  background:var(--brand-soft);
+  padding:10px 14px;border-radius:0 8px 8px 0;
+  margin:12px 0;font-size:.9rem;
+}
+.warn{
+  border-left:3px solid var(--warn);
+  background:var(--warn-soft);
+  padding:10px 14px;border-radius:0 8px 8px 0;
+  margin:12px 0;font-size:.9rem;
+}
+.warn strong{color:var(--warn)}
+.pill{
+  display:inline-block;font-size:.7rem;font-weight:800;
+  padding:2px 8px;border-radius:999px;
+  letter-spacing:.04em;text-transform:uppercase;
+  vertical-align:middle;
+}
+.pill.syafie{background:#e8f0fb;color:#1d4e8f}
+.pill.hanafi{background:#fdf3e0;color:#8a5a00}
+.pill.maliki{background:#eef7ee;color:#256b25}
+.pill.hanbali{background:#f6eefb;color:#6b2a8a}
+@media (prefers-color-scheme: dark){
+  .pill.syafie{background:#12243d;color:#8fbdf0}
+  .pill.hanafi{background:#33270d;color:#e5bb63}
+  .pill.maliki{background:#13301a;color:#8ada9a}
+  .pill.hanbali{background:#2a1636;color:#c79ae8}
+}
+
+/* ---------- TABLES ---------- */
+.tablewrap{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid var(--line);
+  border-radius:10px;
+  margin:12px 0;
+  background:var(--card);
+}
+.tablewrap::-webkit-scrollbar{height:8px}
+.tablewrap::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.86rem}
+caption{
+  caption-side:top;text-align:left;
+  padding:10px 12px 8px;font-weight:700;font-size:.82rem;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.05em;
+  border-bottom:1px solid var(--line);
+}
+th,td{
+  padding:9px 12px;
+  text-align:left;vertical-align:top;
+  border-bottom:1px solid var(--line);
+}
+th{
+  background:var(--brand-soft);
+  color:var(--brand);
+  font-weight:700;font-size:.78rem;
+  text-transform:uppercase;letter-spacing:.04em;
+  position:sticky;top:0;z-index:1;
+}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:color-mix(in srgb,var(--brand-soft) 50%, transparent)}
+td.step{white-space:nowrap;font-weight:700;color:var(--brand)}
+.scrollhint{
+  font-size:.72rem;color:var(--muted);
+  margin:-6px 0 12px;font-style:italic;
+}
+
+/* ---------- FLOW (simple diagram) ---------- */
+.flow{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;
+  margin:14px 0;
+}
+.flow .node{
+  flex:1 1 120px;min-width:110px;
+  background:var(--brand-soft);
+  border:1px solid color-mix(in srgb,var(--brand) 25%, transparent);
+  border-radius:10px;
+  padding:10px 12px;
+  font-size:.82rem;
+  font-weight:600;
+  display:flex;flex-direction:column;justify-content:center;
+  text-align:center;
+}
+.flow .node small{display:block;font-weight:400;color:var(--muted);font-size:.74rem;margin-top:3px}
+.flow .arrow{
+  align-self:center;color:var(--brand);font-weight:800;font-size:1.1rem;
+}
+@media(max-width:640px){
+  .flow .arrow{transform:rotate(90deg)}
+}
+
+/* ---------- SCRIPT BOX ---------- */
+.script{
+  background:var(--brand-soft);
+  border:1px dashed color-mix(in srgb,var(--brand) 40%, transparent);
+  border-radius:10px;
+  padding:14px 16px;
+  margin:12px 0;
+  font-size:.92rem;
+}
+.script .say{
+  display:block;
+  margin:8px 0;
+  padding-left:14px;
+  border-left:2px solid var(--brand);
+  font-style:italic;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  margin-top:34px;padding-top:20px;
+  border-top:1px solid var(--line);
+  font-size:.82rem;color:var(--muted);
+}
+footer ol{padding-left:20px}
+footer li{margin:4px 0}
+footer a{color:var(--brand-2);word-break:break-word}
+
+mark{background:#ffe066;color:#1a1a1a;padding:0 2px;border-radius:3px}
+.hidden{display:none !important}
+
+/* ---------- PRINT ---------- */
+@media print{
+  .toolbar,header .badges,.searchbox,.btn,.hitcount{display:none !important}
+  header{background:#fff !important;color:#000 !important;padding:0 0 12px}
+  body{background:#fff;color:#000;font-size:11pt}
+  details.card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  details.card > summary::after{display:none}
+  details.card .body{display:block !important}
+  .tablewrap{overflow:visible}
+  table{min-width:0;font-size:9.5pt}
+  th{position:static}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <h1>🕌 Solat &amp; Bersuci Pesakit — Rujukan Pantas</h1>
+    <p>Panduan ringkas untuk <strong>Pakar Anestesiologi &amp; Perubatan Intensif</strong> — untuk menilai kemampuan pesakit, mengajar pesakit/keluarga, dan mendokumentasikan cadangan ibadah. Berasaskan panduan JAKIM (Mazhab Syafi'e + pilihan mazhab muktabar lain).</p>
+    <div class="badges">
+      <span class="badge">Triage pantas</span>
+      <span class="badge">Skrip ajar pesakit</span>
+      <span class="badge">Jadual boleh skrol</span>
+      <span class="badge">Carian langsung</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="inner">
+    <div class="searchbox">
+      <span class="icon">🔍</span>
+      <input id="q" type="search" placeholder="Cari: tayammum, kateter, jama', balutan, aurat…" autocomplete="off" aria-label="Cari dalam panduan">
+      <button class="clear" id="clearBtn" aria-label="Kosongkan carian">✕</button>
+    </div>
+    <button class="btn" id="expandAll">Buka Semua</button>
+    <button class="btn" id="collapseAll">Tutup Semua</button>
+    <button class="btn" onclick="window.print()">Cetak</button>
+    <span class="hitcount" id="hitcount"></span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ============ 1. TRIAGE ============ -->
+<details class="card" open>
+  <summary><span class="num">1</span> Triage Pantas — 5 Soalan Sebelum Cadangan</summary>
+  <div class="body">
+    <p>Tanya secara berurutan. Jawapan menentukan tahap kelonggaran (rukhsah) yang boleh diajar kepada pesakit.</p>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Algoritma 5 Langkah</caption>
+        <thead>
+          <tr><th style="width:38px">#</th><th>Soalan</th><th>Jika YA</th><th>Jika TIDAK</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="step">1</td>
+            <td><strong>Sedar &amp; mukallaf?</strong><br><small>(bukan sedasi dalam, bukan koma, sudah baligh &amp; berakal)</small></td>
+            <td>Solat <strong>wajib</strong>. Teruskan ke soalan 2.</td>
+            <td>Kewajipan <strong>gugur</strong>. Sunat qadha bila sedar semula (jika hilang sedar bukan sebab kelalaian).</td>
+          </tr>
+          <tr>
+            <td class="step">2</td>
+            <td><strong>Boleh kenakan air</strong> pada anggota wudhu / seluruh badan?</td>
+            <td>Wudhu / mandi seperti biasa, atau dengan bantuan.</td>
+            <td>→ Tayammum. Jika tayammum pun tak mampu → solat tanpa bersuci <em>(ulang selepas sembuh, Syafi'e)</em>.</td>
+          </tr>
+          <tr>
+            <td class="step">3</td>
+            <td><strong>Boleh duduk tegak / berdiri?</strong></td>
+            <td>Ikut hierarki posisi (Kad 9).</td>
+            <td>Mengiring → menelentang → isyarat (Kad 9 &amp; 10).</td>
+          </tr>
+          <tr>
+            <td class="step">4</td>
+            <td><strong>Boleh sujud di lantai / tempat solat?</strong></td>
+            <td>Wajib sujud sebenar jika mampu.</td>
+            <td>Sujud dengan tunduk badan (lebih rendah dari ruku'). <span class="pill syafie">Syafi'e</span> masih wajib berdiri jika mampu berdiri; <span class="pill hanafi">Hanafi</span> gugur berdiri, boleh duduk.</td>
+          </tr>
+          <tr>
+            <td class="step">5</td>
+            <td><strong>Ada hadath berterusan?</strong><br><small>(kateter, stoma, kolostomi, istihadhah, keputihan, luka berair)</small></td>
+            <td>Ikut protokol pesakit berhadath berterusan (Kad 13) — termasuk pilihan <em>jama'</em>.</td>
+            <td>Bersuci biasa untuk setiap solat.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual ke kanan jika terpotong →</p>
+
+    <div class="note">
+      <strong>Prinsip utama:</strong> Sakit <em>bukan</em> sebab gugurnya solat. Yang berubah hanyalah <strong>cara</strong> — bukan kewajipannya. Sabda Nabi ﷺ: <em>"Solatlah dalam keadaan berdiri; jika tidak mampu, duduk; jika tidak mampu, mengiring."</em>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 2. PRINSIP ============ -->
+<details class="card">
+  <summary><span class="num">2</span> Prinsip Asas &amp; Kewajipan</summary>
+  <div class="body">
+    <h3>Siapa yang wajib solat</h3>
+    <ul>
+      <li><strong>Muslim</strong>, <strong>baligh</strong>, <strong>berakal</strong>.</li>
+      <li>Solat wajib ditunaikan <strong>selagi pesakit masih sedar</strong>, walau tidak mampu bergerak langsung.</li>
+    </ul>
+
+    <h3>Bila kewajipan gugur</h3>
+    <ul>
+      <li><strong>Hilang kesedaran sepanjang waktu solat</strong> bukan akibat kelalaian (contoh: sedasi/ubat bius yang dibenarkan perubatan) → kewajipan waktu itu <strong>gugur</strong>. <em>Sunat diqadha</em> selepas sedar.</li>
+      <li>Jika pesakit <strong>sedar sebahagian waktu</strong>, wajib solat pada waktu itu walaupun di hujung waktu.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Contoh dokumentasi:</strong> "Hilang sedar sepanjang waktu Zohor, sedar di akhir waktu Asar → wajib solat <strong>Asar</strong> + <strong>qadha Zohor</strong>." Begitu juga Maghrib/Isya.
+    </div>
+
+    <h3>Wanita — suci haidh/nifas di tengah waktu</h3>
+    <ul>
+      <li>Suci di akhir waktu Asar → wajib solat <strong>Asar</strong> + qadha <strong>Zohor</strong>.</li>
+      <li>Suci di akhir waktu Isya → wajib solat <strong>Isya</strong> + qadha <strong>Maghrib</strong>.</li>
+    </ul>
+
+    <h3>Prinsip talfiq (pilih mazhab yang memudahkan)</h3>
+    <p>Pesakit <strong>boleh memilih</strong> pandangan mazhab yang lebih memudahkan dalam bab tertentu, walaupun bercampur mazhab (talfiq) — dibenarkan ketika wujud keperluan dalam pelaksanaan ibadah. Rujuk Kad 3 untuk perbezaan mazhab.</p>
+  </div>
+</details>
+
+<!-- ============ 3. SYARAT SAH ============ -->
+<details class="card">
+  <summary><span class="num">3</span> Syarat Sah Solat — Apa Yang Boleh Dikompromi</summary>
+  <div class="body">
+    <div class="tablewrap">
+      <table>
+        <caption>Syarat Sah &amp; Tahap Kelonggaran</caption>
+        <thead>
+          <tr><th>Syarat</th><th>Jika tidak mampu</th><th>Perlu ulang?</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Suci daripada najis</strong><br><small>pada badan, pakaian, tempat</small></td>
+            <td>Solat juga walaupun bersama najis (hormat waktu). Kurangkan najis sekadar mampu.</td>
+            <td><span class="pill syafie">Syafi'e</span> Ya, ulang selepas sembuh.<br><span class="pill maliki">Maliki</span> Tidak perlu ulang (sah).</td>
+          </tr>
+          <tr>
+            <td><strong>Suci daripada hadath</strong><br><small>kecil &amp; besar</small></td>
+            <td>Solat pada waktunya sebagai menghormati waktu.</td>
+            <td><span class="pill syafie">Syafi'e</span> Ya, ulang selepas sembuh.</td>
+          </tr>
+          <tr>
+            <td><strong>Menutup aurat</strong></td>
+            <td>Solat mengikut keadaan seadanya.</td>
+            <td><strong>Tidak perlu ulang</strong> — solat sah.</td>
+          </tr>
+          <tr>
+            <td><strong>Menghadap qiblat</strong></td>
+            <td>Solat ke arah lain mengikut keadaan.</td>
+            <td><span class="pill syafie">Syafi'e</span> Ya, ulang selepas sembuh.<br><span class="pill hanafi">Hanafi</span> Tidak perlu ulang (sah).</td>
+          </tr>
+          <tr>
+            <td><strong>Masuk waktu</strong></td>
+            <td colspan="2">Tidak boleh dikompromi — wajib selepas masuk waktu (kecuali jama' — Kad 12).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol ke kanan untuk lihat lajur penuh →</p>
+
+    <h3>Nota aurat untuk wad</h3>
+    <ul>
+      <li><strong>Lelaki:</strong> antara pusat dan lutut.</li>
+      <li><strong>Wanita:</strong> seluruh badan kecuali muka dan dua tapak tangan serta belakangnya. <strong>Bawah dagu termasuk aurat.</strong></li>
+      <li>Gown hospital yang terbuka → jika tidak mampu menutup, solat tetap sah dan <strong>tidak perlu diulang</strong>.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 4. NAJIS ============ -->
+<details class="card">
+  <summary><span class="num">4</span> Bersuci Daripada Najis</summary>
+  <div class="body">
+    <h3>Prinsip</h3>
+    <ol>
+      <li>Sucikan najis pada kemaluan dan anggota lain sekadar <strong>termampu</strong>.</li>
+      <li>Jika air memudharatkan atau tidak dibenarkan — <strong>bersihkan &amp; kurangkan kuantiti najis</strong> sahaja.</li>
+      <li>Kemudian sucikan hadath (wudhu/tayammum) dan tunaikan solat fardhu sebagai menghormati waktu.</li>
+    </ol>
+
+    <div class="warn">
+      <strong>Perhatian (Syafi'e):</strong> Solat yang dilakukan ketika masih ada najis yang tidak mampu dihilangkan <strong>perlu diqadha</strong> selepas pulih. Namun pesakit boleh memilih pandangan <span class="pill maliki">Maliki</span> — solat <strong>sah dan tidak perlu diulang</strong>.
+    </div>
+
+    <h3>Aplikasi klinikal</h3>
+    <ul>
+      <li><strong>Luka berair / discharge:</strong> tukar dressing jika mampu sebelum solat.</li>
+      <li><strong>Stoma / kolostomi / urostomi:</strong> kosongkan &amp; bersihkan beg sekadar termampu.</li>
+      <li><strong>Inkontinens:</strong> gunakan lampin/pad yang bersih; solat selepas itu sah.</li>
+      <li><strong>Alas solat</strong> (kertas/kain bersih) boleh diletak di atas katil jika katil tidak suci.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 5. WUDHU ============ -->
+<details class="card">
+  <summary><span class="num">5</span> Wudhu — 4 Anggota &amp; Cara Berbantu</summary>
+  <div class="body">
+    <h3>Anggota wudhu</h3>
+    <div class="flow">
+      <div class="node">Muka<small>+ niat</small></div>
+      <div class="arrow">→</div>
+      <div class="node">Tangan<small>hingga siku</small></div>
+      <div class="arrow">→</div>
+      <div class="node">Kepala<small>disapu</small></div>
+      <div class="arrow">→</div>
+      <div class="node">Kaki<small>hingga buku lali</small></div>
+    </div>
+
+    <div class="warn">
+      <strong>Kesilapan biasa:</strong> Anggota wudhu <strong>tidak memadai disapu</strong> dengan air — air mesti <strong>mengalir</strong> di atas anggota sebelum diratai. Ini penting bagi pesakit yang guna <em>spray bottle</em>.
+    </div>
+
+    <h3>Teknik spray (pesakit boleh gerak)</h3>
+    <div class="tablewrap">
+      <table>
+        <caption>Langkah Wudhu Pesakit (Berbaring / Duduk)</caption>
+        <thead>
+          <tr><th style="width:60px">Langkah</th><th>Anggota</th><th>Cara</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="step">1</td><td>Muka</td><td>Sembur air pada tapak tangan hingga sedikit bertakung → alir &amp; rata ke seluruh muka <strong>disertai niat</strong>.</td></tr>
+          <tr><td class="step">2</td><td>Tangan kanan</td><td>Alir &amp; rata dari hujung jari hingga hujung siku.</td></tr>
+          <tr><td class="step">3</td><td>Tangan kiri</td><td>Sama seperti tangan kanan.</td></tr>
+          <tr><td class="step">4</td><td>Kepala</td><td>Sembur pada tapak tangan → <strong>sapu</strong> pada bahagian kepala.</td></tr>
+          <tr><td class="step">5</td><td>Kaki kanan</td><td>Alir dari atas buku lali ke bawah hingga hujung jari.</td></tr>
+          <tr><td class="step">6</td><td>Kaki kiri</td><td>Sama; selati celah-celah jari.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual →</p>
+
+    <h3>Jika pesakit tidak boleh bergerak langsung</h3>
+    <ul>
+      <li><strong>Minta bantuan orang lain</strong> (nurse, keluarga, petugas) untuk mewudhu'kannya.</li>
+      <li><strong>Niat tetap oleh pesakit sendiri</strong> — dilakukan ketika air mula mengalir ke muka.</li>
+      <li>Pembantu: sembur air pada tapak tangan sendiri → ratakan ke muka pesakit dari atas ke bawah.</li>
+      <li>Jika tiada sesiapa membantu tetapi pesakit mampu tayammum → <strong>bertayammum</strong>. Solat <strong>tidak perlu diulang</strong>.</li>
+      <li>Jika tidak mampu tayammum juga → solat tanpa bersuci; <strong>ulang selepas sembuh</strong>.</li>
+    </ul>
+
+    <div class="script">
+      <strong>Skrip untuk pembantu:</strong>
+      <span class="say">"Saya akan bantu encik/puan berwudhu'. Encik/puan hanya perlu berniat dalam hati: <em>'Sahaja aku berwudhu' untuk mengharuskan solat kerana Allah Ta'ala.'</em> Air akan saya alirkan ke muka, tangan, kepala dan kaki."</span>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 6. TAYAMMUM ============ -->
+<details class="card">
+  <summary><span class="num">6</span> Tayammum — Syafi'e vs Hanafi</summary>
+  <div class="body">
+    <p>Tayammum = menyapu <strong>muka</strong> dan <strong>kedua tangan hingga siku</strong> dengan debu tanah yang suci (atau bahan yang dibenarkan) mengikut syarat tertentu.</p>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Perbandingan Tayammum Mengikut Mazhab</caption>
+        <thead>
+          <tr><th style="width:26%">Aspek</th><th><span class="pill syafie">Syafi'e</span></th><th><span class="pill hanafi">Hanafi</span></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bahan</strong></td>
+            <td>Tanah <strong>berdebu</strong>, suci, bukan musta'mal.</td>
+            <td>Apa-apa bahan suci daripada jenis muka bumi: tanah, batu, garam bukit. <strong>Tidak disyaratkan berdebu.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Masa</strong></td>
+            <td>Untuk solat fardhu — <strong>mesti selepas masuk waktu</strong>.</td>
+            <td>Boleh dilakukan <strong>sebelum</strong> masuk waktu.</td>
+          </tr>
+          <tr>
+            <td><strong>Niat</strong></td>
+            <td>"Sahaja aku bertayammum bagi mengharuskan <strong>fardhu solat</strong> kerana Allah Ta'ala."</td>
+            <td>"Sahaja aku bertayammum kerana Allah Ta'ala."</td>
+          </tr>
+          <tr>
+            <td><strong>Bilangan tepukan</strong></td>
+            <td>2 kali (muka, kemudian tangan).</td>
+            <td>2 kali (muka, kemudian tangan).</td>
+          </tr>
+          <tr>
+            <td><strong>Selat jari</strong></td>
+            <td>Sunat.</td>
+            <td><strong>Wajib.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Penggunaan</strong></td>
+            <td>1 tayammum = <strong>1 solat fardhu</strong> sahaja (+ solat sunat sebanyak mana).</td>
+            <td>1 tayammum = <strong>banyak solat fardhu</strong> selagi tidak terbatal.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual →</p>
+
+    <h3>Langkah tayammum (ringkas)</h3>
+    <div class="tablewrap">
+      <table>
+        <caption>Urutan Tayammum</caption>
+        <thead><tr><th style="width:60px">Langkah</th><th>Tindakan</th></tr></thead>
+        <tbody>
+          <tr><td class="step">1</td><td>Pastikan arah qiblat; sucikan diri daripada najis; tanggalkan cincin, jam, gelang.</td></tr>
+          <tr><td class="step">2</td><td>Tepuk dua tapak tangan pada tanah/debu <strong>kali pertama</strong> + niat.</td></tr>
+          <tr><td class="step">3</td><td>Sapu &amp; ratakan debu ke <strong>seluruh muka</strong>.</td></tr>
+          <tr><td class="step">4</td><td>Buang saki-baki debu pada tapak tangan.</td></tr>
+          <tr><td class="step">5</td><td>Tepuk <strong>kali kedua</strong>.</td></tr>
+          <tr><td class="step">6</td><td>Sapu tapak tangan kiri ke tangan kanan hingga siku, dan sebaliknya.</td></tr>
+          <tr><td class="step">7</td><td>Selati jari-jemari (sunat bagi Syafi'e, wajib bagi Hanafi).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>Tip ICU:</strong> Sediakan <em>"tayammum kit"</em> — dulang kecil / kertas bersih dengan sedikit tanah berdebu. Untuk pesakit berbaring, pembantu boleh menepuk tangan pada dulang dan menyapu ke muka pesakit. Bahan boleh dibasuh dahulu sebelum digunakan.
+    </div>
+
+    <h3>Bila tayammum dibenarkan</h3>
+    <ul>
+      <li>Tiada air, atau air terlalu jauh / sukar.</li>
+      <li>Penggunaan air <strong>mendatangkan mudharat</strong> (disahkan pegawai perubatan).</li>
+      <li>Tidak mampu menggunakan air kerana sakit / tidak boleh bergerak.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 7. BALUTAN ============ -->
+<details class="card">
+  <summary><span class="num">7</span> Luka, Balutan &amp; Anggota Berbalut</summary>
+  <div class="body">
+    <h3>Prinsip asas</h3>
+    <ul>
+      <li>Jika balutan <strong>boleh dibuka dengan mudah</strong> dan air tidak memudharatkan → buka &amp; basuh seperti biasa.</li>
+      <li>Jika <strong>tidak boleh dibuka</strong> / air memudharatkan → <strong>sapu air di atas pembalut</strong> (jika tidak memudharatkan). Jika memudharatkan, <strong>tidak perlu disapu</strong>.</li>
+      <li>Solat yang dilakukan dalam keadaan ini <strong>tidak perlu diulang</strong>.</li>
+    </ul>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Panduan Mengikut Lokasi Balutan</caption>
+        <thead>
+          <tr><th>Lokasi balutan</th><th>Cara wudhu</th><th>Ulang?</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sebahagian muka</strong></td>
+            <td>Basuh muka yang boleh + niat → sapu air atas pembalut (jika tidak mudharat) → sempurnakan tangan, kepala, kaki.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td><strong>Keseluruhan muka</strong></td>
+            <td>Sapu air atas pembalut + niat → sempurnakan tangan, kepala, kaki.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td><strong>Sebahagian / seluruh tangan</strong></td>
+            <td>Basuh muka + niat → basuh bahagian tangan yang boleh, sapu atas pembalut → kepala &amp; kaki.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td><strong>Sebahagian kepala</strong></td>
+            <td>Basuh muka + tangan → sapu kepala yang tidak berbalut, sunat sapu juga atas pembalut → basuh kaki.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td><strong>Keseluruhan kepala</strong></td>
+            <td>Basuh muka + tangan → sapu air atas pembalut kepala (jika tidak mudharat) → basuh kaki.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td><strong>Sebahagian / seluruh kaki</strong></td>
+            <td>Basuh muka + tangan + sapu kepala → basuh kaki yang boleh, sapu atas pembalut.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td><strong>Semua anggota wudhu berbalut</strong></td>
+            <td>Jika tidak boleh wudhu &amp; tidak boleh tayammum → solat sebagai menghormati waktu.</td>
+            <td><strong>Ya</strong>, ulang selepas sembuh</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual →</p>
+
+    <h3>Jika tidak berbalut tetapi tidak boleh kena air</h3>
+    <ul>
+      <li><strong>Semua</strong> anggota tidak boleh kena air (contoh: melecur luas) → <strong>tayammum</strong>; solat tidak perlu diulang.</li>
+      <li><strong>Sebahagian besar</strong> anggota boleh kena air → wudhu biasa pada yang boleh; yang tidak boleh disapu air di atasnya jika mampu.</li>
+      <li><strong>Sebahagian besar</strong> tidak boleh kena air → <strong>tayammum</strong> sahaja; solat tidak perlu diulang.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 8. HADATH BESAR ============ -->
+<details class="card">
+  <summary><span class="num">8</span> Hadath Besar — Mandi atau Tayammum</summary>
+  <div class="body">
+    <div class="tablewrap">
+      <table>
+        <caption>Pilihan Bersuci Hadath Besar</caption>
+        <thead><tr><th>Situasi pesakit</th><th>Tindakan</th><th>Ulang?</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Mampu mandi; semua bahagian badan boleh kena air</td>
+            <td>Mandi dengan niat mengangkat hadath besar.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td>Mampu mandi tetapi sukar bergerak</td>
+            <td>Tayammum dengan niat mengharuskan fardhu solat → solat.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td>Disahkan pegawai perubatan: tidak boleh kena air pada seluruh / sebahagian besar badan</td>
+            <td>Tayammum → solat.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td>Sebahagian besar badan boleh kena air; kecederaan sedikit</td>
+            <td>Mandi + basuh bahagian yang boleh; selebihnya <strong>disapu</strong> dengan air.</td>
+            <td>Tidak</td>
+          </tr>
+          <tr>
+            <td>Air mandian tetap akan terkena kecederaan</td>
+            <td>Tayammum sahaja → solat.</td>
+            <td>Tidak</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual →</p>
+
+    <div class="note">
+      <strong>Untuk pesakit kritikal:</strong> "Mandi" boleh dilakukan secara <em>bed bath</em> / <em>sponge bath</em> di atas katil dengan bantuan. Jika tiada, tayammum dengan debu tanah di atas dulang adalah sah dan tidak perlu diulang.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 9. HIERARKI POSISI ============ -->
+<details class="card" open>
+  <summary><span class="num">9</span> Hierarki Posisi Solat (Wajib Ikut Turutan)</summary>
+  <div class="body">
+    <div class="flow">
+      <div class="node">1. Berdiri<small>jika mampu</small></div>
+      <div class="arrow">→</div>
+      <div class="node">2. Duduk<small>iftirasy / kerusi / katil</small></div>
+      <div class="arrow">→</div>
+      <div class="node">3. Mengiring<small>rusuk kanan/kiri</small></div>
+      <div class="arrow">→</div>
+      <div class="node">4. Menelentang<small>kaki ke qiblat</small></div>
+      <div class="arrow">→</div>
+      <div class="node">5. Isyarat<small>badan → kepala → mata → hati</small></div>
+    </div>
+
+    <h3>Peraturan penting</h3>
+    <ol>
+      <li>Pesakit yang <strong>mampu berdiri</strong> untuk solat fardhu <strong>wajib memulakan solat dalam keadaan berdiri</strong>. Tidak boleh mula dengan duduk.</li>
+      <li>Jika <strong>tidak mampu berdiri ketika sedang solat</strong> → boleh duduk ketika itu.</li>
+      <li>Jika <strong>mampu berdiri semula</strong> ketika masih dalam solat → <strong>wajib kembali berdiri</strong>.</li>
+      <li>Pesakit yang solat duduk tetapi <strong>mampu ruku' seperti biasa</strong> → hendaklah <strong>berdiri sebelum ruku'</strong>.</li>
+      <li>Jika <strong>mampu sujud di lantai</strong> → wajib sujud di lantai. Tidak memadai hanya tunduk badan.</li>
+      <li>Solat <strong>sunat</strong> boleh dilakukan duduk walaupun mampu berdiri — tetapi pahala separuh.</li>
+    </ol>
+
+    <div class="warn">
+      <strong>Perbezaan mazhab — pesakit tidak mampu sujud:</strong><br>
+      <span class="pill syafie">Syafi'e</span> Jika mampu berdiri, <strong>wajib solat berdiri</strong>; tidak boleh solat duduk.<br>
+      <span class="pill hanafi">Hanafi</span> Gugur kewajipan berdiri → <strong>boleh solat duduk</strong>.
+    </div>
+
+    <h3>Jadual ringkas: 7 posisi solat orang sakit</h3>
+    <div class="tablewrap">
+      <table>
+        <caption>Ringkasan Posisi Solat Pesakit</caption>
+        <thead>
+          <tr><th style="width:44px">#</th><th>Posisi</th><th>Ruku'</th><th>Sujud</th><th>Nota</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="step">1</td><td>Berdiri di sisi katil</td><td>Tunduk badan (tangan capai lutut jika mampu)</td><td>Tidak mampu sujud sempurna</td><td>Masih wajib berdiri jika mampu</td></tr>
+          <tr><td class="step">2</td><td>Duduk di sisi katil</td><td>Tunduk badan</td><td>Tunduk lebih rendah dari ruku'</td><td>Jika tidak mampu berdiri</td></tr>
+          <tr><td class="step">3</td><td>Duduk di atas katil</td><td>Tunduk badan</td><td>Tunduk lebih rendah dari ruku'</td><td>Kaki boleh dilunjurkan</td></tr>
+          <tr><td class="step">4</td><td>Dua kaki terlunjur</td><td>Tunduk badan</td><td>Tunduk lebih rendah</td><td>Jika duduk iftirasy menyakitkan</td></tr>
+          <tr><td class="step">5</td><td>Berbaring atas rusuk</td><td>Isyarat kepala</td><td>Isyarat kepala</td><td>Muka &amp; dada ke qiblat</td></tr>
+          <tr><td class="step">6</td><td>Berbaring menelentang</td><td>Isyarat kepala</td><td>Isyarat kepala</td><td>Kepala diangkat sedikit</td></tr>
+          <tr><td class="step">7</td><td>Menelentang (tidak mampu isyarat kepala)</td><td>Isyarat <strong>mata</strong></td><td>Isyarat <strong>mata</strong></td><td>Jika mata pun tidak mampu → solat dalam hati</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual →</p>
+
+    <h3>Jadual ringkas: pergerakan mengikut posisi</h3>
+    <div class="tablewrap">
+      <table>
+        <caption>Rukun Pergerakan Mengikut Posisi</caption>
+        <thead>
+          <tr><th>Rukun</th><th>Duduk iftirasy</th><th>Duduk atas birai katil</th><th>Duduk atas katil (kaki lunjur)</th><th>Mengiring</th><th>Menelentang</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Takbir</strong></td><td>Angkat tangan</td><td>Angkat tangan</td><td>Angkat tangan</td><td>Isyarat kepala/mata</td><td>Isyarat mata</td></tr>
+          <tr><td><strong>Al-Fatihah</strong></td><td>Tangan kanan atas kiri</td><td>Tangan kanan atas kiri</td><td>Tangan kanan atas kiri</td><td>Baca</td><td>Baca</td></tr>
+          <tr><td><strong>Ruku'</strong></td><td>Tunduk badan</td><td>Tunduk badan</td><td>Tunduk badan</td><td>Tunduk kepala sedikit</td><td>Isyarat mata</td></tr>
+          <tr><td><strong>I'tidal</strong></td><td>Tegakkan badan</td><td>Tegakkan badan</td><td>Tegakkan badan</td><td>Angkat kepala</td><td>Isyarat mata</td></tr>
+          <tr><td><strong>Sujud</strong></td><td>Tunduk lebih rendah dari ruku'</td><td>Tunduk lebih rendah</td><td>Tunduk lebih rendah</td><td>Tunduk kepala lebih rendah</td><td>Isyarat mata</td></tr>
+          <tr><td><strong>Duduk antara 2 sujud</strong></td><td>Angkat badan</td><td>Angkat badan</td><td>Angkat badan</td><td>Angkat kepala</td><td>Isyarat mata</td></tr>
+          <tr><td><strong>Tasyahhud</strong></td><td>Duduk (sunat tawarruk di akhir)</td><td>Duduk</td><td>Duduk</td><td>Mengiring</td><td>Isyarat mata</td></tr>
+          <tr><td><strong>Salam</strong></td><td>Paling muka kanan &amp; kiri</td><td>Paling muka</td><td>Paling muka</td><td>Paling muka</td><td>Isyarat mata</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual ke kanan →</p>
+  </div>
+</details>
+
+<!-- ============ 10. ISYARAT ============ -->
+<details class="card">
+  <summary><span class="num">10</span> Isyarat — Turutan Keupayaan</summary>
+  <div class="body">
+    <p>Jika pesakit tidak mampu melakukan pergerakan rukun seperti biasa, gunakan isyarat mengikut turutan berikut:</p>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Turutan Isyarat</caption>
+        <thead><tr><th style="width:44px">#</th><th>Jenis isyarat</th><th>Contoh</th></tr></thead>
+        <tbody>
+          <tr><td class="step">1</td><td><strong>Isyarat badan</strong></td><td>Menundukkan badan untuk ruku' &amp; sujud.</td></tr>
+          <tr><td class="step">2</td><td><strong>Isyarat kepala</strong></td><td>Tundukkan kepala sedikit untuk ruku'; lebih rendah untuk sujud.</td></tr>
+          <tr><td class="step">3</td><td><strong>Isyarat mata</strong></td><td>Gerakan mata / kelopak mata untuk setiap rukun.</td></tr>
+          <tr><td class="step">4</td><td><strong>Solat dalam hati</strong></td><td>Jika mata pun tidak mampu bergerak.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual →</p>
+
+    <div class="note">
+      <strong>Untuk pesakit sedasi ringan / neuro-ICU:</strong> Nilai keupayaan isyarat mata secara objektif (contoh: ikut arahan buka-tutup mata). Jika pesakit boleh mengikut arahan mata, dia boleh solat dengan isyarat mata.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 11. JAMA' ============ -->
+<details class="card">
+  <summary><span class="num">11</span> Jama' (Menghimpunkan) Solat</summary>
+  <div class="body">
+    <p>Diharuskan bagi pesakit yang menanggung <strong>kesakitan agak berat</strong> dan menghadapi <strong>kesulitan</strong> untuk solat setiap fardhu pada waktunya.</p>
+
+    <h3>Pasangan yang boleh dijama'kan</h3>
+    <ul>
+      <li><strong>Zohor + Asar</strong></li>
+      <li><strong>Maghrib + Isya</strong></li>
+      <li><strong>Subuh</strong> — <em>tidak boleh</em> dijama'kan; wajib pada waktunya.</li>
+    </ul>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Jama' Taqdim vs Jama' Ta'khir</caption>
+        <thead>
+          <tr><th>Aspek</th><th>Jama' Taqdim<br><small>(waktu pertama)</small></th><th>Jama' Ta'khir<br><small>(waktu kedua)</small></th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Contoh</strong></td><td>Zohor &amp; Asar dalam waktu Zohor</td><td>Zohor &amp; Asar dalam waktu Asar</td></tr>
+          <tr><td><strong>Niat jama'</strong></td><td>Wajib — dalam waktu pertama, sebelum habis waktu</td><td>Wajib — dalam waktu pertama, sebelum habis waktu</td></tr>
+          <tr><td><strong>Tertib</strong></td><td><strong>Wajib</strong> — solat pertama dahulu</td><td>Tidak wajib, tetapi <strong>sunat</strong> dahulukan yang pertama</td></tr>
+          <tr><td><strong>Berturut-turut</strong></td><td><strong>Wajib</strong> — tanpa selang masa panjang (± 2 rakaat ringkas)</td><td>Tidak wajib; sunat</td></tr>
+          <tr><td><strong>Bilangan rakaat</strong></td><td colspan="2">Kekal 4 rakaat — <strong>tidak boleh diqasarkan</strong> kepada 2 rakaat</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual →</p>
+
+    <h3>Contoh lafaz niat (Jama' Taqdim)</h3>
+    <div class="script">
+      <span class="say">"Sahaja aku solat fardhu Zohor 4 raka'at dengan menghimpunkan solat fardhu Asar kerana Allah Ta'ala."</span>
+      <span class="say">Untuk solat kedua, niat biasa sahaja: "Sahaja aku solat fardhu Asar 4 raka'at kerana Allah Ta'ala."</span>
+    </div>
+
+    <div class="warn">
+      <strong>Tayammum + Jama':</strong> Bagi pesakit yang bersuci secara tayammum, pastikan <strong>masuk waktu solat</strong> sebelum bertayammum. Menurut <span class="pill syafie">Syafi'e</span>, <strong>satu tayammum = satu fardhu</strong> — perlu tayammum semula untuk solat fardhu kedua.
+    </div>
+
+    <div class="note">
+      <strong>Jika terselang masa panjang</strong> (contoh terlupa, pengsan) → jama' tidak boleh diteruskan; solat kedua hendaklah dilakukan pada waktunya.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 12. HADATH BERTERUSAN ============ -->
+<details class="card">
+  <summary><span class="num">12</span> Pesakit Berhadath Berterusan (Kateter, Stoma, Istihadhah)</summary>
+  <div class="body">
+    <p>Termasuk: penyakit <em>salas</em> (kencing berterusan), darah istihadhah, keputihan berterusan, <strong>urine bag</strong>, <strong>stoma bag</strong>, <strong>kolostomi bag</strong>, dan seumpamanya.</p>
+
+    <h3>Pilihan A — Setiap waktu (Syafi'e)</h3>
+    <ol>
+      <li>Sucikan diri daripada najis; gunakan lampin / pad pada tempat keluar najis.</li>
+      <li><strong>Setelah masuk waktu solat</strong>, sucikan diri daripada hadath (wudhu/tayammum).</li>
+      <li><strong>Segera</strong> tunaikan solat. Solat sah walaupun najis keluar ketika wudhu atau ketika solat.</li>
+      <li><strong>Satu wudhu = satu solat fardhu</strong> sahaja + solat sunat sebanyak mana.</li>
+    </ol>
+
+    <h3>Pilihan B — Jama' (Hanbali / sebahagian Syafi'e)</h3>
+    <ol>
+      <li>Sucikan diri daripada najis &amp; hadath <strong>selepas masuk waktu</strong> solat, kemudian solat.</li>
+      <li>Solat sah, tidak perlu diulang.</li>
+      <li><strong>Satu wudhu boleh digunakan untuk lebih daripada satu solat fardhu</strong> dan solat sunat, <strong>selagi waktu solat tersebut belum habis</strong>.</li>
+      <li>Contoh: bersuci dalam waktu Zohor → boleh solat Zohor &amp; Asar secara jama', solat qadha, dan ibadah sunat — selagi waktu Zohor masih ada.</li>
+    </ol>
+
+    <h3>Urine bag / stoma / kolostomi</h3>
+    <ul>
+      <li>Jika <strong>mampu</strong> menyucikan tempat keluar najis dan menukar / membersihkan beg → <strong>hendaklah berbuat demikian</strong> sekadar termampu.</li>
+      <li>Kemudian sucikan hadath kecil/besar dan tunaikan solat.</li>
+      <li>Solat <strong>sah dan tidak perlu diulang</strong>.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Tip praktikal wad:</strong> Jadualkan pertukaran beg/dressing <em>sebelum</em> waktu solat. Sediakan air &amp; pad bersih di sisi katil. Pesakit boleh memilih Pilihan A atau B mengikut keselesaan — dokumentasikan pilihan tersebut.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 13. WANITA ============ -->
+<details class="card">
+  <summary><span class="num">13</span> Masalah Wanita — Haidh, Nifas, Istihadhah, Keputihan</summary>
+  <div class="body">
+    <div class="tablewrap">
+      <table>
+        <caption>Ringkasan Hukum</caption>
+        <thead>
+          <tr><th>Jenis</th><th>Tempoh</th><th>Hadath</th><th>Solat</th><th>Puasa</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Haidh</strong></td>
+            <td>Min 1 hari 1 malam; maks 15 hari</td>
+            <td>Besar</td>
+            <td>Dilarang; <strong>tidak perlu qadha</strong> (makruh jika diqadha)</td>
+            <td>Wajib qadha</td>
+          </tr>
+          <tr>
+            <td><strong>Nifas</strong></td>
+            <td>Min sedetik; kebiasaan 40 hari; maks 60 hari</td>
+            <td>Besar</td>
+            <td>Dilarang; <strong>tidak perlu qadha</strong></td>
+            <td>Wajib qadha</td>
+          </tr>
+          <tr>
+            <td><strong>Istihadhah</strong></td>
+            <td>Darah selain haidh &amp; nifas</td>
+            <td>Kecil sahaja</td>
+            <td><strong>Wajib</strong> solat &amp; puasa</td>
+            <td>Wajib</td>
+          </tr>
+          <tr>
+            <td><strong>Darah sebelum bersalin</strong></td>
+            <td>—</td>
+            <td>Istihadhah (kecil)</td>
+            <td>Wajib jika cukup masa bersuci &amp; solat</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Air ketuban / air sebelum bersalin</strong></td>
+            <td>—</td>
+            <td>Najis; bukan hadath besar</td>
+            <td>Wajib; cari masa air berhenti, bersuci &amp; solat</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Keputihan</strong></td>
+            <td>Cecair pekat putih/kuning</td>
+            <td>Kecil</td>
+            <td>Wajib; bersuci &amp; wudhu sebelum solat</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Keguguran</strong></td>
+            <td>—</td>
+            <td>Besar (nifas)</td>
+            <td>Dilarang; tidak perlu qadha</td>
+            <td>Wajib qadha</td>
+          </tr>
+          <tr>
+            <td><strong>Angin dari dubur</strong></td>
+            <td>—</td>
+            <td>Kecil</td>
+            <td>Wajib wudhu semula</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Angin dari qubul (saluran faraj)</strong></td>
+            <td>—</td>
+            <td>Kecil (Syafi'e)</td>
+            <td>Jika kerap menyulitkan → boleh ikut <span class="pill hanafi">Hanafi</span>/<span class="pill maliki">Maliki</span>: tidak membatalkan</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual →</p>
+
+    <h3>Nota penting</h3>
+    <ul>
+      <li><strong>Haidh &amp; nifas:</strong> dilarang solat, puasa, menyentuh / membaca mushaf al-Quran — melainkan berdoa dengan ayat al-Quran yang dibaca dengan niat zikir.</li>
+      <li><strong>Istihadhah &amp; keputihan berterusan:</strong> boleh pilih solat setiap waktu <em>atau</em> jama' (lihat Kad 12).</li>
+      <li><strong>Keguguran:</strong> darah selepas keguguran adalah nifas — sama ada janin sempurna sifat atau tidak (ketulan daging / gumpalan darah).</li>
+      <li><strong>Angin dari faraj:</strong> boleh diuji dengan meletakkan tisu di antara kelopak labia tanpa menyumbat faraj. Jika tiada angin dirasai → bukan dari saluran faraj → tidak membatalkan wudhu.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 14. SKRIP AJAR PESAKIT ============ -->
+<details class="card">
+  <summary><span class="num">14</span> Skrip Mengajar Pesakit (Bahasa Mudah)</summary>
+  <div class="body">
+    <p>Gunakan skrip ini di sisi katil. Sesuaikan mengikut tahap kesedaran dan kemampuan pesakit.</p>
+
+    <div class="script">
+      <h4>1. Membuka perbualan</h4>
+      <span class="say">"Encik/Puan, dalam Islam, sakit bukan sebab kita boleh tinggalkan solat. Tetapi Allah bagi banyak kemudahan. Saya akan tunjukkan cara paling mudah untuk encik/puan solat dalam keadaan sekarang."</span>
+    </div>
+
+    <div class="script">
+      <h4>2. Menilai kemampuan</h4>
+      <span class="say">"Boleh encik/puan angkat tangan macam ini? Boleh duduk tegak? Boleh pusingkan badan ke kanan atau kiri? Boleh sujud letak dahi atas katil?"</span>
+    </div>
+
+    <div class="script">
+      <h4>3. Mengajar bersuci</h4>
+      <span class="say">"Kalau air tidak boleh kena pada luka, kita guna tayammum — sapu debu tanah pada muka dan tangan. Saya sediakan dulang kecil ini. Encik/puan hanya perlu berniat dalam hati."</span>
+    </div>
+
+    <div class="script">
+      <h4>4. Mengajar solat mengikut posisi</h4>
+      <span class="say">"Encik/puan boleh solat duduk di atas katil. Ruku' — tundukkan badan sedikit. Sujud — tundukkan lagi sikit, lebih rendah dari ruku'. Kalau tidak mampu, guna isyarat mata sahaja."</span>
+    </div>
+
+    <div class="script">
+      <h4>5. Menutup perbualan</h4>
+      <span class="say">"Kalau encik/puan rasa sakit bertambah atau tidak mampu, berhenti dan rehat. Solat boleh disambung atau dijama'kan. Yang penting, jangan tinggalkan solat selagi sedar."</span>
+    </div>
+
+    <h3>Dokumentasi cadangan</h3>
+    <div class="note">
+      <strong>Contoh nota:</strong> "Pesakit sedar, mukallaf. Tidak boleh kena air pada tangan kanan (IV line + balutan). Dicadangkan: tayammum dengan debu tanah. Solat duduk di atas katil, ruku' &amp; sujud dengan tunduk badan. Tidak perlu ulang selepas sembuh. Pesakit faham dan bersetuju."
+    </div>
+  </div>
+</details>
+
+<!-- ============ 15. NOTA ICU ============ -->
+<details class="card">
+  <summary><span class="num">15</span> Nota Khusus ICU &amp; Anestesiologi</summary>
+  <div class="body">
+    <h3>Penilaian kesedaran &amp; taklif</h3>
+    <ul>
+      <li><strong>Sedasi dalam / koma:</strong> kewajipan solat gugur. Sunat qadha selepas sedar (jika bukan akibat kelalaian).</li>
+      <li><strong>Sedasi ringan / pesakit sedar:</strong> wajib solat mengikut kemampuan.</li>
+      <li><strong>Delirium / konfusi:</strong> jika tidak berakal (hilang akal) → gugur. Jika masih berakal tetapi keliru → bantu dengan skrip mudah &amp; isyarat.</li>
+      <li><strong>Intubasi / trakeostomi:</strong> bacaan al-Fatihah dalam hati atau dengan gerakan bibir jika mampu.</li>
+    </ul>
+
+    <h3>Halangan fizikal &amp; penyelesaian</h3>
+    <div class="tablewrap">
+      <table>
+        <caption>Halangan Biasa di ICU</caption>
+        <thead><tr><th>Halangan</th><th>Penyelesaian</th></tr></thead>
+        <tbody>
+          <tr><td>Katil tidak boleh dipusing ke qiblat</td><td>Solat mengikut arah yang mungkin. <span class="pill syafie">Syafi'e</span>: ulang selepas sembuh. <span class="pill hanafi">Hanafi</span>: tidak perlu ulang.</td></tr>
+          <tr><td>Tangan terikat / restrain</td><td>Isyarat mata atau solat dalam hati.</td></tr>
+          <tr><td>Ventilator / NIV</td><td>Solat duduk atau mengiring; elak pergerakan yang menjejaskan tiub.</td></tr>
+          <tr><td>Monitior &amp; wayar</td><td>Solat duduk di atas katil; isyarat jika perlu.</td></tr>
+          <tr><td>Kateter / drain</td><td>Ikut protokol berhadath berterusan (Kad 12).</td></tr>
+          <tr><td>Luka pembedahan abdomen</td><td>Solat duduk / mengiring; elak ruku' &amp; sujud dalam.</td></tr>
+          <tr><td>Fraktur / traksi</td><td>Solat mengikut posisi yang selamat; isyarat jika perlu.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← Skrol jadual →</p>
+
+    <h3>Peranan pasukan</h3>
+    <ul>
+      <li><strong>Jururawat:</strong> bantu wudhu / sediakan tayammum kit / tukar pad &amp; beg.</li>
+      <li><strong>Pakar anestesiologi &amp; intensivis:</strong> nilai kemampuan, sahkan sekatan perubatan (contoh: tidak boleh kena air), dokumentasikan cadangan.</li>
+      <li><strong>Pegawai agama / JAKIM:</strong> rujuk untuk kes rumit (contoh: talfiq, kes wanita kompleks).</li>
+    </ul>
+
+    <div class="note">
+      <strong>Prinsip maqasid:</strong> Panduan ini mengambil kira <em>masyaqqah</em> (kesulitan) dan <em>maslahah</em> pesakit. Fleksibel, mudah dan praktikal — tetapi tidak menggugurkan kewajipan selagi pesakit sedar.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 16. RUJUKAN ============ -->
+<details class="card" id="rujukan">
+  <summary><span class="num">16</span> Rujukan &amp; Sumber</summary>
+  <div class="body">
+    <h3>Sumber utama</h3>
+    <ol>
+      <li><strong>Jabatan Kemajuan Islam Malaysia (JAKIM).</strong> <em>Panduan Bersuci &amp; Bersolat Bagi Pesakit.</em> Pusat Pentadbiran Kerajaan Persekutuan, 62519 Putrajaya. Tel: 03-8886 4000 · E-mel: jakim@gmail.com · Web: <a href="https://www.islam.gov.my" target="_blank" rel="noopener">www.islam.gov.my</a></li>
+      <li><strong>Cara Solat Orang Sakit (bergambar).</strong> Panduan visual 7 posisi solat pesakit.</li>
+      <li>Al-Quran Al-Karim — Surah An-Nisa' (4:103).</li>
+      <li>Hadis riwayat Al-Bukhari (daripada Ibn Umar RA) — Islam terbina di atas 5 perkara.</li>
+      <li>Hadis riwayat Abu Daud — Diangkat qalam (taklif) daripada tiga golongan: orang tidur, kanak-kanak, dan orang gila.</li>
+    </ol>
+
+    <h3>Rujukan fiqh</h3>
+    <ol start="6">
+      <li>Abdullah Basmeih. <em>Tafsir Pimpinan Ar-Rahman Kepada Pengertian Al-Quran.</em> 2002.</li>
+      <li>Al-Bukhari, Muhammad bin Ismail. <em>Al-Jami' al-Sahih.</em> Al-Riyadh: Dar al-Salam, 1999.</li>
+      <li>Al-Bakri, Uthman bin Muhammad Syatta. <em>I'anah al-Tolibin.</em> Jilid 1. Damsyik: Dar al-Faiha', 2006.</li>
+      <li>Al-Jardani, Muhammad Abdullah. <em>Fath al-'Allam Bi Syarh Mursyid al-Anam.</em> Jilid 1 &amp; 2. Mesir: Dar as-Salam, 1988.</li>
+      <li>Al-Nawawi, Muhyiddin bin Syaraf. <em>Al-Majmu' Syarh Al-Muhazzab.</em> Jilid 2 &amp; 4. Beirut: Dar Ihya al-Turath al-'Arabiyyah, 2001.</li>
+      <li>Al-Nawawi, Muhyiddin bin Syaraf. <em>Raudhah al-Tolibin.</em> Jilid 1. Beirut: Dar 'Alam al-Kutub, 2003.</li>
+      <li>Al-Syirbini, Muhammad bin al-Khatib. <em>Mughni al-Muhtaj Ila Ma'rifati Ma'ani Alfaz al-Minhaj.</em> Jilid 1. Beirut: Dar al-Fikr, 1995.</li>
+      <li>Al-Qari, Munla 'Ali bin Sultan Muhammad. <em>Fath Bab al-'Inayah Bi Syarh al-Nuqayah.</em> Jilid 1. Beirut: Dar al-Arqam.</li>
+      <li>Ibn Nujaim, Zainuddin bin Ibrahim. <em>Al-Bahr al-Raiq Syarh Kanz al-Daqaiq.</em> Jilid 1.</li>
+      <li>Ibn 'Abidin, Muhammad Amin bin Umar. <em>Radd al-Muhtar 'Ala al-Durr al-Mukhtar.</em> Jilid 1 &amp; 2. Beirut: Dar Ihya al-Turath al-'Arabi, 1998.</li>
+      <li>Al-Dardir, Ahmad bin Muhammad. <em>Aqrab al-Masalik Li Mazhab al-Imam Malik (Al-Syarh al-Saghir).</em> Jilid 1. Mesir: Al-Maktabah al-Tijariyyah.</li>
+      <li>Al-Sawi, Ahmad bin Muhammad. <em>Bulghat al-Salik Li Aqrab al-Masalik.</em> Jilid 1. Mesir: Al-Maktabah al-Tijariyyah.</li>
+      <li>Al-Bahuti, Mansur bin Yunus. <em>Kasysyaf al-Qina' 'An al-Iqna'.</em> Jilid 1. Arab Saudi: Kementerian Kehakiman.</li>
+      <li>Al-Maqdisi, Muwaffaq al-Din Ahmad Ibn Qudamah. <em>Al-Mughni Syarh al-Mukhtasar al-Khiraqi.</em> Jilid 1 &amp; 3. Al-Riyadh: Dar 'Alam al-Kutub, 1997.</li>
+      <li>Al-Bani, Muhammad Said bin 'Abd al-Rahman. <em>'Umdat al-Tahqiq Fi al-Taqlid Wa al-Talfiq.</em> Dar al-Qadiri.</li>
+    </ol>
+
+    <div class="warn">
+      <strong>Penafian:</strong> Halaman ini adalah <em>ringkasan pantas</em> untuk kegunaan klinikal dan pendidikan. Ia bukan pengganti rujukan fiqh penuh atau konsultasi dengan pegawai agama bertauliah. Untuk kes rumit, sila rujuk JAKIM atau mufti.
+    </div>
+  </div>
+</details>
+
+<footer>
+  <p><strong>Solat &amp; Bersuci Pesakit — Rujukan Pantas</strong> · Disediakan untuk pakar anestesiologi &amp; perubatan intensif · Berasaskan panduan JAKIM.</p>
+  <p>Halaman ini adalah fail HTML tunggal — boleh dimuat naik ke GitHub Pages atau digunakan secara luar talian.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var cards   = Array.prototype.slice.call(document.querySelectorAll('details.card'));
+  var input   = document.getElementById('q');
+  var clearBtn= document.getElementById('clearBtn');
+  var hitCount= document.getElementById('hitcount');
+  var body    = document.body;
+
+  /* ---------- Expand / collapse ---------- */
+  document.getElementById('expandAll').addEventListener('click', function(){
+    cards.forEach(function(c){ if(!c.classList.contains('hidden')) c.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    cards.forEach(function(c){ c.open = false; });
+  });
+
+  /* ---------- Highlight helpers ---------- */
+  function clearMarks(root){
+    var marks = root.querySelectorAll('mark');
+    for(var i=0;i<marks.length;i++){
+      var m = marks[i];
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function markNode(node, term){
+    var text = node.nodeValue;
+    var lower = text.toLowerCase();
+    var idx = lower.indexOf(term);
+    if(idx === -1) return false;
+
+    var frag = document.createDocumentFragment();
+    var last = 0;
+    var found = false;
+
+    while(idx !== -1){
+      found = true;
+      if(idx > last){
+        frag.appendChild(document.createTextNode(text.slice(last, idx)));
+      }
+      var mark = document.createElement('mark');
+      mark.textContent = text.slice(idx, idx + term.length);
+      frag.appendChild(mark);
+      last = idx + term.length;
+      idx = lower.indexOf(term, last);
+    }
+    if(!found) return false;
+    if(last < text.length){
+      frag.appendChild(document.createTextNode(text.slice(last)));
+    }
+    node.parentNode.replaceChild(frag, node);
+    return true;
+  }
+
+  function highlightAll(root, term){
+    var walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function(node){
+          if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentNode;
+          if(!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName;
+          if(tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK' || tag === 'TEXTAREA') return NodeFilter.FILTER_REJECT;
+          return node.nodeValue.toLowerCase().indexOf(term) !== -1
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
+        }
+      }
+    );
+    var nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    var count = 0;
+    nodes.forEach(function(n){ if(markNode(n, term)) count++; });
+    return count;
+  }
+
+  /* ---------- Search ---------- */
+  var searchTimer = null;
+
+  function runSearch(){
+    var term = input.value.trim().toLowerCase();
+
+    // Reset
+    clearMarks(body);
+    cards.forEach(function(c){
+      c.classList.remove('hidden');
+    });
+
+    if(term.length < 2){
+      clearBtn.style.display = 'none';
+      hitCount.textContent = '';
+      return;
+    }
+
+    clearBtn.style.display = 'block';
+
+    var matches = 0;
+    cards.forEach(function(card){
+      var text = card.textContent.toLowerCase();
+      if(text.indexOf(term) !== -1){
+        card.classList.remove('hidden');
+        card.open = true;
+        matches++;
+      } else {
+        card.classList.add('hidden');
+        card.open = false;
+      }
+    });
+
+    // Highlight inside visible cards only
+    var marks = 0;
+    cards.forEach(function(card){
+      if(!card.classList.contains('hidden')){
+        marks += highlightAll(card, term);
+      }
+    });
+
+    hitCount.textContent = matches
+      ? matches + ' seksyen · ' + marks + ' padanan'
+      : 'Tiada padanan';
+
+    // Scroll first match into view
+    var first = document.querySelector('details.card:not(.hidden)');
+    if(first && matches){
+      // Only scroll if off-screen
+      var rect = first.getBoundingClientRect();
+      if(rect.top < 60 || rect.top > window.innerHeight * 0.7){
+        first.scrollIntoView({block:'start', behavior:'smooth'});
+      }
+    }
+  }
+
+  input.addEventListener('input', function(){
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(runSearch, 160);
+  });
+
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      input.value = '';
+      runSearch();
+      input.blur();
+    }
+  });
+
+  clearBtn.addEventListener('click', function(){
+    input.value = '';
+    runSearch();
+    input.focus();
+  });
+
+  /* ---------- Keyboard shortcut: "/" to focus search ---------- */
+  document.addEventListener('keydown', function(e){
+    if(e.key === '/' && document.activeElement !== input &&
+       document.activeElement.tagName !== 'INPUT' &&
+       document.activeElement.tagName !== 'TEXTAREA'){
+      e.preventDefault();
+      input.focus();
+    }
+  });
+
+  /* ---------- Deep-link: open card from hash ---------- */
+  function openFromHash(){
+    if(!location.hash) return;
+    var el = document.querySelector(location.hash);
+    if(el && el.tagName === 'DETAILS'){
+      el.open = true;
+      el.scrollIntoView({block:'start'});
+    }
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+
+})();
+</script>
+
+</body>
+</html>
