@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧱 Perioperative Hypertension — Anaesthetist &amp; Intensivist Quick Reference</title>
+<style>
+:root{
+  --red:#D01012;
+  --yellow:#FFCF00;
+  --blue:#0B5FBF;
+  --green:#00A64F;
+  --orange:#F57C00;
+  --purple:#7B2FBE;
+  --teal:#009AA6;
+  --ink:#141414;
+  --paper:#F4F1EA;
+  --card:#FFFFFF;
+  --shadow:0 5px 0 rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--paper);
+  background-image:
+    radial-gradient(circle at 12px 12px, rgba(0,0,0,.045) 6px, transparent 7px),
+    radial-gradient(circle at 42px 42px, rgba(0,0,0,.045) 6px, transparent 7px);
+  background-size:60px 60px;
+  color:var(--ink);
+  line-height:1.5;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ============ HEADER ============ */
+header{
+  position:sticky;top:0;z-index:50;
+  background:var(--red);
+  border-bottom:5px solid var(--ink);
+  box-shadow:0 6px 0 rgba(0,0,0,.25);
+  padding:12px 16px 14px;
+}
+.hwrap{max-width:1100px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{display:flex;gap:5px;flex-shrink:0}
+.logo i{
+  width:20px;height:20px;border-radius:4px;border:2.5px solid var(--ink);
+  display:block;
+}
+.logo i:nth-child(1){background:var(--yellow)}
+.logo i:nth-child(2){background:var(--blue)}
+.logo i:nth-child(3){background:var(--green)}
+.logo i:nth-child(4){background:#fff}
+h1{
+  font-size:1.18rem;margin:0;color:#fff;letter-spacing:.4px;
+  text-transform:uppercase;font-weight:800;
+  text-shadow:2px 2px 0 rgba(0,0,0,.35);
+}
+.sub{color:#ffe9a8;font-size:.76rem;font-weight:700;letter-spacing:.5px;margin-top:2px}
+
+.searchbar{margin-top:11px;position:relative;max-width:640px}
+.searchbar input{
+  width:100%;padding:12px 42px 12px 44px;
+  border:3px solid var(--ink);border-radius:10px;
+  font-size:1rem;font-weight:600;background:#fff;color:var(--ink);
+  box-shadow:inset 0 -3px 0 rgba(0,0,0,.08);
+  outline:none;
+}
+.searchbar input:focus{box-shadow:0 0 0 4px rgba(255,207,0,.55), inset 0 -3px 0 rgba(0,0,0,.08)}
+.searchbar .mag{
+  position:absolute;left:13px;top:50%;transform:translateY(-50%);
+  font-size:1.1rem;pointer-events:none;
+}
+.searchbar .clr{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  border:2px solid var(--ink);background:var(--yellow);border-radius:7px;
+  font-weight:800;cursor:pointer;padding:3px 8px;font-size:.8rem;display:none;
+}
+
+/* ---- expand / collapse all controls ---- */
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.ctrlbtn{
+  border:3px solid var(--ink);border-radius:9px;
+  padding:8px 14px;font-weight:900;font-size:.78rem;
+  text-transform:uppercase;letter-spacing:.5px;cursor:pointer;
+  box-shadow:3px 3px 0 rgba(0,0,0,.3);
+  display:inline-flex;align-items:center;gap:6px;
+  transition:transform .08s ease, box-shadow .08s ease, filter .12s ease;
+  user-select:none;
+}
+.ctrlbtn:hover{filter:brightness(1.07)}
+.ctrlbtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.ctrlbtn.exp{background:var(--yellow);color:var(--ink)}
+.ctrlbtn.col{background:var(--blue);color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.ctrlbtn .ic{font-size:.95rem;line-height:1}
+.ctrlbtn:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.4);transform:none;box-shadow:3px 3px 0 rgba(0,0,0,.18)}
+.ctrlbtn .cnt{
+  background:rgba(0,0,0,.18);border-radius:10px;
+  padding:0 7px;font-size:.7rem;line-height:1.7;font-weight:800;
+}
+.ctrlbtn.col .cnt{background:rgba(255,255,255,.25)}
+
+.hint{color:#fff;font-size:.72rem;margin-top:7px;opacity:.92}
+.hint b{background:var(--yellow);color:var(--ink);padding:1px 5px;border-radius:4px}
+
+/* ============ LAYOUT ============ */
+main{max-width:1100px;margin:0 auto;padding:22px 16px 70px}
+
+/* ============ BRICK ============ */
+details.brick{
+  margin:22px 0;
+  border:3px solid var(--ink);
+  border-radius:12px;
+  background:var(--card);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+details.brick > summary{
+  list-style:none;cursor:pointer;
+  background:var(--c,var(--blue));
+  color:#fff;
+  padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+  font-weight:800;font-size:1.02rem;
+  text-transform:uppercase;letter-spacing:.5px;
+  position:relative;
+  text-shadow:1.5px 1.5px 0 rgba(0,0,0,.28);
+  border-bottom:3px solid var(--ink);
+  user-select:none;
+}
+details.brick > summary::-webkit-details-marker{display:none}
+details.brick > summary::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle at 11px 6px, rgba(255,255,255,.30) 5.5px, transparent 6.5px);
+  background-size:30px 100%;
+  background-repeat:repeat-x;
+  opacity:.9;
+}
+details.brick > summary:hover{filter:brightness(1.08)}
+details.brick > summary .chev{
+  margin-left:auto;font-size:1.25rem;transition:transform .2s;flex-shrink:0;
+}
+details.brick[open] > summary .chev{transform:rotate(90deg)}
+details.brick > summary .sn{
+  flex-shrink:0;background:rgba(0,0,0,.28);border:2px solid rgba(255,255,255,.55);
+  border-radius:6px;padding:0 8px;font-size:.85rem;line-height:1.6;
+}
+.bb{padding:16px}
+.bb > *:first-child{margin-top:0}
+.bb > *:last-child{margin-bottom:0}
+
+/* ============ TYPO ============ */
+h3{
+  font-size:.95rem;margin:20px 0 8px;text-transform:uppercase;letter-spacing:.6px;
+  border-left:7px solid var(--c,var(--blue));padding-left:9px;
+}
+h4{font-size:.86rem;margin:14px 0 6px;text-transform:uppercase;letter-spacing:.4px;color:#333}
+p{margin:8px 0}
+ul,ol{margin:8px 0 8px 4px;padding-left:20px}
+li{margin:5px 0}
+code{
+  background:#EFEFEF;border:1.5px solid #ccc;border-radius:4px;
+  padding:1px 5px;font-size:.86em;font-weight:700;
+}
+.k{font-weight:800}
+.hi{background:#FFF3B0;padding:1px 4px;border-radius:4px;font-weight:700}
+.danger{color:#B00000;font-weight:800}
+.ok{color:#00662F;font-weight:800}
+
+/* ============ CALLOUTS ============ */
+.call{
+  border:3px solid var(--ink);border-radius:10px;padding:11px 13px;margin:12px 0;
+  background:#fff;box-shadow:3px 3px 0 rgba(0,0,0,.14);
+  border-left-width:12px;
+}
+.call.y{background:#FFFBE6;border-left-color:var(--yellow)}
+.call.r{background:#FFF0F0;border-left-color:var(--red)}
+.call.g{background:#EDFBF2;border-left-color:var(--green)}
+.call.b{background:#EDF4FF;border-left-color:var(--blue)}
+.call .t{font-weight:800;text-transform:uppercase;font-size:.82rem;letter-spacing:.5px;display:block;margin-bottom:4px}
+
+/* ============ TABLE ============ */
+.tw{
+  overflow-x:auto;overflow-y:visible;
+  border:3px solid var(--ink);border-radius:10px;margin:12px 0;
+  box-shadow:3px 3px 0 rgba(0,0,0,.14);
+  -webkit-overflow-scrolling:touch;
+  background:#fff;
+}
+.tw::-webkit-scrollbar{height:11px}
+.tw::-webkit-scrollbar-track{background:#E6E6E6}
+.tw::-webkit-scrollbar-thumb{background:var(--c,var(--blue));border-radius:6px;border:2px solid #E6E6E6}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.86rem}
+th{
+  background:var(--c,var(--blue));color:#fff;text-align:left;
+  padding:9px 10px;font-weight:800;text-transform:uppercase;font-size:.74rem;
+  letter-spacing:.5px;border-bottom:3px solid var(--ink);white-space:nowrap;
+}
+td{padding:9px 10px;border-bottom:1.5px solid #E2E2E2;vertical-align:top}
+tbody tr:nth-child(even){background:#FAFAFA}
+tbody tr:hover{background:#FFF8DC}
+td:first-child{font-weight:700}
+.scrollnote{font-size:.72rem;color:#666;font-style:italic;margin:-6px 0 10px}
+
+/* ============ FLOW DIAGRAM ============ */
+.flow{margin:14px 0}
+.fnode{
+  border:3px solid var(--ink);border-radius:10px;padding:10px 12px;
+  background:#fff;box-shadow:3px 3px 0 rgba(0,0,0,.15);margin:0;
+  font-size:.86rem;
+}
+.fnode .lbl{font-weight:800;text-transform:uppercase;font-size:.75rem;letter-spacing:.4px;display:block;margin-bottom:3px}
+.arrow{
+  text-align:center;font-size:1.35rem;line-height:1;margin:6px 0;color:#444;font-weight:900;
+}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.chip{
+  display:inline-block;border:2.5px solid var(--ink);border-radius:20px;
+  padding:2px 11px;font-size:.74rem;font-weight:800;margin:2px 4px 2px 0;
+  background:var(--yellow);text-transform:uppercase;letter-spacing:.3px;
+}
+.chip.b{background:#CFE3FF}
+.chip.g{background:#C9F2D9}
+.chip.r{background:#FFC9C9}
+.chip.w{background:#fff}
+
+/* ============ REFS ============ */
+.refs{font-size:.82rem}
+.refs li{margin:9px 0}
+.refs .j{font-style:italic}
+
+/* ============ SEARCH HIGHLIGHT ============ */
+mark{
+  background:#FFE34D;
+  color:#111;
+  padding:0 2px;
+  border-radius:3px;
+}
+mark.hl{
+  background:#FFD400;
+  color:#111;
+  padding:0 3px;
+  border-radius:3px;
+  font-weight:800;
+  box-shadow:0 0 0 1.5px rgba(0,0,0,.30), 0 1px 0 rgba(0,0,0,.20);
+  animation:hlPulse .45s ease-out;
+}
+@keyframes hlPulse{
+  0%  {background:#FF9F00; box-shadow:0 0 0 4px rgba(255,159,0,.55);}
+  100%{background:#FFD400; box-shadow:0 0 0 1.5px rgba(0,0,0,.30), 0 1px 0 rgba(0,0,0,.20);}
+}
+/* keep summary text readable on coloured bricks */
+details.brick > summary mark.hl{
+  background:#FFD400;
+  color:#141414;
+  text-shadow:none;
+  box-shadow:0 0 0 1.5px rgba(0,0,0,.45);
+}
+
+/* ============ MISC ============ */
+.nores{
+  display:none;text-align:center;padding:34px 16px;font-weight:800;
+  border:3px dashed var(--ink);border-radius:12px;background:#FFF6D6;margin:24px 0;
+}
+.topbtn{
+  position:fixed;right:16px;bottom:16px;z-index:60;
+  background:var(--yellow);border:3px solid var(--ink);border-radius:10px;
+  font-weight:900;padding:9px 13px;cursor:pointer;box-shadow:3px 3px 0 rgba(0,0,0,.3);
+  text-transform:uppercase;font-size:.76rem;letter-spacing:.5px;
+}
+.topbtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(0,0,0,.3)}
+footer{
+  background:var(--ink);color:#ddd;padding:22px 16px;text-align:center;
+  font-size:.76rem;border-top:6px solid var(--yellow);
+}
+footer b{color:var(--yellow)}
+@media (max-width:640px){
+  h1{font-size:.98rem}
+  .sub{font-size:.68rem}
+  .bb{padding:13px}
+  table{font-size:.8rem}
+  th,td{padding:7px 8px}
+  .ctrlbtn{font-size:.7rem;padding:7px 10px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hwrap">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div>
+        <h1>🧱 Perioperative Hypertension</h1>
+        <div class="sub">Anaesthetist &amp; Intensivist Quick Reference · Brick-by-Brick Guide</div>
+      </div>
+    </div>
+
+    <div class="searchbar">
+      <span class="mag">🔍</span>
+      <input id="q" type="search" placeholder="Search: ACEI, labetalol, MAP 55, INPRESS, urgency…" autocomplete="off" aria-label="Search clinical content">
+      <button class="clr" id="clr" type="button">✕</button>
+    </div>
+
+    <div class="btnrow">
+      <button class="ctrlbtn exp" id="expandAll" type="button">
+        <span class="ic">📂</span> Expand All <span class="cnt" id="expCount">0</span>
+      </button>
+      <button class="ctrlbtn col" id="collapseAll" type="button">
+        <span class="ic">📁</span> Collapse All <span class="cnt" id="colCount">0</span>
+      </button>
+    </div>
+
+    <div class="hint">Type to filter &amp; <b>highlight</b> matches · <b>/</b> focus search · <b>Esc</b> clears · <b>E</b> expand · <b>C</b> collapse</div>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="nores" id="nores">🧱 No bricks match that search — try another term.</div>
+
+<!-- ================================================================ -->
+<!-- 0. TOP TAKE-HOME -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--ink)" open>
+  <summary><span class="sn">★</span> Top Take-Home Bricks<span class="chev">›</span></summary>
+  <div class="bb">
+    <div class="call y">
+      <span class="t">★ The single most important message</span>
+      <span class="k">High blood pressure in isolation is NOT a reason to cancel elective surgery.</span>
+      Decide on the patient's <span class="hi">overall cardiac risk</span>, not on one number. There is no "one size fits all" threshold above which elective surgery must be deferred.
+    </div>
+    <ul>
+      <li><span class="k">AoA/BHS:</span> defer elective surgery if BP <span class="danger">&gt; 180/110 mmHg</span>.</li>
+      <li><span class="k">POQI:</span> questions whether any specific BP threshold should determine proceeding.</li>
+      <li><span class="k">2025 AHA/ACC:</span> if SBP ≥ 180 or DBP ≥ 110, <span class="k">deferring may be considered</span> (2b) — especially in high-risk patients. Below 180/110 there is little evidence to defer.</li>
+      <li><span class="k">"White-coat" day-of-surgery hypertension</span> — check baseline/home/ambulatory BP before acting.</li>
+    </ul>
+    <h3>The 3 perioperative phases</h3>
+    <div class="grid3">
+      <div class="fnode" style="border-left:10px solid var(--red)">
+        <span class="lbl">1 · Preoperative</span>
+        Assess overall CV risk + target-organ damage. Individualise antihypertensives (hold ACEI/ARB 24 h; continue β-blocker if established; never start β-blocker de novo on day of surgery).
+      </div>
+      <div class="fnode" style="border-left:10px solid var(--blue)">
+        <span class="lbl">2 · Intraoperative</span>
+        Avoid hypotension. Cumulative MAP &lt; 55 mmHg is associated with myocardial and kidney injury. Individualised management within <span class="k">10% of baseline</span> with noradrenaline reduced postoperative organ dysfunction (INPRESS).
+      </div>
+      <div class="fnode" style="border-left:10px solid var(--green)">
+        <span class="lbl">3 · Postoperative</span>
+        Postop hypertension occurs in up to 20%. SBP &gt; 180 is a high-risk flag. Do <span class="danger">not</span> give PRN IV/oral antihypertensives to asymptomatic hospitalised patients — restart/intensify oral therapy.
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 1. DEFINITIONS -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--red)" open>
+  <summary><span class="sn">1</span> Definitions &amp; Thresholds<span class="chev">›</span></summary>
+  <div class="bb">
+    <h3>BP categories — 2025 AHA/ACC</h3>
+    <div class="tw" style="--c:var(--red)">
+      <table>
+        <thead><tr><th>Category</th><th>Systolic (mmHg)</th><th>Diastolic (mmHg)</th></tr></thead>
+        <tbody>
+          <tr><td>Normal</td><td>&lt; 120</td><td>and &lt; 80</td></tr>
+          <tr><td>Elevated</td><td>120 – 129</td><td>and &lt; 80</td></tr>
+          <tr><td>Stage 1 hypertension</td><td>130 – 139</td><td>or 80 – 89</td></tr>
+          <tr><td>Stage 2 hypertension</td><td>≥ 140</td><td>or ≥ 90</td></tr>
+          <tr><td class="danger">Severe hypertension / hypertensive crisis range</td><td class="danger">&gt; 180</td><td class="danger">and/or &gt; 120</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollnote">← scroll table horizontally on small screens →</p>
+
+    <h3>Malaysian CPG 2018 classification (clinic BP)</h3>
+    <div class="tw" style="--c:var(--red)">
+      <table>
+        <thead><tr><th>Classification</th><th>Systolic (mmHg)</th><th>Diastolic (mmHg)</th></tr></thead>
+        <tbody>
+          <tr><td>Optimal</td><td>&lt; 120</td><td>and &lt; 80</td></tr>
+          <tr><td>Normal</td><td>120 – 129</td><td>and/or 80 – 84</td></tr>
+          <tr><td>At-risk BP</td><td>130 – 139</td><td>and/or 85 – 89</td></tr>
+          <tr><td>Stage 1 (mild)</td><td>140 – 159</td><td>and/or 90 – 99</td></tr>
+          <tr><td>Stage 2 (moderate)</td><td>160 – 179</td><td>and/or 100 – 109</td></tr>
+          <tr><td>Stage 3 (severe)</td><td>≥ 180</td><td>and/or ≥ 110</td></tr>
+          <tr><td>Isolated systolic hypertension</td><td>≥ 140</td><td>and &lt; 90</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call r">
+      <span class="t">⚠ Perioperative definition clash</span>
+      The "hypertension stage" alone does <span class="k">not</span> predict intraoperative haemodynamic instability. An observational cohort found <span class="k">no association</span> between hypertension stage and significant haemodynamic instability — only 3% of that cohort had stage 3 hypertension. Do not extrapolate old "severe hypertension" cancellation data to stage 1–2 patients.
+    </div>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 2. PREOPERATIVE ASSESSMENT -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--purple)" open>
+  <summary><span class="sn">2</span> Preoperative Assessment &amp; Investigations<span class="chev">›</span></summary>
+  <div class="bb">
+    <p>Hypertension is usually <span class="k">asymptomatic</span> — it is often found on routine screening or during surgical work-up. Symptoms suggesting hypertensive emergency: papilloedema, new confusion, chest pain, heart failure signs, AKI.</p>
+
+    <div class="call r">
+      <span class="t">🚨 Same-day specialist review</span>
+      Symptomatic patients with BP <span class="danger">&gt; 180/120 mmHg</span>.
+    </div>
+
+    <h3>History — what to ask</h3>
+    <div class="grid2">
+      <div class="fnode">
+        <span class="lbl">Disease</span>
+        Duration &amp; level of raised BP · symptoms of secondary causes · symptoms of target-organ damage (renal impairment, HF) · CV disease symptoms (CHD, cerebrovascular) · concomitant disease (diabetes, gout) · snoring / daytime somnolence (OSA).
+      </div>
+      <div class="fnode">
+        <span class="lbl">Drugs &amp; lifestyle</span>
+        Prescribed &amp; OTC meds (NSAIDs, nasal decongestants, OCP/HRT, steroids, ciclosporin) · herbal/complementary medicines · salt, caffeine, liquorice, alcohol · smoking, physical inactivity, substance use, psychosocial stressors, weight gain.
+      </div>
+    </div>
+
+    <h3>Examination</h3>
+    <ul>
+      <li>Height, weight, BMI, waist circumference</li>
+      <li>BP measured properly — <span class="k">both arms</span> on first visit, take the higher reading; sitting <span class="k">and</span> standing in the elderly</li>
+      <li>Fundoscopy (hypertensive retinopathy) · carotid &amp; abdominal bruit · peripheral pulses &amp; radio-femoral delay</li>
+      <li>Cardiac: cardiomegaly, HF signs, aortic regurgitation · abdominal: renal masses, AAA · neuro: stroke signs</li>
+      <li>Endocrine stigmata (Cushingoid, acromegaly, thyroid) · ankle–brachial index if available</li>
+    </ul>
+
+    <h3>Minimum initial investigations</h3>
+    <div class="tw" style="--c:var(--purple)">
+      <table>
+        <thead><tr><th>Test</th><th>Why / what it detects</th></tr></thead>
+        <tbody>
+          <tr><td>Full blood count</td><td>Baseline; anaemia, polycythaemia</td></tr>
+          <tr><td>Serum electrolytes (Na, K, Ca)</td><td>Hypokalaemia → primary aldosteronism; diuretic effects</td></tr>
+          <tr><td>Creatinine + eGFR</td><td>CKD / target-organ damage</td></tr>
+          <tr><td>Lipid profile</td><td>Global CV risk</td></tr>
+          <tr><td>Fasting glucose or HbA1c</td><td>Diabetes (≈2.5× more likely to develop hypertension)</td></tr>
+          <tr><td>TSH</td><td>Thyroid causes of secondary hypertension</td></tr>
+          <tr><td>Urinalysis</td><td>Haematuria, albuminuria</td></tr>
+          <tr><td>Urine albumin : creatinine ratio</td><td>Albuminuria ≥ 30 mg/g = target-organ damage, risk enhancer</td></tr>
+          <tr><td>12-lead ECG</td><td>LVH, ischaemia, arrhythmia</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollnote">← scroll horizontally →</p>
+    <p>Echocardiography, cardiac biomarkers (hs-cTn, BNP) and coronary calcium scoring are <span class="k">guided by clinical judgement and surgical risk</span>, not routine. Repeat basic labs at least annually.</p>
+
+    <h3>Target-organ damage (TOD) / hypertension-mediated organ dysfunction</h3>
+    <div class="tw" style="--c:var(--purple)">
+      <table>
+        <thead><tr><th>Organ</th><th>Manifestations</th></tr></thead>
+        <tbody>
+          <tr><td>Heart</td><td>LVH · coronary heart disease · heart failure</td></tr>
+          <tr><td>Brain</td><td>TIA · stroke · dementia / mild cognitive impairment</td></tr>
+          <tr><td>Peripheral vasculature</td><td>Absent major pulses ± claudication · carotid bruit · aortic aneurysm</td></tr>
+          <tr><td>Kidney</td><td>eGFR &lt; 60 mL/min/1.73 m² · proteinuria · microalbuminuria</td></tr>
+          <tr><td>Retina</td><td>Haemorrhages / exudates · papilloedema</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call b">
+      <span class="t">💡 Cognitive protection</span>
+      2025 AHA/ACC: in adults with hypertension, a goal of <span class="k">SBP &lt; 130 mmHg</span> is recommended to prevent mild cognitive impairment and dementia (COR 1).
+    </div>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 3. SECONDARY HYPERTENSION -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--teal)">
+  <summary><span class="sn">3</span> Secondary Hypertension — Red Flags<span class="chev">›</span></summary>
+  <div class="bb">
+    <p>Accounts for <span class="k">5–15%</span> of hypertension (up to 25% in some series). Non-urgent surgery should be <span class="k">delayed</span> to allow investigation. If identified, targeted therapy may dramatically improve BP control and reduce CV risk.</p>
+
+    <div class="call y">
+      <span class="t">🚩 Red flags — think secondary cause</span>
+      <span class="chip r">Young &lt; 30 y</span>
+      <span class="chip r">Abrupt onset</span>
+      <span class="chip r">Sudden deterioration in previously stable BP</span>
+      <span class="chip r">Resistant hypertension</span>
+      <span class="chip r">Spontaneous or diuretic-induced hypokalaemia</span>
+      <span class="chip r">Adrenal incidentaloma</span>
+      <span class="chip r">OSA features</span>
+      <span class="chip r">Renal bruit</span>
+      <span class="chip r">TOD disproportionate to BP duration</span>
+    </div>
+
+    <h3>Common causes &amp; screening</h3>
+    <div class="tw" style="--c:var(--teal)">
+      <table>
+        <thead><tr><th>Cause</th><th>Clues</th><th>Initial screening</th></tr></thead>
+        <tbody>
+          <tr><td>Primary aldosteronism</td><td>Resistant HTN, hypokalaemia, OSA, adrenal mass, family history of early HTN/stroke</td><td>Plasma aldosterone : renin activity ratio (continue most antihypertensives except MRA before screening)</td></tr>
+          <tr><td>Renal parenchymal disease</td><td>Raised creatinine, abnormal urinalysis, family history of polycystic kidneys</td><td>Electrolytes, creatinine, urinalysis, urine ACR, renal ultrasound</td></tr>
+          <tr><td>Renovascular disease</td><td>Abrupt onset/worsening, flash pulmonary oedema, abdominal bruit, diffuse atherosclerosis</td><td>Renal duplex Doppler, CT/MR angiography, catheter angiography (gold standard)</td></tr>
+          <tr><td>Obstructive sleep apnoea</td><td>Snoring, choking, daytime somnolence, loss of nocturnal BP dip, obesity</td><td>STOP-BANG / Berlin questionnaire, overnight oximetry → polysomnography</td></tr>
+          <tr><td>Phaeochromocytoma / paraganglioma</td><td>Paroxysmal HTN, "spells", headache, sweating, palpitations, labile BP</td><td>24-h urinary fractionated metanephrines or plasma metanephrines</td></tr>
+          <tr><td>Cushing syndrome</td><td>Central obesity, proximal myopathy, violaceous striae, hyperglycaemia</td><td>Overnight 1 mg dexamethasone suppression; 24-h urinary free cortisol</td></tr>
+          <tr><td>Drug-induced</td><td>NSAIDs, COX-2 inhibitors, OCP, steroids, ciclosporin, sympathomimetics, cocaine, liquorice, erythropoietin, VEGF inhibitors</td><td>Careful drug history; response to withdrawal</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollnote">← scroll horizontally →</p>
+
+    <div class="call r">
+      <span class="t">2025 AHA/ACC — new recommendation</span>
+      In adults with resistant hypertension, screen for primary aldosteronism <span class="k">regardless of whether hypokalaemia is present</span> (COR 1) — hypokalaemia is absent in the majority.
+    </div>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 4. PREOPERATIVE DRUG MANAGEMENT -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--yellow)" open>
+  <summary><span class="sn">4</span> Preoperative Antihypertensive Management — THE KEY BRICK<span class="chev">›</span></summary>
+  <div class="bb">
+
+    <h3>POQI consensus — preoperative drug algorithm (simplified)</h3>
+    <div class="flow">
+      <div class="fnode" style="background:#E6F7EF;border-left:12px solid var(--green)">
+        <span class="lbl" style="color:#00662F">ACEI / ARB</span>
+        <b>Hold 24 h preoperatively</b> · restart within <b>48 h</b> after operation.
+        <div style="font-size:.8rem;color:#333;margin-top:4px">Withholding is associated with lower risk of death and postoperative vascular events (VISION cohort, n = 14,687). If accidentally taken on the morning of surgery, do not cancel — anticipate hypotension and plan management.</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="fnode" style="background:#EDF4FF;border-left:12px solid var(--blue)">
+        <span class="lbl" style="color:#0B5FBF">Thiazide diuretic / Calcium channel blocker</span>
+        <b>No evidence to stop</b> — continue.
+        <div style="font-size:.8rem;color:#333;margin-top:4px">Loop diuretics: <b>consider per patient</b> (volume status, HF).</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="fnode" style="background:#FFF0F0;border-left:12px solid var(--red)">
+        <span class="lbl" style="color:#B00000">β-Blocker</span>
+        <b>Continue if prescribed for heart failure or previous MI.</b><br>
+        <span class="danger">Do NOT start preoperatively for risk reduction.</span>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:14px">
+      <div class="fnode" style="background:#FFFBE6">
+        <span class="lbl">POQI note</span> No evidence to lower a high BP immediately preoperatively.
+      </div>
+      <div class="fnode" style="background:#FFFBE6">
+        <span class="lbl">POQI note</span> Preoperative BP values may be used to define perioperative BP targets.
+      </div>
+      <div class="fnode" style="background:#FFFBE6">
+        <span class="lbl">POQI note</span> Preoperative <b>hypotension</b> may be associated with increased risk.
+      </div>
+    </div>
+
+    <h3>Drug-by-drug perioperative plan</h3>
+    <div class="tw" style="--c:var(--orange)">
+      <table>
+        <thead>
+          <tr><th>Drug class</th><th>Perioperative action</th><th>Evidence / caveats</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ACE inhibitors<br>(ACEI)</td>
+            <td><span class="k">Withhold 24 h before surgery</span> (POQI). Restart as soon as appropriate — ideally within 48 h.</td>
+            <td>VISION study (14,687 non-cardiac surgery patients): withholding → lower risk of death &amp; postoperative vascular events. Risk: intraoperative hypotension → organ hypoperfusion and AKI. <b>Conflicting:</b> 2014 ACC/AHA recommend continuing; ESC/ESA warn of hypotension but suggest continuing in LV dysfunction. POISE-3 RCT found no significant difference between withholding vs continuing strategies, but withholding reduced intraoperative hypotension. <b>Individualise.</b></td>
+          </tr>
+          <tr>
+            <td>Angiotensin receptor blockers (ARB)</td>
+            <td><span class="k">Withhold 24 h before surgery</span> (POQI). Restart within 48 h.</td>
+            <td>Same evidence base as ACEI. Hypotension may be more profound when combined with diuretics. In cardiac surgery, withholding ACEI/ARB has been reported to be associated with <i>increased</i> mortality — different context.</td>
+          </tr>
+          <tr>
+            <td>β-Blockers</td>
+            <td><span class="ok">Continue if already established</span> (especially HF, post-MI, arrhythmia). <span class="danger">Do NOT initiate on the day of surgery</span> in β-blocker-naïve patients.</td>
+            <td>Fixed-dose β-blockade initiated de novo in the immediate perioperative period is associated with <span class="danger">increased risk of perioperative death</span> (POISE). Abrupt withdrawal of long-term β-blockers → rebound hypertension and is potentially harmful. β-Blockers are no longer first-line for uncomplicated hypertension.</td>
+          </tr>
+          <tr>
+            <td>Calcium channel blockers</td>
+            <td><span class="ok">Continue</span> — no evidence to stop (POQI).</td>
+            <td>Limited perioperative evidence; decisions on an individual patient basis. Long-acting dihydropyridines are first-line agents for chronic treatment.</td>
+          </tr>
+          <tr>
+            <td>Thiazide / thiazide-like diuretics</td>
+            <td><span class="ok">Continue</span> (POQI: no evidence to stop).</td>
+            <td>Watch electrolytes (hypokalaemia, hyponatraemia) — check K⁺ and Na⁺ 2–4 weeks after initiation/dose change. Thiazide-like agents (chlorthalidone, indapamide) preferred in resistant hypertension.</td>
+          </tr>
+          <tr>
+            <td>Loop diuretics</td>
+            <td><b>Consider per patient</b> — assess volume status and HF.</td>
+            <td>Preferred in moderate–severe CKD (eGFR &lt; 30) and symptomatic HF.</td>
+          </tr>
+          <tr>
+            <td>Clonidine / central α-2 agonists</td>
+            <td><span class="danger">Do not stop abruptly</span> — taper. Rebound hypertension with catecholamine surge.</td>
+            <td>Avoid oral clonidine for hypertension where possible. If patient cannot take oral meds, use IV alternatives.</td>
+          </tr>
+          <tr>
+            <td>MRA (spironolactone / eplerenone)</td>
+            <td>Continue unless hyperkalaemia or AKI risk. Recheck K⁺ and creatinine 2–4 weeks after changes.</td>
+            <td>Fourth-line agent for resistant hypertension. Avoid with K⁺ supplements, other K⁺-sparing diuretics, or eGFR &lt; 45. Avoid in pregnancy.</td>
+          </tr>
+          <tr>
+            <td>Statins / antiplatelets</td>
+            <td>Continue.</td>
+            <td>Part of optimal medical therapy for atherosclerotic disease.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollnote">← scroll horizontally →</p>
+
+    <div class="call y">
+      <span class="t">⚠️ Combination pills</span>
+      Single-pill combinations (e.g. ACEI + CCB + diuretic) are convenient and improve adherence <b>but complicate perioperative management</b> when one class is to be stopped and another continued. Check exactly what the patient is taking.
+    </div>
+
+    <div class="call b">
+      <span class="t">2025 AHA/ACC perioperative recommendations</span>
+      <ul style="margin:6px 0 0">
+        <li><b>Continue β-blockers</b> throughout the perioperative period in patients on chronic therapy (COR 1).</li>
+        <li>It is <b>reasonable to continue most antihypertensives</b> throughout the perioperative period (COR 2a).</li>
+        <li><b>Discontinuation of ACEI/ARB may be considered</b> to prevent intraoperative hypotension (COR 2b).</li>
+        <li>If SBP ≥ 180 or DBP ≥ 110, <b>deferring elective surgery may be considered</b>, especially in high-risk patients (COR 2b).</li>
+        <li>Abrupt preoperative discontinuation of β-blocker or clonidine is <span class="danger">potentially harmful</span> (COR 3: Harm).</li>
+        <li><span class="danger">Do NOT start β-blockers on the day of surgery</span> in β-blocker-naïve patients (COR 3: Harm).</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 5. INTRAOPERATIVE -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--blue)" open>
+  <summary><span class="sn">5</span> Intraoperative Blood Pressure Management<span class="chev">›</span></summary>
+  <div class="bb">
+
+    <h3>Why hypertensive patients are different</h3>
+    <ul>
+      <li>General anaesthetic agents cause hypotension via <span class="k">vasodilation</span> and <span class="k">reduced cardiac output</span>.</li>
+      <li>Patients with hypertension show <span class="k">greater cardiovascular lability</span>: BP and HR surges at induction, and greater risk of hypotension intraoperatively.</li>
+      <li>Cerebral and organ <span class="k">autoregulation curves may be shifted rightward</span> in chronic hypertension (not a consistent finding across studies) — a "normal" MAP may be relatively hypoperfusive.</li>
+    </ul>
+
+    <h3>Evidence for BP targets</h3>
+    <div class="grid2">
+      <div class="fnode" style="border-left:10px solid var(--red)">
+        <span class="lbl">Observational (Walsh 2013, n ≈ 33,000)</span>
+        Increasing <b>cumulative duration of MAP &lt; 55 mmHg</b> was associated with <b>myocardial injury and acute kidney injury</b>.
+      </div>
+      <div class="fnode" style="border-left:10px solid var(--green)">
+        <span class="lbl">RCT — INPRESS (Futier 2017)</span>
+        <b>Individualised</b> BP management (within <b>10% of baseline</b>, using dilute <b>noradrenaline</b> infusion) vs standard care (ephedrine for SBP &lt; 80 mmHg or &lt; 40% of baseline) in major surgery.<br>
+        → Individualised group had <b>significantly lower rates of postoperative organ dysfunction</b>.
+      </div>
+    </div>
+
+    <h3>Practical intraoperative targets</h3>
+    <div class="tw" style="--c:var(--blue)">
+      <table>
+        <thead><tr><th>Parameter</th><th>Suggested target</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Systolic arterial pressure</td><td><span class="k">&gt; 100 mmHg</span></td><td>May reduce risk (no universal consensus)</td></tr>
+          <tr><td>Mean arterial pressure</td><td><span class="k">&gt; 60 mmHg</span></td><td>Avoid cumulative MAP &lt; 55 mmHg</td></tr>
+          <tr><td>Relative to baseline</td><td>Within <span class="k">10% of baseline</span>; within <span class="k">20% of baseline</span> if baseline is high (&gt; 130/80)</td><td>Preoperative BP may be used to define intraoperative targets</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call r">
+      <span class="t">⚠ BP is not perfusion</span>
+      An "adequate" BP does not guarantee adequate tissue oxygenation. Young patients can compensate for significant hypovolaemia and maintain normal BP <b>at the expense of regional hypoperfusion</b>. Perfusion pressure is affected by myogenic, neurogenic and metabolic factors. <b>Interpret BP in the clinical context</b> — not as a standalone number.
+    </div>
+
+    <div class="call g">
+      <span class="t">✔ Practical recipe</span>
+      <ol style="margin:6px 0 0">
+        <li>Establish a reliable <b>baseline BP</b> (pre-op clinic / home readings, not the day-of-surgery value).</li>
+        <li>Use <b>continuous or frequent arterial monitoring</b> in high-risk or major surgery.</li>
+        <li>Prefer <b>titratable vasopressor infusion</b> (e.g. dilute noradrenaline) over intermittent boluses to smooth BP.</li>
+        <li>Avoid prolonged periods below MAP 55–60 mmHg, especially in patients with CKD, CAD or cerebrovascular disease.</li>
+        <li>Anticipate greater hypotension if ACEI/ARB or diuretics were taken on the day of surgery.</li>
+      </ol>
+    </div>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 6. POSTOPERATIVE -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--green)" open>
+  <summary><span class="sn">6</span> Postoperative Hypertension<span class="chev">›</span></summary>
+  <div class="bb">
+    <ul>
+      <li>Occurs in up to <span class="k">20%</span> of patients after elective non-cardiac surgery.</li>
+      <li>Associated with adverse outcomes: <span class="danger">stroke, myocardial injury, arrhythmias, bleeding</span>.</li>
+      <li>Limited evidence for a specific harmful threshold — but <span class="k">SBP &gt; 180 mmHg</span> is included as a high-risk trigger in several validated early warning systems.</li>
+    </ul>
+
+    <div class="call r">
+      <span class="t">🚫 2025 AHA/ACC — COR 3: HARM</span>
+      For adults with severe hypertension (&gt; 180/120 mmHg) <b>hospitalised for non-cardiac conditions without evidence of acute target-organ damage</b>, intermittent use of additional IV or oral antihypertensives is <b>NOT recommended</b> to acutely reduce BP.
+      <div style="margin-top:6px;font-size:.85rem">Observational data: PRN antihypertensives in hospitalised patients → increased in-hospital mortality, AKI and prolonged stay. Spontaneous BP falls occur in 40–50% of such patients.</div>
+    </div>
+
+    <div class="call g">
+      <span class="t">✔ What to do instead</span>
+      <b>Reinstitute, intensify or modify oral antihypertensive therapy</b> (preferably outpatient), with close follow-up within 4 weeks. Use careful, frequent monitoring. Avoid as-needed medications in asymptomatic patients.
+    </div>
+
+    <h3>Postoperative hypertension checklist</h3>
+    <ul>
+      <li>Is there <span class="k">pain, agitation, full bladder, hypoxaemia, hypercapnia or hypothermia</span>? Treat the cause first.</li>
+      <li>Was <span class="k">chronic antihypertensive therapy omitted</span>? Restart.</li>
+      <li>Is there <span class="k">acute target-organ damage</span> (chest pain, breathlessness, neuro deficit, oliguria)? → Hypertensive <b>emergency</b> pathway.</li>
+      <li>Was the patient on <span class="k">β-blocker or clonidine</span> that has been stopped? → Rebound hypertension risk.</li>
+      <li>Check for <span class="k">drug interactions</span>: NSAIDs, sympathomimetics, steroids.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 7. SEVERE HYPERTENSION — URGENCY vs EMERGENCY -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--orange)" open>
+  <summary><span class="sn">7</span> Severe Hypertension: Urgency vs Emergency<span class="chev">›</span></summary>
+  <div class="bb">
+
+    <div class="flow">
+      <div class="fnode" style="text-align:center;background:#FFF0F0">
+        <span class="lbl">Trigger</span>
+        <b>SBP ≥ 180 mmHg and/or DBP ≥ 110 mmHg</b>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="grid2">
+        <div class="fnode" style="background:#FFFBE6;border-left:12px solid var(--yellow)">
+          <span class="lbl">NO acute target-organ damage</span>
+          <b>HYPERTENSIVE URGENCY</b>
+          <div style="font-size:.82rem;margin-top:5px">
+            Symptoms: none or minimal (headache, dizziness, lethargy).<br>
+            BP reduction: <b>hours to days</b>.<br>
+            May be managed as an outpatient / ward-based.
+          </div>
+        </div>
+        <div class="fnode" style="background:#FFF0F0;border-left:12px solid var(--red)">
+          <span class="lbl">WITH acute target-organ damage</span>
+          <b>HYPERTENSIVE EMERGENCY</b>
+          <div style="font-size:.82rem;margin-top:5px">
+            Acute HF, ACS, aortic dissection, hypertensive encephalopathy, acute renal failure, ICH/SAH, pre-eclampsia/eclampsia.<br>
+            BP reduction: <b>minutes to hours</b>.<br>
+            <b>Admit to ICU</b>, continuous monitoring, parenteral therapy.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Comparison table</h3>
+    <div class="tw" style="--c:var(--orange)">
+      <table>
+        <thead><tr><th>Variable</th><th>Emergency</th><th>Urgency</th></tr></thead>
+        <tbody>
+          <tr><td>Symptoms</td><td>Yes</td><td>No or minimal</td></tr>
+          <tr><td>Acute target-organ damage</td><td>Yes</td><td>No</td></tr>
+          <tr><td>BP reduction rate</td><td>Minutes to hours</td><td>Hours to days</td></tr>
+          <tr><td>Investigation for secondary causes</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Setting</td><td>ICU / HDU</td><td>Outpatient or ward</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Hypertensive urgency — management</h3>
+    <div class="call y">
+      <span class="t">Target: reduce BP by ~25% over 24 hours — do NOT normalise rapidly</span>
+      Rapid reduction in urgency may precipitate ischaemic events. <b>No role for IV drugs.</b>
+    </div>
+    <ol>
+      <li>Rest in a quiet room for at least 2 hours; repeat BP every 30 min.</li>
+      <li>If BP responds (10–20 mmHg SBP reduction) → discharge with a hypertensive urgency discharge plan.</li>
+      <li>If BP remains &gt; 180/110 mmHg after rest → start <b>oral</b> combination antihypertensive therapy, targeting ~25% reduction within 24 h, but not lower than 160/100 mmHg.</li>
+      <li>Recheck BP every 30 min for 1 hour; if no reduction → admit / refer.</li>
+      <li>Common precipitants: non-adherence, inadequate outpatient control, acute pain, herbal supplements, emotional stress.</li>
+    </ol>
+
+    <h4>Oral drugs for hypertensive urgency</h4>
+    <div class="tw" style="--c:var(--orange)">
+      <table>
+        <thead><tr><th>Drug</th><th>Starting dose</th><th>Onset</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>Captopril</td><td>12.5 mg PO</td><td>0.5 h</td><td>6 h</td></tr>
+          <tr><td>Nifedipine (retard)</td><td>10 mg PO</td><td>0.5 h</td><td>3–5 h</td></tr>
+          <tr><td>Labetalol</td><td>200 mg PO</td><td>2 h</td><td>4 h</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="danger" style="font-size:.85rem">⛔ Sublingual fast-acting nifedipine is no longer recommended — uncontrolled BP reduction and serious adverse events.</p>
+
+    <h3>Hypertensive emergency — management</h3>
+    <div class="call r">
+      <span class="t">Default strategy (no compelling indication)</span>
+      Reduce BP by <b>no more than 25% within the first hour</b> → then to <b>160/100 mmHg</b> over the next 2–6 hours → then cautiously towards normal over <b>24–48 hours</b>.
+    </div>
+
+    <h4>Specific targets for compelling conditions</h4>
+    <div class="tw" style="--c:var(--red)">
+      <table>
+        <thead><tr><th>Condition</th><th>Target</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Aortic dissection</td><td><span class="danger">SBP &lt; 120 mmHg</span> (and HR &lt; 60) within 1 hour</td><td>β-blockade <b>before</b> vasodilator to prevent reflex tachycardia. Avoid β-blockers if severe aortic regurgitation.</td></tr>
+          <tr><td>Severe pre-eclampsia / eclampsia</td><td><span class="danger">SBP &lt; 140 mmHg</span> within the first hour</td><td>Definitive treatment is delivery. ACEI, ARB, renin inhibitors and nitroprusside contraindicated.</td></tr>
+          <tr><td>Phaeochromocytoma crisis</td><td><span class="danger">SBP &lt; 140 mmHg</span> in the first hour</td><td>Avoid β-blocker monotherapy (except labetalol) — α-blockade first (phentolamine).</td></tr>
+          <tr><td>Acute intracerebral haemorrhage</td><td>SBP 150–220 → lower to <b>130–&lt;140 mmHg</b>; do not drop &lt; 130</td><td>If SBP &gt; 220, careful titration; avoid large SBP variability.</td></tr>
+          <tr><td>Acute ischaemic stroke (no reperfusion)</td><td>Do not lower unless &gt; 220/120; if so, reduce ~15% in first 24 h</td><td>Thrombolysis: &lt; 185/110 before, &lt; 180/105 for 24 h after.</td></tr>
+          <tr><td>Post-endovascular thrombectomy</td><td><span class="danger">Avoid SBP &lt; 140 mmHg</span> in first 24–72 h</td><td>COR 3: Harm — lowering SBP &lt; 140 worsens functional outcome.</td></tr>
+          <tr><td>Acute coronary syndrome</td><td>&lt; 25% in 1 h, then ≤ 160/100 over 2–6 h</td><td>Nitrates preferred; avoid selective β-blockers if cocaine suspected.</td></tr>
+          <tr><td>Acute heart failure / pulmonary oedema</td><td>Lower until symptom resolution; &lt; 25% in 1 h, then ≤ 160/100</td><td>Nitroglycerin, clevidipine, nitroprusside. β-blockers contraindicated.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollnote">← scroll horizontally →</p>
+
+    <h4>IV agents for hypertensive emergency</h4>
+    <div class="tw" style="--c:var(--red)">
+      <table>
+        <thead><tr><th>Drug</th><th>Dose</th><th>Onset</th><th>Duration</th><th>Comments</th></tr></thead>
+        <tbody>
+          <tr><td>Labetalol</td><td>20 mg IV slow over ≥ 2 min, then 40–80 mg every 10 min (max 200 mg); or infusion 0.4–1.0 mg/kg/h up to 3 mg/kg/h</td><td>≤ 5 min</td><td>3–6 h</td><td>Contraindicated in reactive airway disease, 2nd/3rd degree block, bradycardia. Useful in hyperadrenergic states. May worsen HF.</td></tr>
+          <tr><td>Nicardipine</td><td>Initial 5 mg/h, increase by 2.5 mg/h every 5 min (max 15 mg/h); reduce to 3 mg/h after response</td><td>5–10 min</td><td>1–4 h</td><td>No negative inotropy/chronotropy. Caution in acute HF and coronary ischaemia. Preferred in ICH.</td></tr>
+          <tr><td>Clevidipine</td><td>Initial 1–2 mg/h, double every 90 s until near target, then titrate; max 21 mg/h, max 72 h</td><td>2–4 min</td><td>5–15 min</td><td>Contraindicated in soy/egg allergy and defective lipid metabolism. Decreased reflex tachycardia.</td></tr>
+          <tr><td>Esmolol</td><td>Loading 500–1000 mcg/kg over 1 min, then 50 mcg/kg/min; up to 300 mcg/kg/min</td><td>1 min</td><td>10–20 min</td><td>Contraindicated with concurrent β-blocker, bradycardia, decompensated HF.</td></tr>
+          <tr><td>Nitroglycerin</td><td>5 mcg/min, increase by 5 mcg/min every 3–5 min (max 200 mcg/min)</td><td>2–5 min</td><td>3–5 min</td><td>Use only in ACS and/or acute pulmonary oedema. Avoid in volume depletion. Tachyphylaxis common.</td></tr>
+          <tr><td>Sodium nitroprusside</td><td>0.3–0.5 mcg/kg/min, titrate every 5 min; max 10 mcg/kg/min</td><td>Seconds</td><td>1–5 min</td><td>Requires intra-arterial monitoring. Cyanide/thiocyanate toxicity risk with high dose/prolonged infusion; increased risk in liver or kidney dysfunction. Avoid in acute cerebrovascular disease unless no alternative.</td></tr>
+          <tr><td>Hydralazine</td><td>5–10 mg IV slow, repeat after 20–30 min; or infusion 0.2–0.3 mg/min</td><td>10–30 min</td><td>3–8 h</td><td>Unpredictable BP-lowering. Caution in ACS, cerebrovascular accident, dissecting aneurysm. Not first-line for most acute situations.</td></tr>
+          <tr><td>Phentolamine</td><td>5 mg IV bolus, repeat every 10 min (max 50 mg/24 h)</td><td>1–2 min</td><td>15–30 min</td><td>For catecholamine excess: phaeochromocytoma, MAOI interaction, cocaine toxicity, clonidine withdrawal.</td></tr>
+          <tr><td>Fenoldopam</td><td>0.1–0.3 mcg/kg/min, increase by 0.05–0.1 mcg/kg/min every 15 min (max 1.6 mcg/kg/min)</td><td>5–10 min</td><td>30–60 min</td><td>Contraindicated in glaucoma, raised ICP, sulfite allergy.</td></tr>
+          <tr><td>Enalaprilat</td><td>1.25 mg IV over 5 min; may increase to 5 mg every 6 h (max 50 mg/24 h)</td><td>15 min</td><td>6 h</td><td>Contraindicated in pregnancy, acute MI, bilateral renal artery stenosis. Slow, unpredictable. Avoid in AKI/CKD.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollnote">← scroll horizontally →</p>
+
+    <div class="call b">
+      <span class="t">🎯 Agent selection principles</span>
+      Base the choice on: drug pharmacology · pathophysiological mechanism · degree of target-organ damage · desired rate of BP decline · comorbidities. Continuous infusion of short-acting titratable agents is often preferable in ICU to avoid large BP swings. <b>Avoid peaks and large SBP variability</b> — especially in ICH.
+    </div>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 8. SPECIAL GROUPS -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--teal)">
+  <summary><span class="sn">8</span> Special Groups — Elderly, Pregnancy, Stroke<span class="chev">›</span></summary>
+  <div class="bb">
+
+    <h3>🧓 Older adults</h3>
+    <ul>
+      <li>Prevalence &gt; 60% in people &gt; 60 years; up to 71.7% in Malaysia &gt; 65 years.</li>
+      <li>SBP rises linearly with age — <b>SBP is a better predictor of CV events than DBP</b> in this group.</li>
+      <li>Treatment of isolated systolic hypertension reduces all-cause mortality, CV mortality, MI, HF and stroke — benefit extends to the very elderly (&gt; 80).</li>
+      <li><b>Postural hypotension</b>: measure lying and standing BP. A systolic drop &gt; 20 mmHg after 1 min standing is significant. Use standing BP to guide treatment.</li>
+      <li>Screen for <b>frailty, mobility, function, cognition, nutrition, falls</b> before intensifying therapy.</li>
+      <li>Start <b>low-dose monotherapy</b>, titrate slowly, review every 2–4 weeks. Initiation with combination therapy is not encouraged in this group.</li>
+      <li>Consider <b>de-prescribing</b> in the frail, functionally/cognitively impaired, multimorbid, or those with adverse drug reactions — evidence shows no increase in mortality with de-prescribing.</li>
+    </ul>
+
+    <div class="tw" style="--c:var(--teal)">
+      <table>
+        <thead><tr><th>Older adult group</th><th>Target SBP</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>&gt; 80 years</td><td>&lt; 150 mmHg</td><td>MSH 2018 (Grade A); 2025 AHA/ACC favours &lt; 130 if tolerated</td></tr>
+          <tr><td>65–80 years</td><td>&lt; 140 mmHg</td><td>MSH 2018 (Grade B)</td></tr>
+          <tr><td>Fit 65–80 years</td><td>Consider &lt; 130 mmHg</td><td>MSH 2018 (Grade A)</td></tr>
+          <tr><td>Multimorbidity / frailty / cognitive or functional impairment / institutionalised / ADRs</td><td>Less strict targets; limit number of agents</td><td>MSH 2018 (Grade C)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>🤰 Pregnancy</h3>
+    <div class="grid2">
+      <div class="fnode" style="background:#EDFBF2;border-left:10px solid var(--green)">
+        <span class="lbl">Preferred agents</span>
+        <b>Labetalol</b> and <b>extended-release nifedipine</b> are the preferred agents (2025 AHA/ACC COR 1). Methyldopa remains first-line in the Malaysian CPG, with labetalol as alternative first-line.
+      </div>
+      <div class="fnode" style="background:#FFF0F0;border-left:10px solid var(--red)">
+        <span class="lbl">Contraindicated</span>
+        <span class="danger">Atenolol, ACE inhibitors, ARBs, direct renin inhibitors, nitroprusside, MRA.</span> Fetotoxic in 2nd/3rd trimester (renal development → oligohydramnios, AKI). Avoid RAS blockers in all women of childbearing potential unless adequate contraception.
+      </div>
+    </div>
+
+    <div class="call r">
+      <span class="t">🚨 Severe-range hypertension in pregnancy</span>
+      SBP ≥ 160 or DBP ≥ 110 confirmed on repeat within 15 minutes → give antihypertensive medication to lower BP to <b>&lt; 160/&lt; 110 mmHg within 30–60 minutes</b> (COR 1).
+    </div>
+
+    <div class="tw" style="--c:var(--teal)">
+      <table>
+        <thead><tr><th>Drug</th><th>Dose</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Labetalol</td><td>10–20 mg IV, then 20–80 mg every 10–30 min (max cumulative 300 mg); or infusion 1–3 mg/min</td><td>Avoid in asthma, myocardial disease, heart block, bradycardia</td></tr>
+          <tr><td>Hydralazine</td><td>5 mg IV/IM, then 5–10 mg IV every 20–40 min (max 20 mg); or infusion 0.5–10 mg/h</td><td>Higher doses → maternal hypotension, headache, abnormal FHR</td></tr>
+          <tr><td>Nifedipine (immediate release)</td><td>10–20 mg PO, repeat in 20 min if needed; then 10–20 mg every 2–6 h (max 180 mg/day)</td><td>Reflex tachycardia and headache; useful before transfer</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><b>Chronic hypertension in pregnancy:</b> treat to achieve BP &lt; 140/90 mmHg to prevent maternal and perinatal morbidity and mortality (COR 1). Counsel on low-dose aspirin (81 mg/day) to reduce pre-eclampsia risk.</p>
+    <p><b>Eclampsia prophylaxis/treatment:</b> parenteral magnesium sulphate is the drug of choice; IV diazepam only if magnesium is unavailable or contraindicated.</p>
+
+    <h3>🧠 Cerebrovascular disease</h3>
+    <div class="tw" style="--c:var(--teal)">
+      <table>
+        <thead><tr><th>Scenario</th><th>Recommendation</th></tr></thead>
+        <tbody>
+          <tr><td>Acute ischaemic stroke, no thrombolysis/thrombectomy, BP &lt; 220/120</td><td>Do <b>not</b> initiate/reinitiate antihypertensives within the first 48–72 h (COR 3: No Benefit). Defer pre-existing antihypertensives until medically and neurologically stable with enteral access.</td></tr>
+          <tr><td>Acute ischaemic stroke, BP &gt; 220/120</td><td>Lower by ~15% in the first 24 h — individualised.</td></tr>
+          <tr><td>IV thrombolysis</td><td>Lower to &lt; 185/110 before; maintain &lt; 180/105 for 24 h after.</td></tr>
+          <tr><td>Endovascular thrombectomy</td><td>Maintain ≤ 180/105 during and for 24 h after. <span class="danger">Avoid SBP &lt; 140 in first 24–72 h post successful reperfusion (COR 3: Harm).</span></td></tr>
+          <tr><td>Acute spontaneous ICH, SBP 150–220</td><td>Lower immediately to 130–&lt; 140 mmHg for at least 7 days; stop antihypertensives if SBP &lt; 130 (COR 2a). Smooth, non-labile control — avoid peaks and variability.</td></tr>
+          <tr><td>Acute spontaneous ICH, SBP &gt; 220</td><td>Do <b>not</b> lower below 130 mmHg (COR 3: Harm). Cautious modest lowering may be reasonable.</td></tr>
+          <tr><td>Secondary prevention (ischaemic stroke, TIA, ICH)</td><td>Thiazide-type diuretic, ACEI or ARB recommended. Target office <b>SBP/DBP &lt; 130/80 mmHg</b> (COR 1).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollnote">← scroll horizontally →</p>
+
+    <h3>🫘 Chronic kidney disease</h3>
+    <ul>
+      <li>Target <b>SBP &lt; 130 mmHg</b> in adults with hypertension and CKD (eGFR &lt; 60 with albuminuria ≥ 30 mg/g).</li>
+      <li><b>ACEI or ARB</b> (not both) recommended to decrease CVD and delay kidney disease progression.</li>
+      <li>Expect a dip in eGFR of up to <b>30%</b> after starting a RAAS inhibitor — this is expected and associated with long-term preservation of kidney function. Do not discontinue unless the decline is persistently &gt; 30%.</li>
+      <li>Recheck electrolytes and creatinine 2–4 weeks after initiation or dose titration.</li>
+      <li>Avoid dual RAAS blockade (ACEI + ARB) — increased AKI and hyperkalaemia.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 9. QUICK ACTIONS -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:var(--ink)" open>
+  <summary><span class="sn">⚡</span> Quick Action Cards<span class="chev">›</span></summary>
+  <div class="bb">
+    <div class="grid2">
+      <div class="fnode" style="border-left:10px solid var(--red)">
+        <span class="lbl">Pre-op clinic — BP 195/115, elective hip</span>
+        <b>BP &gt; 180/110</b> → AoA/BHS advise deferral and initiation of antihypertensive treatment. 2025 AHA/ACC: deferring may be considered (2b), especially in high-risk patients. Confirm with home/ambulatory readings — exclude white-coat effect. Assess overall cardiac risk and target-organ damage before deciding.
+      </div>
+      <div class="fnode" style="border-left:10px solid var(--yellow)">
+        <span class="lbl">Patient took ramipril this morning</span>
+        <b>Do NOT cancel.</b> Anticipate greater intraoperative hypotension. Plan for vasopressor support and consider invasive monitoring. Restart postoperatively as soon as appropriate (within 48 h).
+      </div>
+      <div class="fnode" style="border-left:10px solid var(--blue)">
+        <span class="lbl">Intraoperative MAP drifting to 52 mmHg</span>
+        Cumulative MAP &lt; 55 mmHg is associated with myocardial and AKI injury. Aim MAP &gt; 60 and within 10% of baseline. Use a titratable noradrenaline infusion to achieve individualised targets — this reduced postoperative organ dysfunction in INPRESS.
+      </div>
+      <div class="fnode" style="border-left:10px solid var(--green)">
+        <span class="lbl">Postop day 1, BP 190/100, asymptomatic</span>
+        <b>Do not give PRN IV/oral antihypertensives</b> to acutely lower BP (COR 3: Harm). Reinstitute/intensify oral therapy, monitor closely, arrange follow-up within 4 weeks. Look for pain, bladder distension, hypoxaemia, missed medication.
+      </div>
+      <div class="fnode" style="border-left:10px solid var(--purple)">
+        <span class="lbl">Pre-op patient on bisoprolol 5 mg for HF</span>
+        <b>Continue throughout the perioperative period</b> (COR 1). If unable to take oral medication, use IV alternatives. Abrupt withdrawal is potentially harmful (rebound hypertension). Do not initiate β-blockers de novo on the day of surgery.
+      </div>
+      <div class="fnode" style="border-left:10px solid var(--orange)">
+        <span class="lbl">Pre-op patient on spironolactone + perindopril</span>
+        Check K⁺ and creatinine. Spironolactone is a fourth-line agent for resistant hypertension. Combined with ACEI increases hyperkalaemia risk — especially in CKD. Consider holding ACEI 24 h pre-op; continue MRA unless hyperkalaemia or AKI risk.
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- 10. REFERENCES -->
+<!-- ================================================================ -->
+<details class="brick" style="--c:#555">
+  <summary><span class="sn">📚</span> Sources &amp; References<span class="chev">›</span></summary>
+  <div class="bb refs">
+    <h3>Primary source documents</h3>
+    <ol>
+      <li><b>Tait A, Howell SJ.</b> Preoperative hypertension: perioperative implications and management. <span class="j">BJA Education</span> 2021;21(11):427–432. <span style="color:#666">(Leeds Teaching Hospitals NHS Trust; Leeds Institute of Medical Research at St James's, UK.)</span></li>
+      <li><b>Malaysian Society of Hypertension / Ministry of Health Malaysia.</b> Clinical Practice Guidelines — Management of Hypertension, 5th Edition (2018). MSH Hypertension CPG 2018 V3.8. Available at: moh.gov.my · acadmed.org.my · msh.org.my</li>
+      <li><b>Jones DW, Ferdinand KC, Taler SJ, et al.</b> 2025 AHA/ACC/AANP/AAPA/ABC/ACCP/ACPM/AGS/AMA/ASPC/NMA/PCNA/SGIM Guideline for the Prevention, Detection, Evaluation and Management of High Blood Pressure in Adults. <span class="j">Circulation.</span> 2025;152:e114–e218. DOI: 10.1161/CIR.0000000000001356</li>
+    </ol>
+
+    <h3>Key cited trials and statements</h3>
+    <ol start="4">
+      <li>Sanders RD, Hughes F, Shaw A, et al. Perioperative Quality Initiative (POQI) consensus statement on preoperative blood pressure, risk and outcomes for elective surgery. <span class="j">Br J Anaesth</span> 2019;122:552–62.</li>
+      <li>Hartle A, McCormack T, Carlisle J, et al. The measurement of adult blood pressure and management of hypertension before elective surgery: joint guidelines from the Association of Anaesthetists of Great Britain and Ireland and the British Hypertension Society. <span class="j">Anaesthesia</span> 2016;71:326–37.</li>
+      <li>Roshanov PS, Rochwerg B, Patel A, et al. Withholding versus continuing ACE inhibitors or angiotensin II receptor blockers before noncardiac surgery: VISION prospective cohort. <span class="j">Anesthesiology</span> 2017;126:16–27.</li>
+      <li>Walsh M, Devereaux PJ, Garg AX, et al. Relationship between intraoperative mean arterial pressure and clinical outcomes after noncardiac surgery. <span class="j">Anesthesiology</span> 2013;119:507–15.</li>
+      <li>Futier E, Lefrant JY, Guinot PG, et al. Effect of individualized vs standard blood pressure management strategies on postoperative organ dysfunction among high-risk patients undergoing major surgery (INPRESS). <span class="j">JAMA</span> 2017;318:1346–57.</li>
+      <li>Marcucci M, Painter TW, Conen D, et al. Hypotension-avoidance versus hypertension-avoidance strategies in noncardiac surgery (POISE-3). <span class="j">Ann Intern Med</span> 2023;176:605–614.</li>
+      <li>Devereaux PJ, Yang H, Yusuf S, et al. Effects of extended-release metoprolol succinate in patients undergoing non-cardiac surgery (POISE trial). <span class="j">Lancet</span> 2008;371:1839–47.</li>
+      <li>McEvoy MD, Gupta R, Koepke EJ, et al. POQI consensus statement on postoperative blood pressure, risk and outcomes for elective surgery. <span class="j">Br J Anaesth</span> 2019;122:575–86.</li>
+      <li>Sessler DI, Bloomstone JA, Aronson S, et al. POQI consensus statement on intraoperative blood pressure, risk and outcomes for elective surgery. <span class="j">Br J Anaesth</span> 2019;122:563–74.</li>
+      <li>Venkatesan S, Myles PR, Manning HJ, et al. Cohort study of preoperative blood pressure and risk of 30-day mortality after elective non-cardiac surgery. <span class="j">Br J Anaesth</span> 2017;119:65–77.</li>
+      <li>National Institute for Health and Care Excellence. NICE Guideline NG136: Hypertension in adults — diagnosis and management. 2019.</li>
+    </ol>
+
+    <div class="call b">
+      <span class="t">How to cite this quick reference</span>
+      Perioperative Hypertension — Anaesthetist &amp; Intensivist Quick Reference (LEGO-themed). Derived from Tait &amp; Howell (BJA Education 2021), MSH Hypertension CPG 2018 (5th ed.), and the 2025 AHA/ACC High Blood Pressure Guideline.
+    </div>
+
+    <div class="call r">
+      <span class="t">⚠ Clinical disclaimer</span>
+      This is a summary aid for trained clinicians. It does not replace local protocols, the full source guidelines, or clinical judgement. Always confirm drug doses against your formulary and assess the individual patient.
+    </div>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  🧱 <b>Perioperative Hypertension Quick Reference</b> · Built for anaesthetists &amp; intensivists<br>
+  Sources: Tait &amp; Howell, <i>BJA Education</i> 2021 · MSH Hypertension CPG 2018 (5th ed.) · 2025 AHA/ACC High Blood Pressure Guideline
+</footer>
+
+<button class="topbtn" id="top" type="button" title="Back to top">▲ Top</button>
+
+<script>
+(function(){
+  "use strict";
+
+  var q        = document.getElementById('q');
+  var clr      = document.getElementById('clr');
+  var nores    = document.getElementById('nores');
+  var mainEl   = document.getElementById('main');
+  var bricks   = Array.prototype.slice.call(document.querySelectorAll('details.brick'));
+  var expBtn   = document.getElementById('expandAll');
+  var colBtn   = document.getElementById('collapseAll');
+  var expCount = document.getElementById('expCount');
+  var colCount = document.getElementById('colCount');
+
+  /* store original open state */
+  bricks.forEach(function(b){ b.dataset.was = b.open ? "1" : "0"; });
+
+  /* ============================================================
+     HIGHLIGHT ENGINE
+     ============================================================ */
+
+  /* escape special regex characters in the search term */
+  function escapeRegex(str){
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  /* remove all <mark class="hl"> elements, restoring plain text nodes */
+  function clearHighlights(root){
+    var marks = root.querySelectorAll('mark.hl');
+    if(!marks.length) return;
+    marks.forEach(function(m){
+      var parent = m.parentNode;
+      if(!parent) return;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  /* collect candidate text nodes (skip scripts, styles, inputs, buttons, existing marks) */
+  function collectTextNodes(root){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var out = [], n;
+    while((n = walker.nextNode())){
+      var p = n.parentNode;
+      if(!p) continue;
+      var tag = p.nodeName;
+      if(tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK' ||
+         tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'BUTTON' ||
+         tag === 'SELECT' || tag === 'OPTION') continue;
+      if(!n.nodeValue || !n.nodeValue.trim()) continue;
+      out.push(n);
+    }
+    return out;
+  }
+
+  /* wrap every occurrence of `term` inside `root` with <mark class="hl"> */
+  function highlightIn(root, term){
+    if(!term) return 0;
+    var regex = new RegExp(escapeRegex(term), 'gi');
+    var nodes = collectTextNodes(root);
+    var total = 0;
+
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      regex.lastIndex = 0;
+      if(!regex.test(text)) return;
+
+      var frag = document.createDocumentFragment();
+      var lastIdx = 0, m;
+      regex.lastIndex = 0;
+
+      while((m = regex.exec(text)) !== null){
+        if(m[0].length === 0){ regex.lastIndex++; continue; }
+
+        if(m.index > lastIdx){
+          frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
+        }
+        var mk = document.createElement('mark');
+        mk.className = 'hl';
+        mk.textContent = m[0];
+        frag.appendChild(mk);
+        total++;
+
+        lastIdx = m.index + m[0].length;
+      }
+      if(lastIdx < text.length){
+        frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    return total;
+  }
+
+  /* ============================================================
+     CONTROL STATE
+     ============================================================ */
+  function refreshControls(){
+    var visible = bricks.filter(function(b){ return b.style.display !== 'none'; });
+    var openN   = visible.filter(function(b){ return b.open; }).length;
+    var closedN = visible.length - openN;
+
+    expCount.textContent = openN;
+    colCount.textContent = closedN;
+
+    expBtn.disabled = (visible.length === 0 || closedN === 0);
+    colBtn.disabled = (visible.length === 0 || openN === 0);
+  }
+
+  /* ============================================================
+     SEARCH + HIGHLIGHT
+     ============================================================ */
+  function runSearch(){
+    var raw  = q.value;
+    var term = raw.trim();
+    var lc   = term.toLowerCase();
+
+    clr.style.display = term ? 'block' : 'none';
+
+    /* 1. clear previous highlights FIRST so textContent is clean */
+    clearHighlights(mainEl);
+
+    /* 2. no term → restore original open/closed state */
+    if(!term){
+      bricks.forEach(function(b){
+        b.style.display = '';
+        if(b.dataset.was === "1"){ b.open = true; }
+        else { b.open = false; }
+      });
+      nores.style.display = 'none';
+      refreshControls();
+      return;
+    }
+
+    /* 3. filter bricks + auto-expand matches */
+    var hits = 0;
+    bricks.forEach(function(b){
+      var match = b.textContent.toLowerCase().indexOf(lc) !== -1;
+      if(match){
+        hits++;
+        b.style.display = '';
+        b.open = true;
+      } else {
+        b.style.display = 'none';
+      }
+    });
+
+    nores.style.display = hits ? 'none' : 'block';
+
+    /* 4. highlight the term inside visible bricks only */
+    if(hits){
+      bricks.forEach(function(b){
+        if(b.style.display !== 'none'){
+          highlightIn(b, term);
+        }
+      });
+    }
+
+    refreshControls();
+  }
+
+  var t;
+  q.addEventListener('input', function(){
+    clearTimeout(t);
+    t = setTimeout(runSearch, 120);
+  });
+
+  clr.addEventListener('click', function(){
+    q.value = '';
+    runSearch();
+    q.focus();
+  });
+
+  /* ============================================================
+     EXPAND ALL / COLLAPSE ALL
+     ============================================================ */
+  expBtn.addEventListener('click', function(){
+    bricks.forEach(function(b){
+      if(b.style.display !== 'none'){ b.open = true; }
+    });
+    refreshControls();
+  });
+
+  colBtn.addEventListener('click', function(){
+    bricks.forEach(function(b){ b.open = false; });
+    refreshControls();
+  });
+
+  /* keep counters in sync when a brick is toggled manually */
+  bricks.forEach(function(b){
+    b.addEventListener('toggle', refreshControls);
+  });
+
+  /* ============================================================
+     KEYBOARD SHORTCUTS
+     ============================================================ */
+  document.addEventListener('keydown', function(e){
+    var ae  = document.activeElement;
+    var tag = (ae && ae.tagName) || '';
+    var typing = (tag === 'INPUT' || tag === 'TEXTAREA' || (ae && ae.isContentEditable));
+
+    /* "/" focuses the search box */
+    if(e.key === '/' && !typing){
+      e.preventDefault();
+      q.focus();
+      return;
+    }
+    /* Esc clears the search box when focused */
+    if(e.key === 'Escape' && ae === q){
+      q.value = '';
+      runSearch();
+      return;
+    }
+    /* E = expand all, C = collapse all (only when not typing) */
+    if(!typing && !e.ctrlKey && !e.metaKey && !e.altKey){
+      if(e.key === 'e' || e.key === 'E'){ expBtn.click(); }
+      if(e.key === 'c' || e.key === 'C'){ colBtn.click(); }
+    }
+  });
+
+  /* ============================================================
+     BACK TO TOP
+     ============================================================ */
+  document.getElementById('top').addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  /* initial state */
+  refreshControls();
+
+})();
+</script>
+</body>
+</html>
