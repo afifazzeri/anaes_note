@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melioidosis Quick Reference · Bug's Life · NAG 2026</title>
+    <style>
+        /* Bug's Life theme – earthy greens, warm yellows, leaf motifs */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', 'Trebuchet MS', system-ui, sans-serif;
+            background: #f0f7e8;
+            color: #2e3b1f;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .bug-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fafff4;
+            border-radius: 30px 30px 30px 30px;
+            box-shadow: 0 10px 30px rgba(60, 90, 20, 0.15);
+            padding: 25px 30px 35px;
+            border: 3px solid #b6d7a8;
+            position: relative;
+            overflow: hidden;
+        }
+        /* leaf decorations */
+        .bug-container::before {
+            content: "🍃";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 80px;
+            opacity: 0.2;
+            transform: rotate(20deg);
+            pointer-events: none;
+        }
+        .bug-container::after {
+            content: "🌿";
+            position: absolute;
+            bottom: -15px;
+            left: 5px;
+            font-size: 100px;
+            opacity: 0.15;
+            transform: rotate(-10deg);
+            pointer-events: none;
+        }
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #2d5e1e;
+            text-shadow: 2px 2px 0 #d4e8c2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #5d7a4a;
+            text-shadow: none;
+        }
+        .bug-badge {
+            background: #f9e79f;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #4a3b1a;
+            border: 2px dashed #d4ac0d;
+            display: inline-block;
+        }
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 15px;
+            align-items: center;
+            background: #e9f3df;
+            padding: 15px 20px;
+            border-radius: 60px;
+            border: 2px solid #b6d7a8;
+        }
+        .toolbar input {
+            flex: 1 1 220px;
+            padding: 12px 20px;
+            border-radius: 40px;
+            border: 2px solid #9bc184;
+            font-size: 1rem;
+            background: #ffffff;
+            outline: none;
+            transition: 0.2s;
+            min-width: 180px;
+        }
+        .toolbar input:focus {
+            border-color: #3f7e2a;
+            box-shadow: 0 0 0 3px rgba(100, 160, 60, 0.3);
+        }
+        .btn {
+            background: #ffffff;
+            border: 2px solid #7fa86a;
+            color: #2d5e1e;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .btn:hover {
+            background: #dff0d0;
+            border-color: #4e7a3a;
+            transform: scale(1.02);
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .btn-primary {
+            background: #7fb86a;
+            border-color: #4e7a3a;
+            color: #1e2e14;
+        }
+        .btn-primary:hover {
+            background: #6aa854;
+        }
+        /* collapsible sections */
+        .section {
+            margin-bottom: 16px;
+            border-radius: 24px;
+            background: #ffffff;
+            border: 2px solid #cfe2bf;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(70, 110, 30, 0.06);
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 22px;
+            background: linear-gradient(145deg, #eaf5e0, #dceccb);
+            cursor: pointer;
+            user-select: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #2b4d1b;
+            transition: 0.2s;
+            gap: 10px;
+        }
+        .section-header:hover {
+            background: #d4e8c0;
+        }
+        .section-header .icon {
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.3s ease;
+        }
+        .section-header.collapsed .icon {
+            transform: rotate(-90deg);
+        }
+        .section-content {
+            padding: 0 22px 22px;
+            display: block;
+            transition: max-height 0.3s ease, padding 0.2s;
+        }
+        .section-content.hidden {
+            display: none;
+        }
+        /* Tables – scrollable */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 12px 0 8px;
+            border-radius: 16px;
+            border: 2px solid #d4e8c2;
+            background: #ffffff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            min-width: 600px;
+        }
+        th {
+            background: #d6e9c3;
+            color: #1e3b0e;
+            font-weight: 700;
+            padding: 12px 12px;
+            text-align: left;
+            border-bottom: 2px solid #a8c99a;
+            white-space: nowrap;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0eed4;
+            vertical-align: top;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background: #f5fcf0;
+        }
+        .highlight {
+            background-color: #f9e79f;
+            border-radius: 4px;
+            padding: 0 2px;
+            box-shadow: 0 0 0 1px #d4ac0d;
+        }
+        .badge {
+            display: inline-block;
+            background: #f0d78c;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #4a3b1a;
+        }
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 15px 10px;
+            background: #f4faf0;
+            border-radius: 24px;
+            border: 2px dashed #b6d7a8;
+        }
+        .flow-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .flow-box {
+            background: #dff0d0;
+            border: 2px solid #7fa86a;
+            border-radius: 18px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            color: #1e3b0e;
+            min-width: 130px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+        .flow-box.decision {
+            background: #fff3cd;
+            border-color: #d4ac0d;
+            border-radius: 40px;
+            padding: 10px 28px;
+        }
+        .flow-arrow {
+            font-size: 1.6rem;
+            color: #6b8c5a;
+            line-height: 1;
+        }
+        .flow-label {
+            font-size: 0.75rem;
+            color: #5d7a4a;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .search-highlight {
+            background-color: #ffe066;
+            box-shadow: 0 0 0 2px #f0b400;
+            border-radius: 4px;
+        }
+        .note {
+            background: #fef9e7;
+            border-left: 6px solid #f1c40f;
+            padding: 12px 18px;
+            border-radius: 12px;
+            margin: 12px 0;
+            font-size: 0.92rem;
+            color: #3d3a1e;
+        }
+        .cite {
+            font-size: 0.78rem;
+            color: #6a7a5e;
+            border-top: 1px solid #d4e8c2;
+            margin-top: 12px;
+            padding-top: 10px;
+            font-style: italic;
+        }
+        .cite a {
+            color: #3f7e2a;
+            text-decoration: underline;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+        }
+        /* responsive */
+        @media (max-width: 600px) {
+            .bug-container { padding: 16px; }
+            h1 { font-size: 1.7rem; }
+            .toolbar { flex-direction: column; align-items: stretch; padding: 15px; }
+            .btn { justify-content: center; }
+            .flow-box { min-width: 90px; font-size: 0.78rem; padding: 8px 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="bug-container" id="app">
+
+    <h1>
+        🐞 Melioidosis Quick Guide
+        <small>for anaesthetists & intensivists</small>
+    </h1>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px;">
+        <span class="bug-badge">🐜 Bug's Life edition</span>
+        <span class="bug-badge" style="background: #d4e8c2; border-color: #7fa86a;">NAG 2026</span>
+    </div>
+
+    <!-- Toolbar: search + collapse/expand -->
+    <div class="toolbar">
+        <input type="text" id="searchInput" placeholder="🔍 Search clinical notes, drugs, doses…" autocomplete="off">
+        <button class="btn" id="clearSearchBtn" title="Clear search">✖ Clear</button>
+        <button class="btn btn-primary" id="expandAllBtn">🐛 Expand all</button>
+        <button class="btn" id="collapseAllBtn">🍃 Collapse all</button>
+    </div>
+
+    <!-- ==================== SECTIONS ==================== -->
+
+    <!-- 1. Clinical Presentation -->
+    <div class="section" data-section="clinical">
+        <div class="section-header" onclick="toggleSection(this)">
+            <span>🩺 Clinical Presentation &amp; Suspicion</span>
+            <span class="icon">▾</span>
+        </div>
+        <div class="section-content">
+            <p><strong>Incubation</strong> 1–21 days (mean 9 days); latent up to 62 years. Asymptomatic seroconversion common (up to 50% in endemic areas).</p>
+            <p><strong>Common presentations:</strong> Community‑acquired pneumonia (commonest), septicaemia, multiple abscesses (liver, spleen, prostate), septic arthritis, skin/soft tissue infection.</p>
+            <p><strong>When to suspect acute melioidosis:</strong></p>
+            <ul style="margin-left: 20px; margin-bottom: 10px;">
+                <li>Residence/work in endemic area (Jengka, Maran, Jerantut, FELDA settlements).</li>
+                <li>Diabetes mellitus (most common predisposing factor).</li>
+                <li>High‑grade fever (acute or prolonged).</li>
+                <li>History of exposure to contaminated dust, soil, or water.</li>
+                <li>Progressive pneumonia not responding to common antibiotics (mortality &gt;50%).</li>
+                <li>Hepatomegaly and/or splenomegaly – suspect multiple abscesses.</li>
+            </ul>
+            <div class="note">
+                <strong>⚠️ Warning signs:</strong> Acute high‑grade fever, systemic symptoms (nausea, poor appetite, lethargy), cough (productive or non‑productive), difficulty breathing. These indicate severe disease — discuss with physician.
+            </div>
+            <p><strong>Paediatric notes:</strong> Co‑morbidity less common (10–20%). Localised infection (head/neck, parotid) common; septic shock in 38.4% of septicaemic children, mortality 80%.</p>
+            <div class="cite">Source: Pahang Melioidosis Guideline, Sections 5.0–5.3.</div>
+        </div>
+    </div>
+
+    <!-- 2. Investigations -->
+    <div class="section" data-section="investigations">
+        <div class="section-header" onclick="toggleSection(this)">
+            <span>🔬 Investigations &amp; Sampling</span>
+            <span class="icon">▾</span>
+        </div>
+        <div class="section-content">
+            <p><strong>Radiology:</strong> CXR, USG abdomen, CT scan (indicated for cerebral abscess, prostatic abscess).</p>
+            <p><strong>Laboratory:</strong> FBC, UFEME, renal/liver function, blood sugar. Blood cultures ×2 (different sites, before antibiotics). Urine culture, cultures from abscess/joint/CSF/sputum/throat. PCR for blood, body secretions, urine.</p>
+            <p><strong>Serology (IFAT IgM):</strong> Positive ≥1:80 in endemic area. Asymptomatic titre up to 1:160 may not be significant but requires follow‑up. All specimens analysed at IMR.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Specimen</th><th>Container</th><th>Volume</th><th>Remarks</th></tr></thead>
+                    <tbody>
+                        <tr><td>Blood (culture)</td><td>Blood culture bottle</td><td>8–10 mL adult / 1–3 mL paediatric</td><td>Send immediately; do not refrigerate</td></tr>
+                        <tr><td>Respiratory (sputum)</td><td>Sterile container</td><td>N/A</td><td>Send immediately; if delayed, 4–8 °C within 24 h</td></tr>
+                        <tr><td>Pus</td><td>Sterile container</td><td>3 mL</td><td>Send immediately; do not refrigerate</td></tr>
+                        <tr><td>Tissue</td><td>Sterile container</td><td>N/A</td><td>Do not add formalin; send immediately</td></tr>
+                        <tr><td>Wound swab</td><td>Stuart or Amies transport media</td><td>N/A</td><td>Send immediately; do not refrigerate</td></tr>
+                        <tr><td>Urine</td><td>Sterile/boric acid container</td><td>25 mL (boric acid); smaller volume ok for sterile</td><td>Refrigerate at 4–8 °C if sterile container</td></tr>
+                        <tr><td>CSF</td><td>Sterile container</td><td>3–5 mL</td><td>Send immediately; do not refrigerate</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note">All culture specimens from district hospitals must be sent to HoSHAS or HTAA. Serology (IFAT) and PCR are analysed at IMR.</div>
+            <div class="cite">Source: Pahang Melioidosis Guideline, Section 6.0.</div>
+        </div>
+    </div>
+
+    <!-- 3. Treatment – Adult (NAG 2026) -->
+    <div class="section" data-section="treatment-adult">
+        <div class="section-header" onclick="toggleSection(this)">
+            <span>💊 Treatment – Adult (NAG 2026)</span>
+            <span class="icon">▾</span>
+        </div>
+        <div class="section-content">
+            <p><strong>Intensive Phase</strong></p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Scenario</th><th>Drug</th><th>Dose</th></tr></thead>
+                    <tbody>
+                        <tr><td>Mild to moderate (non‑neurological)</td><td>Ceftazidime</td><td>2 g IV q6h</td></tr>
+                        <tr><td>Severe (persistent bacteraemia or severe sepsis)</td><td>Meropenem <em>or</em> Imipenem</td><td>Meropenem 1 g IV q8h <br> Imipenem 50 mg/kg/24h IV q6h (max 4 g/day; usual 500 mg IV q6h–1 g q6–8h)</td></tr>
+                        <tr><td>Neuromelioidosis, septic shock requiring ICU with augmented renal clearance</td><td>Meropenem</td><td>2 g IV q8h</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>Adjunctive Trimethoprim/Sulphamethoxazole (TMP/SMX):</strong> May add for neurological, osteomyelitis, septic arthritis, genitourinary (including prostatic abscess), and skin/soft tissue infections. Dosing: &lt;40 kg: 160/800 mg PO q12h; 40–60 kg: 240/1200 mg PO q12h; &gt;60 kg: 320/1600 mg PO q12h. Consider de‑escalation to ceftazidime once stable. Graded dosing (for &gt;60 kg): Day 1–2: 40/200 mg q12h; Day 3–4: 80/400 mg q12h; Day 5–6: 160/800 mg q12h; Day 7–8: 240/1200 mg q12h; Day 9 onwards: 320/1600 mg q12h. Full dose immediately for neurological melioidosis or critically ill with multifocal abscess. For &lt;60 kg or renal impairment, consult ID physician. Cessation of IV therapy and start of eradication phase only once full planned TMP/SMX dose is reached.</p>
+            <p><strong>Duration of intensive therapy:</strong> Skin/soft tissue or mild pneumonia: <strong>2 weeks</strong>; Bacteraemia with no foci: <strong>2–4 weeks</strong>; Complicated pneumonia, prostatic, deep‑seated foci, septic arthritis: <strong>4–6 weeks</strong>; Osteomyelitis: <strong>6 weeks</strong>; Neurologic/CNS or arterial infection (e.g., mycotic aneurysm): <strong>8 weeks</strong>.</p>
+            <p><strong>Eradication / Maintenance Therapy</strong></p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Drug</th><th>Dose</th><th>Duration</th></tr></thead>
+                    <tbody>
+                        <tr><td>Trimethoprim/Sulphamethoxazole (preferred)</td><td>&lt;40 kg: 160/800 mg PO q12h <br> 40–60 kg: 240/1200 mg PO q12h <br> &gt;60 kg: 320/1600 mg PO q12h</td><td>Osteomyelitis, neurologic/CNS: 24 weeks <br> Others: minimum 12 weeks</td></tr>
+                        <tr><td>Amoxicillin/clavulanate (alternative)</td><td>&lt;60 kg: 1250 mg (2 tabs of 625 mg) PO q8h <br> &gt;60 kg: 1875 mg (3 tabs of 625 mg) PO q8h</td><td>Same as above</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note"><strong>Monitoring &amp; precautions:</strong> Drainage of abscesses (prostatic, empyema, pericardium) should be attempted wherever appropriate. Counsel patients on adverse effects. Carbapenems are potentially neurotoxic; use with caution in renal impairment or CNS disorders.</div>
+            <div class="cite">Source: NAG 2026, Section 7.1–7.2 (lines 111–152).</div>
+        </div>
+    </div>
+
+    <!-- 4. Treatment – Paediatric -->
+    <div class="section" data-section="treatment-paeds">
+        <div class="section-header" onclick="toggleSection(this)">
+            <span>🧒 Treatment – Paediatric</span>
+            <span class="icon">▾</span>
+        </div>
+        <div class="section-content">
+            <p><strong>Intensive Phase</strong> (at least 2 weeks; 4–8 weeks for deep‑seated infection)</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Drug</th><th>Dose</th></tr></thead>
+                    <tbody>
+                        <tr><td>Ceftazidime</td><td>50 mg/kg/dose IV 6–8 hourly</td></tr>
+                        <tr><td>Imipenem <em>or</em> Meropenem</td><td>25 mg/kg/dose IV 6–8 hourly (life‑threatening cases)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>Eradication / Maintenance Therapy</strong> (total 20 weeks)</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Drug</th><th>Dose</th></tr></thead>
+                    <tbody>
+                        <tr><td>Amoxicillin/Clavulanate</td><td>20 mg/kg/dose (amoxicillin component) PO 8 hourly</td></tr>
+                        <tr><td colspan="2"><strong>Alternative for children &gt; 8 years:</strong> Co‑trimoxazole (TMP 8 mg/kg/day + SMX 40 mg/kg/day) PLUS Doxycycline (4 mg/kg/day in 2 divided doses)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cite">Source: Pahang Melioidosis Guideline, Section 7.2.3; NAG 2026.</div>
+        </div>
+    </div>
+
+    <!-- 5. Simplified Algorithm Diagram -->
+    <div class="section" data-section="algorithm">
+        <div class="section-header" onclick="toggleSection(this)">
+            <span>📋 Simplified Algorithm – Exposed Person from Outbreak Area</span>
+            <span class="icon">▾</span>
+        </div>
+        <div class="section-content">
+            <div class="flow-diagram">
+                <div class="flow-box">Exposed person from outbreak area</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-box decision">Fever?</div>
+                <div class="flow-row">
+                    <div class="flow-label">No →</div>
+                    <div class="flow-box">Serology (epidemiological study)</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">End</div>
+                </div>
+                <div class="flow-arrow">↓ Yes</div>
+                <div class="flow-box decision">Diabetic?</div>
+                <div class="flow-row">
+                    <div class="flow-label">No →</div>
+                    <div class="flow-box">Routine bloods, CXR, Blood C&amp;S ×2</div>
+                </div>
+                <div class="flow-arrow">↓ Yes</div>
+                <div class="flow-box" style="background: #d4e8c2;">Routine bloods · CXR · Blood C&amp;S ×2 · USG Abdomen · CT‑Scan if indicated · Culture from other sites</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-box decision">Positive culture for melioidosis?</div>
+                <div class="flow-row">
+                    <div class="flow-label">No →</div>
+                    <div class="flow-box">Blood PCR if clinically strongly suggestive</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box decision">PCR positive?</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">Yes → Continue treatment</div>
+                </div>
+                <div class="flow-row" style="margin-top: 4px;">
+                    <div class="flow-label">No →</div>
+                    <div class="flow-box">Not melioidosis, treat as other infection</div>
+                </div>
+            </div>
+            <div class="cite">Simplified from Appendix 3, Pahang Melioidosis Guideline.</div>
+        </div>
+    </div>
+
+    <!-- 6. Public Health & Prophylaxis -->
+    <div class="section" data-section="public-health">
+        <div class="section-header" onclick="toggleSection(this)">
+            <span>🏥 Public Health &amp; Prophylaxis</span>
+            <span class="icon">▾</span>
+        </div>
+        <div class="section-content">
+            <p><strong>Notification:</strong> Melioidosis is not notifiable under Act 342, but Pahang State Health Department mandates administrative notification using Appendix 7 and registration in the Pahang melioidosis registry.</p>
+            <p><strong>Case definition:</strong> Clinical: fever and/or pneumonia and/or single/multiple abscesses AND predisposing factors (esp. diabetes) AND history of exposure. Confirmed: positive culture or PCR or four‑fold rise in serology.</p>
+            <p><strong>Post‑exposure prophylaxis:</strong> Co‑trimoxazole 2–4 tabs BD for 3 weeks within 24 hours of high‑probability exposure. Amoxicillin/clavulanate can be used if intolerant.</p>
+            <p><strong>Outbreak definition:</strong> &gt;1 confirmed case with epidemiological link within 21 days. Report within 24 hours to district health office / CPRC.</p>
+            <div class="note"><strong>Co‑infection note:</strong> Leptospirosis and scrub typhus are common in endemic areas. Add Doxycycline to anti‑melioidosis antibiotics if co‑infection strongly suspected.</div>
+            <div class="cite">Source: Pahang Melioidosis Guideline, Sections 8.0–9.2.</div>
+        </div>
+    </div>
+
+    <!-- 7. Follow‑up & Relapse -->
+    <div class="section" data-section="followup">
+        <div class="section-header" onclick="toggleSection(this)">
+            <span>🔄 Follow‑up &amp; Relapse Monitoring</span>
+            <span class="icon">▾</span>
+        </div>
+        <div class="section-content">
+            <p><strong>Adult:</strong> Monitor clinically and radiologically. Follow‑up at least 5 years. Warn about lifelong risk of relapse. During eradication phase (20 weeks) review every 8 weeks; check diabetic control, weight, appetite, temperature, CXR (if pneumonia), USG/CT (if abscesses), TWBC/ESR/CRP. Prolonged fever ≥5 days → check compliance, blood culture.</p>
+            <p><strong>Paediatric:</strong> Total follow‑up 5 years if asymptomatic. During maintenance: 1–2 monthly at hospital with paediatrician. After completion: 4–6 monthly for 2 years (hospital), then 6–12 monthly for 3 years (nearest Klinik Kesihatan). Monitor for relapse and late complications.</p>
+            <div class="cite">Source: Pahang Melioidosis Guideline, Section 7.4.</div>
+        </div>
+    </div>
+
+    <!-- footer citations -->
+    <div style="margin-top: 30px; padding-top: 16px; border-top: 3px dotted #b6d7a8; font-size: 0.82rem; color: #5d7a4a;">
+        <p><strong>Primary sources:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Pahang State Health Department. <em>Guidelines for Clinical and Public Health Management of Melioidosis in Pahang.</em> (PDF provided).</li>
+            <li>National Antimicrobial Guideline (NAG) 2026 – Melioidosis section, Ministry of Health Malaysia. <a href="https://sites.google.com/moh.gov.my/nag/contents/section-a-adult/a16-tropical-infections" target="_blank" rel="noopener">https://sites.google.com/moh.gov.my/nag/contents/section-a-adult/a16-tropical-infections</a> (Accessed 2026).</li>
+        </ul>
+        <p style="margin-top: 8px;">This quick reference is for healthcare professionals. Always refer to full guidelines for complete information.</p>
+    </div>
+
+</div>
+
+<script>
+    // -------- Collapsible sections --------
+    function toggleSection(header) {
+        const section = header.closest('.section');
+        const content = section.querySelector('.section-content');
+        const icon = header.querySelector('.icon');
+        const isHidden = content.classList.contains('hidden');
+        if (isHidden) {
+            content.classList.remove('hidden');
+            header.classList.remove('collapsed');
+            icon.textContent = '▾';
+        } else {
+            content.classList.add('hidden');
+            header.classList.add('collapsed');
+            icon.textContent = '▸';
+        }
+    }
+
+    // expand all / collapse all
+    document.getElementById('expandAllBtn').addEventListener('click', function() {
+        document.querySelectorAll('.section-content').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.section-header').forEach(el => el.classList.remove('collapsed'));
+        document.querySelectorAll('.section-header .icon').forEach(el => el.textContent = '▾');
+    });
+
+    document.getElementById('collapseAllBtn').addEventListener('click', function() {
+        document.querySelectorAll('.section-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.section-header').forEach(el => el.classList.add('collapsed'));
+        document.querySelectorAll('.section-header .icon').forEach(el => el.textContent = '▸');
+    });
+
+    // -------- Search with highlight --------
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    let highlightRanges = [];
+
+    function removeHighlights() {
+        document.querySelectorAll('.search-highlight').forEach(el => {
+            const parent = el.parentNode;
+            parent.replaceChild(document.createTextNode(el.textContent), el);
+            parent.normalize();
+        });
+        highlightRanges = [];
+    }
+
+    function highlightTextNodes(node, term) {
+        if (node.nodeType === 3) { // text node
+            const text = node.textContent;
+            const lowerText = text.toLowerCase();
+            const lowerTerm = term.toLowerCase();
+            let startIndex = 0;
+            let index;
+            const fragments = [];
+            while ((index = lowerText.indexOf(lowerTerm, startIndex)) !== -1) {
+                if (index > startIndex) {
+                    fragments.push(document.createTextNode(text.substring(startIndex, index)));
+                }
+                const mark = document.createElement('span');
+                mark.className = 'search-highlight';
+                mark.textContent = text.substring(index, index + term.length);
+                fragments.push(mark);
+                startIndex = index + term.length;
+            }
+            if (startIndex < text.length) {
+                fragments.push(document.createTextNode(text.substring(startIndex)));
+            }
+            if (fragments.length > 0) {
+                const parent = node.parentNode;
+                const nextSibling = node.nextSibling;
+                fragments.forEach(f => parent.insertBefore(f, nextSibling));
+                parent.removeChild(node);
+            }
+        } else if (node.nodeType === 1 && node.childNodes && !/(script|style|textarea)/i.test(node.tagName)) {
+            // recurse into element children (avoid input, textarea, script, style)
+            Array.from(node.childNodes).forEach(child => highlightTextNodes(child, term));
+        }
+    }
+
+    function performSearch() {
+        removeHighlights();
+        const term = searchInput.value.trim();
+        if (term.length < 2) return;
+
+        // search only within section-content (to avoid headers and UI)
+        document.querySelectorAll('.section-content').forEach(container => {
+            highlightTextNodes(container, term);
+        });
+
+        // open all sections that contain matches
+        document.querySelectorAll('.section').forEach(section => {
+            const content = section.querySelector('.section-content');
+            const hasMatch = content.querySelector('.search-highlight') !== null;
+            if (hasMatch) {
+                content.classList.remove('hidden');
+                const header = section.querySelector('.section-header');
+                header.classList.remove('collapsed');
+                header.querySelector('.icon').textContent = '▾';
+            }
+        });
+    }
+
+    // Debounce search for performance
+    let timeoutId;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(performSearch, 300);
+    });
+
+    clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        removeHighlights();
+        // optionally keep sections expanded as they are
+    });
+
+    // initial: all sections open
+    window.addEventListener('load', function() {
+        document.querySelectorAll('.section-content').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.section-header').forEach(el => el.classList.remove('collapsed'));
+        document.querySelectorAll('.section-header .icon').forEach(el => el.textContent = '▾');
+    });
+
+    // also allow Enter key to trigger search immediately
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            clearTimeout(timeoutId);
+            performSearch();
+        }
+    });
+</script>
+</body>
+</html>
