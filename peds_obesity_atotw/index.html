@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paediatric Obesity — Anaesthesia Quick Reference (LEGO edition)</title>
+<meta name="description" content="Collapsible, searchable quick-reference for anaesthetists and intensivists: paediatric obesity, preoperative assessment, airway, drug dosing. Adapted from ATOTW 581.">
+<style>
+  :root{
+    --red:#D01012; --blue:#0055BF; --yellow:#F2CD37; --green:#00852B;
+    --orange:#E07000; --purple:#81007B; --teal:#00A3A3; --grey:#4A4A4A;
+    --ink:#1c1c1c; --paper:#f2f2ef;
+  }
+  *{box-sizing:border-box;}
+  html{font-size:16px;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    font-size:1rem; line-height:1.55;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(135deg,#D01012 0%,#a50d0f 100%);
+    color:#fff; padding:22px 16px 30px; position:relative; overflow:hidden;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background-image:radial-gradient(circle at 24px 18px, rgba(255,255,255,.10) 13px, transparent 13.5px);
+    background-size:64px 48px;
+  }
+  .hero-inner{position:relative; max-width:1080px; margin:0 auto; z-index:1;}
+  .stud-strip{
+    height:16px; margin:0 0 10px 6px;
+    background-image:radial-gradient(circle at 15px 10px, rgba(255,255,255,.55) 9px, transparent 9.5px);
+    background-size:38px 16px; background-repeat:repeat-x;
+    max-width:420px;
+  }
+  .hero h1{
+    margin:0; font-size:1.85rem; line-height:1.15; font-weight:900; letter-spacing:.3px;
+    text-shadow:0 2px 0 rgba(0,0,0,.18);
+  }
+  .hero .sub{margin:6px 0 0; font-size:1rem; font-weight:600; opacity:.95;}
+  .hero .src-line{margin:10px 0 0; font-size:.78rem; opacity:.8;}
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:60;
+    background:#fff; border-bottom:3px solid #e2e2dd;
+    padding:10px 14px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.07);
+  }
+  .toolbar .grow{flex:1 1 280px; min-width:170px; position:relative;}
+  input[type="search"]{
+    width:100%; padding:10px 34px 10px 12px; border:2px solid #d5d5cf; border-radius:9px;
+    font-size:.95rem; font-family:inherit; background:#fbfbf8; color:var(--ink);
+  }
+  input[type="search"]:focus{outline:none; border-color:var(--blue); background:#fff;
+    box-shadow:0 0 0 3px rgba(0,85,191,.15);}
+  .clear-btn{
+    position:absolute; right:6px; top:50%; transform:translateY(-50%);
+    border:none; background:transparent; font-size:1.1rem; cursor:pointer; color:#8a8a82;
+    padding:2px 6px; border-radius:6px; line-height:1;
+  }
+  .clear-btn:hover{background:#eee; color:#333;}
+
+  .btn{
+    border:none; border-radius:9px; padding:9px 13px; font-size:.82rem; font-weight:800;
+    font-family:inherit; cursor:pointer; color:#fff; background:var(--blue);
+    box-shadow:0 3px 0 rgba(0,0,0,.22); letter-spacing:.3px;
+    transition:transform .07s, box-shadow .07s;
+    white-space:nowrap;
+  }
+  .btn:active{transform:translateY(2px); box-shadow:0 1px 0 rgba(0,0,0,.22);}
+  .btn.green{background:var(--green);}
+  .btn.yellow{background:#F2CD37; color:#2b2000;}
+  .btn.grey{background:#6b6b66;}
+  .btn.small{padding:8px 10px; font-size:.85rem;}
+
+  .status{font-size:.78rem; font-weight:700; color:#555; padding-left:4px;}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1080px; margin:0 auto; padding:20px 14px 70px;}
+
+  /* ---------- LEGO BRICK SECTIONS ---------- */
+  details.brick{
+    position:relative; margin:30px 0 18px; scroll-margin-top:90px;
+  }
+  summary.brick-head{
+    position:relative; display:block; cursor:pointer; list-style:none;
+    background:var(--c); color:#fff;
+    padding:14px 46px 12px 16px;
+    border-radius:10px;
+    font-weight:800; font-size:1.06rem; letter-spacing:.2px;
+    box-shadow:0 4px 0 rgba(0,0,0,.18);
+    user-select:none;
+  }
+  summary.brick-head::-webkit-details-marker{display:none;}
+  summary.brick-head::marker{content:"";}
+  summary.brick-head::before{
+    content:""; position:absolute; left:14px; right:14px; top:-13px; height:14px;
+    background-image:radial-gradient(circle at 17px 10px, var(--c) 8px, transparent 8.5px);
+    background-size:34px 14px; background-repeat:repeat-x; pointer-events:none;
+  }
+  summary.brick-head.dark{color:#2b2000;}
+  summary.brick-head .chev{
+    position:absolute; right:15px; top:50%; transform:translateY(-50%);
+    font-size:1.05rem; opacity:.9; transition:transform .18s ease;
+  }
+  details[open] > summary.brick-head .chev{transform:translateY(-50%) rotate(90deg);}
+  details[open] > summary.brick-head{border-radius:10px 10px 0 0;}
+
+  .brick-body{
+    background:#fff; border:1px solid #e3e3dd; border-top:none;
+    border-radius:0 0 10px 10px; padding:16px 18px 20px;
+    box-shadow:0 6px 16px rgba(0,0,0,.06);
+    animation:fade .18s ease;
+  }
+  @keyframes fade{from{opacity:.4;} to{opacity:1;}}
+
+  /* ---------- CONTENT TYPOGRAPHY ---------- */
+  .brick-body h3{
+    font-size:1rem; margin:18px 0 6px; color:#111;
+    border-bottom:2px dotted #e2e2da; padding-bottom:4px;
+  }
+  .brick-body h3:first-child{margin-top:0;}
+  .brick-body h4{font-size:.94rem; margin:14px 0 4px; color:#222;}
+  .brick-body p{margin:8px 0;}
+  .brick-body ul{margin:6px 0 12px; padding-left:20px;}
+  .brick-body li{margin:5px 0;}
+  .brick-body li > ul{margin:4px 0;}
+  strong{color:#0b0b0b;}
+  .lead{font-size:.95rem; color:#333;}
+
+  /* ---------- CALLOUTS ---------- */
+  .callout{
+    border-left:6px solid var(--c,#0055BF); background:#fbfbf7;
+    padding:10px 14px; border-radius:0 9px 9px 0; margin:12px 0; font-size:.93rem;
+  }
+  .callout.warn{border-color:var(--red); background:#fff5f5;}
+  .callout.tip{border-color:var(--green); background:#f2fbf5;}
+  .callout.blue{border-color:var(--blue); background:#f3f7fd;}
+  .callout p:first-child{margin-top:0;}
+  .callout p:last-child{margin-bottom:0;}
+  .callout .tag{
+    display:inline-block; font-size:.7rem; font-weight:900; letter-spacing:.6px;
+    text-transform:uppercase; padding:1px 7px; border-radius:999px; margin-right:6px;
+    background:var(--red); color:#fff; vertical-align:1px;
+  }
+  .callout.tip .tag{background:var(--green);}
+  .callout.blue .tag{background:var(--blue);}
+
+  /* ---------- TABLES ---------- */
+  .table-wrap{
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    margin:12px 0 16px; border:1px solid #e0e0da; border-radius:9px;
+    background:#fff;
+  }
+  table{border-collapse:collapse; width:100%; min-width:520px; font-size:.87rem;}
+  thead th{
+    background:#f4f4ef; text-align:left; padding:9px 11px; font-weight:800;
+    border-bottom:2px solid #dcdcd4; color:#222; white-space:nowrap;
+  }
+  tbody td{padding:8px 11px; border-bottom:1px solid #efefe9; vertical-align:top;}
+  tbody tr:nth-child(even){background:#fafaf7;}
+  tbody tr:hover{background:#fffbe6;}
+  tbody tr:last-child td{border-bottom:none;}
+  td:first-child{font-weight:700; color:#111;}
+  tr.group td{
+    background:#3a3a3a; color:#fff; font-weight:900; letter-spacing:.6px;
+    font-size:.74rem; text-transform:uppercase; padding:7px 11px;
+  }
+  tr.group:hover td{background:#3a3a3a;}
+
+  /* ---------- PILLS ---------- */
+  .pill{
+    display:inline-block; padding:1px 8px; border-radius:999px;
+    font-size:.72rem; font-weight:900; letter-spacing:.4px; white-space:nowrap;
+  }
+  .pill.tbw{background:var(--blue); color:#fff;}
+  .pill.ibw{background:var(--green); color:#fff;}
+  .pill.adj{background:#FE8A18; color:#2b1700;}
+
+  /* ---------- FIGURES ---------- */
+  figure.figure{
+    margin:14px 0; padding:12px 12px 8px; background:#fbfbf7;
+    border:2px dashed #d8d8d0; border-radius:11px;
+  }
+  figure.figure svg{display:block; width:100%; height:auto;}
+  figure.figure figcaption{
+    font-size:.78rem; color:#555; margin-top:8px; text-align:center; line-height:1.4;
+  }
+
+  /* ---------- SEARCH HIGHLIGHT ---------- */
+  mark.hl{
+    background:#ffe066; color:#111; padding:0 2px; border-radius:3px;
+    box-shadow:0 0 0 1px #f0c000 inset;
+  }
+  mark.hl:first-of-type{background:#ffd21e;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:#1f1f1f; color:#cfcfcf; padding:28px 18px 46px;
+    font-size:.84rem; line-height:1.6;
+  }
+  footer .inner{max-width:1080px; margin:0 auto;}
+  footer h2{
+    font-size:.95rem; color:#fff; margin:0 0 10px; text-transform:uppercase;
+    letter-spacing:1px;
+  }
+  footer a{color:#7fc4ff; word-break:break-word;}
+  footer .disc{margin-top:16px; padding-top:14px; border-top:1px solid #3a3a3a; font-size:.78rem; color:#9b9b9b;}
+
+  @media (max-width:560px){
+    .hero h1{font-size:1.45rem;}
+    .btn{padding:8px 10px; font-size:.76rem;}
+    .brick-body{padding:14px 13px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="stud-strip" aria-hidden="true"></div>
+    <h1>Paediatric Obesity</h1>
+    <p class="sub">Anaesthesia &amp; Critical Care — Quick Reference</p>
+    <p class="src-line">Adapted from ATOTW&nbsp;581 · Anaesthesia Tutorial of the Week · WFSA</p>
+  </div>
+</header>
+
+<div class="toolbar" role="search">
+  <div class="grow">
+    <input id="search" type="search" placeholder="Search the guide… (e.g. IBW, OSA, sugammadex, ramped)" aria-label="Search quick reference">
+    <button class="clear-btn" id="clearSearch" type="button" title="Clear search" aria-label="Clear search">✕</button>
+  </div>
+  <button class="btn green" id="expandAll" type="button">⊞ Expand all</button>
+  <button class="btn yellow" id="collapseAll" type="button">⊟ Collapse all</button>
+  <button class="btn grey small" id="fontDown" type="button" title="Decrease text size">A−</button>
+  <button class="btn grey small" id="fontUp" type="button" title="Increase text size">A+</button>
+  <button class="btn grey small" id="fontReset" type="button" title="Reset text size">A</button>
+  <span class="status" id="status" aria-live="polite"></span>
+</div>
+
+<main id="content">
+
+  <!-- ============ 1. KEY POINTS ============ -->
+  <details class="brick" open style="--c:#D01012">
+    <summary class="brick-head"><span class="chev">▶</span>1 · Key Points</summary>
+    <div class="brick-body">
+      <ul>
+        <li>Paediatric obesity is a growing problem.</li>
+        <li>The definition of childhood obesity uses <strong>age- and sex-specific BMI percentiles</strong> (WHO z-scores / CDC percentiles) — not absolute BMI numbers.</li>
+        <li>Children living with obesity are <strong>more likely than non-obese children to require surgical intervention</strong>.</li>
+        <li><strong>Anaesthesia-related critical incidents are more common</strong> in this population.</li>
+        <li>Certain drugs must be dosed according to either the <strong>ideal (IBW)</strong>, <strong>adjusted (AdjBW)</strong> or <strong>total (TBW)</strong> body weight.</li>
+        <li>The surgical encounter offers a potential <strong>teachable moment</strong> to address the causes of obesity and promote health.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 2. DEFINITIONS & AETIOLOGY ============ -->
+  <details class="brick" style="--c:#0055BF">
+    <summary class="brick-head"><span class="chev">▶</span>2 · Definitions &amp; Aetiology</summary>
+    <div class="brick-body">
+
+      <h3>Defining childhood obesity</h3>
+      <ul>
+        <li>Both the <strong>WHO</strong> and the <strong>US CDC</strong> classify BMI into <strong>Z&nbsp;scores</strong> and <strong>percentiles</strong> respectively, rather than absolute numbers.</li>
+        <li>Reason: children are still growing and <strong>BMI increases non-linearly with age and gender</strong>.</li>
+        <li>WHO BMI-for-age (5–19&nbsp;years) bands: <strong>z&nbsp;&gt;&nbsp;+2 = obesity</strong>, <strong>+1 to +2 = overweight</strong>, <strong>−2 to +1 = normal</strong>, <strong>−3 to −2 = thinness</strong>, <strong>&lt;&nbsp;−3 = severe thinness</strong>.</li>
+      </ul>
+
+      <figure class="figure">
+        <svg viewBox="0 0 660 330" role="img" aria-label="Simplified WHO BMI-for-age chart for children aged 5 to 19 years showing obesity, overweight, normal, thinness and severe thinness bands">
+          <rect width="660" height="330" fill="#ffffff"/>
+          <!-- grid -->
+          <g stroke="#e8e8e2" stroke-width="1">
+            <line x1="70" y1="20"  x2="620" y2="20"/>
+            <line x1="70" y1="72"  x2="620" y2="72"/>
+            <line x1="70" y1="124" x2="620" y2="124"/>
+            <line x1="70" y1="176" x2="620" y2="176"/>
+            <line x1="70" y1="228" x2="620" y2="228"/>
+            <line x1="70" y1="280" x2="620" y2="280"/>
+            <line x1="148.6" y1="20" x2="148.6" y2="280"/>
+            <line x1="227.1" y1="20" x2="227.1" y2="280"/>
+            <line x1="305.7" y1="20" x2="305.7" y2="280"/>
+            <line x1="384.3" y1="20" x2="384.3" y2="280"/>
+            <line x1="462.9" y1="20" x2="462.9" y2="280"/>
+            <line x1="541.4" y1="20" x2="541.4" y2="280"/>
+          </g>
+
+          <!-- zones -->
+          <text x="480" y="42"  font-size="13" font-weight="800" fill="#D01012" letter-spacing="1">OBESITY</text>
+          <text x="468" y="99"  font-size="12" font-weight="800" fill="#E07000" letter-spacing="1">OVERWEIGHT</text>
+          <text x="482" y="170" font-size="13" font-weight="800" fill="#00852B" letter-spacing="1">NORMAL</text>
+          <text x="548" y="223" font-size="10" font-weight="800" fill="#81007B" letter-spacing="1">THINNESS</text>
+          <text x="462" y="263" font-size="11" font-weight="800" fill="#4A4A4A" letter-spacing="1">SEVERE THINNESS</text>
+
+          <!-- curves -->
+          <polyline points="70,189 187.9,163 305.7,124 423.6,85 541.4,59 620,46"
+                    fill="none" stroke="#D01012" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="70,208.5 187.9,182.5 305.7,152.6 423.6,124 541.4,104.5 620,98"
+                    fill="none" stroke="#E07000" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="70,237.1 187.9,224.1 305.7,207.2 423.6,186.4 541.4,163 620,150"
+                    fill="none" stroke="#00852B" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="70,263.1 187.9,256.6 305.7,248.8 423.6,237.1 541.4,222.8 620,215"
+                    fill="none" stroke="#81007B" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="70,273.5 187.9,268.3 305.7,261.8 423.6,251.4 541.4,238.4 620,233.2"
+                    fill="none" stroke="#4A4A4A" stroke-width="3" stroke-linejoin="round"/>
+
+          <!-- z labels right -->
+          <text x="628" y="46"  font-size="11" font-weight="700" fill="#D01012">+2</text>
+          <text x="628" y="98"  font-size="11" font-weight="700" fill="#E07000">+1</text>
+          <text x="628" y="150" font-size="11" font-weight="700" fill="#00852B">0</text>
+          <text x="628" y="215" font-size="11" font-weight="700" fill="#81007B">−2</text>
+          <text x="628" y="233" font-size="11" font-weight="700" fill="#4A4A4A">−3</text>
+
+          <!-- axes -->
+          <line x1="70" y1="20" x2="70" y2="280" stroke="#8a8a82" stroke-width="1.5"/>
+          <line x1="70" y1="280" x2="620" y2="280" stroke="#8a8a82" stroke-width="1.5"/>
+
+          <!-- y labels -->
+          <g font-size="11" fill="#555" text-anchor="end">
+            <text x="62" y="24">32</text>
+            <text x="62" y="76">28</text>
+            <text x="62" y="128">24</text>
+            <text x="62" y="180">20</text>
+            <text x="62" y="232">16</text>
+            <text x="62" y="284">12</text>
+          </g>
+          <text x="20" y="150" font-size="11" fill="#555" transform="rotate(-90 20 150)" text-anchor="middle">BMI (kg/m²)</text>
+
+          <!-- x labels -->
+          <g font-size="11" fill="#555" text-anchor="middle">
+            <text x="70" y="298">5</text>
+            <text x="148.6" y="298">7</text>
+            <text x="227.1" y="298">9</text>
+            <text x="305.7" y="298">11</text>
+            <text x="384.3" y="298">13</text>
+            <text x="462.9" y="298">15</text>
+            <text x="541.4" y="298">17</text>
+            <text x="620" y="298">19</text>
+          </g>
+          <text x="345" y="320" font-size="11" fill="#555" text-anchor="middle">Age (years)</text>
+        </svg>
+        <figcaption>
+          <strong>Figure 1 (simplified).</strong> WHO BMI-for-age Z-score bands, 5–19&nbsp;years.
+          Schematic redrawing — <em>not for clinical measurement</em>. Source figure reference: WHO 2007 growth reference.
+        </figcaption>
+      </figure>
+
+      <h3>Aetiology</h3>
+      <ul>
+        <li>In the majority, obesity results from an <strong>interaction between predisposing genetic factors, environmental exposures, socio-economic and perinatal factors</strong>.</li>
+        <li>Common in high-income countries but has also spread to middle- and low-income areas — mostly due to an <strong>obesogenic environment</strong> of low-quality diet coupled with poor physical activity.</li>
+        <li>A smaller proportion is <strong>secondary</strong> to another disease process (e.g. hypothyroidism, Prader–Willi syndrome).</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Cause</th><th>Examples</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Perinatal</td><td>Maternal smoking causing intrauterine growth restriction; prolonged exposure to hyperglycaemia (e.g. gestational diabetes)</td></tr>
+            <tr><td>Dietary / lifestyle</td><td>High sodium, high polyunsaturated fats, low-glycaemic-index foods; sedentary behaviour; exposure to ultra-processed food advertising</td></tr>
+            <tr><td>Psychosocial</td><td>Sleep deprivation; lower socio-economic status</td></tr>
+            <tr><td>Genetic</td><td>Polygenic inheritance (most common); melanocortin-4 receptor defects</td></tr>
+            <tr><td>Secondary</td><td>Hypothyroidism; Prader–Willi syndrome</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead"><em>Table 3 (adapted for clarity).</em></p>
+    </div>
+  </details>
+
+  <!-- ============ 3. COMORBIDITIES ============ -->
+  <details class="brick" style="--c:#F2CD37">
+    <summary class="brick-head dark"><span class="chev">▶</span>3 · Comorbidities of Paediatric Obesity <span style="font-weight:600;opacity:.75">(Table 1)</span></summary>
+    <div class="brick-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th style="min-width:150px">Body system</th><th>Comorbidities</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Respiratory</td><td>Obstructive sleep apnoea · Asthma · Frequent upper respiratory infections</td></tr>
+            <tr><td>Cardiovascular</td><td>Hypertension · Cardiac dysfunction (systolic and diastolic) · Left ventricular hypertrophy · Atherosclerosis</td></tr>
+            <tr><td>Gastrointestinal</td><td>Gastro-oesophageal reflux disease · Steatosis (fatty liver)</td></tr>
+            <tr><td>Endocrine</td><td>Type 2 diabetes mellitus · Dyslipidaemia · Metabolic syndrome · Polycystic ovarian syndrome</td></tr>
+            <tr><td>Neurological</td><td>Idiopathic intracranial hypertension</td></tr>
+            <tr><td>Musculoskeletal</td><td>Slipped upper femoral epiphysis · Blount's disease (tibial growth disorder causing bowed leg)</td></tr>
+            <tr><td>Psychosocial</td><td>Poor school performance · Low self-esteem · Depression and anxiety · Social withdrawal</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 4. PREOPERATIVE ASSESSMENT BY SYSTEM ============ -->
+  <details class="brick" style="--c:#00852B">
+    <summary class="brick-head"><span class="chev">▶</span>4 · Preoperative Assessment — System by System</summary>
+    <div class="brick-body">
+
+      <h3>Airway</h3>
+      <ul>
+        <li>Adipose tissue around the face and neck may result in <strong>difficult bag-valve-mask (BVM) ventilation</strong>, exacerbated by macroglossia and obstructive sleep apnoea (OSA).</li>
+        <li>Difficult BVM ventilation: <strong>3.7%</strong> of children with obesity vs <strong>0.6%</strong> of children with healthy weight.</li>
+        <li><strong>Obesity is NOT associated with a higher rate of difficult intubation.</strong></li>
+      </ul>
+
+      <h3>Respiratory</h3>
+      <ul>
+        <li>Increased chest wall weight and abdominal girth impair respiratory mechanics → reduced chest compliance and <strong>functional residual capacity (FRC)</strong> → hypoventilation; worse in the supine position.</li>
+        <li>Atelectasis from increased closing capacity → shunt and air trapping.</li>
+        <li>Increased metabolic demands → <strong>poorly tolerant of apnoea, desaturates rapidly</strong> compared with healthy-weight children.</li>
+        <li>More susceptible to respiratory infections; higher prevalence of asthma.</li>
+        <li><strong>60% of children with obesity have OSA.</strong> Commonest cause is tonsillar hypertrophy (historically treated with adenotonsillectomy). Children with obesity also have redundant palatopharyngeal tissue and macroglossia — may be amenable to surgery but also likely to need ongoing non-invasive ventilation (NIV).</li>
+      </ul>
+
+      <h3>Cardiovascular</h3>
+      <ul>
+        <li>A child with obesity is <strong>3× more likely to develop hypertension</strong> than a child with healthy weight — due to increased blood flow required to supply a larger tissue mass, met by increased cardiac output and blood volume.</li>
+        <li>Structural cardiac lesions may arise from sustained hypertension.</li>
+        <li>Long-term consequences of OSA → <strong>pulmonary hypertension and right heart failure</strong>.</li>
+        <li>Hypertension + dyslipidaemia + T2DM → vascular disease and increased cardiovascular risk. <strong>All reversible with weight reduction.</strong></li>
+      </ul>
+
+      <div class="callout blue">
+        <p><span class="tag">Vitamin D</span>An inverse relationship exists between body mass and vitamin D in children with obesity — possibly from insufficient intake or sequestration of lipophilic 25-hydroxy-vitamin D in adipose tissue. Low circulating vitamin D is associated with insulin resistance, hypertension, dyslipidaemia and atherosclerosis. <strong>Supplementation does not appear to reverse these cardiovascular and metabolic effects.</strong></p>
+      </div>
+
+      <h3>Haematological</h3>
+      <ul>
+        <li>More likely to develop <strong>iron-deficiency anaemia</strong>.</li>
+        <li>Anaemia may exacerbate symptoms of comorbid cardiovascular or respiratory disease.</li>
+      </ul>
+
+      <h3>Gastrointestinal</h3>
+      <ul>
+        <li>Increased abdominal pressure contributes to <strong>gastro-oesophageal reflux disease (GORD)</strong> — present in up to <strong>20%</strong> of children with obesity.</li>
+        <li>Unclear whether this is associated with delayed gastric emptying and increased aspiration risk. Evidence is mixed and <strong>no specific guidelines exist to adjust standard fasting times</strong> for children with obesity.</li>
+      </ul>
+
+      <h3>Endocrine</h3>
+      <ul>
+        <li>At risk of <strong>prediabetes and T2DM</strong> — an aggressive disease in children with high treatment failure rates.</li>
+        <li>Early comorbidities and complications: non-alcoholic fatty liver disease, dyslipidaemia, polycystic ovary syndrome, nephropathy.</li>
+      </ul>
+
+      <h3>Psychology</h3>
+      <ul>
+        <li>Increased prevalence of mood, anxiety and other psychiatric disorders.</li>
+        <li>Poor school performance, low self-esteem and social withdrawal are more common.</li>
+        <li>Psychological disorders are also a <strong>secondary cause</strong> of obesity.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 5. SCREENING & CONSENT ============ -->
+  <details class="brick" style="--c:#E07000">
+    <summary class="brick-head"><span class="chev">▶</span>5 · Screening, Investigations &amp; Consent</summary>
+    <div class="brick-body">
+
+      <h3>Screening for comorbidities</h3>
+      <ul>
+        <li>Children living with obesity are at risk of multisystem comorbid disease — <strong>refer to relevant specialists</strong> for cardiovascular, endocrine or metabolic disorders.</li>
+        <li>Some paediatric surgical centres use standard preoperative blood tests for all children with obesity: <strong>FBC, urea and electrolytes, liver function, fasting glucose and HbA1c, thyroid function, fasting lipids, vitamin D level</strong>.</li>
+        <li><strong>Polysomnography (PSG)</strong> is recommended for all children with obesity presenting for adenotonsillectomy — but practically difficult, as waiting times can be long.</li>
+      </ul>
+
+      <h3>Suggested preoperative investigations (Table 4)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:130px">Comorbidity</th>
+              <th style="min-width:190px">History / symptoms</th>
+              <th style="min-width:150px">Examination signs</th>
+              <th style="min-width:170px">Investigations to consider</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Obstructive sleep apnoea</td><td>Snoring, daytime somnolence, observed apnoeic periods during sleep</td><td>Enlarged tonsils; mouth breathing</td><td>Polysomnography</td></tr>
+            <tr><td>Asthma</td><td>Difficulty in breathing, especially during URTI; chronic cough</td><td>Wheeze on chest auscultation</td><td>Peak flow; spirometry (older children)</td></tr>
+            <tr><td>Hypertension</td><td>BP above normal parameters for age</td><td>BP ≥ 90th percentile for age</td><td>Serial BP readings; ECG; echocardiography</td></tr>
+            <tr><td>Cardiac dysfunction</td><td>Chest pain; poor exercise tolerance compared with similar-aged children</td><td>Heart murmur</td><td>Serial BP readings; ECG; echocardiography</td></tr>
+            <tr><td>Anaemia</td><td>Restrictive diet; reduced exercise tolerance</td><td>Pallor</td><td>FBC; iron studies</td></tr>
+            <tr><td>Gastro-oesophageal reflux disease</td><td>Upper abdominal or chest pain; prone to vomiting or regurgitation</td><td>Epigastric tenderness</td><td>FBC (endoscopy only if haematemesis or iron-deficiency anaemia)</td></tr>
+            <tr><td>Hepatic steatosis</td><td>Abdominal discomfort</td><td>Hepatomegaly</td><td>Serum lipids; liver function tests; liver ultrasound</td></tr>
+            <tr><td>Type 2 diabetes mellitus</td><td>Fatigue</td><td>—</td><td>HbA1c; fasting glucose and insulin</td></tr>
+            <tr><td>Hypothyroidism</td><td>Recent weight gain; family history; fatigue; cold intolerance</td><td>—</td><td>Thyroid function tests</td></tr>
+            <tr><td>Vitamin D deficiency</td><td>Fatigue</td><td>Poor wound healing</td><td>Vitamin D level</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Consent for general anaesthesia</h3>
+      <ul>
+        <li>Discuss the <strong>increased risk of critical airway incidents</strong>: airway obstruction, difficult face-mask ventilation and bronchospasm.</li>
+        <li><strong>Language matters.</strong> Avoid stigmatising terminology such as <em>fat</em>, <em>obese</em> or <em>morbidly obese</em>. Use neutral terms such as <em>unhealthy weight</em> and <em>BMI</em>.</li>
+        <li>Place the person before the condition: <strong>"child living with obesity"</strong> is preferred over "obese child".</li>
+        <li>When discussing anaesthesia with young people, <strong>invite their input</strong>. The Society for Obesity and Bariatric Anaesthesia in the UK (SOBA&nbsp;UK) has produced a consent guideline for children living with obesity.</li>
+        <li>Prepare children and their caregivers for <strong>planned modifications to the induction process</strong>. For example, if planning to induce on the operating table, explain that they will directly enter the operating room and appreciate that this will likely be an unfamiliar environment.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 6. TEACHABLE MOMENT ============ -->
+  <details class="brick" style="--c:#81007B">
+    <summary class="brick-head"><span class="chev">▶</span>6 · The Teachable Moment</summary>
+    <div class="brick-body">
+      <ul>
+        <li>The concept of a <strong>teachable moment</strong> describes a situation likely to motivate positive behavioural change.</li>
+        <li>Children presenting for surgery — and their caregivers — are faced with the <strong>increased risk of anaesthesia caused by obesity</strong>. This can have a motivational effect.</li>
+        <li>Use the time between preoperative assessment and surgery as an opportunity for <strong>preoptimisation</strong>: improving diet, activity level and weight.</li>
+        <li>This might require referral to a <strong>specialist paediatric weight-loss service, exercise programme, or dietician</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7. INDUCTION ============ -->
+  <details class="brick" style="--c:#0055BF">
+    <summary class="brick-head"><span class="chev">▶</span>7 · Induction of Anaesthesia</summary>
+    <div class="brick-body">
+
+      <h3>Premedication</h3>
+      <ul>
+        <li>Premedication can be used, but consider <strong>dexmedetomidine or ketamine</strong> (which preserve respiratory drive), or a <strong>reduced dose of benzodiazepine</strong> in those with symptoms of OSA — the latter can cause hypoventilation.</li>
+      </ul>
+
+      <h3>Route of induction</h3>
+      <ul>
+        <li><strong>IV induction is recommended</strong> for children living with obesity due to the greater risk of difficult airway management.</li>
+        <li>However, <strong>IV access is more likely to be difficult</strong> — which can be distressing, especially if multiple attempts are required. Weigh risks and benefits of inhalational vs IV induction.</li>
+        <li>Assess venous access preoperatively, apply topical analgesia, and consider an <strong>ultrasound-guided approach</strong>. If opting for inhalational induction, consent for multiple attempts at vascular access under anaesthesia.</li>
+      </ul>
+
+      <div class="callout warn">
+        <p><span class="tag">Caution</span>IV induction frequently induces apnoea. A child with obesity will <strong>desaturate quickly once apnoeic</strong> — reduced FRC and higher metabolic rate. Desaturation may <strong>not be immediately reversible with BVM ventilation</strong>, because this is more challenging.</p>
+      </div>
+
+      <h3>Drug dosing at induction</h3>
+      <ul>
+        <li>Induction boluses of <strong>propofol and ketamine</strong> should be dosed according to <span class="pill ibw">IBW</span>.</li>
+        <li><strong>IBW</strong> is calculated from the child's height and the <strong>50th percentile BMI (BMI50)</strong> on a BMI chart for his or her age.</li>
+      </ul>
+
+      <h3>Inhalational induction</h3>
+      <ul>
+        <li>Can be used, but approach <strong>cautiously</strong> when difficult BVM ventilation is anticipated; inhalational induction has a <strong>slower onset</strong> in children with obesity.</li>
+        <li>Administer <strong>preoxygenation prior</strong> to inhalational induction.</li>
+        <li>Optimal positioning in a <strong>ramped position</strong> (using pillows, a shoulder roll, or both) will assist with ventilation.</li>
+        <li>Aim to keep the child <strong>spontaneously breathing until IV access has been secured</strong>.</li>
+        <li>A child with obesity and OSA may <strong>obstruct once anaesthetised</strong>, leading to desaturation and a light plane of anaesthesia — exacerbating difficult ventilation.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 8. AIRWAY & VENTILATION ============ -->
+  <details class="brick" style="--c:#D01012">
+    <summary class="brick-head"><span class="chev">▶</span>8 · Airway Management &amp; Ventilation</summary>
+    <div class="brick-body">
+
+      <h3>Difficult bag-valve-mask ventilation</h3>
+      <ul>
+        <li>Use an appropriately sized <strong>oropharyngeal airway</strong> and consider a <strong>2-person ventilation technique</strong>.</li>
+        <li>The opening pressure of the lower oesophageal sphincter is <strong>~20 cm H₂O</strong>. Ventilation pressures higher than this may distend the stomach with air → decreased pulmonary compliance → worse ventilation.</li>
+        <li>Decompress the stomach with an <strong>orogastric tube</strong> to remedy this.</li>
+        <li>Gentle pressure over the stomach can also dispel entrained air — but may cause <strong>regurgitation</strong> if the child has delayed gastric emptying or is not properly fasted.</li>
+      </ul>
+
+      <h3>Airway device choice</h3>
+      <div class="callout warn">
+        <p><span class="tag">Key</span>Even for minor procedures, it is considered safer to use an <strong>endotracheal tube (ETT)</strong> rather than a laryngeal mask airway (LMA) in children with obesity. An ETT protects the airway in the presence of GORD, whereas correct <strong>LMA sizing is often difficult</strong> in a child with obesity → inadequate seal, air in the stomach, increased aspiration risk.</p>
+      </div>
+
+      <h3>Ventilation strategy</h3>
+      <ul>
+        <li>Children with obesity are more likely to require <strong>positive pressure ventilation (PPV)</strong>; higher ventilation pressures may be needed due to reduced lung compliance.</li>
+        <li>Use <strong>PEEP</strong> to prevent basal collapse and compensate for reduced FRC.</li>
+        <li>Use <strong>pressure control ventilation</strong>, aiming for a tidal volume of <strong>6–8 mL/kg based on IBW</strong>, to limit barotrauma.</li>
+        <li>An ETT optimises conditions for PPV. If the child is spontaneously breathing via a supraglottic airway, use <strong>pressure support ventilation and PEEP to avoid hypotension</strong>.</li>
+      </ul>
+
+      <h3>Laryngoscopy &amp; supraglottic airways</h3>
+      <ul>
+        <li>Endotracheal intubation is <strong>not more difficult</strong> in children living with obesity — but obtaining <strong>optimal head positioning for laryngoscopy can be</strong>.</li>
+        <li><strong>Video laryngoscopy is recommended as the first-line technique.</strong></li>
+        <li>When a supraglottic airway is appropriate, consider a <strong>second-generation LMA</strong> and size it based on <span class="pill tbw">TBW</span>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 9. POSITIONING & EQUIPMENT ============ -->
+  <details class="brick" style="--c:#00852B">
+    <summary class="brick-head"><span class="chev">▶</span>9 · Positioning &amp; Equipment</summary>
+    <div class="brick-body">
+
+      <figure class="figure">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Schematic of the ramped position in a child: head on a green headrest, shoulder roll under the upper back, alignment line through nose, chin, external auditory meatus and sternal notch">
+          <rect width="640" height="300" fill="#ffffff"/>
+
+          <!-- ground -->
+          <line x1="20" y1="266" x2="620" y2="266" stroke="#cfcfc7" stroke-width="2"/>
+
+          <!-- shoulder roll (blue brick) -->
+          <rect x="205" y="232" width="185" height="34" rx="8" fill="#0055BF"/>
+          <rect x="220" y="222" width="24" height="12" rx="5" fill="#0055BF"/>
+          <rect x="262" y="222" width="24" height="12" rx="5" fill="#0055BF"/>
+          <rect x="304" y="222" width="24" height="12" rx="5" fill="#0055BF"/>
+          <rect x="346" y="222" width="24" height="12" rx="5" fill="#0055BF"/>
+
+          <!-- headrest (green brick) -->
+          <rect x="46" y="198" width="152" height="68" rx="8" fill="#00852B"/>
+          <rect x="60" y="188" width="24" height="12" rx="5" fill="#00852B"/>
+          <rect x="102" y="188" width="24" height="12" rx="5" fill="#00852B"/>
+          <rect x="144" y="188" width="24" height="12" rx="5" fill="#00852B"/>
+
+          <!-- torso -->
+          <path d="M 176 190 C 196 172 226 168 258 176 C 320 190 380 206 442 220 L 442 232 L 208 232 C 195 218 184 204 176 190 Z"
+                fill="#FFE9D8" stroke="#2b2b2b" stroke-width="2.5" stroke-linejoin="round"/>
+
+          <!-- head -->
+          <circle cx="140" cy="155" r="45" fill="#FFE9D8" stroke="#2b2b2b" stroke-width="2.5"/>
+          <path d="M 102 148 L 82 160 L 102 170" fill="#FFE9D8" stroke="#2b2b2b" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M 154 148 C 164 146 168 156 160 162" fill="none" stroke="#2b2b2b" stroke-width="2.5"/>
+          <circle cx="112" cy="142" r="3" fill="#2b2b2b"/>
+
+          <!-- alignment dashed line -->
+          <line x1="36" y1="162" x2="500" y2="162" stroke="#D01012" stroke-width="2.2" stroke-dasharray="9 6"/>
+
+          <!-- leader for anterior neck space -->
+          <line x1="250" y1="118" x2="212" y2="168" stroke="#555" stroke-width="1.4" stroke-dasharray="4 4"/>
+
+          <!-- labels -->
+          <text x="44" y="152" font-size="12" font-weight="800" fill="#D01012">Nose and chin aligned</text>
+          <text x="252" y="152" font-size="12" font-weight="800" fill="#D01012">EAM level with sternal notch</text>
+          <text x="256" y="114" font-size="12" font-weight="700" fill="#333">Anterior neck space open</text>
+          <text x="60" y="286" font-size="11" font-weight="700" fill="#00852B">Headrest</text>
+          <text x="214" y="286" font-size="11" font-weight="700" fill="#0055BF">Shoulder roll</text>
+        </svg>
+        <figcaption>
+          <strong>Figure 2 (simplified).</strong> The ramped position in a child for optimal airway management.
+          Head elevated on a headrest with a shoulder roll under the upper back so that the
+          <strong>external auditory meatus is level with the sternal notch</strong> and the anterior neck space stays open.
+        </figcaption>
+      </figure>
+
+      <h3>Positioning</h3>
+      <ul>
+        <li>In addition to the <strong>ramped position</strong> for induction, consider <strong>operating table extenders or straps</strong> to ensure the child can be safely and securely positioned throughout the procedure.</li>
+        <li>Use <strong>gel pads</strong> to cushion pressure points and reduce risk of neuropraxia or pressure damage.</li>
+        <li><strong>Check the maximal weight allowance</strong> for patient beds, trolleys and operating tables — especially in adolescents.</li>
+        <li>Consider <strong>inducing anaesthesia on the operating table</strong> — this reduces at least one patient transfer, likely safer for the patient and healthcare staff.</li>
+        <li>When transfers are unavoidable, use adjuncts such as <strong>patient slide boards, sliding sheets and hover mattresses</strong>. Request additional staff members to assist with transfers.</li>
+      </ul>
+
+      <div class="callout warn">
+        <p><span class="tag">Caution</span>Intraoperative changes in position may <strong>exacerbate the physiological changes caused by obesity</strong>. Supine, lithotomy or Trendelenburg positions amplify reductions in total lung volume, FRC and lung compliance — due to upward pressure of abdominal contents and impeded diaphragmatic excursion.</p>
+      </div>
+
+      <h3>Monitoring &amp; equipment</h3>
+      <ul>
+        <li>Use appropriately sized <strong>non-invasive blood pressure (NIBP) cuffs</strong>.</li>
+        <li>The <strong>forearm</strong> is an alternative to the upper arm for monitoring NIBP, or consider placing an <strong>invasive arterial line</strong> to ensure accurate monitoring.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 10. VTE PROPHYLAXIS ============ -->
+  <details class="brick" style="--c:#E07000">
+    <summary class="brick-head"><span class="chev">▶</span>10 · Venous Thromboembolism Prophylaxis</summary>
+    <div class="brick-body">
+      <ul>
+        <li>Most paediatric surgical patients are at <strong>low risk</strong> of developing VTE and therefore do not require thromboprophylaxis.</li>
+        <li>However, <strong>two peak incidences</strong> of VTE exist in children:
+          <ul>
+            <li>Age <strong>&lt; 2 years</strong> — associated with central venous catheters.</li>
+            <li>Adolescents <strong>&gt; 13 years</strong> — with other risk factors, including <strong>obesity</strong>.</li>
+          </ul>
+        </li>
+        <li>In adolescents, the risk factors of <strong>pregnancy, combined oral contraceptive pill and smoking</strong> become relevant.</li>
+      </ul>
+      <div class="callout tip">
+        <p><span class="tag">APAGBI</span>The Association of Paediatric Anaesthetists of Great Britain and Ireland recommends the use of <strong>anti-embolism stockings and intermittent pneumatic compression devices</strong> in children <strong>&gt; 13 years and &gt; 40 kg</strong> undergoing surgery lasting <strong>&gt; 60 minutes</strong>.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 11. ANALGESIA ============ -->
+  <details class="brick" style="--c:#81007B">
+    <summary class="brick-head"><span class="chev">▶</span>11 · Analgesia</summary>
+    <div class="brick-body">
+      <ul>
+        <li>Some evidence shows children with obesity and overweight are at risk of <strong>prolonged postoperative pain</strong>.</li>
+        <li>However, those with <strong>OSA are more sensitive to opioid-induced hypoventilation and airway obstruction</strong>.</li>
+        <li>Therefore, the use of opioid analgesia should be decided on an <strong>individual basis</strong>, weighing up the risks of hypoventilation and airway obstruction against uncontrolled pain.</li>
+        <li>An <strong>opioid patient-controlled analgesic</strong> can be used safely, with appropriate dose adjustments.</li>
+        <li><strong>Morphine</strong> is dosed according to <span class="pill ibw">IBW</span>; <strong>alfentanil and fentanyl</strong> according to <span class="pill adj">AdjBW</span>.</li>
+      </ul>
+
+      <h3>Opioid-sparing approach</h3>
+      <ul>
+        <li>Combine <strong>multimodal analgesia, regional anaesthesia and non-pharmacological techniques</strong> — such as parental presence in the postoperative care unit (PACU).</li>
+        <li>Regional analgesic techniques can provide excellent analgesia whilst reducing the overall requirement for opioids.</li>
+        <li>However, <strong>anatomical planes might be more difficult to visualise on ultrasound</strong> in a child with excess adipose tissue.</li>
+        <li><strong>Local anaesthetics should be dosed according to IBW.</strong></li>
+      </ul>
+
+      <div class="callout blue">
+        <p><span class="tag">Remember</span>Many analgesic drugs should be dose-adjusted in children with obesity, using either the calculated <strong>IBW</strong> or <strong>AdjBW</strong> — see the drug dosing table.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 12. EMERGENCE & RECOVERY ============ -->
+  <details class="brick" style="--c:#00A3A3">
+    <summary class="brick-head"><span class="chev">▶</span>12 · Emergence &amp; Recovery</summary>
+    <div class="brick-body">
+      <ul>
+        <li>As with induction, take extra care to <strong>optimise the conditions for safe emergence</strong>.</li>
+        <li>A <strong>ramped position</strong> is useful in optimising ventilation.</li>
+        <li>Increase the fraction of inspired oxygen to <strong>100% prior to emergence</strong>, aiming for an expired oxygen concentration <strong>&gt; 85%</strong>.</li>
+        <li>Insertion of a <strong>bite block or oropharyngeal airway prior to extubation</strong> can be useful and may avoid negative pressure pulmonary oedema.</li>
+        <li>Children with obesity should be <strong>fully awake prior to extubation</strong> to reduce the risk of airway obstruction.</li>
+        <li>If neuromuscular blockade has been used, <strong>confirm reversal prior to extubation</strong>. Reversal agents <strong>neostigmine and sugammadex are both dosed on TBW</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 13. WEIGHT CALCULATIONS ============ -->
+  <details class="brick" style="--c:#4A4A4A">
+    <summary class="brick-head"><span class="chev">▶</span>13 · Weight Calculations (Table 5)</summary>
+    <div class="brick-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th style="min-width:200px">Weight term</th><th>Formula</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>TBW — total body weight</td><td>Weight in kg (actual measured weight)</td></tr>
+            <tr><td>IBW — ideal body weight</td><td><strong>BMI50 × height (m²)</strong><br><span style="font-weight:400;color:#555">where BMI50 = 50th percentile BMI for the child's age (from a BMI chart)</span></td></tr>
+            <tr><td>AdjBW — adjusted body weight</td><td><strong>IBW + 0.35 × (TBW − IBW)</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <p><span class="tag">Legend</span>
+          <span class="pill tbw">TBW</span> total body weight &nbsp;·&nbsp;
+          <span class="pill ibw">IBW</span> ideal body weight &nbsp;·&nbsp;
+          <span class="pill adj">AdjBW</span> adjusted body weight
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 14. DRUG DOSING ============ -->
+  <details class="brick" style="--c:#D01012">
+    <summary class="brick-head"><span class="chev">▶</span>14 · Drug Dosing in Children Living with Obesity <span style="font-weight:600;opacity:.8">(Table 6)</span></summary>
+    <div class="brick-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th style="min-width:170px">Drug</th><th style="min-width:230px">Indication</th><th style="min-width:160px">Dose according to</th></tr>
+          </thead>
+          <tbody>
+            <tr class="group"><td colspan="3">Sedatives or hypnotics</td></tr>
+            <tr><td>Midazolam</td><td>Anxiolytic premedication</td><td><span class="pill tbw">TBW</span> (reduce by 50% in severe OSA)</td></tr>
+            <tr><td>Dexmedetomidine</td><td>Anxiolytic premedication (IN) · Induction bolus · Maintenance infusion</td><td><span class="pill adj">AdjBW</span></td></tr>
+            <tr><td>Propofol</td><td>Induction bolus · Maintenance infusion</td><td><span class="pill ibw">IBW</span>, <span class="pill adj">AdjBW</span></td></tr>
+            <tr><td>Ketamine</td><td>Induction bolus</td><td><span class="pill ibw">IBW</span></td></tr>
+
+            <tr class="group"><td colspan="3">Analgesics</td></tr>
+            <tr><td>Alfentanil</td><td>Analgesia</td><td><span class="pill adj">AdjBW</span></td></tr>
+            <tr><td>Fentanyl</td><td>Analgesia</td><td><span class="pill adj">AdjBW</span></td></tr>
+            <tr><td>Oxycodone</td><td>Analgesia</td><td><span class="pill adj">AdjBW</span></td></tr>
+            <tr><td>Remifentanil</td><td>Maintenance infusion</td><td><span class="pill adj">AdjBW</span></td></tr>
+            <tr><td>Morphine</td><td>Analgesia</td><td><span class="pill ibw">IBW</span></td></tr>
+            <tr><td>Paracetamol</td><td>Analgesia</td><td><span class="pill adj">AdjBW</span></td></tr>
+            <tr><td>Ibuprofen</td><td>Analgesia</td><td><span class="pill adj">AdjBW</span></td></tr>
+            <tr><td>Diclofenac</td><td>Analgesia</td><td><span class="pill adj">AdjBW</span></td></tr>
+
+            <tr class="group"><td colspan="3">Neuromuscular blocking or reversal agents</td></tr>
+            <tr><td>Atracurium or cisatracurium</td><td>Neuromuscular block</td><td><span class="pill ibw">IBW</span></td></tr>
+            <tr><td>Rocuronium</td><td>Neuromuscular block</td><td><span class="pill ibw">IBW</span></td></tr>
+            <tr><td>Vecuronium</td><td>Neuromuscular block</td><td><span class="pill ibw">IBW</span></td></tr>
+            <tr><td>Suxamethonium (IV or IM)</td><td>Neuromuscular block</td><td><span class="pill tbw">TBW</span></td></tr>
+            <tr><td>Neostigmine</td><td>Reversal of neuromuscular block</td><td><span class="pill tbw">TBW</span></td></tr>
+            <tr><td>Sugammadex</td><td>Reversal of neuromuscular block</td><td><span class="pill tbw">TBW</span></td></tr>
+
+            <tr class="group"><td colspan="3">Antimuscarinics</td></tr>
+            <tr><td>Atropine</td><td>Parasympathetic inhibition</td><td><span class="pill tbw">TBW</span></td></tr>
+            <tr><td>Glycopyrrolate</td><td>Parasympathetic inhibition</td><td><span class="pill tbw">TBW</span></td></tr>
+
+            <tr class="group"><td colspan="3">Antiemetics</td></tr>
+            <tr><td>Ondansetron</td><td>Antiemesis</td><td><span class="pill tbw">TBW</span></td></tr>
+            <tr><td>Dexamethasone</td><td>Antiemesis</td><td><span class="pill tbw">TBW</span></td></tr>
+
+            <tr class="group"><td colspan="3">Antimicrobials</td></tr>
+            <tr><td>Penicillins</td><td>Antimicrobial</td><td><span class="pill tbw">TBW</span></td></tr>
+            <tr><td>Cephalosporins</td><td>Antimicrobial</td><td><span class="pill tbw">TBW</span></td></tr>
+            <tr><td>Gentamicin</td><td>Antimicrobial</td><td><span class="pill adj">AdjBW</span></td></tr>
+
+            <tr class="group"><td colspan="3">Local anaesthetics</td></tr>
+            <tr><td>Lidocaine (± adrenaline)</td><td>Regional anaesthesia</td><td><span class="pill tbw">TBW</span></td></tr>
+            <tr><td>Bupivacaine</td><td>Regional anaesthesia</td><td><span class="pill ibw">IBW</span></td></tr>
+            <tr><td>Ropivacaine</td><td>Regional anaesthesia</td><td><span class="pill ibw">IBW</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <p><span class="tag">Check</span>The tutorial <em>text</em> states local anaesthetics should be dosed according to <strong>IBW</strong>, while the drug table lists lidocaine as <strong>TBW</strong>. Confirm against your local protocol and maximum dose limits.</p>
+      </div>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <h2>Source &amp; Attribution</h2>
+    <p>
+      <strong>Raphael M-C, et al.</strong> <em>Paediatric Obesity: Implications for Anaesthesia.</em>
+      ATOTW 581 — Anaesthesia Tutorial of the Week, World Federation of Societies of Anaesthesiologists (WFSA).
+      Published 6 October 2026. Edited by William F Powell Jr, MD MPH, Instructor in Anaesthesia,
+      Mass Eye and Ear, Harvard Medical School, Boston, MA, USA.
+    </p>
+    <p>
+      Original tutorial: <a href="https://resources.wfsahq.org/anaesthesia-tutorial-of-the-week/" target="_blank" rel="noopener">resources.wfsahq.org/anaesthesia-tutorial-of-the-week/</a>
+    </p>
+    <p>
+      Licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License —
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">creativecommons.org/licenses/by-nc-nd/4.0/</a>
+    </p>
+    <p class="disc">
+      <strong>Disclaimer.</strong> The material and content provided has been set out in good faith for information and
+      educational purposes only and is not intended as a substitute for the active involvement and judgement of
+      appropriate professional medical and technical personnel. Neither the authors nor other parties involved in its
+      production make any representations or give any warranties with respect to its accuracy, applicability or
+      completeness, nor is any responsibility accepted for any adverse effects arising as a result of reading or viewing
+      this material. Any and all liability directly or indirectly arising from the use of this material is disclaimed
+      without reservation. Figures have been redrawn in simplified schematic form for web display and are not for
+      clinical measurement. Always follow local guidelines and protocols.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- TEXT SIZE ---------------- */
+  var root = document.documentElement;
+  var size = 16;
+  function setSize(v){
+    size = Math.min(24, Math.max(12, v));
+    root.style.fontSize = size + "px";
+  }
+  document.getElementById("fontUp").addEventListener("click", function(){ setSize(size + 1); });
+  document.getElementById("fontDown").addEventListener("click", function(){ setSize(size - 1); });
+  document.getElementById("fontReset").addEventListener("click", function(){ setSize(16); });
+
+  /* ---------------- EXPAND / COLLAPSE ---------------- */
+  var bricks = function(){ return document.querySelectorAll("details.brick"); };
+  document.getElementById("expandAll").addEventListener("click", function(){
+    bricks().forEach(function(d){ d.open = true; });
+  });
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    bricks().forEach(function(d){ d.open = false; });
+  });
+
+  /* ---------------- SEARCH ---------------- */
+  var content = document.getElementById("content");
+  var input   = document.getElementById("search");
+  var statusEl= document.getElementById("status");
+  var clearBtn= document.getElementById("clearSearch");
+  var timer   = null;
+
+  function clearMarks(){
+    var marks = content.querySelectorAll("mark.hl");
+    for (var i = 0; i < marks.length; i++){
+      var m = marks[i];
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function collectTextNodes(term){
+    var nodes = [];
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p || !p.closest) return NodeFilter.FILTER_REJECT;
+        if (p.closest("script, style, mark")) return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().indexOf(term) !== -1
+          ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    return nodes;
+  }
+
+  function highlight(term){
+    var nodes = collectTextNodes(term);
+    var total = 0;
+    nodes.forEach(function(node){
+      var text  = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag  = document.createDocumentFragment();
+      var i = 0, localCount = 0, idx;
+
+      while ((idx = lower.indexOf(term, i)) !== -1){
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mk = document.createElement("mark");
+        mk.className = "hl";
+        mk.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mk);
+        i = idx + term.length;
+        localCount++;
+      }
+      if (localCount === 0) return;
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      node.parentNode.replaceChild(frag, node);
+      total += localCount;
+    });
+    return total;
+  }
+
+  function openAncestors(){
+    var marks = content.querySelectorAll("mark.hl");
+    var sections = {};
+    for (var i = 0; i < marks.length; i++){
+      var d = marks[i].closest("details");
+      while (d){
+        if (!d.open) d.open = true;
+        sections[d.querySelector("summary").textContent.trim()] = true;
+        d = d.parentElement ? d.parentElement.closest("details") : null;
+      }
+    }
+    return Object.keys(sections).length;
+  }
+
+  function runSearch(){
+    var q = input.value.trim();
+    clearMarks();
+    if (q.length < 2){
+      statusEl.textContent = q.length === 0 ? "" : "Type at least 2 characters";
+      return;
+    }
+    var count = highlight(q.toLowerCase());
+    if (count === 0){
+      statusEl.textContent = "No matches for \u201C" + q + "\u201D";
+      return;
+    }
+    var sections = openAncestors();
+    statusEl.textContent = count + (count === 1 ? " match" : " matches") +
+                           (sections ? " in " + sections + (sections === 1 ? " section" : " sections") : "");
+  }
+
+  input.addEventListener("input", function(){
+    clearTimeout(timer);
+    timer = setTimeout(runSearch, 160);
+  });
+
+  input.addEventListener("keydown", function(e){
+    if (e.key === "Escape"){ input.value = ""; runSearch(); input.blur(); }
+  });
+
+  clearBtn.addEventListener("click", function(){
+    input.value = "";
+    clearMarks();
+    statusEl.textContent = "";
+    input.focus();
+  });
+
+  /* ---------------- KEYBOARD SHORTCUTS ---------------- */
+  document.addEventListener("keydown", function(e){
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f"){
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
