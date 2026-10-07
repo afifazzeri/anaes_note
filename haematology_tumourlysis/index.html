@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICU Quick Ref: Haematological Malignancy & TLS · Lego theme</title>
+  <style>
+    /* Lego-inspired theme */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f4f1e8;
+      background-image: radial-gradient(circle, #e0d6c8 1px, transparent 1px);
+      background-size: 24px 24px;
+      font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+      color: #1e1e1e;
+      padding: 1.5rem 1rem 3rem;
+      line-height: 1.5;
+      font-size: var(--base-font-size, 16px);
+    }
+
+    /* Lego brick header */
+    .lego-header {
+      max-width: 1200px;
+      margin: 0 auto 1.5rem;
+      background: #d01012;
+      border-radius: 20px 20px 8px 8px;
+      padding: 1.2rem 1.5rem 0.8rem;
+      box-shadow: 0 8px 0 #8b0a0c, 0 6px 12px rgba(0,0,0,0.2);
+      position: relative;
+      border-bottom: 6px solid #8b0a0c;
+    }
+
+    .lego-header::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      width: 80px;
+      height: 16px;
+      background: #f5c542;
+      border-radius: 10px 10px 4px 4px;
+      box-shadow: 0 4px 0 #c79a1f;
+    }
+
+    .lego-header::after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      right: 40px;
+      width: 60px;
+      height: 16px;
+      background: #f5c542;
+      border-radius: 10px 10px 4px 4px;
+      box-shadow: 0 4px 0 #c79a1f;
+    }
+
+    .lego-header h1 {
+      color: white;
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-shadow: 2px 2px 0 #8b0a0c;
+      margin-bottom: 0.25rem;
+    }
+
+    .lego-header p {
+      color: #ffe8b0;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .toolbar {
+      max-width: 1200px;
+      margin: 0 auto 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      padding: 0.8rem 1rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 0 #d1c9b8, 0 4px 8px rgba(0,0,0,0.08);
+      border: 2px solid #e0d6c8;
+    }
+
+    .search-wrap {
+      flex: 1 1 280px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f9f6f0;
+      border-radius: 40px;
+      padding: 0.35rem 1rem 0.35rem 0.8rem;
+      border: 2px solid #d1c9b8;
+    }
+
+    .search-wrap svg {
+      width: 20px;
+      height: 20px;
+      fill: #d01012;
+      flex-shrink: 0;
+    }
+
+    #searchInput {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      padding: 0.45rem 0;
+      outline: none;
+      font-family: inherit;
+    }
+
+    #searchInput::placeholder {
+      color: #999;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .btn {
+      background: #f5c542;
+      border: none;
+      border-bottom: 4px solid #c79a1f;
+      color: #1e1e1e;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      font-family: inherit;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .btn:hover {
+      background: #ffdb6e;
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(2px);
+      border-bottom-width: 2px;
+    }
+
+    .btn-blue {
+      background: #2b6cb0;
+      border-bottom-color: #1a4a7a;
+      color: white;
+    }
+
+    .btn-blue:hover {
+      background: #3b7cc4;
+    }
+
+    .font-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: #e8e2d6;
+      border-radius: 40px;
+      padding: 0.2rem 0.4rem;
+      border: 2px solid #d1c9b8;
+    }
+
+    .font-controls span {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #555;
+      padding: 0 0.3rem;
+    }
+
+    .font-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: white;
+      color: #333;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 3px solid #c79a1f;
+      transition: 0.1s;
+      font-family: inherit;
+    }
+
+    .font-btn:hover {
+      background: #f5c542;
+    }
+
+    .font-btn:active {
+      transform: translateY(2px);
+      border-bottom-width: 1px;
+    }
+
+    /* Content area */
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    /* Lego block cards */
+    .block {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 6px 0 #d1c9b8, 0 4px 12px rgba(0,0,0,0.06);
+      border: 2px solid #e0d6c8;
+      overflow: hidden;
+      transition: box-shadow 0.15s ease;
+    }
+
+    .block:hover {
+      box-shadow: 0 6px 0 #d1c9b8, 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .block-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.9rem 1.2rem;
+      background: #f9f6f0;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 2px solid transparent;
+      transition: background 0.15s;
+    }
+
+    .block-header:hover {
+      background: #f0eadc;
+    }
+
+    .block-header.open {
+      background: #f0eadc;
+      border-bottom-color: #e0d6c8;
+    }
+
+    .block-header .chevron {
+      width: 22px;
+      height: 22px;
+      fill: #d01012;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .block-header.open .chevron {
+      transform: rotate(90deg);
+    }
+
+    .block-header .icon {
+      width: 28px;
+      height: 28px;
+      background: #d01012;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      box-shadow: 0 3px 0 #8b0a0c;
+    }
+
+    .block-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #2a2a2a;
+      flex: 1;
+      letter-spacing: 0.2px;
+    }
+
+    .block-header .tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: #d01012;
+      color: white;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 0 #8b0a0c;
+    }
+
+    .block-body {
+      padding: 1.2rem 1.3rem 1.4rem;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .block-body.open {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Content styling */
+    .block-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #d01012;
+      margin: 1rem 0 0.4rem;
+      border-bottom: 3px solid #f5c542;
+      padding-bottom: 0.2rem;
+      display: inline-block;
+    }
+
+    .block-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .block-body p {
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .block-body ul, .block-body ol {
+      margin: 0.3rem 0 0.7rem 1.4rem;
+      font-size: 0.95rem;
+    }
+
+    .block-body li {
+      margin-bottom: 0.25rem;
+    }
+
+    .block-body strong {
+      color: #1a4a7a;
+    }
+
+    .block-body .key-point {
+      background: #fff8e1;
+      border-left: 5px solid #f5c542;
+      padding: 0.7rem 1rem;
+      border-radius: 0 10px 10px 0;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 0 #e8dcc8;
+    }
+
+    .block-body .alert {
+      background: #ffeaea;
+      border-left: 5px solid #d01012;
+      padding: 0.7rem 1rem;
+      border-radius: 0 10px 10px 0;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 0 #e8d0d0;
+    }
+
+    .block-body .info {
+      background: #e8f0fe;
+      border-left: 5px solid #2b6cb0;
+      padding: 0.7rem 1rem;
+      border-radius: 0 10px 10px 0;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 0 #d0dae8;
+    }
+
+    /* Scrollable table wrapper */
+    .table-scroll {
+      overflow-x: auto;
+      margin: 0.8rem 0;
+      border-radius: 12px;
+      border: 2px solid #e0d6c8;
+      box-shadow: 0 3px 0 #d1c9b8;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .table-scroll table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      min-width: 500px;
+    }
+
+    .table-scroll th {
+      background: #d01012;
+      color: white;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      position: sticky;
+      top: 0;
+    }
+
+    .table-scroll td {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid #e0d6c8;
+      vertical-align: top;
+    }
+
+    .table-scroll tr:nth-child(even) {
+      background: #faf8f4;
+    }
+
+    .table-scroll tr:hover {
+      background: #fff8e1;
+    }
+
+    /* HSCT simple diagram */
+    .hsct-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 1rem 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .hsct-root {
+      background: #2b6cb0;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 0 #1a4a7a;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hsct-branches {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem 1.2rem;
+      margin-top: 0.3rem;
+    }
+
+    .hsct-branch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .hsct-node {
+      background: #f5c542;
+      color: #1e1e1e;
+      padding: 0.35rem 1rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 0 #c79a1f;
+      font-size: 0.82rem;
+    }
+
+    .hsct-node.blue {
+      background: #2b6cb0;
+      color: white;
+      box-shadow: 0 3px 0 #1a4a7a;
+    }
+
+    .hsct-node.green {
+      background: #38a169;
+      color: white;
+      box-shadow: 0 3px 0 #276749;
+    }
+
+    .hsct-children {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.3rem 0.6rem;
+      margin-top: 0.2rem;
+    }
+
+    .hsct-leaf {
+      background: #e8e2d6;
+      padding: 0.25rem 0.7rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      color: #333;
+      box-shadow: 0 2px 0 #c8c0b0;
+      font-weight: 500;
+    }
+
+    /* Highlight */
+    mark.highlight {
+      background: #f5c542;
+      color: #1e1e1e;
+      padding: 0 2px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    /* Source citation */
+    .source-ref {
+      font-size: 0.78rem;
+      color: #777;
+      font-style: italic;
+      margin-top: 0.5rem;
+      border-top: 1px dashed #d1c9b8;
+      padding-top: 0.4rem;
+    }
+
+    .source-ref a {
+      color: #2b6cb0;
+      text-decoration: none;
+    }
+
+    .source-ref a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      body {
+        padding: 0.8rem 0.5rem 2rem;
+      }
+
+      .lego-header h1 {
+        font-size: 1.3rem;
+      }
+
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-wrap {
+        flex: 1 1 auto;
+      }
+
+      .btn-group {
+        justify-content: center;
+      }
+
+      .block-header h2 {
+        font-size: 0.95rem;
+      }
+
+      .block-header .tag {
+        display: none;
+      }
+
+      .block-body {
+        padding: 0.9rem 1rem 1.2rem;
+      }
+    }
+
+    /* Print */
+    @media print {
+      .toolbar { display: none; }
+      .block-body { display: block !important; }
+      .block-header .chevron { display: none; }
+      .block { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+      body { background: white; }
+      .lego-header { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Lego Header -->
+  <header class="lego-header">
+    <h1>🧱 ICU Quick Ref: Haematological Malignancy & TLS</h1>
+    <p>For Anaesthetists &amp; Intensivists — Lego‑bricked clinical pearls</p>
+  </header>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" id="searchInput" placeholder="Search clinical content… (e.g., rasburicase, GVHD, neutropaenia)" autocomplete="off">
+    </div>
+    <div class="btn-group">
+      <button class="btn" id="expandAll" title="Expand all sections">▼ Expand all</button>
+      <button class="btn" id="collapseAll" title="Collapse all sections">▲ Collapse all</button>
+      <div class="font-controls">
+        <span>A</span>
+        <button class="font-btn" id="fontDecrease" title="Decrease text size">−</button>
+        <button class="font-btn" id="fontIncrease" title="Increase text size">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <main class="content" id="contentArea">
+
+    <!-- ===================== SECTION 1: OVERVIEW ===================== -->
+    <div class="block" data-section="overview">
+      <div class="block-header open" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">1</div>
+        <h2>Overview &amp; Epidemiology</h2>
+        <span class="tag">Key</span>
+      </div>
+      <div class="block-body open">
+        <div class="key-point">
+          <strong>Critical illness burden:</strong> Up to <strong>7%</strong> of hospital admissions with haematological malignancy are complicated by a critical illness episode. Up to <strong>13%</strong> of haematopoietic stem cell transplant (HSCT) recipients require ICU admission.
+        </div>
+        <p>Survival to hospital discharge after ICU admission may be as high as <strong>40%</strong>. There is presently no reliable way to predict futility of ICU treatment, although tracheal intubation with mechanical ventilation and renal replacement therapy are associated with poorer outcomes.</p>
+        <p>Patients may develop critical illness at first presentation or, more commonly, after chemotherapy or HSCT. Respiratory failure is present in approximately half of all ICU referrals; shock in 10–50%; multiple organ failure in about one‑fifth. Other causes include neurological failure, GI bleeding, renal failure, and metabolic derangement.</p>
+        <div class="source-ref">Source: Beed M, Levitt M, Bokhari SW. Intensive care management of patients with haematological malignancy. <em>Continuing Education in Anaesthesia Critical Care &amp; Pain</em> (BJA Education).</div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 2: HAEMATOLOGICAL MALIGNANCIES ===================== -->
+    <div class="block" data-section="haem-malignancies">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">2</div>
+        <h2>Haematological Malignancies</h2>
+      </div>
+      <div class="block-body">
+        <p>Commonest types admitted to ICU:</p>
+        <ul>
+          <li>Acute myeloid leukaemia (AML)</li>
+          <li>Acute lymphoblastic leukaemia (ALL)</li>
+          <li>Non‑Hodgkin's lymphoma</li>
+        </ul>
+        <p>Less common: Hodgkin's disease, myeloma, chronic leukaemias.</p>
+        <div class="source-ref">Source: Beed et al.</div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 3: CHEMOTHERAPY & HSCT COMPLICATIONS ===================== -->
+    <div class="block" data-section="chemo-hsct">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">3</div>
+        <h2>Chemotherapy &amp; Stem Cell Transplant Complications</h2>
+        <span class="tag">Tables</span>
+      </div>
+      <div class="block-body">
+        <h3>Chemotherapy complications</h3>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Complication</th><th>Associated agents</th><th>Timing</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Idiopathic interstitial pneumonitis</td><td>Cyclophosphamide</td><td>Early (&lt;100 d)</td></tr>
+              <tr><td>Pulmonary fibrosis</td><td>Bleomycin; high‑dose methotrexate</td><td>Late (&gt;100 d)</td></tr>
+              <tr><td>Haemorrhagic cystitis</td><td>Cyclophosphamide</td><td>Early</td></tr>
+              <tr><td>Cardiomyopathy</td><td>Doxorubicin</td><td>Late</td></tr>
+              <tr><td>Thrombotic thrombocytopenic purpura</td><td>Cyclosporin, tacrolimus</td><td>Early</td></tr>
+              <tr><td>Hypertension</td><td>Cyclosporin</td><td>Late</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert">
+          <strong>Bleomycin warning:</strong> Patients who have received extensive doses are at risk of pulmonary fibrosis and respiratory failure if high inspired oxygen concentrations are given.
+        </div>
+
+        <h3>HSCT donor types — simple diagram</h3>
+        <div class="hsct-diagram">
+          <div class="hsct-root">Haematopoietic stem cell transplant</div>
+          <div class="hsct-branches">
+            <div class="hsct-branch">
+              <div class="hsct-node green">Autologous</div>
+            </div>
+            <div class="hsct-branch">
+              <div class="hsct-node blue">Allogeneic</div>
+              <div class="hsct-children">
+                <span class="hsct-leaf">Related (matched twin/syngeneic, matched other, mismatched)</span>
+                <span class="hsct-leaf">Unrelated (matched, mismatched)</span>
+                <span class="hsct-leaf">Cord blood</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Stem cell transplant complications</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Early (&lt;100 days)</th><th>Late (&gt;100 days)</th></tr></thead>
+            <tbody>
+              <tr><td>Infections</td><td>Chronic GVHD</td></tr>
+              <tr><td>Haemorrhage</td><td>Chronic pulmonary disease</td></tr>
+              <tr><td>Acute GVHD</td><td>Autoimmune disorders</td></tr>
+              <tr><td>Graft failure (esp. aplastic anaemia)</td><td>Cataract</td></tr>
+              <tr><td>Haemorrhagic cystitis</td><td>Infertility</td></tr>
+              <tr><td>Interstitial pneumonitis</td><td>Second malignancies</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>ICU admission rates by transplant type:</strong> Myeloablative allograft 39.2%; reduced‑intensity allograft 17.9%; autograft 5.1%. At least 50% of ICU admissions occur within 30 days of transplantation.</p>
+        <div class="source-ref">Source: Beed et al. (Tables 1 &amp; 2; Fig 1).</div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 4: NEUTROPAENIA & SEPSIS ===================== -->
+    <div class="block" data-section="neutropaenia">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">4</div>
+        <h2>Neutropaenia &amp; Sepsis</h2>
+      </div>
+      <div class="block-body">
+        <p><strong>Definition:</strong> Neutrophil count &lt;1.0 × 10⁹/L is considered significantly low (some definitions use 1.5–2.0 × 10⁹/L). Remember: patients with high white cell counts may still have a low absolute neutrophil count.</p>
+        <p>Neutropaenic patients are at substantial risk of unusual/atypical infections (fungal, viral). Continue prophylactic antifungal, antiviral, and anti‑pneumocystis medications on ICU unless dose adjustment is needed for active infection.</p>
+        <div class="alert">
+          <strong>Reverse‑barrier nursing</strong> is essential. Also at particular risk from individuals infected with varicella.
+        </div>
+        <p>Iatrogenic infections (VAP, CRBSI, urinary catheter infections) are common — avoid invasive procedures (bladder catheterisation, tracheal intubation, central venous access) where possible in early critical illness.</p>
+        <p>If infection suspected (pyrexia, rigors) — even without a source — perform full septic screen (urine, blood, sputum); may need daily repetition. Start broad‑spectrum antibiotics with anti‑pseudomonal cover. Liaise with microbiology for local resistance patterns (e.g., amikacin may be preferable to gentamicin where resistant pseudomonal infections are prevalent).</p>
+        <p><strong>Persistent/recurrent fever despite antibacterial cover:</strong> consider fungal infection — CT chest and empirical antifungal therapy (covering <em>Aspergillus</em> and resistant <em>Candida</em>).</p>
+        <p><strong>G‑CSF</strong> is often used to promote neutrophil recovery, except where there is a low absolute neutrophil count but high overall white cell count. Rare association with splenic rupture (especially myeloproliferative disorders with splenomegaly).</p>
+        <div class="source-ref">Source: Beed et al.</div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 5: RESPIRATORY FAILURE ===================== -->
+    <div class="block" data-section="resp-failure">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">5</div>
+        <h2>Respiratory Failure</h2>
+      </div>
+      <div class="block-body">
+        <p>Default diagnosis is often infection, but consider pulmonary oedema, GVHD, leukaemic infiltration, pulmonary haemorrhage.</p>
+        <p>Tracheal intubation and mechanical ventilation are associated with poorer outcome <em>except</em> where the cause is transient (post‑surgical, brief neurological failure such as fitting) or associated with pulmonary oedema.</p>
+        <div class="key-point">
+          Lung‑protective ventilation strategies should be adopted where possible. There is some evidence that avoiding tracheal intubation and mechanical ventilation may improve survival.
+        </div>
+        <p>Bronchoalveolar lavage may improve detection rates. Diagnosis of lung fibrosis is difficult without open‑lung biopsy; surgical lung biopsy review showed diagnosis was as likely to be infection (29%) as underlying malignancy (27%). Most common infection diagnosed by biopsy was <em>aspergillosis</em>.</p>
+        <div class="source-ref">Source: Beed et al.</div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 6: THROMBOCYTOPENIA ===================== -->
+    <div class="block" data-section="thrombocytopenia">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">6</div>
+        <h2>Thrombocytopenia &amp; Coagulopathy</h2>
+      </div>
+      <div class="block-body">
+        <p>The commonest coagulopathy in haematological malignancy is thrombocytopenia. Spontaneous bleeding may occur with platelet counts ≤5 × 10⁹/L, especially from sites of minor trauma (NG tubes, arterial lines).</p>
+        <ul>
+          <li><strong>Active bleeding or planned procedures:</strong> maintain platelets 50–60 × 10⁹/L.</li>
+          <li><strong>No planned procedures:</strong> counts above 10–20 × 10⁹/L are often acceptable.</li>
+          <li><strong>Central venous catheter insertion under ultrasound (elective):</strong> minimum 20–30 × 10⁹/L seems prudent. Femoral route is often considered in thrombocytopenic haematology patients despite slightly increased CRBSI risk.</li>
+        </ul>
+        <p><strong>Platelet refractoriness:</strong> If poor increment post‑transfusion, check pre‑ and 1‑hour post‑transfusion counts; HLA‑matched platelets may be required.</p>
+        <p>Other causes of thrombocytopenia may coexist: ITP, heparin‑induced thrombocytopenia, post‑transfusion purpura, drugs (e.g., vancomycin).</p>
+        <div class="source-ref">Source: Beed et al.</div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 7: TUMOUR LYSIS SYNDROME ===================== -->
+    <div class="block" data-section="tls">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">7</div>
+        <h2>Tumour Lysis Syndrome (TLS)</h2>
+        <span class="tag">High yield</span>
+      </div>
+      <div class="block-body">
+
+        <h3>Definition (Cairo‑Bishop)</h3>
+        <p><strong>Laboratory TLS:</strong> Malignancy plus ≥2 of the following within 1 week of chemotherapy:</p>
+        <ul>
+          <li>Phosphate &gt;4.5 mg/dL (&gt;1.45 mM)</li>
+          <li>Potassium &gt;6 mEq/L</li>
+          <li>Calcium &lt;7 mg/dL (&lt;1.75 mM)</li>
+          <li>Uric acid &gt;8 mg/dL (&gt;476 µM)</li>
+        </ul>
+        <p><strong>Clinical TLS:</strong> Laboratory TLS plus ≥1 of: acute kidney injury (Cr &gt;1.5× baseline), cardiac arrhythmia, sudden death, seizure.</p>
+
+        <h3>Pathophysiology (quick version)</h3>
+        <ul>
+          <li>Rapid tumour cell turnover → release of intracellular contents: potassium, phosphate, nucleic acids (→ urate).</li>
+          <li>Urate crystals precipitate in renal tubules → AKI.</li>
+          <li>Hyperkalaemia → arrhythmias, cardiac arrest.</li>
+          <li>Hyperphosphataemia → hypocalcaemia (tetany, seizures, delirium).</li>
+        </ul>
+
+        <h3>Risk stratification</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Risk</th><th>Malignancy examples</th><th>Monitoring</th></tr></thead>
+            <tbody>
+              <tr><td><strong>High</strong> (&gt;5%)</td><td>Burkitt lymphoma/leukaemia; ALL with WBC ≥100K; AML with WBC ≥100K; CML blast crisis; lymphoblastic lymphoma advanced</td><td>Labs q6h</td></tr>
+              <tr><td><strong>Intermediate</strong> (1–5%)</td><td>ALL with WBC 25–99K; AML with WBC 25–99K; DLBCL stage 3/4; mantle cell blastoid variants</td><td>Labs q12h</td></tr>
+              <tr><td><strong>Low</strong> (&lt;1%)</td><td>Most solid tumours; CLL; CML excluding blast crisis; Hodgkin lymphoma; myeloma</td><td>Labs daily</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>General risk factors:</strong> bulky disease (LDH &gt;1500 IU/L, WBC &gt;50,000/µL, mass &gt;10 cm), marrow/spleen/liver infiltration, pre‑treatment hyperuricaemia/hyperkalaemia/hyperphosphataemia, baseline renal dysfunction, older age, nephrotoxins, obstructive uropathy, inability to tolerate hyperhydration.</p>
+
+        <h3>Monitoring</h3>
+        <p>TLS typically occurs <strong>12–72 hours</strong> after chemotherapy initiation. Monitor full electrolytes (Ca, Mg, Phos), uric acid, and LDH.</p>
+        <ul>
+          <li>Low risk: daily.</li>
+          <li>Intermediate risk: q12h.</li>
+          <li>High risk: q6h.</li>
+          <li>Established TLS: q4h.</li>
+        </ul>
+        <p>Consider screening for G6PD deficiency in case rasburicase is needed.</p>
+
+        <h3>Prevention</h3>
+        <ul>
+          <li><strong>Hydration:</strong> IV fluids 2–3 L/m²/day (~175 mL/hr) starting the day before therapy until the day after completion. Target urine output &gt;80–100 mL/m²/hr (or 2–4 mL/kg/hr).</li>
+          <li><strong>Diuretics:</strong> Loop diuretics may be used if urine output low; they also reduce phosphate and potassium. Thiazides may increase uric acid — avoid.</li>
+          <li><strong>Allopurinol or febuxostat:</strong> Start 2–3 days before chemotherapy. Allopurinol 300 mg PO BID (lower in renal dysfunction).</li>
+          <li><strong>Rasburicase prophylaxis:</strong> Consider in high‑risk patients or those with baseline uric acid &gt;7.5 mg/dL.</li>
+          <li>Avoid nephrotoxins; avoid hypotension.</li>
+          <li>Urinary alkalinisation is <strong>no longer recommended</strong> (no proven benefit).</li>
+        </ul>
+
+        <h3>Management of established TLS</h3>
+        <div class="alert">
+          <strong>Rasburicase:</strong> Indicated for TLS with uric acid &gt;8 mg/dL (&gt;476 µM), especially with AKI. <strong>Contraindicated in G6PD deficiency.</strong>
+        </div>
+        <ul>
+          <li><strong>Dose:</strong> Conventional 0.2 mg/kg daily up to 5 days; reduced dosing 3 mg fixed dose, repeat if uric acid elevated at 12 h. Consider 4.5–6 mg for uric acid &gt;15 mg/dL or weight &gt;100 kg.</li>
+          <li><strong>Important:</strong> Uric acid levels after rasburicase must be collected on ice (pre‑chilled green top tube) and sent directly to lab to avoid falsely low results.</li>
+          <li><strong>Hyperkalaemia:</strong> Treat aggressively. Hold potassium‑containing fluids unless K &lt;3.0 mM.</li>
+          <li><strong>Hyperphosphataemia:</strong> Renal diet; consider sevelamer 800–1600 mg TID with meals (higher dose if phosphate &gt;7.5 mg/dL).</li>
+          <li><strong>Hypocalcaemia:</strong> Only treat if symptomatic (tetany, seizures, arrhythmias).</li>
+          <li><strong>Renal replacement therapy:</strong> CVVHDF effectively clears urate, potassium, and phosphate. May be needed acutely while waiting for rasburicase/allopurinol to work. Rasburicase itself is not cleared (molecule too large).</li>
+        </ul>
+
+        <div class="info">
+          <strong>Pseudohyperkalaemia caution:</strong> Very high WBC or platelet counts can cause falsely elevated potassium due to cell lysis in the sample tube. Suspect if elevated K with normal ECG. Confirm with STAT potassium on ice in a heparinised tube or point‑of‑care monitor.
+        </div>
+
+        <div class="source-ref">
+          Sources: <a href="https://emcrit.org/ibcc/tls/" target="_blank" rel="noopener">EMCrit IBCC — Tumor Lysis Syndrome</a>; <a href="https://derangedphysiology.com/main/required-reading/haematology-and-oncology/Chapter-205/tumour-lysis-syndrome" target="_blank" rel="noopener">Deranged Physiology — Tumour Lysis Syndrome</a>; Beed et al. (TLS section).
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 8: OTHER ORGAN FAILURES ===================== -->
+    <div class="block" data-section="other-organs">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">8</div>
+        <h2>Other Organ Failures (Neuro, GI, Renal)</h2>
+      </div>
+      <div class="block-body">
+        <h3>Neurological</h3>
+        <ul>
+          <li>Seizures and temporary dysfunction are common; causes include intracranial bleed (thrombocytopenia), hypercoagulable states (cerebral infarction, venous thrombosis), hyperviscosity syndrome (may need therapeutic apheresis), electrolyte imbalance, underlying malignancy.</li>
+          <li>CT head is often required to rule out bleed, especially after any trauma.</li>
+        </ul>
+        <h3>Gastrointestinal</h3>
+        <ul>
+          <li>GI dysfunction associated with chemotherapy, GVHD, infection.</li>
+          <li><strong>Typhlitis</strong> (neutropaenic enterocolitis) — occurs 10–14 days post cytotoxic chemotherapy; especially with cytosine, vinca alkaloids, doxorubicin. May mimic appendicitis or <em>C. difficile</em>; abdominal CT helpful.</li>
+        </ul>
+        <h3>Renal</h3>
+        <ul>
+          <li>Acute kidney injury may be due to underlying disease, nephrotoxic agents, sepsis/hypotension, or hepatic failure (especially post‑HSCT).</li>
+          <li>Renal replacement therapy may be required; anticoagulation of filter may be relatively contraindicated in coagulopathy — haemofiltration with pre‑dilution alone may be safer.</li>
+          <li>Need for RRT is an independent predictor of mortality, although renal failure suspected to be due to the disease itself is not necessarily a bar to treatment.</li>
+        </ul>
+        <div class="source-ref">Source: Beed et al.</div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 9: GVHD ===================== -->
+    <div class="block" data-section="gvhd">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">9</div>
+        <h2>Graft‑vs‑Host Disease (GVHD)</h2>
+        <span class="tag">Tables</span>
+      </div>
+      <div class="block-body">
+        <p><strong>Acute GVHD</strong> typically presents with skin rash, diarrhoea, hepatitis. Can also cause significant thrombocytopenia, conjunctivitis, microangiopathic haemolysis. Peak 30–50 days post‑transplant (can occur after 100 days, especially with donor lymphocyte transfusions).</p>
+        <p><strong>Risk factors:</strong> HLA incompatibility, unrelated donor, donor‑recipient sex mismatch, inadequate GVHD prophylaxis, myeloablative conditioning, peripheral blood stem cell source, increasing age, CMV‑positive status.</p>
+
+        <h3>Seattle scoring system for acute GVHD</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Stage</th><th>Skin rash</th><th>Liver (bilirubin, mmol/L)</th><th>Gut (diarrhoea, L/day)</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>&lt;25%</td><td>20–35</td><td>0.5–1</td></tr>
+              <tr><td>2</td><td>25–50%</td><td>35–80</td><td>1–1.5</td></tr>
+              <tr><td>3</td><td>Erythroderma</td><td>80–150</td><td>1.5–2.5</td></tr>
+              <tr><td>4</td><td>Bullae, desquamation</td><td>&gt;150</td><td>&gt;2.5 (pain, ileus)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Overall grading &amp; 100‑day survival</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Grade</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>I</td><td>Stage 1–2 skin, no gut or liver involvement</td></tr>
+              <tr><td>II</td><td>Stage 1–3 skin; with stage 1 gut or liver; mild decrease in performance status</td></tr>
+              <tr><td>III</td><td>Stage 2–3 skin; with stage 2–4 gut or stage 2–3 liver; marked decrease in performance status</td></tr>
+              <tr><td>IV</td><td>Similar to grade III; with stage 4 gut or liver; extreme decrease in performance status</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Management of GVHD in ICU</h3>
+        <ul>
+          <li>Increased doses of steroids.</li>
+          <li>Immunosuppressants: cyclosporin, mycophenolate mofetil.</li>
+          <li>Extracorporeal phototherapy (requires haemodynamic stability).</li>
+          <li>GI involvement may require parenteral nutrition to rest the gut; octreotide for severe diarrhoea.</li>
+        </ul>
+        <p><strong>Chronic GVHD:</strong> multiorgan syndrome resembling autoimmune disorders; occurs in 30–50% of matched sibling grafts. Patients are significantly immunocompromised despite normal neutrophil counts.</p>
+        <div class="source-ref">Source: Beed et al. (Table 3).</div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 10: OUTCOMES ===================== -->
+    <div class="block" data-section="outcomes">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">10</div>
+        <h2>Outcomes &amp; Survival After ICU Admission</h2>
+      </div>
+      <div class="block-body">
+        <p>Patients with haematological malignancies in ICU are a heterogeneous population. High APACHE scores, increased number of organ failures, need for mechanical ventilation, and need for renal replacement therapy are associated with increased mortality.</p>
+        <div class="key-point">
+          <strong>No single clinical feature or combination can reliably predict futility.</strong> Decisions not to treat an episode of critical illness should be made with regard to underlying condition, physiological reserve, co‑morbidities, and current condition, after informed discussion with the referring team and the patient/representative.
+        </div>
+        <ul>
+          <li>2003 review: survival to hospital discharge 17–44% for ICU patients with haematological malignancy.</li>
+          <li>2004 review (HSCT recipients): hospital discharge survival 4–20%.</li>
+          <li>Of those surviving prolonged period after ICU discharge, a significant number are cured or in complete remission. The aetiology and severity of the acute illness does not affect long‑term prognosis or quality of life — these are predominantly affected by the underlying malignancy.</li>
+        </ul>
+        <div class="source-ref">Source: Beed et al.</div>
+      </div>
+    </div>
+
+    <!-- ===================== SECTION 11: REFERENCES ===================== -->
+    <div class="block" data-section="references">
+      <div class="block-header" data-toggle>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        <div class="icon">📚</div>
+        <h2>References &amp; Sources</h2>
+      </div>
+      <div class="block-body">
+        <ol style="font-size:0.9rem;">
+          <li>Beed M, Levitt M, Bokhari SW. Intensive care management of patients with haematological malignancy. <em>Continuing Education in Anaesthesia Critical Care &amp; Pain</em> (BJA Education). doi:10.1016/j.bjae.2017.03.002 (PIIS1743181617303335).</li>
+          <li>EMCrit IBCC. <em>Tumor Lysis Syndrome</em>. Available at: <a href="https://emcrit.org/ibcc/tls/" target="_blank" rel="noopener">https://emcrit.org/ibcc/tls/</a> (accessed 2025).</li>
+          <li>Deranged Physiology. <em>Tumour Lysis Syndrome</em>. Available at: <a href="https://derangedphysiology.com/main/required-reading/haematology-and-oncology/Chapter-205/tumour-lysis-syndrome" target="_blank" rel="noopener">https://derangedphysiology.com/main/required-reading/haematology-and-oncology/Chapter-205/tumour-lysis-syndrome</a> (accessed 2025).</li>
+        </ol>
+        <p style="font-size:0.85rem; color:#777; margin-top:0.8rem;">This quick reference is for educational purposes only and does not replace clinical judgement or local guidelines.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ---------- TOGGLE SECTIONS ----------
+      const headers = document.querySelectorAll('[data-toggle]');
+      headers.forEach(header => {
+        header.addEventListener('click', function(e) {
+          // Don't toggle if clicking a link inside header (none currently, but safe)
+          if (e.target.closest('a')) return;
+          this.classList.toggle('open');
+          const body = this.nextElementSibling;
+          if (body) body.classList.toggle('open');
+        });
+      });
+
+      // ---------- EXPAND / COLLAPSE ALL ----------
+      const expandAllBtn = document.getElementById('expandAll');
+      const collapseAllBtn = document.getElementById('collapseAll');
+
+      function setAllSections(open) {
+        document.querySelectorAll('.block-header').forEach(h => {
+          if (open) h.classList.add('open');
+          else h.classList.remove('open');
+        });
+        document.querySelectorAll('.block-body').forEach(b => {
+          if (open) b.classList.add('open');
+          else b.classList.remove('open');
+        });
+      }
+
+      expandAllBtn.addEventListener('click', () => setAllSections(true));
+      collapseAllBtn.addEventListener('click', () => setAllSections(false));
+
+      // ---------- FONT SIZE RESIZE ----------
+      const fontIncrease = document.getElementById('fontIncrease');
+      const fontDecrease = document.getElementById('fontDecrease');
+      let currentFontSize = 16; // px base
+
+      function applyFontSize(size) {
+        currentFontSize = Math.min(24, Math.max(12, size));
+        document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
+        document.body.style.fontSize = currentFontSize + 'px';
+      }
+
+      fontIncrease.addEventListener('click', () => applyFontSize(currentFontSize + 2));
+      fontDecrease.addEventListener('click', () => applyFontSize(currentFontSize - 2));
+
+      // ---------- SEARCH WITH HIGHLIGHT ----------
+      const searchInput = document.getElementById('searchInput');
+      const contentArea = document.getElementById('contentArea');
+
+      // Store original HTML of content area once (for restoring after search)
+      const originalContentHTML = contentArea.innerHTML;
+
+      function escapeRegex(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+
+      function highlightText(container, query) {
+        if (!query || query.trim().length < 2) {
+          // Restore original content if query is too short
+          if (container.innerHTML !== originalContentHTML) {
+            container.innerHTML = originalContentHTML;
+            reattachEventListeners();
+          }
+          return;
+        }
+
+        const trimmed = query.trim();
+        const regex = new RegExp('(' + escapeRegex(trimmed) + ')', 'gi');
+
+        // Restore original content first
+        container.innerHTML = originalContentHTML;
+        reattachEventListeners();
+
+        // Walk text nodes and wrap matches in <mark>
+        const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+          acceptNode: function(node) {
+            // Skip script, style, and already marked text
+            const parent = node.parentElement;
+            if (!parent) return NodeFilter.FILTER_REJECT;
+            if (parent.closest('script, style, mark, .no-search')) return NodeFilter.FILTER_REJECT;
+            if (!node.textContent.trim()) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+        let matchCount = 0;
+        textNodes.forEach(node => {
+          const text = node.textContent;
+          if (regex.test(text)) {
+            matchCount += (text.match(regex) || []).length;
+            const span = document.createElement('span');
+            span.innerHTML = text.replace(regex, '<mark class="highlight">$1</mark>');
+            node.parentNode.replaceChild(span, node);
+          }
+        });
+
+        // If no matches, optionally show a message (we'll just leave content as is)
+        // Expand all sections when searching
+        if (matchCount > 0) {
+          document.querySelectorAll('.block-header').forEach(h => h.classList.add('open'));
+          document.querySelectorAll('.block-body').forEach(b => b.classList.add('open'));
+        }
+
+        // Reattach event listeners after DOM modification
+        reattachEventListeners();
+      }
+
+      // Reattach event listeners after innerHTML changes (search/highlight)
+      function reattachEventListeners() {
+        // Re-bind toggle events
+        document.querySelectorAll('[data-toggle]').forEach(header => {
+          // Remove old listener by cloning? Simpler: use a flag
+          if (header.dataset.listenerAttached === 'true') return;
+          header.dataset.listenerAttached = 'true';
+          header.addEventListener('click', function(e) {
+            if (e.target.closest('a')) return;
+            this.classList.toggle('open');
+            const body = this.nextElementSibling;
+            if (body) body.classList.toggle('open');
+          });
+        });
+
+        // Re-bind font buttons if they were inside content (they aren't, but safe)
+        // Search input is outside content area, so no need.
+      }
+
+      // Debounce search
+      let searchTimeout;
+      searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        const query = this.value;
+        searchTimeout = setTimeout(() => {
+          highlightText(contentArea, query);
+        }, 250);
+      });
+
+      // Also trigger search on Enter
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          clearTimeout(searchTimeout);
+          highlightText(contentArea, this.value);
+        }
+      });
+
+      // ---------- INITIAL SETUP ----------
+      // Mark all headers as having listeners attached (from initial binding)
+      document.querySelectorAll('[data-toggle]').forEach(h => h.dataset.listenerAttached = 'true');
+
+      // Apply initial font size
+      applyFontSize(16);
+
+      // Open first section by default (already has 'open' class in HTML)
+      // Ensure body of first section is open
+      const firstBlockHeader = document.querySelector('.block-header.open');
+      if (firstBlockHeader) {
+        const body = firstBlockHeader.nextElementSibling;
+        if (body && !body.classList.contains('open')) body.classList.add('open');
+      }
+
+    })();
+  </script>
+
+</body>
+</html>
