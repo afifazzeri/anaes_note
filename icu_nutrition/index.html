@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICU Nutrition — LEGO Quick Reference</title>
+<style>
+  *{box-sizing:border-box}
+  html{font-size:16px}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color:#1b1b1b;
+    line-height:1.5;
+    background-color:#e8edf3;
+    background-image:radial-gradient(circle at 4px 4px, rgba(0,0,0,.07) 2.5px, transparent 3px);
+    background-size:28px 28px;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:999;
+    background:#1b1b1b;
+    border-bottom:5px solid #FFD500;
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+    padding:.55rem .7rem;
+  }
+  .bar-inner{
+    max-width:1100px;margin:0 auto;
+    display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  }
+  .brand{
+    font-weight:900;letter-spacing:1px;text-transform:uppercase;
+    font-size:.8rem;color:#FFD500;margin-right:auto;white-space:nowrap;
+  }
+  .brand span{color:#fff}
+  .btn{
+    font:inherit;font-size:.72rem;font-weight:900;text-transform:uppercase;
+    letter-spacing:.5px;padding:.4rem .6rem;border-radius:8px;
+    border:2px solid #000;background:#FFD500;color:#1b1b1b;cursor:pointer;
+    box-shadow:0 3px 0 rgba(0,0,0,.9);
+    transition:transform .06s ease, box-shadow .06s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{filter:brightness(1.06)}
+  .btn:active{transform:translateY(3px);box-shadow:0 0 0 rgba(0,0,0,.9)}
+  .btn.blue{background:#0055BF;color:#fff}
+  .btn.red{background:#D01012;color:#fff}
+  .btn.green{background:#00963C;color:#fff}
+  .btn.dark{background:#37474F;color:#fff}
+  .search-wrap{display:flex;align-items:center;gap:.35rem;flex:1 1 260px;min-width:200px}
+  #search{
+    font:inherit;font-size:.82rem;padding:.42rem .6rem;border-radius:8px;
+    border:2px solid #000;flex:1;min-width:120px;background:#fff;
+  }
+  #search:focus{outline:3px solid #FFD500;outline-offset:1px}
+  .count{
+    font-size:.72rem;font-weight:900;color:#FFD500;min-width:58px;
+    text-align:center;white-space:nowrap;
+  }
+  .fs-val{font-size:.72rem;font-weight:900;color:#fff;min-width:42px;text-align:center}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1100px;margin:0 auto;padding:1rem .8rem 3rem}
+
+  /* ---------- BRICKS ---------- */
+  .brick{
+    background:#fff;
+    border:3px solid #1b1b1b;
+    border-radius:12px;
+    margin:1.1rem 0;
+    box-shadow:0 5px 0 rgba(0,0,0,.85);
+    overflow:hidden;
+    --c:#0055BF; --tc:#fff;
+  }
+  .brick.red{--c:#D01012}
+  .brick.blue{--c:#0055BF}
+  .brick.green{--c:#00963C}
+  .brick.orange{--c:#F57C00}
+  .brick.dark{--c:#37474F}
+  .brick.yellow{--c:#FFD500;--tc:#1b1b1b}
+
+  .brick-head{
+    display:block;width:100%;text-align:left;border:none;cursor:pointer;
+    background:var(--c);color:var(--tc);padding:.5rem .8rem .6rem;font:inherit;
+  }
+  .brick-head:focus-visible{outline:3px solid #FFD500;outline-offset:-3px}
+  .studs{display:flex;gap:.4rem;margin-bottom:.3rem}
+  .studs i{
+    width:1.05rem;height:.5rem;display:block;
+    border-radius:.55rem .55rem 0 0;
+    background:rgba(255,255,255,.55);
+    border:2px solid rgba(0,0,0,.5);border-bottom:none;
+  }
+  .brick.yellow .studs i{background:rgba(255,255,255,.75)}
+  .head-row{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+  .brick-title{font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.6px}
+  .chev{font-size:1rem;transition:transform .18s ease;flex:0 0 auto}
+  .brick.closed .chev{transform:rotate(-90deg)}
+  .brick-body{padding:.9rem 1rem 1rem;font-size:1rem}
+  .brick.closed .brick-body{display:none}
+
+  /* ---------- BODY CONTENT ---------- */
+  .brick-body h3{
+    font-size:.82rem;text-transform:uppercase;letter-spacing:.6px;
+    margin:1rem 0 .4rem;color:#0055BF;border-bottom:2px solid #e6ecf3;padding-bottom:.2rem;
+  }
+  .brick-body h3:first-child{margin-top:0}
+  .brick-body p{margin:.35rem 0}
+  .brick-body ul{margin:.3rem 0 .6rem;padding-left:1.15rem}
+  .brick-body li{margin:.25rem 0}
+  .brick-body strong{font-weight:800}
+  .hi{background:#FFF3B0;padding:0 .15em;border-radius:3px;font-weight:700}
+
+  /* ---------- PILLS ---------- */
+  .kv{display:flex;flex-wrap:wrap;gap:.4rem;margin:.45rem 0}
+  .pill{
+    background:#f1f5f9;border:2px solid #1b1b1b;border-radius:999px;
+    padding:.12rem .62rem;font-size:.82rem;font-weight:700;
+  }
+  .pill.red{background:#FDE4E4}
+  .pill.green{background:#E3F6E9}
+  .pill.blue{background:#E3EEFB}
+  .pill.yellow{background:#FFF8D6}
+
+  /* ---------- TABLES ---------- */
+  .tw{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:2px solid #1b1b1b;border-radius:10px;margin:.6rem 0;
+    box-shadow:0 3px 0 rgba(0,0,0,.75);
+  }
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:.86rem}
+  th{
+    background:#1b1b1b;color:#FFD500;text-align:left;
+    padding:.5rem .6rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;
+  }
+  td{padding:.5rem .6rem;border-top:1px solid #dfe6ee;vertical-align:top}
+  tbody tr:nth-child(even){background:#f7fafc}
+  td strong{color:#0055BF}
+  .scroll-hint{
+    font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;
+    font-weight:800;color:#64748b;margin:.1rem 0 .3rem;
+  }
+
+  /* ---------- FLOW ---------- */
+  .flow{display:flex;flex-direction:column;gap:.3rem;margin:.6rem 0}
+  .fbox{
+    border:2px solid #1b1b1b;border-radius:10px;padding:.5rem .7rem;
+    font-size:.86rem;background:#fff;box-shadow:0 3px 0 rgba(0,0,0,.75);
+  }
+  .fbox .lbl{
+    font-weight:900;text-transform:uppercase;font-size:.68rem;
+    letter-spacing:.6px;display:block;margin-bottom:.15rem;color:#1b1b1b;
+  }
+  .fbox.y{background:#FFF8D6}
+  .fbox.g{background:#E3F6E9}
+  .fbox.b{background:#E3EEFB}
+  .fbox.r{background:#FDE4E4}
+  .fbox.o{background:#FFEEDD}
+  .arrow{text-align:center;font-size:1rem;font-weight:900;color:#1b1b1b;line-height:1}
+
+  /* ---------- CARDS ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.6rem;margin:.6rem 0}
+  .card{
+    border:2px solid #1b1b1b;border-radius:10px;padding:.6rem .7rem;
+    background:#fff;box-shadow:0 3px 0 rgba(0,0,0,.8);
+  }
+  .card h4{
+    margin:0 0 .3rem;font-size:.74rem;text-transform:uppercase;
+    letter-spacing:.5px;color:#D01012;
+  }
+  .card ul{margin:.2rem 0 0;padding-left:1.05rem;font-size:.86rem}
+  .card li{margin:.2rem 0}
+
+  /* ---------- HIGHLIGHTS ---------- */
+  mark.hl{background:#FFD500;color:#1b1b1b;padding:0 .08em;border-radius:3px}
+  mark.hl.current{background:#D01012;color:#fff;box-shadow:0 0 0 2px #1b1b1b}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    max-width:1100px;margin:0 auto;padding:1.2rem .8rem 3rem;
+    font-size:.78rem;color:#334155;
+  }
+  footer .ref{
+    background:#fff;border:3px solid #1b1b1b;border-radius:12px;
+    box-shadow:0 5px 0 rgba(0,0,0,.85);padding:.9rem 1rem;
+  }
+  footer h2{
+    font-size:.82rem;text-transform:uppercase;letter-spacing:.7px;
+    margin:0 0 .5rem;color:#D01012;
+  }
+  footer ol{margin:0;padding-left:1.2rem}
+  footer li{margin:.35rem 0}
+  footer a{color:#0055BF;word-break:break-word}
+
+  @media(max-width:560px){
+    .brand{width:100%;margin-right:0}
+    .brick-title{font-size:.9rem}
+    .brick-body{padding:.75rem .7rem .85rem}
+    main{padding:.7rem .55rem 2rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="topbar">
+  <div class="bar-inner">
+    <div class="brand">🧱 ICU Nutrition <span>Quick Reference</span></div>
+
+    <button class="btn green" id="expandAll" type="button">Expand All</button>
+    <button class="btn red" id="collapseAll" type="button">Collapse All</button>
+
+    <button class="btn dark" id="fontDown" type="button" aria-label="Decrease text size">A−</button>
+    <span class="fs-val" id="fsVal">16px</span>
+    <button class="btn dark" id="fontUp" type="button" aria-label="Increase text size">A+</button>
+    <button class="btn dark" id="fontReset" type="button">Reset</button>
+
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search clinical content… (Enter = next)" autocomplete="off">
+      <span class="count" id="count">0 / 0</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONTENT ================= -->
+<main id="content">
+
+  <!-- 1. KEY POINTS -->
+  <section class="brick red">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">1 · Key Points</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <ul>
+        <li>Critical illness progresses through <strong>3 metabolic phases</strong>: <strong>early acute</strong>, <strong>late acute</strong>, and <strong>recovery</strong>.</li>
+        <li><strong>Indirect calorimetry (IC)</strong> is the <strong>gold standard</strong> for assessing energy needs. Alternatives: predictive equations and weight-based methods.</li>
+        <li>Malnutrition assessment: guided by <strong>clinical assessment</strong> plus <strong>nutritional scoring systems</strong>.</li>
+        <li><strong>Oral nutrition</strong> should be prioritised over assisted enteral or parenteral nutrition whenever possible.</li>
+        <li>Nutritional therapy should be <strong>started at a low dose</strong> of calories and protein and <strong>progressively increased to full nutrition within 3–7 days</strong>.</li>
+        <li>Nutrition is no longer just <em>support</em> — it is <strong>therapy</strong> in the critically ill.</li>
+        <li>Early full feeding (any route) is <strong>harmful in a dose-dependent manner</strong> — it suppresses recovery pathways (autophagy, ketogenesis).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. PHASES -->
+  <section class="brick blue">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">2 · Phases of Critical Illness (ESPEN)</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <div class="scroll-hint">↔ scroll table horizontally</div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Phase</th><th>Timing</th><th>Metabolic features</th><th>Clinical implication</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Early acute</strong></td>
+              <td>Day 1–2 ICU</td>
+              <td>Initial stress response: ↑ metabolic rate, hyperglycaemia, insulin resistance — but <strong>energy expenditure is decreased</strong>.</td>
+              <td>Avoid full feeding. Start low-dose / progressive nutrition.</td>
+            </tr>
+            <tr>
+              <td><strong>Late acute</strong></td>
+              <td>Day 3–7 ICU</td>
+              <td><strong>Hypercatabolic</strong>: sustained ↑ metabolic rate, muscle protein breakdown, ongoing inflammation → <strong>↑ energy expenditure</strong>.</td>
+              <td>Progressively build to target energy &amp; protein.</td>
+            </tr>
+            <tr>
+              <td><strong>Recovery</strong></td>
+              <td>&gt; 7 days to months</td>
+              <td><strong>Anabolic</strong>: tissue repair, restoration of normal metabolic function.</td>
+              <td>Full nutrition, rehabilitation, physical activity.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Note:</strong> phase time periods are <em>arbitrary</em> — there is currently <strong>no validated biomarker or metabolic monitor</strong> that marks the transition from one phase to the next.</p>
+    </div>
+  </section>
+
+  <!-- 3. RISK ASSESSMENT -->
+  <section class="brick green">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">3 · Nutritional Risk Assessment</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <h3>Who is at risk?</h3>
+      <ul>
+        <li><strong>Every patient staying &gt; 48 h in ICU should be considered at risk of malnutrition</strong> (ESPEN Statement 1, strong consensus).</li>
+        <li>Prevalence of malnutrition in ICU: <strong>38–78%</strong>.</li>
+        <li>Malnutrition is a substantial predictor of: longer hospital stay, longer mechanical ventilation, higher infection rates, higher mortality.</li>
+        <li>Perform <strong>nutritional risk screening within 24 h of ICU admission</strong> to differentiate high- vs low-risk malnutrition.</li>
+      </ul>
+
+      <h3>Screening tools</h3>
+      <div class="kv">
+        <span class="pill blue">NRS 2002</span>
+        <span class="pill blue">mNUTRIC / NUTRIC</span>
+        <span class="pill">MUST</span>
+        <span class="pill">SGA</span>
+        <span class="pill">MNA</span>
+        <span class="pill">MST</span>
+      </div>
+      <ul>
+        <li><strong>NRS 2002</strong> and <strong>NUTRIC</strong> were designed for critically ill patients and are superior for predicting clinical outcomes — they pay special attention to nutritional status <em>and</em> disease severity.</li>
+        <li><strong>NRS 2002 ≥ 5</strong> = high nutritional risk.</li>
+        <li>No ICU-specific nutritional score has been fully validated — a <strong>general clinical assessment</strong> is recommended until one is available (ESPEN R2).</li>
+      </ul>
+
+      <h3>Clinical assessment should include</h3>
+      <ul>
+        <li>Detailed medical history, unintentional weight loss, decrease in physical performance before ICU admission.</li>
+        <li>Physical examination, body composition, <strong>muscle mass and strength</strong> (ultrasound, CT, BIA, handgrip dynamometry).</li>
+        <li>Weight and BMI alone <strong>do not</strong> accurately reflect malnutrition — detect loss of muscle / sarcopenia, including in obese patients.</li>
+      </ul>
+
+      <h3>Markers of severe malnutrition / high risk</h3>
+      <div class="kv">
+        <span class="pill red">BMI ≤ 18.5 kg/m²</span>
+        <span class="pill red">&gt; 5% weight loss in last month</span>
+        <span class="pill red">Reduced general condition</span>
+      </div>
+
+      <h3>Pragmatic "at risk" triggers (ESPEN)</h3>
+      <ul>
+        <li>ICU stay &gt; 48 h, or mechanical ventilation, or infection.</li>
+        <li>Underfed for &gt; 5 days before ICU admission.</li>
+        <li>Severe chronic disease present.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. ENERGY REQUIREMENTS -->
+  <section class="brick orange">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">4 · Determining Energy Requirements</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <h3>Hierarchy of methods</h3>
+      <div class="flow">
+        <div class="fbox g"><span class="lbl">1st choice — Gold standard</span><strong>Indirect calorimetry (IC)</strong> — measures VO₂ and VCO₂ via a ventilatory circuit; estimates REE and total energy expenditure.</div>
+        <div class="arrow">▼</div>
+        <div class="fbox b"><span class="lbl">2nd choice — if IC unavailable</span><strong>VCO₂ from the ventilator</strong> (or VO₂ from a pulmonary artery catheter) — better than predictive equations.</div>
+        <div class="arrow">▼</div>
+        <div class="fbox y"><span class="lbl">3rd choice</span><strong>Weight-based formula</strong>: 20–25 kcal/kg/d in the acute phase → 25–30 kcal/kg/d in recovery.</div>
+        <div class="arrow">▼</div>
+        <div class="fbox r"><span class="lbl">4th choice</span><strong>Predictive equations</strong>: Penn State, Mifflin-St Jeor, Ireton-Jones, revised Harris-Benedict. Error margin up to <strong>60%</strong>.</div>
+      </div>
+
+      <h3>Equations</h3>
+      <ul>
+        <li><strong>Weir equation (with urinary nitrogen):</strong><br>
+          REE (kcal/d) = 1.44 × [(VO₂ mL/min × 3.94) + (VCO₂ mL/min × 1.11)] − 2.17 × (UN)</li>
+        <li><strong>Modified Weir (no IC, RQ assumed 0.86):</strong><br>
+          <span class="hi">Energy expenditure (kcal/d) = VCO₂ (mL/min) × 8.19</span></li>
+        <li><strong>Harris-Benedict (revised), needs activity + stress factors:</strong><br>
+          Daily Calorie Requirement = REE × Activity Level × Stress Factor</li>
+      </ul>
+
+      <h3>IC — limitations</h3>
+      <ul>
+        <li>High oxygen requirements, nitrous oxide use, haemodynamic instability, ventilator adjustments → unreliable results.</li>
+        <li>Fick method requires a pulmonary artery catheter → limits applicability.</li>
+      </ul>
+
+      <h3>Evidence snapshot</h3>
+      <ul>
+        <li>IC-guided medical nutrition therapy: favourable trend for <strong>short-term mortality</strong> (RR 1.28, 95% CI 0.98–1.67, p = 0.07) — <strong>no</strong> significant difference in long-term mortality, infection rates or length of stay.</li>
+        <li>IC may be <strong>most valuable after the acute phase</strong>, when considerable metabolic changes occur.</li>
+        <li>If predictive equations are used → prefer <strong>hypocaloric nutrition (&lt; 70% of estimated needs)</strong> during the first week of ICU stay.</li>
+        <li>If IC is used → isocaloric nutrition can be progressively implemented after the early acute phase; after day 3 increase to <strong>80–100% of measured EE</strong>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. MACRONUTRIENTS -->
+  <section class="brick blue">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">5 · What to Feed — Macronutrients</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <div class="scroll-hint">↔ scroll table horizontally</div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Substrate</th><th>Dose / target</th><th>Clinical pearls</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Water</strong></td>
+              <td>30 mL/kg/d</td>
+              <td>Include fluids from medications and from EN/PN in the total.</td>
+            </tr>
+            <tr>
+              <td><strong>Electrolytes</strong></td>
+              <td>Na⁺, Cl⁻ 1–2 mmol/kg/d<br>K⁺ 0.8–1.2 mmol/kg/d<br>Ca²⁺, Mg²⁺ 0.1 mmol/kg/d<br>Phosphate 0.2–0.5 mmol/kg/d</td>
+              <td>Monitor at least once daily in the first week (refeeding risk).</td>
+            </tr>
+            <tr>
+              <td><strong>Carbohydrate</strong></td>
+              <td>45–60% of calorie requirements<br><strong>Max 5 mg/kg/min</strong> (EN or PN glucose)</td>
+              <td>Insulin resistance and hyperglycaemia are common. Excess → hyperglycaemia, ↑ CO₂ production, lipogenesis, ↑ insulin need, no protein-sparing advantage over lipid-based energy.</td>
+            </tr>
+            <tr>
+              <td><strong>Protein</strong></td>
+              <td>Early acute: start 0.4–0.8 g/kg/d<br>By day 4: <strong>1.3 g/kg/d</strong><br>Burns / trauma / obesity: up to 2 g/kg/d (use adjusted body weight in obesity)</td>
+              <td>Frail and sarcopenic patients benefit from 1.3 g/kg/d vs 0.8 g/kg/d. Doses <strong>≥ 2.2 g/kg/d</strong> show no mortality benefit and worse outcomes in acute kidney injury and high multiorgan failure (SOFA ≥ 9). Consider anabolic resistance in the initial phase.</td>
+            </tr>
+            <tr>
+              <td><strong>Lipids (IV)</strong></td>
+              <td>1 g/kg/d; tolerance up to <strong>1.5 g/kg/d</strong><br>30–40% of calorie requirement</td>
+              <td>Excess → waste, storage, toxicity. <strong>Propofol</strong> is a lipid source providing 1.1 kcal/mL — count it. Avoid soybean-oil-only emulsions (pro-inflammatory).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Adjusted body weight (obesity, BMI &gt; 25 kg/m²)</h3>
+      <div class="kv">
+        <span class="pill blue">ABW = (current BW − ideal BW) × 0.33 + ideal BW</span>
+        <span class="pill blue">Ideal BW = 2.2 × BMI + 3.5 × BMI × (height − 1.50 m)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. MICRONUTRIENTS -->
+  <section class="brick green">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">6 · Micronutrients &amp; Immunonutrition</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <p><strong>Principle:</strong> plasma micronutrient levels are <em>unreliable</em> during inflammation. Provide <strong>maintenance doses daily with PN</strong> — commercially available PN solutions lack micronutrients and require a separate prescription.</p>
+
+      <div class="scroll-hint">↔ scroll table horizontally</div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Nutrient</th><th>Dose</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Vitamin C</strong></td>
+              <td>100 mg / 1500 kcal EN<br>100–200 mg/d PN<br>200–500 mg/d if chronic oxidative stress</td>
+              <td>Higher doses in diabetes, heart failure, dialysis.</td>
+            </tr>
+            <tr>
+              <td><strong>Vitamin D3</strong></td>
+              <td>Status can be determined in patients at risk of depletion/deficiency.<br>Deficiency &lt; 12.5 ng/mL (50 nmol/L)</td>
+              <td>Low vitamin D is associated with increased mortality, extended hospital stay, higher sepsis rates, prolonged ventilation. Dosing/timing remain uncertain — <strong>high-dose monotherapy is not recommended without proven deficiency</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Vitamin E</strong></td>
+              <td>EN: 15 mg/d (max 1500 kcal)<br>PN: 9–10 mg/d<br>Supplement 100 mg/d if α-tocopherol &lt; 12 µmol/L</td>
+              <td>Consider deficiency in cystic fibrosis, abetalipoproteinaemia, thrombotic thrombocytopenic purpura. Routine assessment during PN is unnecessary.</td>
+            </tr>
+            <tr>
+              <td><strong>Selenium</strong></td>
+              <td>EN: 50–150 µg / 1500 kcal<br>PN: 60–100 µg/d<br>Supplement 100 µg/d if &lt; 0.4 µmol/L</td>
+              <td>Renally excreted — avoid excess in renal failure.</td>
+            </tr>
+            <tr>
+              <td><strong>Zinc</strong></td>
+              <td>EN: 10–15 mg / 1500 kcal<br>PN: 3–5 mg/d<br>IV up to 12 mg/d for GI losses<br>Burns: 30–35 mg/d IV over 2–3 weeks</td>
+              <td>Low zinc is common (pre-existing deficiency, inflammation, losses) and linked to poor outcomes. No specific IV zinc guidance for other ICU subgroups.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Immunonutrition (INT)</h3>
+      <ul>
+        <li><strong>Glutamine (GLN)</strong>
+          <ul>
+            <li>Burns &gt; 20% BSA: enteral GLN <strong>0.3–0.5 g/kg/d</strong> for 10–15 days, started as soon as EN begins.</li>
+            <li>Trauma: enteral GLN <strong>0.2–0.3 g/kg/d</strong> for the first 5 days; extend to 10–15 days for complicated wound healing.</li>
+            <li><strong>Not</strong> for other ICU patients. <strong>Parenteral GLN-dipeptide must not be given</strong> in unstable/complex patients, especially liver and renal failure.</li>
+          </ul>
+        </li>
+        <li><strong>Omega-3 fatty acids</strong>
+          <ul>
+            <li>EN enriched with omega-3 <em>within nutritional doses</em> may be administered (ARDS, acute lung injury, sepsis — improved LOS, ventilator days, mortality in some studies).</li>
+            <li><strong>High-dose omega-3 enriched enteral formulas should NOT be given routinely or as bolus doses.</strong></li>
+            <li>Parenteral lipid emulsions enriched with EPA + DHA (fish oil 0.1–0.2 g/kg/d) <strong>can</strong> be provided in patients receiving PN.</li>
+          </ul>
+        </li>
+        <li><strong>Arginine</strong> — potential benefit, but <strong>caution in severe sepsis and septic shock</strong> (↑ nitric oxide → exacerbates hypotension).</li>
+        <li><strong>Antioxidants</strong> (vitamins C, D, E; zinc, copper, selenium) — important against oxidative stress, but <strong>high-dose mono- or combination therapy is not recommended without proven deficiency</strong>.</li>
+        <li>Routine use of INT in the general critically ill population is <strong>not recommended</strong> — consider on a case-by-case basis with monitoring of nutritional status and immune function.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. MODES -->
+  <section class="brick red">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">7 · Modes of Nutritional Support</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <div class="scroll-hint">↔ scroll table horizontally</div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Mode</th><th>Indications</th><th>Advantages</th><th>Disadvantages</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Oral</strong></td>
+              <td>Fully conscious, alert, intact swallowing reflex; all nutritional requirements can be met.</td>
+              <td>Maintains normalcy/routine; potentially fewer infections than invasive methods; cost-effective.</td>
+              <td>Not feasible if unconscious or unable to swallow; aspiration risk; may not meet full requirements.</td>
+            </tr>
+            <tr>
+              <td><strong>Assisted enteral (EN)</strong></td>
+              <td>Functioning GIT; enteral access can be safely established/maintained; haemodynamically stable; need for long-term support.</td>
+              <td>Cost-effective, easy to administer; maintains gut integrity and function; fewer infections vs parenteral; easy transition to oral.</td>
+              <td>Aspiration risk; unsuitable in severe GI disease; slower absorption; tube displacement/clogging; GI necrosis.</td>
+            </tr>
+            <tr>
+              <td><strong>Parenteral (PN)</strong></td>
+              <td>Non-functional gut; unable to tolerate EN; severe haemodynamic instability; malabsorption/short bowel; high aspiration risk; need for precise nutrient control.</td>
+              <td>Delivers nutrients directly into blood; useful in severe GI disease; meets precise needs when EN is not feasible/sufficient.</td>
+              <td>Expensive, complex; higher risk of infection/sepsis/metabolic complications; hepatic dysfunction and electrolyte disturbance long-term; no gut integrity benefit.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Enteral access</h3>
+      <ul>
+        <li><strong>Gastric access is the standard approach</strong> to initiate EN.</li>
+        <li><strong>Continuous</strong> rather than bolus EN should be used (18–24 h infusion). If on insulin, 24-h continuous infusion is ideal for glycaemic control.</li>
+        <li>ESPEN: establish a <strong>gastrostomy or jejunostomy</strong> if enteral feeding is anticipated for &gt; 3–4 weeks.</li>
+        <li><strong>Postpyloric (mainly jejunal) feeding</strong> — if high risk of aspiration, or gastric feeding intolerance not solved by prokinetics. Requires expertise; less physiological; may be harmful with motility problems distal to the stomach.</li>
+      </ul>
+
+      <h3>Parenteral access</h3>
+      <ul>
+        <li><strong>PPN</strong> (peripheral): temporary supplement until EN feasible, or rapid intervention when central access unavailable. ↓ central line risks, fewer delays, lower cost. Drawbacks: ↑ thrombophlebitis, limited nutrient complement, <strong>not suitable beyond 4–7 days</strong>, needs lower osmolality.</li>
+        <li><strong>CPN</strong> (central): short-term non-tunnelled catheters (in-hospital); medium-term PICC / Hohn catheters (up to 3 months, in or out of hospital); long-term/home PN &gt; 3 months → tunnelled cuffed central catheters or implanted ports.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8. FEED DECISION ALGORITHM -->
+  <section class="brick yellow">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">8 · Deciding Feed Type — Algorithm</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <div class="flow">
+        <div class="fbox b"><span class="lbl">Step 1 — ICU admission</span>
+          Perform nutritional risk screening <strong>within 24 h</strong> (NRS 2002 or mNUTRIC) + determine malnutrition severity by clinical evaluation.<br>
+          <strong>Regard all ICU patients staying &gt; 48 h as potentially at risk for malnutrition.</strong>
+        </div>
+        <div class="arrow">▼</div>
+        <div class="fbox y"><span class="lbl">Step 2 — Risk scoring</span>
+          <strong>Low risk</strong> → can the patient take orally?<br>
+          <strong>High risk</strong> → early progressive medical nutrition therapy (EN/PN) if oral intake is not feasible and there are no contraindications.
+        </div>
+        <div class="arrow">▼</div>
+        <div class="fbox g"><span class="lbl">Step 3 — Feeding mode</span>
+          <ul style="margin:.2rem 0 0;padding-left:1.1rem">
+            <li><strong>Low risk + can eat</strong> → <strong>oral route preferred</strong> over EN/PN.</li>
+            <li><strong>Low risk + cannot eat</strong> → consider <strong>progressive EN within 48 h</strong> if no contraindications; if contraindications exist, delay nutrition.</li>
+            <li><strong>High risk</strong> → <strong>EN preferred over PN</strong>; determine energy requirements by IC → ventilator VCO₂ → weight-based → predictive equations.</li>
+          </ul>
+        </div>
+        <div class="arrow">▼</div>
+        <div class="fbox r"><span class="lbl">Safety rule</span>
+          To avoid overfeeding, <strong>early full EN and PN must not be used</strong> — prescribe progressively within <strong>3 to 7 days</strong>.
+        </div>
+      </div>
+      <p class="scroll-hint">Adapted from ESPEN practical guideline Fig. 1–2 (2023) and ATOTW 544 Fig. 2.</p>
+    </div>
+  </section>
+
+  <!-- 9. PHASE-BASED TARGETS -->
+  <section class="brick blue">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">9 · Phase-Based Nutritional Targets</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <div class="scroll-hint">↔ scroll table horizontally</div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Phase</th><th>Energy target</th><th>Protein target</th><th>Route &amp; actions</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Acute early</strong><br>(ICU day 1–2)</td>
+              <td>IC: 70% of EE<br>No IC: hypocaloric &lt; 70% of EE<br>Obese + no IC: 20–25 kcal/kg ABW/d</td>
+              <td>Progressive increase from <strong>0.4 → 0.8 g/kg/d</strong></td>
+              <td>Start early progressive EN within 48 h; <strong>avoid early full nutrition and early PN</strong>. Consider early progressive PN only if EN contraindicated <em>and</em> severely malnourished (case-by-case). Monitor for refeeding syndrome — if suspected, reduce energy target by 50% for 2–3 days and replace phosphate.</td>
+            </tr>
+            <tr>
+              <td><strong>Acute late</strong><br>(ICU day 3–7)</td>
+              <td>IC: isocaloric 80–100% of EE<br>No IC: 70% hypocaloric</td>
+              <td>Gradually increase to <strong>1.3 g/kg/d</strong><br>(obese: use ABW)</td>
+              <td>Give progressive EN aiming for full energy. Consider PN if EN is contraindicated or insufficient — case-by-case, only if all measures to improve EN have failed. Continue monitoring for refeeding syndrome.</td>
+            </tr>
+            <tr>
+              <td><strong>Recovery</strong><br>(ICU &gt; 7 days)</td>
+              <td>Isocaloric <strong>80–100%</strong> of estimated or IC-measured requirements</td>
+              <td>At least <strong>1.3 g/kg/d</strong></td>
+              <td>Give EN. Commence PN if EN is contraindicated or insufficient (case-by-case).</td>
+            </tr>
+            <tr>
+              <td><strong>Post-ICU discharge</strong></td>
+              <td>Increase to <strong>125%</strong> of estimated requirements / IC, or <strong>30 kcal/kg/d</strong></td>
+              <td><strong>1.5–2.0 g/kg/d</strong></td>
+              <td>Consider extended tube feeding or PN for selected patients.</td>
+            </tr>
+            <tr>
+              <td><strong>Post-hospital discharge</strong></td>
+              <td>Increase to <strong>150%</strong> of predictive equations / IC, or <strong>35 kcal/kg/d</strong></td>
+              <td><strong>2.0–2.5 g/kg/d</strong></td>
+              <td>Continue high-protein oral nutritional supplements (HP-ONS) for at least <strong>3 months</strong> post-hospital discharge.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. DELAYED EN -->
+  <section class="brick red">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">10 · When to Delay or Limit EN</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <h3>Delay EN until controlled</h3>
+      <ul>
+        <li><strong>Uncontrolled shock</strong> — low-dose EN can start once shock is controlled with fluids and vasopressors/inotropes, while remaining vigilant for bowel ischaemia.</li>
+        <li><strong>Uncontrolled life-threatening hypoxaemia, hypercapnia or acidosis</strong> — EN can start with stable hypoxaemia and compensated/permissive hypercapnia and acidosis.</li>
+        <li><strong>Active upper GI bleeding</strong> — start EN once bleeding has stopped and there are no signs of re-bleeding.</li>
+        <li><strong>Overt bowel ischaemia.</strong></li>
+        <li><strong>High-output intestinal fistula</strong> — if reliable feeding access distal to the fistula is not achievable.</li>
+        <li><strong>Abdominal compartment syndrome.</strong></li>
+        <li><strong>Gastric aspirate volume &gt; 500 mL / 6 h.</strong></li>
+      </ul>
+
+      <h3>Low-dose EN should be administered in</h3>
+      <ul>
+        <li>Therapeutic hypothermia — increase the dose after rewarming.</li>
+        <li>Intra-abdominal hypertension <em>without</em> abdominal compartment syndrome — consider temporary reduction or discontinuation of EN if intra-abdominal pressure rises further under EN.</li>
+        <li>Acute liver failure — once immediately life-threatening metabolic derangements are controlled (with or without liver support), independent of grade of encephalopathy.</li>
+      </ul>
+
+      <h3>PN rules</h3>
+      <ul>
+        <li>In case of contraindications to oral and EN, <strong>PN should be implemented within 3–7 days</strong>.</li>
+        <li><strong>PN should not be started until all reasonable strategies to improve EN tolerance have been attempted.</strong></li>
+        <li>In patients not tolerating full-dose EN during the first ICU week, weigh safety and benefits of supplemental PN <strong>case-by-case</strong>.</li>
+        <li>Early and progressive PN may replace no nutrition in <strong>severely malnourished</strong> patients with contraindications to EN — balance against overfeeding and refeeding risk.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 11. SPECIAL POPULATIONS -->
+  <section class="brick green">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">11 · Special Populations</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <div class="grid">
+        <div class="card">
+          <h4>Non-intubated patient</h4>
+          <ul>
+            <li>If not reaching the energy target with an oral diet → <strong>oral nutritional supplements first, then EN</strong>.</li>
+            <li>Dysphagia → texture-adapted food can be considered.</li>
+            <li>Swallowing proven unsafe → <strong>EN</strong>.</li>
+            <li>Very high aspiration risk → <strong>postpyloric EN</strong>, or if not possible, <strong>temporary PN</strong> during swallowing training with the nasoenteral tube removed.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Surgical patient</h4>
+          <ul>
+            <li>After abdominal or oesophageal surgery → <strong>early EN preferred over delayed EN</strong>.</li>
+            <li>Critically ill with surgical complications and unable to eat → <strong>EN rather than PN</strong>, unless GI discontinuity/obstruction or abdominal compartment syndrome.</li>
+            <li>Unrepaired anastomotic leak / internal or external fistula → aim for <strong>feeding access distal to the defect</strong>.</li>
+            <li>If distal access not achieved → <strong>withhold EN and commence PN</strong>.</li>
+            <li>High-output stoma or fistula → evaluate <strong>chyme reinfusion or enteroclysis</strong>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Trauma patient</h4>
+          <ul>
+            <li>Preferentially receive <strong>early EN instead of early PN</strong>.</li>
+            <li>Early EN associated with decreased length of stay and a trend to decreased mortality.</li>
+            <li>Protein intake reaching <strong>1.5–2 g/kg/d</strong> may be considered (large protein losses, e.g. 20–30 g/L of abdominal fluid).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Septic patient</h4>
+          <ul>
+            <li><strong>Early and progressive EN after haemodynamic stabilisation.</strong></li>
+            <li>If contraindicated → replace or supplement with <strong>progressive PN</strong>.</li>
+            <li>Septic shock: EN should be started <strong>after successful resuscitation</strong>; begin 20–50% of full support to "open" the enteral route, then increase according to GI tolerance.</li>
+            <li>Not receiving nutrition support is deleterious — increased calories and protein are associated with ↓ 60-day mortality and ↑ ventilation-free days.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Obese patient</h4>
+          <ul>
+            <li><strong>Iso-caloric high-protein diet</strong>, preferentially guided by indirect calorimetry and urinary nitrogen losses.</li>
+            <li>If IC unavailable → base energy on <strong>adjusted body weight</strong>.</li>
+            <li>If nitrogen losses / lean body mass unavailable → protein <strong>1.3 g/kg ABW/d</strong> (some advocate 2–2.5 g/kg ideal BW/d).</li>
+            <li>Watch for decreased glucose tolerance, altered lipid metabolism, micronutrient deficiency, decreased gut motility.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. MONITORING -->
+  <section class="brick orange">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">12 · Monitoring, Tolerance &amp; Refeeding</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <h3>Glycaemic control</h3>
+      <ul>
+        <li>Measure blood glucose <strong>initially</strong> (after ICU admission or after starting artificial nutrition) and <strong>at least every 4 h for the first 2 days</strong>.</li>
+        <li><strong>Administer insulin when glucose exceeds 10 mmol/L</strong> (≈180 mg/dL).</li>
+        <li>Severe hyperglycaemia (&gt; 180 mg/dL / 10 mmol/L), marked glycaemic variability (CV &gt; 20%) and mild hypoglycaemia (&lt; 70 mg/dL / 3.9 mmol/L) are all associated with increased mortality.</li>
+        <li>Use IV continuous insulin with an algorithm when on ongoing EN/PN.</li>
+      </ul>
+
+      <h3>Enteral feeding intolerance</h3>
+      <ul>
+        <li>Features: abdominal distension, gastric overfilling, vomiting, diet regurgitation, bowel distension (up to Ogilvie's syndrome), intestinal ischaemia, diarrhoea. Do <strong>not</strong> limit the definition to gastric function alone.</li>
+        <li><strong>Erythromycin IV is first-line prokinetic</strong> (usually 100–250 mg three times daily) — significant benefit for feeding tolerance; use for 2–4 days and discontinue after 3 days (effectiveness falls to one third after 72 h).</li>
+        <li><strong>Metoclopramide IV</strong> (10 mg two to three times daily) or a <strong>combination</strong> of metoclopramide + erythromycin is an alternative.</li>
+        <li>If a large GRV (&gt; 500 mL) persists, consider <strong>postpyloric feeding</strong> rather than withholding EN — unless a new abdominal complication is suspected.</li>
+        <li>High aspiration risk: feed in a <strong>35°–40° head-up position</strong>; consider prokinetics; consider jejunal (postpyloric) tube.</li>
+      </ul>
+
+      <h3>Refeeding syndrome</h3>
+      <ul>
+        <li>Measure <strong>electrolytes (potassium, magnesium, phosphate) at least once daily for the first week</strong>.</li>
+        <li>If refeeding hypophosphataemia (&lt; 0.65 mmol/L or a drop of &gt; 0.16 mmol/L): measure electrolytes <strong>2–3 times a day</strong> and supplement if needed.</li>
+        <li><strong>Restrict energy supply for 48 h</strong>, then gradually increase.</li>
+        <li>Protocolised caloric restriction for 48 h in patients developing hypophosphataemia improved survival in an RCT — slow progression over the first 72 h facilitates electrolyte control.</li>
+        <li>Phosphate is measured less commonly than potassium — undetected severe hypophosphataemia can be fatal after feeding initiation.</li>
+      </ul>
+
+      <h3>Other monitoring</h3>
+      <ul>
+        <li>Monitor for <strong>overfeeding and underfeeding</strong>; aim between 70% and 100% of measured EE (both under- and over-feeding are deleterious).</li>
+        <li>Triglycerides and liver function tests may guide lipid tolerance.</li>
+        <li>Physical activity may improve the beneficial effects of nutritional therapy (ESPEN Statement 3).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 13. REFERENCES -->
+  <section class="brick dark">
+    <button class="brick-head" type="button">
+      <span class="studs"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="head-row"><span class="brick-title">13 · Sources &amp; References</span><span class="chev">▾</span></span>
+    </button>
+    <div class="brick-body">
+      <h3>Primary sources</h3>
+      <ol>
+        <li>Makuya G, et al. <em>ATOTW 544 — Nutritional Considerations for ICU Patients. Part 1: When, What, and How to Feed.</em> World Federation of Societies of Anaesthesiologists (WFSA), Tutorial of the Week. Published 25 March 2025.
+          <br><a href="https://resources.wfsahq.org/anaesthesia-tutorial-of-the-week/" target="_blank" rel="noopener">https://resources.wfsahq.org/anaesthesia-tutorial-of-the-week/</a></li>
+        <li>Singer P, Reintam Blaser A, Berger MM, Calder PC, Casaer M, Hiesmayr M, Mayer K, Montejo-Gonzalez JC, Pichard C, Preiser J-C, Szczeklik W, van Zanten ARH, Bischoff SC. <em>ESPEN practical and partially revised guideline: Clinical nutrition in the intensive care unit.</em> Clinical Nutrition. 2023;42(9):1671–1689.
+          <br><a href="https://doi.org/10.1016/j.clnu.2023.07.011" target="_blank" rel="noopener">https://doi.org/10.1016/j.clnu.2023.07.011</a></li>
+      </ol>
+
+      <h3>Key underlying references cited by the sources</h3>
+      <ol>
+        <li>Singer P, Blaser AR, Berger MM, et al. ESPEN guideline on clinical nutrition in the intensive care unit. Clin Nutr. 2019;38(1):48–79.</li>
+        <li>Reintam Blaser A, Starkopf J, Alhazzani W, et al. Early enteral nutrition in critically ill patients: ESICM clinical practice guidelines. Intensive Care Med. 2017;43:380–398.</li>
+        <li>Heyland DK, Patel J, Compher C, et al. The effect of higher protein dosing in critically ill patients with high nutritional risk (EFFORT Protein). Lancet. 2023;401(10376):568–576.</li>
+        <li>Berger MM, Shenkin A, Dizdar OS, et al. ESPEN practical short micronutrient guideline. Clin Nutr. 2024;43(3):825–857.</li>
+        <li>Pradelli L, Klek S, Mayer K, et al. Omega-3 fatty acid-containing parenteral nutrition in ICU patients: systematic review with meta-analysis and cost-effectiveness analysis. Crit Care. 2020;24:634.</li>
+        <li>Doig GS, Simpson F, Heighes PT, et al. Restricted versus continued standard caloric intake during the management of refeeding syndrome in critically ill adults. Lancet Respir Med. 2015;3:943–952.</li>
+        <li>Casaer MP, Mesotten D, Hermans G, et al. Early versus late parenteral nutrition in critically ill adults. N Engl J Med. 2011;365:506–517.</li>
+      </ol>
+
+      <p style="margin-top:.8rem;font-size:.75rem;color:#64748b">
+        This quick reference is a condensed clinical summary for educational use by anaesthetists and intensivists.
+        Always assess each patient on a case-by-case basis and consult local protocols and the full guideline texts before making clinical decisions.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ref">
+    <h2>Citation</h2>
+    <p style="margin:0 0 .4rem">
+      <strong>1.</strong> Makuya G, et al. <em>ATOTW 544 — Nutritional Considerations for ICU Patients. Part 1: When, What, and How to Feed.</em>
+      WFSA Tutorial of the Week, published 25 March 2025.
+      <a href="https://resources.wfsahq.org/anaesthesia-tutorial-of-the-week/" target="_blank" rel="noopener">resources.wfsahq.org</a>
+    </p>
+    <p style="margin:0">
+      <strong>2.</strong> Singer P, Reintam Blaser A, Berger MM, et al. <em>ESPEN practical and partially revised guideline: Clinical nutrition in the intensive care unit.</em>
+      Clinical Nutrition. 2023;42(9):1671–1689.
+      <a href="https://doi.org/10.1016/j.clnu.2023.07.011" target="_blank" rel="noopener">doi:10.1016/j.clnu.2023.07.011</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content     = document.getElementById('content');
+  var searchInput = document.getElementById('search');
+  var countEl     = document.getElementById('count');
+  var bricks      = Array.prototype.slice.call(document.querySelectorAll('.brick'));
+
+  /* ---------------- COLLAPSE / EXPAND ---------------- */
+  document.querySelectorAll('.brick-head').forEach(function (head) {
+    head.setAttribute('aria-expanded', 'true');
+    head.addEventListener('click', function () {
+      var brick = head.closest('.brick');
+      brick.classList.toggle('closed');
+      head.setAttribute('aria-expanded', brick.classList.contains('closed') ? 'false' : 'true');
+    });
+  });
+
+  document.getElementById('expandAll').addEventListener('click', function () {
+    bricks.forEach(function (b) {
+      b.classList.remove('closed');
+      var h = b.querySelector('.brick-head');
+      if (h) h.setAttribute('aria-expanded', 'true');
+    });
+  });
+
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    bricks.forEach(function (b) {
+      b.classList.add('closed');
+      var h = b.querySelector('.brick-head');
+      if (h) h.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ---------------- FONT SIZE ---------------- */
+  var root = document.documentElement;
+  var size = 16;
+  var fsVal = document.getElementById('fsVal');
+
+  function setSize(v) {
+    size = Math.min(24, Math.max(12, v));
+    root.style.fontSize = size + 'px';
+    fsVal.textContent = size + 'px';
+  }
+  document.getElementById('fontUp').addEventListener('click', function () { setSize(size + 1); });
+  document.getElementById('fontDown').addEventListener('click', function () { setSize(size - 1); });
+  document.getElementById('fontReset').addEventListener('click', function () { setSize(16); });
+
+  /* ---------------- SEARCH ---------------- */
+  var marks = [];
+  var current = -1;
+
+  function clearHighlights() {
+    content.querySelectorAll('mark.hl').forEach(function (m) {
+      var parent = m.parentNode;
+      if (!parent) return;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+    });
+    content.normalize();
+    marks = [];
+    current = -1;
+  }
+
+  function updateCount() {
+    countEl.textContent = marks.length ? (current + 1) + ' / ' + marks.length : '0 / 0';
+  }
+
+  function focusMark() {
+    if (current < 0 || !marks[current]) return;
+    marks.forEach(function (m) { m.classList.remove('current'); });
+    var m = marks[current];
+    m.classList.add('current');
+    m.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    updateCount();
+  }
+
+  function runSearch(query) {
+    clearHighlights();
+
+    if (!query || query.length < 2) {
+      updateCount();
+      return;
+    }
+
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName;
+          if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    var q = query.toLowerCase();
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(q);
+      if (idx === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + query.length);
+        frag.appendChild(mark);
+        marks.push(mark);
+        last = idx + query.length;
+        idx = lower.indexOf(q, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    /* auto-open bricks containing matches */
+    marks.forEach(function (m) {
+      var brick = m.closest ? m.closest('.brick') : null;
+      if (brick) {
+        brick.classList.remove('closed');
+        var h = brick.querySelector('.brick-head');
+        if (h) h.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    if (marks.length) {
+      current = 0;
+      focusMark();
+    } else {
+      updateCount();
+    }
+  }
+
+  function nextMatch(dir) {
+    if (!marks.length) return;
+    current = (current + dir + marks.length) % marks.length;
+    focusMark();
+  }
+
+  var debounce;
+  searchInput.addEventListener('input', function () {
+    clearTimeout(debounce);
+    var val = searchInput.value.trim();
+    debounce = setTimeout(function () { runSearch(val); }, 220);
+  });
+
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      nextMatch(e.shiftKey ? -1 : 1);
+    }
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      clearHighlights();
+      updateCount();
+    }
+  });
+
+  updateCount();
+})();
+</script>
+</body>
+</html>
