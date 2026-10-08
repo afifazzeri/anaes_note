@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICU Enteral Nutrition Reference | Lego Theme</title>
+    <style>
+        /* CSS Variables for Lego Theme */
+        :root {
+            --base-font-size: 15px;
+            --lego-red: #D01012;
+            --lego-blue: #0055BF;
+            --lego-yellow: #F2CD00;
+            --lego-green: #00852B;
+            --lego-dark-blue: #003d80;
+            --lego-dark-yellow: #D0A800;
+            --lego-gray: #f0f0f0;
+            --lego-dark-gray: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: var(--base-font-size);
+            background-color: #f9f9f9;
+            background-image: radial-gradient(#e0e0e0 2px, transparent 2px);
+            background-size: 20px 20px;
+            color: var(--lego-dark-gray);
+            line-height: 1.6;
+            padding: 20px;
+            transition: font-size 0.2s;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.05);
+            border: 4px solid var(--lego-blue);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Header */
+        h1 {
+            color: var(--lego-blue);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 var(--lego-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Controls Panel */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--lego-gray);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px dashed #ccc;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 3px solid var(--lego-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--lego-yellow);
+            box-shadow: 0 0 0 3px rgba(242, 205, 0, 0.3);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Lego Button Style */
+        .lego-btn {
+            background-color: var(--lego-yellow);
+            color: var(--lego-dark-gray);
+            border: none;
+            border-radius: 6px;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 4px 0 var(--lego-dark-yellow), inset 0 -4px 0 rgba(0,0,0,0.1);
+            transition: all 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lego-btn:active {
+            box-shadow: 0 1px 0 var(--lego-dark-yellow);
+            transform: translateY(3px);
+        }
+
+        .lego-btn.blue {
+            background-color: var(--lego-blue);
+            color: white;
+            box-shadow: 0 4px 0 var(--lego-dark-blue), inset 0 -4px 0 rgba(0,0,0,0.1);
+        }
+
+        .lego-btn.blue:active {
+            box-shadow: 0 1px 0 var(--lego-dark-blue);
+        }
+
+        .lego-btn.red {
+            background-color: var(--lego-red);
+            color: white;
+            box-shadow: 0 4px 0 #900a0c, inset 0 -4px 0 rgba(0,0,0,0.1);
+        }
+
+        .lego-btn.red:active {
+            box-shadow: 0 1px 0 #900a0c;
+        }
+
+        /* Sections (Collapsible) */
+        .section {
+            margin-bottom: 20px;
+            border: 3px solid var(--lego-blue);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background-color: var(--lego-blue);
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            user-select: none;
+        }
+
+        .section-header:hover {
+            background-color: var(--lego-dark-blue);
+        }
+
+        .section-content {
+            display: block;
+            padding: 20px;
+            background: #fff;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .section-content.hidden {
+            display: none;
+        }
+
+        /* Dosing Calculator */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            align-items: start;
+        }
+
+        .calc-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 6px solid var(--lego-blue);
+        }
+
+        .calc-group label {
+            font-weight: bold;
+            color: var(--lego-dark-blue);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .calc-group .value-display {
+            background: var(--lego-yellow);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .calc-group input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+            accent-color: var(--lego-blue);
+        }
+
+        .calc-group select, .calc-group input[type="number"] {
+            padding: 8px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .calc-group select:focus, .calc-group input[type="number"]:focus {
+            border-color: var(--lego-yellow);
+            outline: none;
+        }
+
+        /* Results Area */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .result-card {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            font-size: 0.95rem;
+        }
+
+        .result-card.cal {
+            background-color: var(--lego-green);
+        }
+
+        .result-card.pro {
+            background-color: var(--lego-red);
+        }
+
+        .result-card.schedule {
+            background-color: var(--lego-dark-blue);
+        }
+
+        .result-card h3 {
+            margin-bottom: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+            font-size: 1.05rem;
+        }
+
+        .result-card ul {
+            list-style: none;
+        }
+
+        .result-card li {
+            margin-bottom: 5px;
+        }
+
+        /* Table Container */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 3px solid var(--lego-blue);
+            margin-top: 10px;
+            background: #fff;
+        }
+
+        table {
+            width: 100%;
+            min-width: 1200px;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: var(--lego-blue);
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border: 2px solid var(--lego-dark-blue);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 10px;
+            border: 2px solid #ddd;
+            white-space: nowrap;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f4f8ff;
+        }
+
+        tbody tr:hover {
+            background-color: #e0f0ff;
+        }
+
+        mark {
+            background-color: var(--lego-yellow);
+            color: var(--lego-dark-gray);
+            padding: 0 2px;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 3px dashed #ccc;
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .footer strong {
+            color: var(--lego-dark-blue);
+        }
+
+        .footer-note {
+            color: var(--lego-red);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .section-header {
+                font-size: 1rem;
+            }
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🧱 ICU Enteral Nutrition Reference</h1>
+    <p style="text-align: center; margin-bottom: 20px; font-weight: bold; color: var(--lego-blue);">
+        Complete Balanced Formula in 1000 kcal (Higher to Lower Protein Content)
+    </p>
+
+    <!-- Controls -->
+    <div class="controls">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search formula, nutrient, or keyword..." oninput="searchTable()">
+        </div>
+        <div class="btn-group">
+            <button class="lego-btn" onclick="changeFontSize(1)">A+ 🔠</button>
+            <button class="lego-btn" onclick="changeFontSize(-1)">A- 🔡</button>
+            <button class="lego-btn blue" onclick="expandAll()">Expand All ➕</button>
+            <button class="lego-btn red" onclick="collapseAll()">Collapse All ➖</button>
+        </div>
+    </div>
+
+    <!-- Dosing Calculator Section -->
+    <div class="section">
+        <div class="section-header" onclick="toggleSection('calcContent')">
+            <span>📊 Dosing & Feeding Plan Calculator</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="section-content" id="calcContent">
+            <div class="calc-grid">
+                <!-- Formula Selection -->
+                <div class="calc-group">
+                    <label for="calcFormula">Select Formula:</label>
+                    <select id="calcFormula" onchange="calculateDosing()"></select>
+                </div>
+
+                <!-- Weight -->
+                <div class="calc-group">
+                    <label>Patient Weight (kg): <span class="value-display" id="weightVal">70</span></label>
+                    <input type="range" id="weightRange" min="30" max="200" value="70" oninput="syncInputs('weight')">
+                    <input type="number" id="weightNum" min="30" max="200" value="70" oninput="syncInputs('weight')">
+                </div>
+
+                <!-- Target Calories -->
+                <div class="calc-group">
+                    <label>Target Calories (kcal/kg/day): <span class="value-display" id="kcalVal">25</span></label>
+                    <input type="range" id="kcalRange" min="10" max="50" value="25" oninput="syncInputs('kcal')">
+                    <input type="number" id="kcalNum" min="10" max="50" value="25" oninput="syncInputs('kcal')">
+                </div>
+
+                <!-- Target Protein -->
+                <div class="calc-group">
+                    <label>Target Protein (g/kg/day): <span class="value-display" id="proVal">1.5</span></label>
+                    <input type="range" id="proRange" min="0.5" max="3.0" step="0.1" value="1.5" oninput="syncInputs('pro')">
+                    <input type="number" id="proNum" min="0.5" max="3.0" step="0.1" value="1.5" oninput="syncInputs('pro')">
+                </div>
+
+                <!-- Feeding Schedule -->
+                <div class="calc-group">
+                    <label for="feedSchedule">Feeding Schedule:</label>
+                    <select id="feedSchedule" onchange="calculateDosing()">
+                        <option value="continuous">Continuous (Per Hour)</option>
+                        <option value="4hourly">4-Hourly (q6h)</option>
+                        <option value="3hourly">3-Hourly (q8h)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Results Output -->
+            <div class="results-grid" id="resultsOutput">
+                <div class="result-card cal">
+                    <h3>🎯 To Meet Calorie Target</h3>
+                    <ul id="resCalorie">
+                        <li>Select inputs to calculate</li>
+                    </ul>
+                </div>
+                <div class="result-card pro">
+                    <h3>🥩 To Meet Protein Target</h3>
+                    <ul id="resProtein">
+                        <li>Select inputs to calculate</li>
+                    </ul>
+                </div>
+                <div class="result-card schedule">
+                    <h3>⏱️ Feeding Schedule (Based on Calorie Target)</h3>
+                    <ul id="resSchedule">
+                        <li>Select inputs to calculate</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="section">
+        <div class="section-header" onclick="toggleSection('tableContent')">
+            <span>📋 Formula Reference Table</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="section-content" id="tableContent">
+            <div class="table-container">
+                <table id="formulaTable">
+                    <thead>
+                        <tr>
+                            <th>FORMULAS</th>
+                            <th>Kcal/ml</th>
+                            <th>Kcal/scp</th>
+                            <th>Dilution/scp (ml)</th>
+                            <th>CHO (g)</th>
+                            <th>PRO (g)</th>
+                            <th>FAT (g)</th>
+                            <th>FIBER (g)</th>
+                            <th>Na+ (mg)</th>
+                            <th>K+ (mg)</th>
+                            <th>PO4- (mg)</th>
+                            <th>Ca++ (mg)</th>
+                            <th>VIT. K (mcg)</th>
+                            <th>Fe (mg)</th>
+                            <th>Water Content</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>PEPTAMEN AF</td><td>1.52</td><td>RTU</td><td>RTU</td><td>92</td><td>63</td><td>42</td><td>0.0</td><td>855</td><td>1775</td><td>395</td><td>660</td><td>66</td><td>11</td><td>78%</td></tr>
+                        <tr><td>ISOSOURCE PF</td><td>1.33</td><td>RTU</td><td>RTU</td><td>120</td><td>50</td><td>33</td><td>11</td><td>900</td><td>900</td><td>565</td><td>680</td><td>60</td><td>8</td><td>79%</td></tr>
+                        <tr><td>PEPTAMEN</td><td>1.03</td><td>43</td><td>35</td><td>115</td><td>50</td><td>40</td><td>0</td><td>860</td><td>1120</td><td>670</td><td>945</td><td>100</td><td>16</td><td>84%</td></tr>
+                        <tr><td>NUTREM DM</td><td>1.00</td><td>31</td><td>26</td><td>95</td><td>50</td><td>43</td><td>16</td><td>965</td><td>1130</td><td>440</td><td>655</td><td>80</td><td>12</td><td>84%</td></tr>
+                        <tr><td>GLUCERNA T3</td><td>0.96</td><td>46</td><td>40</td><td>115</td><td>45</td><td>38</td><td>17</td><td>925</td><td>1625</td><td>735</td><td>980</td><td>85</td><td>9</td><td>84%</td></tr>
+                        <tr><td>PEPTAMEN 1.6</td><td>1.60</td><td>RTU</td><td>RTU</td><td>120</td><td>45</td><td>38</td><td>0.6</td><td>690</td><td>1315</td><td>440</td><td>750</td><td>66</td><td>14</td><td>77%</td></tr>
+                        <tr><td>NOVASOURCE RENAL</td><td>2.01</td><td>RTU</td><td>RTU</td><td>92</td><td>45</td><td>50</td><td>0</td><td>375</td><td>405</td><td>305</td><td>440</td><td>52</td><td>8</td><td>77%</td></tr>
+                        <tr><td>NEPRO HP</td><td>1.82</td><td>RTU</td><td>RTU</td><td>80</td><td>45</td><td>54</td><td>7</td><td>385</td><td>580</td><td>395</td><td>580</td><td>50</td><td>11</td><td>73%</td></tr>
+                        <tr><td>OSMOLITE 1.0 CAL</td><td>1.05</td><td>RTU</td><td>RTU</td><td>136</td><td>42</td><td>33</td><td>0</td><td>880</td><td>1490</td><td>790</td><td>825</td><td>100</td><td>11</td><td>84%</td></tr>
+                        <tr><td>NUTREM OPTIMUM</td><td>1.00</td><td>36</td><td>30</td><td>117</td><td>41</td><td>38</td><td>11</td><td>465</td><td>1500</td><td>560</td><td>1095</td><td>88</td><td>14</td><td>84%</td></tr>
+                        <tr><td>APPETON DM</td><td>1.00</td><td>46</td><td>40</td><td>120</td><td>40</td><td>40</td><td>20</td><td>850</td><td>1240</td><td>650</td><td>1070</td><td>80</td><td>13</td><td>87%</td></tr>
+                        <tr><td>NUTREM FIBER</td><td>1.00</td><td>31.5</td><td>26</td><td>125</td><td>40</td><td>38</td><td>15</td><td>960</td><td>1275</td><td>460</td><td>800</td><td>45</td><td>13</td><td>84%</td></tr>
+                        <tr><td>ENSURE GOLD</td><td>1.15</td><td>44</td><td>30</td><td>130</td><td>40</td><td>32</td><td>10</td><td>740</td><td>1550</td><td>600</td><td>1040</td><td>75</td><td>10</td><td>80%</td></tr>
+                        <tr><td>PEPTAMEN JR</td><td>1.02</td><td>36</td><td>30</td><td>135</td><td>30</td><td>38</td><td>1</td><td>670</td><td>1320</td><td>605</td><td>885</td><td>45</td><td>10</td><td>84%</td></tr>
+                        <tr><td>NUTREM JR</td><td>1.05</td><td>37.5</td><td>30</td><td>125</td><td>30</td><td>40</td><td>5</td><td>470</td><td>1170</td><td>565</td><td>795</td><td>55</td><td>13</td><td>84%</td></tr>
+                        <tr><td>PEDIASURE</td><td>1.00</td><td>45</td><td>40</td><td>130</td><td>30</td><td>39</td><td>5</td><td>380</td><td>1310</td><td>840</td><td>1000</td><td>80</td><td>14</td><td>84%</td></tr>
+                        <tr><td>RESOURCE FRUIT (CF)</td><td>1.50</td><td>RTU</td><td>RTU</td><td>225</td><td>27</td><td>0</td><td>0</td><td>100</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>76%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer / Source Citation -->
+    <div class="footer">
+        <p class="footer-note">*THE ENTERAL FORMULA WILL BE SUPPLY SUBJECT TO AVAILABILITY IN HOSPITAL USM ONLY</p>
+        <p><strong>Updated:</strong> Jan 2024</p>
+        <p><strong>By:</strong> Siti Azima Awang, Dietitian US2</p>
+        <p>AHMAD MOHD JOHARY BIN WAN MAHATAPA</p>
+        <p>KETUA JURURAWAT U32</p>
+        <p>NO. LJM: 79004</p>
+        <p>HOSPITAL UNIVERSITI SAINS MALAYSIA</p>
+        <p style="font-style: italic; color: #999;">Date Acknowledged: 5/12/24</p>
+    </div>
+</div>
+
+<script>
+    // --- 1. Section Toggle Logic ---
+    function toggleSection(sectionId) {
+        const content = document.getElementById(sectionId);
+        const icon = content.previousElementSibling.querySelector('.toggle-icon');
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            icon.textContent = '▼';
+        } else {
+            content.classList.add('hidden');
+            icon.textContent = '▶';
+        }
+    }
+
+    function expandAll() {
+        document.querySelectorAll('.section-content').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.toggle-icon').forEach(el => el.textContent = '▼');
+    }
+
+    function collapseAll() {
+        document.querySelectorAll('.section-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.toggle-icon').forEach(el => el.textContent = '▶');
+    }
+
+    // --- 2. Font Size Adjustment ---
+    let currentFontSize = 15;
+    function changeFontSize(delta) {
+        currentFontSize += delta;
+        if (currentFontSize < 12) currentFontSize = 12;
+        if (currentFontSize > 24) currentFontSize = 24;
+        document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
+    }
+
+    // --- 3. Search with Highlighting ---
+    function searchTable() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let table = document.getElementById("formulaTable");
+        let trs = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < trs.length; i++) {
+            let tds = trs[i].getElementsByTagName("td");
+            let rowMatches = false;
+
+            for (let j = 0; j < tds.length; j++) {
+                let td = tds[j];
+                let originalText = td.getAttribute("data-original") || td.innerText;
+                if (!td.getAttribute("data-original")) {
+                    td.setAttribute("data-original", originalText);
+                }
+
+                if (input === "") {
+                    td.innerHTML = originalText;
+                } else if (originalText.toLowerCase().includes(input)) {
+                    rowMatches = true;
+                    let regex = new RegExp(`(${input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    td.innerHTML = originalText.replace(regex, '<mark>$1</mark>');
+                } else {
+                    td.innerHTML = originalText;
+                }
+            }
+            
+            if (rowMatches || input === "") {
+                trs[i].style.display = "";
+            } else {
+                trs[i].style.display = "none";
+            }
+        }
+    }
+
+    // --- 4. Dosing Calculator Logic ---
+    const formulaData = {};
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Extract data from table to populate calculator dropdown
+        const table = document.getElementById("formulaTable");
+        const rows = table.querySelectorAll("tbody tr");
+        const select = document.getElementById("calcFormula");
+
+        rows.forEach(row => {
+            const name = row.cells[0].innerText;
+            const kcalMl = parseFloat(row.cells[1].innerText);
+            const pro1000kcal = parseFloat(row.cells[5].innerText);
+            
+            if (!isNaN(kcalMl) && !isNaN(pro1000kcal)) {
+                const option = document.createElement("option");
+                option.value = name;
+                option.textContent = name;
+                select.appendChild(option);
+                
+                formulaData[name] = {
+                    kcalMl: kcalMl,
+                    pro1000kcal: pro1000kcal
+                };
+            }
+        });
+
+        // Trigger initial calculation
+        calculateDosing();
+    });
+
+    function syncInputs(type) {
+        if (type === 'weight') {
+            let val = document.getElementById('weightRange').value;
+            document.getElementById('weightNum').value = val;
+            document.getElementById('weightVal').textContent = val;
+        } else if (type === 'kcal') {
+            let val = document.getElementById('kcalRange').value;
+            document.getElementById('kcalNum').value = val;
+            document.getElementById('kcalVal').textContent = val;
+        } else if (type === 'pro') {
+            let val = document.getElementById('proRange').value;
+            document.getElementById('proNum').value = val;
+            document.getElementById('proVal').textContent = val;
+        }
+        calculateDosing();
+    }
+
+    function calculateDosing() {
+        const weight = parseFloat(document.getElementById('weightNum').value);
+        const targetKcalPerKg = parseFloat(document.getElementById('kcalNum').value);
+        const targetProPerKg = parseFloat(document.getElementById('proNum').value);
+        const formulaName = document.getElementById('calcFormula').value;
+        const schedule = document.getElementById('feedSchedule').value;
+
+        if (!weight || !targetKcalPerKg || !targetProPerKg || !formulaName) return;
+
+        const formula = formulaData[formulaName];
+        if (!formula) return;
+
+        const { kcalMl, pro1000kcal } = formula;
+
+        // Target Totals
+        const totalKcalTarget = weight * targetKcalPerKg;
+        const totalProTarget = weight * targetProPerKg;
+
+        // --- Calculation A: Volume to meet Calorie Target ---
+        const volForKcal = totalKcalTarget / kcalMl;
+        // Protein delivered = (Total Kcal / 1000) * Protein per 1000 kcal
+        const proDeliveredAtKcalVol = (totalKcalTarget / 1000) * pro1000kcal;
+        const proPerKgAtKcalVol = proDeliveredAtKcalVol / weight;
+
+        // --- Calculation B: Volume to meet Protein Target ---
+        // Protein per ml = (pro1000kcal / 1000) / (1 / kcalMl) = (pro1000kcal / 1000) * kcalMl = (pro1000kcal * kcalMl) / 1000
+        // Actually, let's use the "1000 kcal unit" logic.
+        // 1000 kcal is contained in (1000 / kcalMl) ml.
+        // So Protein per ml = pro1000kcal / (1000 / kcalMl) = (pro1000kcal * kcalMl) / 1000
+        const volForPro = totalProTarget / ((pro1000kcal * kcalMl) / 1000);
+        // Kcal delivered = volForPro * kcalMl
+        const kcalDeliveredAtProVol = volForPro * kcalMl;
+        const kcalPerKgAtProVol = kcalDeliveredAtProVol / weight;
+
+        // --- Update UI ---
+        // Calorie Target Card
+        document.getElementById('resCalorie').innerHTML = `
+            <li><strong>Required Volume:</strong> ${volForKcal.toFixed(1)} ml/day</li>
+            <li><strong>Actual Protein Delivered:</strong> ${proDeliveredAtKcalVol.toFixed(1)} g/day (${proPerKgAtKcalVol.toFixed(2)} g/kg/day)</li>
+            <li style="margin-top:10px; font-style:italic; font-size:0.85em;">Note: To meet calorie target, this volume provides the above protein.</li>
+        `;
+
+        // Protein Target Card
+        document.getElementById('resProtein').innerHTML = `
+            <li><strong>Required Volume:</strong> ${volForPro.toFixed(1)} ml/day</li>
+            <li><strong>Actual Calories Delivered:</strong> ${kcalDeliveredAtProVol.toFixed(0)} kcal/day (${kcalPerKgAtProVol.toFixed(1)} kcal/kg/day)</li>
+            <li style="margin-top:10px; font-style:italic; font-size:0.85em;">Note: To meet protein target, this volume provides the above calories.</li>
+        `;
+
+        // Feeding Schedule Card (Based on Calorie Target Volume)
+        let scheduleHTML = '';
+        const vol = volForKcal;
+        if (schedule === 'continuous') {
+            scheduleHTML = `<li><strong>Continuous Rate:</strong> ${(vol / 24).toFixed(1)} ml/hr</li>`;
+        } else if (schedule === '4hourly') {
+            const volPerFeed = vol / 6;
+            scheduleHTML = `
+                <li><strong>Total Feeds:</strong> 6 times a day (q6h)</li>
+                <li><strong>Volume per Feed:</strong> ${volPerFeed.toFixed(1)} ml</li>
+                <li><strong>Rate per Feed:</strong> ${(volPerFeed / 4).toFixed(1)} ml/hr over 4 hours</li>
+            `;
+        } else if (schedule === '3hourly') {
+            const volPerFeed = vol / 8;
+            scheduleHTML = `
+                <li><strong>Total Feeds:</strong> 8 times a day (q8h)</li>
+                <li><strong>Volume per Feed:</strong> ${volPerFeed.toFixed(1)} ml</li>
+                <li><strong>Rate per Feed:</strong> ${(volPerFeed / 3).toFixed(1)} ml/hr over 3 hours</li>
+            `;
+        }
+
+        document.getElementById('resSchedule').innerHTML = scheduleHTML;
+    }
+</script>
+
+</body>
+</html>
