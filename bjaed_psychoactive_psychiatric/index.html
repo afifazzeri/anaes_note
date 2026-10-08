@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Psychoactive Drugs — Anaesthetic Quick Reference</title>
+<style>
+  :root{
+    --fs: 16px;
+    --red:#D01012;
+    --yellow:#FFCF00;
+    --blue:#0B5FBF;
+    --green:#1E9E45;
+    --orange:#E2680A;
+    --purple:#7B3FA0;
+    --teal:#00A0A8;
+    --ink:#1b2430;
+    --paper:#ffffff;
+    --line:#e3e8ef;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ font-size: var(--fs); scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    line-height:1.55;
+    background-color:#eef2f7;
+    background-image: radial-gradient(circle at 14px 14px, rgba(13,71,161,.075) 5px, transparent 6px);
+    background-size: 28px 28px;
+    padding-bottom: 4rem;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background: linear-gradient(135deg, #D01012 0%, #E2680A 55%, #FFCF00 100%);
+    color:#fff;
+    padding: 1.7rem 1rem 1.5rem;
+    text-align:center;
+    position:relative;
+    box-shadow: inset 0 -10px 0 rgba(0,0,0,.15);
+  }
+  .hero h1{
+    margin:0;
+    font-size: 1.85rem;
+    font-weight: 900;
+    letter-spacing:.03em;
+    text-transform: uppercase;
+    text-shadow: 0 3px 0 rgba(0,0,0,.25);
+  }
+  .hero p{
+    margin:.45rem 0 0;
+    font-size:.95rem;
+    font-weight:700;
+    opacity:.96;
+  }
+  .hero .tag{
+    display:inline-block;
+    margin-top:.7rem;
+    background: rgba(255,255,255,.22);
+    border:2px solid rgba(255,255,255,.55);
+    border-radius:999px;
+    padding:.2rem .8rem;
+    font-size:.75rem;
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position: sticky;
+    top:0;
+    z-index: 80;
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    align-items:center;
+    padding:.6rem .8rem;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(6px);
+    border-bottom: 4px solid var(--red);
+    box-shadow: 0 5px 16px rgba(0,0,0,.14);
+  }
+
+  .search-wrap{
+    display:flex;
+    align-items:center;
+    gap:.4rem;
+    flex: 1 1 260px;
+    min-width: 200px;
+    background:#fff;
+    border:3px solid var(--blue);
+    border-radius:10px;
+    padding:.15rem .5rem;
+  }
+  .search-wrap input{
+    flex:1 1 auto;
+    min-width:0;
+    border:none;
+    outline:none;
+    font: inherit;
+    font-weight:600;
+    background:transparent;
+    padding:.35rem .1rem;
+    color: var(--ink);
+  }
+  .search-wrap input::-webkit-search-cancel-button{ display:none; }
+
+  #searchInfo{
+    font-size:.78rem;
+    font-weight:800;
+    color:#5a6b80;
+    white-space:nowrap;
+  }
+
+  button{
+    font: inherit;
+    font-weight: 800;
+    font-size:.86rem;
+    cursor:pointer;
+    border:none;
+    border-radius:9px;
+    padding:.5rem .85rem;
+    background: var(--blue);
+    color:#fff;
+    box-shadow: 0 3px 0 rgba(0,0,0,.28);
+    transition: transform .07s ease, box-shadow .07s ease, background .15s ease;
+    white-space:nowrap;
+  }
+  button:hover{ filter: brightness(1.08); }
+  button:active{ transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,.28); }
+  button.red{ background: var(--red); }
+  button.green{ background: var(--green); }
+  button.grey{ background:#5a6b80; }
+  button.icon{ padding:.5rem .7rem; }
+
+  .font-ctrl{
+    display:flex;
+    align-items:center;
+    gap:.35rem;
+    background:#f1f4f9;
+    border:3px solid #cfd8e3;
+    border-radius:10px;
+    padding:.12rem .4rem;
+  }
+  .font-ctrl span{
+    font-size:.78rem;
+    font-weight:900;
+    min-width:2.9rem;
+    text-align:center;
+    color:#3b4a5c;
+  }
+  .font-ctrl button{
+    background:#3b4a5c;
+    padding:.3rem .55rem;
+    font-size:.9rem;
+    box-shadow: 0 2px 0 rgba(0,0,0,.3);
+  }
+
+  /* ---------- LAYOUT ---------- */
+  main{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 1.2rem 1rem 2rem;
+  }
+
+  /* ---------- LEGO CARD ---------- */
+  .card{
+    margin: 1.7rem 0 0;
+    border-radius: 13px;
+    background: var(--paper);
+    box-shadow: 0 7px 0 rgba(0,0,0,.13), 0 12px 26px rgba(0,0,0,.09);
+  }
+
+  .card > summary{
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+    background: var(--brick);
+    color: var(--txt, #fff);
+    padding: .85rem 3rem .85rem 1rem;
+    border-radius: 13px;
+    font-weight: 900;
+    font-size: 1.05rem;
+    letter-spacing:.035em;
+    text-transform: uppercase;
+    box-shadow: inset 0 -6px 0 rgba(0,0,0,.16);
+    user-select: none;
+    transition: filter .15s ease;
+  }
+  .card > summary:hover{ filter: brightness(1.07); }
+  .card > summary::-webkit-details-marker{ display:none; }
+
+  /* Lego studs sitting on top of each brick */
+  .card > summary::before{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:-13px; height:13px;
+    background-image: radial-gradient(circle, var(--brick) 6.4px, transparent 7px);
+    background-size: 30px 13px;
+    background-repeat: repeat-x;
+    background-position: 10px 0;
+    pointer-events:none;
+  }
+
+  .card[open] > summary{ border-radius: 13px 13px 0 0; }
+
+  .card > summary::after{
+    content:"+";
+    position:absolute;
+    right:.85rem; top:50%;
+    transform: translateY(-50%);
+    width:1.75rem; height:1.75rem;
+    line-height:1.65rem;
+    text-align:center;
+    border-radius:50%;
+    background: rgba(255,255,255,.3);
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
+    font-size:1.15rem;
+    font-weight:900;
+  }
+  .card[open] > summary::after{ content:"−"; }
+
+  .card > .body{
+    padding: 1rem 1.1rem 1.3rem;
+    border: 3px solid var(--brick);
+    border-top: none;
+    border-radius: 0 0 13px 13px;
+    background:#fff;
+  }
+
+  /* ---------- CONTENT TYPOGRAPHY ---------- */
+  .body h3{
+    margin: 1.3rem 0 .5rem;
+    font-size: .98rem;
+    color: var(--brick);
+    text-transform: uppercase;
+    letter-spacing:.05em;
+    border-bottom: 3px dotted rgba(0,0,0,.13);
+    padding-bottom: .28rem;
+  }
+  .body h3:first-child{ margin-top: .15rem; }
+
+  .body p{ margin:.5rem 0; }
+
+  .body ul{
+    list-style:none;
+    padding-left: 1.15rem;
+    margin:.4rem 0 .7rem;
+  }
+  .body ul > li{
+    position:relative;
+    margin:.34rem 0;
+  }
+  .body ul > li::before{
+    content:"";
+    position:absolute;
+    left:-1.05rem;
+    top:.6em;
+    width:.48rem; height:.48rem;
+    border-radius:50%;
+    background: var(--brick);
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,.28);
+  }
+
+  .body strong{ font-weight:800; }
+
+  /* Warning / callout brick */
+  .warn{
+    background:#FFF4F4;
+    border-left: 7px solid var(--red);
+    border-radius: 0 9px 9px 0;
+    padding:.6rem .85rem;
+    margin:.65rem 0;
+    font-weight:600;
+    box-shadow: 0 2px 0 rgba(0,0,0,.06);
+  }
+  .warn::before{ content:"⚠️ "; }
+
+  .note{
+    background:#F2F7FF;
+    border-left: 7px solid var(--blue);
+    border-radius: 0 9px 9px 0;
+    padding:.6rem .85rem;
+    margin:.65rem 0;
+    font-weight:600;
+  }
+  .note::before{ content:"ℹ️ "; }
+
+  /* Key points special list */
+  .kp li::before{ background: var(--orange); }
+
+  /* ---------- TABLES ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling: touch;
+    border: 3px solid var(--brick);
+    border-radius: 11px;
+    margin:.85rem 0 .5rem;
+    background:#fff;
+    box-shadow: 0 4px 0 rgba(0,0,0,.08);
+  }
+  .table-wrap table{
+    border-collapse: collapse;
+    width:100%;
+    min-width: 760px;
+    font-size:.9rem;
+  }
+  .table-wrap thead th{
+    background: var(--brick);
+    color:#fff;
+    text-align:left;
+    padding:.6rem .65rem;
+    font-weight: 900;
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    white-space: nowrap;
+    position: sticky;
+    top:0;
+    z-index:2;
+  }
+  .table-wrap tbody td{
+    padding:.55rem .65rem;
+    border-bottom:1px solid var(--line);
+    vertical-align: top;
+  }
+  .table-wrap tbody tr:nth-child(even){ background:#f7f9fc; }
+  .table-wrap tbody tr:last-child td{ border-bottom:none; }
+  .table-wrap tbody td:first-child{ font-weight:800; color:#2b3947; }
+
+  .scroll-hint{
+    font-size:.75rem;
+    font-weight:800;
+    color:#6b7c91;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    margin:0 0 .2rem;
+  }
+
+  /* ---------- SEARCH HIGHLIGHT ---------- */
+  mark.hit{
+    background: #FFE94D;
+    color: inherit;
+    border-radius:3px;
+    padding:0 1px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.06);
+  }
+  mark.hit.active{
+    background:#FF8A00;
+    color:#fff;
+    outline:2px solid #D01012;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    max-width: 1080px;
+    margin: 2.2rem auto 0;
+    padding: 1.2rem 1rem 2rem;
+    font-size:.82rem;
+    color:#44566b;
+  }
+  footer .src{
+    background:#fff;
+    border:3px solid var(--teal);
+    border-radius:12px;
+    padding:1rem 1.1rem;
+    box-shadow: 0 6px 0 rgba(0,0,0,.1);
+  }
+  footer .src h4{
+    margin:0 0 .5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color: var(--teal);
+  }
+  footer .src p{ margin:.4rem 0; line-height:1.6; }
+  footer .src a{ color: var(--blue); font-weight:700; word-break:break-word; }
+
+  /* ---------- SMALL SCREENS ---------- */
+  @media (max-width: 620px){
+    .hero h1{ font-size:1.35rem; }
+    .card > summary{ font-size:.92rem; padding-right:2.8rem; }
+    .toolbar{ gap:.4rem; padding:.5rem; }
+    button{ font-size:.78rem; padding:.45rem .65rem; }
+  }
+
+  @media print{
+    .toolbar{ display:none; }
+    .card > .body{ display:block !important; }
+    body{ background:#fff; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Psychoactive Drugs</h1>
+  <p>Anaesthetic &amp; critical care implications — rapid reference</p>
+  <span class="tag">Perioperative • ICU • Emergency</span>
+</header>
+
+<div class="toolbar" role="toolbar" aria-label="Reference controls">
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input id="search" type="search" placeholder="Search drug, interaction, side-effect…" aria-label="Search the reference">
+    <span id="searchInfo" aria-live="polite"></span>
+    <button class="grey icon" id="clearSearch" title="Clear search" aria-label="Clear search">✕</button>
+  </div>
+
+  <button class="green" id="expandAll">▾ Expand all</button>
+  <button class="red" id="collapseAll">▸ Collapse all</button>
+
+  <div class="font-ctrl" role="group" aria-label="Text size">
+    <button id="fontDown" title="Decrease text size" aria-label="Decrease text size">A−</button>
+    <span id="fontVal">100%</span>
+    <button id="fontUp" title="Increase text size" aria-label="Increase text size">A+</button>
+  </div>
+</div>
+
+<main id="content">
+
+  <!-- ================= KEY POINTS ================= -->
+  <details class="card" style="--brick:#FFCF00; --txt:#3a2d00;" open>
+    <summary>Key Points</summary>
+    <div class="body">
+      <ul class="kp">
+        <li>All commonly used psychoactive medications have the potential to cause <strong>dangerous interactions</strong> with drugs used routinely in anaesthesia.</li>
+        <li>There are <strong>very few evidence-based guidelines</strong> on the management of psychoactive drugs in the perioperative period.</li>
+        <li>Caution must be exercised if a psychoactive drug is stopped — risk of <strong>withdrawal symptoms</strong> and <strong>recurrence of the psychiatric illness</strong>.</li>
+        <li>Patients must have a <strong>plan in place for restarting</strong> their medications where appropriate.</li>
+        <li>Perioperative management should involve a <strong>multidisciplinary team</strong>.</li>
+      </ul>
+      <div class="note">
+        <strong>~10%</strong> of the UK population has some form of mental health condition, yet guidance is scarce. Challenges arise from the psychiatric condition itself, drug interactions, and surgical problems (electrolyte derangement, prolonged fasting).
+      </div>
+      <p><strong>Classification:</strong> (i) antidepressants, (ii) mood stabilisers, (iii) antipsychotics, (iv) anxiolytics. Significant overlap exists — a drug may treat more than one disorder. Benzodiazepines are assumed knowledge and are not covered in detail here.</p>
+    </div>
+  </details>
+
+  <!-- ================= ANTIDEPRESSANTS ================= -->
+  <details class="card" style="--brick:#D01012;" open>
+    <summary>Antidepressants</summary>
+    <div class="body">
+
+      <p>Depression is thought to result from a deficiency of <strong>norepinephrine</strong>, <strong>serotonin</strong>, or both within the CNS. Drugs that increase these neurotransmitters take up to <strong>2 weeks</strong> to produce clinical improvement — suggesting receptor number or sensitivity changes are also required.</p>
+
+      <h3>Tricyclic Antidepressants (TCAs)</h3>
+      <ul>
+        <li><strong>Examples:</strong> amitriptyline, nortriptyline, dosulepin.</li>
+        <li><strong>Uses:</strong> depression, chronic pain, some forms of acute pain.</li>
+        <li><strong>Mechanism:</strong> prevent presynaptic re-uptake of norepinephrine and serotonin (uptake 1). Also have <strong>anti-muscarinic, antihistaminergic and anti-α₁-adrenergic</strong> effects.</li>
+        <li><strong>Metabolism:</strong> hepatic, via cytochrome P450 — considerable inter-patient variation.</li>
+        <li>May cause <strong>sedation</strong> and <strong>reduce the seizure threshold</strong>.</li>
+        <li>Anticholinergic side-effects may be potentiated by other anticholinergic agents.</li>
+        <li>Cardiovascular: <strong>QRS widening</strong> and <strong>QT prolongation</strong> (particularly in overdose). Halothane-related arrhythmia concern is largely historical.</li>
+        <li><strong>Postural hypotension</strong> may be significant in the elderly (α-receptor block).</li>
+      </ul>
+      <div class="warn">
+        <strong>TCA + tramadol</strong> → seizures and serotonergic crisis.<br>
+        <strong>Potentiation of indirectly acting sympathomimetics</strong> (ephedrine, metaraminol) → hypertensive crisis. Avoid if possible; use <em>directly</em> acting sympathomimetics cautiously.
+      </div>
+      <div class="note">
+        Avoid <strong>abrupt withdrawal</strong> — mainly cholinergic symptoms, plus relapse of the treated condition. The risk of stopping a stable psychoactive drug may outweigh the benefit; assess each case individually.
+      </div>
+
+      <h3>Selective Serotonin Re-uptake Inhibitors (SSRIs)</h3>
+      <ul>
+        <li>Now the <strong>most commonly used</strong> antidepressants — good efficacy with a preferable side-effect profile.</li>
+        <li><strong>Mechanism:</strong> presynaptic serotonin re-uptake inhibition.</li>
+      </ul>
+      <div class="warn">
+        <strong>Serotonin syndrome</strong> when tramadol or meperidine is given with an SSRI — features <strong>hyperreflexia, agitation, hyperthermia</strong>.
+      </div>
+      <ul>
+        <li><strong>Fluoxetine inhibits CYP2D6</strong> → interferes with metabolism of codeine to morphine → patients given codeine may receive <strong>inadequate analgesia</strong>.</li>
+        <li>Increased <strong>bleeding risk</strong> with NSAIDs or warfarin (interference with platelet function).</li>
+        <li>Withdrawal: dizziness, gastrointestinal upset, and a variety of psychiatric symptoms.</li>
+        <li>Risks of continuing are relatively low → <strong>generally acceptable to continue throughout the perioperative period</strong>.</li>
+      </ul>
+
+      <h3>Monoamine Oxidase Inhibitors (MAOIs)</h3>
+      <ul>
+        <li>Less frequently used, but the <strong>severity of interactions</strong> makes them important. Their use may indicate refractory illness — so withdrawal risk is greater.</li>
+        <li><strong>MAO-A</strong> prefers norepinephrine and serotonin; <strong>MAO-B</strong> deaminates tyramine and phenylethylamine. Antagonism of <strong>MAO-A</strong> produces the antidepressant effect.</li>
+        <li><strong>Irreversible:</strong> phenelzine, tranylcypromine, isocarboxazid (inhibit both MAO-A and -B) — duration of action <strong>weeks</strong>.</li>
+        <li><strong>Reversible (RIMA):</strong> moclobemide — MAO-A specific, shorter duration, no washout needed before starting another antidepressant.</li>
+      </ul>
+      <div class="warn">
+        <strong>Profound pressor effect</strong> after both indirectly <em>and</em> directly acting sympathomimetics. Indirect agents have inhibited metabolism → potentiated action. Direct sympathomimetics are preferable (also metabolised by COMT, less MAO-dependent) but still require caution — <strong>hypertensive crisis</strong> risk remains.<br><br>
+        <strong>Meperidine</strong> can precipitate a <strong>serotonergic crisis</strong> (interrupts presynaptic serotonin uptake) — avoid in known MAOI patients.
+      </div>
+      <ul>
+        <li><strong>Elective:</strong> traditionally stop irreversible MAOIs <strong>2 weeks</strong> before operation. Omitting the dose of <strong>moclobemide on the day of surgery</strong> is acceptable.</li>
+        <li>Consider switching from an irreversible MAOI to moclobemide to avoid a prolonged discontinuation period.</li>
+        <li><strong>Emergency:</strong> no time for withdrawal — avoid meperidine and use only direct-acting sympathomimetics with extreme caution.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ================= MOOD STABILISERS ================= -->
+  <details class="card" style="--brick:#0B5FBF;">
+    <summary>Mood Stabilisers</summary>
+    <div class="body">
+
+      <h3>Lithium</h3>
+      <ul>
+        <li><strong>Uses:</strong> mania, bipolar disorder, adjuvant for refractory depression, some pain conditions (e.g. cluster headache).</li>
+        <li><strong>Mechanism:</strong> poorly understood; believed to mimic sodium in vivo, entering excitable cells during depolarisation → reduced neurotransmitter release in both CNS and PNS. May also be neuroprotective via inhibition of the <em>N</em>-methyl-D-aspartate receptor.</li>
+        <li><strong>Narrow therapeutic ratio</strong>; excreted solely by the kidneys.</li>
+        <li>Side-effects: interference with ADH action, cardiac dysrhythmias, gastrointestinal disturbance, tremor.</li>
+        <li><strong>Toxicity:</strong> lethargy or restlessness → ataxia, dysrhythmias, renal failure, coma. Toxic symptoms usually at plasma levels <strong>&gt; 1.5 mmol/L</strong>.</li>
+      </ul>
+      <div class="warn">
+        <strong>Prolongs depolarizing neuromuscular block</strong> and <strong>reduces anaesthetic agent requirements</strong>.<br>
+        <strong>NSAIDs</strong> reduce renal lithium excretion → toxic plasma levels.
+      </div>
+      <div class="note">
+        Prudent to <strong>stop lithium at least 24 hours before surgery</strong>.
+      </div>
+
+      <h3>Carbamazepine &amp; Valproate</h3>
+      <p>More commonly used for epilepsy, but also as mood stabilisers and for pain management. They are <strong>not first-line</strong> for these indications — their use suggests more resistant illness and therefore an <strong>increased potential for recurrence</strong> if stopped.</p>
+
+      <p><strong>Valproate</strong></p>
+      <ul>
+        <li>Anti-epileptic effect via inhibition of neuronal sodium channels and thalamic calcium channels.</li>
+        <li>Side-effects range from minor GI disturbance and <strong>platelet dysfunction</strong> to life-threatening idiosyncratic reactions.</li>
+        <li>Potential for <strong>increased perioperative bleeding</strong> due to platelet dysfunction.</li>
+        <li>No reports of adverse outcomes after neuraxial block.</li>
+      </ul>
+
+      <p><strong>Carbamazepine</strong></p>
+      <ul>
+        <li>Stabilises neuronal cells by blocking inactivated sodium channels.</li>
+        <li>Side-effects: syndrome of inappropriate ADH, hepatitis, life-threatening blood dyscrasias.</li>
+        <li>It is a <strong>hepatic cytochrome P450 inducer</strong> → reduces the effect of other drugs metabolised by that system.</li>
+        <li>In particular, the duration of effect of <strong>non-depolarizing aminosteroid neuromuscular blockers</strong> (e.g. vecuronium) is <strong>shortened</strong>.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ================= ANTIPSYCHOTICS ================= -->
+  <details class="card" style="--brick:#1E9E45;">
+    <summary>Antipsychotics</summary>
+    <div class="body">
+
+      <p>Psychotic disorders such as schizophrenia impair the patient's ability to comprehend reality. The pathophysiology is poorly understood but is hypothesised to involve <strong>imbalances in dopaminergic pathways in the limbic system</strong>. Antipsychotic (neuroleptic) drugs are efficacious; they are classified as <strong>typical</strong> or <strong>atypical</strong>. These patients have a <strong>high relapse rate</strong> when medication is discontinued.</p>
+
+      <h3>Typical Antipsychotics</h3>
+      <ul>
+        <li><strong>Examples:</strong> prochlorperazine, chlorpromazine.</li>
+        <li>Block dopamine receptors in the limbic system <em>and</em> histamine, α₁-adrenergic and cholinergic receptors — hence the large number of side-effects.</li>
+        <li>Most troubling effects are from <strong>dopamine receptor blockade in the basal ganglia</strong>: akathisia, parkinsonian symptoms, tardive dyskinesia.</li>
+      </ul>
+
+      <p class="scroll-hint">↔ Table scrolls horizontally</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Receptor blockade</th><th>Clinical adverse effects</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Anti-dopaminergic</td>
+              <td>Anti-emesis; extrapyramidal syndrome; akathisia; tardive dyskinesia; increased prolactin secretion</td>
+            </tr>
+            <tr>
+              <td>Anti-muscarinic</td>
+              <td>Dry mouth; constipation; urinary retention; blurred vision; precipitation of glaucoma</td>
+            </tr>
+            <tr>
+              <td>Anti-α₁-adrenergic</td>
+              <td>Postural hypotension</td>
+            </tr>
+            <tr>
+              <td>Anti-histaminergic</td>
+              <td>Sedation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warn">
+        <strong>Neuroleptic malignant syndrome (NMS)</strong> — rare but significant; occurs with both typical and atypical agents. Characterised by <strong>hyperthermia, autonomic dysfunction and muscle rigidity</strong>. Differential diagnosis includes <strong>malignant hyperthermia</strong>. Can occur at any point in treatment. <strong>Mortality 20–30%</strong>. Treatment is supportive; dantrolene and non-depolarizing neuromuscular blocking drugs have been used to reduce rigidity.
+      </div>
+
+      <ul>
+        <li>No well-established interactions with anaesthetic agents, although <strong>seizures have been reported with desflurane</strong>.</li>
+        <li>Anti-adrenergic and anti-cholinergic effects are unpredictable — use similar drugs with caution or avoid.</li>
+        <li>Avoid drugs with <strong>anti-dopaminergic effect</strong>, which could enhance side-effects of this class.</li>
+      </ul>
+
+      <h3>Atypical Antipsychotics</h3>
+      <ul>
+        <li><strong>Examples:</strong> quetiapine, risperidone.</li>
+        <li>Still block dopamine, but differ by blocking <strong>subtypes of the dopaminergic receptor family</strong> (especially in the prefrontal cortex) and affecting the <strong>serotonin-2A receptor</strong>.</li>
+        <li>Result: significantly <strong>lower propensity for extrapyramidal side-effects</strong> at clinically relevant doses → now <strong>first-line</strong> for schizophrenia.</li>
+        <li>Important side-effects: NMS, postural hypotension (α₁-adrenergic block), weight gain.</li>
+        <li><strong>Anaesthetic implications are as for typical antipsychotics.</strong></li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ================= ANXIOLYTICS ================= -->
+  <details class="card" style="--brick:#E2680A;">
+    <summary>Anxiolytics</summary>
+    <div class="body">
+      <ul>
+        <li>Anxiety becomes a clinical disorder when too severe, too protracted, or too pervasive.</li>
+        <li><strong>Benzodiazepines</strong> remain the mainstay of treatment, balanced against the risk of <strong>dependence, tolerance and overdose</strong>.</li>
+        <li>Anaesthetists should already be familiar with their actions and interactions.</li>
+        <li><strong>Monitor for signs of withdrawal</strong>, particularly in patients who remain fasted for prolonged periods.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= OTHER IMPLICATIONS ================= -->
+  <details class="card" style="--brick:#7B3FA0;">
+    <summary>Other Anaesthetic Implications</summary>
+    <div class="body">
+
+      <h3>Drug Withdrawal</h3>
+      <ul>
+        <li>Several psychoactive drugs in combination with perioperative drugs can cause dangerous effects — but the decision to <strong>discontinue should not be taken lightly</strong>.</li>
+        <li>For complex psychiatric illness, involve the patient's <strong>usual mental health support team</strong>.</li>
+        <li>Where drugs have been stopped for surgery, there must be a <strong>plan to restart them after operation</strong>.</li>
+        <li>Particular thought is needed for patients <strong>unable to take oral medication</strong> postoperatively — this could result in relapse.</li>
+        <li><strong>Emergency anaesthesia</strong> does not allow a withdrawal period — awareness of potential drug interactions is especially important.</li>
+      </ul>
+
+      <h3>Regional &amp; Local Anaesthesia</h3>
+      <div class="warn">
+        Local anaesthetic solutions containing <strong>epinephrine</strong> can cause <strong>hypertensive crises</strong> in patients receiving <strong>TCAs</strong> and <strong>MAOIs</strong>.
+      </div>
+      <ul>
+        <li>Valproate causes platelet dysfunction, but there are no reports of adverse outcomes after neuraxial block.</li>
+      </ul>
+
+      <h3>Consent</h3>
+      <ul>
+        <li>Consent requires that the person <strong>understands</strong> the information, <strong>retains</strong> it, <strong>uses</strong> it to make an informed decision, and can <strong>communicate</strong> that decision.</li>
+        <li>Where possible, efforts to reverse <strong>temporary incapacity</strong> must be made before any medical intervention.</li>
+        <li>Mental illness may impair decision-making — but this <strong>should not be assumed</strong> (even if treated under the Mental Health Act 1983).</li>
+        <li>The <strong>Mental Capacity Act 2005</strong> allows patients who may predictably become incompetent to express a predetermined wish via an <strong>Advanced Decision</strong> or <strong>Lasting Power of Attorney (LPA)</strong>.</li>
+        <li>Where incapacity is irreversible and there is no Advanced Decision or LPA, it is the anaesthetist's responsibility (as part of the multidisciplinary team) to treat the patient in their <strong>'best interests'</strong>.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ================= TABLE 1 ================= -->
+  <details class="card" style="--brick:#00A0A8;" open>
+    <summary>Table 1 — Perioperative Summary</summary>
+    <div class="body">
+      <p class="scroll-hint">↔ Table scrolls horizontally</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Drug group</th>
+              <th>Examples</th>
+              <th>Perioperative concerns</th>
+              <th>Withdrawal</th>
+              <th>Pre-op discontinuation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>TCAs</td>
+              <td>Amitriptyline, imipramine, dosulepin</td>
+              <td>Muscarinic, histaminergic and α-adrenergic blocking effects; potentiation of indirect sympathomimetics; seizures / serotonergic crisis with tramadol; QRS &amp; QT prolongation</td>
+              <td>Yes</td>
+              <td>Can continue (avoid abrupt withdrawal)</td>
+            </tr>
+            <tr>
+              <td>SSRIs</td>
+              <td>Fluoxetine, venlafaxine</td>
+              <td>Anti-cholinergic effect; serotonin syndrome with tramadol/meperidine; bleeding risk with NSAIDs/warfarin; CYP2D6 inhibition reduces codeine efficacy</td>
+              <td>Yes</td>
+              <td>Can continue</td>
+            </tr>
+            <tr>
+              <td>MAOIs (irreversible)</td>
+              <td>Phenelzine, tranylcypromine, isocarboxazid</td>
+              <td>Avoid serotonin crisis precipitants; hypertensive crisis with indirect <em>and</em> direct sympathomimetics</td>
+              <td>Yes</td>
+              <td>Discontinue 2 weeks before surgery</td>
+            </tr>
+            <tr>
+              <td>MAOIs (reversible, RIMA)</td>
+              <td>Moclobemide</td>
+              <td>As above — hypertensive crisis risk</td>
+              <td>Yes</td>
+              <td>Discontinue on day of surgery</td>
+            </tr>
+            <tr>
+              <td>Mood stabiliser</td>
+              <td>Lithium</td>
+              <td>Prolongation of NMB drugs; reduction in anaesthetic agent requirements; avoid NSAIDs; narrow therapeutic index</td>
+              <td>No</td>
+              <td>Discontinue 24 h before surgery</td>
+            </tr>
+            <tr>
+              <td>Mood stabiliser</td>
+              <td>Carbamazepine</td>
+              <td>Inducer of cytochrome P450 system; shortens duration of aminosteroid NMBs (e.g. vecuronium)</td>
+              <td>No</td>
+              <td>Can continue</td>
+            </tr>
+            <tr>
+              <td>Mood stabiliser</td>
+              <td>Valproate</td>
+              <td>Interferes with platelet function — increased bleeding risk</td>
+              <td>No</td>
+              <td>Can continue</td>
+            </tr>
+            <tr>
+              <td>Typical antipsychotics</td>
+              <td>Prochlorperazine, chlorpromazine</td>
+              <td>Cholinergic, α₁-adrenergic and histaminergic blocking effects; extrapyramidal effects; NMS; seizures reported with desflurane</td>
+              <td>Yes</td>
+              <td>Can continue</td>
+            </tr>
+            <tr>
+              <td>Atypical antipsychotics</td>
+              <td>Quetiapine, risperidone</td>
+              <td>Caution with desflurane; NMS; postural hypotension; weight gain</td>
+              <td>Yes</td>
+              <td>Can continue</td>
+            </tr>
+            <tr>
+              <td>Benzodiazepines</td>
+              <td>Lorazepam, temazepam</td>
+              <td>α₁-adrenergic blocking effect; sedation; withdrawal in prolonged fasting</td>
+              <td>Yes</td>
+              <td>Can continue</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">Adapted from Table 1 of the source article.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <div class="src">
+    <h4>Source / Reference</h4>
+    <p>
+      Peck T, Wong A, Norman E. <strong>Anaesthetic implications of psychoactive drugs.</strong>
+      <em>Continuing Education in Anaesthesia, Critical Care &amp; Pain</em>, Volume 10, Number 6, 2010.
+      doi: <a href="https://doi.org/10.1093/bjaceacp/mkq037" target="_blank" rel="noopener">10.1093/bjaceacp/mkq037</a>
+    </p>
+    <p>
+      © The Author 2010. Published by Oxford University Press on behalf of the British Journal of Anaesthesia.
+      All rights reserved. For Permissions, please email:
+      <a href="mailto:journals.permissions@oxfordjournals.org">journals.permissions@oxfordjournals.org</a>
+    </p>
+    <p>
+      <strong>Note:</strong> This page is a reformatted clinical quick-reference derived from the above article.
+      It is intended as an <em>aide-mémoire</em> only — always consult the full text, current guidelines and local
+      protocols before prescribing or altering perioperative medication.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content      = document.getElementById('content');
+  var searchInput  = document.getElementById('search');
+  var searchInfo   = document.getElementById('searchInfo');
+  var clearBtn     = document.getElementById('clearSearch');
+  var fontVal      = document.getElementById('fontVal');
+
+  var marks = [];
+  var currentIdx = -1;
+
+  /* ---------------- Expand / Collapse ---------------- */
+  function allCards() {
+    return Array.prototype.slice.call(document.querySelectorAll('details.card'));
+  }
+  document.getElementById('expandAll').addEventListener('click', function () {
+    allCards().forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    allCards().forEach(function (d) { d.open = false; });
+  });
+
+  /* ---------------- Font resizing ---------------- */
+  var fs = 16;
+  var MIN = 12, MAX = 24;
+
+  function applyFont() {
+    document.documentElement.style.setProperty('--fs', fs + 'px');
+    fontVal.textContent = Math.round((fs / 16) * 100) + '%';
+  }
+  document.getElementById('fontUp').addEventListener('click', function () {
+    fs = Math.min(MAX, fs + 1); applyFont();
+  });
+  document.getElementById('fontDown').addEventListener('click', function () {
+    fs = Math.max(MIN, fs - 1); applyFont();
+  });
+  applyFont();
+
+  /* ---------------- Search & highlight ---------------- */
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function clearHighlights() {
+    marks.forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+    marks = [];
+    currentIdx = -1;
+  }
+
+  function focusMark() {
+    marks.forEach(function (m) { m.classList.remove('active'); });
+    var m = marks[currentIdx];
+    if (!m) return;
+    m.classList.add('active');
+    m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function doSearch() {
+    var term = searchInput.value.trim();
+    clearHighlights();
+
+    if (term.length < 2) {
+      searchInfo.textContent = term ? 'Type 2+ chars' : '';
+      return;
+    }
+
+    var re = new RegExp(escapeRegExp(term), 'gi');
+
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      re.lastIndex = 0;
+      if (!re.test(text)) return;
+      re.lastIndex = 0;
+
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+
+      while ((m = re.exec(text)) !== null) {
+        if (m[0].length === 0) { re.lastIndex++; continue; }
+        frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var mark = document.createElement('mark');
+        mark.className = 'hit';
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        marks.push(mark);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    /* Auto-open any collapsed section containing a match */
+    marks.forEach(function (mk) {
+      var el = mk.parentElement;
+      while (el && el !== content) {
+        if (el.tagName === 'DETAILS') el.open = true;
+        el = el.parentElement;
+      }
+    });
+
+    if (marks.length) {
+      searchInfo.textContent = marks.length + (marks.length === 1 ? ' match' : ' matches');
+      currentIdx = 0;
+      focusMark();
+    } else {
+      searchInfo.textContent = 'No matches';
+    }
+  }
+
+  var debounce;
+  searchInput.addEventListener('input', function () {
+    clearTimeout(debounce);
+    debounce = setTimeout(doSearch, 220);
+  });
+
+  /* Enter / Shift+Enter cycles matches */
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && marks.length) {
+      e.preventDefault();
+      currentIdx = (currentIdx + (e.shiftKey ? -1 : 1) + marks.length) % marks.length;
+      focusMark();
+    }
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      clearHighlights();
+      searchInfo.textContent = '';
+    }
+  });
+
+  clearBtn.addEventListener('click', function () {
+    searchInput.value = '';
+    clearHighlights();
+    searchInfo.textContent = '';
+    searchInput.focus();
+  });
+
+})();
+</script>
+</body>
+</html>
