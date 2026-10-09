@@ -1,0 +1,2785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final FRCA — Lego Quick Reference</title>
+<style>
+/* ============ LEGO THEME ============ */
+:root{
+  --red:#D5121A; --blue:#0B5FA5; --yellow:#FFCF00;
+  --green:#00A651; --orange:#F57C00; --purple:#6C3FA0;
+  --ink:#1c1c1c; --muted:#6b7280; --bg:#ececed;
+  --card:#ffffff; --line:#dcdcdc; --radius:10px;
+  font-size:16px;
+}
+*{box-sizing:border-box;}
+html{font-size:var(--fs,16px);}
+body{
+  margin:0;
+  font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color:var(--ink);
+  background-color:var(--bg);
+  background-image:radial-gradient(circle, rgba(0,0,0,.055) 2.5px, transparent 3px);
+  background-size:24px 24px;
+  -webkit-text-size-adjust:100%;
+}
+
+/* brick */
+.brick{
+  position:relative;background:var(--brick,var(--red));color:#fff;
+  border:none;border-radius:var(--radius);
+  box-shadow:0 4px 0 rgba(0,0,0,.22),inset 0 -3px 0 rgba(0,0,0,.16),inset 0 3px 0 rgba(255,255,255,.25);
+}
+.brick::before{
+  content:"";position:absolute;left:18px;right:18px;top:-6px;height:6px;
+  background-image:radial-gradient(circle at 11px 6px,var(--brick,var(--red)) 0 10px,transparent 11px);
+  background-size:34px 6px;background-repeat:repeat-x;pointer-events:none;opacity:.96;
+}
+
+/* topbar */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:linear-gradient(180deg,#fff 0%,#f7f7f8 100%);
+  border-bottom:4px solid #d5121a;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  padding:.7rem .9rem .6rem;
+}
+.brand{display:flex;align-items:center;gap:.75rem;margin-bottom:.55rem;}
+.logo{
+  width:3.4rem;height:3.4rem;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:.72rem;letter-spacing:.5px;flex:0 0 auto;
+  margin-top:6px;border-radius:12px;
+}
+.titles h1{margin:0;font-size:1.15rem;font-weight:900;letter-spacing:.4px;text-transform:uppercase;color:#111;}
+.titles p{margin:.1rem 0 0;font-size:.72rem;color:var(--muted);letter-spacing:.3px;}
+
+.controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;}
+.search-wrap{position:relative;flex:1 1 260px;min-width:200px;}
+#search{
+  width:100%;padding:.55rem .8rem;font-size:.92rem;
+  border:2px solid #cfcfcf;border-radius:999px;outline:none;background:#fff;
+  transition:border-color .15s,box-shadow .15s;
+}
+#search:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(11,95,165,.15);}
+.match-info{
+  position:absolute;right:.75rem;top:50%;transform:translateY(-50%);
+  font-size:.7rem;color:var(--muted);pointer-events:none;background:#fff;padding-left:.4rem;
+}
+.btn-row,.font-row{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;}
+.ctl{
+  cursor:pointer;font-size:.76rem;font-weight:800;
+  padding:.42rem .7rem;border-radius:8px;border:none;color:#fff;background:var(--blue);
+  box-shadow:0 3px 0 rgba(0,0,0,.22),inset 0 -2px 0 rgba(0,0,0,.15);
+  transition:transform .08s,filter .15s;letter-spacing:.2px;
+}
+.ctl:hover{filter:brightness(1.08);}
+.ctl:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.22);}
+.ctl.small{padding:.35rem .55rem;font-size:.78rem;background:#37474F;}
+#collapseAll{background:#F57C00;}
+#resetMarks{background:#6C3FA0;}
+#toggleQs{background:#00A651;}
+.lbl{font-size:.72rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+#fontRange{width:96px;accent-color:var(--red);cursor:pointer;}
+
+.stats{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;}
+.chip{font-size:.7rem;font-weight:800;padding:.25rem .5rem;border-radius:999px;border:2px solid transparent;white-space:nowrap;}
+.chip.st-excellent{background:#E2F5EA;color:#00713A;border-color:#9EDDBB;}
+.chip.st-moderate{background:#FFF6D6;color:#8A6A00;border-color:#F0D97A;}
+.chip.st-poor{background:#FDE8E8;color:#9E0E14;border-color:#F0A9AC;}
+.chip.st-none{background:#eee;color:#666;border-color:#d2d2d2;}
+.progress{flex:1 1 90px;height:.55rem;min-width:70px;background:#e2e2e2;border-radius:999px;overflow:hidden;border:1px solid #d0d0d0;}
+#bar{height:100%;width:0;background:linear-gradient(90deg,#00A651,#FFCF00,#D5121A);transition:width .3s;}
+
+/* TOC */
+main{max-width:1080px;margin:0 auto;padding:1rem .8rem 3rem;}
+
+.section{margin:1.15rem 0 0;}
+.sec-head{
+  --brick:var(--red);width:100%;display:flex;align-items:center;gap:.6rem;
+  padding:.72rem .9rem;cursor:pointer;font-size:1rem;font-weight:900;
+  letter-spacing:.5px;text-transform:uppercase;text-align:left;margin-top:8px;
+  transition:filter .15s;
+}
+.sec-head:hover{filter:brightness(1.07);}
+.sec-head .chev{display:inline-block;transition:transform .22s ease;font-size:.85rem;opacity:.9;}
+.section:not(.collapsed) > .sec-head .chev{transform:rotate(90deg);}
+.sec-title{flex:1;}
+.sec-count{font-size:.68rem;font-weight:800;background:rgba(255,255,255,.25);padding:.15rem .5rem;border-radius:999px;letter-spacing:0;}
+
+.group{margin:.55rem 0 .55rem .25rem;}
+.grp-head{
+  width:100%;display:flex;align-items:center;gap:.5rem;cursor:pointer;
+  font-size:.82rem;font-weight:800;padding:.5rem .7rem;border-radius:9px;text-align:left;
+  background:var(--tint,#f2f2f2);color:#233;
+  border:2px solid rgba(0,0,0,.07);border-left:8px solid var(--brick,var(--red));
+  box-shadow:0 2px 0 rgba(0,0,0,.09);transition:filter .15s;
+}
+.grp-head:hover{filter:brightness(.97);}
+.grp-head .chev{display:inline-block;transition:transform .22s ease;font-size:.75rem;color:var(--brick);}
+.group:not(.collapsed) > .grp-head .chev{transform:rotate(90deg);}
+.grp-head .grp-count{margin-left:auto;font-size:.66rem;font-weight:800;background:rgba(0,0,0,.08);color:#444;padding:.1rem .45rem;border-radius:999px;}
+
+/* ★ THE FIX ★ */
+.section.collapsed > .sec-body{display:none;}
+.group.collapsed   > .grp-body{display:none;}
+.section:not(.collapsed) > .sec-body,
+.group:not(.collapsed)   > .grp-body{animation:brickFade .22s ease;}
+@keyframes brickFade{from{opacity:.25;transform:translateY(-3px);}to{opacity:1;transform:none;}}
+
+.sec-body{padding:.15rem 0 .35rem;}
+.grp-body{padding:.2rem 0 .1rem;}
+
+/* TOPIC */
+.topic{
+  background:var(--card);border:2px solid var(--line);
+  border-left:8px solid var(--brick,var(--red));border-radius:9px;
+  padding:.42rem .5rem .42rem .75rem;margin:.32rem 0 .32rem .9rem;
+  box-shadow:0 2px 0 rgba(0,0,0,.07);
+  transition:transform .1s,box-shadow .15s,background .15s;font-size:.85rem;
+}
+.topic:hover{transform:translateX(3px);box-shadow:0 3px 0 rgba(0,0,0,.12);background:#fffdf5;}
+.topic.hidden,.group.hidden,.section.hidden{display:none !important;}
+
+.topic-row{display:flex;align-items:center;gap:.6rem;}
+.topic-title{flex:1;line-height:1.35;}
+.topic-chev{
+  flex:0 0 auto;cursor:pointer;border:none;background:transparent;
+  font-size:.7rem;font-weight:900;color:var(--muted);
+  padding:.2rem .35rem;border-radius:6px;transition:transform .18s,background .15s,color .15s;
+}
+.topic-chev:hover{background:#eef2f7;color:var(--blue);}
+.topic.open .topic-chev{transform:rotate(90deg);color:var(--blue);}
+
+/* questions */
+.qs{
+  margin:.35rem 0 .15rem .2rem;
+  padding:.4rem .5rem .5rem .9rem;
+  border-left:3px dashed var(--brick,var(--red));
+  display:none;
+  animation:qFade .22s ease;
+}
+@keyframes qFade{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+.topic.open .qs{display:block;}
+.qs ol{margin:0;padding-left:1.2rem;}
+.qs li{margin:.22rem 0;font-size:.78rem;line-height:1.45;color:#333;}
+.qs li::marker{color:var(--brick,var(--red));font-weight:800;}
+.qs .no-q{font-size:.74rem;color:var(--muted);font-style:italic;}
+
+/* search */
+mark{background:#FFE97A;color:#111;border-radius:3px;padding:0 .12em;font-weight:800;}
+
+/* status */
+.status{
+  flex:0 0 auto;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.68rem;font-weight:900;letter-spacing:.3px;padding:.3rem .55rem;
+  border-radius:999px;border:2px solid transparent;
+  transition:transform .08s,filter .15s;white-space:nowrap;text-transform:uppercase;
+}
+.status:active{transform:scale(.95);}
+.status .st-sym{font-size:.8rem;line-height:1;}
+.st-none{background:#f3f3f3;color:#9a9a9a;border-color:#dcdcdc;border-style:dashed;}
+.st-excellent{background:#00A651;color:#fff;border-color:#00853F;box-shadow:0 2px 0 #00853F;}
+.st-moderate{background:#FFCF00;color:#3a2f00;border-color:#E0B500;box-shadow:0 2px 0 #E0B500;}
+.st-poor{background:#D5121A;color:#fff;border-color:#A80E14;box-shadow:0 2px 0 #A80E14;}
+
+footer{text-align:center;font-size:.72rem;color:#7a7a7a;padding:1.5rem 1rem 3rem;line-height:1.7;}
+footer b{color:#444;}
+
+@media (max-width:640px){
+  .titles h1{font-size:.95rem;}
+  .titles p{font-size:.64rem;}
+  .logo{width:2.7rem;height:2.7rem;font-size:.6rem;}
+  .topic{font-size:.8rem;}
+  .status{font-size:.6rem;padding:.25rem .42rem;}
+  .sec-head{font-size:.85rem;}
+  .qs li{font-size:.74rem;}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo brick" style="--brick:#D5121A"><span>FRCA</span></div>
+    <div class="titles">
+      <h1>Final FRCA — Quick Reference</h1>
+      <p>Dr Podcast Scripts · 2nd Edition · Brick Index</p>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search topics & questions…  (press /)" autocomplete="off" spellcheck="false">
+      <span id="matchInfo" class="match-info"></span>
+    </div>
+
+    <div class="btn-row">
+      <button id="expandAll" class="ctl">⤢ Expand all</button>
+      <button id="collapseAll" class="ctl">⤡ Collapse all</button>
+      <button id="toggleQs" class="ctl">📖 Show questions</button>
+      <button id="resetMarks" class="ctl">↺ Reset marks</button>
+    </div>
+
+    <div class="font-row">
+      <span class="lbl">Text</span>
+      <button id="fontDown" class="ctl small">A−</button>
+      <input id="fontRange" type="range" min="13" max="22" step="1" value="16" aria-label="Text size">
+      <button id="fontUp" class="ctl small">A+</button>
+    </div>
+
+    <div class="stats">
+      <span class="chip st-excellent">✓✓ <b id="cExc">0</b></span>
+      <span class="chip st-moderate">✓ <b id="cMod">0</b></span>
+      <span class="chip st-poor">✕ <b id="cPoor">0</b></span>
+      <span class="chip st-none">○ <b id="cNone">0</b></span>
+      <div class="progress"><div id="bar"></div></div>
+    </div>
+  </div>
+</header>
+
+<main id="toc"></main>
+
+<footer>
+  <b>Marking:</b> click the badge on any topic to cycle
+  <span style="color:#00713A;font-weight:800">✓✓ Excellent</span> →
+  <span style="color:#8A6A00;font-weight:800">✓ Moderate</span> →
+  <span style="color:#9E0E14;font-weight:800">✕ Poor</span> → clear.<br>
+  Click the <b>▸</b> arrow (or the topic) to reveal exam questions. Marks &amp; text size are saved in your browser.<br>
+  Content: <i>Dr Podcast Scripts for the Final FRCA</i>, 2nd ed.
+</footer>
+
+<script>
+/* =========================================================
+   DATA — Section → Group → Topics (+ Questions)
+   ========================================================= */
+const DATA = [
+/* ================= SECTION 1 ================= */
+{
+  id:"sec1", title:"Section 1 — Medicine", color:"#D5121A", tint:"#FDE8E8",
+  groups:[
+    { id:"1.1", title:"1.1 Bone, Joint & Connective Tissue", topics:[
+      {id:"1.1.1", title:"1.1.1 Rheumatoid Arthritis", q:[
+        "What can you tell me about this condition?",
+        "How does the arthritis present?",
+        "What is the pathological process that occurs?",
+        "What is Still's disease?",
+        "What might be your concerns regarding anaesthetising a woman with rheumatoid arthritis?",
+        "If the woman had not told you that she had been diagnosed with rheumatoid arthritis, what might be some of the symptoms of the condition?",
+        "What signs might you observe in the musculoskeletal system?",
+        "What would you ask the woman in your history?",
+        "So what can you tell me about rheumatoid neck disease?",
+        "Is there anything else that you might want to discuss regarding the musculoskeletal system?",
+        "What other body systems might you ask about and why?",
+        "And what about the nervous system?",
+        "You mentioned the renal system. Can you tell me anything about the changes that might occur?",
+        "Can rheumatoid arthritis affect the liver?",
+        "What about the eyes and skin?",
+        "Let's consider the drugs this patient might be taking. Can you suggest any drugs and their unwanted side effects?",
+        "Having ascertained that this woman has developed hypertension and diabetes since taking regular steroid medication, you find that there are no other extra-articular features of rheumatoid disease. What further information would you want to know in your general history?",
+        "What examination would you perform on this woman?",
+        "How would you investigate this patient prior to surgery?",
+        "What would be your preferred anaesthetic technique for this patient?",
+        "What are the potential problems with these techniques?",
+        "What other anaesthetic techniques might be appropriate for this case?",
+        "What are the options for analgesia for total knee replacement?",
+        "How would you manage the steroid cover for this patient?",
+        "If this patient were taking a different steroid, how would you convert the dose?"
+      ]}
+    ]},
+    { id:"1.2", title:"1.2 Cardiovascular", topics:[
+      {id:"1.2.1", title:"1.2.1 Preoperative Assessment & Management of Patients with Cardiac Disease", q:[
+        "What are the important issues that you would like to explore in the history?",
+        "You mentioned metabolic equivalents. Can you tell me more about them and explain their significance?",
+        "What particular aspects in the history and examination would cause you to be particularly concerned about the murmur?",
+        "You have mentioned echocardiography. How would you interpret the results of this investigation to form a risk level for different grades of aortic stenosis?",
+        "What blood investigations would you request?",
+        "The history is suggestive of severe congestive cardiac failure and angina. How would you investigate this further to decide whether it is safe to proceed to anaesthesia for this patient?",
+        "Can you tell me about cardiopulmonary exercise testing (CPET)?",
+        "Are you aware of any risk scoring systems in anaesthesia?",
+        "How could you consider optimising a patient like this for surgery?"
+      ]},
+      {id:"1.2.2", title:"1.2.2 Arrhythmias", q:[
+        "Why do arrhythmias occur?",
+        "Tell me a little more about re-entry circuits.",
+        "Can you give me an example of an AV re-entry tachycardia?",
+        "What do you mean by enhanced automaticity?",
+        "The final arrhythmogenic mechanism you mentioned was 'triggered activity'. What does this mean?",
+        "What factors predispose to arrhythmias?",
+        "How would you classify arrhythmias?",
+        "Which different types of narrow complex arrhythmias do you know about?",
+        "Tell me about the different types of heart block.",
+        "What are the indications for temporary cardiac pacing in the perioperative setting?",
+        "Can you tell me some other indications for temporary pacemakers?",
+        "Describe ventricular tachycardia (VT).",
+        "What is torsades de pointes?",
+        "How can a supraventricular tachycardia with aberrant conduction be distinguished from ventricular tachycardia?",
+        "Describe ventricular fibrillation (VF)."
+      ]},
+      {id:"1.2.3", title:"1.2.3 Hypertension", q:[
+        "What else would you like to know?",
+        "What causes of hypertension are you looking for?",
+        "Tell me what you mean by white coat hypertension.",
+        "What are the possible causes of secondary hypertension? Is it common?",
+        "Assuming this patient has essential hypertension, you stated that you would look for signs of end-organ damage. What do you mean by this?",
+        "How do you identify this damage?",
+        "So are you willing to anaesthetise this patient? What is the threshold of blood pressure that you would accept?",
+        "What problems are associated with hypertension and anaesthesia?",
+        "If this patient were undergoing non-urgent surgery, what would you do?",
+        "What drug therapy should be used initially?"
+      ]},
+      {id:"1.2.4", title:"1.2.4 Ischaemic Heart Disease & Congestive Cardiac Failure", q:[
+        "Please define IHD.",
+        "What is the pathophysiology of IHD?",
+        "What is the significance of IHD during the perioperative period?",
+        "Tell me about risk scoring systems in patients with IHD and CCF.",
+        "Can you give me some more details on the RCRI?",
+        "How would you approach the preoperative assessment of the patient with IHD?",
+        "What preoperative medications would you expect a patient with IHD to be on?",
+        "If they were not on these therapies, would you commence them in the perioperative period?",
+        "How would you manage antiplatelet therapy in the perioperative period?",
+        "What factors influence myocardial oxygen supply?",
+        "What about demand?",
+        "What would be your choice of induction agents for a patient with IHD and why?",
+        "What are the benefits and drawbacks of neuraxial anaesthesia in IHD?",
+        "What monitoring would you use?",
+        "How would you manage an on-table MI?",
+        "What is heart failure and what are the causes?",
+        "What is the difference between systolic dysfunction and diastolic dysfunction?",
+        "How would you manage a patient with CCF intraoperatively?",
+        "How can you assess the severity of CCF?"
+      ]},
+      {id:"1.2.5", title:"1.2.5 Postoperative Management of Myocardial Ischaemia", q:[
+        "What will be your immediate management of this scenario?",
+        "What are your goals in management for this patient if myocardial ischaemia is suspected?",
+        "How will you proceed with this surgery?",
+        "What factors are associated with perioperative myocardial ischaemia?",
+        "How common is perioperative myocardial ischaemia?",
+        "What is the pathophysiology of perioperative myocardial infarction?",
+        "How will you manage the patient in the recovery?",
+        "What is meant by the term MINS, and how is this relevant to diagnosing postoperative myocardial ischaemia?",
+        "What would indicate that this patient requires immediate percutaneous intervention?",
+        "What medications may be useful in managing an acute coronary syndrome?",
+        "How do patient outcomes differ when comparing those who suffer perioperative myocardial infarction to those who don't?"
+      ]},
+      {id:"1.2.6", title:"1.2.6 Valvular Defects", q:[
+        "How would you assess the patient's fitness for anaesthesia?",
+        "What signs are you looking for on examination?",
+        "What investigations would you ask for and what would you be looking for?",
+        "If the echocardiogram cannot be done for a further 48 hours, would you delay the surgery?",
+        "The echocardiogram shows that the patient has aortic stenosis with an aortic valve area of 0.8 cm² and a mean gradient of 45 mmHg. What is the classification of aortic stenosis according to valve area and gradient?",
+        "What are the causes of aortic stenosis?",
+        "What are the pathophysiological changes that occur as the valve area decreases?",
+        "Tell me how you would anaesthetise this patient. What are your specific concerns with regards to his aortic stenosis?",
+        "What haemodynamic goals are you aiming for and how would you maintain them?",
+        "What are the common causes of mitral stenosis?",
+        "How is mitral valve stenosis classified?",
+        "What is the pathophysiology as the stenosis worsens?",
+        "What are the haemodynamic goals when anaesthetising a patient with mitral stenosis?",
+        "What are the causes of mitral regurgitation?",
+        "What is the pathophysiology of mitral regurgitation?",
+        "How do you classify mitral regurgitation?",
+        "What are the haemodynamic goals in a patient with mitral regurgitation undergoing anaesthesia?",
+        "What are the causes of aortic regurgitation?",
+        "What is the pathophysiology of chronic aortic regurgitation?",
+        "What are the haemodynamic goals when anaesthetising a patient with aortic regurgitation?"
+      ]},
+      {id:"1.2.7", title:"1.2.7 Cardiomyopathy", q:[
+        "Tell me what you know about cardiomyopathy.",
+        "Tell me about dilated cardiomyopathy (DCM).",
+        "Tell me about hypertrophic cardiomyopathy.",
+        "Tell me about restrictive cardiomyopathy (RCM).",
+        "Tell me about arrhythmogenic right ventricular cardiomyopathy (ARVCM).",
+        "What is peripartum cardiomyopathy?"
+      ]},
+      {id:"1.2.8", title:"1.2.8 Pacemakers", q:[
+        "You are asked to provide a general anaesthetic for a patient with an implanted cardiac electronic device. What would be your preoperative considerations?",
+        "What are the different types of cardiac electronic devices that you are aware of and their indications?",
+        "What would you look for on a Chest X-ray of a patient with a cardiac device coming for surgery?",
+        "Can you explain the generic pacemaker code?",
+        "What are your intraoperative considerations and concerns for a patient with a cardiac implantable electronic device?",
+        "What is electromagnetic interference and what are the risks of it?",
+        "How can you minimise EMI and its risk during surgical procedures?",
+        "How would you suspect inappropriate pacing inhibition and how would you manage this?",
+        "How would you safely perform external defibrillation or pacing in a patient with a cardiac implanted device?",
+        "Tell me more about the role of magnets in patients with cardiac implantable electronic devices.",
+        "Are there any specific postoperative considerations in patients with cardiac devices?"
+      ]}
+    ]},
+    { id:"1.3", title:"1.3 Endocrine & Metabolic", topics:[
+      {id:"1.3.1", title:"1.3.1 Hormonal & Metabolic Response to Trauma", q:[
+        "What is the stress response?",
+        "What can trigger the stress response?",
+        "How is the response initiated?",
+        "What are the characteristics of the resultant state?",
+        "Can you describe the sympathoadrenal response?",
+        "Can you describe the role of the hypothalamic-pituitary-adrenal axis?",
+        "What roles does cortisol play?",
+        "What are cytokines, and how do they act?",
+        "What is the acute phase response comprised of?",
+        "What are the potential detrimental effects that the stress response may have?",
+        "What is the significance of the stress response for anaesthetists?",
+        "How can the stress response be modulated?",
+        "Tell me how anaesthesia may influence the stress response.",
+        "What other methods of altering the stress response are you aware of?"
+      ]},
+      {id:"1.3.2", title:"1.3.2 Endocrine Disease & Perioperative Steroid Management", q:[
+        "What are the clinical features of a pituitary tumour?",
+        "What is acromegaly?",
+        "What potential issues does acromegaly present for the anaesthetist?",
+        "What are the key clinical features of Cushing's disease and its implications for the anaesthetist?",
+        "What are the important anaesthetic considerations for pituitary surgery?",
+        "She has a diagnosis of Addison's disease. What do you understand about this condition?",
+        "How is Addison's disease treated?",
+        "What are the principles of perioperative steroid management in adult patients with adrenal insufficiency?"
+      ]},
+      {id:"1.3.3", title:"1.3.3 Obesity", q:[
+        "What system is used to classify a person's weight?",
+        "Which category of BMI would this patient fall into?",
+        "What do you know about fat distribution and the relevance of this to morbidity risk?",
+        "Tell me more about the effects of obesity on the respiratory system.",
+        "Tell me more about the cardiovascular problems encountered in obese patients.",
+        "What are the effects of obesity on the metabolic and gastrointestinal systems?",
+        "How would you assess this patient preoperatively?",
+        "What investigations would you want for this patient?",
+        "What are the practical considerations when listing an obese patient for surgery?",
+        "How would you anaesthetise this patient for her umbilical hernia repair?",
+        "How is drug-dosing affected by obesity?",
+        "What special considerations should there be for obese patients postoperatively?"
+      ]},
+      {id:"1.3.4", title:"1.3.4 Perioperative Management of Diabetes", q:[
+        "What would be your anaesthetic management for this patient?",
+        "What diabetic complications would you look for?",
+        "How would you assess for the presence of autonomic neuropathy?",
+        "What other diabetic complications would you ask about?",
+        "How would you optimise this woman's glucose control intraoperatively?",
+        "How would you manage a blood sugar level outside this range?",
+        "Which patients will benefit from a variable rate IV insulin infusion (VRII)?",
+        "How would you manage a patient with a continuous subcutaneous insulin infusion (CSII)?",
+        "What principles will be guiding your choice of anaesthetic technique?",
+        "What are the benefits and risks of neuraxial or regional techniques for this patient?",
+        "How would you approach her fluid management intraoperatively?",
+        "What instructions would you give to the recovery staff regarding glucose control?",
+        "How would you define diabetic ketoacidosis?",
+        "What is the mechanism for ketone production in diabetes?",
+        "Can you explain the pathophysiology of sodium-glucose cotransporter-2 (SGLT2) associated ketoacidosis?"
+      ]},
+      {id:"1.3.5", title:"1.3.5 Calcium & Magnesium Homeostasis", q:[
+        "What is the next course of treatment for this patient?",
+        "Tell me more about hypermagnesemia.",
+        "Can you tell me where most magnesium is located in the body and what the normal plasma concentration is?",
+        "What are the roles of magnesium?",
+        "How is magnesium stored and how are levels controlled?",
+        "What are the causes of abnormal magnesium levels?",
+        "What are the effects of hypomagnesaemia?",
+        "What are the therapeutic actions of magnesium?",
+        "Are there any anaesthetic considerations when administering magnesium?",
+        "Magnesium is classified as a calcium antagonist, what are the actions of calcium?",
+        "How is calcium metabolism controlled?",
+        "What are normal plasma calcium levels?",
+        "What are the causes of hypocalcaemia?",
+        "What are the features of hypocalcaemia?",
+        "How can we treat hypocalcaemia?",
+        "What are the possible causes of hypercalcaemia?",
+        "What are the features of hypercalcaemia?",
+        "How would you treat hypercalcaemia?"
+      ]},
+      {id:"1.3.6", title:"1.3.6 Hypokalaemia & Hyperkalaemia", q:[
+        "What are the possible causes of hypokalaemia? How would you start to ascertain the cause in this patient?",
+        "Would you proceed with surgery in this case?",
+        "How would you manage a hypokalaemic patient presenting for urgent, emergency surgery?",
+        "How is potassium regulated in the body?",
+        "What are the ECG changes of hypokalaemia?",
+        "What are the effects of hypokalaemia?",
+        "How can we treat hypokalaemia?",
+        "What are the causes of hyperkalaemia?",
+        "What are the ECG changes of hyperkalaemia?",
+        "What are the effects of hyperkalaemia?",
+        "How can we treat hyperkalaemia?",
+        "What are the anaesthetic implications of hyperkalaemia?"
+      ]},
+      {id:"1.3.7", title:"1.3.7 Hyponatraemia & Hypernatraemia", q:[
+        "What are the possible causes of hypernatraemia in this case?",
+        "How would you begin your review, given his serum sodium concentration?",
+        "Are there any investigations you would order to investigate his hypernatraemia?",
+        "What can you tell me about diabetes insipidus?",
+        "How would you treat this case?",
+        "What other changes in sodium regulation might you observe after a head injury?",
+        "What are the effects of hypernatraemia?",
+        "How should hypernatraemia be treated?",
+        "What are the anaesthetic implications of hypernatraemia?",
+        "What are the causes of hyponatraemia?",
+        "What are the effects of hyponatraemia?",
+        "How should hyponatraemia be treated?",
+        "What are the anaesthetic implications of hyponatraemia?",
+        "What can you tell me about transurethral resection of the prostate or TURP syndrome?",
+        "What are the features of TURP syndrome?",
+        "How would you treat TURP syndrome?",
+        "Can you tell me more about hypertonic saline?"
+      ]},
+      {id:"1.3.8", title:"1.3.8 Hypothermia", q:[
+        "What is hypothermia?",
+        "What is the inter-threshold range?",
+        "How does general anaesthesia alter the inter-threshold range?",
+        "Why are patients under anaesthesia hypothermic?",
+        "Can you describe how regional anaesthesia affects heat loss?",
+        "What are the physical mechanisms by which heat has been lost from the patient?",
+        "What is radiation?",
+        "What is convection?",
+        "What is evaporation?",
+        "What is conduction?",
+        "Can you describe how heat is lost through respiration?",
+        "What are the physiological and clinical consequences of hypothermia?",
+        "How would you manage the patient in recovery?",
+        "Where have you seen hypothermia being used in a theatre setting?"
+      ]},
+      {id:"1.3.9", title:"1.3.9 Hyperthermia", q:[
+        "What is hyperthermia?",
+        "What can cause hyperthermia?",
+        "What form of hyperthermia is this patient suffering from?",
+        "How do you differentiate between heat exhaustion and heat stroke?",
+        "If your diagnosis of heat stroke is correct in this patient, how would you manage him?",
+        "Apart from cooling the patient are there any other therapies that may be indicated?",
+        "What tests might you order on this patient?",
+        "What is this patient at risk of if their temperature is not reduced in a timely manner?",
+        "What is your differential diagnosis? [intraoperative hyperthermia]",
+        "What further information would you require?",
+        "Describe your initial management. [malignant hyperpyrexia]",
+        "How would your management continue for the duration of the operation?",
+        "Where would you care for the patient postoperatively?",
+        "What are the physiological effects of pyrexia on this critically ill patient?",
+        "What aspects of the patient's clinical history may be of importance when trying to determine the cause of the fever?",
+        "What aspects of the patient's clinical examination may give further information?",
+        "How might you pharmacologically reduce their temperature?"
+      ]},
+      {id:"1.3.10", title:"1.3.10 Thyroid Disease & Thyroid Surgery", q:[
+        "Describe your preoperative assessment.",
+        "Describe your options for the technique of induction of anaesthesia in this patient.",
+        "Aside from the airway what are the other perioperative concerns with patients having thyroid surgery?",
+        "How would you extubate this patient?",
+        "She has acute respiratory distress with oxygen saturations of 78%. How would you proceed?",
+        "What are the consequences of damage to the recurrent laryngeal nerves?",
+        "Name another major postoperative complication of thyroid surgery aside from airway complications."
+      ]},
+      {id:"1.3.11", title:"1.3.11 Phaeochromocytoma", q:[
+        "What is resistant hypertension?",
+        "What are phaeochromocytomas?",
+        "What conditions are associated with them?",
+        "How do they present?",
+        "What testing is undertaken?",
+        "What are the goals of preoperative optimisation?",
+        "How is preoperative blood pressure control approached?",
+        "Why is it important to start alpha blockade prior to beta blockade?",
+        "What other investigations would you consider before anaesthesia and surgery?",
+        "What surgical approaches for phaeochromocytoma management are there?",
+        "What are the goals of anaesthesia for this surgery?",
+        "Would you avoid any specific drugs?",
+        "What monitoring devices would you want? Is there any role for cardiac output monitoring?",
+        "What are the challenges of intraoperative management?",
+        "What specific management strategies are you aware of?",
+        "What about specific blood pressure controlling treatments?",
+        "Following tumour removal there is hypotension. What might be happening and how can this be treated?",
+        "What level of postoperative care is needed?",
+        "How would you manage an unexpected phaeochromocytoma?",
+        "How would you manage a patient who is diagnosed with a phaeochromocytoma during pregnancy?"
+      ]}
+    ]},
+    { id:"1.4", title:"1.4 Gastrointestinal", topics:[
+      {id:"1.4.1", title:"1.4.1 Enteral & Parenteral Nutrition", q:[
+        "What is enteral nutrition?",
+        "What are the benefits of enteral nutrition?",
+        "What routes are available to facilitate EN?",
+        "Can you tell me about recommendations before starting feed via the nasogastric route?",
+        "What are the radiological criteria for safe nasogastric tube feeding?",
+        "What are the complications of enteral nutrition?",
+        "What is the approach to nutrition during critical illness?",
+        "What is trophic feeding?",
+        "What do you know about the adequacy of EN?",
+        "What is the impact of propofol? And can you tell me about overfeeding?",
+        "What nutritional supplements in critical care do you know about?",
+        "What are the constituents of enteral feeds?",
+        "Can you tell me the contraindications to EN?",
+        "What are the indications for total parenteral nutrition?",
+        "How might TPN be delivered?",
+        "What does TPN contain and how is it formulated?",
+        "What are the complications of TPN?"
+      ]},
+      {id:"1.4.2", title:"1.4.2 Nutritional Requirements & Malnutrition", q:[
+        "What are the typical daily nutritional requirements for an adult patient?",
+        "What are micro and macronutrients?",
+        "What do you know about trace elements?",
+        "What is malnutrition and why is it important?",
+        "How is the body effected by malnutrition?",
+        "Which populations are at risk of malnutrition?",
+        "How can nutritional state be assessed?",
+        "How can energy requirements be calculated?",
+        "What is refeeding syndrome? How might it be mitigated?",
+        "What special situations are there regarding nutritional requirements during critical illness?",
+        "What is the relevance of nutrition to surgical outcomes?",
+        "What can you tell me about prehabilitation and the relationship to nutrition?",
+        "Tell me about the stress response to surgery.",
+        "Why is nutrition important to manage the surgical stress response?",
+        "Can you outline an approach to anaesthesia for the malnourished patient?",
+        "What might be the cause? [of acidosis]"
+      ]},
+      {id:"1.4.3", title:"1.4.3 Postoperative Nausea & Vomiting (PONV)", q:[
+        "Can you tell me which groups of patients are more likely to suffer from this complication?",
+        "Tell me about the anaesthetic and pathological risk factors.",
+        "How can PONV be prevented?",
+        "Classify the drugs used to prevent postoperative nausea and vomiting?",
+        "Outline the sites of action of antiemetics.",
+        "You mentioned that the chemoreceptor trigger zone is outside the blood-brain barrier. Is there any benefit to this location?",
+        "Can you tell me which antiemetics you would use and why?",
+        "Can you tell me the side effects of these drugs?",
+        "What about the other drugs such as corticosteroids and cannabinoids?",
+        "Why is a combination of drugs used?",
+        "What is meant by number needed to treat (NNT)?",
+        "Do you know of any non-pharmacological ways of reducing nausea and vomiting?",
+        "What are the physiological mechanisms of vomiting?",
+        "Why do we want to reduce the incidence of nausea and vomiting in patients?",
+        "Tell me about the electrolyte imbalances.",
+        "What physiological mechanisms compensate for this loss?"
+      ]},
+      {id:"1.4.4", title:"1.4.4 Oesophageal Reflux", q:[
+        "Describe the anatomy of the oesophagus.",
+        "What is the 'barrier pressure' and what is its significance?",
+        "Describe the anatomy of the stomach.",
+        "How is gastric emptying normally controlled and what are the causes of delayed gastric emptying?",
+        "What is gastric acid and what stimulates its production?",
+        "What factors predispose to vomiting or regurgitation and aspiration of gastric contents?",
+        "What drugs would you use preoperatively to reduce the risk of regurgitation and aspiration?"
+      ]},
+      {id:"1.4.5", title:"1.4.5 Pancreatitis", q:[
+        "What is the differential diagnosis?",
+        "The lipase is 2200 U/L. What do you think the diagnosis is and how could you confirm this?",
+        "You've mentioned gallstones. What are the other common causes of pancreatitis?",
+        "What is the underlying pathophysiology?",
+        "How do you define severity of acute pancreatitis?",
+        "Can you predict which attacks will be severe?",
+        "What are the components of the Glasgow score?",
+        "Will you admit him to the HDU?",
+        "How will you manage him once in your HDU?",
+        "Is there anything else? [early intervention]",
+        "How soon should ERCP be done? Is it an easy procedure?",
+        "Why go for a general anaesthetic when most ERCPs are done with sedation?",
+        "What about cholecystectomy?",
+        "Is enteral nutrition really safe?",
+        "Practically speaking, how would you attempt to establish feeding?",
+        "What about supplements?",
+        "What are the complications of pancreatitis?",
+        "Tell me more about pancreatic necrosis.",
+        "Antibiotics are often used. Should they be?",
+        "What about probiotics or selective decontamination of the digestive tract?",
+        "Will you start antibiotics?",
+        "What is the role of CT scanning?",
+        "So when is surgery indicated?"
+      ]}
+    ]},
+    { id:"1.5", title:"1.5 Haematological", topics:[
+      {id:"1.5.1", title:"1.5.1 Blood Groups", q:[
+        "What is a blood group system?",
+        "Tell me more about the antigens and antibodies in the ABO blood group system.",
+        "Can you tell me about the inheritance of A and B antigens?",
+        "Tell me more about the Rhesus blood group.",
+        "What causes haemolytic disease of the newborn?",
+        "How do we prevent haemolytic disease of the newborn?",
+        "How is a 'group and save' performed?",
+        "How is a cross-match performed?",
+        "When would you consider giving your patient a blood transfusion?",
+        "How would you give a blood transfusion?",
+        "How can the need for an allogenic blood transfusion be minimised in surgical patients?",
+        "What are the risks of blood transfusion?",
+        "When would you consider using intraoperative cell salvage?"
+      ]},
+      {id:"1.5.2", title:"1.5.2 Anaemia & Abnormal Haemoglobins", q:[
+        "What can you tell me about the haematology results?",
+        "What is the difference between the MCV and MCH?",
+        "What are the clinical features of anaemia?",
+        "What are the causes of anaemia?",
+        "What blood tests would you consider for investigating anaemia?",
+        "What are the potential physiological effects of anaemia?",
+        "What can you tell me about vitamin B12 deficiency?",
+        "And what about folic acid deficiency?",
+        "What are the causes of iron deficiency anaemia?",
+        "What can you tell me about this condition? [sickle cell]",
+        "How do you diagnose sickle cell disease or trait?",
+        "What are the differences between sickle cells and normal red blood cells?",
+        "What features of sickle cell disease would you look for in your preoperative assessment of this patient?",
+        "What would you look for if the patient only had sickle cell trait?",
+        "Are there any preoperative measures that you would instigate before taking the patient to theatre?",
+        "What would be your concerns intraoperatively?",
+        "What can you tell me about thalassaemia?",
+        "Have you heard of the TRICC trial and what were the important findings?",
+        "Why do critically ill patients become anaemic?",
+        "How can we manage anaemic patients on the intensive care?",
+        "What would you consider to be exceptions to the restrictive strategy now employed?"
+      ]},
+      {id:"1.5.3", title:"1.5.3 Abnormalities of Coagulation & Haemostasis incl. Massive Haemorrhage", q:[
+        "You have time to take a brief history. What questions might you ask him?",
+        "What might a full blood count and coagulation studies show in this patient at this point?",
+        "The surgeons are keen to start straight away. Would you be happy to do that?",
+        "Can you tell me about the blood products you mentioned that might be of use in the perioperative period?",
+        "Do you know of any drugs that may be useful in the management of this patient?",
+        "How else may you limit the need for excessive transfusion in this patient?",
+        "What is your definition of massive transfusion?",
+        "What are the complications of massive transfusion?",
+        "Can you tell me more about thromboelastometry?",
+        "Can you tell me about another important inherited disorder of coagulation?",
+        "If this patient had Von Willebrand disease instead, how might your management have differed?",
+        "Can you give any examples of disease states that result in bleeding tendencies?",
+        "Can you clarify what, in terms of a coagulation disorder, would prevent you from performing regional anaesthesia?",
+        "Are there any patients in whom you would be particularly concerned about perioperative venous thrombosis?"
+      ]},
+      {id:"1.5.4", title:"1.5.4 Anticoagulant, Antiplatelet & Anti-fibrinolytic Agents", q:[
+        "Can you classify anticoagulants?",
+        "Can you tell me about all the drugs you know of that inhibit platelet function?",
+        "Can you describe, with the help of a diagram if you wish, exactly how anti-inflammatory drugs work to inhibit platelet function?",
+        "What is the difference between aspirin and other NSAIDs with regards to duration of action?",
+        "Which groups of patients are routinely started on aspirin and clopidogrel or other antiplatelet agents?",
+        "Can you now tell me about the drugs that exert an effect on the clotting cascade?",
+        "Tell me how warfarin works.",
+        "How does heparin work? What is the difference between unfractionated heparin and low molecular weight heparin?",
+        "What can you tell me about heparin-induced thrombocytopenia?",
+        "What is danaparoid sodium?",
+        "What are DOACs?",
+        "What recommendations do you know of regarding patients taking anticoagulant medications and performing a central neuraxial blockade?",
+        "Are you aware of any methods available for checking a patient's coagulation status?",
+        "Finally, can you tell me about the fibrinolytic agents?",
+        "They are taking rivaroxaban for chronic atrial fibrillation. What are your considerations regarding their anticoagulation and how will you manage these?",
+        "How would you manage this patient if they presented for emergency surgery?",
+        "How would your management differ if this patient was taking warfarin rather than rivaroxaban?"
+      ]},
+      {id:"1.5.5", title:"1.5.5 Thromboembolism", q:[
+        "What factors increase the risk of a patient suffering from a venous thromboembolism?",
+        "What can be done to reduce a patient's risk of suffering from a venous thromboembolism?",
+        "How would you classify the risk of venous thromboembolism in a 58-year-old obese woman?",
+        "What prophylaxis might you provide her with?",
+        "What prophylaxis might you prescribe for a 23-year-old woman?",
+        "What clinical features may support this diagnosis? [PE]",
+        "What results would support a diagnosis of PE?",
+        "What might his ECG and chest X-ray show?",
+        "What tests could be arranged to confirm the diagnosis?",
+        "What might an echo show in a patient with a massive PE?",
+        "What would be appropriate treatment for this patient?",
+        "Describe your initial actions. [arrest]",
+        "Would his arrest alter how you would treat his PE?",
+        "What tests might he need to undergo following his discharge from hospital?",
+        "Outline your initial assessment of this patient. [fat embolism]",
+        "What is your differential diagnosis?",
+        "What do you think is the likely cause and what other tests or examinations would you want to perform to confirm this?",
+        "How would you manage this patient? [fat embolism]",
+        "What is the physiological mode by which fat embolism syndrome occurs?"
+      ]}
+    ]},
+    { id:"1.6", title:"1.6 Hepatic Medicine", topics:[
+      {id:"1.6.1", title:"1.6.1 Hepatic Failure", q:[
+        "What are the major functions of the liver?",
+        "Tell me more about the metabolic role of the liver.",
+        "And what about coagulation?",
+        "How do you define liver failure? What are the consequences?",
+        "What kinds of data are used for the scoring systems you mention?",
+        "So, what are the clinical consequences?",
+        "Can you expand on the complications of chronic liver disease?",
+        "What are the common causes in the UK? [acute liver failure]",
+        "Which viruses and drugs are involved?",
+        "And what causes chronic liver disease?",
+        "I am interested in your use of N-acetylcysteine and antibiotics. Can you explain yourself?",
+        "Which antibiotics do you suggest?",
+        "Please continue. [paracetamol-induced fulminant hepatic failure]",
+        "Do you know the criteria for transplant in this case?",
+        "Would you put in a central and arterial line and would you correct the INR to do so?",
+        "What are your thoughts on blood purification in acute liver failure?",
+        "What are the potential problems? [elective hemicolectomy with alcoholic liver disease]",
+        "Can you think of anything else?",
+        "So how would you optimise this patient for surgery?",
+        "Briefly tell me how would you approach the anaesthetic."
+      ]},
+      {id:"1.6.2", title:"1.6.2 Jaundice", q:[
+        "Could you please define the term jaundice?",
+        "Please describe the normal formation and metabolism of bilirubin.",
+        "Could you classify the causes of jaundice?",
+        "What are the implications of a high bilirubin for an anaesthetist?",
+        "What is the likely diagnosis? [Gilbert's syndrome]",
+        "Tell me more about Gilbert's syndrome.",
+        "Are there any implications of Gilbert's syndrome for the anaesthetist?",
+        "What would be your concerns if a patient developed jaundice postoperatively?",
+        "Can you tell me more about halothane hepatotoxicity?"
+      ]}
+    ]},
+    { id:"1.7", title:"1.7 Neurological & Muscular", topics:[
+      {id:"1.7.1", title:"1.7.1 Myasthenia Gravis & Muscle Diseases", q:[
+        "What are the anaesthetic implications of this condition?",
+        "Describe your preoperative assessment of this patient.",
+        "How would you optimise the patient?",
+        "Describe the conduct of your anaesthetic.",
+        "What factors can be used to predict the likelihood of this patient requiring postoperative respiratory support?",
+        "What are the other postoperative concerns?",
+        "What do you understand by the terms myasthenic and cholinergic crisis and how would you differentiate between the two?",
+        "What is myasthenic syndrome?",
+        "What is myotonia and what do you understand about this disorder?",
+        "What are the clinical features? [dystrophia myotonica]",
+        "What are the potential issues relating to anaesthesia in this patient?",
+        "What is muscular dystrophy?",
+        "What are the clinical features? [muscular dystrophy]"
+      ]}
+    ]},
+    { id:"1.8", title:"1.8 Respiratory", topics:[
+      {id:"1.8.1", title:"1.8.1 Pneumothorax", q:[
+        "Describe the anatomy of the pleura.",
+        "Why is the inter-pleural space so important, even in health?",
+        "How is a pneumothorax classified and how will you manage this patient?",
+        "How would this be performed? What is the 'safe triangle'?",
+        "How would your management differ if the patient was requiring a general anaesthetic with positive pressure ventilation?",
+        "What is an underwater drainage system, what are its components and how does it work?",
+        "What is the advantage of the three-bottle system you referred to?",
+        "What are the likely causes of this deterioration? [ICU patient]",
+        "Does a normal chest X-ray exclude a pneumothorax as the cause of the deterioration?",
+        "The underwater drain is continuing to bubble. What is the most likely cause and how should it be managed?"
+      ]},
+      {id:"1.8.2", title:"1.8.2 Chronic Obstructive Pulmonary Disease & Asthma", q:[
+        "How would you assess a 70-year-old man with chronic obstructive pulmonary disease who presents for an emergency laparotomy?",
+        "What investigations may be useful?",
+        "What role should a regional technique play when considering postoperative analgesia in this patient?",
+        "What mode of ventilation would you use intraoperatively?",
+        "What can be done postoperatively to help reduce the problems associated with chronic lung disease?",
+        "What causes asthma?",
+        "Can you classify the pharmacological strategies used in the management of asthma?",
+        "Should positive end-expiratory pressure be used when anaesthetising an asthmatic for a laparotomy?",
+        "Would you use non-steroidal anti-inflammatory drugs in people with asthma?",
+        "Should steroid supplementation be given to an asthmatic on long-term inhaled fluticasone undergoing major surgery?",
+        "What is your approach to asthma in pregnancy?"
+      ]},
+      {id:"1.8.3", title:"1.8.3 Pneumonia", q:[
+        "What are the different types of pneumonia?",
+        "What is the mechanism causing hypoxia in severe pneumonia?",
+        "What is ventilator-associated pneumonia?",
+        "What are the correct cuff pressures, what cuffs are currently used and how do they contribute towards VAP?",
+        "What can be done to minimise the risk of postoperative pneumonia in a patient with chronic lung disease undergoing a laparotomy?",
+        "What are the possible causes of this effusion and how should it be managed? [ICU patient with CAP]"
+      ]},
+      {id:"1.8.4", title:"1.8.4 Lung Cancer & Interstitial Lung Disease", q:[
+        "What pulmonary malignancies are you aware of?",
+        "What are the pulmonary sequelae of lung malignancies?",
+        "What are the systemic effects of lung malignancy?",
+        "Tell me about Lambert-Eaton myasthenic syndrome.",
+        "Which patients are suitable for tumour resection?",
+        "How are postoperative FEV1 and TLCO estimated?",
+        "How would you anaesthetise a patient undergoing pneumonectomy for lung malignancy?",
+        "How would you classify interstitial lung disease (ILD)?",
+        "Can you give some examples of causes of ILD?",
+        "What results would you expect from pulmonary function testing in a patient with interstitial lung disease?",
+        "What is the difference between DLCO and KCO and why is knowledge of both results important?",
+        "What are the key considerations when anaesthetising a patient with interstitial lung disease and how should they be anaesthetised?"
+      ]}
+    ]},
+    { id:"1.9", title:"1.9 Renal", topics:[
+      {id:"1.9.1", title:"1.9.1 Renal Failure", q:[
+        "Describe your approach to the management of this patient.",
+        "Can you expand on the effects of renal failure?",
+        "What are the main causes of chronic renal failure?",
+        "How is chronic renal failure classified?",
+        "What are the modes of renal replacement therapy?",
+        "What details in the preoperative history are important?",
+        "What examination findings are of particular importance?",
+        "What investigations are important?",
+        "What factors will you consider when anaesthetising this patient?",
+        "What factors affect your choice of drugs?",
+        "What complications may occur perioperatively?",
+        "What care will the patient need postoperatively?"
+      ]}
+    ]}
+  ]
+},
+/* ================= SECTION 2 ================= */
+{
+  id:"sec2", title:"Section 2 — Surgery", color:"#0B5FA5", tint:"#E4EFF9",
+  groups:[
+    { id:"2.1", title:"2.1 Cardiothoracic", topics:[
+      {id:"2.1.1", title:"2.1.1 Anaesthesia for Cardiac Surgery, Cardiopulmonary Bypass & Cardioplegia", q:[
+        "What areas in the history are of particular relevance to your anaesthetic management plan?",
+        "Would you offer a 'pre-med' to a patient such as this?",
+        "Describe how you would induce anaesthesia in this patient.",
+        "Which volatile agent would you use?",
+        "What can you tell me about ischaemic preconditioning?",
+        "What is cardiopulmonary bypass, and what are its functions?",
+        "What are the key steps in instituting cardiopulmonary bypass?",
+        "What are the key components of the cardiopulmonary bypass circuit?",
+        "What do you know about blood pumps?",
+        "Do you know any other types of oxygenators and their advantages and disadvantages?",
+        "What are the complications associated with cardiopulmonary bypass?",
+        "What do you understand by the term myocardial preservation?",
+        "What is the composition of cardioplegia solution?",
+        "What is the sequence of events when coming off bypass?",
+        "What investigations should be performed post-bypass?",
+        "What are the important features of postoperative care?",
+        "What is 'minimally invasive cardiac surgery'?",
+        "What is 'off-pump' surgery?",
+        "What are potential complications of 'off-pump surgery'?",
+        "What is ERAS Cardiac and how does it differ from standard treatment?",
+        "What antibiotic strategies are used to reduce infection in cardiac surgery?"
+      ]},
+      {id:"2.1.2", title:"2.1.2 Anaesthesia of the Cardiac Patient for Non-cardiac Surgery", q:[
+        "What are the main issues with this man?",
+        "What are the goals of your assessment of this patient in the pre-admissions clinic?",
+        "What would your preoperative assessment focus on?",
+        "What will guide your decision on investigations and what investigations would you consider?",
+        "How would you assess his functional capacity and what is the importance of this?",
+        "What factors in this case would place this patient at a heightened risk for cardiac complications?",
+        "Are there any scoring systems you could use to estimate this risk?",
+        "Can you outline the use of cardiac biomarkers in predicting cardiac risk in non-cardiac surgery?",
+        "What will be your perioperative anticoagulation plan?",
+        "How will you perform your anaesthetic for this case?"
+      ]},
+      {id:"2.1.3", title:"2.1.3 Congenital Heart Disease", q:[
+        "Tell me about congenital heart disease.",
+        "How would you classify congenital heart disease?",
+        "What are the consequences of cyanotic congenital heart disease?",
+        "How might a child with congenital heart disease present?",
+        "What are the specific considerations when anaesthetising a patient with congenital heart disease?",
+        "Which groups of patients should receive antibiotic prophylaxis against infective endocarditis?"
+      ]},
+      {id:"2.1.4", title:"2.1.4 Care of the Postoperative Cardiac Surgery Patient", q:[
+        "What complications of cardiopulmonary bypass are seen in the ICU?",
+        "What cardiac complications are there?",
+        "Tell us more about postoperative bleeding.",
+        "Do you anticipate any respiratory complications?",
+        "What neurological complications of cardiopulmonary bypass are there?",
+        "Are any other organ systems impacted?",
+        "What is your approach to the haemodynamically unstable patient who has returned from cardiopulmonary bypass?",
+        "How would you diagnose and manage cardiac tamponade?",
+        "Are there any differences in the management of cardiac arrest in the post-cardiac surgery patient?",
+        "What are the goals of inotrope and vasopressor use following cardiac surgery?"
+      ]},
+      {id:"2.1.5", title:"2.1.5 Anaesthesia for Bronchoscopy", q:[
+        "What information is important in the preoperative assessment?",
+        "What investigations would you request?",
+        "Does bronchoscopy always require a general anaesthetic?",
+        "What anaesthetic technique would you use for this patient?",
+        "What ventilator strategies can you use?",
+        "Can you go into more detail about these differing techniques?",
+        "How would you maintain anaesthesia?",
+        "What are the postoperative considerations?",
+        "How do patients with inhaled foreign bodies present?",
+        "Is a chest X-ray indicated in this clinical scenario?",
+        "How would you anaesthetise a patient with an inhaled foreign body?",
+        "What are the postoperative complications?",
+        "What other bronchoscopic interventions are you aware of?",
+        "What are the important anaesthetic considerations for these procedures?",
+        "What are the indications for awake fibreoptic intubation?",
+        "Are there any contraindications?",
+        "Is the nasal route best?",
+        "And how would you anaesthetise the airway for this procedure?",
+        "How would you anaesthetise the vocal cords?",
+        "Are you aware of any specific nerve blocks that can be performed?"
+      ]},
+      {id:"2.1.6", title:"2.1.6 One-Lung Ventilation", q:[
+        "What are the indications for one-lung anaesthesia?",
+        "How would you achieve one-lung ventilation?",
+        "Can you think of advantages and disadvantages to the use of bronchial blockers?",
+        "Would you have a preference between a left or a right-sided double lumen tube?",
+        "What are the indications for a right-sided double lumen tube?",
+        "What type of double lumen endobronchial tube would you choose? And the size?",
+        "How would you insert a double lumen endobronchial tube?",
+        "Do you know what depth to insert a double lumen tube?",
+        "And how would you confirm correct position?",
+        "Why do you use a bronchoscope?",
+        "Could you talk me through the clinical checks?",
+        "What are the physiological consequences of one-lung ventilation?",
+        "How would you deflate the non-dependent lung?",
+        "How would you adjust the ventilation when the non-dependent lung is deflated?",
+        "How would you deal with hypoxaemia?",
+        "What would you do if the patient became extremely hypoxic?"
+      ]},
+      {id:"2.1.7", title:"2.1.7 Transplanted Organs — Heart, Lungs & Kidneys", q:[
+        "Can you draw an overview of the sympathetic nervous system for me?",
+        "Where does the sympathetic chain of the heart arise from?",
+        "What are these fibres called?",
+        "What can you tell me about the physiology of the transplanted heart?",
+        "What about the other autonomic or sensory influences?",
+        "What about the response to circulating catecholamines?",
+        "How does the transplanted heart respond to sympathomimetic drugs?",
+        "What about indirectly acting drugs?",
+        "Any other anaesthetic drugs interactions to be aware of?",
+        "Describe the anaesthetic management of a heart transplant recipient.",
+        "What type of immunosuppressive therapy might the patient be receiving? Are there any particular problems associated with this?",
+        "Are you aware of any interactions between immunosuppressant therapy and anaesthetic agents?",
+        "How would you manage these patients intraoperatively?",
+        "What level of monitoring do you think is adequate for these types of patients?",
+        "How would you manage the patient's fluid balance intraoperatively?",
+        "How would you manage this patient postoperatively?",
+        "How does denervation affect the lung?",
+        "How could rejection be detected preoperatively?",
+        "Do you have any concerns with ventilating these patients?",
+        "Would you have any preference for regional or general anaesthesia?",
+        "Describe the fluid management of lung transplant recipients.",
+        "Describe what happens to liver function following transplantation?",
+        "What relationships are you aware of between the lung and the liver?",
+        "How would you detect rejection in the transplanted liver?",
+        "Are there any other physiological considerations? [transplanted liver]",
+        "Describe the anaesthetic management of a patient who has had a renal transplant.",
+        "How would you detect rejection of the kidney graft?",
+        "Describe your intraoperative management. [renal transplant]"
+      ]},
+      {id:"2.1.8", title:"2.1.8 Off-Pump Cardiac Surgery", q:[
+        "What kinds of cardiac surgery can be performed 'off-pump'?",
+        "Which patients stand to benefit from this approach and what are the proposed advantages and disadvantages?",
+        "What are the major differences in terms of surgical conduct?",
+        "How is the conduct of anaesthesia influenced during this type of surgery? What are the concerns?",
+        "Why aren't all CABG operations performed off-pump if it is less invasive?"
+      ]},
+      {id:"2.1.9", title:"2.1.9 Intra-aortic Balloon Counterpulsation & Other Assist Devices", q:[
+        "On what principle does the IABP work?",
+        "What are the indications?",
+        "What are its contraindications?",
+        "Are you aware of any trials supporting IABP use?",
+        "What complications may arise from the use of IABP?",
+        "What other forms of mechanical cardiovascular assist do you know of?"
+      ]}
+    ]},
+    { id:"2.2", title:"2.2 Daycase", topics:[
+      {id:"2.2.1", title:"2.2.1 Daycase Selection", q:[
+        "What are the advantages of daycase surgery?",
+        "Are there any disadvantages that you can think of?",
+        "What surgery can be performed as a daycase, and what are the important considerations?",
+        "How are you going to select which patients are appropriate to have daycase surgery?",
+        "What are the problems with treating obese patients in a daycase setting?",
+        "Are there any other factors you would consider in the patient selection process?",
+        "What patient-specific factors would prevent you selecting an individual for daycase surgery?",
+        "What are the important principles of anaesthetic management for daycase surgery?",
+        "What considerations are there for managing postoperative pain for daycase surgery?",
+        "Would you consider regional techniques to be appropriate?",
+        "When should patients be discharged and what criteria should they meet?",
+        "What are the common reasons for overnight admission following daycase surgery?"
+      ]}
+    ]},
+    { id:"2.3", title:"2.3 ENT", topics:[
+      {id:"2.3.1", title:"2.3.1 Difficult Airway", q:[
+        "How do you assess their airway?",
+        "Can you further describe the specific bedside airway assessments that you use?",
+        "How accurate are these tests at predicting difficult intubation?",
+        "Do you know any scoring systems for predicting a difficult airway?",
+        "How will you manage his airway for this procedure?",
+        "Can you outline your method for awake intubation?",
+        "Can you describe your method of sedation for awake fibreoptic intubation?",
+        "What is the maximum dose of lidocaine that you would use?",
+        "How many sprays of 10% lidocaine would equate to the maximum dose in this 70 kg patient?",
+        "How do you approach this situation? [difficult intubation on ICU]",
+        "What do you do now? [failed intubation]",
+        "How do you proceed? [supraglottic airway inserted]",
+        "How do you proceed? [CICO situation]",
+        "Can you describe how you will perform this? [cricothyroidotomy]",
+        "What would you do if you could not feel the cricothyroid membrane?",
+        "Are there alternative techniques for cricothyroidotomy?",
+        "What oxygen supply would you connect the cannula to?"
+      ]},
+      {id:"2.3.2", title:"2.3.2 Performing a Tracheostomy", q:[
+        "What are the indications for tracheostomy?",
+        "What is the anatomy relevant to tracheostomy insertion?",
+        "What are some of the techniques for tracheostomy insertion, and can you describe one of them?",
+        "How is a percutaneous tracheostomy different to a cricothyroidotomy?",
+        "What are the potential pitfalls, and how do you ensure that the airway is maintained throughout the operation?",
+        "Talk me through the operation and your role in maintaining the airway.",
+        "Do you know what 'stay sutures' are?",
+        "What do you do next? [tracheostomy emergency]"
+      ]},
+      {id:"2.3.3", title:"2.3.3 Bleeding Tonsil & Foreign Body", q:[
+        "What are the key issues with this case?",
+        "How would you respond to the ENT doctor?",
+        "What information would you look for during your preoperative assessment?",
+        "How would you resuscitate this child?",
+        "How would you anaesthetise this child?",
+        "What postoperative care should the child receive?",
+        "What is the difference between a primary and secondary tonsillar bleed?",
+        "What is the blood supply to the tonsillar bed?",
+        "What risk factors predispose to post-tonsillectomy bleeding?",
+        "What are the key considerations in this case? [inhaled foreign body]",
+        "How can you differentiate between upper and lower airway obstruction? And why is this important?",
+        "What further information would you like about this case prior to proceeding to theatre?",
+        "How would you anaesthetise this child? [foreign body]",
+        "Would the method of anaesthesia and postoperative care differ if there was a foreign body lodged in the upper airways?"
+      ]},
+      {id:"2.3.4", title:"2.3.4 Obstructive Sleep Apnoea", q:[
+        "How common is sleep apnoea?",
+        "What are the causes of sleep apnoea?",
+        "What are the symptoms of sleep apnoea?",
+        "What are the signs of sleep apnoea?",
+        "And what are the potential consequences of sleep apnoea?",
+        "How common is obstructive sleep apnoea?",
+        "How is obstructive sleep apnoea diagnosed?",
+        "What are the treatment options for obstructive sleep apnoea?",
+        "What would be the general anaesthetic considerations for this man?",
+        "How would you assess the patient?",
+        "How would you anaesthetise this man?",
+        "What are your concerns for this patient in the postoperative period?"
+      ]},
+      {id:"2.3.5", title:"2.3.5 Upper Airway Infections", q:[
+        "Can you tell me what exactly is stridor?",
+        "Can you explain to me why children are more likely to develop stridor?",
+        "How would you assess this child with stridor?",
+        "What would be your initial actions?",
+        "What would be in your differential diagnosis for a patient with stridor?",
+        "Can you tell me more about croup?",
+        "How would you treat croup?",
+        "If you needed to intubate a child with croup how would you go about it?",
+        "How would you perform your gas induction?",
+        "And where would you care for this child?",
+        "Can you now tell me about epiglottitis?",
+        "How would a child present with epiglottitis?",
+        "How would you manage a child with epiglottitis?",
+        "What are the potential problems that might occur and how might these differ from the child with croup?",
+        "What would be your further management once the airway was secured?",
+        "Can you tell me anything about bacterial tracheitis?",
+        "Finally, what do you know about retropharyngeal abscesses?"
+      ]},
+      {id:"2.3.6", title:"2.3.6 Anaesthesia & Facial Fractures", q:[
+        "What are the most common causes of maxillofacial injury?",
+        "How would you classify facial fractures?",
+        "How might a patient with maxillofacial trauma present?",
+        "What is the most common facial fracture?",
+        "How would you anaesthetise this patient?",
+        "What are the implications for the patient? [zygoma fracture]",
+        "How will you manage the anaesthetic?",
+        "Classify Le-Fort fractures?",
+        "What are the most immediate clinical priorities?",
+        "What are the options for managing his airway, prior to a CT scan and maxillofacial reconstruction, outlining the advantages and disadvantages of each approach?",
+        "What are the implications of a frontal bone fracture?"
+      ]}
+    ]},
+    { id:"2.4", title:"2.4 Enhanced Recovery", topics:[
+      {id:"2.4.1", title:"2.4.1 Principles of Enhanced Recovery", q:[
+        "What is meant by enhanced recovery after surgery?",
+        "What are the aims of an enhanced recovery pathway?",
+        "Who is involved in the care of patients on an enhanced recovery programme?",
+        "What are the benefits of an enhanced recovery programme?",
+        "What specialties do you think particularly benefit from enhanced recovery?",
+        "Briefly describe the stress response to major surgery.",
+        "What are the principles of enhanced recovery?",
+        "How would you approach pain management for a patient following an enhanced recovery pathway?",
+        "How have outcomes from enhanced recovery programmes been studied, and what were the results?",
+        "What is required for a successful enhanced recovery programme?",
+        "Can you think of any potential barriers to a successful enhanced recovery programme?"
+      ]},
+      {id:"2.4.2", title:"2.4.2 Minimally Invasive Surgery", q:[
+        "What is meant by the term 'minimally invasive surgery'?",
+        "What are the disadvantages of MIS?",
+        "Describe the effects of pneumoperitoneum.",
+        "What effect does an increase in intra-abdominal pressure have?",
+        "How is physiology influenced by positioning of the patient?",
+        "What effect does CO2 absorption have?",
+        "What are the principles of preoperative assessment in MIS? In which pre-existing conditions would MIS be contraindicated?",
+        "Can you tell me about the anaesthetic management principles of MIS?",
+        "Tell me more about the principles of fluid management in MIS.",
+        "What is robot-assisted surgery?",
+        "What are the disadvantages of robot-assisted surgery?",
+        "Tell me about robot-assisted prostatectomy.",
+        "What specific considerations are there when anaesthetising patients for this surgery?"
+      ]}
+    ]},
+    { id:"2.5", title:"2.5 Neurosurgery", topics:[
+      {id:"2.5.1", title:"2.5.1 Head Injury & Control of ICP", q:[
+        "What are the important points in the immediate management of this patient?",
+        "How do you categorise the severity of head injury?",
+        "What features of a patient with a traumatic brain injury would make you consider intubation of the trachea and ventilation?",
+        "How would you go about intubating this patient?",
+        "What is secondary brain injury?",
+        "What can be done to prevent secondary brain injury?",
+        "Tell me about the Monro-Kellie Hypothesis.",
+        "Briefly tell me of the options available to you for controlling his intracranial hypertension.",
+        "How could you decrease blood volume?",
+        "And how can you reduce brain volume?",
+        "And to reduce CSF volume?"
+      ]},
+      {id:"2.5.2", title:"2.5.2 Principles of Craniotomy (incl. Epilepsy Surgery)", q:[
+        "What are your key considerations in the history when pre-assessing any neurosurgical patient?",
+        "What investigations might you require for this patient?",
+        "What are your goals for the delivery of anaesthesia for a craniotomy and what anaesthetic technique would you use for this case?",
+        "Do neuromuscular blocking agents affect ICP?",
+        "What intraoperative monitoring would you require for this patient?",
+        "What are the commonly used positions for neurosurgery? Can you tell me the risks and considerations for each?",
+        "What can you tell me about surgery to the posterior fossa?",
+        "How would you detect and manage a venous air embolism?",
+        "What can you tell me about intracerebral aneurysms and how they present?",
+        "What investigations would be required for a suspected subarachnoid haemorrhage?",
+        "What are the definitive treatment options for cerebral aneurysms? What would be your anaesthetic considerations for each?",
+        "When might surgery be implicated in the treatment of epilepsy?",
+        "What neurological investigations might be carried out prior to epilepsy surgery?",
+        "What would be your management if a patient undergoing epilepsy surgery develops a seizure intraoperatively?"
+      ]},
+      {id:"2.5.3", title:"2.5.3 Subarachnoid Haemorrhage", q:[
+        "What are the important features of the preoperative assessment for this patient?",
+        "In what ways do you think giving this particular anaesthetic differs from most neuroanaesthesia?",
+        "How would you manage the induction and maintenance of anaesthesia in this case?",
+        "How would you manage this patient postoperatively?",
+        "Which complications would you be mindful of during the procedure? And how might it affect your anaesthetic?",
+        "And what complications may occur after the procedure?",
+        "Can you tell me about any scoring systems for subarachnoid haemorrhage?",
+        "What can you tell me about vasospasm?",
+        "How do you prevent it?",
+        "How do you treat it?"
+      ]},
+      {id:"2.5.4", title:"2.5.4 Management of Acute Spinal Cord Injury", q:[
+        "Describe your initial management of this patient.",
+        "How would you intubate this patient if it became necessary?",
+        "Would you have any concerns using suxamethonium?",
+        "What do you mean by neurogenic shock?",
+        "How would you manage neurogenic shock?",
+        "With which level spinal cord injury are these problems associated?",
+        "What other factors are important in the initial management of this patient?",
+        "What do you know about the role of corticosteroids?",
+        "Are there any other specific problems you anticipate with this patient in the coming months?",
+        "Can you describe the clinical effects of incomplete transection of the spinal cord, for example anterior spinal cord damage?"
+      ]},
+      {id:"2.5.5", title:"2.5.5 Late Management of Spinal Cord Injury", q:[
+        "Please describe your anaesthetic management of the case.",
+        "What do you mean by 'autonomic dysreflexia'?",
+        "Why might lesions above T6 be of particular concern?",
+        "Please go on with your anaesthetic management...",
+        "What if there was a history of dysreflexia?",
+        "Your patient declines central neuraxial blockade and asks to 'have a general anaesthetic', how would you proceed?",
+        "And how would you anaesthetise him?",
+        "Why avoid suxamethonium?",
+        "Do you know how long the risk lasts?",
+        "In all circumstances?",
+        "You've described induction. Please continue.",
+        "Would you use it or not? [intra-arterial monitoring]",
+        "Despite all your preventative measures, during surgery his blood pressure rapidly rises to 210/140 mmHg. What would you do?",
+        "Why use glycerine trinitrate?",
+        "The surgeon informs you he plans to infiltrate with some bupivacaine and adrenaline. What do you think about this?"
+      ]},
+      {id:"2.5.6", title:"2.5.6 Brainstem Death Testing", q:[
+        "What is brainstem death?",
+        "Please could you talk me through the functions of all the cranial nerves and tell me which ones are tested when we perform brainstem death testing?",
+        "What preconditions are required before performing brainstem death testing?",
+        "Do you know of any factors that might exclude patients from brainstem death testing?",
+        "How would you actually perform the tests?",
+        "What are 'doll's eye movements'? Are these required as part of brainstem death testing?",
+        "What clinical features may be seen that are associated with brainstem death?",
+        "Do you know of any additional tests that may be required in other countries to confirm brainstem death?",
+        "What is the legal time of death?",
+        "Why do we have a shortage of organ donors in the UK compared with the rest of Europe?",
+        "How may this shortage in donor organs be addressed?",
+        "What criteria would suggest to you a brainstem dead patient may not be suitable as an organ donor?"
+      ]},
+      {id:"2.5.7", title:"2.5.7 Anaesthesia during an MRI Scan", q:[
+        "Can you start by telling me how an MRI scanner works?",
+        "What are the components of an MRI scanner?",
+        "Can you tell me more about the primary magnet?",
+        "What can you tell me about the gradient magnets and the coil?",
+        "How strong is the magnetic field produced?",
+        "What does Tesla mean?",
+        "What is the 50 Gauss line?",
+        "What does this mean? [T1 and T2 weighted images]",
+        "What are the challenges of taking this patient for an MRI scan?",
+        "Can you tell me anything about the patient-associated problems?",
+        "Can you talk me through the monitoring and equipment problems?",
+        "Can you tell me about the problems with interpreting the monitoring?",
+        "What is the difference between MRI safe and MRI compatible equipment?",
+        "Is the anaesthetic machine used for MRI safe or compatible?",
+        "What about your infusion pumps?",
+        "What type of circuit do we commonly use in the MRI scanner?",
+        "How would you minimise the hazards posed to this patient when in MRI?",
+        "If the MRI malfunctions or needs to be shut down, there is a risk of hypoxia. Why is this?",
+        "Are there risks to staff?",
+        "Why do we not just use a CT scan for all cases that require imaging?",
+        "Do both techniques use contrast medium?",
+        "Are you aware of any guidelines regarding anaesthetising patients in the radiology suite?"
+      ]},
+      {id:"2.5.8", title:"2.5.8 Depth of Anaesthesia Monitoring", q:[
+        "What is awareness?",
+        "Can you tell me the incidence of awareness?",
+        "What are the consequences of awareness for the patient?",
+        "What are the causes and risk factors for awareness?",
+        "What methods are you aware of for monitoring the depth of anaesthesia?",
+        "How useful is the monitor for lower oesophageal contractility?",
+        "What do you know about the isolated forearm technique?",
+        "How useful are evoked potentials at estimating depth of anaesthesia?",
+        "What do you know about BIS monitoring? Are you aware of any recent studies into the use of BIS?",
+        "Can you tell me what entropy is?",
+        "How does entropy measurement compare with BIS?",
+        "What should you be doing in your day-to-day practice to reduce the risk of awareness in your patients?"
+      ]},
+      {id:"2.5.9", title:"2.5.9 Electroconvulsive Therapy (ECT) & Anti-psychotics", q:[
+        "What is ECT?",
+        "Do you know any of the characteristics of the electric current used?",
+        "What are the indications for ECT in severe depression?",
+        "Can you describe to me the physiological changes that occur during ECT?",
+        "What other systems are involved?",
+        "Describe your preoperative assessment. [ECT list]",
+        "Are there any specific drugs that the patients may be taking that may be relevant to us as anaesthetists?",
+        "Can you explain how monoamine oxidase inhibitors work?",
+        "Why are they of concern to us as anaesthetists?",
+        "What are the concerns with anaesthetising patients in such areas? [remote locations]",
+        "Describe how you would anaesthetise a patient for ECT.",
+        "What other mood altering drugs do you know of?",
+        "Tell me about lithium.",
+        "What are the adverse effects of lithium?",
+        "What signs and symptoms might make you suspicious of lithium toxicity?",
+        "What are the important considerations when anaesthetising a patient on lithium?"
+      ]},
+      {id:"2.5.10", title:"2.5.10 Epilepsy", q:[
+        "What is your approach? [status epilepticus]",
+        "What factors may influence your choice for 2nd line agent?",
+        "What are the complications of status epilepticus?",
+        "What is the differential diagnosis of epileptic seizures?",
+        "Can you classify epileptic seizures?",
+        "Which drugs are used in preventing epileptic seizures?",
+        "Tell me about phenytoin.",
+        "What non-pharmacological options are available for treating epilepsy?",
+        "How would you manage a patient with epilepsy for elective surgery?",
+        "What are the effects of anaesthetic drugs on epilepsy?"
+      ]},
+      {id:"2.5.11", title:"2.5.11 Spinal Surgery & Neuromuscular Monitoring", q:[
+        "What is intraoperative neuromonitoring?",
+        "Which procedures may require intraoperative neuromonitoring?",
+        "Which modalities of intraoperative neuromonitoring are you aware of?",
+        "Tell me a bit more about somatosensory evoked potentials and how they are monitored?",
+        "What about motor evoked potentials?",
+        "How do common anaesthetic drugs affect SSEPs and MEPs?",
+        "Are you aware of any physiological variables which may affect SSEPs and MEPs?",
+        "What should be done if a significant change in the evoked potentials is detected intraoperatively?",
+        "What if there was no improvement with the interventions you have mentioned?",
+        "What is electromyography and how is it measured intraoperatively?",
+        "Finally, tell me about intraoperative EEG monitoring."
+      ]},
+      {id:"2.5.12", title:"2.5.12 Anaesthesia for Awake Craniotomy", q:[
+        "What are the indications for an awake craniotomy?",
+        "Can you list any contraindications to an awake craniotomy?",
+        "What are your specific considerations during the preoperative assessment of this patient?",
+        "What techniques are you aware of for providing anaesthesia for an awake craniotomy?",
+        "What are the general principles when providing anaesthesia for an awake craniotomy? How are these achieved?",
+        "Please could you tell me how you would perform this? [scalp block]",
+        "The patient develops a generalised seizure during cortical mapping. What would be your management?"
+      ]}
+    ]},
+    { id:"2.6", title:"2.6 Obstetrics", topics:[
+      {id:"2.6.1", title:"2.6.1 Physiological & Anatomical Changes of Pregnancy", q:[
+        "What can you tell me about the physiological and anatomical changes of pregnancy?",
+        "How much weight would you expect a woman to gain during a normal pregnancy?",
+        "Can you now describe the changes to the respiratory system?",
+        "Can you tell me how pregnancy alters the gastrointestinal system?",
+        "How do these changes affect women?",
+        "What are the anaesthetic implications?",
+        "How does pregnancy alter renal function?",
+        "What haematological changes occur?",
+        "How does this affect your management of a woman after a lower segment caesarean section (LSCS)?",
+        "How does the WCC change during pregnancy and why is this important?",
+        "Do the plasma proteins change during pregnancy?",
+        "Do you know of any endocrine changes of pregnancy?",
+        "How is the musculoskeletal system affected?",
+        "Can you describe to me any of the central nervous system effects of pregnancy?",
+        "Can you describe the innervations of the bladder, uterus, vagina and cervix?",
+        "What level sensory block do you therefore need for a caesarean section using central neuraxial blockade?",
+        "What are the effects of maternal pain on the fetus and the mother?"
+      ]},
+      {id:"2.6.2", title:"2.6.2 Anaesthesia in Early Pregnancy", q:[
+        "Can you briefly summarise the main issues to the anaesthetist regarding this case?",
+        "So what information would you try and obtain at the pre-op visit?",
+        "How would you counsel this woman on the risks of surgery in pregnancy?",
+        "What would you look for in your examination of this woman?",
+        "What investigations would you want to review before taking this woman to theatre?",
+        "What action would you take prior to taking this woman to theatre?",
+        "Why might intubation be more difficult in this patient?",
+        "Why is the oxygen reserve lower?",
+        "What are the effects of progesterone on the respiratory system? Would they affect your general anaesthetic?",
+        "What might be the cardiovascular effects of pregnancy on this woman? How might they affect your general anaesthetic?",
+        "How might the pregnancy alter the effects of the induction agents, volatile agents and neuromuscular blockers?",
+        "What might be the effects on the renal system?",
+        "How would you anaesthetise this woman?",
+        "What would be your postoperative plan for this patient and where would you manage her?",
+        "Finally, can you tell me when anaesthetic drugs are most likely to have teratogenic effects?"
+      ]},
+      {id:"2.6.3", title:"2.6.3 Complications of Pregnancy", q:[
+        "What are the possible causes of sensory loss in this patient?",
+        "How would you assess this patient?",
+        "What is the most likely cause of her neuropathy? How would you manage this case?",
+        "What are the possible causes of her headache and how might you differentiate between them?",
+        "What are the features of a PDPH?",
+        "How would you treat a suspected post-dural puncture headache?",
+        "When would you perform an epidural blood patch?",
+        "What is the success rate with an epidural blood patch?",
+        "How would you perform an epidural blood patch?",
+        "What is the likely cause of her sudden deterioration? How would you manage this situation?",
+        "In the event of a cardiac arrest in a term mother, how should cardiopulmonary resuscitation be performed?",
+        "What can you tell me about the causes of obstetric mortality?",
+        "Did the MBRRACE report identify any patient characteristics associated with maternal mortality?"
+      ]},
+      {id:"2.6.4", title:"2.6.4 Pre-eclampsia", q:[
+        "What are the important issues that you would like to explore in her history?",
+        "How is hypertension in pregnancy classified?",
+        "How common are hypertensive disorders in pregnancy?",
+        "How do you diagnose pre-eclampsia?",
+        "Why does pre-eclampsia develop?",
+        "What are the features of pre-eclampsia?",
+        "How might pre-eclampsia affect the fetus?",
+        "Are there any risk factors for pre-eclampsia?",
+        "What is the treatment for pre-eclampsia?",
+        "What antihypertensive treatment might this woman be taking?",
+        "What is the role of magnesium in pre-eclampsia and eclampsia? Can you tell me anything about the MAGPIE trial?",
+        "What clinical assessments would you perform on this woman and what would you be looking for?",
+        "What would you consider necessary investigations?",
+        "What advice would you give this woman regarding an epidural?",
+        "What haematological parameters would you consider it safe for performing an epidural in this case?",
+        "What about the platelet count considered safe for performing a spinal?",
+        "How would you manage this patient's fluid balance?",
+        "The patient has a tonic–clonic seizure. What are the possible causes for this?",
+        "What would be your initial management of this scenario?",
+        "The fit subsides... You are required to perform a general anaesthetic. How would you perform this?",
+        "What potential problems might you anticipate during and after the operation?"
+      ]},
+      {id:"2.6.5", title:"2.6.5 Labour Analgesia", q:[
+        "Can you describe the pain pathways during the first and second stages of labour?",
+        "How can the parturient manage pain during labour?",
+        "What is pethidine? Describe the dosing and route of administration used for labour analgesia.",
+        "What are the side effects of pethidine?",
+        "Explain the key pharmacokinetics and pharmacodynamics of remifentanil that are relevant in its use for labour analgesia.",
+        "Can you tell me about the safety precautions that should be taken when using a remifentanil PCA?",
+        "What is a typical dose of remifentanil?",
+        "Are you aware of any evidence base which supports the use of remifentanil PCAs?",
+        "Can you discuss your assessment and any actions you would take? [epidural with dense block]",
+        "Can you explain to me how your assessment and management would differ if this woman was 4 hours postpartum...?"
+      ]},
+      {id:"2.6.6", title:"2.6.6 Placenta Praevia", q:[
+        "Can you explain how placenta praevia is diagnosed and graded?",
+        "What are the risk factors for developing placenta praevia?",
+        "How can the spectrum of the abnormally invasive placenta be subdivided?",
+        "What are the key issues you would discuss with her?",
+        "Are there any other blood conservation strategies you could offer to this woman?",
+        "Should intraoperative cell salvage be set up for all women undergoing caesarean section?",
+        "What additional preparation would be required for this elective caesarean section?"
+      ]},
+      {id:"2.6.7", title:"2.6.7 Grown-up Congenital Heart Disease (GUCHD) in Pregnancy & Labour", q:[
+        "Tell me about the risks that pregnancy poses in Grown-up Congenital Heart Disease.",
+        "How would you counsel a woman pre-pregnancy with GUCHD?",
+        "What pre-pregnancy assessments may be necessary in GUCH?",
+        "What risk-assessment tools can be used for these patients?",
+        "Which CHD types should be counselled to avoid pregnancy?",
+        "What risks are there to the fetus of a woman with GUCHD?",
+        "What physiological changes in pregnancy are most important in GUCHD patients?",
+        "How would you care for a GUCHD mother in pregnancy?",
+        "How would you care for a GUCHD mother during labour and delivery?"
+      ]},
+      {id:"2.6.8", title:"2.6.8 Amniotic Fluid Embolism & Postpartum Haemorrhage (PPH)", q:[
+        "What potential differential diagnoses would you consider in this case?",
+        "How common is amniotic fluid embolism?",
+        "Can you describe the pathophysiology of AFE?",
+        "What are the features of AFE?",
+        "Is there any specific management for suspected AFE?",
+        "How do you define maternal obstetric haemorrhage?",
+        "What is the blood flow to the uterus and why is this important?",
+        "What clinical signs may be evident in a woman who is bleeding postpartum?",
+        "What might be the first sign in a woman with antepartum haemorrhage?",
+        "What are the causes of obstetric haemorrhage?",
+        "Can you tell me any risk factors for abruption?",
+        "And what about uterine rupture?",
+        "Tell me about the causes of postpartum haemorrhage.",
+        "So what are the risk factors for uterine atony?",
+        "And why might a pregnant or postpartum woman develop a clotting abnormality?",
+        "What is your immediate management? [PPH]",
+        "What drugs do we use to aid uterine contraction?",
+        "What about other drugs that affect uterine contraction, tocolytics. What are they used for? Name me some examples and their mechanism of action.",
+        "How would you proceed? [moving to theatre]",
+        "What surgical interventions might be considered?",
+        "What are your concerns with respect to the induction and maintenance of anaesthesia?"
+      ]}
+    ]},
+    { id:"2.7", title:"2.7 Ophthalmic", topics:[
+      {id:"2.7.1", title:"2.7.1 Orbital Anatomy", q:[
+        "Describe the anatomy of the orbit.",
+        "Describe the nerve supply to the orbit.",
+        "Describe the anatomy of the eyeball.",
+        "Describe the preoperative assessment of a patient presenting for ophthalmic regional anaesthesia.",
+        "What is the oculocardiac reflex?",
+        "Describe any preoperative guidance relating to anticoagulant or antiplatelet drugs.",
+        "What are the contraindications to regional anaesthesia?",
+        "What are the complications of regional anaesthesia?",
+        "How would you perform a Sub-Tenon's block?",
+        "Describe the peribulbar technique."
+      ]},
+      {id:"2.7.2", title:"2.7.2 Control of Intraocular Pressure", q:[
+        "What is a normal intraocular pressure?",
+        "What factors determine IOP?",
+        "How is intraocular pressure regulated?",
+        "Why is IOP of relevance to anaesthetists?",
+        "What is the role of blood volume and IOP?",
+        "How can anaesthetists avoid unwanted rises in IOP?",
+        "How do anaesthetic drugs affect IOP?",
+        "Describe your ideal anaesthetic for surgery in patients with an open eye injury.",
+        "What can be done to reduce IOP acutely?"
+      ]},
+      {id:"2.7.3", title:"2.7.3 Penetrating Eye Injury", q:[
+        "What would be your initial actions?",
+        "What would be your next steps?",
+        "What further information would you want to know from the patient before proceeding to theatre?",
+        "Is there anything else you might consider before theatre?",
+        "Can you tell me the normal range for intraocular pressure?",
+        "What determines intraocular pressure?",
+        "How is intraocular pressure normally regulated?",
+        "How is aqueous humour produced and where does it get reabsorbed?",
+        "How is intraocular pressure increased?",
+        "Why is it important to avoid increases in intraocular pressure in this patient?",
+        "Can you describe to me how you would induce anaesthesia and the potential pitfalls that might be encountered?",
+        "Could you use a total intravenous technique for induction and maintenance of anaesthesia?",
+        "What drugs might you consider to reduce the increase in intraocular pressure during induction?",
+        "How would you manage the patient intraoperatively?",
+        "How would you extubate the patient?",
+        "Would a local anaesthetic technique be possible for this operation?"
+      ]},
+      {id:"2.7.4", title:"2.7.4 Cataract & Detached Retina", q:[
+        "What factors need to be considered when selecting the appropriate anaesthetic for a patient presenting for cataract surgery?",
+        "To what degree do patients require pre-optimisation for cataract surgery?",
+        "The admitting nurse informs you the blood pressure reads 176/105 mmHg. How would you proceed?",
+        "What are your immediate thoughts regarding management of this case? [diabetic retinal detachment]",
+        "You discuss the anaesthetic plan with your trainee who wishes to use nitrous oxide... What are your concerns?"
+      ]},
+      {id:"2.7.5", title:"2.7.5 Strabismus", q:[
+        "What factors should be considered in the preoperative assessment?",
+        "So how would you anaesthetise this child?",
+        "You mentioned the oculocardiac reflex. Can you tell me more about this reflex, the afferent and efferent pathways?",
+        "What would you do? [heart rate dropped to 50]",
+        "What would you use for intraoperative and postoperative analgesia for squint surgery?",
+        "Is postoperative nausea and vomiting usually a problem?"
+      ]},
+      {id:"2.7.6", title:"2.7.6 Ophthalmology Local Anaesthetic Techniques", q:[
+        "What are the preoperative considerations for ophthalmic regional anaesthesia techniques?",
+        "Describe important points for consideration of intraoperative care of the patient under regional anaesthesia.",
+        "What are the local anaesthetic techniques used in eye surgery?",
+        "What are the contraindications to eye blocks?",
+        "How do you perform a Sub-Tenon's block?",
+        "How would you perform a peribulbar block?",
+        "What are the complications of regional anaesthesia of the eye?"
+      ]}
+    ]},
+    { id:"2.8", title:"2.8 Orthopaedic", topics:[
+      {id:"2.8.1", title:"2.8.1 Procedures under Tourniquet, Reperfusion Injury & Antioxidants", q:[
+        "What are the primary issues you would want to consider?",
+        "In your experience, in which situations are tourniquets generally used?",
+        "What general concerns might you have with tourniquet use?",
+        "What physical injuries may result from tourniquet use?",
+        "How is the tourniquet inflated?",
+        "What are the physiological effects of tourniquet inflation?",
+        "What is tourniquet pain?",
+        "How can tourniquet pain be managed if the patient is having awake regional anaesthesia on the upper limb?",
+        "What could be happening? [post-tourniquet release distress]",
+        "What do you know about tourniquet release and reperfusion syndrome?",
+        "Does this matter?",
+        "Can the reperfusion effects be reduced or prevented?",
+        "Do you know anything about free radicals and antioxidants in this situation?",
+        "Are there any specific concerns to consider once your patient has been moved to the recovery room?"
+      ]},
+      {id:"2.8.2", title:"2.8.2 Major Trauma, Hospital Triage & Scoring Systems", q:[
+        "Can you define major trauma?",
+        "How are patients triaged?",
+        "Describe the organisation of the trauma network.",
+        "Tell me about scoring systems in major trauma that you are aware of and their clinical uses.",
+        "What is the role of the anaesthetist in receiving major trauma patients?"
+      ]},
+      {id:"2.8.3", title:"2.8.3 Blood Conservation Strategies", q:[
+        "How do you define anaemia?",
+        "What do you understand by the term patient blood management?",
+        "What are the options for preoperative optimisation of his anaemia?",
+        "What strategies are available to minimise perioperative bleeding?",
+        "What are the principles of cell salvage?",
+        "What are the beliefs of a Jehovah's Witness?",
+        "How will you manage a patient that has refused a blood transfusion?",
+        "How would you approach a patient from the Jehovah's Witness community who presents requiring a blood transfusion, unable to communicate their wishes?"
+      ]},
+      {id:"2.8.4", title:"2.8.4 Bone Cement Implantation Syndrome", q:[
+        "What is bone cement implantation syndrome (BCIS)?",
+        "What is the composition of bone cement?",
+        "Why is cement used and what are the benefits of cemented vs uncemented prostheses?",
+        "What are the clinical features of BCIS and how it can be classified?",
+        "What patient factors are associated with an increased risk of BCIS?",
+        "What is the pathophysiology?",
+        "How can theatre teams prepare for the possibility of BCIS?",
+        "What specific intraoperative steps can the surgeon and anaesthetist take to reduce the risk of BCIS?",
+        "Is BCIS reversible?",
+        "What is the management of BCIS?"
+      ]},
+      {id:"2.8.5", title:"2.8.5 Management of Hip Fractures", q:[
+        "How would you approach this? [preoperative review]",
+        "How would you perform the anaesthetic for this patient?",
+        "If the patient was adamant that they did not want a spinal anaesthetic, how would you approach performing a general anaesthetic for him?",
+        "In the past 10 years mortality from hip fractures has improved why do you think this is?",
+        "What would be appropriate reasons to delay surgery?",
+        "What do you know about bone cement implantation syndrome?"
+      ]}
+    ]},
+    { id:"2.9", title:"2.9 Paediatric", topics:[
+      {id:"2.9.1", title:"2.9.1 Principles of Neonatal Physiology", q:[
+        "How does neonatal physiology differ from that of the adult?",
+        "What is the circulating volume in a neonate and what is the significance of this?",
+        "What is meant by the term 'transitional circulation'?",
+        "What are the important factors to be considered in the respiratory system?",
+        "How does the central nervous system of a neonate differ?",
+        "How is temperature regulation achieved in the neonate?",
+        "Can you think of any issues of relevance to the renal system?",
+        "Are you aware of any adaptations required to drug doses in neonatal patients?"
+      ]},
+      {id:"2.9.2", title:"2.9.2 Neonatal Resuscitation & the Effects of Prematurity", q:[
+        "How do you identify a newborn baby requiring resuscitation?",
+        "Can you think of some factors that make a neonate more likely to require resuscitation following delivery?",
+        "What are the steps in resuscitation of a neonate?",
+        "What would be an appropriate size endotracheal tube in a term neonate?",
+        "Describe the aspects of neonatal physiology of greatest relevance to anaesthesia.",
+        "What are the anaesthetic implications of prematurity?",
+        "What do you know about retinopathy of prematurity? How can the risk be minimised?"
+      ]},
+      {id:"2.9.3", title:"2.9.3 Anaesthesia in Infancy & Childhood", q:[
+        "Can you tell me how we decide when a neonate has become an infant or child?",
+        "Can you talk me through the anatomical differences between a paediatric and adult patient that occur in the respiratory system and why these are important?",
+        "What about the physiological changes that occur in the respiratory system?",
+        "Can you talk me through the changes in functional residual capacity and closing capacity?",
+        "What can you tell me about the control of respiration in a neonate or young infant?",
+        "Can you briefly summarise the changes that occur at birth?",
+        "Over what time period do the foramen ovale and ductus arteriosus close?",
+        "Can you tell me about the anatomical and physiological differences between the paediatric and adult cardiovascular system?",
+        "What about the differences in the haematological system?",
+        "How would you approach fluid management in a child?",
+        "What fluids should be used if a child needs fluid resuscitation?",
+        "Can you tell me anything about haemoglobin in neonates?",
+        "When might you consider transfusing a bleeding infant?",
+        "What about changes that occur to clotting factors and platelets?",
+        "Why are neonates and infants at risk of hypothermia?",
+        "Why is this important to the anaesthetist?",
+        "Can you tell me about any differences between the infant and adult central nervous system?",
+        "How do the actions of general anaesthetic agents differ in the paediatric patient?",
+        "Do the muscle relaxants also have different effects?",
+        "What can you tell me about the differences between the paediatric and adult renal system?",
+        "And what about the liver?",
+        "Can you give me some guidelines for fasting for the paediatric patient?",
+        "Finally, what psychological changes might occur and how might they affect the anaesthetist?"
+      ]},
+      {id:"2.9.4", title:"2.9.4 Pyloric Stenosis", q:[
+        "What is congenital hypertrophic pyloric stenosis?",
+        "How does pyloric stenosis present?",
+        "What might arterial blood gas and urinalysis show?",
+        "How can the blood gas results be explained?",
+        "What other biochemical or haematological changes might be seen?",
+        "What are the issues with this case?",
+        "How would you go about resuscitating this infant?",
+        "How would you assess the degree of dehydration in this infant?",
+        "How would you approach fluid management in this case?",
+        "What is this regimen based on?",
+        "Do you know how much potassium you would expect to add to the maintenance fluids?",
+        "When would you be happy to proceed with anaesthesia?",
+        "How long does a pyloromyotomy take and how is it performed?",
+        "How would you anaesthetise this infant?",
+        "What would be your postoperative instructions for this infant?",
+        "How can you assess pain in paediatric patients?"
+      ]},
+      {id:"2.9.5", title:"2.9.5 Intussusception", q:[
+        "What is intussusception?",
+        "What age group tend to present with this condition?",
+        "Is intussusception seen more in boys or girls?",
+        "What are the causes of intussusception?",
+        "Can intussusception recur?",
+        "How might an infant with intussusception present?",
+        "What would be your differential diagnosis for this history?",
+        "How do you diagnose intussusception?",
+        "How would you treat intussusception if air enema has failed?",
+        "Would you advise air enema or surgical intervention in this case?",
+        "How would you resuscitate this infant and prepare them for theatre?",
+        "How would you induce anaesthesia in this infant?",
+        "What about maintenance?",
+        "What would you give for pain relief?",
+        "What would be your concerns during the operation?",
+        "How would you approach intraoperative fluid management?",
+        "What would be your postoperative plan for this patient?"
+      ]},
+      {id:"2.9.6", title:"2.9.6 Oesophageal Atresia, Diaphragmatic Hernia & Exomphalos", q:[
+        "What do you understand about this condition? [oesophageal atresia]",
+        "Can you describe the anatomical abnormality in more detail?",
+        "What would you look for in your preoperative assessment of this infant?",
+        "What is the VACTERL association?",
+        "How does tracheo-oesophageal fistula present?",
+        "How should the infant be managed preoperatively?",
+        "What is the optimum timing of corrective surgery after birth?",
+        "How would you induce anaesthesia in this patient?",
+        "What are the intraoperative concerns?",
+        "How will you manage the child postoperatively?",
+        "What can you tell me about congenital diaphragmatic hernia?",
+        "Is surgical correction of the defect an emergency procedure?",
+        "How should the patient be optimised prior to theatre?",
+        "What is exomphalos?",
+        "How does gastroschisis differ?",
+        "What are the problems associated with the two conditions?",
+        "How is it managed? [exomphalos]"
+      ]},
+      {id:"2.9.7", title:"2.9.7 Child Protection & Non-accidental Injury", q:[
+        "What is child protection?",
+        "How can you classify forms of maltreatment?",
+        "What are the risk factors for maltreatment?",
+        "When might an anaesthetist encounter child protection issues?",
+        "What clinical presentations may suggest child maltreatment?",
+        "What is meant by the term non-accidental injury (NAI)?",
+        "What physical features might suggest NAI?",
+        "What steps should you take if you suspect NAI?"
+      ]}
+    ]},
+    { id:"2.10", title:"2.10 Perioperative Medicine", topics:[
+      {id:"2.10.1", title:"2.10.1 Cardiopulmonary Exercise Testing", q:[
+        "What is cardiopulmonary exercise testing?",
+        "How is CPET performed?",
+        "What are the contraindications to CPET?",
+        "Briefly describe how you would interpret the nine-panel plot.",
+        "Explain the terms anaerobic threshold and peak VO2 in addition to relevance in clinical practice?",
+        "What do you understand by the term metabolic equivalent of tasks?",
+        "What is the Duke Activity Status Index?",
+        "What is a functional walk test?"
+      ]},
+      {id:"2.10.2", title:"2.10.2 Preoperative Assessment & Prehabilitation", q:[
+        "What are the roles of a preoperative anaesthetic assessment service?",
+        "What are the potential benefits of a preoperative anaesthetic assessment service?",
+        "What team members are involved in preoperative assessment?",
+        "Why are patients risk assessed prior to surgery?",
+        "What risk-assessment tools are commonly used in anaesthesia?",
+        "What is prehabilitation?",
+        "What are the benefits of prehabilitation?",
+        "What are the components of a prehabilitation programme?",
+        "What are the potential physiological benefits of a prehabilitation exercise programme?"
+      ]},
+      {id:"2.10.3", title:"2.10.3 Anaesthetic Considerations for Cancer Surgery", q:[
+        "What is a cancer staging system?",
+        "What risk factors do you know for developing bowel cancer?",
+        "What do you know about bowel cancer screening?",
+        "Do you know of any other screening programmes in the UK?",
+        "Can you describe your preoperative assessment of this patient?",
+        "You mentioned chemotherapy. Can you give any examples of drugs or side effects?",
+        "Do you know of any specific concerns with bleomycin?",
+        "What would your anaesthetic plan be for this patient?",
+        "Why are cancer patients at an increased risk of perioperative venous thromboembolism?",
+        "What is tumour lysis syndrome?",
+        "Do you know any risk factors for tumour lysis syndrome?",
+        "Do you know of any potential links between anaesthetic technique and tumour recurrence?"
+      ]},
+      {id:"2.10.4", title:"2.10.4 Anaesthesia for the Elderly", q:[
+        "What are the anatomical and physiological changes in the older patient that are relevant to anaesthesia?",
+        "What are the pharmacological considerations for the elderly?",
+        "What are the preoperative, intraoperative and postoperative considerations in the older patient?",
+        "What is frailty?",
+        "Do you know any assessment tools for frailty?",
+        "What medications are used for dementia and how do these impact on anaesthesia?",
+        "What is postoperative cognitive dysfunction (POCD)?",
+        "Do you know any risk factors for POCD?"
+      ]}
+    ]},
+    { id:"2.11", title:"2.11 Vascular", topics:[
+      {id:"2.11.1", title:"2.11.1 Abdominal Aortic Aneurysm Repair", q:[
+        "What is an AAA?",
+        "What are the risk factors for developing an AAA?",
+        "What treatment options are available?",
+        "Do you know any scoring systems assessing risk?",
+        "How may a ruptured AAA present?",
+        "What are the important points when anaesthetising patients for an emergency AAA repair?",
+        "What other equipment would you need?",
+        "How are you going to anaesthetise this patient?",
+        "What are the physiological responses to aortic cross-clamping?",
+        "What happens when the clamp is removed?",
+        "What is the importance of supra or infra-renal clamps?",
+        "What are the postoperative care aims?",
+        "What complications can occur?",
+        "How can patients be optimised before elective repair?",
+        "Tell me about endovascular aneurysm repair (EVAR)."
+      ]},
+      {id:"2.11.2", title:"2.11.2 Anaesthesia for Carotid Endarterectomy", q:[
+        "What is a carotid endarterectomy?",
+        "What are the indications for surgery?",
+        "What about asymptomatic patients?",
+        "What are the risks associated with carotid endarterectomy?",
+        "Can you tell me more about cerebral hyperperfusion syndrome?",
+        "Do you know of any risk factors that increase the risk of perioperative morbidity and mortality?",
+        "What anaesthetic options are available?",
+        "What is the evidence relating to the use of general anaesthesia or local anaesthesia?",
+        "Can you tell me a little more about the nerves you would need to block?",
+        "Describe the technique for performing a superficial cervical plexus block?",
+        "Describe the technique for performing a deep cervical plexus block.",
+        "What are the risks associated with a deep cervical plexus block?",
+        "What is meant by an intermediate cervical plexus block?",
+        "What are the advantages and disadvantages of using a local anaesthetic technique?",
+        "If you were to choose a regional technique, which would you choose?",
+        "What are the principles of general anaesthesia for carotid endarterectomy?",
+        "How may cerebral perfusion be monitored during general anaesthesia?",
+        "How would you manage cerebral ischaemia upon carotid cross clamping?",
+        "What are the potential issues with inserting a shunt?",
+        "Where should these patients be looked after postoperatively?",
+        "Do you know of alternative treatments for carotid artery stenosis?"
+      ]},
+      {id:"2.11.3", title:"2.11.3 Anaesthesia for Lower Limb Peripheral Arterial Surgery", q:[
+        "Which patient risk factors are associated with the development of peripheral arterial disease (PAD)?",
+        "How might a patient with peripheral lower limb arterial insufficiency present?",
+        "Tell me how you would perform an ABPI?",
+        "How will you proceed? [acute vascular insufficiency]",
+        "How can symptomatic peripheral vascular disease be managed?",
+        "Apart from clinical examination, what investigations might establish the severity of peripheral vascular disease?",
+        "What is duplex ultrasound?",
+        "What methods of revascularisation are available?",
+        "What are the main goals of surgical intervention?",
+        "What type of vascular grafts can be used?",
+        "What common procedures associated with peripheral vascular disease may present to the anaesthetist?",
+        "How would you manage this patient's anaesthetic?",
+        "What are the general principles of anaesthesia?",
+        "What are the advantages of regional anaesthesia in these patients?",
+        "What might contraindicate a regional anaesthetic technique?",
+        "If a regional anaesthetic is contraindicated, what general anaesthetic technique would you use?",
+        "Is there any difference in postoperative outcome in patients who have had a general anaesthetic compared with regional anaesthesia?",
+        "What is the optimal method of managing this patient to prevent chronic postoperative amputation pain (CPAP)?",
+        "Which peripheral regional blocks would be the most appropriate in this patient?",
+        "Which peripheral nerve blocks would be most appropriate in this patient? [mid-foot amputation]"
+      ]},
+      {id:"2.11.4", title:"2.11.4 Interventional Radiology", q:[
+        "What are the relevant anaesthetic considerations? [intracranial coiling]",
+        "Describe your perioperative anaesthetic care for this patient.",
+        "What risk does radiation present to staff in IR?",
+        "How may this risk be minimised?",
+        "What regulations govern the use of radiation in healthcare?",
+        "What is mechanical thrombectomy and what are the specific anaesthetic considerations?",
+        "Are you aware of any clinical trials indicating what mode of anaesthesia provides the best outcomes in mechanical thrombectomy?"
+      ]}
+    ]}
+  ]
+},
+/* ================= SECTION 3 ================= */
+{
+  id:"sec3", title:"Section 3 — Emergency Medicine & Intensive Care", color:"#F57C00", tint:"#FFF1DE",
+  groups:[
+    { id:"3.1", title:"3.1 Emergency Medicine", topics:[
+      {id:"3.1.1", title:"3.1.1 Acute Poisoning", q:[
+        "Describe your initial management of this patient.",
+        "What is her GCS score?",
+        "What would your next steps be in this patient's management?",
+        "What investigations would you like to order now?",
+        "Why have you ordered a 12-lead ECG and a chest X-ray?",
+        "Are there any other systems that can be affected by TCAs?",
+        "Is there any specific treatment for TCA overdose?",
+        "Would activated charcoal be of use?",
+        "Is this of concern to you? [paracetamol 12 g]",
+        "What are the symptoms and signs of an untreated paracetamol overdose?",
+        "How should paracetamol overdose be treated?",
+        "How does NAC work?",
+        "What is the dose of NAC?",
+        "Does NAC have any side effects?",
+        "Where should this patient be looked after?",
+        "Describe your initial management of this patient. [CO poisoning]",
+        "What are your next actions? [upper airway obstruction]",
+        "How would you further manage this patient?",
+        "What are the symptoms and signs of acute carbon monoxide poisoning?",
+        "What is the initial treatment for severe carbon monoxide poisoning?",
+        "Are there any other treatment options?",
+        "What other toxic gas is associated with smoke inhalation?",
+        "What are the symptoms and signs of cyanide poisoning?",
+        "How would you manage a patient who presented with cyanide toxicity?",
+        "Do you know of any treatments given in a hospital environment that can actually cause cyanide toxicity?"
+      ]},
+      {id:"3.1.2", title:"3.1.2 Burns, Electrocution & Drowning", q:[
+        "Describe your initial assessment.",
+        "How is the severity of a burn graded?",
+        "What further investigations are appropriate for this patient?",
+        "What would alert you to the possibility that this patient may have suffered an inhalation injury?",
+        "What is the appropriate course of action if inhalational injury is suspected?",
+        "How is the fluid requirement of this patient calculated?",
+        "What specific monitoring and investigations are indicated in the first 24 hours?",
+        "What are the criteria for transfer of this patient to a regional burns unit?",
+        "Outline your perioperative management of this patient for debridement and split skin grafting.",
+        "What is an electrical burn?",
+        "How may electricity cause injury?",
+        "How may the management differ from other types of burn injury?",
+        "Are there any other issues to consider in electrocution injury?",
+        "What is the initial management of this patient? [drowning]",
+        "Can you list any predictors of patient outcome following a near drowning?"
+      ]}
+    ]},
+    { id:"3.2", title:"3.2 Intensive Care", topics:[
+      {id:"3.2.1", title:"3.2.1 The High-Risk Surgical Patient", q:[
+        "Have you any idea of mortality rates after surgery in the UK?",
+        "Which groups of patients have higher mortality rates?",
+        "How would you define high-risk?",
+        "So how can these patients be identified beforehand?",
+        "What assessment and prediction tools do you know?",
+        "Please explain your last comment a bit more. [functional ability]",
+        "Why identify these patients preoperatively?",
+        "What do you understand by the terms 'optimisation' and 'goal-directed therapy'?",
+        "What is the principle behind goal directed therapy?",
+        "So what is current thinking?",
+        "And tell me more about optimisation.",
+        "What are the anaesthetic implications of this result? [AT 10.5]",
+        "What cardiac output monitoring would you use?",
+        "So, what sort of targets are you aiming for?",
+        "Are there any problems associated with goal directed therapy?",
+        "Why do you think goal directed therapy is not more widely practised?",
+        "What about other drugs? Statins or beta-blockers for example?",
+        "What about ventilation during the operation?",
+        "And after the operation?",
+        "How would you provide analgesia?",
+        "What do you understand by enhanced care after surgery?"
+      ]},
+      {id:"3.2.2", title:"3.2.2 Management of Multiorgan Failure & Scoring Systems in the Critically Ill", q:[
+        "What do you understand by the term multi-organ failure (MOF)?",
+        "Do you think this is a useful concept?",
+        "Are there any more specific descriptions of organ dysfunction?",
+        "Have you heard of any composite scores of organ dysfunction relating more directly to multi-organ failure?",
+        "What are the drawbacks of the SOFA scoring system?",
+        "What causes multi-organ failure?",
+        "Is there a final common pathway at cellular level?",
+        "So how does this actually lead to organ failure?",
+        "What treatments are available for multi-organ failure?",
+        "Is this true in every case?",
+        "What specific organ support techniques are available?",
+        "Are these support techniques benign?",
+        "Are there any other important adjuncts to supportive therapy?",
+        "What is the mortality associated with multi-organ failure?",
+        "Are there any particularly ominous signs?",
+        "How long would you continue organ support?",
+        "What are the long-term effects on survivors?",
+        "Is there anything else?",
+        "Tell me about mortality and morbidity after discharge.",
+        "What are the social implications for these patients? And how do they feel about it?",
+        "Are there any other problems that arise from a long-term ICU stay? How can patients with problems be identified and treated?",
+        "Why might scoring systems be used in ICU?",
+        "What constitutes an effective scoring system?",
+        "Which scoring systems do you know of? Can you explain the use of them?"
+      ]},
+      {id:"3.2.3", title:"3.2.3 ARDS & Ventilation Difficulties", q:[
+        "What are the causes of hypoxia? Please give me clinical examples of each.",
+        "What are the causes of hypoxic hypoxia?",
+        "Tell me a little more about V/Q mismatch.",
+        "Can you explain how hypoxia may arise from V/Q mismatching?",
+        "How is this different from a shunt?",
+        "What is the significance of diffusion impairment?",
+        "How about hypoxia from hypoventilation?",
+        "Are you aware of any clinical conditions in which dead-space fraction is related to mortality?",
+        "What is the current definition of ARDS?",
+        "How do you grade severity?",
+        "What are the causes of ARDS?",
+        "Does this classification help?",
+        "Tell me about the pathophysiology of ARDS?",
+        "How does ARDS cause hypoxia?",
+        "What could be the problem? [post-op respiratory distress]",
+        "How will you proceed?",
+        "What kind of respiratory support do you mean?",
+        "How are you going to set up the ventilator?",
+        "Did the ARDSnet trial use pressure-controlled ventilation?",
+        "You mentioned options for CO2 control, please elaborate.",
+        "And how do you titrate the PEEP?",
+        "What are the principles of management of ARDS in the ICU?",
+        "What does a lung-protective ventilation strategy aim to avoid?",
+        "What do these terms mean? [volutrauma, barotrauma, atelectrauma, biotrauma]",
+        "Are there specific treatments for ARDS itself?",
+        "Is there a role for steroid therapy?",
+        "What are your options? [deteriorating gas exchange]",
+        "The patient's oxygenation continues to deteriorate: What will you do now?",
+        "What problems are associated with prone ventilation?",
+        "What other methods can be considered to improve oxygenation?",
+        "What is the mortality associated with ARDS?",
+        "What are the predictors of outcome?",
+        "What is the mode of death in ARDS?",
+        "What is function like in survivors of ARDS?"
+      ]},
+      {id:"3.2.4", title:"3.2.4 The Management of Sepsis", q:[
+        "How would you approach this patient?",
+        "What would you like to know about him?",
+        "What are your thoughts? [septic shock from pneumonia]",
+        "Are you able to define sepsis, how would you further classify sepsis and how is it diagnosed?",
+        "How would you manage this patient?",
+        "What else would you do for him?",
+        "What would you do if the patient remained hypotensive despite fluid resuscitation?",
+        "You have mentioned using steroids, can you tell me about any recent papers on steroids in sepsis?",
+        "What do you know about early goal directed therapy?"
+      ]},
+      {id:"3.2.5", title:"3.2.5 Oxygen Toxicity", q:[
+        "What are the issues associated with giving too much oxygen?",
+        "What are the mechanisms of oxygen toxicity?",
+        "Describe the pulmonary effects of oxygen toxicity.",
+        "You mentioned bronchopulmonary dysplasia, can you tell me more?",
+        "Tell me about absorption atelectasis.",
+        "Why is it dangerous to give excess oxygen to patients with COPD and a chronically raised PaCO2?",
+        "Describe the effects of oxygen toxicity on the central nervous system.",
+        "What are the ocular effects of oxygen toxicity and when do they occur most commonly?",
+        "What is retinopathy of prematurity?",
+        "Are there any other toxic effects of oxygen you know about?",
+        "What levels of oxygen carry risk?",
+        "Can you think of any specific circumstances where you might deliberately use high concentration oxygen therapy in the non-hypoxaemic patient?",
+        "What are the indications for hyperbaric oxygen therapy?"
+      ]},
+      {id:"3.2.6", title:"3.2.6 Renal Replacement Therapies", q:[
+        "Can you summarise the case?",
+        "What could be the causes of his acute kidney injury?",
+        "Do you know of any classifications for acute kidney injury?",
+        "When this patient was first admitted, what are the treatment priorities?",
+        "How would you manage his hyperkalaemia?",
+        "What are the indications for starting haemofiltration?",
+        "Can you give examples of drugs cleared by dialysis?",
+        "Can you classify the types of renal replacement therapies?",
+        "Can you tell me a bit more about the intermittent techniques of renal replacement therapy?",
+        "What are the differences between the types of continuous renal replacement therapies?",
+        "What is the difference between diffusion, osmosis and dialysis?",
+        "What determines the rate of haemodialysis?",
+        "What is convection?",
+        "What factors influence the rate of convection?",
+        "Could you draw a simple circuit for continuous veno-venous haemofiltration (CVVH)?",
+        "Describe how this differs from continuous veno-venous haemodiafiltration (CVVHDF)?",
+        "Can you tell me what types of membranes are used in continuous renal replacement therapy?",
+        "What are the different types of replacement fluids commonly used?",
+        "What are the options for anticoagulation when haemofiltering a patient on ICU?",
+        "What are the potential complications of CVVH?",
+        "Can you tell me more about the role of renal replacement therapies in sepsis?"
+      ]},
+      {id:"3.2.7", title:"3.2.7 Organ Donation", q:[
+        "Under what circumstances may organ donation occur?",
+        "Are there any contraindications to organ donation?",
+        "What is warm ischaemic time?",
+        "Can you outline the process of donation?",
+        "What perioperative considerations are there? [DCD]",
+        "How can medical management of DBD patients be optimised?",
+        "What is cold ischaemic time?",
+        "What perioperative factors need to be considered? [DBD retrieval]"
+      ]},
+      {id:"3.2.8", title:"3.2.8 COVID-19", q:[
+        "What is COVID-19?",
+        "How does COVID-19 present?",
+        "What complications may occur?",
+        "Who is at risk of COVID-19?",
+        "What infection control considerations may be required for this patient?",
+        "What is the management of severe COVID-19?"
+      ]}
+    ]}
+  ]
+},
+/* ================= SECTION 4 ================= */
+{
+  id:"sec4", title:"Section 4 — Anatomy & Regional Anaesthesia", color:"#00A651", tint:"#E2F5EA",
+  groups:[
+    { id:"4.1", title:"4.1 Anatomy", topics:[
+      {id:"4.1.1", title:"4.1.1 Anatomy of Central Venous Access", q:[
+        "What are the indications for central venous access?",
+        "Which sites are commonly used for central venous access?",
+        "What are the advantages and disadvantages of the different sites used?",
+        "Can you describe the anatomy of the internal jugular vein?",
+        "Can you describe the anatomy of the subclavian vein?",
+        "Can you describe the anatomy of the femoral vein?",
+        "What is the role of ultrasound in securing central venous access?",
+        "How can correct placement of a central venous catheter be confirmed?",
+        "What are the complications of central venous access?",
+        "How can the risk of CVC-associated infection be minimised?"
+      ]},
+      {id:"4.1.2", title:"4.1.2 Anatomy of the Extradural Space & Spinal Cord Blood Supply", q:[
+        "Describe the arterial blood supply to the spinal cord.",
+        "What is the epidural or extradural space and what are its contents?",
+        "What are the boundaries of the epidural space?",
+        "What are the important features of the venous system within the epidural space?",
+        "What can you tell me about the relevance of epidural fat?",
+        "What are the characteristics of a subdural anaesthetic block?",
+        "What techniques may be used to identify the epidural space during catheter insertion?",
+        "How can ultrasound be used to assist epidural catheter insertion?",
+        "What is the paramedian approach to the epidural space?",
+        "What are potential causes of headache in the postpartum period?",
+        "What features are suggestive of a post-dural puncture headache?",
+        "How should a post-dural puncture headache be managed?"
+      ]},
+      {id:"4.1.3", title:"4.1.3 Anatomy of the Trachea & Bronchi", q:[
+        "In your clinical practice, when have you used a flexible fibreoptic scope?",
+        "Can you tell me about the anatomy of the trachea?",
+        "What are the anatomical relations of the trachea at the C6 level?",
+        "What about the anatomical relations of the trachea at the T4 level?",
+        "What is the nerve supply to the trachea?",
+        "During bronchoscopy, how would you identify that you are in the trachea and not further down in one of the bronchi?",
+        "What are the anatomical subdivisions of the bronchial tree from trachea to alveolus?",
+        "What is the difference between the right and left main bronchus?",
+        "How many bronchopulmonary segments are there in total and how do they differ between the right and left lung?",
+        "What are the indications for one-lung ventilation?",
+        "What options are available to achieve one-lung ventilation?",
+        "What size double lumen tubes are available?",
+        "Would you use a left- or a right-sided double lumen tube?",
+        "How would you insert a double lumen tube?",
+        "How would you confirm placement of the double lumen tube?",
+        "When would you have to use a right-sided double lumen tube and what additional checks would you have to perform?"
+      ]},
+      {id:"4.1.4", title:"4.1.4 The Anatomy of the Autonomic Nervous System", q:[
+        "Tell me what you know about the autonomic nervous system (ANS).",
+        "Can you draw a diagram of the sympathetic nervous system?",
+        "Is there anything else that can happen to these neurones once they leave the spinal cord?",
+        "What about the parasympathetic nervous system – how does that differ from the sympathetic nervous system?",
+        "How is the adrenal gland innervated?",
+        "You have mentioned the coeliac plexus. Do you know of any other plexuses?",
+        "Can you tell me more about the coeliac plexus?",
+        "What are the indications and potential complications of a lumbar sympathectomy?",
+        "How would you perform a lumbar sympathetic block?",
+        "Do you know where the ganglia are for the cranial nerve outflow?",
+        "And the vagus?"
+      ]},
+      {id:"4.1.5", title:"4.1.5 Cranial Nerve Anatomy", q:[
+        "Describe the anatomy of the optic nerve.",
+        "Tell me about the motor nerve supply to the eye?",
+        "What are the clinical signs of a third nerve palsy?",
+        "What are the symptoms of a fourth cranial nerve palsy?",
+        "Outline the anatomy of the trigeminal nerve?",
+        "Tell me about the facial nerve?",
+        "What does the vagus nerve innervate?",
+        "Describe the course of the vagus nerve.",
+        "What do the 9th, 11th and 12th cranial nerves innervate?"
+      ]},
+      {id:"4.1.6", title:"4.1.6 Anatomy of the Intrathecal Space", q:[
+        "What can you tell me about the intrathecal space?",
+        "What are the contents of the intrathecal space?",
+        "List the structures passed through during performance of a spinal block in the midline position.",
+        "Where does the spinal cord end? Why is this important?",
+        "Which factors determine the level of a spinal block? How can these be modified during performance of the block?",
+        "How would you assess adequacy of a spinal block prior to a lower segment caesarean section?",
+        "Describe your management if the block was too low."
+      ]},
+      {id:"4.1.7", title:"4.1.7 Trunk Blocks", q:[
+        "What might be your concerns with this patient? [rib fractures]",
+        "How would you assess this patient's pain needs? Do you know any scoring systems that can help you?",
+        "How would you manage this patient? [rib fractures]",
+        "What are your options for regional anaesthesia in this case?",
+        "Describe how you would perform your block of choice.",
+        "Which ultrasound probe would you use and why?",
+        "Tell me about the choice of local anaesthetic.",
+        "Describe the relevant anatomy when performing this block, and how you would administer the block.",
+        "How would you ensure ongoing pain management?",
+        "How would you manage this patient's postoperative analgesia?",
+        "How would you prepare to insert rectus sheath catheters?",
+        "Describe how you would insert rectus sheath catheters, including a description of the ultrasound anatomy.",
+        "If you were unable to perform the rectus sheath catheters, can you describe the anatomy of different trunk block that you might consider?",
+        "What local anaesthetic would you use?"
+      ]}
+    ]},
+    { id:"4.2", title:"4.2 Regional Anaesthesia", topics:[
+      {id:"4.2.1", title:"4.2.1 Brachial Plexus, Interscalene & Axillary Blocks", q:[
+        "What clinical approaches do you know to block the brachial plexus?",
+        "For what type of surgery would an interscalene brachial plexus block be appropriate?",
+        "You have a patient listed for shoulder surgery, how would you perform an interscalene block?",
+        "What are the complications of an interscalene block?",
+        "How would you reduce the risk of these complications?",
+        "Could you employ another approach to anaesthetise the shoulder?",
+        "How is a supraclavicular block performed?",
+        "What problems can arise from a supraclavicular block?",
+        "In what circumstances would you use a supraclavicular block?",
+        "How is an axillary block performed?",
+        "In what circumstances is an axillary block useful?",
+        "What do you know about the infraclavicular approach to the brachial plexus?",
+        "What current would you accept on your nerve stimulator when identifying the brachial plexus?",
+        "After performing a brachial plexus block, what can be done if the block is inadequate?",
+        "What are the contraindications to brachial plexus blocks?"
+      ]},
+      {id:"4.2.2", title:"4.2.2 Stellate Ganglion & Coeliac Plexus Blocks", q:[
+        "Can you describe the anatomy of the stellate ganglion?",
+        "Can you describe a technique for performing a stellate ganglion block?",
+        "Can you name some indications for a stellate ganglion block?",
+        "What are the contraindications to stellate ganglion blockade?",
+        "Why are sympathetic blocks thought to work in the treatment of neuropathic pain?",
+        "Can you describe the specific side effects and complications of the stellate ganglion block?",
+        "Can you describe the anatomy of the coeliac plexus?",
+        "Why might we want to perform a coeliac plexus block?",
+        "Do you know what a diagnostic block is?",
+        "What agents can we use in a therapeutic block?",
+        "Why do therapeutic blocks with local anaesthetic alone last longer than the expected duration of action?",
+        "How can we achieve a neurolytic block?",
+        "How would you prepare a patient for a coeliac plexus block?",
+        "Can you describe the technique for performing a coeliac plexus block?",
+        "What are the specific complications associated with the coeliac plexus block?"
+      ]},
+      {id:"4.2.3", title:"4.2.3 Ulnar, Median & Radial Nerve Blocks", q:[
+        "How would you perform ultrasound-guided nerve blocks of the upper limb?",
+        "Points to consider when performing nerve blocks?"
+      ]},
+      {id:"4.2.4", title:"4.2.4 Caudal Block", q:[
+        "Can you tell me about caudal analgesia?",
+        "Can you tell me about the anatomy?",
+        "What does the sacral canal contain?",
+        "What operations can caudal analgesia be used for?",
+        "Why are they used more extensively in children than in adults?",
+        "Can you describe your technique?",
+        "What dose of local anaesthetic do you use?",
+        "How do you get 0.19% bupivacaine?",
+        "How long do caudal blocks generally last?",
+        "Are there any problems with these additives?",
+        "What complications are there?"
+      ]},
+      {id:"4.2.5", title:"4.2.5 Ankle & Knee Blocks", q:[
+        "What nerves supply the structures below the knee?",
+        "What methods of nerve identification can be used in knee and ankle blocks?",
+        "How do nerve stimulators used for the identification of peripheral nerves differ from those used for assessing neuromuscular blockade and why?",
+        "How would you perform a popliteal nerve block and what are the causes of sub-optimal intraoperative analgesia?",
+        "What are the potential causes? [paraesthesia over upper thigh]",
+        "What are the advantages of a peripheral nerve block over those placed more centrally?",
+        "Should a popliteal nerve block be performed in a patient with a distal tibia fracture?",
+        "When would you consider performing an ankle block?",
+        "Which nerves are blocked in an ankle block?",
+        "Please tell me how you would block the superficial and deep peroneal nerves.",
+        "How would you block the tibial nerve?",
+        "How would you block the sural nerve?",
+        "Finally, how would you block the saphenous nerve?"
+      ]},
+      {id:"4.2.6", title:"4.2.6 Lumbar Plexus, Femoral & Sciatic Nerve Blocks", q:[
+        "Could you describe the anatomy of the lumbar plexus?",
+        "When might we want to perform a lumbar plexus block?",
+        "How can the lumbar plexus be blocked? Do you know of any approaches?",
+        "Can you describe one of these approaches using a landmark technique?",
+        "Can you describe the ultrasound-guided lumbar plexus block?",
+        "How does the lumbar sympathetic block differ from the lumbar plexus block?",
+        "How is the block performed? [lumbar sympathetic]",
+        "What specific complications of this block do you know?",
+        "Can you describe the anatomical course of the sciatic nerve?",
+        "Can you describe the motor and sensory functions of the sciatic nerve?",
+        "When might we want to perform a sciatic nerve block?",
+        "What are the different approaches to the sciatic nerve block?",
+        "What general safety measures do you employ when performing a regional block?",
+        "In general, what methods are available to identify nerves when performing regional blocks?",
+        "What are the basic principles behind nerve stimulators? How do they work?",
+        "Talk us through how you would use a peripheral nerve stimulator.",
+        "Could you compare and contrast lidocaine and bupivacaine when used for nerve blockade?",
+        "What do you know about ropivacaine?"
+      ]},
+      {id:"4.2.7", title:"4.2.7 Local Anaesthetic Toxicity", q:[
+        "What is a local anaesthetic agent?",
+        "Can you give me some examples of esters and amides?",
+        "How do local anaesthetic agents work?",
+        "What factors determine the potency, the speed of onset and the duration of action of a local anaesthetic?",
+        "What factors place a patient at risk of local anaesthetic toxicity?",
+        "Some patients are particularly at risk of a specific form of toxicity related to one of the amide local anaesthetic agents. Can you think of what that may be?",
+        "How is this condition treated? [methaemoglobinaemia]",
+        "What are the symptoms and signs of local anaesthetic toxicity?",
+        "What do you understand by the term 'toxicity ratio'?",
+        "So why is bupivacaine more toxic than lidocaine?",
+        "How would you manage a 28-year-old primigravida who has collapsed after complaining of tinnitus and vertigo?",
+        "There is no palpable pulse. How would you proceed?",
+        "You mentioned intra-lipid. How is this administered in this setting?",
+        "Is there anything else that you may consider in this situation?",
+        "You mentioned bretylium. How does this drug work and what dose would you use?",
+        "Where is intra-lipid kept in your hospital?",
+        "What is the actual mechanism of local anaesthetic toxicity?",
+        "How does intra-lipid alter this process?"
+      ]}
+    ]},
+    { id:"4.3", title:"4.3 Pain", topics:[
+      {id:"4.3.1", title:"4.3.1 Pain Pathways", q:[
+        "Can you define pain?",
+        "Can you describe the different types of pain receptor?",
+        "How does stimulation of these nociceptors cause us to sense pain?",
+        "How is it possible then that we can receive a tissue injury and yet not experience pain?",
+        "What is visceral pain and how does it differ from peripheral pain?",
+        "What is referred pain?",
+        "If I cut my hand, why does the area around the injury also become red and painful?",
+        "Can sensitisation occur centrally?",
+        "What does this tell us about pain and the central nervous system?",
+        "Does this have implications for different types of pain?",
+        "Can you define chronic pain?",
+        "Can you classify chronic pain?",
+        "Can you describe the pathways that produce chronic pain?"
+      ]},
+      {id:"4.3.2", title:"4.3.2 Neuropathic Pain incl. CRPS, Trigeminal Neuralgia & Post-herpetic Neuralgia", q:[
+        "What is neuropathic pain?",
+        "Can you give me any examples of neuropathic pain conditions?",
+        "Can you describe the clinical features of neuropathic pain?",
+        "How can neuropathic pain be diagnosed?",
+        "How can neuropathic pain be subsequently managed?",
+        "What medications can be used in the treatment of neuropathic pain?",
+        "What injection treatments are used in neuropathic pain?",
+        "What neuromodulation treatments do you know for chronic pain?",
+        "How is physical therapy important in chronic pain conditions?",
+        "How can the psychologist help in pain management?",
+        "What is complex regional pain syndrome (CRPS)?",
+        "What are the clinical characteristics of CRPS?",
+        "What treatments do you know for CRPS?",
+        "What are the clinical features of trigeminal neuralgia?",
+        "How is trigeminal neuralgia diagnosed?",
+        "What is the cause of trigeminal neuralgia?",
+        "How can trigeminal neuralgia be managed?",
+        "What are the clinical features of post-herpetic neuralgia?",
+        "Tell me about the pathophysiology of post-herpetic neuralgia.",
+        "How is post-herpetic neuralgia managed?"
+      ]},
+      {id:"4.3.3", title:"4.3.3 Low Back Pain", q:[
+        "How can we classify low back pain?",
+        "What are the causes of low back pain?",
+        "How do you evaluate patients with low back pain?",
+        "What are red flags and yellow flags?",
+        "Are you aware of any other flags?",
+        "What is straight leg raise (SLR) test?",
+        "What are signs of nerve root irritation?",
+        "What is cauda equina syndrome? How does it present and how should it be managed?",
+        "Describe your investigation and management of cauda equina syndrome.",
+        "What is the role of routine imaging in evaluation of low back pain?",
+        "What are the risk factors for chronicity in low back pain?",
+        "What treatment options are available for low back pain?"
+      ]},
+      {id:"4.3.4", title:"4.3.4 Assessment of Acute & Chronic Pain", q:[
+        "What is the definition of acute pain?",
+        "What can you tell me about pain assessment?",
+        "Outline the different methods of measuring pain that you know of.",
+        "What are simple pain scales and how do you interpret them?",
+        "Tell me about the verbal rating scale.",
+        "Describe the numerical rating scale (NRS).",
+        "What is the visual analogue scale (VAS)?",
+        "What are multidimensional pain scales?",
+        "Can you briefly describe the McGill Pain Questionnaire?",
+        "Outline the short form McGill Pain Questionnaire (SF-MPQ).",
+        "What is meant by a Brief Pain Inventory?",
+        "Describe the Neuropathic Pain Scale.",
+        "What is the Leeds Assessment of Neuropathic Symptoms and Signs (LANSS)?",
+        "What are the adjunctive measurements of pain?",
+        "How do you assess pain in children?",
+        "How can pain be assessed in the cognitively impaired patient?"
+      ]},
+      {id:"4.3.5", title:"4.3.5 Analgesic Techniques", q:[
+        "Can you describe what is meant by the 'analgesic ladder'?",
+        "Can you describe the steps of the original ladder?",
+        "What are the advantages and disadvantages of the analgesic ladder?",
+        "How would you manage her postoperative pain? [abdominal hysterectomy]",
+        "Can you describe the anatomy relevant to this block and how you would perform it? [TAP block]",
+        "What are the advantages and disadvantages of Patient Controlled Analgesia (PCA)?",
+        "What other routes for the administration of analgesia do you know?",
+        "Tell me about transdermal delivery systems.",
+        "Which analgesic drugs can be delivered via a transdermal patch and when are they indicated?",
+        "Tell me what you know about fentanyl patches.",
+        "What are the advantages and disadvantages of opioid transdermal patches?",
+        "What pharmacological adjuncts are used to treat pain?",
+        "What non-pharmacological techniques can be used in the treatment of pain?"
+      ]}
+    ]}
+  ]
+},
+/* ================= SECTION 5 ================= */
+{
+  id:"sec5", title:"Section 5 — Miscellaneous", color:"#6C3FA0", tint:"#EFE8F9",
+  groups:[
+    { id:"5.x", title:"5 Miscellaneous Topics", topics:[
+      {id:"5.1", title:"5.1 Environmentally Sustainable Anaesthesia", q:[
+        "What is the environmental impact of healthcare and why is it important?",
+        "Describe the highest areas of carbon emissions in anaesthetic practice.",
+        "What strategies can be employed within anaesthetic practice that can reduce the carbon impact of anaesthesia, without impacting on clinical care?",
+        "What methods can we use to reduce the environmental impact of volatile anaesthetics and nitrous oxide specifically?",
+        "What environmental issues does TIVA present?",
+        "Are there any other areas we can influence within operating theatres?",
+        "How can anaesthetists impact the wider carbon impact of healthcare outside of the theatre environment?",
+        "What is the triple bottom line?",
+        "How does volatile capture technology work?",
+        "How does nitrous oxide cracking technology work?"
+      ]},
+      {id:"5.2", title:"5.2 Ethics & Consent", q:[
+        "How do you assess whether a patient has capacity to consent?",
+        "What is meant by the Mental Capacity Act?",
+        "What is an independent mental capacity advocate?",
+        "What is an advance directive?",
+        "What is a lasting power of attorney?",
+        "What are the different types of consent?",
+        "What are the different types of consent form?",
+        "At what age are children assumed to have to competence to consent?",
+        "Can a person under the age of 16 be competent to consent?",
+        "Who is able to consent on behalf of a child or young person lacking competence?",
+        "What happens when the decision is not in the best interests of the child?",
+        "If looking after a patient with a Do Not Attempt Resuscitation (DNAR) directive during the perioperative period, how would you approach this?",
+        "When looking after a patient from the Jehovah's Witness community undergoing elective major surgery, how would you approach management of blood products?",
+        "How would you approach a patient from the Jehovah's Witness community who presents requiring a blood transfusion, unable to communicate their wishes?"
+      ]},
+      {id:"5.3", title:"5.3 Critical Incidents", q:[
+        "What is a critical incident?",
+        "Give some examples of critical incidents related to anaesthesia?",
+        "What actions should be taken after a critical incident occurs?",
+        "What national and local reporting systems are used?",
+        "How is incident reporting used to ensure successful learning?",
+        "How is a critical incident analysed?",
+        "What is the difference between active and latent failures?",
+        "What do you think are the barriers to reporting critical incidents?"
+      ]}
+    ]}
+  ]
+}
+];
+
+/* =========================================================
+   STATE
+   ========================================================= */
+const STORE_KEY = "frca-lego-marks-v2";
+const FS_KEY    = "frca-lego-fs-v2";
+const QS_KEY    = "frca-lego-qs-v2";
+
+let marks = {};
+try { marks = JSON.parse(localStorage.getItem(STORE_KEY) || "{}"); } catch(e){ marks = {}; }
+
+let qsOpen = false;                 // global "show questions" state
+let qsOverrides = {};               // per-topic manual overrides
+try { qsOverrides = JSON.parse(localStorage.getItem(QS_KEY) || "{}"); } catch(e){ qsOverrides = {}; }
+
+const CYCLE = ["none","excellent","moderate","poor"];
+const META = {
+  none:      { sym:"○",  txt:"Mark"      },
+  excellent: { sym:"✓✓", txt:"Excellent" },
+  moderate:  { sym:"✓",  txt:"Moderate"  },
+  poor:      { sym:"✕",  txt:"Poor"      }
+};
+
+const toc        = document.getElementById("toc");
+const searchEl   = document.getElementById("search");
+const matchInfo  = document.getElementById("matchInfo");
+const fontRange  = document.getElementById("fontRange");
+const toggleQsBtn= document.getElementById("toggleQs");
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+function esc(s){
+  return String(s)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+}
+function saveMarks(){
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(marks)); } catch(e){}
+}
+function saveQs(){
+  try { localStorage.setItem(QS_KEY, JSON.stringify(qsOverrides)); } catch(e){}
+}
+function isTopicOpen(id){
+  if(Object.prototype.hasOwnProperty.call(qsOverrides,id)) return qsOverrides[id];
+  return qsOpen;
+}
+
+/* =========================================================
+   BUILD TOC
+   ========================================================= */
+function buildTOC(){
+  let html = "";
+  DATA.forEach(sec => {
+    const total = sec.groups.reduce((n,g)=>n+g.topics.length,0);
+    html += `<section class="section" id="${sec.id}"
+                style="--brick:${sec.color};--tint:${sec.tint}">`;
+    html += `<button class="sec-head brick" type="button">
+               <span class="chev">▶</span>
+               <span class="sec-title">${esc(sec.title)}</span>
+               <span class="sec-count">${total}</span>
+             </button>`;
+    html += `<div class="sec-body">`;
+
+    sec.groups.forEach(grp => {
+      html += `<div class="group collapsed" id="grp-${grp.id}">`;
+      html += `<button class="grp-head" type="button">
+                 <span class="chev">▶</span>
+                 <span>${esc(grp.title)}</span>
+                 <span class="grp-count">${grp.topics.length}</span>
+               </button>`;
+      html += `<div class="grp-body">`;
+      grp.topics.forEach(t => {
+        const hasQ = t.q && t.q.length > 0;
+        const open = hasQ && isTopicOpen(t.id);
+        html += `<div class="topic ${open?"open":""}" data-id="${esc(t.id)}" data-title="${esc(t.title)}">`;
+        html += `  <div class="topic-row">`;
+        html += `    <button class="topic-chev" type="button" data-chev="${esc(t.id)}"
+                            title="${hasQ?"Show / hide questions":"No questions recorded"}"
+                            ${hasQ?"":"disabled style='opacity:.25'"}>▶</button>`;
+        html += `    <span class="topic-title">${esc(t.title)}</span>`;
+        html += `    <button class="status st-none" type="button" data-status="${esc(t.id)}"
+                            title="Click to cycle: Excellent → Moderate → Poor → clear"
+                            aria-label="Mark topic ${esc(t.title)}">
+                       <span class="st-sym">○</span><span class="st-txt">Mark</span>
+                     </button>`;
+        html += `  </div>`;
+        if(hasQ){
+          html += `  <div class="qs"><ol>`;
+          t.q.forEach(question=>{
+            html += `<li class="q-item" data-q="${esc(question)}">${esc(question)}</li>`;
+          });
+          html += `  </ol></div>`;
+        }
+        html += `</div>`;
+      });
+      html += `</div></div>`;
+    });
+
+    html += `</div></section>`;
+  });
+  toc.innerHTML = html;
+}
+
+/* =========================================================
+   STATUS / MARKS
+   ========================================================= */
+function paintStatus(btn){
+  const id  = btn.dataset.status;
+  const val = marks[id] || "none";
+  const m   = META[val];
+  btn.className = "status st-" + val;
+  btn.querySelector(".st-sym").textContent = m.sym;
+  btn.querySelector(".st-txt").textContent = m.txt;
+}
+function applyAllStatuses(){
+  toc.querySelectorAll(".status").forEach(paintStatus);
+  updateCounters();
+}
+function updateCounters(){
+  let exc=0, mod=0, poor=0, none=0;
+  toc.querySelectorAll(".status").forEach(b=>{
+    const v = marks[b.dataset.status] || "none";
+    if(v==="excellent") exc++;
+    else if(v==="moderate") mod++;
+    else if(v==="poor") poor++;
+    else none++;
+  });
+  document.getElementById("cExc").textContent  = exc;
+  document.getElementById("cMod").textContent  = mod;
+  document.getElementById("cPoor").textContent = poor;
+  document.getElementById("cNone").textContent = none;
+  const total = exc+mod+poor+none;
+  const done  = exc+mod+poor;
+  const pct   = total ? Math.round((done/total)*100) : 0;
+  document.getElementById("bar").style.width = pct + "%";
+}
+function cycleStatus(btn){
+  const id  = btn.dataset.status;
+  const cur = marks[id] || "none";
+  const next = CYCLE[(CYCLE.indexOf(cur)+1) % CYCLE.length];
+  if(next === "none") delete marks[id];
+  else marks[id] = next;
+  saveMarks();
+  paintStatus(btn);
+  updateCounters();
+}
+
+/* =========================================================
+   COLLAPSE / EXPAND
+   ========================================================= */
+function expandAll(){
+  toc.querySelectorAll(".section").forEach(s=>s.classList.remove("collapsed"));
+  toc.querySelectorAll(".group").forEach(g=>g.classList.remove("collapsed"));
+}
+function collapseAll(){
+  toc.querySelectorAll(".section").forEach(s=>s.classList.add("collapsed"));
+  toc.querySelectorAll(".group").forEach(g=>g.classList.add("collapsed"));
+}
+
+/* =========================================================
+   QUESTIONS GLOBAL TOGGLE
+   ========================================================= */
+function setAllQuestions(open){
+  qsOpen = open;
+  qsOverrides = {};
+  saveQs();
+  toc.querySelectorAll(".topic").forEach(tp=>{
+    const hasQ = tp.querySelector(".qs");
+    if(hasQ) tp.classList.toggle("open", open);
+  });
+  toggleQsBtn.textContent = open ? "📕 Hide questions" : "📖 Show questions";
+}
+
+/* =========================================================
+   SEARCH  (searches topics AND questions)
+   ========================================================= */
+function clearHighlights(){
+  toc.querySelectorAll(".topic-title").forEach(el=>{
+    if(el.dataset.orig) el.textContent = el.dataset.orig;
+  });
+  toc.querySelectorAll(".q-item").forEach(el=>{
+    if(el.dataset.orig) el.textContent = el.dataset.orig;
+  });
+}
+
+function applyFilter(raw){
+  const q = raw.trim().toLowerCase();
+  clearHighlights();
+  let matchTopics = 0, matchQs = 0;
+
+  toc.querySelectorAll(".topic").forEach(tp=>{
+    const titleEl = tp.querySelector(".topic-title");
+    const title = tp.dataset.title;
+    if(!titleEl.dataset.orig) titleEl.dataset.orig = title;
+
+    let topicHit = false;
+
+    /* title match */
+    if(!q){
+      titleEl.textContent = title;
+    } else {
+      const i = title.toLowerCase().indexOf(q);
+      if(i >= 0){
+        topicHit = true;
+        matchTopics++;
+        titleEl.innerHTML =
+          esc(title.slice(0,i)) +
+          "<mark>" + esc(title.slice(i,i+q.length)) + "</mark>" +
+          esc(title.slice(i+q.length));
+      } else {
+        titleEl.textContent = title;
+      }
+    }
+
+    /* question match */
+    let qHit = false;
+    tp.querySelectorAll(".q-item").forEach(li=>{
+      const qt = li.dataset.q;
+      if(!li.dataset.orig) li.dataset.orig = qt;
+      if(!q){
+        li.textContent = qt;
+        return;
+      }
+      const j = qt.toLowerCase().indexOf(q);
+      if(j >= 0){
+        qHit = true;
+        matchQs++;
+        li.innerHTML =
+          esc(qt.slice(0,j)) +
+          "<mark>" + esc(qt.slice(j,j+q.length)) + "</mark>" +
+          esc(qt.slice(j+q.length));
+      } else {
+        li.textContent = qt;
+      }
+    });
+
+    const show = !q || topicHit || qHit;
+    tp.classList.toggle("hidden", !show);
+
+    /* if a question matched (but title didn't), auto-open */
+    if(q && qHit && !topicHit){
+      tp.classList.add("open");
+    }
+  });
+
+  /* restore / hide groups & sections */
+  if(!q){
+    toc.querySelectorAll(".group").forEach(g=>{
+      g.classList.remove("hidden");
+      g.classList.add("collapsed");
+    });
+    toc.querySelectorAll(".section").forEach(s=>{
+      s.classList.remove("hidden","collapsed");
+    });
+    matchInfo.textContent = "";
+    return;
+  }
+
+  toc.querySelectorAll(".group").forEach(g=>{
+    const vis = g.querySelectorAll(".topic:not(.hidden)").length;
+    g.classList.toggle("hidden", vis === 0);
+    if(vis) g.classList.remove("collapsed");
+  });
+  toc.querySelectorAll(".section").forEach(s=>{
+    const vis = s.querySelectorAll(".topic:not(.hidden)").length;
+    s.classList.toggle("hidden", vis === 0);
+    if(vis) s.classList.remove("collapsed");
+  });
+
+  const total = matchTopics + matchQs;
+  matchInfo.textContent = total
+    ? (matchTopics ? matchTopics + " topic" + (matchTopics===1?"":"s") : "")
+      + (matchTopics && matchQs ? " · " : "")
+      + (matchQs ? matchQs + " Q" + (matchQs===1?"":"s") : "")
+    : "0 matches";
+}
+
+/* =========================================================
+   FONT SIZE
+   ========================================================= */
+function setFontSize(px){
+  px = Math.min(22, Math.max(13, px));
+  document.documentElement.style.fontSize = px + "px";
+  fontRange.value = px;
+  try { localStorage.setItem(FS_KEY, px); } catch(e){}
+}
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+toc.addEventListener("click", e=>{
+  /* status */
+  const st = e.target.closest(".status");
+  if(st){ cycleStatus(st); return; }
+
+  /* topic chevron */
+  const chev = e.target.closest(".topic-chev");
+  if(chev){
+    const tp = chev.closest(".topic");
+    if(tp && tp.querySelector(".qs")){
+      tp.classList.toggle("open");
+      const id = tp.dataset.id;
+      qsOverrides[id] = tp.classList.contains("open");
+      saveQs();
+    }
+    return;
+  }
+
+  /* clicking the topic row (not the status/chevron) also toggles */
+  const row = e.target.closest(".topic-row");
+  if(row){
+    const tp = row.closest(".topic");
+    if(tp && tp.querySelector(".qs")){
+      tp.classList.toggle("open");
+      const id = tp.dataset.id;
+      qsOverrides[id] = tp.classList.contains("open");
+      saveQs();
+    }
+    return;
+  }
+
+  /* section header */
+  const sh = e.target.closest(".sec-head");
+  if(sh && toc.contains(sh)){
+    const sec = sh.closest(".section");
+    if(sec) sec.classList.toggle("collapsed");
+    return;
+  }
+
+  /* group header */
+  const gh = e.target.closest(".grp-head");
+  if(gh && toc.contains(gh)){
+    const grp = gh.closest(".group");
+    if(grp) grp.classList.toggle("collapsed");
+    return;
+  }
+});
+
+document.getElementById("expandAll").addEventListener("click", expandAll);
+document.getElementById("collapseAll").addEventListener("click", collapseAll);
+
+toggleQsBtn.addEventListener("click", ()=>{
+  setAllQuestions(!qsOpen);
+});
+
+document.getElementById("resetMarks").addEventListener("click", ()=>{
+  if(!confirm("Clear all Excellent / Moderate / Poor marks?")) return;
+  marks = {};
+  saveMarks();
+  applyAllStatuses();
+});
+
+let searchTimer = null;
+searchEl.addEventListener("input", e=>{
+  clearTimeout(searchTimer);
+  const v = e.target.value;
+  searchTimer = setTimeout(()=>applyFilter(v), 120);
+});
+
+fontRange.addEventListener("input", e=>setFontSize(parseInt(e.target.value,10)));
+document.getElementById("fontUp").addEventListener("click", ()=>setFontSize(parseInt(fontRange.value,10)+1));
+document.getElementById("fontDown").addEventListener("click", ()=>setFontSize(parseInt(fontRange.value,10)-1));
+
+document.addEventListener("keydown", e=>{
+  if(e.key === "/" && document.activeElement !== searchEl){
+    e.preventDefault();
+    searchEl.focus();
+    searchEl.select();
+  }
+  if(e.key === "Escape" && document.activeElement === searchEl){
+    searchEl.value = "";
+    applyFilter("");
+    searchEl.blur();
+  }
+});
+
+/* =========================================================
+   INIT
+   ========================================================= */
+(function init(){
+  let fs = 16;
+  try { fs = parseInt(localStorage.getItem(FS_KEY) || "16", 10); } catch(e){}
+  if(isNaN(fs)) fs = 16;
+  setFontSize(fs);
+
+  buildTOC();
+  applyAllStatuses();
+
+  /* restore global question state */
+  toggleQsBtn.textContent = qsOpen ? "📕 Hide questions" : "📖 Show questions";
+})();
+</script>
+</body>
+</html>
