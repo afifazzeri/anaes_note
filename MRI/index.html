@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MRI Anaesthesia &amp; Critical Care — Quick Reference</title>
+<meta name="description" content="Collapsible, searchable quick reference for anaesthetists and intensivists providing anaesthesia in the magnetic resonance (MR) environment." />
+<style>
+  :root{
+    --fs: 16px;
+
+    /* ---- soft Magneto palette ---- */
+    --bg:            #f6f3fb;
+    --surface:       #ffffff;
+    --surface-2:     #efe9f9;
+    --surface-3:     #e6dcf6;
+    --primary:       #6b4a9e;
+    --primary-2:     #8a63c4;
+    --primary-3:     #a98ad8;
+    --primary-soft:  #e9e0f8;
+    --accent:        #b0477e;
+    --accent-soft:   #f8e2ef;
+    --text:          #2f2742;
+    --muted:         #6a6180;
+    --border:        #ddd3ee;
+    --hl:            #ffe9a0;
+    --hl-cur:        #ffc94d;
+
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(80,50,120,.06), 0 6px 18px rgba(80,50,120,.07);
+  }
+
+  html{ font-size: var(--fs); scroll-behavior: smooth; }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* ================= TOP BAR ================= */
+  .topbar{
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(255,255,255,.93);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 14px rgba(80,50,120,.07);
+  }
+  .bar-inner{
+    max-width: 1080px; margin: 0 auto;
+    padding: .6rem .9rem;
+    display: flex; flex-wrap: wrap;
+    align-items: center; gap: .6rem .9rem;
+  }
+
+  .brand{ display:flex; align-items:center; gap:.6rem; flex: 1 1 240px; min-width:0; }
+  .logo{
+    display:inline-flex; align-items:center; justify-content:center;
+    width: 2.6rem; height: 2.6rem; flex: none;
+    border-radius: 12px;
+    background: linear-gradient(140deg, var(--primary-2), var(--accent));
+    color:#fff; font-weight: 800; font-size:.72rem; letter-spacing:.06em;
+    box-shadow: 0 4px 12px rgba(107,74,158,.28);
+  }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.15; min-width:0; }
+  .brand-text strong{ font-size:.98rem; color: var(--primary); }
+  .brand-text small{ font-size:.72rem; color: var(--muted); }
+
+  .controls{ display:flex; flex-wrap: wrap; align-items:center; gap:.4rem; }
+
+  .search-wrap{ position: relative; display:flex; align-items:center; }
+  #search{
+    width: 15rem; max-width: 52vw;
+    padding: .45rem 4.2rem .45rem .8rem;
+    font: inherit; font-size:.82rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  #search:focus{
+    border-color: var(--primary-2);
+    box-shadow: 0 0 0 3px rgba(138,99,196,.18);
+  }
+  .count{
+    position:absolute; right:.7rem;
+    font-size:.68rem; color: var(--muted);
+    pointer-events:none; white-space:nowrap;
+  }
+
+  button{
+    font: inherit; font-size:.76rem; font-weight:600;
+    color: var(--primary);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .42rem .8rem;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, transform .08s, color .15s;
+    white-space: nowrap;
+  }
+  button:hover{ background: var(--primary-soft); border-color: var(--primary-3); }
+  button:active{ transform: translateY(1px); }
+  button:focus-visible{ outline: 2px solid var(--primary-2); outline-offset: 2px; }
+  .fontctl{ display:flex; gap:.25rem; }
+  .fontctl button{ padding:.42rem .62rem; font-weight:700; }
+
+  /* ================= LAYOUT ================= */
+  main{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 1.1rem .9rem 3rem;
+  }
+
+  .lede{
+    background: linear-gradient(135deg, var(--primary-soft), var(--accent-soft));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: .85rem 1rem;
+    font-size:.86rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .lede strong{ color: var(--primary); }
+
+  /* ================= CARDS ================= */
+  details.card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: .8rem;
+    overflow: hidden;
+  }
+
+  details.card > summary{
+    list-style: none;
+    cursor: pointer;
+    padding: .8rem 1rem;
+    display: flex; align-items: center; gap: .65rem;
+    font-weight: 700;
+    font-size: .95rem;
+    color: var(--primary);
+    background: linear-gradient(90deg, var(--primary-soft) 0%, var(--surface) 78%);
+    user-select: none;
+    transition: background .15s;
+  }
+  details.card > summary:hover{ background: linear-gradient(90deg, var(--surface-3) 0%, var(--surface) 78%); }
+  details.card > summary::-webkit-details-marker{ display:none; }
+  details.card > summary::after{
+    content:"";
+    width:.5rem; height:.5rem; flex:none;
+    margin-left:auto;
+    border-right: 2px solid var(--primary-2);
+    border-bottom: 2px solid var(--primary-2);
+    transform: rotate(-45deg);
+    transition: transform .2s ease;
+  }
+  details.card[open] > summary::after{ transform: rotate(45deg); }
+
+  .num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width: 1.55rem; height: 1.55rem; flex:none;
+    border-radius: 9px;
+    background: var(--surface);
+    border: 1px solid var(--primary-3);
+    color: var(--primary);
+    font-size:.75rem; font-weight: 800;
+  }
+
+  .card-body{
+    padding: .85rem 1rem 1.05rem;
+    border-top: 1px solid var(--border);
+    font-size: .88rem;
+  }
+
+  .card-body h4{
+    margin: 1rem 0 .35rem;
+    font-size: .84rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--accent);
+  }
+  .card-body h4:first-child{ margin-top: 0; }
+
+  .card-body p{ margin: .45rem 0; }
+  .card-body ul{ margin: .4rem 0 .4rem 1.1rem; padding: 0; }
+  .card-body li{ margin: .25rem 0; }
+  .card-body li::marker{ color: var(--primary-3); }
+
+  .key{ color: var(--accent); font-weight: 700; }
+  .pill{
+    display:inline-block;
+    padding: .05rem .5rem;
+    border-radius: 999px;
+    font-size:.72rem; font-weight:700;
+    background: var(--primary-soft);
+    color: var(--primary);
+    border: 1px solid var(--primary-3);
+    white-space: nowrap;
+  }
+  .pill.warn{ background: var(--accent-soft); color: var(--accent); border-color:#e9b6d2; }
+
+  .callout{
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+    padding: .6rem .8rem;
+    border-radius: 0 10px 10px 0;
+    margin: .7rem 0;
+    font-size:.85rem;
+  }
+  .callout.info{
+    border-left-color: var(--primary-2);
+    background: var(--primary-soft);
+  }
+
+  /* ================= TABLES ================= */
+  .table-wrap{
+    overflow: auto;
+    max-height: 62vh;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: .7rem 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  table{
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 34rem;
+    font-size: .82rem;
+  }
+  thead th{
+    position: sticky; top: 0; z-index: 2;
+    background: var(--surface-2);
+    color: var(--primary);
+    text-align: left;
+    padding: .55rem .7rem;
+    font-size: .76rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td{
+    padding: .5rem .7rem;
+    border-top: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even){ background: #faf8fe; }
+  tbody tr:hover{ background: var(--primary-soft); }
+
+  /* ================= FIGURES ================= */
+  figure{
+    margin: .9rem 0;
+    padding: .7rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  figure svg{ display:block; width:100%; height:auto; max-width: 100%; }
+  figcaption{
+    margin-top: .5rem;
+    font-size: .74rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ================= SEARCH HIGHLIGHT ================= */
+  mark.hl{
+    background: var(--hl);
+    color: inherit;
+    border-radius: 3px;
+    padding: 0 1px;
+  }
+  mark.hl.current{
+    background: var(--hl-cur);
+    box-shadow: 0 0 0 2px rgba(255,201,77,.55);
+  }
+
+  /* ================= FOOTER ================= */
+  footer{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 1.2rem .9rem 3rem;
+    font-size: .78rem;
+    color: var(--muted);
+  }
+  footer h3{
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--primary);
+    margin: 0 0 .5rem;
+  }
+  footer ol{ margin: 0; padding-left: 1.2rem; }
+  footer li{ margin: .35rem 0; }
+  footer a{ color: var(--primary-2); }
+  .disclaimer{
+    margin-top: 1rem;
+    padding: .7rem .9rem;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 620px){
+    .brand-text small{ display:none; }
+    #search{ width: 100%; max-width: none; }
+    .search-wrap{ flex: 1 1 100%; }
+    .controls{ width: 100%; }
+    .count{ right:.6rem; }
+    .card-body{ padding: .8rem .75rem 1rem; }
+    details.card > summary{ padding: .75rem .8rem; font-size:.9rem; }
+  }
+
+  @media print{
+    .topbar{ position: static; }
+    details.card{ break-inside: avoid; box-shadow:none; }
+    details.card > summary::after{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= TOP BAR ======================= -->
+<header class="topbar">
+  <div class="bar-inner">
+    <div class="brand">
+      <span class="logo">MRI</span>
+      <span class="brand-text">
+        <strong>Anaesthesia in the MR Unit</strong>
+        <small>Quick reference for anaesthetists &amp; intensivists</small>
+      </span>
+    </div>
+
+    <div class="controls">
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="Search… (Enter = next)" autocomplete="off" aria-label="Search the reference" />
+        <span id="count" class="count" aria-live="polite"></span>
+      </div>
+      <button id="prevBtn" type="button" title="Previous match">Prev</button>
+      <button id="nextBtn" type="button" title="Next match">Next</button>
+      <button id="expandAll" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+      <div class="fontctl">
+        <button id="fsDown" type="button" title="Decrease text size">A−</button>
+        <button id="fsUp" type="button" title="Increase text size">A+</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= CONTENT ======================= -->
+<main id="content">
+
+  <p class="lede">
+    <strong>How to use:</strong> tap any heading to open it, or use <em>Expand all</em>.
+    Use the search box to filter — matches are highlighted and their sections open automatically.
+    Use <em>A− / A+</em> to resize text. Tables scroll in both directions.
+  </p>
+
+  <!-- ============ 1. QUICK NUMBERS ============ -->
+  <details class="card" open>
+    <summary><span class="num">1</span> Quick numbers &amp; the 60-second summary</summary>
+    <div class="card-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Value</th><th>Number</th><th>Why it matters</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Clinical field strengths</td><td>0.2 – 3.0 T (0.5 – 3 T common; 7 T entering use)</td><td>Higher field = better images, more RF heating, more noise</td></tr>
+            <tr><td>Tesla → Gauss</td><td>1 T = 10 000 Gauss</td><td>Zone lines are quoted in Gauss</td></tr>
+            <tr><td>Earth's field</td><td>0.5 – 1.0 Gauss</td><td>Sense of scale</td></tr>
+            <tr><td>Cryogen temperature</td><td>&lt; 4.2 Kelvin (liquid helium)</td><td>Maintains superconductivity — always-on magnet</td></tr>
+            <tr><td>5 Gauss line (0.5 mT)</td><td>Pacemaker/ICD malfunction</td><td>Unscreened staff must not cross</td></tr>
+            <tr><td>50 Gauss line</td><td>Ferromagnetic objects become projectiles; pumps/electronics fail</td><td>Hard "no loose metal" boundary</td></tr>
+            <tr><td>Noise threshold</td><td>&gt; 80 dB(A)</td><td>Hearing damage possible — protect everyone</td></tr>
+            <tr><td>Capnography delay</td><td>≈ 20 seconds</td><td>Longer sampling tubing required</td></tr>
+            <tr><td>Gd-DTPA dose</td><td>0.2 mL/kg</td><td>IV contrast agent</td></tr>
+            <tr><td>Gadolinium anaphylactoid risk</td><td>up to 0.01 %</td><td>Severe reactions are rare but real</td></tr>
+            <tr><td>Typical scan duration</td><td>up to 2 hours total; single sequences up to 10 min</td><td>Drives your anaesthetic plan</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>The essentials</h4>
+      <ul>
+        <li>The magnet is <span class="key">always on</span> — even between scans. There is no "off switch" for routine use.</li>
+        <li>Hazards fall into five groups: <strong>displacement force</strong>, <strong>induced currents</strong>, <strong>acoustic noise</strong>, <strong>RF heating</strong>, <strong>helium escape (quench)</strong>.</li>
+        <li>In an emergency you <span class="key">move the patient out</span> — you never quench the magnet to resuscitate.</li>
+        <li>"MRI compatible" is <span class="key">obsolete terminology</span>. Use <strong>MR Safe</strong> / <strong>MR Conditional</strong> / <strong>MR Unsafe</strong>.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 2. PHYSICS ============ -->
+  <details class="card">
+    <summary><span class="num">2</span> Physics in brief</summary>
+    <div class="card-body">
+
+      <p>MRI exploits nuclei that possess an <strong>odd, unpaired proton</strong>. The hydrogen proton (abundant in water) is the workhorse; phosphorus (in ATP) allows metabolic studies.</p>
+
+      <ul>
+        <li>These nuclei <strong>spin</strong>, and because they carry charge they generate a tiny local magnetic field — they behave like small magnets.</li>
+        <li>Alignment is normally <strong>random</strong>; in a strong external field they <strong>align with the field</strong>.</li>
+        <li>A brief burst of <strong>radiofrequency (RF)</strong> energy knocks them out of alignment. When the RF is removed, they relax back and re-emit energy.</li>
+        <li>The <strong>rate of realignment</strong> depends on the nucleus and the molecular properties of the tissue — this is the source of image contrast.</li>
+        <li>The emitted RF induces an electrical signal in <strong>three orthogonal gradient coils</strong> (X and Y transverse, Z longitudinal), giving spatial encoding → 3-D image.</li>
+        <li><strong>Rapid switching of the gradient coils</strong> is what causes the loud banging noise.</li>
+      </ul>
+
+      <figure>
+        <svg viewBox="0 0 460 200" role="img" aria-label="Hydrogen nuclei randomly oriented versus aligned in a magnetic field">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#6b4a9e"/>
+            </marker>
+          </defs>
+
+          <!-- Panel A : random -->
+          <g>
+            <circle cx="70" cy="55" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="70" y1="55" x2="85" y2="60" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="120" cy="40" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="120" y1="40" x2="110" y2="52" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="170" cy="65" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="170" y1="65" x2="178" y2="51" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="90" cy="105" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="90" y1="105" x2="75" y2="100" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="140" cy="115" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="140" y1="115" x2="151" y2="126" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="190" cy="105" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="190" y1="105" x2="175" y2="110" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="65" cy="145" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="65" y1="145" x2="79" y2="137" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="160" cy="150" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="160" y1="150" x2="160" y2="166" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <text x="125" y="190" text-anchor="middle" font-size="12" fill="#6a6180" font-family="sans-serif">No field — random orientation</text>
+          </g>
+
+          <!-- Panel B : aligned -->
+          <g>
+            <circle cx="310" cy="55" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="310" y1="55" x2="310" y2="39" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="360" cy="40" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="360" y1="40" x2="360" y2="24" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="410" cy="65" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="410" y1="65" x2="410" y2="49" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="330" cy="105" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="330" y1="105" x2="330" y2="89" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="380" cy="115" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="380" y1="115" x2="380" y2="99" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="430" cy="105" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="430" y1="105" x2="430" y2="89" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="305" cy="145" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="305" y1="145" x2="305" y2="129" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <circle cx="400" cy="150" r="11" fill="#e6dcf6" stroke="#8a63c4" stroke-width="1.5"/>
+            <line x1="400" y1="150" x2="400" y2="134" stroke="#6b4a9e" stroke-width="1.6" marker-end="url(#ah)"/>
+            <text x="368" y="190" text-anchor="middle" font-size="12" fill="#6a6180" font-family="sans-serif">B₀ applied — nuclei align</text>
+          </g>
+        </svg>
+        <figcaption>Hydrogen nuclei behave like tiny magnets: random without a field, aligned within an applied magnetic field.</figcaption>
+      </figure>
+
+      <h4>T1 vs T2 weighting</h4>
+      <ul>
+        <li><strong>T1-weighted</strong> — generated <em>a few milliseconds</em> after the RF field is removed (early).</li>
+        <li><strong>T2-weighted</strong> — generated <em>later</em> than T1.</li>
+        <li>Hydrogen nuclei take a long time to decay back, so <strong>fluid appears dark on T1</strong> (minimal signal) and <strong>white on T2</strong>.</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Sequence</th><th>Timing</th><th>Fluid (CSF)</th><th>Fat</th><th>Typical use</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>T1-weighted</strong></td><td>Early (few ms after RF off)</td><td>Dark</td><td>Bright</td><td>Anatomy</td></tr>
+            <tr><td><strong>T2-weighted</strong></td><td>Later</td><td>White / bright</td><td>Darker</td><td>Oedema, pathology</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure>
+        <svg viewBox="0 0 440 210" role="img" aria-label="Comparison of T1 and T2 weighted brain images">
+          <!-- T1 -->
+          <g>
+            <circle cx="110" cy="100" r="78" fill="#b3a7c9" stroke="#8a63c4" stroke-width="2"/>
+            <circle cx="110" cy="100" r="60" fill="#ddd5ec"/>
+            <ellipse cx="97" cy="95" rx="13" ry="25" fill="#3f3752"/>
+            <ellipse cx="123" cy="95" rx="13" ry="25" fill="#3f3752"/>
+            <text x="110" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="#6b4a9e" font-family="sans-serif">T1 — fluid is DARK</text>
+          </g>
+          <!-- T2 -->
+          <g>
+            <circle cx="330" cy="100" r="78" fill="#b3a7c9" stroke="#8a63c4" stroke-width="2"/>
+            <circle cx="330" cy="100" r="60" fill="#8c80a8"/>
+            <ellipse cx="317" cy="95" rx="13" ry="25" fill="#ffffff" stroke="#c3aee6" stroke-width="1.5"/>
+            <ellipse cx="343" cy="95" rx="13" ry="25" fill="#ffffff" stroke="#c3aee6" stroke-width="1.5"/>
+            <text x="330" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="#b0477e" font-family="sans-serif">T2 — fluid is WHITE</text>
+          </g>
+        </svg>
+        <figcaption>Schematic axial brain slices. Ventricles (CSF) are dark on T1 and bright on T2.</figcaption>
+      </figure>
+
+      <h4>The Faraday cage &amp; waveguide</h4>
+      <ul>
+        <li>The MR signal is very weak, so external RF would swamp it. The scanner room is enclosed in an RF shield — a <strong>Faraday cage</strong> — built into the fabric of the room.</li>
+        <li>A hollow brass tube called a <strong>waveguide</strong> passes through the Faraday cage so that infusion lines and monitoring cables can reach the patient from the control room.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 3. SCANNER ANATOMY ============ -->
+  <details class="card">
+    <summary><span class="num">3</span> Scanner anatomy at a glance</summary>
+    <div class="card-body">
+
+      <figure>
+        <svg viewBox="0 0 700 340" role="img" aria-label="Cross-section of an MRI scanner showing concentric magnet, gradient coil, RF coil and bore">
+          <circle cx="185" cy="170" r="150" fill="#e9e0f8" stroke="#8a63c4" stroke-width="2"/>
+          <circle cx="185" cy="170" r="120" fill="#f1ebfa" stroke="#a98ad8" stroke-width="2"/>
+          <circle cx="185" cy="170" r="92"  fill="#f8f5fd" stroke="#c3aee6" stroke-width="2"/>
+          <circle cx="185" cy="170" r="68"  fill="#ffffff" stroke="#ddd3ee" stroke-width="2"/>
+
+          <!-- patient table -->
+          <rect x="115" y="160" width="140" height="11" rx="5.5" fill="#c3aee6"/>
+          <!-- patient cross-section -->
+          <ellipse cx="185" cy="146" rx="38" ry="24" fill="#f8e2ef" stroke="#b0477e" stroke-width="2"/>
+
+          <!-- legend -->
+          <g font-family="sans-serif" font-size="12.5" fill="#2f2742">
+            <rect x="390" y="52" width="16" height="16" rx="4" fill="#e9e0f8" stroke="#8a63c4"/>
+            <text x="416" y="65">Magnet — superconducting coils</text>
+
+            <rect x="390" y="92" width="16" height="16" rx="4" fill="#f1ebfa" stroke="#a98ad8"/>
+            <text x="416" y="105">Gradient coils (X, Y, Z) — noise</text>
+
+            <rect x="390" y="132" width="16" height="16" rx="4" fill="#f8f5fd" stroke="#c3aee6"/>
+            <text x="416" y="145">RF coil — transmit / receive</text>
+
+            <rect x="390" y="172" width="16" height="16" rx="4" fill="#ffffff" stroke="#ddd3ee"/>
+            <text x="416" y="185">Bore — patient tunnel</text>
+
+            <rect x="390" y="212" width="16" height="16" rx="4" fill="#c3aee6"/>
+            <text x="416" y="225">Patient table (non-ferrous)</text>
+
+            <rect x="390" y="252" width="16" height="16" rx="4" fill="#f8e2ef" stroke="#b0477e"/>
+            <text x="416" y="265">Patient</text>
+          </g>
+        </svg>
+        <figcaption>Schematic cross-section. The patient lies at the centre of the field, enclosed in a narrow bore — access is the defining challenge.</figcaption>
+      </figure>
+
+      <ul>
+        <li>Most diagnostic scanners use a <strong>cylindrical bore</strong>: the patient is enclosed in a narrow tube with <strong>extremely limited access</strong>.</li>
+        <li><strong>Open / C-shaped magnets</strong> are less claustrophobic and allow better access, but lower field strength, longer scans and less detail.</li>
+        <li><strong>Two-room interventional suites</strong> (scanner adjacent to theatre) are increasingly used for diagnostic-quality imaging during procedures.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 4. FIELD ZONES ============ -->
+  <details class="card">
+    <summary><span class="num">4</span> Magnetic field &amp; safety zones</summary>
+    <div class="card-body">
+
+      <p>Field strength falls away <strong>exponentially</strong> with distance from the magnet.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Zone</th><th>Field</th><th>What happens</th><th>Rule</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>5 Gauss line</strong></td>
+              <td>0.5 mT</td>
+              <td>Pacemakers and ICDs will malfunction</td>
+              <td>Unscreened personnel must <strong>not</strong> enter</td>
+            </tr>
+            <tr>
+              <td><strong>50 Gauss line</strong></td>
+              <td>5 mT</td>
+              <td>Significant attractive force on all ferromagnetic objects (projectile risk); electronic/mechanical equipment — including infusion pumps — may fail</td>
+              <td>No loose ferrous items; pumps outside</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>In practice:</strong> many units simply divide the area into a <em>safe zone outside the scanner</em> and the <em>controlled hazardous zone</em> within the MR examination room. Field contour markers on the floor are used to identify safety ranges.
+      </div>
+
+      <h4>Access terminology (MHRA / local rules)</h4>
+      <ul>
+        <li><strong>MR environment</strong> — immediate vicinity of the scanner: projectile risk, implant hazards, RF heating.</li>
+        <li><strong>MR Controlled Access Area</strong> — larger area including control room and anaesthetic preparation room. Electronic/physical locks prevent unauthorised access; all routes to the MR environment pass through it.</li>
+        <li><strong>MR Authorised Persons</strong> — named individuals with personal access. After appropriate training, anaesthetists and anaesthetic assistants are designated MR Authorised Persons and work in the MR environment under radiographer supervision.</li>
+      </ul>
+
+      <h4>Effects on the body</h4>
+      <ul>
+        <li>Movement within the field induces weak electrical currents in tissue.</li>
+        <li>Blood flowing through the aorta also generates potentials.</li>
+        <li>These can cause <strong>nausea, vertigo</strong> (semicircular canal excitation) and <strong>flashing lights</strong> (retinal effect) — in patients <em>and</em> staff moving near the bore.</li>
+        <li>No evidence of long-term harm from repeated exposure. Older guidance suggested a time-weighted average of <strong>200 mT over any 8-hour period</strong> should not be exceeded by healthcare personnel. <strong>Ideally all staff vacate the room while scanning.</strong></li>
+        <li>The <em>Control of Electromagnetic Fields at Work Regulations 2016</em> requires employers to carry out risk assessments for staff working in the MR environment.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 5. HAZARDS ============ -->
+  <details class="card">
+    <summary><span class="num">5</span> Hazards — the five categories</summary>
+    <div class="card-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Hazard</th><th>Mechanism</th><th>Clinical consequence</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Displacement force</strong> (static field)</td>
+              <td>Ferromagnetic objects within the 3 mT contour experience attractive force and torque; conductive objects moving in the field experience induced currents and temporary forces</td>
+              <td>Projectiles — injury or death; trapped/crushed patient or staff; dislodged foreign bodies with haemorrhage (especially eye, near vessels); device inactivation or reprogramming</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><strong>Induced currents</strong> (time-varying gradient fields)</td>
+              <td>Gradient fields manipulated rapidly during acquisition</td>
+              <td>Peripheral nerve and muscle stimulation; discomfort. Scanners limit gradients to avoid limb movement or VF</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>Acoustic noise</strong></td>
+              <td>Rapid switching of gradient coils</td>
+              <td>Hearing damage (&gt;80 dB(A)); alarms and airway sounds masked</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><strong>RF heating</strong></td>
+              <td>Powerful RF transmitter interacts with tissue; non-uniform power dissipation; conductive material on skin creates hotspots</td>
+              <td>Severe, rapid burns from leads, electrodes, metal in clothing. Also a systemic heat load</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><strong>Helium escape / quench</strong></td>
+              <td>Rapid boil-off of cryogen; ~1000 L liquid helium expands to gas</td>
+              <td>Asphyxiation if the quench pipe fails; loss of the magnetic field</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Additional environment hazards</h4>
+      <ul>
+        <li><strong>Restricted access</strong> — patient enclosed in a narrow tube; the MR suite is often remote from theatre, so backup and assistance are less readily available.</li>
+        <li><strong>Monitoring interference</strong> — the scanner interferes with monitors; monitors interfere with the scanner. Both directions must be managed.</li>
+        <li><strong>Contrast reactions</strong> — see the gadolinium section.</li>
+        <li><strong>Temperature</strong> — historical concern about hypothermia in infants is largely unfounded: RF absorption <em>raises</em> body temperature. Active heating is usually unnecessary and may cause hyperthermia. The rise is greater at 3 T than 1.5 T.</li>
+        <li><strong>Pregnancy</strong> — see the dedicated section.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 6. IMPLANTS ============ -->
+  <details class="card">
+    <summary><span class="num">6</span> Implants, devices &amp; foreign bodies</summary>
+    <div class="card-body">
+
+      <h4>Terminology — the important update</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Label</th><th>Meaning</th><th>Examples / notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="pill">MR Safe</span></td>
+              <td>Contains no material that would present a hazard at any field</td>
+              <td>Non-metallic, non-conducting items</td>
+            </tr>
+            <tr>
+              <td><span class="pill">MR Conditional</span></td>
+              <td>Safe under <strong>specified conditions</strong> defined by the manufacturer and based on testing — field strength, SAR, coil type, scan duration, patient position</td>
+              <td>Most modern implants. Always check the manufacturer's conditions</td>
+            </tr>
+            <tr>
+              <td><span class="pill warn">MR Unsafe</span></td>
+              <td>Presents an unacceptable risk to patients or staff if used in the MR environment</td>
+              <td>Must never enter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        The term <strong>"MR compatible" is ambiguous and should no longer be used.</strong> It has historically been used loosely to mean both "safe in the room" and "functions normally in the room" — the two are not the same.
+      </div>
+
+      <h4>Implant quick-check table</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Device / implant</th><th>Status</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Cochlear implants</td><td><span class="pill warn">Contraindicated</span></td><td>Absolute</td></tr>
+            <tr><td>Intra-ocular metallic foreign body / shrapnel</td><td><span class="pill warn">Contraindicated</span></td><td>Risk of movement and haemorrhage in the eye</td></tr>
+            <tr><td>Ferromagnetic arterial or aneurysm clips (especially neurovascular)</td><td><span class="pill warn">Contraindicated</span></td><td>Absolute</td></tr>
+            <tr><td>Cardiac pacemakers / implanted defibrillators</td><td><span class="pill warn">Historically absolute</span> → now relative</td><td>MR Conditional pacemakers (since 2006) allow scanning under controlled conditions. May need to be turned off or reprogrammed to fixed mode, monitored throughout, and reprogrammed afterwards — only after discussion with cardiology. Implantable defibrillators usually remain a contraindication; some cardiac centres can scan with appropriate monitoring and resuscitation support</td></tr>
+            <tr><td>Coronary stents, prosthetic heart valves (mechanical or bioprosthetic), sternal wires, general surgical clips</td><td><span class="pill">Usually safe</span></td><td>Fixed by fibrous tissue. Considered safe to 1.5 T; many to 3 T</td></tr>
+            <tr><td>Programmable (hydrocephalus) shunt valves</td><td><span class="pill">MR Conditional</span></td><td>Pressure settings may change → under- or over-drainage. Assess with the neurosurgical team before, and reset after the scan</td></tr>
+            <tr><td>Neurostimulators (vagal nerve, deep brain, spinal cord)</td><td><span class="pill warn">Usually avoid</span></td><td>Affected by RF and magnetic fields; thermal injury risk. MR Conditional versions exist — check manufacturer for scan times and modes. Check the device after scanning</td></tr>
+            <tr><td>Implanted baclofen / analgesic pumps, telemetric ICP monitors</td><td><span class="pill warn">Caution</span></td><td>There have been incidents where the <strong>entire dose</strong> of a baclofen pump was discharged during scanning — the pump may need to be emptied first. Liaise with pain/neurosurgical teams</td></tr>
+            <tr><td>Breast tissue expanders and implants</td><td><span class="pill">Check</span></td><td>RF identification tag on certain breast implants can heat during the scan</td></tr>
+            <tr><td>Biohacking implants (finger magnets, RFID / NFC chips)</td><td><span class="pill">Low risk</span></td><td>Probably low risk but may cause artefact. Ask about body modification</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Screening</h4>
+      <ul>
+        <li><strong>All</strong> patients and staff must be screened for implants and devices before entering.</li>
+        <li>Screening is the responsibility of the imaging department (radiographers, radiologists, MR Safety Expert / MR Responsible Person), but every anaesthetist must understand the risks.</li>
+        <li>Especially important for ICU transfers and anyone unable to give an accurate history.</li>
+        <li>Establish the <strong>exact make and model</strong> of any implant in advance — similar-looking devices can behave very differently.</li>
+        <li>A standard screening questionnaire or "metal check" usually suffices; <strong>X-ray</strong> can be used if doubt exists.</li>
+        <li>Compatibility can be checked at <a href="https://www.mrisafety.com" target="_blank" rel="noopener">mrisafety.com</a> and via the manufacturer's guidance.</li>
+        <li>The referring team should discuss device safety with the MR Responsible Person <em>and</em> the anaesthetist to plan management.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Never</strong> allow a patient into the MR examination room if there is any doubt about the safety of an implanted device or foreign body.
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============ 7. EQUIPMENT & MONITORING ============ -->
+  <details class="card">
+    <summary><span class="num">7</span> Equipment &amp; monitoring</summary>
+    <div class="card-body">
+
+      <p>The level of monitoring and equipment in the MR environment should <strong>conform to national guidance and match the operating theatre</strong>. MR Conditional equipment may differ from what you use elsewhere — familiarise yourself with it <em>before</em> use.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Modality</th><th>Requirement</th><th>Hazard if ignored</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ECG</strong></td>
+              <td>MR Safe electrodes. Place in a <strong>narrow triangle on the chest</strong>. Leads <strong>braided and short (≈15 cm)</strong>. Remove ECG/EEG electrodes before scanning if not required</td>
+              <td>Burns from induced currents. Artefact in ST-T complexes mimicking hyperkalaemia; T-wave elevation sometimes larger than QRS; reduced or inverted R wave — caused by current induced in blood flowing through the thoracic aorta. <strong>Reverts to normal once scanning stops</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Pulse oximetry</strong></td>
+              <td>Fibre-optic or carbon-fibre cabling. Insulate cables and place as far from the scanner as possible</td>
+              <td>Finger burns reported with standard non-compatible oximeters</td>
+            </tr>
+            <tr>
+              <td><strong>Non-invasive BP</strong></td>
+              <td>Plastic connectors instead of ferromagnetic ones</td>
+              <td>Projectile / artefact</td>
+            </tr>
+            <tr>
+              <td><strong>Invasive BP</strong></td>
+              <td>Transducer cabling through the waveguide. Minimise line length to reduce damping. Pressure bag for saline flush must have <strong>no metallic components</strong></td>
+              <td>Damping / inaccurate readings; projectile</td>
+            </tr>
+            <tr>
+              <td><strong>Capnography &amp; gas monitoring</strong></td>
+              <td>Longer sampling tubing than routine → <strong>≈ 20-second delay</strong>. Minimise sampling line length</td>
+              <td>Delayed detection of airway events</td>
+            </tr>
+            <tr>
+              <td><strong>Temperature</strong></td>
+              <td>Specifically designed probes for peripheral and central measurement</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>Infusion pumps</strong></td>
+              <td>Keep in the control room and run lines through the <strong>waveguide</strong>. MR Conditional pumps exist; some may be used inside a dedicated RF shield enclosure (Faraday cage)</td>
+              <td>Fail if field &gt; 50 Gauss; may become projectiles; non-compatible syringe drivers may deliver <strong>incorrect drug doses</strong></td>
+            </tr>
+            <tr>
+              <td><strong>ICP monitors / other devices</strong></td>
+              <td>Usually removed before the scan; some can be used under specific controlled conditions per local rules and manufacturer's safety information</td>
+              <td>Overheating — a melted ICP transducer has caused thermal brain injury</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>General principles</h4>
+      <ul>
+        <li>Monitoring screens should be in the <strong>MR control room</strong> so the anaesthetist can leave the examination room. Cables pass through the waveguide ports.</li>
+        <li>All alarms should be <strong>visual</strong> because of scanner noise.</li>
+        <li>The view of the monitor, anaesthetic machine and patient must be <strong>unobstructed at all times</strong>.</li>
+        <li><strong>Avoid coiling cables</strong> within the scanner; place <strong>padding between all leads and the patient's skin</strong>.</li>
+        <li>Mains supply should be isolated or filtered, or battery power used. <strong>Batteries are ferromagnetic</strong> — if used, secure the equipment firmly.</li>
+        <li>Where non-compatible equipment must be used (interventional settings), it may be physically controlled with a tether or by clear workflow controls under a standardised operating procedure (SOP).</li>
+      </ul>
+
+      <h4>Anaesthetic machine &amp; breathing systems</h4>
+      <ul>
+        <li>MR Safe vaporisers and gas cylinders only, within the scanning room. <strong>Standard equipment may cause serious accidents.</strong></li>
+        <li>Historic practice: ferrous anaesthetic machines in the control room with co-axial Mapleson D or Bain circuits extended through the waveguide. <strong>MR compatible machines, ventilators and vaporisers are now available and should be used instead.</strong></li>
+        <li>Circle system, Bain circuit or Ayres T-piece (children) have all been used successfully.</li>
+        <li>Piped gases with backup cylinders made of non-ferrous metal (e.g. aluminium).</li>
+        <li>MR compatible scavenging systems are available — volatile agents and nitrous oxide must be scavenged in the usual way (COSHH regulations in the UK).</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 8. NOISE ============ -->
+  <details class="card">
+    <summary><span class="num">8</span> Acoustic noise</summary>
+    <div class="card-body">
+
+      <ul>
+        <li>Noise above the safe level of <strong>85 dB(A)</strong> can be produced by rapid gradient coil switching. Most scanners exceed <strong>80 dB(A)</strong>, at which hearing damage is possible.</li>
+        <li>Magnitude depends on the image sequence and the magnetic field strength.</li>
+        <li>UK guidelines require that <strong>everyone</strong> remaining in the scanner room is provided with MR Safe hearing protection — earplugs, ear defenders, or both.</li>
+        <li><strong>Anaesthetised patients cannot report hearing discomfort</strong> — protection is especially important for them. Document its use in the patient's notes.</li>
+        <li>Recent studies suggest <strong>temporary hearing loss is possible with a 3 T scan even with standard hearing protection</strong>. Use effective protection and warn patients and staff.</li>
+        <li>Staff should remain in the control room during acquisition, or wear earplugs if they must stay in the examination room. Staff should be trained in selection and use of hearing protection.</li>
+        <li><strong>High ambient noise masks monitor alarms and the sounds of partial airway obstruction</strong> — maintain vigilance and attend to visual cues.</li>
+      </ul>
+
+      <div class="callout info">
+        For the anaesthetic team, a set-up allowing <strong>remote monitoring from the control room is ideal</strong>. If this is not possible, ear protection must be worn by staff remaining in the room — but communication will be difficult.
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============ 9. GADOLINIUM ============ -->
+  <details class="card">
+    <summary><span class="num">9</span> Contrast agents — gadolinium</summary>
+    <div class="card-body">
+
+      <ul>
+        <li>Up to <strong>30 % of MR scans</strong> require IV contrast.</li>
+        <li>The most commonly used agent is <strong>gadolinium dimeglumine (Gd-DTPA, Magnevist)</strong>, a gadolinium-based agent.</li>
+        <li>It <strong>increases signal intensity on T1</strong> and <strong>reduces signal on T2</strong> weighted scans.</li>
+        <li>Used in contrast-enhanced MR angiography and to identify tumours. It does not normally cross the blood–brain barrier, so it demonstrates areas where the barrier has broken down and helps delineate intracranial pathology.</li>
+        <li>Dose: <strong>0.2 mL/kg</strong>.</li>
+        <li>Renally excreted within 24 hours.</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Adverse effect</th><th>Frequency</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Nausea, vomiting, pain on injection, headache, dizziness</td><td>1 – 5 %</td><td>Minor</td></tr>
+            <tr><td>Severe anaphylactoid reaction</td><td>up to 0.01 %</td><td>Rare but reported</td></tr>
+            <tr><td>Nephrogenic systemic fibrosis / nephrogenic fibrosing dermopathy</td><td>Rare</td><td>Older gadolinium compounds; only in <strong>end-stage renal failure</strong>. Fibrous tissue deposits predominantly in skin, occasionally in musculature — particularly cardiac muscle</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Renal function</h4>
+      <ul>
+        <li>All patients should have an assessment of renal function before MRI — by history or by urea and creatinine assay.</li>
+        <li>If <strong>eGFR &lt; 30 mL·min⁻¹·1.73 m⁻²</strong>, balance the risk of gadolinium against the diagnostic benefit.</li>
+        <li>Current guidance: in children and in adults with a low GFR, <strong>do not repeat gadolinium within 7 days</strong>.</li>
+        <li><strong>Macrocyclic</strong> gadolinium compounds bind the gadolinium much more tightly and have <strong>not been associated with any cases of nephrogenic systemic fibrosis</strong> in the literature. eGFR estimation may not be required with these newer agents.</li>
+        <li>The safety profile in <strong>children under 2 years and in pregnancy is unknown</strong>.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 10. QUENCH ============ -->
+  <details class="card">
+    <summary><span class="num">10</span> Quenching &amp; helium escape</summary>
+    <div class="card-body">
+
+      <ul>
+        <li>Superconducting coils must be kept cold — immersed in liquid coolants (<strong>cryogens</strong>), most commonly <strong>liquid helium</strong> in modern units.</li>
+        <li>The cryostat typically contains around <strong>1000 litres of liquid helium</strong> at a few degrees above absolute zero.</li>
+        <li><strong>Quenching</strong> = rapid boil-off of the cryogen causing immediate loss of superconductivity.</li>
+        <li>It may occur <strong>spontaneously</strong> (system error during installation, servicing, power-up) or be <strong>deliberately induced</strong> to shut down the magnetic field.</li>
+        <li>If it happens, the magnetic field is lost and a <strong>large volume of helium gas</strong> is produced.</li>
+        <li>Normally vented to the outside atmosphere through a <strong>quench pipe</strong>.</li>
+        <li>If the quench pipe is damaged or blocked, helium builds up in the scanning room → <strong>asphyxiation risk</strong>, requiring rapid evacuation.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Safety systems:</strong> MR suites must have <strong>oxygen sensors</strong>, ventilation controls and a pressure equalisation mechanism to alert staff in the control room to a hypoxic environment. <strong>All staff working in an MR unit should be aware of the emergency quench procedure.</strong>
+      </div>
+
+      <div class="callout info">
+        <strong>Quenching is not a resuscitation manoeuvre.</strong> In a cardiac arrest you remove the patient from the field — you do not quench the magnet.
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============ 11. PREGNANCY ============ -->
+  <details class="card">
+    <summary><span class="num">11</span> Pregnancy — patients &amp; staff</summary>
+    <div class="card-body">
+
+      <h4>Potential hazards to the fetus</h4>
+      <ul>
+        <li>Static magnetic fields &gt; 4 T</li>
+        <li>Low-frequency time-varying magnetic field gradients</li>
+        <li>Radiofrequency fields</li>
+        <li>Excessive noise effects on the fetus</li>
+        <li>Systemic heat load — of most relevance during organogenesis in early pregnancy, because of the potential for hyperthermia to cause teratogenic effects</li>
+      </ul>
+
+      <div class="callout info">
+        <strong>However, there are no proven adverse effects from any of these factors.</strong>
+      </div>
+
+      <h4>Practical guidance</h4>
+      <ul>
+        <li>In the United Kingdom it is currently recommended that pregnant women should <strong>ideally not be scanned during the first trimester</strong>.</li>
+        <li>The decision to proceed should be a <strong>multidisciplinary decision that includes the mother</strong>. It should be accepted that some women will refuse a scan if there is even a theoretical risk.</li>
+        <li>Pregnant staff should be <strong>advised of the risks</strong> and given the option of <strong>not entering the inner controlled area during their first trimester</strong>.</li>
+        <li>The MHRA advises that pregnant staff <strong>do not remain in the scan room while imaging is underway</strong>.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 12. PATIENT SELECTION ============ -->
+  <details class="card">
+    <summary><span class="num">12</span> Who needs anaesthesia? Patient selection</summary>
+    <div class="card-body">
+
+      <p>MRI requires the patient to lie still in a noisy, restricted space for prolonged periods. The <strong>vast majority of patients can do this without an anaesthetist</strong>.</p>
+
+      <p>All cases referred for general anaesthesia should be evaluated and the <strong>risks of anaesthesia weighed against the benefits of the investigation</strong>.</p>
+
+      <h4>Alternatives to GA in infants and children</h4>
+      <ul>
+        <li><strong>Behavioural techniques</strong> — reassurance, communication through booklets, videos and unit visits, rehearsal of scans, play specialists.</li>
+        <li><strong>Natural sleep techniques</strong> — "feed and wrap" for neonates; sleep deprivation before the scan for toddlers.</li>
+        <li><strong>Sedation</strong> — specialist, experienced nurse-led sedation services have been shown to be highly successful and very safe.</li>
+      </ul>
+
+      <h4>Groups more likely to need general anaesthesia</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Group</th><th>Comment</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Infants and children</td><td>Younger children and those with learning difficulties or involuntary movement disorders</td></tr>
+            <tr><td>Patients with learning difficulties</td><td>—</td></tr>
+            <tr><td>Patients with seizure or movement disorders</td><td>—</td></tr>
+            <tr><td>Patients with claustrophobia</td><td>Open systems may help</td></tr>
+            <tr><td>Critically ill patients</td><td>See ICU section</td></tr>
+            <tr><td>Neurological examinations, particularly where <strong>raised intracranial pressure</strong> is a concern</td><td><strong>Sedation is contraindicated</strong> — it can be potentially dangerous</td></tr>
+            <tr><td>Patients with reduced conscious level, or positioning limited by pain</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Scan duration matters:</strong> the study is made up of multiple image sequences, some taking up to 10 minutes, and scanning may take up to <strong>2 hours</strong> in total. Any movement degrades and distorts the images.</p>
+
+    </div>
+  </details>
+
+  <!-- ============ 13. CONDUCT OF GA ============ -->
+  <details class="card">
+    <summary><span class="num">13</span> Conduct of general anaesthesia for MRI</summary>
+    <div class="card-body">
+
+      <h4>Before induction</h4>
+      <ul>
+        <li><strong>Pre-assess</strong> all patients. Starvation guidelines are the same as for any general anaesthetic.</li>
+        <li>A <strong>metal check must be performed by the radiology staff before induction</strong>.</li>
+        <li>Good communication between referring team, radiologist and anaesthetist — establish the detail required, any coil changes and the length of the scan. This may dictate ventilation or spontaneous breathing.</li>
+        <li>Place the patient on a <strong>non-ferrous trolley without oxygen cylinders</strong> so they can be safely transferred once anaesthetised.</li>
+      </ul>
+
+      <h4>Technique</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Factor</th><th>Consideration</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Length of scan</td><td>Up to 2 hours</td></tr>
+            <tr><td>Age of child</td><td>Small infants (&lt; 5 kg) needing anaesthesia are best managed by <strong>intubation and ventilation</strong>; older children may be managed with <strong>spontaneous ventilation via LMA</strong></td></tr>
+            <tr><td>Co-morbidities</td><td>Especially raised intracranial pressure</td></tr>
+            <tr><td>Breath-hold requirement</td><td>e.g. cardiac MRI scans</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Induction room</h4>
+      <ul>
+        <li>Induction should occur in a <strong>dedicated room adjacent to the MR examination room</strong>, containing all standard anaesthetic equipment, monitoring, drugs and resuscitation equipment. It can double as a post-anaesthesia recovery area.</li>
+        <li>Before transfer, perform a <strong>brief second metal check</strong> for loose objects that may have strayed onto the trolley — needles, oxygen cylinders, stethoscopes, etc.</li>
+      </ul>
+
+      <h4>In the MR examination room</h4>
+      <ul>
+        <li>Transfer the patient onto the MRI scanner and <strong>recommence maintenance of anaesthesia and monitoring immediately</strong>.</li>
+        <li><strong>Check that the airway is secure</strong> — once inside the scanner the patient is relatively inaccessible. Head scans have a receiver coil over the head, further reducing access.</li>
+        <li>Maintenance may be <strong>inhalational</strong> (MR compatible vaporiser required) or <strong>intravenous</strong>.</li>
+        <li><strong>TIVA is acceptable</strong>, but some infusion pumps may act as projectiles or malfunction close to the magnetic field. Keep pumps in the control room and pass connecting lines through the waveguide.</li>
+        <li>Specific TIVA safety issues during scanning:
+          <ul>
+            <li>High index of suspicion for problems with the IV cannula not being visible.</li>
+            <li>Failure to hear pump alarms because of earplugs or the position of the anaesthetist in the viewing room.</li>
+            <li>Long infusion lines — disconnection or high pressure may mean the anaesthetic is not being delivered.</li>
+            <li>The high-pressure alarm limit on infusion pumps may need to be adjusted.</li>
+            <li>Ensure the combination of infusion lines, pump(s) and pump settings means infusions do not stop due to excessive resistance or high-pressure alarm cut-out.</li>
+          </ul>
+        </li>
+        <li><strong>LMA or non-armoured tracheal tube:</strong> the pilot balloon must be secured <strong>away from the area to be scanned</strong> to prevent image distortion from the internal ferromagnetic spring.</li>
+        <li><strong>Do not use armoured ETTs with a metal coil down their length</strong> — risk of dislodgement from magnetic pull on the metal, and the metal distorts the image.</li>
+        <li><strong>Ear protection</strong> should be provided before commencing the scan, and removed before waking the patient.</li>
+        <li>The anaesthetist may then exit the MR examination room and monitor from the control room if facilities exist.</li>
+      </ul>
+
+      <h4>Recovery</h4>
+      <ul>
+        <li>Remove the patient from the scanner, wake and recover in a suitable recovery area, cared for by appropriately trained staff.</li>
+        <li>Analgesia is unlikely to be required for MRI scanning; paracetamol may help if the child has a sore throat or headache.</li>
+        <li>Many children can be managed as <strong>day cases</strong>, depending on co-morbidities, and discharged once they meet normal day-case discharge criteria.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 14. ICU ============ -->
+  <details class="card">
+    <summary><span class="num">14</span> Intensive care patients requiring MRI</summary>
+    <div class="card-body">
+
+      <p>MRI of critically ill adults and children is an increasingly important diagnostic and prognostic tool. These patients require <strong>special expertise, planning and time</strong> to be examined safely.</p>
+
+      <h4>Infusions</h4>
+      <ul>
+        <li>Multiple drug infusions are a notable challenge — <strong>inotropic therapy is of particular concern</strong>.</li>
+        <li><strong>Discontinue all unnecessary infusions.</strong></li>
+        <li>Required infusions should run through extensions of adequate length passed through the <strong>waveguide</strong> to a pump remaining in the MR control room.</li>
+        <li><strong>Non-compatible MR syringe drivers used inside the MR examination room may deliver incorrect drug doses</strong> — a significant patient safety danger.</li>
+        <li>If MR compatible infusion pumps are used in the examination room, the anaesthetist may need to remain in the room if the pump rate needs changing.</li>
+      </ul>
+
+      <h4>Monitoring</h4>
+      <ul>
+        <li>Critically ill patients require a <strong>higher standard of monitoring</strong>.</li>
+        <li>Change <strong>all</strong> monitoring equipment to MR compatible versions in the anaesthetic induction room <em>before</em> entering the MR examination room.</li>
+        <li>Arterial pressure transducers can be passed through the waveguide if not compatible.</li>
+        <li><strong>Pulmonary artery catheters with conductive wires in contact with heart muscle</strong> and <strong>epicardial pacing wires</strong> pose a theoretical risk of microshock — <strong>remove before the examination</strong>.</li>
+        <li><strong>Central venous catheters pose no risk</strong> to the patient.</li>
+        <li>Disconnect all in-dwelling catheters from electrical connections and external accessories before entering the MR examination room.</li>
+      </ul>
+
+      <h4>Other checks</h4>
+      <ul>
+        <li>Ensure no surgical intervention has left the patient with <strong>internal metal work</strong>. Where the history is vague, a <strong>pre-MR X-ray screen</strong> may be required.</li>
+        <li><strong>Many tracheostomy tubes are not MR compatible</strong> and will need to be changed before the examination.</li>
+        <li>The pilot balloon of a cuffed tracheal tube may contain a small <strong>ferromagnetic spring</strong> — tape it securely away from the area being scanned.</li>
+        <li>MRI should only be undertaken if the <strong>diagnostic benefit outweighs the risk</strong>; this discussion must involve the multidisciplinary team, particularly for ICU patients.</li>
+        <li>Use the MR safety checklists for general anaesthesia, intraoperative MRI and transfer of ICU patients alongside the WHO checklist.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 15. EMERGENCIES ============ -->
+  <details class="card">
+    <summary><span class="num">15</span> Emergencies &amp; cardiac arrest in the MR suite</summary>
+    <div class="card-body">
+
+      <div class="callout">
+        Because of the strong magnetic field, the risk of projectiles and the restricted access imposed by the scanner, <strong>it is impossible to manage emergencies and resuscitation within the scanning room or within the 5 Gauss line</strong>.
+      </div>
+
+      <h4>Diagnostic suite — the drill</h4>
+      <ol>
+        <li><strong>Remove the patient from the magnetic field as quickly as possible.</strong></li>
+        <li>Transfer to the <strong>induction room</strong>, which should be close to the scanner and contain the necessary anaesthetic and resuscitation equipment and drugs.</li>
+        <li>The resuscitation team <strong>must not enter the 5 Gauss line</strong> of the inner controlled area. They should be <strong>directed by radiology staff</strong> to the induction/resuscitation room.</li>
+        <li>Manage the cardiac arrest in accordance with current resuscitation guidance.</li>
+      </ol>
+
+      <div class="callout info">
+        <strong>Do NOT switch off the magnet.</strong> Quenching causes an immediate loss of field and a large helium release, and puts the resuscitation team at risk.
+      </div>
+
+      <h4>Interventional suite</h4>
+      <ul>
+        <li>Where moving a patient during surgery may be difficult or impossible, a <strong>clear SOP defining which personnel and equipment may enter the room during an emergency is essential</strong>.</li>
+        <li>The roles of the radiographer and anaesthetist during evacuation of an anaesthetised or sedated patient should be well defined in an SOP and <strong>regularly reviewed</strong>.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 16. CONSENT ============ -->
+  <details class="card">
+    <summary><span class="num">16</span> Consent</summary>
+    <div class="card-body">
+
+      <ul>
+        <li><strong>Routine diagnostic MRI:</strong> written consent is <strong>not</strong> required. The only intervention is the anaesthetic.</li>
+        <li>The <strong>referring clinician or radiologist</strong> is responsible for seeking formal written consent for the MR scan itself — they will have discussed other options including not performing the imaging, and the impact on diagnosis and prognosis of omission.</li>
+        <li>The <strong>anaesthetist explains the anaesthesia</strong> to facilitate the scan, but currently this <strong>does not require separate written consent</strong> in addition to that taken for the scan.</li>
+        <li>If patients are referred from another hospital, consent should be taken by the referring clinician and a <strong>written agreed policy</strong> developed to avoid problems on the day of the scan.</li>
+        <li>In exceptional circumstances, the anaesthetist may seek consent for the scan if they understand the reasons for performing the imaging.</li>
+        <li>Each unit should develop its own local written consent procedures.</li>
+      </ul>
+
+      <div class="callout info">
+        Consent for MRI <em>under general anaesthesia</em> is a complex issue. In order to obtain truly informed consent, input should ideally come from <strong>three parties</strong>: the referring clinician who requested the investigation, the radiologist performing the scan, and the anaesthetist responsible for the general anaesthesia. Recent review suggests the <strong>referring clinician</strong> is best suited to explain the intended benefits, side effects and risks, and thus to obtain written consent. Nevertheless it remains <strong>incumbent upon the responsible anaesthetist to review the anaesthetic plan and risks with the patient</strong> before the procedure.
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============ 17. TRAINING & SERVICE ============ -->
+  <details class="card">
+    <summary><span class="num">17</span> Service organisation, training &amp; governance</summary>
+    <div class="card-body">
+
+      <h4>Recommendations</h4>
+      <ul>
+        <li>Every hospital providing anaesthesia within the MR unit should have a <strong>lead anaesthetist</strong> responsible for provision of anaesthesia for MRI.</li>
+        <li><strong>Training should be provided for all grades</strong> of anaesthetist delivering anaesthesia in this remote area. All anaesthetists should understand the hazards.</li>
+        <li>Anaesthesia/sedation for MRI — including ICU patients — should take into account the patient's <strong>pathophysiological status</strong> and the <strong>remote location</strong> of the unit.</li>
+        <li>Wherever possible, anaesthesia in remote sites should be provided by <strong>appropriately experienced consultants</strong>.</li>
+        <li>When care is delegated to a trainee or SAS doctor, they should have the <strong>appropriate competencies and level of training</strong>.</li>
+        <li><span class="key">It is not acceptable for inexperienced staff, unfamiliar with the MR environment, to manage a patient in this environment — particularly out-of-hours.</span></li>
+        <li>Patients must be accompanied to the scanner by appropriately trained staff. If an anaesthetic machine is used, the anaesthetist should be <strong>supported throughout by a suitably skilled, trained anaesthetic assistant</strong> familiar with the requirements.</li>
+        <li>Anyone remaining in the scanning room must be given ear protection.</li>
+        <li>MR safety checklists for general anaesthesia, intraoperative MRI and ICU transfer should be used alongside the WHO checklist.</li>
+      </ul>
+
+      <h4>Local sign-off before solo practice</h4>
+      <p>Every hospital offering anaesthetic services for MRI should have a <strong>locally agreed safety assessment with documented sign-off</strong> before a solo anaesthetist of any grade undertakes MRI cases under GA for adults or children.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Suggested framework</th><th>Evidence required</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Directly supervised experience</td><td>Documented experience of directly supervised anaesthesia for MRI</td></tr>
+            <tr><td>Knowledge of static magnetic field safety</td><td>Training on induction, a supervised training list and/or an e-learning module</td></tr>
+            <tr><td>Emergency management</td><td>Demonstration of knowledge in management of medical emergencies, including cardiac arrest, within the MR scanner</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>For trainees, this should be developed by the lead anaesthetist for MRI together with the College Tutor; for consultants and SAS doctors, between the lead anaesthetist for MRI and the individual. <strong>Agreed levels of supervision for trainees, particularly out-of-hours, are essential.</strong> It is recognised that in some hospitals no solo trainee anaesthetist can work in the MR unit.</p>
+
+      <h4>Practical checks</h4>
+      <ul>
+        <li>An appropriate <strong>"pre-list" check</strong> of anaesthesia systems, facilities, equipment, supplies and resuscitation equipment should be performed before the start of each list.</li>
+        <li>All procedures should be compliant with <strong>NatSSIPs</strong> (National Safety Standards for Invasive Procedures) and the Safe Surgery Checklist.</li>
+        <li>Defined <strong>SOPs for anaesthesia in the MR environment</strong> are essential, including a modified WHO checklist and a specific MR safety checklist, leading to a <strong>signed safety form kept in the patient's care record</strong>.</li>
+        <li>Many hazards occur around <strong>entry</strong> to the MR environment — a clear <strong>ingress checklist completed immediately before entering the scanner room</strong> is particularly important.</li>
+        <li>Hospitals should develop and <strong>audit</strong> governance procedures to ensure anaesthetists of all grades are competent to deliver anaesthesia safely.</li>
+        <li>When new procedures are planned, the <strong>anaesthetic department must be involved in service development</strong>.</li>
+      </ul>
+
+      <h4>Suite design</h4>
+      <ul>
+        <li>Access control: locks preventing unauthorised access to the MR Controlled Access Area; all routes to the MR environment pass through outer spaces.</li>
+        <li>Visibility: a window (usually with fine mesh for RF screening) giving line-of-sight to the scanner, the patient and all access routes.</li>
+        <li>Anaesthetic input into design is <strong>essential</strong> — space for anaesthesia and emergency procedures, placement of the anaesthetic machine, piped gas outlets and suction, space for remote monitoring, and a clearly marked route for urgent access.</li>
+        <li>Consider possible changes in use at installation: a diagnostic suite may later be used for anaesthetised patients, or case mix in an interventional suite may change. Modifying an operational suite is often prohibitively expensive because of the always-on field and RF cage integrity.</li>
+      </ul>
+
+      <h4>Staff safety</h4>
+      <ul>
+        <li>It is the responsibility of the <strong>radiology department</strong> to screen and train all staff working within the MR environment, using the same protocols as for patients.</li>
+        <li>Records of both screening and training should be kept and reviewed regularly.</li>
+        <li>Access is often restricted to appropriately trained personnel.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 18. PAEDIATRICS ============ -->
+  <details class="card">
+    <summary><span class="num">18</span> Paediatrics</summary>
+    <div class="card-body">
+
+      <ul>
+        <li>Younger children, and those with learning difficulties or involuntary movement disorders, will require sedation or general anaesthesia to produce satisfactory images.</li>
+        <li>A <strong>child-friendly environment and atmosphere</strong> helps minimise the need for sedation.</li>
+        <li><strong>Parental presence, distraction with the involvement of play specialists</strong>, or in-built entertainment systems can improve compliance.</li>
+        <li>When voluntary co-operation is not practical, sedation or GA should be provided to the <strong>same standards of care as would prevail in an operating theatre</strong>.</li>
+        <li>In a child who will not be able to co-operate, consider whether the scan can reasonably be <strong>deferred</strong> until the child is old enough to co-operate.</li>
+        <li>Small infants (&lt; 5 kg) requiring anaesthesia are best managed by intubation and ventilation; older children may be managed with spontaneous ventilation via LMA.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 19. INTRAOPERATIVE MRI ============ -->
+  <details class="card">
+    <summary><span class="num">19</span> Intraoperative MRI (iMRI)</summary>
+    <div class="card-body">
+
+      <h4>Two common arrangements</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Layout</th><th>Implications</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Scanner within the theatre suite</strong></td>
+              <td>Strict safety procedures must restrict personnel and equipment allowed within the MR environment. All staff present in theatre should have undertaken safety training, and policies on movement of equipment and the patient must be adhered to</td>
+            </tr>
+            <tr>
+              <td><strong>Scanner and theatre in adjacent rooms (two-room)</strong></td>
+              <td>MR Unsafe equipment and monitoring <em>can</em> be used, but <strong>must be changed before scanning</strong>. Reduces some risks as access to the MR environment can be controlled by the MR radiographer — in most cases only the anaesthetist and anaesthetic assistant, familiar with the MR field, accompany the patient into the scanning room</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Practical points</h4>
+      <ul>
+        <li>The patient is moved into the scanner via the operating table itself, or on a transfer trolley that links to the MR table.</li>
+        <li><strong>All transfers increase risk</strong> — take great care that there are no trailing wires, IV lines or ventilator circuits that may become caught or dislodged. <strong>All monitoring must be maintained.</strong></li>
+        <li>Liver ablation and focused ultrasound cases are carried out entirely within the MR scanner with minimal patient movement, but <strong>all equipment used must be MR Safe</strong>.</li>
+        <li><strong>Prone position:</strong> access to the tracheal tube is severely limited by the lower coil.</li>
+        <li>Pay particular attention to <strong>securing the airway and patient positioning</strong>. Check and document the condition of pressure areas pre- and postoperatively.</li>
+        <li>Anaesthesia may be very prolonged — <strong>each scan adds approximately 45 minutes</strong> to the case, plus extra time to redrape the operative field to maintain sterility.</li>
+        <li>Allow staff <strong>sufficient breaks</strong> to prevent fatigue and loss of concentration.</li>
+        <li>For lesions in eloquent areas requiring cortical and subcortical mapping, intraoperative scanning is usually undertaken with the <strong>patient awake</strong> — the anaesthetist must stay in the MR suite during scanning.</li>
+        <li>There may be <strong>several hours between induction and the first intraoperative scan</strong> — it is easy to overlook metal items left next to the patient or incompatible monitoring leads.</li>
+        <li><strong>Robust checks at critical times:</strong> before anaesthetic induction, before draping for surgery, and before scanning. The MR safety and theatre WHO checklists have different functions — <strong>both should be undertaken with the relevant teams</strong>.</li>
+        <li>Each hospital should develop individual operating guidelines. When setting up a service, use a <strong>small team of key personnel</strong> who can quickly build expertise; once a safe routine is established, embed SOPs within the wider department.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ============ 20. SELF-TEST ============ -->
+  <details class="card">
+    <summary><span class="num">20</span> Self-test — true or false?</summary>
+    <div class="card-body">
+
+      <h4>Magnetic fields</h4>
+      <ul>
+        <li>MRI scanners generate magnetic fields between 0.2 and 3.0 Tesla. <span class="pill">TRUE</span></li>
+        <li>1 Tesla is equivalent to 10 000 Gauss. <span class="pill">TRUE</span></li>
+        <li>The Earth's magnetic field is approximately 0.5 – 1 Gauss. <span class="pill">TRUE</span></li>
+        <li>MRI superconductor coils are immersed in liquid oxygen to keep them below 4.2 K. <span class="pill warn">FALSE</span> — liquid <strong>helium</strong>.</li>
+        <li>The magnetic field strength stays the same as you move away from the scanner. <span class="pill warn">FALSE</span> — it falls away exponentially.</li>
+      </ul>
+
+      <h4>Magnetic resonance imaging</h4>
+      <ul>
+        <li>The T-weighting refers to the exact dosage of contrast agent given. <span class="pill warn">FALSE</span> — it refers to the relaxation time constant of the atom being studied.</li>
+        <li>In T1-weighted images, fluid structures appear darker. <span class="pill">TRUE</span></li>
+        <li>In T2-weighted images, fluid structures appear white. <span class="pill">TRUE</span></li>
+        <li>The negative charge of the hydrogen atom in water is used to generate MR images. <span class="pill warn">FALSE</span> — hydrogen has a <strong>positive</strong> charge.</li>
+        <li>Gd-DTPA commonly causes anaphylaxis. <span class="pill warn">FALSE</span> — the risk is very low (up to 0.01 %).</li>
+      </ul>
+
+      <h4>Safety concerns in the MR examination room</h4>
+      <ul>
+        <li>Patient injury from metal projectiles. <span class="pill">TRUE</span></li>
+        <li>Hypothermia due to the cold environment. <span class="pill warn">FALSE</span> — hypothermia is uncommon; MRI may <em>increase</em> patient temperature.</li>
+        <li>Burn wounds related to equipment cables. <span class="pill">TRUE</span></li>
+        <li>Anaphylaxis from IV contrast agent. <span class="pill warn">FALSE</span> — uncommon with Gd-DTPA.</li>
+        <li>Hearing damage due to high noise levels. <span class="pill">TRUE</span></li>
+      </ul>
+
+      <h4>Management of patients for MR imaging</h4>
+      <ul>
+        <li>In cardiac arrest, the magnet should be switched off for safe resuscitation. <span class="pill warn">FALSE</span> — move the patient to the induction area. Switching off causes quenching and puts the resuscitation team at risk.</li>
+        <li>Patients with neurovascular aneurysm clips should never have MRI scans. <span class="pill">TRUE</span></li>
+        <li>Cardiac pacemakers are at significant risk of failure within the 5 Gauss line. <span class="pill">TRUE</span></li>
+        <li>Patients with angina should keep their GTN patches on during anaesthesia for MRI. <span class="pill warn">FALSE</span> — GTN patches should be removed before MRI scanning (they may contain metal).</li>
+        <li>ICU patients should not have MRI if their tracheal tube contains a metal spring in the pilot balloon. <span class="pill warn">FALSE</span> — the spring may be used, but must be <strong>taped away from the area being studied</strong>. Armoured ETTs with a metal coil down their length should not be used.</li>
+      </ul>
+
+    </div>
+  </details>
+
+</main>
+
+<!-- ======================= FOOTER / SOURCES ======================= -->
+<footer>
+  <h3>Sources</h3>
+  <ol>
+    <li>
+      Stuart G. <em>Understanding Magnetic Resonance Imaging.</em> Anaesthesia Tutorial of the Week 177.
+      World Federation of Societies of Anaesthesiologists / ATOTW. 3 May 2010.
+      (Dr Grant Stuart, Specialist Registrar, Chelsea and Westminster Hospital, London.)
+    </li>
+    <li>
+      Wilson SR, et al. <em>Guidelines for the safe provision of anaesthesia in magnetic resonance units 2019.</em>
+      A consensus document from the Association of Anaesthetists of Great Britain and Ireland, endorsed by the
+      Neuro Anaesthesia and Critical Care Society of Great Britain and Ireland, the Royal College of Anaesthetists,
+      the Association of Paediatric Anaesthetists of Great Britain and Ireland, the Society of British Neurological Surgeons,
+      the Royal College of Radiologists and the Society of Anaesthetists in Radiology.
+      <strong>Anaesthesia</strong> 2019; 74: 638–650. doi:10.1111/anae.14546
+    </li>
+  </ol>
+
+  <h3 style="margin-top:1rem;">Further resources</h3>
+  <ul style="padding-left:1.2rem; margin:0;">
+    <li>MRI device compatibility: <a href="https://www.mrisafety.com" target="_blank" rel="noopener">mrisafety.com</a></li>
+    <li>MHRA — Safety guidelines for magnetic resonance imaging equipment in clinical use (2016)</li>
+    <li>Royal College of Anaesthetists — GPAS Chapter 7: Anaesthesia in the non-theatre environment</li>
+    <li>Association of Anaesthetists — Provision of anaesthetic services in magnetic resonance units (2002; safety update 2010)</li>
+  </ul>
+
+  <p class="disclaimer">
+    <strong>Educational quick reference only.</strong> This summary is derived from the two sources above and is intended to support,
+    not replace, local protocols, national guidance and clinical judgement. Always follow your own institution's MR safety
+    policy, device manufacturer instructions and the current <em>MHRA</em> guidance. Not a substitute for formal MR safety training.
+  </p>
+</footer>
+
+<!-- ======================= SCRIPT ======================= -->
+<script>
+(function () {
+  'use strict';
+
+  var content = document.getElementById('content');
+  var searchInput = document.getElementById('search');
+  var countEl = document.getElementById('count');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var expandAllBtn = document.getElementById('expandAll');
+  var collapseAllBtn = document.getElementById('collapseAll');
+  var fsUpBtn = document.getElementById('fsUp');
+  var fsDownBtn = document.getElementById('fsDown');
+
+  var matches = [];
+  var current = -1;
+  var debounceTimer = null;
+
+  /* ---------- TEXT SIZE ---------- */
+  var FS_KEY = 'mri-qr-fs';
+  var fontSize = 16;
+
+  function applyFontSize(v) {
+    fontSize = Math.min(22, Math.max(12, v));
+    document.documentElement.style.setProperty('--fs', fontSize + 'px');
+    try { localStorage.setItem(FS_KEY, String(fontSize)); } catch (e) { /* ignore */ }
+  }
+
+  try {
+    var saved = parseFloat(localStorage.getItem(FS_KEY));
+    if (!isNaN(saved)) { fontSize = saved; }
+  } catch (e) { /* ignore */ }
+  applyFontSize(fontSize);
+
+  fsUpBtn.addEventListener('click', function () { applyFontSize(fontSize + 1); });
+  fsDownBtn.addEventListener('click', function () { applyFontSize(fontSize - 1); });
+
+  /* ---------- EXPAND / COLLAPSE ---------- */
+  expandAllBtn.addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+  collapseAllBtn.addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = false; });
+  });
+
+  /* ---------- SEARCH ---------- */
+  function clearHighlights() {
+    var marks = content.querySelectorAll('mark.hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function updateCounter() {
+    if (!matches.length) {
+      countEl.textContent = searchInput.value.trim().length >= 2 ? '0' : '';
+      return;
+    }
+    countEl.textContent = (current + 1) + '/' + matches.length;
+  }
+
+  function setCurrent(index, doScroll) {
+    if (!matches.length) { current = -1; updateCounter(); return; }
+    if (current >= 0 && matches[current]) {
+      matches[current].classList.remove('current');
+    }
+    current = (index + matches.length) % matches.length;
+    var el = matches[current];
+    el.classList.add('current');
+    if (doScroll !== false) {
+      el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+    updateCounter();
+  }
+
+  function openAncestors(el) {
+    var node = el.parentElement;
+    while (node && node !== content) {
+      if (node.tagName === 'DETAILS') { node.open = true; }
+      node = node.parentElement;
+    }
+  }
+
+  function performSearch(rawQuery) {
+    clearHighlights();
+    matches = [];
+    current = -1;
+
+    var query = rawQuery.trim();
+    if (query.length < 2) {
+      updateCounter();
+      return;
+    }
+
+    var needle = query.toLowerCase();
+
+    // Collect candidate text nodes
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var parent = node.parentNode;
+          if (!parent) return NodeFilter.FILTER_REJECT;
+          var tag = parent.nodeName;
+          if (tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
+          // never touch SVG text
+          if (parent.closest && parent.closest('svg')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    var nodes = [];
+    while (walker.nextNode()) { nodes.push(walker.currentNode); }
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var hay = text.toLowerCase();
+      var idx = hay.indexOf(needle);
+      if (idx === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) {
+          frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        }
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + needle.length);
+        frag.appendChild(mark);
+        last = idx + needle.length;
+        idx = hay.indexOf(needle, last);
+      }
+      if (last < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    matches = Array.prototype.slice.call(content.querySelectorAll('mark.hl'));
+
+    // Expand every card that contains a match
+    var opened = [];
+    matches.forEach(function (m) {
+      var node = m.parentElement;
+      while (node && node !== content) {
+        if (node.tagName === 'DETAILS' && !node.open) {
+          node.open = true;
+          opened.push(node);
+        }
+        node = node.parentElement;
+      }
+    });
+
+    if (matches.length) {
+      setCurrent(0);
+    } else {
+      updateCounter();
+    }
+  }
+
+  searchInput.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    var value = searchInput.value;
+    debounceTimer = setTimeout(function () { performSearch(value); }, 160);
+  });
+
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!matches.length) { performSearch(searchInput.value); return; }
+      setCurrent(current + (e.shiftKey ? -1 : 1));
+    }
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      clearHighlights();
+      matches = [];
+      current = -1;
+      updateCounter();
+    }
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (!matches.length) { performSearch(searchInput.value); return; }
+    setCurrent(current + 1);
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (!matches.length) { performSearch(searchInput.value); return; }
+    setCurrent(current - 1);
+  });
+
+  /* ---------- KEYBOARD SHORTCUT: "/" focuses search ---------- */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      var tag = (document.activeElement && document.activeElement.tagName) || '';
+      if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      }
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>
