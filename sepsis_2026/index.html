@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSC 2026 — Sepsis Quick Reference &amp; Calculator (LEGO Edition)</title>
+<style>
+/* ============ THEME TOKENS ============ */
+:root{
+  --fs: 15px;
+  --red:#D01012;
+  --yellow:#FFD500;
+  --blue:#0055BF;
+  --green:#00963F;
+  --lgreen:#7CC576;
+  --orange:#FF8A00;
+  --purple:#7B3FA0;
+  --teal:#00A0B0;
+  --magenta:#C4257F;
+  --gold:#E8A400;
+  --gray:#8A96A3;
+  --ink:#12212E;
+  --ink-soft:#3E4C59;
+  --bg:#E9EFF6;
+  --card:#FFFFFF;
+  --line:#D3DEE9;
+  --radius:12px;
+  --shadow:0 2px 0 rgba(0,0,0,.12), 0 6px 14px rgba(18,33,46,.10);
+}
+*{box-sizing:border-box}
+html{font-size:var(--fs);scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color:var(--ink);
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.75) 0 5px, transparent 6px);
+  background-size:34px 34px;
+  background-position:0 0;
+  line-height:1.5;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ============ LEGO STUD DECORATION ============ */
+.studs{
+  position:relative;
+}
+.studs::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:-6px;
+  height:12px;
+  background-image:radial-gradient(circle at 50% 60%, rgba(255,255,255,.55) 0 5px, rgba(0,0,0,.10) 5px 6px, transparent 6px);
+  background-size:26px 12px;
+  background-repeat:repeat-x;
+  pointer-events:none;
+}
+
+/* ============ HEADER ============ */
+header.masthead{
+  background:linear-gradient(180deg,#E8262A,#B90E10);
+  color:#fff;
+  padding:1.1rem 1rem 1.4rem;
+  box-shadow:var(--shadow);
+  border-bottom:6px solid #8C0A0C;
+}
+.masthead-inner{max-width:1180px;margin:0 auto}
+.masthead h1{
+  margin:.35rem 0 .2rem;
+  font-size:1.5rem;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  text-shadow:0 2px 0 rgba(0,0,0,.28);
+}
+.masthead .sub{font-size:.88rem;opacity:.95;margin:0}
+.brick-badge{
+  display:inline-block;
+  background:#FFD500;color:#3A2A00;
+  font-weight:800;font-size:.72rem;letter-spacing:1.4px;
+  padding:.22rem .6rem;border-radius:5px;
+  text-transform:uppercase;
+}
+
+/* ============ TOOLBAR ============ */
+.toolbar-wrap{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(6px);
+  border-bottom:3px solid var(--line);
+  box-shadow:0 3px 10px rgba(18,33,46,.08);
+}
+.toolbar{
+  max-width:1180px;margin:0 auto;
+  display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;
+  padding:.55rem .8rem;
+}
+.toolbar .grow{flex:1 1 240px;min-width:180px;position:relative}
+#search{
+  width:100%;
+  font-size:.92rem;
+  padding:.5rem .7rem .5rem 2rem;
+  border:2px solid var(--line);
+  border-radius:8px;
+  background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238A96A3' stroke-width='3'><circle cx='11' cy='11' r='7'/><path d='M20 20l-4-4'/></svg>") no-repeat .55rem center;
+  outline:none;
+  font-family:inherit;
+}
+#search:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,85,191,.15)}
+.btn{
+  font-family:inherit;
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.3px;
+  border:none;
+  border-radius:8px;
+  padding:.48rem .72rem;
+  cursor:pointer;
+  color:#fff;
+  background:var(--blue);
+  box-shadow:0 3px 0 rgba(0,0,0,.22);
+  transition:transform .06s ease, filter .12s ease;
+  white-space:nowrap;
+}
+.btn:hover{filter:brightness(1.1)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.22)}
+.btn.yellow{background:var(--yellow);color:#3A2A00}
+.btn.green{background:var(--green)}
+.btn.red{background:var(--red)}
+.btn.gray{background:#5A6875}
+.btn.small{padding:.35rem .55rem;font-size:.75rem}
+#searchStatus{font-size:.75rem;color:var(--ink-soft);min-width:88px;text-align:center}
+.fontctl{display:flex;align-items:center;gap:.25rem;background:#F2F6FA;border:2px solid var(--line);border-radius:8px;padding:.15rem .3rem}
+.fontctl span{font-size:.72rem;font-weight:700;color:var(--ink-soft)}
+
+/* ============ LAYOUT ============ */
+main{max-width:1180px;margin:0 auto;padding:1rem .8rem 3rem}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:.9rem;margin-bottom:1.1rem}
+@media(min-width:760px){.hero-grid{grid-template-columns:1fr 1fr}}
+
+/* ============ BLOCKS (COLLAPSIBLE SECTIONS) ============ */
+.block{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  margin-bottom:1rem;
+  overflow:hidden;
+  border:2px solid var(--line);
+}
+.block-head{
+  width:100%;
+  display:flex;align-items:center;gap:.7rem;
+  font-family:inherit;
+  font-size:.98rem;
+  font-weight:800;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  color:#fff;
+  background:var(--blue);
+  border:none;
+  padding:.75rem .9rem;
+  cursor:pointer;
+  text-align:left;
+  position:relative;
+}
+.block-head::before{
+  content:"";
+  position:absolute;left:0;right:0;top:0;height:8px;
+  background-image:radial-gradient(circle at 50% 100%, rgba(255,255,255,.45) 0 4px, rgba(0,0,0,.12) 4px 5px, transparent 5px);
+  background-size:22px 8px;background-repeat:repeat-x;
+  pointer-events:none;
+}
+.block-head .chev{
+  margin-left:auto;
+  font-size:.75rem;
+  transition:transform .22s ease;
+  background:rgba(0,0,0,.22);
+  border-radius:50%;
+  width:1.6rem;height:1.6rem;
+  display:grid;place-items:center;
+  flex:0 0 auto;
+}
+.block.open .block-head .chev{transform:rotate(90deg)}
+.block-head .count{
+  font-size:.68rem;font-weight:700;
+  background:rgba(0,0,0,.22);
+  padding:.12rem .45rem;border-radius:20px;
+  letter-spacing:.6px;
+}
+.block-body{display:none;padding:.85rem .9rem 1rem;border-top:3px solid var(--line)}
+.block.open .block-body{display:block}
+
+/* Section colours */
+.sec-blue .block-head{background:linear-gradient(180deg,#1069D6,#00449C)}
+.sec-red .block-head{background:linear-gradient(180deg,#E8262A,#A80B0D)}
+.sec-green .block-head{background:linear-gradient(180deg,#12A94B,#00702E)}
+.sec-teal .block-head{background:linear-gradient(180deg,#12B0C0,#00727E)}
+.sec-orange .block-head{background:linear-gradient(180deg,#FF9C1F,#D26A00)}
+.sec-purple .block-head{background:linear-gradient(180deg,#9257B8,#5C2B7C)}
+.sec-gold .block-head{background:linear-gradient(180deg,#F5B72B,#B87C00);color:#2A1D00}
+.sec-magenta .block-head{background:linear-gradient(180deg,#D93E92,#8E1659)}
+
+/* ============ RECOMMENDATION CARDS ============ */
+.rec{
+  background:#fff;
+  border:2px solid var(--line);
+  border-left-width:7px;
+  border-radius:10px;
+  padding:.6rem .7rem .55rem;
+  margin:0 0 .55rem;
+  box-shadow:0 1px 0 rgba(0,0,0,.05);
+}
+.rec:last-child{margin-bottom:0}
+.rec-top{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;margin-bottom:.35rem}
+.rec .id{
+  font-weight:900;font-size:.75rem;
+  background:var(--ink);color:#fff;
+  border-radius:6px;padding:.1rem .42rem;
+  letter-spacing:.5px;
+}
+.badge{
+  font-size:.64rem;font-weight:800;letter-spacing:.5px;
+  text-transform:uppercase;
+  padding:.14rem .42rem;border-radius:20px;
+  border:1.5px solid transparent;
+  white-space:nowrap;
+}
+.b-strong{background:#DCF5E5;color:#00672C;border-color:#9FDCB6}
+.b-cond{background:#EAF8EC;color:#2E6B36;border-color:#BFE3C5}
+.b-cagainst{background:#FFF0DC;color:#8A4B00;border-color:#F8CF9A}
+.b-sagainst{background:#FDE2E2;color:#8C0A0C;border-color:#F3B4B4}
+.b-gps{background:#E1EDFC;color:#00449C;border-color:#B0CDEF}
+.b-insuff{background:#EDF1F5;color:#46525E;border-color:#C9D4DF}
+.cert{font-size:.66rem;font-weight:800;letter-spacing:.4px;padding:.12rem .4rem;border-radius:6px;background:#F2F6FA;color:#3E4C59;border:1.5px solid #D3DEE9}
+.cert.c-high{background:#E4F7EA;color:#00672C;border-color:#A6DFBB}
+.cert.c-mod{background:#EAF7E4;color:#37641A;border-color:#C3E2B2}
+.cert.c-low{background:#FFF6E0;color:#7A5600;border-color:#F0DCA6}
+.cert.c-vlow{background:#FDEDED;color:#8C2A2A;border-color:#F2C3C3}
+.tag-new{background:#0055BF;color:#fff;border-color:#0055BF}
+.tag-carry{background:#E9EEF3;color:#4A5763;border-color:#CBD6E0}
+.tag-up{background:#E4F7EA;color:#00672C;border-color:#A6DFBB}
+.tag-down{background:#FDE2E2;color:#8C0A0C;border-color:#F3B4B4}
+
+.rec p{margin:.2rem 0 .25rem;font-size:.86rem}
+.rec .rem{
+  font-size:.78rem;color:var(--ink-soft);
+  background:#F6F9FC;border-left:3px solid var(--line);
+  padding:.32rem .5rem;border-radius:0 6px 6px 0;margin:.3rem 0 .1rem;
+}
+.rec .rem b{color:var(--ink)}
+.practice{
+  font-size:.78rem;background:#FFF9E3;border:1.5px dashed #E8C766;
+  color:#5C4400;border-radius:8px;padding:.35rem .5rem;margin:.35rem 0 .1rem;
+}
+.practice b{color:#3A2A00}
+
+/* Left border by strength */
+.s-strong{border-left-color:var(--green)}
+.s-cond{border-left-color:var(--lgreen)}
+.s-cagainst{border-left-color:var(--orange)}
+.s-sagainst{border-left-color:var(--red)}
+.s-gps{border-left-color:var(--blue)}
+.s-insuff{border-left-color:var(--gray)}
+
+/* ============ TABLES ============ */
+.table-scroll{
+  overflow:auto;max-height:26rem;
+  border:2px solid var(--line);border-radius:10px;margin:.5rem 0;
+  -webkit-overflow-scrolling:touch;
+}
+table{border-collapse:collapse;width:100%;font-size:.8rem;background:#fff;min-width:420px}
+caption{
+  caption-side:top;text-align:left;font-weight:800;font-size:.82rem;
+  padding:.5rem .6rem;background:#F2F6FA;color:var(--ink);
+  border-bottom:2px solid var(--line);
+}
+th,td{padding:.42rem .55rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{
+  position:sticky;top:0;background:#E4EBF3;z-index:2;
+  font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:#33414F;
+}
+tbody tr:nth-child(even){background:#FAFCFE}
+tbody tr:hover{background:#EAF3FF}
+
+/* ============ CALCULATORS ============ */
+.calc{
+  background:#F7FAFD;
+  border:2px solid var(--line);
+  border-radius:12px;
+  padding:.75rem .8rem;
+  margin:0 0 .8rem;
+}
+.calc h4{
+  margin:0 0 .5rem;
+  font-size:.86rem;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  color:var(--blue);
+  display:flex;align-items:center;gap:.4rem;
+}
+.calc h4 .dot{width:.7rem;height:.7rem;border-radius:50%;background:var(--yellow);display:inline-block;box-shadow:0 0 0 2px rgba(0,0,0,.12)}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.55rem;margin-bottom:.6rem}
+.field{display:flex;flex-direction:column;gap:.15rem}
+.field label{font-size:.7rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--ink-soft)}
+.field input,.field select{
+  font-family:inherit;font-size:.86rem;
+  padding:.38rem .5rem;border:2px solid var(--line);border-radius:7px;
+  background:#fff;outline:none;width:100%;
+}
+.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,85,191,.13)}
+.out{
+  background:#fff;border:2px solid var(--line);border-radius:9px;
+  padding:.55rem .65rem;font-size:.84rem;
+}
+.out .big{font-size:1.18rem;font-weight:900;color:var(--blue);letter-spacing:.3px}
+.out .row{display:flex;justify-content:space-between;gap:.6rem;padding:.16rem 0;border-bottom:1px dotted #DCE5EE;font-size:.8rem}
+.out .row:last-child{border-bottom:none}
+.out .row span:last-child{font-weight:800;text-align:right}
+.ok{color:#00672C;font-weight:800}
+.warn{color:#B26A00;font-weight:800}
+.bad{color:#B90E10;font-weight:800}
+
+/* NEE bar */
+.nee-bar{height:1.05rem;background:#E4EBF3;border-radius:20px;overflow:hidden;margin:.35rem 0 .15rem;border:1.5px solid var(--line)}
+.nee-fill{height:100%;width:0;background:linear-gradient(90deg,#7CC576,#FFD500,#FF8A00,#D01012);transition:width .3s ease}
+.nee-scale{display:flex;justify-content:space-between;font-size:.62rem;color:var(--ink-soft);font-weight:700}
+
+/* ============ FLOW DIAGRAMS ============ */
+.flow{margin:.5rem 0}
+.flow-start,.flow-mid{
+  background:linear-gradient(180deg,#1069D6,#00449C);
+  color:#fff;font-weight:800;font-size:.82rem;text-align:center;
+  padding:.6rem .7rem;border-radius:10px;letter-spacing:.3px;
+  box-shadow:0 3px 0 rgba(0,0,0,.18);
+}
+.flow-mid{background:linear-gradient(180deg,#12A94B,#00702E);margin:.7rem 0}
+.flow-row{display:grid;grid-template-columns:1fr;gap:.55rem;margin:.6rem 0}
+@media(min-width:720px){.flow-row{grid-template-columns:repeat(3,1fr)}}
+.flow-col{
+  background:#fff;border:2px solid var(--line);border-top-width:6px;border-radius:10px;
+  padding:.55rem .6rem;
+}
+.flow-col h4{
+  margin:0 0 .4rem;font-size:.74rem;text-transform:uppercase;letter-spacing:.8px;
+  color:var(--ink-soft);
+}
+.flow-col ul{margin:0;padding-left:1.05rem}
+.flow-col li{font-size:.78rem;margin-bottom:.28rem}
+.flow-col.mon{border-top-color:var(--blue)}
+.flow-col.flu{border-top-color:var(--teal)}
+.flow-col.vas{border-top-color:var(--red)}
+.flow-col.res{border-top-color:var(--purple)}
+
+/* timing cards */
+.timing-grid{display:grid;grid-template-columns:1fr;gap:.55rem;margin:.5rem 0}
+@media(min-width:720px){.timing-grid{grid-template-columns:repeat(2,1fr)}}
+.tcard{border:2px solid var(--line);border-radius:10px;padding:.55rem .65rem;background:#fff;border-left-width:7px}
+.tcard h5{margin:0 0 .25rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px}
+.tcard p{margin:0;font-size:.79rem}
+.tcard.t1{border-left-color:var(--red)}
+.tcard.t2{border-left-color:var(--orange)}
+.tcard.t3{border-left-color:var(--yellow)}
+.tcard.t4{border-left-color:var(--green)}
+
+/* ============ LEGEND ============ */
+.legend-grid{display:grid;grid-template-columns:1fr;gap:.7rem}
+@media(min-width:680px){.legend-grid{grid-template-columns:repeat(3,1fr)}}
+.legend-box{background:#F7FAFD;border:2px solid var(--line);border-radius:10px;padding:.55rem .65rem}
+.legend-box h5{margin:0 0 .35rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-soft)}
+.legend-box ul{list-style:none;margin:0;padding:0}
+.legend-box li{font-size:.76rem;display:flex;gap:.4rem;align-items:center;margin-bottom:.22rem}
+
+/* ============ SEARCH HIGHLIGHT ============ */
+mark.hit{background:#FFE873;color:#3A2A00;border-radius:3px;padding:0 .1em;box-shadow:0 0 0 1px #E8C766 inset}
+mark.hit.current{background:#FF9C1F;color:#fff;box-shadow:0 0 0 2px #B26A00}
+
+/* ============ FOOTER ============ */
+footer{
+  background:#12212E;color:#C9D6E2;padding:1.3rem .9rem 2rem;font-size:.78rem;
+  border-top:6px solid var(--yellow);
+}
+.footer-inner{max-width:1180px;margin:0 auto}
+footer h3{margin:0 0 .5rem;color:#fff;font-size:.92rem;text-transform:uppercase;letter-spacing:1px}
+footer a{color:#8FC4FF;word-break:break-word}
+.cite{
+  background:#1D3049;border-left:5px solid var(--yellow);
+  padding:.6rem .75rem;border-radius:0 8px 8px 0;margin:.6rem 0;
+  line-height:1.6;
+}
+.disclaimer{font-size:.72rem;color:#93A5B6;margin-top:.8rem;border-top:1px solid #2A3E56;padding-top:.7rem}
+
+/* ============ MISC ============ */
+.note{
+  font-size:.78rem;background:#E1EDFC;border-left:4px solid var(--blue);
+  padding:.42rem .55rem;border-radius:0 8px 8px 0;margin:.4rem 0;color:#0E3A6E;
+}
+.toTop{
+  position:fixed;right:1rem;bottom:1rem;z-index:80;
+  width:2.7rem;height:2.7rem;border-radius:50%;
+  background:var(--yellow);color:#3A2A00;font-weight:900;font-size:1.1rem;
+  border:none;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.25);
+  display:none;place-items:center;
+}
+.toTop.show{display:grid}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="masthead studs">
+  <div class="masthead-inner">
+    <span class="brick-badge">LEGO Edition · Quick Reference &amp; Calculator</span>
+    <h1>Surviving Sepsis Campaign 2026</h1>
+    <p class="sub">International Guidelines for Management of Sepsis and Septic Shock — adult in-hospital, immediate prehospital &amp; post-hospital care. Built for anaesthetists &amp; intensivists.</p>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar-wrap">
+  <div class="toolbar">
+    <div class="grow">
+      <label class="sr-only" for="search">Search the guidelines</label>
+      <input id="search" type="search" placeholder="Search guidelines, drugs, numbers… (e.g. vasopressin, 30 mL/kg, PEEP)" autocomplete="off">
+    </div>
+    <button class="btn small" id="prevHit" title="Previous match">◀</button>
+    <span id="searchStatus">—</span>
+    <button class="btn small" id="nextHit" title="Next match">▶</button>
+    <button class="btn small gray" id="clearSearch">Clear</button>
+    <button class="btn green" id="expandAll">＋ Expand all</button>
+    <button class="btn red" id="collapseAll">－ Collapse all</button>
+    <div class="fontctl" role="group" aria-label="Text size">
+      <span>A</span>
+      <button class="btn small yellow" id="fsDown" title="Smaller text">A−</button>
+      <button class="btn small yellow" id="fsUp" title="Larger text">A+</button>
+      <button class="btn small gray" id="fsReset" title="Reset text size">↺</button>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+
+  <!-- ============ SYMBOL KEY ============ -->
+  <section class="block sec-gold open" id="legend">
+    <button class="block-head" aria-expanded="true">
+      <span>🧱 Symbol Key &amp; How to Read This</span>
+      <span class="count">LEGEND</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+      <div class="legend-grid">
+        <div class="legend-box">
+          <h5>Strength of recommendation</h5>
+          <ul>
+            <li><span class="badge b-strong">Strong FOR</span> do it (most patients)</li>
+            <li><span class="badge b-cond">Conditional FOR</span> probably do it</li>
+            <li><span class="badge b-cagainst">Conditional AGAINST</span> probably don't</li>
+            <li><span class="badge b-sagainst">Strong AGAINST</span> don't do it</li>
+            <li><span class="badge b-gps">Good practice statement</span> unequivocal net benefit</li>
+            <li><span class="badge b-insuff">Insufficient evidence</span> no recommendation</li>
+          </ul>
+        </div>
+        <div class="legend-box">
+          <h5>Certainty of evidence (GRADE)</h5>
+          <ul>
+            <li><span class="cert c-high">⊕⊕⊕⊕</span> High</li>
+            <li><span class="cert c-mod">⊕⊕⊕◯</span> Moderate</li>
+            <li><span class="cert c-low">⊕⊕◯◯</span> Low</li>
+            <li><span class="cert c-vlow">⊕◯◯◯</span> Very low</li>
+          </ul>
+        </div>
+        <div class="legend-box">
+          <h5>Type / change</h5>
+          <ul>
+            <li><span class="badge tag-new">New / Revised</span></li>
+            <li><span class="badge tag-carry">Carry over</span></li>
+            <li><span class="badge tag-up">↑ Upgraded</span></li>
+            <li><span class="badge tag-down">↓ Downgraded</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="note"><b>How to use:</b> use the calculators at the top of each clinical section, search the page, or expand a whole domain. Numbers in circles (e.g. <b>#33</b>) match the numbered statements in the published guideline.</div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 2 — Implications of strong vs. conditional recommendations</caption>
+          <thead>
+            <tr><th>Stakeholder</th><th>Strong recommendation</th><th>Conditional recommendation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Patients &amp; families</td><td>All or most would want the intervention.</td><td>Most would want it, but a substantial proportion would not.</td></tr>
+            <tr><td>Clinicians</td><td>Should be given to all or most patients. Little need for shared decision-making to tailor to context.</td><td>Should be done for most patients, but consider shared decision-making, clinical context and resources.</td></tr>
+            <tr><td>Policy makers</td><td>Often more appropriate for policy or performance measure.</td><td>May be less appropriate for policy or performance measure.</td></tr>
+            <tr><td>Researchers</td><td>Research resources better spent on other topics.</td><td>Additional research may be warranted and may change future recommendations.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 3 — Sepsis terminology used in this guideline</caption>
+          <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+          <tbody>
+            <tr><td><b>Definite sepsis</b></td><td>Sepsis confirmed on history, clinical examination and diagnostic testing. Alternative diagnosis very unlikely.</td></tr>
+            <tr><td><b>Probable sepsis</b></td><td>High suspicion. Sepsis most likely diagnosis. Alternative diagnosis less likely.</td></tr>
+            <tr><td><b>Possible sepsis</b></td><td>Moderate suspicion. Sepsis possible, but an alternative diagnosis is also likely.</td></tr>
+            <tr><td><b>Unlikely sepsis</b></td><td>Low suspicion. Clinical assessment not consistent with sepsis, or alternate diagnosis more likely.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALCULATOR HUB ============ -->
+  <section class="block sec-blue open" id="calculators">
+    <button class="block-head" aria-expanded="true">
+      <span>🧮 Bedside Calculator Hub</span>
+      <span class="count">7 TOOLS</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+
+      <!-- 1. Weight / fluid -->
+      <div class="calc">
+        <h4><span class="dot"></span>1 · Weight, IBW, Adjusted Body Weight &amp; 30 mL/kg Fluid</h4>
+        <div class="calc-grid">
+          <div class="field"><label for="c1sex">Sex</label>
+            <select id="c1sex"><option value="male">Male</option><option value="female">Female</option></select>
+          </div>
+          <div class="field"><label for="c1ht">Height (cm)</label><input id="c1ht" type="number" value="170" step="0.5" min="100" max="230"></div>
+          <div class="field"><label for="c1wt">Actual weight (kg)</label><input id="c1wt" type="number" value="70" step="0.5" min="25" max="300"></div>
+        </div>
+        <div class="out" id="c1out"></div>
+        <div class="note" style="margin-top:.5rem">
+          <b>#10</b> — For sepsis-induced hypoperfusion or septic shock, <b>suggest at least 30 mL/kg IV crystalloid in the first 3 h</b> (conditional, low certainty). Use <b>actual body weight</b>; use <b>adjusted or ideal body weight if BMI &gt; 30 kg/m²</b>. Reassess frequently — avoid under- and over-resuscitation. Tailor to cachectic/underweight patients.
+        </div>
+      </div>
+
+      <!-- 2. Tidal volume -->
+      <div class="calc">
+        <h4><span class="dot"></span>2 · Lung-Protective Tidal Volume</h4>
+        <div class="calc-grid">
+          <div class="field"><label for="c2sex">Sex</label>
+            <select id="c2sex"><option value="male">Male</option><option value="female">Female</option></select>
+          </div>
+          <div class="field"><label for="c2ht">Height (cm)</label><input id="c2ht" type="number" value="170" step="0.5" min="100" max="230"></div>
+        </div>
+        <div class="out" id="c2out"></div>
+        <div class="note" style="margin-top:.5rem">
+          <b>#71</b> Sepsis + ARDS → <b>6 mL/kg</b> predicted body weight over &gt; 10 mL/kg (strong, high certainty).<br>
+          <b>#72</b> Sepsis-associated hypoxaemic respiratory failure <i>without</i> ARDS → <b>6–8 mL/kg IBW</b> over 4 to &lt; 6 mL/kg (conditional, low).<br>
+          <b>#73</b> Plateau pressure upper limit <b>30 cmH₂O</b> (strong, high certainty). Screen regularly for ARDS — it is missed in ~50%.
+        </div>
+      </div>
+
+      <!-- 3. MAP -->
+      <div class="calc">
+        <h4><span class="dot"></span>3 · MAP &amp; Target Check</h4>
+        <div class="calc-grid">
+          <div class="field"><label for="c3sbp">Systolic BP (mmHg)</label><input id="c3sbp" type="number" value="85" min="30" max="260"></div>
+          <div class="field"><label for="c3dbp">Diastolic BP (mmHg)</label><input id="c3dbp" type="number" value="50" min="10" max="180"></div>
+          <div class="field"><label for="c3age">Age (years)</label><input id="c3age" type="number" value="55" min="16" max="120"></div>
+        </div>
+        <div class="out" id="c3out"></div>
+        <div class="note" style="margin-top:.5rem">
+          <b>#13</b> Initial MAP target <b>65 mmHg</b> over higher (strong, moderate). In practice use a range (e.g. ±5 mmHg).<br>
+          <b>#14</b> Age ≥ 65 y: initial MAP range <b>60–65 mmHg</b> over higher (conditional, low).
+        </div>
+      </div>
+
+      <!-- 4. NEE -->
+      <div class="calc">
+        <h4><span class="dot"></span>4 · Vasopressor Load — Norepinephrine Equivalent (NEE)</h4>
+        <div class="calc-grid">
+          <div class="field"><label for="c4ne">Norepinephrine (µg/kg/min)</label><input id="c4ne" type="number" value="0.2" step="0.01" min="0"></div>
+          <div class="field"><label for="c4ep">Epinephrine (µg/kg/min)</label><input id="c4ep" type="number" value="0" step="0.01" min="0"></div>
+          <div class="field"><label for="c4dp">Dopamine (µg/kg/min)</label><input id="c4dp" type="number" value="0" step="0.5" min="0"></div>
+          <div class="field"><label for="c4ph">Phenylephrine (µg/kg/min)</label><input id="c4ph" type="number" value="0" step="0.01" min="0"></div>
+          <div class="field"><label for="c4vp">Vasopressin (units/min)</label><input id="c4vp" type="number" value="0" step="0.01" min="0"></div>
+        </div>
+        <div class="out" id="c4out"></div>
+        <div class="nee-bar"><div class="nee-fill" id="c4bar"></div></div>
+        <div class="nee-scale"><span>0</span><span>0.25</span><span>0.5</span><span>1.0</span><span>≥1.5</span></div>
+        <div class="note" style="margin-top:.5rem">
+          <b>Escalation logic:</b> <b>#53/#55</b> norepinephrine is first-line over dopamine, epinephrine, selepressin, vasopressin, angiotensin II. <b>#56</b> add vasopressin on escalating norepinephrine (conditional, moderate). <b>#57</b> if MAP still inadequate on norepinephrine + vasopressin, add epinephrine (conditional, very low). <b>#58</b> with concomitant cardiac dysfunction, either norepinephrine or epinephrine may be first-line.
+        </div>
+        <div class="practice"><b>In our practice:</b> vasopressin added at a median norepinephrine dose of <b>0.3 µg/kg/min</b> (IQR 0.2–0.5); epinephrine added at a median <b>0.8 µg/kg/min</b> (IQR 0.5–1.0); corticosteroids started by 34% at &lt; 0.2, 38% at 0.2–0.3 and 28% at &gt; 0.3 µg/kg/min.</div>
+      </div>
+
+      <!-- 5. Oxygenation -->
+      <div class="calc">
+        <h4><span class="dot"></span>5 · Oxygenation — P/F, S/F &amp; ARDS Category</h4>
+        <div class="calc-grid">
+          <div class="field"><label for="c5pao2">PaO₂ (mmHg) — optional</label><input id="c5pao2" type="number" value="80" min="0" max="600"></div>
+          <div class="field"><label for="c5spo2">SpO₂ (%) — optional</label><input id="c5spo2" type="number" value="94" min="50" max="100"></div>
+          <div class="field"><label for="c5fio2">FiO₂ (%)</label><input id="c5fio2" type="number" value="40" min="21" max="100"></div>
+        </div>
+        <div class="out" id="c5out"></div>
+        <div class="note" style="margin-top:.5rem">
+          <b>#65</b> Measure oxygenation by SpO₂ or ABG <i>with</i> physical examination and clinical acumen (conditional, very low). ABG is the gold standard; SpO₂/FiO₂ is less accurate in shock, darker skin tones, and SpO₂ &lt; 90% or &gt; 97%.<br>
+          <b>#67</b> HFNC over conventional oxygen when P/F &lt; 200 or S/F &lt; 235 (conditional, very low).
+        </div>
+      </div>
+
+      <!-- 6. Lactate -->
+      <div class="calc">
+        <h4><span class="dot"></span>6 · Lactate Clearance &amp; Capillary Refill Time</h4>
+        <div class="calc-grid">
+          <div class="field"><label for="c6l1">Initial lactate (mmol/L)</label><input id="c6l1" type="number" value="4" step="0.1" min="0"></div>
+          <div class="field"><label for="c6l2">Repeat lactate (mmol/L)</label><input id="c6l2" type="number" value="3.2" step="0.1" min="0"></div>
+          <div class="field"><label for="c6crt">Capillary refill time (s)</label><input id="c6crt" type="number" value="3" step="0.5" min="0"></div>
+        </div>
+        <div class="out" id="c6out"></div>
+        <div class="note" style="margin-top:.5rem">
+          <b>#51</b> Serial lactate measurements to guide resuscitation (conditional, low). Individualise fluid after the initial bolus — do <b>not</b> continue fluids until lactate normalises.<br>
+          <b>#52</b> Capillary refill time as an adjunct to other perfusion measures (conditional, low). Target CRT ≤ 3 seconds.
+        </div>
+      </div>
+
+      <!-- 7. Glucose -->
+      <div class="calc">
+        <h4><span class="dot"></span>7 · Glucose Unit Converter &amp; Insulin Threshold</h4>
+        <div class="calc-grid">
+          <div class="field"><label for="c7g">Glucose</label><input id="c7g" type="number" value="180" step="1" min="0"></div>
+          <div class="field"><label for="c7u">Unit</label>
+            <select id="c7u"><option value="mgdl">mg/dL</option><option value="mmol">mmol/L</option></select>
+          </div>
+        </div>
+        <div class="out" id="c7out"></div>
+        <div class="note" style="margin-top:.5rem">
+          <b>#92</b> Start insulin therapy at a glucose level of <b>≥ 180 mg/dL (10 mmol/L)</b> — strong recommendation, moderate certainty (carry over).
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ FLOW DIAGRAM ============ -->
+  <section class="block sec-green open" id="flow">
+    <button class="block-head" aria-expanded="true">
+      <span>🔀 Resuscitation Quick Guide (Figure 3, simplified)</span>
+      <span class="count">FLOW</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+      <div class="flow">
+        <div class="flow-start">In patients with sepsis AND either hypotension and/or elevated lactate</div>
+
+        <div class="flow-row">
+          <div class="flow-col mon">
+            <h4>Monitoring</h4>
+            <ul>
+              <li><b>Immediately and at least hourly:</b> monitor blood pressure, heart rate, respiratory rate, level of consciousness.</li>
+              <li><b>Within 1 hour:</b> measure initial serum lactate and establish capillary refill time.</li>
+            </ul>
+          </div>
+          <div class="flow-col flu">
+            <h4>Fluids</h4>
+            <ul>
+              <li><b>Within 3 hours:</b> give initial fluid resuscitation of <b>at least 30 mL/kg IV crystalloid</b>.</li>
+              <li>Use <b>balanced solutions</b> (e.g. Ringer's lactate).</li>
+            </ul>
+          </div>
+          <div class="flow-col vas">
+            <h4>Vasoactive agents, if hypotensive</h4>
+            <ul>
+              <li><b>Time-sensitive:</b> consider initiating norepinephrine concurrently with fluid resuscitation in patients with life-threatening end-organ hypoperfusion.</li>
+              <li>Use <b>norepinephrine</b> as the first-line vasopressor.</li>
+              <li><b>Start vasopressors peripherally</b> rather than delaying until central access is secured.</li>
+              <li>Target a MAP of <b>≥ 65 mmHg</b>, or <b>60–65 mmHg in patients aged ≥ 65 years</b>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flow-mid">If hypotension and/or lactate elevation persist after initial fluid resuscitation</div>
+
+        <div class="flow-row">
+          <div class="flow-col mon">
+            <h4>Reassess perfusion</h4>
+            <ul>
+              <li>Assess fluid-responsiveness using <b>dynamic measures</b> (e.g. change in stroke volume or pulse pressure with passive leg raise / fluid bolus).</li>
+              <li><b>Trend lactate</b> and capillary refill time.</li>
+            </ul>
+          </div>
+          <div class="flow-col flu">
+            <h4>Additional fluid</h4>
+            <ul>
+              <li>Give additional fluid based on <b>fluid-responsiveness testing</b>.</li>
+              <li>Use <b>balanced solutions</b>.</li>
+              <li>Consider supplemental albumin in selected patients.</li>
+            </ul>
+          </div>
+          <div class="flow-col vas">
+            <h4>Vasopressors &amp; adjuncts</h4>
+            <ul>
+              <li>Initiate <b>norepinephrine</b> if not already started.</li>
+              <li>Use <b>hydrocortisone, IV</b> if norepinephrine requirement persists.</li>
+              <li>Add <b>vasopressin</b> if norepinephrine dose is increasing.</li>
+              <li>Add <b>epinephrine</b> as third-line agent if norepinephrine dose is still increasing.</li>
+              <li>Add <b>dobutamine or use epinephrine</b> if cardiac dysfunction is present.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flow-row" style="margin-top:.2rem">
+          <div class="flow-col res" style="grid-column:1/-1">
+            <h4>Also throughout</h4>
+            <ul>
+              <li>At least hourly: measure blood pressure.</li>
+              <li>Consider continuous blood pressure monitoring with arterial line.</li>
+              <li>Ensure adequacy of <b>source control</b>.</li>
+              <li>Consider other causes of shock.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="note">Perform frequent, ongoing reassessment and closely monitor patients to avoid harms of under- or over-resuscitation. Supplemental albumin may be appropriate for patients who have already received large volumes of crystalloid or have cirrhosis. Avoid albumin in patients with traumatic brain injury.</div>
+    </div>
+  </section>
+
+  <!-- ============ ANTIMICROBIAL TIMING ============ -->
+  <section class="block sec-red open" id="timing">
+    <button class="block-head" aria-expanded="true">
+      <span>⏱ Antimicrobial Timing Framework (Figure 2, simplified)</span>
+      <span class="count">#16–#22</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+      <div class="timing-grid">
+        <div class="tcard t1">
+          <h5>Septic shock — possible / probable / definite</h5>
+          <p>Antimicrobials <b>immediately, ideally within 1 hour</b> of recognition.<br><span class="badge b-strong">Strong FOR</span> <span class="cert c-vlow">Very low</span></p>
+        </div>
+        <div class="tcard t1">
+          <h5>Probable / definite sepsis WITHOUT shock</h5>
+          <p>Antimicrobials <b>immediately, ideally within 1 hour</b> of recognition.<br><span class="badge b-strong">Strong FOR</span> <span class="cert c-vlow">Very low</span></p>
+        </div>
+        <div class="tcard t3">
+          <h5>Possible sepsis WITHOUT shock</h5>
+          <p>Time-limited course of <b>rapid investigation</b>; if concern for infection persists, give antimicrobials <b>within 3 hours</b> from when sepsis was first suspected.<br><span class="badge b-cond">Conditional FOR</span> <span class="cert c-vlow">Very low</span></p>
+        </div>
+        <div class="tcard t4">
+          <h5>Low likelihood of infection and no shock</h5>
+          <p><b>Defer antimicrobial therapy</b> while continuing to monitor the patient closely.<br><span class="badge b-cond">Conditional FOR</span> <span class="cert c-vlow">Very low</span></p>
+        </div>
+      </div>
+      <div class="note"><b>#19</b> Clinicians should perform a rapid assessment of the likelihood of infectious vs. non-infectious causes of acute illness in adults with possible sepsis without shock (good practice statement). Approximately 10–30% of patients initially treated for sepsis have a final diagnosis of non-infectious or non-bacterial conditions.</div>
+      <div class="note" style="background:#FFF0DC;border-left-color:var(--orange);color:#7A4200"><b>#21</b> Definite/probable sepsis with hypotension (septic shock) and anticipated time to in-hospital medical evaluation &gt; 60 min → <b>suggest antimicrobials in the ambulance or flight</b> (conditional, very low). Only after a structured prehospital sepsis screening process is in place.</div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ============ 1. SCREENING & EARLY MANAGEMENT ============== -->
+  <!-- ============================================================ -->
+  <section class="block sec-blue" id="sec-screening">
+    <button class="block-head" aria-expanded="false">
+      <span>1 · Screening &amp; Early Management</span>
+      <span class="count">#1–#15</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#1</span><span class="badge b-strong">Strong FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-new">New / Carried over</span></div>
+        <p>For hospitals and health systems, we <b>recommend</b> using a performance improvement program for sepsis, including sepsis screening for acutely ill, high-risk patients; standard operating procedures for treatment; and implementation of sepsis quality improvement strategies.</p>
+        <p class="rem"><b>Remark:</b> Performance improvement programs and QI strategies may vary by setting and in accordance with a hospital/healthcare system's ability to implement. Certainty: moderate for screening, very low for SOPs, moderate for QI strategies.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#2</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">New</span></div>
+        <p>For hospitals and health systems, we <b>suggest</b> using a "code sepsis" or "sepsis huddle" protocol over not using such a protocol.</p>
+        <p class="rem"><b>Remark:</b> "Code sepsis" or "sepsis huddle" protocols involve a multidisciplinary team huddle at the bedside to discuss and expedite sepsis diagnosis and treatment following a positive sepsis screen.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#3</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>In acutely ill adults en route to hospital by ambulance or flight, we <b>suggest</b> using a standard sepsis screening tool over not using a screening tool.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#4</span><span class="badge b-strong">Strong FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-new">Revisited</span></div>
+        <p>For acutely ill patients in hospital, we <b>recommend</b> using NEWS, NEWS2, MEWS, or SIRS over qSOFA as a single tool to screen for sepsis.</p>
+        <p class="rem"><b>Remark:</b> No ideal screening tool exists. qSOFA has poor sensitivity but remains useful for detecting clinical deterioration (electronic qSOFA screening with alert activation improved 90-day in-hospital mortality in the SCREEN trial).</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#5</span><span class="badge b-gps">Good Practice</span><span class="badge tag-new">New</span></div>
+        <p>Sepsis is a clinical diagnosis and should not be ruled in or ruled out using a single biomarker or diagnostic test.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#6</span><span class="badge b-insuff">Insufficient evidence</span><span class="badge tag-new">New</span></div>
+        <p>There is <b>insufficient evidence</b> to make a recommendation regarding use of novel rapid host response diagnostics. None provides a simple "positive/negative" result; all should be used with full clinical evaluation.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#7</span><span class="badge b-strong">Strong FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with possible, probable, or definite sepsis or septic shock, we <b>recommend</b> collecting blood cultures as soon as possible and ideally <b>before the administration of antimicrobial therapy</b>.</p>
+        <p class="rem"><b>Remark:</b> Do not delay antimicrobials to obtain cultures, particularly in hypotension. Blood culture positivity fell from 31.4% pre-antimicrobial to 19.4% at a median 70 min post-antimicrobial. Number of sets and anaerobic bottles should be individualised; in low-resource settings a single set can be justified.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#8</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with possible, probable, or definite sepsis or septic shock, we <b>suggest</b> measuring blood lactate.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#9</span><span class="badge b-gps">Good Practice</span><span class="badge tag-carry">Carry over</span></div>
+        <p>Sepsis and septic shock are medical emergencies; treatment and resuscitation should begin immediately.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#10</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span></div>
+        <p>For adults with sepsis-induced hypoperfusion or septic shock, we <b>suggest</b> administering <b>at least 30 mL/kg of IV crystalloid in the first 3 h</b>.</p>
+        <p class="rem"><b>Remarks:</b> Consider individual patient characteristics and context when selecting initial fluid volume. Perform frequent, ongoing reassessment and closely monitor to avoid harms of under- or over-resuscitation. Weight-based fluid volume should be calculated on actual body weight, or adjusted/ideal body weight in patients with BMI &gt; 30 kg/m².</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#11</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis-induced hypotension, we <b>suggest</b> initial IV crystalloid fluid bolus resuscitation followed by vasopressor support if hypotension persists.</p>
+        <p class="rem"><b>Remark:</b> In patients with unstable septic shock, immediate concurrent administration of vasopressors together with IV crystalloid may be warranted on a case-by-case basis. Features of unstable shock: severely reduced blood pressure, mottled skin, ashen appearance, cyanosis/decreased oxygen saturation, tachycardia, altered mentation.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#12</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>In adults with septic shock, we <b>suggest</b> starting vasopressors peripherally to restore mean arterial pressure rather than delaying initiation until central venous access is secured.</p>
+        <p class="rem"><b>Remark:</b> Data are insufficient to recommend a duration of use, dose, or access route. Midline catheters were not considered. Pooled complication rate for peripheral vasopressors was 5.97%.</p>
+        <div class="practice"><b>In our practice:</b> 86.6% of panel members use peripheral vasopressors at least sometimes; 46.6% use them for up to 6 h; 13.8% up to 24 h; 27.6% have no set duration.</div>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#13</span><span class="badge b-strong">Strong FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-carry">Carry over + new remark</span></div>
+        <p>For adults with septic shock, we <b>recommend</b> an initial MAP target of <b>65 mmHg</b> over higher MAP targets.</p>
+        <p class="rem"><b>Remark:</b> In practice it is not feasible to maintain MAP at exactly 65 mmHg, so a reasonable range (e.g. within 5 mmHg) should be used. Vasopressors should be titrated to maintain MAP within this range.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#14</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with septic shock <b>65 years old or older</b>, we <b>suggest</b> an initial MAP range of <b>60–65 mmHg</b> over higher ranges.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#15</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock who require ICU admission, we <b>suggest</b> admitting the patients to the ICU <b>within 6 h</b>.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ==================== 2. INFECTION ========================== -->
+  <!-- ============================================================ -->
+  <section class="block sec-red" id="sec-infection">
+    <button class="block-head" aria-expanded="false">
+      <span>2 · Infection</span>
+      <span class="count">#16–#41</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#16</span><span class="badge b-strong">Strong FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with possible, probable, or definite septic shock, we <b>recommend</b> administering antimicrobial therapy immediately, ideally <b>within 1 hr</b> of recognition.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#17</span><span class="badge b-strong">Strong FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with probable or definite sepsis <b>without shock</b>, we <b>recommend</b> administering antimicrobial therapy immediately, ideally <b>within 1 hr</b> of recognition.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#18</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with possible sepsis <b>without shock</b>, we <b>suggest</b> a time-limited course of rapid investigation and, if concern for infection persists, the administration of antimicrobial therapy <b>within 3 hours</b> from the time when sepsis was first suspected.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#19</span><span class="badge b-gps">Good Practice</span></div>
+        <p>Clinicians should perform a rapid assessment of the likelihood of infectious vs. non-infectious causes of acute illness in adults with possible sepsis without shock.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#20</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with a low likelihood of infection and without shock, we <b>suggest</b> deferring antimicrobial therapy while continuing to closely monitor the patient.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#21</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with definite or probable sepsis and hypotension (i.e. septic shock) and who have an anticipated time to in-hospital medical evaluation of <b>over 60 min</b>, we <b>suggest</b> administering antimicrobial therapy in the ambulance or flight.</p>
+        <p class="rem"><b>Remark:</b> Prehospital antibiotic delivery should be implemented only after having a structured process in place to screen for sepsis in ambulance or flight (see #3).</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#22</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with possible or probable sepsis or septic shock, we <b>suggest</b> using clinical evaluation alone over procalcitonin plus clinical evaluation to decide whether to start antimicrobial therapy.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#23</span><span class="badge b-gps">Good Practice</span></div>
+        <p>Adults with sepsis or septic shock should be rapidly evaluated for specific anatomical diagnoses or sources of infection that require emergent source control.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#24</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span></div>
+        <p>For adults with sepsis or septic shock and a specific anatomical diagnosis or source of infection that requires source control, we <b>suggest early source control</b> over late source control, <b>ideally within 6 hr</b> of diagnosis of sepsis or septic shock requiring source control.</p>
+        <p class="rem"><b>Remark:</b> Earlier source control is considered better when feasible. Prolonged medical stabilisation without source control in severely ill patients, particularly with septic shock, is unlikely to succeed.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#25</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis or septic shock at <b>high risk</b> of infection with a specific multidrug-resistant (MDR) pathogen, we <b>suggest</b> using empirical antimicrobial therapy with coverage for this MDR pathogen.</p>
+        <p class="rem"><b>Remark:</b> Risk factors for MDR pathogens include colonisation with the MDR pathogen of concern, previous infection with the MDR pathogen of concern, prolonged use of broad-spectrum antibiotics, and prolonged hospitalisation in a unit with a high prevalence of the MDR pathogen.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#26</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis or septic shock at <b>low risk</b> of infection with a specific MDR pathogen, we <b>suggest against</b> using empirical antimicrobial therapy with coverage for this MDR pathogen.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#27</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest against</b> using empirical antifungal therapy.</p>
+        <p class="rem"><b>Remark:</b> Empiric antifungal therapy should be considered on a case-by-case basis in selected patients with sepsis or septic shock and risk factors for fungal infection, including immunosuppression, prolonged use of antibiotics, prolonged hospitalisation, and intra-abdominal sources of infection.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#28</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis or septic shock <b>without</b> risk factors for anaerobic infection, we <b>suggest</b> using an empiric antibiotic regimen <b>without</b> anaerobic coverage.</p>
+        <p class="rem"><b>Remark:</b> When coverage of potential MDR pathogens is required, agents with anaerobic activity (e.g. piperacillin-tazobactam or carbapenems) are appropriate when alternative agents lacking anaerobic coverage are insufficient.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#29</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis or septic shock <b>with specific risk factors</b> for anaerobic infection, we <b>suggest</b> using an empiric antibiotic regimen that <b>includes</b> anaerobic coverage.</p>
+        <p class="rem"><b>Remark:</b> Risk factors include intra-abdominal or deep-seated gynaecological/obstetric source of infection, necrotising soft-tissue infection, head and neck infection, and CNS abscesses or empyema.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#30</span><span class="badge b-insuff">Insufficient evidence</span></div>
+        <p>There is <b>insufficient evidence</b> to make a recommendation regarding use of departmental (i.e. ICU-wide) microbiological surveillance samples of the upper respiratory tract to guide empirical antimicrobial therapy.</p>
+        <div class="practice"><b>In our practice:</b> 36% of the panel uses departmental surveillance samples of the upper respiratory tract; of those, 79% collect samples weekly.</div>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#31</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest</b> using pathogen-specific rapid diagnostic tests <b>on a case-by-case basis</b> in selected patients based on clinical features, local pathogen- and resistance patterns, seasonality, and availability of tests and antibiotic stewardship guidance.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#32</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest against</b> using Candida fungal biomarkers to guide initiation of empiric antifungal therapy.</p>
+        <p class="rem"><b>Remark:</b> May be considered on a case-by-case basis in selected patients at high risk of Candida infection, including those with immunosuppression, prolonged exposure to antibiotics, prolonged hospitalisation, and intra-abdominal source of infection.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#33</span><span class="badge b-strong">Strong FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span></div>
+        <p>For adults with sepsis or septic shock, we <b>recommend</b> using <b>prolonged infusion of beta-lactams</b> for maintenance (after an initial loading dose) over bolus administration.</p>
+        <p class="rem"><b>Remark:</b> Prolonged infusion reduced short-term mortality (RR 0.91; 95% CI 0.85–0.97; high certainty) — 25 fewer deaths per 1,000 patients. Administer a <b>loading dose</b> before prolonged infusion. Most benefit with shorter half-life agents (piperacillin-tazobactam, carbapenems). Prioritise infusion pump supply in low-resource settings.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#34</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest</b> using antimicrobial therapeutic drug monitoring (TDM) <b>on a case-by-case basis</b> in selected patients, based on clinical features, local pathogen- and resistance patterns, drug class, and availability of TDM.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#35</span><span class="badge b-gps">Good Practice</span></div>
+        <p>Clinicians should continuously reevaluate patients, search for alternative diagnoses, and discontinue empiric antimicrobial therapy if an alternative cause of illness is demonstrated or strongly suspected in adults with suspected sepsis or septic shock but unconfirmed.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#36</span><span class="badge b-strong">Strong FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span></div>
+        <p>For adults with sepsis or septic shock, we <b>recommend de-escalation</b> of antimicrobial therapy over no de-escalation <b>when a confirmed microbiological diagnosis and susceptibility profile is available</b>.</p>
+        <p class="rem"><b>Remark:</b> De-escalation involves discontinuing unnecessary antimicrobial therapy or narrowing the spectrum of antimicrobial agents where appropriate.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#37</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest de-escalation</b> of antimicrobial therapy over no de-escalation <b>when no pathogens are identified on final culture results</b>.</p>
+        <p class="rem"><b>Remark:</b> In low-resource settings with limited or low-quality laboratory services and high rates of MDR pathogens, negative cultures may not provide the same reassurance — weigh the risk of undetected MDR pathogens carefully.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#38</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span></div>
+        <p>For adults with sepsis or septic shock who are receiving empiric antifungal therapy, we <b>suggest against</b> use of Candida fungal biomarkers to guide <b>discontinuation</b> of empiric antifungal therapy.</p>
+        <p class="rem"><b>Remark:</b> May be considered on a case-by-case basis in clinically improving selected patients at high risk of Candida infection.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#39</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with an initial diagnosis of sepsis or septic shock and adequate source control, we <b>suggest using shorter over longer duration</b> of antimicrobial therapy.</p>
+        <p class="rem"><b>Remark:</b> Supported by the BALANCE trial (7 vs 14 days for bloodstream infection, non-inferiority of 7 days).</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#40</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with an initial diagnosis of sepsis or septic shock and adequate source control where optimal duration of therapy is unclear, we <b>suggest</b> using <b>procalcitonin AND clinical evaluation</b> to decide when to discontinue antimicrobial therapy over clinical evaluation alone.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#41</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-new">New</span></div>
+        <p>In mechanically ventilated adults with sepsis or septic shock in units with a <b>low prevalence of antimicrobial resistance</b>, we <b>suggest</b> using selective decontamination of the digestive tract (SDD).</p>
+        <p class="rem"><b>Remark:</b> SDD = non-absorbable topical antimicrobials to oropharynx and upper GI tract plus a short course of broad-spectrum IV antimicrobial. Suggested probable reduction in short-term mortality (RR 0.91; moderate certainty) and possibly less antimicrobial resistance.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ================ 3. HEMODYNAMIC MANAGEMENT ================= -->
+  <!-- ============================================================ -->
+  <section class="block sec-green" id="sec-hemo">
+    <button class="block-head" aria-expanded="false">
+      <span>3 · Hemodynamic Management</span>
+      <span class="count">#42–#64</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#42</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with septic shock, we <b>suggest</b> using <b>either invasive or noninvasive</b> blood pressure monitoring.</p>
+        <p class="rem"><b>Remark:</b> Invasive blood pressure monitoring is advised in patients with shock who: require intermediate- to high-dose vasopressors, escalating doses of vasopressor, or multiple vasopressors; are receiving frequent arterial blood sampling; or have noninvasive blood pressure measurements which are inconsistent on repeated assessments.</p>
+        <div class="practice"><b>In our practice:</b> 62.7% use invasive blood pressure monitoring in septic shock. Of those not using it, 92% measure noninvasive BP at least every 15 min during early shock or with escalating vasopressor doses.</div>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#43</span><span class="badge b-strong">Strong FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span></div>
+        <p>For adults with sepsis or septic shock, we <b>recommend</b> using <b>crystalloids as first-line fluid</b> for resuscitation.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#44</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span></div>
+        <p>For adults with sepsis or septic shock undergoing initial resuscitation, we <b>suggest</b> using <b>balanced crystalloids over 0.9% saline</b>.</p>
+        <p class="rem"><b>Remark:</b> For patients with sepsis and traumatic brain injury, we suggest using 0.9% saline.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#45</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest</b> using <b>crystalloids alone over crystalloids with supplemental albumin</b> for fluid resuscitation.</p>
+        <p class="rem"><b>Remark:</b> Use of supplemental albumin may be appropriate for patients who have already received large crystalloid volumes or have cirrhosis. Supplemental albumin should be avoided in patients with traumatic brain injury.</p>
+      </div>
+
+      <div class="rec s-sagainst">
+        <div class="rec-top"><span class="id">#46</span><span class="badge b-sagainst">Strong AGAINST</span><span class="cert c-high">⊕⊕⊕⊕ High</span></div>
+        <p>For adults with sepsis or septic shock, we <b>recommend against</b> using <b>starches</b> for resuscitation.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#47</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span></div>
+        <p>For adults with sepsis and septic shock, we <b>suggest against</b> using <b>gelatin</b> for resuscitation.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#48</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis or septic shock who have already received fluid resuscitation with 30 mL/kg and have persistent hypoperfusion, we <b>suggest</b> using <b>either a liberal or a restrictive</b> fluid resuscitation strategy based on individual patient and health system factors.</p>
+        <p class="rem"><b>Remark:</b> Wide variability in protocols and volumes across trials. Patient and health system factors to consider include current clinical conditions and chronic illnesses (e.g. heart failure) and availability of monitored beds (i.e. if a restrictive approach necessitates vasopressor use).</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#49</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest</b> using <b>dynamic measures</b> to guide fluid resuscitation over physical examination or static measures alone.</p>
+        <p class="rem"><b>Remark:</b> Dynamic measures include response to a passive leg raise or a fluid bolus using stroke volume (SV), stroke volume variation (SVV), pulse pressure (PP), or pulse pressure variation (PPV). A 10–15% increase in the chosen parameter reflects fluid responsiveness.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#50</span><span class="badge b-insuff">Insufficient evidence</span></div>
+        <p>For adults with septic shock, there is <b>insufficient evidence</b> to make a recommendation on using minimally invasive or noninvasive cardiac output monitoring in addition to usual care.</p>
+        <p class="rem"><b>Remark:</b> Minimally invasive refers to devices requiring an arterial catheter. Noninvasive refers to devices using bioreactance. Usual care refers to care without a pulmonary artery catheter. The use of critical care ultrasound was not evaluated.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#51</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis and elevated lactate or septic shock, we <b>suggest</b> using <b>serial lactate measurements</b> to guide resuscitation.</p>
+        <p class="rem"><b>Remark:</b> Fluid administration should be individualised after initial fluid bolus and monitoring of lactate decrement, rather than continuing fluids until lactate normalisation is achieved.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#52</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest</b> using <b>capillary refill time</b> to guide resuscitation as an adjunct to other measures of perfusion.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#53</span><span class="badge b-strong">Strong FOR</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with septic shock, we <b>recommend</b> using <b>norepinephrine as the first-line agent</b> over dopamine, epinephrine, or selepressin.</p>
+        <p class="rem"><b>Certainty:</b> Dopamine — high certainty; Epinephrine — low certainty; Selepressin — low certainty.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#54</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with septic shock, we <b>suggest against</b> using <b>terlipressin</b>.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#55</span><span class="badge b-cond">Conditional FOR</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with septic shock, we <b>suggest</b> using <b>norepinephrine as the first-line agent</b> over vasopressin or angiotensin II.</p>
+        <p class="rem"><b>Certainty:</b> Vasopressin — low certainty; Angiotensin II — very low certainty. Vasopressin was associated with probably less use of RRT (RR 0.70, moderate certainty). Vasopressin and angiotensin II tend to be more expensive and less available than norepinephrine, especially in low-resource settings.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#56</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with septic shock on <b>escalating doses of norepinephrine</b>, we <b>suggest adding vasopressin</b>.</p>
+        <p class="rem"><b>Remark:</b> Meta-analysis found a probable reduction in mortality with adding vasopressin compared with increasing norepinephrine alone (RR 0.89; 95% CI 0.79–1.01, moderate certainty). Probably less atrial fibrillation (RR 0.66), possibly more digital ischaemia.</p>
+        <div class="practice"><b>In our practice:</b> 85.1% add vasopressin at a median norepinephrine dose of <b>0.3 µg/kg/min</b> (IQR 0.2–0.5).</div>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#57</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with septic shock and inadequate MAP levels despite norepinephrine and vasopressin, we <b>suggest adding epinephrine</b>.</p>
+        <p class="rem"><b>Remark:</b> In settings where vasopressin is not available, epinephrine can be added to norepinephrine alone.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#58</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with septic shock with <b>concomitant cardiac dysfunction</b>, we <b>suggest</b> using either <b>norepinephrine or epinephrine</b> as first-line vasopressor.</p>
+        <p class="rem"><b>Remark:</b> Norepinephrine may be preferred in patients with tachyarrhythmia or significant sinus tachycardia. Conversely, epinephrine may be preferred in patients with bradyarrhythmia or significant sinus bradycardia.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#59</span><span class="badge b-insuff">Insufficient evidence</span></div>
+        <p>For adults with refractory septic shock and escalating vasopressor requirements, there is <b>insufficient evidence</b> to make a recommendation on IV methylene blue.</p>
+        <p class="rem"><b>Remark:</b> Although methylene blue may improve blood pressure, there is insufficient evidence to determine if its use as rescue therapy improves survival; some patients with potentially treatable disease may value a trial.</p>
+        <div class="practice"><b>In our practice:</b> 69% of panelists "never" or "almost never" use methylene blue as rescue therapy, 23% "sometimes", 6% "usually", 1.5% "almost always".</div>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#60</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisit</span></div>
+        <p>For adults with septic shock and cardiac dysfunction with persistent hypoperfusion despite adequate fluid status and arterial blood pressure, we <b>suggest using inotropes</b> over no inotropes.</p>
+        <p class="rem"><b>Remark:</b> For patients requiring vasopressors to maintain mean arterial pressure at target, inotropes should be used <b>in addition to</b> (not instead of) vasopressors.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#61</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisit</span></div>
+        <p>For adults with septic shock with persistent hypoperfusion and cardiac dysfunction despite adequate fluid resuscitation and arterial blood pressure, we <b>suggest adding dobutamine to norepinephrine or using epinephrine alone</b>.</p>
+        <p class="rem"><b>Remark:</b> Data were insufficient to make a recommendation for dobutamine vs. milrinone.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#62</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with septic shock and cardiac dysfunction with persistent hypoperfusion despite adequate volume status and arterial blood pressure, we <b>suggest against</b> using <b>levosimendan</b>.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#63</span><span class="badge b-insuff">Insufficient evidence</span><span class="badge tag-new">New</span></div>
+        <p>For adults with septic shock and ongoing requirement for vasopressors, there is <b>insufficient evidence</b> to make a recommendation on use of oral midodrine.</p>
+        <div class="practice"><b>In our practice:</b> 32.8% of panel members use midodrine in adults with septic shock; of those, 86.4% use it after the acute phase to facilitate discontinuation of IV vasopressors.</div>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#64</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-vlow">⊕◯◯◯ Very low</span></div>
+        <p>For adults with septic shock, we <b>suggest against</b> using <b>beta-blockers</b> as a treatment for septic shock.</p>
+        <p class="rem"><b>Remark:</b> This recommendation is based on evidence for short-acting, IV beta-blockers (esmolol and landiolol) prescribed for treatment of septic shock.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ================= 4. RESPIRATORY SUPPORT =================== -->
+  <!-- ============================================================ -->
+  <section class="block sec-teal" id="sec-resp">
+    <button class="block-head" aria-expanded="false">
+      <span>4 · Respiratory Support</span>
+      <span class="count">#65–#78</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#65</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis, we <b>suggest</b> measuring oxygenation by either pulse oximeter (SpO₂) or arterial blood gas (SaO₂) in conjunction with physical examination and clinical acumen.</p>
+        <p class="rem"><b>Remarks:</b> Arterial blood gas measurements are the gold standard for assessing oxygenation; include other important information such as pH, PaCO₂, lactate, and bicarbonate; and are preferable when available. SpO₂/FiO₂ by pulse oximeter may substitute for PaO₂/FiO₂ ratio, but is less accurate in patients in shock, with darker skin tones, and/or with oxygen saturations &lt; 90% or &gt; 97%.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#66</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span></div>
+        <p>For adults with sepsis and acute hypoxemic respiratory failure, we <b>suggest</b> titrating FiO₂ to target <b>either higher, more liberal oxygen levels or lower, conservative oxygen levels</b> depending on patient factors and resource limitations.</p>
+        <p class="rem"><b>Remark:</b> Most trials used a lower target of approximately 90–93% SpO₂ and a higher target of SpO₂ ≥ 96%.</p>
+        <div class="practice"><b>In our practice:</b> panelists target SpO₂ between 90% (IQR 90–92%) and 96% (IQR 94–98%) for patients with sepsis and acute hypoxemic respiratory failure.</div>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#67</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis and acute hypoxemic respiratory failure, we <b>suggest</b> using <b>high flow nasal cannula (HFNC)</b> therapy over conventional oxygen therapy.</p>
+        <p class="rem"><b>Remark:</b> This recommendation pertains to patients with a PaO₂/FiO₂ ratio &lt; 200 or SpO₂/FiO₂ ratio &lt; 235.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#68</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span></div>
+        <p>For adults with sepsis and acute hypoxemic respiratory failure, we <b>suggest</b> using <b>HFNC as the initial therapy</b> over noninvasive positive pressure ventilation.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#69</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span></div>
+        <p>For adults with sepsis and acute hypoxemic respiratory failure, we <b>suggest</b> using <b>HFNC over high flow alternating with noninvasive positive pressure ventilation</b>.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#70</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis and acute hypoxemic respiratory failure who are <b>not intubated</b>, we <b>suggest a trial of awake proning</b>.</p>
+        <p class="rem"><b>Remarks:</b> The duration and frequency of proning will depend on patient tolerance. Sedation should not be used for the purposes of promoting tolerance of proning in non-intubated patients.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#71</span><span class="badge b-strong">Strong FOR</span><span class="cert c-high">⊕⊕⊕⊕ High</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis and ARDS, we <b>recommend</b> using a <b>low tidal volume ventilation strategy (6 mL/kg)</b> over a high tidal volume strategy (&gt; 10 mL/kg).</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#72</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis-associated hypoxemic respiratory failure <b>without ARDS</b>, we <b>suggest</b> using a tidal volume of <b>6–8 mL/kg ideal body weight</b> over a lower (4 to &lt; 6 mL/kg IBW) tidal volume.</p>
+        <p class="rem"><b>Remark:</b> Patients should be screened regularly for development of ARDS, as ARDS diagnosis is often missed or delayed in clinical practice.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#73</span><span class="badge b-strong">Strong FOR</span><span class="cert c-high">⊕⊕⊕⊕ High</span></div>
+        <p>For adults with sepsis and ARDS, we <b>recommend</b> using an upper limited goal for <b>plateau pressure of 30 cmH₂O</b> over higher plateau pressures.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#74</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span></div>
+        <p>For adults with sepsis and moderate-severe ARDS, we <b>suggest</b> using <b>higher positive end-expiratory pressure (PEEP)</b> over lower PEEP.</p>
+      </div>
+
+      <div class="rec s-sagainst">
+        <div class="rec-top"><span class="id">#75</span><span class="badge b-sagainst">Strong AGAINST</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span></div>
+        <p>For adults with sepsis and moderate-severe ARDS, we <b>recommend against</b> using an <b>incremental PEEP titration strategy</b>.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#76</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span></div>
+        <p>For adults with sepsis and moderate-severe ARDS, we <b>suggest</b> using <b>prone ventilation for greater than 12 hr daily</b>.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#77</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span></div>
+        <p>For adults with sepsis and moderate-severe ARDS, we <b>suggest</b> using <b>intermittent NMBA boluses</b> over continuous NMBA infusion.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#78</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with <b>severe ARDS due to sepsis</b>, we <b>suggest</b> using <b>veno-venous ECMO</b> when conventional mechanical ventilation fails in experienced centres with infrastructure to support its use.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ========== 5. ADDITIONAL & ADJUNCTIVE THERAPIES ============ -->
+  <!-- ============================================================ -->
+  <section class="block sec-orange" id="sec-adjunct">
+    <button class="block-head" aria-expanded="false">
+      <span>5 · Additional &amp; Adjunctive Therapies</span>
+      <span class="count">#79–#99</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#79</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with <b>septic shock</b>, we <b>suggest</b> using <b>IV corticosteroids</b>.</p>
+        <p class="rem"><b>Remark:</b> Corticosteroids may result in a small reduction in 28-day mortality (RR 0.92) and long-term mortality (RR 0.94); greater incidence of shock reversal at 7 days (RR 1.29, high certainty); increases in hyperglycaemia and hypernatraemia. No increased benefit above 260 mg/day hydrocortisone equivalent.</p>
+        <div class="practice"><b>In our practice:</b> 88.4% use IV corticosteroids in septic shock; 90% prescribe 200 mg hydrocortisone-equivalent per 24 h; 86% as intermittent doses rather than continuous infusion; 63% never give concomitant fludrocortisone.</div>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#80</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-vlow">⊕◯◯◯ Very low</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest against</b> the use of <b>antipyretic therapy</b>, either pharmacologic or surface cooling, for the purpose of improving clinical outcomes.</p>
+        <p class="rem"><b>Remark:</b> This recommendation does not apply to using antipyretic therapy for pain control, patient symptom control, or for patients with other indications for temperature control, such as neurocritical care patients or patients after cardiac arrest.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#81</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest against</b> using <b>IV vitamin C</b>.</p>
+        <p class="rem"><b>Remark:</b> Possibly no difference in mortality at 90 days in low risk-of-bias trials (RR 1.06). IV vitamin C can result in factitious hyperglycaemia.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#82</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest against</b> using <b>IV immunoglobulin</b>.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#83</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest against</b> using <b>blood purification techniques</b>, including hemoperfusion, high-dose hemofiltration, or plasma exchange.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#84</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock we <b>suggest against</b> using <b>polymyxin B hemoperfusion</b>.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#85</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-vlow">⊕◯◯◯ Very low</span></div>
+        <p>For adults with sepsis and septic shock, we <b>suggest against</b> using <b>Vitamin D therapy</b> for sepsis treatment.</p>
+        <p class="rem"><b>Remark:</b> This recommendation does not pertain to patients who are on lower doses of Vitamin D supplement for other indications or receiving it as part of standard nutritional practice. In the VIOLET trial, the sepsis subgroup had a higher 90-day mortality risk with high-dose (540,000 IU) enteral vitamin D.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#86</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest against</b> using <b>XueBiJing injection</b> outside of jurisdictions where it has regulatory approval.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#87</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis or septic shock, and who have <b>risk factors for GI bleeding</b>, we <b>suggest</b> using <b>stress ulcer prophylaxis with proton-pump inhibitors</b> over not using stress ulcer prophylaxis.</p>
+        <p class="rem"><b>Remark:</b> PPIs reduced the risk of clinically important gastrointestinal bleeding (RR 0.48, moderate certainty). Important risk factors for clinically important bleeding include acute kidney injury, male gender, coagulopathy, shock, and chronic liver failure. In the absence of PPIs, H2 receptor antagonists are a reasonable alternative.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#88</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-vlow">⊕◯◯◯ Very low</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest against</b> using <b>probiotics</b>.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#89</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">New</span></div>
+        <p>For adults with septic shock <b>after the acute resuscitation phase</b>, we <b>suggest</b> using <b>active fluid removal</b>.</p>
+        <p class="rem"><b>Remark:</b> Acute resuscitation refers to escalating doses of vasopressors, ongoing high doses of vasopressors, or needing ongoing volume expansion. Active fluid removal refers to diuretics and, if diuretics are insufficient, ultrafiltration or extracorporeal fluid removal. Factors to be considered when deciding to initiate active fluid removal include cardiorespiratory function; vasopressor dose; clinical course; peripheral oedema; weight; and fluid balance.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#90</span><span class="badge b-strong">Strong FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, we <b>recommend</b> using a <b>restrictive transfusion strategy</b> over a liberal transfusion strategy.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#91</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest early (within 72 h) initiation of enteral nutrition</b>.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#92</span><span class="badge b-strong">Strong FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, we <b>recommend</b> initiating <b>insulin therapy at a glucose level of ≥ 180 mg/dL (10 mmol/L)</b>.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#93</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock and acute kidney injury, with no definitive indication for renal replacement therapy, we <b>suggest against</b> using renal replacement therapy.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#94</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock and acute kidney injury warranting renal replacement therapy, we <b>suggest either continuous or intermittent</b> renal replacement therapy.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#95</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with septic shock and hypoperfusion-induced lactic acidaemia, we <b>suggest against</b> using <b>sodium bicarbonate therapy</b> to improve haemodynamics or to reduce vasopressor requirements.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#96</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with septic shock, <b>severe metabolic acidaemia (pH ≤ 7.2)</b>, and <b>acute kidney injury (AKIN score 2 or 3)</b>, we <b>suggest</b> using <b>sodium bicarbonate therapy</b>.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#97</span><span class="badge b-strong">Strong FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, we <b>recommend</b> using <b>pharmacologic venous thromboembolism (VTE) prophylaxis</b> unless a contraindication exists.</p>
+      </div>
+
+      <div class="rec s-strong">
+        <div class="rec-top"><span class="id">#98</span><span class="badge b-strong">Strong FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, we <b>recommend</b> using <b>low molecular weight heparin over unfractionated heparin</b> for VTE prophylaxis.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#99</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-mod">⊕⊕⊕◯ Moderate</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest</b> using <b>pharmacological VTE prophylaxis alone</b> over pharmacological VTE prophylaxis plus mechanical VTE prophylaxis.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- =================== 6. GOALS OF CARE ======================= -->
+  <!-- ============================================================ -->
+  <section class="block sec-purple" id="sec-goals">
+    <button class="block-head" aria-expanded="false">
+      <span>6 · Goals of Care</span>
+      <span class="count">#100–#107</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#100</span><span class="badge b-gps">Good Practice</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, clinicians should <b>discuss goals of care and prognosis with patients and/or families</b>.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#101</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest</b> addressing goals of care <b>early (within 72 h)</b> over late (72 h or later).</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#102</span><span class="badge b-insuff">Insufficient evidence</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adult patients with sepsis or septic shock, there is <b>insufficient evidence</b> to issue a recommendation regarding the use of a specific standardized criterion to identify patients for goals of care discussions.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#103</span><span class="badge b-gps">Good Practice</span><span class="badge tag-new">New</span></div>
+        <p>Health systems should implement strategies to ensure that patients being discharged from hospital after sepsis or septic shock have the <b>opportunity to execute advanced directives</b>.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#104</span><span class="badge b-insuff">Insufficient evidence</span><span class="badge tag-new">New</span></div>
+        <p>For adults with sepsis or septic shock, there is <b>insufficient evidence</b> to issue a recommendation on the systematic establishment of advanced care directives before hospital discharge.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#105</span><span class="badge b-insuff">Insufficient evidence</span></div>
+        <p>For adults with sepsis or septic shock, there is <b>insufficient evidence</b> to issue a recommendation regarding formal <b>time-limited trials (TLTs)</b> of critical care.</p>
+        <p class="rem"><b>Remark:</b> A TLT is a collaborative plan to use life-sustaining therapy for a defined duration, after which response to therapy informs the decision as to whether to continue or escalate curative intent ICU care or to instead focus care on other goals.</p>
+        <div class="practice"><b>In our practice:</b> 64% of the panel uses TLTs; among these, 64% "sometimes" and 27% "always" explicitly discuss the use of TLTs with the patient or surrogate decision maker.</div>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#106</span><span class="badge b-gps">Good Practice</span><span class="badge tag-carry">Carry over</span></div>
+        <p>The principles of palliative care (which may include palliative care consultation based on clinician judgement) should be integrated into the treatment plan, when appropriate, to address patient and family symptoms and suffering.</p>
+      </div>
+
+      <div class="rec s-cagainst">
+        <div class="rec-top"><span class="id">#107</span><span class="badge b-cagainst">Conditional AGAINST</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest against</b> <b>routine formal palliative care consultation</b> for all patients over palliative care consultation based on clinician judgement.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ================= 7. TRANSITIONS OF CARE =================== -->
+  <!-- ============================================================ -->
+  <section class="block sec-gold" id="sec-transitions">
+    <button class="block-head" aria-expanded="false">
+      <span>7 · Transitions of Care</span>
+      <span class="count">#108–#123</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#108</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis and septic shock admitted to ICU, we <b>suggest</b> using a <b>critical care transition program</b>, compared with usual care, upon transfer to the floor.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#109</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest</b> using a <b>handoff process of critically important information</b> at transitions of care over no such handoff process.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#110</span><span class="badge b-gps">Good Practice</span><span class="badge tag-carry">Carry over</span></div>
+        <p>Hospitals and health systems should <b>screen patients with sepsis or septic shock for economic and social support needs</b> (including housing, nutritional, financial, and spiritual support), and make referrals where available to meet these needs.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#111</span><span class="badge b-gps">Good Practice</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis or septic shock, <b>comprehensive medication reconciliation</b> should be performed at transitions in care, including at ICU and hospital discharge.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#112</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults with sepsis or septic shock, we <b>suggest</b> comprehensive medication reconciliation using a <b>pharmacist-based approach</b> at transitions in care.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#113</span><span class="badge b-gps">Good Practice</span><span class="badge tag-carry">Carry over</span></div>
+        <p>Clinical teams should provide adults with sepsis or septic shock and their families the opportunity to participate in <b>shared decision making in post-ICU and hospital discharge planning</b> to ensure discharge plans are acceptable and feasible.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#114 / #118</span><span class="badge b-gps">Good Practice</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adult survivors of sepsis or septic shock and their families, clinicians should provide information about the hospital stay, sepsis and related diagnoses, treatments, and common impairments after sepsis in the <b>written and verbal discharge summary</b>.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#115</span><span class="badge b-gps">Good Practice</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis or septic shock who developed new impairments, hospital discharge plans should include <b>follow-up with clinicians able to support and manage new and long-term sequelae</b>.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#116</span><span class="badge b-gps">Good Practice</span><span class="badge tag-new">New</span></div>
+        <p>Healthcare systems should implement strategies to ensure that patients, their families, and their primary care providers are provided with <b>adequate information to navigate the transition out of hospital</b>.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#117</span><span class="badge b-insuff">Insufficient evidence</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adults who survive hospitalization with sepsis or septic shock, there is <b>insufficient evidence</b> to issue a recommendation regarding a specific structured multi-component discharge planning process.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#119</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-vlow">⊕◯◯◯ Very low</span><span class="badge tag-carry">Carry over</span></div>
+        <p>For adults with sepsis and septic shock and their families, we <b>suggest</b> offering <b>written and verbal sepsis education</b> (diagnosis, treatment, post-ICU/sepsis syndrome) before hospital discharge and in the follow-up setting.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#120</span><span class="badge b-gps">Good Practice</span><span class="badge tag-new">New</span></div>
+        <p>Health systems should implement strategies to ensure <b>clinicians have the knowledge and competency to support sepsis survivors and their families</b> during the post-hospital recovery.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#121</span><span class="badge b-insuff">Insufficient evidence</span><span class="badge tag-new">New</span></div>
+        <p>There is <b>insufficient evidence</b> to issue a recommendation regarding providing sepsis-focused educational material to primary care providers as compared with usual care.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#122</span><span class="badge b-gps">Good Practice</span><span class="badge tag-new">New</span></div>
+        <p>Health systems should implement strategies to <b>support sepsis survivors and their families during the post-hospital recovery</b>.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#123</span><span class="badge b-insuff">Insufficient evidence</span><span class="badge tag-new">Revisited</span></div>
+        <p>There is <b>insufficient evidence</b> to make a recommendation on <b>early post-hospital discharge follow-up vs. routine post-hospital discharge follow-up</b>.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ============ 8. LONG-TERM OUTCOMES & RECOVERY ============== -->
+  <!-- ============================================================ -->
+  <section class="block sec-magenta" id="sec-longterm">
+    <button class="block-head" aria-expanded="false">
+      <span>8 · Long-Term Outcomes &amp; Recovery</span>
+      <span class="count">#124–#129</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#124</span><span class="badge b-gps">Good Practice</span><span class="badge tag-carry">Carry over</span></div>
+        <p>Health systems should facilitate <b>assessment and follow-up for physical, cognitive, and emotional problems</b> after hospital discharge for sepsis or septic shock.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#125</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">Revisited</span></div>
+        <p>For adult survivors of hospitalization for sepsis or septic shock, we <b>suggest</b> offering <b>post critical illness follow-up services</b>.</p>
+        <p class="rem"><b>Remark:</b> Follow-up services may vary in format, intensity, and duration, depending on locally available resources and patient needs. Possible small improvements in quality-of-life physical health component, anxiety and PTSD symptoms, and a potential reduction in hospital readmissions.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#126</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">Revised</span></div>
+        <p>For adult survivors of hospitalization for sepsis or septic shock who received <b>invasive mechanical ventilation &gt; 48 hr</b>, we <b>suggest</b> offering <b>physical rehabilitation services after hospital discharge</b>.</p>
+        <p class="rem"><b>Remark:</b> Physical rehabilitation services may vary in format, intensity, and duration, depending on locally available resources and patient needs.</p>
+      </div>
+
+      <div class="rec s-cond">
+        <div class="rec-top"><span class="id">#127</span><span class="badge b-cond">Conditional FOR</span><span class="cert c-low">⊕⊕◯◯ Low</span><span class="badge tag-new">Revised</span></div>
+        <p>For adult survivors of hospitalization for sepsis or septic shock, we <b>suggest</b> offering <b>services that support mental health</b> after hospital discharge.</p>
+        <p class="rem"><b>Remark:</b> Mental health support services may vary in format, intensity, and duration, depending on locally available resources and patient needs.</p>
+      </div>
+
+      <div class="rec s-gps">
+        <div class="rec-top"><span class="id">#128</span><span class="badge b-gps">Good Practice</span><span class="badge tag-new">Revised</span></div>
+        <p>Adult survivors of hospitalization for sepsis or septic shock who demonstrate clinical symptoms of mental health disorders should be <b>referred to appropriate healthcare professionals for evaluation and management</b>.</p>
+      </div>
+
+      <div class="rec s-insuff">
+        <div class="rec-top"><span class="id">#129</span><span class="badge b-insuff">Insufficient evidence</span><span class="badge tag-new">New</span></div>
+        <p>For adult survivors of hospitalization for sepsis or septic shock, there is <b>insufficient evidence</b> to issue a recommendation regarding <b>cognition-targeted therapies vs. usual care</b>.</p>
+        <p class="rem"><b>Remark:</b> Where cognitive-targeted therapies are being used, it is reasonable to continue using them as they are likely acceptable and feasible.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ TABLE 4 ============ -->
+  <section class="block sec-blue" id="table4">
+    <button class="block-head" aria-expanded="false">
+      <span>📊 Table 4 — 30 mL/kg in Litres, by Weight &amp; Height</span>
+      <span class="count">TABLE</span>
+      <span class="chev">▶</span>
+    </button>
+    <div class="block-body">
+      <div class="table-scroll">
+        <table>
+          <caption>30 mL/kg in litres, by weight and height (white cells: BMI ≤ 30 kg/m², 30 mL/kg using actual body weight; italicised values: BMI &gt; 30 kg/m², 30 mL/kg using adjusted body weight)</caption>
+          <thead>
+            <tr>
+              <th>Weight kg (lb)</th>
+              <th>1.5 m (4'11")</th>
+              <th>1.7 m (5'7")</th>
+              <th>1.9 m (6'3")</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>50 (110)</td><td>1.5</td><td>1.5</td><td>1.5</td></tr>
+            <tr><td>60 (132)</td><td>1.8</td><td>1.8</td><td>1.8</td></tr>
+            <tr><td>70 (154)</td><td>2.1</td><td>2.1</td><td>2.1</td></tr>
+            <tr><td>80 (176)</td><td><i>1.9</i></td><td><i>2.4</i></td><td><i>2.4</i></td></tr>
+            <tr><td>90 (200)</td><td><i>2.0</i></td><td><i>2.4</i></td><td><i>2.7</i></td></tr>
+            <tr><td>100 (220)</td><td><i>2.1</i></td><td><i>2.5</i></td><td><i>3.0</i></td></tr>
+            <tr><td>110 (242)</td><td><i>2.2</i></td><td><i>2.6</i></td><td><i>3.3</i></td></tr>
+            <tr><td>120 (264)</td><td><i>2.3</i></td><td><i>2.7</i></td><td><i>3.0</i></td></tr>
+            <tr><td>130 (287)</td><td><i>2.5</i></td><td><i>2.8</i></td><td><i>3.1</i></td></tr>
+            <tr><td>140 (309)</td><td><i>2.6</i></td><td><i>3.0</i></td><td><i>3.2</i></td></tr>
+            <tr><td>150 (331)</td><td><i>2.7</i></td><td><i>3.1</i></td><td><i>3.3</i></td></tr>
+            <tr><td>160 (353)</td><td><i>2.8</i></td><td><i>3.2</i></td><td><i>3.4</i></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Adjusted Body Weight was calculated as Ideal Body Weight + 0.4 × (Actual Body Weight − Ideal Body Weight), where Ideal Body Weight was calculated using the Devine formula for males.</div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-inner">
+    <h3>Source &amp; Citation</h3>
+    <div class="cite">
+      <b>Prescott HC, Antonelli M, Alhazzani W, et al.</b> <i>Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026.</i> This article is simultaneously published in the journals <b>Critical Care Medicine</b> (DOI: 10.1097/CCM.0000000000007075) and <b>Intensive Care Medicine</b> (DOI: 10.1007/s00134-026-08361-1). Copyright © 2026 by the Society of Critical Care Medicine and the European Society of Intensive Care Medicine. All Rights Reserved.
+    </div>
+    <p>
+      <b>Full text / supplemental digital content:</b><br>
+      Critical Care Medicine: <a href="https://doi.org/10.1097/CCM.0000000000007075" target="_blank" rel="noopener">https://doi.org/10.1097/CCM.0000000000007075</a><br>
+      Intensive Care Medicine: <a href="https://doi.org/10.1007/s00134-026-08361-1" target="_blank" rel="noopener">https://doi.org/10.1007/s00134-026-08361-1</a>
+    </p>
+    <p>
+      <b>Endorsing societies include:</b> African Federation for Emergency Medicine, African Sepsis Alliance, American Association of Critical-Care Nurses, American College of Chest Physicians (CHEST), American Thoracic Society, Asia Pacific Sepsis Alliance, Asian Society of Emergency Medicine, Associação de Medicina Intensiva Brasileira, Australian and New Zealand Intensive Care Society, Canadian Critical Care Society, Chinese Society of Critical Care Medicine, European Respiratory Society, European Society for Emergency Medicine, European Society of Clinical Microbiology and Infectious Diseases, German Sepsis Society, Indian Society of Critical Care Medicine, Infectious Diseases Society of America, Japanese Society of Intensive Care Medicine, Latin American Sepsis Institute, Society for Academic Emergency Medicine, Society of Hospital Medicine, Surgical Infection Society, World Federation of Critical Care Nurses, and World Federation of Intensive and Critical Care Medicine.
+    </p>
+    <p class="disclaimer">
+      <b>Disclaimer:</b> This page is an unofficial, condensed educational quick-reference derived from the 2026 Surviving Sepsis Campaign guidelines. It is <b>not</b> a substitute for the full guideline text, for clinical judgement, or for local protocols and drug formularies. Calculators use published formulas and provide estimates only — always verify doses, weights and targets against your local institutional policy and the full guideline. The "In our practice" statements reflect panel practice patterns and are explicitly <i>not</i> formal recommendations or endorsements.
+    </p>
+    <p class="disclaimer" style="border-top:none;padding-top:.2rem">
+      LEGO is a trademark of the LEGO Group, which does not sponsor, authorise or endorse this page. Brick styling used decoratively only.
+    </p>
+  </div>
+</footer>
+
+<button class="toTop" id="toTop" title="Back to top" aria-label="Back to top">▲</button>
+
+<script>
+(function(){
+  "use strict";
+
+  var root = document.documentElement;
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.block'));
+
+  /* ---------- COLLAPSE / EXPAND ---------- */
+  function setBlock(block, open){
+    block.classList.toggle('open', open);
+    var head = block.querySelector('.block-head');
+    if(head){ head.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  }
+  function setAll(open){
+    blocks.forEach(function(b){ setBlock(b, open); });
+  }
+  blocks.forEach(function(block){
+    var head = block.querySelector('.block-head');
+    if(!head) return;
+    head.addEventListener('click', function(){
+      setBlock(block, !block.classList.contains('open'));
+    });
+  });
+  document.getElementById('expandAll').addEventListener('click', function(){ setAll(true); });
+  document.getElementById('collapseAll').addEventListener('click', function(){ setAll(false); });
+
+  /* ---------- FONT SIZE ---------- */
+  var FS_MIN = 12, FS_MAX = 22, FS_DEFAULT = 15, fs = FS_DEFAULT;
+  function applyFs(){
+    root.style.setProperty('--fs', fs + 'px');
+    try{ localStorage.setItem('ssc-fs', String(fs)); }catch(e){}
+  }
+  try{
+    var saved = localStorage.getItem('ssc-fs');
+    if(saved){ var n = parseInt(saved,10); if(n >= FS_MIN && n <= FS_MAX){ fs = n; } }
+  }catch(e){}
+  applyFs();
+  document.getElementById('fsUp').addEventListener('click', function(){
+    fs = Math.min(FS_MAX, fs + 1); applyFs();
+  });
+  document.getElementById('fsDown').addEventListener('click', function(){
+    fs = Math.max(FS_MIN, fs - 1); applyFs();
+  });
+  document.getElementById('fsReset').addEventListener('click', function(){
+    fs = FS_DEFAULT; applyFs();
+  });
+
+  /* ---------- SEARCH & HIGHLIGHT ---------- */
+  var content = document.getElementById('content');
+  var searchInput = document.getElementById('search');
+  var statusEl = document.getElementById('searchStatus');
+  var hits = [], hitIndex = -1;
+
+  function escapeRegExp(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function clearHighlights(){
+    var marks = content.querySelectorAll('mark.hit');
+    Array.prototype.forEach.call(marks, function(m){
+      var parent = m.parentNode;
+      if(!parent) return;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+    hits = [];
+    hitIndex = -1;
+  }
+
+  function highlight(term){
+    var re = new RegExp(escapeRegExp(term), 'gi');
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if(!node.nodeValue || !node.nodeValue.trim()){ return NodeFilter.FILTER_REJECT; }
+        var p = node.parentNode;
+        if(!p){ return NodeFilter.FILTER_REJECT; }
+        if(p.nodeName === 'SCRIPT' || p.nodeName === 'STYLE' || p.nodeName === 'MARK'){ return NodeFilter.FILTER_REJECT; }
+        if(p.closest && p.closest('script, style, mark')){ return NodeFilter.FILTER_REJECT; }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while(walker.nextNode()){ nodes.push(walker.currentNode); }
+
+    var total = 0;
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      re.lastIndex = 0;
+      if(!re.test(text)){ return; }
+      re.lastIndex = 0;
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      while((m = re.exec(text)) !== null){
+        if(m[0].length === 0){ re.lastIndex++; continue; }
+        if(m.index > last){
+          frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        }
+        var mark = document.createElement('mark');
+        mark.className = 'hit';
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        total++;
+      }
+      if(last < text.length){
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    });
+    return total;
+  }
+
+  function jump(i){
+    if(!hits.length) return;
+    if(i < 0) i = hits.length - 1;
+    if(i >= hits.length) i = 0;
+    if(hitIndex >= 0 && hits[hitIndex]){ hits[hitIndex].classList.remove('current'); }
+    hitIndex = i;
+    var el = hits[hitIndex];
+    el.classList.add('current');
+    el.scrollIntoView({block:'center', behavior:'smooth'});
+    statusEl.textContent = (hitIndex + 1) + ' / ' + hits.length;
+  }
+
+  var debounceTimer = null;
+  function runSearch(){
+    clearHighlights();
+    var term = searchInput.value.trim();
+    if(term.length < 2){
+      statusEl.textContent = term.length ? 'Need ≥2 chars' : '—';
+      return;
+    }
+    setAll(true);                    /* expand so hidden text is searchable/visible */
+    var n = highlight(term);
+    hits = Array.prototype.slice.call(content.querySelectorAll('mark.hit'));
+    if(n === 0){
+      statusEl.textContent = 'No matches';
+      return;
+    }
+    statusEl.textContent = n + ' match' + (n === 1 ? '' : 'es');
+    jump(0);
+  }
+
+  searchInput.addEventListener('input', function(){
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 260);
+  });
+  searchInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); runSearch(); if(hits.length) jump(hitIndex + 1); }
+    if(e.key === 'Escape'){ searchInput.value = ''; runSearch(); }
+  });
+  document.getElementById('nextHit').addEventListener('click', function(){ if(hits.length) jump(hitIndex + 1); });
+  document.getElementById('prevHit').addEventListener('click', function(){ if(hits.length) jump(hitIndex - 1); });
+  document.getElementById('clearSearch').addEventListener('click', function(){
+    searchInput.value = '';
+    clearHighlights();
+    statusEl.textContent = '—';
+    searchInput.focus();
+  });
+
+  /* ---------- BACK TO TOP ---------- */
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 500){ toTop.classList.add('show'); }
+    else{ toTop.classList.remove('show'); }
+  }, {passive:true});
+  toTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  /* ============================================================
+     CALCULATORS
+     ============================================================ */
+  function num(id, fallback){
+    var v = parseFloat(document.getElementById(id).value);
+    return isNaN(v) ? (fallback || 0) : v;
+  }
+  function fmt(x, d){
+    if(!isFinite(x)) return '—';
+    return x.toFixed(d === undefined ? 1 : d);
+  }
+  function ibw(sex, heightCm){
+    var inches = heightCm / 2.54;
+    var base = (sex === 'male') ? 50 : 45.5;
+    return base + 2.3 * (inches - 60);
+  }
+
+  /* ---- 1. Weight / fluid ---- */
+  function calc1(){
+    var sex = document.getElementById('c1sex').value;
+    var ht = num('c1ht', 170);
+    var wt = num('c1wt', 70);
+    var hM = ht / 100;
+    var bmi = wt / (hM * hM);
+    var ideal = ibw(sex, ht);
+    var adj = (wt > ideal) ? (ideal + 0.4 * (wt - ideal)) : ideal;
+    var doseWt = (bmi > 30) ? adj : wt;
+    var vol = 30 * doseWt;
+    var rate = vol / 3;
+
+    var out = document.getElementById('c1out');
+    out.innerHTML =
+      '<div class="row"><span>BMI</span><span>' + fmt(bmi,1) + ' kg/m²</span></div>' +
+      '<div class="row"><span>Ideal body weight (Devine)</span><span>' + fmt(ideal,1) + ' kg</span></div>' +
+      '<div class="row"><span>Adjusted body weight</span><span>' + fmt(adj,1) + ' kg</span></div>' +
+      '<div class="row"><span>Dosing weight used' + (bmi > 30 ? ' <b>(BMI &gt; 30 → adjusted)</b>' : ' <b>(actual)</b>') + '</span><span>' + fmt(doseWt,1) + ' kg</span></div>' +
+      '<div class="row"><span><b>30 mL/kg crystalloid</b></span><span class="big">' + Math.round(vol) + ' mL (' + fmt(vol/1000,1) + ' L)</span></div>' +
+      '<div class="row"><span>Rate over first 3 h</span><span>' + Math.round(rate) + ' mL/h</span></div>' +
+      (bmi > 30
+        ? '<div class="row"><span class="warn">⚠ BMI &gt; 30 — guideline advises adjusted or ideal body weight</span><span></span></div>'
+        : '') +
+      '<div class="row"><span>Haemodynamic resuscitation should begin immediately</span><span class="ok">✔</span></div>';
+  }
+
+  /* ---- 2. Tidal volume ---- */
+  function calc2(){
+    var sex = document.getElementById('c2sex').value;
+    var ht = num('c2ht', 170);
+    var ideal = ibw(sex, ht);
+    var vt6 = 6 * ideal;
+    var vt8 = 8 * ideal;
+    var out = document.getElementById('c2out');
+    out.innerHTML =
+      '<div class="row"><span>Ideal / predicted body weight</span><span class="big">' + fmt(ideal,1) + ' kg</span></div>' +
+      '<div class="row"><span>ARDS — 6 mL/kg PBW</span><span class="ok">' + Math.round(vt6) + ' mL</span></div>' +
+      '<div class="row"><span>No ARDS — 6–8 mL/kg IBW</span><span>' + Math.round(vt6) + '–' + Math.round(vt8) + ' mL</span></div>' +
+      '<div class="row"><span>Plateau pressure goal</span><span>≤ 30 cmH₂O</span></div>' +
+      '<div class="row"><span>Screen regularly for ARDS</span><span class="warn">Under-recognised ~50%</span></div>';
+  }
+
+  /* ---- 3. MAP ---- */
+  function calc3(){
+    var sbp = num('c3sbp', 85);
+    var dbp = num('c3dbp', 50);
+    var age = num('c3age', 55);
+    var map = (sbp + 2 * dbp) / 3;
+    var lowTarget = (age >= 65) ? 60 : 65;
+    var highTarget = (age >= 65) ? 65 : 65;
+    var cls, txt;
+    if(map < lowTarget){ cls = 'bad'; txt = 'BELOW target — escalate vasopressor / reassess'; }
+    else if(map > 75){ cls = 'warn'; txt = 'Above target — consider reducing vasopressor'; }
+    else { cls = 'ok'; txt = 'Within / at target range'; }
+    var out = document.getElementById('c3out');
+    out.innerHTML =
+      '<div class="row"><span>Calculated MAP</span><span class="big">' + fmt(map,1) + ' mmHg</span></div>' +
+      '<div class="row"><span>Initial MAP target' + (age >= 65 ? ' (age ≥ 65 y)' : '') + '</span><span>' + lowTarget + '–' + highTarget + ' mmHg</span></div>' +
+      '<div class="row"><span>Status</span><span class="' + cls + '">' + txt + '</span></div>' +
+      '<div class="row"><span>Titrate to a range (≈ ±5 mmHg)</span><span>✔</span></div>';
+  }
+
+  /* ---- 4. NEE ---- */
+  function calc4(){
+    var ne = num('c4ne', 0);
+    var ep = num('c4ep', 0);
+    var dp = num('c4dp', 0);
+    var ph = num('c4ph', 0);
+    var vp = num('c4vp', 0);
+    var nee = ne + ep + (dp / 100) + (ph / 10) + (vp * 3.33);
+    var pct = Math.min(100, (nee / 1.5) * 100);
+    document.getElementById('c4bar').style.width = pct + '%';
+
+    var advice = [];
+    if(nee >= 0.2 && nee < 0.5) advice.push('Consider adding <b>vasopressin</b> (panel median trigger ≈ 0.3 µg/kg/min NE).');
+    if(nee >= 0.5) advice.push('Consider adding <b>epinephrine</b> (panel median trigger ≈ 0.8 µg/kg/min NE).');
+    if(nee >= 0.25) advice.push('Consider <b>IV hydrocortisone</b> for septic shock with ongoing vasopressor requirement.');
+    if(nee >= 0.5) advice.push('Reassess <b>cardiac function</b> — consider inotrope (dobutamine) if dysfunction + persistent hypoperfusion.');
+    if(nee >= 1.0) advice.push('Refractory shock — consider additional measures, reassess source control, consider rescue therapies.');
+    if(!advice.length) advice.push('Low vasopressor load — continue titrating to MAP target.');
+
+    var out = document.getElementById('c4out');
+    out.innerHTML =
+      '<div class="row"><span>Total norepinephrine equivalent</span><span class="big">' + fmt(nee,2) + ' µg/kg/min</span></div>' +
+      '<div class="row"><span>Norepinephrine alone</span><span>' + fmt(ne,2) + ' µg/kg/min</span></div>' +
+      advice.map(function(a){ return '<div class="row"><span>' + a + '</span><span></span></div>'; }).join('') +
+      '<div class="row"><span class="warn">Approximation only — conversion factors vary between sources</span><span></span></div>';
+  }
+
+  /* ---- 5. Oxygenation ---- */
+  function calc5(){
+    var pao2 = num('c5pao2', 0);
+    var spo2 = num('c5spo2', 0);
+    var fio2 = num('c5fio2', 40);
+    var f = fio2 / 100;
+    var pf = (pao2 > 0 && f > 0) ? pao2 / f : NaN;
+    var sf = (spo2 > 0 && f > 0) ? spo2 / f : NaN;
+
+    function pfClass(v){
+      if(!isFinite(v)) return '—';
+      if(v >= 300) return 'No ARDS by P/F';
+      if(v >= 200) return 'Mild ARDS';
+      if(v >= 100) return 'Moderate ARDS';
+      return 'Severe ARDS';
+    }
+    function sfClass(v){
+      if(!isFinite(v)) return '—';
+      if(v >= 315) return 'No ARDS by S/F';
+      if(v >= 235) return 'Mild ARDS (S/F)';
+      if(v >= 150) return 'Moderate ARDS (S/F)';
+      return 'Severe ARDS (S/F)';
+    }
+
+    var flags = [];
+    if(isFinite(pf) && pf < 200){ flags.push('P/F &lt; 200 → <b>HFNC over conventional oxygen</b> (conditional).'); }
+    else if(isFinite(sf) && sf < 235){ flags.push('S/F &lt; 235 → <b>HFNC over conventional oxygen</b> (conditional).'); }
+    if(spo2 > 0 && (spo2 < 90 || spo2 > 97)){ flags.push('<span class="warn">SpO₂ &lt; 90% or &gt; 97% — S/F ratio is unreliable; use ABG.</span>'); }
+
+    var out = document.getElementById('c5out');
+    out.innerHTML =
+      '<div class="row"><span>PaO₂ / FiO₂ (P/F)</span><span class="big">' + (isFinite(pf) ? Math.round(pf) : '—') + '</span></div>' +
+      '<div class="row"><span>SpO₂ / FiO₂ (S/F)</span><span class="big">' + (isFinite(sf) ? Math.round(sf) : '—') + '</span></div>' +
+      '<div class="row"><span>Category by P/F</span><span>' + pfClass(pf) + '</span></div>' +
+      '<div class="row"><span>Category by S/F</span><span>' + sfClass(sf) + '</span></div>' +
+      flags.map(function(x){ return '<div class="row"><span>' + x + '</span><span></span></div>'; }).join('') +
+      '<div class="row"><span>Reminder: SpO₂/FiO₂ less accurate in shock, darker skin tones, SpO₂ &lt; 90% or &gt; 97%</span><span></span></div>';
+  }
+
+  /* ---- 6. Lactate / CRT ---- */
+  function calc6(){
+    var l1 = num('c6l1', 0);
+    var l2 = num('c6l2', 0);
+    var crt = num('c6crt', 0);
+    var clear = (l1 > 0) ? ((l1 - l2) / l1) * 100 : NaN;
+    var cls = isFinite(clear) ? (clear >= 10 ? 'ok' : 'bad') : '';
+    var crtCls = crt > 0 ? (crt <= 3 ? 'ok' : 'bad') : '';
+    var crtTxt = crt > 0 ? (crt <= 3 ? '≤ 3 s — normal target met' : '> 3 s — prolonged, reassess perfusion') : '—';
+
+    var out = document.getElementById('c6out');
+    out.innerHTML =
+      '<div class="row"><span>Lactate clearance</span><span class="big ' + cls + '">' + (isFinite(clear) ? fmt(clear,1) + ' %' : '—') + '</span></div>' +
+      '<div class="row"><span>Target (per guideline evidence)</span><span>≥ 10% reduction every 2 h</span></div>' +
+      '<div class="row"><span>Status</span><span class="' + cls + '">' + (isFinite(clear) ? (clear >= 10 ? 'Adequate clearance' : 'Inadequate clearance') : '—') + '</span></div>' +
+      '<div class="row"><span>Capillary refill time</span><span class="' + crtCls + '">' + crtTxt + '</span></div>' +
+      '<div class="row"><span>Do NOT continue fluids solely to normalise lactate</span><span class="warn">Individualise</span></div>';
+  }
+
+  /* ---- 7. Glucose ---- */
+  function calc7(){
+    var g = num('c7g', 180);
+    var u = document.getElementById('c7u').value;
+    var mgdl, mmol;
+    if(u === 'mgdl'){ mgdl = g; mmol = g / 18.0182; }
+    else { mmol = g; mgdl = g * 18.0182; }
+    var above = mgdl >= 180;
+    var out = document.getElementById('c7out');
+    out.innerHTML =
+      '<div class="row"><span>mg/dL</span><span class="big">' + fmt(mgdl,0) + '</span></div>' +
+      '<div class="row"><span>mmol/L</span><span class="big">' + fmt(mmol,1) + '</span></div>' +
+      '<div class="row"><span>Insulin threshold (≥ 180 mg/dL / 10 mmol/L)</span><span class="' + (above ? 'bad' : 'ok') + '">' + (above ? 'AT / ABOVE threshold — start insulin' : 'Below threshold') + '</span></div>';
+  }
+
+  /* ---- Wire up ---- */
+  var calcMap = {
+    c1: ['c1sex','c1ht','c1wt', calc1],
+    c2: ['c2sex','c2ht', calc2],
+    c3: ['c3sbp','c3dbp','c3age', calc3],
+    c4: ['c4ne','c4ep','c4dp','c4ph','c4vp', calc4],
+    c5: ['c5pao2','c5spo2','c5fio2', calc5],
+    c6: ['c6l1','c6l2','c6crt', calc6],
+    c7: ['c7g','c7u', calc7]
+  };
+  Object.keys(calcMap).forEach(function(k){
+    var conf = calcMap[k];
+    var fn = conf[conf.length - 1];
+    conf.slice(0, -1).forEach(function(id){
+      var el = document.getElementById(id);
+      if(!el) return;
+      el.addEventListener('input', fn);
+      el.addEventListener('change', fn);
+    });
+    fn();
+  });
+
+  /* ---- Initial state: open the top blocks, collapse the rest ---- */
+  setAll(false);
+  ['legend','calculators','flow','timing'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) setBlock(el, true);
+  });
+
+  /* ---- Ctrl/Cmd+F focus shortcut ---- */
+  document.addEventListener('keydown', function(e){
+    if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'){
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
