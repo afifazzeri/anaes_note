@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bradycardia &amp; Conduction Delay — Quick Reference for Anaesthetists &amp; Intensivists</title>
+<style>
+:root{
+  --base-fs: 16px;
+  --aha-red:#b3404a;
+  --aha-red-dark:#8c2f38;
+  --aha-red-soft:#f7e9ea;
+  --ink:#2b2b2b;
+  --muted:#6d6d6d;
+  --line:#e9dede;
+  --bg:#fbf8f8;
+  --card:#ffffff;
+  --shadow:0 1px 2px rgba(0,0,0,.04), 0 6px 18px rgba(140,47,56,.06);
+
+  --c1-bg:#e8f4ec; --c1-fg:#2f6b46; --c1-bd:#c2e0ce;
+  --c2a-bg:#fdf6e4; --c2a-fg:#8a6714; --c2a-bd:#f0e2ba;
+  --c2b-bg:#fdeee1; --c2b-fg:#9c5a12; --c2b-bd:#f2d6b8;
+  --c3-bg:#fbeaea; --c3-fg:#9b2f2f; --c3-bd:#f0caca;
+}
+*{box-sizing:border-box;}
+html{font-size:var(--base-fs); scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ---------- HEADER ---------- */
+header{
+  background:linear-gradient(135deg,#8c2f38 0%, #b3404a 55%, #c4656e 100%);
+  color:#fff;
+  padding:1.5rem 1.25rem 1.35rem;
+}
+header .wrap{max-width:1080px;margin:0 auto;}
+header .kicker{
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  opacity:.88;font-weight:600;margin-bottom:.45rem;
+}
+header h1{
+  margin:0 0 .35rem;font-size:1.55rem;line-height:1.25;font-weight:700;
+}
+header p{margin:0;font-size:.88rem;opacity:.93;max-width:60ch;}
+
+/* ---------- TOOLBAR ---------- */
+.toolbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  padding:.6rem .75rem;
+}
+.toolbar .wrap{
+  max-width:1080px;margin:0 auto;
+  display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;
+}
+.searchbox{
+  flex:1 1 240px;display:flex;align-items:center;gap:.4rem;
+  background:#fff;border:1px solid var(--line);border-radius:9px;
+  padding:.32rem .55rem;min-width:180px;
+}
+.searchbox:focus-within{border-color:var(--aha-red);box-shadow:0 0 0 3px rgba(179,64,74,.12);}
+.searchbox input{
+  border:0;outline:0;flex:1;font-size:.88rem;background:transparent;color:var(--ink);
+  font-family:inherit;min-width:60px;
+}
+.searchbox svg{flex:0 0 auto;opacity:.5;}
+.btn{
+  font-family:inherit;font-size:.78rem;font-weight:600;
+  border:1px solid var(--line);background:#fff;color:var(--aha-red-dark);
+  padding:.4rem .7rem;border-radius:9px;cursor:pointer;white-space:nowrap;
+  transition:.15s;
+}
+.btn:hover{background:var(--aha-red-soft);border-color:#e3c6c9;}
+.btn:active{transform:translateY(1px);}
+.btn.solid{background:var(--aha-red);color:#fff;border-color:var(--aha-red);}
+.btn.solid:hover{background:var(--aha-red-dark);border-color:var(--aha-red-dark);}
+.divider{width:1px;height:22px;background:var(--line);}
+.fsgroup{display:flex;align-items:center;gap:.25rem;}
+.fsgroup .lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:.15rem;}
+.fsbtn{
+  width:28px;height:28px;display:grid;place-items:center;
+  border-radius:8px;border:1px solid var(--line);background:#fff;
+  cursor:pointer;font-weight:700;color:var(--aha-red-dark);font-size:.78rem;
+}
+.fsbtn:hover{background:var(--aha-red-soft);}
+.searchinfo{font-size:.74rem;color:var(--muted);min-width:0;flex:0 0 auto;}
+.searchinfo b{color:var(--aha-red-dark);}
+
+/* ---------- MAIN ---------- */
+main{max-width:1080px;margin:0 auto;padding:1.1rem .75rem 3rem;}
+
+/* ---------- CARDS ---------- */
+details.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:13px;
+  margin-bottom:.85rem;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+details.card > summary{
+  list-style:none;cursor:pointer;
+  padding:.85rem 1rem;
+  display:flex;align-items:center;gap:.7rem;
+  font-weight:700;font-size:1rem;color:var(--aha-red-dark);
+  background:linear-gradient(180deg,#fff,#fdf9f9);
+  border-bottom:1px solid transparent;
+  transition:.15s;
+  user-select:none;
+}
+details.card > summary::-webkit-details-marker{display:none;}
+details.card > summary:hover{background:var(--aha-red-soft);}
+details.card[open] > summary{border-bottom-color:var(--line);}
+.summary-chev{
+  flex:0 0 auto;width:16px;height:16px;position:relative;transition:transform .2s;
+}
+.summary-chev::before{
+  content:"";position:absolute;top:3px;left:3px;
+  width:7px;height:7px;
+  border-right:2px solid var(--aha-red);
+  border-bottom:2px solid var(--aha-red);
+  transform:rotate(-45deg);
+  transition:transform .2s;
+}
+details.card[open] > summary .summary-chev::before{transform:rotate(45deg);top:1px;}
+.num{
+  flex:0 0 auto;
+  display:inline-grid;place-items:center;
+  width:24px;height:24px;border-radius:7px;
+  background:var(--aha-red);color:#fff;font-size:.75rem;font-weight:700;
+}
+.summary-text{flex:1;min-width:0;}
+.summary-sub{display:block;font-weight:400;font-size:.76rem;color:var(--muted);margin-top:.1rem;}
+.body{padding:1rem 1.1rem 1.15rem;}
+.body > *:first-child{margin-top:0;}
+.body > *:last-child{margin-bottom:0;}
+
+/* nested details */
+details.sub{
+  border:1px solid var(--line);border-radius:10px;
+  margin:.7rem 0;background:#fefcfc;overflow:hidden;
+}
+details.sub > summary{
+  list-style:none;cursor:pointer;padding:.55rem .8rem;
+  font-weight:650;font-size:.9rem;color:#4a3a3c;background:#fdf7f7;
+  display:flex;align-items:center;gap:.5rem;user-select:none;
+}
+details.sub > summary::-webkit-details-marker{display:none;}
+details.sub > summary:hover{background:var(--aha-red-soft);}
+details.sub > summary::before{
+  content:"+";font-weight:700;color:var(--aha-red);width:12px;display:inline-block;
+}
+details.sub[open] > summary::before{content:"–";}
+details.sub .subbody{padding:.7rem .85rem .8rem;}
+
+/* ---------- TYPOGRAPHY ---------- */
+h3{font-size:.95rem;margin:1.1rem 0 .5rem;color:var(--aha-red-dark);letter-spacing:.01em;}
+h4{font-size:.86rem;margin:.9rem 0 .35rem;color:#4a3a3c;text-transform:uppercase;letter-spacing:.06em;}
+p{margin:.5rem 0;}
+ul,ol{margin:.45rem 0;padding-left:1.15rem;}
+li{margin:.28rem 0;}
+small{font-size:.78rem;color:var(--muted);}
+strong{color:#1f1f1f;}
+
+/* ---------- CALLOUTS ---------- */
+.callout{
+  border-left:4px solid var(--aha-red);
+  background:var(--aha-red-soft);
+  padding:.65rem .85rem;border-radius:0 9px 9px 0;
+  margin:.75rem 0;font-size:.88rem;
+}
+.callout.amber{border-left-color:#c99a2e;background:#fdf6e4;}
+.callout.green{border-left-color:#3f8b5c;background:#e8f4ec;}
+.callout.red{border-left-color:#9b2f2f;background:#fbeaea;}
+.callout strong{color:var(--aha-red-dark);}
+.callout.amber strong{color:#8a6714;}
+.callout.green strong{color:#2f6b46;}
+.callout.red strong{color:#9b2f2f;}
+
+/* ---------- CLASS PILLS ---------- */
+.pill{
+  display:inline-block;font-size:.66rem;font-weight:700;
+  padding:.1rem .42rem;border-radius:999px;
+  border:1px solid;letter-spacing:.02em;white-space:nowrap;
+  vertical-align:middle;margin-left:.25rem;
+}
+.p1{background:var(--c1-bg);color:var(--c1-fg);border-color:var(--c1-bd);}
+.p2a{background:var(--c2a-bg);color:var(--c2a-fg);border-color:var(--c2a-bd);}
+.p2b{background:var(--c2b-bg);color:var(--c2b-fg);border-color:var(--c2b-bd);}
+.p3{background:var(--c3-bg);color:var(--c3-fg);border-color:var(--c3-bd);}
+
+/* ---------- TABLES ---------- */
+.tablewrap{
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  border:1px solid var(--line);border-radius:10px;margin:.7rem 0;
+  background:#fff;
+}
+.tablewrap table{border-collapse:collapse;width:100%;min-width:560px;font-size:.83rem;}
+.tablewrap thead th{
+  background:#f7efef;color:var(--aha-red-dark);
+  text-align:left;padding:.55rem .7rem;font-weight:700;
+  border-bottom:1px solid var(--line);position:sticky;top:0;
+  font-size:.78rem;letter-spacing:.02em;
+}
+.tablewrap td{padding:.5rem .7rem;border-bottom:1px solid #f2ecec;vertical-align:top;}
+.tablewrap tbody tr:last-child td{border-bottom:0;}
+.tablewrap tbody tr:nth-child(even){background:#fdfbfb;}
+.tablewrap .nowrap{white-space:nowrap;}
+.tbl-note{font-size:.74rem;color:var(--muted);margin-top:.3rem;}
+
+/* ---------- FLOW DIAGRAMS ---------- */
+.flow{
+  display:flex;flex-direction:column;align-items:center;
+  padding:.9rem .4rem;gap:0;
+}
+.fnode{
+  width:100%;max-width:600px;
+  border:1px solid var(--line);border-radius:10px;
+  background:#fff;padding:.5rem .75rem;
+  font-size:.83rem;text-align:center;
+  box-shadow:0 1px 2px rgba(0,0,0,.03);
+}
+.fnode small{display:block;font-size:.72rem;margin-top:.1rem;}
+.fstart{background:var(--aha-red);color:#fff;border-color:var(--aha-red);font-weight:700;}
+.faction{background:#e8f4ec;border-color:var(--c1-bd);color:#245239;}
+.faction.c2a{background:var(--c2a-bg);border-color:var(--c2a-bd);color:#6b5010;}
+.faction.c2b{background:var(--c2b-bg);border-color:var(--c2b-bd);color:#7a4610;}
+.faction.c3{background:var(--c3-bg);border-color:var(--c3-bd);color:#7d2626;}
+.fdecision{background:#fdf7f7;border-color:#ecd9db;border-radius:999px;color:#5c3a3e;font-weight:600;}
+.farrow{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid #dcc6c9;margin:6px 0;}
+.farrow.short{margin:4px 0;}
+.fbranch{
+  display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;
+  width:100%;max-width:760px;margin:.45rem 0;
+}
+.fbranch .fnode{flex:1 1 200px;max-width:280px;text-align:left;}
+.flabel{
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);margin:.35rem 0 .1rem;
+}
+.flegend{font-size:.73rem;color:var(--muted);margin-top:.7rem;text-align:center;}
+
+/* ---------- SEARCH HIGHLIGHT ---------- */
+mark.hl{
+  background:#ffe6a3;color:#5a4300;border-radius:3px;
+  padding:0 .08em;box-shadow:0 0 0 1px #f2d488 inset;
+}
+mark.hl.hl-current{
+  background:#ffb733;color:#3a2a00;box-shadow:0 0 0 2px #e09b13;
+}
+details.card,details.sub{scroll-margin-top:90px;}
+mark.hl{scroll-margin-top:110px;}
+
+/* ---------- FOOTER ---------- */
+footer{
+  background:#f6efef;border-top:1px solid var(--line);
+  padding:1.4rem .9rem 2rem;font-size:.78rem;color:#574a4c;
+}
+footer .wrap{max-width:1080px;margin:0 auto;}
+footer h3{color:var(--aha-red-dark);font-size:.85rem;margin:.9rem 0 .35rem;text-transform:uppercase;letter-spacing:.07em;}
+footer p{margin:.4rem 0;}
+footer .cite{
+  background:#fff;border:1px solid var(--line);border-radius:9px;
+  padding:.6rem .8rem;margin:.4rem 0;font-size:.76rem;line-height:1.5;
+}
+footer a{color:var(--aha-red-dark);word-break:break-word;}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:640px){
+  header h1{font-size:1.25rem;}
+  .summary-sub{display:none;}
+  .body{padding:.85rem .8rem 1rem;}
+  .toolbar .wrap{gap:.4rem;}
+  .divider{display:none;}
+  .fbranch .fnode{flex:1 1 100%;max-width:100%;}
+  .tablewrap table{min-width:480px;}
+}
+@media print{
+  .toolbar{display:none;}
+  details.card{break-inside:avoid;box-shadow:none;}
+  details.card > .body{display:block !important;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Clinical Quick Reference · Perioperative &amp; Critical Care</div>
+    <h1>Bradycardia &amp; Cardiac Conduction Delay</h1>
+    <p>Anaesthetist &amp; intensivist digest of the <strong>2018 ACC/AHA/HRS Guideline</strong> (with the <strong>2019 published corrections</strong> applied). Colour-coded by Class of Recommendation.</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <div class="searchbox">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search (e.g. atropine, pacing, TAVR, glucagon)…" autocomplete="off" aria-label="Search the reference">
+    </div>
+    <button class="btn" id="prevMatch" title="Previous match">↑ Prev</button>
+    <button class="btn" id="nextMatch" title="Next match">↓ Next</button>
+    <span class="searchinfo" id="searchInfo"></span>
+    <span class="divider"></span>
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <span class="divider"></span>
+    <div class="fsgroup" role="group" aria-label="Text size">
+      <span class="lbl">Text</span>
+      <button class="fsbtn" id="fsDown" title="Decrease text size">A−</button>
+      <button class="fsbtn" id="fsUp" title="Increase text size">A+</button>
+      <button class="fsbtn" id="fsReset" title="Reset text size" style="font-size:.62rem;">↺</button>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+
+<!-- ================= 1. DEFINITIONS ================= -->
+<details class="card" open>
+  <summary>
+    <span class="summary-chev"></span>
+    <span class="num">1</span>
+    <span class="summary-text">Definitions &amp; Thresholds
+      <span class="summary-sub">What counts as bradycardia, AV block and "symptomatic"</span>
+    </span>
+  </summary>
+  <div class="body">
+
+    <div class="callout">
+      <strong>Bottom line:</strong> There is <em>no</em> single heart-rate or pause threshold that mandates pacing. In sinus node dysfunction (SND) the decision is driven by a <strong>temporal correlation between symptoms and bradycardia</strong>. In acquired Mobitz II, high-grade or third-degree AV block (not reversible/physiologic), pacing is indicated <strong>regardless of symptoms</strong>.
+    </div>
+
+    <ul>
+      <li><strong>Bradycardia (NIH):</strong> heart rate &lt;60 bpm in adults (other than well-trained athletes). Population studies often use &lt;50 bpm.</li>
+      <li><strong>This guideline:</strong> a sinus rate <strong>&lt;50 bpm</strong> and/or a sinus pause <strong>&gt;3 s</strong> may be <em>components</em> of the definition of SND — but either alone does <strong>not</strong> diagnose SND.</li>
+      <li>Healthy elderly patients can have 2-second pauses; long-distance runners can have 3-second pauses on 24-h monitoring — often physiologic.</li>
+      <li><strong>Symptomatic bradycardia</strong> = documented bradyarrhythmia directly responsible for syncope/presyncope, transient dizziness or lightheadedness, heart-failure symptoms, or confusional states from cerebral hypoperfusion due to slow heart rate.</li>
+    </ul>
+
+    <h3>Key electrocardiographic definitions</h3>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th style="width:32%">Term</th><th>Definition / Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Sinus bradycardia</strong></td><td>Sinus rate &lt;50 bpm</td></tr>
+          <tr><td><strong>Ectopic atrial bradycardia</strong></td><td>Atrial depolarisation from an atrial pacemaker other than the sinus node, rate &lt;50 bpm</td></tr>
+          <tr><td><strong>Sinoatrial exit block</strong></td><td>Blocked conduction between sinus node and adjacent atrial tissue; may show "group beating" and sinus pauses</td></tr>
+          <tr><td><strong>Sinus pause</strong></td><td>Sinus node depolarises &gt;3 s after the last atrial depolarisation</td></tr>
+          <tr><td><strong>Sinus node arrest</strong></td><td>No evidence of sinus node depolarisation</td></tr>
+          <tr><td><strong>Tachy–brady syndrome</strong></td><td>Sinus bradycardia, ectopic atrial bradycardia or sinus pause alternating with atrial tachycardia, flutter or AF; pauses often follow termination of the tachycardia</td></tr>
+          <tr><td><strong>Chronotropic incompetence</strong></td><td>Inability of the heart to increase rate commensurate with activity/demand; commonly operationalised as failure to attain <strong>80% of expected heart-rate reserve</strong></td></tr>
+          <tr><td><strong>Isorhythmic dissociation</strong></td><td>Atrial depolarisation slower than ventricular depolarisation (AV nodal, His bundle or ventricular origin)</td></tr>
+          <tr><td><strong>First-degree AV block</strong><br><small>(more accurately "AV delay")</small></td><td>P waves with 1:1 AV conduction and PR &gt;200 ms — no P waves are actually blocked</td></tr>
+          <tr><td><strong>Second-degree AV block</strong></td><td>P waves at a constant rate (&lt;100 bpm) where AV conduction is present but not 1:1</td></tr>
+          <tr><td><strong>Mobitz type I</strong></td><td>Periodic single non-conducted P wave with <em>inconstant</em> PR intervals (Wenckebach)</td></tr>
+          <tr><td><strong>Mobitz type II</strong></td><td>Periodic single non-conducted P wave with <em>constant</em> PR intervals (excluding 2:1 block)</td></tr>
+          <tr><td><strong>2:1 AV block</strong></td><td>Every other P wave conducts — <strong>cannot</strong> be classified as Mobitz I or II; the level of block must be determined</td></tr>
+          <tr><td><strong>High-grade / advanced AV block</strong></td><td>&gt;2 consecutive P waves at a constant physiologic rate that do not conduct, with evidence for some AV conduction</td></tr>
+          <tr><td><strong>Third-degree (complete) AV block</strong></td><td>No evidence of AV conduction</td></tr>
+          <tr><td><strong>Vagally mediated AV block</strong></td><td>Any type of AV block mediated by heightened parasympathetic tone (often with concomitant sinus slowing)</td></tr>
+          <tr><td><strong>Infranodal block</strong></td><td>Block distal to the AV node (clinical or electrophysiologic evidence)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tbl-note">Maximum predicted heart rate for age = 220 − age (years).</div>
+
+  </div>
+</details>
+
+<!-- ================= 2. ACUTE ALGORITHM ================= -->
+<details class="card" open>
+  <summary>
+    <span class="summary-chev"></span>
+    <span class="num">2</span>
+    <span class="summary-text">Acute Bradycardia Algorithm
+      <span class="summary-sub">Simplified from Figure 4 — the bedside pathway</span>
+    </span>
+  </summary>
+  <div class="body">
+
+    <div class="callout red">
+      <strong>Do not give atropine to a heart-transplant recipient</strong> — the denervated heart can respond paradoxically with complete AV block or sinus arrest (Class III: Harm).
+    </div>
+
+    <div class="flow">
+
+      <div class="fnode fstart">Acute bradycardia</div>
+      <div class="farrow"></div>
+
+      <div class="fnode">Vital signs · History &amp; physical · ECG<br><small>Assess stability and haemodynamic compromise</small></div>
+      <div class="farrow"></div>
+
+      <div class="fnode faction">Assess for treatable / reversible causes <span class="pill p1">Class I</span><br><small>Drugs, electrolytes, ischaemia, hypothermia, hypothyroidism, sleep apnoea, infection, raised ICP, hypovolaemia, hypoxia/acidosis</small></div>
+      <div class="farrow"></div>
+
+      <div class="fnode fdecision">Moderate or severe symptoms?</div>
+      <div class="fbranch">
+        <div class="fnode"><strong>No</strong> → Evaluation and observation</div>
+      </div>
+      <div class="farrow"></div>
+
+      <div class="fnode faction c2a">Atropine <span class="pill p2a">Class IIa</span><br><small>Avoid after heart transplant · unlikely to help infranodal block and may worsen it</small></div>
+      <div class="farrow"></div>
+
+      <div class="fnode fdecision">Drug toxicity?</div>
+      <div class="fbranch">
+        <div class="fnode faction c2a"><strong>Calcium channel blocker</strong><br>IV calcium <span class="pill p2a">IIa</span> → high-dose insulin <span class="pill p2a">IIa</span></div>
+        <div class="fnode faction c2a"><strong>Beta blocker</strong><br>IV glucagon <span class="pill p2a">IIa</span> → high-dose insulin <span class="pill p2a">IIa</span></div>
+        <div class="fnode faction c2a"><strong>Digoxin</strong><br>Anti-digoxin Fab <span class="pill p2a">IIa</span></div>
+      </div>
+      <div class="farrow"></div>
+
+      <div class="fnode fdecision">Continued symptoms?</div>
+      <div class="farrow"></div>
+
+      <div class="fnode fdecision">Severe symptoms / haemodynamically unstable?</div>
+      <div class="fbranch">
+        <div class="fnode faction">→ <strong>Acute pacing algorithm</strong> (see section 4)</div>
+      </div>
+      <div class="farrow"></div>
+
+      <div class="fnode fdecision">MI with AV block?</div>
+      <div class="fbranch">
+        <div class="fnode faction c2b">Yes → Aminophylline <span class="pill p2b">Class IIb</span></div>
+      </div>
+      <div class="farrow"></div>
+
+      <div class="fnode faction c2b">Beta agonist <span class="pill p2b">Class IIb</span><br><small>Isoproterenol, dopamine, dobutamine or epinephrine — avoid if coronary ischaemia likely</small></div>
+      <div class="farrow"></div>
+
+      <div class="fnode fdecision">Continued symptoms?</div>
+      <div class="fbranch">
+        <div class="fnode faction">Yes → <strong>Acute pacing algorithm</strong> (see section 4)</div>
+      </div>
+
+    </div>
+
+    <div class="callout amber">
+      <strong>In drug toxicity with severe symptoms:</strong> prepare for pacing <em>simultaneously</em> with pharmacological treatment — do not wait for the antidote to work.
+    </div>
+
+  </div>
+</details>
+
+<!-- ================= 3. DRUGS ================= -->
+<details class="card" open>
+  <summary>
+    <span class="summary-chev"></span>
+    <span class="num">3</span>
+    <span class="summary-text">Acute Drug Therapy — Doses
+      <span class="summary-sub">Table 8 plus supporting notes</span>
+    </span>
+  </summary>
+  <div class="body">
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th style="width:24%">Medication</th><th style="width:30%">Dosage</th><th>Comments</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3" style="background:#f7efef;font-weight:700;color:var(--aha-red-dark);">Symptomatic sinus bradycardia or AV block</td>
+          </tr>
+          <tr>
+            <td><strong>Atropine</strong></td>
+            <td class="nowrap">0.5–1 mg IV<br>(may repeat every 3–5 min, max 3 mg)</td>
+            <td>Avoid in heart transplant. Unlikely to improve His-bundle/His-Purkinje block — use judiciously with wide QRS. Paradoxical slowing at very low doses (&lt;0.5 mg).</td>
+          </tr>
+          <tr>
+            <td><strong>Dopamine</strong></td>
+            <td class="nowrap">5–20 mcg/kg/min IV<br>start 5, ↑ by 5 every 2 min</td>
+            <td>&gt;20 mcg/kg/min may cause vasoconstriction or arrhythmias. Shown equivalent to transcutaneous pacing in one small prehospital RCT.</td>
+          </tr>
+          <tr>
+            <td><strong>Isoproterenol</strong></td>
+            <td class="nowrap">20–60 mcg IV bolus, then 10–20 mcg doses<br><em>or</em> infusion 1–20 mcg/min titrated to rate</td>
+            <td>Monitor for ischaemic chest pain. Increases myocardial O₂ demand while decreasing coronary perfusion — avoid if coronary ischaemia suspected. May worsen hypotension (vasodilation).</td>
+          </tr>
+          <tr>
+            <td><strong>Epinephrine</strong></td>
+            <td class="nowrap">2–10 mcg/min IV<br><em>or</em> 0.1–0.5 mcg/kg/min IV titrated to effect</td>
+            <td>Standard ACLS dosing range; titrate to haemodynamic response.</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="background:#f7efef;font-weight:700;color:var(--aha-red-dark);">Second- or third-degree AV block with acute inferior MI</td>
+          </tr>
+          <tr>
+            <td><strong>Aminophylline</strong></td>
+            <td class="nowrap">250 mg IV bolus</td>
+            <td>Small case series show prompt reversal of AV block in inferior MI. No benefit in out-of-hospital brady-asystolic arrest.</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="background:#f7efef;font-weight:700;color:var(--aha-red-dark);">Calcium channel blocker overdose</td>
+          </tr>
+          <tr>
+            <td><strong>10% calcium chloride</strong></td>
+            <td class="nowrap">1–2 g IV every 10–20 min<br><em>or</em> infusion 0.2–0.4 mL/kg/h</td>
+            <td rowspan="2">Often first-line if reliable venous access. Adverse effects (mainly hypercalcaemia) are rare. Calcium gluconate causes less peripheral vein irritation.</td>
+          </tr>
+          <tr>
+            <td><strong>10% calcium gluconate</strong></td>
+            <td class="nowrap">3–6 g IV every 10–20 min<br><em>or</em> infusion 0.6–1.2 mL/kg/h</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="background:#f7efef;font-weight:700;color:var(--aha-red-dark);">Beta-blocker or calcium channel blocker overdose</td>
+          </tr>
+          <tr>
+            <td><strong>Glucagon</strong></td>
+            <td class="nowrap">3–10 mg IV, then infusion 3–5 mg/h</td>
+            <td>Effects are transient — always follow with an infusion. Causes nausea/vomiting (airway caution).</td>
+          </tr>
+          <tr>
+            <td><strong>High-dose insulin therapy</strong></td>
+            <td class="nowrap">IV bolus 1 unit/kg, then infusion 0.5 units/kg/h</td>
+            <td><strong>Follow glucose and potassium levels.</strong> Hypoglycaemia and hypokalaemia are usually mild. Evidence largely animal studies and case series.</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="background:#f7efef;font-weight:700;color:var(--aha-red-dark);">Digoxin overdose</td>
+          </tr>
+          <tr>
+            <td><strong>Digoxin antibody Fab fragment</strong></td>
+            <td>Dose dependent on amount ingested or known digoxin concentration. <strong>One vial (~40 mg) binds ~0.5 mg digoxin.</strong> Administer over ≥30 min.</td>
+            <td>May be repeated (large volume of distribution in chronic toxicity). Clinical response 50–90% within 30–45 min. Adverse events &lt;10%. Monitor potassium.</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="background:#f7efef;font-weight:700;color:var(--aha-red-dark);">Post-heart transplant · Spinal cord injury</td>
+          </tr>
+          <tr>
+            <td><strong>Aminophylline</strong></td>
+            <td class="nowrap">6 mg/kg in 100–200 mL IV fluid over 20–30 min</td>
+            <td rowspan="2">For post-transplant SND and for bradycardia after spinal cord injury (unopposed parasympathetic drive). In spinal cord injury, effective doses often produce serum levels below the usual therapeutic range (10–20 mcg/mL). Treatment can usually be withdrawn after 4–6 weeks.</td>
+          </tr>
+          <tr>
+            <td><strong>Theophylline</strong></td>
+            <td class="nowrap">300 mg IV, then oral 5–10 mg/kg/d titrated to effect</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tbl-note">IV = intravenous; MI = myocardial infarction; RCT = randomised controlled trial.</div>
+
+    <details class="sub">
+      <summary>Atropine &amp; beta agonists for bradycardia attributable to SND</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p2a">IIa C-LD</span> In SND with symptoms or haemodynamic compromise, <strong>atropine is reasonable</strong> to increase sinus rate.</li>
+          <li><span class="pill p2b">IIb C-LD</span> In SND with symptoms or haemodynamic compromise and <strong>low likelihood of coronary ischaemia</strong>, isoproterenol, dopamine, dobutamine or epinephrine <strong>may be considered</strong>.</li>
+          <li><span class="pill p3">III: Harm C-LD</span> In heart-transplant patients without evidence of autonomic reinnervation, <strong>atropine should not be used</strong> to treat sinus bradycardia.</li>
+        </ul>
+        <p><small>Atropine has a bimodal sinoatrial response: doses &lt;0.5 mg may paradoxically slow the rate; 0.5–2 mg accelerates it. Half-life ≈ 2 h. Dopamine at 5–20 mcg/kg/min is chronotropic and inotropic; higher doses risk vasoconstriction and proarrhythmia.</small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Acute medical therapy for bradycardia attributable to AV block</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p2a">IIa C-LD</span> Second- or third-degree AV block believed to be <strong>at the AV nodal level</strong> with symptoms or haemodynamic compromise — <strong>atropine is reasonable</strong>.</li>
+          <li><span class="pill p2b">IIb B-NR</span> Second- or third-degree AV block with symptoms or haemodynamic compromise and <strong>low likelihood of coronary ischaemia</strong> — beta-adrenergic agonists (isoproterenol, dopamine, dobutamine, epinephrine) <strong>may be considered</strong>.</li>
+          <li><span class="pill p2b">IIb C-LD</span> Second- or third-degree AV block with symptoms or haemodynamic compromise <strong>in acute inferior MI</strong> — IV aminophylline <strong>may be considered</strong>.</li>
+        </ul>
+        <div class="callout amber" style="margin-top:.6rem;">
+          <strong>Atropine caveat:</strong> unlikely to improve block at the His bundle or His-Purkinje level. Isolated reports describe <em>worsened</em> AV conduction and haemodynamic compromise. Use judiciously when the QRS is wide (suggesting significant His-Purkinje disease).
+        </div>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Digoxin-mediated bradycardia — key corrections applied</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p2a">IIa C-LD</span> Digoxin Fab antibody fragment is reasonable for bradycardia with symptoms or haemodynamic compromise in digoxin toxicity.</li>
+          <li><span class="pill p3">III: No Benefit C-LD</span> <strong>Dialysis is not recommended</strong> for digoxin removal (only slightly dialysable). Haemodialysis may be considered for life-threatening hyperkalaemia.</li>
+        </ul>
+        <div class="callout green">
+          <strong>2019 correction applied:</strong> patients with <strong>hyperkalaemia or arrhythmias</strong> in the setting of digoxin serum levels &gt;2 mcg/L are at increased risk of death. (The original text incorrectly read "life-threatening".)
+        </div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ================= 4. TEMPORARY PACING ================= -->
+<details class="card">
+  <summary>
+    <span class="summary-chev"></span>
+    <span class="num">4</span>
+    <span class="summary-text">Temporary Pacing
+      <span class="summary-sub">Indications, route selection and complications</span>
+    </span>
+  </summary>
+  <div class="body">
+
+    <div class="flow">
+      <div class="fnode fstart">Haemodynamic instability despite medical therapy</div>
+      <div class="farrow"></div>
+      <div class="fnode fdecision">Critically ill due to bradycardia?</div>
+      <div class="fbranch">
+        <div class="fnode faction c2b">Yes → Transcutaneous pacing <span class="pill p2b">Class IIb</span></div>
+      </div>
+      <div class="farrow"></div>
+      <div class="fnode fdecision">Permanent pacemaker indicated <em>and</em> capability immediately available?</div>
+      <div class="fbranch">
+        <div class="fnode faction">Yes → Implant permanent pacemaker<br><small>Careful anaesthetic management: avoid or minimise drugs associated with bradycardia</small></div>
+      </div>
+      <div class="farrow"></div>
+      <div class="fnode fdecision">Prolonged temporary pacing needed?</div>
+      <div class="fbranch">
+        <div class="fnode faction c2a">Yes → Externalised permanent pacing lead <span class="pill p2a">Class IIa</span></div>
+        <div class="fnode faction c2a">No → Temporary transvenous pacing wire <span class="pill p2a">Class IIa</span></div>
+      </div>
+      <div class="flegend">Simplified from Figure 5 — Acute pacing algorithm</div>
+    </div>
+
+    <h3>Recommendations</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:22%">Setting</th><th style="width:12%">Class</th><th>Recommendation</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Persistent haemodynamically unstable <strong>SND</strong> refractory to medical therapy</td>
+            <td><span class="pill p2a">IIa C-LD</span></td>
+            <td>Temporary transvenous pacing is reasonable to increase heart rate and improve symptoms until a permanent pacemaker is placed or the bradycardia resolves.</td>
+          </tr>
+          <tr>
+            <td><strong>SND</strong> with severe symptoms or haemodynamic compromise</td>
+            <td><span class="pill p2b">IIb C-LD</span></td>
+            <td>Temporary transcutaneous pacing may be considered until a temporary transvenous or permanent pacemaker is placed, or the bradycardia resolves.</td>
+          </tr>
+          <tr>
+            <td><strong>SND</strong> with minimal and/or infrequent symptoms <em>without</em> haemodynamic compromise</td>
+            <td><span class="pill p3">III: Harm C-LD</span></td>
+            <td>Temporary transcutaneous or transvenous pacing <strong>should not be performed</strong>.</td>
+          </tr>
+          <tr>
+            <td>Second- or third-degree <strong>AV block</strong> with symptoms or haemodynamic compromise refractory to medical therapy</td>
+            <td><span class="pill p2a">IIa B-NR</span></td>
+            <td>Temporary transvenous pacing is reasonable.</td>
+          </tr>
+          <tr>
+            <td>Requirement for <strong>prolonged</strong> temporary transvenous pacing</td>
+            <td><span class="pill p2a">IIa B-NR</span></td>
+            <td>An <strong>externalised permanent active-fixation lead</strong> is reasonable in preference to a standard passive-fixation temporary pacing lead.</td>
+          </tr>
+          <tr>
+            <td>Second- or third-degree <strong>AV block</strong> with haemodynamic compromise refractory to medical therapy</td>
+            <td><span class="pill p2b">IIb B-R</span></td>
+            <td>Temporary transcutaneous pacing may be considered until a temporary transvenous or permanent pacemaker is placed, or the bradyarrhythmia resolves.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout amber">
+      <strong>Complications of temporary transvenous pacing: 14–40%.</strong> Venous thrombosis (18–85% with femoral access), pulmonary emboli (50–60% with femoral approach), life-threatening arrhythmias, loss of capture (10–37%), perforation and death. Risk of infection of a subsequent permanent pacemaker is increased if a temporary wire has been in situ.
+    </div>
+
+    <ul>
+      <li><strong>Insertion technique matters:</strong> balloon-flotation catheters, internal jugular access and fluoroscopic/echo guidance are associated with lower complication rates than semirigid fixed-curve catheters and blind placement.</li>
+      <li><strong>Duration matters:</strong> complications rise when wires remain &gt;48 h. Use the minimum duration necessary, and place by the most experienced available operator.</li>
+      <li><strong>If AV block is felt to be irreversible and permanent pacing capability is available</strong>, it may be best to avoid temporary pacing altogether and proceed directly to permanent implantation.</li>
+      <li><strong>Transcutaneous pacing:</strong> painful (sedation/analgesia usually required); capture must be confirmed by pulse or arterial waveform, <em>not</em> by ECG alone. Best used as a short-term bridge.</li>
+      <li><strong>Externalised permanent lead ("temporary permanent pacemaker"):</strong> lower dislodgement and complication rates; allows mobilisation out of ICU; cost-saving after 1–2 days; no infections reported with reusable sterilised generators.</li>
+    </ul>
+
+  </div>
+</details>
+
+<!-- ================= 5. PERIOPERATIVE ================= -->
+<details class="card" open>
+  <summary>
+    <span class="summary-chev"></span>
+    <span class="num">5</span>
+    <span class="summary-text">Perioperative &amp; Post-Cardiac-Surgery Management
+      <span class="summary-sub">Section 8.1 — the anaesthetist's core content</span>
+    </span>
+  </summary>
+  <div class="body">
+
+    <details class="sub" open>
+      <summary>Non-cardiac surgery — patients at risk of intraoperative bradycardia</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p2a">IIa B-NR</span> In patients thought to be at <strong>high risk</strong> of intraoperative or periprocedural bradycardia (patient characteristics or procedure type), <strong>placement of transcutaneous pacing pads is reasonable</strong>.</li>
+          <li><span class="pill p3">III: Harm B-NR</span> In patients with <strong>LBBB requiring pulmonary artery catheterisation</strong> for intraoperative monitoring, <strong>routine prophylactic temporary transvenous pacing should not be performed</strong>.</li>
+        </ul>
+
+        <h4>Patient risk factors</h4>
+        <ul>
+          <li>Age &gt;60–65 years</li>
+          <li>ASA Class III or IV</li>
+          <li>Baseline heart rate &lt;60 bpm or blood pressure &lt;110/60 mmHg</li>
+          <li>Concomitant beta-blockers or renin–angiotensin system blocking drugs</li>
+        </ul>
+
+        <h4>Procedure risk factors</h4>
+        <ul>
+          <li>Maxillofacial surgery; carotid endarterectomy or stenting</li>
+          <li>Neurosurgery involving the spine or dura mater (trigeminal cardiac reflex)</li>
+          <li>Peritoneal insufflation during laparoscopic/abdominal surgery</li>
+        </ul>
+
+        <div class="callout">
+          <strong>Intraoperative bradycardia is most commonly attributable to SND</strong> and only rarely to worsening AV conduction.
+        </div>
+
+        <div class="callout amber">
+          <strong>LBBB + pulmonary artery catheter:</strong> complete heart block can occur, but the incidence is low. Prophylactic transvenous pacing is <em>not</em> recommended (temporary pacing itself carries an increased risk of ventricular arrhythmias). Instead, <strong>be prepared</strong> to manage complete heart block with rapid initiation of transvenous pacing, or immediate transcutaneous pacing if sustained rate support is required.
+        </div>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Isolated coronary artery bypass grafting (CABG)</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p1">I B-NR</span> New postoperative SND or AV block with <strong>persistent symptoms or haemodynamic instability that does not resolve</strong> → <strong>permanent pacing before discharge</strong>.</li>
+          <li><span class="pill p2a">IIa B-NR</span> Routine placement of temporary epicardial pacing wires is reasonable.</li>
+          <li><span class="pill p2b">IIb C-EO</span> In patients likely to require future CRT or ventricular pacing, intraoperative placement of a permanent epicardial LV lead may be considered.</li>
+        </ul>
+        <p><small>Incidence of conduction defects after isolated CABG ranges 2–58%. Timing of permanent implant has not been formally studied but <strong>5–7 days postoperatively</strong> is reasonable. Patients without diabetes, preoperative arrhythmia, or pacing requirement while coming off bypass had only a 2.6% need for postsurgical temporary pacing (vs 8.6% overall).</small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Surgery for atrial fibrillation</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p1">I B-NR</span> Routine placement of temporary epicardial pacing wires is recommended.</li>
+          <li><span class="pill p1">I B-NR</span> New postoperative SND or AV block with symptoms or haemodynamic instability that does not resolve → permanent pacing before discharge.</li>
+          <li><span class="pill p2b">IIb C-EO</span> Intraoperative permanent epicardial LV lead may be considered if future CRT/ventricular pacing is likely.</li>
+        </ul>
+        <p><small>Postoperative pacing need is usually for SND; AV block is uncommon. Meta-analysis of 16 RCTs found no difference in permanent pacemaker need with additional AF surgery.</small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Valve surgery — aortic, mitral, tricuspid</summary>
+      <div class="subbody">
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Valve</th><th>Temp. epicardial wires</th><th>Permanent pacing if unresolved</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Aortic</strong></td>
+                <td><span class="pill p1">I C-LD</span> recommended</td>
+                <td><span class="pill p1">I B-NR</span> before discharge</td>
+                <td>Injury to the common bundle (oedema, calcium removal, deep sutures). PPM requirement 3–8.5%; most do not recover AV conduction — <strong>lower threshold for pacing</strong> than mitral surgery.</td>
+              </tr>
+              <tr>
+                <td><strong>Mitral</strong></td>
+                <td><span class="pill p2a">IIa C-LD</span> reasonable</td>
+                <td><span class="pill p1">I B-NR</span> before discharge</td>
+                <td>New AV block reported in up to 23.5%. PPM need 1–9%. Injury tends to be at the AV node (AV nodal artery near the mitral annulus) — <strong>higher threshold for pacing</strong> than aortic surgery. ~5–7 days before implant is reasonable.</td>
+              </tr>
+              <tr>
+                <td><strong>Tricuspid</strong></td>
+                <td><span class="pill p1">I C-LD</span> recommended</td>
+                <td><span class="pill p1">I B-NR</span> before discharge</td>
+                <td>AV node lies between the anterior and septal leaflets — highly susceptible. PPM need up to 22%. Transvalvular endocardial leads cannot cross mechanical valves and cause significant TR in ~42%. <span class="pill p2a">IIa C-LD</span> intraoperative permanent epicardial leads reasonable if high risk. Consider implanting several leads (non-apical lateral LV, RV, atrial). 3–5 days before implant is reasonable.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Transcatheter aortic valve replacement (TAVR)</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p1">I B-NR</span> New AV block after TAVR with symptoms or haemodynamic instability that does not resolve → <strong>permanent pacing before discharge</strong>.</li>
+        </ul>
+        <p><strong>Numbers to know:</strong></p>
+        <ul>
+          <li>New LBBB in <strong>19–55%</strong>; new high-degree AV block in ~<strong>10%</strong>.</li>
+          <li>Up to half of new bundle branch block and complete heart block resolve before discharge.</li>
+          <li>High-degree AV block persists beyond 48 h in 2–20%.</li>
+          <li>Only about half of patients who receive a new PPM after TAVR are pacemaker-dependent at follow-up.</li>
+          <li>New RBBB is associated with increased PPM need and increased late all-cause and cardiac mortality — independent of whether a PPM was implanted.</li>
+          <li>Persistent new LBBB increases PPM need; studies are mixed on late mortality. <strong>Early PPM for new LBBB is not protective against increased mortality.</strong></li>
+          <li>In 29% of patients with new LBBB, the first episode of high-degree AV block occurs <em>after discharge</em> — careful surveillance for bradycardia is appropriate. No specific monitoring protocol has proven superior.</li>
+        </ul>
+        <p><small>Pre-TAVR predictors of PPM: pre-existing RBBB, increased prosthesis-to-LVOT ratio, increased LV end-diastolic diameter. An HV interval ≥65 ms after TAVR is modestly predictive of high-grade AV block with new LBBB (sens 80%, spec 79%).</small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Heart transplant, surgical myectomy &amp; alcohol septal ablation</summary>
+      <div class="subbody">
+        <ul>
+          <li><strong>Heart transplant:</strong> with bicaval (rather than biatrial) anastomoses, the pacemaker rate has fallen from 10–14% to <strong>2–4%</strong>. SND remains the most common cause of bradycardia. <strong>Atropine is ineffective</strong> (denervation) and may cause paradoxical block/asystole — use theophylline/aminophylline instead.</li>
+          <li><strong>Surgical myectomy / alcohol septal ablation for HCM:</strong>
+            <ul>
+              <li><span class="pill p1">I B-NR</span> Persistent Mobitz II, high-grade, or persistent complete AV block after alcohol septal ablation or surgical myectomy → permanent pacing before discharge.</li>
+              <li><span class="pill p2a">IIa B-NR</span> If pacing is required and the patient is at high risk of sudden cardiac death with meaningful survival &gt;1 year, a device with defibrillator capability is reasonable.</li>
+              <li><span class="pill p2b">IIb C-LD</span> Prolonged ambulatory ECG monitoring may be considered after alcohol septal ablation in those at risk of late AV block.</li>
+              <li><span class="pill p2b">IIb C-LD</span> EPS evaluation of ventricular conduction at the time of alcohol septal ablation may be considered.</li>
+            </ul>
+          </li>
+        </ul>
+        <p><small>Risk of abnormal AV conduction: ~10–33% with alcohol septal ablation, 3–4% with surgical myectomy (up to 10% if baseline conduction abnormalities are present). RBBB develops in ~60% after alcohol septal ablation; LBBB in up to 90% after surgical myectomy. Transient AV block after alcohol septal ablation occurs in 15–50% and usually resolves within 24 h.</small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Bradycardia with postoperative atrial fibrillation</summary>
+      <div class="subbody">
+        <ul>
+          <li>Postoperative AF peaks at <strong>2–4 days</strong>; overall incidence 10–65%; more common after valve surgery than isolated CABG.</li>
+          <li>A <strong>slow and regular</strong> ventricular response during AF usually indicates complete AV block — pacing may be required if it does not resolve.</li>
+          <li>In general, treat bradyarrhythmias with postoperative AF the same way as in the non-operative setting — a period of <strong>watchful waiting</strong> is preferred over early PPM implantation.</li>
+          <li>Occasionally, a PPM is required to permit adequate rate-control drug therapy in refractory AF with rapid ventricular response where significant SND limits drug use.</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ================= 6. ACUTE MI ================= -->
+<details class="card">
+  <summary>
+    <span class="summary-chev"></span>
+    <span class="num">6</span>
+    <span class="summary-text">Bradycardia in Acute Myocardial Infarction
+      <span class="summary-sub">Section 8.3 — waiting periods and what not to pace</span>
+    </span>
+  </summary>
+  <div class="body">
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:12%">Class</th><th>Recommendation</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill p1">I B-NR</span></td><td>In acute MI, <strong>temporary pacing is indicated</strong> for medically refractory symptomatic or haemodynamically significant bradycardia related to SND or AV block.</td></tr>
+          <tr><td><span class="pill p1">I B-NR</span></td><td>Patients presenting with SND or AV block in the setting of acute MI should undergo a <strong>waiting period</strong> before determining the need for permanent pacing.</td></tr>
+          <tr><td><span class="pill p1">I B-NR</span></td><td>Acute MI with second-degree Mobitz II, high-grade AV block, alternating bundle branch block, or third-degree AV block (persistent or infranodal) → <strong>permanent pacing after a waiting period</strong>.</td></tr>
+          <tr><td><span class="pill p2a">IIa B-NR</span></td><td>Acute MI with symptomatic or haemodynamically significant sinus bradycardia or AV block <strong>at the level of the AV node</strong> → <strong>atropine is reasonable</strong>.</td></tr>
+          <tr><td><span class="pill p3">III: Harm B-NR</span></td><td>Acute MI with <strong>transient AV block that resolves</strong> → permanent pacing <strong>should not be performed</strong>.</td></tr>
+          <tr><td><span class="pill p3">III: Harm B-NR</span></td><td>Acute MI with a <strong>new bundle branch block or isolated fascicular block</strong> in the absence of second- or third-degree AV block → permanent pacing <strong>should not be performed</strong>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>Key principle:</strong> temporary pacing does <em>not</em> by itself constitute an indication for permanent pacing. Avoid early permanent pacing (&lt;72 h) to allow for recovery of AV conduction and to avoid unnecessary implants. Long-term prognosis after MI with AV block is driven mainly by the extent of myocardial injury and the character of intraventricular conduction disturbance, not by the AV block itself.
+    </div>
+
+    <ul>
+      <li>Inferior MI with AV block may be due to transient vagal tone increase or reduced blood supply to the AV node — often reversible.</li>
+      <li>Anterior MI with AV conduction impairment carries a worse prognosis and higher mortality than inferior MI with a similar presentation.</li>
+      <li>Atropine is safe at the AV nodal level but can <strong>worsen</strong> infranodal conduction disease.</li>
+      <li>Given difficulty confirming reliable myocardial capture, transcutaneous pacing should only be used if other temporary methods are delayed or unavailable.</li>
+      <li>Consider a CIED with defibrillator capability if there is a pacing requirement plus low LVEF, per other societal statements.</li>
+    </ul>
+
+  </div>
+</details>
+
+<!-- ================= 7. SPECIAL POPULATIONS ================= -->
+<details class="card">
+  <summary>
+    <span class="summary-chev"></span>
+    <span class="num">7</span>
+    <span class="summary-text">Special Populations
+      <span class="summary-sub">Spinal cord injury · sleep apnoea · neuromuscular · epilepsy · ACHD</span>
+    </span>
+  </summary>
+  <div class="body">
+
+    <details class="sub">
+      <summary>Sleep apnoea &amp; nocturnal bradycardia</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p1">I B-NR</span> Documented or suspected bradycardia/conduction disorder <strong>during sleep</strong> → <strong>screening for sleep apnoea symptoms</strong> is recommended, with confirmatory testing directed by clinical suspicion.</li>
+          <li><span class="pill p1">I B-NR</span> Sleep-related bradycardia/conduction disorder with documented obstructive sleep apnoea → <strong>treatment directed at the sleep apnoea</strong> (e.g. CPAP, weight loss) is recommended.</li>
+          <li><span class="pill p2a">IIa B-NR</span> In patients who have previously received or are being considered for a PPM for bradycardia/conduction disorder, screening for sleep apnoea is reasonable.</li>
+        </ul>
+        <p><small>Nocturnal bradyarrhythmias are common and usually physiologic/vagally mediated. CPAP reduces episodes of profound sinus bradycardia, prolonged sinus pauses and AV block by <strong>72–89%</strong> and eliminates the need for pacing in most patients. <strong>Nocturnal bradycardia is not in itself an indication for permanent pacing.</strong></small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Spinal cord injury</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p2a">IIa C-LD</span> SND with symptoms or haemodynamic compromise in the setting of <strong>acute spinal cord injury</strong> — aminophylline or theophylline is reasonable to increase heart rate and improve symptoms.</li>
+        </ul>
+        <p><small>Injury above T6 causes autonomic dysreflexia with unopposed parasympathetic (vagal) drive. Severe sinus bradycardia is common in the acute phase; bradyarrhythmias relate to the level and severity of injury. Cardiac arrest (usually sinus arrest/asystole) occurs in ~16% of severe cervical injuries within the first 2–4 weeks. Common triggers: tracheal suctioning, turning the patient, bladder catheterisation. Bradycardia usually resolves after a few weeks or removal of the noxious stimulus. Treatment can usually be withdrawn after 4–6 weeks.</small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Heart transplant</summary>
+      <div class="subbody">
+        <ul>
+          <li>Atropine is <strong>contraindicated</strong> — denervated heart; paradoxical complete AV block or sinus arrest occurs in ~20%.</li>
+          <li><span class="pill p2a">IIa C-LD</span> Aminophylline or theophylline is reasonable to increase heart rate if clinically indicated.</li>
+          <li>Sinus bradycardia is common post-transplant; rates &lt;70–80 bpm may be inadequate for postoperative demand.</li>
+          <li>Sinus bradycardia attributable to autonomic denervation, surgical trauma, ischaemia, rejection and prior amiodarone use.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Neuromuscular disorders</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p1">I B-NR</span> Neuromuscular disease with conduction disorders (e.g. myotonic dystrophy type 1, Kearns-Sayre syndrome) with evidence of second-degree AV block, third-degree AV block, or an <strong>HV interval ≥70 ms</strong> — regardless of symptoms — permanent pacing (with defibrillator capability if needed and meaningful survival &gt;1 year) is recommended.</li>
+          <li><span class="pill p2a">IIa B-NR</span> Lamin A/C gene mutations (including limb-girdle and Emery-Dreifuss muscular dystrophies) with <strong>PR &gt;240 ms and LBBB</strong> — permanent pacing with defibrillator capability is reasonable.</li>
+          <li><span class="pill p2b">IIb C-LD</span> Neuromuscular disease (e.g. myotonic dystrophy type 1) with PR &gt;240 ms, QRS &gt;120 ms, or fascicular block — permanent pacing may be considered.</li>
+        </ul>
+        <p><small>Up to 20% of myotonic dystrophy type 1 patients have AV block on ECG or intermittent second-/third-degree AV block on 24-h monitoring. &gt;50% with a normal ECG may have infra-Hisian block at EPS. 46.7% of patients with HV ≥70 ms develop high-grade AV block. A large retrospective study showed a 75% lower risk of sudden death in those with a pacemaker.</small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Epilepsy / ictal asystole</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p2a">IIa C-LD</span> Epilepsy with severe symptomatic bradycardia (ictal bradycardia) where antiepileptic medications are ineffective — permanent pacing is reasonable for reducing symptom severity.</li>
+        </ul>
+        <p><small>Occurs in ~0.15–0.3% of seizure patients; most commonly temporal lobe origin. Pauses are often &gt;10 s; one study found syncope only occurred with asystole &gt;6 s. Optimise antiepileptic treatment or surgery first. Pacing does not affect any accompanying vasodepressor effect.</small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Adult congenital heart disease (ACHD)</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p1">I B-NR</span> Symptomatic SND or chronotropic incompetence → <strong>atrial-based</strong> permanent pacing.</li>
+          <li><span class="pill p1">I B-NR</span> Symptomatic bradycardia related to AV block → permanent pacing.</li>
+          <li><span class="pill p1">I B-NR</span> Congenital complete AV block with any symptomatic bradycardia, wide QRS escape rhythm, mean daytime HR &lt;50 bpm, complex ventricular ectopy, or ventricular dysfunction → permanent pacing.</li>
+          <li><span class="pill p1">I B-NR</span> Postoperative Mobitz II, high-grade or third-degree AV block not expected to resolve → permanent pacing.</li>
+          <li><span class="pill p2a">IIa B-NR</span> Asymptomatic congenital complete AV block → permanent pacing is reasonable.</li>
+          <li><span class="pill p2a">IIa B-NR</span> Repaired ACHD requiring pacing for bradycardic indications → device with atrial antitachycardia pacing capabilities is reasonable.</li>
+          <li><span class="pill p2a">IIa C-EO</span> Pre-existing sinus node and/or AV conduction disease undergoing cardiac surgery → intraoperative epicardial permanent pacing leads are reasonable.</li>
+          <li><span class="pill p3">III: Harm B-NR</span> Selected adults with ACHD and venous-to-systemic intracardiac shunts → <strong>endocardial pacing leads are potentially harmful</strong>.</li>
+        </ul>
+        <p><small>After surgery, avoid early implantation (&lt;72 h). Patients remain at high risk of permanent heart block if conduction has not resumed within 72 h postoperatively.</small></p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ================= 8. CHRONIC PACING TRIGGERS ================= -->
+<details class="card">
+  <summary>
+    <span class="summary-chev"></span>
+    <span class="num">8</span>
+    <span class="summary-text">Permanent Pacing — When It Is Indicated (and When It Is Not)
+      <span class="summary-sub">Quick screening list for the ward and ICU</span>
+    </span>
+  </summary>
+  <div class="body">
+
+    <h3>Class I — pacing recommended</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:14%">Class</th><th>Indication</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill p1">I C-LD</span></td><td>Symptoms directly attributable to SND</td></tr>
+          <tr><td><span class="pill p1">I C-EO</span></td><td>Symptomatic sinus bradycardia as a consequence of guideline-directed therapy for which there is no alternative and continued treatment is clinically necessary</td></tr>
+          <tr><td><span class="pill p1">I B-NR</span></td><td>Acquired Mobitz II, high-grade, or third-degree AV block <strong>not attributable to reversible or physiologic causes</strong> — <em>regardless of symptoms</em></td></tr>
+          <tr><td><span class="pill p1">I B-NR</span></td><td>Neuromuscular disease with conduction disorder: second-/third-degree AV block or HV ≥70 ms, regardless of symptoms</td></tr>
+          <tr><td><span class="pill p1">I C-LD</span></td><td>Permanent AF with symptomatic bradycardia</td></tr>
+          <tr><td><span class="pill p1">I C-LD</span></td><td>Symptomatic AV block resulting from guideline-directed therapy with no alternative and continued treatment clinically necessary</td></tr>
+          <tr><td><span class="pill p1">I C-LD</span></td><td>Syncope with bundle branch block and HV interval ≥70 ms, or evidence of infranodal block at EPS</td></tr>
+          <tr><td><span class="pill p1">I C-LD</span></td><td>Alternating bundle branch block</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Class IIa / IIb — reasonable / may be considered</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:14%">Class</th><th>Indication</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill p2a">IIa C-EO</span></td><td>Tachy-brady syndrome with symptoms attributable to bradycardia</td></tr>
+          <tr><td><span class="pill p2a">IIa C-EO</span></td><td>Symptomatic chronotropic incompetence — rate-responsive programming</td></tr>
+          <tr><td><span class="pill p2a">IIa B-NR</span></td><td>Infiltrative cardiomyopathy (cardiac sarcoidosis, amyloidosis) with Mobitz II, high-grade, or third-degree AV block</td></tr>
+          <tr><td><span class="pill p2a">IIa B-NR</span></td><td>Lamin A/C mutation with PR &gt;240 ms and LBBB</td></tr>
+          <tr><td><span class="pill p2a">IIa C-LD</span></td><td>Marked first-degree or Mobitz I AV block with symptoms clearly attributable to the AV block</td></tr>
+          <tr><td><span class="pill p2b">IIb C-LD</span></td><td>Symptoms likely attributable to SND — a trial of oral theophylline may help determine the potential effects of pacing</td></tr>
+          <tr><td><span class="pill p2b">IIb C-LD</span></td><td>Neuromuscular disease (e.g. myotonic dystrophy type 1) with PR &gt;240 ms, QRS &gt;120 ms, or fascicular block</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Class III: Harm — do <em>not</em> pace</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:14%">Class</th><th>Do not pace</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill p3">III: Harm C-LD</span></td><td>Asymptomatic sinus bradycardia or sinus pauses secondary to physiologically elevated parasympathetic tone</td></tr>
+          <tr><td><span class="pill p3">III: Harm C-LD</span></td><td>Sleep-related sinus bradycardia or transient sinus pauses during sleep (unless other pacing indications are present)</td></tr>
+          <tr><td><span class="pill p3">III: Harm C-LD</span></td><td>Asymptomatic SND, or symptoms documented to occur in the <strong>absence</strong> of bradycardia or chronotropic incompetence</td></tr>
+          <tr><td><span class="pill p3">III: Harm C-LD</span></td><td>First-degree or Mobitz I / 2:1 AV block believed to be at the AV node, with symptoms that do <strong>not</strong> temporally correspond to the block</td></tr>
+          <tr><td><span class="pill p3">III: Harm C-LD</span></td><td>Asymptomatic first-degree or Mobitz I / 2:1 AV block believed to be at the AV node</td></tr>
+          <tr><td><span class="pill p3">III: Harm C-LD</span></td><td>Asymptomatic vagally mediated AV block</td></tr>
+          <tr><td><span class="pill p3">III: Harm B-NR</span></td><td>Asymptomatic isolated conduction disease with 1:1 AV conduction (in the absence of other indications)</td></tr>
+          <tr><td><span class="pill p3">III: Harm C-LD</span></td><td>Permanent or persistent AF with no planned rhythm-control strategy — <strong>do not implant an atrial lead</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout green">
+      <strong>2019 correction applied:</strong> in the <em>asymptomatic</em> patient, there is <strong>no specific pause duration</strong> that warrants permanent pacing. (The original text omitted "no".)
+    </div>
+
+    <details class="sub">
+      <summary>Choice of pacing mode — practical points</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p1">I B-R</span> Symptomatic SND → <strong>atrial-based pacing</strong> is recommended over single-chamber ventricular pacing.</li>
+          <li><span class="pill p1">I B-R</span> Symptomatic SND with intact AV conduction and no conduction abnormality → <strong>dual-chamber or single-chamber atrial</strong> pacing.</li>
+          <li><span class="pill p2a">IIa B-R</span> Dual-chamber pacemaker with intact AV conduction → programming to <strong>minimise ventricular pacing</strong> is reasonable.</li>
+          <li><span class="pill p2a">IIa C-EO</span> SND where frequent ventricular pacing is not expected, or significant comorbidities likely to determine survival — single-chamber ventricular pacing is reasonable.</li>
+          <li><span class="pill p1">I A</span> SND <em>and</em> AV block requiring pacing → dual-chamber pacing over single-chamber ventricular pacing.</li>
+          <li><span class="pill p1">I A</span> Selected AV block patients where frequent ventricular pacing is not expected, or with significant comorbidities → single-chamber ventricular pacing is effective.</li>
+          <li><span class="pill p1">I B-R</span> Sinus rhythm with a single-chamber ventricular pacemaker who develops pacemaker syndrome → upgrade to dual chamber.</li>
+          <li><span class="pill p2a">IIa B-R</span> AV block with pacing indication, LVEF 36–50%, expected ventricular pacing &gt;40% → <strong>physiologic ventricular activation</strong> (CRT or His bundle pacing) preferred over RV pacing.</li>
+          <li><span class="pill p2a">IIa B-R</span> AV block with pacing indication, LVEF 36–50%, expected ventricular pacing &lt;40% → RV pacing preferred over CRT/His bundle pacing.</li>
+          <li><span class="pill p2b">IIb B-R</span> AV block at the AV nodal level with pacing indication → His bundle pacing may be considered.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Before implanting — assess ventricular arrhythmia risk</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p1">I B-NR</span> In patients who require permanent pacing therapy, <strong>before implantation</strong>, perform an assessment of the risk of future ventricular arrhythmias and the need for an ICD.</li>
+        </ul>
+        <p><small>Patients with symptomatic bradycardia from AV block who also have heart failure symptoms with LVEF ≤35%, myotonic dystrophy, lamin A/C cardiomyopathy, cardiac sarcoidosis, or hypertrophic cardiomyopathy are at increased risk of ventricular arrhythmias and sudden cardiac death, and may benefit from a device with antitachycardia pacing or defibrillation capability. ICDs carry higher complication rates than PPMs — individualise via shared decision-making.</small></p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary>Shared decision-making &amp; end-of-life</summary>
+      <div class="subbody">
+        <ul>
+          <li><span class="pill p1">I C-LD</span> Clinicians and patients should engage in shared decision-making — decisions based on the best available evidence <em>and</em> the patient's goals of care, preferences and values.</li>
+          <li><span class="pill p1">I C-LD</span> Patients considering implantation, or with a pacemaker requiring lead revision or generator change, should be informed of procedural benefits and risks, including short- and long-term complications and possible alternatives.</li>
+          <li><span class="pill p3">III: No Benefit C-LD</span> Where significant comorbidities make meaningful clinical benefit unlikely, or where goals of care strongly preclude pacemaker therapy, implantation or replacement should not be performed.</li>
+          <li><span class="pill p2a">IIa C-LD</span> At generator replacement or management of pacemaker complications where the original indication has resolved or is in question, discontinuation is reasonable after evaluation of symptoms during a monitored period with pacing off.</li>
+          <li>Patients with decision-making capacity (or their legally defined surrogate) have the right to refuse or request withdrawal of pacemaker therapy, <strong>even if pacemaker dependent</strong>. This should be considered palliative end-of-life care, not physician-assisted suicide.</li>
+        </ul>
+        <div class="callout green">
+          <strong>2019 correction applied:</strong> "These pros and cons can be discussed with the patient <strong>and include family with patient permission</strong>, or the patient's family or surrogate if the patient does not have capacity."
+        </div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ================= 9. CORRECTIONS ================= -->
+<details class="card">
+  <summary>
+    <span class="summary-chev"></span>
+    <span class="num">9</span>
+    <span class="summary-text">2019 Published Corrections Applied
+      <span class="summary-sub">Items relevant to this quick reference</span>
+    </span>
+  </summary>
+  <div class="body">
+    <ul>
+      <li><strong>Figure 2 (SND algorithm):</strong> "Treat underlying cause as needed, e.g., sleep apnea (Class I)"; cross-reference corrected to Section 5.4.4.1.</li>
+      <li><strong>Figure 3 (AV block algorithm):</strong> asterisk added to "Advanced imaging" (Class IIa).</li>
+      <li><strong>Section 5.3.1:</strong> "Most patients with SND…that <strong>do not</strong> require acute treatment."</li>
+      <li><strong>Section 5.3.2.3 (digoxin):</strong> "Patients with hyperkalaemia or <strong>arrhythmias</strong> in the setting of digoxin serum levels…" (previously "life-threatening").</li>
+      <li><strong>Section 5.3.3 (temporary pacing):</strong> "…from a central venous <strong>access</strong> site."</li>
+      <li><strong>Figure 5 legend:</strong> cross-reference corrected to Section 5.4.4.1.</li>
+      <li><strong>Section 5.4.1:</strong> "Parasympathetic tone <strong>is</strong> more dominant…"</li>
+      <li><strong>Figure 6 (chronic SND algorithm):</strong> asterisk added to "*Infrequent pacing? Significant comorbidities?"; cross-reference corrected to Sections 4.3. and 5.4.</li>
+      <li><strong>Section 6.3.1:</strong> reference added (S6.3.1-14a, Hauptman et al., JACC Heart Fail 2016).</li>
+      <li><strong>Figure 7 (chronic AV block algorithm):</strong> the text "No" was deleted below the green box "Dual Chamber Pacing Class I".</li>
+      <li><strong>Section 6.4.4:</strong> "In the asymptomatic patient, there is <strong>no</strong> specific pause duration that warrants permanent pacing."</li>
+      <li><strong>Section 8.4:</strong> cross-references corrected to Sections 5.4.4 and 6.4.4.</li>
+      <li><strong>Section 11:</strong> shared decision-making wording revised (see section 8 above).</li>
+      <li><strong>ACC/AHA Task Force Members:</strong> asterisk added to Dr. Ikonomidis and Dr. Mauri ("Former Task Force member; current member during the writing effort").</li>
+      <li><strong>References:</strong> multiple reference corrections and additions (S1.4-2, S4.2.2-5, S4.3.1-4, S5.3.1-36, S5.3.2.1-22, S5.4.4.1-5, S6.3.1-14a, S6.4.3-6, S7.4-4).</li>
+    </ul>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>Source &amp; Citation</h3>
+
+    <p><strong>Primary source</strong></p>
+    <div class="cite">
+      Kusumoto FM, Schoenfeld MH, Barrett C, Edgerton JR, Ellenbogen KA, Gold MR, Goldschlager NF, Hamilton RM, Joglar JA, Kim RJ, Lee R, Marine JE, McLeod CJ, Oken KR, Patton KK, Pellegrini C, Selzman KA, Thompson A, Varosy PD. <strong>2018 ACC/AHA/HRS Guideline on the Evaluation and Management of Patients With Bradycardia and Cardiac Conduction Delay: A Report of the American College of Cardiology/American Heart Association Task Force on Clinical Practice Guidelines and the Heart Rhythm Society.</strong> <em>Circulation.</em> 2019;140:e382–e482. doi:10.1161/CIR.0000000000000628
+    </div>
+
+    <p><strong>Corrections incorporated</strong></p>
+    <div class="cite">
+      <strong>Correction to: 2018 ACC/AHA/HRS Guideline on the Evaluation and Management of Patients With Bradycardia and Cardiac Conduction Delay.</strong> <em>Circulation.</em> 2019;140:e382–e482. Corrections published in the August 20, 2019 issue. Current corrected version available at: <a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000000628" target="_blank" rel="noopener">https://www.ahajournals.org/doi/10.1161/CIR.0000000000000628</a>
+    </div>
+
+    <p><strong>Figures reproduced / simplified from the guideline:</strong> Figure 4 (Acute bradycardia algorithm), Figure 5 (Acute pacing algorithm), Figure 6 (Chronic SND management algorithm), Figure 7 (Chronic AV block management algorithm), Figure 2 (Initial evaluation of suspected or documented SND algorithm), Figure 3 (Initial evaluation of suspected AV block algorithm). Tables adapted: Table 3 (Definitions), Table 8 (Acute medical management of bradycardia), Table 9 (Etiology of AV block), Table 4 (Medications that can induce/exacerbate bradycardia or conduction disorders), Table 5 (Conditions associated with bradycardia and conduction disorders).</p>
+
+    <p style="margin-top:1rem;font-size:.74rem;color:#7a6a6c;">
+      <strong>Disclaimer:</strong> This is an educational quick-reference derived from the published guideline and its corrections. It is not a substitute for the full guideline text, clinical judgement, or local protocols. Class of Recommendation (COR) and Level of Evidence (LOE) labels reflect the source document. Always verify drug doses against local formulary and current references before administration.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var content   = document.getElementById('content');
+  var input     = document.getElementById('searchInput');
+  var info      = document.getElementById('searchInfo');
+  var prevBtn   = document.getElementById('prevMatch');
+  var nextBtn   = document.getElementById('nextMatch');
+  var marks     = [];
+  var markIdx   = -1;
+  var debounce  = null;
+
+  /* ---------------- TEXT SIZE ---------------- */
+  var FS_MIN = 13, FS_MAX = 24, FS_DEFAULT = 16, fs = FS_DEFAULT;
+  var rootEl = document.documentElement;
+
+  function applyFs(){
+    rootEl.style.setProperty('--base-fs', fs + 'px');
+  }
+  document.getElementById('fsUp').addEventListener('click', function(){
+    fs = Math.min(FS_MAX, fs + 1); applyFs();
+  });
+  document.getElementById('fsDown').addEventListener('click', function(){
+    fs = Math.max(FS_MIN, fs - 1); applyFs();
+  });
+  document.getElementById('fsReset').addEventListener('click', function(){
+    fs = FS_DEFAULT; applyFs();
+  });
+
+  /* ---------------- EXPAND / COLLAPSE ---------------- */
+  function allDetails(){
+    return Array.prototype.slice.call(content.querySelectorAll('details'));
+  }
+  document.getElementById('expandAll').addEventListener('click', function(){
+    allDetails().forEach(function(d){ d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    allDetails().forEach(function(d){ d.open = false; });
+  });
+
+  /* ---------------- SEARCH ---------------- */
+  function escapeRegExp(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function clearHighlights(){
+    var hl = content.querySelectorAll('mark.hl');
+    for (var i = 0; i < hl.length; i++){
+      var m = hl[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      while (m.firstChild) parent.insertBefore(m.firstChild, m);
+      parent.removeChild(m);
+      parent.normalize();
+    }
+    marks = [];
+    markIdx = -1;
+  }
+
+  function highlight(term){
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function(node){
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName;
+          if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      },
+      false
+    );
+
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    var re = new RegExp(escapeRegExp(term), 'gi');
+    var total = 0;
+
+    textNodes.forEach(function(node){
+      var text = node.nodeValue;
+      re.lastIndex = 0;
+      if (!re.test(text)) return;
+      re.lastIndex = 0;
+
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      while ((m = re.exec(text)) !== null){
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        total++;
+        if (m[0].length === 0) re.lastIndex++; // safety
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    return total;
+  }
+
+  function openAncestorsOfMarks(){
+    var hl = content.querySelectorAll('mark.hl');
+    for (var i = 0; i < hl.length; i++){
+      var el = hl[i].parentElement;
+      while (el && el !== content){
+        if (el.tagName === 'DETAILS') el.open = true;
+        el = el.parentElement;
+      }
+    }
+  }
+
+  function gotoMark(i){
+    if (!marks.length) return;
+    if (markIdx >= 0 && marks[markIdx]) marks[markIdx].classList.remove('hl-current');
+    markIdx = (i % marks.length + marks.length) % marks.length;
+    var el = marks[markIdx];
+    el.classList.add('hl-current');
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  function runSearch(){
+    var term = input.value.trim();
+    clearHighlights();
+
+    if (term.length < 2){
+      info.textContent = term.length ? 'Type 2+ characters' : '';
+      return;
+    }
+
+    var count = highlight(term);
+    openAncestorsOfMarks();
+    marks = Array.prototype.slice.call(content.querySelectorAll('mark.hl'));
+
+    if (count === 0){
+      info.innerHTML = 'No matches';
+      return;
+    }
+
+    info.innerHTML = '<b>' + count + '</b> match' + (count === 1 ? '' : 'es');
+    gotoMark(0);
+  }
+
+  input.addEventListener('input', function(){
+    clearTimeout(debounce);
+    debounce = setTimeout(runSearch, 220);
+  });
+
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Enter'){
+      e.preventDefault();
+      if (e.shiftKey) gotoMark(markIdx - 1);
+      else gotoMark(markIdx + 1);
+    }
+    if (e.key === 'Escape'){
+      input.value = '';
+      clearHighlights();
+      info.textContent = '';
+    }
+  });
+
+  prevBtn.addEventListener('click', function(){ gotoMark(markIdx - 1); });
+  nextBtn.addEventListener('click', function(){ gotoMark(markIdx + 1); });
+
+  /* ---------------- INIT ---------------- */
+  applyFs();
+
+  // Deep-link support: #search=term
+  var hash = window.location.hash;
+  if (hash && hash.indexOf('#search=') === 0){
+    input.value = decodeURIComponent(hash.slice(8));
+    setTimeout(runSearch, 300);
+  }
+
+})();
+</script>
+</body>
+</html>
