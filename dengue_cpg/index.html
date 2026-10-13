@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dengue in Adults — ICU/Anaesthesia Quick Reference (CPG 4th Ed 2026)</title>
+<style>
+  :root{
+    --bg:#f3f8f7;
+    --surface:#ffffff;
+    --surface-2:#f9fcfb;
+    --ink:#21302d;
+    --ink-soft:#5b6d69;
+    --line:#dce8e5;
+    --accent:#2e7d74;
+    --accent-2:#3f8f86;
+    --accent-soft:#e5f2f0;
+    --accent-soft-2:#eef7f5;
+    --warn:#a9761f;
+    --warn-bg:#fdf6e9;
+    --warn-line:#f0e0bd;
+    --danger:#ab514b;
+    --danger-bg:#fbeeec;
+    --danger-line:#f0d5d2;
+    --ok:#3c7a58;
+    --ok-bg:#eaf5ef;
+    --ok-line:#cfe6da;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(30,60,55,.05), 0 8px 24px rgba(30,60,55,.05);
+  }
+
+  *{box-sizing:border-box}
+  html{font-size:16px; scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 500px at 10% -10%, #e9f4f2 0%, transparent 60%),
+      radial-gradient(900px 400px at 100% 0%, #eaf2f6 0%, transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;
+    font-size:1rem;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 1rem 5rem}
+
+  header.hero{
+    padding:2.4rem 1rem 1.4rem;
+    max-width:1080px;
+    margin:0 auto;
+  }
+  .kicker{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;
+    background:var(--accent-soft);
+    border:1px solid #d3e8e4;
+    padding:.32rem .7rem;border-radius:999px;
+  }
+  h1{
+    font-size:clamp(1.5rem,3.2vw,2.15rem);
+    line-height:1.2;margin:.85rem 0 .4rem;letter-spacing:-.02em;
+  }
+  .subtitle{color:var(--ink-soft);max-width:70ch;margin:0 0 1rem;font-size:.95rem}
+  .badges{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+  .badge{
+    font-size:.72rem;font-weight:600;padding:.3rem .62rem;border-radius:999px;
+    background:var(--surface);border:1px solid var(--line);color:var(--ink-soft);
+  }
+  .badge.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  /* ---------- Sticky toolbar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,248,247,.88);
+    backdrop-filter:saturate(160%) blur(10px);
+    -webkit-backdrop-filter:saturate(160%) blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:.6rem 1rem;
+  }
+  .toolbar-inner{
+    max-width:1080px;margin:0 auto;
+    display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;
+  }
+  .search-box{
+    position:relative;flex:1 1 260px;min-width:200px;
+  }
+  .search-box input{
+    width:100%;padding:.55rem .8rem .55rem 2.1rem;
+    border:1px solid var(--line);border-radius:10px;
+    background:var(--surface);color:var(--ink);font-size:.9rem;
+    font-family:inherit;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .search-box input:focus{
+    outline:none;border-color:var(--accent-2);
+    box-shadow:0 0 0 3px var(--accent-soft);
+  }
+  .search-box .icon{
+    position:absolute;left:.7rem;top:50%;transform:translateY(-50%);
+    color:var(--ink-soft);font-size:.9rem;pointer-events:none;
+  }
+  .btn{
+    border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);
+    font-family:inherit;font-size:.8rem;font-weight:600;
+    padding:.5rem .72rem;border-radius:10px;cursor:pointer;
+    transition:all .15s;white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--accent-2);color:var(--accent);background:var(--accent-soft-2)}
+  .btn:active{transform:translateY(1px)}
+  .btn.accent{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.accent:hover{background:#256a62;color:#fff}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .counter{
+    font-size:.78rem;color:var(--ink-soft);min-width:76px;text-align:center;
+    font-variant-numeric:tabular-nums;
+  }
+  .divider{width:1px;height:24px;background:var(--line);margin:0 .1rem}
+  .fs-label{font-size:.75rem;color:var(--ink-soft);font-variant-numeric:tabular-nums;min-width:38px;text-align:center}
+
+  /* ---------- Cards / collapsibles ---------- */
+  details.card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin:0 0 .85rem;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    scroll-margin-top:80px;
+  }
+  details.card > summary{
+    list-style:none;cursor:pointer;
+    padding:1rem 1.1rem;
+    display:flex;align-items:flex-start;gap:.75rem;
+    font-weight:700;font-size:1.02rem;
+    letter-spacing:-.01em;
+    transition:background .15s;
+  }
+  details.card > summary::-webkit-details-marker{display:none}
+  details.card > summary:hover{background:var(--accent-soft-2)}
+  details.card[open] > summary{border-bottom:1px solid var(--line);background:var(--surface-2)}
+  .chev{
+    flex:0 0 auto;width:1.15rem;height:1.15rem;margin-top:.22rem;
+    border-radius:5px;background:var(--accent-soft);
+    color:var(--accent);display:grid;place-items:center;
+    font-size:.62rem;font-weight:900;
+    transition:transform .2s;
+  }
+  details.card[open] > summary .chev{transform:rotate(90deg)}
+  .summary-text{flex:1 1 auto}
+  .summary-text small{display:block;font-weight:500;color:var(--ink-soft);font-size:.79rem;margin-top:.15rem;letter-spacing:0}
+
+  .body{padding:1rem 1.15rem 1.25rem}
+
+  /* Nested details */
+  details.sub{
+    border:1px solid var(--line);border-radius:10px;
+    margin:0 0 .6rem;background:var(--surface-2);
+    scroll-margin-top:80px;
+  }
+  details.sub > summary{
+    list-style:none;cursor:pointer;padding:.65rem .85rem;
+    font-weight:650;font-size:.92rem;display:flex;gap:.6rem;align-items:center;
+  }
+  details.sub > summary::-webkit-details-marker{display:none}
+  details.sub > summary:hover{background:var(--accent-soft-2)}
+  details.sub[open] > summary{border-bottom:1px solid var(--line)}
+  details.sub .body{padding:.8rem .9rem 1rem;background:var(--surface)}
+
+  h3{font-size:.95rem;margin:1.2rem 0 .5rem;color:var(--accent);letter-spacing:.01em}
+  h3:first-child{margin-top:0}
+  h4{font-size:.86rem;margin:1rem 0 .35rem;color:var(--ink)}
+  p{margin:.5rem 0}
+  ul,ol{margin:.4rem 0 .6rem;padding-left:1.15rem}
+  li{margin:.22rem 0}
+  li::marker{color:var(--accent-2)}
+  strong{font-weight:680}
+  code{
+    background:var(--accent-soft);color:#1f5b54;
+    padding:.08rem .35rem;border-radius:5px;font-size:.85em;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+
+  /* Callouts */
+  .callout{
+    border:1px solid var(--line);border-left:4px solid var(--accent);
+    background:var(--accent-soft-2);
+    border-radius:8px;padding:.7rem .9rem;margin:.7rem 0;font-size:.9rem;
+  }
+  .callout.warn{border-left-color:var(--warn);background:var(--warn-bg);border-color:var(--warn-line)}
+  .callout.danger{border-left-color:var(--danger);background:var(--danger-bg);border-color:var(--danger-line)}
+  .callout.ok{border-left-color:var(--ok);background:var(--ok-bg);border-color:var(--ok-line)}
+  .callout .t{font-weight:700;display:block;margin-bottom:.2rem;font-size:.83rem;letter-spacing:.02em;text-transform:uppercase}
+  .callout.warn .t{color:var(--warn)}
+  .callout.danger .t{color:var(--danger)}
+  .callout.ok .t{color:var(--ok)}
+  .callout:not(.warn):not(.danger):not(.ok) .t{color:var(--accent)}
+
+  /* ---------- Tables ---------- */
+  .tw{
+    overflow-x:auto;overflow-y:hidden;
+    border:1px solid var(--line);border-radius:10px;
+    margin:.7rem 0;
+    -webkit-overflow-scrolling:touch;
+  }
+  .tw::-webkit-scrollbar{height:9px}
+  .tw::-webkit-scrollbar-track{background:var(--surface-2);border-radius:0 0 10px 10px}
+  .tw::-webkit-scrollbar-thumb{background:#c6dbd7;border-radius:9px}
+  .tw::-webkit-scrollbar-thumb:hover{background:#a9c9c3}
+  table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:520px}
+  th,td{padding:.55rem .7rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{
+    background:var(--accent-soft);color:#1f5b54;font-weight:700;
+    font-size:.76rem;letter-spacing:.03em;text-transform:uppercase;
+    position:sticky;top:0;white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:var(--surface-2)}
+  tbody tr:hover{background:var(--accent-soft-2)}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* ---------- Flow diagrams ---------- */
+  .flow{
+    display:flex;flex-direction:column;align-items:center;gap:0;
+    margin:1rem 0;padding:1rem .6rem;
+    background:var(--surface-2);
+    border:1px dashed var(--line);border-radius:12px;
+  }
+  .flow-node{
+    width:100%;max-width:640px;
+    border-radius:10px;padding:.6rem .8rem;font-size:.83rem;
+    text-align:center;line-height:1.45;
+    border:1px solid var(--line);background:var(--surface);
+  }
+  .flow-node.start{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+  .flow-node.decision{background:var(--accent-soft);border-color:#cbe4e0;font-weight:700;color:#1f5b54;border-radius:999px}
+  .flow-node.danger{background:var(--danger-bg);border-color:var(--danger-line);color:#8d3f3a;font-weight:650}
+  .flow-node.warn{background:var(--warn-bg);border-color:var(--warn-line);color:#8a621b;font-weight:650}
+  .flow-node.ok{background:var(--ok-bg);border-color:var(--ok-line);color:#2f6146;font-weight:650}
+  .flow-arrow{color:var(--accent-2);font-size:1rem;line-height:1;padding:.25rem 0}
+  .flow-split{
+    display:grid;grid-template-columns:1fr 1fr;gap:.7rem;
+    width:100%;max-width:760px;
+  }
+  .flow-split .col{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+  .flow-tag{
+    font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--accent);background:var(--surface);border:1px solid var(--line);
+    border-radius:999px;padding:.1rem .5rem;
+  }
+  .flow-tag.no{color:var(--danger)}
+  .flow-tag.yes{color:var(--ok)}
+  @media (max-width:560px){
+    .flow-split{grid-template-columns:1fr}
+  }
+
+  /* ---------- Key numbers grid ---------- */
+  .kpis{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:.6rem;margin:.8rem 0 0;
+  }
+  .kpi{
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;
+    padding:.65rem .75rem;
+  }
+  .kpi .v{font-size:1.15rem;font-weight:750;color:var(--accent);letter-spacing:-.02em;line-height:1.2}
+  .kpi .k{font-size:.72rem;color:var(--ink-soft);margin-top:.15rem;line-height:1.35}
+
+  /* ---------- Search highlight ---------- */
+  mark.search-hit{
+    background:#ffe9a8;color:inherit;padding:.04em .1em;border-radius:3px;
+    box-shadow:0 0 0 1px #f0d878 inset;
+  }
+  mark.search-hit.current{
+    background:#ffcf4d;box-shadow:0 0 0 2px #e8a900;
+  }
+
+  /* ---------- Sources ---------- */
+  .source-list{font-size:.83rem;color:var(--ink-soft);padding-left:1.3rem}
+  .source-list li{margin:.4rem 0}
+  .source-list em{color:var(--ink);font-style:normal;font-weight:600}
+
+  footer{
+    max-width:1080px;margin:2rem auto 0;padding:1rem;
+    font-size:.76rem;color:var(--ink-soft);text-align:center;
+    border-top:1px solid var(--line);
+  }
+
+  .no-results{
+    display:none;padding:.8rem 1rem;margin:.5rem 0;
+    background:var(--warn-bg);border:1px solid var(--warn-line);
+    border-radius:10px;color:#8a621b;font-size:.86rem;
+  }
+  .no-results.show{display:block}
+
+  @media print{
+    .toolbar{display:none}
+    details.card{break-inside:avoid;box-shadow:none}
+    details.card > .body{display:block !important}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="kicker">Quick Reference · Critical Care</span>
+  <h1>Dengue in Adults — Anaesthesia &amp; Intensive Care</h1>
+  <p class="subtitle">
+    Condensed from the <strong>Malaysian Clinical Practice Guidelines: Management of Dengue in Adults (Fourth Edition, 2026)</strong>
+    with comparison against the Third Edition (2015). Built for ICU, HDU, ED and perioperative decision-making.
+  </p>
+  <div class="badges">
+    <span class="badge primary">CPG 4th Edition · 2026</span>
+    <span class="badge">MOH/P/PAK/629.26(GU)-e</span>
+    <span class="badge">MaHTAS · Ministry of Health Malaysia</span>
+    <span class="badge">Review due 2030</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input id="searchInput" type="search" placeholder="Search (e.g. noradrenaline, fluid quota, platelet, ROX)" autocomplete="off" aria-label="Search the quick reference">
+    </div>
+    <span class="counter" id="counter">—</span>
+    <button class="btn" id="prevBtn" title="Previous match" disabled>↑</button>
+    <button class="btn" id="nextBtn" title="Next match" disabled>↓</button>
+    <span class="divider"></span>
+    <button class="btn accent" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <span class="divider"></span>
+    <button class="btn" id="fsDown" title="Decrease text size">A−</button>
+    <span class="fs-label" id="fsLabel">100%</span>
+    <button class="btn" id="fsUp" title="Increase text size">A+</button>
+    <button class="btn" id="fsReset" title="Reset text size">Reset</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="no-results" id="noResults">No matches found in this document.</div>
+
+  <main id="content">
+
+  <!-- ============================================================ -->
+  <details class="card" open>
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">1. Key Recommendations at a Glance
+        <small>The headline changes every intensivist should know</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <div class="callout">
+        <span class="t">Diagnosis</span>
+        <ul>
+          <li><strong>Rapid Diagnostic Test (RDT) combining NS1 antigen / IgM / IgG</strong> is the <strong>first-line</strong> diagnostic test in adults.</li>
+          <li>Within <strong>30 days post-dengue vaccination</strong>: use <strong>RT-qPCR</strong> (preferred) or NS1 antigen. <strong>IgM and IgG must not be used as confirmatory tests</strong> — vaccine-induced antibodies mimic natural infection. Rely on clinical judgement.</li>
+        </ul>
+      </div>
+
+      <div class="callout">
+        <span class="t">Outpatient / Ward</span>
+        <ul>
+          <li>Oral fluid <strong>200 mL per hour while awake</strong> (unless fluid restricted — individualise).</li>
+          <li><strong>Urine output</strong> documented in all patients; aim to pass urine <strong>4–6 times/day</strong>.</li>
+          <li><strong>NSAIDs and corticosteroids should not be used.</strong> If already on them, continuation is a clinical judgement call.</li>
+        </ul>
+      </div>
+
+      <div class="callout">
+        <span class="t">Emergency Department</span>
+        <ul>
+          <li><strong>Point-of-care ultrasound (PoCUS)</strong> should be considered as an adjunct for early plasma-leak detection and haemodynamic assessment — guided by clinical indication, availability and operator competency.</li>
+          <li>Febrile phase: encourage oral fluids; start IV <strong>only</strong> if unable to tolerate oral or dehydrated; calculate total fluid requirement (oral + IV) with the <strong>Holliday–Segar formula</strong>.</li>
+          <li>Critical phase <strong>without shock</strong>: total fluid quota administered over <strong>48 hours</strong>.</li>
+          <li><strong>Crystalloids</strong> are the initial and preferred fluid for resuscitation in dengue shock. <strong>Colloids</strong> may be considered in persistent shock — <strong>never for maintenance</strong>.</li>
+          <li>Guide fluid by <strong>dynamic</strong> assessment of fluid responsiveness, not static measures.</li>
+          <li>In refractory shock, aggressively hunt for <strong>other causes of shock</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="callout danger">
+        <span class="t">Complications</span>
+        <ul>
+          <li>Suspect <strong>occult bleeding</strong> in persistent haemodynamic instability despite adequate fluid resuscitation.</li>
+          <li>Start blood / blood products <strong>promptly</strong> for clinically significant bleeding — <strong>do not wait for haematocrit to drop</strong>.</li>
+          <li><strong>Packed red cells</strong> for significant bleeding.</li>
+          <li><strong>No routine prophylactic platelets or plasma</strong> in patients without active bleeding.</li>
+        </ul>
+      </div>
+
+      <div class="callout">
+        <span class="t">ICU</span>
+        <ul>
+          <li>Severe dengue → <strong>prompt identification and ICU referral</strong>.</li>
+          <li><strong>HFNC and NIV</strong> may be used in selected dengue patients with respiratory failure.</li>
+          <li>Mechanical ventilation indications follow the <strong>same criteria as other critically ill patients</strong>.</li>
+          <li><strong>Noradrenaline is the preferred vasopressor</strong> for persistent shock despite adequate fluid resuscitation.</li>
+        </ul>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><div class="v">≥20%</div><div class="k">Rise in HCT from baseline = plasma leakage</div></div>
+        <div class="kpi"><div class="v">&lt;100</div><div class="k">Platelet ×10⁹/L — earliest &amp; most useful indicator of critical phase</div></div>
+        <div class="kpi"><div class="v">M + 5%</div><div class="k">Fluid quota = maintenance + 5% deficit, over 48 h (5% = 50 mL/kg)</div></div>
+        <div class="kpi"><div class="v">70 kg</div><div class="k">Weight cap for weight-based fluid calculations</div></div>
+        <div class="kpi"><div class="v">0.5–1</div><div class="k">Target urine output mL/kg/h</div></div>
+        <div class="kpi"><div class="v">≤3 s</div><div class="k">Normal capillary refill time (WHO 2025)</div></div>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">2. Classification, Severity &amp; Triage
+        <small>PAHO-based severity groups · Malaysian Triage Scale integration</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <h3>Dengue severity classification (PAHO 2020, adopted by CPG 2026)</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Category</th><th>Criteria</th><th>Level of care</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Dengue without warning signs (DNWS)</strong><br><em>Group A</em></td>
+              <td>Fever 2–7 days + ≥2 of: nausea/vomiting, rash, headache/retro-orbital pain, myalgia/arthralgia, petechiae, leukopenia — in someone living/travelling in a transmission area within 14 days</td>
+              <td>Outpatient monitoring</td>
+            </tr>
+            <tr>
+              <td><strong>Dengue with warning signs (DWWS)</strong><br><em>Group B2</em></td>
+              <td>Near/in critical phase with ≥1 warning sign (see below)</td>
+              <td>Admit to hospital</td>
+            </tr>
+            <tr>
+              <td><strong>Severe dengue (SD)</strong><br><em>Group C</em></td>
+              <td>Severe plasma leakage (shock / respiratory distress) · severe bleeding requiring intervention · severe organ involvement (liver, myocardium, encephalitis, etc.)</td>
+              <td>Intensive care unit — requires emergency treatment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <span class="t">Interpreting warning signs — read this before triaging</span>
+        Warning signs are <strong>most predictive during the critical phase</strong>. Persistent vomiting <em>during the febrile phase</em> should <strong>not</strong> be interpreted as a warning sign. Always integrate with haemodynamic state, HCT trend, urine output and perfusion markers (e.g. CRT &gt;3 s). Phase-based interpretation reduces over-triaging.
+      </div>
+
+      <h3>Warning signs (critical phase)</h3>
+      <ul>
+        <li>Lack of clinical improvement or worsening symptoms as fever subsides</li>
+        <li>Intense abdominal pain or tenderness</li>
+        <li>Persistent vomiting (&gt;3×/day)</li>
+        <li>Lethargy, restlessness, irritability or confusion</li>
+        <li>Fluid accumulation (ascites, pleural/pericardial effusion)</li>
+        <li>Postural hypotension</li>
+        <li>Liver enlargement &gt;2 cm</li>
+        <li>Reduced or absent urine output for 4–6 hours</li>
+        <li>Bleeding manifestation</li>
+        <li>Laboratory: <strong>rising HCT with rapidly falling platelet count</strong></li>
+      </ul>
+
+      <h3>Normal median HCT (Malaysian population)</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Group</th><th>HCT</th></tr></thead>
+          <tbody>
+            <tr><td>Male ≤60 years</td><td class="num">46%</td></tr>
+            <tr><td>Male &gt;60 years</td><td class="num">42%</td></tr>
+            <tr><td>Female (all ages)</td><td class="num">40%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Integration of Malaysian Triage Scale with dengue classification</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>MTS</th><th>Zone</th><th>Dengue classification</th><th>Management</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Level 1 Resuscitation</td><td>Red</td><td>Decompensated dengue shock</td><td>Immediate resuscitation, ICU (Group C)</td></tr>
+            <tr><td>Level 2 Emergency</td><td>Red</td><td>Compensated dengue shock</td><td>Emergency treatment, IV fluid, admission (Group C)</td></tr>
+            <tr><td>Level 3 Urgent</td><td>Yellow</td><td>DWWS, or DNWS with unstable comorbidity</td><td>IV fluid, admission (Group B2)</td></tr>
+            <tr><td>Level 4 Early care</td><td>Green</td><td>DNWS with stable comorbidity</td><td>Observation or admission (Group B1)</td></tr>
+            <tr><td>Level 5 Routine care</td><td>Outpatient</td><td>DNWS, no comorbidity/social risk</td><td>Home outpatient with follow-up (Group A)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Expanded Dengue Syndrome (EDS)</h3>
+      <p>Atypical/uncommon manifestations occurring with or without plasma leakage. More frequent in older adults and those with comorbidities. Manage according to the involved organ. <strong>Organ failure secondary to prolonged shock is not classified as EDS</strong>, though overlap occurs.</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>System</th><th>Manifestations</th></tr></thead>
+          <tbody>
+            <tr><td>Neurological</td><td>Encephalopathy, encephalitis/aseptic meningitis, intracranial haemorrhage/thrombosis, subdural effusion, mononeuropathy/polyneuropathy/GBS, transverse myelitis</td></tr>
+            <tr><td>GI / hepatic</td><td>Hepatitis, fulminant hepatic failure, acalculous cholecystitis, acute pancreatitis, acute parotitis</td></tr>
+            <tr><td>Renal</td><td>Acute renal failure, haemolytic uraemic syndrome</td></tr>
+            <tr><td>Cardiac</td><td>Conduction abnormalities, myocarditis, pericarditis</td></tr>
+            <tr><td>Respiratory</td><td>ARDS, pulmonary haemorrhage</td></tr>
+            <tr><td>Musculoskeletal</td><td>Myositis with raised CPK, rhabdomyolysis</td></tr>
+            <tr><td>Lymphoreticular / marrow</td><td>Infection-associated haemophagocytic syndrome / HLH, ITP, spontaneous splenic rupture, lymph node infarction</td></tr>
+            <tr><td>Eye</td><td>Macular haemorrhage, impaired visual acuity, optic neuritis</td></tr>
+            <tr><td>Others</td><td>Post-infectious fatigue syndrome, depression, hallucinations, psychosis, alopecia</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">3. Shock: Recognition &amp; Physiology
+        <small>Compensated vs decompensated · revised Starling model</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Parameter</th><th>Normal circulation</th><th>Compensated shock</th><th>Decompensated / hypotensive shock</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Consciousness</td><td>Clear</td><td>Clear</td><td>Lethargy, restlessness, irritability or confusion</td></tr>
+            <tr><td>CRT</td><td>≤3 s</td><td>&gt;3 s</td><td>&gt;3 s</td></tr>
+            <tr><td>Peripheries</td><td>Warm</td><td>Cool</td><td>Cool, clammy</td></tr>
+            <tr><td>Heart rate</td><td>Normal</td><td>Tachycardia</td><td>Severe tachycardia, or bradycardia in late shock</td></tr>
+            <tr><td>Blood pressure</td><td>Normal</td><td>Normal systolic with raised diastolic</td><td>Hypotension</td></tr>
+            <tr><td>Pulse pressure</td><td>Normal</td><td>Narrowing (20–30 mmHg)</td><td>Narrowed (&lt;20 mmHg)</td></tr>
+            <tr><td>Respiratory rate</td><td>Normal</td><td>Tachypnoea</td><td>Tachypnoea or Kussmaul's breathing</td></tr>
+            <tr><td>Urine output</td><td>Normal</td><td>Reduced</td><td>Oliguria or anuria</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout danger">
+        <span class="t">Signs of reduced perfusion</span>
+        Tachycardia · cold peripheries · CRT &gt;3 s · pulse pressure 20–30 mmHg · low pulse volume.<br>
+        <strong>Compensated shock</strong> = systolic pressure maintained <em>but</em> with signs of reduced perfusion.<br>
+        <strong>Decompensated shock</strong> = hypotension with signs of reduced perfusion.
+      </div>
+
+      <h3>Why fluid behaves differently in dengue — the revised Starling model</h3>
+      <p>Dengue NS1 and the host immune response injure the <strong>endothelial glycocalyx layer (EGL)</strong>. The EGL is the key regulator of microvascular fluid exchange. When it is injured:</p>
+      <ul>
+        <li>The barrier is lost and fluid shifts into the interstitium.</li>
+        <li><strong>Both crystalloids and colloids leak</strong> into extravascular compartments and contribute to fluid accumulation.</li>
+        <li>Venous reabsorption is minimal; filtered fluid returns via lymphatics.</li>
+        <li>Large IV volumes during the leaking phase → combined lymphatic return and residual fluid can cause <strong>intravascular overload during recovery</strong>.</li>
+      </ul>
+      <div class="callout">
+        <span class="t">Clinical implication</span>
+        Fluid therapy must be <strong>phase-specific and individualised</strong>, guided by the degree of leakage and timing of endothelial recovery — avoiding both inadequate perfusion and fluid-related complications. Degree of leakage is inferred from HCT trends, haemodynamics, urine output, third-space loss, with <strong>PoCUS as a useful adjunct</strong>.
+      </div>
+
+      <h3>Critical phase timeline</h3>
+      <p>Plasma leakage progresses gradually, peaks at ~24 hours after onset and declines, usually resolving within 48 hours. Duration may be prolonged if:</p>
+      <ul>
+        <li>Patient presents in shock — may already have been in the critical phase for up to 24 h, so possibly another 24 h remain.</li>
+        <li>Uncorrected dehydration in the febrile phase — may be at an early stage at presentation, so leakage may exceed 24 h.</li>
+      </ul>
+
+      <div class="flow">
+        <div class="flow-node start">Critical phase — plasma leakage over ~48 h</div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-node">HCT rises → peaks at ~24 h → falls with reabsorption</div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-node ok">Reabsorption: STOP / wean IV fluids to avoid fluid overload &amp; pulmonary oedema</div>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">4. Fluid Management — Phase by Phase
+        <small>Febrile · critical without shock · fluid quota · DSS resuscitation</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <div class="callout warn">
+        <span class="t">Common pitfalls in fluid therapy</span>
+        <ol>
+          <li><strong>Excessive fluid in stable cases:</strong> unnecessary boluses in febrile phase; prolonged fixed/graded regimens in stable patients; continuing IV fluids into recovery phase.</li>
+          <li><strong>Inappropriate monitoring:</strong> infrequent monitoring and no timely rate adjustment; boluses based on a <em>single</em> parameter (rising HCT, tachycardia, cool peripheries) without comprehensive assessment; inadequate resuscitation in DSS.</li>
+          <li><strong>Injudicious colloids:</strong> e.g. human albumin as maintenance in leaking dengue patients.</li>
+          <li><strong>Failure to adjust for comorbidity:</strong> excessive fluid in heart failure or kidney disease.</li>
+        </ol>
+      </div>
+
+      <!-- Febrile -->
+      <details class="sub">
+        <summary><span class="chev">▶</span> 4.1 Febrile phase</summary>
+        <div class="body">
+          <ul>
+            <li>Maintain vascular access with a cannula in situ.</li>
+            <li>Encourage adequate <strong>oral</strong> fluid intake.</li>
+            <li>If oral intake is inadequate → IV crystalloid may be required.</li>
+            <li>Total fluid requirement (oral + IV) calculated using the <strong>Holliday–Segar formula</strong>.</li>
+            <li>Additional fluid may be needed for acute losses (vomiting, diarrhoea, dehydration).</li>
+            <li><strong>Reduce or stop IV promptly</strong> once oral intake improves and dehydration is corrected.</li>
+          </ul>
+
+          <h4>Holliday–Segar maintenance</h4>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Weight band</th><th>Rate</th></tr></thead>
+              <tbody>
+                <tr><td>First 10 kg</td><td class="num">4 mL/kg/h</td></tr>
+                <tr><td>Next 10 kg</td><td class="num">2 mL/kg/h</td></tr>
+                <tr><td>Each subsequent kg</td><td class="num">1 mL/kg/h</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><em>Example — 50 kg adult:</em> (10×4) + (10×2) + (30×1) = 40 + 20 + 30 = <strong>90 mL/h ≈ 2160 mL/day</strong>.</p>
+
+          <h4>Hourly maintenance guide (weight cap 70 kg)</h4>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Weight (kg)</th><th>30</th><th>40</th><th>50</th><th>60</th><th>≥70</th></tr></thead>
+              <tbody>
+                <tr><td>Fluid (oral + IV), mL/h</td><td class="num">70</td><td class="num">80</td><td class="num">90</td><td class="num">100</td><td class="num">110</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <!-- Critical without shock -->
+      <details class="sub">
+        <summary><span class="chev">▶</span> 4.2 Critical phase WITHOUT shock — the fluid quota</summary>
+        <div class="body">
+
+          <h4>Key indicators that the critical phase has begun</h4>
+          <ul>
+            <li><strong>Temperature:</strong> rapid drop may signal entry into critical phase.</li>
+            <li><strong>Rising HCT:</strong> increase ≥20% from baseline.</li>
+            <li><strong>Platelet drop:</strong> &lt;100 ×10⁹/L — earliest and most useful indicator.</li>
+            <li><strong>PoCUS:</strong> pericholecystic fluid, thickened gallbladder wall, ascites, pleural effusion.</li>
+          </ul>
+          <p class="callout">Some patients may still have low-grade fever during the early phase of leakage — do not be falsely reassured.</p>
+
+          <h4>Fluid quota concept</h4>
+          <div class="callout ok">
+            <span class="t">Total fluid quota = Maintenance + 5% deficit</span>
+            5% deficit = <strong>50 mL/kg</strong>. This represents the expected plasma volume loss during the critical phase.<br>
+            The quota includes <strong>both oral and IV</strong> intake and is administered over <strong>48 hours</strong>.<br>
+            <strong>Crystalloid</strong> is the IV fluid of choice.<br>
+            <strong>Not all patients need the full quota</strong> — rate, peak and duration of leakage vary. Many need less.<br>
+            The quota applies <strong>only to non-shock dengue patients in the critical phase</strong>. If the patient progresses to shock, <strong>the quota no longer applies</strong>.<br>
+            Exceptions needing more fluid: <strong>DKA</strong> and <strong>HHS</strong>.
+          </div>
+
+          <h4>Worked example — 60 kg adult</h4>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Component</th><th>Calculation</th><th>Volume</th></tr></thead>
+              <tbody>
+                <tr><td>Maintenance, 1 day (A)</td><td>40 + 20 + 40 = 100 mL/h × 24</td><td class="num">2400 mL</td></tr>
+                <tr><td>5% deficit (B)</td><td>50 mL/kg × 60 kg</td><td class="num">3000 mL</td></tr>
+                <tr><td><strong>Total over 48 h (A + B)</strong></td><td>—</td><td class="num"><strong>5400 mL</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Fluid quota &amp; IV rate table (weight cap 70 kg)</h4>
+          <div class="tw">
+            <table>
+              <thead>
+                <tr>
+                  <th>Body weight (kg)</th>
+                  <th>Fluid quota M+5% over 48 h (mL)</th>
+                  <th>R1 1 mL/kg/h</th>
+                  <th>R2 2 mL/kg/h</th>
+                  <th>R3 3 mL/kg/h</th>
+                  <th>R5 5 mL/kg/h</th>
+                  <th>R7 7 mL/kg/h</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>30</td><td class="num">3200</td><td class="num">30</td><td class="num">60</td><td class="num">90</td><td class="num">150</td><td class="num">210</td></tr>
+                <tr><td>35</td><td class="num">3600</td><td class="num">35</td><td class="num">70</td><td class="num">105</td><td class="num">175</td><td class="num">245</td></tr>
+                <tr><td>40</td><td class="num">3900</td><td class="num">40</td><td class="num">80</td><td class="num">120</td><td class="num">200</td><td class="num">280</td></tr>
+                <tr><td>45</td><td class="num">4300</td><td class="num">45</td><td class="num">90</td><td class="num">135</td><td class="num">225</td><td class="num">315</td></tr>
+                <tr><td>50</td><td class="num">4700</td><td class="num">50</td><td class="num">100</td><td class="num">150</td><td class="num">250</td><td class="num">350</td></tr>
+                <tr><td>55</td><td class="num">5000</td><td class="num">55</td><td class="num">110</td><td class="num">165</td><td class="num">275</td><td class="num">385</td></tr>
+                <tr><td>60</td><td class="num">5400</td><td class="num">60</td><td class="num">120</td><td class="num">180</td><td class="num">300</td><td class="num">420</td></tr>
+                <tr><td>65</td><td class="num">5700</td><td class="num">65</td><td class="num">130</td><td class="num">195</td><td class="num">325</td><td class="num">455</td></tr>
+                <tr><td>≥70</td><td class="num">6000</td><td class="num">70</td><td class="num">140</td><td class="num">210</td><td class="num">350</td><td class="num">490</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Practical steps (Group B2 — warning signs, critical phase)</h4>
+          <ol>
+            <li><strong>Calculate</strong> the total fluid quota (M + 5%) at the start of the critical phase, using max weight 70 kg.</li>
+            <li><strong>Encourage oral fluid.</strong> Patients entering the critical phase may require IV crystalloid.</li>
+            <li><strong>Initial IV:</strong> if unable to tolerate oral, start <code>3–5 mL/kg/h for 1–2 h</code>. Reassess; reduce to <code>2–3 mL/kg/h for 1–2 h</code>, then maintenance rate. If oral intake reaches 1–2 mL/kg/h, IV is not necessary.</li>
+            <li><strong>Total fluid must remain within the quota.</strong> Frequent monitoring of CCTV, BP, pulse pressure, HCT and urine output determines subsequent requirement.</li>
+            <li><strong>Urine output:</strong> calculate mL/kg/h at each void. Target <strong>0.5–1 mL/kg/h</strong>.</li>
+            <li><strong>Catheterise early</strong> if urine output monitoring is difficult or in high-risk categories.</li>
+          </ol>
+
+          <div class="flow">
+            <div class="flow-node start">Dengue with warning signs — critical phase</div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node">Start IV crystalloid <strong>3–5 mL/kg/h for 1 hour</strong><br><small>Total fluid must stay within the 48-hour quota (M+5%)</small></div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node decision">Clinical improvement?</div>
+            <div class="flow-split">
+              <div class="col">
+                <span class="flow-tag yes">YES</span>
+                <div class="flow-node ok">Gradual reduction of IV crystalloid</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok">IV crystalloid <strong>2–3 mL/kg/h for 1–2 h</strong></div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok">Reduce to <strong>1–2 mL/kg/h</strong> or maintenance</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok"><strong>Stop IV</strong> if able to tolerate orally</div>
+              </div>
+              <div class="col">
+                <span class="flow-tag no">NO</span>
+                <div class="flow-node decision">Is the patient in shock?</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node warn">Take FBC / VBG / lactate<br>Increase rate to <strong>5–7 mL/kg/h</strong> while awaiting results, then titrate</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node danger">If shock → <strong>Refer to Algorithm 2 / 3 / 4</strong></div>
+              </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node"><small>FBC every <strong>4–12 hourly</strong> in the critical phase. Status of improvement = re-evaluate clinical condition, vital signs, CCTV, and urine output.</small></div>
+          </div>
+
+          <div class="callout">
+            <span class="t">Recommendation 7 (CPG 2026)</span>
+            In patients with dengue in the critical phase without shock, the <strong>total fluid quota should be administered over 48 hours</strong>. IV fluid adjustment should be done <strong>frequently</strong> based on clinical response guided by haemodynamic status (CCTV), vital signs, urine output, laboratory markers (HCT) and evidence of ongoing plasma leakage.
+          </div>
+
+        </div>
+      </details>
+
+      <!-- DSS -->
+      <details class="sub">
+        <summary><span class="chev">▶</span> 4.3 Dengue Shock Syndrome (DSS) — resuscitation</summary>
+        <div class="body">
+
+          <div class="callout danger">
+            <span class="t">Dengue shock is a medical emergency</span>
+            Manage in <strong>HDU or ICU</strong>. Fluid resuscitation must be initiated <strong>promptly</strong> and must not be delayed while waiting for HDU/ICU admission. Recurrent shock episodes may occur after initial resuscitation because leakage can persist for <strong>24–48 hours</strong>.
+          </div>
+
+          <h4>Fluid choice</h4>
+          <ul>
+            <li><strong>Crystalloids</strong> are the initial and preferred fluid for resuscitation. Options: balanced crystalloids (Hartmann's, Sterofundin) or 0.9% saline.</li>
+            <li>Balanced solutions produce lower chloride, higher bicarbonate and higher pH vs 0.9% saline — no difference in mortality, AKI or organ dysfunction (Cochrane review).</li>
+            <li><strong>Colloids</strong> may be considered in <strong>refractory shock</strong> where instability persists despite adequate fluid resuscitation.</li>
+            <li><strong>Albumin 5% is the colloid of choice.</strong> Gelatin is <strong>not</strong> recommended (no demonstrated benefit, potential harm).</li>
+            <li><strong>Colloids should be reserved for resuscitation</strong> — never as maintenance.</li>
+          </ul>
+
+          <h4>Weight adjustment for fluid therapy</h4>
+          <div class="callout">
+            <span class="t">Obese patients (BMI &gt;27.5 kg/m²)</span>
+            <code>ABW = IBW + 0.4 × (actual weight − IBW)</code><br>
+            <code>IBW (female) = 45.5 + 0.91 × (height in cm − 152)</code><br>
+            <code>IBW (male) = 50.0 + 0.91 × (height in cm − 152)</code>
+          </div>
+
+          <h4>Indicators of effective fluid resuscitation</h4>
+          <p><em>Interpret collectively, never in isolation.</em></p>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Domain</th><th>Parameters</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Clinical</td>
+                  <td>Improved general well-being / mental state · warm peripheries · CRT ≤3 s · stable BP · improving pulse pressure · reducing tachycardia · improving urine output · less tachypnoea</td>
+                </tr>
+                <tr>
+                  <td>Laboratory</td>
+                  <td>Appropriate decrease in HCT · improvement in metabolic acidosis and lactate</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Compensated -->
+          <h4>Algorithm 2 — Compensated shock</h4>
+          <div class="flow">
+            <div class="flow-node start">COMPENSATED SHOCK<br><small>Systolic pressure maintained but signs of reduced perfusion</small></div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node">Fluid resuscitation with isotonic crystalloid <strong>10 mL/kg/h for 1 hour</strong><br><small>Obtain FBC, HCT, RP, LFT, RBS, PT/APTT, CK, VBG-lactate/HCO₃, GXM <em>before</em> resuscitation</small></div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node decision">Clinical improvement?</div>
+            <div class="flow-split">
+              <div class="col">
+                <span class="flow-tag yes">YES</span>
+                <div class="flow-node ok">IV crystalloid <strong>5–7 mL/kg/h for 1–2 h</strong></div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok"><strong>3–5 mL/kg/h for 2–4 h</strong></div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok"><strong>2–3 mL/kg/h for 2–4 h</strong> → reduce further</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok">Monitor HCT 4–6 hourly · stop IV at 48 h of plasma leakage/defervescence</div>
+              </div>
+              <div class="col">
+                <span class="flow-tag no">NO</span>
+                <div class="flow-node warn">Repeat HCT and FBC / monitor HCT while awaiting result</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node">
+                  <strong>HCT ↑ or high</strong> → give <strong>2nd bolus colloid 10–20 mL/kg over 1 h</strong><br><br>
+                  <strong>HCT ↓</strong> → consider significant occult/overt bleed → transfuse packed red cells and/or blood components<br><br>
+                  <strong>HCT unchanged</strong> → refer to <strong>Algorithm 4</strong>
+                </div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node decision">Improvement?</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok">If improves: reduce to <strong>7–10 mL/kg/h for 1–2 h</strong>, then reduce further</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decompensated -->
+          <h4>Algorithm 3 — Decompensated shock</h4>
+          <div class="flow">
+            <div class="flow-node start">DECOMPENSATED SHOCK<br><small>Hypotension with signs of reduced perfusion</small></div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node danger">Fluid resuscitation with <strong>20 mL/kg crystalloid within 15–30 minutes</strong><br><small>Obtain FBC/HCT, RP, LFT, RBS, PT/APTT, CK, lactate/HCO₃, GXM before resuscitation</small></div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node decision">Clinical improvement?</div>
+            <div class="flow-split">
+              <div class="col">
+                <span class="flow-tag yes">YES</span>
+                <div class="flow-node ok">Crystalloid/colloid <strong>10 mL/kg/h for 1 h</strong></div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok"><strong>5–7 mL/kg/h for 1–2 h</strong></div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok"><strong>3–5</strong> → <strong>2–3 mL/kg/h for 2–4 h</strong> → reduce further</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok">Monitor HCT 4-hourly or more frequently · stop IV at 48 h of leakage/defervescence</div>
+              </div>
+              <div class="col">
+                <span class="flow-tag no">NO</span>
+                <div class="flow-node warn">Review / repeat HCT</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node">
+                  <strong>HCT ↑ or high</strong> → 2nd bolus colloid <strong>10–20 mL/kg over 1 h</strong><br><br>
+                  <strong>HCT ↓</strong> → significant bleed → transfuse packed red cells / blood components<br><br>
+                  <strong>HCT unchanged</strong> → <strong>Algorithm 4</strong>
+                </div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node decision">Improvement?</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node danger">If no → repeat 2nd HCT → if HCT ↑/high → <strong>3rd bolus colloid 10–20 mL/kg over 1 h</strong>; if HCT ↓ → blood; if unchanged → Algorithm 4</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Algorithm 4 -->
+          <h4>Algorithm 4 — Persistent shock despite fluid resuscitation</h4>
+          <div class="flow">
+            <div class="flow-node start">HCT REMAINS UNCHANGED AFTER FIRST FLUID RESUSCITATION</div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node decision">Consider other causes of shock</div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-split">
+              <div class="col">
+                <div class="flow-node warn"><strong>Bleeding and leaking at the same time</strong><br>
+                  <small>Look for bleeding source (e.g. OGDS) · evidence of leaking (USG, CXR) · check coagulopathy · transfuse packed cells and blood components</small>
+                </div>
+              </div>
+              <div class="col">
+                <div class="flow-node warn"><strong>Severe metabolic acidosis with hyperlactataemia</strong><br>
+                  <small>Liver ± multiorgan failure → vasopressor + supportive care + continuous renal replacement therapy (CRRT)</small>
+                </div>
+              </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-split">
+              <div class="col"><div class="flow-node">Septic shock → vasodilated state → <strong>noradrenaline</strong> titrated to MAP 65 mmHg</div></div>
+              <div class="col"><div class="flow-node">Cytokine storm → <strong>noradrenaline and fluids</strong>; check for disease markers of haemophagocytic syndrome</div></div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node danger"><strong>Cardiac dysfunction</strong></div>
+            <div class="flow-split">
+              <div class="col"><div class="flow-node"><strong>Low CO</strong> → inotrope (e.g. dobutamine / adrenaline)</div></div>
+              <div class="col"><div class="flow-node"><strong>High CO</strong> → vasodilated shock with myocardial dysfunction → inotrope + vasopressor (e.g. noradrenaline + dobutamine / adrenaline)</div></div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node"><small>All the above shocks need echocardiography and non-invasive cardiac output monitoring; tailor treatment to each patient.</small></div>
+          </div>
+
+          <div class="callout danger">
+            <span class="t">Also think of: obstructive shock</span>
+            Cardiac tamponade is listed among the potential causes of refractory shock in the 2026 CPG.
+          </div>
+
+        </div>
+      </details>
+
+      <!-- Fluid responsiveness -->
+      <details class="sub">
+        <summary><span class="chev">▶</span> 4.4 Fluid responsiveness &amp; fluid tolerance — the 2026 update</summary>
+        <div class="body">
+
+          <p>In patients who remain hypotensive despite fluid resuscitation, further fluid should be guided by <strong>fluid responsiveness</strong> and <strong>fluid tolerance</strong>. Use <strong>dynamic</strong> rather than static indices — dynamic tests consistently outperform static filling measures.</p>
+
+          <div class="callout">
+            <span class="t">Definition</span>
+            Fluid responsiveness = increase in stroke volume or cardiac output of <strong>≥10–15%</strong> after a standardised fluid challenge (adults: ~4 mL/kg over 5–15 min). Repeated blind boluses are harmful.
+          </div>
+
+          <h4>Dynamic test selection</h4>
+          <div class="flow">
+            <div class="flow-node start">Shock</div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node decision">Intubated?</div>
+            <div class="flow-split">
+              <div class="col">
+                <span class="flow-tag no">NO</span>
+                <div class="flow-node ok">PLR with direct CO / SV measurement</div>
+              </div>
+              <div class="col">
+                <span class="flow-tag yes">YES</span>
+                <div class="flow-node decision">Passive mechanical ventilation &amp; sinus rhythm?</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node ok">PLR with direct CO/SV measurement<br>EEOT</div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-node decision">Tidal volume &gt;8 mL/kg?</div>
+                <div class="flow-split">
+                  <div class="col"><span class="flow-tag no">NO</span><div class="flow-node ok">PLR + CO/SV · EEOT · ΔPPV with PLR or tidal volume challenge</div></div>
+                  <div class="col"><span class="flow-tag yes">YES</span><div class="flow-node ok">PPV / SVV / LVOT VTI variation</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h4>Diagnostic thresholds</h4>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Method</th><th>Criterion</th><th>Threshold</th></tr></thead>
+              <tbody>
+                <tr><td>PLR (passive leg raise)</td><td>Increase in CO / SV</td><td class="num">≥10%</td></tr>
+                <tr><td>PLR</td><td>Absolute reduction in PPV</td><td class="num">1–2.5 points</td></tr>
+                <tr><td>PPV (pulse pressure variation)</td><td>Absolute value</td><td class="num">≥12%</td></tr>
+                <tr><td>SVV (stroke volume variation)</td><td>Absolute value</td><td class="num">≥12%</td></tr>
+                <tr><td>Tidal volume challenge</td><td>Absolute increase in PPV</td><td class="num">1–3.5 points</td></tr>
+                <tr><td>EEOT (end-expiratory occlusion test)</td><td>Increase in CO</td><td class="num">≥5%</td></tr>
+                <tr><td>LVOT VTI variation</td><td>Absolute value</td><td class="num">≥16%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Caveats</h4>
+          <ul>
+            <li><strong>PPV/SVV unreliable</strong> in: spontaneous breathing efforts, arrhythmias, low tidal volume ventilation, reduced lung compliance (ARDS), high RR:HR ratio, RV dysfunction, raised intra-abdominal pressure, open chest.</li>
+            <li><strong>PLR</strong> may be less reliable in intra-abdominal hypertension. Haemodynamic effect occurs within <strong>30–90 seconds</strong> and is transient — measure within that window. Avoid manual leg lifting; use an electric bed.</li>
+            <li><strong>PLR contraindications:</strong> traumatic brain injury (↑ICP risk), lower limb DVT, lower extremity fracture/amputation, venous compression stockings. Known limitations: severe hypovolaemia, discomfort/adrenergic stimulation.</li>
+            <li><strong>IVC indices:</strong> only moderate diagnostic accuracy — <strong>not a sole test</strong>. May be used as an adjunct when other dynamic tests are not feasible.</li>
+          </ul>
+
+          <h4>Fluid tolerance — who may be harmed even if fluid-responsive?</h4>
+          <p>Fluid tolerance = capacity to receive fluid without developing organ impairment due to congestion.</p>
+          <ul>
+            <li><strong>Clinical:</strong> increasing breathlessness or oxygen requirement, pulmonary oedema, elevated JVP.</li>
+            <li><strong>PoCUS:</strong> pulmonary congestion (diffuse B-lines), systemic congestion (VExUS).</li>
+          </ul>
+
+          <div class="callout">
+            <span class="t">Frank–Starling in one line</span>
+            A preload challenge increases stroke volume only when the heart is on the preload-responsive portion of the curve. On the flat portion, or with poor systolic function, there is little or no increase — fluid only adds congestion.
+          </div>
+
+          <div class="callout">
+            <span class="t">Recommendation 8 (CPG 2026)</span>
+            Crystalloids should be used as the initial and preferred fluid for resuscitation in dengue shock. Colloids may be considered in persistent shock; however, colloids should <strong>not</strong> be used for maintenance therapy. Fluid administration should be guided by <strong>dynamic assessment of fluid responsiveness</strong>. In refractory dengue shock, other causes of shock should be aggressively identified and treated.
+          </div>
+
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">5. ICU Management
+        <small>Referral criteria · respiratory · haemodynamic · renal · electrolytes · procedures</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 5.1 Indications for ICU referral</summary>
+        <div class="body">
+          <div class="tw">
+            <table>
+              <thead><tr><th>Category</th><th>Criteria</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Dengue shock syndrome</td></tr>
+                <tr><td>2</td><td>Dengue with significant bleeding</td></tr>
+                <tr><td>3</td><td>Dengue with significant comorbidity needing close monitoring (e.g. end-stage kidney disease, severe heart failure)</td></tr>
+                <tr><td>4</td><td>Dengue with severe organ impairment:
+                  <ul>
+                    <li>Acute respiratory failure</li>
+                    <li>Severe transaminitis with or without encephalopathy</li>
+                    <li>Altered mental status, seizures, or new-onset focal neurological deficit</li>
+                    <li>Cardiac arrhythmias, myocarditis, or acute heart failure</li>
+                    <li>Acute kidney injury with metabolic acidosis, hyperkalaemia, or fluid overload</li>
+                  </ul>
+                </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 5.2 Respiratory support</summary>
+        <div class="body">
+          <p>Respiratory failure in severe dengue arises from plasma leakage → pleural effusion, pulmonary oedema from fluid overload, and ARDS.</p>
+
+          <h4>HFNC and NIV</h4>
+          <ul>
+            <li><strong>HFNC</strong>: no dengue-specific evidence; systematic review data in acute hypoxaemic respiratory failure show improved oxygenation and reduced need for NIV/tracheal intubation vs conventional oxygen, without clear mortality benefit.</li>
+            <li><strong>NIV</strong>: evidence limited, mainly small paediatric studies; may improve oxygenation and reduce invasive ventilation, particularly when the cause is fluid-overload pulmonary oedema or pleural effusion.</li>
+            <li><strong>NIV contraindications:</strong> cardiac or respiratory arrest, inability to protect airway, ongoing vomiting / high aspiration risk, haemodynamic instability.</li>
+            <li><strong>HFNC contraindications:</strong> inability to protect airway, severe haemodynamic instability, upper airway obstruction.</li>
+          </ul>
+
+          <h4>Predicting failure — use the scores</h4>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Score</th><th>Formula / components</th><th>Failure threshold</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>ROX index</strong></td>
+                  <td><code>(SpO₂ / FiO₂) ÷ respiratory rate</code></td>
+                  <td>ROX &lt;2.85 at 2 h · &lt;3.47 at 6 h · &lt;3.85 at 12 h of HFNC → predicts HFNC failure</td>
+                </tr>
+                <tr>
+                  <td><strong>HACOR score</strong></td>
+                  <td>Heart rate · Acidosis (pH) · Consciousness (GCS) · Oxygenation (PaO₂/FiO₂) · Respiratory rate</td>
+                  <td>Score &gt;5 at 1 hour predicts NIV failure</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Indications for mechanical ventilation</h4>
+          <ul>
+            <li>Impaired consciousness or inability to protect the airway</li>
+            <li>Increased work of breathing</li>
+            <li>Persistent shock</li>
+            <li>Worsening respiratory failure</li>
+            <li>Failure of HFNC or NIV</li>
+          </ul>
+
+          <div class="callout warn">
+            <span class="t">Ventilation strategy</span>
+            Lung-protective: tidal volume <strong>4–8 mL/kg predicted body weight</strong>, plateau pressure <strong>&lt;30 cmH₂O</strong>, appropriate PEEP to minimise ventilator-induced lung injury.
+          </div>
+
+          <div class="callout danger">
+            <span class="t">Intubation hazard in dengue</span>
+            Sedatives and positive-pressure ventilation can worsen haemodynamic instability by reducing venous return. In pleural effusion and ascites, higher airway pressures further compromise haemodynamics. Avoid airway trauma — bleeding risk. Have vasopressors ready.
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 5.3 Haemodynamic support &amp; vasoactive drugs</summary>
+        <div class="body">
+          <p>Evidence specifically evaluating vasopressors and inotropes in dengue is limited; recommendations are partly extrapolated from the broader critical care literature on distributive shock.</p>
+
+          <div class="tw">
+            <table>
+              <thead><tr><th>Agent</th><th>Position in dengue</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Noradrenaline</strong></td>
+                  <td><strong>Preferred first-line vasopressor</strong></td>
+                  <td>Most favourable haemodynamic profile — increases systemic vascular resistance while preserving organ perfusion.</td>
+                </tr>
+                <tr>
+                  <td><strong>Vasopressin</strong></td>
+                  <td>Consider as add-on</td>
+                  <td>When noradrenaline requirement exceeds approximately <strong>0.2 µg/kg/min</strong>, particularly with a vasoplegic picture. Add a second agent rather than escalating noradrenaline alone.</td>
+                </tr>
+                <tr>
+                  <td><strong>Dobutamine / adrenaline</strong></td>
+                  <td>Add for myocardial dysfunction</td>
+                  <td>When there is evidence of myocardial dysfunction or reduced cardiac output, to improve cardiac performance and tissue perfusion.</td>
+                </tr>
+                <tr>
+                  <td><strong>Milrinone</strong></td>
+                  <td>Consider in selected patients</td>
+                  <td>Chronic beta-blockers, significant RV dysfunction, or pulmonary hypertension.</td>
+                </tr>
+                <tr>
+                  <td><strong>Dopamine</strong></td>
+                  <td><strong>Not recommended</strong> as first-line</td>
+                  <td>Associated with increased mortality (lowest SUCRA) and high incidence of tachyarrhythmias (1.53%).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout">
+            <span class="t">Use PoCUS to phenotype</span>
+            Clinical assessment, laboratory parameters and PoCUS may be used to assess haemodynamic phenotype and guide selection of additional vasoactive therapy.
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 5.4 Metabolic acidosis &amp; lactate</summary>
+        <div class="body">
+          <ul>
+            <li>Lactic acidosis from hypoperfusion is the most common cause in dengue shock.</li>
+            <li><strong>Lactate &lt;2 mmol/L</strong> in a critically ill patient generally suggests adequate tissue perfusion — but high lactate is not necessarily from tissue hypoxia or shock.</li>
+            <li>Targeting lactate normalisation in a <strong>non-shock</strong> patient can precipitate excessive fluid administration. Combine lactate with other perfusion markers — <strong>CRT and urine output</strong>.</li>
+            <li>If metabolic acidosis persists or worsens despite adequate fluid resuscitation, consider:
+              <ul>
+                <li>Bleeding masked by haemoconcentration</li>
+                <li>Worsening acute liver injury</li>
+                <li>Worsening acute kidney failure</li>
+                <li>Sepsis with distributive shock</li>
+                <li>Cardiac dysfunction</li>
+                <li>Medications — beta-2 agonists, metformin, SGLT-2 inhibitors</li>
+                <li>Hyperchloraemic metabolic acidosis from saline infusion</li>
+                <li>Concomitant ketoacidosis — diabetic or euglycaemic</li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="callout warn">
+            <span class="t">Sodium bicarbonate</span>
+            <strong>Do not use routinely</strong> in dengue-associated AKI and metabolic acidosis. In patients with <strong>severe metabolic acidaemia (arterial pH ≤7.20) with moderate-to-severe AKI</strong>, IV sodium bicarbonate <em>may be considered</strong> to correct severe acidaemia and reduce the need for kidney replacement therapy. Individualise — consider volume status, serum sodium, calcium and fluid-overload risk.
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 5.5 Kidney support</summary>
+        <div class="body">
+          <p><strong>Pathophysiology of AKI:</strong> acute tubular necrosis from prolonged shock, direct viral kidney injury, indirect immune-mediated injury, rhabdomyolysis.</p>
+
+          <h4>Supportive management</h4>
+          <ul>
+            <li>Volume optimisation while <strong>strictly avoiding fluid overload</strong> (which worsens intravascular fluid extravasation)</li>
+            <li>Monitor and manage electrolyte abnormalities</li>
+            <li>Avoid nephrotoxic medications</li>
+            <li>Kidney replacement therapy (KRT)</li>
+          </ul>
+
+          <div class="callout warn">
+            <span class="t">Do not start KRT early</span>
+            In non-dengue critically ill patients, early KRT offers no survival advantage over waiting for specific clinical triggers. Early KRT was associated with more KRT-related hypophosphataemia (RR 1.94, 95% CI 1.24–3.02) and CVC-related bloodstream infection (RR 1.66, 95% CI 1.04–2.66). <strong>Initiate only for urgent indications</strong> — not based on AKI stage or creatinine alone.
+          </div>
+
+          <h4>Urgent indications for KRT</h4>
+          <ul>
+            <li>Refractory metabolic acidosis, pH &lt;7.20 despite resuscitation</li>
+            <li>Life-threatening hyperkalaemia</li>
+            <li>Refractory volume overload</li>
+            <li>Symptomatic uraemia</li>
+          </ul>
+          <p>In haemodynamically unstable severe dengue requiring KRT, <strong>continuous kidney replacement therapy (CKRT)</strong> is recommended where available.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 5.6 Electrolytes</summary>
+        <div class="body">
+          <ul>
+            <li>Routine monitoring of <strong>potassium, sodium, calcium, magnesium, phosphate, chloride</strong> is critical.</li>
+            <li>Hyponatraemia, hypophosphataemia and hypocalcaemia are associated with dengue severity.</li>
+            <li><strong>Hypocalcaemia reduces myocardial and vascular response to vasopressors</strong> — complicating shock management. Severe hypocalcaemia (ionised Ca &lt;0.8 mmol/L) in the critically ill is independently associated with higher mortality.</li>
+            <li>Perform electrolyte panels at regular intervals in all ICU patients; correct promptly per local ICU protocols.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 5.7 Invasive procedures in ICU</summary>
+        <div class="body">
+
+          <h4>Central venous line</h4>
+          <ul>
+            <li><strong>Indications:</strong> prolonged vasopressor infusion; inadequate peripheral venous access.</li>
+            <li>A well-functioning <strong>peripheral cannula</strong> may be used for vasopressors for short durations (typically &lt;2 hours) — with vigorous monitoring for extravasation and local tissue injury.</li>
+            <li>For rapid volume expansion, <strong>large-bore peripheral access (14G or 16G)</strong> is superior to a standard central line (lower resistance, higher flow rates).</li>
+            <li>Thrombocytopenia and coagulopathy are relative contraindications, but bleeding risk after insertion is <strong>low</strong>. Routine prophylactic platelets/FFP are <strong>not recommended</strong>.</li>
+            <li><em>Consensus Statement on Patient Blood Management 2024:</em> consider prophylactic platelet/FFP if platelet &lt;20 ×10⁹/L or INR &gt;2. If given, insert the line during or within <strong>30–60 minutes</strong> of transfusion.</li>
+            <li>Use <strong>real-time ultrasound</strong> where available.</li>
+            <li><strong>Avoid subclavian cannulation</strong> — subclavian vein and artery are not accessible for direct compression.</li>
+          </ul>
+
+          <h4>Arterial catheter</h4>
+          <ul>
+            <li><strong>Indications:</strong> continuous intra-arterial pressure monitoring, repeated arterial blood gas sampling, haemodynamic monitoring (e.g. PPV analysis).</li>
+            <li>Severe thrombocytopenia and severe coagulopathy are relative contraindications, but bleeding complication rates are low. Routine prophylactic platelet/FFP not recommended — individualise.</li>
+          </ul>
+
+          <h4>Gastric tube</h4>
+          <ul>
+            <li><strong>Avoid the nasogastric route</strong> — use an <strong>orogastric tube</strong>, which is generally less traumatic.</li>
+          </ul>
+
+          <div class="callout">
+            <span class="t">Recommendation 10 (CPG 2026)</span>
+            Patients with severe dengue should be promptly identified and referred to ICU · HFNC and NIV may be used in selected dengue patients with respiratory failure · Mechanical ventilation indications follow the same established criteria as other critically ill patients · Vasopressor may be used in persistent shock despite adequate fluid resuscitation; <strong>noradrenaline preferred</strong> · KRT initiated according to standard clinical indications · Prophylactic platelet and FFP transfusion prior to ICU invasive procedures should be <strong>individualised</strong>.
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">6. Bleeding &amp; Transfusion
+        <small>Occult bleeding · thresholds · products · adjuncts</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <h3>Recognising bleeding</h3>
+      <ul>
+        <li><strong>Minor mucocutaneous bleeding</strong> (gingival bleeding, epistaxis, petechiae, mild per-vaginal bleeding) is common and usually self-limiting.</li>
+        <li><strong>Severe overt bleeding:</strong> upper GI haemorrhage (haematemesis, melaena), massive per-vaginal bleeding, severe epistaxis requiring intervention, intracranial haemorrhage, pulmonary haemorrhage, large soft-tissue haematomas.</li>
+        <li><strong>Occult bleeding</strong> — not clinically apparent but causes unrecognised intravascular loss and persistent haemodynamic instability.</li>
+      </ul>
+
+      <div class="callout danger">
+        <span class="t">Suspect significant occult bleeding when</span>
+        <ul>
+          <li>A drop in HCT <strong>without clinical improvement</strong> despite adequate fluid replacement</li>
+          <li>Severe metabolic acidosis and end-organ dysfunction despite adequate fluid replacement</li>
+          <li>HCT <strong>not as high as expected</strong> for the degree of shock explained by plasma leakage alone</li>
+          <li>In shock, an HCT rise of ≤20% from baseline (or only minimal elevation) should be interpreted with caution — plasma leakage alone may be insufficient to explain the shock</li>
+        </ul>
+        <strong>Tip:</strong> in occult bleeding, colloids may unmask the bleed by causing haemodilution and revealing a disproportionate fall in HCT.
+      </div>
+
+      <h3>Risk factors for bleeding</h3>
+      <ul>
+        <li>NSAID use, anticoagulant or antiplatelet therapy</li>
+        <li>Pre-existing peptic ulcer disease</li>
+        <li>Severe renal or liver failure</li>
+        <li>Persistent metabolic acidosis</li>
+        <li>Any form of trauma, including intramuscular injection</li>
+        <li>Severe plasma leakage and prolonged shock → mucosal ischaemia, coagulopathy, DIC</li>
+      </ul>
+
+      <h3>Transfusion</h3>
+      <div class="callout danger">
+        <span class="t">Key principle</span>
+        Transfusion should <strong>not be delayed while waiting for a marked decline in haematocrit</strong>. In dengue, severe bleeding often follows prolonged shock with plasma leakage, during which HCT may initially rise due to haemoconcentration. When bleeding occurs, HCT may fall but may not appear markedly low.
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Scenario</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>Significant bleeding</td><td>Transfuse <strong>packed red cells 5–10 mL/kg</strong>; observe clinical response; consider blood components if required; repeat if further blood loss or no appropriate HCT rise</td></tr>
+            <tr><td>Fibrinogen &lt;100 mg/dL</td><td><strong>Cryoprecipitate</strong></td></tr>
+            <tr><td>Fibrinogen ≥100 mg/dL but PT or aPTT &gt;1.5× normal</td><td><strong>Fresh frozen plasma</strong> may be considered</td></tr>
+            <tr><td>Neurosurgical / ophthalmic procedure</td><td>Platelet transfusion may be indicated if platelet ≤100 ×10⁹/L</td></tr>
+            <tr><td>Obstetric procedures</td><td>See pregnancy section (thresholds below)</td></tr>
+            <tr><td>Oropharyngeal bleeding or self-resolving epistaxis</td><td><strong>Platelet transfusion not recommended</strong> — local compression and adjunct methods</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Do not</strong> correct coagulation parameters solely on the basis of laboratory abnormalities in the absence of clinically significant bleeding.</p>
+
+      <div class="callout warn">
+        <span class="t">Platelet transfusion</span>
+        Severity of thrombocytopenia does <strong>not</strong> reliably predict clinical bleeding. Routine correction of isolated thrombocytopenia without significant bleeding is <strong>not supported</strong> — it does not reduce bleeding risk and may be associated with increased mortality, longer hospital stay and adverse events. Platelet transfusion is indicated for significant bleeding, and may be considered for procedures with high bleeding risk. The CPG DG opines it should be considered in haemodynamically stable patients with significant bleeding from GI, genitourinary or respiratory tracts, or into body cavities, muscle and soft tissue.
+      </div>
+
+      <h3>Adjunctive therapy — what NOT to use routinely</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Agent</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td>IL-11, anti-D immunoglobulin, eltrombopag</td><td>May raise platelet counts but <strong>no proven improvement in clinical bleeding outcomes</strong></td></tr>
+            <tr><td>IVIG</td><td>No improvement in platelet count or clinical bleeding outcome</td></tr>
+            <tr><td>Recombinant activated factor VII</td><td>No significant improvement in bleeding control, transfusion requirements or mortality</td></tr>
+            <tr><td>Tranexamic acid</td><td>No significant improvement in dengue-related bleeding; may cause abdominal pain and pruritus. Some guidelines still recommend for menstrual bleeding.</td></tr>
+            <tr><td>Prothrombin complex concentrate (PCC)</td><td>No retrievable supporting evidence</td></tr>
+            <tr><td>Viscoelastic testing (ROTEM/TEG)</td><td>May be used as an <strong>adjunct</strong> to support targeted transfusion decisions in selected patients with significant or refractory bleeding — <strong>not for routine use</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Specific bleeding sites</h3>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> Upper gastrointestinal bleeding</summary>
+        <div class="body">
+          <p>Common causes: haemorrhagic/erosive gastritis, peptic ulcer, oesophageal ulcer. May present as haematemesis, melaena, haematochezia or occult bleeding. Bleeding may not be apparent for hours until the first melaena is passed.</p>
+          <ul>
+            <li>Haemodynamic stabilisation with appropriate fluid resuscitation</li>
+            <li>Blood transfusion (packed red cells) and correction of thrombocytopenia or coagulopathy</li>
+            <li>Proton pump inhibitor</li>
+            <li><strong>Endoscopy</strong> — consider in significant or persistent GI bleed despite optimal medical therapy. Endoscopic <em>injection</em> therapy is <strong>not</strong> supported in GI bleeding secondary to severe dengue. Endoscopic haemostatic therapy is generally recommended for peptic ulcers with recent haemorrhage (active arterial bleeding, non-bleeding visible vessels, non-bleeding adherent clots, persistent oozing).</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> Intracranial haemorrhage</summary>
+        <div class="body">
+          <p>Rare but life-threatening, with high mortality. Prognosis is worse with severe thrombocytopenia, coagulopathy, low GCS, large haematoma, shock or multiorgan involvement.</p>
+          <ul>
+            <li>Early recognition of neurological symptoms and prompt brain imaging</li>
+            <li>Haemodynamic stabilisation and correction of thrombocytopenia and coagulopathy</li>
+            <li>Selective neurosurgical intervention (e.g. decompressive craniectomy) after stabilisation, in selected cases:
+              <ul>
+                <li>Significant intracranial haemorrhage</li>
+                <li>Progressive neurological deterioration after correction of coagulopathy</li>
+              </ul>
+            </li>
+            <li>Multidisciplinary care — critical care, neurology and neurosurgery</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="callout">
+        <span class="t">Recommendation 9 (CPG 2026)</span>
+        Occult bleeding should be suspected in dengue patients with persistent haemodynamic instability despite adequate fluid resuscitation · Blood and blood products transfusion should be started promptly in clinically significant bleeding without waiting for a drop in HCT · <strong>Packed red blood cells</strong> for significant bleeding · <strong>No routine prophylactic platelets or plasma</strong> in patients without active bleeding · Platelet transfusion should be considered for significant bleeding or invasive procedures with bleeding risk.
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">7. Organ Complications &amp; Expanded Dengue Syndrome
+        <small>Liver · cardiac · HLH · neurological</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 7.1 Dengue-related liver involvement</summary>
+        <div class="body">
+          <ul>
+            <li>Range: asymptomatic transaminitis → severe hepatitis → acute liver failure (ALF).</li>
+            <li><strong>AST is typically higher than ALT</strong> — reflects extra-hepatic sources and systemic inflammation.</li>
+            <li>Transaminases peak in the first week and normalise within 2–3 weeks in uncomplicated cases.</li>
+            <li><strong>Dengue-induced severe hepatitis (DISH):</strong> &gt;10-fold rise in serum transaminases.</li>
+            <li><strong>Severe hepatic involvement:</strong> AST or ALT ≥1000 IU/L.</li>
+            <li><strong>Acute liver failure:</strong> coagulopathy (INR ≥1.5) with hepatic encephalopathy, in the absence of pre-existing cirrhosis. Occurs in ~1–2% of cases; mortality 40–50%, particularly with dengue shock, prolonged hypotension or multiorgan dysfunction.</li>
+          </ul>
+
+          <h4>Risk scoring</h4>
+          <p>In DISH, <strong>MELD ≥15</strong> or <strong>EZ-ALBI ≥ −30</strong> identifies high risk of developing ALF. Development of ALF and elevated baseline INR are independent predictors of mortality.</p>
+
+          <h4>Atypical liver involvement — think alternative diagnosis</h4>
+          <p>Consider targeted assessment if: ALT predominance, disproportionate hyperbilirubinaemia, or worsening function beyond day 5–7.</p>
+
+          <h4>Management of ALF</h4>
+          <ul>
+            <li>Primarily supportive; avoid hepatotoxic medications; manage in ICU.</li>
+            <li><strong>N-acetylcysteine (NAC):</strong> role remains uncertain; limited to observational studies and case series. <strong>Routine use not recommended</strong> for severe transaminitis without ALF. May be considered in ALF. Reported IV regimens:
+              <ul>
+                <li>150 mg/kg over 15–60 min, then 12.5 mg/kg/h for 4 h, then 6.25 mg/kg/h thereafter; <em>or</em></li>
+                <li>Continuous infusion 100 mg/kg/day for up to 5 days.</li>
+              </ul>
+              Use a low volume of diluent to avoid fluid overload. NAC may cause anaphylactoid reactions in a very small percentage and may interrupt treatment.
+            </li>
+            <li><strong>Advanced therapies</strong> (liver transplantation, MARS, therapeutic plasma exchange, CRRT) — limited to case reports/small series; <strong>insufficient evidence</strong> to support routine use.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 7.2 Cardiac complications</summary>
+        <div class="body">
+          <p>Manifestations: arrhythmias, functional myocardial impairment, myocarditis. Suspect when there is <strong>fluid-refractory shock</strong> or haemodynamic compromise disproportionate to capillary leakage / HCT increase.</p>
+
+          <h4>Investigations</h4>
+          <ul>
+            <li><strong>ECG:</strong> changes are often transient and may be the only sign of cardiac involvement with normal biomarkers and echocardiogram. Common: sinus bradycardia (commonest), AV block, atrial fibrillation, T-wave and ST-segment abnormalities.</li>
+            <li><strong>Cardiac biomarkers</strong> (CK/CK-MB or troponin): limited sensitivity; may be normal.</li>
+            <li><strong>Echocardiography:</strong> ejection fraction is difficult to interpret (influenced by preload and afterload). May show systolic and diastolic dysfunction with segmental wall abnormalities of the septum and right ventricular wall.</li>
+          </ul>
+
+          <h4>Management</h4>
+          <ul>
+            <li>Cautious fluid resuscitation — give just enough IV fluid to maintain adequate tissue perfusion.</li>
+            <li><strong>No evidence</strong> to support antiviral or immunomodulatory treatment (beta-interferon, corticosteroids, IVIG) for dengue myocarditis. A Cochrane review found IVIG did not confer a survival benefit in adults with acute myocarditis vs placebo.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 7.3 Haemophagocytic lymphohistiocytosis (HLH)</summary>
+        <div class="body">
+          <p>Potentially fatal syndrome of extreme immune activation → cytokine storm (↑IL-2, TNF-α, IL-6, IL-8, interferon-γ from uncontrolled histiocyte and T-cell activation). Clinical course is severe and may mimic sepsis.</p>
+          <ul>
+            <li>Commonly presents with unexplained persistent fever or resurgence of high-grade fever after initial defervescence.</li>
+            <li>Also: hepatosplenomegaly, rash, bleeding, CNS manifestations, jaundice.</li>
+            <li>Labs: bicytopaenia/pancytopaenia, coagulopathy, hypertriglyceridaemia, hypofibrinogenaemia, hyperferritinaemia, transaminitis, hyperbilirubinaemia, hypoalbuminaemia, hyponatraemia.</li>
+            <li><strong>HScore</strong> estimates probability of reactive haemophagocytic syndrome in adults. Lack of adequate criteria at one juncture does <strong>not</strong> exclude the diagnosis.</li>
+            <li>Bone marrow examination is not necessary when enough criteria are fulfilled; bone marrow aspiration appears safe in adults and older children with dengue-associated HLH.</li>
+            <li>Serum ferritin &gt;10,000 is <strong>not pathognomonic</strong> in adults. Trend matters more than absolute level. Watch for sudden exponential rise in ALT, AST and LDH (may occur in &lt;12 hours).</li>
+          </ul>
+
+          <h4>Treatment</h4>
+          <ul>
+            <li>Mainstay is <strong>supportive</strong>. Milder forms may recover spontaneously.</li>
+            <li>Severe HLH: short courses of immunosuppression — <strong>dexamethasone 10 mg/m² daily for 3–4 days</strong> is commonly used.</li>
+            <li><strong>IVIG</strong> — consider especially if steroids alone are insufficient, or concern about secondary infection.</li>
+            <li><strong>Etoposide</strong> — suggested as rescue therapy.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 7.4 Neurological complications</summary>
+        <div class="body">
+          <p>Reported in 4.2–13% of all hospitalised dengue patients. Categorised as:</p>
+          <ol>
+            <li><strong>Direct neurotropic</strong> — encephalitis, myositis</li>
+            <li><strong>Indirect/metabolic</strong> — encephalopathy; cerebrovascular complications from thrombocytopenia and platelet dysfunction; hypokalaemic paralysis</li>
+            <li><strong>Immune-mediated (IMNC)</strong> — ADEM, Guillain–Barré syndrome, acute transverse myelitis, opsoclonus-myoclonus syndrome</li>
+          </ol>
+
+          <h4>Dengue encephalitis</h4>
+          <ul>
+            <li>Classically: fever, headache, seizures, altered consciousness, focal neurological signs after 5–7 days of fever.</li>
+            <li>MRI may be normal or show non-specific cerebral oedema or the classic <strong>double doughnut sign</strong>.</li>
+            <li>Lumbar puncture if no contraindications — CSF for dengue virus-specific RNA. Sensitivity of RT-PCR is low. CSF may be normal or show pleocytosis and high protein.</li>
+            <li>No specific treatment — supportive.</li>
+          </ul>
+
+          <h4>Dengue encephalopathy</h4>
+          <p>Most commonly reported neurological complication. May result from prolonged shock, hypoxia, cerebral oedema, acute liver failure, acute renal failure, hyponatraemia and cerebral haemorrhage.</p>
+
+          <h4>Myositis</h4>
+          <p>Spectrum from subclinical CK elevation, self-limiting myalgia and weakness, rhabdomyolysis, to life-threatening fulminant myositis with severe quadriparesis and respiratory failure.</p>
+
+          <h4>Immune-mediated</h4>
+          <p>A cross-sectional study showed IVIG and plasmapheresis — standard treatment for GBS — can also be used in dengue-associated GBS. Most immune-mediated neurological complications have favourable recovery with appropriate immunomodulatory therapy.</p>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">8. Special Populations (ICU-relevant)
+        <small>Pregnancy · heart failure · CKD/ESKD · cirrhosis · diabetes · hypertension · geriatric · obesity · haemoglobinopathies</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 8.1 Dengue in pregnancy</summary>
+        <div class="body">
+          <p>High-risk: maternal physiological adaptations mask critical warning signs of plasma leakage. Prioritise <strong>trend-based monitoring</strong> over isolated values.</p>
+
+          <div class="tw">
+            <table>
+              <thead><tr><th>Marker</th><th>Pregnancy</th><th>Dengue</th></tr></thead>
+              <tbody>
+                <tr><td>HCT / Hb</td><td>↓ HCT (haemodilution)</td><td>↑ HCT (plasma leakage) — haemoconcentration masked</td></tr>
+                <tr><td>Platelets</td><td>Mild thrombocytopenia</td><td>Marked thrombocytopenia — overlaps gestational thrombocytopenia</td></tr>
+                <tr><td>Heart rate</td><td>↑ baseline HR</td><td>Tachycardia — shock may be over-diagnosed or missed</td></tr>
+                <tr><td>BP / pulse pressure</td><td>↓ BP, wider pulse pressure</td><td>Hypotension, narrow pulse pressure — delayed shock recognition</td></tr>
+                <tr><td>Fluid status</td><td>Gravid uterus</td><td>Ascites/effusion — clinical examination limited</td></tr>
+                <tr><td>Liver enzymes</td><td>Mild changes</td><td>↑ AST/ALT — non-specific overlap</td></tr>
+                <tr><td>Blood gas</td><td>↓ PaCO₂ (respiratory alkalosis with compensatory metabolic acidosis)</td><td>Metabolic acidosis — severity may be under/overestimated</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Outcomes</h4>
+          <ul>
+            <li>Pregnant women have over twice the likelihood of adverse outcomes — preterm birth, low birth weight, miscarriage, particularly in the third trimester.</li>
+            <li>Substantially higher hospitalisation rates and nearly <strong>five-fold increased risk of progressing to severe dengue</strong> vs non-pregnant patients.</li>
+            <li>Maternal complications: thrombocytopenia, shock, postpartum haemorrhage, maternal mortality, AKI, ARDS, acute liver failure.</li>
+            <li>Foetal/neonatal: preterm birth, low birth weight, intrauterine foetal demise, miscarriage.</li>
+          </ul>
+
+          <h4>Admission &amp; monitoring</h4>
+          <ul>
+            <li><strong>All pregnant patients with confirmed dengue should be hospitalised.</strong></li>
+            <li>Care led by a collaborative obstetric + physician team; early critical care involvement as indicated.</li>
+            <li>Gestation &lt;28 weeks → medical or obstetric ward; ≥28 weeks → obstetric ward (preterm labour/delivery risk).</li>
+            <li>Monitoring frequency: no warning signs → daily review; warning signs → 4–6 hourly vitals and labs; severe dengue → continuous or 1–2 hourly.</li>
+            <li>Foetal monitoring: ultrasound and cardiotocography.</li>
+            <li><strong>Paracetamol is safe</strong>; avoid NSAIDs and aspirin (bleeding risk).</li>
+          </ul>
+
+          <h4>Labour &amp; delivery</h4>
+          <ul>
+            <li><strong>Avoid labour and delivery during the critical phase.</strong> Postpone elective induction or planned Caesarean until platelet recovery begins, ideally <strong>&gt;50 ×10⁹/L</strong>.</li>
+            <li><strong>Vaginal delivery is the preferred mode</strong>; Caesarean only for obstetric indications.</li>
+            <li>Early group and cross-match for all. Minimise bleeding: avoid genital tract trauma, limit difficult instrumental deliveries, active management of third stage of labour.</li>
+          </ul>
+
+          <div class="callout warn">
+            <span class="t">Platelet thresholds in pregnancy</span>
+            Routine prophylactic platelet transfusion is <strong>not recommended</strong> without active bleeding — individualise based on maternal status and anticipated mode of delivery.<br>
+            • Uncomplicated vaginal delivery: <strong>&gt;30 ×10⁹/L</strong><br>
+            • Instrumental vaginal delivery, Caesarean section, spinal anaesthesia: <strong>&gt;50 ×10⁹/L</strong><br>
+            Regional anaesthesia may be contraindicated with severe thrombocytopenia due to spinal haematoma risk — multidisciplinary discussion regarding general anaesthesia safety.
+          </div>
+
+          <ul>
+            <li>Post-delivery: intensive monitoring for at least <strong>24–48 hours</strong> for ongoing plasma leakage, occult bleeding, postpartum haemorrhage or sudden haemodynamic deterioration. Serial HCT and platelet monitoring into the postpartum period.</li>
+            <li><strong>Avoid intramuscular injections</strong> in thrombocytopenia — haematoma risk.</li>
+            <li><strong>Breastfeeding is recommended</strong> — benefits outweigh transmission risk. Dengue is not a contraindication. If too ill to breastfeed, support expressing milk until well enough to resume.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 8.2 Heart failure</summary>
+        <div class="body">
+          <ul>
+            <li>Higher risk of shock, bleeding and death — may need early hospitalisation for close monitoring.</li>
+            <li><strong>Early admission</strong> despite absence of warning signs.</li>
+            <li>Modify fluid volume to reduce fluid overload risk.</li>
+            <li>Early cardiologist consultation may be needed during the critical phase.</li>
+            <li>Consider <strong>loop diuretics</strong> in overloaded, haemodynamically stable patients.</li>
+            <li>Temporarily discontinue antiplatelets or anticoagulants if platelet &lt;100,000/µL, if bleeding occurs, or for a few days during the critical phase.</li>
+            <li>Frequent reassessment of cardiac ischaemia and electrolytes.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 8.3 End-stage kidney disease / chronic kidney disease</summary>
+        <div class="body">
+          <ul>
+            <li>Higher rates of severe dengue, ICU admission and mortality. CKD at presentation is an independent predictor of in-hospital mortality (aOR 3.907, 95% CI 1.785–8.552).</li>
+            <li>Predictors of mortality: altered consciousness (aOR 23.008), pulmonary oedema (aOR 13.525), leukocytosis during hospitalisation (aOR 1.131).</li>
+            <li>In dialysis-dependent ESKD: 36.7% presented with warning signs, 36.7% developed severe dengue, 8.2% in-hospital mortality. Warning signs significantly associated with plasma leakage (OR 12.36) and severe haemorrhage (OR 5.1) — more likely in patients &gt;65 years.</li>
+          </ul>
+          <p><strong>Management:</strong> early admission despite absence of warning signs; modify fluid volume; early nephrologist consultation for KRT planning in oliguric patients at risk of fluid overload.</p>
+          <div class="callout">
+            <span class="t">HCT interpretation</span>
+            In ESKD, baseline Hb and HCT may differ due to chronic anaemia or haemodilution from fluid overload. Interpret HCT using the patient's <strong>own baseline</strong> Hb/HCT and serial trends.
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 8.4 Liver cirrhosis</summary>
+        <div class="body">
+          <ul>
+            <li>Increased risk of severe dengue and mortality.</li>
+            <li>Cautious use of paracetamol for fever/pain.</li>
+            <li>Manage hepatic failure with fluid and blood transfusion — at risk of GI bleeding and severe shock.</li>
+            <li>IV vitamin K may be needed if PT/INR is prolonged.</li>
+            <li>Individualised fluid management with close monitoring for warning signs and severe dengue.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 8.5 Diabetes mellitus</summary>
+        <div class="body">
+          <ul>
+            <li>Higher risk of adverse outcomes: metabolic instability, greater dehydration risk, and diagnostic difficulty distinguishing dengue shock from metabolic complications.</li>
+            <li>Dengue can trigger <strong>DKA</strong> and <strong>HHS</strong> — these can mimic DSS or occur concurrently.</li>
+            <li>Hyperglycaemia causes osmotic diuresis → worsens hypovolaemic shock; gives a <strong>false impression of good urine output</strong>.</li>
+            <li>Requires early and regular metabolic assessment: capillary blood sugar, ketones/acid–base status, renal function/electrolytes.</li>
+            <li>In hospitalised patients: <strong>stop oral hypoglycaemics</strong> during acute illness (hypoglycaemia risk with poor intake; metformin → lactic acidosis with dehydration/hepatic dysfunction). <strong>Insulin-based regimes preferred.</strong></li>
+          </ul>
+          <div class="callout ok">
+            <span class="t">Recommendation 13</span>
+            In dengue patients with DKA/HHS, fluid requirement should follow the <strong>DKA/HHS regimen</strong>. In plasma leakage <strong>without</strong> DKA/HHS, fluid therapy should be guided by clinical assessment.
+          </div>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 8.6 Hypertension</summary>
+        <div class="body">
+          <ul>
+            <li>Patients with pre-existing hypertension have consistently higher baseline BPs throughout illness. BP may still decline around defervescence due to plasma leakage.</li>
+            <li><strong>A "normal" BP reading in a hypertensive patient may signify relative hypotension and early shock</strong>, not stability.</li>
+            <li>Ask about baseline BP; closely monitor trends in BP, pulse pressure, CCTV and urine output.</li>
+            <li>Antihypertensives may be withheld during acute dengue, especially in the critical phase, to prevent hypotension. Restart gradually in the recovery phase with haemodynamic stability.</li>
+            <li>Drug-specific issues: beta-blockers may mask tachycardia or worsen bradycardia; calcium channel blockers may cause tachycardia; ACEi/ARBs and diuretics increase risk of renal injury and hypovolaemia.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 8.7 Geriatric population</summary>
+        <div class="body">
+          <ul>
+            <li>Managing dengue in older adults (≥60 years) is challenging due to physiological changes, comorbidities and atypical presentation.</li>
+            <li><strong>Atypical presentation:</strong> fever may be absent, low-grade or delayed; lethargy and poor appetite predominate over classical myalgia, retro-orbital pain and rash. May mimic sepsis, acute coronary syndrome, stroke/delirium, or decompensated chronic illness.</li>
+            <li><strong>Leucopenia</strong> is an important early marker — good discriminatory ability for differentiating dengue from other febrile illnesses (AUC 0.91, 95% CI 0.86–0.96), with increasing predictive value with age. Thrombocytopenia is a later, less reliable sign; rising HCT can be subtle with coexisting anaemia or chronic disease.</li>
+            <li>Increased risk of severe disease due to comorbidities, polypharmacy, frailty and sarcopenia. Also at increased risk of haemorrhagic symptoms, kidney and liver problems, and bacterial coinfection.</li>
+            <li>Signs suggesting bacterial coinfection: persistent fever &gt;5 days, AKI, leucocytosis and neutrophilia.</li>
+            <li>Fluid therapy must be individualised and cautious — high risk of fluid overload, pulmonary oedema and heart failure exacerbation.</li>
+            <li>Lower threshold for hospital admission, especially with underlying comorbidities, inadequate home setting for safe monitoring, or atypical features.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 8.8 Obesity</summary>
+        <div class="body">
+          <ul>
+            <li>NHMS 2023: 54.4% of Malaysian adults are overweight or obese.</li>
+            <li>Obese dengue patients have significantly higher incidences of severe hepatitis (AOR 2.06), petechiae (AOR 1.35), dyspnoea (AOR 1.38) and severe thrombocytopenia (p&lt;0.001) — though no difference in overall severe dengue or mortality rates.</li>
+            <li>Consider admission to ensure early escalation of care is feasible.</li>
+            <li>Clinical assessment may be less reliable due to body habitus — rely on haemodynamic trends and objective parameters.</li>
+            <li>Use <strong>Adjusted Body Weight (ABW)</strong>-based fluid dosing with frequent monitoring.</li>
+            <li>Screen for associated conditions: diabetes, hypertension, OSA, NAFLD.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 8.9 Haemoglobinopathies</summary>
+        <div class="body">
+          <ul>
+            <li>Dengue may present with persistent fever, progressive anaemia and thrombocytopenia.</li>
+            <li><strong>Haemoconcentration may be absent</strong> — anaemia from haemolysis predominates.</li>
+            <li><strong>HCT is unreliable as a marker of plasma leakage.</strong></li>
+            <li>Clinical deterioration may be missed or delayed if conventional dengue markers are relied upon.</li>
+            <li><strong>Packed cell transfusion</strong> is a critical, often life-saving intervention for symptomatic anaemia — the underlying cause is typically haemolysis rather than plasma leakage or bleeding.</li>
+            <li>Transfusion indications: symptomatic anaemia, rapid decline in haemoglobin, or clinical signs of tissue hypoxia or shock.</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">9. Monitoring, Discharge &amp; Vaccination
+        <small>Inpatient monitoring frequency · discharge criteria · post-vaccination diagnostics</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 9.1 Inpatient monitoring frequency</summary>
+        <div class="body">
+          <div class="tw">
+            <table>
+              <thead>
+                <tr><th>Parameter</th><th>Febrile phase</th><th>Critical phase</th><th>Reabsorption phase</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>General well-being / appetite / oral intake / warning signs</td>
+                  <td>Daily or more frequently towards late febrile phase</td>
+                  <td>At least twice a day and more frequently as indicated</td>
+                  <td>Daily or more frequently as indicated</td>
+                </tr>
+                <tr>
+                  <td>Temperature</td>
+                  <td rowspan="4">4–6 hourly depending on clinical status</td>
+                  <td rowspan="4">In shock: every 15–30 min until stable, then 1–2 hourly<br>(4–6 hourly once stable)</td>
+                  <td rowspan="4">4–6 hourly</td>
+                </tr>
+                <tr><td>Haemodynamic status — CCTV, BP, HR, pulse pressure</td></tr>
+                <tr><td>Respiratory status — RR, SpO₂</td></tr>
+                <tr><td>Neurological status — conscious level, restlessness, seizures</td></tr>
+                <tr>
+                  <td>Urine output</td>
+                  <td>6–8 hourly</td>
+                  <td>2–4 hourly; hourly in shock</td>
+                  <td>6–8 hourly</td>
+                </tr>
+                <tr>
+                  <td>FBC</td>
+                  <td>Daily or more frequently as indicated</td>
+                  <td>4–12 hourly depending on clinical status; in shock, repeated before and after each fluid resuscitation and as indicated</td>
+                  <td>Daily</td>
+                </tr>
+                <tr>
+                  <td>RP / creatinine, LFT + AST</td>
+                  <td colspan="3">As clinically indicated; at least daily or more frequently in the critical phase</td>
+                </tr>
+                <tr>
+                  <td>Blood gas, lactate</td>
+                  <td colspan="3">As clinically indicated — crucial to monitor closely in shock</td>
+                </tr>
+                <tr>
+                  <td>Coagulation profile, CRP, troponin, fibrinogen, LDH, ferritin, triglyceride, ECG, PoCUS</td>
+                  <td colspan="3">As clinically indicated</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout">
+            <span class="t">PoCUS in hospitalised patients</span>
+            Serial PoCUS is more likely to identify early leakage during the initial phase than HCT monitoring alone (OR 4.42, 95% CI 2.85–6.86). If ultrasound access is limited, use <strong>platelet count &lt;97 ×10⁹/L</strong> and <strong>serum transaminase &gt;51 U/L</strong> to select patients for targeted ultrasound — both are independent predictors of US-detected plasma leakage (OR 4.56 and 2.97 respectively).
+          </div>
+
+          <p><strong>Recommendation 5:</strong> All admitted dengue patients should be clinically assessed and monitored at appropriate intervals guided by the phases and severity of illness.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 9.2 Discharge criteria</summary>
+        <div class="body">
+          <h4>A. Clinical stability</h4>
+          <ul>
+            <li>Afebrile for 24–48 hours and clinically improving</li>
+            <li>Stable haemodynamics</li>
+            <li>Adequate oral intake with improved appetite</li>
+            <li>Good urine output (0.5–1.5 mL/kg/h)</li>
+            <li>No active bleeding</li>
+            <li>No respiratory distress</li>
+          </ul>
+          <h4>B. Laboratory stability</h4>
+          <ul>
+            <li>Platelet count: <strong>increasing trend</strong> (trend matters more than absolute number)</li>
+            <li>Haematocrit stable <strong>without IV fluids</strong></li>
+            <li>Resolving organ dysfunction</li>
+          </ul>
+          <h4>Discharge counselling</h4>
+          <ul>
+            <li>Adequate oral fluid intake</li>
+            <li>Resume old medications as instructed</li>
+            <li>Avoid strenuous activity until full recovery</li>
+            <li>Attend follow-up review and repeat blood investigations at the nearest primary care clinic as needed</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 9.3 Post-vaccination diagnostic considerations</summary>
+        <div class="body">
+          <div class="callout warn">
+            <span class="t">Within 30 days of TAK-003 (Qdenga) vaccination</span>
+            <ul>
+              <li>Preferably confirm with <strong>RT-qPCR on serum collected within 5 days of symptom onset</strong>.</li>
+              <li>A positive RT-qPCR may reflect wild-type dengue, vaccine-strain viraemia, or both → consider <strong>genomic sequencing</strong> where available (especially severe, fatal, cluster, or vaccine-safety cases).</li>
+              <li><strong>Dengue IgM and IgG should not be used as standalone confirmatory tests</strong> — vaccine-induced antibodies resemble natural infection.</li>
+              <li><strong>NS1 antigen</strong> may be considered if RT-qPCR unavailable, but a positive result does not differentiate wild-type from vaccine-derived virus, and a negative result does not fully exclude dengue or vaccine-strain viraemia.</li>
+              <li>Rely on clinical evaluation and judgement to diagnose and treat.</li>
+            </ul>
+          </div>
+          <p><strong>Recommendation 1:</strong> RDT with combined NS1 antigen/IgM/IgG should be used as the first-line test to diagnose dengue in adults.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 9.4 Dengue vaccination (2026 position)</summary>
+        <div class="body">
+          <ul>
+            <li>Vector control remains the <strong>cornerstone</strong> of dengue prevention.</li>
+            <li><strong>TAK-003 (Qdenga)</strong>: live-attenuated tetravalent vaccine, DENV-2 backbone, two-dose schedule 3 months apart, no pre-vaccination serological screening required. Approved in Malaysia for anyone aged ≥4 years.</li>
+            <li>Seroconversion &gt;90% for all serotypes (except DENV-4 ~84%) after dose 1; &gt;96% for all serotypes after dose 2. Efficacy &gt;80% against DENV-2, ~40% against DENV-1; protection against DENV-3 and DENV-4 primarily in those with prior dengue exposure.</li>
+            <li>Real-world: vaccine effectiveness 50.2% after one dose, 61.7% after two doses against symptomatic dengue; 67.5% protection against dengue-related hospitalisation after a single dose. Protection after a single dose declines after ~90 days — <strong>complete the two-dose schedule</strong>.</li>
+            <li><strong>Ministry of Health Malaysia does not currently include TAK-003 in the National Immunization Program</strong> given low-to-moderate transmission intensity (aligning with WHO May 2024 position paper).</li>
+          </ul>
+          <div class="callout">
+            <span class="t">Recommendation 17</span>
+            Dengue vaccination <strong>may be considered in all adults</strong>, particularly those with comorbidities who are at increased risk of severe dengue, unless contraindicated.
+          </div>
+          <p><em>Also noted:</em> Butantan-DV (single-dose, NIH TV003 backbone) — phase 3 efficacy 67.3% against symptomatic dengue, 89% protection against severe dengue/dengue with warning signs; licensed in Brazil 2025, no regulatory approval outside Brazil reported. CYD-TDV (Dengvaxia) — WHO recommends only in individuals with confirmed prior dengue infection.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary><span class="chev">▶</span> 9.5 Complementary treatments</summary>
+        <div class="body">
+          <ul>
+            <li><strong>Carica papaya leaf extract</strong> — meta-analyses suggest a modest increase in platelet count (MD 20.27, 95% CI 6.21–34.73; MD 35.45, 95% CI 23.74–47.15) and reduced length of stay (MD −1.90 days; MD −1.98 days).</li>
+            <li><strong>However:</strong> no consistent benefit for bleeding complications, disease severity or mortality. Primary studies heterogeneous with methodological limitations and insufficient safety data.</li>
+            <li><strong>Should not be used with the sole aim of accelerating hospital discharge</strong> — improvements in platelet count do not reliably reflect overall clinical recovery.</li>
+            <li><strong>Lack of evidence</strong> to support Carica papaya leaf extract in the management of dengue infection.</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card" open>
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">10. What Changed: 2015 (3rd Ed) vs 2026 (4th Ed)
+        <small>Side-by-side comparison of the guidance that affects critical care</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <div class="callout">
+        <span class="t">How to read this</span>
+        Left column = CPG 2015 (Third Edition). Right column = CPG 2026 (Fourth Edition). The 2026 edition explicitly supersedes the 2015 recommendations where they differ.
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th style="min-width:150px">Domain</th><th style="min-width:270px">2015 — Third Edition</th><th style="min-width:290px">2026 — Fourth Edition</th></tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td><strong>First-line diagnostic test</strong></td>
+              <td>Dengue rapid combo test (RCT) or NS1 antigen as soon as dengue is suspected; if IgM negative before day 7, repeat in recovery; if IgM still negative after day 7, do IgG.</td>
+              <td><strong>RDT with combined NS1/IgM/IgG is the first-line test.</strong> NS1/IgM/IgG combination yields highest sensitivity (91.0%) and specificity (96.0%). IgM ELISA alone is less reliable in the initial phase. Single-specimen IgG not recommended for acute diagnosis.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Post-vaccination diagnosis</strong></td>
+              <td>Not addressed.</td>
+              <td><strong>New dedicated section.</strong> Within 30 days of TAK-003: use RT-qPCR (preferred) or NS1; IgM/IgG must not be used as confirmatory tests. Consider genomic sequencing in severe/fatal/cluster cases.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Classification</strong></td>
+              <td>WHO 2009 (dengue ± warning signs; severe dengue). WHO 1997 DF/DHF/DSS discussed with its limitations.</td>
+              <td><strong>PAHO 2020-based classification</strong> (DNWS / DWWS / SD) adopted, aligned with WHO 2009. Adds <strong>Expanded Dengue Syndrome</strong> as a recognised entity (WHO-SEARO 2025 framework).</td>
+            </tr>
+
+            <tr>
+              <td><strong>Triage</strong></td>
+              <td>Triage checklist at registration (fever, abdominal pain, vomiting, dizziness/fainting, bleeding) plus vital parameters.</td>
+              <td><strong>Systematic primary + secondary triage</strong> integrated with the <strong>Malaysian Triage Scale (MTS)</strong> and PAHO level of care. Dedicated fever clinic during outbreaks. Formal training requirement for triage personnel.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Fluid calculation in febrile phase</strong></td>
+              <td>Encourage 2–3 L/day oral (1.2–1.5× normal maintenance in critical phase). IV maintenance 1.2–1.5 mL/kg/h (non-obese).</td>
+              <td><strong>Holliday–Segar formula</strong> for total (oral + IV) requirement. Hourly guide 70–110 mL/h by weight band. Oral 200 mL/hour while awake. Reduce/stop IV promptly once oral intake improves.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Fluid in critical phase without shock</strong></td>
+              <td>Graded fluid bolus regime with caution: 5 mL/kg/h × 1–2 h → 3 mL/kg/h × 2–4 h → 2 mL/kg/h or less. Frequent adjustment.</td>
+              <td><strong>Fluid quota concept introduced:</strong> total fluid (oral + IV) = <strong>Maintenance + 5% deficit over 48 hours</strong> (5% = 50 mL/kg). Starts at 3–5 mL/kg/h × 1 h, then 2–3, then 1–2 or maintenance. Quota does <strong>not</strong> apply once shock develops. <strong>Weight cap 70 kg.</strong></td>
+            </tr>
+
+            <tr>
+              <td><strong>Fluid in DSS</strong></td>
+              <td>Crystalloid preferred; colloid preferable in intractable shock. HES discussed with caveats (renal replacement, coagulopathy). Albumin comparable to crystalloid. Hypertonic sodium lactate noted but unavailable.</td>
+              <td><strong>Crystalloids first</strong> (balanced crystalloids or 0.9% saline). Colloids for <strong>refractory</strong> shock only. <strong>Albumin 5% is the colloid of choice; gelatin not recommended.</strong> Colloids never for maintenance. HES no longer featured.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Assessing fluid response</strong></td>
+              <td>CVP should not guide fluid management. IVC collapsibility mentioned as an adjunct (trained personnel, not in isolation).</td>
+              <td><strong>Full dynamic assessment framework:</strong> PLR (± direct CO/SV), PPV, SVV, tidal volume challenge, EEOT, LVOT VTI variation, with explicit thresholds. IVC demoted to adjunct only. <strong>Fluid tolerance</strong> added as a concept (clinical + PoCUS/VExUS).</td>
+            </tr>
+
+            <tr>
+              <td><strong>PoCUS</strong></td>
+              <td>Ultrasound mentioned for ED assessment of third-space fluid and IVC collapsibility. Chest X-ray and ultrasound "where available".</td>
+              <td><strong>PoCUS promoted to a formal recommendation</strong> as an adjunctive bedside tool for early plasma-leak detection and haemodynamic assessment. Gallbladder wall thickening &gt;3 mm, ascites and pleural effusion as severity predictors. Dedicated PoCUS guidance appendix.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Bleeding</strong></td>
+              <td>Transfuse 5–10 mL/kg packed cells for significant bleeding; no role for routine prophylactic platelets/plasma; rFVIIa not supported; upper GI bleeding managed with PPI ± endoscopy; endoscopic injection therapy not recommended.</td>
+              <td>Retains core principles, adds: <strong>do not wait for HCT drop</strong>; <strong>fibrinogen &lt;100 mg/dL → cryoprecipitate</strong>; PT/aPTT &gt;1.5× → FFP; explicit platelet thresholds for neurosurgery/ophthalmology (≤100 ×10⁹/L); viscoelastic testing (ROTEM/TEG) as an adjunct for selected refractory bleeding; IVIG, eltrombopag, anti-D, IL-11, rFVIIa, PCC all not routinely recommended.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Metabolic acidosis / bicarbonate</strong></td>
+              <td>Sodium bicarbonate not recommended for pH ≥7.10. Lactate clearance 20% in 2 h improves survival. Hyperchloraemic acidosis from 0.9% saline — switch to balanced solution.</td>
+              <td>Sodium bicarbonate <strong>not routine</strong>; may be considered in <strong>severe metabolic acidaemia pH ≤7.20 with moderate-to-severe AKI</strong> to reduce KRT need. Lactate should be interpreted with clinical findings — targeting normalisation in non-shock patients can precipitate fluid overload. Combine with CRT and urine output.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Vasoactive drugs</strong></td>
+              <td>Vasopressors as a temporary measure; noradrenaline preferred first-line in septic shock; inotropes (dobutamine/adrenaline) for cardiac dysfunction. No trials in dengue.</td>
+              <td>Retains noradrenaline as preferred. Adds explicit <strong>vasopressin trigger (noradrenaline &gt;~0.2 µg/kg/min)</strong>, <strong>milrinone</strong> for chronic beta-blockers/RV dysfunction/pulmonary hypertension, and states <strong>dopamine is not recommended</strong> (increased mortality, tachyarrhythmias).</td>
+            </tr>
+
+            <tr>
+              <td><strong>Respiratory support</strong></td>
+              <td>NIV may benefit alert, cooperative, haemodynamically stable patients; caution at intubation; expected PaCO₂ formula for metabolic acidosis; ventilator settings to keep PaCO₂ low.</td>
+              <td>Adds <strong>HFNC</strong> as an option. Explicit intubation criteria mirroring other critically ill patients. <strong>ROX index</strong> (HFNC failure) and <strong>HACOR score</strong> (NIV failure) introduced. Lung-protective ventilation: 4–8 mL/kg PBW, Pplat &lt;30 cmH₂O, appropriate PEEP.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Kidney support</strong></td>
+              <td>Standard management: volume optimisation, electrolyte correction, dialysis if indicated. Peritoneal dialysis not recommended (bleeding risk).</td>
+              <td>Retains principles, adds explicit <strong>urgent KRT indications</strong> (refractory acidosis pH &lt;7.20, life-threatening hyperkalaemia, refractory volume overload, symptomatic uraemia). <strong>CKRT preferred in haemodynamically unstable patients.</strong> Warns against early KRT initiation.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Invasive procedures</strong></td>
+              <td>CVP should not guide fluid; avoid subclavian; real-time USG recommended; CVC not solely for CVP monitoring; routine prophylactic platelets/FFP before CVC not supported (AABB suggested as low as 20,000).</td>
+              <td>Retains all. Adds: <strong>large-bore peripheral 14–16G superior to CVC for rapid volume expansion</strong>; peripheral vasopressor acceptable for &lt;2 h with vigorous monitoring; if prophylactic platelets/FFP given, insert line during or within <strong>30–60 min</strong> of transfusion; orogastric route preferred.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Special populations</strong></td>
+              <td>Pregnancy covered in a dedicated chapter; obesity addressed via adjusted body weight.</td>
+              <td><strong>Greatly expanded:</strong> heart failure, ESKD/CKD, liver cirrhosis, diabetes/DKA/HHS, hypertension, geriatric, obesity, haemoglobinopathies — each with dedicated recommendations (12–16).</td>
+            </tr>
+
+            <tr>
+              <td><strong>Pregnancy — delivery</strong></td>
+              <td>Spontaneous vaginal delivery preferred; delay delivery until acute infection resolves; instrumental delivery by obstetrician; platelets targeted to minimum 50,000/mL for operative delivery; avoid IM injections.</td>
+              <td>Refines: postpone elective induction/Caesarean until platelet recovery, ideally <strong>&gt;50 ×10⁹/L</strong>. Explicit thresholds: <strong>&gt;30</strong> for uncomplicated vaginal delivery, <strong>&gt;50</strong> for instrumental/Caesarean/spinal anaesthesia. Postpartum monitoring for ≥24–48 h. <strong>Breastfeeding is recommended</strong> (2015 advised delaying during acute viraemia).</td>
+            </tr>
+
+            <tr>
+              <td><strong>Vaccination</strong></td>
+              <td>"There are published and ongoing trials on the efficacy of dengue vaccine among the paediatric population" — no recommendation for use.</td>
+              <td><strong>Recommendation 17:</strong> dengue vaccination <strong>may be considered in all adults</strong>, particularly those with comorbidities at increased risk of severe dengue, unless contraindicated. Detailed TAK-003 efficacy and real-world effectiveness data. MOH does not currently include it in the National Immunization Program.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Complementary treatment</strong></td>
+              <td>Papaya leaf, cactus extract, crab/padi frog soup, bitter gourd, porcupine bezoar, tawa-tawa, pegaga and isotonic drinks have not been proven scientifically. Focus on plasma leakage and immune activation, not platelet count alone.</td>
+              <td>Retains the principle, adds meta-analytic data: Carica papaya leaf extract may modestly raise platelets and shorten stay, but <strong>no consistent benefit for bleeding, severity or mortality</strong>. <strong>Lack of evidence to support its use.</strong> Should not be used solely to accelerate discharge.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Epidemiology context</strong></td>
+              <td>Incidence rose from 32 to 361 per 100,000 (2000–2014); CFR reduced from 0.6% to 0.2%; national target CFR &lt;0.2%.</td>
+              <td>WHO declared a <strong>Grade 3 public health emergency in 2024</strong> (&gt;14 million cases, &gt;11,000 deaths globally). Malaysia: 117 dengue deaths in 2024, CFR 0.096% — below the 0.2% target. Cyclical epidemics every 4–5 years (2015, 2019, 2023). <strong>30% of 2023 deaths had no prior comorbidity.</strong></td>
+            </tr>
+
+            <tr>
+              <td><strong>Methodology</strong></td>
+              <td>US/Canadian Preventive Services Task Force 2001 levels of evidence; GRADE principles being incorporated. Search 26 May – 24 July 2015; last 5 years.</td>
+              <td>USPSTF 2015 levels of evidence; GRADE for recommendation strength; <strong>AGREE II</strong> adherence. Search 12 Jan – 25 Jan 2025, repeated before 25 Jan 2026; last 10 years. <strong>30 DG meetings.</strong></td>
+            </tr>
+
+            <tr>
+              <td><strong>Monitoring frequency</strong></td>
+              <td>FBC 4–12 hourly in critical phase; urine output 2–4 hourly (hourly in shock); haemodynamic monitoring 2–4 hourly.</td>
+              <td>Broadly retained; urine output in febrile and reabsorption phases changed to <strong>6–8 hourly</strong>. Adds PoCUS to the monitoring parameter list and explicit selection criteria for targeted ultrasound.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Discharge criteria</strong></td>
+              <td>Improved well-being, afebrile 24–48 h, rising WCC then platelets, stable HCT, resolution of organ dysfunction.</td>
+              <td>Formalised into <strong>absolute clinical and laboratory discharge criteria</strong>, with platelet <em>trend</em> emphasised over absolute number, HCT stable <strong>without IV fluids</strong>, and structured discharge counselling.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout ok">
+        <span class="t">Bottom line for critical care</span>
+        The 2026 edition moves dengue management from <em>reactive graded infusion</em> to <strong>quota-based, physiology-guided, phase-specific fluid therapy</strong>, formalises <strong>dynamic fluid-responsiveness assessment</strong>, elevates <strong>PoCUS</strong> to a routine bedside adjunct, expands <strong>special population</strong> guidance, and gives explicit <strong>vasopressor, respiratory and renal</strong> escalation pathways.
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">11. Quick Drug &amp; Fluid Cheat Sheet
+        <small>One-page dosing/rate summary</small>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="tw">
+        <table>
+          <thead><tr><th>Item</th><th>Dose / rate</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Oral fluid (awake)</td><td>200 mL/hour</td><td>Electrolyte-containing fluids preferred; avoid plain water alone</td></tr>
+            <tr><td>Febrile phase maintenance</td><td>Holliday–Segar (70–110 mL/h by weight band)</td><td>Total oral + IV; cap weight at 70 kg</td></tr>
+            <tr><td>Critical phase without shock — starting IV</td><td>3–5 mL/kg/h × 1 h → 2–3 → 1–2 or maintenance</td><td>Stay within 48-h quota (M + 5%)</td></tr>
+            <tr><td>Fluid quota</td><td>Maintenance + 50 mL/kg over 48 h</td><td>Oral + IV combined; weight cap 70 kg</td></tr>
+            <tr><td>Compensated shock — first hour</td><td>Crystalloid 10 mL/kg/h × 1 h</td><td>Then 5–7 → 3–5 → 2–3 mL/kg/h</td></tr>
+            <tr><td>Decompensated shock — initial</td><td>20 mL/kg crystalloid within 15–30 min</td><td>Then 10 → 5–7 → 3–5 → 2–3 mL/kg/h</td></tr>
+            <tr><td>2nd / 3rd bolus (persistent shock, HCT high)</td><td>Colloid 10–20 mL/kg over 1 h each</td><td>Albumin 5% preferred; avoid gelatin</td></tr>
+            <tr><td>Urine output target</td><td>0.5–1 mL/kg/h</td><td>Discharge criterion 0.5–1.5 mL/kg/h</td></tr>
+            <tr><td>Paracetamol</td><td>Lowest effective dose, ≤4 g/day</td><td>Use judiciously — hepatic involvement common</td></tr>
+            <tr><td>Noradrenaline</td><td>Titrate to MAP ≥65 mmHg</td><td>Preferred first-line vasopressor</td></tr>
+            <tr><td>Vasopressin</td><td>Add when noradrenaline &gt;~0.2 µg/kg/min</td><td>Vasoplegic picture</td></tr>
+            <tr><td>Dobutamine / adrenaline</td><td>Per local protocol</td><td>Myocardial dysfunction / low CO</td></tr>
+            <tr><td>Milrinone</td><td>Per local protocol</td><td>Chronic beta-blockers, RV dysfunction, pulmonary hypertension</td></tr>
+            <tr><td>Packed red cells</td><td>5–10 mL/kg</td><td>Significant bleeding; do not wait for HCT drop</td></tr>
+            <tr><td>Cryoprecipitate</td><td>If fibrinogen &lt;100 mg/dL</td><td>—</td></tr>
+            <tr><td>Fresh frozen plasma</td><td>If fibrinogen ≥100 mg/dL but PT/aPTT &gt;1.5× normal</td><td>Only with clinically significant bleeding</td></tr>
+            <tr><td>Platelets — neurosurgery / ophthalmology</td><td>If platelet ≤100 ×10⁹/L</td><td>—</td></tr>
+            <tr><td>Platelets — pregnancy</td><td>&gt;30 (vaginal) · &gt;50 (instrumental/Caesarean/spinal)</td><td>Individualise</td></tr>
+            <tr><td>Platelets / FFP before CVC</td><td>Consider if platelet &lt;20 ×10⁹/L or INR &gt;2</td><td>Insert during or within 30–60 min of transfusion</td></tr>
+            <tr><td>Dexamethasone (HLH)</td><td>10 mg/m² daily × 3–4 days</td><td>± IVIG; etoposide as rescue</td></tr>
+            <tr><td>NAC (ALF, if used)</td><td>150 mg/kg over 15–60 min → 12.5 mg/kg/h × 4 h → 6.25 mg/kg/h<br><em>or</em> 100 mg/kg/day × 5 days</td><td>Not routine; consider in ALF only</td></tr>
+            <tr><td>Sodium bicarbonate</td><td>Consider if pH ≤7.20 with moderate–severe AKI</td><td>Not routine</td></tr>
+            <tr><td>Ventilation</td><td>VT 4–8 mL/kg PBW, Pplat &lt;30 cmH₂O, appropriate PEEP</td><td>Lung-protective</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============================================================ -->
+  <details class="card">
+    <summary>
+      <span class="chev">▶</span>
+      <span class="summary-text">12. Sources &amp; References
+        <small>Primary guideline documents and key cited evidence</small>
+      </span>
+    </summary>
+    <div class="body">
+
+      <h3>Primary guideline documents</h3>
+      <ol class="source-list">
+        <li><em>Ministry of Health Malaysia.</em> Clinical Practice Guidelines: Management of Dengue in Adults (Fourth Edition). MOH/P/PAK/629.26(GU)-e. Putrajaya: Malaysian Health Technology Assessment Section (MaHTAS), Medical Development Division, Ministry of Health Malaysia; 2026.</li>
+        <li><em>Ministry of Health Malaysia.</em> Clinical Practice Guidelines: Management of Dengue Infection in Adults (Third Edition). MOH/P/PAK/302.15(GU). Putrajaya: MaHTAS, Ministry of Health Malaysia; 2015. ISBN 978-967-0769-29-5.</li>
+      </ol>
+
+      <h3>Guidelines referenced by the 4th Edition</h3>
+      <ol class="source-list" start="3">
+        <li><em>World Health Organization.</em> WHO guidelines for clinical management of arboviral diseases: dengue, chikungunya, Zika and yellow fever. Geneva: WHO; 2025.</li>
+        <li><em>WHO Regional Office for South-East Asia.</em> Dengue case management for primary health care and home-based care: booklet for health professionals and health-care workers. New Delhi: WHO-SEARO; 2025.</li>
+        <li><em>Pan American Health Organization.</em> Algorithms for the clinical management of dengue patients. Washington DC: PAHO; 2020.</li>
+        <li><em>Pan American Health Organization.</em> Guidelines for the clinical diagnosis and treatment of dengue, chikungunya, and Zika. Washington DC: PAHO; 2022.</li>
+        <li><em>WHO Regional Office for South-East Asia.</em> Comprehensive guidelines for prevention and control of dengue and dengue haemorrhagic fever. Revised and expanded edition. New Delhi: WHO-SEARO; 2011.</li>
+        <li><em>World Health Organization.</em> Dengue guidelines for diagnosis, treatment, prevention and control. Geneva: WHO; 2009.</li>
+        <li><em>World Health Organization.</em> Laboratory testing for dengue virus: interim guidance, April 2025. Geneva: WHO; 2025.</li>
+        <li><em>World Health Organization.</em> Dengue vaccines: WHO position paper — May 2024. Wkly Epidemiol Rec. 2024;99(21):203–224.</li>
+      </ol>
+
+      <h3>Selected key evidence cited in the 4th Edition</h3>
+      <ol class="source-list" start="11">
+        <li>Rodrigo C, Sigera C, Fernando D, et al. Plasma leakage in dengue: a systematic review of prospective observational studies. <em>BMC Infect Dis.</em> 2021;21(1):1082.</li>
+        <li>Mata VE, Andrade CAF, Passos SRL, et al. Rapid immunochromatographic tests for the diagnosis of dengue: a systematic review and meta-analysis. <em>Cad Saude Publica.</em> 2020;36(6):e00225618.</li>
+        <li>Pillay K, Keddie SH, Fitchett E, et al. Evaluating the performance of common reference laboratory tests for acute dengue diagnosis: a systematic review and meta-analysis of RT-PCR, NS1 ELISA, and IgM ELISA. <em>Lancet Microbe.</em> 2025;6(7):101088.</li>
+        <li>Madanayake P, Jayawardena A, Wijekoon SL, et al. Fluid requirement in adult dengue haemorrhagic fever patients during the critical phase of the illness: an observational study. <em>BMC Infect Dis.</em> 2021;21(1):286.</li>
+        <li>Antequera Martin AM, Barea Mendoza JA, Muriel A, et al. Buffered solutions versus 0.9% saline for resuscitation in critically ill adults and children. <em>Cochrane Database Syst Rev.</em> 2019;7(7):CD012247.</li>
+        <li>Monnet X, Marik P, Teboul JL. Passive leg raising for predicting fluid responsiveness: a systematic review and meta-analysis. <em>Intensive Care Med.</em> 2016;42(12):1935–1947.</li>
+        <li>Chaves RCF, Barbas CSV, Queiroz VNF, et al. Assessment of fluid responsiveness using pulse pressure variation, stroke volume variation, plethysmographic variability index, central venous pressure, and inferior vena cava variation in patients undergoing mechanical ventilation: a systematic review and meta-analysis. <em>Crit Care.</em> 2024;28(1):289.</li>
+        <li>Sigera PC, Weeratunga P, Deepika Fernando S, et al. Rational use of ultrasonography with triaging of patients to detect dengue plasma leakage in resource limited settings: a prospective cohort study. <em>Trop Med Int Health.</em> 2021;26(8):993–1001.</li>
+        <li>Chaudhary S, Manrai K, Dhagat P, et al. Abdominal and chest ultrasonography: a predictor for disease progression in nonsevere dengue. <em>Med J Armed Forces India.</em> 2023;79(4):386–391.</li>
+        <li>Rajapakse S, de Silva NL, Weeratunga P, et al. Prophylactic and therapeutic interventions for bleeding in dengue: a systematic review. <em>Trans R Soc Trop Med Hyg.</em> 2017;111(10):433–439.</li>
+        <li>Jung B, Jabaudon M, De Jong A, et al. Sodium bicarbonate for severe metabolic acidemia and acute kidney injury: the BICARICU-2 randomized clinical trial. <em>JAMA.</em> 2025;334(22):2000–2010.</li>
+        <li>Li JH, Cai JH, Wang MJ, et al. Early strategy vs. late initiation of renal replacement therapy in adult patients with acute kidney injury: an updated systematic review and meta-analysis of randomized controlled trials. <em>Eur Rev Med Pharmacol Sci.</em> 2023;27(13):6046–6057.</li>
+        <li>Jia L, Wang P, Li C, et al. The efficacy and safety of vasopressors for septic shock patients: a systemic review and network meta-analysis. <em>Shock.</em> 2023;60(6):746–752.</li>
+        <li>Kalimouttou A, Kennedy JN, Feng J, et al. Optimal vasopressin initiation in septic shock: the OVISS reinforcement learning study. <em>JAMA.</em> 2025;333(19):1688–1698.</li>
+        <li>Mathew R, Di Santo P, Jung RG, et al. Milrinone as compared with dobutamine in the treatment of cardiogenic shock. <em>N Engl J Med.</em> 2021;385(6):516–525.</li>
+        <li>Roca O, Caralt B, Messika J, et al. An index combining respiratory rate and oxygenation to predict outcome of nasal high-flow therapy. <em>Am J Respir Crit Care Med.</em> 2019;199(11):1368–1376.</li>
+        <li>Duan J, Han X, Bai L, et al. Assessment of heart rate, acidosis, consciousness, oxygenation, and respiratory rate to predict noninvasive ventilation failure in hypoxemic patients. <em>Intensive Care Med.</em> 2017;43(2):192–199.</li>
+        <li>See KC. Dengue-associated hemophagocytic lymphohistiocytosis: a narrative review of its identification and treatment. <em>Pathogens.</em> 2024;13(4):287.</li>
+        <li>Fong SL, Wong KT, Tan CT. Dengue virus infection and neurological manifestations: an update. <em>Brain.</em> 2024;147(3):830–838.</li>
+        <li>Teo A, Chua CLL, Chia PY, et al. Insights into potential causes of vascular hyperpermeability in dengue. <em>PLoS Pathog.</em> 2021;17(12):e0010065.</li>
+        <li>Puerta-Guardo H, Glasner DR, Harris E. Dengue virus NS1 disrupts the endothelial glycocalyx, leading to hyperpermeability. <em>PLoS Pathog.</em> 2016;12(7):e1005738.</li>
+        <li>Trung DT, Trieu HT, Wills BA. Microvascular fluid exchange: implications of the revised Starling model for resuscitation of dengue shock syndrome. <em>Front Med.</em> 2020;7:601520.</li>
+        <li>Vasikasin V, Rojdumrongrattana T, Chuerboonchai W, et al. Effect of standard dose paracetamol versus placebo as antipyretic therapy on liver injury in adult dengue infection: a multicentre randomised controlled trial. <em>Lancet Glob Health.</em> 2019;7(5):e664–e670.</li>
+        <li>Ranzani OT, Lazar Neto F, Mareto LK, et al. Effectiveness of the TAK-003 dengue vaccine in adolescents during the 2024 outbreak in São Paulo, Brazil: a test-negative, case-control study. <em>Lancet Infect Dis.</em> 2026;26(1):91–100.</li>
+        <li>Kularatne SA, Dalugama C. Dengue infection: global importance, immunopathology and management. <em>Clin Med.</em> 2022;22(1):9–13.</li>
+        <li>Malaysian Society for the Study of Obesity. Clinical Practice Guidelines: Management of Obesity. Ministry of Health, Malaysia; 2023.</li>
+        <li>Ministry of Health Malaysia. Consensus statement on patient blood management. Putrajaya: MoH; 2024.</li>
+        <li>Institute for Public Health Malaysia. National Health and Morbidity Survey (NHMS) 2023: non-communicable diseases and healthcare demand — key findings. Setia Alam: National Institutes of Health; 2024.</li>
+      </ol>
+
+      <div class="callout warn">
+        <span class="t">Disclaimer</span>
+        This quick reference is a condensed aide-mémoire derived from the published CPG documents. It is <strong>not a substitute for the full guideline text</strong> or for individual clinical judgement. Always refer to the complete CPG and local institutional protocols. Doses, thresholds and algorithms must be verified against the source documents before clinical use.
+      </div>
+
+    </div>
+  </details>
+
+  </main>
+
+  <footer>
+    Quick Reference · Dengue in Adults for Anaesthesia &amp; Intensive Care · derived from MOH Malaysia CPG 4th Edition (2026) and 3rd Edition (2015).<br>
+    Not a substitute for the full guideline. Verify all doses and thresholds against the source documents.
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const content = document.getElementById('content');
+  const searchInput = document.getElementById('searchInput');
+  const counter = document.getElementById('counter');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const noResults = document.getElementById('noResults');
+
+  let hits = [];
+  let current = -1;
+  let debounceTimer = null;
+
+  /* ---------------- Collapse / Expand all ---------------- */
+  function setAll(open){
+    content.querySelectorAll('details').forEach(function(d){ d.open = open; });
+  }
+  document.getElementById('expandAll').addEventListener('click', function(){ setAll(true); });
+  document.getElementById('collapseAll').addEventListener('click', function(){ setAll(false); });
+
+  /* ---------------- Font size ---------------- */
+  let fontSize = 16;
+  const MIN_FS = 13, MAX_FS = 22;
+  const fsLabel = document.getElementById('fsLabel');
+
+  function applyFontSize(){
+    document.documentElement.style.fontSize = fontSize + 'px';
+    fsLabel.textContent = Math.round((fontSize / 16) * 100) + '%';
+  }
+  document.getElementById('fsUp').addEventListener('click', function(){
+    fontSize = Math.min(MAX_FS, fontSize + 1); applyFontSize();
+  });
+  document.getElementById('fsDown').addEventListener('click', function(){
+    fontSize = Math.max(MIN_FS, fontSize - 1); applyFontSize();
+  });
+  document.getElementById('fsReset').addEventListener('click', function(){
+    fontSize = 16; applyFontSize();
+  });
+  applyFontSize();
+
+  /* ---------------- Search / highlight ---------------- */
+  function clearHighlights(){
+    content.querySelectorAll('mark.search-hit').forEach(function(m){
+      const parent = m.parentNode;
+      if(!parent) return;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+    hits = [];
+    current = -1;
+  }
+
+  function expandAncestors(el){
+    let node = el.parentElement;
+    while(node && node !== content){
+      if(node.tagName === 'DETAILS'){ node.open = true; }
+      node = node.parentElement;
+    }
+    // also expand the top-level card containing it
+    const card = el.closest('details.card');
+    if(card) card.open = true;
+  }
+
+  function escapeRegExp(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function performSearch(term){
+    clearHighlights();
+    noResults.classList.remove('show');
+
+    if(!term || term.length < 1){
+      counter.textContent = '—';
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      return;
+    }
+
+    const lower = term.toLowerCase();
+
+    // Collect text nodes
+    const walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function(node){
+          if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          const p = node.parentNode;
+          if(!p) return NodeFilter.FILTER_REJECT;
+          const tag = p.nodeName;
+          if(tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK' || tag === 'NOSCRIPT'){
+            return NodeFilter.FILTER_REJECT;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    const textNodes = [];
+    while(walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(function(node){
+      const text = node.nodeValue;
+      const ltext = text.toLowerCase();
+      let idx = ltext.indexOf(lower);
+      if(idx === -1) return;
+
+      const frag = document.createDocumentFragment();
+      let last = 0;
+
+      while(idx !== -1){
+        if(idx > last){
+          frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        }
+        const mark = document.createElement('mark');
+        mark.className = 'search-hit';
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+
+        last = idx + term.length;
+        idx = ltext.indexOf(lower, last);
+      }
+      if(last < text.length){
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    hits = Array.prototype.slice.call(content.querySelectorAll('mark.search-hit'));
+
+    if(hits.length === 0){
+      counter.textContent = '0 / 0';
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      noResults.classList.add('show');
+      return;
+    }
+
+    // Expand ancestors of all hits
+    hits.forEach(function(h){ expandAncestors(h); });
+
+    current = 0;
+    highlightCurrent();
+    counter.textContent = '1 / ' + hits.length;
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+  }
+
+  function highlightCurrent(){
+    hits.forEach(function(h){ h.classList.remove('current'); });
+    if(hits[current]){
+      hits[current].classList.add('current');
+      hits[current].scrollIntoView({behavior:'smooth', block:'center'});
+      counter.textContent = (current + 1) + ' / ' + hits.length;
+    }
+  }
+
+  function goNext(){
+    if(!hits.length) return;
+    current = (current + 1) % hits.length;
+    highlightCurrent();
+  }
+  function goPrev(){
+    if(!hits.length) return;
+    current = (current - 1 + hits.length) % hits.length;
+    highlightCurrent();
+  }
+
+  nextBtn.addEventListener('click', goNext);
+  prevBtn.addEventListener('click', goPrev);
+
+  searchInput.addEventListener('input', function(){
+    const val = searchInput.value.trim();
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function(){ performSearch(val); }, 180);
+  });
+
+  searchInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      if(e.shiftKey){ goPrev(); } else { goNext(); }
+    }
+    if(e.key === 'Escape'){
+      searchInput.value = '';
+      performSearch('');
+    }
+  });
+
+  // Keyboard shortcut: "/" focuses search
+  document.addEventListener('keydown', function(e){
+    if(e.key === '/' && document.activeElement !== searchInput){
+      const tag = (document.activeElement && document.activeElement.tagName) || '';
+      if(tag !== 'INPUT' && tag !== 'TEXTAREA'){
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      }
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
