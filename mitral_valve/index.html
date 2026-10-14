@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mitral Valve Disease — Anaesthesia &amp; ICU Quick Reference</title>
+<style>
+  :root{
+    --blossom:#ff5fa2;
+    --blossom-soft:#ffe9f3;
+    --bubbles:#3aa8e0;
+    --bubbles-soft:#e3f4fd;
+    --buttercup:#4fb63c;
+    --buttercup-soft:#e9f9e5;
+    --ink:#23212e;
+    --muted:#5a5570;
+    --card:#ffffff;
+    --line:rgba(35,33,46,.10);
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{font-size:16px;scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.58;
+    color:var(--ink);
+    background-color:#fff8fc;
+    background-image:
+      radial-gradient(circle at 6% 2%, #ffe0ee 0, transparent 40%),
+      radial-gradient(circle at 95% 6%, #ddf1fd 0, transparent 38%),
+      radial-gradient(circle at 50% 100%, #e6f9e2 0, transparent 45%);
+    background-attachment:fixed;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:60;
+    background:rgba(255,255,255,.93);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:4px solid transparent;
+    border-image:linear-gradient(90deg,#ff5fa2,#4fb3e8,#5fc94a) 1;
+    padding:.6rem .9rem .7rem;
+    box-shadow:0 3px 14px rgba(35,33,46,.07);
+  }
+  .brand{display:flex;align-items:baseline;gap:.55rem;flex-wrap:wrap;margin-bottom:.5rem;}
+  .brand h1{
+    margin:0;font-size:1.22rem;letter-spacing:.2px;
+    background:linear-gradient(90deg,#ff5fa2 0%,#3aa8e0 55%,#4fb63c 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-weight:800;
+  }
+  .brand .sub{font-size:.78rem;color:var(--muted);font-weight:600;}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;}
+  .btn{
+    border:2px solid var(--line);
+    background:#fff;
+    color:var(--ink);
+    border-radius:999px;
+    padding:.35rem .75rem;
+    font-size:.82rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:.15s;
+    white-space:nowrap;
+    font-family:inherit;
+  }
+  .btn:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(35,33,46,.13);}
+  .btn:active{transform:translateY(0);}
+  .btn.pink{border-color:#ffc2dd;background:var(--blossom-soft);color:#a3235f;}
+  .btn.blue{border-color:#bfe6fa;background:var(--bubbles-soft);color:#1c6f9c;}
+  .btn.green{border-color:#c6ebbd;background:var(--buttercup-soft);color:#2f7a22;}
+
+  .searchbox{
+    display:flex;align-items:center;gap:.35rem;
+    border:2px solid #ffc2dd;background:#fff;border-radius:999px;
+    padding:.25rem .3rem .25rem .75rem;flex:1 1 260px;min-width:200px;
+  }
+  .searchbox input{
+    border:0;outline:0;flex:1;font-size:.9rem;font-family:inherit;
+    background:transparent;color:var(--ink);padding:.2rem 0;min-width:60px;
+  }
+  .searchbox .icn{font-size:.9rem;color:var(--blossom);}
+  .count{font-size:.75rem;color:var(--muted);font-weight:700;white-space:nowrap;padding:0 .3rem;}
+  .navbtn{
+    border:0;background:var(--blossom-soft);color:#a3235f;border-radius:50%;
+    width:26px;height:26px;font-size:.8rem;cursor:pointer;font-weight:900;line-height:1;
+    display:flex;align-items:center;justify-content:center;font-family:inherit;
+  }
+  .navbtn:hover{background:#ffd3e7;}
+
+  .fsgroup{display:flex;align-items:center;gap:.3rem;background:#fff;border:2px solid var(--line);border-radius:999px;padding:.15rem .35rem;}
+  .fsgroup span{font-size:.75rem;color:var(--muted);font-weight:800;min-width:2.6em;text-align:center;}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1080px;margin:0 auto;padding:1.1rem .9rem 3rem;}
+
+  .lede{
+    background:#fff;border-radius:var(--radius);
+    border-left:7px solid var(--blossom);
+    padding:.85rem 1rem;margin-bottom:1rem;font-size:.9rem;color:var(--muted);
+    box-shadow:0 2px 10px rgba(35,33,46,.06);
+  }
+  .lede strong{color:var(--ink);}
+
+  /* ---------- DETAILS ---------- */
+  details{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:7px solid var(--accent,var(--blossom));
+    border-radius:var(--radius);
+    margin:0 0 .85rem;
+    box-shadow:0 2px 10px rgba(35,33,46,.06);
+    overflow:hidden;
+  }
+  details > summary{
+    cursor:pointer;
+    list-style:none;
+    padding:.8rem 1rem;
+    font-weight:800;
+    font-size:1.03rem;
+    display:flex;align-items:center;gap:.55rem;
+    background:linear-gradient(90deg,var(--accent-bg,#ffe9f3) 0%,#fff 78%);
+    user-select:none;
+    color:var(--ink);
+  }
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::after{
+    content:"▾";
+    margin-left:auto;
+    font-size:1.05rem;
+    color:var(--accent,var(--blossom));
+    transition:transform .22s ease;
+    flex:0 0 auto;
+  }
+  details[open] > summary::after{transform:rotate(180deg);}
+  details > summary:hover{filter:brightness(.985);}
+  details[open] > summary{border-bottom:1px solid var(--line);}
+
+  .body{padding:.55rem 1rem 1rem 1.15rem;}
+
+  details.sub{
+    border-left-width:5px;
+    margin:.6rem 0 .5rem;
+    box-shadow:none;
+    border-radius:11px;
+  }
+  details.sub > summary{font-size:.94rem;padding:.55rem .8rem;}
+  details.sub > .body{padding:.35rem .8rem .8rem .95rem;}
+
+  details.subsub{
+    border-left-width:4px;background:#fdfcff;
+    margin:.45rem 0;box-shadow:none;border-radius:9px;
+  }
+  details.subsub > summary{font-size:.88rem;padding:.45rem .7rem;font-weight:700;}
+  details.subsub > .body{padding:.25rem .7rem .6rem .85rem;font-size:.92rem;}
+
+  /* accent themes */
+  .pink{--accent:#ff5fa2;--accent-bg:#ffe9f3;}
+  .blue{--accent:#3aa8e0;--accent-bg:#e3f4fd;}
+  .green{--accent:#4fb63c;--accent-bg:#e9f9e5;}
+
+  /* ---------- TEXT ---------- */
+  p{margin:.5rem 0;}
+  ul,ol{margin:.45rem 0 .55rem;padding-left:1.25rem;}
+  li{margin:.3rem 0;}
+  strong{color:#1a1826;}
+  .pill{
+    display:inline-block;background:var(--blossom-soft);color:#a3235f;
+    border-radius:999px;padding:.05rem .5rem;font-size:.76rem;font-weight:800;
+    margin-right:.25rem;
+  }
+  .pill.b{background:var(--bubbles-soft);color:#1c6f9c;}
+  .pill.g{background:var(--buttercup-soft);color:#2f7a22;}
+
+  .callout{
+    border-radius:11px;padding:.6rem .85rem;margin:.65rem 0;
+    font-size:.9rem;border-left:5px solid;
+  }
+  .callout.warn{background:#fff4e5;border-color:#ff9f1c;color:#7a4a00;}
+  .callout.key{background:#f0f9ff;border-color:#3aa8e0;color:#12506f;}
+  .callout.safe{background:#f1fbee;border-color:#4fb63c;color:#28611c;}
+
+  /* ---------- TABLES ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    margin:.7rem 0;
+    border:1px solid var(--line);
+    border-radius:11px;
+    background:#fff;
+  }
+  .table-wrap::-webkit-scrollbar{height:9px;}
+  .table-wrap::-webkit-scrollbar-thumb{background:#ffc2dd;border-radius:9px;}
+  .table-wrap::-webkit-scrollbar-track{background:#f7f7fb;}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:.88rem;}
+  caption{
+    caption-side:top;text-align:left;font-weight:800;font-size:.85rem;
+    padding:.55rem .7rem;color:#a3235f;background:#fff6fa;border-bottom:1px solid var(--line);
+  }
+  th,td{padding:.5rem .7rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
+  thead th{background:var(--blossom-soft);font-weight:800;color:#7a2050;white-space:nowrap;}
+  tbody tr:nth-child(even){background:#fcfbff;}
+  tbody tr:last-child td{border-bottom:0;}
+  td.rowhead{font-weight:700;background:#f7f4fb;white-space:nowrap;}
+
+  /* ---------- FIGURES ---------- */
+  figure.diagram{
+    margin:.85rem 0;
+    background:#fdfcff;
+    border:1.5px dashed rgba(35,33,46,.18);
+    border-radius:12px;
+    padding:.65rem .65rem .35rem;
+  }
+  figure.diagram svg{width:100%;height:auto;display:block;max-width:660px;margin:0 auto;}
+  figcaption{font-size:.8rem;color:var(--muted);text-align:center;margin:.5rem 0 .25rem;line-height:1.7;}
+  .lg{display:inline-flex;align-items:center;gap:.3rem;margin:0 .45rem;white-space:nowrap;}
+  .lg i{width:13px;height:13px;border-radius:4px;display:inline-block;border:1px solid rgba(0,0,0,.15);}
+
+  /* ---------- SEARCH HIGHLIGHT ---------- */
+  mark.search-hit{
+    background:#ffe066;color:#23212e;padding:0 2px;border-radius:3px;
+    box-shadow:0 0 0 1px rgba(224,168,0,.35);
+  }
+  mark.search-hit.active{
+    background:#ff7a1a;color:#fff;box-shadow:0 0 0 2px #ff7a1a;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    max-width:1080px;margin:0 auto 2.5rem;padding:0 .9rem;
+  }
+  .source{
+    background:#fff;border-radius:var(--radius);
+    border-top:6px solid var(--buttercup);
+    padding:1rem 1.1rem;font-size:.84rem;color:var(--muted);
+    box-shadow:0 2px 10px rgba(35,33,46,.06);
+  }
+  .source h2{margin:.1rem 0 .5rem;font-size:1rem;color:var(--ink);}
+  .source ol{padding-left:1.3rem;font-size:.8rem;}
+  .source a{color:#1c6f9c;word-break:break-word;}
+
+  .toTop{
+    position:fixed;right:16px;bottom:16px;z-index:70;
+    width:46px;height:46px;border-radius:50%;border:0;
+    background:linear-gradient(135deg,#ff5fa2,#3aa8e0);
+    color:#fff;font-size:1.15rem;font-weight:900;cursor:pointer;
+    box-shadow:0 5px 16px rgba(35,33,46,.25);
+    display:none;align-items:center;justify-content:center;font-family:inherit;
+  }
+  .toTop.show{display:flex;}
+
+  @media (max-width:620px){
+    .brand h1{font-size:1.05rem;}
+    main{padding:.8rem .55rem 3rem;}
+    .body{padding:.5rem .65rem .85rem .8rem;}
+    details > summary{font-size:.96rem;padding:.7rem .75rem;}
+    .searchbox{flex:1 1 100%;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="topbar">
+  <div class="brand">
+    <h1>🫀 Mitral Valve &amp; Mitral Valve Disease</h1>
+    <span class="sub">Anaesthetist &amp; Intensivist Quick Reference</span>
+  </div>
+
+  <div class="toolbar">
+    <div class="searchbox no-search">
+      <span class="icn">🔍</span>
+      <input id="searchInput" type="search" placeholder="Search (e.g. preload, IABP, neuraxial, Mitraclip…)" aria-label="Search the reference">
+      <span class="count" id="searchCount"></span>
+      <button class="navbtn" id="prevBtn" title="Previous match" aria-label="Previous match">▲</button>
+      <button class="navbtn" id="nextBtn" title="Next match" aria-label="Next match">▼</button>
+    </div>
+
+    <button class="btn pink" id="expandAll">⤢ Expand all</button>
+    <button class="btn blue" id="collapseAll">⤡ Collapse all</button>
+
+    <div class="fsgroup no-search">
+      <button class="btn" id="fsDown" title="Smaller text" aria-label="Smaller text">A−</button>
+      <span id="fsVal">100%</span>
+      <button class="btn" id="fsUp" title="Larger text" aria-label="Larger text">A+</button>
+      <button class="btn green" id="fsReset" title="Reset text size">Reset</button>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+
+  <div class="lede">
+    <strong>How to use:</strong> click any heading to open/close it. Use <em>Expand all</em> for a full read-through,
+    or keep sections closed for a fast on-the-ward lookup. Type in the search box to highlight every matching term
+    (sections open automatically); ▲ ▼ jumps between hits. A− / A+ rescales all text.
+    <br><strong>Golden rule:</strong> the mitral valve and the left ventricle are <em>interdependent</em> — what helps one
+    can harm the other.
+  </div>
+
+  <!-- ============ KEY POINTS ============ -->
+  <details class="section pink" open>
+    <summary>⭐ Key Points (the 60-second version)</summary>
+    <div class="body">
+      <ul>
+        <li>Mitral valve and LV function are <strong>interdependent</strong>. In mitral regurgitation (MR), measured LV ejection fraction is <strong>falsely high</strong>.</li>
+        <li><strong>Vasopressors</strong> should be used with <strong>caution in severe MR</strong> (they increase the regurgitant fraction).</li>
+        <li>New <strong>minimally invasive and percutaneous</strong> techniques are now available to repair the mitral valve.</li>
+        <li><strong>Vasodilating drugs</strong> should be used with <strong>caution in mitral stenosis</strong> (fixed cardiac output → profound hypotension).</li>
+      </ul>
+
+      <div class="callout key">
+        <strong>One-liner haemodynamics</strong><br>
+        <strong>Stenosis</strong> = fixed cardiac output → keep rate <em>low-normal</em>, preload <em>normal</em>, afterload <em>up</em>.<br>
+        <strong>Regurgitation</strong> = "full, fast and forward flow" → keep rate <em>high-normal</em>, preload <em>full</em>, afterload <em>down</em>.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ ANATOMY ============ -->
+  <details class="section blue">
+    <summary>🧬 Anatomy of the Mitral Valve</summary>
+    <div class="body">
+      <p>The mitral valve separates the left atrium from the left ventricle and is an integral part of the high-pressure
+      systemic circulation. Any pathology of the valve can therefore have critical physiological effects that the
+      anaesthetist must anticipate. Anaesthesia alters the way the heart, valve and circulation interact.</p>
+
+      <p>The valve is a <strong>complex structure</strong>: two main leaflets, an annulus, tendinous cords and papillary muscles
+      connecting the leaflets to the LV.</p>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 640 500" xmlns="http://www.w3.org/2000/svg" role="img"
+             aria-label="Simplified surgical view of the mitral valve showing the D-shaped annulus, aortic valve, anterior leaflet with A1 A2 A3, posterior leaflet with P1 P2 P3 and the commissures">
+          <!-- Circumflex artery -->
+          <path d="M118,170 C 96,240 118,312 176,366" fill="none" stroke="#e0533d" stroke-width="3.5"
+                stroke-dasharray="9 7" stroke-linecap="round"/>
+          <text x="10" y="146" font-size="15" fill="#b23a25" font-weight="700" font-family="Segoe UI, sans-serif">Circumflex a.</text>
+
+          <!-- Annulus (D-shape) -->
+          <path d="M140,175 L480,175 A170,165 0 0 1 140,175 Z"
+                fill="#fff0f6" stroke="#ff5fa2" stroke-width="3"/>
+
+          <!-- Posterior leaflet band -->
+          <path d="M165,200 A145,112 0 0 0 455,200" fill="none" stroke="#a8d8f0"
+                stroke-width="40" stroke-linecap="round"/>
+          <line x1="250" y1="275" x2="225" y2="319" stroke="#3aa8e0" stroke-width="2.5"/>
+          <line x1="370" y1="275" x2="395" y2="319" stroke="#3aa8e0" stroke-width="2.5"/>
+          <text x="184" y="264" font-size="16" font-weight="800" fill="#1c6f9c"
+                text-anchor="middle" font-family="Segoe UI, sans-serif">P1</text>
+          <text x="310" y="320" font-size="16" font-weight="800" fill="#1c6f9c"
+                text-anchor="middle" font-family="Segoe UI, sans-serif">P2</text>
+          <text x="436" y="264" font-size="16" font-weight="800" fill="#1c6f9c"
+                text-anchor="middle" font-family="Segoe UI, sans-serif">P3</text>
+
+          <!-- Anterior leaflet -->
+          <path d="M165,185 C 240,300 380,300 455,185 Z"
+                fill="#ffb3d1" stroke="#ff5fa2" stroke-width="2.5"/>
+          <text x="225" y="232" font-size="16" font-weight="800" fill="#7a2050"
+                text-anchor="middle" font-family="Segoe UI, sans-serif">A1</text>
+          <text x="310" y="260" font-size="16" font-weight="800" fill="#7a2050"
+                text-anchor="middle" font-family="Segoe UI, sans-serif">A2</text>
+          <text x="395" y="232" font-size="16" font-weight="800" fill="#7a2050"
+                text-anchor="middle" font-family="Segoe UI, sans-serif">A3</text>
+
+          <!-- Commissures -->
+          <text x="128" y="182" font-size="15" font-weight="800" fill="#7a2f52"
+                text-anchor="end" font-family="Segoe UI, sans-serif">AC</text>
+          <text x="492" y="182" font-size="15" font-weight="800" fill="#7a2f52"
+                text-anchor="start" font-family="Segoe UI, sans-serif">PC</text>
+
+          <!-- Aortic valve -->
+          <circle cx="310" cy="112" r="58" fill="#fff6d6" stroke="#e0a800" stroke-width="3"/>
+          <path d="M310,112 L310,54 M310,112 L260,141 M310,112 L360,141"
+                stroke="#e0a800" stroke-width="2" fill="none"/>
+          <text x="310" y="30" font-size="15" font-weight="800" fill="#8a6600"
+                text-anchor="middle" font-family="Segoe UI, sans-serif">Aortic valve</text>
+
+          <!-- Annulus label -->
+          <text x="500" y="372" font-size="15" font-weight="700" fill="#a3235f"
+                font-family="Segoe UI, sans-serif">Annulus</text>
+          <line x1="496" y1="364" x2="452" y2="326" stroke="#a3235f" stroke-width="1.5"/>
+
+          <!-- Commissure note -->
+          <text x="320" y="470" font-size="13" fill="#5a5570" text-anchor="middle"
+                font-family="Segoe UI, sans-serif">Surgical / atrial view — leaflets shown open</text>
+        </svg>
+        <figcaption>
+          <span class="lg"><i style="background:#ffb3d1"></i>Anterior leaflet</span>
+          <span class="lg"><i style="background:#a8d8f0"></i>Posterior leaflet</span>
+          <span class="lg"><i style="background:#fff6d6"></i>Aortic valve</span>
+          <br>
+          <strong>AC</strong> = anterolateral commissure · <strong>PC</strong> = posterolateral commissure ·
+          Free edges overlap ≈ <strong>5 mm</strong> in systole.
+        </figcaption>
+      </figure>
+
+      <details class="sub blue">
+        <summary>Annulus</summary>
+        <div class="body">
+          <ul>
+            <li>A <strong>saddle-shaped</strong> structure shaped more like a <strong>"D" than an "O"</strong>.</li>
+            <li>The <strong>aortic valve is wedged into the straight side</strong> of the D — there is fibrous continuity between the two valves, so one can easily be affected by surgery on the other.</li>
+            <li>The <strong>circumflex artery</strong> follows the line of the annulus as it passes anteriorly around the base of the heart → <strong>at risk during any mitral valve surgery</strong>.</li>
+            <li>Damage or ligation causes <strong>lateral wall ischaemia</strong> — an important area to assess on perioperative echocardiography.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub blue">
+        <summary>Leaflets</summary>
+        <div class="body">
+          <ul>
+            <li><strong>Anterior leaflet</strong> hangs from the straight side of the D-shaped annulus — it is more <strong>superior and medial</strong> than truly anterior.</li>
+            <li><strong>Posterior leaflet</strong> is C-shaped and divided into three scallops: <strong>P1, P2, P3</strong>; the opposing anterior segments are <strong>A1, A2, A3</strong>.</li>
+            <li>Free edges do not meet exactly — there is ~<strong>5 mm of overlap</strong> that seals the valve as the leaflet bodies push outwards like sails in systole.</li>
+            <li>At the corners, <strong>two commissures</strong> ensure a seal.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub blue">
+        <summary>Papillary muscles &amp; chordae</summary>
+        <div class="body">
+          <ul>
+            <li>During systole, <strong>chordae</strong> tether the free edges of the leaflets to the two <strong>papillary muscles</strong> and prevent billowing back into the LA.</li>
+            <li>Muscles are <strong>anterolateral</strong> and <strong>posteromedial</strong>, sitting under the commissures; each passes chordae to <strong>both</strong> leaflets.</li>
+            <li><strong>Anterolateral</strong> muscle: <strong>dual blood supply</strong> (left anterior descending + circumflex).</li>
+            <li><strong>Posteromedial</strong> muscle: supplied <strong>solely by the right coronary artery</strong> in the more common right-dominant circulation.</li>
+          </ul>
+          <div class="callout warn">
+            Because it usually has a single supply, the posteromedial muscle is much more likely to <strong>infarct and rupture</strong> —
+            e.g. in an <strong>inferior myocardial infarction</strong>.
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- ============ MITRAL STENOSIS ============ -->
+  <details class="section pink">
+    <summary>🔴 Mitral Stenosis (MS)</summary>
+    <div class="body">
+
+      <p>A normal mitral valve has an area of <strong>&gt; 4 cm²</strong>, but symptoms are usually only present once stenosis is
+      <strong>moderate–severe</strong>. Grading into mild, moderate or severe is based on both the
+      <strong>mean pressure gradient</strong> across the valve and the <strong>valve area</strong>.</p>
+
+      <details class="sub pink">
+        <summary>Aetiology &amp; epidemiology</summary>
+        <div class="body">
+          <ul>
+            <li><strong>Rheumatic fever</strong> is by far the largest cause worldwide — although relatively rare in developed countries, where <strong>degenerative calcification</strong> or <strong>endocarditis</strong> are more likely causes.</li>
+            <li>Progression ≈ <strong>0.1–0.3 cm² per year</strong>, greatly increased with repeated valve inflammation (e.g. recurrent rheumatic fever).</li>
+            <li>Inflammation → thickened, nodular valve that can <strong>fuse at the leaflet and commissural edges</strong>.</li>
+            <li>Chordae may become <strong>shortened or thickened</strong> → blood flowing around the cords on entering the LV causes a <strong>subvalvular obstruction</strong>.</li>
+            <li>Much less common causes: infiltrating diseases, congenital deformities, multi-system disease (e.g. <strong>sarcoidosis</strong>).</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub pink">
+        <summary>Signs &amp; symptoms</summary>
+        <div class="body">
+          <ul>
+            <li>Generally <strong>well tolerated</strong> — patients remain asymptomatic for many years.</li>
+            <li>Compensation is due to the <strong>compliant left atrium dilating</strong> and keeping pulmonary venous pressures stable.</li>
+            <li>As disease progresses, compensation is overcome → <strong>pulmonary hypertension</strong> develops.</li>
+            <li>Then: <strong>pulmonary oedema, worsening dyspnoea, fatigue, frequent lower respiratory tract infections</strong>.</li>
+            <li>Signs are often delayed further by a reduction in activity — <strong>seek them carefully</strong>.</li>
+            <li><strong>Pregnancy</strong> and new <strong>atrial fibrillation</strong> cause rapid progression of pathophysiology and symptoms.</li>
+          </ul>
+          <div class="callout key">
+            <strong>Murmur:</strong> low rumbling <strong>diastolic</strong> murmur, best heard in <strong>expiration at the apex with the bell</strong> of the stethoscope.
+          </div>
+        </div>
+      </details>
+
+      <details class="sub pink">
+        <summary>Classification &amp; echocardiographic grading</summary>
+        <div class="body">
+          <div class="table-wrap">
+            <table>
+              <caption>Table 1 — Echo criteria for MS severity</caption>
+              <thead>
+                <tr><th>Parameter</th><th>Mild</th><th>Moderate</th><th>Severe</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="rowhead">Mean pressure gradient</td><td>&lt; 5 mmHg</td><td>6–10 mmHg</td><td>&gt; 10 mmHg</td></tr>
+                <tr><td class="rowhead">Pressure half-time</td><td>&lt; 139 ms</td><td>140–219 ms</td><td>≥ 220 ms</td></tr>
+                <tr><td class="rowhead">Valve area</td><td>1.6–2.0 cm²</td><td>1.0–1.5 cm²</td><td>&lt; 1.0 cm²</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul>
+            <li>Mean gradient <strong>&gt; 5 mmHg = moderate</strong>; <strong>&gt; 10 mmHg = severe</strong>.</li>
+            <li>Valve area is usually derived using several techniques — simply tracing the area on the echo software can be unreliable.</li>
+            <li>Normal area <strong>4–6 cm²</strong>; symptoms may only develop once <strong>&lt; 2.0 cm²</strong>; <strong>&lt; 1 cm² = severe</strong>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub pink">
+        <summary>Medical treatment</summary>
+        <div class="body">
+          <details class="subsub pink">
+            <summary>Atrial fibrillation</summary>
+            <div class="body">
+              <ul>
+                <li>Up to <strong>40%</strong> of patients with severe MS develop AF.</li>
+                <li>Increased ventricular rate ↓ diastolic time and ↑ atrial pressure → worse symptoms.</li>
+                <li><strong>Rate control</strong> reduces symptoms and is generally easier than rhythm control in a heart with dilated atria and fibrosis.</li>
+                <li>Achieved with <strong>β-blockers</strong> or <strong>calcium channel blockers</strong>.</li>
+              </ul>
+            </div>
+          </details>
+          <details class="subsub pink">
+            <summary>Dyspnoea</summary>
+            <div class="body">
+              <ul>
+                <li><strong>Diuretics</strong> reduce dyspnoea.</li>
+                <li><strong>Long-acting nitrates</strong> can also provide some relief.</li>
+              </ul>
+            </div>
+          </details>
+          <details class="subsub pink">
+            <summary>Anticoagulation</summary>
+            <div class="body">
+              <ul>
+                <li>Little evidence to justify anticoagulation in <strong>MS alone</strong>.</li>
+                <li>Anticoagulate with <strong>warfarin (target INR 2–3)</strong> or heparin if: <strong>AF</strong>, <strong>prior embolic events</strong>, or <strong>demonstrated left atrial thrombus</strong>.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <details class="sub pink">
+        <summary>Surgical treatment</summary>
+        <div class="body">
+          <ul>
+            <li>Surgical options (open or percutaneous) are the <strong>treatment of choice in severe symptomatic MS</strong>.</li>
+            <li><strong>Percutaneous mitral commissurotomy (PMC)</strong> is preferred when leaflets are <strong>mobile and free of calcium</strong> — a balloon is passed across the valve and inflated, splitting the fused commissural edges.</li>
+            <li>PMC achieves MV area <strong>&gt; 1.5 cm²</strong> with no worse than moderate MR in <strong>80%</strong> of cases; emergency surgery rate <strong>&lt; 1%</strong>.</li>
+            <li><strong>Surgery</strong> is recommended with: atrial thrombus, heavy valve calcification, or when another open cardiac procedure is required.</li>
+            <li><strong>Mitral valve replacement</strong> is now preferred due to improved valve and clinical outcomes — operative mortality <strong>3–5%</strong>, but long-term outcomes highly variable and related to patient factors (bi-ventricular function, pulmonary pressures, AF).</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub pink" open>
+        <summary>💉 Anaesthetic management of MS in non-cardiac surgery</summary>
+        <div class="body">
+
+          <details class="subsub pink">
+            <summary>Preoperative assessment</summary>
+            <div class="body">
+              <ul>
+                <li>MS is generally well tolerated — <strong>insidious signs need to be carefully sought</strong>.</li>
+                <li>Suggestive symptoms: <strong>dyspnoea, fatigue, frequent lower respiratory tract symptoms</strong>.</li>
+                <li>Murmur: low rumbling diastolic, best heard in <strong>expiration at the apex with the bell</strong>.</li>
+                <li>Ongoing elevated PA pressures strain the RV and eventually cause <strong>right heart failure</strong> — look for <strong>raised JVP and peripheral oedema</strong>.</li>
+                <li>As the LA dilates, <strong>AF is common</strong>. Patients on warfarin may need conversion to heparin — if warfarin is for <strong>AF alone</strong>, a short period without anticoagulation carries minimal risk.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="subsub pink">
+            <summary>Investigations</summary>
+            <div class="body">
+              <ul>
+                <li><strong>Exercise tolerance testing</strong> — objective measure that may unmask poor functional ability in patients who have reduced activity.</li>
+                <li><strong>Echocardiography</strong> — severity, developing pulmonary hypertension, RV dysfunction. <em>In general the LV continues to function well.</em></li>
+                <li><strong>ECG</strong> — AF is common; <strong>p-mitrale</strong> may be seen if still in sinus rhythm.</li>
+              </ul>
+              <div class="callout safe">
+                In <strong>asymptomatic</strong> patients with <strong>systolic PA pressure &lt; 50 mmHg</strong>, non-cardiac surgery is considered <strong>safe</strong>.
+              </div>
+            </div>
+          </details>
+
+          <details class="subsub pink">
+            <summary>Perioperative management — MS is a FIXED cardiac output state</summary>
+            <div class="body">
+              <div class="table-wrap">
+                <table>
+                  <caption>MS — perioperative targets at a glance</caption>
+                  <thead><tr><th>Variable</th><th>Target</th><th>Why / cautions</th></tr></thead>
+                  <tbody>
+                    <tr><td class="rowhead">Rate / rhythm</td><td>Maintain sinus if possible; <strong>low-normal HR &lt; 70 bpm</strong></td><td>Critical regardless of rhythm — allows sufficient diastolic time for ventricular filling.</td></tr>
+                    <tr><td class="rowhead">Preload</td><td><strong>Normovolaemia</strong></td><td>Fluid boluses can worsen pulmonary oedema.</td></tr>
+                    <tr><td class="rowhead">Afterload</td><td><strong>Maintain</strong></td><td>Fixed CO → any fall in SVR reduces coronary perfusion pressure. Avoid hypoxia, hypercapnia, acidosis. <strong>Avoid nitrous oxide.</strong></td></tr>
+                    <tr><td class="rowhead">Contractility</td><td>LV usually unaffected; <strong>support RV</strong> if failing</td><td>After lowering PVR, use <strong>PDE inhibitors</strong> or catecholamine agonists. Caution with PDE inhibitors — systemic vasodilation → afterload reduction and hypotension.</td></tr>
+                    <tr><td class="rowhead">Neuraxial</td><td><strong>Not to be undertaken lightly</strong></td><td>Decreases afterload → potential profound hypotension → spiral of poor myocardial perfusion and worsening cardiac function. Also consider anticoagulation.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+
+          <details class="subsub pink">
+            <summary>Postoperative management</summary>
+            <div class="body">
+              <ul>
+                <li>Same fundamentals apply in the postoperative period.</li>
+                <li>Best achieved in a <strong>high-dependency unit</strong> unless surgery is extremely minor.</li>
+                <li>Instruct recovery staff to <strong>avoid fluid boluses</strong>.</li>
+                <li>Any <strong>hypotension mandates anaesthetic review and aggressive treatment</strong>.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="subsub pink">
+            <summary>Post-cardiac surgery (repair / replacement)</summary>
+            <div class="body">
+              <ul>
+                <li><strong>Preload well maintained; afterload reduced</strong> to promote forward flow.</li>
+                <li>The <strong>right heart may still need support</strong> — PVR reduction and inotrope infusion.</li>
+                <li>Surgical alteration of the mitral annulus can affect how the left heart contracts.</li>
+                <li>Combined with the effects of open heart surgery and cross-clamping with cardioplegia → <strong>the left heart is also at risk of failure</strong> in this period.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <details class="sub pink">
+        <summary>🤰 Management of MS in pregnancy</summary>
+        <div class="body">
+          <ul>
+            <li>Due to the increase in blood volume and heart rate, MS is <strong>poorly tolerated</strong> and frequently <strong>first presents in pregnancy</strong>.</li>
+            <li>Normal pregnancy ↑ cardiac output by ~<strong>50%</strong>; the fixed CO of MS worsens pressures through the pulmonary circulation and into the right heart.</li>
+            <li>Risk of decompensation depends on severity. Anything worse than <strong>moderate (valve area &lt; 1.5 cm²)</strong> frequently results in heart failure — usually in the <strong>2nd or 3rd trimester</strong> and progressive.</li>
+            <li><strong>Medical:</strong> aggressive control of tachycardia and AF — <strong>β-blockers are the mainstay</strong>; add <strong>diuretics</strong> if pulmonary congestion develops.</li>
+            <li>If symptoms are not controlled medically, <strong>percutaneous commissurotomy</strong> is the surgical treatment of choice (avoids bypass and its risk to the fetus).</li>
+          </ul>
+
+          <details class="subsub pink">
+            <summary>Delivery</summary>
+            <div class="body">
+              <ul>
+                <li>Haemodynamic goals: <strong>afterload maintenance, heart rate &amp; rhythm control, care with fluids</strong>.</li>
+                <li><strong>Vaginal delivery</strong> is well described but must be carefully managed.</li>
+                <li><strong>Neuraxial analgesia placed early</strong> to block tachycardia from sympathetic stimulation.</li>
+                <li>Block achieved <strong>slowly</strong>; hypotension managed with <strong>α-agonists</strong>.</li>
+                <li><strong>Epidurals are titratable</strong>; a mixture utilising opioids achieves analgesia with fewer haemodynamic effects.</li>
+                <li><strong>Assisted second stage</strong> — limits labour duration and Valsalva.</li>
+                <li><strong>Caesarean section</strong> considered in patients with <strong>pulmonary hypertension</strong> or <strong>NYHA III/IV symptoms despite maximal medical therapy</strong>.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="subsub pink">
+            <summary>Post-delivery — "flash" pulmonary oedema</summary>
+            <div class="body">
+              <div class="callout warn">
+                Post-delivery, patients with MS are at risk of <strong>pulmonary oedema</strong>. This can occur <strong>precipitously</strong>
+                from decompression of the inferior vena cava plus autotransfusion due to uterine compression — a sudden increase in preload.
+              </div>
+              <ul>
+                <li>Initial management: <strong>head-up positioning</strong> and <strong>100% oxygen</strong>.</li>
+                <li>May require <strong>intubation and ventilation</strong> if severe, with <strong>sufficient PEEP</strong>.</li>
+              </ul>
+              <div class="callout warn">
+                <strong>Oxytocin</strong> — administer with great care (systemic vasodilation + propensity to increase PVR).<br>
+                <strong>Ergometrine is contraindicated</strong> (pulmonary vasoconstricting effects).
+              </div>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- ============ MITRAL REGURGITATION ============ -->
+  <details class="section green">
+    <summary>🟢 Mitral Regurgitation (MR)</summary>
+    <div class="body">
+
+      <p>MR can be <strong>acute or chronic</strong> in onset, and <strong>primary or secondary</strong> in nature.</p>
+      <ul>
+        <li><strong>Primary MR</strong> — pathology of the valve preventing normal closure.</li>
+        <li><strong>Secondary MR</strong> — LV dysfunction affecting the closing of the mitral valve (also known as <strong>"functional" MR</strong>).</li>
+      </ul>
+      <p>In either case the <strong>left atrium dilates</strong> as blood is ejected back into it — this can be significant and <strong>AF is common</strong>.
+      Overload of the pulmonary circulation causes dyspnoea, although frank pulmonary oedema is usually only seen in <strong>acute MR</strong>
+      and in <strong>severe chronic disease</strong>. The LV is <strong>volume overloaded</strong>, with dilation of the ventricle further
+      worsening MR through <strong>annular dilatation</strong>.</p>
+
+      <details class="sub green">
+        <summary>Acute MR</summary>
+        <div class="body">
+          <ul>
+            <li>Caused by any disruption to the normal mechanism of the valve.</li>
+            <li>Examples: <strong>vegetations on the leaflets</strong> in infective endocarditis; <strong>chordae rupture</strong> in pre-existing degenerative disease; <strong>papillary muscle rupture</strong> due to an ST-elevation MI (usually inferior territory).</li>
+            <li>The LA is <strong>unable to compensate acutely</strong> for the increased pressure of refluxing blood.</li>
+            <li>Pressure is transmitted back into the pulmonary circulation → patients present with <strong>sudden-onset dyspnoea</strong> and need <strong>rapid stabilisation and treatment</strong>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub green">
+        <summary>Chronic MR</summary>
+        <div class="body">
+          <details class="subsub green">
+            <summary>Chronic primary MR</summary>
+            <div class="body">
+              <ul>
+                <li>Abnormality of the leaflets prevents normal closure.</li>
+                <li>Major cause: <strong>degenerative disease resulting in leaflet prolapse</strong>.</li>
+              </ul>
+            </div>
+          </details>
+          <details class="subsub green">
+            <summary>Chronic secondary (functional) MR</summary>
+            <div class="body">
+              <ul>
+                <li>Valve <strong>anatomy is normal</strong> but function is impaired due to LV pathology.</li>
+                <li>Causes: <strong>dilation of the mitral annulus</strong> with LV dilatation (leaflets cannot meet), or <strong>dyskinesia</strong> of the LV after ischaemia/infarction.</li>
+                <li><strong>Systolic anterior motion (SAM)</strong> of the anterior mitral leaflet into the LVOT can occur in <strong>hypertrophic cardiomyopathy</strong>, especially when hypovolaemic → outflow obstruction <em>plus</em> simultaneous regurgitation across the distorted valve.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <details class="sub green">
+        <summary>Classification &amp; echocardiographic grading</summary>
+        <div class="body">
+          <div class="table-wrap">
+            <table>
+              <caption>Table 2 — Echo criteria for MR severity</caption>
+              <thead>
+                <tr><th>Parameter</th><th>Mild</th><th>Moderate</th><th>Severe</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="rowhead">Regurgitant fraction</td><td>&lt; 30%</td><td>30–49%</td><td>≥ 50%</td></tr>
+                <tr><td class="rowhead">Regurgitant orifice area</td><td>&lt; 0.20 cm²</td><td>0.20–0.39 cm²</td><td>≥ 0.40 cm²</td></tr>
+                <tr><td class="rowhead">Regurgitant volume</td><td>&lt; 30 mL/beat</td><td>30–59 mL/beat</td><td>≥ 60 mL/beat</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul>
+            <li>Grading severity is complex and involves several techniques.</li>
+            <li><strong>Transoesophageal echocardiography is the gold standard</strong>; transthoracic echo is sufficient if good images are acquired.</li>
+            <li>Determination uses <strong>effective regurgitant orifice area, regurgitant volume and regurgitant fraction</strong>, correlated with the narrowest part of the regurgitant jet (<strong>vena contracta</strong>).</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub green">
+        <summary>Medical treatment</summary>
+        <div class="body">
+          <details class="subsub green">
+            <summary>Acute MR</summary>
+            <div class="body">
+              <ul>
+                <li><strong>Reduce filling pressures</strong> — nitrates or diuretics.</li>
+                <li><strong>Reduce afterload</strong> — vasodilators or an <strong>intra-aortic balloon pump (IABP)</strong> as a bridge to definitive treatment.</li>
+                <li>Vasodilators promote forward flow into the aorta and reduce the regurgitant fraction, but use can be limited by hypotension → add <strong>inotropes or IABP</strong>.</li>
+              </ul>
+              <div class="callout key">
+                <strong>IABP physiology:</strong> deflates during <strong>systole</strong> → reduces afterload and therefore the work of the heart.
+                Inflates during <strong>diastole</strong> → increases pressure in the aortic root → increases coronary perfusion pressure.
+              </div>
+            </div>
+          </details>
+          <details class="subsub green">
+            <summary>Chronic MR</summary>
+            <div class="body">
+              <ul>
+                <li>With signs of heart failure: standard heart failure management — <strong>β-blockers, ACE inhibitors, aldosterone antagonists</strong>, plus <strong>diuretics</strong> where heart failure is present.</li>
+                <li>If <strong>cardioversion is attainable</strong>, it will often immediately reduce MR severity.</li>
+                <li><strong>No proven benefit</strong> of any medical therapy for MR without LV dysfunction — and when such dysfunction develops, it is generally an <strong>indication for surgery</strong>.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <details class="sub green">
+        <summary>Surgical treatment</summary>
+        <div class="body">
+          <p>The decision on when to operate is complex — it depends on whether the MR is primary or secondary, the patient's
+          condition, response to therapy, and development of sequelae such as heart failure or AF.</p>
+
+          <details class="subsub green">
+            <summary>Primary MR — evidence to operate is clear</summary>
+            <div class="body">
+              <ul>
+                <li><strong>Severe and acute</strong> (e.g. ruptured papillary muscle) → <strong>surgery indicated</strong>.</li>
+                <li><strong>Chronic and symptomatic</strong>, with no contraindications → <strong>repair clearly indicated</strong>.</li>
+                <li><strong>Asymptomatic</strong> → operate only if clear consequences of the MR are seen: <strong>LVEF &lt; 60%</strong>, or development of <strong>AF</strong> or <strong>pulmonary hypertension</strong>.</li>
+                <li>Surgery is generally <strong>avoided if heart failure is severe (LVEF &lt; 30%)</strong>.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="subsub green">
+            <summary>Secondary MR — less evidence-based</summary>
+            <div class="body">
+              <ul>
+                <li>In patients <strong>already undergoing CABG</strong>, repair of <strong>severe MR is indicated</strong>; whether to repair <strong>moderate</strong> MR is less obvious.</li>
+                <li>Symptomatic with <strong>severe LV failure</strong> → benefits of surgery are questionable unless there is some <strong>reversibility</strong> of the underlying problem (e.g. revascularisation of viable myocardium).</li>
+                <li>Surgery is also considered in symptomatic patients with <strong>moderate LV failure if medical therapy has failed</strong>.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="subsub green">
+            <summary>Repair vs. replacement</summary>
+            <div class="body">
+              <ul>
+                <li>For <strong>primary MR</strong>, <strong>valve repair is invariably preferred</strong> if at all possible — significantly reduced operative mortality, better preservation of LV function, and avoids the long-term consequences of prosthetic valves.</li>
+                <li>For <strong>secondary/ischaemic MR</strong>, repair results in <strong>reduced early mortality but a higher degree of recurrent MR long term</strong>; otherwise long-term outcomes of repair vs replacement are similar.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <details class="sub green">
+        <summary>Minimally invasive &amp; percutaneous surgery</summary>
+        <div class="body">
+          <ul>
+            <li><strong>Minimally invasive:</strong> repair/replacement via a small <strong>right thoracotomy</strong> and several instrument ports, with a <strong>femoral incision for bypass cannulation</strong>; standard techniques under endoscopic view. Safety and efficacy similar to midline sternotomy in experienced hands.</li>
+            <li><strong>Robotic telemanipulators</strong> (since 1998): dexterity helps place sutures precisely in difficult positions. Bypass and cross-clamp times are longer, but time to discharge and return to work are shorter. Long-term outcome data awaited.</li>
+          </ul>
+
+          <figure class="diagram">
+            <svg viewBox="0 0 620 400" xmlns="http://www.w3.org/2000/svg" role="img"
+                 aria-label="Diagram comparing mitral regurgitation before and after percutaneous Mitraclip repair">
+              <defs>
+                <marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+                  <path d="M0,0 L9,4.5 L0,9 z" fill="#e0533d"/>
+                </marker>
+                <marker id="ah2" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+                  <path d="M0,0 L9,4.5 L0,9 z" fill="#4fb63c"/>
+                </marker>
+              </defs>
+
+              <!-- ===== PANEL A ===== -->
+              <g>
+                <path d="M60,160 Q170,25 280,160" fill="#e3f4fd" stroke="#3aa8e0" stroke-width="2.5"/>
+                <path d="M60,160 Q170,330 280,160" fill="#ffe9f3" stroke="#ff5fa2" stroke-width="2.5"/>
+                <path d="M78,158 Q150,178 165,183" fill="none" stroke="#7a2f52" stroke-width="4.5" stroke-linecap="round"/>
+                <path d="M262,158 Q190,178 178,183" fill="none" stroke="#7a2f52" stroke-width="4.5" stroke-linecap="round"/>
+                <path d="M171,180 L171,88" stroke="#e0533d" stroke-width="5" marker-end="url(#ah)"/>
+                <text x="170" y="42" font-size="15" font-weight="800" fill="#1c6f9c" text-anchor="middle" font-family="Segoe UI, sans-serif">LA</text>
+                <text x="170" y="300" font-size="15" font-weight="800" fill="#a3235f" text-anchor="middle" font-family="Segoe UI, sans-serif">LV</text>
+                <text x="170" y="380" font-size="14.5" font-weight="800" fill="#23212e" text-anchor="middle" font-family="Segoe UI, sans-serif">A. Before clip — MR</text>
+              </g>
+
+              <!-- ===== PANEL B ===== -->
+              <g transform="translate(310,0)">
+                <path d="M60,160 Q170,25 280,160" fill="#e3f4fd" stroke="#3aa8e0" stroke-width="2.5"/>
+                <path d="M60,160 Q170,330 280,160" fill="#ffe9f3" stroke="#ff5fa2" stroke-width="2.5"/>
+                <path d="M78,158 Q140,172 168,176" fill="none" stroke="#7a2f52" stroke-width="4.5" stroke-linecap="round"/>
+                <path d="M262,158 Q200,172 172,176" fill="none" stroke="#7a2f52" stroke-width="4.5" stroke-linecap="round"/>
+                <!-- clip -->
+                <rect x="158" y="166" width="24" height="16" rx="5" fill="#9aa0b5" stroke="#5a5570" stroke-width="2"/>
+                <text x="170" y="152" font-size="13" font-weight="800" fill="#5a5570" text-anchor="middle" font-family="Segoe UI, sans-serif">clip</text>
+                <!-- two forward jets -->
+                <path d="M148,188 L132,258" stroke="#4fb63c" stroke-width="4.5" marker-end="url(#ah2)"/>
+                <path d="M192,188 L208,258" stroke="#4fb63c" stroke-width="4.5" marker-end="url(#ah2)"/>
+                <text x="170" y="42" font-size="15" font-weight="800" fill="#1c6f9c" text-anchor="middle" font-family="Segoe UI, sans-serif">LA</text>
+                <text x="170" y="300" font-size="15" font-weight="800" fill="#a3235f" text-anchor="middle" font-family="Segoe UI, sans-serif">LV</text>
+                <text x="170" y="380" font-size="14.5" font-weight="800" fill="#23212e" text-anchor="middle" font-family="Segoe UI, sans-serif">B. After clip — double orifice</text>
+              </g>
+            </svg>
+            <figcaption>
+              <strong>Mitraclip concept:</strong> the leading edges of the two leaflets are clipped together, creating a
+              <strong>double orifice</strong> into the LV. Red = regurgitant jet; green = forward flow.
+            </figcaption>
+          </figure>
+
+          <div class="callout key">
+            <strong>Mitraclip evidence:</strong> trials show efficacy in <strong>moderate-severe or severe MR</strong> in patients deemed
+            <strong>too high risk for surgery</strong>. It is <em>less effective at reducing MR in the short term</em> but has
+            <strong>similar outcomes at 12 months</strong>, with improved LVEF, NYHA score and quality of life vs baseline.
+            In the randomised <strong>EVEREST</strong> trial, <strong>20%</strong> required further surgical intervention.
+            Its role is expanding in high-risk surgical patients.
+          </div>
+        </div>
+      </details>
+
+      <details class="sub green" open>
+        <summary>💉 Anaesthetic management of MR in non-cardiac surgery</summary>
+        <div class="body">
+
+          <details class="subsub green">
+            <summary>Preoperative assessment</summary>
+            <div class="body">
+              <ul>
+                <li><strong>Acute MR</strong> can present as florid cardiac failure with severe pulmonary oedema.</li>
+                <li><strong>Chronic MR</strong> can be tolerated for many years, with symptoms only developing as the LV starts to fail.</li>
+                <li>Seek signs of <strong>pulmonary hypertension and right heart failure</strong> — dyspnoea, fatigue, frequent chest infections (pulmonary hypertension); peripheral oedema and raised JVP (right heart failure).</li>
+                <li>The pansystolic murmur of MR is frequently <strong>very soft</strong>, and its <strong>intensity is unrelated to severity</strong>.</li>
+                <li>There may be a <strong>displaced and forceful apex beat</strong>.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="subsub green">
+            <summary>Investigations</summary>
+            <div class="body">
+              <div class="table-wrap">
+                <table>
+                  <caption>MR — key investigations</caption>
+                  <thead><tr><th>Test</th><th>What to look for</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td class="rowhead">Echocardiography</td>
+                      <td>Grades lesion severity. <strong>LV function is harder to assess</strong> — because blood is ejected through both the aortic <em>and</em> regurgitant mitral valves, EF appears higher than normal. <strong>LVEF ≈ 70% is "normal" in MR</strong> (cf. 55% normally); <strong>&lt; 60% represents LV dysfunction</strong>.</td>
+                    </tr>
+                    <tr>
+                      <td class="rowhead">ECG</td>
+                      <td>Seek signs of ischaemia, especially in functional MR. Acute/new-onset MR may be due to recent <strong>papillary muscle rupture</strong> — inferior MI is the likeliest cause, so <strong>ST changes in leads II, III and aVF</strong> may suggest the diagnosis (the history may be vague).</td>
+                    </tr>
+                    <tr>
+                      <td class="rowhead">Blood tests</td>
+                      <td><strong>BNP</strong> is useful in prognostication — a low plasma BNP has a high <strong>negative predictive value</strong> for developing further complications.</td>
+                    </tr>
+                    <tr>
+                      <td class="rowhead">Exercise testing</td>
+                      <td>Symptoms of chronic MR are often masked by the patient simply reducing exertion. Formal testing (e.g. <strong>cardiopulmonary exercise testing</strong>) is of clear utility if echo findings do not match the symptom history, and may give a clearer picture of ventricular function.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout safe">
+                If <strong>LV function is preserved and the patient is asymptomatic</strong>, non-cardiac surgery can be performed with
+                <strong>no additional risk — even if the MR is severe</strong>. Risk increases only when LV function is
+                <strong>severely impaired (&lt; 30%)</strong> or the patient is <strong>symptomatic</strong> — then
+                <strong>medical optimisation must be assured before proceeding</strong>.
+              </div>
+            </div>
+          </details>
+
+          <details class="subsub green">
+            <summary>Perioperative management — "full, fast and forward flow"</summary>
+            <div class="body">
+              <div class="table-wrap">
+                <table>
+                  <caption>MR — perioperative targets at a glance</caption>
+                  <thead><tr><th>Variable</th><th>Target</th><th>Why / cautions</th></tr></thead>
+                  <tbody>
+                    <tr><td class="rowhead">Rate / rhythm</td><td><strong>High-normal HR 80–100 bpm</strong></td><td>Reduces LV filling time, counteracts ventricular overload and encourages forward flow. Balance against myocardial oxygen demand/supply if ischaemic heart disease.</td></tr>
+                    <tr><td class="rowhead">Preload</td><td><strong>Well filled</strong></td><td>Assessment is difficult in MR; erring on the side of well filled also promotes forward flow.</td></tr>
+                    <tr><td class="rowhead">Afterload</td><td><strong>Reduce</strong></td><td>As SVR rises, so does the regurgitant fraction. Treat falls in arterial pressure with fluid and by elevating heart rate. <strong>Vasoconstrictors — use with care.</strong> Keep PVR low: avoid hypoxia, hypercapnia, acidosis and <strong>nitrous oxide</strong>.</td></tr>
+                    <tr><td class="rowhead">Contractility</td><td>Support if LV failure</td><td>In acute MR: <strong>dobutamine</strong> or inodilators (<strong>enoximone, levosimendan</strong>). Consider inserting an <strong>IABP before operation</strong>.</td></tr>
+                    <tr><td class="rowhead">Neuraxial</td><td><strong>Generally well tolerated</strong></td><td>Afterload reduction aids forward flow. <strong>Vasopressors must be titrated with care.</strong></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+
+          <details class="subsub green">
+            <summary>Postoperative management</summary>
+            <div class="body">
+              <ul>
+                <li>Recovery staff should be made aware of the cardiac diagnosis.</li>
+                <li>The same perioperative principles should be adhered to.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="subsub green">
+            <summary>Post-cardiac surgery (after valve replacement)</summary>
+            <div class="body">
+              <ul>
+                <li>There is <strong>no low-pressure system for the LV to eject into</strong> — it is suddenly subjected to a <strong>higher workload</strong>.</li>
+                <li><strong>Poor function may be unmasked</strong> — consider inotropes and inodilators.</li>
+                <li><strong>Minimise SVR</strong> if possible to allow forward flow and "offload" the ventricle.</li>
+                <li>If an <strong>IABP was needed before operation</strong>, it is generally <strong>left in place</strong> until haemodynamic and metabolic stability are achieved.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <details class="sub green">
+        <summary>🤰 Management of MR in pregnancy</summary>
+        <div class="body">
+          <ul>
+            <li>Pregnancy <strong>mimics the haemodynamic goals for regurgitant lesions</strong>: ↑ heart rate, ↑ blood volume, ↓ SVR — all promoting forward flow.</li>
+            <li>Because of this, pregnancy is <strong>generally well tolerated, even if MR is severe</strong>, as long as <strong>LV function is preserved</strong>.</li>
+            <li>Patients with <strong>impaired LV function</strong> or <strong>severe symptomatic MR</strong> are at increased risk of heart failure.</li>
+            <li><strong>Diuresis</strong> is commonly used to limit fluid overload — usually all the medical therapy needed.</li>
+          </ul>
+          <details class="subsub green">
+            <summary>Delivery</summary>
+            <div class="body">
+              <ul>
+                <li><strong>Vaginal delivery</strong> is generally possible with <strong>epidural anaesthesia</strong>.</li>
+                <li><strong>Assisted second stage</strong> to avoid spikes in systemic vascular resistance seen with pushing.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- ============ SUMMARY ============ -->
+  <details class="section blue">
+    <summary>📋 Summary</summary>
+    <div class="body">
+      <p>Anaesthetists are an integral part of any team undertaking surgical management of a patient with mitral valve disease.
+      An understanding of the pathophysiology allows the anaesthetist not only to engage in decisions regarding treatment,
+      but to <strong>anticipate and manage the consequences of surgery and anaesthesia</strong>.</p>
+    </div>
+  </details>
+
+</main>
+
+<!-- ================= FOOTER / SOURCE ================= -->
+<footer>
+  <div class="source">
+    <h2>📚 Source &amp; citation</h2>
+    <p>
+      <strong>Primary source:</strong> <em>Mitral valve and mitral valve disease.</em>
+      <strong>BJA Education</strong> (Oxford University Press / British Journal of Anaesthesia Education).
+      Bristol Heart Institute, Bristol, UK — Fellow in Cardiac Anaesthesia and Intensive Care; Consultant in Cardiac Anaesthesia
+      and Intensive Care; Consultant Cardiac Surgeon / Honorary Senior Lecturer.
+    </p>
+    <p>
+      <strong>Associated podcast:</strong>
+      <a href="http://www.oxfordjournals.org/podcasts/mitral_valve_disease_dr_gibbison_bjaeducation_jan2017.mp3">
+        oxfordjournals.org/podcasts/mitral_valve_disease_dr_gibbison_bjaeducation_jan2017.mp3</a><br>
+      <strong>Associated MCQs (CME/CPD):</strong>
+      <a href="https://access.oxfordjournals.org">https://access.oxfordjournals.org</a> (subscribers to BJA Education).
+    </p>
+    <p><strong>Note:</strong> This page is a condensed, restructured study aid derived from the source PDF. Clinical decisions
+    must be based on the full original article, local guidelines and individual patient assessment.</p>
+
+    <details class="subsub green">
+      <summary>Reference list (as cited in the source article)</summary>
+      <div class="body">
+        <ol>
+          <li>Verma S, Mesana TG. Mitral-valve repair for mitral-valve prolapse. <em>N Engl J Med</em> 2009; 361: 2261–9.</li>
+          <li>Gordon SPF, Douglas PS, Come PC, Manning WJ. Two-dimensional and Doppler echocardiographic determinants of the natural history of mitral valve narrowing in patients with rheumatic mitral stenosis: implications for follow-up. <em>J Am Coll Cardiol</em> 1992; 19: 968–73.</li>
+          <li>Zoghbi WA, Enriquez-Sarano M, Foster E. Recommendations for evaluation of the severity of native valvular regurgitation with two-dimensional and Doppler echocardiography. <em>J Am Soc Echocardiogr</em> 2003; 16: 777–802.</li>
+          <li>European Heart Rhythm Association, European Association for Cardio-Thoracic Surgery, Camm AJ et al. Guidelines for the management of atrial fibrillation (ESC). <em>Europace</em> 2010; 12: 1360–420.</li>
+          <li>Joint Task Force on the Management of Valvular Heart Disease of the ESC, EACTS, Vahanian A et al. Guidelines on the management of valvular heart disease (version 2012). <em>Eur Heart J</em> 2012; 42: S1–44.</li>
+          <li>Nishimura RA, Otto CM, Bonow RO et al. 2014 AHA/ACC guideline for the management of patients with valvular heart disease. <em>J Am Coll Cardiol</em> 2014; 63: 2438–88.</li>
+          <li>DiNardo JA, Zvara DA. <em>Anesthesia for Cardiac Surgery.</em> Wiley-Blackwell, Oxford, UK: John Wiley &amp; Sons, 2008.</li>
+          <li>European Society of Gynecology (ESG), AEPC, DGesGM et al. ESC Guidelines on the management of cardiovascular diseases during pregnancy. <em>Eur Heart J</em> 2011; 32: 3147–97.</li>
+          <li>Salmasi M, Acharya M, Humayun N, Baskaran D, Hubbard S, Vohra HA. Is valve repair preferable to valve replacement in ischaemic mitral regurgitation? A systematic review and meta-analysis. <em>Eur J Cardiothorac Surg</em> 2016; 50: 17–28.</li>
+          <li>Seco M, Cao C, Modi P et al. Systematic review of robotic minimally invasive mitral valve surgery. <em>Ann Cardiothorac Surg</em> 2013; 2: 704–16.</li>
+          <li>Feldman T, Foster E, Glower DD et al. Percutaneous repair or surgery for mitral regurgitation. <em>N Engl J Med</em> 2011; 364: 1395–406.</li>
+          <li>Klaar U, Gabriel H, Bergler-Klein J et al. Prognostic value of serial B-type natriuretic peptide measurement in asymptomatic organic mitral regurgitation. <em>Eur J Heart Fail</em> 2011; 13: 163–9.</li>
+          <li>Kristensen SD, Knuuti J, Saraste A et al. 2014 ESC/ESA guidelines on non-cardiac surgery: cardiovascular assessment and management. <em>Eur Heart J</em> 2014; 35: 2383–431.</li>
+        </ol>
+      </div>
+    </details>
+  </div>
+</footer>
+
+<button class="toTop" id="toTop" title="Back to top" aria-label="Back to top">↑</button>
+
+<script>
+(function () {
+  "use strict";
+
+  var content     = document.getElementById('content');
+  var searchInput = document.getElementById('searchInput');
+  var searchCount = document.getElementById('searchCount');
+  var prevBtn     = document.getElementById('prevBtn');
+  var nextBtn     = document.getElementById('nextBtn');
+
+  var hits = [];
+  var current = -1;
+
+  /* ---------------- SEARCH ---------------- */
+
+  function updateCount() {
+    var q = searchInput.value.trim();
+    if (q.length < 2) { searchCount.textContent = ''; return; }
+    searchCount.textContent = hits.length ? (current + 1) + ' / ' + hits.length : '0';
+  }
+
+  function clearHits() {
+    var marks = content.querySelectorAll('mark.search-hit');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var t = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(t, m);
+    }
+    if (content.normalize) { content.normalize(); }
+    hits = [];
+    current = -1;
+  }
+
+  function expandAncestors(el) {
+    var d = el.closest ? el.closest('details') : null;
+    while (d) {
+      d.open = true;
+      var p = d.parentElement;
+      d = p ? p.closest('details') : null;
+    }
+  }
+
+  function runSearch() {
+    var q = searchInput.value.trim();
+    clearHits();
+    updateCount();
+    if (q.length < 2) { return; }
+
+    var lq = q.toLowerCase();
+
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentNode;
+          if (!p || p.nodeType !== 1) return NodeFilter.FILTER_REJECT;
+          if (p.closest('svg')) return NodeFilter.FILTER_REJECT;
+          if (p.closest('script, style')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    var nodes = [];
+    while (walker.nextNode()) { nodes.push(walker.currentNode); }
+
+    for (var n = 0; n < nodes.length; n++) {
+      var node = nodes[n];
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(lq);
+      if (idx === -1) continue;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'search-hit';
+        mark.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mark);
+        hits.push(mark);
+        last = idx + q.length;
+        idx = lower.indexOf(lq, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    }
+
+    for (var h = 0; h < hits.length; h++) { expandAncestors(hits[h]); }
+
+    if (hits.length) {
+      current = 0;
+      focusCurrent();
+    } else {
+      updateCount();
+    }
+  }
+
+  function focusCurrent() {
+    for (var i = 0; i < hits.length; i++) { hits[i].classList.remove('active'); }
+    if (current < 0 || !hits.length) { updateCount(); return; }
+    var el = hits[current];
+    el.classList.add('active');
+    try {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (e) {
+      el.scrollIntoView();
+    }
+    updateCount();
+  }
+
+  var debounceTimer;
+  searchInput.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 230);
+  });
+
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (hits.length) {
+        current = (current + 1) % hits.length;
+        focusCurrent();
+      }
+    }
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      clearHits();
+      updateCount();
+    }
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (!hits.length) return;
+    current = (current - 1 + hits.length) % hits.length;
+    focusCurrent();
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (!hits.length) return;
+    current = (current + 1) % hits.length;
+    focusCurrent();
+  });
+
+  /* ---------------- EXPAND / COLLAPSE ---------------- */
+
+  document.getElementById('expandAll').addEventListener('click', function () {
+    var all = document.querySelectorAll('details');
+    for (var i = 0; i < all.length; i++) { all[i].open = true; }
+  });
+
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    var all = document.querySelectorAll('details');
+    for (var i = 0; i < all.length; i++) { all[i].open = false; }
+  });
+
+  /* ---------------- TEXT SIZE ---------------- */
+
+  var base = 16, size = 16;
+
+  function applySize() {
+    size = Math.max(13, Math.min(23, size));
+    document.documentElement.style.fontSize = size + 'px';
+    document.getElementById('fsVal').textContent = Math.round((size / base) * 100) + '%';
+  }
+
+  document.getElementById('fsUp').addEventListener('click', function () { size += 1; applySize(); });
+  document.getElementById('fsDown').addEventListener('click', function () { size -= 1; applySize(); });
+  document.getElementById('fsReset').addEventListener('click', function () { size = base; applySize(); });
+
+  /* ---------------- BACK TO TOP ---------------- */
+
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 400) { toTop.classList.add('show'); }
+    else { toTop.classList.remove('show'); }
+  });
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  applySize();
+})();
+</script>
+</body>
+</html>
