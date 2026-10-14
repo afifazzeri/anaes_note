@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ICU-Acquired Weakness — Quick Reference (Anaesthesia &amp; Intensive Care)</title>
+<style>
+:root{
+  --bg:#eef3f7;
+  --card:#ffffff;
+  --ink:#12232e;
+  --ink-soft:#4b6070;
+  --teal:#0d6e6e;
+  --teal-d:#083f3f;
+  --teal-l:#e6f4f2;
+  --cyan:#0e7490;
+  --amber:#b45309;
+  --amber-l:#fdf3e3;
+  --red:#b91c1c;
+  --red-l:#fdecec;
+  --purple:#6d28d9;
+  --purple-l:#f1ecfd;
+  --green:#15803d;
+  --green-l:#e8f6ec;
+  --line:#d3e0e8;
+  --hl:#ffe066;
+  --hl-ink:#3a2c00;
+  --radius:0.7rem;
+  --shadow:0 1px 3px rgba(6,43,51,.07);
+}
+
+*{box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ---------- Header ---------- */
+.site-header{
+  position:relative;
+  background:linear-gradient(135deg,#062b33 0%,#0b4f56 55%,#0d6e6e 100%);
+  color:#eafaf7;
+  padding:1.5rem 1.2rem 1.1rem;
+  border-bottom:3px solid #22d3a6;
+  overflow:hidden;
+}
+.site-header h1{
+  margin:0 0 .2rem;
+  font-size:1.6rem;
+  letter-spacing:.2px;
+  color:#ffffff;
+}
+.site-header .sub{
+  margin:0;
+  font-size:.92rem;
+  color:#a9d8d4;
+  max-width:60ch;
+}
+.badge{
+  display:inline-block;
+  margin-top:.6rem;
+  font-size:.72rem;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  background:rgba(34,211,166,.16);
+  border:1px solid rgba(34,211,166,.45);
+  color:#7ff0d0;
+  padding:.15rem .55rem;
+  border-radius:999px;
+}
+.ecg{
+  position:absolute;left:0;right:0;bottom:0;width:100%;height:26px;
+  opacity:.35;pointer-events:none;
+}
+.ecg path{
+  fill:none;stroke:#22d3a6;stroke-width:2;vector-effect:non-scaling-stroke;
+  stroke-dasharray:180 1400;
+  animation:ecgmove 4.5s linear infinite;
+}
+@keyframes ecgmove{from{stroke-dashoffset:1580}to{stroke-dashoffset:0}}
+
+/* ---------- Toolbar ---------- */
+.toolbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  padding:.55rem .9rem;
+  display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;
+  box-shadow:0 2px 12px rgba(6,43,51,.07);
+}
+.search-wrap{
+  position:relative;flex:1 1 16rem;min-width:12rem;display:flex;align-items:center;
+}
+.search-wrap input{
+  width:100%;
+  font-size:.95rem;
+  padding:.5rem .75rem .5rem 2rem;
+  border:1.5px solid var(--line);
+  border-radius:999px;
+  background:#fff;
+  color:var(--ink);
+  outline:none;
+  transition:border-color .15s, box-shadow .15s;
+}
+.search-wrap input:focus{
+  border-color:var(--teal);
+  box-shadow:0 0 0 3px rgba(13,110,110,.15);
+}
+.search-wrap::before{
+  content:"⌕";
+  position:absolute;left:.7rem;
+  font-size:1.05rem;color:var(--teal);pointer-events:none;
+}
+.count{
+  margin-left:.5rem;font-size:.78rem;color:var(--ink-soft);white-space:nowrap;
+}
+.btn-group{display:flex;gap:.35rem;flex-wrap:wrap}
+button.tb{
+  font:inherit;font-size:.82rem;
+  padding:.42rem .7rem;
+  border-radius:999px;
+  border:1.5px solid var(--line);
+  background:#fff;
+  color:var(--teal-d);
+  cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s,transform .08s;
+  white-space:nowrap;
+}
+button.tb:hover{background:var(--teal-l);border-color:var(--teal);}
+button.tb:active{transform:scale(.96)}
+button.tb.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+button.tb.primary:hover{background:var(--teal-d);border-color:var(--teal-d)}
+
+/* ---------- Layout ---------- */
+main{
+  max-width:64rem;
+  margin:0 auto;
+  padding:1rem .9rem 3rem;
+}
+
+/* ---------- At a glance ---------- */
+.glance{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
+  gap:.6rem;
+  margin:.2rem 0 1rem;
+}
+.glance-item{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-top:4px solid #22a08e;
+  border-radius:var(--radius);
+  padding:.65rem .8rem;
+  box-shadow:var(--shadow);
+}
+.glance-item .num{
+  display:block;
+  font-size:1.15rem;
+  font-weight:700;
+  color:var(--teal-d);
+  line-height:1.25;
+}
+.glance-item .lbl{
+  display:block;
+  font-size:.78rem;
+  color:var(--ink-soft);
+}
+
+/* ---------- Bottom line box ---------- */
+.bottomline{
+  background:linear-gradient(135deg,#083f3f,#0d6e6e);
+  color:#e8fbf8;
+  border-radius:var(--radius);
+  padding:1rem 1.1rem;
+  margin-bottom:1rem;
+  border:1px solid #0a5a5a;
+  box-shadow:var(--shadow);
+}
+.bottomline h2{
+  margin:0 0 .5rem;font-size:1.05rem;color:#7ff0d0;letter-spacing:.3px;
+}
+.bottomline ul{margin:0;padding-left:1.1rem}
+.bottomline li{margin:.28rem 0;font-size:.9rem}
+.bottomline strong{color:#ffffff}
+
+/* ---------- Animation ---------- */
+.anim{
+  background:linear-gradient(135deg,#062b33,#0b4f56);
+  color:#e8fbf8;
+  border-radius:var(--radius);
+  padding:1rem 1.05rem 1.1rem;
+  margin-bottom:1rem;
+  border:1px solid #0a5a5a;
+  box-shadow:var(--shadow);
+}
+.anim h2{margin:0 0 .8rem;font-size:1rem;color:#7ff0d0;letter-spacing:.3px}
+.anim-row{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.a-node{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(34,211,166,.35);
+  border-radius:.55rem;
+  padding:.5rem .75rem;
+  text-align:center;
+  font-size:.85rem;
+  flex:0 1 auto;
+}
+.a-trigger{min-width:9.5rem}
+.a-trigger strong{display:block;font-size:.95rem;color:#7ff0d0;line-height:1.25}
+.a-trigger span{display:block;font-size:.72rem;color:#a9d8d4;margin-top:.15rem}
+.a-arrow{color:#22d3a6;font-size:1.15rem;opacity:.8}
+.a-col{display:flex;flex-direction:column;gap:.32rem;flex:0 1 auto}
+.a-pill{
+  border-radius:999px;
+  padding:.24rem .7rem;
+  font-size:.75rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  color:#cfe9e7;
+  white-space:nowrap;
+  animation:pillGlow 8s linear infinite;
+}
+.p1{animation-delay:0s}
+.p2{animation-delay:1.3s}
+.p3{animation-delay:2.6s}
+.p4{animation-delay:3.9s}
+@keyframes pillGlow{
+  0%{background:rgba(34,211,166,.32);border-color:#22d3a6;color:#fff;transform:scale(1.04)}
+  16%{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);color:#cfe9e7;transform:scale(1)}
+  100%{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);color:#cfe9e7;transform:scale(1)}
+}
+.a-muscle{min-width:11rem;flex:1 1 11rem;background:rgba(255,255,255,.07);border:1px solid rgba(34,211,166,.35);border-radius:.55rem;padding:.5rem .75rem}
+.a-muscle .lbl{display:block;font-size:.72rem;color:#a9d8d4;letter-spacing:.4px;text-transform:uppercase}
+.bar-track{
+  width:100%;height:.95rem;background:rgba(255,255,255,.13);
+  border-radius:999px;overflow:hidden;margin:.35rem 0;
+}
+.bar-fill{
+  height:100%;width:100%;border-radius:999px;background:#22d3a6;
+  animation:atrophy 8s ease-in-out infinite;
+}
+@keyframes atrophy{
+  0%{width:100%;background:#22d3a6;opacity:1}
+  10%{width:100%;background:#22d3a6;opacity:1}
+  40%{width:80%;background:#f59e0b;opacity:1}
+  65%{width:55%;background:#ef4444;opacity:1}
+  90%{width:55%;background:#ef4444;opacity:1}
+  100%{width:55%;background:#ef4444;opacity:.15}
+}
+.anim-caption{
+  margin:.7rem 0 0;font-size:.75rem;color:#9ec9c5;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .ecg path,.a-pill,.bar-fill{animation:none !important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- Cards / details ---------- */
+details.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-left:5px solid var(--teal);
+  border-radius:var(--radius);
+  margin:0 0 .75rem;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+details.card > summary{
+  cursor:pointer;
+  list-style:none;
+  padding:.7rem .95rem;
+  font-weight:650;
+  font-size:1.02rem;
+  color:var(--teal-d);
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  background:linear-gradient(90deg,#f1f8f7,#ffffff);
+  user-select:none;
+  scroll-margin-top:5rem;
+}
+details.card > summary::-webkit-details-marker{display:none}
+details.card > summary::before{
+  content:"▸";
+  display:inline-block;
+  color:var(--teal);
+  font-size:.95rem;
+  transition:transform .2s ease;
+  flex:0 0 auto;
+}
+details.card[open] > summary::before{transform:rotate(90deg)}
+details.card > summary:hover{background:linear-gradient(90deg,#e6f4f2,#ffffff)}
+.card-body{padding:.4rem 1rem 1rem;font-size:.92rem}
+.card-body > :first-child{margin-top:.4rem}
+
+/* ---------- Typography inside cards ---------- */
+h3{
+  font-size:.95rem;
+  margin:1rem 0 .35rem;
+  color:var(--teal-d);
+  letter-spacing:.15px;
+}
+h4{
+  font-size:.88rem;
+  margin:.8rem 0 .25rem;
+  color:var(--cyan);
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+p{margin:.45rem 0}
+ul,ol{margin:.4rem 0 .6rem;padding-left:1.15rem}
+li{margin:.22rem 0}
+strong{color:#0b2b33}
+code{
+  background:#eef4f7;border:1px solid var(--line);
+  padding:.05rem .3rem;border-radius:.25rem;font-size:.85em;
+}
+
+/* ---------- Key point boxes ---------- */
+.kp{
+  border-radius:.5rem;
+  padding:.55rem .8rem;
+  margin:.6rem 0;
+  font-size:.88rem;
+  border-left:4px solid;
+}
+.kp.teal{background:var(--teal-l);border-color:var(--teal)}
+.kp.amber{background:var(--amber-l);border-color:var(--amber)}
+.kp.red{background:var(--red-l);border-color:var(--red)}
+.kp.green{background:var(--green-l);border-color:var(--green)}
+.kp.purple{background:var(--purple-l);border-color:var(--purple)}
+.kp b{color:#0b2b33}
+
+/* ---------- Tables ---------- */
+.table-scroll{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid var(--line);
+  border-radius:.5rem;
+  margin:.7rem 0;
+}
+table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:34rem;
+  font-size:.85rem;
+  background:#fff;
+}
+caption{
+  caption-side:top;
+  text-align:left;
+  font-size:.78rem;
+  color:var(--ink-soft);
+  padding:.4rem .6rem .1rem;
+}
+th,td{
+  border-bottom:1px solid var(--line);
+  padding:.5rem .6rem;
+  text-align:left;
+  vertical-align:top;
+}
+thead th{
+  background:#0d6e6e;
+  color:#fff;
+  font-weight:600;
+  position:sticky;top:0;
+  font-size:.82rem;
+  letter-spacing:.2px;
+}
+tbody tr:nth-child(even){background:#f7fbfb}
+tbody tr:hover{background:#eef7f6}
+
+/* ---------- Pathway diagram ---------- */
+.pathway{
+  background:#f7fbfb;
+  border:1px solid var(--line);
+  border-radius:.6rem;
+  padding:.9rem .8rem;
+  margin:.8rem 0;
+}
+.pw-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  justify-content:center;
+}
+.pw-box{
+  flex:1 1 9rem;
+  min-width:8rem;
+  max-width:15rem;
+  text-align:center;
+  font-size:.78rem;
+  font-weight:600;
+  padding:.5rem .55rem;
+  border-radius:.45rem;
+  border:1.5px solid;
+  line-height:1.3;
+}
+.pw-box small{display:block;font-weight:400;font-size:.68rem;opacity:.85;margin-top:.15rem}
+.pw-trigger{background:var(--red-l);border-color:#e9a4a4;color:#7f1d1d}
+.pw-med{background:var(--amber-l);border-color:#e7bd85;color:#7c3d06}
+.pw-eff{background:var(--purple-l);border-color:#bda6f0;color:#4c1d95}
+.pw-out{background:#e0f2f7;border-color:#93c9dc;color:#0b4a5c}
+.pw-final{
+  background:linear-gradient(135deg,#083f3f,#0d6e6e);
+  border-color:#0a5a5a;color:#ffffff;font-size:.9rem;letter-spacing:.5px;
+  flex:1 1 14rem;max-width:24rem;
+}
+.pw-arrow{
+  text-align:center;
+  color:#0d6e6e;
+  font-size:.85rem;
+  line-height:1;
+  margin:.22rem 0;
+  opacity:.6;
+}
+
+/* ---------- Reference / highlight ---------- */
+mark.hl{
+  background:var(--hl);
+  color:var(--hl-ink);
+  padding:.02em .12em;
+  border-radius:.2rem;
+  box-shadow:0 0 0 1px rgba(180,140,0,.35);
+}
+.refs{font-size:.82rem;color:var(--ink-soft)}
+.refs li{margin:.45rem 0}
+.refs a{color:var(--cyan);word-break:break-word}
+.footer-note{
+  margin-top:1.4rem;font-size:.75rem;color:var(--ink-soft);
+  border-top:1px solid var(--line);padding-top:.7rem;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width:520px){
+  .site-header h1{font-size:1.28rem}
+  .a-arrow{display:none}
+  .anim-row{flex-direction:column;align-items:stretch}
+  .a-col{width:100%}
+  .a-pill{white-space:normal;text-align:center}
+  .a-node,.a-muscle{width:100%}
+  main{padding:1rem .6rem 2.5rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>ICU-Acquired Weakness</h1>
+  <p class="sub">Bedside quick reference for anaesthetists &amp; intensivists — pathophysiology, risk factors, diagnosis and management.</p>
+  <span class="badge">Collapsible · Searchable · Evidence-based</span>
+  <svg class="ecg" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,30 H180 l14,-20 l11,40 l11,-28 l9,8 H480 l14,-20 l11,40 l11,-28 l9,8 H780 l14,-20 l11,40 l11,-28 l9,8 H1200"/>
+  </svg>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar" role="toolbar" aria-label="Reference controls">
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search the reference… (e.g. MRC, PENT, protein, sepsis)" aria-label="Search the reference" autocomplete="off">
+    <span class="count" id="count" aria-live="polite"></span>
+  </div>
+  <div class="btn-group">
+    <button class="tb primary" id="expandAll" type="button">Expand all</button>
+    <button class="tb" id="collapseAll" type="button">Collapse all</button>
+  </div>
+  <div class="btn-group" aria-label="Text size">
+    <button class="tb" id="fontDown" type="button" title="Decrease text size">A−</button>
+    <button class="tb" id="fontReset" type="button" title="Reset text size">A</button>
+    <button class="tb" id="fontUp" type="button" title="Increase text size">A+</button>
+  </div>
+</div>
+
+<!-- ================= CONTENT ================= -->
+<main id="content">
+
+  <!-- At a glance -->
+  <div class="glance">
+    <div class="glance-item"><span class="num">25–70%</span><span class="lbl">Incidence in the critically ill (highest in surgical ICU)</span></div>
+    <div class="glance-item"><span class="num">~2% / day</span><span class="lbl">Muscle mass lost during critical illness</span></div>
+    <div class="glance-item"><span class="num">&lt; 48 / 60</span><span class="lbl">MRC sum score that defines ICU-AW</span></div>
+    <div class="glance-item"><span class="num">1.2–1.5 g/kg/d</span><span class="lbl">Recommended protein intake</span></div>
+  </div>
+
+  <!-- Bottom line -->
+  <div class="bottomline">
+    <h2>Bottom line — the 60-second version</h2>
+    <ul>
+      <li><strong>What it is:</strong> new, symmetrical, predominantly proximal limb weakness in a critically ill patient with no cause other than the critical illness itself. Facial muscles are typically spared; tendon reflexes are reduced; the diaphragm may be involved.</li>
+      <li><strong>Subtypes:</strong> critical illness polyneuropathy (CIP), critical illness myopathy (CIM), or both (CINM) — collectively “CRIMYNE”.</li>
+      <li><strong>Diagnose</strong> with the MRC sum score (&lt;48/60) if the patient is awake, cooperative and not sedated. If not, use the peroneal nerve test (PENT) ± neuromuscular ultrasound (NMUS).</li>
+      <li><strong>No specific drug works.</strong> Prevention is everything: treat sepsis, shorten ventilation/ICU stay, early mobilization, glycaemic control, avoid over-sedation and unnecessary neuromuscular blockade/steroids, and feed sensibly (EN within 24–48 h, protein 1.2–1.5 g/kg/day; caution with high early protein in sepsis).</li>
+      <li><strong>Mobilization + nutrition together</strong> — neither alone is sufficient.</li>
+    </ul>
+  </div>
+
+  <!-- Animation -->
+  <div class="anim" aria-label="Animated summary of ICU-acquired weakness pathogenesis">
+    <h2>How it happens — animated overview</h2>
+    <div class="anim-row">
+      <div class="a-node a-trigger">
+        <strong>Critical illness</strong>
+        <span>sepsis · immobility · ventilation</span>
+      </div>
+      <div class="a-arrow" aria-hidden="true">→</div>
+      <div class="a-col">
+        <div class="a-pill p1">↑ TNF-α, IL-1β, IL-6, TGF-β</div>
+        <div class="a-pill p2">↓ IGF-1 / Akt → ↑ FoxO</div>
+        <div class="a-pill p3">↑ Ubiquitin–proteasome &amp; autophagy</div>
+        <div class="a-pill p4">↑ ROS · mitochondrial failure · ischaemia</div>
+      </div>
+      <div class="a-arrow" aria-hidden="true">→</div>
+      <div class="a-node a-muscle">
+        <span class="lbl">Muscle mass</span>
+        <div class="bar-track"><div class="bar-fill"></div></div>
+        <span class="lbl">Progressive weakness</span>
+      </div>
+    </div>
+    <p class="anim-caption">Pathways light up in sequence; muscle mass falls over days. Loop repeats automatically.</p>
+  </div>
+
+  <!-- ============ 1. OVERVIEW ============ -->
+  <details class="card" open>
+    <summary>1 · Overview &amp; Epidemiology</summary>
+    <div class="card-body">
+      <p><strong>Definition:</strong> ICU-acquired weakness (ICU-AW) is a clinically relevant muscle weakness that appears in patients with critical illness and has <em>no underlying cause other than the critical illness itself</em>. It is a medium- and long-term complication that increases morbidity, mortality and healthcare costs.</p>
+
+      <h3>Clinical picture</h3>
+      <ul>
+        <li>Symmetrical, predominantly <strong>proximal limb weakness</strong>.</li>
+        <li><strong>Facial muscles typically spared</strong>; osteotendinous reflexes reduced.</li>
+        <li>Respiratory muscles and the <strong>diaphragm</strong> may be affected → difficult weaning.</li>
+        <li>Onset <em>follows</em> the critical illness (unlike Guillain-Barré syndrome, which precedes it).</li>
+      </ul>
+
+      <h3>Numbers you should know</h3>
+      <ul>
+        <li>~<strong>20 million</strong> ICU admissions worldwide per year.</li>
+        <li>ICU-AW incidence ~<strong>25–30%</strong> overall (≈3–6 million patients/year); up to <strong>50–70%</strong> in surgical ICU cohorts.</li>
+        <li>Prevalence in the critically ill can reach <strong>50%</strong>, with up to <strong>2% of muscle mass lost per day</strong>.</li>
+        <li>During COVID-19, muscle dysfunction and reduced mobility were more prevalent and could persist <strong>up to 6 months</strong> after discharge.</li>
+        <li>ICU-AW significantly increases ICU mortality — most patients die of irreversible (usually septic) shock.</li>
+      </ul>
+
+      <h3>Subtypes</h3>
+      <ul>
+        <li><strong>CIP</strong> — critical illness polyneuropathy: axonal damage on electrophysiology.</li>
+        <li><strong>CIM</strong> — critical illness myopathy: muscle damage on biopsy/electrophysiology.</li>
+        <li><strong>CINM</strong> — critical illness neuromyopathy: both.</li>
+        <li>Umbrella term for the acquired neuromuscular diseases of the ICU: <strong>CRIMYNE</strong> (critical illness myopathy and/or neuropathy).</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 2. RISK FACTORS ============ -->
+  <details class="card">
+    <summary>2 · Risk Factors</summary>
+    <div class="card-body">
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 1 — Risk factors for ICU-AW</caption>
+          <thead>
+            <tr><th scope="col">Modifiable</th><th scope="col">Non-modifiable</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hyperglycaemia</td>
+              <td>Premorbid health status</td>
+            </tr>
+            <tr>
+              <td>Drugs (neuromuscular blocking agents, corticosteroids)</td>
+              <td>Multiple organ failure</td>
+            </tr>
+            <tr>
+              <td>Parenteral nutrition</td>
+              <td>Sepsis and septic shock</td>
+            </tr>
+            <tr>
+              <td>Immobilization</td>
+              <td>Mechanical ventilation</td>
+            </tr>
+            <tr>
+              <td>High lactate level</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>2.1 Premorbid health status</h3>
+      <ul>
+        <li>Incidence of ICU-AW <strong>increases with age</strong>; frailty prolongs ICU stay and worsens severity and mortality.</li>
+        <li>Frailty is closely linked to <strong>sarcopenia</strong>, which further amplifies the complication spiral.</li>
+        <li>Sex: no consensus — some studies identify female sex as an independent risk factor, others find no significant difference.</li>
+        <li><strong>Obesity appears protective</strong> — reduced muscle mass loss via increased fatty acid and glycerol metabolism.</li>
+      </ul>
+
+      <h3>2.2 Multiple organ failure (MOF)</h3>
+      <ul>
+        <li>Long regarded as a crucial risk factor; usually caused by a septic state in ICU patients.</li>
+        <li>Weakness also complicates MOF from non-septic causes (acute pancreatitis, trauma, cardiac arrest).</li>
+        <li>Higher <strong>APACHE II</strong> and <strong>SOFA</strong> scores are seen in patients who develop ICU-AW.</li>
+        <li>ICU-AW and MOF exacerbate each other; MOF (usually from irreversible septic shock) is the predominant cause of death in ICU-AW patients.</li>
+      </ul>
+
+      <h3>2.3 Sepsis and septic shock</h3>
+      <ul>
+        <li>Up to <strong>50% of septic patients</strong> require intensive care; sepsis kills up to one third of those affected.</li>
+        <li>Sepsis activates specific mechanisms: the main cause of muscle loss is an <strong>imbalance between increased protein degradation and decreased synthesis</strong> of new muscle protein.</li>
+        <li>Septic patients frequently carry nearly all other ICU-AW risk factors simultaneously.</li>
+      </ul>
+
+      <h3>2.4 Immobilization</h3>
+      <ul>
+        <li>A well-established risk factor. Muscle atrophy develops acutely from reduced use, or chronically with ageing.</li>
+        <li>In acute lung injury survivors, <strong>reduced mobility during hospitalization</strong> predicted persistent muscle weakness at <strong>24 months</strong>.</li>
+        <li>Prolonged ICU stay compounds it with infection, potentially myotoxic drugs and mechanical ventilation.</li>
+      </ul>
+
+      <h3>2.5 Mechanical ventilation</h3>
+      <ul>
+        <li>One of the main risk factors; risk <strong>increases with duration</strong>, though even a few hours may act as a trigger.</li>
+        <li>Mechanism is multifactorial: immobilization, sedatives and muscle relaxants, malnutrition, hypoxia.</li>
+        <li>Prolonged ventilation is associated with <strong>diaphragmatic weakness and atrophy</strong>, complicating weaning.</li>
+      </ul>
+
+      <h3>2.6 Glycaemic control</h3>
+      <ul>
+        <li>Poor glycaemic control in the acute phase is associated with polyneuropathy, muscle weakness and worse prognosis.</li>
+        <li>Hyperglycaemia alters neuronal excitability, is toxic to neurons and impairs nerve microcirculation.</li>
+        <li>Good glucose control (insulin therapy ± non-pharmacological approaches such as early mobilization) improves outcomes and reduces ICU-AW incidence.</li>
+      </ul>
+
+      <h3>2.7 Drugs</h3>
+      <h4>Neuromuscular blocking agents (NMBA)</h4>
+      <ul>
+        <li>Traditionally considered a risk factor, but data are inconsistent.</li>
+        <li>2016 meta-analysis (2254 patients): only a <strong>modest association</strong>, significantly biased by inclusion of critically ill/septic shock patients.</li>
+        <li>2023 meta-analysis: potential association, but evidence remains <strong>weak</strong> (heterogeneous observational studies).</li>
+        <li>Older multicentre ARDS study: NMBA <strong>improved mortality without increasing</strong> muscle weakness risk.</li>
+        <li>Isolating the NMBA contribution from other coexisting risk factors is difficult.</li>
+      </ul>
+      <h4>Glucocorticoids</h4>
+      <ul>
+        <li>Increase myopathy risk through enhanced muscle catabolism, but the role in ICU neuromyopathy is <strong>unclear and controversial</strong>.</li>
+        <li>A 2018 meta-analysis found a strong correlation and recommended careful use; studies of <strong>low steroid doses do not confirm</strong> the association.</li>
+        <li>Because steroids are key in ARDS and septic shock, the benefit (controlling systemic inflammation, reducing ventilation duration) may outweigh uncertain neuromuscular harm.</li>
+      </ul>
+
+      <h3>2.8 High lactate level</h3>
+      <ul>
+        <li>Lactate is a crucial biomarker in the critically ill; both the absolute value and its <strong>kinetics</strong> indicate prognosis and treatment response.</li>
+        <li>A 2021 observational study (n = 68) showed <strong>hyperlactataemia (&gt;2 mmol/L) is an independent risk factor</strong> for ICU-AW.</li>
+      </ul>
+
+      <h3>2.9 Parenteral nutrition</h3>
+      <ul>
+        <li>Prolonged and early parenteral nutrition <strong>exacerbates multi-organ dysfunction</strong> and prolongs ICU stay, thereby increasing ICU-AW risk.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 3. PATHOPHYSIOLOGY ============ -->
+  <details class="card">
+    <summary>3 · Pathophysiology</summary>
+    <div class="card-body">
+      <p>The pathophysiology is <strong>multifactorial</strong>: systemic inflammation, bioenergetic failure, oxidative stress and microvascular changes all contribute to muscle <em>and</em> nerve dysfunction. The key factor is an <strong>imbalance between protein synthesis and muscle protein degradation</strong>.</p>
+
+      <!-- Simplified pathway diagram -->
+      <div class="pathway" role="img" aria-label="Simplified flow diagram of ICU-acquired weakness pathogenesis">
+        <div class="pw-row">
+          <div class="pw-box pw-trigger">Prolonged immobilization<small>disuse · bed rest · sedation</small></div>
+          <div class="pw-box pw-trigger">Systemic inflammation<small>sepsis · MOF · critical illness</small></div>
+        </div>
+        <div class="pw-arrow">▼ ▼</div>
+        <div class="pw-row">
+          <div class="pw-box pw-med">↓ IGF-1/Akt → ↑ FoxO</div>
+          <div class="pw-box pw-med">TNF-α, IL-1β, IL-6, TGF-β</div>
+          <div class="pw-box pw-med">Oxidative stress (ROS)</div>
+          <div class="pw-box pw-med">Endothelial dysfunction</div>
+        </div>
+        <div class="pw-arrow">▼ ▼ ▼ ▼</div>
+        <div class="pw-row">
+          <div class="pw-box pw-eff">Ubiquitin–proteasome system ↑</div>
+          <div class="pw-box pw-eff">Dysregulated autophagy / mitophagy</div>
+          <div class="pw-box pw-eff">Mitochondrial dysfunction · ↓ ATP</div>
+        </div>
+        <div class="pw-arrow">▼ ▼ ▼</div>
+        <div class="pw-row">
+          <div class="pw-box pw-out">Proteolysis</div>
+          <div class="pw-box pw-out">Muscle ischaemia</div>
+          <div class="pw-box pw-out">Axonal neuropathy</div>
+        </div>
+        <div class="pw-arrow">▼</div>
+        <div class="pw-row">
+          <div class="pw-box pw-final">ICU-ACQUIRED WEAKNESS</div>
+        </div>
+      </div>
+
+      <h3>3.1 Protein degradation systems</h3>
+      <ul>
+        <li><strong>Ubiquitin–proteasome system (UPS):</strong> the proteasome recognises and degrades proteins tagged with ubiquitin by E3 ubiquitin-protein ligases. Two of these — <strong>MAFbx (Atrogin-1)</strong> and <strong>MuRF1</strong> — are upregulated in muscle atrophy and are central mediators of protein breakdown.</li>
+        <li><strong>Autophagy–lysosome system:</strong> degrades cellular components during stress or nutrient deficiency via autophagolysosomes. Skeletal muscle is highly active. <strong>Mitophagy</strong> (selective autophagy of mitochondria) is involved in remodelling of atrophic muscle; uncontrolled/dysregulated action contributes to protein degradation in atrophy.</li>
+      </ul>
+
+      <h3>3.2 Systemic inflammation and cytokine dysregulation</h3>
+      <ul>
+        <li>Critical illness — particularly sepsis — triggers a widespread inflammatory response with <strong>TNF-α, IL-1β and IL-6</strong>.</li>
+        <li>These cytokines drive muscle catabolism by <strong>stimulating the UPS</strong>, accelerating protein degradation.</li>
+        <li>They also impair mitochondrial function, promoting oxidative stress and further atrophy.</li>
+        <li>Activation of the <strong>TGF-β/MAPK pathway</strong> together with the UPS may also contribute to muscle loss.</li>
+      </ul>
+
+      <h3>3.3 Oxidative stress and mitochondrial dysfunction</h3>
+      <ul>
+        <li>Excessive <strong>reactive oxygen species (ROS)</strong> production with reduced antioxidant defences.</li>
+        <li>ROS damage proteins, lipids and mitochondrial DNA → exacerbates wasting.</li>
+        <li>Oxidative stress from muscle-specific mutant superoxide dismutase causes atrophy primarily through <strong>autophagy activation</strong>.</li>
+        <li>Impaired <strong>ATP production</strong> → bioenergetic failure → impaired contractility and repair.</li>
+      </ul>
+
+      <h3>3.4 Microvascular and endothelial dysfunction</h3>
+      <ul>
+        <li>Endothelial dysfunction reduces muscle blood flow → <strong>ischaemia and damage</strong>.</li>
+        <li>Capillary leak and microvascular thrombosis impair oxygen and nutrient delivery.</li>
+        <li>Inflammatory mediators and oxidative stress disrupt endothelial nitric oxide production, impairing vasodilation and microcirculation.</li>
+      </ul>
+
+      <h3>3.5 Immobilization and muscle disuse</h3>
+      <ul>
+        <li>Accelerates atrophy by <strong>enhancing proteolysis and reducing protein synthesis</strong>.</li>
+        <li>Rapid loss of <strong>type II (fast-twitch) fibres</strong>, which are particularly vulnerable — further impairing strength.</li>
+        <li><strong>IGF-1–Akt pathway:</strong> Akt (protein kinase B) responds to IGF-1 and regulates both synthesis and degradation. Akt promotes synthesis via <strong>mTOR</strong> and inhibits degradation by suppressing <strong>FoxO</strong>. When FoxO is active it drives expression of muscle-specific ubiquitin ligases (<strong>Atrogin-1, MuRF1</strong>). Disuse → ↓ IGF-1/Akt → ↑ FoxO → ↑ proteolysis.</li>
+      </ul>
+
+      <h3>3.6 Neuromuscular involvement</h3>
+      <ul>
+        <li>Peripheral nerve dysfunction leads to <strong>CIP</strong>, driven by inflammation, oxidative stress and metabolic disturbance.</li>
+        <li><strong>Axonal degeneration</strong> of motor and sensory fibres is commonly observed.</li>
+        <li>Electrophysiology shows reduced nerve conduction velocities and denervation potentials.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 4. DIAGNOSIS ============ -->
+  <details class="card">
+    <summary>4 · Diagnosis</summary>
+    <div class="card-body">
+      <p>Diagnosis of ICU-AW is <strong>primarily clinical</strong>: symmetrical, progressive muscle weakness affecting all four limbs, typically <strong>sparing the facial muscles</strong>. The diaphragm is often involved, complicating weaning. Unlike Guillain-Barré syndrome, onset <strong>follows</strong> the critical illness rather than preceding it.</p>
+
+      <h3>4.1 Medical Research Council (MRC) scale</h3>
+      <ul>
+        <li>The first step: assess muscle strength in patients who are <strong>awake and cooperative</strong>.</li>
+        <li>Manual muscle testing across <strong>12 muscle groups</strong> (6 bilateral), each scored 0–5, total possible <strong>60</strong>.</li>
+        <li>A sum score <strong>&lt; 48/60 is diagnostic of ICU-AW</strong>.</li>
+        <li><strong>Limitation:</strong> reliability depends on consciousness, cooperation and the absence of sedation.</li>
+      </ul>
+
+      <h3>4.2 Electrophysiological studies</h3>
+      <ul>
+        <li>Used primarily to distinguish <strong>CIP from CIM</strong>. Nerve conduction studies (NCS) and electromyography (EMG) are valuable adjuncts.</li>
+        <li><strong>NCS:</strong> measures compound motor action potentials (CMAPs) and sensory nerve action potentials (SNAPs) — motor and sensory nerve function respectively.</li>
+        <li><strong>EMG:</strong> assesses motor unit potential (MUP) amplitude, duration and fibre recruitment patterns; also spontaneous activity (fibrillation potentials, sharp waves).</li>
+        <li><strong>PENT (peroneal nerve test):</strong> a simple, standardised electrophysiological method with good accuracy, usable regardless of patient cooperation.</li>
+      </ul>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 2 — Electrophysiological diagnosis of CIP, CIM and CINM</caption>
+          <thead>
+            <tr>
+              <th scope="col">Condition</th>
+              <th scope="col">Definition</th>
+              <th scope="col">NCS / ENG</th>
+              <th scope="col">EMG</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>CIP</strong><br><small>critical illness polyneuropathy</small></td>
+              <td>Polyneuropathy with sensory and motor axonal damage — reduced nerve responsiveness and axonal loss, myelin intact.</td>
+              <td>↓ CMAP <em>and</em> ↓ SNAP amplitudes; normal nerve conduction velocity.</td>
+              <td>Spontaneous fibrillation potentials, sharp waves; long-duration, high-amplitude <strong>polyphasic</strong> MUP.</td>
+            </tr>
+            <tr>
+              <td><strong>CIM</strong><br><small>critical illness myopathy</small></td>
+              <td>Acute primary myopathy — reduced muscle membrane excitability, loss of myosin filaments, fibre atrophy, tissue necrosis.</td>
+              <td>↓ CMAP amplitudes; <strong>normal SNAP</strong>; normal conduction velocities.</td>
+              <td>Spontaneous fibrillation potentials, sharp waves; <strong>short-duration, low-amplitude</strong> MUP with early recruitment.</td>
+            </tr>
+            <tr>
+              <td><strong>CINM</strong><br><small>critical illness neuromyopathy</small></td>
+              <td>Combination of CIP and CIM.</td>
+              <td>↓ CMAP <em>and</em> ↓ SNAP amplitudes; normal conduction velocities.</td>
+              <td>Combination of CIP and CIM features.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="refs"><strong>Abbreviations:</strong> CIP = critical illness polyneuropathy; CIM = critical illness myopathy; CINM = critical illness neuromyopathy; CMAP = compound motor action potential; SNAP = sensory nerve action potential; MUP = motor unit potential.</p>
+
+      <div class="kp teal">
+        <b>Memory hook:</b> <strong>SNAP is spared in CIM</strong> (myopathy = muscle only). If SNAPs are reduced, think <strong>CIP</strong> (or CINM).
+      </div>
+
+      <h3>4.3 Neuromuscular ultrasound (NMUS)</h3>
+      <ul>
+        <li>Increasingly studied as a non-invasive support to clinical diagnosis — <strong>no reference standard established yet</strong>.</li>
+        <li><strong>Muscle:</strong> assesses mass reduction (quantity) and increased echogenicity (quality). Target muscles: biceps brachii, quadriceps femoris, tibialis anterior.</li>
+        <li><strong>Nerve:</strong> transverse-section echogenicity (typically reduced) and cross-sectional area help estimate polyneuropathy, but <em>do not differentiate its type</em>.</li>
+        <li><strong>Diaphragm:</strong> thickness at end-expiration and end-inspiration → <strong>thickening fraction (TF)</strong>, predicting ventilatory response and weaning success.</li>
+      </ul>
+
+      <h3>4.4 Screening with PENT</h3>
+      <ul>
+        <li>Reduced peroneal CMAP amplitude has a <strong>sensitivity of 100%</strong> and a <strong>specificity of 85.2%</strong> for identifying CIP or CIM versus standard electrophysiological studies.</li>
+        <li>In septic shock patients, PENT predicted these conditions effectively and was paired with <strong>sural SNAP</strong> measurement to differentiate CIM from CIP.</li>
+        <li>Allows <strong>early, simple detection regardless of consciousness or cooperation</strong>; gains value when combined with NMUS.</li>
+        <li>In cooperative patients, the MRC scale remains a valid alternative.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 5. MANAGEMENT ============ -->
+  <details class="card">
+    <summary>5 · Management &amp; Therapeutic Strategies</summary>
+    <div class="card-body">
+      <p>Management requires a comprehensive, 360-degree, <strong>multidisciplinary</strong> approach and can be divided into three fundamental phases — which are not necessarily sequential and often occur simultaneously: <strong>prevention, early recognition and effective treatment</strong>.</p>
+
+      <h3>5.1 Prevention</h3>
+      <ul>
+        <li><strong>Comprehensive assessment</strong> of patients, particularly geriatric/frail patients — functional assessment predicts in-hospital death risk and may be extended to all critically ill patients.</li>
+        <li><strong>Treat sepsis early and effectively</strong> to minimise multi-organ dysfunction and prevent prolonged ICU stay; reducing the cytokine storm may mitigate neuromuscular harm.</li>
+        <li><strong>Reduce ICU length of stay</strong> — less immobility and fewer nosocomial infections.</li>
+        <li><strong>Early mobilization</strong> — a fundamental preventive <em>and</em> therapeutic strategy that preserves muscle strength and function.</li>
+        <li><strong>Reduce duration of mechanical ventilation</strong> — protects the diaphragm, speeds recovery and lowers ICU-AW risk.</li>
+        <li><strong>Glycaemic control</strong> — insulin therapy benefits both the central and peripheral nervous systems and reduces ventilator dependence. Early mobilization also promotes euglycaemia and reduces insulin resistance, offering a valid alternative to insulin therapy.</li>
+        <li><strong>Pharmacological prudence</strong> — avoid overtreatment; individualise dose and duration of corticosteroids and neuromuscular blocking agents.</li>
+      </ul>
+
+      <div class="kp amber">
+        <b>Practical tip:</b> treat the patient's <strong>metabolic status</strong> as a priority — hyperglycaemia is one of the most extensively studied and frequently observed modifiable risk factors.
+      </div>
+
+      <h3>5.2 Early recognition</h3>
+      <ul>
+        <li>Prompt recognition allows early intervention to halt the underlying pathogenic mechanisms. <strong>No gold standard exists</strong>, which complicates identification.</li>
+        <li>Validated methods: <strong>MRC scale</strong> (requires active participation — a challenge in critical care), plus <strong>EMG/NCS</strong> (complex to perform).</li>
+        <li><strong>PENT</strong> is effective as a screening method — early and straightforward, independent of consciousness or cooperation.</li>
+        <li>Combine with <strong>NMUS</strong> for added diagnostic value; simple and quick to perform.</li>
+      </ul>
+
+      <h3>5.3 Effective treatment</h3>
+      <h4>Mobilization</h4>
+      <ul>
+        <li>Initiate physical therapy and encourage movement <strong>as soon as medically feasible</strong>.</li>
+        <li>Improves glycaemic and metabolic compensation, respiratory muscle strength and <strong>ventilator-free days</strong>.</li>
+        <li>In septic patients ventilated &gt;48 h and in ICU &gt;4 days, adding <strong>functional electrical stimulation (FES)-cycling</strong> to traditional physiotherapy improved muscle performance on awakening from sedation and reduced delirium incidence.</li>
+      </ul>
+
+      <h4>Nutrition</h4>
+      <ul>
+        <li>Adequate protein and calorie intake is crucial to preserve muscle mass and support recovery.</li>
+        <li>Avoid both <strong>complete starvation and overfeeding</strong> in the early phase — both are harmful.</li>
+        <li>Guidelines recommend <strong>protein 1.2–1.5 g/kg/day</strong>, associated with reduced mortality; some studies suggest &gt;1.5 g/kg/day.</li>
+        <li><strong>Caution with high early protein</strong> (enteral or parenteral): increased intake has been linked to prolonged ICU stay, higher mortality and even reduced muscle mass — possibly through <strong>suppression of beneficial autophagy</strong> (which clears damaged cells and, in sepsis, intracellular bacterial products).</li>
+        <li>In a 2014 study, high protein intake (&gt;1.2 g/kg) as early as day 4 was associated with lower hospital mortality — but <strong>only in non-septic, non-overfed patients</strong>. In sepsis the picture is more complex; further research is needed.</li>
+        <li>In the absence of contraindications: start <strong>enteral nutrition within 24–48 h at a low dose</strong>, gradually escalating to meet rising metabolic demands for tissue repair.</li>
+      </ul>
+
+      <div class="kp green">
+        <b>Key principle:</b> mobilization and nutrition are two cornerstones — <strong>one without the other is not sufficient</strong>. Only proper integration of both improves muscle function. Prolonged immobilization reduces muscle protein synthesis after protein ingestion (<em>anabolic resistance</em>), a mechanism underlying disuse atrophy.
+      </div>
+
+      <h4>Emerging therapies</h4>
+      <ul>
+        <li><strong>Beta-hydroxybutyrate (3-HB):</strong> produced from fatty acid metabolism during ketogenesis; parenteral supplementation showed muscle protection in animal models — a potential preventive strategy.</li>
+        <li><strong>Targeting the ubiquitin–proteasome system</strong> appears promising.</li>
+        <li><strong>IGF-1 analogues selective for muscle Akt</strong> (lacking the cancer-promoting risk of IGF-1) could combat muscle loss — though inhibiting protein degradation may cause accumulation of misfolded proteins.</li>
+      </ul>
+
+      <h3>5.4 Multidisciplinary team</h3>
+      <p>Coordination between <strong>intensivists, physiotherapists, nutritionists and nursing staff</strong> is required to develop and implement individualised care plans.</p>
+    </div>
+  </details>
+
+  <!-- ============ 6. PITFALLS ============ -->
+  <details class="card">
+    <summary>6 · Pitfalls, Caveats &amp; Differential Diagnosis</summary>
+    <div class="card-body">
+      <div class="kp red">
+        <b>Do not miss:</b> Guillain-Barré syndrome (onset <em>before</em> or at ICU admission, ascending, areflexia, albuminocytological dissociation), spinal cord injury, myasthenia gravis, drug-induced myopathy (statins, steroids), rhabdomyolysis, hypophosphataemia/hypomagnesaemia, and prolonged neuromuscular blockade (residual blockade).
+      </div>
+      <ul>
+        <li><strong>Sedation confounds the MRC score.</strong> Do not diagnose ICU-AW in a sedated or delirious patient — use PENT or NMUS instead.</li>
+        <li><strong>NMUS has no gold standard</strong> — treat it as an evolving research tool and an adjunct, not a definitive test.</li>
+        <li><strong>Steroid and NMBA evidence is conflicting.</strong> Do not withhold indicated steroids or NMBA purely to prevent ICU-AW; instead, use the lowest effective dose for the shortest necessary duration.</li>
+        <li><strong>More protein is not automatically better</strong> — early high protein intake in septic patients may be harmful via autophagy suppression.</li>
+        <li><strong>Facial sparing and symmetry</strong> help separate ICU-AW from central and other peripheral lesions.</li>
+        <li><strong>Diaphragm involvement</strong> is easily overlooked and is a common reason for weaning failure — assess diaphragm thickening fraction.</li>
+        <li><strong>MOF is the predominant cause of death</strong> in ICU-AW patients — usually irreversible septic shock.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7. SOURCES ============ -->
+  <details class="card">
+    <summary>7 · Sources &amp; Further Reading</summary>
+    <div class="card-body">
+      <ol class="refs">
+        <li>
+          Petrucci M, Gemma S, Carbone L, Piccioni A, Della Polla DA, Simeoni B, Franceschi F, Covino M.
+          <strong>ICU-Acquired Weakness: From Pathophysiology to Management in Critical Care.</strong>
+          <em>Emerg. Care Med.</em> 2025;2(4):4. Published 6 January 2025.
+          doi: <a href="https://doi.org/10.3390/ecm2010004" target="_blank" rel="noopener">10.3390/ecm2010004</a>
+          <br><span style="font-size:.95em">(Source PDF supplied for this quick reference — licensed CC BY 4.0, MDPI.)</span>
+        </li>
+        <li>
+          Deranged Physiology — <strong>ICU-acquired weakness.</strong>
+          <a href="https://derangedphysiology.com/main/required-reading/neurological-intensive-care/Chapter-209/icu-acquired-weakness" target="_blank" rel="noopener">https://derangedphysiology.com/main/required-reading/neurological-intensive-care/Chapter-209/icu-acquired-weakness</a>
+        </li>
+        <li>
+          Fan E, Cheek F, Chlan L, et al. <strong>An Official American Thoracic Society Clinical Practice Guideline: The Diagnosis of Intensive Care Unit-Acquired Weakness in Adults.</strong> <em>Am J Respir Crit Care Med.</em> 2014;190(12):1437–1446.
+        </li>
+        <li>
+          Latronico N, Nattino G, Guarneri B, et al. <strong>Validation of the peroneal nerve test to diagnose critical illness polyneuropathy and myopathy in the ICU: the multicentre Italian CRIMYNE-2 diagnostic accuracy study.</strong> <em>F1000Research.</em> 2014;3:127.
+        </li>
+        <li>
+          Vanhorebeek I, Latronico N, Van den Berghe G. <strong>ICU-acquired weakness.</strong> <em>Intensive Care Med.</em> 2020;46:637–653.
+        </li>
+        <li>
+          Hermans G, Van den Berghe G. <strong>Clinical review: Intensive care unit acquired weakness.</strong> <em>Crit Care.</em> 2015;19:274.
+        </li>
+      </ol>
+
+      <p class="footer-note">
+        <strong>Disclaimer:</strong> This quick reference is an educational summary for anaesthetists and intensivists, derived from the cited review. It is not a substitute for clinical judgement, local protocols or the full primary literature. Always verify drug doses and nutrition targets against current local guidance.
+      </p>
+    </div>
+  </details>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var contentRoot = document.getElementById('content');
+  var searchInput = document.getElementById('search');
+  var countEl     = document.getElementById('count');
+
+  /* ---------------- Collapse / Expand all ---------------- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    contentRoot.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    contentRoot.querySelectorAll('details').forEach(function (d) { d.open = false; });
+  });
+
+  /* ---------------- Text size ---------------- */
+  var MIN_FS = 12, MAX_FS = 22, DEFAULT_FS = 16, currentFs = DEFAULT_FS;
+
+  function applyFontSize(px) {
+    currentFs = Math.min(MAX_FS, Math.max(MIN_FS, px));
+    document.documentElement.style.fontSize = currentFs + 'px';
+  }
+  document.getElementById('fontUp').addEventListener('click', function () { applyFontSize(currentFs + 1); });
+  document.getElementById('fontDown').addEventListener('click', function () { applyFontSize(currentFs - 1); });
+  document.getElementById('fontReset').addEventListener('click', function () { applyFontSize(DEFAULT_FS); });
+
+  /* ---------------- Search with highlighting ---------------- */
+  var SKIP_TAGS = { SCRIPT: 1, STYLE: 1, MARK: 1, NOSCRIPT: 1, TEXTAREA: 1 };
+
+  function clearHighlights() {
+    var marks = contentRoot.querySelectorAll('mark.hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+  }
+
+  function collectTextNodes() {
+    var walker = document.createTreeWalker(
+      contentRoot,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentNode;
+          if (!p || SKIP_TAGS[p.nodeName]) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      },
+      false
+    );
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    return nodes;
+  }
+
+  function highlight(term) {
+    clearHighlights();
+    if (!term || term.length < 2) { countEl.textContent = ''; return 0; }
+
+    var needle = term.toLowerCase();
+    var nodes = collectTextNodes();
+    var total = 0;
+
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var text = node.nodeValue;
+      var hay = text.toLowerCase();
+      var idx = hay.indexOf(needle);
+      if (idx === -1) continue;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + needle.length);
+        frag.appendChild(mark);
+        total++;
+        last = idx + needle.length;
+        idx = hay.indexOf(needle, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+
+      if (node.parentNode) node.parentNode.replaceChild(frag, node);
+    }
+
+    // Auto-open any collapsed section that contains a match
+    contentRoot.querySelectorAll('details').forEach(function (d) {
+      if (d.querySelector('mark.hl')) d.open = true;
+    });
+
+    countEl.textContent = total === 0
+      ? 'No matches'
+      : total + (total === 1 ? ' match' : ' matches');
+
+    return total;
+  }
+
+  var debounceTimer = null;
+  searchInput.addEventListener('input', function () {
+    var val = searchInput.value.trim();
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () { highlight(val); }, 160);
+  });
+
+  // Enter jumps to the first match
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      var first = contentRoot.querySelector('mark.hl');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      highlight('');
+    }
+  });
+
+  /* ---------------- Keyboard shortcut: "/" focuses search ---------------- */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
