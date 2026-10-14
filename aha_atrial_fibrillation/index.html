@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AF Quick Reference — Anaesthesia &amp; Critical Care | 2023 ACC/AHA/ACCP/HRS Guideline</title>
+<style>
+  :root{
+    --ink:#132029;
+    --ink-soft:#42566a;
+    --bg:#eef2f6;
+    --panel:#ffffff;
+    --line:#d8e1e9;
+    --primary:#a3122f;
+    --primary-2:#7a0d23;
+    --primary-soft:#fdeef1;
+    --accent:#0d6e66;
+    --accent-soft:#e6f4f2;
+    --warn:#8a5300;
+    --warn-soft:#fdf4e6;
+    --danger:#9d1a1a;
+    --danger-soft:#fdecec;
+    --ok:#146c43;
+    --ok-soft:#e9f6ef;
+    --radius:12px;
+    --fs:16px;
+    --shadow:0 1px 2px rgba(16,32,48,.06), 0 6px 20px rgba(16,32,48,.07);
+  }
+  *{box-sizing:border-box}
+  html{
+    font-size:16px;              /* fallback */
+    font-size:var(--fs);         /* dynamic */
+    scroll-behavior:smooth;
+    -webkit-text-size-adjust:100%;
+  }
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.55;
+    font-size:1rem;
+  }
+  h1,h2,h3,h4{line-height:1.25;margin:0}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(135deg,#151a24 0%,#24141c 55%,#3a0f1c 100%);
+    color:#fff;
+    padding:1.4rem 1rem 0.9rem;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+  .hero-text{flex:1 1 340px;min-width:260px}
+  .eyebrow{
+    margin:0 0 .25rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:#ffa8b5;font-weight:700;
+  }
+  .hero h1{margin:0;font-size:clamp(1.5rem,3.6vw,2.2rem);letter-spacing:-.01em}
+  .hero .sub{margin:.45rem 0 0;color:#c8d2dd;font-size:.86rem;max-width:62ch}
+  .ecg-wrap{
+    flex:1 1 340px;min-width:240px;height:78px;border-radius:10px;
+    background:rgba(0,0,0,.28);
+    border:1px solid rgba(255,255,255,.10);
+    overflow:hidden;
+  }
+  #ecg{display:block;width:100%;height:100%}
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:40;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:saturate(180%) blur(8px);
+    -webkit-backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:.55rem 1rem;
+    display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;
+  }
+  .toolbar .inner{max-width:1180px;margin:0 auto;width:100%;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+  .tb-group{display:flex;gap:.4rem;align-items:center}
+  .search{flex:1 1 260px;min-width:200px;position:relative}
+  .search input{
+    width:100%;font:inherit;font-size:.9rem;padding:.48rem .7rem .48rem 2.1rem;
+    border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);
+    outline:none;transition:border-color .15s, box-shadow .15s;
+  }
+  .search input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+  .search::before{
+    content:"";position:absolute;left:.75rem;top:50%;width:14px;height:14px;
+    transform:translateY(-50%);
+    background:no-repeat center/14px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237a8794' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E");
+  }
+  .count{font-size:.76rem;color:var(--ink-soft);white-space:nowrap}
+  button{
+    font:inherit;font-size:.82rem;font-weight:600;
+    padding:.42rem .78rem;border-radius:999px;cursor:pointer;
+    border:1px solid var(--line);background:#fff;color:var(--ink);
+    transition:background .15s, border-color .15s, color .15s, transform .08s;
+  }
+  button:hover:not(:disabled){background:var(--primary-soft);border-color:#e9c3cc;color:var(--primary-2)}
+  button:active:not(:disabled){transform:translateY(1px)}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  button:disabled:hover{background:#fff;border-color:var(--line);color:var(--ink)}
+  button.primary{background:var(--primary);border-color:var(--primary);color:#fff}
+  button.primary:hover:not(:disabled){background:var(--primary-2);border-color:var(--primary-2);color:#fff}
+  #fsReset{min-width:3.4rem;font-variant-numeric:tabular-nums}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1180px;margin:0 auto;padding:1rem 1rem 3rem}
+  .intro{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1rem 1.1rem;margin-bottom:1rem;box-shadow:var(--shadow);
+    font-size:.9rem;color:var(--ink-soft);
+  }
+  .intro strong{color:var(--ink)}
+
+  /* ---------- CARDS / DETAILS ---------- */
+  details.card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:5px solid var(--primary);
+    border-radius:var(--radius);
+    margin-bottom:.7rem;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  details.card > summary{
+    cursor:pointer;list-style:none;
+    padding:.78rem 1rem .78rem 2.4rem;
+    font-weight:700;font-size:1.02rem;color:var(--ink);
+    position:relative;user-select:none;
+    transition:background .15s;
+  }
+  details.card > summary::-webkit-details-marker{display:none}
+  details.card > summary:hover{background:var(--primary-soft)}
+  details.card > summary::before{
+    content:"";position:absolute;left:.95rem;top:50%;
+    width:.5rem;height:.5rem;border-right:2.2px solid var(--primary);
+    border-bottom:2.2px solid var(--primary);
+    transform:translateY(-70%) rotate(-45deg);
+    transition:transform .18s ease;
+  }
+  details.card[open] > summary::before{transform:translateY(-30%) rotate(45deg)}
+  details.card[open] > summary{border-bottom:1px solid var(--line);background:#fafbfc}
+  .num{
+    display:inline-block;min-width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;
+    background:var(--primary);color:#fff;border-radius:6px;font-size:.76rem;font-weight:800;
+    margin-right:.5rem;vertical-align:1px;
+  }
+  .tag{
+    font-size:.66rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+    background:var(--accent-soft);color:var(--accent);border:1px solid #a9d8d3;
+    padding:.1rem .45rem;border-radius:999px;margin-left:.5rem;vertical-align:2px;
+  }
+  .tag.hi{background:var(--primary-soft);color:var(--primary-2);border-color:#efb9c5}
+  .body{padding:.9rem 1.1rem 1.1rem;font-size:.92rem}
+  .body > *:first-child{margin-top:0}
+  .body > *:last-child{margin-bottom:0}
+
+  /* ---------- TEXT ELEMENTS ---------- */
+  h3.sec{
+    font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--primary-2);
+    margin:1.2rem 0 .5rem;padding-bottom:.25rem;border-bottom:1px dashed var(--line);
+  }
+  h3.sec:first-child{margin-top:0}
+  p{margin:.5rem 0}
+  ul,ol{margin:.45rem 0 .7rem;padding-left:1.15rem}
+  li{margin:.28rem 0}
+  .note{
+    background:#f7f9fb;border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:8px;padding:.55rem .75rem;margin:.6rem 0;font-size:.87rem;color:var(--ink-soft);
+  }
+  .note.warn{background:var(--warn-soft);border-left-color:var(--warn);border-color:#eddcc0}
+  .note.danger{background:var(--danger-soft);border-left-color:var(--danger);border-color:#f0c4c4}
+  .note strong{color:var(--ink)}
+  .src{
+    font-size:.76rem;color:#6b7c8d;margin-top:.9rem;padding-top:.5rem;
+    border-top:1px dotted var(--line);font-style:italic;
+  }
+
+  /* ---------- RECOMMENDATION LIST ---------- */
+  ul.recs{list-style:none;padding-left:0;margin:.5rem 0}
+  ul.recs > li{
+    position:relative;padding:.5rem .6rem;margin:.35rem 0;
+    background:#fafbfc;border:1px solid var(--line);border-radius:9px;
+    display:flex;gap:.55rem;align-items:flex-start;flex-wrap:wrap;
+  }
+  .cor{
+    display:inline-block;font-size:.68rem;font-weight:800;padding:.1rem .48rem;border-radius:999px;
+    border:1px solid;white-space:nowrap;letter-spacing:.02em;flex:0 0 auto;margin-top:.1rem;
+  }
+  .c1{background:var(--ok-soft);color:var(--ok);border-color:#9ed3b5}
+  .c2a{background:var(--accent-soft);color:var(--accent);border-color:#9ed3c9}
+  .c2b{background:var(--warn-soft);color:var(--warn);border-color:#e6c893}
+  .c3{background:var(--danger-soft);color:var(--danger);border-color:#e6a6a6}
+  .loe{
+    font-size:.66rem;font-weight:700;color:#6b7c8d;background:#eef2f6;border:1px solid var(--line);
+    padding:.1rem .4rem;border-radius:6px;flex:0 0 auto;margin-top:.1rem;
+  }
+  .rec-text{flex:1 1 260px;min-width:180px}
+
+  /* ---------- TABLES ---------- */
+  .tw{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);border-radius:9px;margin:.6rem 0;
+    background:#fff;
+  }
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:.83rem}
+  caption{
+    caption-side:top;text-align:left;font-size:.75rem;font-weight:800;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--primary-2);padding:.5rem .65rem .35rem;background:#fafbfc;
+    border-bottom:1px solid var(--line);
+  }
+  th,td{padding:.45rem .6rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  thead th{
+    background:#f4f7fa;font-size:.75rem;letter-spacing:.03em;text-transform:uppercase;
+    color:var(--ink-soft);position:sticky;top:0;white-space:nowrap;
+  }
+  tbody tr:nth-child(even){background:#fbfcfd}
+  tbody tr:hover{background:var(--primary-soft)}
+  td.num-cell{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tbl-note{font-size:.75rem;color:#6b7c8d;margin:.25rem 0 .7rem}
+
+  /* ---------- DIAGRAM / FLOW ---------- */
+  .flow{
+    display:flex;flex-direction:column;gap:.45rem;margin:.6rem 0;
+    background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:.8rem;
+  }
+  .flow-row{display:flex;gap:.45rem;flex-wrap:wrap;align-items:stretch}
+  .node{
+    flex:1 1 150px;min-width:130px;border-radius:9px;padding:.5rem .6rem;
+    font-size:.8rem;border:1px solid;background:#fff;
+  }
+  .node b{display:block;font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;opacity:.85;margin-bottom:.15rem}
+  .node.g{background:var(--ok-soft);border-color:#9ed3b5;color:#0d4a2e}
+  .node.y{background:var(--warn-soft);border-color:#e6c893;color:#6b4100}
+  .node.r{background:var(--danger-soft);border-color:#e6a6a6;color:#7d1414}
+  .node.b{background:var(--accent-soft);border-color:#9ed3c9;color:#0a4d47}
+  .node.n{background:#eef2f6;border-color:var(--line);color:var(--ink-soft)}
+  .arrow{text-align:center;color:#93a3b2;font-size:.9rem;line-height:1}
+
+  /* ---------- HIGHLIGHT ---------- */
+  mark.hl{
+    background:#ffe680;color:#3a2a00;border-radius:3px;padding:0 .1em;
+    box-shadow:0 0 0 1px #f0cf4a inset;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:#151a24;color:#aebbc8;padding:1.4rem 1rem 2rem;font-size:.8rem;
+  }
+  footer .inner{max-width:1180px;margin:0 auto}
+  footer a{color:#ff9dab}
+  footer h2{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:.5rem}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:640px){
+    .hero{padding:1.1rem .8rem .7rem}
+    .ecg-wrap{height:64px}
+    main{padding:.8rem .7rem 2.5rem}
+    .body{padding:.8rem .8rem 1rem}
+    details.card > summary{padding:.7rem .8rem .7rem 2.1rem;font-size:.95rem}
+    details.card > summary::before{left:.8rem}
+    .toolbar{padding:.5rem .7rem}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Quick reference · Anaesthesia &amp; Critical Care</p>
+      <h1>Atrial Fibrillation</h1>
+      <p class="sub">2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation — perioperative, procedural and ICU-relevant recommendations.</p>
+    </div>
+    <div class="ecg-wrap"><canvas id="ecg" aria-hidden="true"></canvas></div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="inner">
+    <div class="tb-group search">
+      <input id="q" type="search" placeholder="Search: apixaban, bridging, ibutilide, TdP, cardioversion…" aria-label="Search the reference" autocomplete="off" />
+      <span id="count" class="count" aria-live="polite"></span>
+    </div>
+    <div class="tb-group">
+      <button id="expandAll" class="primary" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+    </div>
+    <div class="tb-group" role="group" aria-label="Text size">
+      <button id="fsDown" type="button" title="Decrease text size" aria-label="Decrease text size">A−</button>
+      <button id="fsReset" type="button" title="Reset text size" aria-label="Reset text size">16px</button>
+      <button id="fsUp" type="button" title="Increase text size" aria-label="Increase text size">A+</button>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+
+  <div class="intro">
+    <strong>How to use this page.</strong> Every section is collapsible — click a heading to open it.
+    Use <em>Expand all</em> / <em>Collapse all</em> to change everything at once, <strong>A−</strong>/<strong>A+</strong> to resize the text
+    (the middle button shows the current size and resets to 16px), and the search box to filter: matching sections open automatically and every hit is highlighted in yellow.
+    Press <kbd>/</kbd> or <kbd>Ctrl</kbd>+<kbd>K</kbd> to jump to the search box.
+    Tables scroll sideways on small screens. Colour-coded badges show the guideline's Class of Recommendation
+    (<span class="cor c1">1</span> <span class="cor c2a">2a</span> <span class="cor c2b">2b</span> <span class="cor c3">3</span>).
+    <div class="note">This is a condensed aide-mémoire, not a substitute for the full guideline or for clinical judgement. Always confirm doses against local formularies and product labelling.</div>
+  </div>
+
+  <!-- ============ 1 ============ -->
+  <details class="card" open>
+    <summary><span class="num">1</span>At a glance — the essentials <span class="tag hi">Start here</span></summary>
+    <div class="body">
+      <ul>
+        <li><strong>Unstable AF with rapid ventricular response</strong> → immediate synchronised DC cardioversion. Do not delay for drugs.</li>
+        <li><strong>Stable, no decompensated HF</strong> → IV beta-blocker <em>or</em> non-dihydropyridine CCB (diltiazem/verapamil) first line; digoxin or amiodarone as add-on/alternative. Consider IV magnesium as an adjunct.</li>
+        <li><strong>Decompensated HF or LVEF &lt;40%</strong> → non-dihydropyridine CCBs are <strong>harmful</strong>. Use IV amiodarone (or digoxin) for rate control.</li>
+        <li><strong>Warfarin before procedures</strong> → stop ~5 days pre-op; <strong>do not bridge with LMWH</strong> (except mechanical valve or recent stroke/TIA) — bridging increases bleeding without reducing thromboembolism.</li>
+        <li><strong>DOACs before procedures</strong> → brief interruption timed to agent + renal function + procedural bleeding risk; no bridging.</li>
+        <li><strong>Life-threatening bleeding on a DOAC</strong> → idarucizumab for dabigatran; andexanet alfa <em>or</em> 4-factor PCC for factor Xa inhibitors; 4-factor PCC + IV vitamin K for warfarin.</li>
+        <li><strong>AF discovered during critical illness or surgery</strong> → a marker of risk, not a benign finding. Recurrence 40–68% at 5 years; recurrence carries ↑HF, ↑stroke, ↑mortality. Arrange rhythm monitoring and thromboembolic risk review after discharge.</li>
+        <li><strong>Pre-excited AF (WPW)</strong> → AV nodal blockers (verapamil, diltiazem, amiodarone, digoxin, adenosine, beta-blockers) are <strong>contraindicated</strong> — risk of VF. Use DC cardioversion, or IV ibutilide/procainamide if stable.</li>
+      </ul>
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Sections 7.2.1, 6.7, 6.6, 10.10, 10.6.</p>
+    </div>
+  </details>
+
+  <!-- ============ 2 ============ -->
+  <details class="card">
+    <summary><span class="num">2</span>Periprocedural anticoagulation — interruption &amp; bridging <span class="tag">High yield</span></summary>
+    <div class="body">
+
+      <h3 class="sec">Recommendations</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-R</span><span class="rec-text">In patients with AF (excluding recent stroke/TIA or a mechanical valve) on warfarin or a DOAC scheduled for an invasive procedure or surgery, <strong>temporary cessation without bridging anticoagulation</strong> is recommended.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">A</span><span class="rec-text">On warfarin with an annual predicted thromboembolism risk ≥5% undergoing pacemaker/ICD implantation or generator change, <strong>continued warfarin</strong> is recommended in preference to interruption with heparin bridging, to reduce pocket haematoma.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">A</span><span class="rec-text">On a DOAC with CHA₂DS₂-VASc ≥2 (or equivalent) undergoing pacemaker/ICD implantation or generator change, <strong>either uninterrupted or interrupted DOAC</strong> is reasonable.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">On a DOAC scheduled for a procedure that cannot safely be performed on uninterrupted anticoagulation, <strong>timing of interruption should be guided by the specific agent, renal function and the bleeding risk of the procedure</strong>.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">After interruption, <strong>resume the day after low-bleeding-risk surgery</strong> and <strong>between the evening of day 2 and the evening of day 3 after high-bleeding-risk surgery</strong>, provided haemostasis is achieved and further bleeding is not anticipated.</span></li>
+        <li><span class="cor c3">3 Harm</span><span class="loe">B-R</span><span class="rec-text">On warfarin and holding for surgery, <strong>bridging with low-molecular-weight heparin should not be given</strong> (except mechanical valve or recent stroke/TIA).</span></li>
+      </ul>
+
+      <h3 class="sec">Table — timing of DOAC / warfarin interruption</h3>
+      <div class="tw">
+        <table>
+          <caption>Days of holding before the procedure</caption>
+          <thead>
+            <tr><th>Anticoagulant</th><th>Low bleeding risk procedure</th><th>High bleeding risk procedure</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Apixaban (CrCl &gt;25 mL/min)</td><td class="num-cell">1 day</td><td class="num-cell">2 days</td></tr>
+            <tr><td>Dabigatran (CrCl &gt;50 mL/min)</td><td class="num-cell">1 day</td><td class="num-cell">2 days</td></tr>
+            <tr><td>Dabigatran (CrCl 30–50 mL/min)</td><td class="num-cell">2 days</td><td class="num-cell">4 days</td></tr>
+            <tr><td>Edoxaban (CrCl &gt;15 mL/min)</td><td class="num-cell">1 day</td><td class="num-cell">2 days</td></tr>
+            <tr><td>Rivaroxaban (CrCl &gt;30 mL/min)</td><td class="num-cell">1 day</td><td class="num-cell">2 days</td></tr>
+            <tr><td>Warfarin</td><td class="num-cell">5 days (target INR &lt;1.5)</td><td class="num-cell">5 days (target INR &lt;2)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tbl-note">"Days" = number of <em>full</em> days before the day of surgery on which no dose is taken; the drug is also not taken on the day of surgery. For DOACs with CrCl below the values above, clinical data are few — consider holding an extra 1–3 days, especially for high-bleeding-risk procedures.</p>
+
+      <h3 class="sec">Procedural bleeding risk (as classified in the guideline)</h3>
+      <div class="flow">
+        <div class="flow-row">
+          <div class="node g"><b>Low bleeding risk</b>Endoscopy · dental extraction · many ophthalmological procedures · percutaneous vascular access (e.g. cardiac catheterisation)</div>
+          <div class="node y"><b>High bleeding risk</b>Intra-abdominal · pelvic · orthopaedic · neurosurgical · cardiac · transvenous lead extraction</div>
+          <div class="node r"><b>Very high bleeding risk</b>Neuraxial anaesthesia · spinal surgery</div>
+        </div>
+      </div>
+
+      <div class="note"><strong>Key evidence.</strong> BRIDGE (n=1884) — no bridging was <em>superior</em> for major bleeding and non-inferior for thromboembolism. PERIOP2 — postoperative bridging showed no benefit. PAUSE — DOAC interruption without bridging gave major bleeding 0.9–1.85% and thromboembolism &lt;1%. BRUISE-CONTROL — pocket haematoma was &gt;4× higher with bridging around device surgery. Thromboembolism while anticoagulation is temporarily held is generally &lt;1%.</div>
+
+      <div class="note warn"><strong>Individualise and consider bridging</strong> in mechanical valves, recent stroke/TIA, recent bleeding or thromboembolism, and spinal/neurosurgical procedures — these groups were largely excluded from the trials. Lead extraction is generally treated as high bleeding risk.</div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Section 6.7 "Periprocedural Management", Recommendations 1–6 and Table 18 (p e50–e52); Figure 15 (periprocedural anticoagulation flowchart).</p>
+    </div>
+  </details>
+
+  <!-- ============ 3 ============ -->
+  <details class="card">
+    <summary><span class="num">3</span>Acute rate control in AF with rapid ventricular response <span class="tag hi">High yield</span></summary>
+    <div class="body">
+
+      <h3 class="sec">Recommendations</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-R</span><span class="rec-text">Haemodynamically stable AF with rapid ventricular response: <strong>beta-blockers or non-dihydropyridine calcium channel blockers</strong> (verapamil, diltiazem — provided EF &gt;40%) are recommended for acute rate control.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-R</span><span class="rec-text">Where beta-blockers and non-dihydropyridine CCBs are ineffective or contraindicated, <strong>digoxin</strong> can be considered, alone or in combination.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">A</span><span class="rec-text">Addition of <strong>intravenous magnesium</strong> to standard rate-control measures is reasonable to achieve and maintain rate control.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">B-NR</span><span class="rec-text">In critically ill and/or decompensated HF patients where beta-blockers and CCBs are ineffective or contraindicated, <strong>IV amiodarone may be considered</strong> for acute rate control.</span></li>
+        <li><span class="cor c3">3 Harm</span><span class="loe">B-NR</span><span class="rec-text">Known moderate or severe LV systolic dysfunction, with or without decompensated HF: <strong>IV non-dihydropyridine CCBs should not be administered.</strong></span></li>
+      </ul>
+
+      <h3 class="sec">Decision flow</h3>
+      <div class="flow">
+        <div class="flow-row">
+          <div class="node n"><b>Step 1</b>Haemodynamically stable?</div>
+        </div>
+        <div class="arrow">▼</div>
+        <div class="flow-row">
+          <div class="node r"><b>No → Immediate DCCV</b>Direct current cardioversion (Class 1)</div>
+          <div class="node g"><b>Yes, no decompensated HF</b>Beta-blocker, verapamil or diltiazem (1)<br>+ digoxin (2a)<br>+ amiodarone (2b)<br>+ magnesium to AV nodal blockade (2a)</div>
+          <div class="node y"><b>Yes, decompensated HF</b>IV amiodarone (2b)<br>Verapamil / diltiazem → <strong>3: Harm</strong></div>
+        </div>
+      </div>
+
+      <h3 class="sec">Table — rate-control agents (IV and oral)</h3>
+      <div class="tw">
+        <table>
+          <caption>Pharmacological agents for rate control in AF</caption>
+          <thead>
+            <tr><th>Agent</th><th>IV administration</th><th>Oral maintenance</th><th>Half-life</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Metoprolol tartrate</td><td>2.5–5 mg bolus over 2 min; up to 3 doses</td><td>25–200 mg twice daily</td><td>3–4 h</td><td>—</td></tr>
+            <tr><td>Esmolol</td><td>500 µg/kg bolus over 1 min, then 50–300 µg/kg/min</td><td>—</td><td>9 min</td><td>Titratable, useful in ICU</td></tr>
+            <tr><td>Propranolol</td><td>1 mg over 1 min; repeat every 2 min, up to 3 doses</td><td>10–40 mg 3–4× daily</td><td>IV 2.4 h</td><td>—</td></tr>
+            <tr><td>Atenolol / bisoprolol / carvedilol / nadolol</td><td>—</td><td>Atenolol 25–100 mg daily; bisoprolol 2.5–10 mg daily; carvedilol 3.125–25 mg BD; nadolol 10–240 mg daily</td><td>6–24 h</td><td>Atenolol renally eliminated</td></tr>
+            <tr><td>Diltiazem</td><td>0.25 mg/kg (actual body weight) over 2 min; may repeat 0.35 mg/kg; then 5–15 mg/h infusion</td><td>120–360 mg daily (ER)</td><td>IV 3–5 h</td><td><strong>Avoid in HFrEF</strong></td></tr>
+            <tr><td>Verapamil</td><td>5–10 mg over ≥2 min (may repeat twice); then 5 mg/h (max 20 mg/h)</td><td>180–480 mg daily (ER)</td><td>IV 6–8 h</td><td><strong>Avoid in HFrEF</strong></td></tr>
+            <tr><td>Digoxin</td><td>0.25–0.5 mg over several min; repeat 0.25 mg every 6 h (max 1.5 mg/24 h)</td><td>0.0625–0.25 mg daily</td><td>1–2 days</td><td>Renally eliminated; ↑ mortality at levels &gt;1.2 ng/mL</td></tr>
+            <tr><td>Amiodarone</td><td>150–300 mg IV over 1 h, then 10–50 mg/h over 24 h</td><td>100–200 mg daily (for rate control)</td><td>IV 9–36 days</td><td>Consider risk of cardioversion and stroke</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note"><strong>Evidence highlights.</strong> IV diltiazem achieved rate control in 90% vs digoxin 74% and amiodarone 74%, and was faster. IV magnesium added to standard therapy achieved rate control in 63% vs 40% (OR 2.49, 95% CI 1.80–3.45) and modestly increased conversion to sinus rhythm (21% vs 14%). Diltiazem in LVEF ≤50% was associated with acute kidney injury (10% vs 3.6%, p=0.002) and, vs metoprolol in HFrEF, more worsening HF (33% vs 15%, p=0.019).</div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Section 7.2.1 "Acute Rate Control" and Figure 17 (p e60–e62); Table 21 (p e61).</p>
+    </div>
+  </details>
+
+  <!-- ============ 4 ============ -->
+  <details class="card">
+    <summary><span class="num">4</span>Cardioversion — thromboembolism prevention &amp; technique</summary>
+    <div class="body">
+
+      <h3 class="sec">Prevention of thromboembolism around cardioversion</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-R</span><span class="rec-text">AF duration ≥48 h: <strong>3 weeks of uninterrupted therapeutic anticoagulation or imaging to exclude intracardiac thrombus</strong> before elective cardioversion.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">Therapeutic anticoagulation should be <strong>established before cardioversion and continued for at least 4 weeks afterwards without interruption</strong>.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">C-LD</span><span class="rec-text">If cardioversion is deferred because of LAA thrombus on pre-cardioversion imaging, anticoagulate for <strong>at least 3–6 weeks</strong> and repeat imaging before cardioversion.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Previous LAA occlusion and not on anticoagulation: imaging to assess adequacy of occlusion and exclude device-related thrombus before cardioversion may be reasonable.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">C-LD</span><span class="rec-text">Previous LAA occlusion with residual leak: peri-cardioversion anticoagulation may be considered and continued thereafter.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">C-LD</span><span class="rec-text">Reported AF duration &lt;48 h (not post-cardiac-surgery) and not anticoagulated: pre-cardioversion imaging may be considered if thromboembolic risk is elevated (CHA₂DS₂-VASc ≥2 or equivalent).</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">C-LD</span><span class="rec-text">Low thromboembolic risk (CHA₂DS₂-VASc 0–1 or equivalent) and AF duration &lt;12 h: benefit of pre-cardioversion imaging or peri-cardioversion anticoagulation is uncertain.</span></li>
+      </ul>
+
+      <div class="flow">
+        <div class="flow-row">
+          <div class="node b"><b>AF ≥48 h</b>3 weeks therapeutic anticoagulation <em>or</em> imaging (TEE / CT) to exclude thrombus</div>
+          <div class="node y"><b>Thrombus found</b>Defer cardioversion · anticoagulate 3–6 weeks · repeat imaging</div>
+          <div class="node g"><b>Proceed</b>Therapeutic anticoagulation before, and continue ≥4 weeks after</div>
+        </div>
+      </div>
+      <p class="tbl-note">DOACs may be preferred over VKAs for planned cardioversion (rapid onset, reliable effect, ease of continuation) unless contraindicated. Cardiac CT with delayed contrast enhancement is an alternative to TEE for excluding intracardiac thrombus.</p>
+
+      <h3 class="sec">Electrical cardioversion</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">C-LD</span><span class="rec-text">Haemodynamic instability attributable to AF: <strong>immediate electrical cardioversion</strong> to restore sinus rhythm.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">B-R</span><span class="rec-text">Haemodynamically stable: electrical cardioversion can be performed as the initial rhythm-control strategy or after unsuccessful pharmacological cardioversion.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">C-LD</span><span class="rec-text"><strong>Synchronisation to the QRS must be confirmed</strong> — unsynchronised or inappropriately synchronised shocks can induce VF. Re-confirm before every shock.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-R</span><span class="rec-text">Elective cardioversion: <strong>biphasic energy of at least 200 J as the initial energy</strong> can be beneficial to improve first-shock success.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Longer AF duration or unsuccessful initial shock: optimise the electrode vector (anterior–posterior for longer duration), use higher energy, and consider antiarrhythmic pre-treatment.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">C-LD</span><span class="rec-text">Obesity: manual pressure augmentation and/or escalation of energy may improve success.</span></li>
+      </ul>
+
+      <h3 class="sec">Pharmacological cardioversion</h3>
+      <ul class="recs">
+        <li><span class="cor c2a">2a</span><span class="loe">C-LD</span><span class="rec-text">Reasonable as an alternative to electrical cardioversion in haemodynamically stable patients, or when electrical cardioversion is preferred but cannot be performed.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">A</span><span class="rec-text"><strong>Ibutilide</strong> is reasonable in patients <em>without</em> depressed LV function (LVEF &lt;40%).</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">A</span><span class="rec-text"><strong>IV amiodarone</strong> is reasonable, though time to conversion is longer (8–12 h).</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">A</span><span class="rec-text">Recurrent AF outside hospital: <strong>"pill-in-the-pocket"</strong> single oral dose of flecainide or propafenone with a concomitant AV nodal blocking agent — only if previously tested in a monitored setting.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">B-R</span><span class="rec-text">IV procainamide may be considered when other IV agents are contraindicated or not preferred.</span></li>
+      </ul>
+
+      <div class="tw">
+        <table>
+          <caption>Drugs for pharmacological conversion of AF to sinus rhythm</caption>
+          <thead>
+            <tr><th>Drug</th><th>Route</th><th>Loading dose</th><th>Time to conversion</th><th>Major adverse effects</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Amiodarone</td><td>IV</td><td>5–7 mg/kg or 300 mg; then 1200–3000 mg/24 h infusion</td><td>8–12 h</td><td>Bradycardia, hypotension, QT prolongation, phlebitis, TdP</td></tr>
+            <tr><td>Ibutilide</td><td>IV</td><td>≥60 kg: 1 mg over 10 min; &lt;60 kg: 0.01 mg/kg over 10 min; may repeat once</td><td>30–90 min</td><td>QT prolongation, TdP, non-sustained VT — <strong>avoid if LVEF ≤40%</strong></td></tr>
+            <tr><td>Flecainide</td><td>Oral</td><td>200 mg if &lt;70 kg; 300 mg if &gt;70 kg (single dose)</td><td>3–8 h</td><td>Atrial flutter with 1:1 conduction, AV block, VT, exacerbation of HFrEF</td></tr>
+            <tr><td>Propafenone</td><td>Oral</td><td>450 mg if &lt;70 kg; 600 mg if &gt;70 kg (single dose)</td><td>3–8 h</td><td>As for flecainide; taste disturbance</td></tr>
+            <tr><td>Procainamide</td><td>IV</td><td>1 g over 30 min, then 2 mg/min infusion</td><td>30–60 min</td><td>Hypotension (5–12%), QT prolongation, TdP, agranulocytosis</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn"><strong>Ibutilide safety.</strong> Give magnesium before ibutilide to mitigate TdP and excessive QT prolongation. Continuous ECG monitoring is recommended during the infusion and for 4 hours after it. Correct hypokalaemia and hypomagnesaemia before administration. Avoid giving IV procainamide to patients who have already received amiodarone or ibutilide (excessive QT prolongation).</div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Sections 8.2.1–8.2.3 and Figures 21–22, Tables 22 (p e69–e75).</p>
+    </div>
+  </details>
+
+  <!-- ============ 5 ============ -->
+  <details class="card">
+    <summary><span class="num">5</span>Active bleeding &amp; anticoagulant reversal <span class="tag hi">ICU critical</span></summary>
+    <div class="body">
+
+      <h3 class="sec">Recommendations</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">AF on <strong>dabigatran</strong> with life-threatening bleeding: <strong>idarucizumab</strong> is recommended to rapidly reverse dabigatran's anticoagulant effect.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">C-LD</span><span class="rec-text">If idarucizumab is unavailable: <strong>activated prothrombin complex concentrate</strong> is reasonable.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">B-NR / C-LD</span><span class="rec-text">AF on <strong>factor Xa inhibitors</strong> with life-threatening bleeding: <strong>andexanet alfa</strong> (apixaban or rivaroxaban; edoxaban C-LD) <strong>or 4-factor PCC</strong> is recommended.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">A</span><span class="rec-text">AF on <strong>warfarin</strong> with life-threatening bleeding: <strong>4-factor PCC</strong> (where available) in addition to <strong>IV vitamin K</strong> is recommended to rapidly achieve INR correction.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">B-NR</span><span class="rec-text">After a major bleed on a DOAC, <strong>resumption of oral anticoagulation may be reasonable</strong> after reversal of the reversible cause of bleeding and reassessment of long-term benefits and risks with a multidisciplinary team and shared decision-making.</span></li>
+      </ul>
+
+      <h3 class="sec">Table — reversal agents</h3>
+      <div class="tw">
+        <table>
+          <caption>Reversal agents for oral anticoagulants</caption>
+          <thead>
+            <tr><th></th><th>Idarucizumab</th><th>Andexanet alfa</th><th>4-factor PCC</th><th>Activated PCC</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Target</strong></td><td>Dabigatran</td><td>Apixaban, rivaroxaban (edoxaban off-label)</td><td>VKA (warfarin); off-label for factor Xa inhibitors</td><td>Dabigatran (off-label)</td></tr>
+            <tr><td><strong>Dose</strong></td><td>5 g IV (2 vials of 2.5 g) over 5 min; may repeat 5 g</td><td>Low dose: 400 mg bolus at 30 mg/min, then 4 mg/min up to 120 min. High dose: 800 mg bolus, then 8 mg/min up to 120 min</td><td>Warfarin by pre-treatment INR: 2–&lt;4 → 25 units/kg (max 2500); 4–&lt;6 → 35 units/kg (max 3500); ≥6 → 50 units/kg (max 5000). Oral FXa inhibitors: 2000 units once or 25–50 units/kg</td><td>Dabigatran: 50 units/kg once</td></tr>
+            <tr><td><strong>Onset</strong></td><td>Within 5 min</td><td>Within 2 min</td><td>Within 10 min</td><td>Within 30 min</td></tr>
+            <tr><td><strong>Duration</strong></td><td>12–24 h</td><td>2 h</td><td>8 h</td><td>12 h</td></tr>
+            <tr><td><strong>Cautions</strong></td><td>Hereditary fructose intolerance (sorbitol excipient) — risk of hypoglycaemia, hypophosphataemia, metabolic acidosis, acute liver failure</td><td>US black-box warning: arterial and venous thromboembolism, MI, ischaemic stroke, cardiac arrest, sudden death. May interfere with heparin. Not indicated if thromboembolic event within previous 3 months</td><td>Includes heparin; repeat INR within 30 min of administration</td><td>Does not include heparin; not effective for factor Xa inhibitors</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note"><strong>Supportive measures.</strong> Activated charcoal may be given up to 6 hours after the last dose of a DOAC. Haemodialysis may be considered to eliminate dabigatran — challenging and impractical if there is coagulopathy or haemodynamic instability. About 2–4% of patients on oral anticoagulants experience major bleeding requiring intervention.</div>
+
+      <h3 class="sec">Restarting anticoagulation after bleeding</h3>
+      <p>Meta-analyses in AF patients after gastrointestinal bleeding: restarting was associated with higher recurrent GI bleeding (10.1% vs 5.3%) but lower thromboembolic events (6.3% vs 10.6%) and lower all-cause mortality (21.3% vs 31%). Optimal timing after upper GI bleeding with a VKA was reported at 3–6 weeks in one study, and 1 week in others. Data on timing of DOAC restart are scarce.</p>
+
+      <h3 class="sec">AF and intracranial haemorrhage</h3>
+      <ul class="recs">
+        <li><span class="cor c2a">2a</span><span class="loe">C-LD</span><span class="rec-text">Conditions with very high thromboembolic risk (≥5%/year), e.g. rheumatic heart disease or a mechanical heart valve: <strong>early (1–2 weeks) resumption of anticoagulation</strong> after ICH is reasonable.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">C-LD</span><span class="rec-text">Other patients with AF and ICH: <strong>delayed (4–8 weeks) resumption</strong> may be considered to balance thromboembolic and haemorrhagic risk after careful risk–benefit assessment.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">B-NR</span><span class="rec-text">High risk of recurrent ICH (e.g. cerebral amyloid angiopathy): <strong>anticoagulation-sparing strategies (e.g. LAA occlusion)</strong> may be considered.</span></li>
+      </ul>
+      <p class="tbl-note"><strong>High recurrent-ICH risk features:</strong> suspected cerebral amyloid angiopathy, lobar intraparenchymal haemorrhage, older age, &gt;10 cerebral microbleeds on MRI, disseminated cortical superficial siderosis, poorly controlled hypertension, previous spontaneous ICH, coagulopathy, untreated vascular malformation or aneurysm.</p>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Section 6.6 "Active Bleeding on Anticoagulant Therapy and Reversal Drugs", Section 6.6.1 "Management of Patients With AF and ICH", Tables 15 and 17 (p e44–e49).</p>
+    </div>
+  </details>
+
+  <!-- ============ 6 ============ -->
+  <details class="card">
+    <summary><span class="num">6</span>DOAC dosing, renal adjustment &amp; interactions</summary>
+    <div class="body">
+
+      <h3 class="sec">Table — DOAC doses by renal function</h3>
+      <div class="tw">
+        <table>
+          <caption>Recommended doses of approved DOACs according to creatinine clearance</caption>
+          <thead>
+            <tr>
+              <th>DOAC</th><th>CrCl &gt;95</th><th>51–95</th><th>31–50</th><th>15–30</th><th>&lt;15 or dialysis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Apixaban</td><td>5 mg BD or 2.5 mg BD*</td><td>5 mg BD or 2.5 mg BD*</td><td>5 mg BD or 2.5 mg BD*</td><td>5 mg BD or 2.5 mg BD*</td><td>5 mg BD†</td></tr>
+            <tr><td>Dabigatran</td><td>150 mg BD</td><td>150 mg BD</td><td>150 mg BD</td><td>75 mg BD</td><td>Contraindicated</td></tr>
+            <tr><td>Edoxaban</td><td>Contraindicated</td><td>60 mg once daily</td><td>30 mg once daily</td><td>30 mg once daily</td><td>Contraindicated</td></tr>
+            <tr><td>Rivaroxaban</td><td>20 mg once daily</td><td>20 mg once daily</td><td>15 mg once daily</td><td>15 mg once daily</td><td>15 mg once daily‡</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tbl-note">* Reduce to 2.5 mg twice daily if at least 2 of: serum creatinine ≥1.5 mg/dL, age ≥80 years, body weight ≤60 kg.<br>
+      † FDA labelling extended to end-stage renal failure including haemodialysis; pharmacokinetic data suggest 2.5 mg BD approximates normal-renal-function exposure.<br>
+      ‡ Not recommended for other indications at CrCl &lt;15 mL/min, but not restricted for the AF indication; pharmacokinetic data are limited.<br>
+      Non-renal considerations such as drug interactions may also apply. Shaded/grey areas in the original table indicate doses not studied in pivotal trials.</p>
+
+      <div class="note warn"><strong>Avoid off-label dosing.</strong> Inappropriately <em>low</em> DOAC doses are associated with higher stroke/systemic embolism (OR 1.21, 95% CI 1.02–1.43). Inappropriately <em>high</em> doses are associated with higher ischaemic stroke/systemic embolism (HR 1.26) and major bleeding (HR 1.30).</div>
+
+      <h3 class="sec">Table — key DOAC drug interactions</h3>
+      <div class="tw">
+        <table>
+          <caption>Management of interactions via CYP3A4 and/or P-glycoprotein</caption>
+          <thead>
+            <tr><th>Interacting drug class</th><th>Examples</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Combined strong P-gp + strong CYP3A4 inhibitors</td>
+              <td>Systemic ketoconazole, itraconazole, ritonavir</td>
+              <td><strong>Rivaroxaban — avoid.</strong> <strong>Apixaban</strong> — reduce from 5 mg BD to 2.5 mg BD; if already on 2.5 mg BD, avoid. <strong>Dabigatran</strong> with dronedarone or systemic ketoconazole and CrCl 30–50 mL/min — reduce to 75 mg BD; if CrCl &lt;30 mL/min, avoid.</td>
+            </tr>
+            <tr>
+              <td>Combined P-gp + moderate CYP3A4 inhibitors</td>
+              <td>Erythromycin</td>
+              <td>Avoid rivaroxaban if CrCl 15–&lt;80 mL/min. No apixaban dose adjustment required. No edoxaban dose adjustment required.</td>
+            </tr>
+            <tr>
+              <td>P-gp / CYP3A4 inducers</td>
+              <td>Carbamazepine, phenytoin, phenobarbital, primidone, rifampin, St John's wort</td>
+              <td><strong>Avoid all DOACs</strong> — reduced plasma levels and increased risk of stroke/systemic embolism. Warfarin is the preferred agent, adjusted by INR.</td>
+            </tr>
+            <tr>
+              <td>Warfarin interactions</td>
+              <td>Antiplatelet agents, NSAIDs, SSRIs, antimicrobials</td>
+              <td>Significantly higher risk of clinically relevant bleeding (OR 1.6–1.8 for each class). Target INR 2.0–3.0 with high time in therapeutic range (≥70%).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note"><strong>Monitoring.</strong> Routine measurement of DOAC plasma concentrations is not indicated (no well-established therapeutic ranges). Levels may be helpful to assess adherence, quantify residual anticoagulation before emergency surgery, or evaluate absorption after bariatric surgery. If warfarin is used, time in therapeutic range correlates inversely with thromboembolism (R = −0.59) and major bleeding (R = −0.59).</div>
+
+      <div class="note"><strong>Class III obesity.</strong> DOACs are reasonable over warfarin (2a, B-NR) — post hoc analyses of ARISTOTLE, ROCKET AF and ENGAGE AF-TIMI 48 showed consistent efficacy and safety across weight groups, and a large observational study found better outcomes with DOACs at BMI ≥40 kg/m². After bariatric surgery, warfarin may be reasonable over DOACs (2b, C-LD) because of absorption concerns (42% of post-bariatric patients had peak DOAC levels below the expected range).</div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Sections 6.3.1.1 and 10.4, Tables 13 and 19 (p e36–e38, e56, e98–e99).</p>
+    </div>
+  </details>
+
+  <!-- ============ 7 ============ -->
+  <details class="card">
+    <summary><span class="num">7</span>Stroke risk assessment &amp; who gets anticoagulated</summary>
+    <div class="body">
+
+      <h3 class="sec">Recommendations</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">A</span><span class="rec-text">AF with an estimated annual thromboembolic risk <strong>≥2%/year</strong> (e.g. CHA₂DS₂-VASc ≥2 in men, ≥3 in women): <strong>anticoagulation is recommended</strong>.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">A</span><span class="rec-text">Without moderate-to-severe rheumatic mitral stenosis or a mechanical heart valve, and a candidate for anticoagulation: <strong>DOACs are recommended over warfarin</strong> to reduce mortality, stroke, systemic embolism and intracranial haemorrhage.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">A</span><span class="rec-text">Estimated annual thromboembolic risk <strong>≥1% but &lt;2%/year</strong> (CHA₂DS₂-VASc 1 in men, 2 in women): <strong>anticoagulation is reasonable</strong>.</span></li>
+        <li><span class="cor c3">3 Harm</span><span class="loe">B-R</span><span class="rec-text">Candidates for anticoagulation without an indication for antiplatelet therapy: <strong>aspirin alone or with clopidogrel is not recommended</strong> as an alternative to anticoagulation.</span></li>
+        <li><span class="cor c3">3 No benefit</span><span class="loe">B-NR</span><span class="rec-text">AF without risk factors for stroke: <strong>aspirin monotherapy is of no benefit</strong>.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">Evaluate annual thromboembolic risk using a validated clinical risk score such as CHA₂DS₂-VASc.</span></li>
+        <li><span class="cor c3">3 No benefit</span><span class="loe">B-NR</span><span class="rec-text">In patients deemed at high risk for stroke, <strong>bleeding risk scores should not be used in isolation</strong> to determine eligibility for oral anticoagulation — use them to identify and modify bleeding risk factors.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">C-LD</span><span class="rec-text">At intermediate annual risk who remain uncertain about the benefit of anticoagulation, consider other risk-modifying factors (AF burden, blood pressure control, etc.) to inform the decision.</span></li>
+      </ul>
+
+      <h3 class="sec">Table — CHA₂DS₂-VASc components</h3>
+      <div class="tw">
+        <table>
+          <caption>Risk factor definitions (original article definitions)</caption>
+          <thead><tr><th>Letter</th><th>Risk factor</th><th>Definition</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr><td>C</td><td>Congestive heart failure</td><td>Signs/symptoms of right or left ventricular failure, or both, confirmed by objective evidence of cardiac dysfunction</td><td class="num-cell">1</td></tr>
+            <tr><td>H</td><td>Hypertension</td><td>Resting BP &gt;140/90 mmHg on ≥2 occasions, or on antihypertensive treatment</td><td class="num-cell">1</td></tr>
+            <tr><td>A₂</td><td>Age ≥75 years</td><td>—</td><td class="num-cell">2</td></tr>
+            <tr><td>D</td><td>Diabetes mellitus</td><td>Fasting plasma glucose ≥7.0 mmol/L (126 mg/dL) or on hypoglycaemic agent/insulin</td><td class="num-cell">1</td></tr>
+            <tr><td>S₂</td><td>Stroke / TIA / thromboembolism</td><td>Ischaemic stroke, TIA, peripheral embolism or pulmonary embolism</td><td class="num-cell">2</td></tr>
+            <tr><td>V</td><td>Vascular disease</td><td>Coronary artery disease (prior MI, angina, PCI, CABG) or peripheral vascular disease</td><td class="num-cell">1</td></tr>
+            <tr><td>A</td><td>Age 65–74 years</td><td>—</td><td class="num-cell">1</td></tr>
+            <tr><td>Sc</td><td>Sex category</td><td>Female sex</td><td class="num-cell">1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn"><strong>Risk score caveats.</strong> The absolute risk at any given score varies widely between cohorts — among 15 cohort studies, a CHA₂DS₂-VASc of 2 corresponded to an annual stroke rate of &lt;1% in 4 cohorts, 1–2% in 6 cohorts and &gt;2% in 5 cohorts. Bleeding scores (HAS-BLED, HEMORR₂HAGES, ATRIA) discriminate poorly (c-index 0.58–0.59) and include factors that predict both stroke and bleeding. Female sex is best regarded as a risk <em>modifier</em> rather than a risk factor.</div>
+
+      <div class="note"><strong>Additional factors that increase stroke risk but are not in CHA₂DS₂-VASc:</strong> higher AF burden / long duration (persistent or permanent vs paroxysmal), obesity (BMI ≥30 kg/m²), hypertrophic cardiomyopathy, poorly controlled hypertension, eGFR &lt;45 mL/h, proteinuria &gt;150 mg/24 h, enlarged LA volume (≥73 mL) or diameter (≥4.7 cm).</div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Sections 6.1, 6.2 and 6.3.1, Tables 8, 10, 11 and Figure 10 (p e29–e35).</p>
+    </div>
+  </details>
+
+  <!-- ============ 8 ============ -->
+  <details class="card">
+    <summary><span class="num">8</span>AF in critical illness &amp; after cardiac surgery <span class="tag hi">ICU</span></summary>
+    <div class="body">
+
+      <h3 class="sec">Acute medical illness or surgery (including AF in critical care)</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">Patients with AF identified during acute medical illness or surgery should be <strong>counselled about the significant risk of recurrent AF</strong> after the acute illness resolves.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text"><strong>Outpatient follow-up</strong> for thromboembolic risk stratification, decision-making on OAC initiation or continuation, and AF surveillance can be beneficial given the high risk of recurrence.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">B-NR</span><span class="rec-text">In critical illness due to <strong>sepsis</strong>, the benefits of anticoagulation during critical illness for stroke prevention are <strong>uncertain</strong>.</span></li>
+      </ul>
+
+      <div class="note">
+        <strong>Epidemiology and outcomes.</strong> Incidence of AF during acute medical illness 1–46%; severe sepsis 6–22%; after non-cardiac surgery 3–16%.
+        Recurrence at 5 years: 42–68% after medical illness, 39% after non-cardiac surgery.
+        Recurrent AF is associated with HF (HR 2.74, 95% CI 2.39–3.15), stroke (HR 1.57, 95% CI 1.30–1.90) and mortality (HR 2.96, 95% CI 2.70–3.24).
+        In a cohort of 38,582 patients with AF and sepsis, parenteral anticoagulation did <em>not</em> reduce stroke (1.3% vs 1.4%) and was associated with increased clinically significant bleeding (8.6% vs 7.2%; RR 1.21).
+      </div>
+
+      <h3 class="sec">Prevention of AF after cardiac surgery</h3>
+      <ul class="recs">
+        <li><span class="cor c2a">2a</span><span class="loe">B-R</span><span class="rec-text">High risk of postoperative AF: <strong>short-term prophylactic beta-blockers or amiodarone</strong> are reasonable to reduce incidence.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-R</span><span class="rec-text">CABG, aortic valve or ascending aortic aneurysm operations: <strong>concomitant posterior left pericardiotomy</strong> is reasonable to reduce postoperative AF (17% vs 32% in the PALACS trial).</span></li>
+      </ul>
+
+      <h3 class="sec">Treatment of AF after cardiac surgery</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">A</span><span class="rec-text"><strong>Beta-blockers</strong> are recommended for rate control unless contraindicated or ineffective, in which case a <strong>non-dihydropyridine CCB</strong> is recommended.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">B-R</span><span class="rec-text">Haemodynamically stable postoperative AF: <strong>rate control (target heart rate &lt;100 bpm) and/or rhythm-control medication</strong> as initial therapy, chosen according to symptoms, haemodynamic consequences and physician preference.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">B-R</span><span class="rec-text">Poorly tolerated AF: <strong>direct current cardioversion combined with antiarrhythmic drug therapy</strong>; consider imaging to exclude LAA thrombus before cardioversion if AF has been present &gt;48 h and the patient is not anticoagulated.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Anticoagulation for <strong>60 days</strong> after surgery when deemed safe with regard to surgical bleeding, then reassess the need for longer-term anticoagulation.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">C-LD</span><span class="rec-text">At 30–60 day follow-up, perform rhythm assessment and, if AF has not reverted to sinus rhythm spontaneously, consider cardioversion after an adequate duration of anticoagulation.</span></li>
+      </ul>
+
+      <div class="flow">
+        <div class="flow-row">
+          <div class="node g"><b>Step 1</b>Rate control with beta-blocker or calcium channel blocker (1)</div>
+        </div>
+        <div class="arrow">▼</div>
+        <div class="flow-row">
+          <div class="node y"><b>Step 2</b>Consider anticoagulation when deemed safe from surgical bleeding (2a)</div>
+        </div>
+        <div class="arrow">▼</div>
+        <div class="flow-row">
+          <div class="node b"><b>Haemodynamically stable</b>Rate control (target HR &lt;100 bpm) with beta-blocker or CCB (1) <em>or</em> rhythm control (1)</div>
+          <div class="node r"><b>Unstable / poorly tolerated</b>Direct current cardioversion with antiarrhythmic drug therapy (1)</div>
+        </div>
+        <div class="arrow">▼</div>
+        <div class="flow-row">
+          <div class="node y"><b>30–60 days</b>Rhythm assessment ± cardioversion if AF has not reverted to sinus rhythm (2a)</div>
+        </div>
+      </div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Sections 10.9.1, 10.9.2 and 10.10, Figures 25, 26 and 28 (p e102–e105).</p>
+    </div>
+  </details>
+
+  <!-- ============ 9 ============ -->
+  <details class="card">
+    <summary><span class="num">9</span>AF and heart failure</summary>
+    <div class="body">
+
+      <h3 class="sec">Recommendations</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">New diagnosis of HFrEF and AF: <strong>suspect arrhythmia-induced cardiomyopathy and adopt an early, aggressive approach to rhythm control</strong>.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">A</span><span class="rec-text">AF with HFrEF on GDMT with reasonable expectation of procedural benefit: <strong>catheter ablation is beneficial</strong> to improve symptoms, quality of life, ventricular function and cardiovascular outcomes.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Symptomatic AF with HFpEF: <strong>catheter ablation can be useful</strong> to improve symptoms and quality of life.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-R</span><span class="rec-text">AF and HF: <strong>digoxin is reasonable</strong> for rate control, in combination with other rate-controlling agents or as monotherapy if others are not tolerated.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">AF and HF with rapid ventricular rates where beta-blockers or calcium channel blockers are contraindicated or ineffective: <strong>IV amiodarone is reasonable for acute rate control</strong>.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-R</span><span class="rec-text">AF, HFrEF (LVEF &lt;50%) and refractory rapid ventricular response not amenable to rhythm control: <strong>AV nodal ablation and biventricular pacing</strong> can be useful to improve symptoms, quality of life and EF.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">AF, HF and biventricular pacing where an effective pacing percentage cannot be achieved pharmacologically: <strong>AV nodal ablation can be beneficial</strong> — improves functional class, reduces ICD shock risk and improves survival.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">AF-induced cardiomyopathy with recovered LV function: <strong>long-term surveillance</strong> can be beneficial to detect recurrent AF.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">B-NR</span><span class="rec-text">Suspected AF-induced cardiomyopathy or refractory HF symptoms on pharmacological rate control: a <strong>stricter rate-control strategy (target &lt;80 bpm at rest and &lt;110 bpm during moderate exercise)</strong> may be reasonable.</span></li>
+        <li><span class="cor c3">3 Harm</span><span class="loe">B-R</span><span class="rec-text">Known LVEF &lt;40%: <strong>non-dihydropyridine calcium channel blockers should not be administered.</strong></span></li>
+        <li><span class="cor c3">3 Harm</span><span class="loe">B-R</span><span class="rec-text">NYHA class III–IV HF, or decompensated HF within the past 4 weeks: <strong>dronedarone should not be administered</strong> for maintenance of sinus rhythm (increased early mortality from worsening HF).</span></li>
+      </ul>
+
+      <div class="note"><strong>Why this matters.</strong> AF is the most common cause of arrhythmia-induced cardiomyopathy. AF and HF are bidirectionally related: among individuals with new AF, 37% had HF; among those with new HF, 57% had AF. AF carries an adjusted mortality OR of 1.40 (randomised trials) and 1.14 (observational studies).</div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Sections 9.1 and 9.2, Figure 24 and Table 27 (p e91–e97).</p>
+    </div>
+  </details>
+
+  <!-- ============ 10 ============ -->
+  <details class="card">
+    <summary><span class="num">10</span>Rhythm-control drugs — dosing &amp; monitoring</summary>
+    <div class="body">
+
+      <h3 class="sec">Table — drugs for long-term maintenance of sinus rhythm</h3>
+      <div class="tw">
+        <table>
+          <caption>Key dosing, elimination and adverse effects</caption>
+          <thead>
+            <tr><th>Drug</th><th>Loading dose</th><th>Maintenance dose</th><th>Elimination / half-life</th><th>Major adverse effects</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Amiodarone</strong></td>
+              <td>Total 6–10 g, given 400–800 mg daily in 2–4 divided doses for 1–4 weeks</td>
+              <td>200 mg once daily (low dose 100–200 mg/day)</td>
+              <td>Hepatic metabolism, biliary excretion; t½ 14–59 days</td>
+              <td>AV block, bradycardia, QT prolongation, TdP (≈0.7%), corneal microdeposits, transaminase elevation, hepatotoxicity, hyper-/hypothyroidism, nausea, peripheral neuropathy, photosensitivity, pulmonary fibrosis, blue-grey skin pigmentation</td>
+            </tr>
+            <tr>
+              <td><strong>Dofetilide</strong></td>
+              <td>—</td>
+              <td>CrCl &gt;60: 500 µg BD; CrCl 40–60: 250 µg BD; CrCl 20–40: 125 µg BD; CrCl &lt;20: contraindicated</td>
+              <td>Renal; t½ 10 h</td>
+              <td>QT prolongation, TdP (0.9–3.3%) — requires ≥3-day monitored initiation</td>
+            </tr>
+            <tr>
+              <td><strong>Dronedarone</strong></td>
+              <td>—</td>
+              <td>400 mg twice daily</td>
+              <td>Hepatic; t½ 13–19 h</td>
+              <td>Abdominal pain, asthenia, bradycardia, diarrhoea, nausea/vomiting, QT prolongation, rash, TdP, hepatotoxicity. <strong>Contraindicated in NYHA III–IV or recent decompensated HF.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Flecainide</strong></td>
+              <td>—</td>
+              <td>50–300 mg/day orally divided 8–12 hourly</td>
+              <td>Hepatic 70% / renal 30%; t½ 12–27 h</td>
+              <td>Atrial flutter, AV block, dizziness, dyspnoea, exacerbation of HFrEF, headache, nausea, QT prolongation, VT, visual disturbance. <strong>Avoid in structural heart disease / prior MI.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Propafenone</strong></td>
+              <td>—</td>
+              <td>150–300 mg 8-hourly; ER 225–425 mg 12-hourly</td>
+              <td>Hepatic; t½ 9 h</td>
+              <td>As for flecainide plus bradycardia and taste disturbance. <strong>Avoid in structural heart disease / prior MI.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Sotalol</strong></td>
+              <td>CrCl &gt;60: 40–80 mg BD for 3 days; CrCl 40–60: 80 mg daily for 3 days; CrCl &lt;40: contraindicated</td>
+              <td>CrCl &gt;60: 80–160 mg BD; CrCl 40–60: 80–160 mg once daily</td>
+              <td>Renal; t½ 12 h</td>
+              <td>QT prolongation, TdP (0.4–2.3%), AV block, bradycardia, bronchospasm, diarrhoea, exacerbation of HFrEF, fatigue, nausea/vomiting — requires ≥3-day monitored initiation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Inpatient initiation recommendations</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">A</span><span class="rec-text">Initiating, increasing the dose of, or reinitiating <strong>dofetilide</strong>: admit for a minimum of 3 days to a facility with continuous ECG monitoring, CrCl calculation and cardiac resuscitation.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-R</span><span class="rec-text">Initiating <strong>sotalol</strong>: reasonable to do so in a facility with continuous ECG monitoring, CrCl calculation and cardiac resuscitation.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Initiating <strong>pill-in-the-pocket flecainide or propafenone</strong> with a concomitant AV nodal blocking drug: reasonable to give the first dose in a facility with continuous ECG monitoring.</span></li>
+      </ul>
+      <p class="tbl-note">Class IC agents should always be given with a concomitant AV nodal blocking agent to reduce the risk of 1:1 atrial flutter. A newer FDA-approved IV sotalol formulation may allow evaluation of safety and tolerability within 6 hours and obviate a 3-day admission, but data are limited.</p>
+
+      <h3 class="sec">Follow-up monitoring</h3>
+      <div class="tw">
+        <table>
+          <caption>Recommended monitoring for oral antiarrhythmic drugs</caption>
+          <thead><tr><th>Drug</th><th>Baseline</th><th>Follow-up</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Amiodarone</td>
+              <td>TSH (T4/T3 if abnormal), AST, ALT, ECG, chest X-ray. Ophthalmology and chest CT not routinely recommended.</td>
+              <td>TSH every 6 months; AST/ALT every 6 months; ECG annually; chest X-ray if unexplained cough or dyspnoea; chest CT as indicated; annual physical examination for skin and neurological changes.</td>
+            </tr>
+            <tr>
+              <td>Dofetilide</td>
+              <td>12-lead ECG with QTc, K⁺, Mg²⁺, CrCl. Continuous ECG monitoring during 3-day initiation.</td>
+              <td>At 3–6 months and every 3–6 months thereafter: 12-lead ECG with QTc, K⁺, Mg²⁺, CrCl — more frequently with interacting drugs or changing renal function.</td>
+            </tr>
+            <tr>
+              <td>Dronedarone</td>
+              <td>12-lead ECG, AST, ALT.</td>
+              <td>AST and ALT within the first 6 months (to detect hepatotoxicity early).</td>
+            </tr>
+            <tr>
+              <td>Sotalol</td>
+              <td>12-lead ECG with QTc, K⁺, Mg²⁺, CrCl. Continuous ECG monitoring during 3-day initiation.</td>
+              <td>As for dofetilide.</td>
+            </tr>
+            <tr>
+              <td>Ibutilide</td>
+              <td>12-lead ECG; K⁺ and Mg²⁺ with correction of hypokalaemia/hypomagnesaemia before infusion.</td>
+              <td>Continuous ECG monitoring for at least 4 h after infusion, or until QTc returns to baseline.</td>
+            </tr>
+            <tr>
+              <td>Procainamide</td>
+              <td>12-lead ECG, blood pressure.</td>
+              <td>ECG monitoring for rhythm, QRS width and QTc during infusion; BP monitoring during infusion.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Sections 8.3.1–8.3.3, Tables 22–25 (p e76–e83).</p>
+    </div>
+  </details>
+
+  <!-- ============ 11 ============ -->
+  <details class="card">
+    <summary><span class="num">11</span>Special populations &amp; situations</summary>
+    <div class="body">
+
+      <h3 class="sec">Wolff–Parkinson–White and pre-excitation syndromes</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">AF with rapid anterograde conduction (pre-excited AF) and haemodynamic instability: <strong>electrical cardioversion</strong>.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">Pre-excited AF: <strong>catheter ablation of the accessory pathway</strong> is recommended.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">C-LD</span><span class="rec-text">Haemodynamically stable pre-excited AF: <strong>IV ibutilide or IV procainamide</strong> as an alternative to elective cardioversion.</span></li>
+        <li><span class="cor c3">3 Harm</span><span class="loe">B-NR</span><span class="rec-text">Pre-excited AF: <strong>AV nodal blocking agents are contraindicated</strong> — verapamil, diltiazem, amiodarone, digoxin, adenosine and beta-blockers — due to the risk of precipitating VF or haemodynamic deterioration.</span></li>
+      </ul>
+
+      <h3 class="sec">Chronic kidney disease / kidney failure</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-R</span><span class="rec-text">AF at elevated stroke risk with <strong>CKD stage 3</strong>: warfarin or, preferably, evidence-based doses of direct thrombin or factor Xa inhibitors.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text"><strong>CKD stage 4</strong>: warfarin or labelled doses of DOACs is reasonable.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">B-NR</span><span class="rec-text"><strong>End-stage CKD (CrCl &lt;15 mL/min) or dialysis</strong>: warfarin (INR 2.0–3.0) or an evidence-based dose of apixaban might be reasonable. Pivotal DOAC trials excluded dialysis patients; only dabigatran is substantially removed by dialysis.</span></li>
+      </ul>
+
+      <h3 class="sec">Liver disease</h3>
+      <ul class="recs">
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Increased thromboembolic risk with <strong>mild or moderate liver disease (Child–Pugh A or B)</strong>: OAC therapy is reasonable in the absence of clinically significant coagulopathy or thrombocytopenia.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Candidates for anticoagulation with Child–Pugh A or B: <strong>DOACs preferred over warfarin</strong> (Child–Pugh A: any DOAC; Child–Pugh B: apixaban, dabigatran or edoxaban).</span></li>
+        <li><span class="cor c3">3 Harm</span><span class="loe">C-LD</span><span class="rec-text"><strong>Rivaroxaban is contraindicated in Child–Pugh B</strong> due to potentially increased bleeding risk (AUC increased 2.27-fold).</span></li>
+      </ul>
+
+      <h3 class="sec">Valvular heart disease</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-R</span><span class="rec-text"><strong>Rheumatic mitral stenosis or mitral stenosis of moderate or greater severity</strong> with AF: long-term <strong>warfarin</strong> is recommended over DOACs, independent of CHA₂DS₂-VASc, to prevent cardiovascular events including stroke or death (INVICTUS trial).</span></li>
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">AF with valve disease <strong>other than</strong> moderate/greater mitral stenosis or a mechanical valve: <strong>DOACs are recommended over VKAs</strong>.</span></li>
+      </ul>
+
+      <h3 class="sec">AF complicating ACS or PCI</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">A</span><span class="rec-text">AF with increased stroke risk undergoing PCI: <strong>DOACs preferred over VKAs</strong> in combination with antiplatelet therapy to reduce clinically relevant bleeding.</span></li>
+        <li><span class="cor c1">1</span><span class="loe">A</span><span class="rec-text">Most patients on OAC undergoing PCI: <strong>early discontinuation of aspirin (1–4 weeks) and continuation of dual antithrombotic therapy with OAC + a P2Y₁₂ inhibitor</strong> is preferred over triple therapy.</span></li>
+      </ul>
+      <p class="tbl-note">Meta-analysis of PIONEER AF-PCI, RE-DUAL PCI and AUGUSTUS: dual therapy reduced major bleeding by ~40% versus triple therapy, but was associated with increased stent thrombosis (OR 1.67, 95% CI 1.02–2.73) — driven largely by the dabigatran 110 mg arm. Number needed to treat for major bleeding = 42; number needed to harm for stent thrombosis = 223. Consider extending triple therapy up to 30 days when the perceived stent thrombosis risk is high (complex revascularisation, multivessel PCI, previous stent thrombosis).</p>
+
+      <h3 class="sec">Chronic coronary disease</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-R</span><span class="rec-text">AF and chronic coronary disease (beyond 1 year after revascularisation, or CAD not requiring revascularisation) without a history of stent thrombosis: <strong>oral anticoagulation monotherapy is recommended over OAC + single antiplatelet therapy</strong>, to decrease major bleeding.</span></li>
+      </ul>
+
+      <h3 class="sec">Peripheral artery disease</h3>
+      <p>Class of Recommendation <strong>2a</strong> (LOE B-NR). Antiplatelet monotherapy remains standard of care for symptomatic PAD. Subgroup analyses of DOAC trials show comparable efficacy and safety of DOACs versus warfarin in patients with AF with and without PAD. Observational data in concomitant AF and PAD found increased bleeding with dual therapy (OAC + antiplatelet) without reduction in major adverse cardiac events. The 2016 AHA/ACC PAD guideline recommends <em>against</em> anticoagulation for ischaemic risk reduction in the general PAD population.</p>
+      <p class="src">Note: the recommendation table for PAD (Section 6.8.3) is truncated in the source document; the above reflects the accompanying synopsis and supportive text.</p>
+
+      <h3 class="sec">Hyperthyroidism</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">B-NR</span><span class="rec-text">AF with hyperthyroidism and elevated stroke risk by a standard clinical risk score: <strong>anticoagulation is recommended until thyroid function has returned to normal and sinus rhythm can be maintained</strong>.</span></li>
+      </ul>
+
+      <h3 class="sec">Pulmonary disease</h3>
+      <ul class="recs">
+        <li><span class="cor c2a">2a</span><span class="loe">B-R</span><span class="rec-text">AF and COPD: <strong>cardioselective beta-blockers</strong> are reasonable for rate control, especially where other indications exist (e.g. MI, HF).</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Pulmonary hypertension with pulmonary vascular disease and AF: a <strong>rhythm-control strategy</strong> is reasonable to improve functional status and potentially prolong survival.</span></li>
+      </ul>
+
+      <h3 class="sec">Pregnancy (summary)</h3>
+      <p>DCCV of AF in pregnancy is safe for mother and fetus and should be performed within 48 hours of presentation to minimise stroke risk, with appropriate sedation and fetal monitoring. Antiarrhythmic drugs should be avoided if possible during the first trimester. Amiodarone is generally avoided (fetal goitre, neurodevelopmental abnormalities, bradycardia, growth delay, premature birth). Rate control options include propranolol, metoprolol or digoxin; atenolol is generally avoided (intrauterine growth retardation). <strong>DOACs are contraindicated during pregnancy and breastfeeding.</strong> Warfarin may be used in the first trimester if the dose required is ≤5 mg/day; if &gt;5 mg/day, use LMWH throughout the first trimester then transition to warfarin until 36 hours before planned delivery.</p>
+
+      <h3 class="sec">Cardio-oncology</h3>
+      <ul class="recs">
+        <li><span class="cor c1">1</span><span class="loe">C-LD</span><span class="rec-text">AF and cancer: <strong>multidisciplinary communication</strong> including cardiology, oncology and other clinicians, plus shared decision-making, is recommended to optimise treatment and reduce drug interactions, QTc prolongation, proarrhythmia, bleeding and thromboembolism.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">C-LD</span><span class="rec-text">Before starting cancer therapies associated with increased AF risk: <strong>increased vigilance for incident AF</strong> and treatment of contributing factors is reasonable.</span></li>
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Most patients with AF and cancer (remote history or active treatment): <strong>DOACs are reasonable over VKAs</strong> for stroke risk reduction.</span></li>
+      </ul>
+      <p class="tbl-note">Bruton's tyrosine kinase inhibitors (e.g. ibrutinib) carry a 4-fold higher risk of AF. Beta-blockers are considered the best rate-control option in BTK-inhibitor-associated AF; CYP3A inhibitors such as amiodarone, dronedarone, verapamil and diltiazem are usually avoided.</p>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Sections 6.8.1–6.8.5, 10.4, 10.6, 10.11–10.16 (p e52–e58, e97–e110).</p>
+    </div>
+  </details>
+
+  <!-- ============ 12 ============ -->
+  <details class="card">
+    <summary><span class="num">12</span>Device-detected AF (atrial high-rate episodes)</summary>
+    <div class="body">
+      <p>Relevant to ICU and perioperative patients with pacemakers, ICDs, implantable loop recorders or wearables. Clinician confirmation of the duration and nature of the longest atrial high-rate episode is recommended before acting.</p>
+
+      <ul class="recs">
+        <li><span class="cor c2a">2a</span><span class="loe">B-NR</span><span class="rec-text">Device-detected AHRE lasting <strong>≥24 hours</strong> with CHA₂DS₂-VASc ≥2 (or equivalent): it is reasonable to <strong>initiate oral anticoagulation</strong> within a shared decision-making framework that considers episode duration and individual patient risk.</span></li>
+        <li><span class="cor c2b">2b</span><span class="loe">B-NR</span><span class="rec-text">Device-detected AHRE lasting <strong>5 minutes to 24 hours</strong> with CHA₂DS₂-VASc ≥3 (or equivalent): anticoagulation <strong>may be reasonable</strong> within a shared decision-making framework.</span></li>
+        <li><span class="cor c3">3 No benefit</span><span class="loe">B-NR</span><span class="rec-text">Device-detected AHRE lasting <strong>&lt;5 minutes</strong> without another indication: <strong>oral anticoagulation should not be given</strong>.</span></li>
+      </ul>
+
+      <div class="note">
+        <strong>Context.</strong> The stroke risk of device-detected AF is lower than that of clinical AF and varies with episode duration and CHA₂DS₂-VASc score. Episodes ≥24 hours are associated with a significant risk of stroke or systemic embolism (adjusted HR 3.24, 95% CI 1.51–6.95 in ASSERT) that may be reduced with oral anticoagulation. Episodes ≤5 minutes are not associated with clinical events. The threshold for anticoagulation is therefore <em>higher</em> than for clinical AF.
+      </div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Section 6.4.1 and Figure 12 (p e40–e42).</p>
+    </div>
+  </details>
+
+  <!-- ============ 13 ============ -->
+  <details class="card">
+    <summary><span class="num">13</span>Definitions &amp; classification (quick reference)</summary>
+    <div class="body">
+      <div class="tw">
+        <table>
+          <caption>Atrial fibrillation — definitions</caption>
+          <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Atrial fibrillation</strong></td><td>Supraventricular tachyarrhythmia with uncoordinated atrial activation and ineffective atrial contraction. ECG: irregular R–R intervals (when AV conduction present), absence of distinct P waves, irregular atrial activity (fibrillatory waves). Requires visual confirmation of the diagnosis by a clinician.</td></tr>
+            <tr><td><strong>Paroxysmal AF</strong></td><td>Intermittent and terminates within ≤7 days of onset.</td></tr>
+            <tr><td><strong>Persistent AF</strong></td><td>Continuous and sustained for &gt;7 days and requires intervention. Patients who become paroxysmal with therapy are still defined as persistent.</td></tr>
+            <tr><td><strong>Long-standing persistent AF</strong></td><td>Continuous for &gt;12 months.</td></tr>
+            <tr><td><strong>Permanent AF</strong></td><td>Joint patient–clinician decision to stop further attempts to restore and/or maintain sinus rhythm. Acceptance of AF is a therapeutic decision, not a pathophysiological attribute.</td></tr>
+            <tr><td><strong>Subclinical AF</strong></td><td>AF identified in individuals without symptoms attributable to AF and with no previous ECG documenting AF — includes AF detected by implanted devices or wearable monitors.</td></tr>
+            <tr><td><strong>Atrial high-rate episodes (AHRE)</strong></td><td>Atrial events exceeding the programmed detection rate limit set by an implanted device; require visual inspection to confirm AF and exclude other arrhythmias, artefact or oversensing.</td></tr>
+            <tr><td><strong>AF burden</strong></td><td>Encompasses both frequency and duration — the amount of AF an individual has. Defined in this guideline as episode duration, or as a percentage of AF duration during the monitoring period, depending on the study.</td></tr>
+            <tr><td><strong>Obsolete terms</strong></td><td>"Chronic AF", "lone AF", and the "valvular"/"non-valvular" distinction should be abandoned.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">The four stages of AF (2023 classification)</h3>
+      <div class="flow">
+        <div class="flow-row">
+          <div class="node n"><b>Stage 1 — At risk for AF</b>Modifiable (obesity, inactivity, hypertension, sleep apnoea, alcohol, diabetes) and non-modifiable (genetics, male sex, age) risk factors</div>
+          <div class="node b"><b>Stage 2 — Pre-AF</b>Structural or electrical findings predisposing to AF: atrial enlargement, frequent atrial ectopy, short bursts of atrial tachycardia, other high-risk AF risk scores</div>
+          <div class="node y"><b>Stage 3 — AF</b>3A paroxysmal (≤7 days) · 3B persistent (&gt;7 days, requires intervention) · 3C long-standing persistent (&gt;12 months) · 3D successful AF ablation (sinus rhythm off therapy)</div>
+          <div class="node r"><b>Stage 4 — Permanent AF</b>No further attempts at rhythm control after discussion between patient and clinician</div>
+        </div>
+      </div>
+
+      <p class="src">Source: 2023 ACC/AHA/ACCP/HRS AF Guideline, Section 2.2 and Figure 4 (p e9–e15); Table 4 (p e17).</p>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <h2>Source &amp; attribution</h2>
+    <p>
+      This quick reference is a condensed summary derived from:
+    </p>
+    <p>
+      Joglar JA, Chung MK, Armbruster AL, Benjamin EJ, Chyou JY, Cronin EM, Deswal A, Eckhardt LL, Goldberger ZD, Gopinathannair R, Gorenek B, Hess PL, Hlatky M, Hogan G, Ibeh C, Indik JH, Kido K, Kusumoto F, Link MS, Linta KT, Marcus GM, McCarthy PM, Patel N, Patton KK, Perez MV, Piccini JP, Russo AM, Sanders P, Streur MM, Thomas KL, Times S, Tisdale JE, Valente AM, Van Wagoner DR.
+      <strong>2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines.</strong>
+      <em>Circulation.</em> 2024;149:e1–e156. DOI: 10.1161/CIR.0000000000001193
+    </p>
+    <p>
+      Correction: <em>2024 Correction to the 2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation.</em>
+      (Table 8 — "Hypertension" entry in the ATRIA column updated to read "1"; Figure 17 — asterisk moved from "IV Amiodarone" to "Verapamil, diltiazem").
+      Available at: <a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000001193">https://www.ahajournals.org/doi/10.1161/CIR.0000000000001193</a>
+    </p>
+    <p style="margin-top:1rem;opacity:.85">
+      Class of Recommendation and Level of Evidence terminology used throughout is that of the American College of Cardiology / American Heart Association (updated May 2019).
+      This summary is intended for educational use by anaesthetists and intensivists and does not replace the full guideline, local protocols, or clinical judgement.
+      Always verify drug doses, contraindications and interactions against current product labelling and institutional policy.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     SMALL HELPERS
+     ============================================================ */
+  function $(id){ return document.getElementById(id); }
+  function on(el, evt, fn){ if(el && el.addEventListener) el.addEventListener(evt, fn); }
+
+  /* ============================================================
+     1. AF ECG ANIMATION
+     ============================================================ */
+  try {
+    (function ecg(){
+      var cv = $('ecg');
+      if(!cv || !cv.getContext) return;
+      var ctx = cv.getContext('2d');
+      if(!ctx) return;
+
+      var W = 300, H = 78, dpr = 1;
+      var samples = null;
+      var sampleRate = 250;
+      var step = 3;
+      var t = 0;
+      var gT = 0;
+      var rr = 0.55;
+
+      function newSample(){
+        var dt = 1 / sampleRate;
+        t += dt;
+        gT += dt;
+        if(t >= rr){
+          t -= rr;
+          rr = 0.30 + Math.random() * 0.42;   // irregular RR — the hallmark of AF
+        }
+        var v = 0;
+
+        // Fibrillatory baseline (no organised P waves)
+        v += Math.sin(2 * Math.PI * 5.7 * gT) * 1.5;
+        v += Math.sin(2 * Math.PI * 8.9 * gT + 2.1) * 1.0;
+        v += Math.sin(2 * Math.PI * 3.3 * gT + 0.7) * 0.9;
+        v += (Math.random() - 0.5) * 0.7;
+
+        // QRS complex
+        var q = t;
+        if(q < 0.085){
+          if(q < 0.018){
+            v += -14 * (q / 0.018);
+          } else if(q < 0.036){
+            v += -14 + 78 * ((q - 0.018) / 0.018);
+          } else if(q < 0.056){
+            v += 64 - 96 * ((q - 0.036) / 0.020);
+          } else {
+            v += -32 + 32 * ((q - 0.056) / 0.029);
+          }
+        } else if(q > 0.14 && q < 0.34){
+          var p = (q - 0.14) / 0.20;
+          v += 9 * Math.sin(Math.PI * p);
+        }
+        return v;
+      }
+
+      function resize(){
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var rect = cv.getBoundingClientRect();
+        W = Math.max(180, Math.floor(rect.width  || 300));
+        H = Math.max(48,  Math.floor(rect.height || 78));
+        cv.width  = Math.floor(W * dpr);
+        cv.height = Math.floor(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        samples = new Float32Array(W);
+        for(var i = 0; i < W; i++) samples[i] = newSample();
+      }
+
+      function draw(){
+        if(!samples || samples.length !== W){ resize(); return; }
+        samples.copyWithin(0, step);
+        for(var i = W - step; i < W; i++) samples[i] = newSample();
+
+        ctx.clearRect(0, 0, W, H);
+
+        ctx.strokeStyle = 'rgba(255,255,255,0.055)';
+        ctx.lineWidth = 1;
+        for(var x = 0; x < W; x += 20){
+          ctx.beginPath(); ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, H); ctx.stroke();
+        }
+        for(var y = 0; y < H; y += 20){
+          ctx.beginPath(); ctx.moveTo(0, y + 0.5); ctx.lineTo(W, y + 0.5); ctx.stroke();
+        }
+
+        var mid = H / 2;
+        var scale = H / 170;
+
+        ctx.beginPath();
+        for(var k = 0; k < W; k++){
+          var py = mid - samples[k] * scale;
+          if(k === 0) ctx.moveTo(k, py); else ctx.lineTo(k, py);
+        }
+        ctx.strokeStyle = '#ff5b6e';
+        ctx.lineWidth = 2;
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.shadowColor = 'rgba(255,91,110,0.75)';
+        ctx.shadowBlur = 8;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+
+      var running = true;
+      function loop(){
+        if(running) draw();
+        requestAnimationFrame(loop);
+      }
+
+      if(window.ResizeObserver){
+        var ro = new ResizeObserver(function(){ resize(); });
+        ro.observe(cv);
+      } else {
+        window.addEventListener('resize', resize);
+      }
+      document.addEventListener('visibilitychange', function(){
+        running = !document.hidden;
+      });
+
+      resize();
+      loop();
+    })();
+  } catch(e){
+    if(window.console) console.warn('ECG animation unavailable:', e);
+  }
+
+
+  /* ============================================================
+     2. EXPAND / COLLAPSE ALL
+     ============================================================ */
+  try {
+    var allDetails = function(){ return document.querySelectorAll('details.card'); };
+
+    on($('expandAll'), 'click', function(){
+      var list = allDetails();
+      for(var i = 0; i < list.length; i++) list[i].open = true;
+    });
+    on($('collapseAll'), 'click', function(){
+      var list = allDetails();
+      for(var i = 0; i < list.length; i++) list[i].open = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  } catch(e){
+    if(window.console) console.warn('Expand/collapse unavailable:', e);
+  }
+
+
+  /* ============================================================
+     3. TEXT SIZE  (robust — no hard dependency on localStorage)
+     ============================================================ */
+  try {
+    (function textSize(){
+      var MIN = 13, MAX = 24, DEF = 16, STEP = 1;
+      var html = document.documentElement;
+
+      function readStored(){
+        try{
+          if(!window.localStorage) return DEF;
+          var raw = window.localStorage.getItem('af-fs');
+          var n = parseInt(raw, 10);
+          if(!isNaN(n)) return Math.min(MAX, Math.max(MIN, n));
+        }catch(err){ /* localStorage unavailable — fall back silently */ }
+        return DEF;
+      }
+      function store(n){
+        try{
+          if(window.localStorage) window.localStorage.setItem('af-fs', String(n));
+        }catch(err){ /* ignore */ }
+      }
+
+      var size = readStored();
+
+      function render(){
+        // Apply BOTH the CSS variable and a direct inline font-size on <html>.
+        // Direct inline font-size guarantees scaling even if CSS custom properties
+        // are unsupported or the variable fails to cascade.
+        html.style.setProperty('--fs', size + 'px');
+        html.style.fontSize = size + 'px';
+
+        var resetBtn = $('fsReset');
+        var upBtn    = $('fsUp');
+        var downBtn  = $('fsDown');
+
+        if(resetBtn) resetBtn.textContent = size + 'px';
+        if(upBtn)    upBtn.disabled   = (size >= MAX);
+        if(downBtn)  downBtn.disabled = (size <= MIN);
+      }
+
+      function set(n){
+        size = Math.min(MAX, Math.max(MIN, n));
+        render();
+        store(size);
+      }
+
+      // Apply the stored/initial size immediately.
+      render();
+
+      on($('fsUp'),    'click', function(){ set(size + STEP); });
+      on($('fsDown'),  'click', function(){ set(size - STEP); });
+      on($('fsReset'), 'click', function(){ set(DEF); });
+
+      // Optional: Ctrl/Cmd + / − / 0 keyboard shortcuts for text size
+      document.addEventListener('keydown', function(e){
+        if(!(e.ctrlKey || e.metaKey)) return;
+        var tag = (e.target && e.target.nodeName) || '';
+        if(tag === 'INPUT' || tag === 'TEXTAREA') return;
+        if(e.key === '=' || e.key === '+'){
+          e.preventDefault(); set(size + STEP);
+        } else if(e.key === '-' || e.key === '_'){
+          e.preventDefault(); set(size - STEP);
+        } else if(e.key === '0'){
+          e.preventDefault(); set(DEF);
+        }
+      });
+    })();
+  } catch(e){
+    if(window.console) console.warn('Text resize unavailable:', e);
+  }
+
+
+  /* ============================================================
+     4. SEARCH WITH HIGHLIGHTING
+     ============================================================ */
+  try {
+    (function searchModule(){
+      var qInput  = $('q');
+      var countEl = $('count');
+      var content = $('content');
+      if(!qInput || !countEl || !content) return;
+
+      var marks = [];
+
+      function clearHighlights(){
+        var existing = content.querySelectorAll('mark.hl');
+        for(var i = 0; i < existing.length; i++){
+          var m = existing[i];
+          var parent = m.parentNode;
+          if(!parent) continue;
+          parent.replaceChild(document.createTextNode(m.textContent), m);
+          parent.normalize();
+        }
+        marks = [];
+      }
+
+      function setCount(text, isWarn){
+        countEl.textContent = text;
+        countEl.style.color = isWarn ? '#a3122f' : '';
+      }
+
+      function highlight(query){
+        clearHighlights();
+
+        var q = (query || '').trim();
+        if(q.length < 2){
+          setCount(q.length === 0 ? '' : 'Type 2+ characters');
+          return;
+        }
+
+        var needle = q.toLowerCase();
+
+        var walker = document.createTreeWalker(
+          content,
+          NodeFilter.SHOW_TEXT,
+          {
+            acceptNode: function(node){
+              if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+              var p = node.parentNode;
+              if(!p) return NodeFilter.FILTER_REJECT;
+              var tag = p.nodeName;
+              if(tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
+              return NodeFilter.FILTER_ACCEPT;
+            }
+          },
+          false
+        );
+
+        var nodes = [];
+        while(walker.nextNode()) nodes.push(walker.currentNode);
+
+        var total = 0;
+
+        for(var n = 0; n < nodes.length; n++){
+          var node = nodes[n];
+          var text = node.nodeValue;
+          var lower = text.toLowerCase();
+          var idx = lower.indexOf(needle);
+          if(idx === -1) continue;
+
+          var frag = document.createDocumentFragment();
+          var last = 0;
+
+          while(idx !== -1){
+            if(idx > last){
+              frag.appendChild(document.createTextNode(text.slice(last, idx)));
+            }
+            var mark = document.createElement('mark');
+            mark.className = 'hl';
+            mark.textContent = text.slice(idx, idx + needle.length);
+            frag.appendChild(mark);
+            total++;
+            last = idx + needle.length;
+            idx = lower.indexOf(needle, last);
+          }
+          if(last < text.length){
+            frag.appendChild(document.createTextNode(text.slice(last)));
+          }
+          node.parentNode.replaceChild(frag, node);
+        }
+
+        marks = Array.prototype.slice.call(content.querySelectorAll('mark.hl'));
+
+        // Open sections containing hits; close those without.
+        var cards = content.querySelectorAll('details.card');
+        for(var c = 0; c < cards.length; c++){
+          cards[c].open = (cards[c].querySelector('mark.hl') !== null);
+        }
+
+        if(total === 0){
+          setCount('No matches for "' + q + '"', true);
+        } else {
+          setCount(total + (total === 1 ? ' match' : ' matches') + ' for "' + q + '"');
+          if(marks.length){
+            var first = marks[0];
+            var target = (first.closest && first.closest('details.card')) || first;
+            setTimeout(function(){
+              target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 60);
+          }
+        }
+      }
+
+      var debounceTimer = null;
+      qInput.addEventListener('input', function(){
+        var val = qInput.value;
+        if(debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function(){ highlight(val); }, 180);
+      });
+
+      qInput.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+          qInput.value = '';
+          highlight('');
+        }
+      });
+
+      // "/" or Ctrl/Cmd+K focuses the search field
+      document.addEventListener('keydown', function(e){
+        var tag = (e.target && e.target.nodeName) || '';
+        var typing = tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable);
+        if(!typing && (e.key === '/' || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'))){
+          e.preventDefault();
+          qInput.focus();
+          qInput.select();
+        }
+      });
+    })();
+  } catch(e){
+    if(window.console) console.warn('Search unavailable:', e);
+  }
+
+})();
+</script>
+
+</body>
+</html>
