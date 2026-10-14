@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rheumatology Quick Reference — Anaesthesia &amp; Critical Care</title>
+<style>
+:root{
+  --bg:#eef4f5;
+  --card:#ffffff;
+  --primary:#0e5c63;
+  --primary-dark:#093f45;
+  --primary-soft:#e2f1f2;
+  --accent:#7a2f8f;
+  --accent-soft:#f4e9f7;
+  --text:#16292c;
+  --muted:#546d71;
+  --border:#cfe0e2;
+  --warn:#9a5b00;
+  --warn-bg:#fff8e8;
+  --danger:#a11212;
+  --danger-bg:#fdeeee;
+  --ok:#136c33;
+  --ok-bg:#edfaf0;
+  --fs:16px;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:var(--fs);
+  line-height:1.6;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em}
+p{margin:.4em 0 .8em}
+ul,ol{margin:.3em 0 .9em;padding-left:1.35em}
+li{margin:.22em 0}
+strong{color:#0a3d42}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- TOP BAR ---------- */
+.topbar{
+  position:sticky;top:0;z-index:80;
+  background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,#12707a 100%);
+  color:#fff;
+  padding:10px 14px 12px;
+  box-shadow:0 3px 14px rgba(0,0,0,.22);
+}
+.topbar h1{
+  font-size:1.06em;margin:0 0 2px;font-weight:700;letter-spacing:.2px;
+}
+.topbar .sub{font-size:.76em;opacity:.85;margin:0 0 9px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.search-box{
+  position:relative;flex:1 1 240px;min-width:190px;display:flex;align-items:center;
+}
+.search-box input{
+  width:100%;padding:8px 34px 8px 12px;border-radius:20px;border:none;
+  font-size:.86em;font-family:inherit;color:#123;
+  background:rgba(255,255,255,.96);outline:none;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);
+}
+.search-box input:focus{box-shadow:0 0 0 3px rgba(255,255,255,.45)}
+.search-box .clear{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  border:none;background:transparent;cursor:pointer;font-size:1em;color:#557;padding:2px 4px;border-radius:50%;
+}
+.btn{
+  border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.13);
+  color:#fff;font-family:inherit;font-size:.78em;font-weight:600;
+  padding:7px 11px;border-radius:18px;cursor:pointer;white-space:nowrap;
+  transition:background .15s,transform .1s;
+}
+.btn:hover{background:rgba(255,255,255,.28)}
+.btn:active{transform:scale(.97)}
+.btn.solid{background:#fff;color:var(--primary-dark);border-color:#fff}
+.btn.solid:hover{background:#e6f6f7}
+.fontctl{display:flex;gap:4px;align-items:center;background:rgba(255,255,255,.13);border-radius:18px;padding:2px 4px;border:1px solid rgba(255,255,255,.4)}
+.fontctl button{
+  border:none;background:transparent;color:#fff;font-family:inherit;font-weight:700;
+  cursor:pointer;font-size:.8em;padding:5px 8px;border-radius:14px;
+}
+.fontctl button:hover{background:rgba(255,255,255,.25)}
+.fontctl .fslabel{font-size:.72em;opacity:.85;padding:0 2px}
+.search-meta{font-size:.74em;opacity:.9;margin-top:6px;min-height:1em}
+.search-meta b{color:#ffe680}
+
+/* ---------- LAYOUT ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:16px 14px 60px}
+.part{margin:26px 0 10px}
+.part-title{
+  font-size:1.18em;color:#fff;background:linear-gradient(120deg,var(--primary-dark),var(--primary));
+  padding:10px 16px;border-radius:var(--radius);margin:0 0 12px;
+  box-shadow:0 2px 6px rgba(9,63,69,.25);
+  display:flex;align-items:center;gap:10px;
+}
+.part-title .tag{
+  font-size:.62em;background:rgba(255,255,255,.2);padding:2px 8px;border-radius:10px;
+  font-weight:600;letter-spacing:.5px;
+}
+
+/* ---------- TOC ---------- */
+.toc{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:12px 16px;margin:16px 0 4px;box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.toc h2{font-size:.92em;margin:0 0 8px;color:var(--primary-dark);text-transform:uppercase;letter-spacing:.8px}
+.toc .tocgroup{margin-bottom:10px}
+.toc .tocgroup h3{font-size:.82em;color:var(--accent);margin:0 0 4px}
+.toc ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:5px}
+.toc li{margin:0}
+.toc a{
+  display:inline-block;font-size:.76em;background:var(--primary-soft);color:var(--primary-dark);
+  padding:3px 9px;border-radius:12px;border:1px solid #cbe4e6;
+}
+.toc a:hover{background:#c9e8ea;text-decoration:none}
+
+/* ---------- CARDS ---------- */
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  margin:0 0 11px;overflow:hidden;scroll-margin-top:130px;
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.card-head{
+  width:100%;display:flex;align-items:center;gap:10px;text-align:left;
+  background:linear-gradient(180deg,#f7fbfb,#eef6f7);
+  border:none;border-bottom:1px solid var(--border);
+  padding:11px 14px;cursor:pointer;font-family:inherit;
+  font-size:.95em;font-weight:700;color:var(--primary-dark);
+  transition:background .15s;
+}
+.card-head:hover{background:linear-gradient(180deg,#eef8f9,#e0f0f2)}
+.card-head .ttl{flex:1}
+.card-head .chev{
+  width:18px;height:18px;flex:0 0 18px;position:relative;transition:transform .2s;
+}
+.card-head .chev::before{
+  content:"";position:absolute;left:5px;top:4px;width:7px;height:7px;
+  border-right:2px solid var(--primary);border-bottom:2px solid var(--primary);
+  transform:rotate(45deg);
+}
+.card.collapsed .card-head .chev{transform:rotate(-90deg)}
+.card.collapsed .card-head{border-bottom-color:transparent}
+.card-body{padding:13px 16px 16px}
+.card.collapsed .card-body{display:none}
+.card-body > :first-child{margin-top:0}
+.card-body > :last-child{margin-bottom:0}
+
+h3.sub{
+  font-size:.88em;color:var(--accent);text-transform:uppercase;letter-spacing:.6px;
+  margin:16px 0 6px;padding-bottom:3px;border-bottom:1px dashed #d9c6e2;
+}
+h3.sub:first-child{margin-top:0}
+h4.sub2{font-size:.86em;color:var(--primary-dark);margin:12px 0 4px}
+
+/* ---------- BOXES ---------- */
+.box{border-radius:9px;padding:10px 13px;margin:10px 0;border-left:5px solid var(--primary);background:var(--primary-soft)}
+.box.warn{border-left-color:#d98b00;background:var(--warn-bg)}
+.box.danger{border-left-color:#c62828;background:var(--danger-bg)}
+.box.ok{border-left-color:#1b8a44;background:var(--ok-bg)}
+.box.accent{border-left-color:var(--accent);background:var(--accent-soft)}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box .boxtitle{font-weight:700;font-size:.85em;display:block;margin-bottom:3px;color:inherit}
+
+/* ---------- TABLES ---------- */
+.table-wrap{
+  overflow-x:auto;overflow-y:visible;margin:10px 0;border:1px solid var(--border);
+  border-radius:9px;background:#fff;-webkit-overflow-scrolling:touch;
+}
+.table-wrap::-webkit-scrollbar{height:9px}
+.table-wrap::-webkit-scrollbar-thumb{background:#b9d3d6;border-radius:5px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.82em}
+caption{
+  caption-side:top;text-align:left;font-size:.82em;font-weight:700;color:var(--primary-dark);
+  padding:8px 10px;background:#f3f9fa;border-bottom:1px solid var(--border);
+}
+th,td{border:1px solid #e0ebec;padding:7px 9px;text-align:left;vertical-align:top}
+thead th{background:var(--primary-soft);color:var(--primary-dark);font-weight:700;position:sticky;top:0}
+tbody tr:nth-child(even){background:#fafdfd}
+tbody tr:hover{background:#f0f8f9}
+td.k{font-weight:700;color:var(--primary-dark);white-space:nowrap}
+
+/* ---------- FLOW DIAGRAMS ---------- */
+.flow{margin:12px 0;padding:12px;background:#f7fbfb;border:1px dashed #bcd8db;border-radius:10px}
+.flow-title{font-size:.8em;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.6px;margin-bottom:9px}
+.step{display:flex;gap:11px;align-items:flex-start;margin-bottom:6px}
+.step .num{
+  flex:0 0 24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;
+  font-size:.75em;font-weight:700;display:flex;align-items:center;justify-content:center;
+}
+.step .body{flex:1;font-size:.83em;background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 11px}
+.step .body b{color:var(--primary-dark)}
+.arrow-down{
+  text-align:center;color:var(--primary);font-size:1.1em;line-height:1;margin:2px 0 6px 12px;
+}
+.arrow-down::before{content:"▼";font-size:.7em;opacity:.6}
+.branch{
+  background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);
+  border-radius:8px;padding:9px 12px;font-size:.82em;margin:7px 0;
+}
+.branch b{color:var(--accent)}
+.gate{
+  background:var(--accent-soft);border:1px solid #dcc4e6;border-radius:8px;
+  padding:9px 12px;font-size:.83em;font-weight:600;color:#5a1f6b;text-align:center;margin:6px 0;
+}
+
+/* ---------- CHIPS ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{
+  font-size:.74em;padding:3px 10px;border-radius:12px;background:var(--primary-soft);
+  color:var(--primary-dark);border:1px solid #c9e3e6;font-weight:600;
+}
+.chip.red{background:var(--danger-bg);color:var(--danger);border-color:#f0c4c4}
+.chip.amber{background:var(--warn-bg);color:var(--warn);border-color:#f0dcae}
+.chip.green{background:var(--ok-bg);color:var(--ok);border-color:#bfe6cb}
+.chip.purple{background:var(--accent-soft);color:var(--accent);border-color:#ddc7e6}
+
+/* ---------- SEARCH HIGHLIGHT ---------- */
+mark{background:#ffe066;color:#000;padding:0 2px;border-radius:3px}
+mark.current{background:#ff9f1c;color:#fff;box-shadow:0 0 0 2px rgba(255,159,28,.35)}
+
+/* ---------- FOOTER ---------- */
+footer{
+  margin-top:34px;padding:18px 16px;background:#fff;border:1px solid var(--border);
+  border-radius:var(--radius);font-size:.8em;color:var(--muted);
+}
+footer h2{font-size:.95em;color:var(--primary-dark);text-transform:uppercase;letter-spacing:.7px}
+footer ol{padding-left:1.3em}
+footer li{margin:.5em 0}
+footer .disclaimer{margin-top:14px;font-size:.94em;background:var(--warn-bg);border-left:4px solid #d98b00;padding:9px 12px;border-radius:6px;color:#5c4200}
+
+/* ---------- BACK TO TOP ---------- */
+#toTop{
+  position:fixed;right:16px;bottom:16px;z-index:70;
+  background:var(--primary);color:#fff;border:none;width:42px;height:42px;border-radius:50%;
+  font-size:1.1em;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.28);
+  opacity:0;pointer-events:none;transition:opacity .25s;
+}
+#toTop.show{opacity:1;pointer-events:auto}
+
+@media (max-width:640px){
+  .topbar h1{font-size:.98em}
+  .wrap{padding:12px 9px 50px}
+  .card-body{padding:11px 12px 14px}
+  .card-head{font-size:.9em;padding:10px 12px}
+  .part-title{font-size:1.04em;padding:9px 12px}
+  table{font-size:.78em}
+  th,td{padding:6px 7px}
+}
+@media print{
+  .topbar,#toTop,.toc{display:none}
+  .card .card-body{display:block !important}
+  .card{break-inside:avoid;box-shadow:none}
+  .table-wrap{overflow:visible}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <h1>Rheumatology Quick Reference — Anaesthesia &amp; Critical Care</h1>
+  <p class="sub">Systemic sclerosis · Rheumatological emergencies in ICU · Systemic lupus erythematosus</p>
+  <div class="controls">
+    <div class="search-box">
+      <input id="search" type="search" placeholder="Search… e.g. PAH, scleroderma renal crisis, hydroxychloroquine" autocomplete="off" aria-label="Search">
+      <button class="clear" id="clearSearch" title="Clear search" aria-label="Clear search">✕</button>
+    </div>
+    <button class="btn" id="prevBtn" type="button">◀ Prev</button>
+    <button class="btn" id="nextBtn" type="button">Next ▶</button>
+    <button class="btn solid" id="expandAll" type="button">＋ Expand all</button>
+    <button class="btn solid" id="collapseAll" type="button">− Collapse all</button>
+    <div class="fontctl" role="group" aria-label="Text size">
+      <button id="fsDown" type="button" title="Decrease text size">A−</button>
+      <span class="fslabel" id="fsLabel">16</span>
+      <button id="fsUp" type="button" title="Increase text size">A+</button>
+    </div>
+  </div>
+  <div class="search-meta" id="searchMeta"></div>
+</header>
+
+<main class="wrap">
+
+  <nav class="toc" id="toc" aria-label="Table of contents">
+    <h2>Contents</h2>
+    <div id="tocBody"></div>
+  </nav>
+
+  <div id="content">
+
+    <!-- ================================================================ -->
+    <!-- PART A                                                            -->
+    <!-- ================================================================ -->
+    <section class="part" id="part-a">
+      <h2 class="part-title">Part A — Systemic Sclerosis (SSc) <span class="tag">ANAESTHESIA</span></h2>
+
+      <section class="card" id="a1" data-toc="Essentials &amp; key points">
+        <button class="card-head" type="button"><span class="ttl">A1 · Essentials &amp; key points</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box accent">
+            <span class="boxtitle">Definition</span>
+            SSc is a <strong>rare autoimmune, inflammatory, progressive multisystem connective tissue disease</strong> characterised by <strong>small-vessel vasculopathy</strong> and <strong>abnormal collagen deposition</strong> → fibrosis of skin and internal organs.
+          </div>
+          <ul>
+            <li><strong>Global incidence ≈ 1:10,000.</strong> European prevalence 7–33 per 100,000; almost <strong>4× higher in women</strong>.</li>
+            <li>Peak onset <strong>3rd–5th decade</strong>. Highest mortality of all rheumatic diseases — 10-year survival ≈ <strong>66%</strong> (5-year ≈ 86%, 10-year ≈ 72% in newer estimates).</li>
+            <li>Leading causes of death: <strong>pulmonary fibrosis/ILD 19%</strong>, <strong>myocardial disease 14%</strong>, <strong>PAH 14%</strong>.</li>
+            <li><strong>PAH is an independent predictor</strong> of 30-day postoperative pneumonia, congestive heart failure and all-cause mortality.</li>
+            <li>Of all major adverse cardiac events (MACE), <strong>only myocardial infarction is independently associated with SSc</strong>.</li>
+            <li><strong>Postoperative pneumonia accounts for more than one-third of 30-day mortality.</strong></li>
+            <li>Involvement of a <strong>rheumatology specialist is recommended</strong> to gauge severity, optimise therapy and help manage postoperative complications.</li>
+          </ul>
+          <div class="box">
+            <span class="boxtitle">Why it matters to us</span>
+            These patients present for <strong>disease-specific elective surgery</strong> (soft-tissue calcinosis debulking, sympathectomy, lung transplant), <strong>unrelated elective/emergency surgery</strong>, out-of-theatre resuscitation and obstetric delivery. <strong>Subclinical organ involvement</strong> can cause unanticipated difficulty.
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="a2" data-toc="Epidemiology &amp; clinical subtypes">
+        <button class="card-head" type="button"><span class="ttl">A2 · Epidemiology &amp; clinical subtypes</span><span class="chev"></span></button>
+        <div class="card-body">
+          <ul>
+            <li>Risk factors: <strong>female sex</strong>, silicone breast implants, Native American / African American race, previous chemotherapy (<strong>bleomycin, taxanes, gemcitabine</strong>), radiotherapy, gadolinium (in renal failure), <strong>silica dust, vinyl chloride, organic solvents</strong>.</li>
+            <li>Scleroderma renal crisis (SRC) was historically the main cause of death — attenuated by <strong>ACE inhibitors</strong>.</li>
+            <li>Cardiac involvement and interstitial lung fibrosis emerge in ≈<strong>50% within the first 5 years</strong>.</li>
+            <li>SSc carries a <strong>3-fold increased risk of myocardial ischaemia</strong>; symptomatic cardiac involvement → <strong>75% mortality at 5 years</strong>.</li>
+            <li>PAH confers a <strong>3× higher mortality risk</strong> than SSc alone. Up to <strong>31% have sleep-disordered breathing</strong>.</li>
+            <li>Patients with SSc undergo <strong>twice the number of thoracic, breast and vascular operations</strong>; transplant surgery is 6× more frequent (1.9% vs 0.3%).</li>
+          </ul>
+
+          <h3 class="sub">Clinical subtypes</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table A2-1 · Phenotypes of systemic sclerosis</caption>
+              <thead>
+                <tr><th>Subtype</th><th>Prevalence</th><th>Onset</th><th>Cutaneous features</th><th>Predominant antibodies</th><th>Other features</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="k">Limited cutaneous SSc (lcSSc)<br><span style="font-weight:400;color:#546d71">(formerly CREST)</span></td>
+                  <td>Up to 70–80%</td>
+                  <td>Often a <strong>long interval</strong> between Raynaud's and skin changes</td>
+                  <td>Early "puffy hands" → skin thickening/tightening <strong>distal to elbows and knees</strong> (may include neck/face). "Limited" ≠ limited to skin — internal organ involvement occurs; skin disease may still be locally severe.</td>
+                  <td>Anti-centromere</td>
+                  <td>Higher risk of <strong>PAH</strong> and severe GI disease; late-stage complications common</td>
+                </tr>
+                <tr>
+                  <td class="k">Diffuse cutaneous SSc (dcSSc)</td>
+                  <td>Up to 20–30%</td>
+                  <td><strong>Short interval (&lt;1 yr)</strong> between Raynaud's and skin changes</td>
+                  <td>Sclerosis extends <strong>proximal to elbows and knees</strong> ± trunk. Skin may recede as disease progresses.</td>
+                  <td>Anti-Scl-70 / anti-topoisomerase 1; anti-U3-RNP</td>
+                  <td>Higher risk of <strong>cardiac disease, ILD, renal crisis</strong></td>
+                </tr>
+                <tr>
+                  <td class="k">Overlap syndromes</td>
+                  <td>Up to 20%</td>
+                  <td>—</td>
+                  <td>SSc features + manifestations of another CTD (myositis, Sjögren's, undifferentiated/mixed CTD)</td>
+                  <td>Non-specific (e.g. anti-RNP) or overlap-specific</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td class="k">SSc sine scleroderma</td>
+                  <td>Rare (&lt;5%)</td>
+                  <td>—</td>
+                  <td><strong>No skin thickening</strong></td>
+                  <td>Typical SSc serology</td>
+                  <td>Raynaud's + organ-based vascular involvement</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:.82em;color:var(--muted)">CREST = Calcinosis, Raynaud's, (O)esophageal dysmotility, Sclerodactyly, Telangiectasia. Modern nomenclature follows ACR/EULAR — use <em>systemic sclerosis</em>.</p>
+        </div>
+      </section>
+
+      <section class="card" id="a3" data-toc="Pathophysiology (simplified)">
+        <button class="card-head" type="button"><span class="ttl">A3 · Pathophysiology (simplified)</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="flow">
+            <div class="flow-title">The core triad</div>
+            <div class="step"><span class="num">1</span><div class="body"><b>Endothelial cell injury / apoptosis</b> (unknown trigger in a genetically susceptible host)</div></div>
+            <div class="arrow-down"></div>
+            <div class="step"><span class="num">2</span><div class="body"><b>Immune activation</b> — T &amp; B lymphocytes, monocytes, macrophages → autoantibodies, cell-mediated autoimmunity, cytokine overproduction (<b>ET-1, TGF-β, PDGF, IL-6</b>)</div></div>
+            <div class="arrow-down"></div>
+            <div class="step"><span class="num">3</span><div class="body"><b>Fibroblast → myofibroblast transformation</b> → excess collagen &amp; matrix deposition → <b>fibrosis</b> + profibrotic cytokine loop</div></div>
+          </div>
+          <h4 class="sub2">Three amplifiers keep the loop running</h4>
+          <div class="chips">
+            <span class="chip purple">Tissue hypoxia</span>
+            <span class="chip purple">Mechanical tissue stress</span>
+            <span class="chip purple">Dysregulated cytokine production (TGF-β, ET-1, PDGF)</span>
+          </div>
+          <h4 class="sub2">Clinical consequences of ischaemia–reperfusion small-vessel injury</h4>
+          <ul>
+            <li><strong>Skin</strong> — Raynaud's phenomenon, digital ulceration, gangrene</li>
+            <li><strong>Stomach</strong> — gastric antral vascular ectasia (GAVE) → <em>silent</em> blood loss</li>
+            <li><strong>Kidney</strong> — scleroderma renal crisis</li>
+            <li><strong>Pulmonary vasculature</strong> — PAH</li>
+            <li><strong>Heart</strong> — "myocardial Raynaud's phenomenon": small-vessel disease and coronary vasospasm → MI with <em>no</em> epicardial atherosclerotic change</li>
+          </ul>
+          <div class="box">
+            <span class="boxtitle">Modern concept</span>
+            SSc is better understood as <strong>dysregulated tissue healing</strong> rather than primary fibrosis. IL-6 overexpression (mainly from activated macrophages) is linked to skin progression and worse long-term survival.
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="a4" data-toc="Diagnosis &amp; autoantibodies">
+        <button class="card-head" type="button"><span class="ttl">A4 · Diagnosis &amp; autoantibodies</span><span class="chev"></span></button>
+        <div class="card-body">
+          <h3 class="sub">Pathognomonic / suggestive signs</h3>
+          <ul>
+            <li><strong>Scleroderma</strong> ("hard skin") and <strong>sclerodactyly</strong> — the hallmark</li>
+            <li><strong>Calcinosis cutis</strong>, widespread <strong>telangiectasia</strong></li>
+            <li><strong>Terminal tuft resorption</strong> (late)</li>
+            <li>Subjective <strong>"puffy hands"</strong> in early disease — prevents pressing palms and fingers tightly together</li>
+            <li><strong>Raynaud's phenomenon</strong> — consistent finding, may precede other features by years</li>
+          </ul>
+          <div class="box warn">
+            <span class="boxtitle">Features of "pathological Raynaud's"</span>
+            New adult onset · unusual triggers (spicy food, emotion, anxiety) · <strong>asymmetrical</strong> finger/hand involvement · severe or prolonged episodes · digital scars, pits or dystrophic changes.
+          </div>
+
+          <h3 class="sub">Autoantibody profile predicts phenotype</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table A4-1 · SSc autoantibodies and associated risk</caption>
+              <thead><tr><th>Antibody</th><th>Associated phenotype / risk</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Anti-centromere (ACA)</td><td>lcSSc · <strong>PAH</strong> · severe GI disease</td></tr>
+                <tr><td class="k">Anti-Scl-70 / anti-topoisomerase 1</td><td>dcSSc · <strong>ILD</strong> · cardiac involvement · ↑ VTE risk</td></tr>
+                <tr><td class="k">Anti-RNA polymerase III</td><td><strong>Scleroderma renal crisis</strong> · GAVE with silent anaemia</td></tr>
+                <tr><td class="k">Anti-U3-RNP</td><td>Cardiac involvement · PAH</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Most patients have <strong>ANA</strong>; specific SSc antibodies are found on <strong>ENA</strong> screening. Diagnosis is challenging — <strong>any suspicion, especially out of hours, should involve a rheumatologist.</strong></p>
+        </div>
+      </section>
+
+      <section class="card" id="a5" data-toc="Medical therapy — 5 pathways">
+        <button class="card-head" type="button"><span class="ttl">A5 · Medical therapy — the 5 pathways</span><span class="chev"></span></button>
+        <div class="card-body">
+          <p>No specific molecular targeted disease-modifying therapy exists yet, though several agents are under investigation. Treatment has historically been <strong>organ-directed</strong>; immunosuppression now has a role in early dcSSc.</p>
+          <div class="table-wrap">
+            <table>
+              <caption>Table A5-1 · Drug groups in systemic sclerosis</caption>
+              <thead><tr><th>Pathway</th><th>Examples</th><th>Anaesthetic relevance</th></tr></thead>
+              <tbody>
+                <tr><td class="k">1. Immunomodulation</td><td>Steroids, rituximab, mycophenolate mofetil, tocilizumab</td><td>Infection risk; <strong>perioperative steroid "stress" dosing</strong>; SRC risk with high-dose steroids</td></tr>
+                <tr><td class="k">2. ILD antifibrotics</td><td>Nintedanib, pirfenidone</td><td>Hepatic/renal monitoring; bleeding</td></tr>
+                <tr><td class="k">3. Vasodilators</td><td>Calcium channel blockers, PDE5 inhibitors, prostacyclin analogues, endothelin-1 receptor antagonists</td><td><strong>Perioperative management of PAH</strong>; may also be used for Raynaud's/digital ulceration</td></tr>
+                <tr><td class="k">4. Cardiac disease</td><td>ACE inhibitors, diuretics, antihypertensives</td><td>ACEi discontinuation decisions; refractory hypotension vs renal protection</td></tr>
+                <tr><td class="k">5. GI disease</td><td>Antacids, PPIs, prokinetics</td><td><strong>Aspiration risk</strong>; hypomagnesaemia from long-term PPIs</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="box ok">
+            <span class="boxtitle">Notable evidence</span>
+            <ul>
+              <li><strong>Tocilizumab</strong> (anti-IL-6 receptor) — promising in SSc-ILD in phase 3 trials.</li>
+              <li><strong>Nintedanib</strong> and <strong>tocilizumab</strong> for ILD; evidence-based strategies for PAH.</li>
+              <li><strong>Mycophenolate mofetil or rituximab</strong> in early dcSSc — improved PFTs and reduced ILD extent.</li>
+              <li>ACEi remain first-line for <strong>scleroderma renal crisis</strong>.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="a6" data-toc="Perioperative outcomes &amp; risk">
+        <button class="card-head" type="button"><span class="ttl">A6 · Perioperative outcomes &amp; risk factors</span><span class="chev"></span></button>
+        <div class="card-body">
+          <h3 class="sub">Reported risk factors for adverse outcomes</h3>
+          <div class="chips">
+            <span class="chip red">Advanced age</span>
+            <span class="chip red">Male sex</span>
+            <span class="chip red">Rapidly progressive disease</span>
+            <span class="chip red">Extensive internal organ involvement</span>
+            <span class="chip red">Extensive skin involvement</span>
+            <span class="chip red">PAH</span>
+            <span class="chip red">ILD</span>
+            <span class="chip red">Documented cardiac disease</span>
+            <span class="chip red">Renal dysfunction</span>
+            <span class="chip red">Immunosuppressants &amp; steroids</span>
+          </div>
+
+          <h3 class="sub">Cardiovascular outcomes (4,385 patients, non-cardiac surgery)</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table A6-1 · Univariate vs multivariate associations</caption>
+              <thead><tr><th>Outcome</th><th>Univariate OR</th><th>Multivariate</th></tr></thead>
+              <tbody>
+                <tr><td class="k">MACE (any)</td><td>2.45 (p&lt;0.001)</td><td>—</td></tr>
+                <tr><td class="k">Myocardial infarction</td><td>3.33 (p&lt;0.001)</td><td><strong>Independently associated</strong> (model 1 OR 1.85, p=0.048; model 2 OR 1.94, p=0.031)</td></tr>
+                <tr><td class="k">Ischaemic stroke</td><td>2.02 (p&lt;0.001)</td><td>No independent association</td></tr>
+                <tr><td class="k">Cardiac arrest</td><td>2.11 (p&lt;0.001)</td><td>No independent association</td></tr>
+                <tr><td class="k">In-hospital all-cause death</td><td>3.07 (p&lt;0.001)</td><td>No independent association</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="sub2">Baseline comorbidity burden (typical patient: older Caucasian female, mean 63 yrs)</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Comorbidity</th><th>%</th><th>Comorbidity</th><th>%</th></tr></thead>
+              <tbody>
+                <tr><td>Hypertension</td><td>43%</td><td>Chronic kidney disease</td><td>16%</td></tr>
+                <tr><td>Dyslipidaemia</td><td>30%</td><td>ILD</td><td>14%</td></tr>
+                <tr><td>Coronary artery disease</td><td>17%</td><td>Congestive heart failure</td><td>11%</td></tr>
+                <tr><td>Pulmonary hypertension</td><td>17%</td><td>Cerebrovascular disease</td><td>10%</td></tr>
+                <tr><td>Tachyarrhythmias</td><td>16%</td><td>Cardiac conduction disorders</td><td>2%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Case mix:</strong> orthopaedic 44%, GI 22%, vascular 11%, breast 5.5%, thoracic 3.5%, non-cardiac transplant 1.9%. High-risk surgery in <strong>36% vs 21%</strong> of non-SSc patients (p&lt;0.001).</p>
+
+          <h3 class="sub">ICU &amp; transplant outcomes</h3>
+          <ul>
+            <li>Lung transplantation in SSc: <strong>48% relative increased risk of death at 1 year</strong> vs non-SSc ILD (but similar to non-SSc PAH).</li>
+            <li>ICU admission reasons: <strong>respiratory failure 66%</strong>, <strong>acute renal failure 15%</strong>. Baseline imaging showed pulmonary fibrosis in 72%; PAH 32%; ILD 72%. <strong>dcSSc phenotype predominates.</strong></li>
+            <li><strong>39% require renal replacement therapy.</strong></li>
+            <li><strong>30-day mortality 31%</strong>, rising at 6 months and 1 year. Respiratory complications and infection are the main causes of ICU death.</li>
+            <li><strong>Invasive mechanical ventilation in ICU → 85% in-hospital mortality.</strong></li>
+            <li>Chronic pain is very common (93%); 45% daily. Neuropathic pain in 26% (marker of more severe disease).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="a7" data-toc="Preoperative assessment (organ-system)">
+        <button class="card-head" type="button"><span class="ttl">A7 · Preoperative assessment — organ-system approach</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box accent">
+            <span class="boxtitle">Golden rules</span>
+            <ul>
+              <li>There is <strong>no high-level evidence</strong> for optimal perioperative management — practice is expert opinion/consensus.</li>
+              <li>Use a <strong>multidisciplinary approach</strong>: surgeon, rheumatologist, cardiologist, respiratory physician, coordinated by the anaesthesia team.</li>
+              <li><strong>Frequency of specialist review (&gt;twice/year)</strong> is itself an indicator of disease severity and internal organ involvement.</li>
+              <li>An organ-system approach may <strong>uncover unrecognised subclinical involvement</strong> that the perioperative stress response could unmask.</li>
+            </ul>
+          </div>
+
+          <h3 class="sub">Skin &amp; musculoskeletal</h3>
+          <ul>
+            <li>Note the <strong>extent of skin involvement</strong> (above/below knees and elbows) → indicates limited vs diffuse subtype.</li>
+            <li>Extensive or rapidly progressive skin disease = <strong>marker of severity</strong>, usually dcSSc, associated with cardiac and lung involvement.</li>
+            <li>Ulceration, subcutaneous calcinosis and superinfection → chronic pain, loss of movement/function (especially hand).</li>
+            <li>Ischaemia and necrosis → autoamputation of digital tufts, and in extreme cases phalanges.</li>
+            <li>In late disease skin may <strong>soften and become fragile</strong> — handle gently.</li>
+          </ul>
+
+          <h3 class="sub">Cardiac &amp; respiratory</h3>
+          <ul>
+            <li>Fibrosis + microcirculatory failure → <strong>decreased cardiac reserve</strong> and decreased left ventricular mass.</li>
+            <li><strong>Subclinical cardiac disease is common</strong> — keep a low threshold for stress testing and advanced/invasive investigations.</li>
+            <li><strong>Absence of respiratory symptoms is NOT reassuring</strong> — ILD may be detectable years before symptoms.</li>
+            <li>PAH definition now uses <strong>mPAP ≥ 20 mmHg at rest</strong> (older data used ≥ 25 mmHg) — beware interpreting historical data.</li>
+            <li>Consider <strong>time since PAH diagnosis</strong> and current treatment as indicators of progression/severity.</li>
+            <li>Up to <strong>one-third</strong> have sleep-disordered breathing with nocturnal SpO₂ &lt; 90%.</li>
+          </ul>
+
+          <h3 class="sub">Gastrointestinal (75% of patients)</h3>
+          <ul>
+            <li><strong>Aspiration risk</strong> — influences choice of anaesthetic technique. Dysphagia and reflux oesophagitis are almost universally present.</li>
+            <li>Postoperative issues: GI bleed, obstructive acute abdomen, gastric stasis/ileus, constipation, bacterial overgrowth.</li>
+            <li>Long-term PPIs are common but <strong>premedication with an antacid + PPI should not be overlooked</strong>.</li>
+            <li>Impaired mastication + GI issues → <strong>malnutrition</strong>. Screen actively (e.g. MUST) and correct preoperatively.</li>
+          </ul>
+
+          <h3 class="sub">Renal</h3>
+          <ul>
+            <li>Mild proteinuria, elevated creatinine and hypertension are common; up to <strong>50% have asymptomatic renal disease until late</strong>.</li>
+            <li>Forms: scleroderma renal crisis, ANCA-associated vasculitis, isolated reduced GFR, reduced renal reserve, antiphospholipid-associated nephropathy, intrarenal arterial stiffness, penicillamine-associated disease, proteinuria.</li>
+            <li>Prerenal contributors: heart failure, PAH, hypovolaemia, diuretics, anti-inflammatory drugs.</li>
+            <li><strong>Proteinuria &gt;1 g/day is uncommon</strong> and suggests primary glomerular disease.</li>
+          </ul>
+
+          <h3 class="sub">Practical assessment caveats</h3>
+          <div class="box warn">
+            Simple measurements may be <strong>technically difficult and unreliable</strong>: pulse oximetry and non-invasive BP are affected by Raynaud's phenomenon and thickened skin. Plan alternatives in advance.
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="a8" data-toc="Preoperative investigations &amp; DETECT">
+        <button class="card-head" type="button"><span class="ttl">A8 · Preoperative investigations &amp; PAH screening</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <caption>Table A8-1 · Preoperative investigations</caption>
+              <thead><tr><th>Test</th><th>Possible findings / comments</th></tr></thead>
+              <tbody>
+                <tr><td class="k">FBC &amp; coagulation</td><td>Anaemia of chronic disease / iron deficiency (chronic GI loss); microangiopathic haemolytic anaemia in SRC; prolonged APTT may suggest antiphospholipid antibodies / lupus anticoagulant</td></tr>
+                <tr><td class="k">Biochemistry</td><td>Hypomagnesaemia (long-term PPIs); liver dysfunction uncommon (may suggest primary biliary cirrhosis / sclerosing cholangitis); <strong>slightest urea/creatinine abnormality → investigate urgently</strong> (early SRC); ↑ creatine kinase → consider overlap syndrome</td></tr>
+                <tr><td class="k">ESR / CRP</td><td><strong>Usually not increased</strong> in active disease. Persistent elevation correlates with declining lung function and PAH; may suggest intercurrent infection</td></tr>
+                <tr><td class="k">Autoantibodies</td><td>Not essential preoperatively, but may predict organ involvement / postoperative risk (see A4)</td></tr>
+                <tr><td class="k">Pulmonary function tests</td><td><strong>ILD predictor:</strong> DLCO &lt;70% predicted. <strong>PAH predictor:</strong> DLCO &lt;60% with preserved volumes; reduced FVC with normal/increased FEV₁/FVC. <strong>Weaning difficulty:</strong> FVC &lt;50% predicted</td></tr>
+                <tr><td class="k">Transthoracic echo</td><td>PAH screening and global function — but <strong>may miss up to 30%</strong> of SSc PAH</td></tr>
+                <tr><td class="k">Stress testing / CPET</td><td>Probably more relevant than resting tests. CPET may predict PAH (V̇E/V̇CO₂ slope &gt;36) and reduced survival (peak V̇O₂ &lt;15.6 mL/kg/min, V̇E/V̇CO₂ slope &gt;35)</td></tr>
+                <tr><td class="k">Right heart catheterisation</td><td><strong>Gold standard</strong> for PAH confirmation and clinical group identification. Cut-off: mPAP ≥20 mmHg at rest</td></tr>
+                <tr><td class="k">High-resolution lung CT</td><td>Stratifies ILD extent. <strong>Limited:</strong> ≤20% of pulmonary surface on CT, or FVC ≥70% if CT indeterminate. <strong>Extensive:</strong> ≥20% of surface, or FVC ≤70% if CT indeterminate</td></tr>
+                <tr><td class="k">Cardiac MRI (gadolinium)</td><td>Increasingly useful for <strong>subclinical cardiac SSc</strong> (myocardial fibrosis) that may otherwise reveal itself postoperatively</td></tr>
+                <tr><td class="k">Gastric emptying study</td><td>Useful to confirm abnormal gastric emptying</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">The DETECT algorithm (simplified)</h3>
+          <div class="flow">
+            <div class="flow-title">Step 1 — Score the indication for echocardiography</div>
+            <div class="step"><span class="num">1</span><div class="body">
+              <b>Variables:</b> FVC % predicted / DLCO % predicted · current or past telangiectasias · serum ACA · serum NT-proBNP · serum urate · ECG right-axis deviation
+            </div></div>
+            <div class="gate">If total risk points &gt; 300 → refer for ECHOCARDIOGRAPHY</div>
+            <div class="arrow-down"></div>
+            <div class="flow-title" style="margin-top:10px">Step 2 — Score the indication for right heart catheterisation</div>
+            <div class="step"><span class="num">2</span><div class="body">
+              <b>Variables:</b> individual risk points from Step 2 · total risk points from Step 1 · right atrium area · TR velocity
+            </div></div>
+            <div class="gate">If total risk points &gt; 35 → refer for RIGHT HEART CATHETERISATION</div>
+          </div>
+          <p style="font-size:.82em;color:var(--muted)">An electronic version of DETECT is available for Android and iOS. Adapted from Coghlan et al. ACA = anticardiolipin antibodies; TR = tricuspid regurgitation.</p>
+
+          <div class="box">
+            <span class="boxtitle">Screening cadence</span>
+            All patients should undergo <strong>annual screening for PAH</strong>: PFTs (DLCO) and TTE. Repeat preoperative TTE is indicated in those with SSc-PAH, specific cardiac risk factors, or known cardiac involvement without recent stratification.
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="a9" data-toc="VTE risk &amp; perioperative drugs">
+        <button class="card-head" type="button"><span class="ttl">A9 · VTE risk, drug interactions &amp; perioperative challenges</span><span class="chev"></span></button>
+        <div class="card-body">
+          <h3 class="sub">Venous thromboembolism</h3>
+          <ul>
+            <li>SSc → <strong>3-fold increased risk of VTE</strong>.</li>
+            <li>Risk factors: female sex, age 18–45, <strong>anti-Scl-70/anti-topoisomerase 1 positivity</strong>, first year since diagnosis, atrial fibrillation, congestive heart failure, PAH, SSc-ILD, peripheral arterial disease, <strong>perioperative glucocorticoids</strong>, positive antiphospholipid screen, Raynaud's at presentation.</li>
+            <li>Up to <strong>57%</strong> of patients in one study had positive antiphospholipid antibodies (aPL).</li>
+            <li>Suspect APS with livedo reticularis, digital ischaemia, VTE or stroke → rheumatology review and screening (anticardiolipin, β2-GP1, lupus anticoagulant, APTT).</li>
+          </ul>
+          <div class="box ok"><strong>Perioperative VTE prophylaxis should be routine</strong> in the absence of medical/surgical contraindications.</div>
+
+          <h3 class="sub">Drugs to avoid or use cautiously</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table A9-1 · Drugs and Raynaud's / digital ischaemia</caption>
+              <thead><tr><th>Category</th><th>Detail</th></tr></thead>
+              <tbody>
+                <tr><td class="k">May trigger Raynaud's</td><td><strong>Clonidine</strong> (α₂c adrenoceptor vasoconstriction), <strong>non-selective β-blockers</strong>, dopamine agonists, cisplatin, bleomycin, SSRIs. Use only if benefit outweighs risk; keep extremities warm and inspect regularly.</td></tr>
+                <tr><td class="k">Intraoperative vasoconstrictors</td><td><strong>Phenylephrine and metaraminol</strong> — use with caution (digital ischaemia risk). <strong>Ephedrine may have a safer profile.</strong></td></tr>
+                <tr><td class="k">ACE inhibitors</td><td>First-line antihypertensive and treatment for SRC. Preoperative discontinuation for fear of refractory hypotension should be <strong>decided jointly with nephrology and rheumatology</strong>. Balance renal protection vs refractory hypotension requiring vasopressors (→ digital ischaemia / SRC).</td></tr>
+                <tr><td class="k">PAH vasodilators</td><td>Major preoperative changes are <strong>usually not required</strong> unless the route of administration must change. Any change should be made with the specialist treating the PAH. Preoperative volume optimisation with diuretics should not be overlooked.</td></tr>
+                <tr><td class="k">Methotrexate</td><td>Recent guidelines <strong>allow continuation</strong> for elective surgery.</td></tr>
+                <tr><td class="k">Rituximab</td><td>Dosing cycle every 6 months — <strong>surgery recommended in the 7th month</strong> since the last dose.</td></tr>
+                <tr><td class="k">Steroids</td><td>Use is controversial: high doses associated with SRC. <strong>Do not withhold high-dose steroids if indicated.</strong> Patients with inflammation (↑ESR/CRP) and highest risk of poor outcomes may be on medium-term moderate-dose regimens. Current evidence does <strong>not</strong> support withholding perioperative steroid supplementation for those on adrenal-suppressive doses (&gt;5 mg/day for &gt;4 weeks).</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="a10" data-toc="Intraoperative management">
+        <button class="card-head" type="button"><span class="ttl">A10 · Intraoperative management</span><span class="chev"></span></button>
+        <div class="card-body">
+          <h3 class="sub">Monitoring</h3>
+          <ul>
+            <li>Thickened, bound skin and flexion contractures → <strong>oscillometric NIBP unreliable</strong>. Invasive arterial monitoring may be required even for uncomplicated surgery.</li>
+            <li>Skin thickness, ulceration and Raynaud's → <strong>poor pulse oximetry signal</strong>.</li>
+            <li>Vasospasm/Raynaud's affects digital cuff and "volume clamp" cardiac output/BP measurement.</li>
+            <li><strong>Avoid digital cuff devices</strong> — may trigger vasospasm and finger necrosis.</li>
+            <li>Acute changes in pulse oximetry signal quality can <strong>herald Raynaud's</strong> (from poor temperature control, pain, perioperative stress or drugs).</li>
+            <li><strong>Move the pulse oximetry probe regularly</strong> between sites to reduce digital ulcer risk.</li>
+            <li>Invasive arterial monitoring should preferentially use a <strong>large artery (e.g. brachial)</strong> to avoid RP and secondary ischaemia/necrosis.</li>
+            <li><strong>TOE</strong> may be warranted for cardiac monitoring when cardiac involvement is suspected — decide case-by-case after reviewing recent gastroscopy (oesophageal involvement ↑ risk of probe injury).</li>
+          </ul>
+
+          <h3 class="sub">Vascular access</h3>
+          <ul>
+            <li>Peripheral venous access may require <strong>ultrasound guidance</strong>.</li>
+            <li><strong>Central venous access</strong> may be needed even for uncomplicated surgery if peripheral access cannot be secured reliably.</li>
+          </ul>
+
+          <h3 class="sub">Positioning &amp; general care</h3>
+          <ul>
+            <li>Skin fibrosis (pressure ulcer prone in late stages), decreased subcutaneous fat and contractures → <strong>meticulous positioning</strong>.</li>
+            <li>Keratoconjunctivitis sicca and eyelid skin changes are common → <strong>corneal lubrication and careful eye taping</strong>.</li>
+            <li>Prevent vasoconstrictive episodes: <strong>theatre temperature &gt;23 °C</strong>, warm fluid infusion, convective air blankets.</li>
+            <li>A theoretical risk of <strong>intraoperative hyperthermia</strong> exists because of vasospasm and impaired sweating.</li>
+          </ul>
+
+          <h3 class="sub">Airway</h3>
+          <ul>
+            <li>Challenges: <strong>difficult mask ventilation</strong> (facial anatomical deformities), <strong>limited mouth opening</strong> (microstomia, reduced TMJ movement), <strong>limited neck movement</strong> (soft-tissue fibrosis, not cervical spine involvement — so plain cervical spine imaging has limited planning value), and <strong>aspiration risk</strong>.</li>
+            <li><strong>Microstomia + high Mallampati grade = ominous.</strong></li>
+            <li>Preoperative mouth physiotherapy in the month before surgery may add up to <strong>1 cm</strong> to mouth opening.</li>
+            <li>Untreated dental disease adds to airway difficulty.</li>
+            <li>Airway adjuncts (oral/nasal) significantly facilitate single-provider technique even when mask ventilation is difficult.</li>
+            <li>Strategies described: direct laryngoscopy, trans-tracheal wire guidance, fibreoptic intubation, intubating stylets, or <strong>avoiding airway manipulation with regional anaesthesia</strong>.</li>
+            <li><strong>Awake fibreoptic intubation via the nasal route</strong> — use cautiously: risk of massive nasal haemorrhage and smaller nasal fossae.</li>
+            <li><strong>Rapid sequence induction with cricoid pressure should be routine</strong> given the high incidence of GI involvement.</li>
+          </ul>
+
+          <h3 class="sub">Ventilation</h3>
+          <ul>
+            <li>In advanced SSc-ILD, <strong>avoid intermittent positive pressure ventilation (IPPV) where possible</strong>.</li>
+            <li>Expect <strong>decreased compliance, increased airway pressures, poor oxygenation</strong>.</li>
+            <li>Lung protective strategy: <strong>tidal volume 6 mL/kg predicted body weight</strong>, adjusted to driving and plateau pressures.</li>
+            <li>Adjust rate to maintain <strong>pH &gt; 7.25</strong>; inspect flow trace for <strong>intrinsic PEEP</strong>.</li>
+            <li><strong>Avoid high PEEP</strong> in fibrotic lungs; use a lung-resting strategy — tolerate atelectasis by titrating PEEP to lower values if SpO₂ stays 88–90% or above 8 kPa.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="a11" data-toc="Choice &amp; conduct of anaesthesia">
+        <button class="card-head" type="button"><span class="ttl">A11 · Choice &amp; conduct of anaesthesia</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box accent"><strong>No specific anaesthetic technique has been shown to be ideal.</strong> Base the choice on: type of surgery; organ systems involved (PAH, cardiac impairment); aspiration risk; difficult/failed airway risk; and familiarity with the technique.</div>
+          <ul>
+            <li>General anaesthesia with a <strong>"natural" airway</strong> (no tracheal tube or supraglottic device) has been used with no increase in intraoperative aspiration — but IPPV should be avoided when possible.</li>
+            <li>Optimise preoperatively: hydration, adequate haemoglobin, <strong>strict perioperative BP control (avoid hypotension)</strong>, limit contrast agents → reduce renal impairment / SRC risk.</li>
+          </ul>
+
+          <h3 class="sub">Regional anaesthesia</h3>
+          <ul>
+            <li>Attractive, particularly in severe pulmonary disease — but consider <strong>failure and conversion to GA</strong>.</li>
+            <li>Difficulties: positioning (contractures, fixed deformities), difficult skin puncture, and <strong>exaggerated haemodynamic instability</strong> (autonomic neuropathy + neuraxial vasodilatation).</li>
+            <li>Extensive soft-tissue fibrosis may <strong>limit spread of local anaesthetic</strong> and the effect of fascial plane blocks.</li>
+            <li><strong>Prolonged sensory block</strong> has been described in SSc — mechanisms: decreased vascularity and increased fibrous tissue delaying systemic LA absorption, tissue pH differences, mechanical nerve compression in non-elastic perineural structures.</li>
+            <li>Neuraxial cannulation is <strong>not usually technically difficult</strong> (the spine is usually spared).</li>
+            <li>Neuraxial hypotension is hard to manage: excess IV fluid → pulmonary oedema/heart failure; vasoconstrictors → worsening RP, ischaemia, necrosis. <strong>Incremental titration via catheter techniques</strong> (continuous spinal or epidural) gives smoother haemodynamics.</li>
+          </ul>
+
+          <div class="box ok"><span class="boxtitle">Analgesia</span> Good analgesia may reduce the risk of SRC and catastrophic antiphospholipid syndrome (CAPS) postoperatively by mitigating the surgical stress response. A <strong>multimodal approach</strong> is likely most beneficial — but consider preoperative renal impairment and hypovolaemia.</div>
+
+          <h3 class="sub">PAH: prevention &amp; acute crisis management</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table A11-1 · PAH crisis — avoid and treat</caption>
+              <thead><tr><th>Avoid / prevent</th><th>Acute crisis treatment</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Hypothermia · hypervolaemia · hypoxia · hypercarbia · high PEEP and hyperinflation · prostaglandins (PGF₂α, PGE₁) · acidosis · nitrous oxide · surgical stress
+                  </td>
+                  <td>
+                    <ul style="margin:0;padding-left:1.1em">
+                      <li>Aggressively treat hypotension <strong>without discontinuing pre-existing pulmonary vasodilators</strong></li>
+                      <li>Optimise preload — <strong>CVP 8–12 mmHg</strong></li>
+                      <li>Optimise contractility — <strong>dobutamine, milrinone</strong></li>
+                      <li>Vasopressors — <strong>noradrenaline (norepinephrine) up to 0.5 µg/kg/min</strong> plus <strong>vasopressin</strong> in low doses (up to 0.04 units/min)</li>
+                      <li>Reduce pulmonary vascular resistance — <strong>inhaled nitric oxide</strong>, nebulised prostacyclin, milrinone or iloprost</li>
+                      <li><strong>Sevoflurane preferred</strong> (favourable vasoactive profile on the pulmonary vasculature)</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:.82em;color:var(--muted)">Patients with a significant pre-capillary cause for PAH may respond poorly to inhaled NO.</p>
+        </div>
+      </section>
+
+      <section class="card" id="a12" data-toc="Postoperative complications &amp; the rheumatologist">
+        <button class="card-head" type="button"><span class="ttl">A12 · Postoperative complications &amp; the rheumatologist's role</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box danger">
+            <span class="boxtitle">Rare but life-threatening postoperative complications</span>
+            <strong>Scleroderma renal crisis (SRC)</strong> and <strong>catastrophic antiphospholipid syndrome (CAPS)</strong>. Also: digital gangrene, VTE, aspiration, respiratory failure.
+          </div>
+
+          <h3 class="sub">The rheumatologist in the perioperative period</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table A12-1 · What rheumatology input adds</caption>
+              <thead><tr><th>Role</th><th>Detail</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Support out-of-hours cases</td><td>Facilitates diagnosis when the diagnosis is unclear</td></tr>
+                <tr><td class="k">Interpret serology</td><td>Assesses autoantibody associations, clarifies overlap features</td></tr>
+                <tr><td class="k">Disease trajectory</td><td>Offers insight into progression; delineates extent and severity</td></tr>
+                <tr><td class="k">Subclinical risk</td><td>Advises on the risk of subclinical organ involvement</td></tr>
+                <tr><td class="k">Investigations</td><td>May suggest/support specific perioperative tests (cardiac MRI, right heart catheterisation)</td></tr>
+                <tr><td class="k">Therapy management</td><td>Risk of <em>stopping</em> medication (e.g. ACEi); risk of <em>starting</em> medication (e.g. beta blockers); steroid management; drug interactions</td></tr>
+                <tr><td class="k">Complication prevention</td><td>Should be consulted postoperatively if complications ensue (SRC, VTE, digital gangrene)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Most common perioperative requests for specialist input:</strong> (i) immunosuppression queries (including steroids and infection), (ii) use of beta blockers, (iii) new complications (e.g. is that postoperative creatinine rise a precursor of SRC?).</p>
+          <div class="box warn"><span class="boxtitle">Evidence gap</span> Only <strong>one European guideline</strong> to date includes advice on anaesthesia. There are <strong>no guidelines</strong> for anaesthetic or perioperative care in SSc — most evidence is observational, from case reports/series and expert opinion.</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PART B                                                            -->
+    <!-- ================================================================ -->
+    <section class="part" id="part-b">
+      <h2 class="part-title">Part B — Rheumatological Conditions in Critical Care <span class="tag">ICU</span></h2>
+
+      <section class="card" id="b1" data-toc="Overview &amp; key points">
+        <button class="card-head" type="button"><span class="ttl">B1 · Overview &amp; key points</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box accent">
+            <span class="boxtitle">Key points</span>
+            <ul>
+              <li>Rheumatological disease (RD) management now focuses on <strong>early, aggressive immunosuppression</strong> using disease-modifying and biological agents.</li>
+              <li>These therapies cause <strong>immunosuppression</strong> and both specific and general side effects relevant to the intensivist.</li>
+              <li>Consider <strong>atypical infection</strong> — <em>Pneumocystis</em> pneumonia, tuberculosis, fungi — in <strong>all</strong> rheumatological patients on treatment presenting to ICU.</li>
+              <li><strong>Disease flare and sepsis are often indistinguishable.</strong> Patients not responding to treatment may need further rheumatological/immunosuppressive treatment.</li>
+              <li><strong>Prompt rheumatology consultation is paramount.</strong></li>
+            </ul>
+          </div>
+
+          <h3 class="sub">Why RDs matter in ICU</h3>
+          <div class="chips">
+            <span class="chip">Predominantly affect young females</span>
+            <span class="chip">Multi-system diseases</span>
+            <span class="chip">Potential multi-organ failure</span>
+            <span class="chip red">ICU mortality 15–55%</span>
+            <span class="chip">Complicated pharmacotherapy</span>
+            <span class="chip">Immunocompromise (disease and/or drugs)</span>
+            <span class="chip">Conditions coexist/overlap</span>
+          </div>
+
+          <h3 class="sub">Common rheumatological reasons for ICU admission</h3>
+          <ol>
+            <li>New manifestations / end-organ sequelae of the RD</li>
+            <li><strong>Infection secondary to immunosuppressive treatment</strong></li>
+            <li>Adverse effects of disease-modifying drugs</li>
+            <li>Acute critical illness unrelated to, but exacerbated by, the underlying RD</li>
+          </ol>
+          <p><strong>Three-quarters</strong> of RD ICU admissions are due to <strong>rheumatoid arthritis, SLE or scleroderma</strong>. Others: antiphospholipid syndrome, vasculitides, dermatomyositis.</p>
+          <div class="box warn"><span class="boxtitle">The classic trap</span> Differentiating sepsis from a flare of the underlying inflammatory disease. Management differs substantially — and <strong>treatment of both infection and the RD may be required in tandem</strong>.</div>
+        </div>
+      </section>
+
+      <section class="card" id="b2" data-toc="Macrophage activation syndrome (MAS/HLH)">
+        <button class="card-head" type="button"><span class="ttl">B2 · Macrophage activation syndrome (MAS / HLH)</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box danger">
+            <span class="boxtitle">Definition &amp; mortality</span>
+            Rare but potentially lethal complication of several RDs; grouped under <strong>haemophagocytic lymphohistiocytosis (HLH)</strong>. Loss of immune regulation → inappropriate macrophage and T-cell activity → uncontrolled, self-perpetuating <strong>hyperinflammation ("cytokine storm")</strong>. Quoted mortality <strong>15–20%</strong> (one recent study 8%).
+          </div>
+          <p><strong>Cytokine profile:</strong> unregulated release of TNF-α, IFN-γ, IL-6, IL-10, IL-1β with markedly decreased natural killer cell activity.</p>
+          <ul>
+            <li><strong>Primary HLH</strong> — genetic perforin defects, mainly infants.</li>
+            <li><strong>Secondary/acquired MAS-HLH</strong> — malignancy, acquired immune deficiency (e.g. transplant recipients), and RD.</li>
+            <li>Most often associated with <strong>systemic juvenile idiopathic arthritis (sJIA)</strong>; also SLE, adult-onset Still's disease, vasculitis.</li>
+            <li>May occur at any stage — onset, active disease, or quiescent disease. <strong>Can also develop de novo</strong> in non-rheumatology ICU patients suspected of sepsis and multi-organ dysfunction, or with triggers such as lymphoma and EBV.</li>
+          </ul>
+
+          <h3 class="sub">Clinical features (hyper-inflammatory state)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Feature</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Cytopenias</td><td><strong>Falling platelet count is often the first abnormality noted</strong></td></tr>
+                <tr><td class="k">Hyperferritinaemia</td><td>Key diagnostic marker</td></tr>
+                <tr><td class="k">Unremitting fever</td><td>Most common presenting feature (96%)</td></tr>
+                <tr><td class="k">Coagulopathy / DIC</td><td>—</td></tr>
+                <tr><td class="k">Splenomegaly / lymphadenopathy</td><td>Hepatomegaly 70%, splenomegaly 58%</td></tr>
+                <tr><td class="k">Hypertriglyceridaemia</td><td>—</td></tr>
+                <tr><td class="k">Neurological features</td><td>Confusion, headache, seizures, coma</td></tr>
+                <tr><td class="k">Multiple organ failure</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">Diagnosis</h3>
+          <ul>
+            <li>Difficult to differentiate from underlying RD or overwhelming sepsis — requires <strong>high clinical suspicion</strong>.</li>
+            <li><strong>Trends in serum values are more important than absolute values.</strong></li>
+            <li><strong>Ferritin &gt;10,000 µg/L is pathognomonic</strong>; &gt;5,000 µg/L is very suggestive. Low percentage of <strong>glycosylated ferritin</strong> is useful. Consecutive ferritin levels can be used as a marker of response to therapy.</li>
+            <li>Marked changes: AST ↑346%, ALT ↑325%, D-dimer ↑122%, LDH ↑121%.</li>
+            <li><strong>CRP expected to increase while ESR may decrease.</strong></li>
+          </ul>
+
+          <h3 class="sub">Treatment</h3>
+          <ol>
+            <li><strong>Early, aggressive supportive therapy</strong></li>
+            <li><strong>High-dose corticosteroids</strong> — dexamethasone or methylprednisolone, escalating to additional immunosuppression with <strong>ciclosporin</strong></li>
+            <li><strong>Elimination of known or suspected triggers</strong></li>
+            <li><strong>Infection control</strong></li>
+          </ol>
+          <p>Refractory acquired MAS/HLH: <strong>IV immunoglobulin</strong> (1 g/kg for 2 days), <strong>plasma exchange</strong>, biological agents (anakinra most commonly selected). In one series: corticosteroids 98%, ciclosporin 61.2%, IVIG 36.3%, biological agents only 15.2%.</p>
+          <div class="box"><span class="boxtitle">Case vignette (from the source)</span> 17-year-old male with sJIA on methotrexate and tocilizumab, admitted with lobar pneumonia → respiratory failure, prone positioning, broad-spectrum antibiotics/antivirals. Deteriorated with rash, spiking temperatures, seizure, pancytopenia, ferritin &gt;16,500 µg/L, triglycerides 10.3 mmol/L. Diagnosed clinically with MAS and treated with methylprednisolone, ciclosporin, IVIG and etoposide — made a full recovery.</div>
+        </div>
+      </section>
+
+      <section class="card" id="b3" data-toc="Scleroderma renal crisis (SRC)">
+        <button class="card-head" type="button"><span class="ttl">B3 · Scleroderma renal crisis (SRC)</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box danger">
+            <span class="boxtitle">Bottom line</span>
+            A life-threatening complication of systemic sclerosis affecting <strong>~5–10% of patients with scleroderma</strong>. Presents as a fulminant, life-threatening acute episode. <strong>Any new rise in creatinine postoperatively must be taken seriously.</strong>
+          </div>
+          <ul>
+            <li>Associated with <strong>anti-RNA polymerase III</strong> antibodies.</li>
+            <li>Historically the leading cause of death in SSc — mortality has been attenuated by <strong>ACE inhibitors</strong>.</li>
+            <li>Features: <strong>microangiopathic haemolytic anaemia</strong>, thrombocytopenia, new/worsening hypertension, rising creatinine, proteinuria, oliguria.</li>
+            <li>Perioperative precipitants: hypotension, hypovolaemia, nephrotoxins, contrast, high-dose steroids, calcineurin inhibitors (renal vasoconstriction).</li>
+          </ul>
+          <div class="box ok">
+            <span class="boxtitle">Management principles</span>
+            <ul>
+              <li><strong>ACE inhibitors are first-line</strong> — do not discontinue without specialist advice.</li>
+              <li>Maintain renal perfusion: avoid hypotension, hypovolaemia and nephrotoxins; limit contrast.</li>
+              <li>Involve rheumatology and nephrology early; renal replacement support may be required.</li>
+              <li><strong>Steroid use in SSc is controversial</strong> because high doses have been associated with SRC — but high-dose steroids should not be withheld if otherwise indicated.</li>
+              <li>Calcineurin inhibitors (ciclosporin, tacrolimus) are <strong>associated with renal vasoconstriction and SRC</strong>.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="b4" data-toc="ANCA-associated vasculitis (AAV)">
+        <button class="card-head" type="button"><span class="ttl">B4 · ANCA-associated vasculitis (AAV)</span><span class="chev"></span></button>
+        <div class="card-body">
+          <p>Multi-system autoimmune diseases affecting <strong>small to medium-sized blood vessels</strong>, characterised by circulating ANCA and <strong>absence of immune deposits</strong> within vessel walls.</p>
+          <h3 class="sub">Clinicopathological variants (revised 2012)</h3>
+          <div class="chips">
+            <span class="chip">Microscopic polyangiitis (MPA)</span>
+            <span class="chip">Granulomatosis with polyangiitis (GPA, formerly Wegener's)</span>
+            <span class="chip">Eosinophilic granulomatosis with polyangiitis (EGPA, formerly Churg–Strauss)</span>
+            <span class="chip">Single-organ AAV (e.g. renal-limited)</span>
+          </div>
+
+          <h3 class="sub">Organ involvement &amp; ICU-relevant complications</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table B4-1 · Frequency of organ involvement</caption>
+              <thead><tr><th>System</th><th>GPA</th><th>EGPA</th><th>MPA</th><th>Key ICU issues</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Pulmonary</td><td>90%</td><td>70%</td><td>50%</td><td><strong>Subglottic stenosis → difficult tracheal intubation</strong>; <strong>diffuse alveolar haemorrhage requiring invasive ventilation</strong>; multiple nasal polyps and eosinophilic asthma in EGPA</td></tr>
+                <tr><td class="k">Renal</td><td>80%</td><td>45%</td><td>90%</td><td>Rapidly progressive glomerulonephritis → end-stage renal disease</td></tr>
+                <tr><td class="k">Cardiac</td><td>—</td><td>Most common in EGPA</td><td>—</td><td>Heart blocks, myocarditis, pericarditis, myocardial infarction</td></tr>
+                <tr><td class="k">Gastrointestinal</td><td colspan="3">Vasculitic ulceration</td><td>Bowel perforation; pancreatic or liver involvement</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="box warn">Many patients are established on corticosteroids and other immunosuppressants → <strong>high risk of opportunistic infection and overwhelming sepsis</strong>.</div>
+        </div>
+      </section>
+
+      <section class="card" id="b5" data-toc="SLE in critical care">
+        <button class="card-head" type="button"><span class="ttl">B5 · SLE in critical care (overview)</span><span class="chev"></span></button>
+        <div class="card-body">
+          <p>SLE is a complex multi-system disease with numerous critical complications:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Common</th><th>Rare</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Coronary artery disease · overwhelming sepsis · renal failure</td>
+                  <td>Pericarditis · alveolar haemorrhage · transverse myelitis</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>See Part C for full detail on SLE diagnosis, treatment and monitoring.</p>
+        </div>
+      </section>
+
+      <section class="card" id="b6" data-toc="Rheumatological pharmacotherapy &amp; ICU">
+        <button class="card-head" type="button"><span class="ttl">B6 · Rheumatological pharmacotherapy &amp; ICU</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box accent">
+            <span class="boxtitle">The inverted pyramid</span>
+            Inflammatory burden drives long-term complications (e.g. cardiovascular disease — RA is an independent risk factor in QRISK2). Treatment is therefore <strong>started early and aggressively</strong>, often as dual or triple therapy. More patients are therefore on DMARDs and biologics.
+          </div>
+          <p><strong>Typical sequence:</strong> early DMARD (± combination, e.g. methotrexate + sulphasalazine) → change/add DMARD(s) → biologics (usually with an oral DMARD) → experimental treatment. In SLE, hydroxychloroquine, azathioprine or mycophenolate mofetil may be used first line and in combination.</p>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Table B6-1 · Drugs, issues and side effects relevant to ICU</caption>
+              <thead><tr><th>Drug / class</th><th>Mechanism &amp; dosing</th><th>Key adverse effects</th><th>ICU implications</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="k">Methotrexate</td>
+                  <td>Folic acid analogue; anti-proliferative, immunosuppressive, anti-inflammatory. Oral or SC <strong>once weekly</strong>.</td>
+                  <td><strong>Methotrexate pneumonitis (MX-P)</strong>, marrow failure</td>
+                  <td>Most common DMARD in RA</td>
+                </tr>
+                <tr>
+                  <td class="k">— MX-P</td>
+                  <td>Incidence 2–7%, greatest risk in the <strong>first year</strong>. Mortality up to <strong>20%</strong>. Onset acute or subacute (days to months).</td>
+                  <td>Breathlessness, cough, fever, hypoxia, bibasal crackles</td>
+                  <td>PFTs: ↓ gas transfer. HRCT: bilateral patchy ground-glass. Biopsy: marked eosinophilia. <strong>Difficult to distinguish from infection — exclude <em>Pneumocystis</em></strong></td>
+                </tr>
+                <tr>
+                  <td class="k">— MTX marrow toxicity</td>
+                  <td>Risk: impaired GFR, advanced age, low albumin, concurrent liver disease</td>
+                  <td>Moderate–severe pancytopenia</td>
+                  <td>Stop MTX; organ support; <strong>folinic acid</strong>; RBC/platelet replacement; G-CSF; IV methylprednisolone</td>
+                </tr>
+                <tr>
+                  <td class="k">Anti-TNF agents</td>
+                  <td>Infliximab, adalimumab, certolizumab, golimumab (mAbs); etanercept (TNF-α receptor construct). SC weekly/fortnightly/monthly; infliximab IV 8-weekly.</td>
+                  <td>Significant immunosuppression</td>
+                  <td>Relatively contraindicated if already at risk of infection (uncontrolled diabetes, high-dose steroids). <strong>Atypical/opportunistic infection:</strong> <em>Listeria</em>, <em>Salmonella</em>, mycobacteria (<strong>TB</strong>), varicella, <em>Pneumocystis jirovecii</em>, <em>Aspergillus</em></td>
+                </tr>
+                <tr>
+                  <td class="k">Rituximab</td>
+                  <td>Anti-CD20 monoclonal antibody → potent B-cell depletion. Given 6–12 monthly as two IV infusions 2 weeks apart.</td>
+                  <td>Reactivation of latent infection</td>
+                  <td><strong>TB reactivation</strong>; JC virus reactivation → <strong>progressive multifocal leukoencephalopathy</strong> (serious, potentially fatal)</td>
+                </tr>
+                <tr>
+                  <td class="k">Tocilizumab</td>
+                  <td>Anti-IL-6 receptor monoclonal antibody. Monthly IV infusion or weekly SC.</td>
+                  <td>Mouth ulcers, GI perforation, hypertension, ↑ infection risk, malignancy, liver dysfunction</td>
+                  <td>Used in RA/JIA failing DMARDs and TNF inhibitors; also in SSc-ILD</td>
+                </tr>
+                <tr>
+                  <td class="k">Abatacept</td>
+                  <td>T-cell co-stimulation blocker — binds CD80/CD86, preventing T-cell activation. Monthly IV infusion.</td>
+                  <td>Immunosuppression</td>
+                  <td>Resistant RA and polyarticular JIA</td>
+                </tr>
+                <tr>
+                  <td class="k">Calcineurin inhibitors</td>
+                  <td>Ciclosporin, tacrolimus — inhibit calcineurin → ↓ T-cell activation</td>
+                  <td><strong>Renal vasoconstriction and SRC</strong> in SSc</td>
+                  <td>Used post lung transplant in some SSc patients; also in SLE</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">Searles' criteria for MX-P</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Major criteria</th><th>Minor criteria</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <ul style="margin:0;padding-left:1.1em">
+                      <li>Hypersensitivity pneumonitis by histopathology <strong>without</strong> evidence of pathogenic organisms</li>
+                      <li>Radiological evidence of pulmonary interstitial or alveolar infiltrates</li>
+                      <li>Blood cultures (if febrile) and initial sputum cultures (if produced) <strong>negative</strong> for pathogenic organisms</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul style="margin:0;padding-left:1.1em">
+                      <li>Shortness of breath for &lt;8 weeks</li>
+                      <li>Non-productive cough</li>
+                      <li>SpO₂ ≤90% on room air at initial evaluation</li>
+                      <li>DLCO ≤70% of predicted for age</li>
+                      <li>White cell count ≤15,000 cells/mm³</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Definite MX-P:</strong> one major criterion + three minor criteria. <strong>Probable MX-P:</strong> major criteria 2 and 3 + two of the five minor criteria. <strong>Treatment:</strong> stop methotrexate (may be sufficient); if no response, high-dose corticosteroids (e.g. methylprednisolone 1 mg/kg initially); empirical antibiotics until infection (especially <em>Pneumocystis</em>) excluded; inotropic and ventilatory support in severe cases. Clinical improvement usually within days; radiological improvement over weeks to months.</p>
+
+          <div class="box danger">
+            <span class="boxtitle">Conclusion for intensivists</span>
+            Patients are more susceptible to sepsis including atypical and opportunistic infection. <strong>If a patient initially improves with antibiotics and then worsens, consider a flare of the underlying rheumatic disease</strong> — which requires treatment. Be aware of hyper-inflammatory states such as <strong>MAS</strong> and <strong>CAPS</strong>: these are treatable when recognised.
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PART C                                                            -->
+    <!-- ================================================================ -->
+    <section class="part" id="part-c">
+      <h2 class="part-title">Part C — Systemic Lupus Erythematosus <span class="tag">CPG 2023</span></h2>
+
+      <section class="card" id="c1" data-toc="Key recommendations (CPG)">
+        <button class="card-head" type="button"><span class="ttl">C1 · Key recommendations (Malaysian CPG 2023)</span><span class="chev"></span></button>
+        <div class="card-body">
+          <h3 class="sub">Diagnosis &amp; classification</h3>
+          <div class="box"><strong>Diagnosis of SLE should be based on clinical manifestations supported by laboratory findings, following exclusion of alternative diagnoses.</strong> Classification criteria should <strong>not</strong> be used for diagnosis.</div>
+
+          <h3 class="sub">Principles of treatment</h3>
+          <div class="box">All patients with SLE should have <strong>clinical assessment of disease activity</strong>, using validated tools for SLE.</div>
+
+          <h3 class="sub">Treatment</h3>
+          <ul>
+            <li>Patients should practise <strong>sun avoidance</strong>, use protective clothing and broad-spectrum sunscreen with at least <strong>SPF 50</strong>.</li>
+            <li><strong>Corticosteroids</strong> should be used for acute flare; the dose should be minimised and discontinued whenever possible.</li>
+            <li><strong>All patients with SLE should be on hydroxychloroquine (HCQ)</strong> unless intolerant or contraindicated.</li>
+            <li><strong>Immunosuppressants</strong> should be considered as add-on therapy in patients not responding to HCQ alone or in combination with corticosteroids, or when corticosteroids cannot be tapered.</li>
+            <li><strong>Cyclophosphamide or mycophenolate mofetil</strong> may be used as induction therapy in certain major organ involvement.</li>
+            <li><strong>Biologics</strong> may be used as adjunct therapy in active SLE despite standard therapy with corticosteroids and immunosuppressants.</li>
+          </ul>
+
+          <h3 class="sub">Monitoring</h3>
+          <ul>
+            <li>All patients should be monitored on <strong>clinical and laboratory parameters</strong>.</li>
+            <li>Screen for <strong>cardiovascular risk factors</strong> and <strong>osteoporosis</strong>.</li>
+            <li><strong>Infection should be identified early and treated accordingly.</strong></li>
+          </ul>
+
+          <h3 class="sub">Special considerations</h3>
+          <ul>
+            <li>All women of reproductive age should receive <strong>pre-pregnancy counselling</strong>.</li>
+            <li>In pregnancy: continue <strong>hydroxychloroquine, azathioprine, calcineurin inhibitors and low-dose corticosteroids</strong>.</li>
+            <li><strong>Low-dose aspirin</strong> should be initiated in all pregnant SLE patients unless intolerant or contraindicated.</li>
+            <li>Vaccination status and indications for further vaccination should be <strong>assessed yearly</strong>.</li>
+          </ul>
+
+          <div class="box accent"><span class="boxtitle">Clinical audit indicator</span> Percentage of newly diagnosed SLE patients prescribed HCQ — <strong>target ≥90%</strong>.</div>
+        </div>
+      </section>
+
+      <section class="card" id="c2" data-toc="Introduction, risk factors &amp; manifestations">
+        <button class="card-head" type="button"><span class="ttl">C2 · Introduction, risk factors &amp; clinical manifestations</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box accent">SLE is a <strong>chronic autoimmune multisystem disorder</strong> with diverse and complex clinical manifestations characterised by <strong>inflammation in a variety of organs</strong>. Exact aetiology unknown; genetic, hormonal and environmental factors implicated. Relapsing–remitting course with unpredictable prognosis and considerable morbidity.</div>
+          <ul>
+            <li>Survival has improved — 5-year survival ranges from 60% (Aboriginal Australians) to 98% (Shanghai); Malaysia ≈80%. 10-year survival 64% (Japan) to 94% (Hong Kong).</li>
+            <li><strong>Leading causes of death: infections and active disease (predominantly lupus nephritis).</strong></li>
+            <li>Management challenges in Asia: limited healthcare access, delayed diagnosis, poor treatment adherence.</li>
+          </ul>
+
+          <h3 class="sub">Risk factors</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C2-1 · Risk factors for SLE</caption>
+              <thead><tr><th>Factor</th><th>Detail</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Gender</td><td>Women &gt; men worldwide — incidence 1.4–5.4 vs 0.4–0.8 per 100,000; prevalence 7.7–68.4 vs 0.8–7.0 per 100,000. Asia-Pacific female preponderance 83–97%</td></tr>
+                <tr><td class="k">Genetic</td><td>Family history is a strong risk factor: twins RR 315.94; siblings RR 23.68; parents RR 11.44; offspring RR 14.42. Malay cohort alleles: HLA-A11, DQB1*05:01, HLA-DRB1*0405, HLA-DRB1*1502</td></tr>
+                <tr><td class="k">Atopic disease</td><td>Asthma (pooled OR 1.58); allergic rhinitis (OR 1.52); allergic conjunctivitis (OR 1.53); atopic dermatitis (OR 2.31)</td></tr>
+                <tr><td class="k">Smoking</td><td>Current smokers OR 1.49; ever smokers OR 1.54 (vs never)</td></tr>
+                <tr><td class="k">Silica exposure</td><td>Occupational free crystalline silica OR 9.72; exposure–response with duration (1–5 yrs OR 4.0; &gt;5 yrs OR 4.9)</td></tr>
+                <tr><td class="k">Hormonal</td><td>HRT exposure RR 1.96. <strong>No significant association with oral contraceptives.</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">Clinical manifestations</h3>
+          <p>Most frequent initial presenting symptoms are <strong>musculoskeletal</strong>, followed by <strong>mucocutaneous</strong> and <strong>neurological</strong>. Median time from first musculoskeletal symptom to diagnosis: <strong>26.4 months</strong> (IQR 9.3–43.6). Younger patients (&lt;30 yrs) with severe disease have the shortest time to diagnosis.</p>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C2-2 · Systems involved in SLE</caption>
+              <thead><tr><th>System</th><th>Manifestations</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Mucocutaneous</td><td>Malar/discoid rash, photosensitivity, oral/nasal ulcers, non-scarring alopecia, cutaneous vasculitis</td></tr>
+                <tr><td class="k">Musculoskeletal</td><td>Arthralgia, arthritis, myositis</td></tr>
+                <tr><td class="k">Haematological</td><td>Autoimmune haemolytic anaemia (AIHA), leukopenia, lymphopenia, thrombocytopenia</td></tr>
+                <tr><td class="k">Renal</td><td>Lupus nephritis, proteinuria, active urinary sediment</td></tr>
+                <tr><td class="k">Neuropsychiatric</td><td>Seizures, psychosis, delirium, cognitive dysfunction, neuropathy</td></tr>
+                <tr><td class="k">Cardiorespiratory</td><td>Serositis (pleurisy/pericarditis), ILD, <strong>pulmonary arterial hypertension</strong>, myocarditis, valvular disease, coronary artery disease</td></tr>
+                <tr><td class="k">Other</td><td>Antiphospholipid syndrome (APS), constitutional symptoms, lymphadenopathy, splenomegaly</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="c3" data-toc="Investigations">
+        <button class="card-head" type="button"><span class="ttl">C3 · Investigations</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box"><span class="boxtitle">Recommendation 1</span> The following tests should be done to assist in the diagnosis of SLE: <strong>FBC with differential · renal profile · liver function test · urinalysis · ESR with/without CRP · ANA and anti-dsDNA · C3 and C4</strong>. <strong>All patients with SLE should be screened for antiphospholipid antibodies at diagnosis.</strong></div>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Table C3-1 · Interpretation of investigations</caption>
+              <thead><tr><th>Test</th><th>Key points</th></tr></thead>
+              <tbody>
+                <tr><td class="k">FBC</td><td>Cytopenias — thrombocytopenia, leukopenia, lymphopenia; AIHA. Anaemia common in active lupus (chronic disease or iron deficiency)</td></tr>
+                <tr><td class="k">Renal parameters</td><td>Renal profile + UFEME for sediments. Spot UPCR or 24hUP to quantify proteinuria. <strong>LN findings (2012 ACR):</strong> persistent proteinuria &gt;0.5 in UPCR or &gt;0.5 g/day; urine dipstick ≥3+; active urinary sediment (&gt;5 RBC/hpf; &gt;5 WBC/hpf without infection; or cellular casts limited to RBC/WBC casts)</td></tr>
+                <tr><td class="k">Liver function</td><td>Liver involvement relatively rare; deranged LFTs may be lupus hepatitis or comorbidities (fatty liver, viral hepatitis). Hypoalbuminaemia is associated with disease activity (LN, protein-losing enteropathy, chronic lupus peritonitis with ascites)</td></tr>
+                <tr><td class="k">ESR / CRP</td><td>ESR often raised in active SLE but does not differentiate active lupus from infection. CRP usually normal or slightly elevated with serositis or arthritis. <strong>A significantly raised CRP often indicates infection — screen thoroughly.</strong></td></tr>
+                <tr><td class="k">ANA</td><td>Present in <strong>95%</strong> of SLE patients. <strong>Negative ANA suggests low clinical probability.</strong> Test only with high clinical suspicion. IIF on HEp-2 is the gold standard for primary detection; ELISA is widely used locally but less sensitive. 2019 EULAR/ACR entry criterion: <strong>ANA ≥1:80 by HEp-2 IIF at least once</strong></td></tr>
+                <tr><td class="k">Anti-dsDNA</td><td>Highly specific (≥90%). Found in <strong>60–80%</strong> of SLE patients, &lt;2.5% of healthy controls</td></tr>
+                <tr><td class="k">ENA antibodies</td><td><strong>Anti-Sm</strong> — highly specific and predictive, less sensitive; never in healthy individuals. <strong>Anti-SSA/Ro</strong> 25–30%; <strong>anti-SSB/La</strong> 10–15%; <strong>anti-RNP</strong> 25–40%. Anti-RNP (OR 12.4) and anti-SSA (OR 4.84) associated with <strong>pulmonary arterial hypertension</strong></td></tr>
+                <tr><td class="k">Antiphospholipid antibodies</td><td>30–40% of SLE patients are aPL positive. Assays: lupus anticoagulant, anticardiolipin (IgA/G/M), anti-β2GP1. In APS, <strong>two tests ≥12 weeks apart</strong> are needed to exclude short-term IgM after a vascular event or infection</td></tr>
+                <tr><td class="k">Complements</td><td>Decreased C3 and C4 with disease activity — but levels are affected by infection, trauma and immunosuppressants, and may vary in healthy individuals</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="c4" data-toc="Diagnosis &amp; classification criteria">
+        <button class="card-head" type="button"><span class="ttl">C4 · Diagnosis &amp; classification criteria</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box warn"><strong>There is no diagnostic criteria for SLE.</strong> Classification criteria are used as a guide to identify salient clinical features; they are <strong>not diagnostic criteria</strong> — they identify relatively homogeneous groups for research.</div>
+          <p>Four classification criteria have been used: 1982 revised ARA · 1997 ACR revision · 2012 SLICC · <strong>2019 EULAR/ACR</strong>.</p>
+
+          <h3 class="sub">Diagnostic algorithm (simplified)</h3>
+          <div class="flow">
+            <div class="step"><span class="num">1</span><div class="body"><b>Symptoms &amp; signs of SLE</b> → laboratory investigations: ANA, anti-dsDNA, APTT, ESR, CRP, FBC, LFT, RP, C3, C4, urinalysis</div></div>
+            <div class="arrow-down"></div>
+            <div class="step"><span class="num">2</span><div class="body"><b>ANA result?</b></div></div>
+            <div class="branch"><b>Negative</b> + high suspicion of SLE → repeat/refine testing; if still negative, <strong>reconsider other diagnoses</strong>.</div>
+            <div class="branch"><b>Positive</b> → apply the <b>2019 EULAR/ACR classification criteria</b> (additive weighted domains).</div>
+            <div class="arrow-down"></div>
+            <div class="gate">Total score ≥10 points with the entry criterion fulfilled → CLASSIFY AS SLE</div>
+            <div class="arrow-down"></div>
+            <div class="step"><span class="num">3</span><div class="body"><strong>Refer to rheumatologist / internal medicine physician for confirmation of diagnosis.</strong> If criteria not met → reconsider other diagnoses.</div></div>
+          </div>
+
+          <h3 class="sub">2019 EULAR/ACR classification criteria</h3>
+          <div class="box accent"><strong>Entry criterion:</strong> ANA at a titre of ≥1:80 on HEp-2 cells or an equivalent positive test (ever). <strong>If absent, do not classify as SLE.</strong></div>
+          <p><strong>Additive criteria:</strong> do not count a criterion if there is a more likely explanation than SLE. Occurrence at least once is sufficient. Classification requires <strong>at least one clinical criterion and ≥10 points</strong>. Criteria need not occur simultaneously. <strong>Within each domain, only the highest weighted criterion is counted.</strong></p>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C4-1 · EULAR/ACR 2019 domains and weights</caption>
+              <thead><tr><th>Domain</th><th>Criterion</th><th>Weight</th></tr></thead>
+              <tbody>
+                <tr><td class="k" rowspan="1">Constitutional</td><td>Fever</td><td>2</td></tr>
+                <tr><td class="k" rowspan="3">Haematologic</td><td>Leukopenia</td><td>3</td></tr>
+                <tr><td>Thrombocytopenia</td><td>4</td></tr>
+                <tr><td>Autoimmune haemolysis</td><td>4</td></tr>
+                <tr><td class="k" rowspan="3">Neuropsychiatric</td><td>Delirium</td><td>2</td></tr>
+                <tr><td>Psychosis</td><td>3</td></tr>
+                <tr><td>Seizure</td><td>5</td></tr>
+                <tr><td class="k" rowspan="4">Mucocutaneous</td><td>Non-scarring alopecia</td><td>2</td></tr>
+                <tr><td>Oral ulcers</td><td>2</td></tr>
+                <tr><td>Subacute cutaneous OR discoid lupus</td><td>4</td></tr>
+                <tr><td>Acute cutaneous lupus</td><td>6</td></tr>
+                <tr><td class="k" rowspan="2">Serosal</td><td>Pleural or pericardial effusion</td><td>5</td></tr>
+                <tr><td>Acute pericarditis</td><td>6</td></tr>
+                <tr><td class="k">Musculoskeletal</td><td>Joint involvement</td><td>6</td></tr>
+                <tr><td class="k" rowspan="3">Renal</td><td>Proteinuria &gt;0.5 g/24 h</td><td>4</td></tr>
+                <tr><td>Renal biopsy Class II or V lupus nephritis</td><td>8</td></tr>
+                <tr><td>Renal biopsy Class III or IV lupus nephritis</td><td>10</td></tr>
+                <tr><td class="k">Antiphospholipid antibodies</td><td>Anti-cardiolipin OR anti-β2GP1 OR lupus anticoagulant</td><td>2</td></tr>
+                <tr><td class="k" rowspan="2">Complement proteins</td><td>Low C3 OR low C4</td><td>3</td></tr>
+                <tr><td>Low C3 AND low C4</td><td>4</td></tr>
+                <tr><td class="k">SLE-specific antibodies</td><td>Anti-dsDNA OR anti-Smith antibody</td><td>6</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">Performance of the criteria</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C4-2 · Sensitivity and specificity</caption>
+              <thead><tr><th>Parameter</th><th>EULAR/ACR-2019</th><th>SLICC-2012</th><th>ACR-1997</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Sensitivity (international)</td><td>96.1%</td><td>96.7%</td><td>82.8%</td></tr>
+                <tr><td class="k">Specificity (international)</td><td>93.4%</td><td>83.7%</td><td>93.4%</td></tr>
+                <tr><td class="k">Sensitivity (Malaysian study)</td><td>90.8%</td><td>96.1%</td><td>82.0%</td></tr>
+                <tr><td class="k">Specificity (Malaysian study)</td><td>94.0%</td><td>94.0%</td><td>96.0%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="c5" data-toc="Disease activity assessment (SLEDAI / BILAG)">
+        <button class="card-head" type="button"><span class="ttl">C5 · Disease activity assessment (SLEDAI / BILAG)</span><span class="chev"></span></button>
+        <div class="card-body">
+          <p>Principles of SLE treatment: achieve <strong>disease remission · flare prevention · organ damage prevention · quality of life improvement · minimisation of drug side effects</strong>. If complete remission cannot be achieved, target the lowest possible disease activity in all organs involved.</p>
+          <p>A <strong>flare</strong> is any increase in disease activity leading to intensification of therapy — a measurable increase in one or more organ systems with new or worsening signs/symptoms and/or laboratory measurements, clinically significant enough to warrant treatment adjustment.</p>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Table C5-1 · Disease activity assessment tools</caption>
+              <thead><tr><th>Tool</th><th>Mild / Low</th><th>Moderate</th><th>Severe / High</th></tr></thead>
+              <tbody>
+                <tr><td class="k">BILAG</td><td>BILAG C scores or single B score</td><td>2 or more systems with B scores (non-renal)</td><td>1 or more A scores</td></tr>
+                <tr><td class="k">SLEDAI</td><td>&lt;6</td><td>6–12</td><td>&gt;12</td></tr>
+                <tr><td class="k">SLEDAI-2K</td><td>1–4</td><td>5–10</td><td>&gt;10</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:.82em;color:var(--muted)">SLEDAI/SLEDAI-2K score of 0 = remission. Increment of SLEDAI-2K or SELENA-SLEDAI ≥3 indicates mild/moderate flare; SELENA-SLEDAI &gt;12 indicates severe flare.</p>
+
+          <h3 class="sub">SLEDAI-2K — weighted descriptors</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C5-2 · SLEDAI-2K items (present at visit or in preceding 10 days)</caption>
+              <thead><tr><th>Weight</th><th>Descriptor</th></tr></thead>
+              <tbody>
+                <tr><td class="k">8</td><td>Seizure · Psychosis · Organic brain syndrome · Visual disturbance · Cranial nerve disorder · Lupus headache · CVA · Vasculitis</td></tr>
+                <tr><td class="k">4</td><td>Arthritis · Myositis · Urinary casts · Haematuria · Proteinuria · Pyuria</td></tr>
+                <tr><td class="k">2</td><td>Rash · Alopecia · Mucosal ulcers · Pleurisy · Pericarditis · Low complement · Increased DNA binding</td></tr>
+                <tr><td class="k">1</td><td>Fever · Thrombocytopenia · Leukopenia</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">BILAG-2004</h3>
+          <p>Evaluates activity for <strong>each organ</strong> (SLEDAI only gives a total score). 97 items across <strong>nine domains</strong>; each item scored 0 (not present) to 4 (new) by evaluating activity in the last 4 weeks compared with the previous 4 weeks. Each organ domain also has a severity assessment from <strong>A (severe) to E (no evidence)</strong>.</p>
+          <div class="chips">
+            <span class="chip">Constitutional</span><span class="chip">Mucocutaneous</span><span class="chip">Neuropsychiatric</span>
+            <span class="chip">Musculoskeletal</span><span class="chip">Cardiorespiratory</span><span class="chip">Gastrointestinal</span>
+            <span class="chip">Ophthalmic</span><span class="chip">Renal</span><span class="chip">Haematological</span>
+          </div>
+
+          <h3 class="sub">Remission &amp; low disease activity</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Definition</th><th>Criteria</th></tr></thead>
+              <tbody>
+                <tr><td class="k">DORIS 2021 remission</td><td>Clinical SLEDAI = 0 AND Physician Global Assessment &lt;0.5, irrespective of serological status. May be on antimalarials, prednisolone &lt;5 mg/day, and/or stable immunosuppressants including biologics</td></tr>
+                <tr><td class="k">LLDAS</td><td>SLEDAI-2K ≤4 (no activity in major organ systems, no new activity vs previous assessment) + PGA ≤1.0 + prednisolone ≤7.5 mg/day + standard maintenance immunosuppressants/biologics</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Flare risk:</strong> 20–25% within 1–2 years and 40–66% within 5–10 years after achieving low disease activity or remission. Risk factors: male gender, onset ≤25 years, major organ involvement (cytopenias, neuropsychiatric, nephritis, vasculitis), persistent clinical activity, low C3/C4, high anti-dsDNA, poor compliance, discontinuation or never on HCQ, rapid tapering/withdrawal of maintenance immunosuppression.</p>
+          <div class="box warn">Higher SLEDAI disease activity → greater mortality (HR 1.14) and greater damage (HR 1.18). Worse damage by SDI → higher mortality (HR 1.44).</div>
+        </div>
+      </section>
+
+      <section class="card" id="c6" data-toc="Treatment — non-pharmacological &amp; pharmacological">
+        <button class="card-head" type="button"><span class="ttl">C6 · Treatment — non-pharmacological &amp; pharmacological</span><span class="chev"></span></button>
+        <div class="card-body">
+          <h3 class="sub">Non-pharmacological</h3>
+          <ul>
+            <li><strong>Sun protection:</strong> broad-spectrum sunscreen SPF 50–75 reduces lesion development on photo-provocation. Advise sun avoidance and protective clothing.</li>
+            <li><strong>Nurse-led care:</strong> transitional care programmes led by specialist nurses improved self-care, quality of life and reduced readmission up to 90 days.</li>
+            <li><strong>Physiotherapy/exercise and psychological therapy:</strong> combination of aerobic exercise or psychological intervention (psychoeducation, mindfulness-based cognitive therapy, biofeedback-assisted CBT with relaxation) with usual medical care improved fatigue, psychological function, pain and quality of life.</li>
+          </ul>
+
+          <h3 class="sub">Treatment algorithm (simplified)</h3>
+          <div class="flow">
+            <div class="flow-title">All SLE patients</div>
+            <div class="step"><span class="num">1</span><div class="body">
+              <b>Baseline:</b> HCQ unless intolerant/contraindicated · non-pharmacological management · management of comorbidities · antiphospholipid (APS) assessment
+            </div></div>
+            <div class="arrow-down"></div>
+            <div class="flow-title">Assess disease activity (SLEDAI / BILAG)</div>
+            <div class="branch"><b>Mild / Low activity</b><br>Oral corticosteroids (low dose, ± maintenance dose) → <b>Add MTX / AZA</b></div>
+            <div class="branch"><b>Moderate activity</b><br>Oral corticosteroids + <b>MTX / AZA / CNI / MMF</b> → if refractory, consider <b>rituximab / belimumab / anifrolumab</b></div>
+            <div class="branch"><b>Severe / High activity</b><br>Oral IV corticosteroids + <b>MMF / CYC</b> · Consider <b>IVIG</b> if infection · if refractory → <b>rituximab, plasma exchange (PE) or IVIG</b></div>
+          </div>
+          <p style="font-size:.82em;color:var(--muted)">Refractory = persistent disease activity despite optimal standard therapy, high titre or multiple autoantibodies. IVIG/PE — <strong>evidence is limited</strong>.</p>
+
+          <h3 class="sub">Corticosteroids</h3>
+          <ul>
+            <li>Cornerstone of SLE treatment; rapid onset; useful in mild to severe disease.</li>
+            <li><strong>Long-term adverse events (per 1000 person-years):</strong> peptic ulcer 147.84; bacterial infection 136.42; fungal infection 42.26; hypertension 37.67; osteoporosis 28.17; fracture 23.77; tuberculosis 7.85.</li>
+            <li>Medium-to-high dose: pooled rates 25/100 patients/year for infections, 12/100 for avascular necrosis of the hip, 9/100 for hyperglycaemia/diabetes.</li>
+            <li><strong>Risk of new organ damage increases significantly with higher corticosteroid dosage.</strong></li>
+          </ul>
+
+          <h3 class="sub">Hydroxychloroquine (HCQ)</h3>
+          <ul>
+            <li>Anti-inflammatory and immunomodulatory. Reduces flares, achieves higher remission in membranous LN, protects against irreversible organ damage, thrombosis and bone loss.</li>
+            <li>Reduced risk of death (HR 0.46) and renal damage (HR 0.30) vs non-use.</li>
+            <li>Long-term use is safe; toxicity infrequent, mild and usually reversible.</li>
+            <li><strong>Retinal toxicity:</strong> incidence ~1 in 1000 person-years; no retinal toxicity reported in the first five years of exposure. <strong>Dose should not exceed 5 mg/kg actual body weight.</strong></li>
+            <li>Adherence can be assessed with blood drug levels — not routine practice.</li>
+          </ul>
+          <div class="box ok"><span class="boxtitle">Recommendation 6</span> All patients with SLE should be on HCQ unless intolerant or contraindicated. Ophthalmologic assessment at baseline, then: <strong>yearly</strong> if retinopathy risk factors present; <strong>after five years and yearly thereafter</strong> if none. Risk factors: long-term/high-dose HCQ, hepatic and renal disease, tamoxifen, retinal/macular disease, advanced age. HCQ is safe in pregnancy and breastfeeding.</div>
+
+          <h3 class="sub">Immunosuppressants</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C6-1 · Immunosuppressants in SLE</caption>
+              <thead><tr><th>Drug</th><th>Role &amp; evidence</th><th>Key adverse effects</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="k">Azathioprine (AZA)</td>
+                  <td>Steroid-sparing in non-renal SLE; maintenance in renal SLE. Significantly reduced mean corticosteroid dose by &gt;50% at 12 months (comparable to ciclosporin)</td>
+                  <td>Leukopenia, respiratory tract infection, rash</td>
+                </tr>
+                <tr>
+                  <td class="k">Methotrexate (MTX)</td>
+                  <td>Musculoskeletal and cutaneous manifestations inadequately controlled by HCQ + corticosteroids. Superior to placebo: ↓SLEDAI, ↓SLAM-R, ↓steroid dose, ↓flares, improved arthralgia/arthritis and discoid/malar rash. <strong>Folate supplementation ≥5 mg/week.</strong></td>
+                  <td>GI symptoms, hepatotoxicity (LFT abnormalities 10–50%)</td>
+                </tr>
+                <tr>
+                  <td class="k">Ciclosporin</td>
+                  <td>With corticosteroids reduced SLEDAI and cumulative steroid dose in moderate and severe non-renal SLE</td>
+                  <td>Hypertension, respiratory tract infection, anaemia, hypertrichosis, gum hypertrophy, paraesthesia, tremor, GI symptoms, impaired renal function (esp. &gt;3 mg/kg/day)</td>
+                </tr>
+                <tr>
+                  <td class="k">Tacrolimus</td>
+                  <td>1–3 mg/day reduced mean SLEDAI and prednisolone dose in SLE without active nephritis after 1 year</td>
+                  <td>Non-serious AEs in 40% of the cohort</td>
+                </tr>
+                <tr>
+                  <td class="k">Cyclophosphamide (CYC)</td>
+                  <td>Neuropsychiatric SLE: more effective than continuing methylprednisolone (clinical, serological and neurological improvement; ↓SLEDAI; ↓prednisolone requirement). Induction therapy in major organ involvement (incl. LN)</td>
+                  <td>Leukopenia/anaemia 5–10%; increased cervical dysplasia</td>
+                </tr>
+                <tr>
+                  <td class="k">Leflunomide</td>
+                  <td>Mild-to-moderate active SLE — reduced SLEDAI at 24 weeks vs placebo. May be considered in moderate lupus refractory/intolerant/unsuitable for other immunosuppressants</td>
+                  <td>No difference in AEs vs placebo in the reviewed trial</td>
+                </tr>
+                <tr>
+                  <td class="k">Mycophenolate mofetil (MMF)</td>
+                  <td>Renal and non-renal involvement. Comparable effectiveness to CYC for induction in LN (BILAG scores, remission in mucocutaneous/musculoskeletal/CV-respiratory systems, ↓SELENA-SLEDAI flares at 6 months)</td>
+                  <td>Haematological toxicity 1.1–36.8%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">Biologics</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C6-2 · Biologics in SLE</caption>
+              <thead><tr><th>Agent</th><th>Target</th><th>Evidence</th><th>Adverse effects</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="k">Belimumab</td>
+                  <td>BLyS / BAFF inhibitor (B-lymphocyte stimulator)</td>
+                  <td>Superior to placebo: ≥4-point reduction in SELENA-SLEDAI (RR 1.33), improved SF-36 quality of life, ≥50% reduction in corticosteroid dose (RR 1.59). Also superior to placebo in BLISS-LN as add-on induction in active LN (Class III–V)</td>
+                  <td>Good safety profile</td>
+                </tr>
+                <tr>
+                  <td class="k">Anifrolumab</td>
+                  <td>Human monoclonal antibody to type I interferon receptor subunit 1</td>
+                  <td>TULIP-2: higher BICLA response at week 52 (difference 16.3%), corticosteroid dose reduction (21.2%), ≥50% CLASI reduction at week 12 (24.0%)</td>
+                  <td>Upper respiratory tract infection, nasopharyngitis, infusion-related reaction, bronchitis, herpes zoster</td>
+                </tr>
+                <tr>
+                  <td class="k">Rituximab</td>
+                  <td>Chimeric anti-CD20 antibody → peripheral B-cell depletion</td>
+                  <td>EXPLORER trial showed no significant difference vs placebo in major/partial clinical response. Observational data show steroid-sparing effect and improvement in disease activity and immunologic parameters. Guidelines support use in organ-threatening, refractory moderate/severe lupus</td>
+                  <td>Infusion reactions, infections</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">NSAIDs, plasma exchange &amp; IVIG</h3>
+          <ul>
+            <li><strong>NSAIDs</strong> — may be used cautiously in non-renal mild SLE (inflammatory arthralgia or myalgia) when paracetamol is inadequate. Potential increased renal, hepatic and cardiovascular toxicity. <strong>Most powerful predictor of gastric mucosal injury (OR 26.8).</strong></li>
+            <li><strong>Plasma exchange</strong> — consider in severe or refractory SLE, in particular those with <strong>thrombotic thrombocytopenic purpura (TTP)</strong>. In renal biopsy-proven thrombotic microangiopathy LN, plasmapheresis gave higher complete/partial remission (77.8% vs 11.1%). <strong>21% experienced PE-related major AEs</strong> (catheter infection, bleeding, hypotension).</li>
+            <li><strong>IVIG</strong> — consider in severe refractory SLE including haematological flare, TTP and catastrophic APS; and in active SLE with concomitant infection. <strong>Thromboembolic events are delayed AEs</strong>, incidence up to 2% at high dose (hyperviscosity). Use slow infusion of low-concentration product in at-risk patients.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="c7" data-toc="Organ-specific manifestations">
+        <button class="card-head" type="button"><span class="ttl">C7 · Organ-specific manifestations</span><span class="chev"></span></button>
+        <div class="card-body">
+          <h3 class="sub">Lupus nephritis (LN)</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C7-1 · ISN/RPS classification and treatment</caption>
+              <thead><tr><th>Class</th><th>Description</th><th>Treatment</th></tr></thead>
+              <tbody>
+                <tr><td class="k">I</td><td>Minimal mesangial LN</td><td>Guided by symptoms</td></tr>
+                <tr><td class="k">II</td><td>Mesangial proliferative LN</td><td>Low-dose prednisolone; add immunosuppressant if proteinuria persists &gt;3 months or steroid dependence</td></tr>
+                <tr><td class="k">III</td><td>Focal LN (active/chronic; proliferative/sclerosing)</td><td rowspan="2">Induction: <strong>MMF or CYC</strong>. Maintenance: <strong>MMF or AZA</strong> (MMF associated with fewer relapses). CNIs may be second-line for induction/maintenance, mainly in membranous LN or proliferative disease with refractory nephrotic syndrome beyond 3–6 months</td></tr>
+                <tr><td class="k">IV</td><td>Diffuse LN (active/chronic; proliferative/sclerosing; segmental/global)</td></tr>
+                <tr><td class="k">V</td><td>Membranous LN</td><td>CNIs may be considered (see above)</td></tr>
+                <tr><td class="k">VI</td><td>Advanced sclerosis LN</td><td>Manage as advanced chronic kidney disease</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>LUNAR trial:</strong> rituximab with MMF + corticosteroids produced more responders and greater reductions in anti-dsDNA and C3/C4, but did not improve clinical outcomes after 1 year. <strong>BLISS-LN:</strong> IV belimumab was superior to placebo as add-on during induction of active LN (Class III–V) at week 104.</p>
+
+          <h3 class="sub">Mucocutaneous</h3>
+          <p>Topical corticosteroids or calcineurin inhibitors and HCQ are the mainstay. Systemic corticosteroids for moderate-to-severe CLE or when topical treatment is insufficient. From a Cochrane review: HCQ reduced clinical flares at 6 months (RR 0.49); MTX superior to placebo for complete clinical response at 6 months (RR 3.57); no difference between AZA and ciclosporin.</p>
+
+          <h3 class="sub">Neuropsychiatric SLE (NPSLE)</h3>
+          <p>Treatment determined by pathophysiology: <strong>inflammatory → corticosteroids and/or immunosuppressants</strong>; <strong>thrombotic → anticoagulant/antithrombotic</strong> (especially with aPL). CYC plus corticosteroids more effective than corticosteroids alone. Antiepileptics and antipsychotics may be adjuncts.</p>
+
+          <h3 class="sub">Haematological</h3>
+          <p>Significant lupus thrombocytopenia (platelets &lt;30,000/mm³) and AIHA: first-line = <strong>moderate/high-dose corticosteroids + immunosuppressant (AZA, MMF or ciclosporin)</strong>.</p>
+
+          <h3 class="sub">Cardiorespiratory</h3>
+          <p>Limited evidence. In lupus myocarditis, adding CYC to corticosteroids showed no significant difference in ICU stay, hospital stay or median LVEF. <strong>Management of organ-specific SLE is complex — a multidisciplinary team approach with rheumatology and relevant specialists is recommended.</strong></p>
+        </div>
+      </section>
+
+      <section class="card" id="c8" data-toc="Monitoring &amp; comorbidities">
+        <button class="card-head" type="button"><span class="ttl">C8 · Monitoring &amp; comorbidities</span><span class="chev"></span></button>
+        <div class="card-body">
+          <h3 class="sub">Laboratory monitoring</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C8-1 · Frequency of monitoring (summary)</caption>
+              <thead><tr><th>Assessment</th><th>First visit</th><th>Active disease (every 1–3 months)</th><th>Stable/low activity (every 6–12 months)</th></tr></thead>
+              <tbody>
+                <tr><td>Clinical history, vital signs, examination, drug review</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>FBC, renal profile, LFT</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>CRP / ESR</td><td>✓</td><td>✓</td><td>✓ (CRP when indicated)</td></tr>
+                <tr><td>ANA</td><td>✓</td><td>—</td><td>—</td></tr>
+                <tr><td>Anti-dsDNA, C3/C4</td><td>✓</td><td>✓</td><td>When indicated</td></tr>
+                <tr><td>aPL (LA, aCL, anti-β2GP1)</td><td>✓</td><td>When indicated</td><td>When indicated (incl. pregnancy)</td></tr>
+                <tr><td>ENA (anti-Ro/La, anti-RNP, anti-Sm)</td><td>✓</td><td>When indicated</td><td>When indicated (incl. pregnancy)</td></tr>
+                <tr><td>Direct Coombs' test</td><td>✓</td><td>When indicated</td><td>When indicated</td></tr>
+                <tr><td>UFEME, urine PCR or 24h urine protein</td><td>✓</td><td>✓</td><td>When indicated</td></tr>
+                <tr><td>ECG, echocardiogram, chest X-ray</td><td>When indicated</td><td>When indicated</td><td>When indicated</td></tr>
+                <tr><td>Modifiable CV risk factors (HTN, lipids, diabetes, BMI, smoking)</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Haematological flare markers:</strong> haemolytic anaemia with reticulocytosis; leukopenia &lt;4,000/mm³ or lymphopenia &lt;1,500/mm³ on &gt;2 occasions; thrombocytopenia &lt;100,000/mm³ — all in the absence of offending drugs.</p>
+          <p><strong>Renal biopsy indications during monitoring:</strong> persistent proteinuria &gt;0.5 g/day (or &gt;3+ if not quantified); cellular casts (red cell, haemoglobin, granular, tubular or mixed).</p>
+          <p><strong>Serology interpretation:</strong> raised ESR with normal CRP occurs in SLE flares; both ESR and CRP elevated suggests infection. Rising anti-dsDNA and/or falling complement indicate flare. ANA and ENA are <strong>not</strong> helpful for monitoring activity.</p>
+
+          <h3 class="sub">Comorbidities</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Comorbidity</th><th>Key points</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Infection</td><td>Prone to infection including TB due to disease- and treatment-related immunocompromise. Factors: renal involvement, CYC treatment, cumulative corticosteroid dose, high SLEDAI, thrombocytopenia. CRP and procalcitonin are higher in infection than in flare and decrease after resolution. <strong>TB prevalence significantly higher than the general population.</strong></td></tr>
+                <tr><td class="k">Osteoporosis</td><td>Risk factors: corticosteroids, reduced vitamin D (sun avoidance). Assess with DXA and FRAX (ages 40–90). Associated factors: nephritis (OR 11.35), cumulative corticosteroid dose (OR 1.10), low complement (OR 4.38), high ESR (OR 1.04)</td></tr>
+                <tr><td class="k">Cardiovascular disease</td><td>SLE is an <strong>independent risk factor for CVD</strong>. Predictors: male gender (OR 6.2), family history (OR 3.6), neurological disorders (OR 5.2), dyslipidaemia (OR 3.9), hypertension (OR 3.5), aPL (OR 5.0)</td></tr>
+                <tr><td class="k">Malignancy</td><td>Increased incidence: non-Hodgkin lymphoma (SIR 4.39), leukaemia (SIR 1.75), lung cancer (RR 1.75), stomach cancer (RR 1.34), bladder cancer (HR 1.92). Routine cancer screening should follow local recommendations for the general population</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">Key drug adverse events to monitor</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Drug</th><th>Toxicity</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Corticosteroids</td><td>Higher rate of hyperglycaemia/diabetes with high dose (OR 1.82 vs comparator)</td></tr>
+                <tr><td class="k">HCQ</td><td>Retinal toxicity 0.95/1000 patient-years; most cases on HCQ &gt;5 years and doses &gt;6.5 mg/kg</td></tr>
+                <tr><td class="k">AZA</td><td>Leukopenia or anaemia 5–20%; abnormal LFTs requiring discontinuation 1–6%</td></tr>
+                <tr><td class="k">MTX</td><td>LFT abnormalities 10–50%</td></tr>
+                <tr><td class="k">CYC</td><td>Leukopenia or anaemia 5–10%; increased cervical dysplasia</td></tr>
+                <tr><td class="k">MMF</td><td>Haematological toxicity 1.1–36.8%</td></tr>
+                <tr><td class="k">NSAIDs/salicylates</td><td>Gastric mucosal injury OR 26.8; reduced renal function by 58% and increased serum creatinine by 163% in active LN; abnormal liver enzymes in 44.4% (aspirin) and 20% (NSAIDs) over 10 days</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="c9" data-toc="Special considerations (APS, pregnancy, vaccination)">
+        <button class="card-head" type="button"><span class="ttl">C9 · Special considerations</span><span class="chev"></span></button>
+        <div class="card-body">
+          <h3 class="sub">Antiphospholipid syndrome (APS)</h3>
+          <ul>
+            <li>aPL in the setting of venous/arterial thrombosis and/or pregnancy morbidity. <strong>15–20% of SLE patients have secondary APS.</strong></li>
+            <li>High-risk aPL profile = persistently positive medium/high titres or multiple positivity.</li>
+            <li>SLE with aPL → higher prevalence of valve disease, thrombocytopenia, haemolytic anaemia, renal lesions, cognitive impairment and higher tissue/organ damage.</li>
+            <li>Low-dose aspirin as primary prophylaxis against thrombosis significantly protective (HR 0.32–0.43).</li>
+            <li><strong>Direct oral anticoagulants are not currently recommended</strong> for secondary prevention in SLE with APS.</li>
+          </ul>
+          <div class="box ok"><span class="boxtitle">Recommendation 11</span> Patients with SLE who have a high-risk aPL profile <strong>may receive primary thromboprophylaxis with low-dose aspirin</strong> if there are no contraindications. Secondary thromboprophylaxis in SLE with APS should be initiated in consultation with a rheumatologist.</div>
+
+          <h3 class="sub">Pregnancy</h3>
+          <p><strong>Pre-pregnancy targets:</strong> remission or low disease activity for ≥6 months · well-controlled BP · eGFR &gt;60 mL/min/1.73 m² · proteinuria &lt;1 g/day (proteinuria 2+).</p>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C9-1 · Management of pregnant women with SLE</caption>
+              <thead><tr><th>Timeline</th><th>Monitoring</th><th>Action plan</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="k">First trimester</td>
+                  <td>BP · SLE clinical assessment · labs* · foetal ultrasound to confirm intrauterine pregnancy and establish gestational age</td>
+                  <td><strong>Start low-dose aspirin</strong> · be vigilant for flares · review medication compatibility and adherence · obstetric-APS → start prophylactic LMWH · thrombotic APS → switch from oral anticoagulants to full-dose LMWH · active SLE → medication adjustment, MDT discussion and shared decision-making · schedule combined care</td>
+                </tr>
+                <tr>
+                  <td class="k">Second trimester</td>
+                  <td>BP · SLE assessment · labs* + gestational diabetes and genetic screening · <strong>foetal echocardiogram 16–25 weeks</strong> if anti-Ro/SSA or anti-La/SSB positive · ultrasound for foetal anatomy, growth and placental insufficiency</td>
+                  <td>Vigilant for flares · review adherence · <strong>calcium supplementation</strong> for pre-eclampsia prophylaxis (calcium carbonate 1 g BD, started before 20 weeks) · co-management with feto-maternal specialist</td>
+                </tr>
+                <tr>
+                  <td class="k">Third trimester</td>
+                  <td>BP · SLE assessment · labs* · regular ultrasound for foetal growth, amniotic fluid and placental insufficiency</td>
+                  <td>Vigilant for flares · review adherence · prepare for labour and delivery · <strong>avoid NSAIDs</strong></td>
+                </tr>
+                <tr>
+                  <td class="k">Post-partum &amp; lactation</td>
+                  <td>BP · SLE assessment · labs*</td>
+                  <td>Vigilant for flares · APS → continue LMWH for 6 weeks · switch to lactation-compatible medications · prednisolone ≥40 mg/day → delay breastfeeding at least 4 hours · refer neonate to paediatrician to rule out neonatal lupus · advise on contraception</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:.82em;color:var(--muted)">*Labs: FBC, renal profile, LFT, urinalysis and morning UPCR, anti-dsDNA, C3 and C4, serum uric acid.</p>
+          <div class="box ok"><span class="boxtitle">Recommendation 13</span> Continue in pregnancy: <strong>hydroxychloroquine · azathioprine · calcineurin inhibitors · low-dose corticosteroids</strong>. <strong>Low-dose aspirin should be initiated in all pregnant SLE patients</strong> unless intolerant or contraindicated.</div>
+
+          <h3 class="sub">Contraception</h3>
+          <p>Oral contraceptives and intrauterine devices have <strong>no association with thrombosis, worsening SLEDAI or mortality</strong> in SLE. Discuss contraception and pregnancy planning at initial or early visit with women of reproductive age; assess aPL status. <strong>Combined oestrogen–progestin contraceptives are avoided if aPL positive or in moderate–high disease activity</strong> (oestrogen patch avoided in SLE). In special circumstances (e.g. mycophenolate), an IUD or a combination of two other forms of contraception is required. Avoid depot medroxyprogesterone acetate in patients at risk of osteoporosis.</p>
+
+          <h3 class="sub">Lactation &amp; adolescents</h3>
+          <ul>
+            <li><strong>Breastfeeding is encouraged and not contraindicated</strong> provided disease control is maintained with lactation-compatible medication.</li>
+            <li>SLE is diagnosed during childhood in 15–20%. A co-ordinated transition from paediatric to adult care during adolescence is recommended. A <strong>structured transition programme</strong> improves health-related quality of life, disease knowledge, satisfaction, vocational readiness and disease-specific health status.</li>
+          </ul>
+
+          <h3 class="sub">Vaccination</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Table C9-2 · Vaccine effectiveness and safety in SLE</caption>
+              <thead><tr><th>Vaccine</th><th>Effectiveness</th><th>Safety</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="k">Pneumococcal (non-live)</td>
+                  <td>↑IgM antibody titre vs controls. Immunosuppression (except belimumab) → lower seroconversion (43–77% vs 52–90%)</td>
+                  <td>No serious AEs; SLE flares rarely reported; disease activity scores stable before and after</td>
+                </tr>
+                <tr>
+                  <td class="k">Influenza (non-live)</td>
+                  <td>Moderate immunogenicity vs healthy controls</td>
+                  <td>Moderate immunogenicity; acceptable safety</td>
+                </tr>
+                <tr>
+                  <td class="k">SARS-CoV-2 (non-live)</td>
+                  <td>Higher seroconversion after two doses vs single mRNA dose; lower than healthy controls; lower with anti-CD20 therapy. Humoral response similar to general population after third dose</td>
+                  <td>SLE disease activity not affected; breakthrough infections (mainly Omicron) mild, not requiring hospitalisation</td>
+                </tr>
+                <tr>
+                  <td class="k">HPV (non-live)</td>
+                  <td>Generally immunogenic; seroconversion 100% in those seronegative at baseline; high immunogenicity retained at 5 years</td>
+                  <td>Mild injection-site reactions in 62%; no SLE flares reported</td>
+                </tr>
+                <tr>
+                  <td class="k">Herpes zoster (live)</td>
+                  <td>Induces humoral and cell-mediated response in stable SLE patients not on intensive immunosuppression</td>
+                  <td>Safe and well tolerated in stable patients; low number of flares in both groups</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="box ok"><span class="boxtitle">Recommendation 15</span> Vaccination status and indications for further vaccination should be assessed <strong>yearly</strong>. Vaccinations should preferably be administered <strong>before commencing immunosuppressants</strong> or during remission/low disease activity.</div>
+        </div>
+      </section>
+
+      <section class="card" id="c10" data-toc="Referral criteria">
+        <button class="card-head" type="button"><span class="ttl">C10 · Referral criteria</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box danger"><span class="boxtitle">Recommendation 16</span> <strong>All cases with clinical suspicion of SLE should be promptly referred to rheumatologists</strong> for confirmation of the diagnosis and further management.</div>
+          <h3 class="sub">Indications for referral to a rheumatologist</h3>
+          <ul>
+            <li>Confirm diagnosis; assess disease activity and severity</li>
+            <li>Provide general disease management</li>
+            <li>Manage organ involvement or life-threatening disease</li>
+            <li>Manage/prevent treatment toxicities</li>
+            <li>Specific circumstances: <strong>APS, pregnancy and perioperative management</strong></li>
+          </ul>
+          <h3 class="sub">Urgent referral (red flags)</h3>
+          <div class="chips">
+            <span class="chip red">Clinical suspicion of SLE with major or multisystem organ involvement (undiagnosed)</span>
+            <span class="chip red">Disease flare with major organ or multisystem involvement (diagnosed)</span>
+            <span class="chip red">Pregnancy (at booking)</span>
+            <span class="chip red">Severe infection</span>
+          </div>
+          <p>For moderate-to-severe organ involvement, patients require <strong>multidisciplinary care</strong> involving various subspecialties.</p>
+        </div>
+      </section>
+
+      <section class="card" id="c11" data-toc="SLE — the anaesthetist &amp; intensivist view">
+        <button class="card-head" type="button"><span class="ttl">C11 · SLE — the anaesthetist &amp; intensivist view</span><span class="chev"></span></button>
+        <div class="card-body">
+          <div class="box accent"><span class="boxtitle">Source note</span> The CPG explicitly lists <strong>perioperative management</strong> as an indication for rheumatology referral, but does not provide anaesthetic-specific guidance. The points below synthesise the CPG content with the perioperative principles from the rheumatology critical care and SSc literature in this reference.</div>
+
+          <h3 class="sub">Preoperative checklist</h3>
+          <ul>
+            <li><strong>Disease activity</strong> — use SLEDAI-2K/BILAG; active major organ involvement (nephritis, neuropsychiatric, cytopenias, vasculitis) → defer elective surgery and refer.</li>
+            <li><strong>Renal</strong> — renal profile, urinalysis, UPCR/24hUP. Class III–V nephritis, proteinuria, impaired eGFR alter drug dosing and fluid strategy.</li>
+            <li><strong>Cardiorespiratory</strong> — serositis, PAH (associated with anti-RNP and anti-SSA), ILD, coronary artery disease. SLE is an independent CVD risk factor.</li>
+            <li><strong>Haematological</strong> — thrombocytopenia, anaemia, leukopenia; consider bleeding risk and infection risk.</li>
+            <li><strong>Antiphospholipid status</strong> — check LA, aCL, anti-β2GP1. <strong>Plan perioperative anticoagulation carefully</strong>; DOACs are not recommended for secondary prevention in SLE-APS.</li>
+            <li><strong>Infection screen</strong> — consider TB and atypical organisms in immunosuppressed patients. Both ESR and CRP elevated suggests infection rather than flare.</li>
+            <li><strong>Steroid cover</strong> — patients on adrenal-suppressive doses (&gt;5 mg prednisolone/day for &gt;4 weeks) require perioperative supplementation; evidence does not support withholding it.</li>
+            <li><strong>Medication plan</strong> — HCQ is continued (safe in pregnancy/lactation); consider MTX continuation (recent guidance); rituximab surgery at the 7th month since last dose; AZA, MMF, CYC, biologics require individualised decisions with rheumatology.</li>
+            <li><strong>Vaccination</strong> — assess yearly; vaccinate before immunosuppression or during remission where possible.</li>
+          </ul>
+
+          <h3 class="sub">Intraoperative &amp; ICU considerations</h3>
+          <ul>
+            <li><strong>Airway:</strong> consider involvement of the larynx, cricoarytenoid joints and cervical spine; microstomia and mucosal ulceration may complicate intubation. Avoid excessive pressure on skin and joints.</li>
+            <li><strong>Aspiration risk:</strong> oesophageal dysmotility, reflux and GI involvement — consider rapid sequence induction and premedication with antacid/PPI.</li>
+            <li><strong>Renal protection:</strong> maintain perfusion and avoid nephrotoxins, especially with nephritis or on calcineurin inhibitors.</li>
+            <li><strong>Infection:</strong> strict asepsis; postoperative fever may be infection, flare, or both — <strong>do not assume one or the other</strong>.</li>
+            <li><strong>Thrombosis:</strong> APS and aPL positivity substantially increase VTE and arterial event risk. Balance thromboprophylaxis against bleeding risk in thrombocytopenia.</li>
+            <li><strong>Drug interactions:</strong> steroid-related hyperglycaemia, hypertension, osteoporosis and peptic ulcer disease; NSAID-related renal, hepatic and CV toxicity; the possibility of MTX pneumonitis with unexplained respiratory deterioration.</li>
+            <li><strong>If the patient worsens despite antibiotics</strong> — consider a flare of the underlying rheumatic disease, MAS/HLH or CAPS, and involve rheumatology urgently.</li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+  </div><!-- /#content -->
+
+  <footer>
+    <h2>Sources &amp; citation</h2>
+    <ol>
+      <li>
+        Efrimescu CI, Donnelly S, Buggy DJ. <strong>Systemic sclerosis. Part I: epidemiology, diagnosis and therapy.</strong>
+        <em>BJA Educ</em> 2023;23(2). Mater Misericordiae University Hospital &amp; University College Dublin, Ireland.
+      </li>
+      <li>
+        Efrimescu CI, Donnelly S, Buggy DJ. <strong>Systemic sclerosis. Part II: perioperative considerations.</strong>
+        <em>BJA Educ</em>. doi:10.1016/j.bjae.2022.10.003. Mater Misericordiae University Hospital &amp; University College Dublin, Ireland.
+      </li>
+      <li>
+        Wenham T, et al. <strong>Rheumatological conditions in critical care.</strong> <em>BJA Education</em>.
+        Hull Royal Infirmary, Hull and East Yorkshire NHS Trust; Royal Hallamshire Hospital, Sheffield; Barnsley Hospital NHS Foundation Trust, UK.
+      </li>
+      <li>
+        Ministry of Health Malaysia. <strong>Management of Systemic Lupus Erythematosus.</strong> Clinical Practice Guidelines 2023.
+        Putrajaya: Malaysian Health Technology Assessment Section (MaHTAS), Medical Development Division, MOH Malaysia; 2023.
+        eISBN 978-967-2887-68-3 · MOH/P/PAK/531.23(GU)-e. Available at moh.gov.my, acadmed.org.my, msr.my.
+      </li>
+    </ol>
+
+    <div class="disclaimer">
+      <strong>Disclaimer.</strong> This quick reference is a summary of the cited publications, prepared for educational use by anaesthetists and intensivists.
+      It is not a substitute for the full source documents, local protocols, or clinical judgement. Doses, thresholds and recommendations should be verified against the original publications
+      and current guidelines before clinical use. Where the source CPG does not address a topic (e.g. anaesthetic technique in SLE), content is clearly derived from the accompanying literature and is labelled as such.
+    </div>
+  </footer>
+
+</main>
+
+<button id="toTop" type="button" title="Back to top" aria-label="Back to top">▲</button>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     COLLAPSE / EXPAND
+     ============================================================ */
+  var content = document.getElementById("content");
+
+  // Delegate clicks on card headers
+  content.addEventListener("click", function (e) {
+    var head = e.target.closest(".card-head");
+    if (head && content.contains(head)) {
+      var card = head.parentElement;
+      card.classList.toggle("collapsed");
+    }
+  });
+
+  document.getElementById("expandAll").addEventListener("click", function () {
+    document.querySelectorAll(".card").forEach(function (c) { c.classList.remove("collapsed"); });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function () {
+    document.querySelectorAll(".card").forEach(function (c) { c.classList.add("collapsed"); });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  /* ============================================================
+     FONT SIZE
+     ============================================================ */
+  var fsLabel = document.getElementById("fsLabel");
+  var fs = 16;
+  var FS_MIN = 12, FS_MAX = 22;
+
+  function applyFs() {
+    document.documentElement.style.setProperty("--fs", fs + "px");
+    fsLabel.textContent = fs;
+    try { localStorage.setItem("rqr_fs", fs); } catch (err) {}
+  }
+  try {
+    var saved = parseInt(localStorage.getItem("rqr_fs"), 10);
+    if (saved && saved >= FS_MIN && saved <= FS_MAX) fs = saved;
+  } catch (err) {}
+  applyFs();
+
+  document.getElementById("fsUp").addEventListener("click", function () {
+    if (fs < FS_MAX) { fs += 1; applyFs(); }
+  });
+  document.getElementById("fsDown").addEventListener("click", function () {
+    if (fs > FS_MIN) { fs -= 1; applyFs(); }
+  });
+
+  /* ============================================================
+     TABLE OF CONTENTS (auto-generated)
+     ============================================================ */
+  var tocBody = document.getElementById("tocBody");
+  var parts = document.querySelectorAll("section.part");
+  parts.forEach(function (part) {
+    var titleEl = part.querySelector(".part-title");
+    if (!titleEl) return;
+    var group = document.createElement("div");
+    group.className = "tocgroup";
+    var h3 = document.createElement("h3");
+    h3.textContent = titleEl.textContent.replace(/\s+/g, " ").trim();
+    group.appendChild(h3);
+    var ul = document.createElement("ul");
+    part.querySelectorAll(".card").forEach(function (card) {
+      var label = card.getAttribute("data-toc");
+      if (!label) return;
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = "#" + card.id;
+      a.innerHTML = label;
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    group.appendChild(ul);
+    tocBody.appendChild(group);
+  });
+
+  /* ============================================================
+     SEARCH
+     ============================================================ */
+  var searchInput = document.getElementById("search");
+  var clearBtn = document.getElementById("clearSearch");
+  var meta = document.getElementById("searchMeta");
+  var prevBtn = document.getElementById("prevBtn");
+  var nextBtn = document.getElementById("nextBtn");
+
+  var marks = [];
+  var currentIdx = -1;
+  var debounceTimer = null;
+
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function clearHighlights() {
+    marks.forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+    marks = [];
+    currentIdx = -1;
+  }
+
+  function expandAncestors(el) {
+    var node = el;
+    while (node && node !== document.body) {
+      if (node.classList && node.classList.contains("card")) {
+        node.classList.remove("collapsed");
+      }
+      node = node.parentElement;
+    }
+  }
+
+  function highlight(query) {
+    clearHighlights();
+    if (query.length < 2) return 0;
+
+    var re = new RegExp(escapeRegExp(query), "gi");
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "MARK" || tag === "NOSCRIPT") {
+          return NodeFilter.FILTER_REJECT;
+        }
+        re.lastIndex = 0;
+        if (!re.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      re.lastIndex = 0;
+      while ((m = re.exec(text)) !== null) {
+        if (m.index > last) {
+          frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        }
+        var mark = document.createElement("mark");
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        marks.push(mark);
+        last = m.index + m[0].length;
+        if (m[0].length === 0) re.lastIndex++;
+      }
+      if (last < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+      if (node.parentNode) node.parentNode.replaceChild(frag, node);
+    });
+
+    return marks.length;
+  }
+
+  function focusMark(index) {
+    marks.forEach(function (m) { m.classList.remove("current"); });
+    if (!marks.length) return;
+    if (index < 0) index = marks.length - 1;
+    if (index >= marks.length) index = 0;
+    currentIdx = index;
+    var m = marks[index];
+    expandAncestors(m);
+    m.classList.add("current");
+    m.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function runSearch() {
+    var q = searchInput.value.trim();
+    if (q.length < 2) {
+      clearHighlights();
+      meta.textContent = q.length === 1 ? "Type at least 2 characters…" : "";
+      return;
+    }
+    var n = highlight(q);
+    if (n === 0) {
+      meta.textContent = 'No matches for "' + q + '"';
+      return;
+    }
+    meta.innerHTML = "<b>" + n + "</b> match" + (n === 1 ? "" : "es") + ' for "' + q + '" — press Enter or Next ▶';
+    // expand and jump to first
+    focusMark(0);
+  }
+
+  searchInput.addEventListener("input", function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 220);
+  });
+
+  searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (!marks.length) { runSearch(); return; }
+      if (e.shiftKey) focusMark(currentIdx - 1);
+      else focusMark(currentIdx + 1);
+    }
+    if (e.key === "Escape") {
+      searchInput.value = "";
+      clearHighlights();
+      meta.textContent = "";
+    }
+  });
+
+  clearBtn.addEventListener("click", function () {
+    searchInput.value = "";
+    clearHighlights();
+    meta.textContent = "";
+    searchInput.focus();
+  });
+
+  nextBtn.addEventListener("click", function () {
+    if (!marks.length) { runSearch(); return; }
+    focusMark(currentIdx + 1);
+  });
+
+  prevBtn.addEventListener("click", function () {
+    if (!marks.length) { runSearch(); return; }
+    focusMark(currentIdx - 1);
+  });
+
+  /* ============================================================
+     BACK TO TOP
+     ============================================================ */
+  var toTop = document.getElementById("toTop");
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 500) toTop.classList.add("show");
+    else toTop.classList.remove("show");
+  }, { passive: true });
+  toTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  /* ============================================================
+     START STATE
+     ============================================================ */
+  // Start expanded for readability on first load.
+  // Uncomment the next line if you prefer everything collapsed on load:
+  // document.querySelectorAll(".card").forEach(function (c) { c.classList.add("collapsed"); });
+
+})();
+</script>
+</body>
+</html>
