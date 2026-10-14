@@ -82,6 +82,7 @@ body{
 #toggleQs{background:#00A651;}
 #randomQ{background:#00A651;}
 #showMarks{background:#6C3FA0;}
+#addTopic{background:#0B5FA5;}
 .lbl{font-size:.72rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
 #fontRange{width:96px;accent-color:var(--red);cursor:pointer;}
 
@@ -96,7 +97,6 @@ body{
 .progress{flex:1 1 90px;height:.55rem;min-width:70px;background:#e2e2e2;border-radius:999px;overflow:hidden;border:1px solid #d0d0d0;}
 #bar{height:100%;width:0;background:linear-gradient(90deg,#00A651,#FFCF00,#D5121A);transition:width .3s;}
 
-/* ===== clickable filter chips ===== */
 .chip.clickable{cursor:pointer;user-select:none;transition:transform .08s,filter .12s;}
 .chip.clickable:hover{filter:brightness(.95);}
 .chip.clickable:active{transform:scale(.95);}
@@ -131,7 +131,6 @@ main{max-width:1080px;margin:0 auto;padding:1rem .8rem 3rem;}
 .group:not(.collapsed) > .grp-head .chev{transform:rotate(90deg);}
 .grp-head .grp-count{margin-left:auto;font-size:.66rem;font-weight:800;background:rgba(0,0,0,.08);color:#444;padding:.1rem .45rem;border-radius:999px;}
 
-/* ★ THE FIX ★ */
 .section.collapsed > .sec-body{display:none;}
 .group.collapsed   > .grp-body{display:none;}
 .section:not(.collapsed) > .sec-body,
@@ -161,6 +160,14 @@ main{max-width:1080px;margin:0 auto;padding:1rem .8rem 3rem;}
 }
 .topic-chev:hover{background:#eef2f7;color:var(--blue);}
 .topic.open .topic-chev{transform:rotate(90deg);color:var(--blue);}
+
+/* ★ edit pencil */
+.edit-btn{
+  flex:0 0 auto;cursor:pointer;border:none;background:transparent;
+  font-size:.9rem;color:#c8c8c8;padding:.15rem .3rem;border-radius:6px;
+  transition:background .15s,color .15s;line-height:1;
+}
+.edit-btn:hover{background:#eef2f7;color:var(--blue);}
 
 /* questions */
 .qs{
@@ -196,10 +203,9 @@ mark{background:#FFE97A;color:#111;border-radius:3px;padding:0 .12em;font-weight
 
 footer{text-align:center;font-size:.72rem;color:#7a7a7a;padding:1.5rem 1rem 3rem;line-height:1.7;}
 footer b{color:#444;}
+footer a{color:#0B5FA5;text-decoration:none;font-weight:700;}
+footer a:hover{text-decoration:underline;}
 
-/* =========================================================
-   ★ NEW: flash-on-jump
-   ========================================================= */
 .topic.flash{animation:flashbg 1.7s ease;}
 @keyframes flashbg{
   0%  {background:#FFF3B0;box-shadow:0 0 0 4px rgba(255,207,0,.65);}
@@ -207,7 +213,7 @@ footer b{color:#444;}
 }
 
 /* =========================================================
-   ★ NEW: overlays / quiz card / marked list
+   overlays / quiz card / marked list / edit form
    ========================================================= */
 .overlay{
   position:fixed;inset:0;z-index:200;
@@ -265,7 +271,6 @@ footer b{color:#444;}
 }
 .status.sel{outline:3px solid #0B5FA5;outline-offset:2px;}
 
-/* marked list */
 .mgroup{margin-bottom:1rem;}
 .mgroup h3{
   margin:.2rem 0 .5rem;font-size:.78rem;text-transform:uppercase;
@@ -287,6 +292,26 @@ footer b{color:#444;}
 .mitem .mbadge.st-poor{background:#D5121A;color:#fff;}
 .mempty{color:var(--muted);font-size:.85rem;font-style:italic;}
 
+/* ===== edit form fields ===== */
+.field{margin-bottom:.7rem;}
+.field label{
+  display:block;font-size:.72rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.4px;color:var(--muted);margin-bottom:.25rem;
+}
+.field select, .field input, .field textarea{
+  width:100%;padding:.5rem .6rem;font-size:.85rem;font-family:inherit;
+  border:2px solid #cfcfcf;border-radius:8px;outline:none;background:#fff;
+  transition:border-color .15s,box-shadow .15s;
+}
+.field textarea{resize:vertical;min-height:6rem;line-height:1.5;}
+.field select:focus, .field input:focus, .field textarea:focus{
+  border-color:var(--blue);box-shadow:0 0 0 4px rgba(11,95,165,.15);
+}
+.field.hidden{display:none !important;}
+.edit-actions{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.9rem;}
+.edit-hint{font-size:.7rem;color:var(--muted);margin:.7rem 0 0;font-style:italic;}
+.edit-hint code{background:#eef2f7;padding:.05em .3em;border-radius:4px;font-size:.9em;}
+
 @media (max-width:640px){
   .titles h1{font-size:.95rem;}
   .titles p{font-size:.64rem;}
@@ -296,6 +321,7 @@ footer b{color:#444;}
   .sec-head{font-size:.85rem;}
   .qs li{font-size:.74rem;}
   .qtext{font-size:.95rem;}
+  .edit-btn{font-size:1rem;}
 }
 </style>
 </head>
@@ -322,6 +348,7 @@ footer b{color:#444;}
       <button id="toggleQs" class="ctl">📖 Show questions</button>
       <button id="randomQ" class="ctl">🎲 Random question</button>
       <button id="showMarks" class="ctl">📋 Marked list</button>
+      <button id="addTopic" class="ctl">＋ Add topic</button>
       <button id="resetMarks" class="ctl">↺ Reset marks</button>
     </div>
 
@@ -352,9 +379,11 @@ footer b{color:#444;}
   <span style="color:#00713A;font-weight:800">✓✓ Excellent</span> →
   <span style="color:#8A6A00;font-weight:800">✓ Moderate</span> →
   <span style="color:#9E0E14;font-weight:800">✕ Poor</span> → clear.<br>
-  <b>Filter:</b> click any coloured chip above to show only those topics (click <b>All</b> to clear).<br>
-  <b>Random question:</b> press <b>🎲 Random question</b> (or the <b>R</b> key) to be quizzed — reveal the topic, mark yourself, and the next one loads automatically.<br>
-  Click the <b>▸</b> arrow (or the topic) to reveal exam questions. Marks &amp; text size are saved in your browser.<br>
+  <b>Filter:</b> click a coloured chip above to show only those topics.<br>
+  <b>Random question:</b> press <b>🎲 Random question</b> (or <b>R</b>) to be quizzed.<br>
+  <b>Add / edit:</b> press <b>＋ Add topic</b>, or click the <b>✎</b> on any topic to edit or delete it.<br>
+  Marks, custom topics &amp; text size are saved in your browser ·
+  <a href="#" id="resetCustom">Reset custom content</a>.<br>
   Content: <i>Dr Podcast Scripts for the Final FRCA</i>, 2nd ed.
 </footer>
 
@@ -416,9 +445,62 @@ footer b{color:#444;}
   </div>
 </div>
 
+<!-- ============ ✎ ADD / EDIT TOPIC ============ -->
+<div class="overlay" id="editOverlay">
+  <div class="qcard" style="border-top-color:#0B5FA5">
+    <div class="qcard-head">
+      <span class="qcard-title" id="editTitle">Add topic</span>
+      <button class="xbtn" data-close="editOverlay" title="Close">✕</button>
+    </div>
+    <div class="qcard-body">
+
+      <div class="field" id="secField">
+        <label for="editSection">Section</label>
+        <select id="editSection"></select>
+      </div>
+
+      <div class="field hidden" id="newSecField">
+        <label for="editNewSec">New section title</label>
+        <input id="editNewSec" placeholder="e.g. Section 6 — Custom topics" autocomplete="off">
+      </div>
+
+      <div class="field" id="grpField">
+        <label for="editGroup">Group / subtopic</label>
+        <select id="editGroup"></select>
+      </div>
+
+      <div class="field hidden" id="newGrpField">
+        <label for="editNewGrp">New group title</label>
+        <input id="editNewGrp" placeholder="e.g. 6.1 My new group" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="editTopicTitle">Topic title</label>
+        <input id="editTopicTitle" placeholder="e.g. 6.1.1 My new topic" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="editQuestions">Questions — one per line</label>
+        <textarea id="editQuestions" rows="6" placeholder="What is...?&#10;How would you...?&#10;Tell me about..."></textarea>
+      </div>
+
+      <div class="edit-actions">
+        <button class="ctl" id="editSave" style="background:#00A651">💾 Save</button>
+        <button class="ctl" id="editDelete" style="background:#D5121A">🗑 Delete</button>
+        <button class="ctl" id="editRestore" style="background:#6C3FA0;display:none">↺ Restore original</button>
+        <button class="ctl" id="editCancel" style="background:#37474F">Cancel</button>
+      </div>
+
+      <p class="edit-hint" id="editHint">
+        Type one question per line. Leave blank for a topic with no questions.
+      </p>
+    </div>
+  </div>
+</div>
+
 <script>
 /* =========================================================
-   DATA — Section → Group → Topics (+ Questions)
+   DATA — built-in Section → Group → Topics (+ Questions)
    ========================================================= */
 const DATA = [
 /* ================= SECTION 1 ================= */
@@ -2557,23 +2639,55 @@ const DATA = [
 /* =========================================================
    STATE
    ========================================================= */
-const STORE_KEY = "frca-lego-marks-v2";
-const FS_KEY    = "frca-lego-fs-v2";
-const QS_KEY    = "frca-lego-qs-v2";
+const STORE_KEY  = "frca-lego-marks-v2";
+const FS_KEY     = "frca-lego-fs-v2";
+const QS_KEY     = "frca-lego-qs-v2";
+const USER_KEY   = "frca-lego-userdata-v3";
 
+/* --- marks --- */
 let marks = {};
 try { marks = JSON.parse(localStorage.getItem(STORE_KEY) || "{}"); } catch(e){ marks = {}; }
 
-let qsOpen = false;                 // global "show questions" state
-let qsOverrides = {};               // per-topic manual overrides
+/* --- question open state --- */
+let qsOpen = false;
+let qsOverrides = {};
 try { qsOverrides = JSON.parse(localStorage.getItem(QS_KEY) || "{}"); } catch(e){ qsOverrides = {}; }
 
-/* ★ NEW state */
-let statusFilter = "all";           // all | marked | excellent | moderate | poor | none
-let QINDEX   = [];                  // every question, flattened
-let currentQ = null;                // question shown in the quiz card
+/* --- ★ custom-content store --- */
+let userStore = {
+  customSections: [],   // { id, title, color, tint }
+  customGroups:   [],   // { id, sectionId, title }
+  customTopics:   [],   // { id, sectionId, groupId, title, q: [] }
+  edits:          {},   // { topicId: { title, q: [] } }
+  deleted:        []    // [ topicId ]
+};
+try {
+  const raw = JSON.parse(localStorage.getItem(USER_KEY) || "null");
+  if(raw && typeof raw === "object"){
+    userStore.customSections = raw.customSections || [];
+    userStore.customGroups   = raw.customGroups   || [];
+    userStore.customTopics   = raw.customTopics   || [];
+    userStore.edits          = raw.edits          || {};
+    userStore.deleted        = raw.deleted        || [];
+  }
+} catch(e){ /* keep defaults */ }
+
+function saveUser(){
+  try { localStorage.setItem(USER_KEY, JSON.stringify(userStore)); } catch(e){}
+}
+
+/* --- working data (built-in merged with custom) --- */
+let WORK = [];
+
+/* --- filter / quiz --- */
+let statusFilter = "all";
+let QINDEX   = [];
+let currentQ = null;
 let qRevealed = false;
-let qHistory = [];                  // recently served questions (avoid repeats)
+let qHistory = [];
+
+/* --- edit form --- */
+let editMode = null;   // { type: "add" } | { type: "edit", topicId }
 
 const CYCLE = ["none","excellent","moderate","poor"];
 const META = {
@@ -2582,6 +2696,14 @@ const META = {
   moderate:  { sym:"✓",  txt:"Moderate"  },
   poor:      { sym:"✕",  txt:"Poor"      }
 };
+const PALETTE = [
+  { color:"#0B5FA5", tint:"#E4EFF9" },
+  { color:"#00A651", tint:"#E2F5EA" },
+  { color:"#F57C00", tint:"#FFF1DE" },
+  { color:"#6C3FA0", tint:"#EFE8F9" },
+  { color:"#D5121A", tint:"#FDE8E8" },
+  { color:"#00838F", tint:"#E0F2F4" }
+];
 
 const toc         = document.getElementById("toc");
 const searchEl    = document.getElementById("search");
@@ -2589,9 +2711,9 @@ const matchInfo   = document.getElementById("matchInfo");
 const fontRange   = document.getElementById("fontRange");
 const toggleQsBtn = document.getElementById("toggleQs");
 
-/* ★ NEW element refs */
 const qOverlay     = document.getElementById("qOverlay");
 const marksOverlay = document.getElementById("marksOverlay");
+const editOverlay  = document.getElementById("editOverlay");
 const qScope       = document.getElementById("qScope");
 const qText        = document.getElementById("qText");
 const qReveal      = document.getElementById("qReveal");
@@ -2621,10 +2743,80 @@ function isTopicOpen(id){
   return qsOpen;
 }
 function topicById(id){
-  return toc.querySelector('.topic[data-id="' + id + '"]');
+  return toc.querySelector('.topic[data-id="' + CSS.escape(id) + '"]');
 }
 function statusBtnFor(id){
-  return toc.querySelector('.status[data-status="' + id + '"]');
+  return toc.querySelector('.status[data-status="' + CSS.escape(id) + '"]');
+}
+function findTopic(tid){
+  for(const sec of WORK){
+    for(const grp of sec.groups){
+      const t = grp.topics.find(x=>x.id === tid);
+      if(t) return t;
+    }
+  }
+  return null;
+}
+
+/* =========================================================
+   ★ MERGE built-in DATA with userStore → WORK
+   ========================================================= */
+function buildWorkingData(){
+  const base = JSON.parse(JSON.stringify(DATA));
+
+  /* add custom sections */
+  userStore.customSections.forEach(cs=>{
+    if(base.some(s=>s.id === cs.id)) return;
+    base.push({
+      id: cs.id, title: cs.title,
+      color: cs.color || "#0B5FA5", tint: cs.tint || "#E4EFF9",
+      groups: []
+    });
+  });
+
+  /* add custom groups */
+  userStore.customGroups.forEach(cg=>{
+    const sec = base.find(s=>s.id === cg.sectionId);
+    if(!sec) return;
+    if(sec.groups.some(g=>g.id === cg.id)) return;
+    sec.groups.push({ id: cg.id, title: cg.title, topics: [] });
+  });
+
+  /* add custom topics */
+  userStore.customTopics.forEach(ct=>{
+    const sec = base.find(s=>s.id === ct.sectionId);
+    if(!sec) return;
+    const grp = sec.groups.find(g=>g.id === ct.groupId);
+    if(!grp) return;
+    grp.topics.push({
+      id: ct.id, title: ct.title,
+      q: (ct.q || []).slice()
+    });
+  });
+
+  /* apply edits to (built-in or custom) topics */
+  Object.keys(userStore.edits).forEach(tid=>{
+    const e = userStore.edits[tid];
+    for(const sec of base){
+      for(const grp of sec.groups){
+        const t = grp.topics.find(x=>x.id === tid);
+        if(t){ t.title = e.title; t.q = (e.q || []).slice(); }
+      }
+    }
+  });
+
+  /* apply deletions */
+  if(userStore.deleted.length){
+    const del = new Set(userStore.deleted);
+    base.forEach(sec=>{
+      sec.groups.forEach(grp=>{
+        grp.topics = grp.topics.filter(t=>!del.has(t.id));
+      });
+      sec.groups = sec.groups.filter(g=>g.topics.length > 0 || !userStore.customGroups.some(cg=>cg.id === g.id));
+    });
+  }
+
+  return base;
 }
 
 /* =========================================================
@@ -2632,7 +2824,7 @@ function statusBtnFor(id){
    ========================================================= */
 function buildTOC(){
   let html = "";
-  DATA.forEach(sec => {
+  WORK.forEach(sec => {
     const total = sec.groups.reduce((n,g)=>n+g.topics.length,0);
     html += `<section class="section" id="${sec.id}"
                 style="--brick:${sec.color};--tint:${sec.tint}">`;
@@ -2644,7 +2836,7 @@ function buildTOC(){
     html += `<div class="sec-body">`;
 
     sec.groups.forEach(grp => {
-      html += `<div class="group collapsed" id="grp-${grp.id}">`;
+      html += `<div class="group collapsed" id="grp-${esc(grp.id)}">`;
       html += `<button class="grp-head" type="button">
                  <span class="chev">▶</span>
                  <span>${esc(grp.title)}</span>
@@ -2660,6 +2852,8 @@ function buildTOC(){
                             title="${hasQ?"Show / hide questions":"No questions recorded"}"
                             ${hasQ?"":"disabled style='opacity:.25'"}>▶</button>`;
         html += `    <span class="topic-title">${esc(t.title)}</span>`;
+        html += `    <button class="edit-btn" type="button" data-edit="${esc(t.id)}"
+                            title="Edit / delete this topic">✎</button>`;
         html += `    <button class="status st-none" type="button" data-status="${esc(t.id)}"
                             title="Click to cycle: Excellent → Moderate → Poor → clear"
                             aria-label="Mark topic ${esc(t.title)}">
@@ -2684,11 +2878,11 @@ function buildTOC(){
 }
 
 /* =========================================================
-   ★ NEW: flatten every question for the quiz
+   FLATTEN every question for the quiz
    ========================================================= */
 function buildQIndex(){
   QINDEX = [];
-  DATA.forEach(sec=>{
+  WORK.forEach(sec=>{
     sec.groups.forEach(grp=>{
       grp.topics.forEach(t=>{
         (t.q || []).forEach((question, i)=>{
@@ -2747,7 +2941,6 @@ function cycleStatus(btn){
   const next = CYCLE[(CYCLE.indexOf(cur)+1) % CYCLE.length];
   setMark(id, next);
 }
-/* central place that writes a mark (used by list + quiz) */
 function setMark(topicId, val){
   if(val === "none") delete marks[topicId];
   else marks[topicId] = val;
@@ -2799,14 +2992,12 @@ function clearHighlights(){
     if(el.dataset.orig) el.textContent = el.dataset.orig;
   });
 }
-
 function statusMatches(topicId){
   if(statusFilter === "all") return true;
   const v = marks[topicId] || "none";
   if(statusFilter === "marked") return v !== "none";
   return v === statusFilter;
 }
-
 function applyFilter(){
   const q = searchEl.value.trim().toLowerCase();
   clearHighlights();
@@ -2822,7 +3013,6 @@ function applyFilter(){
     const statusOK = statusMatches(id);
     let topicHit = false, qHit = false;
 
-    /* title match */
     if(!q){
       titleEl.textContent = title;
     } else {
@@ -2838,7 +3028,6 @@ function applyFilter(){
       }
     }
 
-    /* question match */
     tp.querySelectorAll(".q-item").forEach(li=>{
       const qt = li.dataset.q;
       if(!li.dataset.orig) li.dataset.orig = qt;
@@ -2865,13 +3054,11 @@ function applyFilter(){
     if(show) visible++;
     tp.classList.toggle("hidden", !show);
 
-    /* if a question matched (but title didn't), auto-open */
     if(q && qHit && !topicHit) tp.classList.add("open");
   });
 
   const filtering = !!q || statusFilter !== "all";
 
-  /* nothing filtered → reset to default view */
   if(!filtering){
     toc.querySelectorAll(".group").forEach(g=>{
       g.classList.remove("hidden");
@@ -2908,7 +3095,7 @@ function applyFilter(){
 }
 
 /* =========================================================
-   ★ NEW: filter chips
+   FILTER CHIPS
    ========================================================= */
 function paintFilterChips(){
   document.querySelectorAll(".chip[data-filter]").forEach(c=>{
@@ -2917,7 +3104,7 @@ function paintFilterChips(){
 }
 
 /* =========================================================
-   ★ NEW: jump to a topic (from marks list / quiz)
+   JUMP to a topic
    ========================================================= */
 function jumpToTopic(id){
   searchEl.value = "";
@@ -2942,7 +3129,50 @@ function jumpToTopic(id){
 }
 
 /* =========================================================
-   ★ NEW: random question card
+   OPEN-STATE SAVE / RESTORE  (across rebuilds)
+   ========================================================= */
+function saveOpenState(){
+  const secs = [...toc.querySelectorAll(".section:not(.collapsed)")].map(s=>s.id);
+  const grps = [...toc.querySelectorAll(".group:not(.collapsed)")].map(g=>g.id);
+  const topics = [...toc.querySelectorAll(".topic.open")].map(t=>t.dataset.id);
+  return { secs, grps, topics };
+}
+function restoreOpenState(state){
+  state.secs.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.classList.remove("collapsed");
+  });
+  state.grps.forEach(id=>{
+    const el = document.getElementById("grp-" + id) || document.getElementById(id);
+    if(el) el.classList.remove("collapsed");
+  });
+  state.topics.forEach(id=>{
+    const el = topicById(id);
+    if(el) el.classList.add("open");
+  });
+}
+
+/* =========================================================
+   ★ REBUILD everything (after add / edit / delete)
+   ========================================================= */
+function rebuildAll(){
+  const openState = saveOpenState();
+  WORK = buildWorkingData();
+  buildTOC();
+  applyAllStatuses();
+  buildQIndex();
+  paintFilterChips();
+  applyFilter();
+
+  const filtering = searchEl.value.trim() || statusFilter !== "all";
+  if(!filtering) restoreOpenState(openState);
+
+  if(marksOverlay.classList.contains("show")) renderMarksList();
+  if(qOverlay.classList.contains("show")) refreshQMarkButtons();
+}
+
+/* =========================================================
+   RANDOM QUESTION CARD
    ========================================================= */
 function qPool(){
   const s = qScope.value;
@@ -2953,7 +3183,6 @@ function qPool(){
     return v === s;
   });
 }
-
 function openQuiz(){
   qOverlay.classList.add("show");
   document.body.style.overflow = "hidden";
@@ -2963,7 +3192,6 @@ function closeQuiz(){
   qOverlay.classList.remove("show");
   document.body.style.overflow = "";
 }
-
 function nextQuestion(){
   const pool = qPool();
   qCount.textContent = pool.length
@@ -2981,7 +3209,6 @@ function nextQuestion(){
   }
   qRevealBtn.disabled = false;
 
-  /* prefer questions we haven't shown recently */
   const fresh = pool.filter(e=>!qHistory.includes(e.id));
   const src   = fresh.length ? fresh : pool;
 
@@ -2996,15 +3223,12 @@ function nextQuestion(){
   if(qHistory.length > 30) qHistory.shift();
 
   qText.textContent = pick.q;
-
   qRevealed = false;
   qReveal.classList.remove("show");
   qReveal.innerHTML = "";
   qRevealBtn.textContent = "👁 Reveal topic";
-
   refreshQMarkButtons();
 }
-
 function toggleReveal(){
   if(!currentQ) return;
   qRevealed = !qRevealed;
@@ -3020,7 +3244,6 @@ function toggleReveal(){
     qRevealBtn.textContent = "👁 Reveal topic";
   }
 }
-
 function refreshQMarkButtons(){
   const v = currentQ ? (marks[currentQ.topicId] || "none") : "none";
   qMarkRow.querySelectorAll(".status").forEach(b=>{
@@ -3029,7 +3252,7 @@ function refreshQMarkButtons(){
 }
 
 /* =========================================================
-   ★ NEW: marked topics list
+   MARKED TOPICS LIST
    ========================================================= */
 function renderMarksList(){
   const GROUPS = [
@@ -3037,9 +3260,7 @@ function renderMarksList(){
     { key:"moderate",  label:"✓ Moderate",   sym:"✓",  cls:"st-moderate"  },
     { key:"poor",      label:"✕ Poor",       sym:"✕",  cls:"st-poor"      }
   ];
-
-  let html = "";
-  let any  = false;
+  let html = "", any = false;
 
   GROUPS.forEach(g=>{
     const items = [];
@@ -3054,7 +3275,6 @@ function renderMarksList(){
     });
     if(!items.length) return;
     any = true;
-
     html += '<div class="mgroup">';
     html += '<h3>' + g.label + ' · ' + items.length + '</h3>';
     items.forEach(it=>{
@@ -3075,6 +3295,243 @@ function renderMarksList(){
 }
 
 /* =========================================================
+   ★ EDIT / ADD TOPIC FORM
+   ========================================================= */
+function populateSectionSelect(selectedId){
+  const sel = document.getElementById("editSection");
+  sel.innerHTML = "";
+  WORK.forEach(sec=>{
+    const o = document.createElement("option");
+    o.value = sec.id;
+    o.textContent = sec.title;
+    sel.appendChild(o);
+  });
+  const oNew = document.createElement("option");
+  oNew.value = "__new__";
+  oNew.textContent = "＋ New section…";
+  sel.appendChild(oNew);
+
+  if(selectedId) sel.value = selectedId;
+  handleSectionChange();
+}
+function handleSectionChange(){
+  const secVal = document.getElementById("editSection").value;
+  const isNewSec = secVal === "__new__";
+
+  document.getElementById("newSecField").classList.toggle("hidden", !isNewSec);
+  document.getElementById("grpField").classList.toggle("hidden", isNewSec);
+
+  if(isNewSec){
+    document.getElementById("newGrpField").classList.remove("hidden");
+    document.getElementById("editNewGrp").placeholder = "e.g. 6.1 Custom topics";
+    return;
+  }
+
+  const sec = WORK.find(s=>s.id === secVal);
+  const gsel = document.getElementById("editGroup");
+  gsel.innerHTML = "";
+  if(sec && sec.groups.length){
+    sec.groups.forEach(g=>{
+      const o = document.createElement("option");
+      o.value = g.id;
+      o.textContent = g.title;
+      gsel.appendChild(o);
+    });
+  }
+  const oNew = document.createElement("option");
+  oNew.value = "__new__";
+  oNew.textContent = "＋ New group / subtopic…";
+  gsel.appendChild(oNew);
+  handleGroupChange();
+}
+function handleGroupChange(){
+  const gVal = document.getElementById("editGroup").value;
+  document.getElementById("newGrpField").classList.toggle("hidden", gVal !== "__new__");
+}
+function showField(id, show){
+  document.getElementById(id).classList.toggle("hidden", !show);
+}
+function resetEditForm(){
+  document.getElementById("editNewSec").value = "";
+  document.getElementById("editNewGrp").value = "";
+  document.getElementById("editTopicTitle").value = "";
+  document.getElementById("editQuestions").value = "";
+  document.getElementById("editRestore").style.display = "none";
+}
+function openAddTopic(){
+  editMode = { type: "add" };
+  document.getElementById("editTitle").textContent = "＋ Add topic";
+  resetEditForm();
+
+  /* add mode: show section + group pickers */
+  showField("secField", true);
+  showField("grpField", true);
+  showField("newSecField", false);
+  showField("newGrpField", false);
+
+  populateSectionSelect("");
+
+  document.getElementById("editDelete").style.display = "none";
+  document.getElementById("editHint").innerHTML =
+    "Type one question per line. Leave blank for a topic with no questions.";
+
+  editOverlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+function openEditTopic(tid){
+  const topic = findTopic(tid);
+  if(!topic) return;
+
+  editMode = { type: "edit", topicId: tid };
+  document.getElementById("editTitle").textContent = "✎ Edit topic";
+  resetEditForm();
+
+  /* edit mode: hide section / group selectors */
+  showField("secField", false);
+  showField("grpField", false);
+  showField("newSecField", false);
+  showField("newGrpField", false);
+
+  document.getElementById("editTopicTitle").value = topic.title;
+  document.getElementById("editQuestions").value = (topic.q || []).join("\n");
+
+  document.getElementById("editDelete").style.display = "";
+
+  const isCustom = !!userStore.customTopics.find(x=>x.id === tid);
+  const hasEdit  = !!userStore.edits[tid];
+  document.getElementById("editRestore").style.display =
+    (!isCustom && hasEdit) ? "" : "none";
+
+  document.getElementById("editHint").innerHTML =
+    isCustom
+      ? "This is a custom topic you added — it can be safely edited or deleted."
+      : "Editing a built-in topic. You can use <code>Restore original</code> to undo.";
+
+  editOverlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+function closeEdit(){
+  editOverlay.classList.remove("show");
+  document.body.style.overflow = "";
+}
+function saveEdit(){
+  if(!editMode) return;
+
+  const title = document.getElementById("editTopicTitle").value.trim();
+  const qText = document.getElementById("editQuestions").value;
+  const questions = qText.split("\n").map(s=>s.trim()).filter(Boolean);
+
+  if(!title){ alert("Please enter a topic title."); return; }
+
+  let focusId = null;
+
+  if(editMode.type === "add"){
+    const secVal = document.getElementById("editSection").value;
+    const isNewSec = secVal === "__new__";
+    const grpVal = isNewSec ? "__new__" : document.getElementById("editGroup").value;
+    const isNewGrp = isNewSec || grpVal === "__new__";
+
+    let sectionId, groupId;
+
+    if(isNewSec){
+      const secTitle = document.getElementById("editNewSec").value.trim();
+      if(!secTitle){ alert("Please enter a section title."); return; }
+      sectionId = "custom-sec-" + Date.now();
+      const pal = PALETTE[userStore.customSections.length % PALETTE.length];
+      userStore.customSections.push({
+        id: sectionId, title: secTitle,
+        color: pal.color, tint: pal.tint
+      });
+    } else {
+      sectionId = secVal;
+    }
+
+    if(isNewGrp){
+      const grpTitle = document.getElementById("editNewGrp").value.trim();
+      if(!grpTitle){ alert("Please enter a group title."); return; }
+      groupId = "custom-grp-" + Date.now();
+      userStore.customGroups.push({
+        id: groupId, sectionId: sectionId, title: grpTitle
+      });
+    } else {
+      groupId = grpVal;
+    }
+
+    const topicId = "custom-topic-" + Date.now() + "-" + Math.floor(Math.random()*1000);
+    userStore.customTopics.push({
+      id: topicId, sectionId, groupId, title, q: questions
+    });
+    focusId = topicId;
+
+  } else if(editMode.type === "edit"){
+    const tid = editMode.topicId;
+    const ct = userStore.customTopics.find(x=>x.id === tid);
+    if(ct){
+      ct.title = title;
+      ct.q = questions;
+    } else {
+      userStore.edits[tid] = { title, q: questions };
+    }
+    focusId = tid;
+  }
+
+  saveUser();
+  rebuildAll();
+  closeEdit();
+
+  if(focusId){
+    setTimeout(()=>jumpToTopic(focusId), 120);
+  }
+}
+function deleteEdit(){
+  if(!editMode || editMode.type !== "edit") return;
+  const tid = editMode.topicId;
+  if(!confirm("Delete this topic?\n\n" + (findTopic(tid)?.title || tid))) return;
+
+  const idx = userStore.customTopics.findIndex(x=>x.id === tid);
+  if(idx >= 0){
+    userStore.customTopics.splice(idx, 1);
+    /* also drop its custom group/section if now empty */
+    pruneEmptyCustomContainers();
+  } else {
+    if(!userStore.deleted.includes(tid)) userStore.deleted.push(tid);
+  }
+  delete userStore.edits[tid];
+  delete marks[tid];
+  saveMarks();
+
+  saveUser();
+  rebuildAll();
+  closeEdit();
+}
+function restoreEdit(){
+  if(!editMode || editMode.type !== "edit") return;
+  const tid = editMode.topicId;
+  delete userStore.edits[tid];
+  const di = userStore.deleted.indexOf(tid);
+  if(di >= 0) userStore.deleted.splice(di, 1);
+  saveUser();
+  rebuildAll();
+  closeEdit();
+}
+function pruneEmptyCustomContainers(){
+  /* remove custom groups with no topics that belong to them */
+  const usedGroups = new Set(userStore.customTopics.map(t=>t.groupId));
+  userStore.customGroups = userStore.customGroups.filter(g=>usedGroups.has(g.id));
+  const usedSections = new Set([
+    ...userStore.customTopics.map(t=>t.sectionId),
+    ...userStore.customGroups.map(g=>g.sectionId)
+  ]);
+  userStore.customSections = userStore.customSections.filter(s=>usedSections.has(s.id));
+}
+function resetCustomContent(){
+  if(!confirm("Remove all custom topics, groups and sections you've added, and undo any edits to built-in topics?")) return;
+  userStore = { customSections:[], customGroups:[], customTopics:[], edits:{}, deleted:[] };
+  saveUser();
+  rebuildAll();
+}
+
+/* =========================================================
    FONT SIZE
    ========================================================= */
 function setFontSize(px){
@@ -3088,6 +3545,10 @@ function setFontSize(px){
    EVENTS — TOC
    ========================================================= */
 toc.addEventListener("click", e=>{
+  /* ★ edit pencil */
+  const ed = e.target.closest(".edit-btn");
+  if(ed){ e.stopPropagation(); openEditTopic(ed.dataset.edit); return; }
+
   /* status */
   const st = e.target.closest(".status");
   if(st){ cycleStatus(st); return; }
@@ -3149,7 +3610,7 @@ document.getElementById("resetMarks").addEventListener("click", ()=>{
   if(qOverlay.classList.contains("show")) refreshQMarkButtons();
 });
 
-/* ★ filter chips */
+/* filter chips */
 document.querySelectorAll(".chip[data-filter]").forEach(chip=>{
   chip.addEventListener("click", ()=>{
     statusFilter = chip.dataset.filter;
@@ -3158,14 +3619,13 @@ document.querySelectorAll(".chip[data-filter]").forEach(chip=>{
   });
 });
 
-/* ★ quiz buttons */
+/* quiz buttons */
 document.getElementById("randomQ").addEventListener("click", openQuiz);
 document.getElementById("showMarks").addEventListener("click", ()=>{
   renderMarksList();
   marksOverlay.classList.add("show");
   document.body.style.overflow = "hidden";
 });
-
 document.getElementById("qNext").addEventListener("click", nextQuestion);
 qRevealBtn.addEventListener("click", toggleReveal);
 document.getElementById("qOpenTopic").addEventListener("click", ()=>{
@@ -3178,8 +3638,6 @@ qScope.addEventListener("change", ()=>{
   qHistory = [];
   nextQuestion();
 });
-
-/* ★ mark yourself straight from the quiz */
 qMarkRow.addEventListener("click", e=>{
   const b = e.target.closest(".status");
   if(!b || !currentQ) return;
@@ -3187,13 +3645,12 @@ qMarkRow.addEventListener("click", e=>{
   const cur = marks[currentQ.topicId] || "none";
   setMark(currentQ.topicId, cur === val ? "none" : val);
   refreshQMarkButtons();
-  /* auto-advance so the quiz keeps flowing */
   setTimeout(()=>{
     if(qOverlay.classList.contains("show")) nextQuestion();
   }, 420);
 });
 
-/* ★ marked-list → jump */
+/* marked list → jump */
 marksBody.addEventListener("click", e=>{
   const it = e.target.closest("[data-jump]");
   if(!it) return;
@@ -3202,7 +3659,24 @@ marksBody.addEventListener("click", e=>{
   jumpToTopic(it.dataset.jump);
 });
 
-/* ★ close buttons + backdrop click */
+/* ★ add-topic button */
+document.getElementById("addTopic").addEventListener("click", openAddTopic);
+
+/* ★ edit form events */
+document.getElementById("editSection").addEventListener("change", handleSectionChange);
+document.getElementById("editGroup").addEventListener("change", handleGroupChange);
+document.getElementById("editSave").addEventListener("click", saveEdit);
+document.getElementById("editDelete").addEventListener("click", deleteEdit);
+document.getElementById("editRestore").addEventListener("click", restoreEdit);
+document.getElementById("editCancel").addEventListener("click", closeEdit);
+
+/* ★ reset custom content (footer link) */
+document.getElementById("resetCustom").addEventListener("click", e=>{
+  e.preventDefault();
+  resetCustomContent();
+});
+
+/* close buttons + backdrop click */
 document.querySelectorAll("[data-close]").forEach(b=>{
   b.addEventListener("click", ()=>{
     const ov = document.getElementById(b.dataset.close);
@@ -3210,7 +3684,7 @@ document.querySelectorAll("[data-close]").forEach(b=>{
     document.body.style.overflow = "";
   });
 });
-[qOverlay, marksOverlay].forEach(ov=>{
+[qOverlay, marksOverlay, editOverlay].forEach(ov=>{
   ov.addEventListener("click", e=>{
     if(e.target === ov){
       ov.classList.remove("show");
@@ -3236,7 +3710,12 @@ document.addEventListener("keydown", e=>{
   const tag = (document.activeElement && document.activeElement.tagName) || "";
   const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(tag);
 
-  /* quiz open → quiz shortcuts win */
+  if(editOverlay.classList.contains("show")){
+    if(e.key === "Escape"){
+      closeEdit();
+    }
+    return;
+  }
   if(qOverlay.classList.contains("show")){
     if(e.key === "Escape"){ closeQuiz(); return; }
     if(e.key === " " && !typing){ e.preventDefault(); nextQuestion(); return; }
@@ -3277,12 +3756,13 @@ document.addEventListener("keydown", e=>{
   if(isNaN(fs)) fs = 16;
   setFontSize(fs);
 
+  WORK = buildWorkingData();
+
   buildTOC();
   buildQIndex();
   applyAllStatuses();
   paintFilterChips();
 
-  /* restore global question state */
   toggleQsBtn.textContent = qsOpen ? "📕 Hide questions" : "📖 Show questions";
   qCount.textContent = QINDEX.length + " questions available";
 })();
