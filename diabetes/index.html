@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perioperative Diabetes &amp; SGLT2i / GLP-1 RA — Quick Reference</title>
+<style>
+  :root{
+    --bg:#f4fafc;
+    --panel:#ffffff;
+    --ink:#173743;
+    --ink-2:#4a6f80;
+    --line:#d8e9f0;
+    --line-2:#eaf3f7;
+    --accent:#4a90b8;
+    --accent-soft:#e8f4fa;
+    --mint:#4fae91;
+    --mint-soft:#eaf8f3;
+    --amber:#d99a3e;
+    --amber-soft:#fff7e8;
+    --rose:#d98b86;
+    --rose-soft:#fdf1f0;
+    --violet:#8d7fb8;
+    --violet-soft:#f1eefb;
+    --radius:14px;
+    --shadow:0 1px 3px rgba(58,110,138,.07), 0 6px 18px rgba(58,110,138,.05);
+  }
+  *{box-sizing:border-box}
+  html{font-size:16px; scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 400px at 10% -10%, #e9f6fb 0%, rgba(233,246,251,0) 60%),
+      radial-gradient(900px 400px at 100% 0%, #eaf8f3 0%, rgba(234,248,243,0) 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.55;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- Toolbar ---------- */
+  header.toolbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:.6rem .9rem;
+    display:flex; flex-wrap:wrap; gap:.6rem 1rem;
+    align-items:center; justify-content:space-between;
+  }
+  .brand{display:flex; align-items:center; gap:.65rem; min-width:0}
+  .brand .dot{
+    width:30px;height:30px;border-radius:50%;
+    background:conic-gradient(from 200deg,#7fc4dd,#8fd8c4,#b9e2f2,#7fc4dd);
+    box-shadow:inset 0 0 0 6px #fff, 0 0 0 1px var(--line);
+    flex:none;
+  }
+  .brand h1{font-size:1.02rem; margin:0; font-weight:750; letter-spacing:.1px; white-space:nowrap}
+  .brand p{margin:0; font-size:.74rem; color:var(--ink-2)}
+  .tools{display:flex; flex-wrap:wrap; gap:.4rem; align-items:center}
+  .btn{
+    font:inherit; font-size:.8rem; font-weight:600;
+    color:#2b5a70; background:#fff;
+    border:1px solid var(--line); border-radius:9px;
+    padding:.36rem .6rem; cursor:pointer;
+    transition:background .15s, border-color .15s, color .15s;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--accent-soft); border-color:#bcdcec}
+  .btn:active{transform:translateY(1px)}
+  .searchwrap{
+    display:flex; align-items:center; gap:.35rem;
+    background:#fff; border:1px solid var(--line);
+    border-radius:10px; padding:.2rem .35rem;
+    min-width:230px; flex:1 1 230px; max-width:420px;
+  }
+  .searchwrap input{
+    font:inherit; font-size:.85rem; border:0; outline:0;
+    padding:.25rem .2rem; flex:1; min-width:90px;
+    background:transparent; color:var(--ink);
+  }
+  .count{font-size:.72rem; color:var(--ink-2); white-space:nowrap; min-width:62px; text-align:right}
+  .navbtn{
+    border:0; background:transparent; cursor:pointer; font-size:.9rem;
+    color:var(--accent); padding:.15rem .3rem; border-radius:6px; line-height:1;
+  }
+  .navbtn:hover{background:var(--accent-soft)}
+  .fontctl{display:flex; align-items:center; gap:.2rem; border:1px solid var(--line); border-radius:9px; padding:.15rem; background:#fff}
+  .fontctl .btn{border:0; padding:.28rem .5rem; background:transparent}
+  .fontctl .btn:hover{background:var(--accent-soft)}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1050px; margin:0 auto; padding:1rem .9rem 3rem}
+  .intro{
+    background:linear-gradient(135deg,#eef8fc,#eefaf5);
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:.85rem 1rem; margin-bottom:1rem; font-size:.88rem; color:var(--ink-2);
+  }
+  .intro strong{color:var(--ink)}
+  .intro .newtag{
+    display:inline-block; font-size:.65rem; font-weight:800; letter-spacing:.5px;
+    text-transform:uppercase; background:#d9f0e6; color:#2f7a63;
+    border-radius:999px; padding:.1rem .5rem; margin-left:.25rem;
+    vertical-align:middle;
+  }
+
+  /* ---------- Cards ---------- */
+  details.card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin:0 0 .7rem;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  details.card > summary{
+    list-style:none; cursor:pointer;
+    padding:.75rem .95rem;
+    display:flex; align-items:center; gap:.55rem;
+    font-weight:700; font-size:1rem; color:#20505f;
+    background:linear-gradient(135deg,#eff8fc,#eefaf5);
+    border-bottom:1px solid transparent;
+    user-select:none;
+  }
+  details.card > summary::-webkit-details-marker{display:none}
+  details.card > summary::before{
+    content:"▸"; color:var(--accent); font-size:.85rem;
+    transition:transform .18s ease; display:inline-block; flex:none;
+  }
+  details.card[open] > summary::before{transform:rotate(90deg)}
+  details.card[open] > summary{border-bottom-color:var(--line-2)}
+  details.card > summary:hover{background:linear-gradient(135deg,#e8f4fa,#e9f8f3)}
+  .card-body{padding:.7rem 1rem 1rem; font-size:.92rem}
+  .card-body > :first-child{margin-top:.25rem}
+  .card-body > :last-child{margin-bottom:.15rem}
+
+  .tag{
+    margin-left:auto; font-size:.68rem; font-weight:700; letter-spacing:.4px;
+    text-transform:uppercase; color:#3f7d96; background:#e4f2f9;
+    border-radius:999px; padding:.16rem .55rem; white-space:nowrap;
+  }
+  .tag.new{background:#d9f0e6; color:#2f7a63}
+
+  h3{font-size:.92rem; margin:1rem 0 .35rem; color:#2b5f76; letter-spacing:.2px}
+  h4{font-size:.86rem; margin:.8rem 0 .25rem; color:#3c6a7d}
+  p{margin:.45rem 0}
+  ul,ol{margin:.4rem 0 .4rem 1.1rem; padding:0}
+  li{margin:.22rem 0}
+  li > ul{margin-top:.2rem}
+  .muted{color:var(--ink-2)}
+  .small{font-size:.82rem}
+  code{
+    background:#eef6fa; border:1px solid #dceaf1; border-radius:5px;
+    padding:.05rem .3rem; font-size:.85em;
+  }
+
+  /* ---------- Callouts ---------- */
+  .callout{
+    border-left:4px solid var(--accent);
+    background:var(--accent-soft);
+    border-radius:0 10px 10px 0;
+    padding:.6rem .8rem; margin:.7rem 0; font-size:.88rem;
+  }
+  .callout.key{border-color:var(--mint); background:var(--mint-soft)}
+  .callout.warn{border-color:var(--amber); background:var(--amber-soft)}
+  .callout.danger{border-color:var(--rose); background:var(--rose-soft)}
+  .callout.new{border-color:var(--violet); background:var(--violet-soft)}
+  .callout .label{
+    display:block; font-size:.7rem; font-weight:800; letter-spacing:.6px;
+    text-transform:uppercase; margin-bottom:.2rem; color:#3d6c80;
+  }
+  .callout.key .label{color:#2f7a63}
+  .callout.warn .label{color:#a3711f}
+  .callout.danger .label{color:#a95651}
+  .callout.new .label{color:#6a5a9c}
+
+  /* ---------- Key list ---------- */
+  ul.keylist{list-style:none; margin:.3rem 0 0}
+  ul.keylist li{
+    position:relative; padding-left:1.5rem; margin:.4rem 0;
+  }
+  ul.keylist li::before{
+    content:"●"; position:absolute; left:.25rem; top:0;
+    color:var(--mint); font-size:.8rem;
+  }
+
+  /* ---------- Tables ---------- */
+  .tablewrap{
+    overflow-x:auto;
+    border:1px solid var(--line);
+    border-radius:11px;
+    margin:.6rem 0 .4rem;
+    -webkit-overflow-scrolling:touch;
+  }
+  table{border-collapse:collapse; width:100%; min-width:660px; font-size:.85rem}
+  thead th{
+    background:#e9f4f9; color:#28586d; text-align:left;
+    padding:.55rem .7rem; font-size:.78rem; letter-spacing:.3px;
+    text-transform:uppercase; border-bottom:1px solid #d3e6ef;
+    position:sticky; top:0; z-index:1;
+  }
+  td{padding:.55rem .7rem; border-top:1px solid var(--line-2); vertical-align:top}
+  tbody tr:nth-child(even){background:#fafdfe}
+  td.name{font-weight:650; color:#24586e; white-space:nowrap}
+  .scrollhint{font-size:.72rem; color:var(--ink-2); margin:.1rem 0 .6rem}
+
+  /* ---------- HbA1c figure ---------- */
+  .figure{
+    border:1px solid var(--line); border-radius:12px;
+    padding:.7rem .75rem .55rem; background:#fbfeff; margin:.6rem 0 .5rem;
+  }
+  .figure .figtitle{font-size:.8rem; font-weight:700; color:#2b5f76; margin-bottom:.5rem}
+  .hba1c-scroll{overflow-x:auto; padding-bottom:.3rem}
+  .hba1c-bar{
+    display:flex; min-width:620px; border-radius:10px; overflow:hidden;
+    border:1px solid #e2eef4;
+  }
+  .hba1c-bar .seg{
+    padding:.6rem .5rem; font-size:.78rem; font-weight:650; color:#2c4b57;
+    display:flex; flex-direction:column; justify-content:center; gap:.1rem;
+    border-right:1px solid rgba(255,255,255,.7);
+  }
+  .hba1c-bar .seg:last-child{border-right:0}
+  .hba1c-bar .seg span{font-weight:500; font-size:.72rem; color:#4c6b77}
+  .seg.healthy{background:#c8ebdb; flex:38}
+  .seg.prediabetes{background:#f7eab4; flex:10}
+  .seg.controlled{background:#fad9bd; flex:5}
+  .seg.poor{background:#f6c3bf; flex:30}
+  .hba1c-axis{
+    display:flex; min-width:620px; font-size:.72rem; color:var(--ink-2);
+    margin-top:.3rem; position:relative; height:1.1rem;
+  }
+  .hba1c-axis span{position:absolute; transform:translateX(-50%)}
+  .figcap{font-size:.75rem; color:var(--ink-2); margin-top:.35rem}
+
+  /* ---------- Search highlight ---------- */
+  mark.hl{
+    background:#ffe9a8; color:#5b4300;
+    padding:0 2px; border-radius:3px;
+  }
+  mark.hl.current{
+    background:#ffcf5c;
+    box-shadow:0 0 0 2px rgba(233,160,40,.6);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    max-width:1050px; margin:0 auto; padding:0 .9rem 3rem;
+  }
+  .source{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:1rem 1.1rem; box-shadow:var(--shadow); font-size:.84rem; color:var(--ink-2);
+  }
+  .source h3{margin-top:0; color:#2b5f76}
+  .source ol{margin:.4rem 0 .4rem 1.2rem}
+  .source li{margin:.4rem 0}
+  .source a{color:#2f7fa5; word-break:break-word}
+  .disclaimer{font-size:.75rem; color:#6c8b99; margin-top:.6rem}
+
+  @media (max-width:640px){
+    .brand p{display:none}
+    .brand h1{font-size:.92rem}
+    .searchwrap{max-width:none}
+    .card-body{padding:.6rem .75rem .85rem}
+  }
+  @media print{
+    header.toolbar{position:static}
+    details.card{break-inside:avoid}
+    details.card > summary{background:#f3f8fa}
+  }
+</style>
+</head>
+<body>
+
+<header class="toolbar">
+  <div class="brand">
+    <div class="dot" aria-hidden="true"></div>
+    <div>
+      <h1>Perioperative Diabetes · SGLT2i · GLP-1 RA</h1>
+      <p>Quick reference for anaesthetists &amp; intensivists</p>
+    </div>
+  </div>
+
+  <div class="tools">
+    <div class="searchwrap">
+      <input id="searchInput" type="search" placeholder="Search (e.g. SGLT2, eDKA, GLP-1, HbA1c)…" aria-label="Search">
+      <span class="count" id="searchCount"></span>
+      <button class="navbtn" id="prevBtn" title="Previous match (Shift+Enter)">▲</button>
+      <button class="navbtn" id="nextBtn" title="Next match (Enter)">▼</button>
+    </div>
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <div class="fontctl" title="Text size">
+      <button class="btn" id="fontDown" aria-label="Decrease text size">A−</button>
+      <button class="btn" id="fontReset" aria-label="Reset text size">A</button>
+      <button class="btn" id="fontUp" aria-label="Increase text size">A+</button>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+
+  <div class="intro">
+    <strong>How to use:</strong> tap any heading to open/close it · use the search box to highlight terms across all sections ·
+    use <strong>A− / A+</strong> to resize text · tables and the HbA1c figure scroll sideways on small screens.
+    <br>
+    <strong>Sources:</strong> Polderman <em>et al.</em> (BJA Education 2024) · El-Boghdadly <em>et al.</em> (Anaesthesia 2025) ·
+    Oprea <em>et al.</em> / SPAQI (BJA 2026). <span class="newtag">New 2025–2026 guidance integrated</span>
+  </div>
+
+  <!-- ============ KEY POINTS ============ -->
+  <details class="card" open>
+    <summary>Key points <span class="tag">At a glance</span></summary>
+    <div class="card-body">
+      <ul class="keylist">
+        <li>Good preoperative assessment and planning are critical for optimal perioperative management of diabetes mellitus.</li>
+        <li>Clinicians must ascertain the <strong>type</strong> of diabetes in all patients, <strong>including children</strong>.</li>
+        <li>Guidelines strongly recommend preoperative <strong>HbA1c</strong> measurement.</li>
+        <li><strong>No CGM or CSII pump has been certified for perioperative use</strong> — use is possible, but with caveats and backup plans.</li>
+        <li>After surgery, a <strong>basal–bolus insulin regimen is preferable</strong> to a sliding-scale (short-acting, bolus-only) protocol.</li>
+        <li><strong>GLP-1 RAs:</strong> the 2025 UK multidisciplinary consensus recommends <strong>continuing</strong> these drugs perioperatively, with aspiration risk stratification and mitigation — not routine cessation.</li>
+        <li><strong>SGLT2 inhibitors:</strong> guidance is evolving. The 2025 UK consensus recommends <strong>omitting the day before and day of</strong> the procedure. The 2026 SPAQI consensus takes a <strong>tailored approach</strong> — continue in many low-risk scenarios, discontinue in higher-risk ones — with monitoring and dextrose/insulin rescue for euglycaemic DKA (eDKA).</li>
+      </ul>
+
+      <div class="callout key">
+        <span class="label">Overriding principle on the day of surgery</span>
+        Avoid <strong>hypoglycaemia</strong> rather than chasing hyperglycaemia — but <strong>never withhold insulin entirely</strong>
+        in T1DM or insulin-dependent T2DM (risk of ketoacidosis).
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ GUIDELINE UPDATES ============ -->
+  <details class="card" open>
+    <summary>Latest guideline updates — GLP-1 RAs &amp; SGLT2 inhibitors <span class="tag new">2025–2026</span></summary>
+    <div class="card-body">
+      <p>
+        Two major multidisciplinary consensus statements have been published since the 2024 BJA Education review. They change
+        practice for the two newest drug classes.
+      </p>
+
+      <h3>GLP-1 receptor agonists &amp; dual GIP/GLP-1 agonists <span class="small muted">(Anaesthesia 2025 — El-Boghdadly et al.)</span></h3>
+      <ul>
+        <li><strong>Continue</strong> GLP-1 RAs (and dual GIP/GLP-1 agonists) throughout the perioperative period.</li>
+        <li>Perform <strong>individualised pulmonary aspiration risk assessment</strong> accounting for drug, patient and procedural factors.</li>
+        <li>Discuss risks and mitigation strategies with the patient using <strong>shared decision-making</strong>.</li>
+        <li>Adhere to standard fasting guidelines; <strong>upper GI symptoms alone should not be used</strong> to determine gastric content.</li>
+        <li>Consider <strong>point-of-care gastric ultrasound</strong> before induction to facilitate risk stratification, if appropriate.</li>
+        <li>Consider <strong>regional anaesthesia</strong> as the primary technique if appropriate.</li>
+        <li>Aspiration mitigation may include: prokinetics; tracheal tube; modified rapid sequence induction (with or without cricoid force); head-up induction; gastric tube to empty the stomach before induction and extubation; awake tracheal extubation.</li>
+      </ul>
+
+      <h3>SGLT2 inhibitors <span class="small muted">(Anaesthesia 2025 and SPAQI/BJA 2026)</span></h3>
+      <ul>
+        <li><strong>Anaesthesia 2025 (UK consensus):</strong> omit SGLT2 inhibitors the <strong>day before and the day of</strong> the procedure. Restart once eating and drinking normally (usually 24–48 h after surgery). If staying in hospital, check capillary ketones are <strong>&lt; 0.6 mmol/L</strong> before restarting. For patients on a very low-energy / liver-reduction diet, stop the SGLT2i at the commencement of the diet.</li>
+        <li><strong>SPAQI 2026 (multidisciplinary consensus):</strong> a <strong>tailored, risk-stratified approach</strong> based on diabetes status, heart failure (HF), chronic kidney disease (CKD), surgery type, and dietary factors — continue in many lower-risk scenarios while monitoring for eDKA, and discontinue in higher-risk scenarios. See the expanded SGLT2i section below.</li>
+      </ul>
+
+      <div class="callout new">
+        <span class="label">Why the change?</span>
+        Both papers recognise that SGLT2 inhibitors have important cardiorenal benefits that may be lost on discontinuation, and
+        that eDKA — while serious — is rare and can be detected and mitigated with monitoring, dextrose and insulin. GLP-1 RAs
+        have a very low hypoglycaemia risk and their gastric-emptying effect wanes with continued use (tachyphylaxis); the 2025
+        UK consensus therefore favours continuation with aspiration risk mitigation rather than routine cessation.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ EPIDEMIOLOGY ============ -->
+  <details class="card">
+    <summary>Why it matters — epidemiology &amp; risk <span class="tag">Background</span></summary>
+    <div class="card-body">
+      <ul>
+        <li>~<strong>536 million adults</strong> (20–79 yrs) worldwide had diabetes in 2019 — global prevalence <strong>10.5%</strong> (IDF).</li>
+        <li>Diabetes is <strong>more prevalent in surgical patients</strong> than in the general population: a meta-analysis of 90 studies
+          (866,427 surgical records) found an overall prevalence of <strong>17%</strong>.</li>
+        <li>Highest in <strong>cardiovascular surgery (up to 39%)</strong>, followed by orthopaedic surgery; T2DM prevalence in
+          bariatric surgery is <strong>26%</strong>.</li>
+        <li>Diabetes in surgical patients is associated with <strong>more perioperative complications, longer hospital stay,
+          higher morbidity and mortality</strong>.</li>
+        <li><strong>Poor glycaemic control exacerbates these risks:</strong> higher incidence of surgical site infection (SSI),
+          delayed wound healing, cardiovascular events and respiratory complications.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ PATHOPHYSIOLOGY / TYPES ============ -->
+  <details class="card">
+    <summary>Pathophysiology &amp; types of diabetes <span class="tag">Table 1</span></summary>
+    <div class="card-body">
+      <p>
+        In health, SGLT1 and GLUT transporters facilitate glucose uptake after oral intake; GLP-1 secreted by intestinal L-cells
+        stimulates insulin secretion; insulin drives glucose into cells (glycolysis) and excess is stored as glycogen.
+      </p>
+      <p>
+        In diabetes this regulation is impaired. Most patients have <strong>T2DM</strong> (insulin resistance and/or insufficient
+        insulin production), but around <strong>10% of adults have T1DM</strong> or other less common forms — each with distinct
+        perioperative implications.
+      </p>
+
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Pathophysiology &amp; clinical features</th>
+              <th>Insulin deficiency</th>
+              <th>Perioperative dysregulation / concern</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">1 &nbsp;T1DM</td>
+              <td>Autoimmune destruction of pancreatic β-cells → absolute insulin deficiency.</td>
+              <td>Absolute</td>
+              <td>Common — always needs insulin; DKA risk if insulin is withheld.</td>
+            </tr>
+            <tr>
+              <td class="name">2 &nbsp;T2DM</td>
+              <td>Combination of insulin resistance and deficiency caused by diet, lifestyle and genetics.</td>
+              <td>Relative</td>
+              <td>Depending on severity.</td>
+            </tr>
+            <tr>
+              <td class="name">3a &nbsp;Monogenic<br>(MODY, neonatal)</td>
+              <td>Rare genetic defects in β-cell function causing impaired insulin secretion; features depend on subtype and genetic defect. LADA sits on the continuum between T1DM and T2DM and does not manifest until adulthood.</td>
+              <td>Variable</td>
+              <td>Variable.</td>
+            </tr>
+            <tr>
+              <td class="name">3b &nbsp;Pancreatic<br>(pancreatitis), CFRD</td>
+              <td>Pancreatitis leads to islet tissue fibrosis and destruction → insulin <em>and</em> glucagon deficiency.</td>
+              <td>Limited reserve</td>
+              <td>Yes — brittle, unpredictable control.</td>
+            </tr>
+            <tr>
+              <td class="name">3c &nbsp;Endocrinopathy-related DM</td>
+              <td>Diabetes secondary to endocrine disease (e.g. excess counter-regulatory hormones).</td>
+              <td>Variable</td>
+              <td>Assess and treat the underlying endocrine disease.</td>
+            </tr>
+            <tr>
+              <td class="name">3d &nbsp;Medication-related &amp; PTDM</td>
+              <td>Systemic corticosteroids cause insulin resistance, increased gluconeogenesis and abnormal insulin secretion. PTDM is primarily caused by the diabetogenic properties of immunosuppressive agents.</td>
+              <td>Limited</td>
+              <td>No (but anticipate steroid-induced hyperglycaemia).</td>
+            </tr>
+            <tr>
+              <td class="name">4 &nbsp;GDM</td>
+              <td>Diabetes first diagnosed during pregnancy; associated with increased risk of developing T2DM later in life.</td>
+              <td>Limited</td>
+              <td>No.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll the table sideways to see all columns.</p>
+      <p class="small muted">
+        Adapted and simplified from Table 1 of the source article (CFRD, cystic fibrosis related diabetes; GDM, gestational diabetes
+        mellitus; LADA, latent autoimmune diabetes in adults; MODY, maturity onset diabetes of the young; PTDM, post-transplant DM;
+        T1DM/T2DM, type 1/2 diabetes mellitus). Consult the original for full detail.
+      </p>
+    </div>
+  </details>
+
+  <!-- ============ PAEDIATRICS ============ -->
+  <details class="card">
+    <summary>Paediatrics <span class="tag">Don't assume the type</span></summary>
+    <div class="card-body">
+      <ul>
+        <li>Diabetes is one of the most common chronic diseases in children; incidence of <strong>both T1DM and T2DM is rising</strong>,
+          partly driven by childhood obesity.</li>
+        <li><strong>20–40%</strong> of patients with newly diagnosed T1DM are obese.</li>
+        <li>Historically T2DM accounted for ~10% of paediatric patients; today it accounts for <strong>&gt;30% in the USA</strong>.</li>
+        <li>Obesity-induced insulin resistance can unmask T1DM earlier, and obesity influences progression of islet autoimmunity.</li>
+      </ul>
+      <div class="callout warn">
+        <span class="label">Clinical pearl</span>
+        A child with DM does <strong>not</strong> necessarily have T1DM, and a child with obesity and DM does <strong>not</strong>
+        necessarily have T2DM. Type matters — requirements and management differ.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ PREOPERATIVE ============ -->
+  <details class="card">
+    <summary>Preoperative assessment &amp; goals <span class="tag">Pre-op</span></summary>
+    <div class="card-body">
+      <h3>Primary assessment</h3>
+      <ul>
+        <li><strong>Type</strong> of diabetes.</li>
+        <li><strong>Antihyperglycaemic treatment</strong> (including pumps, CGMs, GLP-1 RAs, SGLT2 inhibitors).</li>
+        <li><strong>Quality of glycaemic control</strong> (HbA1c).</li>
+        <li><strong>Severity of diabetes-related complications:</strong> cardiovascular disease, chronic renal failure,
+          autonomic dysfunction, delayed gastric emptying.</li>
+      </ul>
+
+      <h3>Secondary goals</h3>
+      <ul>
+        <li>Optimise glycaemic control and general <strong>prehabilitation</strong> (diet and exercise interventions improve
+          glycaemic control and general health).</li>
+        <li>A structured perioperative pathway can increase efficiency and reduce elective waiting lists.</li>
+      </ul>
+
+      <h3>Risk profile to keep in mind</h3>
+      <ul>
+        <li>Higher prevalence of (advanced) <strong>coronary artery disease</strong> → risk of postoperative (silent) myocardial
+          ischaemia and perioperative mortality after non-cardiac surgery.</li>
+        <li><strong>Autonomic dysfunction and peripheral neuropathy</strong> increase the risk of silent ischaemia.</li>
+        <li>Diabetes is a risk factor for <strong>stroke, congestive heart failure and surgical site infection</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ HbA1c ============ -->
+  <details class="card">
+    <summary>HbA1c — thresholds &amp; the postponement dilemma <span class="tag">Figure 1</span></summary>
+    <div class="card-body">
+      <p>2022 European Society of Cardiology (ESC) guideline on non-cardiac surgery (NCS):</p>
+      <ul>
+        <li><strong>(i) Class IIa:</strong> In patients at high surgical risk, consider screening for increased HbA1c before major
+          surgery and improving preoperative glucose control.</li>
+        <li><strong>(ii) Class I:</strong> In patients with diabetes or disturbed glucose metabolism, a preoperative HbA1c test is
+          recommended if not performed in the previous 3 months. If <strong>HbA1c ≥ 8.5% (≥ 69 mmol/mol)</strong>, postpone
+          elective NCS <em>if safe and practical</em>.</li>
+      </ul>
+
+      <div class="figure">
+        <div class="figtitle">Figure 1 — Interpretation of HbA1c values (mmol/mol)</div>
+        <div class="hba1c-scroll">
+          <div class="hba1c-bar">
+            <div class="seg healthy">Healthy <span>&lt; 38</span></div>
+            <div class="seg prediabetes">Prediabetes <span>38–48</span></div>
+            <div class="seg controlled">Diabetes: controlled <span>48–53</span></div>
+            <div class="seg poor">Diabetes: poorly controlled <span>&gt; 53</span></div>
+          </div>
+          <div class="hba1c-axis">
+            <span style="left:0%">0</span>
+            <span style="left:45.8%">38</span>
+            <span style="left:57.8%">48</span>
+            <span style="left:63.9%">53</span>
+            <span style="left:100%">→</span>
+          </div>
+        </div>
+        <div class="figcap">Values in mmol/mol. HbA1c ≥ 69 mmol/mol (8.5%) = threshold for considering postponement of elective
+          non-cardiac surgery.</div>
+      </div>
+
+      <div class="callout warn">
+        <span class="label">Evidence caveat</span>
+        The evidence behind the strong ESC recommendation is poor. Diabetes, raised preoperative HbA1c and perioperative
+        hyperglycaemia are independently associated with worse outcomes, but <strong>optimising preoperative glucose control in
+        patients with a high HbA1c has not been studied in RCTs</strong>. The COVID-19 pandemic showed that postponing surgery
+        seriously affects patients' health and quality of life — weigh the lack of evidence for HbA1c lowering against the harm
+        of delay. The authors support improving HbA1c in every patient but are wary of the consequences before surgery.
+      </div>
+      <p class="small muted">
+        Screening for <em>unknown</em> diabetes via HbA1c is not further substantiated; the incidence of undiagnosed diabetes —
+        and therefore cost-effectiveness — varies widely with income, resources, national guidelines and primary care quality.
+      </p>
+    </div>
+  </details>
+
+  <!-- ============ NON-INSULIN MEDS TABLE ============ -->
+  <details class="card">
+    <summary>Non-insulin glucose-lowering drugs — perioperative management <span class="tag">Table 2</span></summary>
+    <div class="card-body">
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Class (example)</th>
+              <th>Mechanism of action</th>
+              <th>Perioperative concerns</th>
+              <th>Perioperative management</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">Biguanides<br>(metformin)</td>
+              <td>Decreases hepatic glucose production and increases muscle glucose absorption.</td>
+              <td>Lactic acidosis.</td>
+              <td><strong>ADA:</strong> omit on day of surgery until oral intake resumed.<br><strong>CPOC:</strong> continue.*</td>
+            </tr>
+            <tr>
+              <td class="name">Sulfonylureas<br>(tolbutamide, glibenclamide, glimepiride)</td>
+              <td>Stimulates β-cell insulin secretion.</td>
+              <td>Hypoglycaemia.</td>
+              <td><strong>ADA and CPOC:</strong> withhold on the day of surgery until oral intake resumed.</td>
+            </tr>
+            <tr>
+              <td class="name">Thiazolidinediones<br>(glitazones)</td>
+              <td>Decreases insulin resistance.</td>
+              <td>Fluid retention; hypoglycaemia.</td>
+              <td><strong>ADA:</strong> withhold on the day of surgery until oral intake resumed.<br><strong>CPOC:</strong> continue.</td>
+            </tr>
+            <tr>
+              <td class="name">GLP-1 receptor agonists<br>("-natides", "-glutides")</td>
+              <td>Stimulates insulin secretion and inhibits glucagon secretion — glucose-dependent.</td>
+              <td>Delayed gastric emptying.</td>
+              <td><strong>2025 UK consensus: continue</strong> with aspiration risk stratification and mitigation.<br>Older ADA guidance: withhold on the day of surgery until oral intake resumed.</td>
+            </tr>
+            <tr>
+              <td class="name">DPP-4 inhibitors<br>("-gliptins")</td>
+              <td>Increases GLP-1 concentrations.</td>
+              <td>—</td>
+              <td><strong>ADA:</strong> withhold on the day of surgery until oral intake resumed.<br><strong>CPOC:</strong> continue.</td>
+            </tr>
+            <tr>
+              <td class="name">SGLT2 inhibitors<br>("-gliflozins")</td>
+              <td>Induces renal glucose excretion.</td>
+              <td>Euglycaemic ketoacidosis, diuresis, hypoglycaemia with insulin.</td>
+              <td><strong>2025 UK consensus:</strong> omit day before and day of procedure.<br><strong>2026 SPAQI:</strong> tailored approach — continue in many low-risk scenarios with monitoring; discontinue in higher-risk scenarios (see below).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll the table sideways to see all columns.</p>
+      <p class="small muted">
+        * If contrast medium is to be used and eGFR &lt; 60 mL/min/1.73 m², metformin should be omitted on the day of the procedure
+        and for the following 48 h.<br>
+        ADA = American Diabetes Association Guideline, Jan 2024; CPOC = Centre for Perioperative Care, Academy of Medical Royal
+        Colleges, Dec 2022. GLP-1 RA and SGLT2i rows updated with 2025–2026 consensus guidance.
+      </p>
+    </div>
+  </details>
+
+  <!-- ============ GLP-1 RA (EXPANDED) ============ -->
+  <details class="card">
+    <summary>GLP-1 receptor agonists &amp; dual GIP/GLP-1 agonists <span class="tag new">Updated 2025</span></summary>
+    <div class="card-body">
+      <h3>Mechanism</h3>
+      <ul>
+        <li>Endogenous GLP-1 is a gut-derived incretin hormone that lowers glycaemia by <strong>stimulating insulin production and
+          secretion from pancreatic β-cells</strong> and by <strong>reducing glucagon secretion from α-cells</strong>.</li>
+        <li>Also <strong>inhibits gastric emptying</strong> and reduces appetite → less food intake, weight loss, improved glycaemic
+          control — but also the main adverse effect: <strong>nausea</strong>.</li>
+        <li>Pancreatic effects are <strong>hyperglycaemia-dependent</strong> → risk of hypoglycaemia is extremely low.</li>
+        <li>Dual GIP/GLP-1 agonists (e.g. tirzepatide) add GIP receptor agonism; GIP increases glucagon secretion and works on
+          skeletal muscle insulin sensitivity, while GLP-1 works mainly on the liver.</li>
+      </ul>
+
+      <h3>Benefits &amp; expanding indications</h3>
+      <ul>
+        <li>Large cardiovascular outcome trials: lower rates of <strong>myocardial infarction, stroke and revascularisation</strong>.</li>
+        <li>Initially second-line for T2DM; now expanding to <strong>weight loss in obesity</strong> (regardless of T2DM).</li>
+        <li>Tirzepatide produces mean weight loss of <strong>&gt; 20% over 72 weeks</strong> in people without diabetes.</li>
+        <li>Dual and triple agonists (GLP-1, GLP-2, glucagon, GIP) are arriving; use is expected to increase significantly.</li>
+        <li>Perioperative data suggest acute use may improve glycaemic control, lower postoperative insulin requirements, reduce
+          hypoglycaemia and improve cardiovascular outcomes.</li>
+      </ul>
+
+      <h3>Perioperative recommendation <span class="tag new">2025 UK consensus</span></h3>
+      <div class="callout new">
+        <span class="label">Continue GLP-1 RAs throughout the perioperative period</span>
+        The 2025 multidisciplinary consensus (Association of Anaesthetists, Association of British Clinical Diabetologists, BOMSS,
+        CPOC, JBDS, RCoA, SOBA, UKCPA) recommends <strong>continuing</strong> GLP-1 RAs and dual GIP/GLP-1 agonists, with
+        <strong>individualised aspiration risk assessment, risk stratification and mitigation</strong>.
+      </div>
+
+      <h4>Why the change from routine cessation?</h4>
+      <ul>
+        <li>Delayed gastric emptying is most notable with <strong>recent commencement or dose escalation</strong>; tachyphylaxis
+          occurs with prolonged use.</li>
+        <li>Even <strong>one week of cessation</strong> is associated with a high risk of residual gastric content in patients who
+          fasted appropriately; withholding for up to three weeks has also been associated with increased gastric volume.</li>
+        <li>Case reports of pulmonary aspiration exist, but the evidence for routine cessation is weak and the harms of cessation
+          (loss of glycaemic and cardiovascular benefit) are real.</li>
+      </ul>
+
+      <h4>Aspiration risk mitigation — what to consider</h4>
+      <ul>
+        <li><strong>Shared decision-making</strong> with the patient about aspiration risk and mitigation strategies.</li>
+        <li>Adhere to standard fasting guidelines; <strong>upper GI symptoms alone should not be used</strong> to determine gastric
+          content.</li>
+        <li>Consider <strong>point-of-care gastric ultrasound</strong> before induction, if appropriate, to facilitate risk
+          stratification.</li>
+        <li>Consider <strong>regional anaesthesia</strong> as the primary technique, if appropriate.</li>
+        <li>Anaesthesia and airway management aimed at reducing aspiration risk on induction, during maintenance and after
+          emergence. This may include:
+          <ul>
+            <li>Prokinetics</li>
+            <li>Tracheal tube</li>
+            <li>Modified rapid sequence induction (with or without cricoid force, per local practice)</li>
+            <li>Head-up position for induction</li>
+            <li>Gastric tube to empty the stomach before induction and extubation</li>
+            <li>Awake tracheal extubation</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="callout">
+        <span class="label">Drug names</span>
+        GLP-1 RAs all end in <strong>“-natides”</strong> (e.g. exenatide, lixisenatide) or <strong>“-glutides”</strong>
+        (e.g. liraglutide, semaglutide, dulaglutide). Dual GIP/GLP-1 agonists include tirzepatide. Half-lives range from a few
+        hours to a week (once-weekly preparations).
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ SGLT2i (EXPANDED) ============ -->
+  <details class="card">
+    <summary>SGLT2 inhibitors — tailored perioperative management <span class="tag new">Updated 2026</span></summary>
+    <div class="card-body">
+      <h3>Mechanism &amp; benefits</h3>
+      <ul>
+        <li>Induce renal glucose excretion; initially only moderately effective on glycaemic control.</li>
+        <li>Large cardiovascular outcome trials in T2DM: improved major cardiovascular outcomes, <strong>reduced heart failure
+          hospitalisation</strong> and <strong>slowed progression of chronic kidney disease</strong>.</li>
+        <li>Effects on heart and kidney are unlikely to be mediated by glucose control alone — possibly via low-grade
+          hyperketonaemia improving cardiac myocyte mitochondrial efficiency, plus osmotic diuresis reducing cardiac workload and
+          glomerular pressure.</li>
+        <li>Indications now expanding to <strong>heart failure and CKD even without diabetes</strong>; co-first-line with metformin
+          in high cardiovascular risk.</li>
+        <li>Half-life ~12–13 h; no active metabolites. However, the pharmacodynamic effect on urinary glucose excretion
+          <strong>lasts well beyond effective plasma concentrations</strong> — at 24 h only ~25% of plasma drug remains, but
+          glycosuria continues beyond 48 h. At 72 h, &lt; 1% remains and urinary glucose excretion normalises.</li>
+        <li>Drug names all end in <strong>“-gliflozins”</strong> (canagliflozin, dapagliflozin, empagliflozin, ertugliflozin,
+          bexagliflozin, sotagliflozin).</li>
+      </ul>
+
+      <h3>Euglycaemic DKA (eDKA) — the main perioperative concern</h3>
+      <div class="callout danger">
+        <span class="label">eDKA — can occur with normal glucose</span>
+        SGLT2 inhibitors lower glucose and change the insulin/glucagon ratio, predisposing to ketosis. Surgical stress and
+        counter-regulatory hormones further drive hyperketonaemia. Ketones can rise quickly to <strong>&gt; 3.0 mmol/L</strong> and
+        pH may fall to <strong>&lt; 7.3</strong> — the threshold for DKA — <strong>while glucose remains &lt; 11.0 mmol/L</strong>
+        (hence “euglycaemic”). <strong>Do not rely on glucose alone to exclude DKA.</strong>
+      </div>
+
+      <h4>Key eDKA risk data</h4>
+      <ul>
+        <li>Perioperative eDKA rates are higher than non-operative rates: reported at <strong>6.40 per 1000 person-years</strong>.</li>
+        <li>A large population-based cohort of &gt; 147,000 surgical patients with T2DM found an elevated incidence rate ratio
+          (<strong>IRR 6.33, 95% CI 5.57–7.18</strong>) in SGLT2i users vs non-users.</li>
+        <li>Meta-analysis of 22 trials (80,235 patients): SGLT2i increased eDKA risk vs control (<strong>RR 2.32, 95% CI 1.64–3.27</strong>).</li>
+        <li>Risk significantly increased in patients with <strong>HbA1c &gt; 7.9%</strong> (RR 2.24) but not ≤ 7.9%; increased in
+          <strong>CKD</strong> (RR 2.70) and high atherosclerotic CVD risk trials (RR 2.46), but not significantly in HF trials.</li>
+        <li>Some meta-analyses show no difference vs placebo in T2DM — the picture is nuanced.</li>
+      </ul>
+
+      <h4>Risk factors for eDKA</h4>
+      <ul>
+        <li><strong>T2DM</strong> — a major risk factor; very few cases in patients without T2DM.</li>
+        <li><strong>Poorly controlled diabetes</strong> (HbA1c &gt; 8%), <strong>insulin use</strong>, prior history of DKA.</li>
+        <li><strong>Reduction or omission of insulin doses</strong> — commonly recommended perioperatively — further enhances risk.</li>
+        <li><strong>Dietary factors:</strong> carbohydrate-restricting or ketogenic diets, prolonged perioperative fasting,
+          dehydration.</li>
+        <li><strong>Acute illness</strong> leading to poor oral intake, caloric reduction, intravascular depletion and stress
+          hormone release.</li>
+        <li><strong>Surgical stress:</strong> cardiac and major non-cardiac surgery are particularly high-risk; bariatric surgery
+          is also high-risk due to prolonged carbohydrate restriction.</li>
+      </ul>
+
+      <h3>Current recommendations — the two 2025–2026 approaches</h3>
+
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Organisation / year</th>
+              <th>SGLT2i management</th>
+              <th>Key notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">FDA / AHA / ACC<br><span class="small muted">older guidance</span></td>
+              <td>Hold <strong>3 days</strong> (4 days for ertugliflozin) before elective surgery, <strong>irrespective of T2DM</strong>.</td>
+              <td>Universal hold; restart when clinically stable, adequate hydration, normal oral intake.</td>
+            </tr>
+            <tr>
+              <td class="name">Anaesthesia 2025<br>(UK multidisciplinary)</td>
+              <td>Omit the <strong>day before and day of</strong> the procedure.</td>
+              <td>Restart once eating/drinking normally (usually 24–48 h post-op). If staying in hospital, check capillary ketones
+                <strong>&lt; 0.6 mmol/L</strong> before restarting. Stop at commencement of very low-energy/liver-reduction diet.</td>
+            </tr>
+            <tr>
+              <td class="name">SPAQI 2026<br>(multidisciplinary consensus)</td>
+              <td><strong>Tailored, risk-stratified approach.</strong> Continue in many lower-risk scenarios; discontinue in
+                higher-risk scenarios.</td>
+              <td>Considers T2DM, HF, CKD, surgery type, dietary factors, monitoring availability, and dextrose/insulin rescue.
+                See recommendations below.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll the table sideways to see all columns.</p>
+
+      <h3>SPAQI 2026 tailored recommendations — summary</h3>
+      <p class="small muted">Grading in parentheses (ADA system: A = strong, B = moderate, C = weak, E = expert opinion).</p>
+
+      <h4>Continue SGLT2i (recommended)</h4>
+      <ul>
+        <li>Minor surgery or procedures, irrespective of T2DM — if not expected to fast from carbohydrates &gt; 12 h or on a
+          prolonged very low-carbohydrate diet <strong>(C)</strong>.</li>
+        <li>Major non-cardiac or cardiac surgery, if <strong>no T2DM</strong> — same caveats <strong>(C)</strong>.</li>
+        <li>Major non-cardiac or cardiac surgery, if T2DM and <strong>HF (B)</strong> or <strong>CKD (E)</strong> — same caveats.</li>
+      </ul>
+
+      <h4>Consider continuing SGLT2i</h4>
+      <ul>
+        <li>Major non-cardiac surgery, if T2DM <strong>without HF or CKD</strong>, not expected to fast &gt; 12 h or on prolonged
+          very low-carbohydrate diet <strong>(B)</strong>.</li>
+      </ul>
+
+      <h4>Discontinue SGLT2i — 3 days (4 days for ertugliflozin) before</h4>
+      <ul>
+        <li>Major non-cardiac surgery requiring prolonged postoperative fasting, if T2DM <strong>(C)</strong>.</li>
+        <li>Cardiac surgery, if T2DM without HF or CKD <strong>(B)</strong>.</li>
+        <li>On prolonged preoperative very low-carbohydrate diets (e.g. bariatric surgery diet), if no T2DM <strong>(E)</strong>.</li>
+        <li><strong>Also:</strong> when starting a very low-carbohydrate diet preoperatively (e.g. bariatric surgery diet), if T2DM <strong>(B)</strong>.</li>
+        <li><strong>Consider discontinuing</strong> for 3 days (4 days for ertugliflozin) before major non-cardiac surgery if
+          prolonged postoperative fasting is anticipated, if no T2DM <strong>(C)</strong>.</li>
+      </ul>
+
+      <h4>Other SPAQI recommendations</h4>
+      <ul>
+        <li><strong>Postpone bariatric surgery</strong> in patients who continued an SGLT2i, if T2DM <strong>(E)</strong>.</li>
+        <li><strong>Preoperative monitoring for eDKA</strong> in patients who followed a very low-carbohydrate diet &gt; 1 week
+          preoperatively (e.g. bariatric surgery diet) and continued SGLT2i, if no T2DM <strong>(B)</strong>.</li>
+        <li><strong>Intraoperative monitoring for eDKA</strong> in:
+          <ul>
+            <li>Cardiac surgery, irrespective of continuing SGLT2i <strong>(C)</strong>.</li>
+            <li>Patients continuing SGLT2i within 3 days (4 days for ertugliflozin) during major non-cardiac surgery &gt; 3 h,
+              if T2DM <strong>(C)</strong>.</li>
+            <li>Major non-cardiac surgery &gt; 3 h with carbohydrate fasting &gt; 12 h, if no T2DM <strong>(E)</strong>.</li>
+            <li>Surgery &gt; 3 h after a very low-carbohydrate diet ≥ 1 week <strong>(E)</strong>.</li>
+          </ul>
+        </li>
+        <li><strong>Prophylactic dextrose and/or insulin infusions</strong> in patients continuing SGLT2i within 3 days (4 days
+          for ertugliflozin) during cardiac surgery, if T2DM <strong>(C)</strong>.</li>
+        <li><strong>Postoperative monitoring for eDKA</strong> in patients continuing SGLT2i within 3 days (4 days for
+          ertugliflozin) and:
+          <ul>
+            <li>Cardiac surgery, irrespective of SGLT2i continuation <strong>(C)</strong>.</li>
+            <li>Major non-cardiac surgery, if T2DM <strong>(C)</strong>.</li>
+            <li>A very low-carbohydrate diet &gt; 1 week (e.g. bariatric surgery diet) <strong>(C)</strong>.</li>
+          </ul>
+        </li>
+        <li><strong>Restart SGLT2i</strong> only when patients resume normal oral intake <strong>(E)</strong>.</li>
+      </ul>
+
+      <h3>Monitoring &amp; rescue — practical points</h3>
+      <ul>
+        <li>Most eDKA cases are detected <strong>after surgery</strong>.</li>
+        <li>Patients having ambulatory procedures without PONV and eating normally do not need routine postoperative laboratory
+          testing; SGLT2i can be resumed. Educate about eDKA symptoms (abdominal pain, nausea, vomiting) and advise contacting the
+          prescriber if they occur.</li>
+        <li>For higher-risk procedures or prolonged preoperative carbohydrate fast / very low-carbohydrate diet with SGLT2i
+          continued within 3–4 days, monitor for eDKA until oral intake resumes.</li>
+        <li><strong>Anion gap</strong> is a useful screen: a normal anion gap virtually excludes eDKA; an anion gap &gt; 10 alerts
+          to possible eDKA and should prompt serum ketone / β-hydroxybutyrate and arterial pH measurement, with consideration of
+          dextrose or insulin infusions.</li>
+        <li><strong>β-hydroxybutyrate:</strong> &gt; 0.5 mM indicates ketosis; ≥ 3 mM highly suggestive of DKA; intermediate values
+          ≥ 1.5 mM warrant further monitoring; &lt; 1.5 mM helps exclude DKA.</li>
+        <li>Urine ketones can be used if serum unavailable, but sensitivity is lower (detects acetoacetate, a metabolite of
+          β-hydroxybutyrate), which can delay diagnosis.</li>
+      </ul>
+
+      <div class="callout key">
+        <span class="label">Dextrose / insulin strategy</span>
+        <strong>Dextrose:</strong> low-rate infusion (e.g. 50–100 mL/h of 5% dextrose) in patients with T2DM without
+        hyperglycaemia; omit if glucose &gt; 180 mg/dL (10 mmol/L).
+        <br><br>
+        <strong>Insulin:</strong> consider for perioperative hyperglycaemia and selectively in addition to dextrose in T2DM to
+        prevent ketosis. Concomitant insulin may not be necessary in well-controlled T2DM not using insulin, but should be
+        considered in those who are “insulin deficient” — higher HbA1c, high-dose insulin or multiple oral hypoglycaemic agents,
+        or prior DKA. Target glucose <strong>140–180 mg/dL (7.8–10 mmol/L)</strong> per institutional protocol.
+      </div>
+
+      <h3>Potential harms of stopping SGLT2i</h3>
+      <ul>
+        <li>Small study (n = 64): increased total major perioperative complications (25% vs 7.6%, P = 0.04) and poorer glycaemic
+          control after surgery in patients who withheld SGLT2i; trend to increased AKI (18.8% vs 4.6%, P = 0.05).</li>
+        <li>Cessation in patients receiving SGLT2i for heart failure may be associated with worsening heart failure.</li>
+        <li>Perioperative SGLT2i use is associated with ~31% reduction in postoperative AKI in large database studies, and lower
+          MACE and mortality up to 180 days.</li>
+      </ul>
+
+      <div class="callout new">
+        <span class="label">Balance</span>
+        Weigh the cardiorenal benefits of continuing SGLT2i against the risk of eDKA. In many lower-risk scenarios, the benefits
+        likely outweigh the risks, especially when monitoring and dextrose/insulin rescue are available. In higher-risk scenarios
+        (cardiac surgery with T2DM without HF/CKD, prolonged fasting, very low-carbohydrate diets), discontinuation is advised.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ GUIDELINE COMPARISON ============ -->
+  <details class="card">
+    <summary>Guideline comparison — SGLT2i perioperative management <span class="tag new">Table 5</span></summary>
+    <div class="card-body">
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Organisation</th>
+              <th>SGLT2i management</th>
+              <th>Other recommendations</th>
+              <th>Criteria for resuming</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">FDA</td>
+              <td>Hold 3 days (4 days for ertugliflozin).</td>
+              <td>Vigilance for perioperative metabolic acidosis.</td>
+              <td>Clinically stable; adequate hydration; normal oral intake.</td>
+            </tr>
+            <tr>
+              <td class="name">ACC / AHA</td>
+              <td>Hold 3–4 days before elective surgery (when feasible).</td>
+              <td>Vigilance for unexplained acidosis, ketosis or nonspecific symptoms (nausea, abdominal pain, dyspnoea).</td>
+              <td>Clinically stable; adequate hydration; normal oral intake.</td>
+            </tr>
+            <tr>
+              <td class="name">Australian multisociety<br>(ANZCA, ADS, ADEA, NZSSD)</td>
+              <td>Hold 3 days (2 days before + day of procedure) for most; hold day of surgery for minor procedures.</td>
+              <td>Hold for procedures with bowel preparation, carbohydrate restrictions, or prolonged fasting. Blood ketone
+                measurement preprocedurally if SGLT2i held; proceed if ketones &lt; 1.0 mM. If SGLT2i continued, proceed based on
+                urgency, surgical factor, HbA1c, ketone concentrations.</td>
+              <td>Clinically stable; adequate hydration; normal oral intake.</td>
+            </tr>
+            <tr>
+              <td class="name">British multisociety<br>(Association of Anaesthetists, JBDS, RCoA, CPOC)</td>
+              <td>Hold day before and day of surgery. Hold at start of very low energy/liver reduction diet.</td>
+              <td>Minimise fasting times; patient education including sick-day rules and warning symptoms.</td>
+              <td>Adequate hydration; normal oral intake.</td>
+            </tr>
+            <tr>
+              <td class="name">Canadian<br>(STOP-DKA-2)</td>
+              <td>May not need to hold for lower risk of eDKA (minor procedures, total NPO time &lt; 12 h, no bowel preparation or
+                liquid diet) irrespective of T2DM. Hold 3 days for bowel prep or low-carbohydrate diet. Hold 3 days if higher risk
+                procedures irrespective of T2DM. Postpone elective cases if SGLT2i continued and T1DM.</td>
+              <td>Differentiate lower vs higher-risk eDKA scenarios. Schedule early in day to minimise fasting times. Proceed if
+                SGLT2i not held, NPO &lt; 12 h and no T2DM. Consider proceeding with ketone monitoring if SGLT2i not held, NPO &lt; 12 h
+                and T2DM. Enhanced surveillance with ketones, anion gap, pH, bicarbonate if SGLT2i continued. Insulin and dextrose
+                infusions if needed.</td>
+              <td>When tolerating oral or carbohydrate-containing liquids; no clinical or biochemical evidence of ketosis.</td>
+            </tr>
+            <tr>
+              <td class="name">SPAQI<br><span class="small muted">2026</span></td>
+              <td>Continue SGLT2i if no T2DM, except very low-carbohydrate (e.g. bariatric surgery) diet. Continue for major
+                non-cardiac and cardiac surgeries if T2DM and HF or CKD. Consider continuing for major non-cardiac surgery if T2DM
+                and no HF or CKD. Discontinue 3–4 days before cardiac surgery if T2DM and no HF or CKD. Discontinue at start of
+                very low-carbohydrate diet if T2DM. Discontinue 3–4 days for prolonged postoperative fasting if T2DM.</td>
+              <td>Perioperative eDKA monitoring when SGLT2i continued before major non-cardiac surgery and T2DM, very low-carbohydrate
+                diet and T2DM, or during cardiac surgery irrespective of SGLT2i management. Perioperative dextrose and insulin for
+                patients with T2DM who continue SGLT2i during cardiac surgery.</td>
+              <td>Normal oral intake.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll the table sideways to see all columns.</p>
+      <p class="small muted">
+        Summarised and adapted from Table 5 of Oprea <em>et al.</em> (BJA 2026). Consult the original for full detail and grading.
+      </p>
+    </div>
+  </details>
+
+  <!-- ============ INSULIN ============ -->
+  <details class="card">
+    <summary>Perioperative insulin treatment <span class="tag">Core practice</span></summary>
+    <div class="card-body">
+      <h3>General</h3>
+      <ul>
+        <li>Insulin preparations differ little pharmacodynamically but mainly in <strong>pharmacokinetics</strong> — from
+          (ultra-)short-acting to long-acting and mixed preparations, requiring one to several injections daily or continuous
+          infusion via a pump.</li>
+        <li>The literature does not support one specific protocol. <strong>Adhere to your institutional protocol</strong>
+          (and keep it updated), even though local protocols vary considerably between hospitals.</li>
+      </ul>
+
+      <h3>Fasting dose adjustments</h3>
+      <ul>
+        <li>Reduce <strong>long-acting insulin analogues to 75–80%</strong> of the usual dose.</li>
+        <li>Reduce <strong>intermediate-acting insulin by 50%</strong>.</li>
+      </ul>
+
+      <h3>When to switch to i.v. insulin</h3>
+      <ul>
+        <li>T1DM, and T2DM on insulin therapy, especially when the fasting period exceeds <strong>one missed meal</strong>, or when
+          an insulin pump cannot be used.</li>
+        <li>Emergency surgery, or persistent hyperglycaemia.</li>
+        <li>Use a <strong>variable-rate i.v. insulin infusion (VRIII)</strong> or a combined glucose–insulin infusion.</li>
+      </ul>
+
+      <div class="callout danger">
+        <span class="label">Safety — always give substrate</span>
+        Patients should <strong>always receive a glucose infusion alongside any VRIII</strong>. Iatrogenic hypoglycaemia usually
+        occurs because the glucose substrate was stopped while the insulin infusion continued.
+        <br><br>
+        <strong>Practical option:</strong> add <strong>1/8 of the total daily insulin dose (minimum 6 units)</strong> to
+        <strong>500 mL glucose 5%</strong> infused at <strong>83 mL/h</strong>. Historically potassium was added (GIK); however,
+        postoperative potassium concentrations are comparable between glucose–insulin and GIK infusions, so GIK is not required
+        for that purpose.
+      </div>
+
+      <h3>Glycaemic targets on the day of surgery</h3>
+      <ul>
+        <li>Emphasis is on <strong>avoiding hypoglycaemia rather than hyperglycaemia</strong> — under anaesthesia and in recovery
+          the patient cannot report hypoglycaemic symptoms, and missed hypoglycaemia is more harmful than hyperglycaemia.</li>
+        <li>The <strong>lower target is raised to 5.6 mmol/L</strong> to prevent severe hypoglycaemia in fasting patients at risk.</li>
+        <li>Perioperative/ICU hypoglycaemia (glucose &lt; 5.6 mmol/L) is usually <strong>iatrogenic</strong> and associated with poor
+          outcomes.</li>
+        <li>Treat as an outpatient: <strong>i.v. glucose 15 g, recheck after 15 min (the 15–15 rule)</strong>.</li>
+        <li><strong>Never withhold insulin entirely</strong> in T1DM or highly insulin-dependent T2DM — insulin deficiency causes
+          ketoacidosis.</li>
+      </ul>
+
+      <h3>Intraoperative monitoring &amp; treatment</h3>
+      <ul>
+        <li>Measure glucose <strong>every 1–2 h</strong>, depending on stability.</li>
+        <li>Treat intraoperative hyperglycaemia (<strong>glucose &gt; 10 mmol/L</strong>) with an <strong>i.v. correction bolus</strong>
+          (sliding scale) or by adjusting the VRIII.</li>
+        <li>Avoid repeated subcutaneous boluses more often than every 2–3 h — unreliable subcutaneous perfusion and risk of
+          <strong>insulin stacking</strong>.</li>
+        <li>Especially important in children with T1DM: obtain the child's own <strong>correction factor / insulin sensitivity
+          factor</strong> (expected fall in glucose per 1 unit of insulin).</li>
+      </ul>
+
+      <div class="callout">
+        <span class="label">Quick calculation</span>
+        If the correction factor is unavailable:
+        <code>correction factor = 100 ÷ average total daily insulin dose</code> → gives the expected glucose decrease in
+        <strong>mmol/L per 1 unit</strong> of insulin.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ DEVICES ============ -->
+  <details class="card">
+    <summary>Diabetes apparatus — pumps, CGMs &amp; closed-loop <span class="tag">Devices</span></summary>
+    <div class="card-body">
+      <h3>Continuous subcutaneous insulin infusion (CSII) pumps</h3>
+      <ul>
+        <li>First pump developed by Dr Arnold Kadish in 1960; commercial availability took another 24 years; use grew after the
+          DCCT trial in the 1990s showed intensive insulin treatment prevents diabetes-related complications.</li>
+        <li>Now <strong>&gt; 50% of patients with T1DM</strong> use a CSII; use in T2DM is also increasing. T1D Exchange registry:
+          pump use rose from <strong>57% to 64% (2010–2018)</strong>; the largest increase is in children, <strong>60–70%</strong> of
+          whom are now treated with a CSII.</li>
+        <li>Mimics physiological insulin secretion with continuous (ultra-)short-acting infusion plus mealtime boluses; both basal
+          rate and boluses are easily adjustable → more flexibility.</li>
+        <li>Significantly improves glycaemic control <strong>without increasing hypoglycaemia</strong>, and improves patient
+          satisfaction and quality of life.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="label">Perioperative pump use</span>
+        Manufacturers state the device should not be used in the presence of imaging devices or electrocautery. However, switching
+        to i.v. insulin or multiple daily injections increases the risk of <strong>ketoacidosis and hypoglycaemia</strong> from
+        miscalculation or delayed initiation of i.v. insulin.
+        <br><br>
+        <strong>Adult and paediatric guidelines agree:</strong> an insulin pump <em>may</em> be used perioperatively unless there is
+        an absolute contraindication — <strong>MRI or anticipated significant fluid shifts</strong>.
+      </div>
+
+      <h3>Continuous glucose monitors (CGM)</h3>
+      <ul>
+        <li>Use has risen in parallel with pumps — currently <strong>&gt; 50% of patients under 12 yrs</strong> and around
+          <strong>30% of those aged 12–18 yrs</strong> use a CGM in daily life.</li>
+        <li>All subcutaneous sensors have comparable accuracy and have been used successfully in many paediatric patients.</li>
+      </ul>
+      <div class="callout danger">
+        <span class="label">Why CGM accuracy is unreliable perioperatively</span>
+        <ul style="margin:.2rem 0 .1rem 1.1rem">
+          <li>Hypotension and hypothermia during surgery/anaesthesia may reduce subcutaneous perfusion.</li>
+          <li>Pressure on the device and underlying tissue can influence readings.</li>
+          <li>Some medications (e.g. i.v. paracetamol) can cause <strong>false high readings</strong> with certain sensors.</li>
+        </ul>
+        If a CGM is left in place, <strong>perform regular blood glucose checks</strong> to guide perioperative decisions.
+        A small study of a flash glucose monitoring system showed promising results in critically ill patients, and the technology
+        is evolving quickly.
+      </div>
+
+      <h3>Closed-loop systems ("artificial pancreas")</h3>
+      <ul>
+        <li>Combine CGM, CSII and escape glucagon infusions; the first hybrid closed-loop system became commercially available
+          in <strong>2016</strong>. Pumps adapt insulin infusion using CGM data, the target range and mealtime information entered
+          by the patient.</li>
+        <li>Perioperatively, all the CSII/CGM caveats above apply.</li>
+        <li>In research, closed-loop systems have been used successfully during surgery and in hospital non-critical care, with
+          <strong>additional hourly point-of-care testing</strong> to monitor functioning.</li>
+        <li>Only possible and advisable when <strong>all parties agree to continue it, know how it works, and have a proper backup
+          plan</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ ANAESTHESIA ============ -->
+  <details class="card">
+    <summary>Anaesthetic considerations — dexamethasone, magnesium, regional <span class="tag">Anaesthesia</span></summary>
+    <div class="card-body">
+      <h3>Dexamethasone</h3>
+      <ul>
+        <li>Commonly used as an antiemetic; as a potent glucocorticoid it causes <strong>dose-dependent hyperglycaemia</strong>,
+          most notable on the first day after surgery, peaking <strong>8–16 h</strong> after dosing.</li>
+        <li><strong>PADDI trial</strong> (&gt; 8800 patients randomised to dexamethasone 8 mg vs placebo): no difference in the
+          primary endpoint of surgical site infection — <strong>8.1% vs 9.1%</strong> (95% CI −2.1 to 0.3).</li>
+        <li>Diabetes subgroup (<em>n</em> = 1065): similar result — <strong>11.2% vs 13.6%</strong> (95% CI −6.6 to 1.6).</li>
+        <li>PONV efficacy confirmed: <strong>42% vs 54%</strong>, RR 0.78 (95% CI 0.75–0.82).</li>
+      </ul>
+      <div class="callout key">
+        <span class="label">Bottom line</span>
+        Although dexamethasone increases perioperative hyperglycaemia, it does <strong>not</strong> increase surgical site
+        infections — these results should reassure clinicians using dexamethasone for PONV in patients with diabetes.
+      </div>
+
+      <h3>Magnesium</h3>
+      <ul>
+        <li>Double-blinded RCT (<em>n</em> = 122) in diabetic patients: magnesium sulphate <strong>15 mg/kg/h</strong> from 20 min
+          before surgery until 24 h after surgery vs i.v. saline 0.9%.</li>
+        <li>Magnesium group had lower blood glucose and insulin requirements — mean postoperative glucose
+          <strong>8.8 (1.5) vs 9.7 (1.5) mmol/L</strong>.</li>
+        <li>Proposed mechanisms: increased insulin affinity to its receptors, increased pancreatic insulin secretion, potentiated
+          insulin-mediated glucose uptake, regulation of hepatic glycogenolysis and glucose output, modulation of catabolic
+          hormone release and glucose translocation into the cell.</li>
+      </ul>
+
+      <h3>Regional anaesthesia in diabetic neuropathy</h3>
+      <ul>
+        <li>Diabetic neuropathy is caused by multiple pathways, primarily persistent chronic hyperglycaemia → inflammation and
+          oxidative stress → small-vessel changes, local ischaemia and reduced axonal conduction velocity.</li>
+        <li>Affected nerves are <strong>more sensitive to local anaesthetics</strong> → <strong>longer duration of nerve block</strong>.</li>
+        <li>Suggestions that local anaesthetics are more toxic to affected nerves are <strong>not conclusively evidenced</strong> —
+          neuropathy should <strong>not</strong> be a reason to deny regional anaesthesia when there is a valid indication.</li>
+        <li><strong>Caution with electrical stimulation alone:</strong> the threshold of affected nerves is significantly increased,
+          theoretically increasing the risk of needle trauma.</li>
+        <li>With <strong>peripheral nerve catheters</strong>, be aware of an increased risk of catheter-related infection.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ FUTURE DIRECTIONS ============ -->
+  <details class="card">
+    <summary>Future directions — carbohydrate loading &amp; individualised targets <span class="tag">Evolving</span></summary>
+    <div class="card-body">
+      <h3>Preoperative carbohydrate loading (CHL)</h3>
+      <ul>
+        <li>Integrated into numerous ERAS guidelines; the principal objective is to <strong>prevent the fasting state</strong>,
+          thereby inhibiting catabolic pathways.</li>
+        <li>Evidence suggests CHL reduces <strong>cortisol, interleukin-6 and insulin resistance</strong>, attenuating the
+          surgery-associated inflammatory response, and improves comfort by alleviating hunger, thirst, malaise, anxiety and
+          nausea.</li>
+        <li>Safety in diabetes is uncertain — CHL may potentially increase aspiration risk from delayed gastric emptying or
+          gastro-oesophageal reflux.</li>
+        <li>However, small ultrasound studies found <strong>no difference in gastric volume</strong> between patients with T2DM and
+          those without, 2 h before surgery. Small studies also showed improved glycaemic control after CHL in T2DM when insulin
+          was prescribed to cover the carbohydrate load.</li>
+      </ul>
+
+      <h3>HbA1c-adjusted glycaemic targets</h3>
+      <ul>
+        <li>"One-fits-all" protocols are inadequate: a morbidly obese T2DM patient with very low insulin sensitivity is not
+          comparable to a T2DM patient on metformin alone, or to a patient with T1DM.</li>
+        <li>Analogy with chronic hypertension: just as perioperative MAP targets are adjusted as a percentage of the patient's
+          usual MAP, <strong>chronic hyperglycaemia should shift the upper and lower bounds of the target glucose range
+          upwards</strong>.</li>
+        <li>No RCTs prove improved outcomes, but there is indirect evidence: the relationship between acute hyperglycaemia and ICU
+          mortality <strong>dissolves in patients with pre-existing longer-term hyperglycaemia (HbA1c &gt; 53 mmol/mol)</strong> —
+          suggesting hyperglycaemia may be a risk factor mainly in patients who are usually well regulated.</li>
+        <li>The <strong>inpatient specialised diabetes team</strong> can be essential in managing diabetes perioperatively.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ POSTOPERATIVE ============ -->
+  <details class="card">
+    <summary>Postoperative management <span class="tag">Post-op</span></summary>
+    <div class="card-body">
+      <ul>
+        <li>Surgical site infection is the most commonly cited postoperative complication related to perioperative glucose control.</li>
+        <li>Surgical stress leads to hyperglycaemia and impedes postoperative glucose control in patients with DM, increasing the
+          risk of complications — especially SSI.</li>
+        <li>A meta-analysis showed that postoperative <strong>VRIII with intensive monitoring in ICU</strong> resulted in lower mean
+          glucose values and <strong>reduced SSI</strong>.</li>
+        <li>Small intervention studies on regular wards found a <strong>sliding-scale regimen led to higher mean glucose and more
+          SSI</strong> compared with a basal–bolus regimen.</li>
+      </ul>
+
+      <div class="callout key">
+        <span class="label">ADA recommendation</span>
+        Use a <strong>basal–bolus regimen</strong> on the postoperative ward in preference to sliding-scale insulin alone.
+      </div>
+
+      <p>
+        <strong>Definition:</strong> <em>sliding scale</em> = a protocol prescribing single bolus, correctional doses of short-acting
+        insulin <strong>without</strong> changes to continuous or long-acting insulin doses.
+      </p>
+      <ul>
+        <li>Many hospitals still use sliding-scale regimens despite their ineffectiveness in achieving adequate in-hospital glucose
+          control, possibly out of fear of hypoglycaemia.</li>
+        <li>Reassuringly, the risk of <strong>severe hypoglycaemia (&lt; 2.3 mmol/L) is comparable</strong> between sliding-scale and
+          basal–bolus regimens.</li>
+        <li>Once patients have adequate oral intake and are ready for discharge, they can return to their regular medication.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ EMERGENCIES ============ -->
+  <details class="card">
+    <summary>Diabetic emergencies — DKA &amp; HHS <span class="tag">Emergency</span></summary>
+    <div class="card-body">
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Diabetic ketoacidosis (DKA)</th>
+              <th>Hyperglycaemic hyperosmolar syndrome (HHS)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">Typical patient</td>
+              <td>Primarily T1DM (can also affect T2DM).</td>
+              <td>Typically T2DM, especially older adults with hypertension and kidney disease.</td>
+            </tr>
+            <tr>
+              <td class="name">Mechanism</td>
+              <td>Insulin deficiency → hyperglycaemia, increased lipolysis and ketone production; body relies on fat breakdown →
+                ketones accumulate → metabolic acidosis.</td>
+              <td>Severe hyperglycaemia and extreme dehydration; insulin still circulates (preventing ketone production) but is
+                insufficient for adequate glycaemic control.</td>
+            </tr>
+            <tr>
+              <td class="name">Glucose</td>
+              <td>ADA diagnostic criteria: glucose <strong>&gt; 13.9 mmol/L</strong>.</td>
+              <td><strong>&gt; 33.3 mmol/L</strong>.</td>
+            </tr>
+            <tr>
+              <td class="name">Ketones / acid–base</td>
+              <td>Ketones present; metabolic acidosis.</td>
+              <td>Relative lack of ketones; pH &gt; 7.3; hyperosmolarity from increased solute concentration.</td>
+            </tr>
+            <tr>
+              <td class="name">Clinical clues</td>
+              <td>Classical signs (polyuria, polydipsia, weight loss) but can mimic an upper respiratory chest infection
+                (tachypnoea) or gastroenteritis (abdominal pain, nausea, vomiting).</td>
+              <td>Mental changes, marked dehydration.</td>
+            </tr>
+            <tr>
+              <td class="name">Treatment</td>
+              <td colspan="2">Prioritise correction of dehydration with <strong>saline 0.9%</strong>, then moderate glycaemic control
+                (initially targeting blood glucose <strong>10–15 mmol/L</strong>) and <strong>potassium supplementation</strong>, with
+                frequent monitoring of osmolality, glycaemia and potassium.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scrollhint">↔ Scroll the table sideways to see all columns.</p>
+
+      <div class="callout warn">
+        <span class="label">Paediatric DKA — high index of suspicion</span>
+        Approximately <strong>one-third of children diagnosed with T1DM present with DKA at diagnosis</strong>, with a peak between
+        ages <strong>5 and 7</strong>. Be highly suspicious in <strong>toddlers, teenagers (with known diabetes) and patients with an
+        insulin pump</strong>. Remember that during fluid resuscitation, paediatric patients are at risk of
+        <strong>cerebral oedema</strong>.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ CONCLUSIONS ============ -->
+  <details class="card">
+    <summary>Conclusions <span class="tag">Summary</span></summary>
+    <div class="card-body">
+      <ul>
+        <li>Diabetes is one of the most common comorbidities in patients presenting for surgery.</li>
+        <li>Besides T2DM, other forms such as T1DM have specific clinical features and perioperative concerns.</li>
+        <li>Thorough preoperative evaluation of antihyperglycaemic treatment and long-term regulation (HbA1c), together with
+          possible diabetes-related complications, is recommended.</li>
+        <li>Clinicians should adhere to <strong>local guidelines</strong> for perioperative antihyperglycaemic treatment and insulin
+          schedules — and these should be <strong>updated frequently</strong>, as the evidence is evolving quickly.</li>
+        <li><strong>GLP-1 RAs:</strong> the 2025 UK consensus recommends <strong>continuing</strong> these drugs perioperatively with
+          aspiration risk stratification and mitigation.</li>
+        <li><strong>SGLT2 inhibitors:</strong> guidance is evolving. The 2025 UK consensus recommends omitting the day before and day
+          of the procedure. The 2026 SPAQI consensus recommends a <strong>tailored, risk-stratified approach</strong> — continue in
+          many lower-risk scenarios with monitoring, discontinue in higher-risk scenarios.</li>
+        <li><strong>Shared decision-making</strong> is advised when there is a wish to continue using subcutaneous insulin pumps or
+          continuous glucose monitoring devices intraoperatively.</li>
+        <li>A <strong>basal–bolus regimen</strong> on the ward leads to better glycaemic control than a sliding-scale regimen
+          postoperatively.</li>
+      </ul>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <div class="source">
+    <h3>Sources</h3>
+    <ol>
+      <li>
+        Polderman JAW, Hermanides J, Hulst AH. <strong>Update on the perioperative management of diabetes mellitus.</strong>
+        <em>BJA Education</em>. 2024. doi:
+        <a href="https://doi.org/10.1016/j.bjae.2024.04.007" target="_blank" rel="noopener">10.1016/j.bjae.2024.04.007</a>.
+        Advance Access Publication Date: 31 May 2024. Amsterdam University Medical Centres, Amsterdam, The Netherlands.
+      </li>
+      <li>
+        El-Boghdadly K, Dhesi J, Nicholas L, et al. <strong>Elective peri-operative management of adults taking glucagon-like
+        peptide-1 receptor agonists, glucose-dependent insulinotropic peptide agonists and sodium-glucose cotransporter-2
+        inhibitors: a multidisciplinary consensus statement.</strong> <em>Anaesthesia</em>. 2025; 80: 412–424.
+        doi:
+        <a href="https://doi.org/10.1111/anae.16499" target="_blank" rel="noopener">10.1111/anae.16499</a>.
+        A consensus statement from the Association of Anaesthetists, Association of British Clinical Diabetologists, British
+        Obesity and Metabolic Surgery Society, Centre for Perioperative Care, Joint British Diabetes Societies for Inpatient
+        Care, Royal College of Anaesthetists, Society for Obesity and Bariatric Anaesthesia and UK Clinical Pharmacy Association.
+      </li>
+      <li>
+        Oprea AD, Mohamed B, Hepner DL, et al. <strong>Perioperative management of patients taking sodium-glucose cotransporter
+        2 inhibitors: Society for Perioperative Assessment and Quality Improvement (SPAQI) multidisciplinary consensus
+        statement.</strong> <em>British Journal of Anaesthesia</em>. 2026; 136(6): 1776–1799.
+        doi:
+        <a href="https://doi.org/10.1016/j.bja.2026.02.031" target="_blank" rel="noopener">10.1016/j.bja.2026.02.031</a>.
+        Advance Access Publication Date: 1 May 2026.
+      </li>
+    </ol>
+    <p class="disclaimer">
+      This page is a condensed educational quick-reference derived from the above articles. It is not a substitute for the full
+      texts, local protocols or clinical judgement. Always follow your institutional guidelines and check the latest guidance for
+      drug withholding intervals.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content   = document.getElementById('content');
+  var input     = document.getElementById('searchInput');
+  var countEl   = document.getElementById('searchCount');
+  var prevBtn   = document.getElementById('prevBtn');
+  var nextBtn   = document.getElementById('nextBtn');
+  var marks     = [];
+  var current   = -1;
+  var debounceId = null;
+
+  /* ---------- Collapse / expand ---------- */
+  function setAll(open) {
+    var all = document.querySelectorAll('details');
+    for (var i = 0; i < all.length; i++) { all[i].open = open; }
+  }
+  document.getElementById('expandAll').addEventListener('click', function () { setAll(true); });
+  document.getElementById('collapseAll').addEventListener('click', function () { setAll(false); });
+
+  /* ---------- Font size ---------- */
+  var fontPx = 16;
+  function applyFont() {
+    fontPx = Math.max(12, Math.min(24, fontPx));
+    document.documentElement.style.fontSize = fontPx + 'px';
+  }
+  document.getElementById('fontUp').addEventListener('click', function () { fontPx += 1; applyFont(); });
+  document.getElementById('fontDown').addEventListener('click', function () { fontPx -= 1; applyFont(); });
+  document.getElementById('fontReset').addEventListener('click', function () { fontPx = 16; applyFont(); });
+
+  /* ---------- Search ---------- */
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function clearHighlights() {
+    var existing = content.querySelectorAll('mark.hl');
+    for (var i = 0; i < existing.length; i++) {
+      var m = existing[i];
+      var t = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(t, m);
+    }
+    content.normalize();
+    marks = [];
+    current = -1;
+  }
+
+  function openAncestors(el) {
+    while (el && el !== content) {
+      if (el.tagName === 'DETAILS') { el.open = true; }
+      el = el.parentElement;
+    }
+  }
+
+  function focusMark() {
+    for (var i = 0; i < marks.length; i++) { marks[i].classList.remove('current'); }
+    if (current < 0 || current >= marks.length) { return; }
+    var mk = marks[current];
+    mk.classList.add('current');
+    mk.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    countEl.textContent = (current + 1) + '/' + marks.length;
+  }
+
+  function runSearch() {
+    var q = input.value.trim();
+    clearHighlights();
+
+    if (q.length < 2) {
+      countEl.textContent = q.length ? 'min 2 chars' : '';
+      return;
+    }
+
+    var testRe = new RegExp(escapeRegExp(q), 'i');
+    var splitRe = new RegExp(escapeRegExp(q), 'gi');
+
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) { return NodeFilter.FILTER_REJECT; }
+        var p = node.parentNode;
+        if (p && p.closest && p.closest('script, style')) { return NodeFilter.FILTER_REJECT; }
+        return testRe.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) { nodes.push(walker.currentNode); }
+
+    for (var n = 0; n < nodes.length; n++) {
+      var node = nodes[n];
+      var text = node.nodeValue;
+      var frag = document.createDocumentFragment();
+      var last = 0, match;
+      splitRe.lastIndex = 0;
+
+      while ((match = splitRe.exec(text)) !== null) {
+        if (match[0].length === 0) { splitRe.lastIndex++; continue; }
+        if (match.index > last) {
+          frag.appendChild(document.createTextNode(text.slice(last, match.index)));
+        }
+        var mk = document.createElement('mark');
+        mk.className = 'hl';
+        mk.textContent = match[0];
+        frag.appendChild(mk);
+        marks.push(mk);
+        last = match.index + match[0].length;
+      }
+      if (last < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    }
+
+    if (marks.length === 0) {
+      countEl.textContent = 'No matches';
+      return;
+    }
+
+    for (var k = 0; k < marks.length; k++) { openAncestors(marks[k].parentElement); }
+    current = 0;
+    focusMark();
+  }
+
+  input.addEventListener('input', function () {
+    if (debounceId) { clearTimeout(debounceId); }
+    debounceId = setTimeout(runSearch, 160);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!marks.length) { runSearch(); return; }
+      if (e.shiftKey) { current = (current - 1 + marks.length) % marks.length; }
+      else { current = (current + 1) % marks.length; }
+      focusMark();
+    }
+    if (e.key === 'Escape') { input.value = ''; clearHighlights(); countEl.textContent = ''; }
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (!marks.length) { return; }
+    current = (current + 1) % marks.length; focusMark();
+  });
+  prevBtn.addEventListener('click', function () {
+    if (!marks.length) { return; }
+    current = (current - 1 + marks.length) % marks.length; focusMark();
+  });
+
+  /* Keyboard shortcut: "/" focuses search */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== input && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+      e.preventDefault(); input.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
