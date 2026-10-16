@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polyuria after TBI · DI reference for anaesthetists & intensivists</title>
+  <style>
+    /* ----- DIABETES INSIPIDUS THEME (soft aqua / renal blue) ----- */
+    :root {
+      --di-bg: #eef7fc;
+      --di-card: #ffffff;
+      --di-primary: #0b4f6c;      /* deep renal blue */
+      --di-secondary: #1e7e9c;     /* aqua */
+      --di-accent: #d0e9f2;        /* pale aqua */
+      --di-border: #b3d9e8;
+      --di-text: #1a2e3b;
+      --di-muted: #4b6a7c;
+      --di-warning: #b85e2b;
+      --di-sodium: #9c6b1e;        /* subtle sodium gold */
+      --shadow: 0 4px 10px rgba(0, 30, 50, 0.05);
+      --radius: 12px;
+      --font-base: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--di-bg);
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--di-text);
+      line-height: 1.5;
+      padding: 1.5rem;
+      font-size: var(--font-base);
+      transition: font-size 0.15s ease;
+      animation: softPulse 3s infinite alternate;
+    }
+
+    @keyframes softPulse {
+      0% { background-color: #eef7fc; }
+      100% { background-color: #e2f0f9; }
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(2px);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--di-border);
+    }
+
+    /* ---------- TYPOGRAPHY & COLORS ---------- */
+    h1, h2, h3 {
+      color: var(--di-primary);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-top: 1.2em;
+      margin-bottom: 0.4em;
+    }
+
+    h1 {
+      font-size: 2rem;
+      border-left: 8px solid var(--di-secondary);
+      padding-left: 1rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    h1 small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--di-muted);
+      margin-left: auto;
+      background: var(--di-accent);
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      border-bottom: 2px solid var(--di-accent);
+      padding-bottom: 0.3rem;
+      display: inline-block;
+      margin-top: 1.8rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: var(--di-secondary);
+      margin-top: 1.2rem;
+    }
+
+    /* ---------- CONTROLS ---------- */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.8rem;
+      align-items: center;
+      background: var(--di-card);
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--di-border);
+      position: sticky;
+      top: 0.5rem;
+      z-index: 20;
+    }
+
+    .toolbar button, .toolbar .font-control button {
+      background: white;
+      border: 1px solid var(--di-border);
+      color: var(--di-primary);
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.1s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .toolbar button:hover {
+      background: var(--di-accent);
+      border-color: var(--di-secondary);
+    }
+
+    .toolbar button.primary {
+      background: var(--di-primary);
+      color: white;
+      border-color: var(--di-primary);
+    }
+
+    .toolbar button.primary:hover {
+      background: var(--di-secondary);
+    }
+
+    .font-control {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-left: 0.5rem;
+      background: white;
+      border-radius: 30px;
+      border: 1px solid var(--di-border);
+      padding: 0.1rem 0.2rem;
+    }
+
+    .font-control button {
+      border: none;
+      padding: 0.3rem 0.7rem;
+      font-weight: 600;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .font-control span {
+      font-size: 0.9rem;
+      color: var(--di-muted);
+      padding: 0 0.2rem;
+      min-width: 2.2rem;
+      text-align: center;
+    }
+
+    #searchInput {
+      flex: 1 1 200px;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      border: 1px solid var(--di-border);
+      background: white;
+      font-size: 0.95rem;
+      color: var(--di-text);
+      outline: none;
+      transition: 0.1s;
+    }
+
+    #searchInput:focus {
+      border-color: var(--di-secondary);
+      box-shadow: 0 0 0 2px rgba(30, 126, 156, 0.2);
+    }
+
+    .search-count {
+      font-size: 0.8rem;
+      color: var(--di-muted);
+      background: var(--di-accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    mark {
+      background: #f9e9b3;
+      color: #1e3b4a;
+      padding: 0.05rem 0.2rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* ---------- COLLAPSIBLE CARDS ---------- */
+    .collapsible {
+      background: var(--di-card);
+      border: 1px solid var(--di-border);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color 0.1s;
+    }
+
+    .collapsible-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.4rem;
+      background: white;
+      cursor: pointer;
+      user-select: none;
+      border-left: 6px solid var(--di-secondary);
+      transition: background 0.1s;
+      font-weight: 600;
+      color: var(--di-primary);
+      font-size: 1.1rem;
+    }
+
+    .collapsible-header:hover {
+      background: var(--di-accent);
+    }
+
+    .collapsible-header .icon {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--di-secondary);
+      transition: transform 0.2s;
+      line-height: 1;
+    }
+
+    .collapsible.open .collapsible-header .icon {
+      transform: rotate(90deg);
+    }
+
+    .collapsible-content {
+      display: none;
+      padding: 0.2rem 1.4rem 1.4rem 1.4rem;
+      border-top: 1px solid var(--di-accent);
+      background: #fafdff;
+    }
+
+    .collapsible.open .collapsible-content {
+      display: block;
+    }
+
+    /* ---------- TABLES & SCROLL ---------- */
+    .table-scroll {
+      overflow-x: auto;
+      margin: 1rem 0;
+      border-radius: 10px;
+      border: 1px solid var(--di-border);
+      background: white;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 600px;
+    }
+
+    th {
+      background: var(--di-primary);
+      color: white;
+      font-weight: 500;
+      padding: 0.7rem 1rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--di-accent);
+      vertical-align: top;
+      background: white;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ---------- SIMPLE DIAGRAM (triphasic) ---------- */
+    .triphasic-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      background: white;
+      border-radius: 14px;
+      padding: 1.4rem 1rem;
+      border: 1px solid var(--di-border);
+      margin: 1rem 0;
+    }
+
+    .phase-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .phase-label {
+      width: 90px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--di-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .bar-container {
+      flex: 1;
+      height: 26px;
+      background: #e8f2f7;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      min-width: 180px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 20px;
+      transition: width 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      font-size: 0.7rem;
+      color: white;
+      font-weight: 500;
+    }
+
+    .phase1 .bar-fill { background: #1e7e9c; }
+    .phase2 .bar-fill { background: #b85e2b; }
+    .phase3 .bar-fill { background: #4d8f6b; }
+
+    .phase-desc {
+      font-size: 0.8rem;
+      color: var(--di-muted);
+      margin-left: 0.2rem;
+    }
+
+    /* ---------- MISC ---------- */
+    .badge {
+      display: inline-block;
+      background: var(--di-accent);
+      color: var(--di-primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      letter-spacing: 0.01em;
+      margin-right: 0.4rem;
+    }
+
+    .warning-box {
+      background: #fef6e6;
+      border-left: 5px solid var(--di-warning);
+      padding: 0.9rem 1.2rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      color: #4d3a1a;
+      font-size: 0.95rem;
+    }
+
+    .footnote {
+      font-size: 0.8rem;
+      color: var(--di-muted);
+      border-top: 1px solid var(--di-border);
+      padding-top: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .source-cite {
+      font-size: 0.85rem;
+      background: var(--di-accent);
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      color: var(--di-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    a {
+      color: var(--di-secondary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* responsiveness */
+    @media (max-width: 600px) {
+      body { padding: 0.8rem; }
+      .container { padding: 1rem; }
+      .toolbar { border-radius: 20px; padding: 0.6rem; }
+      .collapsible-header { padding: 0.8rem 1rem; font-size: 1rem; }
+      td, th { padding: 0.5rem 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <h1>
+    💧 Polyuria after TBI
+    <small>DI reference · anaesthetist & intensivist</small>
+  </h1>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <button id="expandAll" class="primary">▼ Expand all</button>
+    <button id="collapseAll">▲ Collapse all</button>
+    <div class="font-control">
+      <button id="fontDecrease" aria-label="Decrease font size">−</button>
+      <span id="fontSizeDisplay">16</span>
+      <button id="fontIncrease" aria-label="Increase font size">+</button>
+    </div>
+    <input type="text" id="searchInput" placeholder="🔍 Search in reference…" autocomplete="off">
+    <span class="search-count" id="searchCount"></span>
+  </div>
+
+  <!-- =========== CONTENT =========== -->
+
+  <!-- 1. QUICK DIFFERENTIALS -->
+  <div class="collapsible open" id="sec-differentials">
+    <div class="collapsible-header">
+      <span>⚡ Serious vs unlikely differentials</span>
+      <span class="icon">›</span>
+    </div>
+    <div class="collapsible-content">
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+        <div style="flex: 1 1 220px;">
+          <h3 style="margin-top:0.2rem; color: #b85e2b;">🔴 Serious / must exclude</h3>
+          <ul style="margin-left:1.2rem;">
+            <li>Central diabetes insipidus</li>
+            <li>Mannitol diuresis</li>
+            <li>Hypertensive diuresis</li>
+            <li>Hypothermic diuresis</li>
+            <li>Normal response to fluid loading</li>
+          </ul>
+        </div>
+        <div style="flex: 1 1 220px;">
+          <h3 style="margin-top:0.2rem; color: var(--di-muted);">⚪ Unlikely / consider</h3>
+          <ul style="margin-left:1.2rem;">
+            <li>Hyperglycaemia</li>
+            <li>Nephrogenic DI</li>
+            <li>Cerebral salt wasting</li>
+            <li>Post-obstructive diuresis</li>
+            <li>Recovery phase of ATN</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:0.8rem; font-size:0.9rem; background: #e8f2f7; padding:0.5rem 0.8rem; border-radius:8px;">
+        <span class="badge">Risk factors for DI</span> Severe TBI (GCS&lt;8) · head AIS&gt;3 · base of skull fracture · cerebral oedema (esp. hypothalamus)
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. APPROACH FLOW -->
+  <div class="collapsible open" id="sec-approach">
+    <div class="collapsible-header">
+      <span>📋 Approach to polyuria &amp; DDAVP use</span>
+      <span class="icon">›</span>
+    </div>
+    <div class="collapsible-content">
+      <ul style="margin-left:1.2rem; line-height:1.8;">
+        <li>Baseline <strong>serum sodium</strong> &amp; <strong>osmolality</strong></li>
+        <li>Watch urine output: <strong>3 consecutive hours of ≥300 mL/hr</strong></li>
+        <li>If sodium rising → send <strong>urine sodium &amp; osmolality</strong></li>
+        <li>Continue monitoring; sodium may safely approach <strong>155 mmol/L</strong></li>
+        <li>If sodium continues to rise + low urine Na + urine osmolality &lt;300 mOsm/kg → consider <strong>DDAVP 0.5 µg</strong></li>
+        <li>After DDAVP: monitor sodium <strong>frequently for 24–48 h</strong></li>
+      </ul>
+      <div class="warning-box">
+        ⚠️ <strong>DDAVP caution:</strong> risk of hyponatremia, especially during triphasic release of stored vasopressin. Historically linked to cerebral oedema (aquaporin‑4). Use lowest effective dose.
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. TRIPHASIC PATTERN WITH SIMPLE DIAGRAM -->
+  <div class="collapsible open" id="sec-triphasic">
+    <div class="collapsible-header">
+      <span>📈 Triphasic pattern of DI after pituitary injury</span>
+      <span class="icon">›</span>
+    </div>
+    <div class="collapsible-content">
+      <!-- simple visual diagram (fit nicely, no scroll) -->
+      <div class="triphasic-diagram">
+        <div class="phase-row phase1">
+          <span class="phase-label">Phase 1</span>
+          <div class="bar-container"><div class="bar-fill" style="width: 100%;">polyuria</div></div>
+          <span class="phase-desc">↓ ADH · 4–5 days</span>
+        </div>
+        <div class="phase-row phase2">
+          <span class="phase-label">Phase 2</span>
+          <div class="bar-container"><div class="bar-fill" style="width: 40%;">↑ ADH release</div></div>
+          <span class="phase-desc">SIADH risk · hyponatremia</span>
+        </div>
+        <div class="phase-row phase3">
+          <span class="phase-label">Phase 3</span>
+          <div class="bar-container"><div class="bar-fill" style="width: 75%;">perpetual polyuria</div></div>
+          <span class="phase-desc">if stores depleted · or recovery</span>
+        </div>
+      </div>
+      <p style="font-size:0.9rem; color: var(--di-muted); margin-top:0.4rem;">Most TBI patients gradually return to normal pituitary function; permanent DI in ~25% of ICU DI patients.</p>
+    </div>
+  </div>
+
+  <!-- 4. DETAILED COMPARISON TABLE (scrollable) -->
+  <div class="collapsible open" id="sec-table">
+    <div class="collapsible-header">
+      <span>📊 Mechanisms after pituitary surgery – diagnosis &amp; management</span>
+      <span class="icon">›</span>
+    </div>
+    <div class="collapsible-content">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Mechanism</th><th>Diagnosis</th><th>Management</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Central diabetes insipidus</strong><br>↓ vasopressin, ↓ aquaporin‑2</td>
+              <td>Maximally dilute urine · urine Na minimal · serum Na ↑ · serum osmolality ↑ · ADH minimal</td>
+              <td>DDAVP · vasopressin infusion · free water (NG or 5% dextrose IV)</td>
+            </tr>
+            <tr>
+              <td><strong>Cerebral salt wasting</strong><br>BNP‑mediated hypovolemic hyponatremia</td>
+              <td>Urine Na 20–40 mmol/L · serum Na ↓</td>
+              <td>Hypertonic saline · volume with sodium‑rich fluid (normal saline)</td>
+            </tr>
+            <tr>
+              <td><strong>Perioperative IV fluids</strong><br>iatrogenic overload, mobilisation after extubation</td>
+              <td>Stable serum Na · stable haemodynamics · low urine Na</td>
+              <td>Nil (observe)</td>
+            </tr>
+            <tr>
+              <td><strong>Osmotic diuresis</strong><br>mannitol</td>
+              <td>Urine osmolality ↑ · serum osmolality ↑ · osmolar gap ↑ · serum Na ↑</td>
+              <td>Isotonic fluid replacement</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.8rem; color: var(--di-muted);">Adapted from Prete et al. (2017) &amp; Hensen et al. (1999) via derangedphysiology.com</p>
+    </div>
+  </div>
+
+  <!-- 5. TRIVIAL CAUSES & SPECIFICS -->
+  <div class="collapsible" id="sec-trivial">
+    <div class="collapsible-header">
+      <span>🔍 Trivial causes &amp; specific diuresis types</span>
+      <span class="icon">›</span>
+    </div>
+    <div class="collapsible-content">
+      <h3>Mannitol diuresis</h3>
+      <p>Urine osmolality ↓ but not maximally dilute. Diuresis stops when mannitol ceases (unlike DI).</p>
+      <h3>Hypertensive diuresis</h3>
+      <p>Pressure natriuresis – increased renal perfusion pressure inhibits Na reabsorption. Seen when MAP transducer zeroed at Circle of Willis (sitting up → renal MAP 110–120).</p>
+      <h3>Hypothermic diuresis</h3>
+      <p>Non‑osmotic suppression of vasopressin; reversed by vasopressin analogues.</p>
+      <h3>Normal response to fluid loading</h3>
+      <p>Exclude if sodium keeps rising &gt;150 mmol/L with dilute urine, or diuresis persists after water deprivation.</p>
+      <h3>Hyperglycaemia</h3>
+      <p>Stress response or dexamethasone; osmotic diuresis.</p>
+      <h3>Cerebral salt wasting</h3>
+      <p>Natriuresis, hypovolemia, low serum osmolarity; BNP not fully explanatory.</p>
+      <h3>Nephrogenic DI</h3>
+      <p>In trauma, most common cause is pre‑injury alcohol (zero‑order clearance ~1 drink/hr).</p>
+    </div>
+  </div>
+
+  <!-- 6. RISKS & MORTALITY -->
+  <div class="collapsible" id="sec-risks">
+    <div class="collapsible-header">
+      <span>⚠️ Risks of hypernatremia &amp; DDAVP – key numbers</span>
+      <span class="icon">›</span>
+    </div>
+    <div class="collapsible-content">
+      <ul style="margin-left:1.2rem;">
+        <li><strong>Na⁺ &gt;160 mmol/L</strong> independently associated with ↑ mortality (OR ≈ 29)</li>
+        <li>DI early in course → higher mortality; all patients who died developed DI within first 3 days</li>
+        <li>Complications of severe hypernatremia: thrombosis, renal failure, rebound cerebral oedema, seizures, delirium</li>
+        <li>DDAVP‑associated hyponatremia case series (children, enuresis) – cerebral oedema</li>
+        <li>Aquaporin‑4 knockout mice show <em>less</em> oedema – theoretical harm of DDAVP</li>
+      </ul>
+      <p style="margin-top:0.6rem;"><span class="badge">Take home</span> Target Na⁺ &lt;155–160 mmol/L; use DDAVP judiciously, monitor Na⁺ closely.</p>
+    </div>
+  </div>
+
+  <!-- 7. SOURCE / CITATION -->
+  <div class="source-cite" style="margin-top:1.8rem;">
+    <span style="font-size:1.4rem;">📚</span>
+    <span><strong>Source:</strong> “Polyuria following traumatic brain injury” – Deranged Physiology (2015). 
+    <a href="https://derangedphysiology.com/main/required-reading/neurological-intensive-care/Chapter-119/polyuria-following-traumatic-brain-injury" target="_blank" rel="noopener">derangedphysiology.com</a> 
+    · Content summarised for quick reference; always consult original references.</span>
+  </div>
+  <div class="footnote">
+    Quick reference for anaesthetists &amp; intensivists · diabetes insipidus theme · search &amp; collapsible.
+  </div>
+</div>
+
+<script>
+  (function() {
+    // --- COLLAPSIBLE TOGGLE ---
+    const collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(coll => {
+      const header = coll.querySelector('.collapsible-header');
+      header.addEventListener('click', (e) => {
+        // avoid toggling when clicking a link inside header (none, but safety)
+        coll.classList.toggle('open');
+      });
+    });
+
+    // Expand / Collapse all
+    document.getElementById('expandAll').addEventListener('click', () => {
+      collapsibles.forEach(c => c.classList.add('open'));
+    });
+    document.getElementById('collapseAll').addEventListener('click', () => {
+      collapsibles.forEach(c => c.classList.remove('open'));
+    });
+
+    // --- FONT SIZE CONTROL ---
+    let currentFontSize = 16; // px
+    const fontSizeDisplay = document.getElementById('fontSizeDisplay');
+    const bodyEl = document.body;
+
+    function updateFontSize() {
+      bodyEl.style.fontSize = currentFontSize + 'px';
+      fontSizeDisplay.textContent = currentFontSize;
+    }
+
+    document.getElementById('fontIncrease').addEventListener('click', () => {
+      if (currentFontSize < 24) {
+        currentFontSize += 1;
+        updateFontSize();
+      }
+    });
+    document.getElementById('fontDecrease').addEventListener('click', () => {
+      if (currentFontSize > 12) {
+        currentFontSize -= 1;
+        updateFontSize();
+      }
+    });
+    // init display
+    updateFontSize();
+
+    // --- SEARCH WITH HIGHLIGHTING (safe, non‑destructive via mark) ---
+    const searchInput = document.getElementById('searchInput');
+    const searchCount = document.getElementById('searchCount');
+    const container = document.querySelector('.container');
+    let originalContentHTML = container.innerHTML; // store to restore later
+
+    // we only search inside text nodes to avoid breaking tags; we'll use a mark‑based approach
+    function clearHighlights() {
+      // remove all mark tags, restore text
+      const marks = container.querySelectorAll('mark');
+      marks.forEach(m => {
+        const parent = m.parentNode;
+        parent.replaceChild(document.createTextNode(m.textContent), m);
+        parent.normalize();
+      });
+      // Also remove extra spaces artifacts? not needed
+    }
+
+    // simple highlighter: walks text nodes inside .container (excluding script, style)
+    function highlightText(searchTerm) {
+      if (!searchTerm.trim()) {
+        clearHighlights();
+        searchCount.textContent = '';
+        return 0;
+      }
+      clearHighlights(); // start fresh
+
+      const term = searchTerm.trim().toLowerCase();
+      let count = 0;
+      const walker = document.createTreeWalker(
+        container,
+        NodeFilter.SHOW_TEXT,
+        {
+          acceptNode: function(node) {
+            // skip empty, script/style, and already inside mark
+            if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            const parent = node.parentNode;
+            if (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE' || parent.tagName === 'MARK') 
+              return NodeFilter.FILTER_REJECT;
+            // also skip if inside search input or toolbar? toolbar is inside container, but we skip input
+            if (parent.closest('.toolbar')) return NodeFilter.FILTER_REJECT; // don't highlight toolbar
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        },
+        false
+      );
+
+      const textNodes = [];
+      while (walker.nextNode()) {
+        textNodes.push(walker.currentNode);
+      }
+
+      textNodes.forEach(node => {
+        const text = node.nodeValue;
+        const lowerText = text.toLowerCase();
+        let startIndex = 0;
+        let index;
+        const fragments = [];
+        let lastIndex = 0;
+
+        while ((index = lowerText.indexOf(term, startIndex)) !== -1) {
+          if (index > lastIndex) {
+            fragments.push(document.createTextNode(text.slice(lastIndex, index)));
+          }
+          const mark = document.createElement('mark');
+          mark.textContent = text.slice(index, index + term.length);
+          fragments.push(mark);
+          count++;
+          lastIndex = index + term.length;
+          startIndex = lastIndex;
+        }
+        if (lastIndex < text.length) {
+          fragments.push(document.createTextNode(text.slice(lastIndex)));
+        }
+        if (fragments.length > 0) {
+          const parent = node.parentNode;
+          const fragmentContainer = document.createDocumentFragment();
+          fragments.forEach(f => fragmentContainer.appendChild(f));
+          parent.replaceChild(fragmentContainer, node);
+        }
+      });
+      searchCount.textContent = count > 0 ? count + ' match' + (count > 1 ? 'es' : '') : 'no matches';
+      return count;
+    }
+
+    // Debounce search
+    let searchTimeout;
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        const term = e.target.value;
+        if (!term.trim()) {
+          clearHighlights();
+          searchCount.textContent = '';
+          // restore original? we don't need, clearHighlights is enough
+        } else {
+          highlightText(term);
+        }
+      }, 200);
+    });
+
+    // reapply search after font change? No, it's fine, but clear marks may be lost if DOM changed. 
+    // But we never programmatically change innerHTML except via highlight/clear, so fine.
+    // When font size changes, the marks persist. Good.
+
+    // Ensure that if user collapses/expands, marks remain. That's fine.
+    // However, if someone clicks "expand all" and there are marks, they stay.
+
+    // optional: reset search when collapsing? Not needed.
+
+    // fix: clear highlights when input is emptied
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        clearHighlights();
+        searchCount.textContent = '';
+      }
+    });
+
+    // On load, start with all sections open, but we might want to keep first ones open.
+    // Already class open on main ones. Fine.
+
+  })();
+</script>
+</body>
+</html>
