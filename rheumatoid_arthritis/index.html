@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rheumatoid Arthritis — Anaesthesia &amp; Critical Care Quick Reference</title>
+<style>
+/* ============ THEME ============ */
+:root{
+  --fs: 17px;
+
+  --bg:#eef4f6;
+  --panel:#ffffff;
+  --ink:#14262c;
+  --ink-soft:#4a6470;
+  --line:#d5e3e8;
+
+  --primary:#0e5c72;
+  --primary-dark:#093f50;
+  --primary-soft:#e3f0f4;
+
+  --accent:#b35309;
+  --accent-soft:#fdf1e4;
+
+  --mark:#ffe08a;
+  --mark-cur:#ffab1f;
+
+  --danger:#a3341f;
+  --danger-soft:#fdecea;
+  --ok:#1c7a5a;
+  --ok-soft:#e6f4ee;
+
+  --radius:14px;
+  --shadow:0 1px 2px rgba(16,52,64,.06), 0 6px 18px rgba(16,52,64,.07);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ font-size: var(--fs); scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:1rem;
+  line-height:1.55;
+  background:
+     radial-gradient(1200px 500px at 80% -10%, #dceef3 0%, transparent 60%),
+     radial-gradient(900px 400px at -10% 10%, #e8f1f4 0%, transparent 55%),
+     var(--bg);
+  color:var(--ink);
+}
+h1,h2,h3,h4{ line-height:1.25; }
+p{ margin:.5rem 0; }
+ul,ol{ margin:.45rem 0 .6rem; padding-left:1.15rem; }
+li{ margin:.2rem 0; }
+strong{ color:#0b3b49; }
+code{ background:var(--primary-soft); padding:.05em .35em; border-radius:5px; font-size:.88em; }
+a{ color:var(--primary); }
+
+/* ============ HEADER ============ */
+.site-header{
+  position:sticky; top:0; z-index:60;
+  background:linear-gradient(135deg,var(--primary-dark) 0%, var(--primary) 65%, #14708a 100%);
+  color:#fff;
+  box-shadow:0 2px 16px rgba(9,63,80,.28);
+}
+.header-inner{
+  max-width:1120px; margin:0 auto; padding:.65rem 1rem;
+  display:flex; flex-wrap:wrap; gap:.6rem 1rem;
+  align-items:center; justify-content:space-between;
+}
+.brand{ display:flex; align-items:center; gap:.7rem; min-width:0; }
+.logo{
+  width:2.5rem; height:2.5rem; flex:none; border-radius:50%;
+  display:grid; place-items:center;
+  background:rgba(255,255,255,.14);
+  border:2px solid rgba(255,255,255,.55);
+  font-weight:800; font-size:.82rem; letter-spacing:.5px;
+}
+.brand h1{ font-size:1.18rem; margin:0; font-weight:700; letter-spacing:.2px; }
+.brand .sub{ margin:0; font-size:.74rem; opacity:.85; }
+
+.toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; }
+.search-wrap{
+  display:flex; align-items:center; gap:.15rem;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px; padding:.12rem .25rem .12rem .7rem;
+}
+.search-wrap input{
+  background:transparent; border:0; outline:0; color:#fff;
+  font:inherit; font-size:.85rem; padding:.3rem 0; width:min(44vw,290px);
+}
+.search-wrap input::placeholder{ color:rgba(255,255,255,.72); }
+.search-wrap input::-webkit-search-cancel-button{ filter:invert(1); opacity:.6; }
+.count{ font-size:.7rem; opacity:.9; white-space:nowrap; padding:0 .25rem; min-width:2.4rem; text-align:center; }
+
+.toolbar button{
+  font:inherit; font-size:.76rem; cursor:pointer;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.12);
+  color:#fff; border-radius:999px;
+  padding:.34rem .68rem;
+  transition:background .15s, transform .1s;
+  white-space:nowrap;
+}
+.toolbar button:hover{ background:rgba(255,255,255,.26); }
+.toolbar button:active{ transform:translateY(1px); }
+.btn-group{ display:flex; align-items:center; gap:.3rem; }
+#fontVal{ font-size:.72rem; opacity:.85; min-width:2.6rem; text-align:center; }
+
+/* ============ LAYOUT ============ */
+main{ max-width:1120px; margin:0 auto; padding:1.1rem 1rem 3.5rem; }
+
+/* ============ ACCORDION ============ */
+.acc{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  margin-bottom:.8rem;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.acc-head{
+  width:100%; display:flex; align-items:center; gap:.6rem;
+  justify-content:space-between;
+  background:transparent; border:0; color:var(--ink);
+  padding:.8rem 1rem; text-align:left;
+  font:inherit; font-size:1rem; font-weight:650; cursor:pointer;
+  transition:background .15s;
+}
+.acc-head:hover{ background:var(--primary-soft); }
+.acc.open > .acc-head{ border-bottom:1px solid var(--line); }
+.acc-title{ display:flex; align-items:center; gap:.6rem; min-width:0; }
+.num{
+  flex:none; width:1.55rem; height:1.55rem; border-radius:8px;
+  background:var(--primary); color:#fff;
+  display:grid; place-items:center; font-size:.76rem; font-weight:700;
+}
+.chev{
+  flex:none; width:.6rem; height:.6rem;
+  border-right:2px solid var(--primary);
+  border-bottom:2px solid var(--primary);
+  transform:rotate(-45deg); transition:transform .2s;
+  margin-right:.2rem;
+}
+.acc.open > .acc-head .chev{ transform:rotate(45deg); }
+.acc-body{ padding:.9rem 1rem 1.15rem; display:none; }
+.acc.open > .acc-body{ display:block; animation:fadeIn .22s ease; }
+@keyframes fadeIn{ from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:none;} }
+
+/* nested */
+.acc .acc{ box-shadow:none; background:#fbfdfe; border-radius:10px; margin:.55rem 0; }
+.acc .acc > .acc-head{ font-size:.9rem; padding:.6rem .8rem; }
+.acc .acc > .acc-body{ padding:.6rem .85rem .85rem; }
+.acc .acc .num{ width:1.3rem; height:1.3rem; font-size:.68rem; background:var(--accent); }
+
+/* ============ CONTENT BITS ============ */
+h3.sec{ font-size:.95rem; margin:1rem 0 .35rem; color:var(--primary); letter-spacing:.2px; }
+h3.sec:first-child{ margin-top:.2rem; }
+h4.sub{ font-size:.87rem; margin:.8rem 0 .25rem; color:var(--primary-dark); }
+
+.callout{
+  border-left:4px solid var(--accent);
+  background:var(--accent-soft);
+  padding:.6rem .85rem; border-radius:0 10px 10px 0; margin:.7rem 0;
+  font-size:.9rem;
+}
+.callout.key{ border-left-color:var(--primary); background:var(--primary-soft); }
+.callout.danger{ border-left-color:var(--danger); background:var(--danger-soft); }
+.callout.ok{ border-left-color:var(--ok); background:var(--ok-soft); }
+.callout p:first-child{ margin-top:0; }
+.callout p:last-child{ margin-bottom:0; }
+.callout .ttl{ font-weight:700; display:block; margin-bottom:.15rem; }
+
+.pill{
+  display:inline-block; font-size:.7rem; font-weight:700;
+  padding:.1rem .45rem; border-radius:999px;
+  background:var(--primary-soft); color:var(--primary);
+  border:1px solid #c4dde5; margin-right:.25rem;
+}
+.pill.warn{ background:var(--danger-soft); color:var(--danger); border-color:#f0c9c2; }
+.pill.acc2{ background:var(--accent-soft); color:var(--accent); border-color:#f0d5b4; }
+
+/* key points grid */
+.kp-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:.6rem; margin-top:.5rem; }
+.kp{
+  background:linear-gradient(180deg,#ffffff,#f4fafc);
+  border:1px solid var(--line); border-left:4px solid var(--primary);
+  border-radius:10px; padding:.6rem .75rem; font-size:.85rem;
+}
+.kp b{ display:block; color:var(--primary); font-size:.78rem; text-transform:uppercase; letter-spacing:.4px; margin-bottom:.15rem; }
+
+/* ============ TABLES ============ */
+.table-wrap{
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  border:1px solid var(--line); border-radius:10px;
+  margin:.65rem 0; background:#fff;
+}
+.table-wrap::-webkit-scrollbar{ height:9px; }
+.table-wrap::-webkit-scrollbar-thumb{ background:#bcd3db; border-radius:99px; }
+.table-wrap::-webkit-scrollbar-track{ background:#eef4f6; }
+table{ border-collapse:collapse; width:100%; min-width:640px; font-size:.83rem; }
+th,td{ padding:.5rem .65rem; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); }
+thead th{ background:var(--primary); color:#fff; font-weight:600; font-size:.8rem; letter-spacing:.2px; }
+tbody tr:nth-child(even){ background:#f7fbfc; }
+tbody tr:hover{ background:var(--primary-soft); }
+tbody tr:last-child td{ border-bottom:0; }
+td.k{ font-weight:650; color:var(--primary-dark); white-space:nowrap; }
+
+/* ============ FIGURE ============ */
+.figure{ margin:.8rem 0; }
+.figure svg{
+  width:100%; height:auto; display:block;
+  background:#fbfdfe; border:1px solid var(--line);
+  border-radius:12px; padding:.35rem;
+}
+.fig-title{ font-size:13px; font-weight:700; fill:#0e5c72; font-family:inherit; }
+.fig-lab{ font-size:12px; fill:#4a6470; font-family:inherit; }
+.fig-val{ font-size:13px; font-weight:700; fill:#b35309; font-family:inherit; }
+.fig-ref{ stroke:#9fb6bf; stroke-width:1.2; stroke-dasharray:4 3; }
+.fig-cap{ font-size:.79rem; color:var(--ink-soft); margin-top:.4rem; line-height:1.45; }
+.legend{ display:flex; flex-wrap:wrap; gap:.4rem .9rem; font-size:.76rem; color:var(--ink-soft); margin-top:.35rem; }
+.legend span{ display:inline-flex; align-items:center; gap:.3rem; }
+.swatch{ width:.85rem; height:.85rem; border-radius:4px; display:inline-block; border:1px solid #8aa7b2; background:#cfdde3; }
+.swatch.acc{ background:#b35309; border-color:#8a3f06; }
+
+/* ============ PATHO ANIMATION ============ */
+.patho{ margin:.7rem 0 .2rem; }
+.patho-track{ display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:.55rem; }
+.patho-step{
+  position:relative; border:1.5px solid var(--line); background:#fff;
+  border-radius:12px; padding:.65rem .65rem .65rem 2.25rem;
+  transition:border-color .35s, background .35s, box-shadow .35s, transform .35s;
+}
+.patho-step .dot{
+  position:absolute; left:.55rem; top:.6rem;
+  width:1.15rem; height:1.15rem; border-radius:50%;
+  background:var(--primary-soft); color:var(--primary);
+  font-size:.68rem; font-weight:800; display:grid; place-items:center;
+  transition:background .3s,color .3s;
+}
+.patho-step h4{ margin:0 0 .15rem; font-size:.82rem; color:var(--primary-dark); }
+.patho-step p{ margin:0; font-size:.72rem; color:var(--ink-soft); line-height:1.38; }
+.patho-step.active{
+  border-color:var(--primary); background:var(--primary-soft);
+  box-shadow:0 0 0 3px rgba(14,92,114,.13); transform:translateY(-2px);
+}
+.patho-step.active .dot{ background:var(--primary); color:#fff; }
+.patho-step.done{ border-color:#bcd8e0; }
+.patho-bar{ height:5px; background:#dbe8ed; border-radius:99px; margin-top:.75rem; overflow:hidden; }
+.patho-bar span{
+  display:block; height:100%; width:20%; border-radius:99px;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  transition:width .5s ease;
+}
+.patho-caption{
+  font-size:.82rem; color:var(--ink-soft); margin:.6rem 0 0;
+  min-height:2.6em; border-left:3px solid var(--accent);
+  padding-left:.6rem;
+}
+
+/* ============ SEARCH HIGHLIGHT ============ */
+mark.hit{
+  background:var(--mark); color:inherit;
+  border-radius:3px; padding:0 .08em;
+  box-shadow:0 0 0 1px rgba(180,120,0,.25);
+}
+mark.hit.current{
+  background:var(--mark-cur);
+  box-shadow:0 0 0 2px rgba(255,120,0,.55);
+}
+
+/* ============ MCQ ============ */
+.qa-q{ font-size:.88rem; margin:.5rem 0 .2rem; font-weight:600; }
+.qa-opts{ list-style:none; padding-left:0; font-size:.84rem; margin:.25rem 0 .4rem; }
+.qa-opts li{ padding:.18rem 0; }
+.qa-opts li b{ color:var(--primary); display:inline-block; width:1.1rem; }
+.answer{ font-size:.84rem; }
+
+/* ============ FOOTER / SOURCES ============ */
+.source{
+  background:#fff; border:1px solid var(--line); border-left:4px solid var(--accent);
+  border-radius:10px; padding:.65rem .8rem; margin:.55rem 0; font-size:.83rem;
+}
+.source b{ display:block; color:var(--primary-dark); }
+.source .meta{ color:var(--ink-soft); font-size:.78rem; }
+.footnote{
+  text-align:center; font-size:.75rem; color:var(--ink-soft);
+  padding:1.2rem 1rem 2rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:640px){
+  .brand h1{ font-size:1rem; }
+  .brand .sub{ font-size:.68rem; }
+  .search-wrap input{ width:52vw; }
+  .acc-head{ font-size:.92rem; padding:.7rem .75rem; }
+  .acc-body{ padding:.75rem .7rem 1rem; }
+  .table-wrap table{ min-width:560px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">RA</span>
+      <div>
+        <h1>Rheumatoid Arthritis — Anaesthesia &amp; Critical Care</h1>
+        <p class="sub">Quick reference · merged from ATOTW 266, ATOTW 267 &amp; CEACCP (Fombon &amp; Thompson)</p>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="Search…  e.g. atlanto, cricoarytenoid, steroid" autocomplete="off" spellcheck="false" aria-label="Search the reference">
+        <span class="count" id="searchCount"></span>
+        <button id="prevHit" title="Previous match (Shift+↑)" aria-label="Previous match">↑</button>
+        <button id="nextHit" title="Next match (Enter)" aria-label="Next match">↓</button>
+      </div>
+
+      <div class="btn-group">
+        <button id="expandAll" title="Expand every section">Expand all</button>
+        <button id="collapseAll" title="Collapse every section">Collapse all</button>
+      </div>
+
+      <div class="btn-group">
+        <button id="fontDown" title="Decrease text size">A−</button>
+        <span id="fontVal">100%</span>
+        <button id="fontUp" title="Increase text size">A+</button>
+        <button id="fontReset" title="Reset text size">↺</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+
+  <!-- ============ AT A GLANCE ============ -->
+  <section class="acc open">
+    <button class="acc-head" aria-expanded="true">
+      <span class="acc-title"><span class="num">★</span> At a glance — the 60-second brief</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+      <div class="kp-grid">
+        <div class="kp"><b>Disease</b>Chronic systemic inflammatory disorder; 1–2% of the population; F:M 3:1; peak onset 30–55 y.</div>
+        <div class="kp"><b>Airway first</b>Atlanto-axial subluxation in ~25% — may be completely asymptomatic. Assess neck flexion/extension and document it.</div>
+        <div class="kp"><b>Hoarse voice</b>Assume cricoarytenoid arthritis. Avoid tracheal intubation; use a supraglottic device. Post-extubation oedema can obstruct.</div>
+        <div class="kp"><b>Regional first</b>Neuraxial/peripheral blocks avoid airway manipulation, give good analgesia and reduce polypharmacy — but may be technically hard.</div>
+        <div class="kp"><b>Steroids</b>&gt;10 mg/day prednisolone needs perioperative cover. Assume HPA suppression if stopped &lt;3 months ago.</div>
+        <div class="kp"><b>Positioning</b>Fragile skin, stiff joints, osteoporotic bone — pad meticulously, support the neck, avoid hypotension.</div>
+      </div>
+
+      <div class="callout key">
+        <span class="ttl">The single most important message</span>
+        Every long-term RA patient should be assumed to have cervical spine involvement until proven otherwise. Avoid neck movement beyond the documented range, avoid the classical "sniffing" position, and consider awake fibreoptic intubation when instability is known or suspected.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 1. PATHOPHYSIOLOGY ============ -->
+  <section class="acc open">
+    <button class="acc-head" aria-expanded="true">
+      <span class="acc-title"><span class="num">1</span> Pathophysiology — animated overview</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <p><strong>Rheumatoid arthritis (RA)</strong> is an autoimmune, chronic systemic inflammatory disorder characterised by deforming, symmetrical polyarthritis of varying extent and severity, associated with synovitis of joint and tendon sheaths, loss of articular cartilage and erosion of juxta-articular bone. It is a multi-system disorder that may affect the function of other organ systems.</p>
+
+      <div class="patho" aria-label="Animated pathophysiology of rheumatoid arthritis">
+        <div class="patho-track">
+          <div class="patho-step" data-step="0">
+            <span class="dot">1</span>
+            <h4>Susceptibility</h4>
+            <p>HLA-DR4 (~70%), female sex, family history, smoking, altered gut flora, stress</p>
+          </div>
+          <div class="patho-step" data-step="1">
+            <span class="dot">2</span>
+            <h4>Trigger</h4>
+            <p>Abnormal immune response to an unidentified viral / bacterial / environmental agent</p>
+          </div>
+          <div class="patho-step" data-step="2">
+            <span class="dot">3</span>
+            <h4>Synovitis</h4>
+            <p>T cells, B cells &amp; macrophages release TNF-α, IL-1, IL-6 → proliferation, effusion, pain</p>
+          </div>
+          <div class="patho-step" data-step="3">
+            <span class="dot">4</span>
+            <h4>Pannus &amp; erosion</h4>
+            <p>Invasive synovium erodes cartilage and juxta-articular bone; transverse ligament attenuates, odontoid peg erodes</p>
+          </div>
+          <div class="patho-step" data-step="4">
+            <span class="dot">5</span>
+            <h4>Systemic impact</h4>
+            <p>Atlanto-axial instability, cricoarytenoid arthritis, restrictive lung disease, anaemia, cardiac &amp; renal disease, immunosuppression</p>
+          </div>
+        </div>
+        <div class="patho-bar"><span id="pathoBar"></span></div>
+        <p class="patho-caption" id="pathoCaption">Loading…</p>
+      </div>
+
+      <div class="callout">
+        <span class="ttl">Why this matters to the anaesthetist</span>
+        The same inflammatory process that destroys peripheral joints also attacks the <strong>cricoarytenoid joints</strong> (airway obstruction), the <strong>transverse ligament and odontoid peg</strong> (atlanto-axial instability), the <strong>temporomandibular joint</strong> (limited mouth opening) and the <strong>lungs, heart, kidneys and bone marrow</strong> (reduced reserve).
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. EPIDEMIOLOGY & AETIOLOGY ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">2</span> Epidemiology &amp; aetiology</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+      <ul>
+        <li><strong>Prevalence:</strong> 0.5–1.5% worldwide; ~1–2% of the UK population. Higher in Northern European and North American populations.</li>
+        <li><strong>Incidence:</strong> 1.5 men and 3.6 women per 10,000 people per year.</li>
+        <li><strong>Sex:</strong> three times more common in women than men.</li>
+        <li><strong>Peak onset:</strong> 30–55 years.</li>
+        <li><strong>Genetics:</strong> approximately 70% of cases are associated with the <strong>HLA-DR4</strong> subtype.</li>
+        <li><strong>Serology:</strong> ~80% are sero-positive for rheumatoid factor (compared with 5–10% of the general population).</li>
+        <li><strong>Environmental:</strong> as yet unidentified viral or bacterial agents are thought to play a role.</li>
+        <li><strong>Other risk factors:</strong> female gender, family history of RA, food allergies and intolerances, altered gut flora, psychological stress, exposure to heavy metals, cigarette smoking.</li>
+      </ul>
+
+      <div class="callout key">
+        <span class="ttl">Key numbers to remember</span>
+        <strong>70%</strong> HLA-DR4 · <strong>80%</strong> rheumatoid factor positive · <strong>25%</strong> atlanto-axial instability · <strong>&gt;50%</strong> extra-articular manifestations · <strong>10%</strong> severe disability from repeated exacerbations.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. CLINICAL FEATURES ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">3</span> Clinical features &amp; extra-articular manifestations</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <h3 class="sec">Musculoskeletal</h3>
+      <ul>
+        <li>Persistent, painful joint swelling with <strong>morning stiffness</strong> (worst in the morning, improving with activity); joint involvement is often <strong>symmetrical</strong>.</li>
+        <li>Commonly affected: wrists, fingers, neck, shoulders, elbows, hips, knees, ankles and feet.</li>
+        <li>Signs: soft tissue swelling, raised temperature, tenderness on pressure or movement, limitation of movement, and later deformities and nodules.</li>
+        <li>A prodrome of fatigue and generalised weakness may precede the acute inflammation. Exacerbations may be associated with fever and lymphadenopathy.</li>
+        <li>Repeated exacerbations lead to progressive joint damage and severe disability in <strong>10%</strong> of patients.</li>
+      </ul>
+
+      <h3 class="sec">Axial skeleton</h3>
+      <p>Axial skeleton involvement is <strong>common and often asymptomatic</strong>. This has major consequences for airway management and should be looked for in all long-term RA patients. See Section 5.</p>
+
+      <h3 class="sec">Extra-articular manifestations (&gt;50% of patients)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>System</th><th>Manifestations</th><th>Anaesthetic relevance</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="k">Cardiovascular</td>
+              <td>Pericardial effusions, pericarditis, cardiac tamponade; myocarditis, endocarditis, valve disease, left ventricular failure; increased atherosclerosis and coronary heart disease; peripheral vasculitis and Raynaud's phenomenon; prothrombotic state.</td>
+              <td>Avoid hypotension and maintain spinal cord perfusion; thromboprophylaxis; echocardiography for diastolic dysfunction, LVH and valvular disease.</td>
+            </tr>
+            <tr>
+              <td class="k">Respiratory</td>
+              <td>Restrictive defect (fibrosing alveolitis, costochondral disease limiting chest wall movement); rheumatoid nodules; pleural effusions.</td>
+              <td>Low threshold for chest radiograph, ABG and lung function tests. Increased risk of postoperative respiratory failure — early physiotherapy.</td>
+            </tr>
+            <tr>
+              <td class="k">Haematological</td>
+              <td>Normocytic normochromic anaemia (chronic disease); iron deficiency anaemia (peptic ulceration and bleeding secondary to drugs); bone marrow depression (drugs).</td>
+              <td>Full blood count; cross-match; anticipate increased red-cell transfusion requirement.</td>
+            </tr>
+            <tr>
+              <td class="k">Renal &amp; hepatic</td>
+              <td>Chronic renal failure from drug treatment (~25%); hepatomegaly, splenomegaly, amyloidosis; increased serum fibrinogen and α1-acid glycoprotein; decreased serum albumin; Felty's syndrome (RA + splenomegaly + neutropenia).</td>
+              <td>Drug dosing; monitor renal function and perioperative fluid shifts carefully.</td>
+            </tr>
+            <tr>
+              <td class="k">Neurological</td>
+              <td>Peripheral neuropathy; autonomic dysfunction; carpal tunnel syndrome.</td>
+              <td>Document any preoperative neurological deficit; meticulous positioning.</td>
+            </tr>
+            <tr>
+              <td class="k">Eyes / Sjögren's</td>
+              <td>Keratoconjunctivitis sicca (dry eyes), dry mouth; generalised dryness in secondary Sjögren's syndrome.</td>
+              <td>Methylcellulose eye drops and eye protection — up to 15% have keratoconjunctivitis sicca and are at risk of corneal ulceration.</td>
+            </tr>
+            <tr>
+              <td class="k">Miscellaneous</td>
+              <td>Rheumatoid cachexia; weight loss; depression; disability.</td>
+              <td>Poor muscle bulk may indicate myopathy with impaired respiratory muscle function — consider postoperative mechanical ventilation. Cachexia indicates poorly controlled disease and increased long-term cardiovascular risk.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Diagnosis (for context)</h3>
+      <ul>
+        <li>Mainly clinical, confirmed with laboratory tests for autoantibodies and elevated inflammatory markers.</li>
+        <li>Plain radiography: periarticular soft tissue swelling, joint space narrowing, erosions, osteopenia.</li>
+        <li>Ultrasound and MRI demonstrate early disease.</li>
+        <li>Anti-cyclic citrullinated peptide antibodies (anti-CCP / ACPA) are now used to diagnose early disease.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 4. AIRWAY / CRICOARYTENOID ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">4</span> The airway &amp; cricoarytenoid involvement</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <div class="callout danger">
+        <span class="ttl">Red flag — hoarseness in a long-standing RA patient</span>
+        Treat as <strong>cricoarytenoid arthritis</strong> until proven otherwise. It is variable in frequency, often unrecognised, and is a cause of postoperative airway obstruction and death.
+      </div>
+
+      <h3 class="sec">Cricoarytenoid arthritis</h3>
+      <ul>
+        <li>Joint <em>and</em> soft tissue swelling cause laryngeal <strong>stenosis</strong>.</li>
+        <li>Symptoms: <strong>hoarseness</strong>, <strong>stridor</strong>, a sense of pharyngeal fullness when speaking and swallowing, dysphagia, <strong>dyspnoea</strong>, and occasionally severe upper airway obstruction.</li>
+        <li>Laryngeal amyloidosis and rheumatoid nodules may also cause obstruction of the larynx.</li>
+        <li>Assessment: <strong>fibreoptic nasopharyngoscopy</strong> (indicated for hoarseness) combined with CT imaging.</li>
+      </ul>
+
+      <h3 class="sec">Temporomandibular joint (TMJ)</h3>
+      <ul>
+        <li>TMJ involvement causes limitation of mouth opening, which may render direct laryngoscopy <strong>impossible</strong>.</li>
+        <li>Assess preoperatively with the Mallampati score, mouth opening and mandibular protrusion.</li>
+      </ul>
+
+      <h3 class="sec">Practical management of suspected cricoarytenoid involvement</h3>
+      <ol>
+        <li><strong>Avoid endotracheal intubation</strong> in favour of supraglottic airway devices (LMA and similar).</li>
+        <li>If intubation is essential, use the <strong>smallest internal diameter tracheal tube</strong> possible.</li>
+        <li>Problems occur at <strong>extubation</strong> — oedema combined with an already narrow airway can cause complete obstruction, sometimes several hours postoperatively.</li>
+        <li>Consider an <strong>airway exchange catheter</strong> at extubation.</li>
+        <li>Observe in a <strong>high-dependency area</strong> for some time after extubation.</li>
+        <li>In severe cases a <strong>preoperative tracheostomy</strong> may be required.</li>
+      </ol>
+
+      <div class="callout">
+        <span class="ttl">Also remember</span>
+        Previously asymptomatic cricoarytenoid arthritis may cause airway obstruction postoperatively purely as a result of the additional oedema caused by tracheal intubation. This may necessitate reintubation or, in some cases, a tracheostomy.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. CERVICAL SPINE ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">5</span> Cervical spine &amp; atlanto-axial subluxation (AAS)</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <p>The atlanto-axial joint is commonly affected in RA because of <strong>attenuation of the transverse ligament</strong> and <strong>erosion of the odontoid peg (dens)</strong>. This causes atlanto-axial instability in about <strong>25%</strong> of patients. The risk increases over time and is greater in patients with severe disease and in those who are seropositive.</p>
+
+      <div class="callout danger">
+        <span class="ttl">Danger</span>
+        Acute atlanto-axial subluxation may cause <strong>spinal cord compression</strong> or compression of the <strong>vertebral arteries</strong>, leading to quadriparesis or sudden death. Patients may be entirely asymptomatic.
+      </div>
+
+      <h3 class="sec">Symptoms that should prompt imaging</h3>
+      <ul>
+        <li>Neck or occipital pain (the earliest and most common symptom).</li>
+        <li>Radicular symptoms — paraesthesia to shoulders and arms with head movement.</li>
+        <li>Painless sensory loss in the hands.</li>
+        <li>Any preoperative neurological deficit (document it).</li>
+      </ul>
+
+      <h3 class="sec">Subtypes of atlanto-axial subluxation</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Subtype</th><th>Frequency</th><th>Mechanism</th><th>Worsened by</th><th>Anaesthetic implication</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="k">Anterior</td>
+              <td>Up to 80%</td>
+              <td>C1 moves forward on C2 as a result of destruction of the transverse ligament; risk of cord compression by the odontoid peg.</td>
+              <td><strong>Neck flexion</strong></td>
+              <td>Direct laryngoscopy is usually well tolerated. Subluxation is worsened by the head moving anteriorly while the upper cervical spine remains static (e.g. a pillow behind the head).</td>
+            </tr>
+            <tr>
+              <td class="k">Posterior</td>
+              <td>~5%</td>
+              <td>Destruction of the odontoid peg causes backward movement of C1 on C2.</td>
+              <td><strong>Neck extension</strong></td>
+              <td>Risk of cord compression during C1/C2 extension — which occurs during direct laryngoscopy. <strong>Avoid direct laryngoscopy.</strong></td>
+            </tr>
+            <tr>
+              <td class="k">Vertical</td>
+              <td>10–20%</td>
+              <td>Destruction of the lateral mass of C1 allows the odontoid peg to sublux through the foramen magnum, compressing the cervico-medullary junction.</td>
+              <td>Extension</td>
+              <td>High risk. Avoid extension; consider AFOI or tracheostomy under local anaesthesia.</td>
+            </tr>
+            <tr>
+              <td class="k">Lateral / rotatory</td>
+              <td>—</td>
+              <td>Degenerative changes in the C1/C2 facet joints.</td>
+              <td>Rotation</td>
+              <td>Spinal nerve and vertebral artery compression.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Subaxial subluxation</strong> is uncommon and occurs below C2. It leads to earlier symptoms of nerve compression. <strong>Ankylosis</strong> of the cervical spine may lead to a fixed flexion deformity of the neck, and osteoporosis may be worsened by the regular use of steroids.</p>
+
+      <h3 class="sec">Diagnosis</h3>
+      <ul>
+        <li>If AAS is suspected, <strong>plain X-rays of the neck in flexion and extension</strong> are often diagnostic.</li>
+        <li><strong>Subluxation exists when the distance between the atlas and the odontoid peg exceeds 4 mm in patients older than 44 years and 3 mm in younger patients.</strong> (The atlanto-dental interval / AADI.)</li>
+        <li>A flexion/extension <strong>CT or MRI</strong> should be considered if symptoms are associated with severe pain, if neurological signs are present, or if significant abnormality is noted on plain X-ray.</li>
+        <li><strong>MRI</strong> is more accurate than X-ray for demonstrating nerves and soft tissues of the cervical spine; cord compression, spinal canal involvement and the position of the odontoid peg in relation to the medulla and brainstem are best seen with MRI. MRI may not be available if surgery is urgent.</li>
+        <li>There are no published evidence-based guidelines or general consensus on obtaining cervical spine X-rays before surgery in asymptomatic patients, but it may be prudent in long-term patients with severe disease.</li>
+        <li><strong>In an emergency, or in an unconscious patient with known RA where flexion/extension views are impractical, regard the rheumatoid cervical spine as unstable and treat it accordingly.</strong></li>
+      </ul>
+
+      <!-- ===== FIGURE ===== -->
+      <figure class="figure">
+        <svg viewBox="0 0 720 300" role="img" aria-labelledby="figTitle figDesc">
+          <title id="figTitle">Schematic of anterior atlanto-axial subluxation in extension and flexion</title>
+          <desc id="figDesc">Side-by-side schematic of the C1 atlas ring and the C2 axis with the odontoid peg. In extension the anterior arch of the atlas lies close to the dens, giving a normal atlanto-dental interval. In flexion the atlas has moved anteriorly, widening the gap to about 13 mm.</desc>
+
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="10" refY="5"
+                    markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse"
+                    orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#b35309"/>
+            </marker>
+          </defs>
+
+          <!-- ================= PANEL A : EXTENSION ================= -->
+          <g transform="translate(20,30)">
+            <text class="fig-title" x="0" y="-8">A — Extension (normal relationship)</text>
+
+            <!-- C2 + dens -->
+            <rect x="110" y="145" width="118" height="80" rx="12" fill="#cfdde3" stroke="#8aa7b2" stroke-width="1.5"/>
+            <rect x="115" y="40" width="26" height="115" rx="10" fill="#cfdde3" stroke="#8aa7b2" stroke-width="1.5"/>
+
+            <!-- C1 atlas (shifted +18 = posterior / apposed) -->
+            <g transform="translate(18,0)">
+              <ellipse cx="143" cy="95" rx="62" ry="27" fill="none" stroke="#b9ced7" stroke-width="12"/>
+            </g>
+
+            <!-- measurement annotation -->
+            <line class="fig-ref" x1="105" y1="95" x2="105" y2="18"/>
+            <line class="fig-ref" x1="115" y1="95" x2="115" y2="18"/>
+            <line x1="105" y1="30" x2="115" y2="30" stroke="#b35309" stroke-width="2"
+                  marker-start="url(#ah)" marker-end="url(#ah)"/>
+            <text class="fig-val" x="110" y="14" text-anchor="middle">≤ 3–4 mm</text>
+
+            <text class="fig-lab" x="238" y="100">C1</text>
+            <text class="fig-lab" x="238" y="190">C2</text>
+            <text class="fig-lab" x="146" y="60">dens</text>
+          </g>
+
+          <!-- ================= PANEL B : FLEXION ================= -->
+          <g transform="translate(380,30)">
+            <text class="fig-title" x="0" y="-8">B — Flexion (anterior AAS)</text>
+
+            <!-- C2 + dens (identical position) -->
+            <rect x="110" y="145" width="118" height="80" rx="12" fill="#cfdde3" stroke="#8aa7b2" stroke-width="1.5"/>
+            <rect x="115" y="40" width="26" height="115" rx="10" fill="#cfdde3" stroke="#8aa7b2" stroke-width="1.5"/>
+
+            <!-- C1 atlas (no shift = moved anteriorly) -->
+            <ellipse cx="143" cy="95" rx="62" ry="27" fill="none" stroke="#b9ced7" stroke-width="12"/>
+
+            <!-- measurement annotation -->
+            <line class="fig-ref" x1="87" y1="95" x2="87" y2="18"/>
+            <line class="fig-ref" x1="115" y1="95" x2="115" y2="18"/>
+            <line x1="87" y1="30" x2="115" y2="30" stroke="#b35309" stroke-width="2.4"
+                  marker-start="url(#ah)" marker-end="url(#ah)"/>
+            <text class="fig-val" x="101" y="14" text-anchor="middle">13 mm</text>
+
+            <!-- displacement arrow -->
+            <path d="M175,72 C150,52 120,52 96,68" fill="none" stroke="#a3341f"
+                  stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+            <text class="fig-lab" x="150" y="42" fill="#a3341f">C1 slides forward on flexion</text>
+
+            <text class="fig-lab" x="238" y="100">C1</text>
+            <text class="fig-lab" x="238" y="190">C2</text>
+            <text class="fig-lab" x="146" y="60">dens</text>
+          </g>
+        </svg>
+
+        <div class="legend">
+          <span><i class="swatch"></i> Bone (atlas, axis, odontoid peg)</span>
+          <span><i class="swatch acc"></i> Atlanto-dental interval (AADI)</span>
+          <span>Panel A: extension · Panel B: flexion</span>
+        </div>
+
+        <figcaption class="fig-cap">
+          <strong>Simplified schematic</strong> (not to scale) based on the cervical spine radiographs in the source articles. In anterior atlanto-axial subluxation the C1 atlas slides anteriorly on the C2 axis during <strong>flexion</strong>, widening the atlanto-dental interval; the odontoid peg can then compress the spinal cord. An AADI &gt; 4 mm (patients &gt; 44 years) or &gt; 3 mm (younger patients) indicates subluxation.
+        </figcaption>
+      </figure>
+
+      <div class="callout key">
+        <span class="ttl">Positioning pearl</span>
+        For anterior AAS, the subluxation is worsened by the head moving anteriorly while the upper cervical spine remains static — exactly what happens when a pillow is placed behind the head. The best choice for rheumatoid patients is a <strong>doughnut head ring with a hole large enough to accommodate the occiput</strong>: it supports the cervical spine without allowing anterior movement of the head.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. DRUG THERAPY ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">6</span> Drug therapy &amp; perioperative implications</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <p>The main groups of drugs used in RA are those giving <strong>symptomatic relief</strong> (NSAIDs, COX-2 inhibitors, paracetamol, corticosteroids, opioids), the <strong>disease-modifying anti-rheumatic drugs (DMARDs)</strong>, and the <strong>biological / anti-cytokine agents</strong>.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Drug</th><th>Mechanism</th><th>Adverse effects relevant to anaesthesia</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="k">Corticosteroids<br><span class="pill">symptom relief</span></td>
+              <td>Anti-inflammatory, immunosuppressive</td>
+              <td>Hypertension, electrolyte imbalance, diabetes, obesity, peptic ulcer disease, fragile skin, adrenal suppression.</td>
+            </tr>
+            <tr>
+              <td class="k">NSAIDs (non-selective &amp; COX-2)<br><span class="pill">symptom relief</span></td>
+              <td>Prostaglandin synthesis inhibition</td>
+              <td>Heart failure, hypertension, gastric bleeding and ulceration, nephrotoxicity, fluid retention, increased perioperative bleeding. Chronic NSAID use has <em>not</em> been shown to increase the risk of epidural/spinal haematoma.</td>
+            </tr>
+            <tr>
+              <td class="k">Paracetamol<br><span class="pill">symptom relief</span></td>
+              <td>Central analgesic / antipyretic</td>
+              <td>Hepatotoxicity in overdose. Useful as part of multimodal analgesia.</td>
+            </tr>
+            <tr>
+              <td class="k">Methotrexate<br><span class="pill acc2">DMARD</span></td>
+              <td>Antimetabolite, folate poison</td>
+              <td>Gastrointestinal toxicity, interstitial lung disease, liver toxicity, immunosuppression and increased infection risk. Interactions: trimethoprim and other sulphonamide-based medications may displace methotrexate from binding sites and increase toxicity. <strong>Can be continued perioperatively</strong> without impaired wound healing or a substantially raised risk of perioperative infection.</td>
+            </tr>
+            <tr>
+              <td class="k">Sulfasalazine<br><span class="pill acc2">DMARD</span></td>
+              <td>Immunomodulation</td>
+              <td>Neutropenia, thrombocytopenia, aplastic anaemia, fibrosing alveolitis, Stevens–Johnson syndrome.</td>
+            </tr>
+            <tr>
+              <td class="k">Hydroxychloroquine / chloroquine<br><span class="pill acc2">DMARD</span></td>
+              <td>Blocks toll-like receptors on dendritic cells</td>
+              <td>Ocular toxicity (retinopathy), neuropathy, cardiomyopathy.</td>
+            </tr>
+            <tr>
+              <td class="k">Azathioprine<br><span class="pill acc2">DMARD</span></td>
+              <td>Anti-proliferative; inhibits purine synthesis</td>
+              <td>Cholestatic hepatitis, bone marrow suppression. A proportion of the population are slow acetylators and are prone to toxicity; pancreatitis.</td>
+            </tr>
+            <tr>
+              <td class="k">Ciclosporin<br><span class="pill acc2">DMARD</span></td>
+              <td>Calcineurin inhibitor; prevents IL-2 action</td>
+              <td>Nephrotoxicity, hypertension, tremor.</td>
+            </tr>
+            <tr>
+              <td class="k">Gold salts<br><span class="pill acc2">DMARD</span></td>
+              <td>Poorly understood immunomodulation</td>
+              <td>Thrombocytopenia, bone marrow suppression, pulmonary fibrosis, hepatotoxicity, nephrotic syndrome, glomerulonephritis.</td>
+            </tr>
+            <tr>
+              <td class="k">Penicillamine<br><span class="pill acc2">DMARD</span></td>
+              <td>Immunomodulation</td>
+              <td>Bone marrow suppression, haemolytic anaemia, nephrotic syndrome, myasthenia-like syndrome.</td>
+            </tr>
+            <tr>
+              <td class="k">Leflunomide<br><span class="pill acc2">DMARD</span></td>
+              <td>Anti-proliferative; inhibits pyrimidine synthesis</td>
+              <td>Liver toxicity; extensive hepatocentric recirculation.</td>
+            </tr>
+            <tr>
+              <td class="k">Anakinra<br><span class="pill warn">biologic</span></td>
+              <td>IL-1 receptor antagonist; reduces IL-1 signalling</td>
+              <td>Pneumonia, flu-like symptoms, blood disorders.</td>
+            </tr>
+            <tr>
+              <td class="k">Anti-TNF agents — 1st line<br><em>infliximab, adalimumab, etanercept, certolizumab, golimumab</em><br><span class="pill warn">biologic</span></td>
+              <td>Anti-TNF-α monoclonal antibodies / receptor fusion</td>
+              <td>Risk of serious infections; <strong>reactivation of tuberculosis</strong> (including extrapulmonary) and hepatitis B; increased incidence of lymphoma, congestive cardiac failure and surgical site infections.</td>
+            </tr>
+            <tr>
+              <td class="k">2nd-line biologics<br><em>abatacept, tocilizumab, rituximab</em><br><span class="pill warn">biologic</span></td>
+              <td>Anti-interleukins, anti-CD20 monoclonal antibody</td>
+              <td>Same as first-line biological agents.</td>
+            </tr>
+            <tr>
+              <td class="k">Opioids<br><span class="pill">symptom relief</span></td>
+              <td>μ-opioid receptor agonists</td>
+              <td>Used as long-acting preparations for chronic pain from immobility, joint destruction, tendon rupture and muscle atrophy. Respiratory depression — titrate carefully.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <span class="ttl">Perioperative drug decisions</span>
+        <ul style="margin:.3rem 0 0">
+          <li><strong>Methotrexate</strong> can be continued in the perioperative period — good disease control is beneficial.</li>
+          <li><strong>Other immunosuppressants:</strong> there is a lack of data.</li>
+          <li><strong>Biological therapy:</strong> perioperative discontinuation for elective surgery remains controversial. Recent studies suggest their use does not cause specific adverse effects and may improve recovery from postoperative anaemia.</li>
+          <li><strong>If signs of postoperative infection develop:</strong> suspend DMARDs temporarily and start appropriate antimicrobials.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. PREOPERATIVE ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">7</span> Preoperative assessment &amp; investigations</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <h3 class="sec">History</h3>
+      <ul>
+        <li>Duration of RA, severity, drug treatments and systemic complications.</li>
+        <li>Any history of cervical surgery — cervical fixation devices may cause impaired neck extension.</li>
+        <li>Preoperative neurological deficit, if any, should be documented.</li>
+        <li>Functional status: can the patient use a standard PCA? (Wrist and finger involvement may preclude it.)</li>
+      </ul>
+
+      <h3 class="sec">Examination</h3>
+      <ul>
+        <li>Rheumatoid patients are often in pain and have deformities that restrict simple movements — <strong>take care during examination</strong>.</li>
+        <li>Note the range of movement of <strong>all</strong> joints so as to optimise patient position and minimise injury during anaesthetic procedures (venous access, nerve blocks) and positioning for surgery.</li>
+        <li>These patients have <strong>very fragile skin</strong> that is easily damaged.</li>
+        <li><strong>Fragile veins</strong> make peripheral venous access unreliable; <strong>central venous access</strong> is often difficult due to neck deformity.</li>
+      </ul>
+
+      <h3 class="sec">Airway assessment (essential)</h3>
+      <ul>
+        <li>Detailed assessment including <strong>mouth opening, TMJ function, neck flexion and extension</strong>.</li>
+        <li>Assess TMJ involvement preoperatively using the <strong>Mallampati score</strong>, mouth opening and mandibular protrusion.</li>
+        <li>The extent of neck flexion and extension should be assessed and <strong>documented</strong>. Perioperatively, care should be taken to avoid any movement beyond this range.</li>
+      </ul>
+
+      <h3 class="sec">Systemic assessment</h3>
+      <ul>
+        <li><strong>Steroid cover:</strong> patients taking more than 10 mg prednisolone per day should receive appropriate perioperative steroid cover (see Section 11).</li>
+        <li><strong>Anaemia:</strong> normocytic normochromic anaemia due to chronic disease, or microcytic anaemia due to gastric bleeding and drug toxicity of the bone marrow. There may be an increased requirement for red-cell transfusion.</li>
+        <li><strong>Cachexia:</strong> indicates poorly controlled disease and increased long-term cardiovascular risk. Cachexia and poor muscle bulk may also indicate <strong>myopathy</strong> which may impair respiratory muscle function — such patients may need to be considered for <strong>postoperative mechanical ventilation</strong>.</li>
+      </ul>
+
+      <h3 class="sec">Investigations</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Test</th><th>Indication / what to look for</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Full blood count</td><td>Anaemia (chronic disease or iron deficiency), thrombocytopenia, leucopenia.</td></tr>
+            <tr><td class="k">Urea &amp; electrolytes</td><td>Renal impairment from drug treatment (~25% develop chronic renal failure).</td></tr>
+            <tr><td class="k">Liver function tests</td><td>Patients on long-term DMARDs (especially methotrexate, leflunomide).</td></tr>
+            <tr><td class="k">Chest radiograph, ABG, lung function</td><td>Low threshold for ordering — possibility of pulmonary involvement or respiratory myopathy.</td></tr>
+            <tr><td class="k">ECG</td><td>Check for left ventricular hypertrophy and conduction disturbances.</td></tr>
+            <tr><td class="k">Echocardiogram</td><td>Look for diastolic dysfunction, left ventricular hypertrophy and valvular abnormalities. <strong>Left ventricular ejection fraction may be normal and falsely reassuring in the presence of diastolic dysfunction.</strong></td></tr>
+            <tr><td class="k">Cervical spine X-ray</td><td>Flexion/extension views if AAS is suspected; consider CT/MRI if neurological signs, severe pain or significant abnormality on plain film.</td></tr>
+            <tr><td class="k">Fibreoptic nasopharyngoscopy</td><td>Indicated for patients with hoarseness because of the likelihood of cricoarytenoid involvement.</td></tr>
+            <tr><td class="k">CRP / inflammatory markers</td><td>As indicated by the degree of systemic involvement.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. AIRWAY MANAGEMENT ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">8</span> Airway management — the practical plan</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <p>The two central problems are the <strong>increased prevalence of a difficult airway</strong> (RA patients needing cervical spine surgery have a high prevalence of grade 3 or 4 laryngoscopy) and the presence of <strong>AAS</strong>, which may result in spinal cord injury during airway management.</p>
+
+      <h3 class="sec">Step 1 — Know the neck</h3>
+      <ul>
+        <li>Assess and document the extent of neck flexion and extension. Do not move beyond that range.</li>
+        <li>Anterior AAS (80%): worsened by C1/C2 <strong>flexion</strong>. Direct laryngoscopy is usually well tolerated.</li>
+        <li>Posterior and vertical AAS: risk of cord compression during C1/C2 <strong>extension</strong>, which occurs during direct laryngoscopy — therefore <strong>avoid direct laryngoscopy</strong>. They are much less common and are mostly symptomatic.</li>
+      </ul>
+
+      <h3 class="sec">Step 2 — Choose the device</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Technique</th><th>Comment</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="k">Supraglottic airway (LMA)</td>
+              <td><strong>Use where possible.</strong> Requires minimal neck manipulation for insertion and causes less trauma and subsequent laryngeal oedema than a tracheal tube. May be difficult to insert in patients with fixed flexion deformities of the neck; a reinforced LMA may be preferable if the angle between the oral and pharyngeal axes at the back of the tongue is less than 90°.</td>
+            </tr>
+            <tr>
+              <td class="k">Direct laryngoscopy &amp; tracheal intubation</td>
+              <td>Neck manipulation should be minimised, ideally with <strong>manual in-line stabilisation</strong>, even in the absence of overt cervical spine instability. The classical "sniffing" position (head hyperextended on a flexed neck) can exacerbate anterior AAS with neurological injury. There are no case reports to date of spinal cord injury secondary to direct laryngoscopy, nor evidence of outcome difference with a particular technique — but all due care must be taken.</td>
+            </tr>
+            <tr>
+              <td class="k">Intubating LMA (ILMA)</td>
+              <td>Can aid intubation with minimal neck manipulation, but is not popular due to a high risk of failure without fibreoptics, the associated trauma to the airway, and the force exerted on the posterior pharyngeal wall at C2–C3.</td>
+            </tr>
+            <tr>
+              <td class="k">Awake fibreoptic intubation (AFOI)</td>
+              <td><strong>Considered the appropriate and safer option</strong> in rheumatoid patients with an anticipated difficult airway or known cervical spine instability. It generally carries less risk of major difficulty than direct laryngoscopy in this subgroup and allows assessment of neurological symptoms indicating spinal compression. <em>Not</em> useful under emergency conditions or if excessive blood or secretions are in the airway.</td>
+            </tr>
+            <tr>
+              <td class="k">Surgical tracheostomy under local anaesthesia</td>
+              <td>Indicated in emergency situations, in patients with symptoms of upper airway obstruction, and in severe cervical spine instability where AFOI is not possible. Potential difficulties include extreme fixed flexion deformity with little or no access to the trachea, tracheal deviation and patient distress.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Step 3 — Position the neck safely</h3>
+      <ul>
+        <li>The <strong>doughnut head ring</strong> with a hole large enough to accommodate the occiput supports the cervical spine without anterior movement of the head — the best choice for rheumatoid patients.</li>
+        <li>Consider asking the patient to <strong>position themselves on the operating table before being anaesthetised</strong>.</li>
+        <li>The same considerations apply at emergence and when transferring the patient from the operating table to the bed — do it as gently as possible.</li>
+      </ul>
+
+      <div class="callout danger">
+        <span class="ttl">Emergency rule</span>
+        If you cannot obtain flexion/extension views (emergency, unconscious patient) in a known RA patient, <strong>treat the rheumatoid cervical spine as unstable</strong> and manage the airway accordingly.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. INTRAOPERATIVE ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">9</span> Intraoperative management</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <p>There is <strong>no single recommended anaesthetic technique</strong>. The choice depends on the patient's general condition, the type of surgery, patient preference and the skill of the anaesthetist. Regional anaesthesia, general anaesthesia, or a combination of the two may be employed.</p>
+
+      <h3 class="sec">Regional anaesthesia</h3>
+      <ul>
+        <li>If possible, <strong>regional anaesthesia should always be considered</strong>: it avoids airway manipulation, provides good postoperative pain relief and reduces polypharmacy.</li>
+        <li>Regional and neuraxial blocks may be <strong>technically difficult</strong> due to spinal arthritis and loss of anatomical landmarks from contractures or deformities.</li>
+        <li>A <strong>higher than normal level</strong> should be anticipated during a subarachnoid block.</li>
+        <li>Upper limb surgery may be performed under brachial plexus block; lower limb surgery under spinal, epidural or specific nerve blockade.</li>
+        <li>Long-term NSAID therapy has not been shown to increase the risk of epidural/spinal haematoma; the American Society of Regional Anaesthesia endorses central neuraxial block in such patients as safe.</li>
+      </ul>
+
+      <h3 class="sec">General anaesthesia — general principles</h3>
+      <ul>
+        <li>See Section 8 for airway device selection.</li>
+        <li><strong>Positioning:</strong> problems due to joint deformities and fragile skin from steroid therapy. Pressure points should be meticulously padded, the neck adequately supported, and skin handled with care. Avoid excessive manipulation of stiff and fixed joints.</li>
+        <li>The prolonged relative spinal malposition during general anaesthesia, in a patient with possible spinal stenosis, may cause cord injury. <strong>Avoid hypotension</strong> — attention to the maintenance of spinal cord perfusion may be important.</li>
+        <li><strong>Infection risk:</strong> immunosuppressive treatment increases the risk of infection. Adopt a <strong>strict aseptic technique</strong> for intravascular access, regional blocks, arterial/CVP lines and urinary catheterisation. Give appropriate <strong>antibiotic prophylaxis</strong> before starting surgery.</li>
+        <li><strong>Eyes:</strong> apply methylcellulose eye drops — up to 15% of RA patients have keratoconjunctivitis sicca and are at risk of corneal ulceration.</li>
+        <li><strong>Steroids &amp; glucose:</strong> long-term steroid therapy causes adrenal suppression. Monitor blood glucose closely and control with insulin if necessary. Patients on steroids and NSAIDs are at risk of gastrointestinal bleeding and should receive gastric acid prophylaxis.</li>
+        <li><strong>Vascular access:</strong> vasculitis and thin, fragile skin can make IV access difficult; central venous catheters may be difficult because of limited neck movement; the radial artery may be inaccessible because of flexion deformities of the wrist.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 10. POSTOPERATIVE ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">10</span> Postoperative &amp; critical care management</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <h3 class="sec">Airway &amp; breathing</h3>
+      <ul>
+        <li>Careful observation of the <strong>airway and breathing</strong> is required in the immediate postoperative period.</li>
+        <li>Previously asymptomatic cricoarytenoid arthritis may cause airway obstruction postoperatively as a result of the additional oedema caused by tracheal intubation. This may occur <strong>several hours</strong> postoperatively and may necessitate reintubation or, in some cases, a tracheostomy.</li>
+        <li>Increased sensitivity to anaesthetic agents may occur — depending on the patient's condition and the nature of surgery, <strong>ITU/HDU care</strong> may be needed.</li>
+      </ul>
+
+      <h3 class="sec">Analgesia</h3>
+      <ul>
+        <li>Pain should be adequately controlled to permit <strong>early mobilisation</strong>. Multimodal analgesia is recommended.</li>
+        <li>Some patients have chronic pain issues and their pain may be difficult to manage.</li>
+        <li>Opioid analgesia can be used in carefully monitored doses to avoid respiratory compromise.</li>
+        <li>Patients with joint deformities of the hand may not be able to use a standard PCA — they can be instructed in the use of a <strong>mouth-controlled device</strong>.</li>
+      </ul>
+
+      <h3 class="sec">Other postoperative care</h3>
+      <ul>
+        <li><strong>Thromboprophylaxis:</strong> RA patients tend to be in a hypercoagulable state and have a slower recovery and return to mobilisation — prescribe appropriate prophylaxis.</li>
+        <li><strong>Physiotherapy:</strong> standard physiotherapy and breathing exercises should be instituted as early as possible due to the increased infection risk and risk of respiratory complications.</li>
+        <li><strong>Renal function:</strong> monitor carefully in view of possible pre-existing impairment, the effects of medication and perioperative fluid shifts.</li>
+        <li><strong>Infection:</strong> if signs of a postoperative infection develop, suspend DMARDs temporarily and start appropriate antimicrobials.</li>
+        <li><strong>Positioning:</strong> the same considerations regarding patient positioning and neck movement apply at emergence from anaesthesia as with intubation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 11. STEROID COVER ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">11</span> Perioperative steroid supplementation</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <h3 class="sec">Patients currently taking regular corticosteroids</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Dose</th><th>Surgery</th><th>Cover</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="k">&lt; 10 mg/day prednisolone (or equivalent)</td>
+              <td>Any</td>
+              <td>Assume normal HPA axis — <strong>no additional cover required</strong>.</td>
+            </tr>
+            <tr>
+              <td class="k" rowspan="3">&gt; 10 mg/day prednisolone (or equivalent)</td>
+              <td>Minor (e.g. hernia)</td>
+              <td>Routine preoperative steroid <em>or</em> 25 mg IV hydrocortisone at induction.</td>
+            </tr>
+            <tr>
+              <td>Intermediate (e.g. hysterectomy)</td>
+              <td>Routine preoperative steroid <strong>plus</strong> 25 mg IV hydrocortisone at induction, then 6-hourly for 24 hours.</td>
+            </tr>
+            <tr>
+              <td>Major (e.g. cardiac)</td>
+              <td>Routine preoperative steroids <strong>plus</strong> 25 mg IV hydrocortisone at induction, then 6-hourly for 48–72 hours.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><em>Resume normal oral therapy when gastrointestinal function has returned.</em></p>
+
+      <h3 class="sec">Patients not currently on corticosteroid therapy</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time since stopping steroids</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td class="k">&lt; 3 months</td><td>Treat as if on steroids.</td></tr>
+            <tr><td class="k">&gt; 3 months</td><td>No perioperative steroids necessary.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Patients on high-dose immunosuppression</h3>
+      <p>Should continue their usual immunosuppressive dose <strong>parenterally</strong> until able to revert to normal oral intake. For example, if a patient takes 60 mg prednisolone/24 hours, they should receive <strong>240 mg hydrocortisone/24 hours</strong> until oral intake can be resumed.</p>
+
+      <div class="callout key">
+        <span class="ttl">Equivalent drug doses</span>
+        Prednisolone 10 mg ≡ dexamethasone 1.5 mg ≡ hydrocortisone 40 mg ≡ methylprednisolone 8 mg ≡ betamethasone 1.5 mg.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. MCQ ============ -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-title"><span class="num">12</span> Self-assessment — MCQs from the source articles</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <!-- Q1 -->
+      <div class="acc">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-title"><span class="num">Q1</span> Regarding rheumatoid arthritis (RA):</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body">
+          <ul class="qa-opts">
+            <li><b>a.</b> It only affects bones and connective tissue</li>
+            <li><b>b.</b> It mainly affects the axial skeleton</li>
+            <li><b>c.</b> It is associated with the HLA-DR4 subtype</li>
+            <li><b>d.</b> Over 95% of rheumatoid patients are positive for rheumatoid factor</li>
+            <li><b>e.</b> Environmental factors may play a role in its aetiopathogenesis</li>
+          </ul>
+          <div class="acc">
+            <button class="acc-head" aria-expanded="false">
+              <span class="acc-title"><span class="num">✓</span> Show answer</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body answer">
+              <p><strong>F F T F T</strong></p>
+              <p>RA is a multisystem disorder and is not limited to the bones and connective tissue. Axial skeleton involvement does occur, but more commonly affected joints include the wrists, fingers, neck, shoulders, elbows, hips, knees, ankles and feet. Approximately 70% of cases are associated with the HLA-DR4 subtype, and only 80% of patients are seropositive for rheumatoid factor. Environmental factors may also play a role, including as yet unidentified viral or bacterial agents.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="acc">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-title"><span class="num">Q2</span> The following features are seen in patients with RA:</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body">
+          <ul class="qa-opts">
+            <li><b>a.</b> Dry eyes</li>
+            <li><b>b.</b> Obstructive lung disease</li>
+            <li><b>c.</b> Anaemia</li>
+            <li><b>d.</b> Weight gain</li>
+            <li><b>e.</b> Increased susceptibility to infections</li>
+          </ul>
+          <div class="acc">
+            <button class="acc-head" aria-expanded="false">
+              <span class="acc-title"><span class="num">✓</span> Show answer</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body answer">
+              <p><strong>T F T F T</strong></p>
+              <p>Long-standing RA patients can develop Sjögren's syndrome with dry eyes and mouth. RA causes <em>restrictive</em> (not obstructive) lung disease due to pulmonary fibrosis and costochondral arthritis limiting chest wall movement. Anaemia is common — anaemia of chronic disease (normochromic) and anaemia due to gastric bleeding secondary to drugs (microcytic). RA is associated with rheumatoid cachexia, and weight gain is rare. RA patients have an increased susceptibility to infections as a result of the immunosuppressive effects of the drugs used to manage their disease.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="acc">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-title"><span class="num">Q3</span> The drugs that can be used to treat the symptoms of RA are:</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body">
+          <ul class="qa-opts">
+            <li><b>a.</b> Paracetamol</li>
+            <li><b>b.</b> Infliximab</li>
+            <li><b>c.</b> Indomethacin</li>
+            <li><b>d.</b> Prednisolone</li>
+            <li><b>e.</b> Ciclosporin</li>
+          </ul>
+          <div class="acc">
+            <button class="acc-head" aria-expanded="false">
+              <span class="acc-title"><span class="num">✓</span> Show answer</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body answer">
+              <p><strong>T F T T F</strong></p>
+              <p>The drugs that are useful to treat symptoms of RA are paracetamol, NSAIDs and corticosteroids. The others modify the disease process, prevent exacerbations and long-term disability, but do not treat symptoms.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="acc">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-title"><span class="num">Q4</span> A patient with long-standing RA presents with hoarseness of voice. What are the anaesthetic implications? (single best answer)</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body">
+          <ul class="qa-opts">
+            <li><b>a.</b> This history is not significant</li>
+            <li><b>b.</b> Hoarseness might worsen after endotracheal intubation — the patient should be warned about this</li>
+            <li><b>c.</b> The patient may be difficult to intubate as the vocal cords may be swollen</li>
+            <li><b>d.</b> The patient probably has cricoarytenoid involvement, which combined with airway oedema post-intubation can cause complete airway obstruction in the postoperative period</li>
+          </ul>
+          <div class="acc">
+            <button class="acc-head" aria-expanded="false">
+              <span class="acc-title"><span class="num">✓</span> Show answer</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body answer">
+              <p><strong>Answer: D</strong></p>
+              <p>Hoarse voice in a patient with longstanding RA should lead to suspicion of cricoarytenoid arthritis, which is variable in frequency and often unrecognised. Other symptoms include stridor, a sense of pharyngeal fullness when speaking and swallowing, or dyspnoea. Preoperative nasoendoscopy may aid in diagnosis. If cricoarytenoid involvement is suspected, avoid endotracheal intubation in favour of supraglottic airway devices. If intubation is essential, use the smallest internal diameter tracheal tube possible. Problems occur post-extubation, when the oedema combined with an already narrow airway can cause complete obstruction. Consider the use of an airway exchange catheter at extubation, and observe the patient in a high dependency area for some time post-extubation. In severe cases, a preoperative tracheostomy may be required.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="acc">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-title"><span class="num">Q5</span> Regarding anaesthesia for patients with RA (true/false):</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body">
+          <ul class="qa-opts">
+            <li><b>a.</b> Spinal and epidural anaesthesia should be used where possible</li>
+            <li><b>b.</b> Regional nerve blocks are contraindicated</li>
+            <li><b>c.</b> Awake fibreoptic intubation (AFOI) may be needed in cases of severe atlanto-axial subluxation</li>
+            <li><b>d.</b> An LMA can be used for airway management to limit neck manipulation</li>
+            <li><b>e.</b> Cervical spine involvement in RA is always accompanied by symptoms</li>
+          </ul>
+          <div class="acc">
+            <button class="acc-head" aria-expanded="false">
+              <span class="acc-title"><span class="num">✓</span> Show answer</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body answer">
+              <p><strong>T T F T F</strong></p>
+              <p>Regional anaesthesia in the form of neuraxial blocks or peripheral nerve blocks should always be considered as it avoids airway manipulation, provides good postoperative pain relief and reduces polypharmacy. However, regional and neuraxial blocks may be technically difficult due to spinal arthritis and loss of anatomical landmarks from contractures or deformities. LMAs and other supraglottic airway devices should be used where possible as they require minimal neck manipulation for insertion and cause less trauma and subsequent laryngeal oedema compared with a tracheal tube. AFOI is the technique of choice in patients with an expected difficult airway or known cervical spine instability needing intubation. Cervical spine involvement is not always symptomatic.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="acc">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-title"><span class="num">Q6</span> Regarding atlanto-axial involvement in RA (true/false):</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body">
+          <ul class="qa-opts">
+            <li><b>a.</b> The most common type of atlanto-axial subluxation (AAS) is posterior AAS</li>
+            <li><b>b.</b> Subluxation exists when the distance between the atlas and the odontoid peg exceeds 4 mm in patients older than 44 and 3 mm in younger patients</li>
+            <li><b>c.</b> Flexion of the neck is more harmful than extension</li>
+            <li><b>d.</b> AAS can be diagnosed only by a CT scan</li>
+            <li><b>e.</b> Severe AAS may necessitate an awake tracheostomy for airway management</li>
+          </ul>
+          <div class="acc">
+            <button class="acc-head" aria-expanded="false">
+              <span class="acc-title"><span class="num">✓</span> Show answer</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body answer">
+              <p><strong>F T F T T</strong></p>
+              <p>The most common type of AAS is anterior AAS, occurring in 80% of cases. Anterior AAS is worsened by flexion. Subluxation exists when the distance between the atlas and the odontoid peg exceeds 4 mm in patients older than 44 and 3 mm in younger patients; this can be diagnosed by plain radiography of the neck. Severe cervical spine instability may necessitate an AFOI or a tracheostomy under local anaesthesia for safe management of the airway.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 13. SOURCES ============ -->
+  <section class="acc open">
+    <button class="acc-head" aria-expanded="true">
+      <span class="acc-title"><span class="num">§</span> Sources &amp; further reading</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div class="acc-body">
+
+      <h3 class="sec">Primary source documents merged into this reference</h3>
+
+      <div class="source">
+        <b>Menon R. Rheumatoid Arthritis and Anaesthesia — Part 1.</b>
+        <div class="meta">Anaesthesia Tutorial of the Week (ATOTW) 266, 6 August 2012. World Federation of Societies of Anaesthesiologists. Dr Rashmi Menon, Leeds General Infirmary.</div>
+      </div>
+
+      <div class="source">
+        <b>Menon R. Rheumatoid Arthritis and Anaesthesia — Part 2.</b>
+        <div class="meta">Anaesthesia Tutorial of the Week (ATOTW) 267, 13 August 2012. World Federation of Societies of Anaesthesiologists. Dr Rashmi Menon, Leeds General Infirmary.</div>
+      </div>
+
+      <div class="source">
+        <b>Fombon FN, Thompson JP. Anaesthesia for the adult patient with rheumatoid arthritis.</b>
+        <div class="meta">Continuing Education in Anaesthesia, Critical Care &amp; Pain (CEACCP / BJA Education) 2006; 6: 235–9. Felix N Fombon FRCA, Jonathan P Thompson BSc MD FRCA, University Hospitals of Leicester NHS Trust.</div>
+      </div>
+
+      <h3 class="sec">References cited within the source articles</h3>
+      <ol style="font-size:.84rem">
+        <li>Samanta R, Shoukrey K, Griffiths R. Rheumatoid arthritis and anaesthesia. <em>Anaesthesia</em> 2011; 66: 1146–59.</li>
+        <li>Fombon FN, Thompson JP. Anaesthesia for the adult patient with rheumatoid arthritis. <em>CEACCP</em> 2006; 6: 235–9.</li>
+        <li>Allman K, Baker B, Wilson I. Anaesthesia for the patient with rheumatoid arthritis. <em>Oxford Handbook of Anaesthesia</em>, 3rd edn. Oxford University Press, 2011.</li>
+        <li>Allman KG, Wilson IH. The patient on steroids. <em>Oxford Handbook of Anaesthesia</em>, 3rd edn. Oxford University Press, 2011.</li>
+        <li>Temprano K. Rheumatoid arthritis. eMedicine. http://emedicine.medscape.com/article/331715-overview</li>
+        <li>Calder I. Airway management in cervical spine disease. In: Calder I, Pearce A, eds. <em>Core Topics in Airway Management</em>, 2nd edn. Cambridge University Press, 2010: 244–54.</li>
+        <li>Landre-Beaulais AJ. The first description of rheumatoid arthritis. <em>Joint Bone Spine</em> 2001; 68: 130–43.</li>
+        <li>Furst DE, Breedveld FC, Kalden JR. Updated consensus statement on biological agents for the treatment of rheumatoid arthritis and other immune mediated inflammatory diseases. <em>Ann Rheum Dis</em> 2003; 62: ii2–9.</li>
+        <li>Kolman J, Morris I. Cricoarytenoid arthritis: a cause of acute upper airway obstruction in rheumatoid arthritis. <em>Can J Anaesth</em> 2002; 49: 729–32.</li>
+        <li>Chen JJ, Branstetter BF, Myers EN. Cricoarytenoid rheumatoid arthritis: an important consideration in aggressive lesions of the larynx. <em>Am J Neuroradiol</em> 2005; 26: 970–2.</li>
+        <li>Kwek TK, Lew TWK, Thoo FL. The role of preoperative cervical spine X-rays in rheumatoid arthritis. <em>Anaesth Int Care</em> 1998; 26: 636–41.</li>
+        <li>Horlocker TT, Wedel DJ, Benzon H, et al. Regional anaesthesia in the anticoagulated patient: defining the risks (second ASRA Consensus Conference on Neuraxial Anaesthesia and Anticoagulation). <em>Reg Anesth Pain Med</em> 2003; 28: 172–97.</li>
+        <li>Bollensen E, Schonle PW, Braun U, Prange HW. An unnoticed dislocation of the dens axis in a patient with primary chronic polyarthritis undergoing intensive therapy. <em>Anaesthesist</em> 1991; 40: 294–7.</li>
+        <li>Takenaka I, Urakami Y, Aoyama K, et al. Severe subluxation in the sniffing position in a rheumatoid patient with anterior atlantoaxial subluxation. <em>Anesthesiology</em> 2004; 101: 1235–7.</li>
+        <li>Hakala P, Randell T. Intubation difficulties in patients with rheumatoid arthritis: a retrospective analysis. <em>Acta Anaesthesiol Scand</em> 1998; 42: 195–8.</li>
+        <li>Janssens M, Hartstein G. Management of difficult intubation. <em>Eur J Anaesthesiol</em> 2001; 18: 3.</li>
+        <li>Nicholson G, Burrin JM, Hall GM. Perioperative steroid supplementation. <em>Anaesthesia</em> 1998; 53: 1091–104.</li>
+      </ol>
+
+      <div class="callout">
+        <span class="ttl">Note</span>
+        This page is a study/reference aid that merges and reformats the three documents above. It is not a substitute for the original articles, local guidelines, or clinical judgement. Always confirm drug doses, steroid regimens and airway plans against your local protocols.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<p class="footnote">
+  RA Anaesthesia &amp; Critical Care Quick Reference · merged from ATOTW 266, ATOTW 267 and CEACCP 2006;6:235–9
+</p>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     1. ACCORDIONS
+     ============================================================ */
+  document.querySelectorAll('.acc-head').forEach(function (head) {
+    head.addEventListener('click', function () {
+      var acc = head.parentElement;
+      var open = acc.classList.toggle('open');
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  function setAll(open) {
+    document.querySelectorAll('.acc').forEach(function (acc) {
+      acc.classList.toggle('open', open);
+      var h = acc.querySelector(':scope > .acc-head');
+      if (h) h.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  document.getElementById('expandAll').addEventListener('click', function () { setAll(true); });
+  document.getElementById('collapseAll').addEventListener('click', function () { setAll(false); });
+
+  /* ============================================================
+     2. FONT SIZE
+     ============================================================ */
+  var BASE = 17, fs = BASE;
+  var root = document.documentElement;
+  var fontVal = document.getElementById('fontVal');
+
+  function applyFs() {
+    root.style.setProperty('--fs', fs + 'px');
+    fontVal.textContent = Math.round((fs / BASE) * 100) + '%';
+  }
+  document.getElementById('fontUp').addEventListener('click', function () { fs = Math.min(23, fs + 1); applyFs(); });
+  document.getElementById('fontDown').addEventListener('click', function () { fs = Math.max(13, fs - 1); applyFs(); });
+  document.getElementById('fontReset').addEventListener('click', function () { fs = BASE; applyFs(); });
+  applyFs();
+
+  /* ============================================================
+     3. SEARCH WITH HIGHLIGHTING
+     ============================================================ */
+  var content   = document.getElementById('content');
+  var searchEl  = document.getElementById('search');
+  var countEl   = document.getElementById('searchCount');
+  var marks     = [];
+  var current   = -1;
+  var query     = '';
+  var debounceId = null;
+
+  function clearHighlights() {
+    document.querySelectorAll('mark.hit').forEach(function (m) {
+      var parent = m.parentNode;
+      if (!parent) return;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+    marks = [];
+    current = -1;
+  }
+
+  function openAncestors(el) {
+    var p = el.parentElement;
+    while (p && p !== document.body) {
+      if (p.classList && p.classList.contains('acc') && !p.classList.contains('open')) {
+        p.classList.add('open');
+        var h = p.querySelector(':scope > .acc-head');
+        if (h) h.setAttribute('aria-expanded', 'true');
+      }
+      p = p.parentElement;
+    }
+  }
+
+  function highlight(q) {
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK' || tag === 'TEXTAREA') {
+          return NodeFilter.FILTER_REJECT;
+        }
+        if (node.nodeValue.toLowerCase().indexOf(q) === -1) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var frag = document.createDocumentFragment();
+      var i = 0, idx;
+
+      while ((idx = lower.indexOf(q, i)) !== -1) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mk = document.createElement('mark');
+        mk.className = 'hit';
+        mk.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mk);
+        marks.push(mk);
+        i = idx + q.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      if (node.parentNode) node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function openAllWithMarks() {
+    var set = new Set();
+    marks.forEach(function (m) {
+      var p = m.parentElement;
+      while (p && p !== document.body) {
+        if (p.classList && p.classList.contains('acc')) set.add(p);
+        p = p.parentElement;
+      }
+    });
+    set.forEach(function (acc) {
+      acc.classList.add('open');
+      var h = acc.querySelector(':scope > .acc-head');
+      if (h) h.setAttribute('aria-expanded', 'true');
+    });
+  }
+
+  function goTo(i) {
+    if (!marks.length) return;
+    if (current >= 0 && marks[current]) marks[current].classList.remove('current');
+    current = ((i % marks.length) + marks.length) % marks.length;
+    var m = marks[current];
+    m.classList.add('current');
+    openAncestors(m);
+    countEl.textContent = (current + 1) + '/' + marks.length;
+    requestAnimationFrame(function () {
+      m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  function runSearch(raw) {
+    clearHighlights();
+    query = (raw || '').trim().toLowerCase();
+
+    if (query.length < 2) {
+      countEl.textContent = '';
+      return;
+    }
+
+    highlight(query);
+
+    if (!marks.length) {
+      countEl.textContent = '0';
+      return;
+    }
+
+    openAllWithMarks();
+    countEl.textContent = marks.length + (marks.length === 1 ? ' hit' : ' hits');
+  }
+
+  searchEl.addEventListener('input', function () {
+    clearTimeout(debounceId);
+    var v = searchEl.value;
+    debounceId = setTimeout(function () { runSearch(v); }, 180);
+  });
+
+  searchEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!marks.length) { runSearch(searchEl.value); return; }
+      goTo(current + 1);
+    } else if (e.key === 'Escape') {
+      searchEl.value = '';
+      clearHighlights();
+      countEl.textContent = '';
+    }
+  });
+
+  document.getElementById('nextHit').addEventListener('click', function () { goTo(current + 1); });
+  document.getElementById('prevHit').addEventListener('click', function () { goTo(current - 1); });
+
+  /* ============================================================
+     4. PATHOPHYSIOLOGY ANIMATION
+     ============================================================ */
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.patho-step'));
+  var bar   = document.getElementById('pathoBar');
+  var capEl = document.getElementById('pathoCaption');
+
+  var captions = [
+    "Step 1 — Genetic and environmental susceptibility: HLA-DR4 in ~70%, female sex, smoking and family history prime the immune system.",
+    "Step 2 — An unknown trigger: an abnormal immune response to an unidentified viral, bacterial or environmental agent in a genetically susceptible host.",
+    "Step 3 — Synovitis: T cells, B cells and macrophages infiltrate the synovium and release TNF-\u03B1, IL-1 and IL-6, causing proliferation, effusion, warmth and pain.",
+    "Step 4 — Pannus and erosion: invasive synovial tissue destroys articular cartilage and juxta-articular bone. The same process attenuates the transverse ligament and erodes the odontoid peg \u2014 the origin of atlanto-axial instability.",
+    "Step 5 — Systemic impact that changes anaesthetic management: atlanto-axial subluxation, cricoarytenoid arthritis, restrictive lung disease, anaemia, cardiac and renal disease, and immunosuppression."
+  ];
+
+  var idx = 0;
+  function tick() {
+    steps.forEach(function (s, i) {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('done', i < idx);
+    });
+    if (bar) bar.style.width = (((idx + 1) / steps.length) * 100) + '%';
+    if (capEl) capEl.textContent = captions[idx];
+    idx = (idx + 1) % steps.length;
+  }
+
+  if (steps.length) {
+    tick();
+    setInterval(tick, 2600);
+  }
+
+})();
+</script>
+</body>
+</html>
