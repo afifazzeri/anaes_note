@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrolyte Disorders — Quick Reference for Anaesthetists & Intensivists</title>
+<style>
+  :root {
+    --banana: #FFE135;
+    --banana-dark: #E6C800;
+    --banana-light: #FFF8DC;
+    --banana-bg: #FFFDF0;
+    --salt: #1E3A5F;
+    --salt-light: #2C5282;
+    --salt-lighter: #EBF4FF;
+    --salt-accent: #3182CE;
+    --danger: #C53030;
+    --danger-bg: #FFF5F5;
+    --warning: #D69E2E;
+    --warning-bg: #FFFFF0;
+    --success: #276749;
+    --success-bg: #F0FFF4;
+    --text: #1A202C;
+    --text-light: #4A5568;
+    --border: #E2E8F0;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    --radius: 8px;
+    --font-size-base: 15px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: var(--font-size-base);
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--banana-bg);
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, var(--salt) 0%, var(--salt-light) 100%);
+    color: #fff;
+    padding: 24px 20px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(30,58,95,0.25);
+  }
+
+  .header h1 {
+    font-size: 1.45em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .header .subtitle {
+    font-size: 0.82em;
+    opacity: 0.8;
+    font-weight: 400;
+  }
+
+  /* ===== CONTROLS BAR ===== */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--banana-light);
+    border-bottom: 2px solid var(--banana-dark);
+    position: sticky;
+    top: 82px;
+    z-index: 99;
+    align-items: center;
+  }
+
+  .controls button {
+    padding: 6px 14px;
+    border: 1.5px solid var(--salt-light);
+    background: #fff;
+    color: var(--salt);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.82em;
+    font-weight: 600;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .controls button:hover {
+    background: var(--salt);
+    color: #fff;
+  }
+
+  .controls button.active {
+    background: var(--salt);
+    color: #fff;
+  }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 180px;
+    max-width: 420px;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    padding: 7px 12px 7px 34px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.85em;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fff;
+  }
+
+  .search-wrap input:focus {
+    border-color: var(--salt-accent);
+    box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+  }
+
+  .search-wrap::before {
+    content: '🔍';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    pointer-events: none;
+  }
+
+  .search-count {
+    font-size: 0.75em;
+    color: var(--text-light);
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  .font-controls {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .font-controls span {
+    font-size: 0.75em;
+    color: var(--text-light);
+    font-weight: 600;
+  }
+
+  .font-controls button {
+    padding: 4px 10px;
+    font-size: 0.9em;
+  }
+
+  /* ===== CONTENT ===== */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px 16px 80px;
+  }
+
+  /* ===== SECTION CARDS ===== */
+  .section {
+    background: #fff;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .section:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--banana-light) 0%, #fff 100%);
+    border-bottom: 1px solid transparent;
+    user-select: none;
+    transition: background 0.2s;
+    gap: 10px;
+  }
+
+  .section-header:hover {
+    background: var(--banana);
+  }
+
+  .section-header .chevron {
+    font-size: 0.7em;
+    transition: transform 0.3s;
+    color: var(--salt);
+    flex-shrink: 0;
+  }
+
+  .section.open .section-header .chevron {
+    transform: rotate(90deg);
+  }
+
+  .section-header h2 {
+    font-size: 1.05em;
+    font-weight: 700;
+    color: var(--salt);
+    flex: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .section-header .badge {
+    font-size: 0.65em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-na { background: #FED7D7; color: #9B2C2C; }
+  .badge-k { background: #C6F6D5; color: #22543D; }
+  .badge-clin { background: #BEE3F8; color: #2A4365; }
+  .badge-phys { background: #FAF089; color: #744210; }
+
+  .section-body {
+    display: none;
+    padding: 16px 18px 20px;
+    border-top: 1px solid var(--border);
+    animation: slideDown 0.25s ease-out;
+  }
+
+  .section.open .section-body {
+    display: block;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== CONTENT STYLES ===== */
+  .section-body h3 {
+    font-size: 0.95em;
+    color: var(--salt);
+    margin: 18px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--banana);
+    font-weight: 700;
+  }
+
+  .section-body h3:first-child { margin-top: 0; }
+
+  .section-body h4 {
+    font-size: 0.88em;
+    color: var(--salt-light);
+    margin: 14px 0 6px;
+    font-weight: 700;
+  }
+
+  .section-body p {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: var(--text);
+  }
+
+  .section-body ul, .section-body ol {
+    margin: 6px 0 10px 18px;
+    font-size: 0.88em;
+  }
+
+  .section-body li {
+    margin-bottom: 4px;
+  }
+
+  .section-body li > ul, .section-body li > ol {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  /* ===== KEY POINT BOXES ===== */
+  .key-point {
+    background: var(--banana-light);
+    border-left: 4px solid var(--banana-dark);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 10px 0;
+    font-size: 0.87em;
+  }
+
+  .key-point strong { color: var(--salt); }
+
+  .warning-box {
+    background: var(--danger-bg);
+    border-left: 4px solid var(--danger);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 10px 0;
+    font-size: 0.87em;
+  }
+
+  .warning-box strong { color: var(--danger); }
+
+  .info-box {
+    background: var(--salt-lighter);
+    border-left: 4px solid var(--salt-accent);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 10px 0;
+    font-size: 0.87em;
+  }
+
+  .info-box strong { color: var(--salt); }
+
+  /* ===== TABLES ===== */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-wrap::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .table-wrap::-webkit-scrollbar-thumb {
+    background: var(--banana-dark);
+    border-radius: 3px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82em;
+    min-width: 500px;
+  }
+
+  thead th {
+    background: var(--salt);
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+
+  tbody td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #FAFAFA;
+  }
+
+  tbody tr:hover {
+    background: var(--banana-light);
+  }
+
+  /* ===== SEARCH HIGHLIGHT ===== */
+  .search-highlight {
+    background: #FEFCBF;
+    padding: 1px 2px;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px #D69E2E;
+  }
+
+  .search-highlight.current {
+    background: #F6AD55;
+    box-shadow: 0 0 0 2px #DD6B20;
+  }
+
+  /* ===== ANIMATION ===== */
+  .animation-container {
+    background: linear-gradient(180deg, #EBF8FF 0%, #FFF 100%);
+    border: 2px solid var(--salt-accent);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 14px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animation-container svg {
+    width: 100%;
+    max-width: 560px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .animation-label {
+    text-align: center;
+    font-size: 0.75em;
+    color: var(--text-light);
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* ===== CITATIONS ===== */
+  .cite {
+    font-size: 0.7em;
+    color: var(--salt-accent);
+    vertical-align: super;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 1px;
+  }
+
+  .cite:hover {
+    text-decoration: underline;
+  }
+
+  .references {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 3px solid var(--banana-dark);
+  }
+
+  .references h2 {
+    font-size: 1.1em;
+    color: var(--salt);
+    margin-bottom: 12px;
+  }
+
+  .references ol {
+    font-size: 0.78em;
+    color: var(--text-light);
+    margin-left: 18px;
+  }
+
+  .references li {
+    margin-bottom: 5px;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.72em;
+    color: var(--text-light);
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.1em; }
+    .controls { top: 70px; padding: 10px 12px; }
+    .container { padding: 10px 8px 60px; }
+    .section-header { padding: 12px 14px; }
+    .section-body { padding: 12px 14px 16px; }
+    table { font-size: 0.75em; }
+    .font-controls span { display: none; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .controls { display: none; }
+    .section-body { display: block !important; }
+    .section-header .chevron { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <h1>⚡ Electrolyte Disorders — Quick Reference</h1>
+  <div class="subtitle">For Anaesthetists & Intensivists · Na⁺ &amp; K⁺ · Evidence-based summary</div>
+</div>
+
+<!-- ===== CONTROLS ===== -->
+<div class="controls" id="controls">
+  <button onclick="expandAll()">⊞ Expand All</button>
+  <button onclick="collapseAll()">⊟ Collapse All</button>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search electrolytes…" oninput="performSearch()">
+  </div>
+  <span class="search-count" id="searchCount"></span>
+  <div class="font-controls">
+    <span>Text:</span>
+    <button onclick="changeFontSize(-1)">A−</button>
+    <button onclick="changeFontSize(1)">A+</button>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="container" id="content">
+
+<!-- ============================================================ -->
+<!-- SECTION 1: BASIC PHYSIOLOGY -->
+<!-- ============================================================ -->
+<div class="section" id="s-basic">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="chevron">▶</span>
+    <h2>1. Basic Physiology — Distribution &amp; Transport</h2>
+    <span class="badge badge-phys">Physiology</span>
+  </div>
+  <div class="section-body">
+
+    <h3>Distribution of Na⁺ and K⁺</h3>
+    <p>The distribution of sodium and potassium is opposite — where one is abundant, the other is at low concentration. Sodium is the most prevalent cation in the extracellular fluid (ECF), with a normal level of ~140 mmol/L, but a typical intracellular concentration of ~10 mmol/L. In contrast, potassium is the most prevalent cation in the intracellular fluid, with a concentration around 150 mmol/L. Because the intracellular space is the largest fluid compartment, it holds the most abundant cation overall. Only ~1% of total body K⁺ is in plasma, with levels kept between 3.5 and 4.5 mmol/L. <a class="cite" href="#ref1">[1]</a></p>
+
+    <h3>The Cell Membrane &amp; Na⁺/K⁺-ATPase</h3>
+    <p>The cell membrane acts as a barrier between the potassium-rich intracellular fluid and the sodium-rich extracellular fluid. It is impermeable to charged particles — Na⁺ and K⁺ can only cross where specific carrier proteins allow. At rest, the large concentration gradients are maintained by <strong>Na⁺/K⁺-ATPase</strong>, a transmembrane protein that pumps out 3 Na⁺ for each 2 K⁺ it pumps in. This also maintains the net negative resting membrane potential (net transfer of one positive charge out per cycle). <a class="cite" href="#ref1">[1]</a></p>
+
+    <!-- ANIMATION -->
+    <div class="animation-container">
+      <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="membraneGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FBD38D"/>
+            <stop offset="100%" stop-color="#F6AD55"/>
+          </linearGradient>
+          <radialGradient id="naGrad" cx="50%" cy="40%">
+            <stop offset="0%" stop-color="#63B3ED"/>
+            <stop offset="100%" stop-color="#3182CE"/>
+          </radialGradient>
+          <radialGradient id="kGrad" cx="50%" cy="40%">
+            <stop offset="0%" stop-color="#68D391"/>
+            <stop offset="100%" stop-color="#38A169"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Labels -->
+        <text x="80" y="28" font-size="12" fill="#2C5282" font-weight="700" text-anchor="middle">EXTRACELLULAR</text>
+        <text x="80" y="248" font-size="12" fill="#22543D" font-weight="700" text-anchor="middle">INTRACELLULAR</text>
+
+        <!-- Membrane -->
+        <rect x="160" y="90" width="240" height="50" rx="6" fill="url(#membraneGrad)" opacity="0.7"/>
+        <text x="280" y="120" font-size="10" fill="#744210" text-anchor="middle" font-weight="600">CELL MEMBRANE</text>
+
+        <!-- ATPase pump -->
+        <rect x="250" y="100" width="60" height="30" rx="6" fill="#2C5282" opacity="0.9"/>
+        <text x="280" y="119" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">Na⁺/K⁺</text>
+        <text x="280" y="130" font-size="8" fill="#BEE3F8" text-anchor="middle">ATPase</text>
+
+        <!-- Extracellular Na+ ions (animated) -->
+        <circle cx="180" cy="60" r="8" fill="url(#naGrad)">
+          <animate attributeName="cx" values="180;250;280;310;320" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="60;70;100;120;140" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;1;0.5;0.3;0" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="210" cy="45" r="8" fill="url(#naGrad)">
+          <animate attributeName="cx" values="210;260;280;300;310" dur="3.5s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="45;60;100;120;140" dur="3.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;1;0.5;0.3;0" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="240" cy="55" r="8" fill="url(#naGrad)">
+          <animate attributeName="cx" values="240;260;280;295;305" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="55;70;100;120;140" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;1;0.5;0.3;0" dur="4s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Intracellular K+ ions (animated) -->
+        <circle cx="350" cy="180" r="8" fill="url(#kGrad)">
+          <animate attributeName="cx" values="350;310;280;260;250" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="180;160;130;115;105" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.3;0.6;0.8;1" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="320" cy="200" r="8" fill="url(#kGrad)">
+          <animate attributeName="cx" values="320;300;280;265;255" dur="3.5s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="200;175;140;120;108" dur="3.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.3;0.6;0.8;1" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Static labels -->
+        <text x="140" y="180" font-size="11" fill="#3182CE" font-weight="700">Na⁺</text>
+        <text x="140" y="195" font-size="9" fill="#718096">(high outside)</text>
+        <text x="390" y="180" font-size="11" fill="#38A169" font-weight="700">K⁺</text>
+        <text x="390" y="195" font-size="9" fill="#718096">(high inside)</text>
+
+        <!-- ATP label -->
+        <text x="280" y="155" font-size="8" fill="#C53030" text-anchor="middle">ATP → ADP + Pi</text>
+
+        <!-- Arrow indicators -->
+        <polygon points="320,85 330,92 320,99" fill="#C53030" opacity="0.6">
+          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+        </polygon>
+        <text x="340" y="94" font-size="7" fill="#C53030">3Na⁺ out</text>
+
+        <polygon points="240,135 230,128 240,121" fill="#38A169" opacity="0.6">
+          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+        </polygon>
+        <text x="200" y="145" font-size="7" fill="#38A169">2K⁺ in</text>
+      </svg>
+      <div class="animation-label">Na⁺/K⁺-ATPase: 3 Na⁺ out · 2 K⁺ in · net negative resting potential <a class="cite" href="#ref1">[1]</a></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: SODIUM HOMEOSTASIS -->
+<!-- ============================================================ -->
+<div class="section" id="s-sodium">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="chevron">▶</span>
+    <h2>2. Sodium Homeostasis &amp; Regulation</h2>
+    <span class="badge badge-na">Na⁺</span>
+  </div>
+  <div class="section-body">
+
+    <h3>Overview</h3>
+    <p>The volume of circulating plasma is vitally important — adequate plasma volume is required for normal tissue perfusion. Plasma volume is proportional to ECF volume, and since Na⁺ is the major cation of the ECF, total body Na⁺ content is proportional to ECF volume. In normal individuals, the kidney strives to achieve Na⁺ balance (excretion = ingestion). The vast majority (99–99.5%) of filtered Na⁺ is reabsorbed in the proximal tubule and loop of Henle — largely fixed. Much greater control exists over the 0.5% reabsorbed in the distal tubule and collecting ducts. <a class="cite" href="#ref1">[1]</a></p>
+
+    <h3>Hormones Increasing Sodium Reabsorption</h3>
+    <ul>
+      <li><strong>Renin:</strong> Released from the juxtaglomerular apparatus. Stimulated by raised sympathetic tone, falling plasma volume, and certain prostaglandins (PGE₂). Controls the renin–angiotensin–aldosterone axis. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Angiotensin II:</strong> Levels rise as a result of renin release; stimulates aldosterone release. Also increases tone in the efferent glomerular arteriole → increased filtration fraction → higher oncotic and lower hydrostatic pressure in the peritubular capillary → enhanced Na⁺ reabsorption from the proximal tubule. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Aldosterone:</strong> Steroid hormone from the adrenal cortex; end product of RAAS. Acts on the distal tubule and collecting duct to increase Na⁺ and water reabsorption (proportionately more Na⁺ than water). Release is also potentiated by hyperkalaemia. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Arginine vasopressin (AVP/ADH):</strong> Posterior pituitary peptide under direct hypothalamic control. Released by osmoreceptors (plasma osmolarity) and baroreceptors (circulating volume). Causes passive water absorption from collecting ducts; also causes a small degree of Na⁺ reabsorption. Stress (e.g. surgery) causes ADH release. In the absence of ADH activity (diabetes insipidus), inability to concentrate urine → diuresis up to 20 L/day. <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <h3>Hormones Increasing Sodium Excretion</h3>
+    <ul>
+      <li><strong>Atrial Natriuretic Peptide (ANP):</strong> Main hormone opposing the above. Small peptide produced from the atrial wall as a result of atrial stretching due to hypervolaemia. Acts to increase Na⁺ (and hence water) excretion by increasing GFR and blocking Na⁺ reabsorption in the proximal collecting duct. Brain natriuretic peptides (BNP) may have similar roles. <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <div class="info-box">
+      <strong>Clinical pearl:</strong> The kidney achieves long-term blood pressure control by excreting or retaining Na⁺ (and hence plasma volume). The distal tubule — handling only 0.5% of filtered Na⁺ — is the critical site of hormonal regulation. <a class="cite" href="#ref1">[1]</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: POTASSIUM HOMEOSTASIS -->
+<!-- ============================================================ -->
+<div class="section" id="s-potassium">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="chevron">▶</span>
+    <h2>3. Potassium Homeostasis &amp; Regulation</h2>
+    <span class="badge badge-k">K⁺</span>
+  </div>
+  <div class="section-body">
+
+    <h3>Overview</h3>
+    <p>Small increases in serum potassium can be very quickly life-threatening. The kidneys cannot excrete potassium quickly enough to contain surges due to oral potassium loads, so <strong>intracellular buffering</strong> plays an important role. As the kidneys excrete the excess and serum concentration falls, K⁺ is released again from cells. In the normal state, ~90% of daily potassium intake is excreted via the kidneys and the rest via the colon. ~90% of the filtered potassium load is reabsorbed by the start of the distal tubule (largely constant). Overall urinary excretion of K⁺ is controlled by the distal tubule and collecting ducts. <a class="cite" href="#ref1">[1]</a></p>
+
+    <h3>Factors Enhancing Potassium Transport INTO Cells</h3>
+    <ul>
+      <li><strong>Insulin</strong> — via increased Na⁺/K⁺-ATPase activity. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Adrenaline</strong> — via beta-adrenoceptors. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Aldosterone</strong> — release stimulated by rising serum potassium. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Serum pH</strong> — as pH falls, H⁺ enters cells. If due to organic acid (e.g. lactate), the anion permeates with H⁺. If due to mineral acid (e.g. HCl), the inorganic ion cannot cross; the cell excretes another cation (K⁺) to maintain electrical neutrality. As pH rises, cells release H⁺ and take up potassium. <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <h3>Factors Influencing Renal Potassium Handling</h3>
+    <ul>
+      <li><strong>Aldosterone</strong> — enhances Na⁺/K⁺-ATPase activity in the distal tubule and collecting duct; secretion directly stimulated by high potassium. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Glucocorticoids</strong> — act on the same renal components; usually metabolised by renal 11-β-hydroxysteroid dehydrogenase. In glucocorticoid excess, this enzyme can be overwhelmed → hypokalaemia (steroid treatment or Cushing's syndrome). <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Increased tubular flow rate</strong> — (volume expansion) increased flow "washes out" or dilutes excreted K⁺, favouring further K⁺ excretion down a concentration gradient. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Extracellular pH</strong> — K⁺ exchanged for H⁺ in tubular fluid; alkalosis enhances H⁺ reabsorption (and hence Na⁺ excretion), acidosis has the opposite effect. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Diuretics</strong> — enhance flow rate to distal tubule, increasing potassium washout. Loop diuretics also reduce K⁺ reabsorption from the thick ascending limb. Potassium-sparing diuretics (amiloride, triamterene) block Na⁺ reabsorption in the late distal tubule/collecting duct → decrease K⁺ excretion. Spironolactone is an aldosterone antagonist. <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: HYPONATRAEMIA -->
+<!-- ============================================================ -->
+<div class="section" id="s-hypona">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="chevron">▶</span>
+    <h2>4. Hyponatraemia — Causes, Classification &amp; Treatment</h2>
+    <span class="badge badge-na">Na⁺</span>
+  </div>
+  <div class="section-body">
+
+    <h3>Diagnostic Approach: Start with Osmolarity</h3>
+    <p>Consideration of the osmotic state of the patient is essential in evaluation. <a class="cite" href="#ref1">[1]</a></p>
+
+    <h4>Normal Osmolarity: Pseudohyponatraemia</h4>
+    <ul>
+      <li>Measurement error when the solid phase of plasma (lipid and protein) is increased. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Typically caused by <strong>hypertriglyceridaemia</strong> or <strong>paraproteinaemia</strong>. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Point-of-care assays or blood gas analysers (no specimen dilution) usually give normal sodium. <a class="cite" href="#ref2">[2]</a></li>
+    </ul>
+
+    <h4>High Osmolarity: Translocational Hyponatraemia</h4>
+    <ul>
+      <li>An osmotically active solute that cannot cross the cell membrane is present in plasma. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Most solutes (urea, ethanol) can enter cells and cause hypertonicity without cell dehydration. <a class="cite" href="#ref1">[1]</a></li>
+      <li>In insulinopaenic diabetic patients, glucose cannot enter cells → water displaced across the membrane → cells dehydrated, serum sodium "diluted". <a class="cite" href="#ref1">[1]</a></li>
+      <li>Also seen in <strong>TURP syndrome</strong> (glycine infusion) and with mannitol, maltose (IVIG), hypertonic contrast dye, sorbitol/glycine irrigation. <a class="cite" href="#ref2">[2]</a></li>
+    </ul>
+
+    <h4>Low Osmolarity: True Hyponatraemia</h4>
+    <p>True hyponatraemia is always a hypo-osmolar condition. The next stage is to consider volume status. <a class="cite" href="#ref1">[1]</a></p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Mechanism</th>
+            <th>Urine Na⁺</th>
+            <th>Common Causes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hypovolaemic</strong></td>
+            <td>Loss of Na⁺ and water, proportionately more Na⁺</td>
+            <td>&lt;30 mmol/L = extrarenal<br>&gt;30 mmol/L = renal</td>
+            <td>Renal: diuretics, mineralocorticoid deficiency, salt-wasting nephropathy, RTA, ketonuria. Extrarenal: vomiting, diarrhoea, burns, pancreatitis, trauma. <a class="cite" href="#ref1">[1]</a></td>
+          </tr>
+          <tr>
+            <td><strong>Euvolaemic</strong></td>
+            <td>Normal volume, no oedema; most common in hospitalised patients</td>
+            <td>Usually &gt;30 mmol/L</td>
+            <td>Inappropriate hypotonic fluid, SIADH, hypothyroidism, glucocorticoid deficiency, psychogenic polydipsia, many drugs (via ADH pathway). <a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref3">[3]</a></td>
+          </tr>
+          <tr>
+            <td><strong>Hypervolaemic</strong></td>
+            <td>Na⁺ and water retention, proportionately more water; increased total body Na⁺</td>
+            <td>&lt;30 mmol/L</td>
+            <td>Acute/chronic renal failure, CCF, nephrotic syndrome, cirrhosis. <a class="cite" href="#ref1">[1]</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <strong>SIADH diagnostic criteria:</strong> Hypotonic hyponatraemia + concentrated urine (urine osmolality &gt;100 mOsm/kg) + euvolaemia + urine Na⁺ &gt;20–30 mmol/L + normal renal/adrenal/thyroid function + no diuretics. <a class="cite" href="#ref3">[3]</a>
+    </div>
+
+    <h3>Effects &amp; Risk Factors</h3>
+    <p>Normal serum sodium ≈ 135–145 mmol/L. Levels 125–150 mmol/L are often asymptomatic. Outside this range: increasing nausea, lethargy, weakness, confusion. Levels &gt;160 or &lt;110 mmol/L are strongly associated with seizures, coma, and death. As sodium and osmolarity fall, water enters cells → brain swelling. <a class="cite" href="#ref1">[1]</a></p>
+
+    <div class="warning-box">
+      <strong>High-risk groups for complications:</strong><br>
+      • <strong>Acute hyponatraemic cerebral oedema:</strong> Post-operative patients, premenopausal women, elderly women on thiazides, children, hypoxaemic patients. <a class="cite" href="#ref1">[1]</a><br>
+      • <strong>Osmotic myelinolysis (from overly rapid correction):</strong> Malnourished patients, alcoholics, burns, hypokalaemia. <a class="cite" href="#ref1">[1]</a>
+    </div>
+
+    <h3>Treatment of Hyponatraemia</h3>
+    <p>No consensus on optimum treatment exists, but all authorities stress distinguishing <strong>acute</strong> (&lt;48 h) from <strong>chronic</strong> hyponatraemia. <a class="cite" href="#ref1">[1]</a></p>
+
+    <h4>Acute Hyponatraemia (&lt;48 h)</h4>
+    <ul>
+      <li>Can be safely treated with <strong>rapid correction</strong> if symptomatic. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Rapid correction only in symptomatic patients; aim is to correct until symptoms resolve. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Some sources: correction by up to <strong>2 mmol/L/hr</strong> is safe initially. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Correction to serum [Na⁺] &gt;135 mmol/L may be safe, but not necessary once symptoms resolve. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Methods: furosemide and/or hypertonic saline — specialist setting, hourly Na⁺ monitoring. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Hypertonic bicarbonate (1 mEq/ml) is often easiest: 2 ampules (100 ml) ≈ 200 ml of 3% saline, raises Na⁺ by ~3 mM. Goal: increase by ~4–6 mM. <a class="cite" href="#ref2">[2]</a></li>
+    </ul>
+
+    <h4>Chronic Hyponatraemia</h4>
+    <ul>
+      <li>With symptoms: rapid correction of up to <strong>10 mmol/L</strong> may be permissible. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Thereafter: limit to <strong>1.5 mmol/L/hr</strong> and <strong>no more than 8 mmol/L over 24 h</strong> (some sources: 12 mmol/L/24 h is safe). <a class="cite" href="#ref1">[1]</a></li>
+      <li>Fluid restriction is the mainstay. Regular neurological assessment and electrolytes at least every 12 h. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Long-term: identify and treat underlying cause. Selective ADH (AVP) antagonists ("aquaretics") may improve management. <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <div class="warning-box">
+      <strong>Critical:</strong> In all cases, correct hypovolaemia first with 0.9% saline (removes the ADH response). In hypervolaemic patients: fluid restriction, salt restriction, loop diuretics. <a class="cite" href="#ref1">[1]</a>
+    </div>
+
+    <h4>Correction Rate Summary</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Scenario</th><th>Max Correction Rate</th><th>Max 24 h</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Acute symptomatic</td><td>Up to 2 mmol/L/hr initially</td><td>Until symptoms resolve</td></tr>
+          <tr><td>Chronic with symptoms</td><td>1.5 mmol/L/hr after initial 10 mmol/L</td><td>8–12 mmol/L</td></tr>
+          <tr><td>Chronic asymptomatic</td><td>0.5 mmol/L/hr</td><td>8 mmol/L</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <strong>Anaesthetic implication:</strong> Anything more than mild, asymptomatic hyponatraemia should be regarded as a <strong>relative contraindication to elective surgery</strong>. <a class="cite" href="#ref1">[1]</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: HYPERNATRAEMIA -->
+<!-- ============================================================ -->
+<div class="section" id="s-hyperna">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="chevron">▶</span>
+    <h2>5. Hypernatraemia — Causes &amp; Treatment</h2>
+    <span class="badge badge-na">Na⁺</span>
+  </div>
+  <div class="section-body">
+
+    <h3>Causes</h3>
+    <p>Hypernatraemia is either caused by excessive salt intake or (much more frequently) inadequate water intake. <a class="cite" href="#ref1">[1]</a></p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Mechanism</th><th>Urine Na⁺</th><th>Common Causes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hypovolaemic</strong></td>
+            <td>Loss of Na⁺ and water, relatively more water</td>
+            <td>&lt;30 = extrarenal<br>&gt;30 = renal</td>
+            <td>Renal: loop/osmotic diuretics, post-obstruction, intrinsic renal disease. Extrarenal: diarrhoea/vomiting, burns, excessive sweating, fistulae. <a class="cite" href="#ref1">[1]</a></td>
+          </tr>
+          <tr>
+            <td><strong>Euvolaemic</strong></td>
+            <td>Body water losses partially replaced</td>
+            <td>Variable</td>
+            <td>Lack of water availability, blunted thirst response (extremes of age), diabetes insipidus (cranial/nephrogenic), insensible losses. <a class="cite" href="#ref1">[1]</a></td>
+          </tr>
+          <tr>
+            <td><strong>Hypervolaemic</strong></td>
+            <td>Na⁺ retention not matched by fluid intake</td>
+            <td>&gt;30</td>
+            <td>Na⁺ ingestion, Conn's syndrome, Cushing's syndrome, hypertonic saline/NaHCO₃, dialysis against hypertonic dialysate. <a class="cite" href="#ref1">[1]</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Clinical Features</h3>
+    <p>Adverse effects develop at sodium concentrations in excess of 155–160 mmol/L: increased temperature, restlessness, irritability, confusion, drowsiness, coma, seizures, subarachnoid haemorrhage (due to brain shrinkage and vascular rupture). <a class="cite" href="#ref4">[4]</a></p>
+    <p>Thirst is often the most prominent symptom. Any patient with Na⁺ &gt;150 mEq/L who is alert but not thirsty has <strong>hypothalamic dysfunction</strong> (structural or functional). <a class="cite" href="#ref5">[5]</a></p>
+
+    <h3>Free Water Deficit Calculation</h3>
+    <div class="key-point">
+      <strong>Water deficit = TBW × (1 − [140 ÷ serum Na⁺])</strong><br>
+      Where TBW = body mass × 0.6 (young male/child) or 0.5 (female/elderly male) or 0.45 (elderly female). <a class="cite" href="#ref4">[4]</a>
+    </div>
+
+    <h3>Treatment</h3>
+    <ul>
+      <li>Correct any volume deficit first with <strong>0.9% saline</strong> until hypovolaemia (orthostatic hypotension) improves. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Calculate total body water deficit; correct with <strong>5% dextrose</strong> — half in first 12–24 h, rest over next 24–36 h. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Hypervolaemic hypernatraemia: remove excess sodium — loop diuretics or dialysis if renal dysfunction. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Target sodium reduction: if Na⁺ 140–152 mM → target 140 mM. If Na⁺ &gt;152 mM → target drop of 12 mM from current value over 24 h. <a class="cite" href="#ref5">[5]</a></li>
+      <li>If the patient is awake, thirsty, and able to drink — encourage oral water. Otherwise give D5W IV (follow glucose). <a class="cite" href="#ref5">[5]</a></li>
+      <li>Check electrolytes q12h. <a class="cite" href="#ref5">[5]</a></li>
+    </ul>
+
+    <div class="warning-box">
+      <strong>Overly rapid correction</strong> may cause cerebral oedema. If hypernatraemia developed over hours, reduce sodium by ~1 mmol/hr is appropriate; daily decrease of 10 mmol/L is a sensible goal. <a class="cite" href="#ref4">[4]</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: HYPOKALAEMIA -->
+<!-- ============================================================ -->
+<div class="section" id="s-hypok">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="chevron">▶</span>
+    <h2>6. Hypokalaemia — Causes, Effects &amp; Treatment</h2>
+    <span class="badge badge-k">K⁺</span>
+  </div>
+  <div class="section-body">
+
+    <h3>Causes</h3>
+    <p>Caused by a shift of potassium into cells or (more commonly) a total body potassium deficit. Occasionally both co-exist. <a class="cite" href="#ref1">[1]</a></p>
+
+    <h4>Intracellular Potassium Shifting</h4>
+    <ul>
+      <li>Excess insulin (exogenous or endogenous) <a class="cite" href="#ref1">[1]</a></li>
+      <li>Beta-adrenoceptor agonists (endogenous catecholamines, exogenous salbutamol) <a class="cite" href="#ref1">[1]</a></li>
+      <li>Theophylline toxicity <a class="cite" href="#ref1">[1]</a></li>
+      <li>Acute rise in plasma pH <a class="cite" href="#ref1">[1]</a></li>
+      <li>Refeeding syndrome, hypothermia, hypokalaemic periodic paralysis <a class="cite" href="#ref6">[6]</a></li>
+    </ul>
+
+    <h4>Total Body Potassium Deficit</h4>
+    <p><strong>Renal causes:</strong> Diuretics, mineralocorticoid excess, glucocorticoid excess, RTA Type I/II, DKA (osmotic diuresis), vomiting (via metabolic alkalosis + increased aldosterone), ureterosigmoidostomy, Bartter's/Gitelman's syndromes. <a class="cite" href="#ref1">[1]</a></p>
+    <p><strong>Extrarenal causes:</strong> Inadequate intake, excessive perspiration, chronic diarrhoea, gastrointestinal fistula. <a class="cite" href="#ref1">[1]</a></p>
+
+    <div class="info-box">
+      <strong>Drug causes (99% of hospital hypokalaemia):</strong> Diuretics, corticosteroids, β-lactam antibiotics (high dose), amphotericin B, gentamicin, cisplatin, insulin, β-2 agonists (salbutamol), theophylline, caffeine. <a class="cite" href="#ref7">[7]</a>
+    </div>
+
+    <h3>Effects of Hypokalaemia</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Serum K⁺ (mmol/L)</th><th>Effects</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>3.5–4.5</td><td>Normal</td></tr>
+          <tr><td>3.0–3.5</td><td>Usually asymptomatic (mild)</td></tr>
+          <tr><td>&lt;3.0</td><td>Weakness, lassitude, constipation</td></tr>
+          <tr><td>&lt;2.5</td><td>Muscle necrosis, ascending paralysis, respiratory compromise; torsades de pointes risk if additional factors <a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref6">[6]</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>ECG Changes</h4>
+    <ul>
+      <li>Prominent <strong>U waves</strong> (often &gt;1 mm, or larger than T wave in same lead) <a class="cite" href="#ref8">[8]</a></li>
+      <li>ST segment depression, flattened T waves <a class="cite" href="#ref1">[1]</a></li>
+      <li>PR interval prolongation, increased P wave amplitude/width <a class="cite" href="#ref7">[7]</a></li>
+      <li>Predisposition to ventricular and supraventricular ectopic rhythms, especially with digoxin <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <div class="warning-box">
+      <strong>Patients without underlying cardiac disease</strong> are unlikely to suffer myocardial effects even at K⁺ &lt;3.0. However, those with ischaemic heart disease, heart failure, or LV dysfunction are at risk of arrhythmias with only mild/moderate hypokalaemia. <a class="cite" href="#ref1">[1]</a>
+    </div>
+
+    <h3>Treatment of Hypokalaemia</h3>
+    <ul>
+      <li>Exclude intracellular shifts (theophylline toxicity, hyperinsulinaemia) first. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Ideally <strong>oral</strong> supplementation. If severe, IV via central vein in critical care setting. <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Rate should not exceed 20 mmol/hr</strong>, with continuous cardiac monitoring. <a class="cite" href="#ref1">[1]</a></li>
+      <li>Typical IV rates: 10 mEq/hr routine; 20 mEq/hr for severe hypokalaemia or DKA (central line or split peripheral). <a class="cite" href="#ref6">[6]</a></li>
+      <li>Check and replace <strong>magnesium</strong> — deficiency commonly coexists and must be corrected for potassium repletion to be effective. <a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref6">[6]</a></li>
+      <li>Serum K⁺ is a good guide to total body deficit (in absence of shifting): fall from 3.5→3.0 ≈ 5% deficit (~175 mmol); 3.0→2.0 ≈ further 200–400 mmol deficit. <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <div class="info-box">
+      <strong>Prophylactic potassium:</strong> Evidence supports maintaining K⁺ 4.0–4.5 in post-cardiac surgery patients and those on quinidine/sotalol (Torsades risk). Routine augmentation for all post-operative patients is <strong>no longer best practice</strong>. <a class="cite" href="#ref1">[1]</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: HYPERKALAEMIA -->
+<!-- ============================================================ -->
+<div class="section" id="s-hyperk">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="chevron">▶</span>
+    <h2>7. Hyperkalaemia — Causes, Effects &amp; Emergency Treatment</h2>
+    <span class="badge badge-k">K⁺</span>
+  </div>
+  <div class="section-body">
+
+    <h3>Causes</h3>
+    <p>Due to either an overall increase in total body potassium or an acute shift from intracellular to extracellular compartment. <a class="cite" href="#ref1">[1]</a></p>
+
+    <h4>Extracellular Potassium Shifts</h4>
+    <ul>
+      <li><strong>Acidosis</strong> — H⁺ taken into cell in exchange for K⁺ <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Insulin deficiency with hyperglycaemia</strong> — often coexists with profound total body potassium deficit <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Digitalis toxicity</strong> — inhibition of Na⁺/K⁺-ATPase <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Beta-blockers</strong> — typically mild elevation <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Exercise</strong> — potassium efflux from skeletal muscle <a class="cite" href="#ref1">[1]</a></li>
+      <li><strong>Suxamethonium</strong> — fasciculations → K⁺ efflux. A single 100 mg dose may raise serum K⁺ by up to 1.0 mmol/L. <strong>Contraindicated in denervated muscle</strong> (extra-junctional receptors → massive K⁺ efflux, dangerous hyperkalaemia). <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <h4>Excessive Potassium Input</h4>
+    <ul>
+      <li>Cellular lysis (haemolysis, rhabdomyolysis, tumour lysis syndrome) <a class="cite" href="#ref1">[1]</a></li>
+      <li>Inappropriate prescription of K⁺-containing IV fluids/supplements — very important in hospitalised patients <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <h4>Impaired Renal Excretion</h4>
+    <ul>
+      <li>Decreased GFR — renal failure is the commonest cause <a class="cite" href="#ref1">[1]</a></li>
+      <li>Mineralocorticoid insufficiency (primary adrenal failure, RTA Type IV, ACE inhibitors, ATII-receptor antagonists, spironolactone) <a class="cite" href="#ref1">[1]</a></li>
+      <li>Potassium-sparing diuretics <a class="cite" href="#ref1">[1]</a></li>
+      <li>Primary renal insults (interstitial nephritis) <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <h4>Pseudohyperkalaemia</h4>
+    <ul>
+      <li>In vitro haemolysis, prolonged tourniquet, fist clenching, delayed processing <a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref9">[9]</a></li>
+      <li>Highly elevated WBC or platelet counts (K⁺ secreted from cells prior to analysis) <a class="cite" href="#ref1">[1]</a></li>
+      <li>If ECG is normal despite lab-reported severe hyperkalaemia → consider pseudohyperkalaemia and repeat. <a class="cite" href="#ref9">[9]</a></li>
+    </ul>
+
+    <h3>Effects of Hyperkalaemia</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Serum K⁺ (mmol/L)</th><th>ECG / Clinical Effects</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>&lt;6.0</td><td>Rarely causes clinical symptoms</td></tr>
+          <tr><td>&gt;6.0–7.0</td><td>Peaking of T waves</td></tr>
+          <tr><td>&gt;7.0</td><td>Broadening of P waves and QRS complex</td></tr>
+          <tr><td>&gt;7.0 (severe)</td><td>Sinusoidal pattern — precursor to cardiac arrest. Terminal ECG changes may develop very quickly. <a class="cite" href="#ref1">[1]</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Other sequelae: paraesthesiae, weakness, paralysis, decreased renal ammonia production, increased renal H⁺ retention → metabolic acidosis, natriuresis, elevated aldosterone and insulin. <a class="cite" href="#ref1">[1]</a></p>
+
+    <div class="warning-box">
+      <strong>Speed of onset is critical:</strong> A relatively small increase over a short time can precipitate fatal arrhythmia, whereas a much higher level tolerated if developed over a longer period (e.g., insidious renal failure). <a class="cite" href="#ref1">[1]</a>
+    </div>
+
+    <h3>Emergency Treatment of Severe Hyperkalaemia</h3>
+    <p>Therapies divided into: (1) transient intracellular shift, and (2) removal of excess potassium from the body. <a class="cite" href="#ref1">[1]</a></p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Step</th><th>Intervention</th><th>Details</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Stabilise myocardium</strong></td>
+            <td>IV Calcium</td>
+            <td>Calcium chloride 10% 10 ml (6.8 mmol) over 2–5 min; or calcium gluconate 3 g. Rapidly reverses repolarisation abnormalities. <a class="cite" href="#ref9">[9]</a><a class="cite" href="#ref10">[10]</a></td>
+          </tr>
+          <tr>
+            <td><strong>2. Shift K⁺ into cells</strong></td>
+            <td>Insulin + Dextrose</td>
+            <td>5–10 units regular insulin IV bolus + D50W 100 ml (or D10W 500 ml over 4 h). Effective for 4–6 h; monitor for rebound. <a class="cite" href="#ref9">[9]</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Beta-2 agonist</td>
+            <td>Salbutamol 10–20 mg nebulised (4–8 nebs back-to-back); or terbutaline 7 mcg/kg SC. <a class="cite" href="#ref9">[9]</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Sodium bicarbonate</td>
+            <td>50–100 mmol over 5 min (especially if acidotic). Evidence equivocal. <a class="cite" href="#ref1">[1]</a></td>
+          </tr>
+          <tr>
+            <td><strong>3. Remove K⁺ from body</strong></td>
+            <td>Diuretics (if urine output)</td>
+            <td>Furosemide 40–80 mg IV; or 160–250 mg IV for severe. <a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref9">[9]</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Potassium binders</td>
+            <td>Sodium zirconium cyclosilicate 10 g PO q8h; or sodium polystyrene sulfonate (Resonium). <a class="cite" href="#ref9">[9]</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Dialysis</td>
+            <td>Definitive for severe/refractory hyperkalaemia. Indications: chronic haemodialysis, failure of other measures. <a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref9">[9]</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <strong>DKA caution:</strong> Acidotic DKA patients have elevated serum K⁺ due to cellular impermeability (no insulin) but are often profoundly potassium-depleted overall. As treatment commences and cells become permeable, <strong>rebound hypokalaemia</strong> can develop — monitor closely. <a class="cite" href="#ref1">[1]</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: CLINICAL IMPLICATIONS -->
+<!-- ============================================================ -->
+<div class="section" id="s-clinical">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="chevron">▶</span>
+    <h2>8. Clinical Implications for Anaesthesia &amp; ICU</h2>
+    <span class="badge badge-clin">Clinical</span>
+  </div>
+  <div class="section-body">
+
+    <h3>General Principles</h3>
+    <p>The implications of an increase or decrease in serum Na⁺ or K⁺ depend on the <strong>speed</strong> with which the change occurred. Very low Na⁺ levels can be reached without symptoms if gradual over months. Chronic renal impairment patients often tolerate hyperkalaemia that would be fatal if acute. However, there are limits above or below which normal physiology is affected regardless of time course. <a class="cite" href="#ref1">[1]</a></p>
+    <p>Patients are also at risk from <strong>overly rapid correction</strong>. A balance must be struck between the risks of the condition and the risks of treatment. <a class="cite" href="#ref1">[1]</a></p>
+
+    <h3>Peri-operative Risk Factors</h3>
+    <p>Surgical patients are frequently affected by electrolyte imbalance: <a class="cite" href="#ref1">[1]</a></p>
+    <ul>
+      <li>Often sedated or not allowed to eat/drink → IV fluids for extended periods <a class="cite" href="#ref1">[1]</a></li>
+      <li>Pre-operative bowel obstruction or bowel prep → profound dehydration <a class="cite" href="#ref1">[1]</a></li>
+      <li>Large fluid shifts in theatre <a class="cite" href="#ref1">[1]</a></li>
+      <li>Post-operatively in a water-retaining state due to stress response and ADH secretion <a class="cite" href="#ref1">[1]</a></li>
+    </ul>
+
+    <h3>Anaesthetic Considerations — Quick Reference</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Disorder</th><th>Anaesthetic Consideration</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hypokalaemia</strong> (K⁺ &lt;3.0–3.5)</td>
+            <td>Consider cancelling elective cases if K⁺ &lt;3–3.5 mEq/L (based on chronicity). EKG monitoring. Consider reducing muscle relaxant dose 25–50%. Check for coexistent electrolyte deficiencies (Mg²⁺, Ca²⁺). <a class="cite" href="#ref11">[11]</a></td>
+          </tr>
+          <tr>
+            <td><strong>Hyperkalaemia</strong> (K⁺ &gt;5.5)</td>
+            <td>Consider cancelling elective cases if K⁺ &gt;5.5. Consider alternative to succinylcholine. EKG monitoring. Avoid hypoventilation (respiratory acidosis). Treat acidosis. Use NS instead of LR. Monitor for increased sensitivity to muscle relaxants. <a class="cite" href="#ref11">[11]</a></td>
+          </tr>
+          <tr>
+            <td><strong>Hyponatraemia</strong></td>
+            <td>Anything more than mild, asymptomatic hyponatraemia is a relative contraindication to elective surgery. Post-operative patients are at increased risk of acute hyponatraemic cerebral oedema. <a class="cite" href="#ref1">[1]</a></td>
+          </tr>
+          <tr>
+            <td><strong>Hypernatraemia</strong></td>
+            <td>Correct volume deficit first; overly rapid correction risks cerebral oedema. <a class="cite" href="#ref1">[1]</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key Take-Home Messages</h3>
+    <div class="key-point">
+      <strong>1.</strong> Electrolyte disorders are encountered almost daily in clinical practice and are frequently mismanaged due to poor understanding. <a class="cite" href="#ref1">[1]</a><br>
+      <strong>2.</strong> Careless prescription of peri-operative fluids and infrequent electrolyte checking puts patients needlessly at risk. <a class="cite" href="#ref1">[1]</a><br>
+      <strong>3.</strong> Often the most junior doctors have responsibility for these areas. <a class="cite" href="#ref1">[1]</a><br>
+      <strong>4.</strong> Speed of onset and speed of correction are both critical determinants of outcome. <a class="cite" href="#ref1">[1]</a><br>
+      <strong>5.</strong> Always check magnesium alongside potassium — they are commonly deranged together. <a class="cite" href="#ref6">[6]</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- REFERENCES -->
+<!-- ============================================================ -->
+<div class="references">
+  <h2>📚 References</h2>
+  <ol>
+    <li id="ref1">Electrolyte Disorders — Review Article (provided PDF). <em>Basic science of Na⁺ and K⁺ balance, clinical anaesthesia implications.</em></li>
+    <li id="ref2">EMCrit IBCC. <em>Hyponatremia.</em> <a href="https://emcrit.org/ibcc/hyponatremia/" target="_blank" rel="noopener">https://emcrit.org/ibcc/hyponatremia/</a></li>
+    <li id="ref3">Deranged Physiology. <em>Hyponatremia: a lazy man's classification.</em> <a href="https://derangedphysiology.com/main/required-reading/electrolyte-disorders/Chapter-531/hyponatremia-lazy-mans-classification" target="_blank" rel="noopener">https://derangedphysiology.com/main/required-reading/electrolyte-disorders/Chapter-531/hyponatremia-lazy-mans-classification</a></li>
+    <li id="ref4">Deranged Physiology. <em>Hypernatremia.</em> <a href="https://derangedphysiology.com/main/required-reading/electrolyte-disorders/Chapter-541/hypernatremia" target="_blank" rel="noopener">https://derangedphysiology.com/main/required-reading/electrolyte-disorders/Chapter-541/hypernatremia</a></li>
+    <li id="ref5">EMCrit IBCC. <em>Hypernatremia &amp; dehydration in the ICU.</em> <a href="https://emcrit.org/ibcc/hypernatremia/" target="_blank" rel="noopener">https://emcrit.org/ibcc/hypernatremia/</a></li>
+    <li id="ref6">EMCrit IBCC. <em>Hypokalemia.</em> <a href="https://emcrit.org/ibcc/hypokalemia/" target="_blank" rel="noopener">https://emcrit.org/ibcc/hypokalemia/</a></li>
+    <li id="ref7">Deranged Physiology. <em>Hypokalemia.</em> <a href="https://derangedphysiology.com/main/required-reading/electrolyte-disorders/Chapter-621/hypokalemia" target="_blank" rel="noopener">https://derangedphysiology.com/main/required-reading/electrolyte-disorders/Chapter-621/hypokalemia</a></li>
+    <li id="ref8">Surawicz B, Lepeschkin E. <em>ECG criteria for hypokalemia.</em> Circulation. 1953.</li>
+    <li id="ref9">EMCrit IBCC. <em>Hyperkalemia.</em> <a href="https://emcrit.org/ibcc/hyperkalemia/" target="_blank" rel="noopener">https://emcrit.org/ibcc/hyperkalemia/</a></li>
+    <li id="ref10">Deranged Physiology. <em>Hyperkalemia.</em> <a href="https://derangedphysiology.com/main/required-reading/electrolyte-disorders/Chapter-622/hyperkalemia" target="_blank" rel="noopener">https://derangedphysiology.com/main/required-reading/electrolyte-disorders/Chapter-622/hyperkalemia</a></li>
+    <li id="ref11">Stanford Ether. <em>Anesthetic Considerations for Electrolyte Disorders.</em></li>
+  </ol>
+</div>
+
+<div class="footer">
+  ⚡ Electrolyte Disorders Quick Reference · Compiled from provided PDF + 8 external sources · For clinical education and reference only.<br>
+  Always verify against local guidelines and use clinical judgement. Not a substitute for formal medical training.
+</div>
+
+</div><!-- /container -->
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* ===== TOGGLE SECTIONS ===== */
+function toggleSection(header) {
+  const section = header.parentElement;
+  section.classList.toggle('open');
+}
+
+function expandAll() {
+  document.querySelectorAll('.section').forEach(s => s.classList.add('open'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('open'));
+}
+
+/* ===== FONT SIZE ===== */
+let currentFontSize = 15;
+function changeFontSize(delta) {
+  currentFontSize = Math.max(12, Math.min(22, currentFontSize + delta));
+  document.documentElement.style.setProperty('--font-size-base', currentFontSize + 'px');
+}
+
+/* ===== SEARCH ===== */
+let searchTimeout = null;
+let currentHighlightIndex = -1;
+let highlights = [];
+
+function performSearch() {
+  const input = document.getElementById('searchInput');
+  const countEl = document.getElementById('searchCount');
+  const query = input.value.trim();
+
+  // Clear previous highlights
+  clearHighlights();
+  highlights = [];
+  currentHighlightIndex = -1;
+
+  if (query.length < 2) {
+    countEl.textContent = '';
+    return;
+  }
+
+  // Open all sections for searching
+  document.querySelectorAll('.section').forEach(s => s.classList.add('open'));
+
+  // Walk text nodes and highlight
+  const container = document.getElementById('content');
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+    acceptNode: function(node) {
+      // Skip script/style, empty text, and already highlighted
+      if (node.parentElement.tagName === 'SCRIPT' ||
+          node.parentElement.tagName === 'STYLE' ||
+          node.parentElement.classList.contains('search-highlight') ||
+          node.textContent.trim().length === 0) {
+        return NodeFilter.FILTER_REJECT;
+      }
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+
+  const textNodes = [];
+  while (walker.nextNode()) {
+    textNodes.push(walker.currentNode);
+  }
+
+  const regex = new RegExp('(' + escapeRegex(query) + ')', 'gi');
+
+  textNodes.forEach(node => {
+    const text = node.textContent;
+    if (regex.test(text)) {
+      const frag = document.createDocumentFragment();
+      let lastIndex = 0;
+      regex.lastIndex = 0;
+      let match;
+      while ((match = regex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+          frag.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+        }
+        const mark = document.createElement('mark');
+        mark.className = 'search-highlight';
+        mark.textContent = match[0];
+        frag.appendChild(mark);
+        highlights.push(mark);
+        lastIndex = regex.lastIndex;
+      }
+      if (lastIndex < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    }
+  });
+
+  const count = highlights.length;
+  countEl.textContent = count > 0 ? count + ' found' : 'No results';
+
+  if (count > 0) {
+    currentHighlightIndex = 0;
+    highlights[0].classList.add('current');
+    highlights[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function clearHighlights() {
+  document.querySelectorAll('.search-highlight').forEach(mark => {
+    const parent = mark.parentNode;
+    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+    parent.normalize();
+  });
+}
+
+// Navigate highlights with Enter
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && highlights.length > 0) {
+    e.preventDefault();
+    if (currentHighlightIndex >= 0 && currentHighlightIndex < highlights.length) {
+      highlights[currentHighlightIndex].classList.remove('current');
+    }
+    currentHighlightIndex = (currentHighlightIndex + 1) % highlights.length;
+    highlights[currentHighlightIndex].classList.add('current');
+    highlights[currentHighlightIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  if (e.key === 'Escape') {
+    this.value = '';
+    clearHighlights();
+    document.getElementById('searchCount').textContent = '';
+    highlights = [];
+  }
+});
+
+// Debounced search
+document.getElementById('searchInput').addEventListener('input', function() {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(performSearch, 250);
+});
+
+/* ===== INIT: open first section ===== */
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('#s-basic').classList.add('open');
+});
+
+/* ===== SMOOTH SCROLL for citations ===== */
+document.querySelectorAll('.cite').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.style.transition = 'background 0.3s';
+      target.style.background = '#FEFCBF';
+      setTimeout(() => { target.style.background = ''; }, 1500);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
