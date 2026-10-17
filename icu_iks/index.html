@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Invasive Klebsiella pneumoniae Syndrome — Anaesthesia &amp; ICU Quick Reference</title>
+<style>
+/* ============================================================
+   GRAM-NEGATIVE (PINK / CARBOL FUCHSIN) THEME
+   ============================================================ */
+:root{
+  --fs: 16px;
+
+  --bg:        #fff7fa;
+  --surface:   #ffffff;
+  --surface-2: #fdeef4;
+  --surface-3: #fbe3ec;
+  --border:    #f0c6d8;
+
+  --ink:       #2b1a22;
+  --ink-soft:  #5d4551;
+
+  --pink:      #c2185b;
+  --pink-2:    #e0447e;
+  --pink-deep: #8d1145;
+  --pink-soft: #fbe3ec;
+
+  --ok:        #146c50;
+  --warn:      #8a4b00;
+
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(141,17,69,.06), 0 6px 18px rgba(141,17,69,.05);
+}
+
+html{ font-size: var(--fs); -webkit-text-size-adjust:100%; }
+
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  line-height: 1.55;
+}
+
+.wrap{ width:min(1120px, 100% - 2rem); margin-inline:auto; }
+
+/* ---------- HEADER ---------- */
+.site-head{
+  background:
+    radial-gradient(900px 320px at 12% -30%, #ffd3e4 0%, transparent 60%),
+    linear-gradient(135deg, #8d1145 0%, #c2185b 55%, #e0447e 100%);
+  color:#fff;
+  padding: 2rem 0 1.6rem;
+}
+.site-head h1{
+  margin:.15rem 0 .35rem;
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  line-height:1.2;
+  letter-spacing:-.01em;
+}
+.site-head h1 em{ font-style: italic; }
+.kicker{
+  margin:0;
+  font-size:.72rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:#ffd6e6;
+}
+.sub{ margin:.2rem 0 .5rem; color:#ffe6f0; font-size:.95rem; }
+.cite-mini{
+  margin:0;
+  font-size:.78rem;
+  color:#ffd6e6;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  padding:.35rem .6rem;
+  border-radius:999px;
+  display:inline-block;
+}
+
+/* ---------- TOC ---------- */
+.toc{ display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1rem; }
+.toc a{
+  font-size:.78rem;
+  font-weight:700;
+  color:#fff;
+  text-decoration:none;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.28);
+  padding:.28rem .65rem;
+  border-radius:999px;
+  transition: background .18s ease, transform .18s ease;
+}
+.toc a:hover{ background:rgba(255,255,255,.32); transform: translateY(-1px); }
+
+/* ---------- TOOLBAR ---------- */
+.toolbar{
+  position: sticky;
+  top:0;
+  z-index:60;
+  background: rgba(255,247,250,.96);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:.55rem 0;
+}
+.toolbar-inner{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  align-items:center;
+}
+.search-box{
+  position:relative;
+  flex:1 1 240px;
+  min-width:180px;
+}
+.search-box input[type="search"]{
+  width:100%;
+  font: inherit;
+  font-size:.9rem;
+  padding:.5rem 4.6rem .5rem 2.1rem;
+  border-radius:999px;
+  border:1.5px solid var(--border);
+  background:#fff;
+  color:var(--ink);
+  outline:none;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.search-box input[type="search"]:focus{
+  border-color:var(--pink-2);
+  box-shadow:0 0 0 4px rgba(224,68,126,.16);
+}
+.search-box .icon{
+  position:absolute; left:.7rem; top:50%; transform:translateY(-50%);
+  color:var(--pink); font-size:.95rem; pointer-events:none;
+}
+.search-meta{
+  position:absolute; right:.5rem; top:50%; transform:translateY(-50%);
+  display:flex; align-items:center; gap:.15rem;
+}
+.count{
+  font-size:.72rem;
+  font-weight:800;
+  color:var(--pink-deep);
+  background:var(--surface-2);
+  border-radius:999px;
+  padding:.12rem .45rem;
+  white-space:nowrap;
+}
+.mini-btn{
+  border:none;
+  background:var(--surface-2);
+  color:var(--pink-deep);
+  font: inherit;
+  font-size:.75rem;
+  font-weight:800;
+  width:1.5rem; height:1.5rem;
+  border-radius:50%;
+  cursor:pointer;
+  display:grid; place-items:center;
+  transition: background .15s ease, color .15s ease;
+}
+.mini-btn:hover{ background:var(--pink); color:#fff; }
+
+.btn{
+  font: inherit;
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.01em;
+  padding:.44rem .8rem;
+  border-radius:999px;
+  border:1.5px solid var(--border);
+  background:#fff;
+  color:var(--pink-deep);
+  cursor:pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+  white-space:nowrap;
+}
+.btn:hover{ background:var(--pink); border-color:var(--pink); color:#fff; transform:translateY(-1px); }
+.btn:active{ transform:translateY(0); }
+.btn.primary{ background:var(--pink); border-color:var(--pink); color:#fff; }
+.btn.primary:hover{ background:var(--pink-deep); border-color:var(--pink-deep); }
+
+.fs-group{
+  display:flex; align-items:center; gap:.35rem;
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:999px;
+  padding:.2rem .45rem .2rem .3rem;
+}
+.fs-group input[type="range"]{
+  width:82px;
+  accent-color: var(--pink);
+  cursor:pointer;
+}
+.fs-label{
+  font-size:.72rem;
+  font-weight:800;
+  color:var(--pink-deep);
+  min-width:2.6rem;
+  text-align:center;
+  cursor:pointer;
+}
+
+/* ---------- MAIN / CARDS ---------- */
+main{ padding: 1.4rem 0 3rem; }
+
+section{ margin-bottom: 1.6rem; }
+
+.section-title{
+  display:flex; align-items:center; gap:.55rem;
+  font-size:.78rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:900;
+  color:var(--pink-deep);
+  margin: 0 0 .7rem;
+}
+.section-title::after{
+  content:"";
+  flex:1;
+  height:2px;
+  border-radius:2px;
+  background:linear-gradient(90deg, var(--border), transparent);
+}
+
+details.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  margin:0 0 .7rem;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+details.card > summary{
+  cursor:pointer;
+  list-style:none;
+  padding:.72rem .95rem;
+  font-weight:800;
+  font-size:.95rem;
+  color:var(--pink-deep);
+  background:linear-gradient(90deg, var(--pink-soft), #ffffff 85%);
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  user-select:none;
+}
+details.card > summary::-webkit-details-marker{ display:none; }
+details.card > summary::before{
+  content:"▸";
+  color:var(--pink);
+  font-size:.9em;
+  line-height:1;
+  transition: transform .18s ease;
+  flex:none;
+}
+details.card[open] > summary::before{ transform: rotate(90deg); }
+details.card > summary:hover{ background:linear-gradient(90deg, #f9d5e3, #ffffff 90%); }
+details.card > summary .tag{
+  margin-left:auto;
+  font-size:.66rem;
+  font-weight:800;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:#fff;
+  background:var(--pink-2);
+  padding:.14rem .5rem;
+  border-radius:999px;
+  flex:none;
+}
+.card-body{ padding:.85rem 1rem 1.1rem; }
+.card-body > :first-child{ margin-top:0; }
+.card-body > :last-child{ margin-bottom:0; }
+
+h3{
+  font-size:.9rem;
+  margin:1.1rem 0 .4rem;
+  color:var(--pink-deep);
+  letter-spacing:.01em;
+}
+h4{ font-size:.85rem; margin:.9rem 0 .3rem; color:var(--ink); }
+
+p{ margin:.45rem 0; }
+ul, ol{ margin:.4rem 0 .6rem; padding-left:1.25rem; }
+li{ margin:.22rem 0; }
+li::marker{ color:var(--pink-2); }
+strong{ color:var(--pink-deep); }
+em{ color:var(--ink); }
+
+/* ---------- CALLOUTS ---------- */
+.callout{
+  border-left:4px solid var(--pink);
+  background:var(--surface-2);
+  border-radius: 0 10px 10px 0;
+  padding:.6rem .8rem;
+  margin:.7rem 0;
+  font-size:.9rem;
+}
+.callout.warn{ border-left-color:#d68a00; background:#fff7e8; }
+.callout.ok{ border-left-color: var(--ok); background:#eefaf5; }
+.callout .label{
+  display:block;
+  font-size:.68rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:900;
+  color:var(--pink-deep);
+  margin-bottom:.15rem;
+}
+.callout.warn .label{ color:#8a4b00; }
+.callout.ok .label{ color:var(--ok); }
+
+/* ---------- PILLS / KEY NUMBERS ---------- */
+.pills{ display:flex; flex-wrap:wrap; gap:.4rem; margin:.6rem 0; }
+.pill{
+  font-size:.75rem;
+  font-weight:800;
+  color:var(--pink-deep);
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:.22rem .62rem;
+}
+.pill.solid{ background:var(--pink); border-color:var(--pink); color:#fff; }
+
+/* ---------- TABLES ---------- */
+.table-wrap{
+  overflow-x:auto;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fff;
+  margin:.7rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:600px;
+  font-size:.86rem;
+}
+thead th{
+  background:var(--surface-2);
+  color:var(--pink-deep);
+  text-align:left;
+  font-size:.75rem;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:.55rem .7rem;
+  border-bottom:1.5px solid var(--border);
+  position:sticky; top:0;
+  white-space:nowrap;
+}
+tbody td{
+  padding:.52rem .7rem;
+  border-bottom:1px solid #f7e0ea;
+  vertical-align:top;
+}
+tbody tr:nth-child(even){ background:#fffaFC; }
+tbody tr:last-child td{ border-bottom:none; }
+td strong{ white-space:nowrap; }
+
+/* ---------- ANIMATION: PATHOPHYSIOLOGY ---------- */
+.patho{
+  background: linear-gradient(180deg,#fff,#fff8fb);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1rem .9rem 1.2rem;
+  box-shadow: var(--shadow);
+}
+.patho-head{
+  display:flex; flex-wrap:wrap; gap:.5rem; align-items:baseline;
+  margin-bottom:.9rem;
+}
+.patho-head h3{ margin:0; font-size:.95rem; }
+.patho-head span{ font-size:.75rem; color:var(--ink-soft); }
+
+.steps{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap:.6rem;
+  position:relative;
+}
+.step{
+  --i:0;
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  padding:.65rem .7rem;
+  position:relative;
+  animation: stepglow 7.5s infinite;
+  animation-delay: calc(var(--i) * 1.5s);
+}
+.step .num{
+  display:inline-grid; place-items:center;
+  width:1.35rem; height:1.35rem;
+  border-radius:50%;
+  background:var(--pink);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:900;
+  margin-bottom:.3rem;
+}
+.step .t{ display:block; font-size:.82rem; font-weight:800; color:var(--pink-deep); line-height:1.25; }
+.step .d{ display:block; font-size:.75rem; color:var(--ink-soft); margin-top:.2rem; line-height:1.35; }
+
+@keyframes stepglow{
+  0%,100%{ box-shadow:0 0 0 0 rgba(194,24,91,0); border-color:var(--border); }
+  12%    { box-shadow:0 0 0 5px rgba(194,24,91,.13); border-color:var(--pink-2); }
+  34%    { box-shadow:0 0 0 0 rgba(194,24,91,0); border-color:var(--border); }
+}
+
+.track{
+  position:relative;
+  height:14px;
+  margin:.75rem .2rem 0;
+  border-radius:999px;
+  background:linear-gradient(90deg,#fbe3ec,#f7cfe0,#fbe3ec);
+}
+.track .dot{
+  position:absolute;
+  top:1px;
+  left:0;
+  width:12px; height:12px;
+  border-radius:50%;
+  background:var(--pink);
+  box-shadow:0 0 0 4px rgba(194,24,91,.16);
+  animation: travel 7.5s linear infinite;
+}
+@keyframes travel{
+  0%   { left:0; opacity:0; }
+  8%   { opacity:1; }
+  92%  { opacity:1; }
+  100% { left:calc(100% - 12px); opacity:0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .step{ animation:none; }
+  .track .dot{ animation:none; left:calc(50% - 6px); opacity:.85; }
+  *{ scroll-behavior:auto !important; }
+}
+
+/* ---------- FIGURES ---------- */
+.fig-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap:.8rem;
+  margin:.7rem 0 .3rem;
+}
+.fig-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:.7rem;
+  text-align:center;
+  box-shadow: var(--shadow);
+}
+.fig-card svg{ width:100%; height:auto; display:block; border-radius:10px; }
+.fig-card .cap{
+  font-size:.75rem;
+  color:var(--ink-soft);
+  margin-top:.45rem;
+  line-height:1.35;
+}
+.fig-card .cap b{ color:var(--pink-deep); display:block; font-size:.8rem; }
+.fig-card .cap .size{
+  display:inline-block;
+  margin-top:.3rem;
+  font-size:.7rem;
+  font-weight:800;
+  color:#fff;
+  background:var(--pink-2);
+  border-radius:999px;
+  padding:.1rem .5rem;
+}
+
+/* ---------- SEARCH HIGHLIGHTS ---------- */
+mark.srch{
+  background:#ffe066;
+  color:#2b1a22;
+  border-radius:3px;
+  padding:0 .08em;
+}
+mark.srch.cur{
+  background:var(--pink);
+  color:#fff;
+  box-shadow:0 0 0 2px var(--pink-deep);
+}
+
+/* ---------- REFERENCES ---------- */
+ol.refs{ font-size:.84rem; padding-left:1.4rem; }
+ol.refs li{ margin:.3rem 0; color:var(--ink-soft); }
+ol.refs li a{ color:var(--pink); text-decoration:none; border-bottom:1px dotted var(--pink-2); }
+ol.refs li a:hover{ color:var(--pink-deep); }
+
+/* ---------- FOOTER ---------- */
+footer{
+  border-top:1px solid var(--border);
+  background:#fff;
+  padding:1.3rem 0 2rem;
+  font-size:.8rem;
+  color:var(--ink-soft);
+}
+footer strong{ color:var(--pink-deep); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 640px){
+  .toolbar-inner{ gap:.4rem; }
+  .fs-group input[type="range"]{ width:60px; }
+  .site-head{ padding:1.5rem 0 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-head">
+  <div class="wrap">
+    <p class="kicker">Gram-negative · Enterobacterales · Hypervirulent pathotype</p>
+    <h1>Invasive <em>Klebsiella pneumoniae</em> Syndrome (IKS)</h1>
+    <p class="sub">Anaesthetist &amp; Intensivist quick reference — distilled from a published case report</p>
+    <p class="cite-mini">Cheong XP, Lim LM, Chang CY · Cureus 2024;16(10):e71814 · doi:10.7759/cureus.71814</p>
+
+    <nav class="toc" aria-label="Contents">
+      <a href="#patho">Pathophysiology</a>
+      <a href="#quickref">Quick Reference</a>
+      <a href="#case">Case Summary</a>
+      <a href="#figures">Imaging</a>
+      <a href="#refs">References</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar">
+  <div class="wrap toolbar-inner">
+
+    <div class="search-box">
+      <span class="icon" aria-hidden="true">🔍</span>
+      <input id="search" type="search" placeholder="Search this page (e.g. ceftriaxone, string test, drainage)…"
+             autocomplete="off" aria-label="Search page content">
+      <div class="search-meta">
+        <span class="count" id="count" aria-live="polite"></span>
+        <button class="mini-btn" id="prev" title="Previous match (Shift+Enter)" aria-label="Previous match">↑</button>
+        <button class="mini-btn" id="next" title="Next match (Enter)" aria-label="Next match">↓</button>
+        <button class="mini-btn" id="clear" title="Clear search (Esc)" aria-label="Clear search">×</button>
+      </div>
+    </div>
+
+    <button class="btn" id="expandAll">＋ Expand all</button>
+    <button class="btn" id="collapseAll">− Collapse all</button>
+
+    <div class="fs-group" title="Resize text">
+      <button class="mini-btn" id="fsDown" aria-label="Decrease text size">A−</button>
+      <input type="range" id="fsRange" min="13" max="22" step="1" value="16" aria-label="Text size">
+      <button class="mini-btn" id="fsUp" aria-label="Increase text size">A+</button>
+      <span class="fs-label" id="fsLabel" title="Click to reset to 100%">100%</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<main id="content">
+  <div class="wrap">
+
+    <!-- ============ PATHOPHYSIOLOGY ANIMATION ============ -->
+    <section id="patho">
+      <h2 class="section-title">Pathophysiology at a glance</h2>
+      <div class="patho">
+        <div class="patho-head">
+          <h3>How hypervirulent <em>K. pneumoniae</em> becomes invasive</h3>
+          <span>Watch the sequence — one step every 1.5 s</span>
+        </div>
+
+        <div class="steps">
+          <div class="step" style="--i:0">
+            <span class="num">1</span>
+            <span class="t">Colonisation</span>
+            <span class="d">hVKp colonises gut / nasopharynx in a healthy-looking host.</span>
+          </div>
+          <div class="step" style="--i:1">
+            <span class="num">2</span>
+            <span class="t">Hypermucoviscous capsule</span>
+            <span class="d">K1/K2 capsular serotypes resist phagocytosis — worse with hyperglycaemia.</span>
+          </div>
+          <div class="step" style="--i:2">
+            <span class="num">3</span>
+            <span class="t">Bacteraemia</span>
+            <span class="d">Mucosal breach (urinary, hepatobiliary, pulmonary) → bloodstream.</span>
+          </div>
+          <div class="step" style="--i:3">
+            <span class="num">4</span>
+            <span class="t">Metastatic seeding</span>
+            <span class="d">Liver, lung, eye, CNS, prostate — multiple foci at once.</span>
+          </div>
+          <div class="step" style="--i:4">
+            <span class="num">5</span>
+            <span class="t">Abscess &amp; cavitation</span>
+            <span class="d">Septic emboli, necrosis, empyema — needs drainage + weeks of therapy.</span>
+          </div>
+        </div>
+
+        <div class="track" aria-hidden="true"><span class="dot"></span></div>
+      </div>
+    </section>
+
+    <!-- ============ QUICK REFERENCE ============ -->
+    <section id="quickref">
+      <h2 class="section-title">Quick reference — anaesthetist &amp; intensivist</h2>
+
+      <!-- 1 -->
+      <details class="card" open>
+        <summary>1 · Bottom line — what you must know in 30 seconds <span class="tag">Start here</span></summary>
+        <div class="card-body">
+          <div class="callout">
+            <span class="label">Definition</span>
+            Invasive <em>Klebsiella</em> syndrome (IKS) = severe, metastatic infection caused by
+            <strong>hypervirulent <em>K. pneumoniae</em> (hVKp)</strong>. It spreads to liver, lungs, eyes and brain,
+            and can occur in previously healthy or hospitalised patients.
+          </div>
+
+          <ul>
+            <li><strong>Suspect it</strong> in any diabetic or septic patient with <em>cavitary lung lesions</em>, liver abscess, prostate abscess, endogenous endophthalmitis or meningitis — especially with <em>more than one focus</em>.</li>
+            <li><strong>Cultures are not enough.</strong> A <em>negative string test does not exclude</em> hVKp — this patient's string test was negative and PCR still confirmed a hypervirulent isolate.</li>
+            <li><strong>Treatment is long.</strong> Source control + <em>weeks to months</em> of antibiotics. This case needed <strong>12 weeks of total effective therapy</strong> before radiological resolution.</li>
+            <li><strong>Most hVKp are still susceptible</strong> to routine agents (inherent ampicillin resistance only) — but MDR-hVKp is emerging and limits options.</li>
+            <li><strong>Expect the ICU.</strong> Sepsis, cavitary pneumonia, pleural effusion, pulmonary embolism, and possible metastatic foci.</li>
+          </ul>
+
+          <div class="pills">
+            <span class="pill solid">Diabetes = major risk</span>
+            <span class="pill">Metastatic spread in 8.7–17%</span>
+            <span class="pill">Mortality ≈ 10%</span>
+            <span class="pill">Prolonged antibiotics</span>
+            <span class="pill">Drain every collection</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 2 -->
+      <details class="card">
+        <summary>2 · Who is at risk — screening triggers</summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>Diabetes mellitus</strong> — present in <strong>29.3–44.3%</strong> of <em>K. pneumoniae</em> liver abscess cases. Poor glycaemic control impairs neutrophil phagocytosis of K1/K2 strains.</li>
+            <li><strong>Sepsis with cavitary pneumonia / lung abscess</strong> — the presentation in this case.</li>
+            <li><strong>Liver abscess</strong> — the classic IKS phenotype (78.2% of liver abscesses in a Korean series were <em>K. pneumoniae</em>).</li>
+            <li><strong>Endogenous endophthalmitis</strong> — <em>K. pneumoniae</em> was the commonest pathogen (32.5%) in a local series.</li>
+            <li><strong>Prostate abscess</strong> — rare but strongly associated with <em>K. pneumoniae</em> in diabetic patients in Taiwan.</li>
+            <li><strong>Meningitis, septic pulmonary emboli, empyema</strong> — other metastatic manifestations.</li>
+            <li><strong>Geography</strong> — emerging infectious disease, particularly in the Asia region (Korea, Taiwan, Malaysia).</li>
+          </ul>
+
+          <div class="callout warn">
+            <span class="label">Remember</span>
+            About <strong>one-third</strong> of metastatic infections are already present at admission, and most are
+            diagnosed within <strong>3 days</strong> of first presentation. Do not delay imaging.
+          </div>
+        </div>
+      </details>
+
+      <!-- 3 -->
+      <details class="card">
+        <summary>3 · Diagnostics — what to send and how to interpret it</summary>
+        <div class="card-body">
+          <h3>Microbiology</h3>
+          <ul>
+            <li><strong>Blood cultures</strong> before antibiotics — in this case <em>K. pneumoniae</em> grew after <strong>48 hours</strong> of incubation.</li>
+            <li><strong>String test</strong> (hypermucoviscosity): stretch a colony with a loop/needle — a viscous string <strong>&gt; 5 mm</strong> is positive. Simple, but <em>imperfect sensitivity</em>.</li>
+            <li><strong>PCR for virulence genes</strong> — the definitive discriminator between hVKp and classical <em>K. pneumoniae</em> (cKP):</li>
+          </ul>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Marker</th><th>Meaning</th><th>This isolate</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>String test</strong></td><td>Hypermucoviscous phenotype (&gt; 5 mm)</td><td>Negative</td></tr>
+                <tr><td><strong><em>rmpA</em> / <em>rmpA2</em></strong></td><td>Regulator of mucoid phenotype A — hypervirulence marker</td><td>Detected</td></tr>
+                <tr><td><strong><em>iroD</em></strong></td><td>Salmochelin (iron acquisition) — hypervirulence marker</td><td>Detected</td></tr>
+                <tr><td><strong><em>peg</em></strong></td><td>Putative virulence-associated gene</td><td>Detected</td></tr>
+                <tr><td><strong><em>magA</em></strong></td><td>Mucoviscosity-associated gene A (K1-associated)</td><td>Not detected</td></tr>
+                <tr><td><strong>Capsular serotype</strong></td><td>K1 / K2 — strongly linked to hypervirulence</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout warn">
+            <span class="label">Pitfall</span>
+            A <strong>negative string test</strong> does <strong>not</strong> rule out hypervirulence. Confirm with PCR for
+            <em>rmpA</em>/<em>rmpA2</em>, <em>iroD</em>, <em>peg</em> and capsular typing.
+          </div>
+
+          <h3>Laboratory clues from this case</h3>
+          <ul>
+            <li><strong>CRP 96.7 mg/L</strong> (normal &lt; 5) — markedly elevated.</li>
+            <li><strong>WBC 6.7 × 10⁹/L</strong> — <em>normal</em>. A normal white count does not exclude severe invasive disease.</li>
+            <li><strong>Pleural fluid</strong>: exudative (protein 54 g/L, LDH 839 U/L, fluid : serum LDH 2.0, protein 0.8) — but <em>culture-negative</em> with only a few pus cells and no organisms on Gram stain.</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- 4 -->
+      <details class="card">
+        <summary>4 · Metastatic survey — imaging &amp; review checklist</summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>CT thorax / abdomen / pelvis with contrast</strong> — defines the primary focus <em>and</em> metastatic deposits (this case: bilateral cavitary pneumonia with a dominant right upper lobe nodule).</li>
+            <li><strong>Bedside / formal ultrasound</strong> — pleural collections and hepatic abscesses; guides drainage.</li>
+            <li><strong>Ophthalmological review</strong> — endogenous endophthalmitis is sight-threatening and easily missed in a sedated patient.</li>
+            <li><strong>Neurological assessment / neuroimaging</strong> — if meningitis is suspected.</li>
+            <li><strong>Prostate imaging</strong> in men with urinary symptoms or persistent sepsis.</li>
+            <li><strong>Repeat imaging</strong> at the end of therapy to confirm resolution before stopping antibiotics.</li>
+          </ul>
+
+          <div class="callout ok">
+            <span class="label">Team</span>
+            A multidisciplinary approach — infectious diseases, microbiology, radiology, and ICU / anaesthesia — improves outcomes.
+          </div>
+        </div>
+      </details>
+
+      <!-- 5 -->
+      <details class="card">
+        <summary>5 · Antimicrobial therapy &amp; duration</summary>
+        <div class="card-body">
+          <h3>Susceptibility in this isolate</h3>
+          <div class="pills">
+            <span class="pill">Ampicillin</span>
+            <span class="pill">Ampicillin–sulbactam</span>
+            <span class="pill">Amoxicillin–clavulanate</span>
+            <span class="pill">Gentamicin</span>
+            <span class="pill">Carbapenems</span>
+            <span class="pill">Ceftriaxone</span>
+            <span class="pill">Sulfamethoxazole–trimethoprim</span>
+            <span class="pill">Ciprofloxacin</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Phase</th><th>Regimen used in this case</th><th>Duration</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Empirical</strong></td><td>IV amoxicillin–clavulanate 1.2 g every 8 h <em>+</em> PO azithromycin 500 mg daily</td><td>Until cultures returned</td></tr>
+                <tr><td><strong>De-escalation 1</strong></td><td>IV ceftriaxone 1 g twice daily</td><td>5 days</td></tr>
+                <tr><td><strong>De-escalation 2</strong></td><td>IV amoxicillin–clavulanate 1.2 g every 8 h</td><td>9 days</td></tr>
+                <tr><td><strong>OPAT</strong></td><td>IV ceftriaxone 2 g daily (outpatient parenteral antibiotic therapy)</td><td>2 weeks</td></tr>
+                <tr><td><strong>Oral step-down</strong></td><td>PO levofloxacin 750 mg daily</td><td>To complete <strong>12 weeks total</strong></td></tr>
+                <tr><td><strong>Adjuncts</strong></td><td>Ultrasound-guided pigtail catheter; oral anticoagulation for pulmonary embolism</td><td>Drain removed at 1 week; anticoagulation 3 months</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Practical rules</h3>
+          <ul>
+            <li>Start <strong>prompt, appropriate antimicrobials</strong> after cultures — do not wait for molecular results in a septic patient.</li>
+            <li><strong>De-escalate</strong> once susceptibilities are known; hVKp is usually susceptible to common agents apart from inherent ampicillin resistance.</li>
+            <li><strong>Prolonged therapy is the norm</strong> — both IV and oral phases. Short courses risk relapse and incomplete resolution.</li>
+            <li>Plan early for <strong>OPAT</strong> if the patient is otherwise stable — this patient completed 2 weeks of IV ceftriaxone as an outpatient.</li>
+            <li><strong>MDR / hVKp</strong>: optimal therapy is unclear. Combination regimens (high-dose meropenem, colistin, fosfomycin, tigecycline, aminoglycosides) have been used with suboptimal results — involve ID early.</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- 6 -->
+      <details class="card">
+        <summary>6 · Source control — drainage &amp; monitoring</summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>Drain every accessible collection</strong> — pleural, hepatic, prostatic. In this case an ultrasound-guided pigtail catheter was inserted for the pleural effusion.</li>
+            <li><strong>Remove the drain when output is minimal</strong> (here, after one week).</li>
+            <li><strong>Check drain patency and air leak</strong> before and during positive-pressure ventilation — a cavitary lesion or drained collection may behave as a bronchopleural fistula.</li>
+            <li><strong>Repeat cross-sectional imaging</strong> to document resolution (this case: 4 weeks → smaller thick-walled cavity; 12 weeks → resolved).</li>
+          </ul>
+
+          <div class="callout warn">
+            <span class="label">High index of suspicion</span>
+            Management requires prompt antimicrobials <em>plus</em> thorough investigation to identify and drain abscesses
+            or other foci. Imaging and image-guided intervention are central, not optional.
+          </div>
+        </div>
+      </details>
+
+      <!-- 7 -->
+      <details class="card">
+        <summary>7 · Anaesthetic considerations <span class="tag">Theatre</span></summary>
+        <div class="card-body">
+          <div class="callout warn">
+            <span class="label">Please read</span>
+            These points are <strong>extrapolated</strong> from this case report plus general anaesthetic/ICU principles.
+            They are not a substitute for local protocols, senior opinion, or ID/microbiology advice.
+          </div>
+
+          <h4>Pre-operative</h4>
+          <ul>
+            <li><strong>Resuscitate first.</strong> Confirm sepsis bundle compliance, fluid status, lactate trend, vasopressor requirement before induction.</li>
+            <li><strong>Glycaemic control</strong> — hyperglycaemia impairs neutrophil phagocytosis of K1/K2 <em>K. pneumoniae</em>. Aim for reasonable perioperative control; avoid both hyper- and hypoglycaemia.</li>
+            <li><strong>Review cultures and sensitivities</strong> and confirm the current antimicrobial agent, dose and timing — ensure the intra-operative dose is not missed.</li>
+            <li><strong>Anticoagulation</strong> — this patient received oral anticoagulants for 3 months for pulmonary embolism. Plan neuraxial/regional timing and holding decisions accordingly; check renal function and last dose.</li>
+            <li><strong>Assess right heart strain / PE burden</strong> if pulmonary embolism is present — exercise caution with fluid loading and with sudden increases in pulmonary vascular resistance.</li>
+          </ul>
+
+          <h4>Airway &amp; ventilation</h4>
+          <ul>
+            <li><strong>Cavitary lung lesion</strong> — risk of rupture into the airway with haemorrhage or spillage; avoid unnecessarily high airway pressures and anticipate soiling.</li>
+            <li><strong>Lung-protective ventilation</strong> with low tidal volumes; consider lung isolation (double-lumen tube or bronchial blocker) if surgery is on or near the affected lobe.</li>
+            <li><strong>Pleural drain in situ</strong> — check patency and air leak; do not clamp during positive-pressure ventilation without a clear plan.</li>
+            <li><strong>Bilateral disease</strong> (this patient had bilateral cavitary pneumonia) — expect reduced compliance and impaired gas exchange; pre-oxygenate thoroughly.</li>
+          </ul>
+
+          <h4>Induction &amp; maintenance</h4>
+          <ul>
+            <li>Expect <strong>vasodilatation and myocardial depression</strong>; reduce induction doses and titrate. Have vasopressors drawn up and running before induction.</li>
+            <li>Prefer agents with haemodynamic stability in the shocked patient; avoid large boluses of propofol.</li>
+            <li>Maintain <strong>normothermia, normoglycaemia, and adequate perfusion</strong>.</li>
+          </ul>
+
+          <h4>Post-operative</h4>
+          <ul>
+            <li><strong>HDU/ICU bed</strong> — these patients are at high risk of deterioration and of metastatic complications.</li>
+            <li>Continue antimicrobials on time; ensure no missed doses across the theatre/recovery handover.</li>
+            <li>Re-examine for <strong>new metastatic foci</strong>: visual symptoms, meningism, new focal neurology, new abdominal or prostatic symptoms.</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- 8 -->
+      <details class="card">
+        <summary>8 · ICU management &amp; monitoring</summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>Sepsis bundle</strong>: cultures before antibiotics, lactate, fluid resuscitation, early vasopressors, source control.</li>
+            <li><strong>Glycaemic control</strong> — a modifiable risk factor for severity; poorly controlled diabetes is associated with more complex infection.</li>
+            <li><strong>Respiratory support</strong> — lung-protective ventilation; anticipate prolonged weaning with cavitary or bilateral disease.</li>
+            <li><strong>VTE</strong> — pulmonary embolism occurred in this case; ensure appropriate therapeutic anticoagulation and monitor for right heart strain.</li>
+            <li><strong>Serial imaging</strong> at planned intervals (this case: 4 weeks and 12 weeks) to confirm resolution before stopping antibiotics.</li>
+            <li><strong>Antimicrobial stewardship</strong> — de-escalate on susceptibilities, then continue for the full prolonged course; plan OPAT early.</li>
+            <li><strong>Screen for metastatic foci</strong> daily — eyes, CNS, abdomen, prostate.</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- 9 -->
+      <details class="card">
+        <summary>9 · Red flags &amp; common pitfalls</summary>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Pitfall</th><th>Why it matters</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Negative string test ≠ not hypervirulent</strong></td><td>This isolate was string-test negative but PCR-positive for <em>iroD</em>, <em>rmpA</em> and <em>peg</em>. Confirm with molecular testing.</td></tr>
+                <tr><td><strong>Normal white cell count</strong></td><td>WBC was 6.7 × 10⁹/L despite severe cavitary pneumonia and bacteraemia. CRP was 96.7 mg/L.</td></tr>
+                <tr><td><strong>Culture-negative pleural fluid</strong></td><td>Exudative fluid with no growth on culture — do not interpret as "no infection".</td></tr>
+                <tr><td><strong>Stopping antibiotics too early</strong></td><td>Resolution took 12 weeks of total effective therapy; early cessation risks relapse.</td></tr>
+                <tr><td><strong>Missing metastatic foci</strong></td><td>One-third are present at admission; most appear within 3 days. Image early and examine repeatedly.</td></tr>
+                <tr><td><strong>Ignoring emerging resistance</strong></td><td>MDR and hVKp strains are a growing threat, limiting options and increasing morbidity and mortality.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ CASE SUMMARY ============ -->
+    <section id="case">
+      <h2 class="section-title">Case report summary</h2>
+
+      <details class="card">
+        <summary>Everything from the case report, in one place <span class="tag">Summary</span></summary>
+        <div class="card-body">
+
+          <p>
+            A <strong>44-year-old woman with underlying diabetes mellitus</strong> presented with a 10-day history of
+            fever, left flank pain, dysuria, cough and pleuritic chest pain.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Domain</th><th>Findings</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Vital signs</strong></td><td>BP 144/94 mmHg · HR 101/min · Temperature 39.5 °C · SpO₂ 98% on room air</td></tr>
+                <tr><td><strong>Chest radiograph</strong></td><td>Bilateral lower zone consolidation</td></tr>
+                <tr><td><strong>Laboratory</strong></td><td>CRP 96.7 mg/L (normal &lt; 5) · WBC 6.7 × 10⁹/L (normal 4–10 × 10⁹/L)</td></tr>
+                <tr><td><strong>Initial treatment</strong></td><td>IV amoxicillin–clavulanate 1.2 g every 8 h + PO azithromycin 500 mg daily; blood cultures taken</td></tr>
+                <tr><td><strong>Blood culture</strong></td><td><em>K. pneumoniae</em> after 48 h — susceptible to ampicillin, ampicillin–sulbactam, amoxicillin–clavulanate, gentamicin, carbapenems, ceftriaxone, sulfamethoxazole–trimethoprim, ciprofloxacin</td></tr>
+                <tr><td><strong>String test</strong></td><td>Negative</td></tr>
+                <tr><td><strong>Molecular analysis</strong></td><td><em>iroD</em>, <em>rmpA</em>, <em>peg</em> detected; <em>magA</em> not detected → hypervirulent <em>K. pneumoniae</em></td></tr>
+                <tr><td><strong>CT thorax</strong></td><td>Bilateral cavitary pneumonia; predominant right upper lobe nodule <strong>3.5 × 2.7 × 2.3 cm</strong></td></tr>
+                <tr><td><strong>Pleural fluid</strong></td><td>Exudative: albumin 18 g/L, total protein 54 g/L, LDH 839 U/L, amylase 46 U/L, glucose 3.8 mmol/L; fluid : serum LDH 2.0, protein 0.8. Gram stain: few pus cells, no organisms, slightly blood-stained. Cell count 15 WBC (67% polymorphs, 33% lymphocytes) with numerous red cells. Culture: no growth.</td></tr>
+                <tr><td><strong>Intervention</strong></td><td>Ultrasound-guided pigtail catheter inserted; removed after one week when drain output became minimal</td></tr>
+                <tr><td><strong>Antibiotic course</strong></td><td>De-escalated to IV ceftriaxone 1 g twice daily × 5 days → IV amoxicillin–clavulanate 1.2 g every 8 h × 9 days → discharged on OPAT IV ceftriaxone 2 g daily × 2 weeks → oral levofloxacin 750 mg daily to complete <strong>12 weeks</strong></td></tr>
+                <tr><td><strong>Anticoagulation</strong></td><td>Oral anticoagulants for a total of <strong>3 months</strong> (pulmonary embolism)</td></tr>
+                <tr><td><strong>4-week CT</strong></td><td>Thick-walled cavitating lesion right upper lobe <strong>2.8 × 1.7 × 3 cm</strong>; overall improvement, residual infection and thin complex right pleural effusion</td></tr>
+                <tr><td><strong>12-week CT</strong></td><td>Right upper lobe lesion <strong>resolved</strong>; clinically well; antibiotics discontinued</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout ok">
+            <span class="label">Outcome</span>
+            Clinical and radiological resolution after 12 weeks of total effective antibiotic therapy, with
+            ultrasound-guided drainage and 3 months of anticoagulation.
+          </div>
+
+          <div class="callout">
+            <span class="label">Author's conclusion</span>
+            IKS is complex and requires comprehensive, timely management. The clinical presentation varies from
+            pneumonia to intra-abdominal infection, so IKS should be considered — particularly in patients with
+            <strong>poorly controlled diabetes mellitus presenting with sepsis</strong>. Further research is needed on
+            pathogenesis and more effective therapeutic approaches.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ FIGURES ============ -->
+    <section id="figures">
+      <h2 class="section-title">Imaging — simplified serial CT thorax</h2>
+
+      <details class="card" open>
+        <summary>Serial CT thorax: baseline → 4 weeks → 12 weeks</summary>
+        <div class="card-body">
+
+          <p style="font-size:.85rem;color:var(--ink-soft)">
+            Simplified axial representations of the original figures. The arrow marks the dominant right upper lobe lesion.
+          </p>
+
+          <div class="fig-grid">
+
+            <!-- FIGURE 1 -->
+            <figure class="fig-card" style="margin:0">
+              <svg viewBox="0 0 220 150" role="img" aria-label="Simplified axial CT at baseline showing bilateral cavitary pneumonia with a large dominant right upper lobe nodule">
+                <ellipse cx="110" cy="75" rx="100" ry="66" fill="#fff8fb" stroke="#e9c3d3" stroke-width="2"/>
+                <circle cx="110" cy="126" r="8" fill="#f3d3e0" stroke="#e0aec4"/>
+                <ellipse cx="110" cy="72" rx="16" ry="26" fill="#f7dae6" stroke="#e0aec4"/>
+                <path d="M96 24 C64 20 34 40 30 76 C26 112 60 130 96 128 Z" fill="#ffe9f1" stroke="#e0aec4" stroke-width="1.5"/>
+                <path d="M124 24 C156 20 186 40 190 76 C194 112 160 130 124 128 Z" fill="#ffe9f1" stroke="#e0aec4" stroke-width="1.5"/>
+                <g stroke="#f0b9cd" stroke-width="1.2" fill="none">
+                  <path d="M92 60 q-14 10 -20 24 M92 60 q-16 -6 -24 -2 M128 60 q14 10 20 24"/>
+                </g>
+                <!-- left lung opacity -->
+                <ellipse cx="152" cy="72" rx="16" ry="14" fill="#f6c6d8" opacity=".7"/>
+                <!-- dominant lesion with cavity -->
+                <circle cx="62" cy="54" r="15" fill="#a8124a" opacity=".92"/>
+                <circle cx="62" cy="54" r="6" fill="#fff8fb"/>
+                <!-- arrow -->
+                <line x1="62" y1="36" x2="62" y2="18" stroke="#8d1145" stroke-width="2.4"/>
+                <polygon points="62,10 55,22 69,22" fill="#8d1145"/>
+              </svg>
+              <figcaption class="cap">
+                <b>Fig 1 · Baseline</b>
+                Bilateral cavitary pneumonia
+                <span class="size">3.5 × 2.7 × 2.3 cm</span>
+              </figcaption>
+            </figure>
+
+            <!-- FIGURE 2 -->
+            <figure class="fig-card" style="margin:0">
+              <svg viewBox="0 0 220 150" role="img" aria-label="Simplified axial CT after four weeks of antibiotics showing a smaller thick-walled cavitating lesion">
+                <ellipse cx="110" cy="75" rx="100" ry="66" fill="#fff8fb" stroke="#e9c3d3" stroke-width="2"/>
+                <circle cx="110" cy="126" r="8" fill="#f3d3e0" stroke="#e0aec4"/>
+                <ellipse cx="110" cy="72" rx="16" ry="26" fill="#f7dae6" stroke="#e0aec4"/>
+                <path d="M96 24 C64 20 34 40 30 76 C26 112 60 130 96 128 Z" fill="#ffe9f1" stroke="#e0aec4" stroke-width="1.5"/>
+                <path d="M124 24 C156 20 186 40 190 76 C194 112 160 130 124 128 Z" fill="#ffe9f1" stroke="#e0aec4" stroke-width="1.5"/>
+                <g stroke="#f0b9cd" stroke-width="1.2" fill="none">
+                  <path d="M92 60 q-14 10 -20 24 M128 60 q14 10 20 24"/>
+                </g>
+                <!-- smaller thick-walled cavity -->
+                <circle cx="62" cy="54" r="9" fill="#b3245b" opacity=".9"/>
+                <circle cx="62" cy="54" r="4" fill="#fff8fb"/>
+                <line x1="62" y1="43" x2="62" y2="26" stroke="#8d1145" stroke-width="2.4"/>
+                <polygon points="62,18 55,30 69,30" fill="#8d1145"/>
+              </svg>
+              <figcaption class="cap">
+                <b>Fig 2 · 4 weeks</b>
+                Thick-walled cavitating lesion, improving
+                <span class="size">2.8 × 1.7 × 3.0 cm</span>
+              </figcaption>
+            </figure>
+
+            <!-- FIGURE 3 -->
+            <figure class="fig-card" style="margin:0">
+              <svg viewBox="0 0 220 150" role="img" aria-label="Simplified axial CT after twelve weeks of antibiotics showing complete resolution of the right upper lobe lesion">
+                <ellipse cx="110" cy="75" rx="100" ry="66" fill="#fff8fb" stroke="#e9c3d3" stroke-width="2"/>
+                <circle cx="110" cy="126" r="8" fill="#f3d3e0" stroke="#e0aec4"/>
+                <ellipse cx="110" cy="72" rx="16" ry="26" fill="#f7dae6" stroke="#e0aec4"/>
+                <path d="M96 24 C64 20 34 40 30 76 C26 112 60 130 96 128 Z" fill="#ffe9f1" stroke="#e0aec4" stroke-width="1.5"/>
+                <path d="M124 24 C156 20 186 40 190 76 C194 112 160 130 124 128 Z" fill="#ffe9f1" stroke="#e0aec4" stroke-width="1.5"/>
+                <g stroke="#f0b9cd" stroke-width="1.2" fill="none">
+                  <path d="M92 60 q-14 10 -20 24 M92 60 q-16 -6 -24 -2 M128 60 q14 10 20 24"/>
+                </g>
+                <!-- faint resolved scar -->
+                <circle cx="62" cy="54" r="4" fill="none" stroke="#e9a8c1" stroke-width="1.6" stroke-dasharray="3 3"/>
+                <line x1="62" y1="46" x2="62" y2="28" stroke="#8d1145" stroke-width="2.4"/>
+                <polygon points="62,20 55,32 69,32" fill="#8d1145"/>
+                <text x="150" y="118" font-size="11" fill="#146c50" font-weight="700" text-anchor="middle">resolved</text>
+              </svg>
+              <figcaption class="cap">
+                <b>Fig 3 · 12 weeks</b>
+                Resolving infection; right upper lobe lesion resolved
+                <span class="size">Resolved</span>
+              </figcaption>
+            </figure>
+
+          </div>
+
+          <h3>Imaging findings — scrollable table</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Timepoint</th>
+                  <th>Figure</th>
+                  <th>Key findings</th>
+                  <th>Lesion size</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Baseline</strong></td>
+                  <td>Fig 1</td>
+                  <td>Bilateral cavitary pneumonia with a predominant right upper lobe nodule</td>
+                  <td>3.5 × 2.7 × 2.3 cm</td>
+                </tr>
+                <tr>
+                  <td><strong>After 4 weeks</strong> of effective antibiotics</td>
+                  <td>Fig 2</td>
+                  <td>Thick-walled cavitating lesion in the right upper lobe; overall lung findings improved, with residual infection and a thin complex right pleural effusion</td>
+                  <td>2.8 × 1.7 × 3.0 cm</td>
+                </tr>
+                <tr>
+                  <td><strong>After 12 weeks</strong> of effective antibiotics</td>
+                  <td>Fig 3</td>
+                  <td>Resolving lung infection with complete resolution of the right upper lobe lesion</td>
+                  <td>Resolved</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ REFERENCES ============ -->
+    <section id="refs">
+      <h2 class="section-title">Source &amp; references</h2>
+
+      <details class="card" open>
+        <summary>Citation and full reference list</summary>
+        <div class="card-body">
+
+          <div class="callout">
+            <span class="label">Primary source</span>
+            Cheong XP, Lim LM, Chang CY. <strong>Invasive <em>Klebsiella pneumoniae</em> Syndrome: A Case Report.</strong>
+            <em>Cureus.</em> 2024;16(10):e71814. Published 18 October 2024.
+            DOI: <a href="https://doi.org/10.7759/cureus.71814" target="_blank" rel="noopener">10.7759/cureus.71814</a>.
+            Open access under CC BY 4.0.
+            <br>
+            Affiliations: Internal Medicine and Infectious Diseases, Hospital Sultanah Aminah, Johor Bahru, Malaysia.
+          </div>
+
+          <ol class="refs">
+            <li>Siu LK, Yeh KM, Lin JC, Fung CP, Chang FY. <em>Klebsiella pneumoniae</em> liver abscess: a new invasive syndrome. <em>Lancet Infect Dis.</em> 2012;12:881–7. doi:10.1016/S1473-3099(12)70205-0</li>
+            <li>Chung DR, Lee SS, Lee HR, et al. Emerging invasive liver abscess caused by K1 serotype <em>Klebsiella pneumoniae</em> in Korea. <em>J Infect.</em> 2007;54:578–83. doi:10.1016/j.jinf.2006.11.008</li>
+            <li>Lee SS, Chen YS, Tsai HC, Wan SR, Lin HH, Huang CK, Liu YC. Predictors of septic metastatic infection and mortality among patients with <em>Klebsiella pneumoniae</em> liver abscess. <em>Clin Infect Dis.</em> 2008;47:642–50. doi:10.1086/590932</li>
+            <li>Chua WJ, P Radhakrishnan A, Yusof WM, Chang CY. Bilateral endogenous endophthalmitis secondary to <em>Streptococcus pneumoniae</em>: an uncommon but devastating complication. <em>Cureus.</em> 2023;15:e57655. doi:10.7759/cureus.57655</li>
+            <li>Russo TA, Marr CM. Hypervirulent <em>Klebsiella pneumoniae</em>. <em>Clin Microbiol Rev.</em> 2019;32:e00001-19. doi:10.1128/CMR.00001-19</li>
+            <li>Lee KT, Wong SR, Sheen PC. Pyogenic liver abscess: an audit of 10 years' experience and analysis of risk factors. <em>Dig Surg.</em> 2001;18:459–65. doi:10.1159/000050194</li>
+            <li>Tian LT, Yao K, Zhang XY, et al. Liver abscesses in adult patients with and without diabetes mellitus. <em>Clin Microbiol Infect.</em> 2012;18:E314–30. doi:10.1111/j.1469-0691.2012.03912.x</li>
+            <li>Lin JC, Siu LK, Fung CP, et al. Impaired phagocytosis of capsular serotypes K1 or K2 <em>Klebsiella pneumoniae</em> in type 2 diabetes mellitus patients with poor glycemic control. <em>J Clin Endocrinol Metab.</em> 2006;91:5084–7. doi:10.1210/jc.2005-2749</li>
+            <li>Tang LM, Chen ST, Hsu WC, Chen CM. <em>Klebsiella</em> meningitis in Taiwan: an overview. <em>Epidemiol Infect.</em> 1997;119:135–42. doi:10.1017/s0950268897000790</li>
+            <li>Chang CY. <em>Klebsiella pneumoniae</em>-induced liver and prostate abscesses. <em>Rev Soc Bras Med Trop.</em> 2023.</li>
+            <li>Liu KH, Lee HC, Chuang YC, Tu CA, Chang K, Lee NY, Kos WC. Prostatic abscess in southern Taiwan: another invasive infection caused predominantly by <em>Klebsiella pneumoniae</em>. <em>J Microbiol Immunol Infect.</em> 2003;36:31–6.</li>
+            <li>Shon AS, Bajwa RP, Russo TA. Hypervirulent (hypermucoviscous) <em>Klebsiella pneumoniae</em>: a new and dangerous breed. <em>Virulence.</em> 2013;4:107–18. doi:10.4161/viru.22718</li>
+            <li>Chang CY, Ong EL. Positive string test in hypervirulent <em>Klebsiella pneumoniae</em> liver abscess. <em>Oxf Med Case Reports.</em> 2022;2022:oma035. doi:10.1093/omcr/oma035</li>
+            <li>Cubero M, Marti S, Dominguez MA, Gonzalez-Diaz A, Berbel D, Ardanuy C. Hypervirulent <em>Klebsiella pneumoniae</em> serotype K1 clinical isolates form robust biofilms at the air-liquid interface. <em>PLoS One.</em> 2019;14:e0222628. doi:10.1371/journal.pone.0222628</li>
+            <li>Wang G, Zhao G, Chao X, Xie L, Wang H. The characteristic of virulence, biofilm and antibiotic resistance of <em>Klebsiella pneumoniae</em>. <em>Int J Environ Res Public Health.</em> 2020;17:6278. doi:10.3390/ijerph17176278</li>
+            <li>Arato V, Raso MM, Gasperini G, Berlanda Scorza F, Micoli F. Prophylaxis and treatment against <em>Klebsiella pneumoniae</em>: current insights on this emerging anti-microbial resistant global threat. <em>Int J Mol Sci.</em> 2021;22:4042. doi:10.3390/ijms22084042</li>
+            <li>Bassetti M, Righi E, Carnelutti A, Graziano E, Russo A. Multidrug-resistant <em>Klebsiella pneumoniae</em>: challenges for treatment, prevention and infection control. <em>Expert Rev Anti Infect Ther.</em> 2018;16:749–61. doi:10.1080/14787210.2018.1522249</li>
+          </ol>
+
+        </div>
+      </details>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Educational quick reference.</strong> Content is a distilled summary of the published case report
+      (Cheong et al., <em>Cureus</em> 2024;16(10):e71814, CC BY 4.0) plus clearly-labelled extrapolation for
+      anaesthetic and critical care practice. It is not a clinical guideline — always follow local protocols and
+      seek senior/ID advice.</p>
+    <p style="margin-top:.6rem;font-size:.75rem;color:#8a6b78;">
+      Gram-negative theme · pink / carbal fuchsin palette · Built as a single static HTML file for GitHub Pages.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     1. SEARCH WITH HIGHLIGHTING
+     ========================================================= */
+  var root    = document.getElementById('content');
+  var input   = document.getElementById('search');
+  var counter = document.getElementById('count');
+  var btnPrev = document.getElementById('prev');
+  var btnNext = document.getElementById('next');
+  var btnClear= document.getElementById('clear');
+
+  var marks = [];
+  var cur = -1;
+  var debounceTimer = null;
+
+  function clearMarks() {
+    var found = root.querySelectorAll('mark.srch');
+    for (var i = 0; i < found.length; i++) {
+      var m = found[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+    marks = [];
+    cur = -1;
+  }
+
+  function collectTextNodes() {
+    var walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentElement;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          if (p.closest('script, style, noscript, mark.srch, .no-search')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    return nodes;
+  }
+
+  function buildMarks(query) {
+    var q = query.toLowerCase();
+    var nodes = collectTextNodes();
+
+    for (var k = 0; k < nodes.length; k++) {
+      var node = nodes[k];
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(q);
+      if (idx === -1) continue;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+
+        var mark = document.createElement('mark');
+        mark.className = 'srch';
+        mark.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mark);
+
+        last = idx + q.length;
+        idx = lower.indexOf(q, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+
+      node.parentNode.replaceChild(frag, node);
+    }
+
+    marks = Array.prototype.slice.call(root.querySelectorAll('mark.srch'));
+  }
+
+  function openAncestors(el) {
+    var d = el.closest ? el.closest('details') : null;
+    while (d) {
+      d.open = true;
+      var parent = d.parentElement;
+      d = parent ? parent.closest('details') : null;
+    }
+  }
+
+  function updateCount() {
+    var q = input.value.trim();
+    if (!q || q.length < 2) {
+      counter.textContent = '';
+      return;
+    }
+    if (!marks.length) {
+      counter.textContent = '0 / 0';
+      return;
+    }
+    counter.textContent = (cur >= 0 ? (cur + 1) : '–') + ' / ' + marks.length;
+  }
+
+  function goTo(i) {
+    if (!marks.length) return;
+    if (cur >= 0 && marks[cur]) marks[cur].classList.remove('cur');
+    cur = ((i % marks.length) + marks.length) % marks.length;
+    var m = marks[cur];
+    m.classList.add('cur');
+    openAncestors(m);
+    updateCount();
+    requestAnimationFrame(function () {
+      m.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+  }
+
+  function runSearch() {
+    var q = input.value.trim();
+    clearMarks();
+    if (q.length < 2) { updateCount(); return; }
+    buildMarks(q);
+    updateCount();
+  }
+
+  input.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 220);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!marks.length) { runSearch(); }
+      if (marks.length) goTo(e.shiftKey ? cur - 1 : cur + 1);
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      clearAll();
+    }
+  });
+
+  btnNext.addEventListener('click', function () {
+    if (!marks.length) runSearch();
+    goTo(cur + 1);
+  });
+  btnPrev.addEventListener('click', function () {
+    if (!marks.length) runSearch();
+    goTo(cur - 1);
+  });
+  btnClear.addEventListener('click', clearAll);
+
+  function clearAll() {
+    input.value = '';
+    clearMarks();
+    updateCount();
+    input.focus();
+  }
+
+  /* =========================================================
+     2. COLLAPSE / EXPAND ALL
+     ========================================================= */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    root.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    root.querySelectorAll('details').forEach(function (d) { d.open = false; });
+  });
+
+  /* =========================================================
+     3. RESIZABLE TEXT
+     ========================================================= */
+  var fsRange = document.getElementById('fsRange');
+  var fsLabel = document.getElementById('fsLabel');
+  var MIN_FS = 13, MAX_FS = 22, BASE_FS = 16;
+  var currentFs = parseFloat(localStorage.getItem('iks-font-size')) || BASE_FS;
+
+  function applyFontSize(px) {
+    currentFs = Math.min(MAX_FS, Math.max(MIN_FS, px));
+    document.documentElement.style.setProperty('--fs', currentFs + 'px');
+    fsRange.value = currentFs;
+    fsLabel.textContent = Math.round((currentFs / BASE_FS) * 100) + '%';
+    try { localStorage.setItem('iks-font-size', currentFs); } catch (err) {}
+  }
+
+  fsRange.addEventListener('input', function () { applyFontSize(parseFloat(fsRange.value)); });
+  document.getElementById('fsUp').addEventListener('click', function () { applyFontSize(currentFs + 1); });
+  document.getElementById('fsDown').addEventListener('click', function () { applyFontSize(currentFs - 1); });
+  fsLabel.addEventListener('click', function () { applyFontSize(BASE_FS); });
+
+  applyFontSize(currentFs);
+
+  /* =========================================================
+     4. SMOOTH IN-PAGE NAVIGATION (opens target section)
+     ========================================================= */
+  document.querySelectorAll('.toc a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var d = target.querySelector('details');
+      if (d) d.open = true;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /* Keyboard shortcut: "/" focuses search */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== input &&
+        !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
