@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DAS Tracheal Extubation Guidelines — Quick Reference</title>
+<style>
+  :root{
+    --fs: 16px;
+    --navy:#0b3c5d;
+    --blue:#15628f;
+    --blue-soft:#e8f1f7;
+    --green:#1e6f3a;
+    --green-soft:#e6f4ea;
+    --red:#a3231c;
+    --red-soft:#fdecea;
+    --amber:#8a5a00;
+    --amber-soft:#fff6e0;
+    --ink:#14202b;
+    --muted:#4a5b6a;
+    --line:#cfdae2;
+    --bg:#eef3f7;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:var(--fs);
+    line-height:1.55;
+    color:var(--ink);
+    background:var(--bg);
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- header ---------- */
+  .topbar{
+    background:linear-gradient(135deg,#0b3c5d 0%,#15628f 100%);
+    color:#fff;
+    padding:20px 16px 24px;
+  }
+  .wrap{max-width:1040px;margin:0 auto}
+  .topbar h1{margin:0 0 6px;font-size:1.42em;line-height:1.25;letter-spacing:.2px}
+  .topbar p{margin:0;font-size:.86em;color:#d7e8f3;max-width:820px}
+  .badge{
+    display:inline-block;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.35);
+    padding:3px 9px;border-radius:999px;font-size:.72em;
+    letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px;
+  }
+
+  /* ---------- toolbar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:60;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 2px 8px rgba(11,60,93,.10);
+    padding:8px 12px;
+  }
+  .toolbar .wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  button{
+    font:inherit;font-size:.82em;
+    border:1px solid var(--line);
+    background:#fff;color:var(--navy);
+    padding:6px 11px;border-radius:8px;cursor:pointer;
+    transition:background .15s,border-color .15s;
+    white-space:nowrap;
+  }
+  button:hover{background:var(--blue-soft);border-color:#a9c6d8}
+  button:active{transform:translateY(1px)}
+  button.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+  button.primary:hover{background:#0f4e72}
+  .group{display:flex;gap:6px;align-items:center}
+  .search-wrap{
+    display:flex;align-items:center;gap:6px;
+    flex:1 1 300px;min-width:240px;
+  }
+  #search{
+    flex:1;min-width:110px;
+    padding:7px 11px;border:1px solid var(--line);border-radius:8px;
+    font:inherit;font-size:.88em;color:var(--ink);background:#fff;
+  }
+  #search:focus{outline:2px solid #9cc7e0;outline-offset:1px;border-color:var(--blue)}
+  #count{font-size:.78em;color:var(--muted);min-width:62px;text-align:center;font-variant-numeric:tabular-nums}
+  .fsval{font-size:.78em;color:var(--muted);min-width:40px;text-align:center;font-variant-numeric:tabular-nums}
+
+  /* ---------- main ---------- */
+  main{max-width:1040px;margin:0 auto;padding:16px 12px 60px}
+
+  .toc{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 16px}
+  .toc a{
+    font-size:.78em;text-decoration:none;color:var(--navy);
+    background:#fff;border:1px solid var(--line);
+    padding:5px 10px;border-radius:999px;cursor:pointer;
+  }
+  .toc a:hover{background:var(--blue-soft);border-color:#a9c6d8}
+
+  .section{
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    margin:12px 0;overflow:hidden;
+    box-shadow:0 1px 2px rgba(11,60,93,.06);
+  }
+  .sec-head{
+    width:100%;display:flex;align-items:center;gap:10px;
+    background:#f7fafc;border:0;border-bottom:1px solid transparent;
+    padding:13px 15px;text-align:left;cursor:pointer;
+    font:inherit;font-weight:700;color:var(--navy);font-size:1em;
+    border-radius:0;
+  }
+  .sec-head:hover{background:var(--blue-soft)}
+  .section.open .sec-head{background:var(--blue-soft);border-bottom-color:var(--line)}
+  .sec-head .chev{margin-left:auto;color:var(--blue);font-size:.9em;transition:transform .2s}
+  .section:not(.open) .sec-head .chev{transform:rotate(-90deg)}
+  .sec-body{padding:14px 16px 18px;display:none}
+  .section.open .sec-body{display:block}
+
+  h3{font-size:.95em;color:var(--navy);margin:18px 0 8px;letter-spacing:.2px}
+  h3:first-child{margin-top:2px}
+  ul,ol{margin:8px 0;padding-left:1.35em}
+  li{margin:4px 0}
+  p{margin:8px 0}
+  small{color:var(--muted)}
+  strong{color:#0d2a3f}
+
+  /* ---------- callouts ---------- */
+  .callout{
+    border-left:5px solid var(--amber);background:var(--amber-soft);
+    padding:10px 13px;border-radius:8px;margin:12px 0;font-size:.92em;
+  }
+  .callout.danger{border-left-color:var(--red);background:var(--red-soft)}
+  .callout.ok{border-left-color:var(--green);background:var(--green-soft)}
+  .callout b{color:#5e3d00}
+  .callout.danger b{color:var(--red)}
+  .callout.ok b{color:var(--green)}
+
+  /* ---------- stat cards ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:12px 0}
+  .stat{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:9px;padding:10px 12px}
+  .stat b{display:block;font-size:1.25em;color:var(--navy);line-height:1.2}
+  .stat span{font-size:.8em;color:var(--muted)}
+
+  /* ---------- risk split ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+  @media (max-width:640px){.split{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff}
+  .card.low{border-color:#b9dcc4;background:var(--green-soft)}
+  .card.risk{border-color:#efc4c0;background:var(--red-soft)}
+  .card h4{margin:0 0 6px;font-size:.92em;color:var(--navy)}
+  .card.low h4{color:var(--green)}
+  .card.risk h4{color:var(--red)}
+  .card ul{margin:6px 0 0;font-size:.88em}
+
+  /* ---------- flow diagrams ---------- */
+  .flow{
+    background:#f7fafc;border:1px solid var(--line);border-radius:12px;
+    padding:12px;margin:14px 0;overflow-x:auto;
+  }
+  .flow-title{
+    font-size:.78em;text-transform:uppercase;letter-spacing:.6px;
+    color:var(--navy);font-weight:700;margin:0 0 10px;
+  }
+  .flow-inner{min-width:560px}
+  .flow-row{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
+  .step-chip{
+    flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;
+    background:var(--navy);color:#fff;border-radius:8px;padding:7px 11px;
+    font-size:.72em;font-weight:700;line-height:1.25;min-width:86px;
+  }
+  .step-chip span{font-weight:500;opacity:.92;font-size:.92em}
+  .node{
+    flex:1 1 190px;background:#fff;border:1px solid var(--line);
+    border-left:5px solid var(--blue);border-radius:9px;
+    padding:9px 11px;font-size:.84em;
+  }
+  .node b{display:block;color:var(--navy);font-size:1.02em;margin-bottom:2px}
+  .node ul{margin:4px 0 0;padding-left:1.1em;font-size:.96em}
+  .node li{margin:2px 0}
+  .node.low{border-left-color:var(--green);background:var(--green-soft)}
+  .node.low b{color:var(--green)}
+  .node.risk{border-left-color:var(--red);background:var(--red-soft)}
+  .node.risk b{color:var(--red)}
+  .node.side{border-left-color:#8fb4cb;background:#fff;flex:1 1 220px}
+  .node.side b{color:var(--blue)}
+  .arrow{text-align:center;color:var(--blue);font-size:1.05em;line-height:1;margin:6px 0}
+  .flow-split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:560px){.flow-split{grid-template-columns:1fr}}
+  .flow-note{font-size:.74em;color:var(--muted);margin-top:10px;font-style:italic}
+
+  /* ---------- tables ---------- */
+  .table-scroll{
+    overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:12px 0;
+    background:#fff;-webkit-overflow-scrolling:touch;
+  }
+  table{border-collapse:collapse;width:100%;min-width:440px;font-size:.86em}
+  thead th{
+    background:var(--navy);color:#fff;text-align:left;
+    padding:9px 11px;font-weight:600;font-size:.95em;white-space:nowrap;
+  }
+  tbody td{padding:8px 11px;border-top:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:#f7fafc}
+  td.num{width:2.4em;font-weight:700;color:var(--blue);white-space:nowrap}
+  caption{caption-side:top;text-align:left;font-size:.8em;color:var(--muted);padding:8px 11px 0}
+
+  /* ---------- search highlight ---------- */
+  mark.search-hit{background:#ffe066;color:#000;padding:0 1px;border-radius:2px}
+  mark.search-hit.current{background:#ff8c00;color:#fff;box-shadow:0 0 0 2px #ff8c00}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--navy);color:#cfe3f0;
+    padding:22px 16px 30px;font-size:.8em;line-height:1.6;
+  }
+  footer a{color:#9fd0ee}
+  footer .cite{color:#fff;font-weight:600}
+  .disclaimer{font-size:.75em;color:#9fb8c9;margin-top:12px}
+
+  @media print{
+    .toolbar,.toc{display:none}
+    .section .sec-body{display:block!important}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="badge">Difficult Airway Society · 2012</div>
+    <h1>Guidelines for the Management of Tracheal Extubation</h1>
+    <p>Quick reference for anaesthetists &amp; intensivists — adult peri-operative practice. Not intended for paediatric or critical-care patients. Use the toolbar to search, resize text, and expand or collapse sections.</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <div class="group">
+      <button id="expandAll" class="primary" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+    </div>
+
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search this guideline…" aria-label="Search the guideline" autocomplete="off">
+      <button id="prevHit" type="button" title="Previous match">▲</button>
+      <button id="nextHit" type="button" title="Next match">▼</button>
+      <span id="count" aria-live="polite"></span>
+    </div>
+
+    <div class="group">
+      <button id="fsMinus" type="button" title="Decrease text size">A−</button>
+      <span class="fsval" id="fsVal">16px</span>
+      <button id="fsPlus" type="button" title="Increase text size">A+</button>
+      <button id="fsReset" type="button" title="Reset text size">Reset</button>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+
+  <nav class="toc" aria-label="Jump to section">
+    <a data-jump="s-why">Why extubation is hazardous</a>
+    <a data-jump="s-risk">Risk stratification</a>
+    <a data-jump="s-step1">Step 1 · Plan</a>
+    <a data-jump="s-step2">Step 2 · Prepare</a>
+    <a data-jump="s-principles">General principles</a>
+    <a data-jump="s-low">Low-risk algorithm</a>
+    <a data-jump="s-riskalg">At-risk algorithm</a>
+    <a data-jump="s-unsafe">Unsafe to extubate</a>
+    <a data-jump="s-post">Step 4 · Post-extubation</a>
+    <a data-jump="s-laryngo">Laryngospasm</a>
+    <a data-jump="s-pope">Post-obstructive oedema</a>
+    <a data-jump="s-source">Source</a>
+  </nav>
+
+  <!-- ===================== WHY ===================== -->
+  <section class="section open" id="s-why">
+    <button class="sec-head" type="button" aria-expanded="true">Why is extubation hazardous? <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p><strong>Tracheal extubation is a high-risk phase of anaesthesia.</strong> It is not simply the reversal of intubation: conditions at extubation are often less favourable, and there is a transition from a controlled to an uncontrolled situation.</p>
+
+      <div class="stats">
+        <div class="stat"><b>~1 in 3</b><span>Major anaesthesia-related airway complications in NAP4 occurred during emergence or recovery.</span></div>
+        <div class="stat"><b>Unchanged</b><span>ASA closed-claims for injury at extubation/recovery did not fall after difficult-airway guidelines (unlike induction claims).</span></div>
+        <div class="stat"><b>Higher risk</b><span>Death or brain injury was more common in extubation/recovery claims than in induction claims; obese and OSA patients over-represented.</span></div>
+      </div>
+
+      <h3>Problems related to airway reflexes</h3>
+      <ul>
+        <li><strong>Exaggerated reflexes</strong> — breath-holding, coughing, bucking; hypertension, tachycardia, raised venous, intra-ocular and intracranial pressures.</li>
+        <li><strong>Laryngospasm</strong> — protective exaggeration of glottic closure; triggered by blood, secretions, surgical debris, light anaesthesia, airway/upper-abdominal stimulation. Propofol-based TIVA may reduce incidence.</li>
+        <li><strong>Consequences if unrelieved</strong> — post-obstructive (negative-pressure) pulmonary oedema and hypoxic cardiac arrest. Lower-airway equivalent = bronchospasm.</li>
+        <li><strong>Reduced / obtunded reflexes</strong> — pharyngeal tone loss and obstruction (particularly obesity and OSA), aspiration and airway soiling, late obstruction after opioids in OSA. Residual neuromuscular blockade (TOF 0.7–0.9) impairs pharyngeal function and hypoxic ventilatory response.</li>
+        <li><strong>Dysfunctional reflexes</strong> — e.g. paradoxical vocal cord motion.</li>
+      </ul>
+
+      <h3>Physiological compromise in other systems</h3>
+      <ul>
+        <li>Hypertension, tachycardia and myocardial ischaemia.</li>
+        <li>Raised venous pressure (haematoma, suture disruption), raised intra-ocular and intracranial pressure.</li>
+      </ul>
+
+      <h3>Human factors</h3>
+      <div class="callout">
+        The environment at extubation is less favourable than at intubation: equipment, monitoring and assistance may be inadequate. Distraction, time pressure, operator fatigue, poor communication and lack of skilled help all compound patient factors.
+      </div>
+
+      <h3>Mechanical / anatomical causes of obstruction</h3>
+      <ul>
+        <li>Glottic oedema (glottis is the narrowest adult airway; posterior glottis supports the tube) — from oversized or poorly positioned tubes, over-inflated cuffs.</li>
+        <li>Supraglottic swelling → posterior displacement of epiglottis → inspiratory obstruction.</li>
+        <li>Subglottic/tracheal oedema, haematoma, haemorrhage, distorted anatomy, surgical oedema.</li>
+        <li>Biting on the tube → occlusion → negative-pressure pulmonary oedema.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== RISK ===================== -->
+  <section class="section" id="s-risk">
+    <button class="sec-head" type="button" aria-expanded="false">Risk stratification: low-risk vs at-risk <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p>Two questions aid decision-making and determine whether extubation is <strong>low-risk</strong> or <strong>at-risk</strong>:</p>
+      <ol>
+        <li><strong>Are there airway risk factors?</strong> — Was the airway normal/uncomplicated at induction? Has the airway changed?</li>
+        <li><strong>Are there general risk factors?</strong></li>
+      </ol>
+
+      <div class="split">
+        <div class="card low">
+          <h4>Low-risk extubation</h4>
+          <ul>
+            <li>Routine / uncomplicated</li>
+            <li>Airway normal or uncomplicated at induction and <em>unchanged</em> at end of surgery</li>
+            <li>No general risk factors</li>
+            <li>Fasted</li>
+          </ul>
+        </div>
+        <div class="card risk">
+          <h4>At-risk extubation</h4>
+          <ul>
+            <li>Ability to oxygenate/ventilate uncertain after tube removal</li>
+            <li>Reintubation potentially difficult</li>
+            <li>And/or general risk factors present</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Airway risk factors</h3>
+      <ul>
+        <li><strong>Pre-existing airway difficulty</strong> — difficult at induction (anticipated or unanticipated) and possibly worse intra-operatively; includes obesity, OSA and aspiration risk.</li>
+        <li><strong>Peri-operative airway deterioration</strong> — normal at induction but now difficult: distorted anatomy, haemorrhage, haematoma, oedema from surgery, trauma or non-surgical causes.</li>
+        <li><strong>Restricted airway access</strong> — straightforward at induction but limited at end of surgery (shared airway, halo fixation, mandibular wiring, implants, cervical spine fixation).</li>
+        <li><strong>Lower airway</strong> — trauma, oedema, infection, secretions; consider CXR to exclude bronchial intubation, pneumothorax, surgical emphysema if intubation was difficult or oxygenation suboptimal.</li>
+      </ul>
+
+      <h3>General risk factors</h3>
+      <ul>
+        <li>Impaired respiratory function</li>
+        <li>Cardiovascular instability</li>
+        <li>Neurological / neuromuscular impairment</li>
+        <li>Hypo- or hyperthermia</li>
+        <li>Abnormal clotting, acid–base balance or electrolytes</li>
+        <li>Special surgical requirements (coughing/straining → haematoma, ↑ICP, ↑IOP, suture disruption)</li>
+      </ul>
+
+      <div class="callout">
+        <b>Smooth emergence matters surgically.</b> Coughing and straining raise venous pressure (haematoma, airway compression, suture disruption) and intra-ocular/intracranial pressure, and can provoke ischaemia in severe coronary disease.
+      </div>
+
+      <h3>Also consider</h3>
+      <ul>
+        <li><strong>Gastric distension</strong> splints the diaphragm — decompress with oro/nasogastric tube if high-pressure facemask or supraglottic ventilation was needed.</li>
+        <li>If the rescue plan involves <strong>subglottic access</strong>, confirm the neck is accessible.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== STEP 1 ===================== -->
+  <section class="section" id="s-step1">
+    <button class="sec-head" type="button" aria-expanded="false">Step 1 · Plan extubation <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p>An outline extubation plan should be in place <strong>before induction of anaesthesia</strong> and reviewed throughout and immediately before extubation.</p>
+
+      <div class="flow">
+        <p class="flow-title">Figure 1 (simplified) — Basic algorithm</p>
+        <div class="flow-inner">
+
+          <div class="flow-row">
+            <div class="step-chip">Step 1<span>Plan extubation</span></div>
+            <div class="node"><b>Plan</b>Assess airway and general risk factors</div>
+            <div class="node side"><b>Airway risk factors</b>
+              <ul>
+                <li>Known difficult airway</li>
+                <li>Airway deterioration (trauma, oedema, bleeding)</li>
+                <li>Restricted airway access</li>
+                <li>Obesity / OSA</li>
+                <li>Aspiration risk</li>
+              </ul>
+            </div>
+            <div class="node side"><b>General risk factors</b>
+              <ul>
+                <li>Cardiovascular</li>
+                <li>Respiratory</li>
+                <li>Neurological</li>
+                <li>Metabolic</li>
+                <li>Special surgical / medical conditions</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="arrow">▼</div>
+
+          <div class="flow-row">
+            <div class="step-chip">Step 2<span>Prepare for extubation</span></div>
+            <div class="node"><b>Prepare</b>Optimise patient and other factors</div>
+            <div class="node side"><b>Optimise patient factors</b>
+              <ul><li>Cardiovascular</li><li>Respiratory</li><li>Metabolic / temperature</li><li>Neuromuscular</li></ul>
+            </div>
+            <div class="node side"><b>Optimise other factors</b>
+              <ul><li>Location</li><li>Skilled help / assistance</li><li>Monitoring</li><li>Equipment</li></ul>
+            </div>
+          </div>
+
+          <div class="arrow">▼ Risk stratify</div>
+
+          <div class="flow-split">
+            <div class="node low"><b>Low-risk</b>
+              <ul><li>Fasted</li><li>Uncomplicated airway</li><li>No general risk factors</li></ul>
+            </div>
+            <div class="node risk"><b>At-risk</b>
+              <ul><li>Ability to oxygenate uncertain</li><li>Reintubation potentially difficult</li><li>And/or general risk factors present</li></ul>
+            </div>
+          </div>
+
+          <div class="arrow">▼</div>
+
+          <div class="flow-split">
+            <div class="node low"><b>Step 3 · Low-risk algorithm</b></div>
+            <div class="node risk"><b>Step 3 · At-risk algorithm</b></div>
+          </div>
+
+          <div class="arrow">▼</div>
+
+          <div class="flow-row">
+            <div class="step-chip">Step 4<span>Post-extubation care</span></div>
+            <div class="node"><b>Recovery and HDU / ICU</b>Ongoing observation and escalation</div>
+            <div class="node side"><b>Handover &amp; safety</b>
+              <ul><li>Safe transfer</li><li>Handover / communication</li><li>O₂ and airway management</li><li>Observation and monitoring</li><li>General medical &amp; surgical management</li></ul>
+            </div>
+            <div class="node side"><b>Support</b>
+              <ul><li>Analgesia</li><li>Staffing</li><li>Equipment</li><li>Documentation</li></ul>
+            </div>
+          </div>
+
+        </div>
+        <p class="flow-note">Simplified from Figure 1 of the original guideline.</p>
+      </div>
+
+      <h3>Planning checklist</h3>
+      <ul>
+        <li>Was the airway normal at induction? Has anything changed?</li>
+        <li>Any general risk factors that may complicate or preclude extubation?</li>
+        <li>Is there a clear rescue plan for ventilation and reintubation with minimum difficulty and delay?</li>
+        <li>Where should extubation happen (theatre, recovery, HDU/ICU)? Who needs to be present?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== STEP 2 ===================== -->
+  <section class="section" id="s-step2">
+    <button class="sec-head" type="button" aria-expanded="false">Step 2 · Prepare for extubation <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p>Preparation aims at final optimisation of <strong>airway</strong>, <strong>general</strong> and <strong>logistical</strong> factors so that extubation is performed under the best possible conditions. Preparation plus planning enables risk stratification and should <em>always</em> precede extubation.</p>
+
+      <h3>Airway factors — reassess before extubation</h3>
+      <ul>
+        <li><strong>Would bag–mask ventilation be achievable?</strong> Assess oedema, bleeding, clots, trauma, foreign bodies and distortion by direct or indirect laryngoscopy.</li>
+        <li>Beware: a tracheal tube in situ can give a <em>falsely optimistic</em> view of the larynx; oedema can progress rapidly.</li>
+        <li><strong>Cuff-leak test</strong> — a large audible leak with the cuff deflated is reassuring; absence of a leak around an appropriately sized tube generally precludes safe extubation. Exercise caution even with a leak if airway oedema is suspected. Spirometry is sensitive but lacks specificity.</li>
+      </ul>
+
+      <h3>General factors</h3>
+      <ul>
+        <li><strong>Full neuromuscular reversal</strong> — target train-of-four ratio <strong>≥ 0.9</strong> using a peripheral nerve stimulator (accelerometer more accurate than visual assessment). Sugammadex antagonises rocuronium more reliably than neostigmine.</li>
+        <li>Correct cardiovascular instability; ensure adequate fluid balance.</li>
+        <li>Optimise temperature, acid–base balance, electrolytes and coagulation.</li>
+        <li>Provide adequate analgesia.</li>
+      </ul>
+
+      <h3>Logistical factors</h3>
+      <ul>
+        <li>Extubation should be carried out in a controlled manner with the <strong>same standards of monitoring, equipment and assistance</strong> as at induction.</li>
+        <li>Safe extubation can take as long as safe intubation — allow for this in list scheduling.</li>
+        <li>Communication between anaesthetist, surgeon and theatre team is essential.</li>
+        <li>Additional resources may be required for the at-risk patient (HDU/ICU, ENT/surgical support, difficult-airway trolley).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== GENERAL PRINCIPLES ===================== -->
+  <section class="section" id="s-principles">
+    <button class="sec-head" type="button" aria-expanded="false">General principles of performing extubation <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p>Any technique must ensure <strong>minimum interruption of oxygen delivery</strong> to the lungs, avoid airway stimulation where possible, and have a back-up plan for ventilation and reintubation.</p>
+
+      <ul>
+        <li><strong>Pre-oxygenation</strong> — raise FiO₂ to 1.0 (or as close as possible; aim FeO₂ &gt; 0.9) to maximise pulmonary oxygen stores and cover the apnoeic period. Although FiO₂ 1.0 increases atelectasis, maximising stores is the priority at extubation.</li>
+        <li><strong>Patient position</strong> — no universal evidence. Head-up (reverse Trendelenburg) or semi-recumbent is increasingly used and gives mechanical advantage in obesity. Left-lateral, head-down is traditional for the non-fasted patient.</li>
+        <li><strong>Suction</strong> — under direct vision (ideally with a laryngoscope) to avoid oropharyngeal trauma. Be vigilant for blood in the airway — the "coroner's clot" can cause obstruction and death. Consider endobronchial suction and gastric tube aspiration.</li>
+        <li><strong>Alveolar recruitment</strong> — sustained PEEP and vital-capacity breaths may temporarily reverse atelectasis. Deflating the cuff and removing the tube at the peak of a sustained inflation produces a passive exhalation and may expel secretions and reduce laryngospasm/breath-holding.</li>
+        <li><strong>Bite block</strong> — prevents tube occlusion if the patient bites. If biting occurs, deflate the cuff so gas can flow around the device and negative pressure cannot build up. If rolled gauze is used, tape/tie it to the tube.</li>
+        <li><strong>Awake vs deep</strong> — awake extubation is generally safer (airway tone, reflexes and respiratory drive return). Deep extubation reduces coughing, bucking and haemodynamic response but increases upper airway obstruction; it is an <em>advanced technique</em> reserved for easy airways with no aspiration risk.</li>
+      </ul>
+
+      <h3>Pharmacological adjuncts</h3>
+      <ul>
+        <li><strong>Remifentanil infusion</strong> — drug of choice for cough suppression during emergence; allows a tube-tolerant, awake, obeying patient. Requires careful titration and close monitoring (see at-risk section).</li>
+        <li>Alfentanil, fentanyl, morphine — blunt cough and cardiovascular response.</li>
+        <li>Lidocaine — topical at intubation, into the cuff, or IV before extubation (some benefit).</li>
+        <li>Esmolol, nicardipine, magnesium, clonidine, ketamine, beta-blockers — attenuate cardiovascular response.</li>
+        <li>Doxapram for laryngospasm — limited evidence; causes cardiovascular stimulation.</li>
+        <li>Steroids — for <em>inflammatory</em> oedema (see post-extubation care).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== LOW RISK ===================== -->
+  <section class="section" id="s-low">
+    <button class="sec-head" type="button" aria-expanded="false">Step 3 · Low-risk ("routine") extubation <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p>No extubation is risk-free, but in routine extubation reintubation is expected to be manageable without difficulty if needed.</p>
+
+      <div class="flow">
+        <p class="flow-title">Figure 2 (simplified) — Low-risk algorithm</p>
+        <div class="flow-inner">
+
+          <div class="flow-row">
+            <div class="step-chip">Step 1<span>Plan</span></div>
+            <div class="node"><b>Plan</b>Assess airway and general risk factors</div>
+            <div class="node side"><b>Low-risk extubation</b>
+              <ul><li>Fasted</li><li>Uncomplicated airway</li><li>No general risk factors</li></ul>
+            </div>
+          </div>
+
+          <div class="arrow">▼</div>
+
+          <div class="flow-row">
+            <div class="step-chip">Step 2<span>Prepare</span></div>
+            <div class="node"><b>Prepare</b>Optimise patient and other factors</div>
+            <div class="node side"><b>Patient</b><ul><li>Cardiovascular</li><li>Respiratory</li><li>Metabolic / temperature</li><li>Neuromuscular</li></ul></div>
+            <div class="node side"><b>Other</b><ul><li>Location</li><li>Skilled help / assistance</li><li>Monitoring</li><li>Equipment</li></ul></div>
+          </div>
+
+          <div class="arrow">▼ Select deep or awake extubation</div>
+
+          <div class="flow-split">
+            <div class="node risk"><b>Deep extubation</b>
+              <ul><li>Advanced technique</li><li>Experienced operator</li><li>Vigilance until fully awake</li></ul>
+            </div>
+            <div class="node low"><b>Awake extubation</b>
+              <ul>
+                <li>Pre-oxygenate with 100% oxygen</li>
+                <li>Suction as appropriate</li>
+                <li>Insert bite block (± rolled gauze)</li>
+                <li>Position the patient appropriately</li>
+                <li>Antagonise neuromuscular blockade</li>
+                <li>Establish regular breathing</li>
+                <li>Ensure adequate spontaneous ventilation</li>
+                <li>Minimise head and neck movements</li>
+                <li>Wait until awake (eye opening, obeying commands)</li>
+                <li>Apply positive pressure, deflate cuff and remove tube</li>
+                <li>Provide 100% oxygen</li>
+                <li>Check airway patency and adequacy of breathing</li>
+                <li>Continue oxygen supplementation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="arrow">▼</div>
+
+          <div class="flow-row">
+            <div class="step-chip">Step 4<span>Post-extubation care</span></div>
+            <div class="node"><b>Recovery and follow-up</b></div>
+            <div class="node side"><b>Handover &amp; safety</b><ul><li>Safe transfer</li><li>Handover / communication</li><li>O₂ and airway management</li><li>Observation and monitoring</li><li>General medical &amp; surgical management</li></ul></div>
+            <div class="node side"><b>Support</b><ul><li>Analgesia</li><li>Staffing</li><li>Equipment</li><li>Documentation</li></ul></div>
+          </div>
+
+        </div>
+        <p class="flow-note">Simplified from Figure 2 of the original guideline. The awake technique described is a suggested approach; practice may vary in experienced hands.</p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 2 — Sequence for low-risk extubation in an awake patient</caption>
+          <thead><tr><th>#</th><th>Step</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>Deliver 100% oxygen through the breathing system</td></tr>
+            <tr><td class="num">2</td><td>Remove oropharyngeal secretions with suction, ideally under direct vision</td></tr>
+            <tr><td class="num">3</td><td>Insert a bite block to prevent occlusion of the tube</td></tr>
+            <tr><td class="num">4</td><td>Position the patient appropriately</td></tr>
+            <tr><td class="num">5</td><td>Antagonise residual neuromuscular blockade</td></tr>
+            <tr><td class="num">6</td><td>Establish regular breathing and adequate spontaneous minute ventilation</td></tr>
+            <tr><td class="num">7</td><td>Allow emergence to an awake state — eye opening and obeying commands</td></tr>
+            <tr><td class="num">8</td><td>Minimise head and neck movements</td></tr>
+            <tr><td class="num">9</td><td>Apply positive pressure, deflate the cuff and remove the tube while the lung is near vital capacity</td></tr>
+            <tr><td class="num">10</td><td>Provide 100% oxygen with an anaesthetic breathing system; confirm airway patency and adequacy of breathing</td></tr>
+            <tr><td class="num">11</td><td>Continue delivering oxygen by mask until recovery is complete</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 3 — Sequence for low-risk extubation under deep anaesthesia (advanced technique)</caption>
+          <thead><tr><th>#</th><th>Step</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>Ensure there is no further surgical stimulation</td></tr>
+            <tr><td class="num">2</td><td>Balance adequate analgesia against inhibition of respiratory drive</td></tr>
+            <tr><td class="num">3</td><td>Deliver 100% oxygen through the breathing system</td></tr>
+            <tr><td class="num">4</td><td>Ensure adequate depth of anaesthesia with volatile agent or TIVA as appropriate</td></tr>
+            <tr><td class="num">5</td><td>Position the patient appropriately</td></tr>
+            <tr><td class="num">6</td><td>Remove oropharyngeal secretions with suction, ideally under direct vision</td></tr>
+            <tr><td class="num">7</td><td>Deflate the tracheal tube cuff. Cough, gag or a change in breathing pattern indicates inadequate depth — deepen anaesthesia</td></tr>
+            <tr><td class="num">8</td><td>Apply positive pressure via the breathing circuit and remove the tracheal tube</td></tr>
+            <tr><td class="num">9</td><td>Reconfirm airway patency and adequacy of breathing</td></tr>
+            <tr><td class="num">10</td><td>Maintain airway patency with simple airway manoeuvres or an oro-/nasopharyngeal airway until fully awake</td></tr>
+            <tr><td class="num">11</td><td>Continue delivering oxygen by mask until recovery is complete</td></tr>
+            <tr><td class="num">12</td><td>Anaesthetic supervision is needed until the patient is awake and maintaining their own airway</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout danger">
+        <b>Deep extubation caveat:</b> only for patients in whom airway management would be easy and who are not at increased risk of aspiration. Upper airway obstruction is more common.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== AT RISK ===================== -->
+  <section class="section" id="s-riskalg">
+    <button class="sec-head" type="button" aria-expanded="false">Step 3 · At-risk extubation &amp; advanced techniques <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p>An at-risk extubation is one where risk stratification has identified general and/or airway risk factors suggesting the patient may not maintain their own airway after tube removal, <em>and</em> airway management may not be straightforward should reintubation be required.</p>
+
+      <div class="callout">
+        <b>Examples:</b> emergency aortic aneurysm repair (full stomach, cardiovascular instability, acid–base derangement, temperature) — general factors. Head and neck surgery after awake fibreoptic intubation (previous radiotherapy) — airway factors.
+      </div>
+
+      <div class="flow">
+        <p class="flow-title">Figure 3 (simplified) — At-risk algorithm</p>
+        <div class="flow-inner">
+
+          <div class="flow-row">
+            <div class="step-chip">Step 1<span>Plan</span></div>
+            <div class="node"><b>Plan</b>Assess airway and general risk factors</div>
+            <div class="node risk"><b>At-risk extubation</b>
+              <ul><li>Ability to oxygenate uncertain</li><li>Reintubation potentially difficult</li><li>And/or general risk factors present</li></ul>
+            </div>
+          </div>
+
+          <div class="arrow">▼</div>
+
+          <div class="flow-row">
+            <div class="step-chip">Step 2<span>Prepare</span></div>
+            <div class="node"><b>Prepare</b>Optimise patient and other factors</div>
+            <div class="node side"><b>Patient</b><ul><li>Cardiovascular</li><li>Respiratory</li><li>Metabolic / temperature</li><li>Neuromuscular</li></ul></div>
+            <div class="node side"><b>Other</b><ul><li>Location</li><li>Skilled help / assistance</li><li>Monitoring</li><li>Equipment</li></ul></div>
+          </div>
+
+          <div class="arrow">▼ Key question: <strong>is it safe to remove the tube?</strong></div>
+
+          <div class="flow-split">
+            <div class="node low"><b>YES</b>
+              <ul>
+                <li>Awake extubation</li>
+                <li><b>Advanced techniques</b>
+                  <ul>
+                    <li>Laryngeal mask exchange (Bailey)</li>
+                    <li>Remifentanil technique</li>
+                    <li>Airway exchange catheter</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="node risk"><b>NO</b>
+              <ul>
+                <li>Postpone extubation</li>
+                <li>Tracheostomy</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="arrow">▼</div>
+
+          <div class="flow-row">
+            <div class="step-chip">Step 4<span>Post-extubation care</span></div>
+            <div class="node"><b>Recovery / HDU / ICU</b></div>
+            <div class="node side"><b>Handover &amp; safety</b><ul><li>Safe transfer</li><li>Handover / communication</li><li>O₂ and airway management</li><li>Observation and monitoring</li><li>General medical &amp; surgical management</li></ul></div>
+            <div class="node side"><b>Support</b><ul><li>Analgesia</li><li>Staffing</li><li>Equipment</li><li>Documentation</li></ul></div>
+          </div>
+
+        </div>
+        <p class="flow-note">Simplified from Figure 3 of the original guideline. Advanced techniques require training and experience. No single technique covers all clinical scenarios; none is risk-free.</p>
+      </div>
+
+      <h3>Awake extubation</h3>
+      <p>The technique is the same as for the low-risk patient and is suitable for most at-risk patients (e.g. aspiration risk, obesity, many difficult airways).</p>
+
+      <h3>1 · Laryngeal mask exchange (Bailey manoeuvre)</h3>
+      <p>Replaces the tracheal tube with an LMA to maintain a patent, unstimulated airway with stable physiology and protection from blood/secretions. Emergence profile is superior to awake or deep extubation. Useful where cardiovascular stimulation from the tube could disrupt surgical repair, and in smokers, asthmatics and irritable airways. <strong>Inappropriate if reintubation would be difficult or if regurgitation risk exists.</strong> Described originally with the Classic LMA; data for other supraglottic devices are lacking.</p>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 4 — Sequence for LMA exchange in at-risk extubation</caption>
+          <thead><tr><th>#</th><th>Step</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>Administer 100% oxygen</td></tr>
+            <tr><td class="num">2</td><td>Avoid airway stimulation: either deep anaesthesia or neuromuscular blockade is essential</td></tr>
+            <tr><td class="num">3</td><td>Perform laryngoscopy and suction under direct vision</td></tr>
+            <tr><td class="num">4</td><td>Insert a deflated LMA behind the tracheal tube</td></tr>
+            <tr><td class="num">5</td><td>Ensure LMA placement with the tip in its correct position</td></tr>
+            <tr><td class="num">6</td><td>Inflate the cuff of the LMA</td></tr>
+            <tr><td class="num">7</td><td>Deflate the tracheal tube cuff and remove the tube whilst maintaining positive pressure</td></tr>
+            <tr><td class="num">8</td><td>Continue oxygen delivery via the LMA</td></tr>
+            <tr><td class="num">9</td><td>Insert a bite block</td></tr>
+            <tr><td class="num">10</td><td>Sit the patient upright</td></tr>
+            <tr><td class="num">11</td><td>Allow undisturbed emergence from anaesthesia</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><small>Variants: remove the tracheal tube before LMA insertion after laryngoscopy and pharyngeal suction; or pass a flexible fibrescope through the LMA to confirm position and observe vocal cord motion (useful after thyroid/parathyroid surgery). For nasotracheal tubes, the LMA may be inserted from the side of the tube, or the tube removed first.</small></p>
+
+      <h3>2 · Remifentanil extubation technique</h3>
+      <p>Tracheal tube presence can trigger coughing, agitation and haemodynamic disturbance — undesirable in neurosurgery, maxillofacial/plastics and significant cardiac or cerebrovascular disease. Remifentanil infusion attenuates these responses, producing a tube-tolerant patient who is fully awake and obeys commands. Remove the hypnotic agent well in advance and titrate remifentanil to avoid coughing (too low) or delayed emergence/apnoea (too high).</p>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 5 — Remifentanil technique</caption>
+          <thead><tr><th>#</th><th>Point</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>Consider postoperative analgesia; if appropriate, give intravenous morphine before the end of the operation</td></tr>
+            <tr><td class="num">2</td><td>Before the end of the procedure, set the remifentanil infusion at the desired rate</td></tr>
+            <tr><td class="num">3</td><td>Antagonise neuromuscular blockade at an appropriate phase of surgery and emergence</td></tr>
+            <tr><td class="num">4</td><td>Discontinue anaesthetic agent (inhalational agent or propofol)</td></tr>
+            <tr><td class="num">5</td><td>If using an inhalational agent, use high-flow oxygen-enriched gas to aid elimination and monitor end-tidal concentration</td></tr>
+            <tr><td class="num">6</td><td>Continue ventilation</td></tr>
+            <tr><td class="num">7</td><td>Perform laryngoscopy and suction under direct vision if appropriate</td></tr>
+            <tr><td class="num">8</td><td>Sit the patient upright</td></tr>
+            <tr><td class="num">9</td><td>Do not rush, do not stimulate — wait until the patient opens their eyes to command</td></tr>
+            <tr><td class="num">10</td><td>Discontinue positive pressure ventilation</td></tr>
+            <tr><td class="num">11</td><td>If spontaneous respiration is adequate, remove the tracheal tube and stop the infusion</td></tr>
+            <tr><td class="num">12</td><td>If spontaneous respiration is inadequate, encourage deep breaths and reduce the infusion rate</td></tr>
+            <tr><td class="num">13</td><td>When respiration is adequate, remove the tube and discontinue remifentanil, flushing residual drug from the cannula</td></tr>
+            <tr><td class="num">14</td><td>After extubation there is a risk of respiratory depression — close monitoring until fully recovered is essential</td></tr>
+            <tr><td class="num">15</td><td>Remifentanil has no long-term analgesic effect</td></tr>
+            <tr><td class="num">16</td><td>Remifentanil can be antagonised by naloxone</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>3 · Airway exchange catheter (AEC) assisted extubation</h3>
+      <p>AEC provides continuous airway access when reintubation is likely to be difficult. Inserted through the tracheal tube before extubation, it acts as a guide for reintubation and a route for oxygen insufflation. The only device commercially available in the UK for this purpose is the Cook Airway Exchange Catheter (11 and 14 FG; 83 cm; ID 2.3/3.0 mm).</p>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 6 — Sequence for use of an airway exchange catheter</caption>
+          <thead><tr><th>#</th><th>Step</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>Decide how far to insert the AEC. The distal tip must remain above the carina. If uncertain of the tube tip position, check with a fibreoptic bronchoscope first. <strong>Never insert an AEC beyond 25 cm in an adult</strong></td></tr>
+            <tr><td class="num">2</td><td>When ready for extubation, insert the lubricated AEC through the tracheal tube to the predetermined depth. Never advance against resistance</td></tr>
+            <tr><td class="num">3</td><td>Perform pharyngeal suction before removing the tracheal tube</td></tr>
+            <tr><td class="num">4</td><td>Remove the tracheal tube over the AEC while maintaining AEC position (do not advance it)</td></tr>
+            <tr><td class="num">5</td><td>Secure the AEC to the cheek or forehead with tape</td></tr>
+            <tr><td class="num">6</td><td>Record the depth at the teeth/lips/nose in the notes</td></tr>
+            <tr><td class="num">7</td><td>Check there is a leak around the AEC using an anaesthetic circuit</td></tr>
+            <tr><td class="num">8</td><td>Clearly label the AEC to prevent confusion with a nasogastric tube</td></tr>
+            <tr><td class="num">9</td><td>Nurse the patient in a high dependency or critical care unit</td></tr>
+            <tr><td class="num">10</td><td>Supplemental oxygen via facemask, nasal cannula or CPAP mask</td></tr>
+            <tr><td class="num">11</td><td>Keep the patient nil by mouth until the AEC is removed</td></tr>
+            <tr><td class="num">12</td><td>If the AEC causes coughing, check the tip is above the carina and inject lidocaine via the AEC</td></tr>
+            <tr><td class="num">13</td><td>Most patients remain able to cough and vocalise</td></tr>
+            <tr><td class="num">14</td><td>Remove the AEC when the airway is no longer at risk. They can be tolerated for up to 72 hours</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 7 — Reintubation over an AEC</caption>
+          <thead><tr><th>#</th><th>Step</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>Position the patient appropriately</td></tr>
+            <tr><td class="num">2</td><td>Apply 100% oxygen with CPAP via a facemask</td></tr>
+            <tr><td class="num">3</td><td>Select a small tracheal tube with a soft, blunt bevelled tip (e.g. tube designed for use with an intubating LMA)</td></tr>
+            <tr><td class="num">4</td><td>Administer anaesthetic or topical agents as indicated</td></tr>
+            <tr><td class="num">5</td><td>Use direct or indirect laryngoscopy to retract the tongue and railroad the tracheal tube (bevel facing anteriorly) over the AEC</td></tr>
+            <tr><td class="num">6</td><td>After reintubation, confirm tube position with capnography</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Respiratory deterioration with an AEC in situ</h3>
+      <ul>
+        <li>Identify and treat the cause.</li>
+        <li>If due to upper airway obstruction: high-flow oxygen by <strong>facemask only</strong> (not via the AEC); standard airway manoeuvres/adjuncts; mask CPAP (move the AEC to the corner of the mouth for seal); nebulised adrenaline.</li>
+        <li>Heliox can temporise airway swelling.</li>
+        <li><strong>Oxygen insufflation through the AEC only in extremis</strong> — risk of barotrauma. Confirm the tip is above the carina and that there is a route for exhaled gas. <strong>Flow should not exceed 1–2 L/min.</strong> Reintubation will usually be required.</li>
+      </ul>
+
+      <div class="callout danger">
+        <b>AEC risks:</b> barotrauma (including death), direct tracheal mucosal perforation, interstitial pulmonary emphysema and dislodgement (poor compliance, poor supervision, inadequate fixation, airway manipulation). High-pressure source (jet) ventilation via an AEC is a <strong>last resort</strong> — only with a leak permitting expiration, minimal effective inflation pressure, short inspiratory time, and a device with a pressure sensor that stops flow above a pause pressure of 10–20 cmH₂O.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== UNSAFE ===================== -->
+  <section class="section" id="s-unsafe">
+    <button class="sec-head" type="button" aria-expanded="false">If it is unsafe to extubate <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <h3>Postpone extubation</h3>
+      <p>Extubation is entirely elective. Delay may allow airway oedema to resolve and may be the best option to match skilled personnel with the period of greatest risk (e.g. avoid extubating a very difficult airway late in the evening). It is sensible if a return to theatre within 24 hours is likely.</p>
+      <div class="callout">
+        If the patient is transferred to a critical care area, there must be a <strong>written emergency reintubation plan</strong> (as recommended by NAP4).
+      </div>
+
+      <h3>Elective surgical tracheostomy</h3>
+      <p>Consider when airway patency may be compromised for a considerable period due to pre-existing problems, the nature of surgery (e.g. free-flap reconstruction) or the extent of tumour, swelling, oedema or bleeding. Discuss between anaesthetist and surgeon during planning/preparation.</p>
+      <p>Decision informed by:</p>
+      <ol>
+        <li>Extent of airway compromise at the end of surgery</li>
+        <li>Likelihood of postoperative airway deterioration (usually swelling)</li>
+        <li>Ability to rescue the airway</li>
+        <li>Expected duration of significant airway compromise</li>
+      </ol>
+      <p>Tracheostomy reduces glottic damage compared with long-term tracheal intubation, and allows rapid emergence without fear of unplanned extubation or failure to reintubate.</p>
+
+      <h3>Prophylactic (rescue) subglottic cannula</h3>
+      <p>Transtracheal cannulae do not provide a definitive airway, but if inserted at induction for an anticipated difficult airway they may be left in situ. Oxygen insufflation or high-pressure ventilation can be life-saving, but balance against barotrauma, displacement, obstruction/kinking, trauma, haemorrhage and infection. Requires the same level of postoperative care and monitoring as a tracheostomy. Can remain in place up to 72 hours.</p>
+    </div>
+  </section>
+
+  <!-- ===================== POST EXTUBATION ===================== -->
+  <section class="section" id="s-post">
+    <button class="sec-head" type="button" aria-expanded="false">Step 4 · Post-extubation care: recovery and follow-up <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p>Life-threatening complications after extubation are not restricted to the immediate postoperative period — anaesthetists have a continuing duty of care.</p>
+
+      <h3>Transfer &amp; staffing</h3>
+      <ul>
+        <li>Administer oxygen during transfer; consider portable monitoring if the recovery area is distant or the patient unstable.</li>
+        <li>Trained staff until airway reflexes have returned and the patient is physiologically stable. One recovery nurse per patient, never fewer than two personnel in recovery. An appropriately skilled anaesthetist must be immediately available.</li>
+        <li><strong>Communication:</strong> clear verbal handover and written instructions for recovery and ward/HDU; in high-risk cases brief the on-call team and have a written airway management plan.</li>
+        <li>A calm atmosphere and reassurance help — anxiety increases work of breathing.</li>
+      </ul>
+
+      <h3>Observations and warning signs</h3>
+      <ul>
+        <li>Conscious level, respiratory rate, heart rate, blood pressure, SpO₂, temperature and pain score.</li>
+        <li>Capnography (using a specially designed facemask) may aid early detection of airway obstruction.</li>
+        <li><strong>Pulse oximetry is not a monitor of ventilation</strong> — never rely on it as the sole monitor.</li>
+        <li><strong>Early problems:</strong> stridor, obstructed breathing pattern, agitation; surgical issues (drain losses, free-flap perfusion, airway bleeding, haematoma, airway swelling).</li>
+        <li><strong>Late problems:</strong> mediastinitis and airway injury. Mediastinitis after airway perforation presents with severe sore throat, deep cervical or chest pain, dysphagia, painful swallowing, fever and crepitus — advise patients to seek help if these occur.</li>
+        <li>Airway trauma most commonly involves larynx (routine intubation), pharynx and oesophagus (difficult intubation); pneumothorax/pneumomediastinum/surgical emphysema present in only ~50%.</li>
+      </ul>
+      <div class="callout danger">
+        <b>Never ignore</b> a patient who is agitated or complains of difficulty breathing, even if objective signs are absent.
+      </div>
+
+      <h3>Equipment, location and safe transfer</h3>
+      <ul>
+        <li>A difficult airway trolley must be immediately available, plus relevant items such as clip removers and wire cutters.</li>
+        <li>Standard monitoring continued in recovery; capnography available.</li>
+        <li>All extubations supervised by an anaesthetist. <strong>At-risk extubation should occur in the operating theatre.</strong> Patients with airway concerns should stay in recovery or go to a critical care environment.</li>
+        <li>Transfer supervised by an anaesthetist. Transferring at-risk ICU patients to theatre for extubation may be appropriate to ensure equipment and expertise.</li>
+      </ul>
+
+      <h3>Respiratory care for airway compromise</h3>
+      <ul>
+        <li>Nurse upright; high-flow humidified oxygen; end-tidal CO₂ monitoring desirable.</li>
+        <li>Keep starved — laryngeal competence may be impaired despite full consciousness.</li>
+        <li>Avoid factors impeding venous drainage; encourage deep breaths and coughing to clear secretions.</li>
+        <li>In OSA, a nasopharyngeal airway may overcome upper airway obstruction; if the patient uses CPAP at home, have it available.</li>
+      </ul>
+
+      <h3>Steroids</h3>
+      <div class="callout ok">
+        Steroids reduce <strong>inflammatory</strong> airway oedema (surgical/anaesthetic/thermal/chemical) but have <strong>no effect on mechanical oedema</strong> from venous obstruction (e.g. neck haematoma). All steroids appear equally effective at adequate dose — equivalent to <strong>hydrocortisone 100 mg every 6 hours</strong>. Start as soon as possible in patients at high risk and continue for at least 12 hours. <strong>Single-dose steroids immediately before extubation are ineffective.</strong>
+      </div>
+
+      <h3>Stridor / upper airway obstruction</h3>
+      <ul>
+        <li>Nebulised adrenaline 1 mg may reduce airway oedema.</li>
+        <li>Heliox may help but limits FiO₂.</li>
+      </ul>
+
+      <h3>Analgesia</h3>
+      <ul>
+        <li>Good analgesia optimises respiratory function; avoid or cautiously titrate sedative analgesia; effective antiemesis is important.</li>
+      </ul>
+
+      <h3>Documentation &amp; future management</h3>
+      <ul>
+        <li>Record clinical details and instructions on the anaesthetic chart.</li>
+        <li>Document difficulties in the "Alerts" section of the notes and in the local difficult intubation database.</li>
+        <li>Record details of airway management and future recommendations.</li>
+        <li>Send a letter to the GP and give a copy to the patient (DAS Airway Alert form), with a full explanation when they can retain it.</li>
+        <li>Warn about delayed symptoms of airway trauma and advise seeking medical help.</li>
+        <li>Advise patients with difficult airways to register with an accessible, dependable database such as MedicAlert.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== LARYNGOSPASM ===================== -->
+  <section class="section" id="s-laryngo">
+    <button class="sec-head" type="button" aria-expanded="false">Appendix 1 · Laryngospasm — treatment <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p>Most commonly seen post-extubation in theatre or recovery, but can occur with a supraglottic airway in situ. Appropriate equipment, monitoring and personnel should be available throughout the theatre suite.</p>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table A1 — Management of laryngospasm</caption>
+          <thead><tr><th>#</th><th>Step</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>Call for help</td></tr>
+            <tr><td class="num">2</td><td>Apply continuous positive airway pressure with 100% oxygen using a reservoir bag and facemask whilst ensuring the upper airway is patent. Avoid unnecessary upper airway stimulation</td></tr>
+            <tr><td class="num">3</td><td><strong>Larson's manoeuvre:</strong> place the middle finger of each hand in the laryngospasm notch (between the posterior border of the mandible and the mastoid process) whilst displacing the mandible forward in a jaw thrust. Deep pressure may relieve laryngospasm</td></tr>
+            <tr><td class="num">4</td><td>Low-dose propofol, e.g. 0.25 mg/kg IV, may help</td></tr>
+            <tr><td class="num">5</td><td><em>If laryngospasm persists and/or saturation falls:</em> propofol 1–2 mg/kg IV (larger doses needed for severe laryngospasm or total cord closure)</td></tr>
+            <tr><td class="num">6</td><td><strong>Suxamethonium 1 mg/kg IV</strong> for worsening hypoxia with severe laryngospasm and total cord closure unresponsive to propofol — provides cord relaxation permitting ventilation, re-oxygenation and intubation if required</td></tr>
+            <tr><td class="num">7</td><td>Without IV access: suxamethonium IM 2–4 mg/kg, intralingual 2–4 mg/kg, or intraosseous 1 mg/kg</td></tr>
+            <tr><td class="num">8</td><td>Atropine may be required to treat bradycardia</td></tr>
+            <tr><td class="num">9</td><td>In extremis, consider a surgical airway</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== POPE ===================== -->
+  <section class="section" id="s-pope">
+    <button class="sec-head" type="button" aria-expanded="false">Appendix 2 · Post-obstructive pulmonary oedema <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <h3>Key facts</h3>
+      <ul>
+        <li>Negative intrathoracic pressure from forceful inspiration against an obstructed airway → post-obstructive (non-cardiogenic) pulmonary oedema.</li>
+        <li>Commonest cause is <strong>laryngospasm (&gt; 50%)</strong>; also biting on a tracheal tube or LMA occluding the lumen.</li>
+        <li>Occurs after <strong>0.1% of all general anaesthetics</strong>; more common in young muscular adults (M:F ≈ 4:1).</li>
+        <li>Presents with dyspnoea, agitation, cough, pink frothy sputum and low oxygen saturations; diffuse bilateral alveolar opacities on CXR.</li>
+        <li>Prompt diagnosis and management usually resolves clinically and radiologically within a few hours; delayed presentation up to 2.5 hours has been described. Death is rare and usually due to hypoxic brain injury at the time of obstruction.</li>
+        <li>Prevention: bite block during emergence; if biting occludes the tube, deflate the cuff to allow some gas flow and reduce negative intrathoracic pressure.</li>
+      </ul>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Table 8 — Management of post-obstructive pulmonary oedema</caption>
+          <thead><tr><th>#</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td><strong>Treat the cause:</strong> relieve the airway obstruction</td></tr>
+            <tr><td class="num">2</td><td>Administer 100% O₂ with full facial CPAP. CPAP reduces oedema formation by increasing mean intrathoracic pressure, minimises alveolar collapse, improves gas exchange and reduces work of breathing</td></tr>
+            <tr><td class="num">3</td><td>Nurse the patient sitting upright</td></tr>
+            <tr><td class="num">4</td><td>Fulminant oedema with critical hypoxaemia → tracheal intubation and mechanical ventilation with PEEP. Less severe hypoxia responds to supplemental oxygen, non-invasive ventilation or CPAP</td></tr>
+            <tr><td class="num">5</td><td>Intravenous opioids may reduce subjective dyspnoea</td></tr>
+            <tr><td class="num">6</td><td>Chest radiography may exclude other complications of difficult airway management and other causes of hypoxia (gastric aspiration, pre-existing infection, pneumothorax, barotrauma, pulmonary collapse)</td></tr>
+            <tr><td class="num">7</td><td>Frank haemoptysis may necessitate direct laryngoscopy and/or flexible bronchoscopy</td></tr>
+            <tr><td class="num">8</td><td>Diuretics are often administered, but their efficacy is unproven</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOURCE ===================== -->
+  <section class="section" id="s-source">
+    <button class="sec-head" type="button" aria-expanded="false">Source &amp; disclaimer <span class="chev">▼</span></button>
+    <div class="sec-body">
+      <p><strong>Primary source</strong></p>
+      <p>Popat M, Mitchell V, Dravid R, Patel A, Swampillai C, Higgs A. <em>Difficult Airway Society Guidelines for the management of tracheal extubation.</em> Anaesthesia 2012; <strong>67</strong>: 318–340. doi:10.1111/j.1365-2044.2012.07075.x</p>
+      <ul>
+        <li>Developed by the Difficult Airway Society (DAS); accepted 5 January 2012.</li>
+        <li>Scope: adult peri-operative practice — not paediatric or critical care patients.</li>
+        <li>Accompanying editorial: Anaesthesia 2012; 67: 213.</li>
+      </ul>
+      <p><strong>Figures 1–3 and Tables 2–8 &amp; A1</strong> in this quick reference are simplified/adapted from the original article for on-screen use. Tables are reproduced for non-commercial educational use; each reproduction of an algorithm must be accompanied by the citation above, with permission from the Association of Anaesthetists of Great Britain &amp; Ireland / Blackwell Publishing Ltd.</p>
+      <div class="callout">
+        <b>Disclaimer:</b> This quick reference is a summary for educational use. It is not a minimum standard of practice and is not a substitute for good clinical judgement, formal training, or the full guideline text. Advanced techniques (deep extubation, LMA exchange, remifentanil, airway exchange catheters) require training, experience and rehearsal.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="cite">Popat M, Mitchell V, Dravid R, Patel A, Swampillai C, Higgs A. Difficult Airway Society Guidelines for the management of tracheal extubation. <em>Anaesthesia</em> 2012; 67: 318–340.</p>
+    <p>Quick-reference summary for anaesthetists and intensivists — adult peri-operative practice.</p>
+    <p class="disclaimer">Educational summary only. Always follow your local protocols and use clinical judgement. Diagrams are simplified representations of Figures 1–3 of the original publication.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content     = document.getElementById('content');
+  var searchInput = document.getElementById('search');
+  var countEl     = document.getElementById('count');
+  var marks       = [];
+  var current     = -1;
+  var query       = '';
+  var timer       = null;
+
+  /* ---------------------------------------------------------
+     1. Collapsible sections
+     --------------------------------------------------------- */
+  function setOpen(section, open) {
+    if (!section) return;
+    section.classList.toggle('open', open);
+    var btn = section.querySelector('.sec-head');
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  document.addEventListener('click', function (e) {
+    var head = e.target.closest('.sec-head');
+    if (head) {
+      var sec = head.closest('.section');
+      setOpen(sec, !sec.classList.contains('open'));
+      return;
+    }
+    var jump = e.target.closest('[data-jump]');
+    if (jump) {
+      e.preventDefault();
+      var target = document.getElementById(jump.getAttribute('data-jump'));
+      if (target) {
+        setOpen(target, true);
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+
+  document.getElementById('expandAll').addEventListener('click', function () {
+    document.querySelectorAll('.section').forEach(function (s) { setOpen(s, true); });
+  });
+
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    document.querySelectorAll('.section').forEach(function (s) { setOpen(s, false); });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ---------------------------------------------------------
+     2. Resizable text
+     --------------------------------------------------------- */
+  var MIN_FS = 13, MAX_FS = 22, fs = 16;
+
+  function applyFs() {
+    document.documentElement.style.setProperty('--fs', fs + 'px');
+    document.getElementById('fsVal').textContent = fs + 'px';
+  }
+  document.getElementById('fsMinus').addEventListener('click', function () {
+    fs = Math.max(MIN_FS, fs - 1); applyFs();
+  });
+  document.getElementById('fsPlus').addEventListener('click', function () {
+    fs = Math.min(MAX_FS, fs + 1); applyFs();
+  });
+  document.getElementById('fsReset').addEventListener('click', function () {
+    fs = 16; applyFs();
+  });
+  applyFs();
+
+  /* ---------------------------------------------------------
+     3. Search + highlight + next / previous
+     --------------------------------------------------------- */
+  function clearHighlights() {
+    var hits = content.querySelectorAll('mark.search-hit');
+    if (hits.length) {
+      hits.forEach(function (m) {
+        var t = document.createTextNode(m.textContent);
+        m.parentNode.replaceChild(t, m);
+      });
+      content.normalize();
+    }
+    marks = [];
+    current = -1;
+  }
+
+  function updateCount() {
+    if (!marks.length) {
+      countEl.textContent = (query.trim().length >= 2) ? '0 / 0' : '';
+    } else {
+      countEl.textContent = (current + 1) + ' / ' + marks.length;
+    }
+  }
+
+  function showCurrent(scroll) {
+    if (!marks.length) return;
+    marks.forEach(function (m) { m.classList.remove('current'); });
+    var m = marks[current];
+    m.classList.add('current');
+    if (scroll !== false) {
+      var sec = m.closest('.section');
+      if (sec) setOpen(sec, true);
+      m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    updateCount();
+  }
+
+  function nextHit() {
+    if (!marks.length) return;
+    current = (current + 1) % marks.length;
+    showCurrent(true);
+  }
+
+  function prevHit() {
+    if (!marks.length) return;
+    current = (current - 1 + marks.length) % marks.length;
+    showCurrent(true);
+  }
+
+  function doSearch(q) {
+    clearHighlights();
+    query = q;
+
+    if (q.trim().length < 2) {
+      updateCount();
+      return;
+    }
+
+    var needle = q.toLowerCase();
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        if (p.closest('script, style, textarea, mark.search-hit')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(needle);
+      if (idx === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'search-hit';
+        mark.textContent = text.slice(idx, idx + needle.length);
+        frag.appendChild(mark);
+        marks.push(mark);
+        last = idx + needle.length;
+        idx = lower.indexOf(needle, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    /* auto-expand every section that contains a hit */
+    var opened = [];
+    marks.forEach(function (m) {
+      var sec = m.closest('.section');
+      if (sec && opened.indexOf(sec) === -1) {
+        opened.push(sec);
+        setOpen(sec, true);
+      }
+    });
+
+    current = marks.length ? 0 : -1;
+    updateCount();
+    if (current >= 0) showCurrent(false);
+  }
+
+  searchInput.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () { doSearch(searchInput.value); }, 220);
+  });
+
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!marks.length || query !== searchInput.value) {
+        clearTimeout(timer);
+        doSearch(searchInput.value);
+        showCurrent(true);
+      } else if (e.shiftKey) {
+        prevHit();
+      } else {
+        nextHit();
+      }
+    } else if (e.key === 'Escape') {
+      searchInput.value = '';
+      clearHighlights();
+      query = '';
+      updateCount();
+    }
+  });
+
+  document.getElementById('nextHit').addEventListener('click', function () {
+    if (!marks.length || query !== searchInput.value) {
+      doSearch(searchInput.value);
+      showCurrent(true);
+    } else {
+      nextHit();
+    }
+  });
+
+  document.getElementById('prevHit').addEventListener('click', function () {
+    if (!marks.length || query !== searchInput.value) {
+      doSearch(searchInput.value);
+      showCurrent(true);
+    } else {
+      prevHit();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
