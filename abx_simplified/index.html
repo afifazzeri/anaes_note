@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antibiotics Quick Reference — Anaesthesia &amp; Critical Care</title>
+<style>
+/* ============ THEME (warm "steroid" amber) ============ */
+:root{
+  --fs: 16px;
+  --bg:#fdf8f1;
+  --surface:#fffdfa;
+  --surface2:#fbf2e4;
+  --ink:#38281a;
+  --ink2:#6b5442;
+  --line:#e9dbc6;
+  --brand:#b45309;
+  --brand2:#d97706;
+  --brandd:#8a3f07;
+  --hl:#ffe08a;
+  --hlcur:#f97316;
+  --ok:#166534;
+  --okbg:#dcfce7;
+  --warn:#9a3412;
+  --warnbg:#ffedd5;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(90,60,30,.05),0 8px 20px rgba(90,60,30,.06);
+}
+html{font-size:var(--fs);scroll-behavior:smooth;}
+*{box-sizing:border-box}
+body{
+  margin:0;background:
+    radial-gradient(1200px 400px at 10% -10%, #fdf0dc 0%, transparent 60%),
+    radial-gradient(900px 400px at 110% 0%, #fbe8cd 0%, transparent 55%),
+    var(--bg);
+  color:var(--ink);
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+
+/* ============ TOP BAR ============ */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:linear-gradient(180deg,#fffaf2 0%, #fdf2e0 100%);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 4px 18px rgba(120,80,40,.07);
+  padding:.6rem clamp(.6rem,2vw,1.4rem);
+}
+.brand{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.5rem}
+.brand h1{font-size:1.02rem;margin:0;letter-spacing:.2px;color:var(--brandd)}
+.brand .pill{
+  font-size:.66rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  background:var(--brand);color:#fff;padding:.15rem .5rem;border-radius:999px;
+}
+.brand .sub{font-size:.72rem;color:var(--ink2)}
+
+.controls{display:flex;gap:.45rem;flex-wrap:wrap;align-items:center}
+.btn{
+  font:inherit;font-size:.78rem;font-weight:600;
+  background:#fff;color:var(--brandd);border:1px solid var(--line);
+  padding:.34rem .62rem;border-radius:10px;cursor:pointer;
+  transition:transform .12s ease, background .15s ease, box-shadow .15s ease;
+  white-space:nowrap;
+}
+.btn:hover{background:var(--surface2);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn.primary:hover{background:var(--brand2)}
+.searchwrap{display:flex;align-items:center;gap:.35rem;background:#fff;border:1px solid var(--line);border-radius:11px;padding:.2rem .35rem;flex:1 1 260px;min-width:220px}
+.searchwrap input{
+  font:inherit;font-size:.82rem;border:0;outline:0;background:transparent;
+  flex:1;min-width:60px;color:var(--ink);padding:.2rem .1rem;
+}
+.counter{font-size:.72rem;color:var(--ink2);min-width:52px;text-align:center;font-variant-numeric:tabular-nums}
+.iconbtn{
+  border:0;background:transparent;cursor:pointer;color:var(--brand);
+  font-size:1rem;line-height:1;padding:.25rem .4rem;border-radius:8px;
+}
+.iconbtn:hover{background:var(--surface2)}
+.iconbtn:disabled{opacity:.35;cursor:default}
+
+/* ============ LAYOUT ============ */
+main{max-width:1120px;margin:0 auto;padding:1rem clamp(.6rem,2vw,1.4rem) 3rem}
+.hint{
+  font-size:.76rem;color:var(--ink2);background:var(--surface2);
+  border:1px dashed var(--line);border-radius:10px;padding:.5rem .75rem;margin:.2rem 0 1rem;
+}
+h2.part{
+  font-size:.8rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--brand);
+  margin:1.6rem 0 .5rem;padding-bottom:.3rem;border-bottom:2px solid var(--line);
+}
+h2.part:first-of-type{margin-top:.4rem}
+
+/* ============ COLLAPSIBLE CARDS ============ */
+details.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);margin:0 0 .6rem;overflow:hidden;
+}
+details.card>summary{
+  list-style:none;cursor:pointer;padding:.62rem .85rem;
+  display:flex;align-items:center;gap:.6rem;
+  font-weight:700;font-size:.9rem;color:var(--brandd);
+  background:linear-gradient(180deg,#fffdfa,#fdf5e9);
+  transition:background .15s ease;
+}
+details.card>summary::-webkit-details-marker{display:none}
+details.card>summary:hover{background:var(--surface2)}
+.chev{
+  display:inline-block;width:1em;text-align:center;color:var(--brand2);
+  transition:transform .22s ease;font-size:.8rem;
+}
+details[open]>summary .chev{transform:rotate(90deg)}
+details[open]>summary{border-bottom:1px solid var(--line)}
+.cardbody{padding:.75rem .9rem .9rem;animation:fade .2s ease}
+@keyframes fade{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+.tag{margin-left:auto;font-size:.66rem;font-weight:600;color:var(--ink2);background:var(--surface2);
+  border:1px solid var(--line);border-radius:999px;padding:.1rem .5rem;white-space:nowrap}
+
+/* ============ TEXT ELEMENTS ============ */
+.cardbody p{margin:.35rem 0}
+.cardbody ul{margin:.3rem 0 .5rem;padding-left:1.15rem}
+.cardbody li{margin:.18rem 0}
+.cardbody li::marker{color:var(--brand2)}
+.lbl{font-weight:700;color:var(--brandd)}
+.small{font-size:.82rem;color:var(--ink2)}
+
+.b{display:inline-block;font-size:.64rem;font-weight:800;letter-spacing:.4px;
+  padding:.06rem .34rem;border-radius:6px;margin-left:.18rem;vertical-align:middle}
+.b-iv{background:#e0f2fe;color:#075985;border:1px solid #bae6fd}
+.b-po{background:#ecfccb;color:#3f6212;border:1px solid #d9f99d}
+
+.pearl,.warn,.note{
+  border-left:4px solid var(--brand2);background:var(--surface2);
+  padding:.45rem .7rem;border-radius:0 10px 10px 0;margin:.55rem 0;font-size:.85rem;
+}
+.warn{border-left-color:#dc2626;background:var(--warnbg)}
+.pearl strong,.warn strong{color:var(--brandd)}
+.warn strong{color:#991b1b}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.6rem;margin:.5rem 0}
+.mini{background:var(--surface2);border:1px solid var(--line);border-radius:11px;padding:.55rem .7rem;font-size:.83rem}
+.mini h4{margin:0 0 .25rem;font-size:.78rem;color:var(--brandd);text-transform:uppercase;letter-spacing:.6px}
+
+/* ============ TABLES ============ */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:11px;margin:.6rem 0;background:#fff}
+table{border-collapse:collapse;width:100%;font-size:.78rem;min-width:560px}
+th,td{padding:.4rem .55rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{
+  position:sticky;top:0;background:linear-gradient(180deg,#fdf3e2,#fbead2);
+  color:var(--brandd);font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;
+  border-bottom:2px solid var(--line);z-index:2;white-space:nowrap;
+}
+tbody tr:nth-child(even){background:#fffcf6}
+tbody tr:hover{background:#fdf4e6}
+td.sticky,th.sticky{position:sticky;left:0;background:#fffdfa;font-weight:700;color:var(--brandd);z-index:1;border-right:1px solid var(--line)}
+tbody tr:nth-child(even) td.sticky{background:#fffcf6}
+tbody tr:hover td.sticky{background:#fdf4e6}
+
+.c{display:inline-block;min-width:1.7em;text-align:center;font-weight:800;border-radius:6px;padding:.05em .25em;font-size:.72rem}
+.c2{background:var(--okbg);color:var(--ok)}
+.c1{background:#fef3c7;color:#78350f}
+.cv{background:#f1f5f9;color:#475569}
+.cn{color:#d6d3d1;font-weight:400}
+
+/* ============ DIAGRAMS ============ */
+.diagram{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:.8rem;margin:.6rem 0}
+.diagram figcaption{font-size:.72rem;color:var(--ink2);text-align:center;margin-top:.4rem}
+
+/* cell wall */
+.walls{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+.wall{text-align:center;font-size:.72rem}
+.wall .stack{width:118px;margin:0 auto}
+.wall .layer{border-radius:4px;margin:2px 0;padding:.28rem .2rem;font-size:.64rem;font-weight:700;color:#fff}
+.l-pg{background:#b45309}
+.l-om{background:#92400e}
+.l-cm{background:#d97706}
+.wall .cap{margin-top:.3rem;font-weight:700;color:var(--brandd)}
+
+/* PK/PD svg */
+svg.pkpd{width:100%;height:auto;display:block;max-height:230px}
+
+/* resistance chips */
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.5rem}
+.chip{background:#fff;border:1px solid var(--line);border-radius:10px;padding:.5rem .6rem;font-size:.76rem;text-align:center}
+.chip .n{display:block;font-weight:800;color:var(--brand);font-size:.9rem}
+.chip .d{color:var(--ink2);font-size:.72rem}
+
+/* flow steps */
+.flow{display:flex;flex-direction:column;gap:.3rem;align-items:center;font-size:.78rem}
+.flow .step{background:#fff;border:1px solid var(--line);border-radius:10px;padding:.35rem .9rem;font-weight:600;color:var(--brandd);width:min(340px,100%);text-align:center}
+.flow .arrow{color:var(--brand2);font-size:.85rem;line-height:1}
+.flow .branch{display:flex;gap:.3rem;flex-wrap:wrap;justify-content:center}
+
+/* MIC animation */
+.mic-demo{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.tubes{display:flex;gap:.55rem;align-items:flex-end;overflow-x:auto;padding:.3rem;max-width:100%}
+.tube{display:flex;flex-direction:column;align-items:center;gap:.28rem}
+.broth{
+  position:relative;width:42px;height:88px;border:2px solid #d6c3a5;border-top:none;
+  border-radius:0 0 21px 21px;overflow:hidden;
+  background:linear-gradient(180deg,#fffefb 0%,#f8efe0 100%);
+}
+.bugs{
+  position:absolute;inset:0;opacity:0;
+  background-image:radial-gradient(circle,#c2410c 1.5px,transparent 1.9px);
+  background-size:9px 9px;
+}
+.t-grown .bugs{animation:grow 6s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes grow{0%,12%{opacity:0}30%,82%{opacity:1}100%{opacity:0}}
+.tube.mic .broth{box-shadow:0 0 0 3px rgba(217,119,6,.22);animation:ring 2.4s ease-in-out infinite}
+@keyframes ring{0%,100%{box-shadow:0 0 0 3px rgba(217,119,6,.18)}50%{box-shadow:0 0 0 6px rgba(217,119,6,.30)}}
+.conc{font-size:.7rem;font-weight:800;color:var(--brandd);font-variant-numeric:tabular-nums}
+.mic-cap{font-size:.76rem;color:var(--ink2);text-align:center;margin:0}
+.legend{display:flex;gap:1rem;font-size:.7rem;color:var(--ink2);flex-wrap:wrap;justify-content:center}
+.legend span::before{content:"●";margin-right:.25rem}
+.lg-clear::before{color:#e7dbc9}
+.lg-grow::before{color:#c2410c}
+
+/* search highlight */
+mark.hl{background:var(--hl);color:#3b2a1a;border-radius:3px;padding:0 .08em;scroll-margin-top:120px}
+mark.hl.current{background:var(--hlcur);color:#fff;box-shadow:0 0 0 2px rgba(249,115,22,.35)}
+
+/* footer */
+footer{
+  max-width:1120px;margin:0 auto;padding:1.2rem clamp(.6rem,2vw,1.4rem) 2.6rem;
+  font-size:.74rem;color:var(--ink2);border-top:1px solid var(--line);
+}
+footer strong{color:var(--brandd)}
+footer a{color:var(--brand)}
+
+@media (max-width:640px){
+  .brand h1{font-size:.92rem}
+  details.card>summary{font-size:.84rem;padding:.55rem .7rem}
+  .cardbody{padding:.65rem .7rem .8rem}
+  th,td{padding:.35rem .45rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <h1>Antibiotics Quick Reference</h1>
+    <span class="pill">Anaesthesia &amp; ICU</span>
+    <span class="sub">Condensed from <em>Antibiotics Simplified, 5th ed.</em></span>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="expandAll" type="button">＋ Expand all</button>
+    <button class="btn" id="collapseAll" type="button">− Collapse all</button>
+    <button class="btn" id="fontDown" type="button" title="Smaller text">A−</button>
+    <button class="btn" id="fontUp" type="button" title="Larger text">A+</button>
+    <button class="btn" id="fontReset" type="button" title="Reset text size">A</button>
+
+    <div class="searchwrap">
+      <span class="iconbtn" aria-hidden="true">🔍</span>
+      <input id="search" type="search" placeholder="Search drugs, bugs, interactions…" autocomplete="off" aria-label="Search content">
+      <span class="counter" id="counter">0/0</span>
+      <button class="iconbtn" id="prevBtn" type="button" title="Previous match (Shift+Enter)" disabled>▲</button>
+      <button class="iconbtn" id="nextBtn" type="button" title="Next match (Enter)" disabled>▼</button>
+      <button class="iconbtn" id="clearBtn" type="button" title="Clear search">✕</button>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+
+<p class="hint">Click any card to expand. Use <strong>Expand all</strong> for a full read, or search to jump straight to a drug, organism or interaction. Sections marked <em>ICU pearl</em> are the bedside-relevant points.</p>
+
+<!-- =========================================================== -->
+<h2 class="part">1 · Core principles</h2>
+
+<details class="card" open>
+  <summary><span class="chev">▶</span> PK/PD in one page <span class="tag">foundation</span></summary>
+  <div class="cardbody">
+    <div class="grid2">
+      <div class="mini">
+        <h4>Time-dependent (T &gt; MIC)</h4>
+        <p><strong>Beta-lactams</strong> (penicillins, cephalosporins, carbapenems, monobactams).</p>
+        <p class="small">Maximise the <em>duration</em> above MIC → frequent dosing, <strong>prolonged or continuous infusion</strong> (e.g. piperacillin/tazobactam, meropenem, cefepime, ceftazidime).</p>
+      </div>
+      <div class="mini">
+        <h4>Concentration-dependent (AUC/MIC)</h4>
+        <p><strong>Aminoglycosides</strong> (once-daily), <strong>fluoroquinolones</strong>, <strong>vancomycin</strong> (AUC/MIC 400–600), <strong>daptomycin</strong>, metronidazole.</p>
+        <p class="small">Maximise the <em>peak / total exposure</em> relative to MIC.</p>
+      </div>
+      <div class="mini">
+        <h4>Static vs cidal</h4>
+        <p>Cidal: beta-lactams, vancomycin (slow), fluoroquinolones, aminoglycosides, metronidazole, daptomycin.</p>
+        <p>Static: macrolides, tetracyclines, linezolid, clindamycin.</p>
+        <p class="small"><strong>Cidal preferred</strong> in endocarditis, meningitis, neutropenic sepsis.</p>
+      </div>
+      <div class="mini">
+        <h4>Reading a susceptibility report</h4>
+        <p><strong>S</strong> susceptible · <strong>SDD</strong> susceptible dose-dependent (needs high dose, e.g. cefepime) · <strong>I</strong> intermediate · <strong>R</strong> resistant.</p>
+        <p class="small">MIC numbers are <strong>not comparable between different drugs</strong> — each drug reaches different concentrations.</p>
+      </div>
+    </div>
+
+    <figure class="diagram">
+      <svg class="pkpd" viewBox="0 0 600 220" role="img" aria-label="Concentration–time curve showing peak, AUC, time above MIC">
+        <line x1="50" y1="185" x2="580" y2="185" stroke="#d8c5aa" stroke-width="1.5"/>
+        <line x1="50" y1="15" x2="50" y2="185" stroke="#d8c5aa" stroke-width="1.5"/>
+        <path d="M50,185 C52,80 62,45 82,45 C122,45 142,95 182,122 C262,168 400,178 570,182 L570,185 Z"
+              fill="rgba(217,119,6,.16)" stroke="none"/>
+        <path d="M50,185 C52,80 62,45 82,45 C122,45 142,95 182,122 C262,168 400,178 570,182"
+              fill="none" stroke="#b45309" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="50" y1="122" x2="570" y2="122" stroke="#9a3412" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <text x="500" y="116" font-size="12" fill="#9a3412" font-weight="700">MIC</text>
+        <line x1="82" y1="45" x2="82" y2="122" stroke="#b45309" stroke-dasharray="3 3"/>
+        <text x="88" y="60" font-size="11" fill="#8a3f07" font-weight="700">peak</text>
+        <line x1="66" y1="200" x2="182" y2="200" stroke="#8a3f07" stroke-width="1.5"/>
+        <line x1="66" y1="195" x2="66" y2="205" stroke="#8a3f07" stroke-width="1.5"/>
+        <line x1="182" y1="195" x2="182" y2="205" stroke="#8a3f07" stroke-width="1.5"/>
+        <text x="88" y="215" font-size="11" fill="#8a3f07" font-weight="700">time &gt; MIC</text>
+        <text x="300" y="150" font-size="11" fill="#8a3f07" font-weight="700">AUC</text>
+        <text x="8" y="20" font-size="10" fill="#6b5442">conc.</text>
+        <text x="540" y="205" font-size="10" fill="#6b5442">time</text>
+      </svg>
+      <figcaption>Beta-lactams: efficacy tracks <em>time above MIC</em>. Aminoglycosides / fluoroquinolones / vancomycin: efficacy tracks <em>AUC:MIC</em>.</figcaption>
+    </figure>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> The MIC — animated <span class="tag">visual</span></summary>
+  <div class="cardbody">
+    <p>The lab grows the patient's organism in doubling antibiotic concentrations. The <strong>MIC</strong> is the lowest concentration with <em>no visible growth</em>.</p>
+
+    <div class="mic-demo">
+      <div class="tubes">
+        <div class="tube"><div class="broth"><i class="bugs"></i></div><span class="conc">32</span></div>
+        <div class="tube"><div class="broth"><i class="bugs"></i></div><span class="conc">16</span></div>
+        <div class="tube mic"><div class="broth"><i class="bugs"></i></div><span class="conc">8</span></div>
+        <div class="tube t-grown" style="--d:.5s"><div class="broth"><i class="bugs"></i></div><span class="conc">4</span></div>
+        <div class="tube t-grown" style="--d:.9s"><div class="broth"><i class="bugs"></i></div><span class="conc">2</span></div>
+        <div class="tube t-grown" style="--d:1.3s"><div class="broth"><i class="bugs"></i></div><span class="conc">1</span></div>
+      </div>
+      <p class="mic-cap"><strong>MIC = 8 mg/L</strong> — lowest concentration with no visible growth (mg/L)</p>
+      <div class="legend">
+        <span class="lg-clear">clear = no growth</span>
+        <span class="lg-grow">turbid = growth</span>
+      </div>
+    </div>
+
+    <div class="pearl"><strong>ICU pearl:</strong> an MIC at the top of the susceptible range + a drug that only just achieves that concentration at the infected site (e.g. lung, CSF, abscess) = treatment failure. Escalate dose (prolonged infusion) or change drug.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Absorption, distribution &amp; the critically ill patient <span class="tag">high yield</span></summary>
+  <div class="cardbody">
+    <ul>
+      <li><span class="lbl">Bioavailability matters when switching IV→PO.</span> High (&gt;90%) and roughly 1:1 with IV: metronidazole, levofloxacin, linezolid, fluconazole, doxycycline, clindamycin, TMP-SMX, fluconazole, moxifloxacin. Lower: ciprofloxacin (~80%, higher oral dose used), cefuroxime (~40%), aciclovir (~25%).</li>
+      <li><span class="lbl">Chelation.</span> Tetracyclines, fluoroquinolones and integrase inhibitors bind Ca, Mg, Al, Fe, Zn — <strong>separate from enteral feeds, antacids and mineral supplements by ≥2 h</strong>. A "nil by mouth" ICU patient on nasogastric feed is a classic trap.</li>
+      <li><span class="lbl">Acid suppression.</span> Itraconazole capsules, posaconazole suspension, atazanavir and rilpivirine need gastric acid — avoid co-prescribing PPIs/H2RAs.</li>
+      <li><span class="lbl">Food.</span> Improves: posaconazole suspension, itraconazole capsules, atazanavir, darunavir, rilpivirine, atovaquone. Impairs: voriconazole tablets, itraconazole solution, omadacycline, rifampin, isoniazid, pyrazinamide.</li>
+      <li><span class="lbl">Distribution.</span> Protein binding reduces tissue/CNS penetration (ceftriaxone is highly bound, but 2 g q12h still exceeds the meningitis MIC). Macrolides concentrate in lung macrophages. Metronidazole penetrates CNS well; clindamycin does not.</li>
+      <li><span class="lbl">Septic shock / vasopressors / abscess / devitalised tissue</span> all reduce delivery to the infection site — <strong>source control is part of the prescription</strong>.</li>
+      <li><span class="lbl">Obesity.</span> Dose aminoglycosides on ideal or adjusted body weight; many beta-lactams need loading doses. Weigh your patient, don't guess.</li>
+      <li><span class="lbl">Renal replacement.</span> CRRT clearance differs from intermittent haemodialysis — follow your local renal dosing protocol for beta-lactams and vancomycin.</li>
+    </ul>
+
+    <div class="warn"><strong>Renal dosing traps:</strong> ceftriaxone needs no adjustment (dual renal/biliary elimination) but moxifloxacin is not renally cleared and is not for UTI. Avoid nitrofurantoin if CrCl &lt; 50 mL/min. Most beta-lactams, vancomycin and aminoglycosides <em>do</em> need adjustment — and need re-escalation when renal function recovers.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Drug interactions that bite in ICU <span class="tag">safety</span></summary>
+  <div class="cardbody">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th class="sticky">Mechanism</th><th>Drugs</th><th>Bedside consequence</th></tr></thead>
+        <tbody>
+          <tr><td class="sticky">CYP inducers</td><td>Rifampin, rifabutin, rifapentine, efavirenz, nevirapine, etravirine</td><td>Loss of anticoagulation (warfarin/DOAC), transplant rejection (tacrolimus, ciclosporin), loss of seizure control, sub-therapeutic analgesia/sedation. Screen <em>every</em> drug.</td></tr>
+          <tr><td class="sticky">CYP inhibitors</td><td>Macrolides (not azithromycin), azoles, metronidazole, ritonavir, cobicistat, quinupristin/dalfopristin</td><td>Warfarin INR ↑ (metronidazole, TMP-SMX, azoles), statin myopathy, sedation accumulation, arrhythmia risk.</td></tr>
+          <tr><td class="sticky">Carbapenem + valproate</td><td>Imipenem, meropenem, ertapenem</td><td>Valproate levels collapse → <strong>breakthrough seizures</strong>. Contraindicated combination.</td></tr>
+          <tr><td class="sticky">QT prolongation</td><td>Fluoroquinolones, macrolides (esp. erythromycin), azoles, pentamidine, quinolines, foscarnet</td><td>Stacking with amiodarone, ondansetron, antipsychotics, methadone → torsades. Check electrolytes (K, Mg).</td></tr>
+          <tr><td class="sticky">Serotonergic</td><td>Linezolid (MAO inhibitor)</td><td>Serotonin syndrome with SSRIs/SNRIs. SSRI long half-lives mean stopping the SSRI may not prevent it.</td></tr>
+          <tr><td class="sticky">Assay interference</td><td>Oritavancin</td><td>Falsely raised PT (12 h) and aPTT (120 h) — unreliable coagulation monitoring.</td></tr>
+          <tr><td class="sticky">Creatinine "rise"</td><td>Cobicistat, dolutegravir, bictegravir, TMP</td><td>Inhibit tubular creatinine secretion → ↑ creatinine without a true fall in GFR. Don't over-diagnose AKI.</td></tr>
+          <tr><td class="sticky">Neuromuscular</td><td>Aminoglycosides, polymyxins</td><td>Potentiate non-depolarising blockade; risk of prolonged paralysis and, with polymyxins, respiratory arrest.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Resistance, collateral damage &amp; C. difficile <span class="tag">stewardship</span></summary>
+  <div class="cardbody">
+    <figure class="diagram">
+      <div class="chips">
+        <div class="chip"><span class="n">1</span>Decreased permeability<span class="d">porin loss, biofilm</span></div>
+        <div class="chip"><span class="n">2</span>Enzymatic destruction<span class="d">beta-lactamases, aminoglycoside-modifying enzymes</span></div>
+        <div class="chip"><span class="n">3</span>Target site change<span class="d">PBP2a (MRSA), PBP2x, ribosomal methylation</span></div>
+        <div class="chip"><span class="n">4</span>Active efflux<span class="d">tetracycline and fluoroquinolone pumps</span></div>
+      </div>
+      <figcaption>The four mechanisms of antibiotic resistance.</figcaption>
+    </figure>
+    <ul>
+      <li><strong>ESKAPE</strong> threats: <em>Enterococcus faecium, Staphylococcus aureus, Klebsiella pneumoniae, Acinetobacter baumannii, Pseudomonas aeruginosa, Enterobacter</em> — plus <em>Candida auris</em>, CRE, <em>C. difficile</em>, drug-resistant gonorrhoea.</li>
+      <li>Resistance genes travel on <strong>plasmids</strong> — one conjugation event can confer multiple resistances at once.</li>
+      <li><strong>Antibiotic pressure:</strong> killing susceptible strains lets resistant ones expand. <strong>Collateral damage:</strong> the same dose hits the patient's whole microbiome.</li>
+      <li>Highest <em>C. difficile</em> risk: clindamycin, fluoroquinolones, third-generation cephalosporins. Any antibiotic can do it.</li>
+    </ul>
+    <div class="pearl"><strong>Stewardship in four rules:</strong> don't treat colonisation/contamination · use the narrowest effective agent · use the right dose · use the shortest effective course (CAP 5 d, HAP 8 d, intra-abdominal 4 d, cellulitis 5–6 d, pyelonephritis 5–7 d, uncomplicated gram-negative bacteraemia 7 d).</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> The treatment pathway (prophylaxis → empiric → definitive)</summary>
+  <div class="cardbody">
+    <figure class="diagram">
+      <div class="flow">
+        <div class="step">Suspect infection</div><div class="arrow">▼</div>
+        <div class="step">Culture + Gram stain the suspected site</div><div class="arrow">▼</div>
+        <div class="step">Start <strong>empiric</strong> therapy for likely pathogens</div><div class="arrow">▼</div>
+        <div class="step">Organism identification</div><div class="arrow">▼</div>
+        <div class="step">Susceptibilities</div><div class="arrow">▼</div>
+        <div class="step">Switch to <strong>definitive</strong>, narrow-spectrum therapy</div>
+      </div>
+      <figcaption>Every day on empiric broad-spectrum therapy is a day to ask "can I narrow this?"</figcaption>
+    </figure>
+    <p class="small"><strong>Prophylaxis</strong> = no infection yet (e.g. cefazolin before surgery — one dose, never &gt;24 h). <strong>Empiric</strong> = suspected infection, organism unknown. <strong>Definitive</strong> = known organism and susceptibilities.</p>
+  </div>
+</details>
+
+<!-- =========================================================== -->
+<h2 class="part">2 · Antibacterials</h2>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Beta-lactams — the shared rules <span class="tag">overview</span></summary>
+  <div class="cardbody">
+    <ul>
+      <li>All inhibit <strong>peptidoglycan cross-linking (penicillin-binding proteins)</strong> → autolysis. Combining two beta-lactams adds nothing and is not antagonistic (few exceptions).</li>
+      <li><strong>All can cause hypersensitivity:</strong> rash → drug fever → acute interstitial nephritis → anaphylaxis. Cross-reactivity between different beta-lactam subclasses is lower than traditionally taught (&lt;3%); side-chain similarity drives it.</li>
+      <li><strong>Seizures</strong> at high dose, especially with renal impairment. Always check renal function.</li>
+      <li>All are destroyed by beta-lactamases — resistance emerges to every new beta-lactam eventually.</li>
+      <li><strong>No atypical cover</strong> (<em>Mycoplasma, Chlamydia</em>) — add a macrolide/tetracycline for CAP.</li>
+      <li><strong>No MRSA cover — except ceftaroline.</strong></li>
+    </ul>
+    <div class="warn"><strong>Neurotoxicity:</strong> cefepime can cause non-convulsive status epilepticus (any dose, worse with renal impairment); imipenem has the highest seizure risk of the carbapenems. Unexplained encephalopathy on a beta-lactam → get an EEG.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Natural penicillins <span class="tag">penicillin G / V</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> penicillin G <span class="b b-iv">IV</span>, penicillin V <span class="b b-po">PO</span>, benzathine &amp; procaine penicillin (IM depot).</p>
+    <p><span class="lbl">Spectrum:</span> good — <em>Treponema pallidum</em>, most streptococci incl. <em>S. pneumoniae</em>; moderate — enterococci; poor — almost everything else (staphylococci are almost universally resistant).</p>
+    <p><span class="lbl">Key points:</span> very short half-life (&lt;2 h) — frequent dosing or continuous infusion. <strong>Never give procaine or benzathine penicillin IV — can be fatal.</strong> Drug of choice for syphilis, including neurosyphilis.</p>
+    <div class="pearl">Oral penicillin and IV penicillin for CNS infection share a breakpoint of 0.06 mcg/mL; IV penicillin for other sites is 2 mcg/mL. Penicillin is a poor empiric choice today.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Antistaphylococcal penicillins <span class="tag">MSSA</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> nafcillin <span class="b b-iv">IV</span>, oxacillin <span class="b b-iv">IV</span>, dicloxacillin <span class="b b-po">PO</span>, methicillin (historical).</p>
+    <p><span class="lbl">Spectrum:</span> good — MSSA, streptococci; poor — gram-negatives, enterococci, anaerobes, MRSA.</p>
+    <p><span class="lbl">Key points:</span> hepatically eliminated (no renal adjustment). Cause <strong>phlebitis</strong> and a higher incidence of acute interstitial nephritis. "MSSA = OSSA = NSSA" — susceptibility to one implies the others.</p>
+    <div class="pearl"><strong>ICU pearl:</strong> beta-lactams kill MSSA faster than vancomycin. If your patient has MSSA bacteraemia and no severe beta-lactam allergy, switch to cefazolin or an antistaphylococcal penicillin — this improves outcomes in serious infection.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Aminopenicillins <span class="tag">ampicillin / amoxicillin</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> ampicillin <span class="b b-iv">IV</span>, amoxicillin <span class="b b-po">PO</span>.</p>
+    <p><span class="lbl">Spectrum:</span> good — streptococci, enterococci (<em>E. faecalis</em> almost always susceptible; <em>E. faecium</em> usually resistant); moderate — enteric GNRs, <em>Haemophilus</em>; poor — staphylococci, anaerobes, <em>Pseudomonas</em>.</p>
+    <p><span class="lbl">Key points:</span> use <strong>ampicillin IV / amoxicillin PO</strong> (amoxicillin is better absorbed and dosed less often). High incidence of diarrhoea orally. Beta-lactamases have eroded gram-negative utility — if a GNR is susceptible to ampicillin alone, don't add a beta-lactamase inhibitor.</p>
+    <p><span class="lbl">Good for:</span> enterococcal infection, streptococcal pharyngitis, otitis media, susceptible GNRs.</p>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Penicillin / beta-lactamase inhibitor combinations</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> ampicillin/sulbactam <span class="b b-iv">IV</span>, amoxicillin/clavulanate <span class="b b-po">PO</span>, piperacillin/tazobactam <span class="b b-iv">IV</span>.</p>
+    <p><span class="lbl">Spectrum:</span> MSSA, streptococci, enterococci, many anaerobes, enteric GNRs; <strong>Pseudomonas only with piperacillin/tazobactam</strong>; poor against MRSA.</p>
+    <p><span class="lbl">Key rule:</span> the inhibitor <em>restores</em> activity, it does not add it. Amp/sulbactam has no <em>Pseudomonas</em> cover (ampicillin doesn't); pip/tazo does.</p>
+    <ul>
+      <li><strong>Sulbactam</strong> has useful activity against <em>Acinetobacter baumannii</em> — high-dose ampicillin/sulbactam is used for this.</li>
+      <li><strong>ESBL bacteraemia:</strong> the MERINO trial showed a carbapenem beat piperacillin/tazobactam — use a carbapenem for serious ESBL infection.</li>
+      <li>Great <em>empiric</em> choices for mixed aerobic/anaerobic infection (intra-abdominal, diabetic foot, aspiration pneumonia); poor <em>definitive</em> choices when something narrower will do.</li>
+      <li>Amoxicillin/clavulanate has more diarrhoea at higher clavulanate doses.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Cephalosporins — by generation <span class="tag">big card</span></summary>
+  <div class="cardbody">
+    <p class="small">Historically grouped into "generations" that roughly track spectrum. Learn the generation, then the quirks. Penicillin–cephalosporin cross-reactivity is &lt;3% overall; side-chain similarity is the driver.</p>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>1st generation — cefazolin <span class="b b-iv">IV</span>, cephalexin <span class="b b-po">PO</span>, cefadroxil <span class="b b-po">PO</span></h4>
+      <p>Good: MSSA, streptococci. Moderate: some enteric GNRs. Poor: enterococci, anaerobes, MRSA, <em>Pseudomonas</em>.</p>
+      <p><strong>The surgical prophylaxis workhorse.</strong> Less phlebitis and less nephrotoxicity than antistaphylococcal penicillins, infused less often. Cefazolin shares no side chain with other beta-lactams → very low cross-reactivity.</p>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>2nd generation — cefuroxime, cefoxitin, cefotetan, cefprozil, cefaclor</h4>
+      <p>Better gram-negative cover, slightly weaker gram-positive. Good for <em>Haemophilus</em>, <em>Neisseria</em>.</p>
+      <p><strong>Cephamycins</strong> (cefoxitin, cefotetan) cover gut anaerobes — used for abdominal surgical prophylaxis, though <em>B. fragilis</em> resistance is rising. <strong>Cefotetan</strong> has an MTT side chain: vitamin K inhibition/bleeding and a disulfiram-like reaction with alcohol.</p>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>3rd generation — ceftriaxone, cefotaxime, ceftazidime, cefdinir, cefpodoxime, cefixime</h4>
+      <p>Good: streptococci (except ceftazidime), enteric GNRs, <em>Pseudomonas</em> (ceftazidime only). Moderate: MSSA (except ceftazidime). Poor: enterococci, anaerobes, MRSA.</p>
+      <ul>
+        <li><strong>Ceftazidime is the odd one out:</strong> antipseudomonal, poor gram-positive cover — a bad choice for community-acquired meningitis.</li>
+        <li><strong>Ceftriaxone:</strong> once daily for almost everything, but <strong>2 g IV q12h for meningitis</strong>. Dual renal/biliary elimination → no renal adjustment. <strong>Avoid in neonates</strong> (calcium–ceftriaxone crystals; biliary sludging/hyperbilirubinaemia) — use cefotaxime. Not ideal for MSSA; if used, use 2–4 g/day.</li>
+        <li>Strongly associated with <strong>C. difficile</strong> and with selection of resistant GNRs.</li>
+      </ul>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>4th generation — cefepime <span class="b b-iv">IV</span></h4>
+      <p>Broadest cephalosporin: "cefazolin + ceftazidime". Good: MSSA, streptococci, <em>Pseudomonas</em>, enteric GNRs. Poor: enterococci, anaerobes, MRSA.</p>
+      <p>Workhorse for febrile neutropenia, nosocomial pneumonia, post-neurosurgical meningitis. Has an <strong>SDD</strong> category — low doses (500 mg–1 g BD) are inadequate for SDD isolates. <strong>Neurotoxicity, including non-convulsive status epilepticus.</strong></p>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Anti-MRSA cephalosporin — ceftaroline <span class="b b-iv">IV</span></h4>
+      <p>Binds <strong>PBP2a</strong> → the only beta-lactam with MRSA activity. Gram-negative activity similar to ceftriaxone (lost cefepime's <em>Pseudomonas</em> cover).</p>
+      <p>Approved for complicated SSTI and CAP; used off-label for MRSA bacteraemia, endocarditis, meningitis, osteomyelitis. Watch for <strong>neutropenia</strong> with prolonged courses. Sometimes paired with daptomycin for refractory MRSA infection.</p>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Siderophore cephalosporin — cefiderocol <span class="b b-iv">IV</span></h4>
+      <p>"Trojan horse": an iron-chelating side chain tricks bacteria into actively importing the drug. Active against ESBL- and carbapenemase-producing GNRs, <em>P. aeruginosa</em>, <em>Stenotrophomonas maltophilia</em>; moderate against <em>Acinetobacter</em>; <strong>no gram-positive or anaerobic cover</strong>.</p>
+      <p>Reserve for documented resistant GNR infection. Susceptibility testing needs iron-deficient media.</p>
+    </div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Cephalosporin / beta-lactamase inhibitor combinations</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> ceftazidime/avibactam <span class="b b-iv">IV</span>, ceftolozane/tazobactam <span class="b b-iv">IV</span>.</p>
+    <p><span class="lbl">Spectrum:</span> good — <em>Pseudomonas</em> (both), enteric GNRs (ceftazidime/avibactam covers <strong>carbapenem-resistant Enterobacterales</strong>); poor — MRSA, MSSA, <em>Acinetobacter</em>, and <strong>many anaerobes</strong>.</p>
+    <ul>
+      <li>Ceftolozane evades many <em>Pseudomonas</em> resistance mechanisms itself; avibactam inhibits a wider range of beta-lactamases (including KPC).</li>
+      <li>Isolates resistant to one may be susceptible to the other — <strong>ask the lab to test both</strong>.</li>
+      <li>Because anaerobic cover is unreliable, <strong>add metronidazole</strong> if anaerobes are suspected.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Carbapenems <span class="tag">broadest</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> imipenem/cilastatin <span class="b b-iv">IV</span>, meropenem <span class="b b-iv">IV</span>, ertapenem <span class="b b-iv">IV</span>.</p>
+    <p><span class="lbl">Spectrum:</span> good — MSSA, streptococci, anaerobes, enteric GNRs, <em>Pseudomonas</em> (not ertapenem), ESBL producers; moderate — enterococci (not ertapenem), <em>Acinetobacter</em> (not ertapenem); poor — MRSA, penicillin-resistant streptococci.</p>
+    <ul>
+      <li><strong>Imipenem seizure risk</strong> is highest — adjust for renal function and avoid in meningitis. Cilastatin blocks renal metabolism to a nephrotoxic metabolite and is always co-formulated (dose is expressed as imipenem content).</li>
+      <li><strong>Carbapenem + valproate = contraindicated</strong> (valproate levels fall, seizures break through).</li>
+      <li><strong>Ertapenem is the Exception</strong> — no <em>Pseudomonas</em>, no enterococci, no <em>Acinetobacter</em>. But it is once daily, which makes it attractive for outpatient/home infusion.</li>
+      <li>Carbapenemases are increasing (most common in the north-east USA) — escalate to a carbapenem/beta-lactamase inhibitor combination when suspected.</li>
+      <li>Consider <strong>prolonged infusion</strong> for meropenem in critically ill patients (time-dependent killing).</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Carbapenem / beta-lactamase inhibitor combinations</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> meropenem/vaborbactam <span class="b b-iv">IV</span>, imipenem/cilastatin/relebactam <span class="b b-iv">IV</span>.</p>
+    <p><span class="lbl">Spectrum:</span> MSSA, streptococci, anaerobes, enteric GNRs, <em>Pseudomonas</em>, ESBL and many carbapenemase producers (especially KPC); moderate — enterococci, <em>Acinetobacter</em>; poor — MRSA.</p>
+    <ul>
+      <li>The key difference is <strong><em>Pseudomonas</em></strong>: relebactam restores imipenem activity against many carbapenem-resistant strains; vaborbactam does little for meropenem against <em>Pseudomonas</em>.</li>
+      <li><strong>Dosing trap:</strong> imipenem/cilastatin/relebactam 1.25 g q6h = 500 mg imipenem + 125 mg cilastatin + 500 mg relebactam — the same imipenem dose as imipenem/cilastatin 500 mg q6h.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Monobactam — aztreonam</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agent:</span> aztreonam <span class="b b-iv">IV</span> (also inhaled in cystic fibrosis).</p>
+    <p><span class="lbl">Spectrum:</span> good — <em>Pseudomonas</em>, most GNRs; moderate — <em>Acinetobacter</em>; <strong>poor — all gram-positive organisms and anaerobes</strong>.</p>
+    <div class="pearl"><strong>ICU pearl:</strong> aztreonam is the beta-lactam to reach for in a patient with severe beta-lactam anaphylaxis — it shares no cross-reactivity with other beta-lactams <em>except ceftazidime</em> (identical side chain; ceftolozane also shares it). It is chemically unrelated to aminoglycosides, so it carries none of their toxicities. Remember to add gram-positive and anaerobic cover separately.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Glycopeptides — vancomycin, telavancin <span class="tag">MRSA</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> vancomycin <span class="b b-iv">IV</span> <span class="b b-po">PO</span>, telavancin <span class="b b-iv">IV</span> (teicoplanin not available in the US).</p>
+    <p><span class="lbl">Mechanism:</span> bind D-Ala-D-Ala on peptidoglycan, blocking chain elongation. Telavancin also disrupts the cell membrane.</p>
+    <p><span class="lbl">Spectrum:</span> good — MSSA, MRSA, streptococci, <em>C. difficile</em> (oral route only); moderate — enterococci (VRE is resistant); poor — all gram-negatives.</p>
+    <ul>
+      <li><strong>Vancomycin infusion reaction</strong> (histamine-mediated, formerly "red man syndrome"): flushing, warmth, hypotension. Prevent by slowing the infusion; treat with antihistamine. <strong>It is not an allergy.</strong></li>
+      <li><strong>Nephrotoxicity</strong> is real at the high doses used for MRSA. Monitor <strong>AUC 400–600</strong> rather than troughs; adequate AUC can be achieved with lower troughs than the old 15–20 mg/L target.</li>
+      <li><strong>Oral vancomycin is not absorbed</strong> — it is for <em>C. difficile</em> only. IV vancomycin does not reach the colon. Use the lowest effective oral dose.</li>
+      <li>Beta-lactams kill MSSA faster — switch when susceptibilities allow.</li>
+      <li><strong>Telavancin:</strong> more rapidly bactericidal; taste disturbance, foamy urine, renal toxicity; <strong>contraindicated in pregnancy</strong>.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Long-acting lipoglycopeptides — dalbavancin, oritavancin</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> dalbavancin <span class="b b-iv">IV</span>, oritavancin <span class="b b-iv">IV</span>. Half-lives &gt;1 week — a single dose can cover an entire 2-week course.</p>
+    <p><span class="lbl">Spectrum:</span> strictly gram-positive, including MRSA and streptococci; oritavancin also covers enterococci (including VRE).</p>
+    <ul>
+      <li>Approved for skin and soft-tissue infection. Excellent for adherence/outpatient discharge — but expensive and patients still need follow-up.</li>
+      <li><strong>Oritavancin interferes with PT (12 h) and aPTT (120 h) assays</strong> — coagulation monitoring becomes unreliable.</li>
+      <li>Dalbavancin: 1000 mg then 500 mg one week later, or a single 1500 mg dose.</li>
+      <li>Oritavancin: Orbactiv® over 3 h; Kimyrsa® over 1 h (better for outpatient).</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Fluoroquinolones <span class="tag">QT · interactions</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> ciprofloxacin <span class="b b-iv">IV</span><span class="b b-po">PO</span>, levofloxacin <span class="b b-iv">IV</span><span class="b b-po">PO</span>, moxifloxacin <span class="b b-iv">IV</span><span class="b b-po">PO</span>, delafloxacin <span class="b b-iv">IV</span><span class="b b-po">PO</span>.</p>
+    <p><span class="lbl">Spectrum:</span> ciprofloxacin — best gram-negative and antipseudomonal, weak gram-positive; levofloxacin/moxifloxacin — pneumococci and atypicals (moxifloxacin loses <em>Pseudomonas</em>); delafloxacin — adds MRSA.</p>
+    <p><span class="lbl">Adverse effects:</span> CNS (dizziness, confusion, hallucinations — especially elderly; peripheral neuropathy), <strong>QT prolongation</strong>, tendinopathy/Achilles rupture (elderly, steroids, renal impairment), myasthenia gravis exacerbation, photosensitivity, and a boxed warning for all of the above.</p>
+    <ul>
+      <li><strong>Chelation:</strong> oral bioavailability collapses with calcium, iron, antacids, milk, multivitamins, tube feeds. Separate by ≥2 h. IV route avoids this.</li>
+      <li><strong>Renal:</strong> ciprofloxacin, levofloxacin and delafloxacin need dose reduction; <strong>moxifloxacin does not — and is not approved for UTI</strong> (not renally excreted).</li>
+      <li><strong>Antipseudomonal dosing:</strong> ciprofloxacin 400 mg IV q8h or 750 mg PO q12h; levofloxacin 750 mg daily.</li>
+      <li>FDA 2016: risks outweigh benefits for sinusitis, bronchitis and uncomplicated UTI when alternatives exist.</li>
+      <li>Moxifloxacin has useful anaerobic activity; levofloxacin does not.</li>
+    </ul>
+    <div class="warn"><strong>ICU pearl:</strong> before prescribing, look at the ECG and the rest of the drug chart (amiodarone, ondansetron, antipsychotics, methadone) and check K⁺/Mg²⁺.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Aminoglycosides <span class="tag">NMB interaction</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> gentamicin <span class="b b-iv">IV</span>, tobramycin <span class="b b-iv">IV</span>, amikacin <span class="b b-iv">IV</span>, plazomicin <span class="b b-iv">IV</span>, streptomycin, neomycin (topical).</p>
+    <p><span class="lbl">Mechanism:</span> bind the 30S ribosomal subunit → misreading of mRNA.</p>
+    <p><span class="lbl">Spectrum:</span> gram-negatives including <em>Pseudomonas</em> and <em>Acinetobacter</em>; mycobacteria (amikacin, streptomycin). Synergy with beta-lactams/glycopeptides against staphylococci, viridans streptococci and enterococci. <strong>No anaerobic, atypical or gram-positive monotherapy cover.</strong></p>
+    <ul>
+      <li><strong>Nephrotoxicity</strong> — oliguric AKI, dose-related; avoid other nephrotoxins.</li>
+      <li><strong>Ototoxicity</strong> — cochlear and vestibular, dose-related and <strong>irreversible</strong>. Baseline and follow-up audiology for courses ≥2 weeks. Easy to miss in a sedated ICU patient.</li>
+      <li><strong>Neuromuscular blockade</strong> — especially with high doses or therapeutic paralysis. Potentiates non-depolarising muscle relaxants. Use with great caution in myasthenia gravis.</li>
+      <li><strong>Once-daily/extended-interval dosing</strong> exploits concentration-dependent killing. Less well studied in pregnancy, critical illness, significant renal dysfunction and morbid obesity.</li>
+      <li>Dose on <strong>ideal or adjusted body weight</strong> — never total body weight. Poor penetration into lung and CSF → not monotherapy for pneumonia.</li>
+      <li>Activity ranking — <em>Pseudomonas</em>: amikacin &gt; tobramycin &gt; gentamicin &gt; plazomicin. <em>Klebsiella</em>: plazomicin &gt; amikacin ≈ gentamicin &gt; tobramycin.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Tetracyclines &amp; modified tetracyclines</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> doxycycline <span class="b b-iv">IV</span><span class="b b-po">PO</span>, minocycline <span class="b b-po">PO</span>, tetracycline <span class="b b-po">PO</span>, tigecycline <span class="b b-iv">IV</span>, eravacycline <span class="b b-iv">IV</span>, omadacycline <span class="b b-iv">IV</span><span class="b b-po">PO</span>.</p>
+    <p><span class="lbl">Spectrum:</span> atypicals, rickettsia, spirochetes (Lyme), <em>Plasmodium</em>, <em>H. pylori</em>; doxycycline also covers MRSA and pneumococcus moderately. Modified agents (tigecycline, eravacycline, omadacycline) restore broad cover including VRE and MRSA — but <strong>not <em>Pseudomonas</em>, <em>Proteus</em> or <em>Providencia</em></strong>.</p>
+    <ul>
+      <li><strong>Chelation</strong> with calcium, iron, antacids, mineral supplements, milk — separate by ≥2 h. Do not give with enteral feed.</li>
+      <li>Photosensitivity; oesophageal irritation (take with water, sitting up); <strong>contraindicated in pregnancy and children &lt;8 y</strong> (dental staining).</li>
+      <li>Hepatically eliminated → poor choices for UTI (tetracycline is the exception, and it worsens renal function).</li>
+      <li>Large volume of distribution → low blood concentrations → <strong>not for primary bacteraemia</strong>.</li>
+      <li>Tigecycline carries an FDA mortality signal (driven by hospital-acquired pneumonia) — reserve for highly resistant organisms with no alternative.</li>
+      <li>Minocycline: dizziness/vertigo, blue tissue discolouration. Omadacycline: raises heart rate (does not prolong QTc).</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Macrolides <span class="tag">QT · CYP3A4</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> azithromycin <span class="b b-iv">IV</span><span class="b b-po">PO</span>, clarithromycin <span class="b b-po">PO</span>, erythromycin.</p>
+    <p><span class="lbl">Spectrum:</span> good — atypicals, <em>H. influenzae</em>, <em>M. catarrhalis</em>, <em>H. pylori</em>, <em>M. avium</em>; moderate — <em>S. pneumoniae</em>, <em>S. pyogenes</em>; poor — staphylococci, enteric GNRs, anaerobes, enterococci.</p>
+    <ul>
+      <li><strong>QT prolongation</strong>, worst with erythromycin.</li>
+      <li><strong>Potent CYP450 inhibitors</strong> — all except azithromycin. Screen the whole drug chart.</li>
+      <li>GI upset is common; erythromycin is used as a prokinetic.</li>
+      <li>Azithromycin's long half-life allows short courses (Z-pak; single-dose Zmax).</li>
+      <li>Rare but serious hepatotoxicity.</li>
+    </ul>
+    <div class="warn"><strong>ICU pearl:</strong> macrolides are attractive for CAP, but pneumococcal resistance is high — never use a macrolide alone in a patient who is more than mildly unwell. Add a beta-lactam or use a different agent.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Oxazolidinones — linezolid, tedizolid</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> linezolid <span class="b b-iv">IV</span><span class="b b-po">PO</span> (600 mg q12h), tedizolid <span class="b b-iv">IV</span><span class="b b-po">PO</span> (200 mg daily).</p>
+    <p><span class="lbl">Spectrum:</span> MSSA, MRSA, streptococci including multidrug-resistant pneumococcus, enterococci including VRE, <em>Nocardia</em>; some atypicals and TB. <strong>No gram-negative or anaerobic cover.</strong></p>
+    <ul>
+      <li>&gt;90% oral bioavailability — an excellent IV-to-oral switch and cheaper/more convenient than outpatient IV vancomycin.</li>
+      <li><strong>Myelosuppression</strong> (especially thrombocytopenia) after ~2 weeks — monitor FBC.</li>
+      <li>Peripheral neuropathy and lactic acidosis with prolonged (months) therapy — mitochondrial toxicity.</li>
+      <li><strong>Linezolid is a weak MAO inhibitor</strong> → serotonin syndrome with SSRIs/SNRIs. Tedizolid has minimal MAO inhibition. Monitor if the combination is unavoidable.</li>
+      <li>Linezolid: no renal or hepatic adjustment. Tedizolid: hepatic elimination, not for UTI.</li>
+      <li>Good lung penetration — a reasonable alternative to vancomycin for MRSA pneumonia.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Nitroimidazoles — metronidazole, tinidazole</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> metronidazole <span class="b b-iv">IV</span><span class="b b-po">PO</span>, tinidazole <span class="b b-po">PO</span> (parasites only).</p>
+    <p><span class="lbl">Spectrum:</span> good — gram-negative and gram-positive anaerobes (<em>Bacteroides</em>, <em>Fusobacterium</em>, <em>Clostridium</em>), protozoa (<em>Trichomonas</em>, <em>Entamoeba</em>, <em>Giardia</em>); moderate — <em>H. pylori</em>; poor — <strong>all aerobes</strong> and some oral/skin anaerobes.</p>
+    <ul>
+      <li>~100% bioavailability, no chelation issues → <strong>switch IV to PO as soon as the patient tolerates enteral medication</strong>.</li>
+      <li><strong>Warfarin interaction is the important one</strong> — INR rises; monitor and reduce the warfarin dose.</li>
+      <li>The disulfiram-like alcohol reaction is probably not clinically relevant; many guidelines have dropped the warning.</li>
+      <li>Dose-related reversible peripheral neuropathy; rare confusion/seizures; metallic taste, nausea.</li>
+      <li>Disturbs anaerobic gut flora → risk of VRE colonisation. Ask whether anaerobic cover is really needed.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Nitrofurantoin &amp; fosfomycin <span class="tag">cystitis only</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> nitrofurantoin <span class="b b-po">PO</span> (Macrobid® BD, Macrodantin® QDS), fosfomycin <span class="b b-po">PO</span> (single sachet).</p>
+    <p><span class="lbl">Spectrum:</span> good — <em>E. coli</em> (&gt;90% in most areas), <em>S. saprophyticus</em>; moderate — <em>Citrobacter</em>, <em>Klebsiella</em>, <em>Proteus</em>, enterococci, <em>Serratia</em> (fosfomycin); poor — <em>Acinetobacter</em>, <em>Pseudomonas</em>.</p>
+    <div class="warn"><strong>Lower urinary tract only.</strong> These drugs concentrate in urine and achieve inadequate tissue concentrations — using them for pyelonephritis or urosepsis is a guaranteed treatment failure. Avoid nitrofurantoin if CrCl &lt; 50 mL/min (insufficient urinary concentration).</div>
+    <ul>
+      <li>Nitrofurantoin pulmonary toxicity: acute pneumonitis (cough, fever, dyspnoea — resolves on stopping) and chronic pulmonary fibrosis with prolonged use (poor recovery).</li>
+      <li>5 days of nitrofurantoin outperformed single-dose fosfomycin in a comparative trial.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Streptogramins — quinupristin/dalfopristin</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agent:</span> quinupristin/dalfopristin <span class="b b-iv">IV</span>.</p>
+    <p><span class="lbl">Spectrum:</span> MSSA, MRSA, streptococci, <strong><em>Enterococcus faecium</em> (including VRE)</strong>; <strong>poor — <em>E. faecalis</em></strong> and all gram-negatives.</p>
+    <ul>
+      <li>Two streptogramins that are bacteriostatic alone but bactericidal together ("Synercid").</li>
+      <li><strong>Myalgias and arthralgias</strong> are common and treatment-limiting; phlebitis (use a central line); inhibits CYP3A4.</li>
+      <li><strong>Must be diluted in 5% dextrose — it crystallises in saline</strong>, even when flushing the line. Make sure nursing knows.</li>
+      <li>Better as definitive therapy than empiric — <em>E. faecalis</em> is the more common enterococcus and is intrinsically resistant. Linezolid and daptomycin are usually better choices.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Cyclic lipopeptide — daptomycin <span class="tag">not for pneumonia</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agent:</span> daptomycin <span class="b b-iv">IV</span>.</p>
+    <p><span class="lbl">Mechanism:</span> inserts into the gram-positive cell membrane → rapid depolarisation and cell death.</p>
+    <p><span class="lbl">Spectrum:</span> MSSA, MRSA, streptococci, enterococci including VRE; <strong>no gram-negative cover</strong>.</p>
+    <ul>
+      <li><strong>Never use for pneumonia</strong> — pulmonary surfactant binds and inactivates daptomycin. This is a classic exam and bedside error.</li>
+      <li><strong>Skeletal muscle toxicity</strong> — myalgia, weakness, rarely rhabdomyolysis. Check <strong>CK weekly</strong>; avoid concomitant statins where possible. Once-daily dosing and interval adjustment in renal impairment reduce risk.</li>
+      <li>Eosinophilic pneumonia has been reported.</li>
+      <li>Proven effective in right-sided staphylococcal endocarditis.</li>
+      <li>Dose: 4–6 mg/kg/d licensed; 8–10 mg/kg/d used for severe staphylococcal infection; 10–12 mg/kg/d recommended for enterococcal endocarditis.</li>
+      <li>Synergy with beta-lactams (including against MRSA and VRE) — used in refractory infection.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Folate antagonists — TMP/SMX and friends</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> trimethoprim/sulfamethoxazole <span class="b b-iv">IV</span><span class="b b-po">PO</span>, dapsone, pyrimethamine, sulfadiazine.</p>
+    <p><span class="lbl">Spectrum:</span> good — <em>S. aureus</em> including many MRSA, <em>H. influenzae</em>, <em>Stenotrophomonas</em>, <em>Listeria</em>, <em>Pneumocystis jirovecii</em>, <em>Toxoplasma</em>; moderate — enteric GNRs, pneumococcus, <em>Salmonella</em>, <em>Shigella</em>, <em>Nocardia</em>; poor — <em>Pseudomonas</em>, enterococci, anaerobes.</p>
+    <ul>
+      <li><strong>Hyperkalaemia</strong> — trimethoprim acts like a potassium-sparing diuretic. Watch K⁺ in renal impairment and with ACE inhibitors/ARBs/spironolactone.</li>
+      <li><strong>Creatinine rises without a true fall in GFR</strong> (trimethoprim blocks tubular creatinine secretion) — and it can also cause true AKI (crystalluria, AIN).</li>
+      <li>Myelosuppression (dose-related; especially at PJP doses) — consider leucovorin.</li>
+      <li>Rash is common, particularly in HIV; SJS/TEN occurs rarely.</li>
+      <li><strong>Warfarin interaction</strong> — avoid, or monitor INR closely.</li>
+      <li>IV preparation needs a large diluent volume — a real problem in fluid-overloaded ICU patients.</li>
+      <li>Dosing is based on the <strong>trimethoprim</strong> component (1:5 ratio; single = 80/400 mg, double = 160/800 mg).</li>
+      <li>Local <em>E. coli</em> resistance &gt;15–20% → do not use empirically for cystitis.</li>
+    </ul>
+    <div class="pearl">A "sulfa allergy" label usually does not preclude furosemide, thiazides, acetazolamide, sulfonylureas or sulfadiazine — but other sulfa <em>antimicrobials</em> should be avoided. Get an allergist involved after severe reactions.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Lincosamides — clindamycin <span class="tag">C. diff risk</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agent:</span> clindamycin <span class="b b-iv">IV</span><span class="b b-po">PO</span> (also topical).</p>
+    <p><span class="lbl">Spectrum:</span> good — gram-positive anaerobes, <em>S. pyogenes</em>; moderate — <em>S. aureus</em> including many MRSA, <em>B. fragilis</em>, <em>Chlamydia</em>, <em>Pneumocystis</em>, <em>Actinomyces</em>, <em>Toxoplasma</em>; poor — enterococci, <em>C. difficile</em>, gram-negative aerobes.</p>
+    <ul>
+      <li><strong>Highest incidence of <em>C. difficile</em></strong> among antibiotics. Any diarrhoea on clindamycin needs evaluation.</li>
+      <li><strong>D-test:</strong> erythromycin-resistant, clindamycin-susceptible staphylococci may harbour inducible resistance — the lab must screen before you use clindamycin.</li>
+      <li>~100% oral bioavailability, but oral doses are lower than IV for GI tolerance.</li>
+      <li>Protein-synthesis inhibition + activity against stationary-phase organisms → <strong>add clindamycin to a beta-lactam in necrotising fasciitis and other toxin-mediated disease</strong> (anti-toxin effect).</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Polymyxins — colistin, polymyxin B <span class="tag">last resort</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> colistin (colistimethate sodium) <span class="b b-iv">IV</span>, polymyxin B <span class="b b-iv">IV</span>.</p>
+    <p><span class="lbl">Spectrum:</span> many GNRs including multidrug-resistant <em>A. baumannii</em>, <em>P. aeruginosa</em> and CRE; moderate — <em>Stenotrophomonas</em>; poor — all gram-positives, anaerobes, <em>Proteus</em>, <em>Providencia</em>, <em>Burkholderia</em>, <em>Serratia</em>.</p>
+    <ul>
+      <li><strong>Nephrotoxicity</strong> (acute tubular necrosis) is common — avoid other nephrotoxins, including vancomycin and aminoglycosides. Polymyxin B may be less nephrotoxic than colistin.</li>
+      <li><strong>Neurotoxicity</strong> — dizziness, weakness, paraesthesia, confusion, and <strong>neuromuscular blockade that can cause respiratory arrest</strong>.</li>
+      <li><strong>Dosing unit chaos — a genuine source of fatal error:</strong>
+        <br>1 mg colistin base activity ≈ 30,000 IU ≈ 2.7 mg colistimethate.
+        <br>1,000,000 IU ≈ 80 mg colistimethate ≈ 30 mg colistin base activity.
+        <br><strong>Never prescribe colistin in milligrams of colistimethate.</strong> Polymyxin B: 1 mg = 10,000 IU.</li>
+      <li>Colistin is a renally cleared prodrug (give a loading dose, adjust in renal impairment); <strong>polymyxin B is not renally cleared</strong> — no renal adjustment (contrary to the package insert) and not useful for UTI.</li>
+      <li>Colistin is preferred for urinary infection; polymyxin B for other sites. Oral colistin is for bowel decontamination only. Aerosolised polymyxins reduce colonisation in cystic fibrosis.</li>
+    </ul>
+    <div class="warn">Use polymyxins only when there is no alternative — better-studied agents should be used whenever the organism is susceptible.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> <em>C. difficile</em>-specific agents</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> fidaxomicin <span class="b b-po">PO</span>, bezlotoxumab <span class="b b-iv">IV</span> — plus oral vancomycin and metronidazole.</p>
+    <ul>
+      <li><strong>Fidaxomicin</strong>: non-absorbed macrocyclic antibiotic, narrow spectrum, spares gut flora. Similar cure rate to oral vancomycin but <strong>fewer recurrences</strong>; now recommended first line. Do not combine with oral vancomycin or metronidazole — the flora-sparing advantage is lost.</li>
+      <li><strong>Bezlotoxumab</strong>: monoclonal antibody against toxin B. It does not kill the organism — the patient still needs an antibacterial. Reduces recurrence, not initial cure; use in high-risk patients. More adverse events in patients with heart failure.</li>
+      <li>Both are expensive — but cheaper than an admission for relapse. Check patient assistance programmes.</li>
+      <li>Metronidazole remains an option for mild–moderate first episodes but is not first line.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- =========================================================== -->
+<h2 class="part">3 · Antimycobacterials</h2>
+
+<details class="card">
+  <summary><span class="chev">▶</span> TB drugs — RIPE / HRZE <span class="tag">interactions</span></summary>
+  <div class="cardbody">
+    <p class="small">Mycobacteria grow slowly, live inside cells, and have a waxy mycolic-acid cell wall that resists drug penetration. Active disease is always treated with <strong>combination therapy</strong> — starting regimen rifampin + isoniazid + pyrazinamide + ethambutol (RIPE / HRZE), then rifampin + isoniazid consolidation. MDR-TB needs a specialist.</p>
+
+    <div class="mini">
+      <h4>Rifamycins — rifampin, rifabutin, rifapentine (rifaximin = non-absorbed, gut only)</h4>
+      <p>Inhibit RNA polymerase. Active against mycobacteria and many ordinary bacteria; used as an <em>add-on</em> for prosthetic-material staphylococcal infection.</p>
+      <ul>
+        <li><strong>Potent CYP450 inducers</strong> — the single most important interaction in the class. Loss of anticoagulation, transplant rejection, loss of seizure control, contraceptive failure.</li>
+        <li><strong>Orange-red discolouration of urine, tears and sweat</strong> — warn the patient; it stains contact lenses (don't wear them).</li>
+        <li>Hepatotoxicity, rash, nausea, drug fever. Rifabutin: leucopenia and optic neuritis, and it is itself a CYP substrate (inhibitors raise its level).</li>
+        <li>Very low genetic barrier to resistance → never as monotherapy except in latent TB.</li>
+      </ul>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Isoniazid (INH)</h4>
+      <p>Inhibits mycolic acid synthesis; active against <em>M. tuberculosis</em> and <em>M. kansasii</em> only. Bactericidal against growing organisms, bacteriostatic against dormant ones.</p>
+      <ul>
+        <li><strong>Hepatotoxicity</strong> — asymptomatic transaminase rises are common and usually settle; stop if markedly elevated or symptomatic (nausea, abdominal pain, jaundice).</li>
+        <li><strong>Peripheral neuropathy</strong> — prevent with <strong>pyridoxine (vitamin B6)</strong>, especially in alcohol use disorder, diabetes, pregnancy.</li>
+        <li>Drug-induced lupus (resolves on stopping); optic neuritis; seizures rarely. Advise against alcohol (additive hepatotoxicity).</li>
+      </ul>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Pyrazinamide (PZA)</h4>
+      <p>Prodrug, active only in acidic environments (pH &lt;6) — which is exactly the caseous granuloma, and it works intracellularly.</p>
+      <ul>
+        <li><strong>Hyperuricaemia</strong> — predictable; can precipitate gout and force withdrawal. Arthralgia is separate and manageable with simple analgesia.</li>
+        <li>Hepatotoxicity (dose-related, less common at modern doses). Counsel about dark urine, abdominal pain, anorexia.</li>
+        <li>Used only in the first 2 months of drug-sensitive TB (longer in MDR-TB).</li>
+      </ul>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Ethambutol (EMB)</h4>
+      <p>Inhibits arabinosyl transferase → blocks arabinogalactan synthesis. Active against <em>M. tuberculosis</em>, MAC and <em>M. kansasii</em>.</p>
+      <ul>
+        <li><strong>Optic neuropathy</strong> — reduced acuity, red–green discrimination loss. Dose- and duration-dependent. Requires monitoring; recovery may be incomplete.</li>
+        <li><strong>Not recommended under 5 years</strong> — children can't perform the vision tests.</li>
+        <li>The one RIPE drug that is <strong>not</strong> hepatotoxic — useful when the liver is the problem.</li>
+      </ul>
+    </div>
+
+    <div class="pearl"><strong>ICU pearl:</strong> a patient admitted on TB treatment is a walking drug-interaction. Rifampin will have already lowered the levels of many of their regular medicines — check anticoagulants, antiepileptics, immunosuppressants, steroids and analgesia. Also remember <strong>carbapenems + valproate</strong> if you add meropenem.</div>
+  </div>
+</details>
+
+<!-- =========================================================== -->
+<h2 class="part">4 · Antifungals</h2>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Polyenes — amphotericin B <span class="tag">nephrotoxicity</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> amphotericin B deoxycholate <span class="b b-iv">IV</span>, liposomal amphotericin B (LAmB) <span class="b b-iv">IV</span>, amphotericin B lipid complex (ABLC) <span class="b b-iv">IV</span>, nystatin (topical/oral rinse).</p>
+    <p><span class="lbl">Mechanism:</span> bind ergosterol in the fungal membrane → leakage and cell death.</p>
+    <p><span class="lbl">Spectrum:</span> good — most <em>Candida</em> and <em>Aspergillus</em>, <em>Cryptococcus</em>, dimorphic fungi, many moulds; moderate — Mucorales, <em>Fusarium</em>, <em>Scedosporium</em>; poor — <em>C. lusitaniae</em>, <em>A. terreus</em>.</p>
+    <ul>
+      <li><strong>Infusion reactions</strong> — fever, chills, rigors. Premedicate with paracetamol, hydrocortisone ± diphenhydramine; pethidine for rigors (careful — renally cleared neurotoxic metabolite). Least with LAmB.</li>
+      <li><strong>Nephrotoxicity</strong> — direct tubular toxicity plus afferent vasoconstriction; causes <strong>Mg²⁺ and K⁺ wasting</strong>. Attenuate with saline loading before and after the infusion, and replace electrolytes.</li>
+      <li><strong>Formulation dosing is a fatal-error trap:</strong> deoxycholate 0.5–1.5 mg/kg/d; lipid formulations 3–6 mg/kg/d. Giving the lipid dose of deoxycholate is a 3–5× overdose.</li>
+      <li>Still drugs of choice for cryptococcal meningitis and serious dimorphic/mould infection; used empirically in febrile neutropenia when the organism is unknown.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Flucytosine (5-FC)</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agent:</span> flucytosine <span class="b b-po">PO</span><span class="b b-iv">IV</span>.</p>
+    <p><span class="lbl">Mechanism:</span> deaminated inside fungal cells to 5-fluorouracil → interferes with DNA and protein synthesis. Fungi lacking cytosine deaminase are resistant.</p>
+    <p><span class="lbl">Spectrum:</span> good — <em>Cryptococcus</em> (in combination); moderate — most <em>Candida</em>, <em>Aspergillus</em>; poor — many moulds, <em>C. krusei</em>.</p>
+    <ul>
+      <li><strong>Bone marrow suppression</strong> is the main concern — follow FBC more closely than drug levels (levels are often a send-out lab taking a week).</li>
+      <li>Hepatotoxicity; GI upset is more common but less serious.</li>
+      <li><strong>Never as monotherapy</strong> — resistance emerges rapidly. Look for its "buddy" (usually amphotericin B for cryptococcal meningitis).</li>
+      <li>Avoid the abbreviation "5-FC" — it is easily confused with 5-FU.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Azoles — the workhorses <span class="tag">CYP · QT · formulations</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> fluconazole <span class="b b-iv">IV</span><span class="b b-po">PO</span>, itraconazole <span class="b b-po">PO</span>, voriconazole <span class="b b-iv">IV</span><span class="b b-po">PO</span>, posaconazole <span class="b b-iv">IV</span><span class="b b-po">PO</span>, isavuconazole <span class="b b-iv">IV</span><span class="b b-po">PO</span>, ketoconazole (topical).</p>
+    <p><span class="lbl">Mechanism:</span> inhibit fungal CYP450 14-alpha demethylase → block conversion of lanosterol to ergosterol.</p>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Fluconazole</h4>
+      <p>Good — <em>C. albicans</em>, <em>C. tropicalis</em>, <em>C. parapsilosis</em>, <em>C. lusitaniae</em>, <em>Cryptococcus</em>, <em>Coccidioides</em>; moderate — <em>C. glabrata</em> (SDD or resistant); <strong>poor — all moulds, <em>C. krusei</em>, <em>C. auris</em></strong>.</p>
+      <ul>
+        <li>Excellent bioavailability (1:1 IV:PO) — the classic IV-to-oral switch.</li>
+        <li><strong>Renally cleared — dose-adjust in renal impairment</strong> (unlike other azoles).</li>
+        <li>Check the species before committing: a patient who has had prolonged fluconazole prophylaxis may now have a resistant <em>Candida</em> — use an echinocandin instead.</li>
+      </ul>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Itraconazole</h4>
+      <p>Broader than fluconazole: good for dimorphic fungi (<em>Blastomyces</em>, <em>Histoplasma</em>, <em>Coccidioides</em>, <em>Sporothrix</em>), most <em>Candida</em>, <em>Aspergillus</em>; poor for Mucorales.</p>
+      <ul>
+        <li><strong>Negative inotrope — contraindicated in heart failure.</strong></li>
+        <li>Three formulations with <em>different</em> food and acid requirements — capsules with a full meal; solution on an empty stomach; regular capsules fail with any acid suppression. They are not interchangeable.</li>
+        <li>Absorption is erratic — monitor trough concentrations for serious or prolonged therapy. IV formulation is discontinued.</li>
+      </ul>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Voriconazole</h4>
+      <p>Drug of choice for <strong>invasive aspergillosis</strong>; good for most <em>Candida</em> including <em>C. krusei</em> and fluconazole-resistant strains, <em>Cryptococcus</em>, many moulds; <strong>poor for Mucorales</strong>.</p>
+      <ul>
+        <li>Highly variable pharmacokinetics — consider levels on prolonged therapy.</li>
+        <li><strong>Visual disturbances</strong> (photopsia), rash/photosensitivity, hepatotoxicity, periostitis with long-term use.</li>
+        <li>Long, varied interaction list — rifampin is contraindicated; calcineurin inhibitors need dose adjustment.</li>
+        <li>Hepatically eliminated — not useful for candiduria. IV formulation contains a cyclodextrin vehicle (accumulates in renal failure).</li>
+      </ul>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Posaconazole</h4>
+      <p>Good — <em>Aspergillus</em>, <strong>Mucorales</strong>, many moulds, dimorphic fungi, most <em>Candida</em>; moderate — <em>Fusarium</em>, <em>C. glabrata</em>. Recently shown non-inferior to voriconazole in invasive aspergillosis.</p>
+      <ul>
+        <li>Mainly used for <strong>prophylaxis in high-risk patients</strong> and for mucormycosis.</li>
+        <li>Suspension needs food (especially fatty food/low-pH drinks) and is variably absorbed — the delayed-release tablets are far more reliable. Different formulations are not interchangeable.</li>
+        <li>Pseudohyperaldosteronism → hypertension and hypokalaemia.</li>
+      </ul>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Isavuconazole</h4>
+      <p>Good — <em>Candida</em>, <em>Aspergillus</em>, <strong>Mucorales</strong>, some other moulds; poor — <em>Fusarium</em>.</p>
+      <ul>
+        <li>Does <strong>not</strong> prolong the QT — it can actually shorten it. Useful when other azoles are risky.</li>
+        <li>Excellent oral bioavailability, unaffected by food or acid; capsules must not be opened or crushed (a problem for nasogastric tubes).</li>
+        <li><strong>Dosing trap:</strong> the prodrug isavuconazonium 372 mg = isavuconazole 200 mg. Give an 8-hourly loading regimen (6 doses) before once-daily maintenance.</li>
+        <li>Not approved for invasive candidiasis — use an echinocandin or fluconazole.</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Echinocandins <span class="tag">1st line for candidaemia</span></summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> caspofungin <span class="b b-iv">IV</span>, micafungin <span class="b b-iv">IV</span>, anidulafungin <span class="b b-iv">IV</span>.</p>
+    <p><span class="lbl">Mechanism:</span> inhibit beta-1,3-D-glucan synthase → defective fungal cell wall.</p>
+    <p><span class="lbl">Spectrum:</span> good — all common <em>Candida</em> species including <em>C. glabrata</em> and <em>C. krusei</em>; moderate — <em>Aspergillus</em> (aberrant, non-functional hyphae rather than outright killing), some dimorphic fungi, <em>C. auris</em>; poor — most non-<em>Aspergillus</em> moulds, <em>Cryptococcus</em>, <em>Trichosporon</em>.</p>
+    <ul>
+      <li><strong>Excellent safety profile</strong> — mild infusion reactions, uncommon hepatotoxicity, far fewer interactions than azoles.</li>
+      <li><strong>No oral formulation.</strong></li>
+      <li>Differences are mainly pharmacokinetic: caspofungin and micafungin undergo hepatic (non-CYP) metabolism; anidulafungin degrades in plasma. Watch caspofungin + ciclosporin and micafungin + sirolimus.</li>
+      <li><strong>Drugs of choice for invasive candidiasis</strong>, particularly in unstable patients or where azole resistance is possible. Step down to an azole once susceptibilities are known and the patient is stable.</li>
+      <li>Combination with voriconazole (aspergillosis) or liposomal amphotericin (Mucorales) is used by some clinicians for refractory disease.</li>
+    </ul>
+    <div class="pearl"><strong>ICU pearl:</strong> "yeast in the blood" → start an echinocandin (after briefly considering whether it could be <em>Cryptococcus</em>), remove/change lines, and get ophthalmology review.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Terpenoids — ibrexafungerp</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agent:</span> ibrexafungerp <span class="b b-po">PO</span>. Same target as echinocandins (beta-1,3-D-glucan synthase) but structurally distinct — <strong>oral bioavailability</strong>, and incomplete cross-resistance with echinocandins.</p>
+    <p><span class="lbl">Approved for:</span> vulvovaginal candidiasis (one day, two doses). Trials in invasive disease are awaited.</p>
+    <p><span class="lbl">Watch:</span> GI adverse effects; it inhibits CYP450 and is a CYP3A4 substrate, so it has more interaction potential than the echinocandins. It is <em>not</em> simply an "oral echinocandin".</p>
+  </div>
+</details>
+
+<!-- =========================================================== -->
+<h2 class="part">5 · Antivirals</h2>
+
+<details class="card">
+  <summary><span class="chev">▶</span> HSV / VZV — aciclovir, valaciclovir, famciclovir</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> aciclovir <span class="b b-iv">IV</span><span class="b b-po">PO</span>, valaciclovir <span class="b b-po">PO</span>, famciclovir <span class="b b-po">PO</span>.</p>
+    <p><span class="lbl">Spectrum:</span> good — HSV-1, HSV-2; moderate — VZV; poor — EBV, CMV, HIV.</p>
+    <ul>
+      <li><strong>IV aciclovir is the drug of choice for HSV encephalitis</strong> and severe HSV in immunocompromised patients.</li>
+      <li><strong>Nephrotoxicity</strong> — crystalluria and acute interstitial nephritis, mostly with high-dose IV aciclovir. <strong>Keep the patient well hydrated</strong> and dose-adjust for renal function; avoid with other nephrotoxins and diuretics.</li>
+      <li>CNS effects: confusion, tremor, seizures. Nausea, diarrhoea, rash.</li>
+      <li>Valaciclovir is a prodrug of aciclovir with much better bioavailability and less frequent dosing — patients generally prefer it. Thrombotic thrombocytopenic purpura has been reported with valaciclovir in HIV patients.</li>
+      <li>VZV is intrinsically less susceptible → higher doses needed.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> CMV — ganciclovir, foscarnet, cidofovir, letermovir</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> ganciclovir <span class="b b-iv">IV</span>, valganciclovir <span class="b b-po">PO</span>, foscarnet <span class="b b-iv">IV</span>, cidofovir <span class="b b-iv">IV</span>, letermovir <span class="b b-iv">IV</span><span class="b b-po">PO</span>.</p>
+    <ul>
+      <li><strong>Ganciclovir / valganciclovir</strong> — first line for treatment and prevention. <strong>Dose-dependent myelosuppression</strong> (neutropenia, thrombocytopenia), worse in renal impairment. Valganciclovir is oral but has the same toxicity as IV ganciclovir and needs the same monitoring. <strong>Weight-based dosing matters</strong> — in a 50 kg patient, 900 mg BD valganciclovir delivers more than double the active drug of 5 mg/kg IV q12h.</li>
+      <li><strong>Foscarnet</strong> — second line for CMV, also for resistant/severe HSV. <strong>Nephrotoxic and neurotoxic</strong>, causes profound electrolyte abnormalities; needs pre-hydration.</li>
+      <li><strong>Cidofovir</strong> — nephrotoxic; requires saline prehydration and probenecid.</li>
+      <li><strong>Letermovir</strong> — inhibits the terminase complex (viral DNA packaging). Much better tolerated (adverse effects similar to placebo) but <strong>resistance emerges rapidly in treatment settings</strong>, so its role is prophylaxis. <strong>No HSV or VZV cover</strong> — patients may need adjunctive aciclovir.</li>
+      <li>Genotype-based CMV susceptibility testing is available when treatment fails.</li>
+    </ul>
+    <div class="warn"><strong>Don't confuse valGANciclovir with valACiclovir</strong> — similar names, very different drugs and toxicities.</div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Influenza antivirals</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> oseltamivir <span class="b b-po">PO</span>, peramivir <span class="b b-iv">IV</span>, zanamivir (inhaled), baloxavir <span class="b b-po">PO</span> (single dose).</p>
+    <p><span class="lbl">Mechanism:</span> neuraminidase inhibitors block release of new virions; baloxavir (endonuclease inhibitor) blocks viral mRNA transcription. No cross-resistance.</p>
+    <ul>
+      <li>Most effective when started early (viral replication peaks in the first 72 h).</li>
+      <li><strong>In severe or hospitalised influenza, treat regardless of the 48-hour window</strong> — most of this evidence is with oseltamivir.</li>
+      <li>Oseltamivir: nausea, vomiting, abdominal pain; headache and fatigue with longer prophylactic courses.</li>
+      <li><strong>Zanamivir: avoid in asthma/reactive airway disease</strong> — cough and bronchospasm.</li>
+      <li>Baloxavir is very well tolerated but <strong>up to 10% of patients develop resistance</strong> after exposure, and resistant strains transmit.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> COVID-19 antivirals</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Agents:</span> remdesivir <span class="b b-iv">IV</span>, nirmatrelvir/ritonavir <span class="b b-po">PO</span>, molnupiravir <span class="b b-po">PO</span>.</p>
+    <ul>
+      <li><strong>Remdesivir</strong> — nucleotide analogue inhibiting viral RNA polymerase. Most benefit early, in hospitalised patients <strong>not</strong> requiring invasive ventilation; no benefit once ventilated. Transaminase rises (hold if &gt;10× ULN); the IV vehicle is a cyclodextrin cleared renally — avoid in significant renal impairment unless the benefit justifies it.</li>
+      <li><strong>Nirmatrelvir/ritonavir (Paxlovid)</strong> — protease inhibitor boosted with ritonavir. <strong>Ritonavir is a powerful CYP3A4 inhibitor</strong>: in an ICU patient on amiodarone, tacrolimus, statins, DOACs, calcium channel blockers or sedatives, check every single interaction before prescribing.</li>
+      <li>Remember that the drugs with the biggest mortality benefit in severe COVID-19 are the <strong>anti-inflammatory</strong> agents (dexamethasone, baricitinib, tocilizumab) — prioritise those in the sickest patients.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Antiretrovirals — class overview</summary>
+  <div class="cardbody">
+    <p class="small">HIV is now a chronic disease managed with combination therapy. For an ICU patient, the priority is: know the regimen, know the interactions, and know the toxicities.</p>
+    <div class="mini">
+      <h4>NRTIs (nucleoside/nucleotide reverse transcriptase inhibitors)</h4>
+      <p>Tenofovir (TDF/TAF), emtricitabine, lamivudine, abacavir, zidovudine. Two NRTIs usually form the "backbone" of a regimen. Also active against HBV.</p>
+      <ul>
+        <li><strong>Abacavir hypersensitivity</strong> — screen for <strong>HLA-B*5701</strong> before use; rechallenge can be fatal.</li>
+        <li>Tenofovir: <strong>nephrotoxicity</strong> and reduced bone mineral density (worse with TDF than TAF); TAF causes more weight gain and dyslipidaemia.</li>
+        <li>Zidovudine: bone marrow suppression; mitochondrial toxicity (lactic acidosis, hepatic steatosis) — mostly historical agents.</li>
+        <li>All except abacavir need renal dose adjustment — fixed-dose combinations may prevent this.</li>
+      </ul>
+    </div>
+    <div class="mini" style="margin-top:.5rem">
+      <h4>NNRTIs</h4>
+      <p>Efavirenz, nevirapine, rilpivirine, doravirine, etravirine. <strong>Low genetic barrier to resistance</strong> — a single mutation confers class resistance.</p>
+      <ul>
+        <li><strong>Efavirenz:</strong> vivid dreams, dizziness, insomnia, depression, psychosis — take at bedtime on an empty stomach; relative contraindication with a psychiatric history.</li>
+        <li><strong>Nevirapine:</strong> rash (including SJS/TEN) and hepatotoxicity, sometimes as a hypersensitivity syndrome; risk reduced by a 2-week low-dose lead-in.</li>
+        <li>Mixed CYP inducing/inhibiting effects — screen every drug.</li>
+        <li>Rilpivirine + cabotegravir is available as a <strong>once-monthly intramuscular</strong> regimen after an oral lead-in — useful when adherence is a concern.</li>
+      </ul>
+    </div>
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Protease inhibitors</h4>
+      <p>Darunavir, atazanavir, ritonavir (as a booster). Always <strong>boosted</strong> with ritonavir or cobicistat.</p>
+      <ul>
+        <li>GI intolerance, hepatotoxicity, dyslipidaemia, lipodystrophy, <strong>increased cardiovascular risk</strong>.</li>
+        <li>Atazanavir: nephrolithiasis; hyperbilirubinaemia.</li>
+        <li><strong>Massive CYP interaction potential</strong> — substrates <em>and</em> inhibitors.</li>
+        <li>Ritonavir 400 mg BD is almost never correct now — a prescription for that dose usually signals an error. Check it.</li>
+      </ul>
+    </div>
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Integrase inhibitors (INSTIs)</h4>
+      <p>Dolutegravir, bictegravir, raltegravir, cabotegravir, elvitegravir. <strong>Now the anchor of all first-line regimens.</strong></p>
+      <ul>
+        <li>Well tolerated; weight gain; insomnia/depression; asymptomatic CK rises.</li>
+        <li>Few drug interactions (except elvitegravir, which is boosted with cobicistat).</li>
+        <li><strong>Chelation with divalent/trivalent cations</strong> (antacids, multivitamins) reduces absorption — separate dosing.</li>
+        <li>Cobicistat, dolutegravir and bictegravir raise serum creatinine without a true fall in GFR.</li>
+      </ul>
+    </div>
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Entry / attachment / fusion inhibitors</h4>
+      <p>Maraviroc, enfuvirtide, ibalizumab, fostemsavir — reserved for heavily treatment-experienced patients.</p>
+      <ul>
+        <li>Enfuvirtide: twice-daily subcutaneous injection; <strong>injection-site reactions in essentially everyone</strong>.</li>
+        <li>Maraviroc needs a <strong>tropism test</strong> first — it only works on CCR5-tropic virus.</li>
+        <li>Fostemsavir can prolong the QT interval.</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Hepatitis C — direct-acting antivirals</summary>
+  <div class="cardbody">
+    <p class="small">Suffixes tell you the class: <strong>-previr</strong> = protease inhibitor, <strong>-asvir</strong> = NS5A inhibitor, <strong>-buvir</strong> = NS5B polymerase inhibitor. Most are co-formulated. Pan-genotypic regimens: glecaprevir/pibrentasvir and sofosbuvir/velpatasvir (± voxilaprevir).</p>
+    <ul>
+      <li>Very well tolerated — nausea, vomiting, fatigue.</li>
+      <li><strong>Protease-inhibitor regimens can cause hepatic decompensation</strong> — monitor ALT, and avoid in decompensated cirrhosis.</li>
+      <li><strong>HBV reactivation</strong> can occur with any DAA regimen — check HBV status first and monitor.</li>
+      <li>Drug interactions: the protease inhibitors are CYP3A4 substrates and inhibitors; the NS5A/NS5B agents are sensitive to acid suppression.</li>
+      <li>Treatment durations are ~3–4 months with cure rates of 80–100%.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Ribavirin &amp; hepatitis B nucleoside analogues</summary>
+  <div class="cardbody">
+    <p><span class="lbl">Ribavirin</span> <span class="b b-po">PO</span> — used in combination for HCV and for severe RSV (oral or aerosolised).</p>
+    <ul>
+      <li><strong>Haemolytic anaemia</strong> — dose-related, dose-limiting and sometimes severe. <strong>Monitor haemoglobin</strong>; manage with dose reduction ± erythropoietin.</li>
+      <li><strong>Teratogenic</strong> — reliable contraception in women of childbearing age; pregnant staff should avoid aerosolised ribavirin.</li>
+      <li>Never as HCV monotherapy — resistance emerges rapidly.</li>
+    </ul>
+    <p><span class="lbl">HBV nucleoside analogues</span> — entecavir <span class="b b-po">PO</span>, tenofovir (TDF/TAF) <span class="b b-po">PO</span>, lamivudine <span class="b b-po">PO</span>, adefovir (obsolete).</p>
+    <ul>
+      <li>Well tolerated. Adefovir is nephrotoxic. Lactic acidosis with hepatic steatosis is rare.</li>
+      <li><strong>Test for both HIV and HBV before starting</strong> — using an HBV drug with weak HIV activity alone risks selecting resistant HIV.</li>
+      <li>Entecavir is first line for HBV without HIV coinfection; tenofovir is preferred if HIV is also present. Lamivudine resistance is too common now.</li>
+      <li>Stopping therapy can cause an HBV reactivation "flare".</li>
+    </ul>
+  </div>
+</details>
+
+<!-- =========================================================== -->
+<h2 class="part">6 · Antiparasitics</h2>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Malaria — quinolines &amp; artemisinins</summary>
+  <div class="cardbody">
+    <p class="small">Malaria is the most important cause of fever in returning travellers. Because most clinicians see it rarely, always check current national guidelines — the CDC runs a clinician malaria hotline.</p>
+
+    <div class="mini">
+      <h4>Quinolines — chloroquine, mefloquine, quinine, primaquine</h4>
+      <ul>
+        <li><strong>Cardiovascular:</strong> dose-related QT prolongation, hypotension, ventricular arrhythmia.</li>
+        <li><strong>Quinine:</strong> <strong>hypoglycaemia</strong> (stimulates insulin release) and <strong>"cinchonism"</strong> — tinnitus, headache, nausea, visual disturbance.</li>
+        <li><strong>Mefloquine:</strong> psychiatric disturbance from insomnia and vivid dreams to depression, psychosis and suicide. Avoid with any psychiatric history.</li>
+        <li><strong>Primaquine:</strong> test for <strong>G6PD deficiency first</strong> — causes haemolysis. It is the only agent active against the dormant liver hypnozoites of <em>P. vivax</em>/<em>P. ovale</em>, so a 2-week course is added to prevent relapse.</li>
+        <li>IV quinidine has been discontinued in the US — <strong>IV artesunate is now standard for severe malaria</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Artemisinins — artesunate, artemether/lumefantrine</h4>
+      <ul>
+        <li><strong>IV artesunate for severe malaria</strong>; it acts rapidly but has a short half-life, so it <strong>must be followed by a full oral antimalarial course</strong> (e.g. artemether/lumefantrine or atovaquone/proguanil) or the patient will relapse.</li>
+        <li><strong>Delayed haemolytic anaemia</strong> — check FBC weekly for 4 weeks after IV artesunate.</li>
+        <li>Highly active against chloroquine- and mefloquine-resistant strains, but artemisinin resistance is emerging (slow parasite clearance).</li>
+        <li>Not used for chemoprophylaxis.</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Atovaquone, benzimidazoles, pentamidine, ivermectin</summary>
+  <div class="cardbody">
+    <div class="mini">
+      <h4>Atovaquone / atovaquone–proguanil</h4>
+      <p>Active against <em>Pneumocystis</em>, <em>Plasmodium</em>, <em>Toxoplasma</em>, <em>Babesia</em>. Very well tolerated (GI upset).</p>
+      <ul>
+        <li><strong>Take with food</strong> — a fatty meal increases bioavailability roughly five-fold.</li>
+        <li>Atovaquone alone is slightly less effective than dapsone/pentamidine for mild–moderate PJP but better tolerated; do not use in severe PJP or if absorption is poor.</li>
+        <li>Atovaquone–proguanil (Malarone) is an excellent traveller's prophylaxis — start only 1–2 days before travel and continue 7 days after return.</li>
+      </ul>
+    </div>
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Benzimidazoles — albendazole, mebendazole</h4>
+      <p>Disrupt parasite microtubules. Single dose cures most intestinal nematodes; prolonged courses for tissue-invasive disease (<em>Echinococcus</em>, neurocysticercosis).</p>
+      <ul>
+        <li>Very well tolerated; with multiple doses — GI upset, rarely hepatotoxicity and neutropenia.</li>
+        <li>Avoid in pregnancy where possible (probably safe after the first trimester).</li>
+        <li>Enzyme inducers (phenytoin, rifampin) may lower levels — relevant in systemic infection.</li>
+      </ul>
+    </div>
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Pentamidine</h4>
+      <p>Alternative to TMP/SMX for <em>Pneumocystis</em> pneumonia (IV) and prophylaxis (inhaled). Also used for leishmaniasis and trypanosomiasis.</p>
+      <ul>
+        <li><strong>Hypotension with rapid infusion</strong> — infuse over at least an hour. QT prolongation and ventricular arrhythmia.</li>
+        <li><strong>Pancreatic toxicity → dysglycaemia in up to 25%</strong> — initial hypoglycaemia from insulin release, later hyperglycaemia and potentially permanent diabetes. Pancreatitis.</li>
+        <li>Nephrotoxicity (usually reversible), hypokalaemia, hypocalcaemia.</li>
+        <li>Inhaled route: bronchospasm (pre-treat with a bronchodilator); does not protect against extrapulmonary <em>Pneumocystis</em>, <em>Toxoplasma</em> or bacterial pneumonia as TMP/SMX does.</li>
+        <li>Only about half of patients tolerate a full IV course.</li>
+      </ul>
+    </div>
+    <div class="mini" style="margin-top:.5rem">
+      <h4>Ivermectin</h4>
+      <p>Paralyses parasites at the neuromuscular junction. Used for scabies (including crusted/Norwegian scabies), lice, strongyloidiasis, onchocerciasis (river blindness) and cutaneous larva migrans.</p>
+      <ul>
+        <li>Very well tolerated for scabies. In nematode infection, fever, myalgia and hypotension can occur from the immune response to dying parasites — worse with high worm burden, resolves quickly.</li>
+        <li><strong>For scabies/lice, give two doses about 1 week apart</strong> — a single dose risks relapse.</li>
+        <li>Worth knowing: mass ivermectin donation has prevented more than half a million cases of blindness.</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<!-- =========================================================== -->
+<h2 class="part">7 · Bedside tables</h2>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Spectrum at a glance <span class="tag">scroll →</span></summary>
+  <div class="cardbody">
+    <p class="small">Legend: <span class="c c2">++</span> good activity · <span class="c c1">+</span> some activity · <span class="c cv">±</span> variable · blank = no useful activity. Aminoglycosides against gram-positive cocci are <em>synergistic only</em> when paired with a cell-wall active agent.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="sticky">Drug</th>
+            <th>MSSA</th><th>MRSA</th><th>Strep</th><th>Enterococcus</th>
+            <th>Enterobacterales</th><th>Pseudomonas</th><th>Anaerobes</th><th>Atypicals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="sticky">Penicillin G</td><td></td><td></td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Ampicillin / amoxicillin</td><td></td><td></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Ampicillin/sulbactam</td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td></td><td><span class="c c2">++</span></td><td></td></tr>
+          <tr><td class="sticky">Piperacillin/tazobactam</td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td></tr>
+          <tr><td class="sticky">Cefazolin</td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td></td><td><span class="c c1">+</span></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Cefuroxime</td><td><span class="c c1">+</span></td><td></td><td><span class="c c1">+</span></td><td></td><td><span class="c c2">++</span></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Ceftriaxone</td><td><span class="c c1">+</span></td><td></td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Ceftazidime</td><td></td><td></td><td></td><td></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td></td></tr>
+          <tr><td class="sticky">Cefepime</td><td><span class="c c1">+</span></td><td></td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td></td></tr>
+          <tr><td class="sticky">Ceftaroline</td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Cefiderocol</td><td></td><td></td><td></td><td></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td></td></tr>
+          <tr><td class="sticky">Aztreonam</td><td></td><td></td><td></td><td></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td></td></tr>
+          <tr><td class="sticky">Meropenem / imipenem</td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td></tr>
+          <tr><td class="sticky">Ertapenem</td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td></td></tr>
+          <tr><td class="sticky">Gentamicin / tobramycin</td><td><span class="c cv">±</span></td><td><span class="c cv">±</span></td><td><span class="c cv">±</span></td><td><span class="c cv">±</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td></td></tr>
+          <tr><td class="sticky">Ciprofloxacin</td><td><span class="c cv">±</span></td><td></td><td></td><td></td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td></td><td><span class="c c2">++</span></td></tr>
+          <tr><td class="sticky">Levofloxacin</td><td><span class="c c1">+</span></td><td></td><td><span class="c c2">++</span></td><td><span class="c cv">±</span></td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td></td><td><span class="c c2">++</span></td></tr>
+          <tr><td class="sticky">Moxifloxacin</td><td><span class="c c1">+</span></td><td></td><td><span class="c c2">++</span></td><td><span class="c cv">±</span></td><td><span class="c c2">++</span></td><td></td><td><span class="c c1">+</span></td><td><span class="c c2">++</span></td></tr>
+          <tr><td class="sticky">Doxycycline</td><td><span class="c c1">+</span></td><td><span class="c c1">+</span></td><td><span class="c c1">+</span></td><td><span class="c cv">±</span></td><td><span class="c cv">±</span></td><td></td><td></td><td><span class="c c2">++</span></td></tr>
+          <tr><td class="sticky">Tigecycline</td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td></tr>
+          <tr><td class="sticky">Clindamycin</td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td><span class="c c1">+</span></td><td></td><td></td><td></td><td><span class="c c1">+</span></td><td></td></tr>
+          <tr><td class="sticky">Vancomycin</td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Daptomycin</td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Linezolid</td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Azithromycin</td><td><span class="c cv">±</span></td><td></td><td><span class="c cv">±</span></td><td></td><td><span class="c cv">±</span></td><td></td><td></td><td><span class="c c2">++</span></td></tr>
+          <tr><td class="sticky">Metronidazole</td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="c c2">++</span></td><td></td></tr>
+          <tr><td class="sticky">Nitrofurantoin</td><td></td><td></td><td></td><td><span class="c c1">+</span></td><td><span class="c c1">+</span></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Fosfomycin</td><td></td><td></td><td></td><td><span class="c c1">+</span></td><td><span class="c c2">++</span></td><td><span class="c cv">±</span></td><td></td><td></td></tr>
+          <tr><td class="sticky">TMP/SMX</td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td><span class="c cv">±</span></td><td></td><td><span class="c c1">+</span></td><td></td><td></td><td></td></tr>
+          <tr><td class="sticky">Colistin / polymyxin B</td><td></td><td></td><td></td><td></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Anaerobe column excludes <em>C. difficile</em>, for which only oral vancomycin, fidaxomicin and (second line) metronidazole are useful.</p>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Antifungal spectrum at a glance <span class="tag">scroll →</span></summary>
+  <div class="cardbody">
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="sticky">Drug</th>
+            <th><em>C. albicans</em></th><th><em>C. glabrata</em></th><th><em>C. krusei</em></th>
+            <th><em>Cryptococcus</em></th><th><em>Aspergillus</em></th><th>Mucorales</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="sticky">Fluconazole</td><td><span class="c c2">++</span></td><td><span class="c cv">±</span></td><td></td><td><span class="c c2">++</span></td><td></td><td></td></tr>
+          <tr><td class="sticky">Itraconazole</td><td><span class="c c2">++</span></td><td><span class="c cv">±</span></td><td><span class="c cv">±</span></td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td></td></tr>
+          <tr><td class="sticky">Voriconazole</td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td><span class="c c1">+</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td></tr>
+          <tr><td class="sticky">Posaconazole / isavuconazole</td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td><span class="c c1">+</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td></tr>
+          <tr><td class="sticky">Amphotericin B</td><td><span class="c c2">++</span></td><td><span class="c c1">+</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td></tr>
+          <tr><td class="sticky">Echinocandins</td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td><span class="c c2">++</span></td><td></td><td><span class="c c1">+</span></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Empiric regimens for common infections <span class="tag">scroll →</span></summary>
+  <div class="cardbody">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th class="sticky">Infection</th><th>Likely pathogens</th><th>Setting / risk</th><th>Empiric options</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sticky">Community-acquired pneumonia</td>
+            <td><em>S. pneumoniae</em>, <em>H. influenzae</em>, atypicals, <em>Legionella</em></td>
+            <td>Outpatient, otherwise healthy</td>
+            <td>Amoxicillin · doxycycline · azithromycin or clarithromycin</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td></td>
+            <td>Outpatient with comorbidity / recent antibiotics</td>
+            <td>Amoxicillin/clavulanate or cefuroxime <strong>+</strong> azithromycin/clarithromycin, <em>or</em> respiratory fluoroquinolone (levofloxacin/moxifloxacin)</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td></td>
+            <td>Inpatient, not ICU</td>
+            <td>Ceftriaxone or cefotaxime or ampicillin or ertapenem <strong>+</strong> azithromycin/clarithromycin/doxycycline, <em>or</em> levofloxacin/moxifloxacin</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td></td>
+            <td>Inpatient, ICU</td>
+            <td>Ceftriaxone or cefotaxime or ampicillin/sulbactam <strong>+</strong> azithromycin or levofloxacin/moxifloxacin</td>
+          </tr>
+
+          <tr>
+            <td class="sticky">Hospital-acquired / ventilator-associated pneumonia</td>
+            <td>MSSA/MRSA, <em>P. aeruginosa</em>, Enterobacterales</td>
+            <td>Not high risk, low MRSA likelihood</td>
+            <td>Piperacillin/tazobactam or cefepime or levofloxacin or meropenem/imipenem or aztreonam</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td></td>
+            <td>Risk factors for MRSA</td>
+            <td>As above <strong>+</strong> vancomycin or linezolid</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td></td>
+            <td>High mortality risk / antibiotic in the last 90 days</td>
+            <td>Beta-lactam as above <strong>+</strong> anti-pseudomonal second agent (amikacin/tobramycin/gentamicin/levofloxacin/ciprofloxacin) <strong>+</strong> vancomycin or linezolid</td>
+          </tr>
+
+          <tr>
+            <td class="sticky">Urinary tract infection</td>
+            <td><em>E. coli</em>, <em>Proteus</em>, <em>Klebsiella</em>, <em>S. saprophyticus</em>, enterococci</td>
+            <td>Uncomplicated cystitis, healthy woman &lt;50 y</td>
+            <td>Nitrofurantoin · fosfomycin · TMP/SMX (if local resistance &lt;15–20%) · fluoroquinolone only if nothing else</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td></td>
+            <td>Complicated / pyelonephritis (community)</td>
+            <td>Ciprofloxacin or levofloxacin or ceftriaxone or ertapenem</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td>Add <em>Enterobacter</em>, <em>Pseudomonas</em></td>
+            <td>Nosocomial complicated UTI / pyelonephritis</td>
+            <td>Ceftazidime or piperacillin/tazobactam or cefepime or meropenem/imipenem</td>
+          </tr>
+
+          <tr>
+            <td class="sticky">Skin and soft tissue infection</td>
+            <td><em>S. pyogenes</em>, <em>S. aureus</em></td>
+            <td>Low MRSA risk</td>
+            <td>Cefazolin · nafcillin · cephalexin · dicloxacillin</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td></td>
+            <td>High MRSA risk (abscess, history)</td>
+            <td>Vancomycin or linezolid <em>or</em> TMP/SMX ± a beta-lactam</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td>Add gram-negatives, anaerobes, enterococci</td>
+            <td>Diabetic foot infection, moderate–severe</td>
+            <td>Ceftriaxone or ampicillin/sulbactam or piperacillin/tazobactam or ertapenem, <em>or</em> levofloxacin/ciprofloxacin + clindamycin — ± vancomycin/linezolid</td>
+          </tr>
+
+          <tr>
+            <td class="sticky">Intra-abdominal infection</td>
+            <td>Enteric GNRs, <em>B. fragilis</em>, enterococci, viridans streptococci</td>
+            <td>Community-acquired, mild–moderate</td>
+            <td>Ertapenem <em>or</em> ceftriaxone/levofloxacin/ciprofloxacin <strong>+</strong> metronidazole</td>
+          </tr>
+
+          <tr>
+            <td class="sticky">Community-acquired meningitis</td>
+            <td><em>S. pneumoniae</em>, <em>N. meningitidis</em></td>
+            <td>Healthy, 2–50 y</td>
+            <td>Ceftriaxone (2 g q12h) <strong>+</strong> vancomycin</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td>Add <em>Listeria</em></td>
+            <td>&gt;50 y or immunocompromised</td>
+            <td>Ceftriaxone <strong>+</strong> vancomycin <strong>+</strong> ampicillin</td>
+          </tr>
+
+          <tr>
+            <td class="sticky">Infectious diarrhoea</td>
+            <td><em>C. difficile</em></td>
+            <td>First episode / recurrent</td>
+            <td>Fidaxomicin or oral vancomycin (taper/pulse if recurrent); add bezlotoxumab if recurrent within 6 months</td>
+          </tr>
+          <tr>
+            <td class="sticky"></td><td><em>Shigella</em>, <em>Salmonella</em>, <em>Campylobacter</em>, <em>E. coli</em></td>
+            <td>Community-acquired</td>
+            <td>Fluoroquinolone or TMP/SMX <em>only if</em> antibiotic therapy is indicated</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> Administration &amp; infusion pearls <span class="tag">nursing</span></summary>
+  <div class="cardbody">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th class="sticky">Drug</th><th>Pearl</th></tr></thead>
+        <tbody>
+          <tr><td class="sticky">Vancomycin</td><td>Infuse slowly to prevent the histamine-mediated infusion reaction; target AUC 400–600; oral route is for <em>C. difficile</em> only.</td></tr>
+          <tr><td class="sticky">Aminoglycosides</td><td>Once-daily dosing; levels only useful if drawn correctly (peak 30 min after infusion, trough within 30 min of the next dose); weekly CK is not enough — check renal function and hearing.</td></tr>
+          <tr><td class="sticky">Beta-lactams</td><td>Time-dependent — use prolonged/continuous infusion where available; re-check renal dosing daily.</td></tr>
+          <tr><td class="sticky">Aciclovir IV</td><td>Pre- and post-hydrate; infuse slowly; dose-adjust in renal impairment to avoid crystal nephropathy.</td></tr>
+          <tr><td class="sticky">Amphotericin B</td><td><strong>Double-check the formulation.</strong> Deoxycholate 0.5–1.5 mg/kg/d vs lipid formulations 3–6 mg/kg/d. Saline-load; replace K⁺ and Mg²⁺.</td></tr>
+          <tr><td class="sticky">Quinupristin/dalfopristin</td><td><strong>Dilute in 5% dextrose only</strong> — crystallises in saline, including line flushes.</td></tr>
+          <tr><td class="sticky">Colistin</td><td>Prescribe in <strong>mg of colistin base activity</strong> (or IU), never mg of colistimethate. 1 mg CBA ≈ 30,000 IU ≈ 2.7 mg colistimethate.</td></tr>
+          <tr><td class="sticky">TMP/SMX IV</td><td>Needs a large diluent volume — beware in fluid-overloaded patients.</td></tr>
+          <tr><td class="sticky">Daptomycin</td><td>Once daily; not for pneumonia; weekly CK.</td></tr>
+          <tr><td class="sticky">Rifampin</td><td>Warn about orange-red urine, sweat and tears (stains contact lenses).</td></tr>
+          <tr><td class="sticky">Isavuconazole</td><td>372 mg isavuconazonium = 200 mg isavuconazole; give the full 48-hour loading regimen.</td></tr>
+          <tr><td class="sticky">Oritavancin</td><td>PT unreliable for 12 h, aPTT for 120 h.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<details class="card">
+  <summary><span class="chev">▶</span> The 12 things not to forget on the ICU round</summary>
+  <div class="cardbody">
+    <ul>
+      <li><strong>1.</strong> Daptomycin is inactivated by surfactant — <strong>never for pneumonia</strong>.</li>
+      <li><strong>2.</strong> Aminoglycosides and polymyxins <strong>potentiate neuromuscular blockade</strong> — anticipate delayed weaning and prolonged paralysis.</li>
+      <li><strong>3.</strong> Carbapenems + <strong>valproate</strong> = seizures. Check the drug chart.</li>
+      <li><strong>4.</strong> Rifampin will have <strong>lowered the level of half the patient's other drugs</strong>.</li>
+      <li><strong>5.</strong> Oral vancomycin is <strong>not absorbed</strong> — it does nothing outside the colon.</li>
+      <li><strong>6.</strong> Cefepime and imipenem can cause <strong>non-convulsive status epilepticus</strong>.</li>
+      <li><strong>7.</strong> Fluoroquinolones, macrolides and azoles all <strong>prolong the QT</strong> — check K⁺, Mg²⁺ and the ECG.</li>
+      <li><strong>8.</strong> Tetracyclines and fluoroquinolones are <strong>chelated</strong> by enteral feed, antacids and mineral supplements.</li>
+      <li><strong>9.</strong> Nitrofurantoin and fosfomycin are for <strong>cystitis only</strong> — never pyelonephritis.</li>
+      <li><strong>10.</strong> Amphotericin B: <strong>which formulation?</strong> The doses differ by a factor of 3–5.</li>
+      <li><strong>11.</strong> Colistin: <strong>which unit?</strong> mg of base activity vs mg of colistimethate vs IU — a fatal confusion.</li>
+      <li><strong>12.</strong> MSSA should be treated with a <strong>beta-lactam</strong> (cefazolin/nafcillin/oxacillin) whenever the allergy history permits — they kill faster than vancomycin.</li>
+    </ul>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <p><strong>Source &amp; citation.</strong> This quick reference is a condensed, restructured summary for anaesthesia and critical care use, derived from:
+  <br>Gallagher JC, MacDougall C. <em>Antibiotics Simplified</em>. 5th ed. Burlington, MA: Jones &amp; Bartlett Learning; 2023. ISBN 978-1-284-22706-8.</p>
+  <p>Content has been abbreviated, re-organised and annotated for bedside use; drug doses, local resistance patterns and current national guidelines should always be verified before prescribing. This page is an educational aid, not a prescribing authority.</p>
+  <p class="small">Build: single-file HTML · no external dependencies · works offline · suitable for GitHub Pages.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Expand / collapse all ---------- */
+  var allCards = function(){ return document.querySelectorAll('details.card'); };
+  document.getElementById('expandAll').addEventListener('click', function(){
+    allCards().forEach(function(d){ d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    allCards().forEach(function(d){ d.open = false; });
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  /* ---------- Font size ---------- */
+  var root = document.documentElement;
+  var fs = 16;
+  function applyFs(){ root.style.setProperty('--fs', fs + 'px'); }
+  document.getElementById('fontUp').addEventListener('click', function(){
+    fs = Math.min(23, fs + 1); applyFs();
+  });
+  document.getElementById('fontDown').addEventListener('click', function(){
+    fs = Math.max(13, fs - 1); applyFs();
+  });
+  document.getElementById('fontReset').addEventListener('click', function(){
+    fs = 16; applyFs();
+  });
+
+  /* ---------- Search ---------- */
+  var searchInput = document.getElementById('search');
+  var counter     = document.getElementById('counter');
+  var prevBtn     = document.getElementById('prevBtn');
+  var nextBtn     = document.getElementById('nextBtn');
+  var clearBtn    = document.getElementById('clearBtn');
+  var contentRoot = document.getElementById('content');
+
+  var matches = [];
+  var current = -1;
+  var debounceTimer = null;
+
+  function clearHighlights(){
+    var marks = contentRoot.querySelectorAll('mark.hl');
+    for (var i = 0; i < marks.length; i++){
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+    matches = [];
+    current = -1;
+  }
+
+  function highlightTerm(term){
+    var lowerTerm = term.toLowerCase();
+    var walker = document.createTreeWalker(contentRoot, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var tag = node.parentNode && node.parentNode.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(function(node){
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(lowerTerm);
+      if (idx === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1){
+        frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + term.length);
+        frag.appendChild(mark);
+        last = idx + term.length;
+        idx = lower.indexOf(lowerTerm, last);
+      }
+      frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    matches = Array.prototype.slice.call(contentRoot.querySelectorAll('mark.hl'));
+  }
+
+  function openAncestors(el){
+    var p = el.parentNode;
+    while (p && p !== document.body){
+      if (p.tagName === 'DETAILS') p.open = true;
+      p = p.parentNode;
+    }
+  }
+
+  function jumpTo(index){
+    if (!matches.length) return;
+    current = (index + matches.length) % matches.length;
+
+    for (var i = 0; i < matches.length; i++) matches[i].classList.remove('current');
+
+    var el = matches[current];
+    openAncestors(el);
+    el.classList.add('current');
+
+    requestAnimationFrame(function(){
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+
+    counter.textContent = (current + 1) + '/' + matches.length;
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+  }
+
+  function runSearch(){
+    var term = searchInput.value.trim();
+    clearHighlights();
+
+    if (term.length < 2){
+      counter.textContent = '0/0';
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      return;
+    }
+
+    highlightTerm(term);
+
+    if (matches.length === 0){
+      counter.textContent = '0/0';
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      return;
+    }
+
+    jumpTo(0);
+  }
+
+  searchInput.addEventListener('input', function(){
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 180);
+  });
+
+  searchInput.addEventListener('keydown', function(e){
+    if (e.key === 'Enter'){
+      e.preventDefault();
+      if (!matches.length) return;
+      if (e.shiftKey) jumpTo(current - 1);
+      else jumpTo(current + 1);
+    }
+    if (e.key === 'Escape'){
+      clearBtn.click();
+    }
+  });
+
+  nextBtn.addEventListener('click', function(){ jumpTo(current + 1); });
+  prevBtn.addEventListener('click', function(){ jumpTo(current - 1); });
+
+  clearBtn.addEventListener('click', function(){
+    searchInput.value = '';
+    clearHighlights();
+    counter.textContent = '0/0';
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    searchInput.focus();
+  });
+
+  /* ---------- Keyboard shortcut: "/" focuses search ---------- */
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== searchInput){
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
