@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracheostomy Quick Reference — Anaesthesia &amp; Critical Care</title>
+<style>
+  :root{
+    --teal-900:#134e4a;
+    --teal-700:#0f766e;
+    --teal-600:#0d9488;
+    --teal-300:#5eead4;
+    --teal-100:#ccfbf1;
+    --teal-50:#f0fdfa;
+    --ink:#0f172a;
+    --muted:#475569;
+    --line:#d5e9e6;
+    --card:#ffffff;
+    --warn:#be123c;
+    --warn-bg:#fff1f2;
+    --amber:#b45309;
+    --amber-bg:#fffbeb;
+    --fs:16px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: var(--fs);
+    line-height:1.55;
+    color: var(--ink);
+    background: linear-gradient(180deg,#f0fdfa 0%, #f7fbfa 220px, #f7fbfa 100%);
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background: linear-gradient(135deg,#134e4a 0%, #0f766e 45%, #14b8a6 100%);
+    color:#fff;
+    padding: 26px 18px 22px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; right:-60px; top:-60px;
+    width:220px; height:220px; border-radius:50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), rgba(255,255,255,0) 70%);
+  }
+  .hero-inner{max-width:1000px; margin:0 auto; position:relative; z-index:1}
+  .hero h1{
+    margin:0 0 4px;
+    font-size:1.62em;
+    line-height:1.2;
+    letter-spacing:-.01em;
+  }
+  .hero p{
+    margin:0;
+    font-size:.88em;
+    opacity:.92;
+  }
+  .badge-row{margin-top:12px; display:flex; flex-wrap:wrap; gap:6px}
+  .badge{
+    font-size:.72em; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.32);
+    padding:3px 9px; border-radius:999px;
+  }
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:60;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    padding:10px 14px;
+    background:rgba(255,255,255,.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 2px 10px rgba(15,23,42,.05);
+  }
+  .searchbox{
+    flex:1 1 220px;
+    display:flex; align-items:center; gap:8px;
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:11px;
+    padding:0 10px;
+    min-width:160px;
+  }
+  .searchbox:focus-within{border-color:var(--teal-600); box-shadow:0 0 0 3px rgba(13,148,136,.15)}
+  .searchbox input{
+    flex:1; min-width:60px;
+    border:0; outline:0; background:transparent;
+    font:inherit; font-size:.9em; color:var(--ink);
+    padding:9px 0;
+  }
+  .count{
+    font-size:.78em; font-weight:700; color:var(--teal-700);
+    background:var(--teal-100);
+    padding:2px 8px; border-radius:999px; white-space:nowrap;
+  }
+  .btn{
+    font:inherit; font-size:.8em; font-weight:700;
+    color:var(--teal-700);
+    background:#fff;
+    border:1.5px solid var(--line);
+    padding:7px 11px;
+    border-radius:11px;
+    cursor:pointer;
+    transition:.15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--teal-50); border-color:var(--teal-300); color:var(--teal-900)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:3px solid var(--teal-300); outline-offset:1px}
+  .sep{width:1px; height:22px; background:var(--line); margin:0 2px}
+  .fsgroup{display:flex; align-items:center; gap:4px}
+  .fsval{font-size:.78em; font-weight:700; color:var(--muted); min-width:20px; text-align:center}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1000px; margin:0 auto; padding:16px 14px 40px}
+
+  /* ---------- ACCORDION ---------- */
+  .acc{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:15px;
+    margin:0 0 12px;
+    box-shadow:0 1px 3px rgba(15,23,42,.05);
+    overflow:hidden;
+  }
+  .acc-head{
+    width:100%;
+    display:flex; align-items:center; gap:11px;
+    padding:14px 15px;
+    background:none; border:0; cursor:pointer;
+    font:inherit; font-size:1.02em; font-weight:800; color:var(--ink);
+    text-align:left;
+    transition:background .15s;
+  }
+  .acc-head:hover{background:var(--teal-50)}
+  .acc-head:focus-visible{outline:3px solid var(--teal-300); outline-offset:-3px}
+  .num{
+    flex:0 0 auto;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:1.75em; height:1.75em;
+    border-radius:9px;
+    background:linear-gradient(135deg,var(--teal-600),var(--teal-700));
+    color:#fff; font-size:.8em; font-weight:800;
+  }
+  .acc-title{flex:1}
+  .chev{
+    color:var(--teal-600); font-size:.85em;
+    transition:transform .28s ease;
+  }
+  .acc.open .chev{transform:rotate(180deg)}
+
+  .acc-body{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .28s ease;
+  }
+  .acc.open .acc-body{grid-template-rows:1fr}
+  .acc-inner{overflow:hidden; min-height:0}
+  .acc-content{padding:0 16px 18px; font-size:.95em}
+
+  /* ---------- TYPOGRAPHY ---------- */
+  h4{
+    margin:18px 0 8px;
+    font-size:.86em;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    color:var(--teal-700);
+  }
+  h4:first-child{margin-top:6px}
+  ul,ol{margin:8px 0; padding-left:1.25em}
+  li{margin:5px 0}
+  strong{color:var(--teal-900)}
+  em{color:var(--muted)}
+
+  /* ---------- TABLES ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);
+    border-radius:12px;
+    margin:10px 0 6px;
+  }
+  table{border-collapse:collapse; width:100%; min-width:520px; font-size:.92em}
+  thead th{
+    background:var(--teal-100);
+    color:var(--teal-900);
+    text-align:left;
+    padding:10px 13px;
+    font-size:.92em;
+    letter-spacing:.02em;
+    white-space:nowrap;
+  }
+  tbody td{padding:10px 13px; border-top:1px solid var(--line); vertical-align:top}
+  tbody tr:nth-child(even){background:#f8fefd}
+  .scroll-hint{
+    display:block; font-size:.75em; color:var(--muted);
+    margin:0 0 10px; font-style:italic;
+  }
+
+  /* ---------- CARDS / GALLERY ---------- */
+  .grid{
+    display:grid; gap:11px;
+    grid-template-columns:repeat(auto-fit,minmax(205px,1fr));
+    margin:12px 0;
+  }
+  .card{
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:#fff;
+    padding:11px 12px;
+  }
+  .card svg{width:100%; height:auto; display:block}
+  .card .cap{font-size:.82em; color:var(--muted); margin-top:7px; line-height:1.4}
+  .card .cap b{color:var(--teal-700); display:block; margin-bottom:2px; font-size:1.02em}
+
+  /* numbers */
+  .num-card{
+    border:1px solid var(--line);
+    border-left:5px solid var(--teal-600);
+    border-radius:12px;
+    background:linear-gradient(180deg,#ffffff,#f4fdfb);
+    padding:11px 13px;
+  }
+  .num-card .big{font-size:1.5em; font-weight:800; color:var(--teal-700); line-height:1.1}
+  .num-card .unit{font-size:.72em; font-weight:700; color:var(--muted); margin-left:3px}
+  .num-card p{margin:4px 0 0; font-size:.82em; color:var(--muted); line-height:1.35}
+
+  /* ---------- FLOW / ALGORITHM ---------- */
+  .flow{display:flex; flex-direction:column; gap:9px; margin:12px 0}
+  .step{
+    border-radius:12px;
+    padding:11px 14px;
+    background:var(--teal-50);
+    border-left:6px solid var(--teal-600);
+    font-size:.93em;
+  }
+  .step.decision{background:var(--amber-bg); border-left-color:#f59e0b}
+  .step.critical{background:var(--warn-bg); border-left-color:var(--warn)}
+  .step .lbl{
+    display:block;
+    font-size:.74em; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--teal-700); margin-bottom:5px;
+  }
+  .step.decision .lbl{color:var(--amber)}
+  .step.critical .lbl{color:var(--warn)}
+  .branch{display:flex; flex-direction:column; gap:7px; margin-top:6px}
+  .branch > div{display:flex; gap:8px; align-items:flex-start; flex-wrap:wrap}
+  .chip{
+    flex:0 0 auto;
+    display:inline-block;
+    font-size:.7em; font-weight:800; letter-spacing:.05em;
+    padding:2px 8px; border-radius:999px;
+    margin-top:2px;
+  }
+  .chip.yes{background:var(--teal-100); color:var(--teal-900)}
+  .chip.no{background:#ffe4e6; color:var(--warn)}
+
+  /* key principles box */
+  .kbox{
+    background:linear-gradient(180deg,#ffffff,#f4fdfb);
+    border:1.5px dashed var(--teal-300);
+    border-radius:13px;
+    padding:12px 16px 12px 14px;
+    margin:14px 0 4px;
+  }
+  .kbox h4{margin-top:0}
+  .kbox ol{margin:6px 0 0}
+
+  /* ---------- ANIMATION ---------- */
+  .anim-wrap{
+    display:grid;
+    grid-template-columns:minmax(190px,260px) 1fr;
+    gap:16px;
+    align-items:center;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px;
+    background:linear-gradient(180deg,#ffffff,#f2fdfa);
+    margin:12px 0;
+  }
+  @media (max-width:560px){ .anim-wrap{grid-template-columns:1fr} }
+  .anim-svg{width:100%; height:auto; display:block}
+  .anim-side h4{margin-top:0}
+  .anim-status{
+    font-size:.86em; font-weight:700; color:var(--teal-700);
+    margin:8px 0 0;
+    min-height:2.4em;
+  }
+  .anim-status.bad{color:var(--warn)}
+  .plug{opacity:0; transition:opacity .25s ease}
+  #trachyAnim.blocked .plug{opacity:1}
+  #trachyAnim .particles{transition:opacity .3s ease}
+  #trachyAnim.blocked .particles{opacity:.15}
+  .alertRing{
+    opacity:0;
+    transform-box:fill-box;
+    transform-origin:center;
+  }
+  #trachyAnim.blocked .alertRing{
+    opacity:1;
+    animation:ringPulse 1.4s ease-out infinite;
+  }
+  @keyframes ringPulse{
+    0%{transform:scale(.65); opacity:.95}
+    100%{transform:scale(1.45); opacity:0}
+  }
+
+  /* ---------- SEARCH HIGHLIGHTS ---------- */
+  mark.hl{
+    background:#fde68a;
+    color:#111827;
+    border-radius:3px;
+    padding:0 1px;
+    scroll-margin-top:120px;
+  }
+  mark.hl.active{
+    background:var(--teal-600);
+    color:#fff;
+    box-shadow:0 0 0 2px var(--teal-300);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer.src{
+    max-width:1000px;
+    margin:0 auto 40px;
+    padding:16px 16px 4px;
+    font-size:.82em;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+  }
+  footer.src h3{
+    font-size:.95em; color:var(--teal-700);
+    text-transform:uppercase; letter-spacing:.07em;
+    margin:8px 0 6px;
+  }
+  footer.src p{margin:6px 0}
+  footer.src .small{font-size:.95em; line-height:1.5}
+
+  @media print{
+    .toolbar, .hero::after{display:none}
+    .acc-body{grid-template-rows:1fr !important}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Tracheostomy — Quick Reference</h1>
+    <p>For anaesthetists &amp; intensivists · tube selection · position checks · perioperative care · critical incidents</p>
+    <div class="badge-row">
+      <span class="badge">Collapsible</span>
+      <span class="badge">Searchable</span>
+      <span class="badge">Resizable text</span>
+      <span class="badge">Emergency algorithm</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar" role="search">
+  <div class="searchbox">
+    <input id="search" type="search" placeholder="Search… (cuff leak, suction, stoma)" aria-label="Search the guide" autocomplete="off">
+    <span id="count" class="count">0/0</span>
+  </div>
+  <button class="btn" id="prevBtn" title="Previous match">↑ Prev</button>
+  <button class="btn" id="nextBtn" title="Next match">Next ↓</button>
+  <span class="sep"></span>
+  <button class="btn" id="expandAll">Expand all</button>
+  <button class="btn" id="collapseAll">Collapse all</button>
+  <span class="sep"></span>
+  <div class="fsgroup">
+    <button class="btn" id="fsDown" title="Smaller text">A−</button>
+    <span class="fsval" id="fsVal">16</span>
+    <button class="btn" id="fsUp" title="Larger text">A+</button>
+  </div>
+</div>
+
+<main id="content">
+
+  <!-- ================= 1. AT A GLANCE ================= -->
+  <section class="acc open">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">1</span>
+      <span class="acc-title">At a glance — key points &amp; numbers</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <h4>Key points</h4>
+      <ul>
+        <li>Many tracheostomy tubes exist — <strong>the correct choice depends on the patient</strong> (internal diameter, length, outside diameter, cuff, suction port, fenestrations).</li>
+        <li>The position of a <strong>new tracheostomy should be checked with endoscopy via the tracheostomy tube</strong>, alongside capnography and cuff pressure.</li>
+        <li>An <strong>emergency airway plan</strong> should be made for every patient with a tracheostomy undergoing surgery.</li>
+        <li>Critical incidents are common because of a <strong>displaced tracheostomy tube when moving a patient</strong> (and in obesity).</li>
+        <li>An <strong>intermittent cuff leak</strong> can indicate a wrongly sized or malpositioned tracheostomy tube.</li>
+      </ul>
+
+      <h4>Numbers to remember</h4>
+      <div class="grid">
+        <div class="num-card"><span class="big">20–30</span><span class="unit">cmH₂O</span><p>Target cuff pressure</p></div>
+        <div class="num-card"><span class="big">&gt;12,000</span><span class="unit">/year</span><p>Tracheostomies inserted annually in the UK</p></div>
+        <div class="num-card"><span class="big">≤20</span><span class="unit">%</span><p>Of ICU patients managed with a tracheostomy</p></div>
+        <div class="num-card"><span class="big">~30</span><span class="unit">%</span><p>Of new tracheostomies inserted surgically</p></div>
+        <div class="num-card"><span class="big">35–50</span><span class="unit">mL</span><p>Air to inflate the cuff slowly to tamponade bleeding</p></div>
+        <div class="num-card"><span class="big">up to 30</span><span class="unit">%</span><p>May have a significant tracheostomy-related complication</p></div>
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ================= 2. INDICATIONS ================= -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">2</span>
+      <span class="acc-title">Indications for a tracheostomy</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <p>Indications are wide-ranging. Tracheostomy is increasingly a <strong>planned procedure</strong> (surgical or percutaneous), but may be <strong>urgent or emergency</strong>, usually for impending airway obstruction. The optimal timing of non-urgent insertion in critical care remains debated.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Indication</th><th>Typical clinical scenario</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Prolonged mechanical ventilation / weaning</strong></td><td>Commonest indication — facilitate weaning from respiratory support in acute respiratory failure.</td></tr>
+            <tr><td><strong>Pulmonary toilet</strong></td><td>Inability to clear excessive secretions (e.g. bulbar palsy, weak cough).</td></tr>
+            <tr><td><strong>Airway protection</strong></td><td>Inability to maintain an airway (specific neurological conditions, reduced consciousness); facial or laryngeal trauma, burns, anaphylaxis.</td></tr>
+            <tr><td><strong>Upper airway obstruction</strong></td><td>Impending obstruction — may require urgent/emergency tracheostomy.</td></tr>
+            <tr><td><strong>Part of a surgical procedure</strong></td><td>Head &amp; neck or ENT surgery, e.g. laryngectomy.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="scroll-hint">↔ Scroll the table sideways on a small screen.</span>
+
+    </div></div></div>
+  </section>
+
+  <!-- ================= 3. CHOOSING THE TUBE ================= -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">3</span>
+      <span class="acc-title">Choosing the correct tracheostomy tube</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <h4>Standard tubes</h4>
+      <ul>
+        <li>Share common features: an <strong>inflatable cuff</strong>, a <strong>neck flange</strong> and a removable <strong>inner cannula</strong> (removed for cleaning to reduce blockage — and removed during an emergency).</li>
+        <li>The <strong>cuff</strong> provides a sealed airway: allows positive pressure ventilation and protects the lungs from oropharyngeal secretions and gastric fluid.</li>
+        <li>Cuffed tubes are the most commonly used and are <strong>sized by internal diameter (ID)</strong> — but <strong>length and outside diameter (OD) vary between manufacturers</strong>, which affects selection.</li>
+        <li><strong>Portex Blue Line Ultra:</strong> the ID falls once the inner cannula is inserted — a size 7 tube has an ID of 5.5 mm with the inner cannula in place. This can influence weaning from mechanical ventilation.</li>
+        <li><strong>TRACOE tubes:</strong> the inner cannula must be inserted before the tube can be connected to a standard 22 mm breathing circuit — important to know in an emergency.</li>
+      </ul>
+
+      <h4>Specialised tubes</h4>
+      <ul>
+        <li><strong>Extended / adjustable length:</strong> for deep-set tracheas (obesity, neck mass) and tracheal pathology such as stenosis, so the tip sits distal to the narrowing. Obesity carries a higher complication risk, usually from a tube that is too short — keep extra-long tubes available. <em>Not all extended-length tubes accept an inner cannula.</em></li>
+        <li><strong>Subglottic suction port:</strong> allows regular clearance of secretions pooling above the cuff — reduces microaspiration and ventilator-associated pneumonia. Also enables <em>"above-cuff vocalisation"</em> (retrograde gas flow past the cords) to aid speech, weaning and communication.</li>
+        <li><strong>Fenestrated tubes:</strong> airflow passes through the fenestrations and the vocal cords to assist speech and reduce work of breathing (with the appropriate fenestrated inner cannula). Deflating the cuff is an alternative — it re-accustoms the patient to managing secretions and to airflow through the cords. <em>Avoid fenestrated tubes in a newly formed stoma receiving positive pressure ventilation — risk of surgical emphysema.</em></li>
+        <li><strong>Uncuffed tubes:</strong> for long-term tracheostomy in spontaneously breathing patients who protect their airway and manage secretions. Reduces tracheal damage from an inflated cuff, aids communication and swallowing, and allows respiration via both the upper airway and the tracheostomy.</li>
+      </ul>
+
+      <h4>Tube gallery (simplified schematic — not to scale)</h4>
+      <div class="grid">
+
+        <div class="card">
+          <svg viewBox="0 0 240 120" role="img" aria-label="Standard cuffed tube with inner cannula and subglottic suction port">
+            <rect x="26" y="24" width="8" height="46" rx="4" fill="#94a3b8"/>
+            <path d="M32 44 H146 A24 24 0 0 1 170 68 V94" fill="none" stroke="#cbd5e1" stroke-width="20" stroke-linecap="round"/>
+            <path d="M32 44 H146 A24 24 0 0 1 170 68 V94" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+            <rect x="10" y="33" width="20" height="22" rx="5" fill="#0d9488"/>
+            <ellipse cx="170" cy="78" rx="26" ry="18" fill="#5eead4" opacity="0.55" stroke="#0d9488" stroke-width="2"/>
+            <path d="M30 30 H146 A24 24 0 0 1 170 54" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="164" cy="52" r="3.5" fill="#2563eb"/>
+          </svg>
+          <div class="cap"><b>Standard cuffed tube</b>Inner cannula (white lumen) + subglottic suction port (blue) above the cuff. Sized by ID; length/OD vary by manufacturer.</div>
+        </div>
+
+        <div class="card">
+          <svg viewBox="0 0 240 120" role="img" aria-label="Extended length adjustable flange tube">
+            <path d="M18 40 H150 A24 24 0 0 1 174 64 V100" fill="none" stroke="#cbd5e1" stroke-width="18" stroke-linecap="round"/>
+            <path d="M18 40 H150 A24 24 0 0 1 174 64 V100" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+            <rect x="6" y="30" width="18" height="20" rx="5" fill="#0d9488"/>
+            <rect x="86" y="14" width="9" height="44" rx="4" fill="#0f766e"/>
+            <rect x="72" y="20" width="36" height="9" rx="4.5" fill="#5eead4" stroke="#0d9488" stroke-width="1.5"/>
+            <ellipse cx="174" cy="82" rx="24" ry="17" fill="#5eead4" opacity="0.55" stroke="#0d9488" stroke-width="2"/>
+          </svg>
+          <div class="cap"><b>Extended / adjustable length</b>Longer shaft with a sliding flange — for obesity, neck mass, deep-set trachea or tracheal stenosis.</div>
+        </div>
+
+        <div class="card">
+          <svg viewBox="0 0 240 120" role="img" aria-label="Fenestrated tracheostomy tube">
+            <path d="M30 46 H140 A26 26 0 0 1 166 72 V98" fill="none" stroke="#cbd5e1" stroke-width="20" stroke-linecap="round"/>
+            <path d="M30 46 H140 A26 26 0 0 1 166 72 V98" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+            <rect x="8" y="35" width="18" height="22" rx="5" fill="#0d9488"/>
+            <circle cx="110" cy="36" r="3.6" fill="#0f766e"/>
+            <circle cx="124" cy="36" r="3.6" fill="#0f766e"/>
+            <circle cx="138" cy="36" r="3.6" fill="#0f766e"/>
+            <ellipse cx="166" cy="82" rx="23" ry="17" fill="#5eead4" opacity="0.5" stroke="#0d9488" stroke-width="2"/>
+          </svg>
+          <div class="cap"><b>Fenestrated</b>Holes on the outer curve let air pass to the vocal cords for speech. Not for a new stoma on positive pressure ventilation.</div>
+        </div>
+
+        <div class="card">
+          <svg viewBox="0 0 240 120" role="img" aria-label="Uncuffed tracheostomy tube">
+            <path d="M30 46 H150 A26 26 0 0 1 176 72 V98" fill="none" stroke="#cbd5e1" stroke-width="20" stroke-linecap="round"/>
+            <path d="M30 46 H150 A26 26 0 0 1 176 72 V98" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+            <rect x="8" y="35" width="18" height="22" rx="5" fill="#0d9488"/>
+            <circle cx="176" cy="96" r="6" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+          </svg>
+          <div class="cap"><b>Uncuffed</b>Long-term, spontaneously breathing patients who protect their airway and clear secretions.</div>
+        </div>
+
+        <div class="card">
+          <svg viewBox="0 0 240 120" role="img" aria-label="Cuffed laryngectomy tracheal tube">
+            <path d="M30 50 H120 A30 30 0 0 1 150 80 V94" fill="none" stroke="#cbd5e1" stroke-width="24" stroke-linecap="round"/>
+            <path d="M30 50 H120 A30 30 0 0 1 150 80 V94" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+            <rect x="8" y="38" width="18" height="24" rx="5" fill="#0d9488"/>
+            <ellipse cx="150" cy="78" rx="29" ry="18" fill="#5eead4" opacity="0.55" stroke="#0d9488" stroke-width="2"/>
+          </svg>
+          <div class="cap"><b>Laryngectomy tube</b>Short, wide, sutured flush to the skin — keeps the circuit and HME device away from the operative field.</div>
+        </div>
+
+      </div>
+
+      <h4>How to decide</h4>
+      <ul>
+        <li>Adequate <strong>ID</strong> (so as not to increase airway resistance and work of breathing) balanced against <strong>OD and length</strong> (which may be too large for the patient).</li>
+        <li>Need for <strong>subglottic suction</strong> — beneficial in prolonged mechanical ventilation.</li>
+        <li>Need for a <strong>longer, extended-length tube</strong> — increasingly required.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ================= 4. POSITION CHECK ================= -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">4</span>
+      <span class="acc-title">Checking position &amp; size of the tube</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <h4>Why it matters</h4>
+      <ul>
+        <li><strong>Too short:</strong> the tip may impinge on the posterior tracheal wall or sit in the subcutaneous tissue; the cuff may herniate up into the superior larynx / vocal cords → reduced pulmonary compliance, persistent cuff leak, tracheal damage. <strong>Too-short tubes are the main cause of displacement and accidental decannulation.</strong></li>
+        <li><strong>Too long:</strong> the tip sits too close to the carina — risk of endobronchial placement.</li>
+      </ul>
+
+      <h4>How to check (use all three together)</h4>
+      <ol>
+        <li><strong>Capnography</strong> — essential to confirm the tube is in the trachea, but it does <em>not</em> confirm appropriate position.</li>
+        <li><strong>Endoscopy via the tracheostomy tube</strong> — assess the tube tip in relation to the carina and confirm it lies within the tracheal lumen without abutting the wall.</li>
+        <li><strong>Endoscopy from above (via the larynx)</strong> — confirms the whole cuff has passed through the anterior tracheal wall and that tube and cuff sit appropriately in the trachea. Can be done via a partially withdrawn tracheal tube during a surgical tracheostomy.</li>
+        <li><strong>Cuff pressure</strong> — 20–30 cmH₂O with no leak. Higher pressures suggest a malpositioned or herniated cuff within the trachea.</li>
+      </ol>
+
+      <div class="kbox">
+        <h4>Key practical points</h4>
+        <ul>
+          <li>Keep the <strong>neck neutral</strong> during endoscopy — the natural position the tracheostomy sits in.</li>
+          <li>No single technique alone confirms position within the larynx — <strong>combine tracheal + laryngeal views, capnography and cuff pressure</strong>.</li>
+          <li><strong>Document the tube tip–carina distance</strong> so future checks can be compared.</li>
+          <li>Oropharyngeal endoscopy is not needed routinely but is valuable if there is any doubt.</li>
+          <li>If the tube is not correctly positioned, <strong>change to a different size or an extended-length tube and recheck</strong>.</li>
+        </ul>
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ================= 5. PERIOPERATIVE ================= -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">5</span>
+      <span class="acc-title">Perioperative management of the tracheostomy</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <h4>Who is at risk</h4>
+      <ul>
+        <li>About <strong>30% of new tracheostomies are inserted surgically</strong> — usually as a planned procedure, or in a critical care patient unsuitable for percutaneous insertion.</li>
+        <li>Both groups have an <strong>increased incidence of difficult airway</strong>.</li>
+        <li>NCEPOD <em>On the Right Trach</em>: nearly <strong>20%</strong> of patients required additional difficult airway equipment and <strong>more than 6%</strong> had at least one failed intubation attempt.</li>
+      </ul>
+
+      <h4>Emergency surgical tracheostomy</h4>
+      <ul>
+        <li>Usually for <strong>failure of the primary airway or upper airway obstruction</strong>.</li>
+        <li>Use <strong>high-flow nasal oxygen</strong> where available to slow the time to desaturation when intubation or face-mask ventilation is difficult or impossible.</li>
+        <li>This can produce an F<sub>i</sub>O₂ close to 1.0 → <strong>risk of airway fire if the surgeon uses diathermy</strong>. The tracheal window should be made with a <strong>scalpel</strong> to reduce this risk.</li>
+      </ul>
+
+      <h4>Head &amp; neck surgery</h4>
+      <ul>
+        <li>Tracheostomy provides an <strong>unobstructed operating field</strong> and a <strong>secure route for ventilation after surgery</strong> — important because swelling and oedema worsen immediately postoperatively, risking airway obstruction.</li>
+        <li>Previously normal airway anatomy can become <strong>very difficult to reintubate</strong> in an emergency.</li>
+        <li>Usually performed at the <strong>start of the operation</strong>, after induction and oral intubation.</li>
+        <li>A <strong>laryngectomy tube</strong> may be used instead for intraoperative ventilation: it can be sutured in place and sits flush to the skin, keeping the circuit and heat-and-moisture-exchange (HME) device away from the operating area. At the end it is exchanged for a tracheostomy tube and position checks are performed.</li>
+      </ul>
+
+      <h4>Patient with an existing tracheostomy coming to theatre</h4>
+      <ul>
+        <li>Confirm <strong>which tube is in place</strong>: size, distance from the carina, presence of an inner cannula.</li>
+        <li>Identify the <strong>indication</strong> for the tracheostomy and whether the <strong>upper airway is patent</strong>.</li>
+        <li>Decide a <strong>backup ventilation strategy</strong> in case the tube becomes dislodged or obstructed.</li>
+        <li>Induce anaesthesia i.v. or by inhalation; intraoperative management is otherwise standard (monitoring, analgesia, ventilation strategy).</li>
+        <li>Postoperatively the airway is protected — <strong>no extubation required</strong>. Transfer to recovery once spontaneous breathing is re-established; later critical care admission depends on the surgery, the patient's condition and local practice.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ================= 6. CRITICAL: DISPLACED / OBSTRUCTED ================= -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">6</span>
+      <span class="acc-title">Critical incident: displaced or obstructed tube</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <p>Up to <strong>30%</strong> of patients with a temporary or permanent tracheostomy may have a significant complication. NAP4 showed that most tracheostomy-related critical incidents relate to <strong>displacement of the tube</strong> — especially on movement, or in obese patients. The <strong>National Tracheostomy Safety Project (NTSP)</strong> algorithms are colour-coded for patients with a <em>potentially patent upper airway</em> and for <em>laryngectomy</em> patients.</p>
+
+      <div class="anim-wrap">
+        <svg id="trachyAnim" class="anim-svg" viewBox="0 0 300 300" role="img" aria-label="Animation: air flowing through a tracheostomy tube, then a mucus plug blocks it">
+          <defs>
+            <linearGradient id="trachGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fdf2f8"/>
+              <stop offset="100%" stop-color="#fce7f3"/>
+            </linearGradient>
+          </defs>
+
+          <!-- lungs -->
+          <ellipse cx="118" cy="272" rx="34" ry="22" fill="#fbcfe8" opacity=".55"/>
+          <ellipse cx="182" cy="272" rx="34" ry="22" fill="#fbcfe8" opacity=".55"/>
+
+          <!-- trachea -->
+          <rect x="110" y="14" width="80" height="250" rx="38" fill="url(#trachGrad)" stroke="#f9a8d4" stroke-width="3"/>
+
+          <!-- cuff -->
+          <ellipse cx="150" cy="160" rx="35" ry="25" fill="#5eead4" opacity=".5" stroke="#0d9488" stroke-width="2"/>
+
+          <!-- tube -->
+          <path d="M14 88 H126 Q150 88 150 112 V196" fill="none" stroke="#94a3b8" stroke-width="22" stroke-linecap="round"/>
+          <path d="M14 88 H126 Q150 88 150 112 V196" fill="none" stroke="#f8fafc" stroke-width="12" stroke-linecap="round"/>
+
+          <!-- flange -->
+          <rect x="12" y="66" width="9" height="44" rx="4" fill="#0f766e"/>
+
+          <!-- air particles -->
+          <g class="particles">
+            <circle r="5" fill="#0284c7">
+              <animateMotion dur="3.2s" repeatCount="indefinite" begin="0s" path="M18 88 H126 Q150 88 150 112 V250"/>
+            </circle>
+            <circle r="5" fill="#0284c7">
+              <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.05s" path="M18 88 H126 Q150 88 150 112 V250"/>
+            </circle>
+            <circle r="5" fill="#0284c7">
+              <animateMotion dur="3.2s" repeatCount="indefinite" begin="2.1s" path="M18 88 H126 Q150 88 150 112 V250"/>
+            </circle>
+          </g>
+
+          <!-- mucus plug -->
+          <ellipse class="plug" cx="150" cy="182" rx="13" ry="16" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
+          <circle class="alertRing" cx="150" cy="182" r="26" fill="none" stroke="#e11d48" stroke-width="3"/>
+        </svg>
+
+        <div class="anim-side">
+          <h4>Tube blockage — think &amp; act</h4>
+          <p style="font-size:.9em;margin:0">
+            A mucus plug is the commonest cause of obstruction. <strong>Remove the inner cannula first</strong>, then suction. If ventilation is still not possible, the tube must come out — <strong>not as a last resort</strong>.
+          </p>
+          <p class="anim-status" id="animStatus">Airway clear — air flows freely through the tube.</p>
+          <button class="btn" id="animBtn" style="margin-top:8px">Block the tube (mucus plug)</button>
+        </div>
+      </div>
+
+      <h4>Key principles of the NTSP algorithm</h4>
+      <div class="kbox">
+        <ol>
+          <li><strong>Waveform capnography</strong> has a prominent role at an early stage.</li>
+          <li><strong>Oxygenation</strong> of the patient is prioritised.</li>
+          <li><strong>Avoid</strong> trials of ventilation through a potentially displaced tube to assess patency.</li>
+          <li><strong>Suction only after</strong> removing a potentially blocked inner tube.</li>
+          <li>Apply <strong>oxygen to both potential airways</strong> (face and stoma).</li>
+          <li>Use <strong>simple methods</strong> to oxygenate and ventilate via the stoma.</li>
+          <li>A blocked or displaced tube is <strong>removed as soon as this is established</strong> — not as a last resort.</li>
+        </ol>
+      </div>
+
+      <h4>Simplified algorithm — patient with a potentially patent upper airway</h4>
+      <div class="flow">
+
+        <div class="step">
+          <span class="lbl">Step 1 · Call for help</span>
+          Call for the airway expert. <strong>Look, listen &amp; feel at the mouth <em>and</em> the tracheostomy.</strong> Attach <strong>waveform capnography</strong> (a Mapleson C / Waters circuit may help assess patency). Exhaled CO₂ indicates a patent, or at least partially patent, airway.
+        </div>
+
+        <div class="step decision">
+          <span class="lbl">Step 2 · Is the patient breathing?</span>
+          <div class="branch">
+            <div><span class="chip yes">YES</span><span>Apply <strong>high-flow oxygen to BOTH the face and the tracheostomy</strong> → go to step 3.</span></div>
+            <div><span class="chip no">NO</span><span>Call the resuscitation team; <strong>CPR if no pulse or signs of life</strong> → go to step 3.</span></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="lbl">Step 3 · Assess tracheostomy patency</span>
+          Remove the <strong>speaking valve or cap</strong> (if present). <strong>Remove the inner tube</strong> — some inner tubes need re-connecting to breathing circuits.
+        </div>
+
+        <div class="step decision">
+          <span class="lbl">Step 4 · Can you pass a suction catheter?</span>
+          <div class="branch">
+            <div><span class="chip yes">YES</span><span><strong>Tube is patent:</strong> perform tracheal suction; consider partial obstruction; ventilate via the tracheostomy if not breathing; continue the ABCDE assessment.</span></div>
+            <div><span class="chip no">NO</span><span><strong>Deflate the cuff</strong> (if present); look, listen &amp; feel at mouth and tracheostomy; use waveform capnography / Mapleson C if available → go to step 5.</span></div>
+          </div>
+        </div>
+
+        <div class="step decision">
+          <span class="lbl">Step 5 · Is the patient stable or improving?</span>
+          <div class="branch">
+            <div><span class="chip yes">YES</span><span><strong>Tube partially obstructed or displaced</strong> — continue the ABCDE assessment.</span></div>
+            <div><span class="chip no">NO</span><span>Go to step 6.</span></div>
+          </div>
+        </div>
+
+        <div class="step critical">
+          <span class="lbl">Step 6 · Remove the tracheostomy tube</span>
+          <strong>Remove the tracheostomy tube.</strong> Look, listen &amp; feel at the mouth and tracheostomy. Ensure oxygen is re-applied to the face and stoma. Use waveform capnography or Mapleson C if available.
+        </div>
+
+        <div class="step decision">
+          <span class="lbl">Step 7 · Is the patient breathing?</span>
+          <div class="branch">
+            <div><span class="chip no">NO</span><span>Call the resuscitation team; <strong>CPR if no pulse or signs of life</strong> → primary emergency oxygenation.</span></div>
+            <div><span class="chip yes">YES</span><span>Continue the ABCDE assessment → primary emergency oxygenation.</span></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="lbl">Step 8 · Primary emergency oxygenation</span>
+          <strong>Standard oral airway manoeuvres:</strong> cover the stoma (swabs / hand); bag-valve-mask; oral or nasal airway adjuncts; supraglottic airway device (e.g. LMA).<br>
+          <strong>Tracheostomy stoma ventilation:</strong> paediatric face mask applied to the stoma.
+        </div>
+
+        <div class="step">
+          <span class="lbl">Step 9 · Secondary emergency oxygenation</span>
+          <strong>Attempt oral intubation</strong> — prepare for difficult intubation; an uncut tube advanced beyond the stoma.<br>
+          <strong>Attempt intubation of the stoma</strong> — small tracheostomy tube or 6.0 cuffed ETT; consider an Aintree catheter with fibreoptic scope / Bougie / airway exchange catheter.
+        </div>
+
+      </div>
+
+      <h4>Laryngectomy patients</h4>
+      <ul>
+        <li>A separate algorithm applies — the <strong>principles and goals are the same, but without the conventional upper airway steps</strong>.</li>
+        <li>Laryngectomy patients do not always have a tracheostomy tube in situ — they may have other devices inserted into the airway.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ================= 7. BLEEDING ================= -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">7</span>
+      <span class="acc-title">Bleeding from the tracheostomy</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <ul>
+        <li>Potentially life-threatening — <strong>establish the origin of the bleeding</strong>. Reverse or treat anticoagulants and clotting abnormalities, assess the airway for obstruction, and <strong>seek expert surgical help</strong>.</li>
+        <li>Sources: aberrant vessels around the stoma damaged at insertion; rarely a <strong>tracheo-innominate artery fistula</strong>.</li>
+        <li>If the patient is stable, perform <strong>endoscopy via the tracheostomy</strong> to establish the cause.</li>
+        <li>Use <strong>suction</strong>; localised bleeding can be treated with <strong>external compression, surgical clips or cauterisation</strong>. Gauze soaked with <strong>adrenaline or tranexamic acid</strong> can be packed around the bleeding site.</li>
+        <li><strong>Deep bleeding within the stoma:</strong> hyperinflate the tracheostomy tube cuff to tamponade the vessel temporarily. <strong>Inflate slowly with air to prevent cuff rupture</strong> — usually <strong>35–50 mL</strong> is sufficient, depending on tube size.</li>
+        <li>An <strong>uncuffed tube should be replaced</strong> with a cuffed tracheostomy tube or tracheal tube, and the cuff inflated.</li>
+        <li>Once bleeding is controlled → <strong>urgent surgical exploration and repair</strong>.</li>
+        <li><strong>Granulation tissue</strong> at the tip of a long-term tracheostomy can bleed — treat with excision or cauterisation via a bronchoscope.</li>
+        <li>Remember: <strong>haemoptysis may be confused</strong> with bleeding related to the tracheostomy tube.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ================= 8. SURGICAL EMPHYSEMA ================= -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">8</span>
+      <span class="acc-title">Surgical emphysema</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <ul>
+        <li>A recognised complication of both <strong>surgical and percutaneous</strong> tracheostomy insertion.</li>
+        <li><strong>Risk factors:</strong> tight closure of the stoma around the tube, packing materials around the stoma, tracheal injury during insertion.</li>
+        <li><strong>Displacement of the tube into pretracheal tissue</strong> can cause significant surgical emphysema, especially in a mechanically ventilated patient. The risk is increased by <strong>too-short or fenestrated tubes</strong> whose openings may lie within pretracheal tissue.</li>
+        <li>If displacement is suspected, <strong>do not attempt forceful mechanical ventilation</strong> — this can cause extensive surgical emphysema and make front-of-neck access very difficult.</li>
+        <li><strong>Management</strong> is usually conservative, treating the underlying cause. Exchange a malpositioned tube for an appropriately sized one and site a <strong>non-fenestrated inner cannula</strong>.</li>
+        <li>Always <strong>assess for a pneumothorax</strong> — it often occurs simultaneously.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+  <!-- ================= 9. CUFF ================= -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">9</span>
+      <span class="acc-title">Cuff management &amp; cuff leaks</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <ul>
+        <li>Most initial tracheostomy tubes have an <strong>inflatable cuff</strong> — usually for short-term use until the patient is weaned from the ventilator and manages their own secretions. Occasionally a cuffed tube is needed long term (reduced consciousness, neuromuscular conditions affecting the pharynx).</li>
+        <li><strong>Target cuff pressure: 20–30 cmH₂O</strong>, checked regularly.</li>
+        <li><strong>Too high:</strong> increased risk of tracheal stenosis, tracheomalacia and tracheal fistulas.</li>
+        <li><strong>Too low:</strong> air leaks and microaspiration of secretions from above the cuff.</li>
+      </ul>
+
+      <h4>Intermittent cuff leak — think of these causes</h4>
+      <ul>
+        <li>An <strong>underinflated</strong> cuff.</li>
+        <li>A <strong>defective or damaged</strong> cuff.</li>
+        <li><strong>High ventilation pressures</strong> exceeding the cuff pressure.</li>
+        <li>A <strong>tube too small</strong> for the trachea — often needs high cuff pressures to seal.</li>
+        <li><strong>Importantly:</strong> a cuff leak can indicate a <strong>partially displaced tube</strong>, with the cuff herniating into the upper larynx.</li>
+      </ul>
+
+      <div class="kbox">
+        <h4>What to do</h4>
+        <ul>
+          <li>Checking the cuff pressure is an <strong>essential part of the tube position check</strong>.</li>
+          <li><strong>Persistent leak with normal pressures</strong> and no obvious cause → <strong>endoscopic inspection</strong> of tube position.</li>
+          <li>The tube may need to be <strong>repositioned or advanced</strong>; a too-small or too-short tube should be exchanged for a <strong>larger or extended-length tube</strong>.</li>
+          <li>Exchange may not be possible in patients requiring high levels of ventilatory support — <strong>balance this against the risks of a partially displaced tube</strong>.</li>
+        </ul>
+      </div>
+
+    </div></div></div>
+  </section>
+
+  <!-- ================= 10. COMPLICATIONS & BEDSIDE ================= -->
+  <section class="acc">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">10</span>
+      <span class="acc-title">Complications &amp; bedside readiness</span>
+      <span class="chev">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner"><div class="acc-content">
+
+      <h4>Complications by timing</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Early</th><th>Short-term</th><th>Long-term</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Haemorrhage<br>
+                Aspiration<br>
+                Pneumothorax<br>
+                Failure of procedure<br>
+                Surgical emphysema
+              </td>
+              <td>
+                Blockage<br>
+                Tube displacement<br>
+                Pneumothorax<br>
+                Infection<br>
+                Delayed haemorrhage<br>
+                Decannulation problems
+              </td>
+              <td>
+                Tracheomalacia<br>
+                Tracheal stenosis<br>
+                Tracheocutaneous fistula<br>
+                Tracheal necrosis<br>
+                Tracheo-arterial fistula
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="scroll-hint">↔ Scroll the table sideways on a small screen.</span>
+
+      <h4>At the bedside — every patient with a tracheostomy</h4>
+      <ul>
+        <li><strong>Bedside signs displayed</strong> next to the patient, so important information about the patient and their tracheostomy can be shared quickly.</li>
+        <li><strong>Spare tubes and inner cannulae</strong> — especially <strong>one size smaller</strong>.</li>
+        <li><strong>Suction equipment</strong> and <strong>stitch cutters</strong>.</li>
+        <li>An <strong>emergency bell</strong>.</li>
+        <li>Nearby: <strong>fibreoptic scope</strong> and <strong>advanced airway equipment</strong>.</li>
+      </ul>
+
+    </div></div></div>
+  </section>
+
+</main>
+
+<footer class="src">
+  <h3>Source &amp; attribution</h3>
+  <p>
+    <strong>Lewith H, Athanassoglou V.</strong> <em>Update on management of tracheostomy.</em>
+    BJA Education, 2019. doi:<a href="https://doi.org/10.1016/j.bjae.2019.08.002" style="color:#0f766e">10.1016/j.bjae.2019.08.002</a>
+  </p>
+  <p class="small">
+    This page is a quick-reference summary created for educational use. Content, tables and figure concepts are adapted from the original article (Nuffield Department of Anaesthetics, John Radcliffe Hospital, Oxford, UK).
+    The emergency algorithm is based on the National Tracheostomy Safety Project (NTSP) algorithm published in <em>Anaesthesia</em> 2012; 67: 1025–1041.
+    Tube illustrations are simplified schematic representations of commercially available devices (Portex / Smiths-Medical, TRACOE medical, Medtronic / Covidien) — not to scale and not for device identification.
+    Always follow your local tracheostomy policy and the full NTSP algorithms.
+  </p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  var content = document.getElementById("content");
+  var searchEl = document.getElementById("search");
+  var countEl = document.getElementById("count");
+
+  /* =========================================================
+     ACCORDIONS
+     ========================================================= */
+  function setOpen(acc, open) {
+    acc.classList.toggle("open", open);
+    var head = acc.querySelector(".acc-head");
+    if (head) head.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  content.addEventListener("click", function (e) {
+    var head = e.target.closest(".acc-head");
+    if (!head) return;
+    var acc = head.closest(".acc");
+    setOpen(acc, !acc.classList.contains("open"));
+  });
+
+  document.getElementById("expandAll").addEventListener("click", function () {
+    content.querySelectorAll(".acc").forEach(function (a) { setOpen(a, true); });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function () {
+    content.querySelectorAll(".acc").forEach(function (a) { setOpen(a, false); });
+  });
+
+  /* =========================================================
+     TEXT SIZE
+     ========================================================= */
+  var fs = 16, MIN_FS = 13, MAX_FS = 22;
+  var fsVal = document.getElementById("fsVal");
+
+  function applyFs() {
+    root.style.setProperty("--fs", fs + "px");
+    fsVal.textContent = fs;
+  }
+  document.getElementById("fsUp").addEventListener("click", function () {
+    fs = Math.min(MAX_FS, fs + 1); applyFs();
+  });
+  document.getElementById("fsDown").addEventListener("click", function () {
+    fs = Math.max(MIN_FS, fs - 1); applyFs();
+  });
+  applyFs();
+
+  /* =========================================================
+     SEARCH
+     ========================================================= */
+  var marks = [];
+  var activeIndex = -1;
+  var debounceTimer = null;
+  var lastTerm = "";
+
+  function clearMarks() {
+    var found = content.querySelectorAll("mark.hl");
+    for (var i = 0; i < found.length; i++) {
+      var m = found[i];
+      var parent = m.parentNode;
+      while (m.firstChild) parent.insertBefore(m.firstChild, m);
+      parent.removeChild(m);
+      parent.normalize();
+    }
+    marks = [];
+    activeIndex = -1;
+  }
+
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function runSearch(term) {
+    clearMarks();
+    term = (term || "").trim();
+    lastTerm = term;
+
+    if (term.length < 2) {
+      countEl.textContent = "0/0";
+      return;
+    }
+
+    var rx = new RegExp(escapeRegExp(term), "gi");
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, null, false);
+    var textNodes = [];
+    var node;
+
+    while ((node = walker.nextNode())) {
+      var pn = node.parentNode ? node.parentNode.nodeName : "";
+      if (pn === "SCRIPT" || pn === "STYLE") continue;
+      if (!node.nodeValue || !node.nodeValue.trim()) continue;
+      textNodes.push(node);
+    }
+
+    textNodes.forEach(function (tn) {
+      var text = tn.nodeValue;
+      rx.lastIndex = 0;
+      if (!rx.test(text)) return;
+      rx.lastIndex = 0;
+
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+
+      while ((m = rx.exec(text)) !== null) {
+        if (m.index > last) {
+          frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        }
+        var mk = document.createElement("mark");
+        mk.className = "hl";
+        mk.textContent = m[0];
+        frag.appendChild(mk);
+        marks.push(mk);
+        last = m.index + m[0].length;
+        if (m[0].length === 0) rx.lastIndex++;
+      }
+      if (last < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+      tn.parentNode.replaceChild(frag, tn);
+    });
+
+    /* Open every section that contains a hit */
+    marks.forEach(function (mk) {
+      var acc = mk.closest(".acc");
+      if (acc) setOpen(acc, true);
+    });
+
+    activeIndex = marks.length ? 0 : -1;
+
+    /* wait for the accordion animation before scrolling */
+    window.setTimeout(function () { updateActive(true); }, 300);
+    updateCount();
+  }
+
+  function updateCount() {
+    if (!marks.length) {
+      countEl.textContent = lastTerm.length >= 2 ? "0/0" : "0/0";
+      return;
+    }
+    countEl.textContent = (activeIndex + 1) + "/" + marks.length;
+  }
+
+  function updateActive(doScroll) {
+    marks.forEach(function (m) { m.classList.remove("active"); });
+
+    if (!marks.length || activeIndex < 0) {
+      countEl.textContent = "0/0";
+      return;
+    }
+
+    var m = marks[activeIndex];
+
+    /* make sure its section is visible */
+    var acc = m.closest(".acc");
+    if (acc && !acc.classList.contains("open")) setOpen(acc, true);
+
+    m.classList.add("active");
+    countEl.textContent = (activeIndex + 1) + "/" + marks.length;
+
+    if (doScroll) {
+      window.setTimeout(function () {
+        m.scrollIntoView({ block: "center", behavior: "smooth" });
+      }, acc && !acc.classList.contains("open") ? 320 : 0);
+    }
+  }
+
+  function nextMatch() {
+    if (!marks.length) return;
+    activeIndex = (activeIndex + 1) % marks.length;
+    updateActive(true);
+  }
+
+  function prevMatch() {
+    if (!marks.length) return;
+    activeIndex = (activeIndex - 1 + marks.length) % marks.length;
+    updateActive(true);
+  }
+
+  searchEl.addEventListener("input", function () {
+    window.clearTimeout(debounceTimer);
+    var val = searchEl.value;
+    debounceTimer = window.setTimeout(function () { runSearch(val); }, 220);
+  });
+
+  searchEl.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (searchEl.value.trim() !== lastTerm) {
+        runSearch(searchEl.value);
+        return;
+      }
+      if (e.shiftKey) prevMatch(); else nextMatch();
+    } else if (e.key === "Escape") {
+      searchEl.value = "";
+      clearMarks();
+      countEl.textContent = "0/0";
+      lastTerm = "";
+    }
+  });
+
+  document.getElementById("nextBtn").addEventListener("click", nextMatch);
+  document.getElementById("prevBtn").addEventListener("click", prevMatch);
+
+  /* =========================================================
+     SIMPLE BLOCKAGE ANIMATION
+     ========================================================= */
+  var svg = document.getElementById("trachyAnim");
+  var animBtn = document.getElementById("animBtn");
+  var animStatus = document.getElementById("animStatus");
+  var blocked = false;
+
+  animBtn.addEventListener("click", function () {
+    blocked = !blocked;
+    svg.classList.toggle("blocked", blocked);
+
+    if (blocked) {
+      if (typeof svg.pauseAnimations === "function") svg.pauseAnimations();
+      animBtn.textContent = "Clear the plug (suction)";
+      animStatus.textContent =
+        "BLOCKED. Remove the inner cannula first, then suction. If ventilation is still not possible, remove the tube.";
+      animStatus.classList.add("bad");
+    } else {
+      if (typeof svg.unpauseAnimations === "function") svg.unpauseAnimations();
+      animBtn.textContent = "Block the tube (mucus plug)";
+      animStatus.textContent = "Airway clear — air flows freely through the tube.";
+      animStatus.classList.remove("bad");
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
