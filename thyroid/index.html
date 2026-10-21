@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Thyroid &amp; Parathyroid Anaesthesia — Quick Reference</title>
+<style>
+  :root{
+    --bg:#eef3f4;
+    --card:#ffffff;
+    --ink:#17242a;
+    --muted:#55676f;
+    --accent:#0d6e68;
+    --accent-2:#0a544f;
+    --accent-soft:#e4f2f0;
+    --accent-line:#bfe0dc;
+    --line:#cfdde0;
+    --radius:10px;
+    --fs:16px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:var(--fs);
+    line-height:1.55;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- Header ---------- */
+  header.hero{
+    background:linear-gradient(135deg,#0d6e68 0%,#0a4f4a 100%);
+    color:#fff;
+    padding:26px 16px 22px;
+  }
+  .hero-inner{max-width:1080px;margin:0 auto}
+  header.hero h1{
+    margin:0 0 6px;
+    font-size:1.55em;
+    line-height:1.25;
+    font-weight:700;
+    letter-spacing:-.2px;
+  }
+  header.hero p{
+    margin:0;
+    font-size:.9em;
+    color:#d5ebe8;
+    max-width:75ch;
+  }
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{
+    position:sticky;
+    top:0;
+    z-index:60;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 2px 10px rgba(13,110,104,.07);
+    padding:10px 16px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .toolbar > div{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+  .searchwrap{
+    flex:1 1 340px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+    position:relative;
+  }
+  #search{
+    flex:1 1 200px;
+    min-width:160px;
+    padding:9px 34px 9px 12px;
+    font-size:.92em;
+    font-family:inherit;
+    color:var(--ink);
+    background:#fbfdfd;
+    border:1px solid var(--line);
+    border-radius:8px;
+    outline:none;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  #search:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(13,110,104,.15);
+    background:#fff;
+  }
+  #clearSearch{
+    position:absolute;
+    right:calc(100% - 100%);
+    margin-left:-30px;
+    border:none;
+    background:transparent;
+    color:var(--muted);
+    cursor:pointer;
+    font-size:.95em;
+    padding:4px 6px;
+    border-radius:6px;
+    line-height:1;
+  }
+  #clearSearch:hover{background:var(--accent-soft);color:var(--accent-2)}
+
+  .count{
+    font-size:.8em;
+    color:var(--muted);
+    min-width:74px;
+    text-align:center;
+    font-variant-numeric:tabular-nums;
+  }
+
+  .btn{
+    font:inherit;
+    font-size:.82em;
+    padding:7px 11px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--accent-2);
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background .15s,border-color .15s,color .15s;
+  }
+  .btn:hover{background:var(--accent-soft);border-color:var(--accent-line)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.primary:hover{background:var(--accent-2)}
+  .sep{width:1px;height:22px;background:var(--line);display:inline-block}
+
+  /* ---------- Layout ---------- */
+  main{
+    max-width:1080px;
+    margin:0 auto;
+    padding:18px 16px 70px;
+  }
+
+  h2.part{
+    font-size:1.02em;
+    text-transform:uppercase;
+    letter-spacing:.09em;
+    color:var(--accent-2);
+    margin:26px 0 12px;
+    padding-bottom:7px;
+    border-bottom:2px solid var(--accent-line);
+    scroll-margin-top:110px;
+  }
+  h2.part:first-of-type{margin-top:14px}
+
+  /* ---------- Collapsible sections ---------- */
+  details.sec{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin:0 0 12px;
+    overflow:hidden;
+    scroll-margin-top:110px;
+  }
+  details.sec > summary{
+    cursor:pointer;
+    list-style:none;
+    padding:13px 16px;
+    font-weight:650;
+    font-size:.98em;
+    color:var(--accent-2);
+    background:var(--accent-soft);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    user-select:none;
+  }
+  details.sec > summary::-webkit-details-marker{display:none}
+  details.sec > summary::before{
+    content:"▸";
+    display:inline-block;
+    font-size:.85em;
+    color:var(--accent);
+    transition:transform .18s ease;
+    flex:0 0 auto;
+  }
+  details.sec[open] > summary::before{transform:rotate(90deg)}
+  details.sec > summary:hover{background:#d9ecea}
+  details.sec > summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+
+  .body{padding:6px 16px 16px}
+  .body > *:first-child{margin-top:12px}
+
+  /* ---------- Text elements ---------- */
+  h3{
+    font-size:.95em;
+    color:var(--accent-2);
+    margin:18px 0 8px;
+    padding-left:10px;
+    border-left:3px solid var(--accent);
+    line-height:1.3;
+  }
+  h4{
+    font-size:.9em;
+    color:var(--accent-2);
+    margin:14px 0 6px;
+  }
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:22px}
+  li{margin:5px 0}
+  li::marker{color:var(--accent)}
+  strong{color:#0b2b2a;font-weight:650}
+  em{color:var(--muted)}
+  code{
+    background:#f2f7f7;
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:1px 5px;
+    font-size:.88em;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    color:var(--accent-2);
+  }
+
+  .callout{
+    background:var(--accent-soft);
+    border-left:4px solid var(--accent);
+    border-radius:0 8px 8px 0;
+    padding:11px 14px;
+    margin:12px 0;
+    font-size:.93em;
+  }
+  .callout p:first-child{margin-top:0}
+  .callout p:last-child{margin-bottom:0}
+  .callout .label{
+    display:block;
+    font-size:.78em;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--accent-2);
+    font-weight:700;
+    margin-bottom:5px;
+  }
+
+  /* ---------- Tables ---------- */
+  .tw{
+    overflow-x:auto;
+    border:1px solid var(--line);
+    border-radius:8px;
+    margin:12px 0;
+    -webkit-overflow-scrolling:touch;
+    background:#fff;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:540px;
+    font-size:.9em;
+  }
+  caption{
+    caption-side:top;
+    text-align:left;
+    font-size:.82em;
+    font-weight:650;
+    color:var(--accent-2);
+    padding:9px 12px;
+    background:#f5fafa;
+    border-bottom:1px solid var(--line);
+  }
+  th,td{
+    padding:8px 11px;
+    text-align:left;
+    vertical-align:top;
+    border-top:1px solid var(--line);
+  }
+  thead th{
+    background:var(--accent-soft);
+    color:var(--accent-2);
+    font-weight:650;
+    border-top:none;
+    border-bottom:1px solid var(--accent-line);
+    white-space:nowrap;
+  }
+  tbody tr:nth-child(even){background:#fafcfc}
+  td strong{color:#0b2b2a}
+  .tw::-webkit-scrollbar{height:9px}
+  .tw::-webkit-scrollbar-track{background:#f2f7f7}
+  .tw::-webkit-scrollbar-thumb{background:var(--accent-line);border-radius:6px}
+  .tw::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+  /* ---------- Flow diagram ---------- */
+  .flow{
+    margin:14px 0 6px;
+    padding:14px;
+    background:#f7fbfb;
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .flow .row{
+    display:grid;
+    gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  }
+  .flow .arrow{
+    text-align:center;
+    color:var(--accent);
+    font-size:1.05em;
+    line-height:1;
+    margin:8px 0;
+  }
+  .node{
+    background:#fff;
+    border:1px solid var(--accent-line);
+    border-left:4px solid var(--accent);
+    border-radius:8px;
+    padding:10px 12px;
+    font-size:.9em;
+  }
+  .node h4{margin:0 0 6px;font-size:.98em;color:var(--accent-2)}
+  .node p{margin:0}
+  .node ul{margin:0;padding-left:18px}
+  .node ul li{margin:3px 0}
+  .node.plain{border-left-color:var(--accent-line)}
+
+  /* ---------- Stats strip ---------- */
+  .stats{
+    display:grid;
+    gap:10px;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    margin:12px 0;
+  }
+  .stat{
+    background:#f7fbfb;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+  }
+  .stat b{display:block;font-size:1.15em;color:var(--accent-2);line-height:1.2}
+  .stat span{display:block;font-size:.78em;color:var(--muted);margin-top:3px;line-height:1.3}
+
+  /* ---------- TOC ---------- */
+  .toc{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    margin:0 0 18px;
+  }
+  .toc h2{
+    margin:0 0 10px;
+    font-size:.82em;
+    text-transform:uppercase;
+    letter-spacing:.09em;
+    color:var(--muted);
+  }
+  .toc ol{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    gap:6px;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    counter-reset:toc;
+  }
+  .toc li{counter-increment:toc;margin:0}
+  .toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--accent-2);
+    font-size:.9em;
+    padding:7px 10px 7px 34px;
+    border-radius:7px;
+    position:relative;
+    border:1px solid transparent;
+    transition:background .15s,border-color .15s;
+  }
+  .toc a::before{
+    content:counter(toc);
+    position:absolute;
+    left:8px;
+    top:50%;
+    transform:translateY(-50%);
+    width:19px;height:19px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    color:var(--accent-2);
+    font-size:.72em;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .toc a:hover{background:var(--accent-soft);border-color:var(--accent-line)}
+
+  /* ---------- Search highlight ---------- */
+  mark.hl{
+    background:#ffe066;
+    color:#000;
+    padding:0 1px;
+    border-radius:2px;
+    scroll-margin-top:140px;
+  }
+  mark.hl.active{
+    background:#0d6e68;
+    color:#fff;
+    box-shadow:0 0 0 2px rgba(13,110,104,.25);
+  }
+
+  /* ---------- Footer / references ---------- */
+  .refs{font-size:.88em}
+  .refs ol{padding-left:20px}
+  .refs li{margin:9px 0}
+  footer{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 16px 60px;
+    font-size:.8em;
+    color:var(--muted);
+  }
+  footer p{margin:6px 0}
+
+  .disclaimer{
+    background:#fff;
+    border:1px dashed var(--accent-line);
+    border-radius:8px;
+    padding:11px 14px;
+    font-size:.85em;
+    color:var(--muted);
+    margin:18px 0 0;
+  }
+
+  @media (max-width:560px){
+    header.hero h1{font-size:1.25em}
+    .toolbar{padding:8px 10px;gap:8px}
+    .btn{font-size:.78em;padding:6px 9px}
+    .count{min-width:62px;font-size:.75em}
+    main{padding:14px 10px 60px}
+    .body{padding:4px 12px 14px}
+    details.sec > summary{padding:11px 12px;font-size:.92em}
+    table{font-size:.85em}
+  }
+
+  @media print{
+    .toolbar,.toc{display:none}
+    details.sec{break-inside:avoid;border:1px solid #999}
+    details.sec > summary{background:#eee;color:#000}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Thyroid &amp; Parathyroid Anaesthesia — Quick Reference</h1>
+    <p>Perioperative anaesthetic and intensive-care management of thyroid and parathyroid surgery, including intraoperative neuromonitoring, difficult airway, post-thyroidectomy emergencies and thyroid storm. For trained clinicians; not a substitute for local protocols or clinical judgement.</p>
+  </div>
+</header>
+
+<div class="toolbar" role="search">
+  <div class="searchwrap">
+    <input id="search" type="search" placeholder="Search… (min. 2 characters)" autocomplete="off" aria-label="Search the reference">
+    <button class="btn" id="clearSearch" title="Clear search" aria-label="Clear search">✕</button>
+    <span class="count" id="count" aria-live="polite"></span>
+    <button class="btn" id="prevBtn" title="Previous match (Shift+Enter)">↑ Prev</button>
+    <button class="btn" id="nextBtn" title="Next match (Enter)">↓ Next</button>
+  </div>
+  <div>
+    <button class="btn primary" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <span class="sep" aria-hidden="true"></span>
+    <button class="btn" id="fsMinus" title="Smaller text" aria-label="Decrease text size">A−</button>
+    <button class="btn" id="fsPlus" title="Larger text" aria-label="Increase text size">A+</button>
+    <button class="btn" id="fsReset" title="Reset text size">Reset</button>
+  </div>
+</div>
+
+<main id="content">
+
+  <!-- ================= TOC ================= -->
+  <nav class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#s1">Learning objectives &amp; key points</a></li>
+      <li><a href="#s2">Intraoperative neuromonitoring (IONM)</a></li>
+      <li><a href="#s3">Airway management &amp; the goitre patient</a></li>
+      <li><a href="#s4">Thyroid disorders &amp; optimisation</a></li>
+      <li><a href="#s5">Parathyroid disorders</a></li>
+      <li><a href="#s6">Emergencies: RLN palsy, haematoma, hypocalcaemia</a></li>
+      <li><a href="#s7">Postoperative pain management</a></li>
+      <li><a href="#s8">Thyroid storm: definitions &amp; epidemiology</a></li>
+      <li><a href="#s9">Thyroid storm: features &amp; triggers</a></li>
+      <li><a href="#s10">Thyroid storm: diagnosis &amp; scoring</a></li>
+      <li><a href="#s11">Thyroid storm: management (ABCs)</a></li>
+      <li><a href="#s12">Optimisation before surgery</a></li>
+      <li><a href="#s13">References &amp; sources</a></li>
+    </ol>
+  </nav>
+
+  <h2 class="part">Part A · Anaesthesia for thyroid &amp; parathyroid surgery</h2>
+
+  <!-- ================= 1 ================= -->
+  <details class="sec" id="s1" open>
+    <summary>1. Learning objectives &amp; key points</summary>
+    <div class="body">
+
+      <h3>Learning objectives</h3>
+      <ul>
+        <li>Describe the important considerations in anaesthesia for thyroid and parathyroid surgery.</li>
+        <li>Deliver safe and appropriate anaesthesia to these patients.</li>
+        <li>Outline the issues in airway management.</li>
+        <li>Discuss the potential emergencies related to thyroid and parathyroid surgery.</li>
+      </ul>
+
+      <h3>Key points</h3>
+      <ul>
+        <li>IONM techniques need <strong>advanced planning and effective communication</strong> between surgical and anaesthetic teams.</li>
+        <li>There is no standardised anaesthetic technique, but <strong>TIVA has some benefits</strong> (stable EMG signals, smooth emergence).</li>
+        <li><strong>Screen every patient for a potentially difficult airway.</strong></li>
+        <li>A significant proportion have pre-existing endocrine disorders that may precipitate <strong>clinical emergencies</strong>.</li>
+        <li><strong>Postoperative airway and metabolic complications are likely</strong> — plan for them.</li>
+      </ul>
+
+      <h3>Contemporary outcome data</h3>
+      <div class="stats">
+        <div class="stat"><b>0.03%</b><span>Perioperative mortality (UKRETS)</span></div>
+        <div class="stat"><b>7.3–8.5%</b><span>Postoperative hypocalcaemia</span></div>
+        <div class="stat"><b>0.8–5%</b><span>Reoperation for bleeding</span></div>
+        <div class="stat"><b>0.6%</b><span>Postoperative haematoma (CESQIP, n = 20,980)</span></div>
+        <div class="stat"><b>10–30%</b><span>Mortality of thyroid storm despite treatment</span></div>
+      </div>
+
+      <div class="callout">
+        <span class="label">Historical perspective</span>
+        <p>From the first published paper on anaesthesia for thyroid surgery to the 6th National Audit Report (BAETS), the key challenges have remained the risks of <strong>perioperative thyroid toxaemia</strong>, <strong>complex airway management</strong> and <strong>preventing injury to the recurrent laryngeal nerve (RLN)</strong>. The BAETS audit highlighted increasing use of IONM and the importance of preoperative laryngoscopy to identify RLN palsy. There is growing interest in one-day / day-case procedures.</p>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ================= 2 ================= -->
+  <details class="sec" id="s2">
+    <summary>2. Intraoperative neuromonitoring (IONM)</summary>
+    <div class="body">
+
+      <h3>What it does</h3>
+      <ul>
+        <li>Helps the surgeon identify neural structures close to the thyroid and parathyroid glands.</li>
+        <li>Allows mapping of the <strong>external branch of the superior laryngeal nerve (EBSLN)</strong>, the <strong>recurrent laryngeal nerve (RLN)</strong> and the <strong>vagus nerve</strong> by direct electrical nerve stimulation.</li>
+        <li>Detects anatomical variations, checks and clarifies mechanisms of potential nerve injury, and predicts the outcome of vocal cord movement.</li>
+        <li>Use has increased worldwide (UKRETS), but many disparities remain between centres.</li>
+      </ul>
+
+      <h3>Anaesthetic implications</h3>
+      <ul>
+        <li>Requires <strong>advanced planning and effective communication</strong> between surgical and anaesthetic teams.</li>
+        <li>Neuromuscular blockade must be managed so that adequate EMG signals are obtainable — plan relaxant dose and reversal (sugammadex) with the surgeon.</li>
+        <li>Preoperative <strong>fibreoptic visualisation of the glottis</strong> is recommended to identify pre-existing vocal cord palsy and to visualise anatomical alteration/deviation.</li>
+        <li>TIVA is often preferred because it produces more stable, reliable EMG signals and a smoother emergence.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ================= 3 ================= -->
+  <details class="sec" id="s3">
+    <summary>3. Airway management &amp; the goitre patient</summary>
+    <div class="body">
+
+      <h3>Why it matters</h3>
+      <ul>
+        <li>Thyroid pathology is a <strong>predictor of difficult tracheal intubation and facemask ventilation</strong>.</li>
+        <li>A randomised trial found tracheal tube placement during <strong>direct laryngoscopy</strong> had a higher rate of insufficient EMG signals (<strong>23%</strong>) than the <strong>video-assisted approach (9%)</strong>.</li>
+        <li><strong>Videolaryngoscopy (VL)</strong> reduces the rate of difficult intubation in elective thyroid surgery and reduces the Cormack–Lehane grade. It is also effective because the whole surgical team can correctly visualise the tube electrodes in the proper position with real-time EMG monitoring.</li>
+      </ul>
+
+      <h3>Awake tracheal intubation (ATI)</h3>
+      <ul>
+        <li>Used when a difficult airway is anticipated because of <strong>tracheal compression</strong>. Encompasses <strong>ATI:FB</strong> (flexible bronchoscopy) and <strong>ATI:VL</strong> (videolaryngoscopy).</li>
+        <li>DAS guidelines emphasise <strong>workspace ergonomics</strong> before starting the procedure.</li>
+        <li>Patients may obstruct when supine or during induction — consider fibreoptic intubation in the <strong>seated or semi-recumbent position (30° to the operating table)</strong>.</li>
+        <li>Manage all key components: <strong>sedation, topicalisation, oxygenation, performance</strong>.</li>
+        <li>In airway obstruction or a narrowed airway: <strong>minimise sedation</strong>, consider <strong>lower lidocaine concentrations</strong>, use <strong>high-flow nasal oxygen</strong>, and involve experienced practitioners.</li>
+        <li><strong>General anaesthesia is induced only after confirming correct tracheal tube position</strong> — visualise the tracheal lumen (ATI:FB) or the tube through the vocal cords (ATI:VL), then confirm with <strong>capnography</strong> to exclude oesophageal intubation.</li>
+      </ul>
+
+      <h3>If ATI fails</h3>
+      <ul>
+        <li>Plan must include: <strong>"stop and think"</strong>, <strong>front-of-neck airway (FONA)</strong> access, or <strong>high-risk general anaesthesia</strong>.</li>
+        <li>If immediate airway access is essential, FONA or high-risk GA must be managed by the most appropriately skilled clinicians; otherwise <strong>postpone surgery</strong>.</li>
+        <li>A <strong>short neck, goitre or indistinct landmarks</strong> may make ATI:FONA difficult.</li>
+        <li>If high-risk GA is the only remaining option, declare an achievable <strong>A to D airway strategy</strong> based on the 2015 DAS guidelines. Pillars: <strong>neuromuscular block</strong>, <strong>first airway approach with VL</strong>, and the <strong>most skilled clinician present</strong>.</li>
+        <li>2022 ASA airway guidelines for <strong>"can't intubate, can't oxygenate" (CICO)</strong>: surgical cricothyrotomy, needle cricothyrotomy with a pressure-regulated device, large-bore cannula cricothyrotomy, or surgical tracheostomy.</li>
+      </ul>
+
+      <h3>Extubation</h3>
+      <ul>
+        <li>In patients subjected to ATI, follow DAS extubation guidelines: <strong>planning, preparation, performance and post-extubation care</strong> using the "at risk" algorithm.</li>
+        <li>In retrosternal goitre no consensus exists, although ATI appears to be a safe method.</li>
+      </ul>
+
+      <div class="tw">
+        <table>
+          <caption>Table A1 — Anaesthesia for goitre surgery (if possible, refer to a high-volume head &amp; neck centre)</caption>
+          <thead>
+            <tr><th>Phase</th><th>Considerations</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Preoperative</strong></td>
+              <td>
+                <ul>
+                  <li>Thyroid function tests (including serum calcium)</li>
+                  <li>Imaging: CT scan, X-ray or MRI (consider 3D reconstruction from multislice CT)</li>
+                  <li>Clinical assessment: dyspnoea; dysphagia; superior vena cava compression; nerve compression (Horner's syndrome, RLN injury); <strong>Pemberton's sign</strong> (facial congestion with cyanosis after arm elevation — thyroid cork effect)</li>
+                  <li>Airway assessment: predictors of difficult ventilation, intubation, or both</li>
+                </ul>
+                <p><em>High risk: goitre &gt; 5 years, preoperative RLN palsy, preoperative tracheal deviation, retrosternal and retrotracheal extension, thyroid malignancy, anticipated difficult intubation.</em></p>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Intraoperative</strong></td>
+              <td>
+                <ul>
+                  <li><strong>Airway:</strong> preserve spontaneous ventilation in patients with obstructive signs and symptoms (ATI technique)</li>
+                  <li>IONM if increased risk of RLN injury</li>
+                  <li>Anaesthesia with neuromuscular blocking drugs during surgery</li>
+                  <li><strong>Extubation strategy</strong> in accordance with the difficult airway algorithm — consider laryngeal mask insertion prior to extubation, surgical tracheostomy, and airway exchange catheters</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Postoperative</strong></td>
+              <td>
+                <ul>
+                  <li>High risk of postoperative <strong>bleeding</strong></li>
+                  <li>High risk of postoperative <strong>hypocalcaemia</strong></li>
+                  <li>High risk of post-thyroidectomy <strong>tracheomalacia</strong></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ================= 4 ================= -->
+  <details class="sec" id="s4">
+    <summary>4. Thyroid disorders &amp; perioperative optimisation</summary>
+    <div class="body">
+
+      <h3>Primary perioperative challenges</h3>
+      <ul>
+        <li><strong>Thyrotoxicosis</strong> (with or without hyperthyroidism), <strong>hyperthyroidism</strong> and <strong>hypothyroidism</strong>.</li>
+        <li>Diagnostic criteria (e.g. <strong>Akamizu criteria</strong>) assist the decision to proceed.</li>
+        <li><strong>Plasmapheresis</strong> is a therapeutic option to reduce blood thyroid hormone levels.</li>
+        <li>Several guidelines recommend the patient be <strong>euthyroid before surgery</strong>; however, in selected cases surgery must proceed while the patient is hyperthyroid.</li>
+        <li>In <strong>subclinical hyperthyroidism</strong>: consult an endocrinologist and modify medication if TSH remains persistently altered in the presence of vascular and cardiac pathology.</li>
+      </ul>
+
+      <h3>Hypothyroidism</h3>
+      <ul>
+        <li><strong>Emergency surgery in severe hypothyroidism</strong> (myxoedema coma, altered mentation, pericardial effusions, heart failure): loading dose <strong>i.v. levothyroxine 200–500 µg</strong>, then <strong>50–100 µg daily</strong>.</li>
+        <li>Consider <strong>i.v. liothyronine</strong> in myxoedema coma, and <strong>glucocorticoids</strong> if adrenal insufficiency.</li>
+        <li><strong>Subclinical hypothyroidism</strong>: preoperative endocrinology consultation.</li>
+        <li><strong>Cardiac evaluation</strong> is necessary if there are signs/symptoms of heart failure — risk of impaired diastolic function.</li>
+      </ul>
+
+      <div class="tw">
+        <table>
+          <caption>Table A2 — Perioperative optimisation during thyrotoxicosis and hyperthyroidism</caption>
+          <thead>
+            <tr><th>Timing</th><th>Intervention</th><th>Dose / detail</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="3"><strong>Hyperthyroidism</strong><br>14 → 5 days before procedure</td>
+              <td>14 days before</td>
+              <td>
+                <strong>Lugol's iodine</strong> 0.3 mL every 8 h (0.9–1.2 mg every 8 h)<br>
+                <strong>Propranolol</strong> 20 mg every 8 h*<br>
+                <strong>ATD</strong> according to medical status: PTU 100 mg every 8 h <em>or</em> MMI 5–30 mg once daily
+              </td>
+            </tr>
+            <tr>
+              <td>7 days before</td>
+              <td>
+                FT4 and FT3 normal → continue as previously.<br>
+                FT4 or FT3 abnormal → <strong>add cholestyramine 4 g every 8 h</strong>.
+              </td>
+            </tr>
+            <tr>
+              <td>5 days before†</td>
+              <td>
+                FT4 and FT3 normal → continue as previously.<br>
+                FT4 or FT3 abnormal → <strong>add dexamethasone 1 mg every 12 h</strong> (up to 4 mg daily); <strong>increase propranolol to 40 mg every 8 h</strong> (max 80 mg every 8 h).
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Preoperative</strong><br>(thyrotoxicosis)</td>
+              <td>Avoid sympathetic stimulation; beta-blockade; regional anaesthesia if feasible; deep extubation</td>
+              <td>
+                Avoid <strong>ketamine</strong> and <strong>multiple laryngoscopy attempts</strong>.<br>
+                <strong>Propranolol 40 mg every 6–8 h.</strong><br>
+                <strong>RA if feasible.</strong><br>
+                <strong>"Deep" extubation.</strong>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Intraoperative</strong></td>
+              <td>Control hormone release; blunted intubation response; adequate depth of anaesthesia</td>
+              <td>
+                <strong>PTU</strong> 200 mg every 4–8 h (loading dose 600 mg; maximum 1250 mg daily).<br>
+                <strong>Propranolol</strong> 1–2 mg i.v. <em>or</em> <strong>esmolol infusion</strong> 50–100 µg kg⁻¹ min⁻¹.<br>
+                <strong>Lidocaine</strong> 10%: 4 puffs oral; <em>or</em> lidocaine 1.5 mg kg⁻¹ i.v.<br>
+                <strong>Fentanyl</strong> 1–2 µg kg⁻¹.<br>
+                <strong>Propofol</strong> 2–3 mg kg⁻¹ <em>or</em> <strong>thiopental</strong> 3–5 mg kg⁻¹.<br>
+                <strong>Rocuronium</strong> 0.6 mg kg⁻¹ (reversal with sugammadex 1 mg kg⁻¹).
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Postoperative</strong></td>
+              <td>Continued monitoring; treat complications</td>
+              <td>
+                Discharge to <strong>ICU</strong> according to underlying health conditions.<br>
+                <strong>Convulsions:</strong> diazepam 10 mg or 0.1–0.6 mg kg⁻¹; if convulsions continue, give general anaesthesia.<br>
+                <strong>Hydrocortisone</strong> 100 mg every 8 h <em>or</em> <strong>dexamethasone</strong> 2 mg every 6 h.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <span class="label">Notes on Table A2</span>
+        <p>* Consider atenolol 25 mg once daily as an alternative. † Consider deferring the procedure for optimisation if <strong>FT4 &gt; 30</strong> or <strong>FT3 &gt; 10</strong> (units as stated in the source). <strong>ATD</strong> = antithyroid drugs; <strong>PTU</strong> = propylthiouracil; <strong>MMI</strong> = methimazole; <strong>RA</strong> = regional anaesthesia.</p>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ================= 5 ================= -->
+  <details class="sec" id="s5">
+    <summary>5. Parathyroid disorders</summary>
+    <div class="body">
+
+      <h3>Indications &amp; priorities</h3>
+      <ul>
+        <li>Guidelines suggest performing surgical parathyroidectomy in cases with <strong>normal serum calcium</strong> concentrations.</li>
+        <li><strong>Priority surgical interventions:</strong>
+          <ul>
+            <li>Primary hyperparathyroidism with adjusted calcium <strong>&gt; 3 mmol L⁻¹</strong> despite medical treatment</li>
+            <li>Pregnant patients</li>
+            <li>Recurrent renal stones associated with sepsis in primary hyperparathyroidism</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Hypercalcaemic crisis risk</h3>
+      <ul>
+        <li>Patients with unsatisfactory preoperative serum calcium who need surgery may develop a <strong>hypercalcaemic crisis</strong>.</li>
+        <li><strong>Rehydrate with i.v. fluids</strong> and arrange an <strong>urgent endocrinology consultation</strong>.</li>
+        <li>Medical agents: <strong>denosumab, cinacalcet, calcitonin, bisphosphonates</strong>.</li>
+      </ul>
+
+      <h3>Anaesthetic priorities</h3>
+      <ul>
+        <li>Focus on <strong>neuromuscular function</strong> — <strong>quantitative neuromuscular monitoring is recommended</strong>.</li>
+        <li>All clinicians involved must be aware of the possibility of <strong>abrupt cardiovascular collapse</strong>.</li>
+        <li>Preoperative hypercalcaemia may alter <strong>QT length</strong> with dysrhythmia.</li>
+        <li>A <strong>rapid decrease in serum calcium after parathyroid removal</strong> precedes a marked decrease in vascular resistance and impaired cardiac function.</li>
+        <li><strong>Management:</strong> vasopressors and inotropes; prompt infusion of <strong>large volumes of i.v. fluids with calcium and vitamin D supplementation</strong>.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ================= 6 ================= -->
+  <details class="sec" id="s6">
+    <summary>6. Emergencies — RLN palsy, haematoma, hypocalcaemia</summary>
+    <div class="body">
+
+      <h3>A · Immediate postoperative bilateral RLN palsy</h3>
+      <ul>
+        <li>Patients with bilateral RLN palsy may develop <strong>airway distress after tracheal extubation</strong> and require reintubation, which can be difficult.</li>
+        <li><strong>Call for help</strong> and proceed according to <strong>DAS guidelines</strong>.</li>
+        <li>Some authors consider <strong>immediate revision surgery</strong> to improve airway patency with better postoperative voice quality.</li>
+        <li><strong>Tracheostomy</strong> after securing the airway is an option.</li>
+        <li>All patients should be admitted to <strong>ICU until a protected airway is established</strong>.</li>
+      </ul>
+
+      <div class="flow" role="img" aria-label="Flow diagram: vocal cord palsy after thyroid and parathyroid surgery">
+        <div class="row">
+          <div class="node">
+            <h4>Mild–moderate signs &amp; symptoms</h4>
+            <p>Hoarseness / choking</p>
+          </div>
+          <div class="node">
+            <h4>Severe signs &amp; symptoms</h4>
+            <p>Stridor and dyspnoea</p>
+          </div>
+        </div>
+        <div class="arrow" aria-hidden="true">▼</div>
+        <div class="row">
+          <div class="node">
+            <h4>Action</h4>
+            <ul>
+              <li>Monitoring</li>
+              <li>Multidisciplinary consultation</li>
+            </ul>
+          </div>
+          <div class="node">
+            <h4>Action</h4>
+            <ul>
+              <li>Immediate re-intubation</li>
+              <li>Consider difficult airway / FONA</li>
+            </ul>
+          </div>
+        </div>
+        <div class="arrow" aria-hidden="true">▼</div>
+        <div class="row">
+          <div class="node plain"><h4>Unilateral cord palsy</h4></div>
+          <div class="node plain"><h4>Bilateral cord palsy</h4></div>
+        </div>
+        <div class="arrow" aria-hidden="true">▼</div>
+        <div class="row">
+          <div class="node">
+            <ul>
+              <li>Observation</li>
+              <li>Admission into ICU</li>
+              <li>Revision surgery if indicated</li>
+              <li><strong>Avoid traumatic re-intubation</strong></li>
+            </ul>
+          </div>
+          <div class="node">
+            <ul>
+              <li>Observation</li>
+              <li>Admission into ICU</li>
+              <li>Revision surgery if indicated</li>
+              <li><strong>Tracheostomy</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p><em>Simplified from the original Figure 2 (vocal cord palsy after thyroid and parathyroid surgery). FONA = front-of-neck approach.</em></p>
+
+      <h3>B · Postoperative haematoma</h3>
+      <p>A challenging and potentially life-threatening complication. Reported incidence varies; a recent analysis of the Collaborative Endocrine Surgery Quality Improvement Program database (<strong>20,980 patients</strong>) reported an incidence of <strong>0.6%</strong>. Increased age appears to be an additional hazard because of the use of antiplatelet and anticoagulant drugs.</p>
+
+      <h4>Risk factors for bleeding after surgery</h4>
+      <div class="tw">
+        <table>
+          <caption>Box A1 — Risk factors for bleeding after surgery</caption>
+          <thead>
+            <tr><th>Patient / surgical factors</th><th>Operative factors</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <ul>
+                  <li>Male sex</li>
+                  <li>Increasing age</li>
+                  <li>Revision surgery</li>
+                  <li>Retrosternal goitre</li>
+                  <li>Graves' disease</li>
+                  <li>Diabetes</li>
+                  <li>Preoperative anticoagulants / antiplatelet drugs</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Thyroid surgery</li>
+                  <li>Low surgeon volume</li>
+                  <li>Neck dissection</li>
+                  <li>Duration of surgery (&lt; 1 h low risk; 1–2 h intermediate risk; &gt; 2 h high risk)</li>
+                  <li>Excision of parathyroid glands (&gt; 3.5 glands)</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Day-case eligibility</h4>
+      <ul>
+        <li>A simple, reproducible <strong>predictive score</strong> has been developed to establish postoperative haematoma risk during ambulatory surgery.</li>
+        <li><strong>BAETS four criteria</strong> for day-case endocrine neck operations:
+          <ol>
+            <li><strong>Low risk of postoperative haemorrhage</strong></li>
+            <li>Necessary informed consent</li>
+            <li>Verbal and written instructions about postoperative bleeding protocols</li>
+            <li>Easy access to healthcare facilities</li>
+          </ol>
+        </li>
+        <li>The "low risk of haemorrhage" criterion is <strong>debatable</strong> — a no-risk scenario is not possible. The <strong>ATA</strong> is extremely prudent, stressing the need for evidence-based clinical protocols and systematic pathways.</li>
+        <li>In 2022, <strong>BAETS + British Association of Otorhinolaryngology – Head and Neck Surgery + DAS</strong> published recommendations for post-thyroid surgery haematoma management (hoped to apply to parathyroid surgery).</li>
+      </ul>
+
+      <div class="callout">
+        <span class="label">Haematoma — the mandatory sequence</span>
+        <p><strong>Oxygenate and evaluate → Evacuate → Intubate.</strong></p>
+        <p>Before signs of airway compromise: <strong>"skin exposure, cut sutures, open skin, open muscles, pack wound"</strong> — then the anaesthetist or skilled clinician can consider tracheal intubation.</p>
+      </div>
+
+      <h4>The six "triggers" to evaluate postoperatively</h4>
+      <ol>
+        <li>Difficulty in swallowing</li>
+        <li>Increase in the Early Warning Score (EWS) or National Early Warning Score (NEWS)</li>
+        <li>Swelling</li>
+        <li>Anxiety</li>
+        <li>Tachypnoea or difficulty in breathing</li>
+        <li>Stridor</li>
+      </ol>
+      <p>Any of these mandates an <strong>urgent clinical review by a senior doctor</strong>. Patients should be closely monitored to avoid late signs of airway obstruction such as desaturation and increasing oxygen requirements.</p>
+      <p><strong>DAS recommendations:</strong> VL performed by the most experienced operator; attempts limited to <strong>three, with one additional attempt</strong>, proceeding early to emergency FONA in time-critical settings.</p>
+
+      <h3>C · Acute postoperative hypocalcaemia</h3>
+      <ul>
+        <li>The incidence of transient or permanent hypoparathyroidism differs between clinical settings.</li>
+        <li><strong>Manifestations:</strong> neurological impairment with perioral paraesthesia, restlessness and altered neuromuscular activity, with typical bedside signs (<strong>Chvostek and Trousseau signs</strong>).</li>
+        <li><strong>Cardiac:</strong> life-threatening — <strong>prolonged QT interval</strong> that can generate <strong>torsades de pointes</strong>.</li>
+      </ul>
+
+      <h4>ATA risk factors for hypocalcaemia</h4>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Surgery-related</th><th>Patient-related</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <ul>
+                  <li>Bilateral thyroid procedures</li>
+                  <li>Central neck dissection (prophylactic or therapeutic)</li>
+                  <li>Low-volume thyroid surgery</li>
+                  <li>Simultaneous thyroidectomy and parathyroidectomy</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Prior gastric bypass or other malabsorptive states</li>
+                  <li>Substernal goitre</li>
+                  <li>Prior central neck surgery</li>
+                  <li>Autoimmune thyroid disease</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>If patients present with <strong>progressive hypocalcaemia despite medical treatment</strong>, arrange <strong>ICU admission</strong>, focusing on cardiovascular stability and appropriate drug prescription.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Table A3 — Management of postoperative hypocalcaemia according to clinical severity</caption>
+          <thead>
+            <tr>
+              <th>Treatment</th>
+              <th>Prophylaxis</th>
+              <th>Mild–moderate hypoPT<br><em>mild symptoms or serum Ca²⁺ &lt; 8.5 mg dL⁻¹</em></th>
+              <th>Progressive symptomatic hypoPT<br><em>severe symptoms or serum Ca²⁺ &lt; 7.0 mg dL⁻¹</em></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Calcium p.o.</strong></td>
+              <td>—</td>
+              <td>1–3 g daily (0.5–1 g every 12–8 h)</td>
+              <td>3–4 g daily (1 g every 8 h)</td>
+            </tr>
+            <tr>
+              <td><strong>Calcitriol</strong></td>
+              <td>0.25–0.5 µg every 12 h</td>
+              <td>0.25–0.5 µg every 12 h</td>
+              <td>0.25–1.0 µg every 12 h</td>
+            </tr>
+            <tr>
+              <td><strong>Calcium i.v.</strong></td>
+              <td>Not considered</td>
+              <td>Not considered</td>
+              <td><strong>Calcium gluconate 2 g bolus i.v.</strong> followed by continuous infusion</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><em>Prophylaxis: optimise 25-OH vitamin D and serum magnesium. Unit conversion: 8.5 mg/dL ≈ 2.12 mmol/L; 7.0 mg/dL ≈ 1.75 mmol/L. hypoPT = postoperative hypoparathyroidism.</em></p>
+
+    </div>
+  </details>
+
+  <!-- ================= 7 ================= -->
+  <details class="sec" id="s7">
+    <summary>7. Postoperative pain management</summary>
+    <div class="body">
+
+      <ul>
+        <li>The endocrine surgery section of the <strong>American Head and Neck Society (AHNS-ES)</strong> recommends <strong>opioid administration only in case of contraindications or failure of first-line non-opioid drugs</strong>.</li>
+        <li>The <strong>Society of Onco-Anaesthesia and Perioperative Care</strong> encourages a <strong>multimodal approach</strong> for analgesia in head and neck oncological surgery.</li>
+        <li>Focus on the <strong>preoperative, intraoperative and postoperative</strong> periods; combine analgesics of different classes.</li>
+      </ul>
+
+      <div class="tw">
+        <table>
+          <caption>Table A4 — Perioperative pain management during thyroid and parathyroid surgery</caption>
+          <thead>
+            <tr><th>Phase</th><th>Analgesic / technique</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Preoperative</strong></td>
+              <td>
+                <ul>
+                  <li>Paracetamol 15 mg kg⁻¹ i.v. (maximum single dose 1000 mg)</li>
+                  <li>Lidocaine 1–1.5 mg kg⁻¹ i.v.</li>
+                  <li>Dexamethasone 4–8 mg i.v.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Intraoperative</strong></td>
+              <td>
+                <ul>
+                  <li>Adequate tracheal tube</li>
+                  <li>Local anaesthetics — superficial cervical plexus block</li>
+                  <li>Remifentanil infusion (note hyperalgesia risk)</li>
+                  <li>Dexmedetomidine infusion 1.2 µg kg⁻¹ h⁻¹</li>
+                  <li>Ketamine bolus 0.25–1 mg kg⁻¹ (consider infusion)</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Postoperative</strong></td>
+              <td>
+                <ul>
+                  <li>Paracetamol 15 mg kg⁻¹ i.v. <strong>AND</strong> ketorolac 15–30 mg i.v.</li>
+                  <li>Paracetamol 15 mg kg⁻¹ i.v. every 8 h (consider maximum daily dose)</li>
+                  <li>COX 1/2 inhibitors i.v. or oral</li>
+                  <li>Patient-directed opioids</li>
+                  <li><strong>Restrict opioid prescription to &lt; 75 mg morphine equivalents</strong></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </details>
+
+  <h2 class="part">Part B · Thyroid storm (thyrotoxic crisis)</h2>
+
+  <!-- ================= 8 ================= -->
+  <details class="sec" id="s8">
+    <summary>8. Thyroid storm — definitions, physiology &amp; epidemiology</summary>
+    <div class="body">
+
+      <div class="callout">
+        <span class="label">Key points — thyroid storm</span>
+        <ul>
+          <li>Life-threatening condition characterised by overt thyrotoxicosis in the setting of <strong>long-standing untreated or undertreated hyperthyroidism</strong>.</li>
+          <li>May be triggered by an acute stress event: abrupt discontinuation of antithyroid medication, infection, or surgery.</li>
+          <li>In the <strong>awake</strong> patient: neurological, cardiovascular, thermoregulatory and gastrointestinal dysfunction predominate.</li>
+          <li>In the <strong>anaesthetised</strong> patient, signs may be limited to <strong>pyrexia, tachycardia and atrial fibrillation</strong> — diagnosis is harder.</li>
+          <li>Differential diagnosis: sepsis, malignant hyperthermia, neuroleptic malignant syndrome, serotonin syndrome, phaeochromocytoma, anticholinergic syndrome.</li>
+          <li>Management: general supportive measures (A, B, C, temperature) <strong>plus</strong> specific pharmacology (beta-blockade, thionamide, iodine, glucocorticosteroids).</li>
+        </ul>
+      </div>
+
+      <h3>Definitions — three distinct conditions</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Term</th><th>Definition</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hyperthyroidism</strong></td>
+              <td>A <strong>biochemical diagnosis</strong> defined by an increase in circulating thyroid hormone levels.</td>
+            </tr>
+            <tr>
+              <td><strong>Thyrotoxicosis</strong></td>
+              <td>A group of signs and symptoms induced by <strong>inappropriate activation of thyroid hormones in the tissues</strong> — the clinical manifestation of hyperthyroidism.</td>
+            </tr>
+            <tr>
+              <td><strong>Thyroid storm</strong></td>
+              <td>An <strong>acute life-threatening endocrine emergency</strong> resembling an exaggerated presentation of thyrotoxicosis.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Basic thyroid physiology</h3>
+      <ul>
+        <li>The thyroid converts iodine into <strong>thyroxine (T4, prohormone)</strong> and <strong>triiodothyronine (T3, bioactive hormone)</strong>; thyroid cells combine iodine and tyrosine to form T3 and T4.</li>
+        <li>The normal gland produces about <strong>80% T4 and 20% T3</strong>. Most T3 is produced by enzymatic deiodination of T4 in peripheral tissues by <strong>iodothyronine deiodinases</strong>.</li>
+        <li>The anterior pituitary secretes <strong>TSH</strong> in response to <strong>TRH</strong> from the hypothalamus (via the hypothalamo-hypophyseal portal system); somatostatin can inhibit TSH secretion.</li>
+        <li>Free T3 and free T4 exert <strong>negative feedback</strong> on the hypothalamus and pituitary.</li>
+      </ul>
+
+      <h3>Incidence and mortality</h3>
+      <ul>
+        <li>Most epidemiological data come from national surveys in <strong>Japan and the United States</strong>.</li>
+        <li>Incidence: <strong>0.20–0.76 per 100,000 people per year</strong>.</li>
+        <li>Intraoperative and postoperative thyroid storm following <strong>non-thyroid surgery</strong> is rare — 24 cases identified in the literature between 1930 and 2018. Rarity reflects the widespread use of antithyroid medication to achieve a euthyroid state before surgery.</li>
+        <li><strong>Mortality 10–30%</strong> despite early diagnosis.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ================= 9 ================= -->
+  <details class="sec" id="s9">
+    <summary>9. Thyroid storm — clinical features &amp; triggers</summary>
+    <div class="body">
+
+      <h3>Clinical features of thyrotoxicosis</h3>
+      <p><strong>Symptoms:</strong> heat intolerance, palpitations, anxiety, fatigue, weight loss, muscle weakness, and irregular menses in women. <strong>Signs:</strong> tremors, tachycardia, lid lag, warm moist skin.</p>
+      <p>The clinical picture of thyroid storm is characterised by nonspecific signs ranging from thermoregulatory dysfunction to <strong>thyrotoxic heart disease (cardiotyrolysis)</strong>.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Table B1 — Clinical features of perioperative thyroid storm</caption>
+          <thead>
+            <tr><th>Organ system</th><th>The awake patient</th><th>The anaesthetised patient</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Central nervous system</strong></td>
+              <td>Confusion, agitation, delirium, psychosis, seizure, stupor, coma</td>
+              <td>Seizure, delayed emergence</td>
+            </tr>
+            <tr>
+              <td><strong>Cardiovascular system</strong></td>
+              <td>Sinus tachycardia, hypotension, dysrhythmias (especially atrial fibrillation), congestive cardiac failure</td>
+              <td>— (largely masked; suspect with unexplained tachycardia)</td>
+            </tr>
+            <tr>
+              <td><strong>Thermoregulation</strong></td>
+              <td>Pyrexia, dehydration</td>
+              <td>— (pyrexia may be the only clue)</td>
+            </tr>
+            <tr>
+              <td><strong>Gastrointestinal system</strong></td>
+              <td>Nausea, vomiting, abdominal pain, diarrhoea, hepatocellular dysfunction (jaundice)</td>
+              <td>Hepatocellular dysfunction (jaundice)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Mechanism</h3>
+      <ul>
+        <li>The exact mechanisms are poorly understood. Thyroid storm occurs in <strong>undiagnosed or uncontrolled hyperthyroidism/thyrotoxicosis in the presence of a trigger</strong>.</li>
+        <li>A <strong>heightened cellular response to thyroid hormone</strong> is implicated, as seen during acute stress; increased or abrupt availability of free hormones enhances responsiveness to catecholamines.</li>
+        <li>It is postulated that a <strong>rapid increase in thyroid hormone</strong>, rather than the actual hormone level, leads to storm.</li>
+        <li>In up to <strong>30% of patients no trigger can be identified</strong>.</li>
+      </ul>
+
+      <div class="tw">
+        <table>
+          <caption>Table B2 — Thyroid storm triggers</caption>
+          <thead>
+            <tr><th>Category</th><th>Examples</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Drug / treatment related</strong></td><td>Abrupt discontinuation of antithyroid medication; acute iodine overload (radioactive iodine treatment, iodinated contrast studies, oral iodine)</td></tr>
+            <tr><td><strong>Infection</strong></td><td>Any acute infection</td></tr>
+            <tr><td><strong>Surgery</strong></td><td>Thyroid and non-thyroid surgery; trauma</td></tr>
+            <tr><td><strong>Obstetric</strong></td><td>Pre-eclampsia, parturition, hyperemesis gravidarum</td></tr>
+            <tr><td><strong>Metabolic</strong></td><td>Diabetic ketoacidosis</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ================= 10 ================= -->
+  <details class="sec" id="s10">
+    <summary>10. Thyroid storm — diagnosis &amp; scoring</summary>
+    <div class="body">
+
+      <h3>The diagnostic problem</h3>
+      <ul>
+        <li>Diagnosis is challenging because of <strong>nonspecific clinical features</strong>, rarity, and the continuum of severity from thyrotoxicosis to storm.</li>
+        <li><strong>No laboratory abnormality is specific</strong> to thyroid storm.</li>
+        <li>In the awake patient: hyperthermia, mental state changes (irritability, delirium, psychosis, lethargy, coma), hypotension, tachycardia, dysrhythmias, and gastrointestinal/hepatocellular dysfunction.</li>
+        <li><strong>Intraoperative diagnosis is hardest</strong> — the only clues may be <strong>pyrexia and tachycardia</strong>. Mental state changes and gastrointestinal dysfunction are not detectable under general anaesthesia.</li>
+        <li>Tachycardia has many causes: pain, awareness, hypovolaemia, haemorrhage, medication side effects, bladder distension.</li>
+        <li>Rising temperature and end-tidal CO₂ may indicate sepsis, malignant hyperthermia, neuroleptic malignant syndrome, serotonin syndrome, phaeochromocytoma or anticholinergic syndrome.</li>
+        <li><strong>Atypical presentations without fever</strong> have been described under general anaesthesia. During caesarean section under neuraxial anaesthesia, haemorrhage and hormonal changes can obscure thyrotoxicosis.</li>
+      </ul>
+
+      <div class="callout">
+        <span class="label">Practical approach</span>
+        <p>Follow a <strong>stepwise diagnostic approach</strong> when a patient under general anaesthesia develops intraoperative tachycardia or pyrexia: consider and exclude the differential diagnoses first, then treat.</p>
+      </div>
+
+      <div class="tw">
+        <table>
+          <caption>Table B3 — Differential diagnosis for intraoperative pyrexia and tachycardia</caption>
+          <thead>
+            <tr>
+              <th>Diagnosis</th>
+              <th>Exposure</th>
+              <th>Mental status (awake)</th>
+              <th>Pupils (no opioids)</th>
+              <th>Muscle tone (unparalysed)</th>
+              <th>Mucosa &amp; skin</th>
+              <th>Reflexes (awake)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Sepsis</strong></td><td>Infection</td><td>Potentially impaired</td><td>Normal</td><td>Normal</td><td>Wet or dry</td><td>Normal</td></tr>
+            <tr><td><strong>Thyroid storm</strong></td><td>Trigger</td><td>Potentially impaired</td><td>Normal</td><td>Normal</td><td>Normal</td><td>Normal</td></tr>
+            <tr><td><strong>Malignant hyperthermia</strong></td><td>Volatiles, succinylcholine</td><td>Impaired</td><td>Normal</td><td><strong>Rigid</strong></td><td>Wet</td><td>Decreased</td></tr>
+            <tr><td><strong>Neuroleptic malignant syndrome</strong></td><td>Antipsychotics</td><td>Impaired</td><td>Normal</td><td><strong>Rigid</strong></td><td>Wet</td><td>Decreased</td></tr>
+            <tr><td><strong>Serotonin syndrome</strong></td><td>Serotonergics (antidepressants, fentanyl, tramadol, linezolid, sumatriptan, ondansetron)</td><td>Impaired</td><td><strong>Dilated</strong></td><td><strong>Rigid</strong></td><td>Wet</td><td>Increased</td></tr>
+            <tr><td><strong>Anticholinergic syndrome</strong></td><td>Anticholinergics</td><td>Impaired</td><td><strong>Dilated</strong></td><td>Normal</td><td><strong>Dry</strong></td><td>Normal</td></tr>
+            <tr><td><strong>Phaeochromocytoma</strong></td><td>Trigger</td><td>Normal</td><td><strong>Dilated</strong></td><td>Normal</td><td>Normal</td><td>Normal</td></tr>
+            <tr><td><strong>Iatrogenic</strong></td><td>Forced air warmer, increased ambient temperature</td><td>Normal</td><td>Normal</td><td>Normal</td><td>Normal / dry</td><td>Normal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Burch and Wartofsky Point Scale (BWPS, 1993)</h3>
+      <p>Uses nonspecific features to predict the likelihood of thyroid storm; widely applied for more than two decades. <strong>CNS disturbance is heavily weighted</strong> — a limitation in the anaesthetised patient, in whom these features cannot be detected.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Table B4 — The Burch and Wartofsky Point Scale</caption>
+          <thead>
+            <tr><th>Category</th><th>Finding</th><th>Points</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="6"><strong>1. Thermoregulatory dysfunction</strong><br>Temperature (°C)</td>
+              <td>37.2–37.7</td><td>5</td>
+            </tr>
+            <tr><td>37.8–38.3</td><td>10</td></tr>
+            <tr><td>38.4–38.8</td><td>15</td></tr>
+            <tr><td>38.9–39.3</td><td>20</td></tr>
+            <tr><td>39.4–39.9</td><td>25</td></tr>
+            <tr><td>&gt; 40.0</td><td>30</td></tr>
+
+            <tr>
+              <td rowspan="10"><strong>2. Cardiovascular</strong></td>
+              <td>Tachycardia 90–109 beats/min</td><td>5</td>
+            </tr>
+            <tr><td>110–119</td><td>10</td></tr>
+            <tr><td>120–129</td><td>15</td></tr>
+            <tr><td>130–139</td><td>20</td></tr>
+            <tr><td>&gt; 140</td><td>25</td></tr>
+            <tr><td>Atrial fibrillation — absent</td><td>0</td></tr>
+            <tr><td>Atrial fibrillation — present</td><td>10</td></tr>
+            <tr><td>Congestive heart failure — mild</td><td>5</td></tr>
+            <tr><td>Congestive heart failure — moderate</td><td>10</td></tr>
+            <tr><td>Congestive heart failure — severe</td><td>15</td></tr>
+
+            <tr>
+              <td rowspan="3"><strong>3. Gastrointestinal–hepatic dysfunction</strong></td>
+              <td>Absent</td><td>0</td>
+            </tr>
+            <tr><td>Moderate (diarrhoea, abdominal pain, nausea/vomiting)</td><td>10</td></tr>
+            <tr><td>Severe (jaundice)</td><td>20</td></tr>
+
+            <tr>
+              <td rowspan="4"><strong>4. Central nervous system disturbance</strong></td>
+              <td>Absent</td><td>0</td>
+            </tr>
+            <tr><td>Mild (agitation)</td><td>10</td></tr>
+            <tr><td>Moderate (delirium, psychosis, extreme lethargy)</td><td>20</td></tr>
+            <tr><td>Severe (seizure, coma)</td><td>30</td></tr>
+
+            <tr>
+              <td rowspan="2"><strong>5. Precipitating event</strong></td>
+              <td>Absent</td><td>0</td>
+            </tr>
+            <tr><td>Present</td><td>10</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Interpretation:</strong> score &gt; 45 = thyroid storm; 25–44 = impending storm; &lt; 25 = storm unlikely.</p>
+
+      <h3>Akamizu diagnostic criteria (Japanese Thyroid Association, 2012)</h3>
+      <div class="tw">
+        <table>
+          <caption>Table B5 — Akamizu diagnostic criteria (Grade 1 = definite storm; Grade 2 = suspected storm)</caption>
+          <thead>
+            <tr><th>Element</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Prerequisite</strong></td>
+              <td>Thyrotoxicosis with elevated <strong>FT3 or FT4</strong></td>
+            </tr>
+            <tr>
+              <td rowspan="5"><strong>Symptoms</strong></td>
+              <td><strong>CNS:</strong> restlessness, delirium, psychosis, lethargy, coma</td>
+            </tr>
+            <tr><td><strong>Fever:</strong> temperature &gt; 38 °C</td></tr>
+            <tr><td><strong>Tachycardia:</strong> heart rate &gt; 130 beats/min (or &gt; 130 beats/min in atrial fibrillation)</td></tr>
+            <tr><td><strong>CHF:</strong> pulmonary oedema, rales over more than half of the lung field, cardiogenic shock, or NYHA class IV / Killip class &gt; III</td></tr>
+            <tr><td><strong>GI or hepatic:</strong> nausea, vomiting, diarrhoea, or total bilirubin &gt; 3.0 mg/dL</td></tr>
+            <tr>
+              <td rowspan="2"><strong>Grade 1</strong><br>(definite)</td>
+              <td>First combination: thyrotoxicosis <strong>+ at least one CNS manifestation +</strong> fever, tachycardia, CHF, or GI/hepatic manifestations</td>
+            </tr>
+            <tr>
+              <td>Alternate combination: thyrotoxicosis <strong>+ at least 3</strong> of fever, tachycardia, CHF, or GI/hepatic manifestations</td>
+            </tr>
+            <tr>
+              <td rowspan="2"><strong>Grade 2</strong><br>(suspected)</td>
+              <td>First combination: thyrotoxicosis <strong>+ 2</strong> of fever, tachycardia, CHF, or GI/hepatic manifestations</td>
+            </tr>
+            <tr>
+              <td>Alternate combination: meets Grade 1 criteria <strong>except</strong> that serum FT3 or FT4 levels are not available</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><em>Cases are excluded if other underlying diseases clearly cause any of the features — e.g. fever (pneumonia, malignant hyperthermia), impaired consciousness (psychiatric disorders, cerebrovascular disease), heart failure (acute myocardial infarction), liver disorders (viral hepatitis, acute liver failure). Where it is difficult to attribute a symptom to storm versus an underlying disease, the symptom should be regarded as due to the storm provoked by the precipitating factor. Clinical judgement is required.</em></p>
+
+      <div class="callout">
+        <span class="label">Using the scores</span>
+        <p>Using <strong>both</strong> scores in an awake patient is recommended to increase diagnostic accuracy. They provide a systematic framework — but do not adhere rigidly for two reasons:</p>
+        <ol>
+          <li>Thyroid storm is partly a <strong>diagnosis of exclusion</strong> — sepsis with multi-organ failure could easily score &gt; 45 on the BWPS, so a score &gt; 45 does not prove the diagnosis.</li>
+          <li>Treatment is reasonable in <strong>any patient with severe hyperthyroidism causing organ failure</strong> (especially heart failure), even if the BWPS is &lt; 45.</li>
+        </ol>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ================= 11 ================= -->
+  <details class="sec" id="s11">
+    <summary>11. Thyroid storm — management: "ABCs of the Convulsing Hot Hormonal Heart"</summary>
+    <div class="body">
+
+      <div class="callout">
+        <span class="label">Overarching principles</span>
+        <ol>
+          <li>Consider and <strong>exclude the differential diagnoses</strong>.</li>
+          <li>If thyroid storm is likely, implement the <strong>ABCs of the Convulsing Hot Hormonal Heart</strong>.</li>
+          <li>Consider <strong>thyroidectomy</strong> in refractory cases and <strong>plasma exchange</strong> in storm complicated by acute hepatic failure.</li>
+        </ol>
+      </div>
+
+      <h3>A · General considerations</h3>
+      <ul>
+        <li>Inform the surgeon, <strong>declare an emergency</strong>, call for help.</li>
+        <li>Protect the airway in an awake and patient and administer supplemental oxygen.</li>
+        <li>Increase FiO₂ and optimise ventilation if intubated; confirm functioning intravenous access and establish a <strong>second intravenous access</strong>.</li>
+        <li>Consider the differential diagnosis (Table B3).</li>
+        <li><strong>Treat the trigger</strong> — e.g. manage infection (Table B2).</li>
+        <li><strong>Refractory disease:</strong> consider thyroidectomy.</li>
+        <li><strong>Storm complicated with acute hepatic failure:</strong> consider plasma exchange.</li>
+      </ul>
+
+      <div class="tw">
+        <table>
+          <caption>Table B6 — Management principles: the "ABCs of the Convulsing Hot Hormonal Heart"</caption>
+          <thead>
+            <tr><th>Target</th><th>Drug / measure</th><th>Dose</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td colspan="4" style="background:var(--accent-soft);color:var(--accent-2);font-weight:700">C — CONVULSING → Terminate the convulsion</td>
+            </tr>
+            <tr>
+              <td>Terminate convulsion</td>
+              <td>Lorazepam</td>
+              <td>0.1 mg/kg IV (max 4 mg)</td>
+              <td>May repeat IV dose once</td>
+            </tr>
+            <tr>
+              <td>Terminate convulsion</td>
+              <td>Diazepam</td>
+              <td>0.15–0.2 mg/kg IV (max 10 mg) <em>or</em> 0.2–0.5 mg/kg PR (max 20 mg)</td>
+              <td>May repeat IV dose once; PR alternative if no peripheral IV access available</td>
+            </tr>
+            <tr>
+              <td>Terminate convulsion</td>
+              <td>Midazolam</td>
+              <td>0.2 mg/kg buccal / intranasal (max 10 mg) <em>or</em> 10 mg IM (&gt; 40 kg) <em>or</em> 5 mg IM (13–40 kg)</td>
+              <td>Buccal, intranasal and intramuscular alternatives if no peripheral IV access available</td>
+            </tr>
+            <tr>
+              <td>Terminate convulsion</td>
+              <td>Phenytoin</td>
+              <td>18 mg/kg IV</td>
+              <td>Maximum administration rate 50 mg/min</td>
+            </tr>
+            <tr>
+              <td>Terminate convulsion</td>
+              <td>Propofol</td>
+              <td>1–2 mg/kg IV</td>
+              <td>Administer if convulsions continue</td>
+            </tr>
+
+            <tr>
+              <td colspan="4" style="background:var(--accent-soft);color:var(--accent-2);font-weight:700">H — HOT → Active mechanical cooling &amp; pharmacological management</td>
+            </tr>
+            <tr>
+              <td>Cooling / antipyresis</td>
+              <td>Paracetamol</td>
+              <td>1 g IV / oral / NG <em>or</em> 500 mg PR</td>
+              <td><strong>Non-steroidal anti-inflammatory agents are not recommended</strong> — they increase free thyroid hormone levels. Cooling: icepacks in axillae and cooling blanket</td>
+            </tr>
+
+            <tr>
+              <td colspan="4" style="background:var(--accent-soft);color:var(--accent-2);font-weight:700">H — HORMONAL → Block the thyroid hormones</td>
+            </tr>
+            <tr>
+              <td>Block synthesis of new thyroid hormones — thionamides</td>
+              <td>Propylthiouracil (PTU)</td>
+              <td>500–1000 mg oral / NG / PR loading dose, then 200–250 mg q4h</td>
+              <td>American Thyroid Association guideline; caution: liver toxicity; IV preparation not available</td>
+            </tr>
+            <tr>
+              <td>Block synthesis — thionamides</td>
+              <td>Methimazole (MMI)</td>
+              <td>60 mg oral / NG / PR <em>or</em> 30 mg/day IV</td>
+              <td>Japan Thyroid Association guideline</td>
+            </tr>
+            <tr>
+              <td>Block synthesis — thionamides</td>
+              <td>Carbimazole (CBZ)</td>
+              <td>20 mg q4–6h oral / NG / PR</td>
+              <td>Avoid in pregnancy</td>
+            </tr>
+            <tr>
+              <td>Block release of preformed thyroid hormones</td>
+              <td>Lugol's solution (potassium iodide–iodine solution)</td>
+              <td>5–10 drops oral / NG / PR</td>
+              <td>Administer <strong>at least 1 hour after thionamide</strong>; no IV preparation</td>
+            </tr>
+            <tr>
+              <td>Block release of preformed thyroid hormones</td>
+              <td>SSKI (saturated solution of potassium iodide)</td>
+              <td>5 drops oral / NG / PR</td>
+              <td>Administer <strong>at least 1 hour after thionamide</strong></td>
+            </tr>
+            <tr>
+              <td>Block release / peripheral conversion</td>
+              <td>Iopanoic acid (iodinated radiocontrast agent)</td>
+              <td>1000 mg IV q8h for 24 h, then 500 mg IV bd</td>
+              <td>Administer at least 1 hour after thionamide; infrequently available</td>
+            </tr>
+
+            <tr>
+              <td colspan="4" style="background:var(--accent-soft);color:var(--accent-2);font-weight:700">H — HEART → Cardiovascular manifestations</td>
+            </tr>
+            <tr>
+              <td>Manage tachycardia</td>
+              <td>Esmolol</td>
+              <td>1 mg/kg IV over 30 seconds, then 150 µg/kg/min titrated to heart rate</td>
+              <td>Japan Thyroid Association guideline; titrate to HR &lt; 130 bpm; <strong>contraindicated in acute decompensated heart failure with systolic dysfunction</strong></td>
+            </tr>
+            <tr>
+              <td>Manage tachycardia</td>
+              <td>Propranolol</td>
+              <td>1–2 mg/min q15min up to max 10 mg <em>or</em> 40–80 mg PO/NG q4–6h</td>
+              <td>Titrate to HR &lt; 130 bpm; contraindicated in acute decompensated HF with systolic dysfunction</td>
+            </tr>
+            <tr>
+              <td>Manage tachycardia</td>
+              <td>Metoprolol</td>
+              <td>100 mg PO/NG q6h</td>
+              <td>Cardioselective; use if known hyperactive airway disease</td>
+            </tr>
+            <tr>
+              <td>Manage tachycardia</td>
+              <td>Diltiazem</td>
+              <td>60–90 mg PO/NG q6–8h</td>
+              <td>Use if beta-blocker contraindicated</td>
+            </tr>
+            <tr>
+              <td>Block peripheral T4 → T3 conversion</td>
+              <td>Hydrocortisone</td>
+              <td>300 mg IV loading dose, then 100 mg IV q8h</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Block peripheral T4 → T3 conversion</td>
+              <td>Dexamethasone</td>
+              <td>8 mg IV daily</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Manage atrial fibrillation</td>
+              <td>Digoxin</td>
+              <td>8–12 µg/kg IV total loading dose in divided increments: 50% initially, then 25% after 6 h, then 25% after 6 h</td>
+              <td>IV digoxin recommended in the absence of severe renal dysfunction</td>
+            </tr>
+            <tr>
+              <td>Manage atrial fibrillation</td>
+              <td>Amiodarone</td>
+              <td>150 mg IV over 10 minutes, then 1 mg/min IV for 6 h, then 0.5 mg/min IV</td>
+              <td>Recommended if left ventricular systolic dysfunction present; total dose in 24 h not to exceed 2.4 g</td>
+            </tr>
+            <tr>
+              <td>Manage acute congestive heart failure</td>
+              <td>Furosemide</td>
+              <td>0.5–1 mg/kg IV over 1–2 minutes</td>
+              <td>Clinically acute pulmonary oedema</td>
+            </tr>
+            <tr>
+              <td>Manage cardiogenic shock</td>
+              <td>Dobutamine</td>
+              <td>2.5–10 µg/kg/min IV</td>
+              <td>Clinically cardiogenic shock</td>
+            </tr>
+            <tr>
+              <td>Manage cardiogenic shock</td>
+              <td>Noradrenaline</td>
+              <td>0.03–0.3 µg/kg/min IV</td>
+              <td>Clinically cardiogenic shock</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><em>Abbreviations: bd = twice daily; bpm = beats per minute; IM = intramuscular; IV = intravenous; max = maximum; NG = nasogastric; PR = per rectum; q4h/q6h/q8h = every 4/6/8 hours; T3 = triiodothyronine; T4 = thyroxine.</em></p>
+
+    </div>
+  </details>
+
+  <!-- ================= 12 ================= -->
+  <details class="sec" id="s12">
+    <summary>12. Optimisation before surgery (thyrotoxic patient)</summary>
+    <div class="body">
+
+      <ul>
+        <li>If hyperthyroidism or thyrotoxicosis is diagnosed preoperatively in a patient scheduled for <strong>elective surgery</strong>, <strong>postpone surgery and anaesthesia until clinically and biochemically euthyroid</strong>.</li>
+        <li>Achieving euthyroidism can take from <strong>6 weeks up to 18 months</strong>.</li>
+        <li>In consultation with an endocrinologist, follow the patient up initially after <strong>4–6 weeks</strong>, then at <strong>month 3</strong>, <strong>month 6</strong>, and then at <strong>yearly intervals</strong>.</li>
+      </ul>
+
+      <h3>Emergency surgery — anticipate a storm</h3>
+      <p>When optimisation is not an option, anticipate and prepare for a perioperative thyroid storm. <strong>Premedication:</strong></p>
+      <ul>
+        <li><strong>Beta-blocker:</strong> propranolol 0.1–0.15 mg/kg i.v.</li>
+        <li><strong>Antithyroid drug:</strong> propylthiouracil 200–400 mg orally.</li>
+        <li><strong>Corticosteroid:</strong> hydrocortisone 300 mg i.v.</li>
+      </ul>
+
+      <h3>Anaesthetic technique</h3>
+      <ul>
+        <li>Where possible, <strong>regional anaesthesia and peripheral nerve block are preferable to general anaesthesia</strong>.</li>
+        <li>If the procedure does not allow a regional technique, proceed with general anaesthesia ensuring:
+          <ul>
+            <li>The <strong>intubation response is blunted</strong></li>
+            <li><strong>Analgesia and depth of anaesthesia are adequate</strong></li>
+            <li>A <strong>smooth emergence and extubation</strong> are performed</li>
+          </ul>
+        </li>
+        <li>Vigilance regarding thyroid storm must extend into the <strong>postoperative period</strong> — monitor in a <strong>high-dependency unit</strong>.</li>
+      </ul>
+
+      <div class="callout">
+        <span class="label">Summary</span>
+        <p>Thyroid storm in an awake patient remains an elusive diagnosis; in an anaesthetised patient the diagnosis is even more challenging, and pharmacological options are limited to a few intravenous medications. In the awake patient, the <strong>BWPS and Akimizu criteria</strong> should form part of the assessment. When <strong>tachycardia and pyrexia</strong> occur under general anaesthesia, the differential diagnosis <strong>must include thyroid storm</strong>.</p>
+      </div>
+
+    </div>
+  </details>
+
+  <h2 class="part">Sources</h2>
+
+  <!-- ================= 13 ================= -->
+  <details class="sec" id="s13">
+    <summary>13. References &amp; sources</summary>
+    <div class="body refs">
+
+      <h3>Primary sources for this quick reference</h3>
+      <ol>
+        <li>
+          <strong>Guzzetti L, Inversini D, Bacuzzi A.</strong> Anaesthesia for thyroid and parathyroid surgery. <em>BJA Education</em> (Elsevier), article PIIS2058534924000465. University Hospital Varese ASST Settelaghi, Varese, Italy. — Source for Part A (learning objectives, key points, IONM, airway management, thyroid and parathyroid disorders, emergencies, pain management, Tables A1–A4 and Box A1, and the original Figure 2).
+        </li>
+        <li>
+          <strong>Thyroid storm.</strong> <em>Anaesthesia Tutorial of the Week (ATOTW) 496</em>, World Federation of Societies of Anaesthesiologists (WFSA); published 9 May 2023. Corresponding author: Dr Kobus le Roux, Chris Hani Baragwanath Academic Hospital, Johannesburg, South Africa. Edited by Dr Luke Baitch, Albury Wodonga Health, Australia. — Source for Part B (definitions, physiology, epidemiology, clinical features, triggers, diagnosis, BWPS, Akamizu criteria, management table, optimisation).
+        </li>
+      </ol>
+
+      <h3>Key guidelines and references cited within the source articles</h3>
+      <ol start="3">
+        <li>The British Association of Endocrine &amp; Thyroid Surgeons (BAETS). <em>Sixth National Audit Report</em>, 2021.</li>
+        <li>Abdelhamid A, Aspinall S. Intraoperative nerve monitoring in thyroid surgery: analysis of United Kingdom Registry of Endocrine and Thyroid Surgery database. <em>Br J Surg</em> 2021;108:182–7.</li>
+        <li>Kriege M, Hilt JA, Dette F et al. Impact of direct laryngoscopy vs. videolaryngoscopy on signal quality of recurrent laryngeal nerve monitoring in thyroid surgery: a randomised parallel group trial. <em>Anaesthesia</em> 2023;78:55–63.</li>
+        <li>Ahmad I, El-Boghdadly K, Bhagrath R et al. Difficult Airway Society guidelines for awake tracheal intubation (ATI) in adults. <em>Anaesthesia</em> 2020;75:509–28.</li>
+        <li>Frerk C, Mitchell VS, McNarry AF et al. Difficult Airway Society 2015 guidelines for management of unanticipated difficult intubation in adults. <em>Br J Anaesth</em> 2015;115:827–48.</li>
+        <li>Apfelbaum JL, Hagberg CA, Connis RT et al. 2022 American Society of Anesthesiologists practice guidelines for management of the difficult airway. <em>Anesthesiology</em> 2022;136:31–81.</li>
+        <li>Popat M, Mitchell V, Dravid R et al. Difficult Airway Society guidelines for the management of tracheal extubation. <em>Anaesthesia</em> 2012;67:318–40.</li>
+        <li>Iliff HA, El-Boghdadly K, Ahmad I et al. Management of haematoma after thyroid surgery: systematic review and multidisciplinary consensus guidelines from the Difficult Airway Society, the British Association of Endocrine and Thyroid Surgeons and the British Association of Otorhinolaryngology, Head and Neck Surgery. <em>Anaesthesia</em> 2022;77:82–95.</li>
+        <li>Orloff LA, Wiseman SM, Bernet VJ et al. American Thyroid Association statement on postoperative hypoparathyroidism: diagnosis, prevention, and management in adults. <em>Thyroid</em> 2018;28:830–41.</li>
+        <li>Ferrell JK, Shindo ML, Stack JBC et al. Perioperative pain management and opioid reduction in head and neck endocrine surgery: an American Head and Neck Society Endocrine Surgery Section consensus statement. <em>Head Neck</em> 2021;43:2281–94.</li>
+        <li>Akamizu T, Satoh T, Isozaki O et al. Diagnostic criteria, clinical features, and incidence of thyroid storm based on nationwide surveys. <em>Thyroid</em> 2012;22:661–79.</li>
+        <li>Burch HB, Wartofsky L. Life-threatening thyrotoxicosis: thyroid storm. <em>Endocrinol Metab Clin North Am</em> 1993;22:263–77.</li>
+        <li>Satoh T, Isozaki O, Suzuki A et al. 2016 Guidelines for the management of thyroid storm from the Japan Thyroid Association and Japan Endocrine Society (first edition). <em>Endocr J</em> 2016;63:1025–64.</li>
+        <li>Ross DS, Burch HB, Cooper DS et al. 2016 American Thyroid Association guidelines for diagnosis and management of hyperthyroidism and other causes of thyrotoxicosis. <em>Thyroid</em> 2016;26:1343–421.</li>
+        <li>Wilhelm SM, Wang TS, Ruan DT et al. The American Association of Endocrine Surgeons guidelines for definitive management of primary hyperparathyroidism. <em>JAMA Surg</em> 2016;151:959–68.</li>
+        <li>Talutis SD, Drake FT, Sachs T, Rao SR, McAneny D. Evacuation of postoperative hematomas after thyroid and parathyroid surgery: an analysis of the CESQIP database. <em>Surgery</em> 2019;165:250–6.</li>
+        <li>Doran HE, Wiseman SM, Palazzo FF, Chadwick D, Aspinall S. Post-thyroidectomy bleeding: analysis of risk factors from a national registry. <em>Br J Surg</em> 2021;108:851–7.</li>
+      </ol>
+
+      <div class="disclaimer">
+        <strong>Disclaimer.</strong> This quick reference is a condensed educational summary derived from the two source articles listed above. Drug doses are as published in those sources and must be checked against local formularies, current guidelines and the individual clinical scenario before use. It is intended for trained anaesthetists and intensivists and does not replace clinical judgement, local protocols or senior consultation.
+      </div>
+
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <p>Compiled from: <em>Anaesthesia for thyroid and parathyroid surgery</em> (BJA Education) and <em>Thyroid storm</em> (ATOTW 496, WFSA, 2023).</p>
+  <p>Search, collapsible sections and text-size controls work fully offline — no external resources are loaded.</p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content   = document.getElementById('content');
+  var searchBox = document.getElementById('search');
+  var counter   = document.getElementById('count');
+  var prevBtn   = document.getElementById('prevBtn');
+  var nextBtn   = document.getElementById('nextBtn');
+  var clearBtn  = document.getElementById('clearSearch');
+
+  var marks = [];
+  var idx   = -1;
+  var term  = "";
+
+  /* ---------------- highlight helpers ---------------- */
+  function clearMarks() {
+    var nodes = content.querySelectorAll('mark.hl');
+    for (var i = 0; i < nodes.length; i++) {
+      var m = nodes[i];
+      var t = document.createTextNode(m.textContent);
+      if (m.parentNode) m.parentNode.replaceChild(t, m);
+    }
+    content.normalize();
+    marks = [];
+    idx = -1;
+  }
+
+  function collectTextNodes() {
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var tag = node.parentNode && node.parentNode.nodeName;
+          if (tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      },
+      false
+    );
+    var out = [];
+    while (walker.nextNode()) out.push(walker.currentNode);
+    return out;
+  }
+
+  function runSearch(query) {
+    clearMarks();
+    term = (query || '').trim();
+
+    if (term.length < 2) {
+      counter.textContent = term.length ? 'min 2 chars' : '';
+      return;
+    }
+
+    var needle = term.toLowerCase();
+    var nodes  = collectTextNodes();
+
+    for (var n = 0; n < nodes.length; n++) {
+      var node = nodes[n];
+      var text = node.nodeValue;
+      var hay  = text.toLowerCase();
+      var pos  = hay.indexOf(needle);
+      if (pos === -1) continue;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (pos !== -1) {
+        if (pos > last) frag.appendChild(document.createTextNode(text.slice(last, pos)));
+
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(pos, pos + term.length);
+        frag.appendChild(mark);
+        marks.push(mark);
+
+        last = pos + term.length;
+        pos = hay.indexOf(needle, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+
+      if (node.parentNode) node.parentNode.replaceChild(frag, node);
+    }
+
+    if (marks.length === 0) {
+      counter.textContent = '0 results';
+      return;
+    }
+    counter.textContent = '1 / ' + marks.length;
+    goTo(0);
+  }
+
+  function goTo(i) {
+    if (!marks.length) return;
+
+    if (idx >= 0 && marks[idx]) marks[idx].classList.remove('active');
+
+    idx = (i + marks.length) % marks.length;
+    var m = marks[idx];
+
+    /* open any collapsed <details> ancestors so the match is visible */
+    var el = m.parentNode;
+    while (el && el !== document.body) {
+      if (el.tagName === 'DETAILS') el.open = true;
+      el = el.parentNode;
+    }
+
+    m.classList.add('active');
+    m.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    counter.textContent = (idx + 1) + ' / ' + marks.length;
+  }
+
+  /* ---------------- search events ---------------- */
+  var debounce;
+  searchBox.addEventListener('input', function () {
+    clearTimeout(debounce);
+    var val = searchBox.value;
+    debounce = setTimeout(function () { runSearch(val); }, 240);
+  });
+
+  searchBox.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!marks.length) { runSearch(searchBox.value); return; }
+      goTo(e.shiftKey ? idx - 1 : idx + 1);
+    } else if (e.key === 'Escape') {
+      searchBox.value = '';
+      clearMarks();
+      counter.textContent = '';
+      searchBox.blur();
+    }
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (!marks.length) { runSearch(searchBox.value); return; }
+    goTo(idx + 1);
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (!marks.length) { runSearch(searchBox.value); return; }
+    goTo(idx - 1);
+  });
+
+  clearBtn.addEventListener('click', function () {
+    searchBox.value = '';
+    clearMarks();
+    counter.textContent = '';
+    searchBox.focus();
+  });
+
+  /* ---------------- expand / collapse all ---------------- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    var d = content.querySelectorAll('details');
+    for (var i = 0; i < d.length; i++) d[i].open = true;
+  });
+
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    var d = content.querySelectorAll('details');
+    for (var i = 0; i < d.length; i++) d[i].open = false;
+  });
+
+  /* ---------------- text size ---------------- */
+  var size = 16;
+  var MIN = 13, MAX = 22;
+
+  function applySize(s) {
+    size = Math.max(MIN, Math.min(MAX, s));
+    document.documentElement.style.setProperty('--fs', size + 'px');
+  }
+
+  document.getElementById('fsPlus').addEventListener('click', function () { applySize(size + 1); });
+  document.getElementById('fsMinus').addEventListener('click', function () { applySize(size - 1); });
+  document.getElementById('fsReset').addEventListener('click', function () { applySize(16); });
+
+  /* ---------------- table of contents ---------------- */
+  var tocLinks = document.querySelectorAll('.toc a');
+  for (var i = 0; i < tocLinks.length; i++) {
+    tocLinks[i].addEventListener('click', function (e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      if (target.tagName === 'DETAILS') target.open = true;
+      target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
