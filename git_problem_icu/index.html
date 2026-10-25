@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GI Dysfunction in the Critically Ill — Quick Reference</title>
+<style>
+  :root{
+    --bg:#fffbf2;
+    --panel:#ffffff;
+    --ink:#2a2118;
+    --muted:#6b5a45;
+    --brand:#b45309;
+    --brand-2:#d97706;
+    --accent:#f59e0b;
+    --soft:#fef3c7;
+    --soft-2:#ffedd5;
+    --line:#f0d9b5;
+    --hl:#fde68a;
+    --hl-cur:#fb923c;
+  }
+  *{box-sizing:border-box;}
+  html{font-size:16px;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.55;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- HEADER / TOOLBAR ---------- */
+  header{
+    position:sticky;top:0;z-index:200;
+    background:linear-gradient(135deg,#fcd34d,#f59e0b);
+    border-bottom:3px solid var(--brand);
+    box-shadow:0 2px 12px rgba(120,53,15,.28);
+    padding:.55rem .8rem .65rem;
+  }
+  .title-row{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem .9rem;
+    margin-bottom:.5rem;
+  }
+  header h1{
+    font-size:1.12rem;margin:0;color:#4a2603;letter-spacing:.2px;
+  }
+  header .sub{font-size:.78rem;color:#7c2d12;font-weight:600;}
+  .toolbar{
+    display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;
+  }
+  .btn{
+    background:#fffdf5;color:#7c2d12;
+    border:1px solid var(--brand);
+    border-radius:8px;padding:.32rem .58rem;
+    font-size:.82rem;font-weight:700;cursor:pointer;
+    line-height:1.2;
+    transition:background .15s,transform .05s;
+  }
+  .btn:hover{background:var(--soft-2);}
+  .btn:active{transform:translateY(1px);}
+  .btn:focus-visible{outline:2px solid #7c2d12;outline-offset:1px;}
+  .divider{width:1px;height:22px;background:rgba(124,45,18,.35);margin:0 .15rem;}
+  .searchbox{
+    display:flex;align-items:center;gap:.32rem;
+    background:#fffdf5;border:1px solid var(--brand);
+    border-radius:9px;padding:.15rem .3rem .15rem .5rem;
+    flex:1 1 260px;min-width:230px;
+  }
+  .searchbox input{
+    flex:1 1 auto;min-width:90px;border:none;background:transparent;
+    font-size:.86rem;color:var(--ink);padding:.25rem 0;outline:none;
+    font-family:inherit;
+  }
+  .searchbox input::placeholder{color:#a08a6d;}
+  #searchStatus{
+    font-size:.76rem;font-weight:700;color:#7c2d12;
+    min-width:58px;text-align:center;white-space:nowrap;
+  }
+  .searchbox .btn{padding:.22rem .42rem;font-size:.78rem;}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1060px;margin:0 auto;padding:1rem .8rem 4rem;}
+
+  /* ---------- COLLAPSIBLE SECTIONS ---------- */
+  details.sec{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:5px solid var(--brand-2);
+    border-radius:10px;
+    margin:0 0 .85rem;
+    box-shadow:0 1px 3px rgba(120,53,15,.08);
+    overflow:hidden;
+  }
+  details.sec>summary{
+    cursor:pointer;list-style:none;
+    padding:.7rem .9rem;
+    font-weight:800;font-size:1.01rem;color:#7c2d12;
+    background:linear-gradient(90deg,var(--soft),var(--soft-2));
+    display:flex;align-items:center;gap:.55rem;
+    user-select:none;
+  }
+  details.sec>summary::-webkit-details-marker{display:none;}
+  details.sec>summary::before{
+    content:"▸";display:inline-block;font-size:.85rem;color:var(--brand);
+    transition:transform .18s ease;
+  }
+  details.sec[open]>summary::before{transform:rotate(90deg);}
+  details.sec>summary:hover{background:linear-gradient(90deg,#fde68a,#fed7aa);}
+  details.sec>summary:focus-visible{outline:2px solid var(--brand);outline-offset:-2px;}
+  .sec-body{padding:.85rem 1rem 1.1rem;border-top:1px solid var(--line);}
+
+  h3{
+    font-size:.95rem;margin:1.05rem 0 .35rem;color:#8a3d05;
+    text-transform:uppercase;letter-spacing:.4px;
+  }
+  h3:first-child{margin-top:.15rem;}
+  p{margin:.45rem 0;}
+  ul,ol{margin:.4rem 0 .6rem;padding-left:1.25rem;}
+  li{margin:.22rem 0;}
+  strong{color:#5b2c02;}
+  em{color:#6b5a45;}
+
+  /* ---------- CALLOUTS ---------- */
+  .callout{
+    border-left:4px solid var(--brand-2);
+    background:#fffbeb;
+    padding:.55rem .8rem;border-radius:0 8px 8px 0;
+    margin:.65rem 0;font-size:.93rem;
+  }
+  .callout.warn{border-left-color:#b91c1c;background:#fef2f2;}
+  .callout.key{border-left-color:#15803d;background:#f0fdf4;}
+  .callout .tag{
+    display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.6px;
+    text-transform:uppercase;color:#7c2d12;margin-right:.4rem;
+  }
+  .callout.warn .tag{color:#b91c1c;}
+  .callout.key .tag{color:#15803d;}
+
+  /* ---------- TABLES ---------- */
+  .table-wrap{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);border-radius:9px;
+    margin:.7rem 0;
+    background:#fffdf8;
+  }
+  table{border-collapse:collapse;width:100%;min-width:540px;font-size:.9rem;}
+  caption{
+    caption-side:top;text-align:left;font-weight:800;font-size:.85rem;
+    color:#7c2d12;padding:.5rem .6rem .3rem;background:var(--soft);
+  }
+  th{
+    background:#fde68a;color:#5b2c02;text-align:left;
+    padding:.5rem .6rem;border-bottom:2px solid #f0b429;
+    font-size:.83rem;text-transform:uppercase;letter-spacing:.3px;
+  }
+  td{padding:.5rem .6rem;border-bottom:1px solid var(--line);vertical-align:top;}
+  tbody tr:nth-child(even){background:#fffaf0;}
+  tbody tr:hover{background:var(--soft-2);}
+  tbody tr:last-child td{border-bottom:none;}
+
+  /* ---------- DIAGRAMS ---------- */
+  .fig{
+    border:1px dashed var(--brand-2);border-radius:10px;
+    background:#fffdf8;padding:.8rem;margin:.8rem 0;
+  }
+  .fig-title{
+    font-weight:800;font-size:.85rem;color:#7c2d12;margin-bottom:.6rem;
+    text-transform:uppercase;letter-spacing:.5px;
+  }
+  .fig-note{font-size:.78rem;color:var(--muted);margin-top:.55rem;font-style:italic;}
+
+  .flow{
+    display:grid;
+    grid-template-columns:1fr auto 1fr auto 1fr;
+    gap:.45rem;align-items:start;
+  }
+  .flow-col{display:flex;flex-direction:column;gap:.3rem;}
+  .flow-head{
+    font-size:.72rem;font-weight:800;text-transform:uppercase;
+    letter-spacing:.5px;color:#fff;background:var(--brand-2);
+    padding:.28rem .45rem;border-radius:6px;text-align:center;
+  }
+  .flow-head.dark{background:#9a3412;}
+  .flow-head.red{background:#b91c1c;}
+  .chip{
+    font-size:.78rem;background:var(--soft);border:1px solid #f0c987;
+    border-radius:6px;padding:.28rem .45rem;color:#4a2603;
+  }
+  .chip.hi{background:#fed7aa;border-color:#f0a868;}
+  .arrow{
+    align-self:center;color:var(--brand);font-size:1.25rem;font-weight:900;
+    padding-top:.4rem;
+  }
+  .outcome-bar{
+    margin-top:.6rem;background:#7c2d12;color:#fff;font-weight:800;
+    text-align:center;border-radius:8px;padding:.45rem;font-size:.85rem;
+    letter-spacing:.4px;
+  }
+  @media(max-width:820px){
+    .flow{grid-template-columns:1fr;}
+    .arrow{transform:rotate(90deg);justify-self:center;padding:0;}
+  }
+
+  .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;}
+  @media(max-width:820px){.timeline{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.timeline{grid-template-columns:1fr;}}
+  .tl-step{
+    background:var(--soft);border:1px solid #f0c987;border-radius:8px;
+    padding:.5rem .55rem;font-size:.8rem;
+  }
+  .tl-step .tl-time{
+    display:block;font-weight:800;color:#fff;background:var(--brand-2);
+    border-radius:5px;padding:.15rem .4rem;margin:-.5rem -.55rem .4rem;
+    font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;
+    text-align:center;border-radius:8px 8px 0 0;
+  }
+
+  .steps{counter-reset:st;display:flex;flex-direction:column;gap:.35rem;}
+  .step{
+    counter-increment:st;position:relative;padding:.4rem .5rem .4rem 2.1rem;
+    background:var(--soft);border:1px solid #f0c987;border-radius:8px;font-size:.83rem;
+  }
+  .step::before{
+    content:counter(st);position:absolute;left:.45rem;top:.35rem;
+    width:1.25rem;height:1.25rem;border-radius:50%;
+    background:var(--brand-2);color:#fff;font-weight:800;font-size:.75rem;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ---------- SEARCH HIGHLIGHT ---------- */
+  mark.hl{
+    background:var(--hl);color:#3b1d00;
+    padding:0 1px;border-radius:2px;
+  }
+  mark.hl.current{
+    background:var(--hl-cur);color:#fff;
+    outline:2px solid #7c2d12;outline-offset:1px;
+  }
+
+  /* ---------- REFERENCES ---------- */
+  .refs{font-size:.85rem;}
+  .refs li{margin-bottom:.5rem;}
+  .refs a{color:#9a3412;word-break:break-word;}
+
+  .pill{
+    display:inline-block;font-size:.7rem;font-weight:800;
+    background:var(--soft-2);color:#7c2d12;border:1px solid #f0c987;
+    border-radius:999px;padding:.05rem .45rem;margin-left:.3rem;
+    vertical-align:middle;letter-spacing:.3px;
+  }
+
+  footer{
+    max-width:1060px;margin:0 auto;padding:0 .8rem 3rem;
+    font-size:.78rem;color:var(--muted);text-align:center;
+  }
+  @media print{
+    header{position:static;}
+    details.sec{break-inside:avoid;}
+    .toolbar{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-row">
+    <h1>GI Dysfunction in the Critically Ill — Quick Reference</h1>
+    <span class="sub">Anaesthesia &amp; Intensive Care · ESICM MEN Section + Curr Opin Crit Care</span>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn" id="expandAll" type="button">⊞ Expand all</button>
+    <button class="btn" id="collapseAll" type="button">⊟ Collapse all</button>
+    <span class="divider"></span>
+    <button class="btn" id="fsDown" type="button" title="Decrease text size">A−</button>
+    <button class="btn" id="fsUp" type="button" title="Increase text size">A+</button>
+    <span class="divider"></span>
+    <div class="searchbox">
+      <input id="searchInput" type="search" placeholder="Search this reference…" autocomplete="off" aria-label="Search">
+      <button class="btn" id="prevBtn" type="button" title="Previous match (Shift+Enter)">◀</button>
+      <span id="searchStatus" aria-live="polite"></span>
+      <button class="btn" id="nextBtn" type="button" title="Next match (Enter)">▶</button>
+      <button class="btn" id="clearBtn" type="button" title="Clear search">✕</button>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+
+<!-- ============ 1. DEFINITIONS ============ -->
+<details class="sec" open>
+  <summary>1 · Definitions, scoring &amp; why it matters</summary>
+  <div class="sec-body">
+
+    <p><strong>Gastrointestinal (GI) dysfunction</strong> = functional impairment of the GI tract, which may include disturbed motility and/or absorption, breaches in mucosal integrity, changes in the microbiome, raised intra-abdominal pressure (IAP), impaired mesenteric perfusion, and infections of the GI tract.</p>
+
+    <div class="callout key">
+      <span class="tag">Why it matters</span>
+      GI dysfunction is <strong>frequent</strong> in the critically ill, is associated with <strong>worse clinical outcomes</strong>, may aggravate multi-organ failure, and can deteriorate into life-threatening emergencies (bowel ischaemia, Ogilvie's syndrome, perforation, massive GI bleeding, abdominal compartment syndrome).
+    </div>
+
+    <h3>GI symptoms used in assessment</h3>
+    <ul>
+      <li><strong>Core symptoms:</strong> vomiting/regurgitation, abdominal distension, GI bleeding, diarrhoea, lower GI paralysis.</li>
+      <li><strong>Expanded (if assessable):</strong> nausea, abdominal pain, absent bowel sounds, large gastric residual volume (GRV &gt;500 mL/6 h), radiological bowel dilatation, bowel wall thickening / bowel oedema.</li>
+    </ul>
+    <div class="callout warn">
+      <span class="tag">Key limitation</span>
+      There is <strong>no gold standard</strong> for monitoring GI function, <strong>no validated scoring system</strong>, and <strong>no validated biomarker</strong> for clinical use. No single symptom correlates with mortality — but an <strong>increasing number</strong> of concurrent GI symptoms does.
+    </div>
+
+    <h3>Scoring concepts</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>Two generations of GI scoring</caption>
+        <thead>
+          <tr><th>Tool</th><th>Structure</th><th>Status / notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AGI</strong><br>Acute Gastrointestinal Injury</td>
+            <td>Grades I (low risk) → IV (life-threatening)</td>
+            <td>ESICM 2012 terminology; improved communication, but has now been <strong>replaced by GIDS</strong>.</td>
+          </tr>
+          <tr>
+            <td><strong>GIDS</strong><br>Gastrointestinal Dysfunction Score</td>
+            <td>Built on the SOFA model; <strong>0 (no risk) → 4 (life-threatening)</strong></td>
+            <td>Developed in a large prospective multicentre observational study (ISOFAS, n = 540). Now the preferred construct. Still <strong>no reliable, reproducible biomarker</strong> linked to it.</td>
+          </tr>
+          <tr>
+            <td><strong>NRS-2002</strong></td>
+            <td>Nutrition Risk Screening, scored within 48 h of admission</td>
+            <td><strong>≥5 points = increased mortality.</strong> First step whenever addressing nutrition therapy.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Feeding intolerance — the definition problem</h3>
+    <p>Diagnosed on <strong>at least twice-daily clinical examination</strong>, based on: repeated or profuse vomiting, regurgitation, abdominal distension, absent/abnormal bowel sounds, abdominal pain, absence/presence of stool, flow from any stoma, severe diarrhoea, raised IAP, and/or GI bleeding.</p>
+    <div class="callout">
+      <span class="tag">Consensus needed</span>
+      The <strong>large variety of definitions</strong> of feeding intolerance confuses interpretation across studies. A consensus definition is a priority to determine clinical importance and refine management. These easily available variables are often <em>not</em> recorded on the chart — and therefore go unrecognised.
+    </div>
+
+    <h3>Burden of disease — quick numbers</h3>
+    <ul>
+      <li>Constipation incidence <strong>5–83%</strong> (more frequent than diarrhoea, but less often diagnosed).</li>
+      <li>Diarrhoea prevalence <strong>2–68%</strong>.</li>
+      <li>Antibiotics prescribed in <strong>&gt;70%</strong> of ICU patients — the leading cause of diarrhoea.</li>
+      <li>Mortality from antibiotic-associated diarrhoea (including <em>C. difficile</em>) <strong>10–56%</strong>.</li>
+      <li>GI tract consumes <strong>30–40% of basal energy expenditure</strong> → highly vulnerable during haemodynamic shock.</li>
+      <li>GI failure is <strong>not represented in SOFA</strong> — only the liver stands in for the whole GI tract.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 2. VISUAL SUMMARIES ============ -->
+<details class="sec">
+  <summary>2 · Visual summaries (simplified diagrams)</summary>
+  <div class="sec-body">
+
+    <div class="fig">
+      <div class="fig-title">Figure A — From mechanism to life-threatening condition</div>
+      <div class="flow">
+        <div class="flow-col">
+          <div class="flow-head">Underlying mechanisms</div>
+          <div class="chip">Impaired absorption</div>
+          <div class="chip">Altered bile acid homeostasis</div>
+          <div class="chip">Impaired GI motility</div>
+          <div class="chip">Altered enterohormone responses</div>
+          <div class="chip">↑ Intra-abdominal pressure</div>
+          <div class="chip">Changes in microbiome</div>
+          <div class="chip">Impaired mesenteric perfusion</div>
+          <div class="chip">Breaches in mucosal integrity</div>
+          <div class="chip">Impaired local immune responses</div>
+        </div>
+        <div class="arrow">➜</div>
+        <div class="flow-col">
+          <div class="flow-head">Clinical effects</div>
+          <div class="chip hi">Malnutrition · Cholestasis</div>
+          <div class="chip hi">Gastroparesis · Lower GI paralysis · Feeding intolerance</div>
+          <div class="chip hi">GI ulceration / bleeding</div>
+          <div class="chip hi">Bacterial translocation / positive blood cultures for gut-derived organisms</div>
+          <div class="chip hi">GI infection</div>
+          <div class="chip hi">Lactic acidosis</div>
+          <div class="chip hi">Bowel oedema</div>
+          <div class="chip hi">Remote organ dysfunction</div>
+        </div>
+        <div class="arrow">➜</div>
+        <div class="flow-col">
+          <div class="flow-head red">Life-threatening</div>
+          <div class="chip hi">Ogilvie's syndrome</div>
+          <div class="chip hi">GI tract perforation</div>
+          <div class="chip hi">Massive GI bleeding</div>
+          <div class="chip hi">Sepsis</div>
+          <div class="chip hi">Abdominal compartment syndrome</div>
+          <div class="chip hi">Non-occlusive bowel ischaemia</div>
+        </div>
+      </div>
+      <div class="outcome-bar">↓ CLINICAL OUTCOMES</div>
+      <div class="fig-note">Relationships are not linear — mechanisms occur in parallel, can be both cause and consequence of critical illness, and aggravate each other.</div>
+    </div>
+
+    <div class="fig">
+      <div class="fig-title">Figure B — Feeding strategy: progressive EN with an exit to supplemental PN</div>
+      <div class="timeline">
+        <div class="tl-step">
+          <span class="tl-time">0–24 h</span>
+          Risk screen (NRS-2002) · start <strong>low-dose / trophic EN</strong> if unable to eat · IV thiamine 100–200 mg/day.
+        </div>
+        <div class="tl-step">
+          <span class="tl-time">24–48 h</span>
+          <strong>Progressive EN</strong> increase · monitor tolerance: GRV, IAP, symptoms, stool, stoma output.
+        </div>
+        <div class="tl-step">
+          <span class="tl-time">48–72 h</span>
+          <strong>Reassess delivery vs target</strong> · if GI dysfunction limits EN → <strong>supplemental PN</strong>.
+        </div>
+        <div class="tl-step">
+          <span class="tl-time">Ongoing</span>
+          Indirect calorimetry if available · avoid both <strong>underfeeding</strong> and <strong>overfeeding</strong> · re-trial EN regularly.
+        </div>
+      </div>
+      <div class="fig-note">Caution: in shock, early <em>full</em> EN within 24 h increased non-occlusive bowel ischaemia and colonic pseudo-obstruction (NUTRIREA-2).</div>
+    </div>
+
+    <div class="fig">
+      <div class="fig-title">Figure C — Intra-abdominal hypertension while feeding: a worked pattern</div>
+      <div class="steps">
+        <div class="step">Post major vascular surgery, patient receives EN at <strong>35 mL/h</strong>.</div>
+        <div class="step">IAP climbs to <strong>23 mmHg</strong> → EN <strong>stopped for 2 h</strong>.</div>
+        <div class="step">EN restarted at <strong>10 mL/h ("trickle")</strong>; <strong>PN started</strong> to cover requirements; fluid balance actively negotiated.</div>
+        <div class="step">IAP stabilises at <strong>17 mmHg</strong>; feeding continues.</div>
+      </div>
+      <div class="fig-note">A modest IAP rise should not automatically stop EN. Values approaching <strong>20 mmHg</strong> are a warning against starting or advancing EN.</div>
+    </div>
+
+  </div>
+</details>
+
+<!-- ============ 3. MONITORING ============ -->
+<details class="sec">
+  <summary>3 · Monitoring GI function at the bedside</summary>
+  <div class="sec-body">
+
+    <p>Current techniques are limited. <strong>Clinical assessment</strong>, often combined with GRV, is widely used but gives an imprecise picture of global GI function.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Monitoring modalities — what they give and what limits them</caption>
+        <thead>
+          <tr><th>Modality</th><th>What it can show</th><th>Limitations / caveats</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Clinical assessment</strong><br>(symptoms + GRV)</td>
+            <td>Number of GI symptoms is associated with increased mortality.</td>
+            <td>No gold standard; single symptoms do not correlate with mortality; symptoms not clearly correlated with objective measures of GI function. GRV-based feeding strategy did <strong>not</strong> reduce VAP.</td>
+          </tr>
+          <tr>
+            <td><strong>GI bleeding</strong> as a marker</td>
+            <td>Used in some multi-organ failure scores.</td>
+            <td>Numerous specific causes and therapeutic modalities — <strong>not necessarily</strong> related to gut dysfunction.</td>
+          </tr>
+          <tr>
+            <td><strong>Delayed gastric emptying / ↑GRV</strong></td>
+            <td>Surrogate for gastroparesis.</td>
+            <td>Can occur <strong>without</strong> intestinal dysfunction. High residuals predict vomiting risk at EN initiation and in symptomatic patients.</td>
+          </tr>
+          <tr>
+            <td><strong>Ultrasound</strong></td>
+            <td>Gastric emptying (antral diameter correlates with GRV and CT-based volumes), bowel peristalsis, bowel diameter, wall thickness, tissue perfusion (Doppler); helps feeding-tube placement.</td>
+            <td><strong>Promising but unvalidated</strong> for bedside monitoring; needs a protocolised approach and operator reproducibility. Air in the GI tract degrades quality.</td>
+          </tr>
+          <tr>
+            <td><strong>Biomarkers</strong></td>
+            <td>Lactate; <strong>citrulline</strong> (enterocyte mass — levels &lt;10 µmol/L associated with increased mortality); I-FABP; paracetamol/glucose absorption tests.</td>
+            <td>None validated for clinical use. Confounded by sampling timing, surgical damage, coexisting organ dysfunction (esp. renal), prior gut surgery/length of intact bowel, assay precision and thresholds. Most studies target mesenteric ischaemia or organ dysfunction, not GI function per se.</td>
+          </tr>
+          <tr>
+            <td><strong>Absorption of nutrients</strong></td>
+            <td>Isotope-labelled or nutrient-analogue tracers (e.g. 3-O-methyl-glucose, <sup>13</sup>C-glucose); whole-body balance studies; faecal bomb calorimetry.</td>
+            <td>No routine clinical method. Absorption is <strong>markedly attenuated</strong> in critical illness. Results differ depending on intragastric vs intraduodenal administration (gastric emptying delay distorts). Bomb calorimetry needs stool passage — infrequent in ICU.</td>
+          </tr>
+          <tr>
+            <td><strong>Barrier function</strong></td>
+            <td>Electron microscopy; double/triple sugar absorption tests; bacterial 16S rDNA RT-PCR; endotoxin assays.</td>
+            <td>No valid routine method. Biopsy is invasive and a snapshot. Sugar tests confounded by dysmotility, renal/hepatic impairment and antibiotics. Endotoxin/antibody assays are <strong>neither gut- nor species-specific</strong>. No single biomarker can summarise the system.</td>
+          </tr>
+          <tr>
+            <td><strong>Intra-abdominal pressure (IAP)</strong></td>
+            <td>Easily measured at the bedside (bladder technique: instill 50 mL saline via urinary catheter); numeric index of the abdominal compartment.</td>
+            <td>Association with GI function <strong>unclear</strong>. IAH without GI symptoms was not associated with mortality in ventilated patients. Grossly elevated or rising IAP may require reducing or stopping EN.</td>
+          </tr>
+          <tr>
+            <td><strong>Diarrhoea</strong></td>
+            <td>Suggested marker of malabsorption and of feeding intolerance.</td>
+            <td>Existing evidence is scarce. Can signal <strong>non-occlusive mesenteric ischaemia (NOMI)</strong>, particularly with early full EN during acute circulatory failure.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <span class="tag">Practical core set</span>
+      Until consensus exists, track daily: <strong>vomiting/regurgitation, distension, bowel sounds, stool/stoma output, GRV, IAP, abdominal pain, GI bleeding, and actual EN delivered vs prescribed</strong>. Position matters — a bed angle &lt;30° is associated with increased gastric aspirates.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 4. OUTCOME ============ -->
+<details class="sec">
+  <summary>4 · GI dysfunction and outcome</summary>
+  <div class="sec-body">
+    <ul>
+      <li>GI dysfunction is associated with <strong>adverse outcome</strong> — but reported outcomes and their definitions are <strong>very variable</strong> across studies.</li>
+      <li>An <strong>increasing number of concurrent GI symptoms</strong> is associated with increasing mortality; no single symptom in isolation.</li>
+      <li>Indirect evidence supports a role for GI dysfunction in the development and perpetuation of <strong>MODS</strong>, through associations between severity of GI dysfunction and organ failures.</li>
+      <li>Agreement on a minimum collection of essential outcomes — a <strong>core outcome set (COS)</strong> — is needed for the field.</li>
+      <li>Open questions: what is the <strong>natural course</strong> of GI dysfunction in ICU survivors? What distinguishes <strong>primary vs secondary</strong> GI injury?</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 5. MANAGEMENT ============ -->
+<details class="sec">
+  <summary>5 · Management of GI dysfunction</summary>
+  <div class="sec-body">
+
+    <p>Management mainly relies on <strong>treating the underlying cause</strong>. Specific therapeutic options exist but have substantial limitations.</p>
+
+    <h3>5.1 Prokinetics</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>Prokinetic agents at a glance</caption>
+        <thead>
+          <tr><th>Agent</th><th>Typical role / dose</th><th>Evidence &amp; caveats</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Metoclopramide</strong></td>
+            <td>First-line; ~10 mg IV q6–8h</td>
+            <td>Widely used despite relatively low efficacy. D<sub>2</sub> antagonist with prokinetic (5-HT<sub>4</sub>) activity. Extrapyramidal and QT effects.</td>
+          </tr>
+          <tr>
+            <td><strong>Erythromycin</strong></td>
+            <td>Motilin-receptor agonist; 100 mg × 3/day vs 200–250 mg — <strong>optimal dose and duration uncertain</strong></td>
+            <td>Accelerates gastric emptying and <strong>may be superior to metoclopramide</strong>. In one meta-analysis it was the <strong>only</strong> prokinetic to reduce feeding intolerance. Caveats: tachyphylaxis, arrhythmias, antibiotic resistance/ecological harm.</td>
+          </tr>
+          <tr>
+            <td><strong>Metoclopramide + erythromycin</strong></td>
+            <td>Combination, usually ~48 h</td>
+            <td>Synergistic; effect is <strong>sustained longer</strong> than either drug alone. Same toxicity caveats.</td>
+          </tr>
+          <tr>
+            <td><strong>Domperidone</strong></td>
+            <td>Oral only</td>
+            <td>Limited use in ICU patients.</td>
+          </tr>
+          <tr>
+            <td><strong>Non-antibiotic motilin agonists</strong><br>(e.g. camicinal)</td>
+            <td>Investigational</td>
+            <td>Pre-emptive administration had a <strong>negligible effect</strong> on nutrition provision in a multicentre RCT.</td>
+          </tr>
+          <tr>
+            <td><strong>Neostigmine</strong></td>
+            <td>Acetylcholinesterase inhibitor; ~2–2.5 mg IV (or SC), often with an anticholinergic</td>
+            <td>Effective in <strong>colonic paralysis</strong> and used for <strong>acute colonic pseudo-obstruction (Ogilvie's)</strong>. Bradycardia and other cholinergic effects — monitor.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <span class="tag">Bottom line</span>
+      Prokinetics <strong>modestly reduce feeding intolerance</strong> (absolute risk reduction <strong>17.3%, 95% CI 5–26.8%</strong>) and facilitate post-pyloric tube placement — but have <strong>no effect</strong> on pneumonia, vomiting, diarrhoea, mortality, or length of stay.
+    </div>
+    <p><em>Uncertainties:</em> optimal erythromycin dose and duration, repeated courses, definition of lower GI intolerance/dysmotility, and true effect on morbidity and mortality.</p>
+
+    <h3>5.2 Laxatives &amp; bowel protocols</h3>
+    <ul>
+      <li>Possible benefit of <strong>prophylactic</strong> polyethylene glycol or lactulose on <strong>time to defaecation</strong> — but not on complications.</li>
+      <li>PEG is probably better than lactulose and may reduce the incidence of <strong>Ogilvie's syndrome</strong>.</li>
+      <li>In a phase II RCT in mechanically ventilated patients, <strong>daily laxative therapy from the start reduced SOFA score</strong>.</li>
+      <li>Demonstrated effect of formal "bowel protocols" overall remains limited.</li>
+      <li>Opioid-receptor antagonists and stool softeners have been proposed to prevent GI paralysis — evidence limited (opioid antagonists are a <strong>top-ranked research priority</strong>).</li>
+    </ul>
+
+    <h3>5.3 Post-pyloric feeding</h3>
+    <ul>
+      <li>Gastric route is preferred; guidelines include post-pyloric feeding for <strong>high aspiration risk</strong> or <strong>gastric feeding intolerance</strong>.</li>
+      <li>May <strong>reduce ventilator-associated pneumonia</strong>.</li>
+      <li>Most trials were small, in patients <em>without</em> feeding intolerance, and heterogeneous (duodenal and jejunal tubes pooled).</li>
+      <li>Open questions: exact indications; post-pyloric vs gastric + prokinetic on patient-centred outcomes; duodenal vs jejunal.</li>
+    </ul>
+
+    <h3>5.4 Systemic management</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>Systemic factors that worsen or improve GI function</caption>
+        <thead>
+          <tr><th>Factor</th><th>Effect</th><th>Action / evidence status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Intravenous fluid</strong></td>
+            <td>Excess fluid is associated with GI dysfunction.</td>
+            <td>A restrictive perioperative strategy showed <strong>no GI benefit</strong> and <strong>more renal complications</strong> in a large RCT. Insufficient evidence to restrict fluids purely to reduce GI dysfunction.</td>
+          </tr>
+          <tr>
+            <td><strong>Glucose</strong></td>
+            <td>Hyperglycaemia <strong>slows</strong> gastric emptying; hypoglycaemia <strong>accelerates</strong> it.</td>
+            <td>No specific threshold validated to improve GI function.</td>
+          </tr>
+          <tr>
+            <td><strong>Electrolytes</strong></td>
+            <td>Abnormalities suggested to interfere with bowel motility.</td>
+            <td>Insufficient data for specific targets (high-normal K⁺/Mg²⁺ is an open research question).</td>
+          </tr>
+          <tr>
+            <td><strong>Opioids &amp; α₂-agonists</strong></td>
+            <td>Both inhibit GI motility.</td>
+            <td>After colorectal surgery, <strong>early feeding + multimodal analgesia + morphine restriction</strong> speeds recovery of motility (ERAS).</td>
+          </tr>
+          <tr>
+            <td><strong>Intra-abdominal hypertension</strong></td>
+            <td>Attenuates splanchnic blood flow; exacerbates bowel oedema; risk factor for NOMI.</td>
+            <td>No intervention targeting IAH has been shown to improve GI function or outcomes. Effect on outcome depends on <strong>severity and dynamics</strong>. WSACS 3-step medical management: evacuate intraluminal contents and space-occupying lesions → improve abdominal wall compliance → optimise fluid administration and systemic/regional perfusion.</td>
+          </tr>
+          <tr>
+            <td><strong>Positioning</strong></td>
+            <td>Bed angle &lt;30° increases gastric aspirates.</td>
+            <td>Keep head of bed elevated where safe.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <span class="tag">Feeding &amp; IAP</span>
+      Do not stop EN for a modest IAP rise. Approaching <strong>20 mmHg</strong> is a warning against <strong>starting or advancing</strong> EN — consider trickle feeding and supplemental PN while treating the cause.
+    </div>
+  </div>
+</details>
+
+<!-- ============ 6. NUTRITION ============ -->
+<details class="sec">
+  <summary>6 · Nutrition therapy &amp; the gut</summary>
+  <div class="sec-body">
+
+    <h3>6.1 Screening &amp; route</h3>
+    <ul>
+      <li><strong>First step:</strong> assess nutritional status within <strong>48 h</strong> of admission with NRS-2002 (≥5 = higher mortality).</li>
+      <li>Enteral feeding tolerance and the gut's capacity to cover needs remain the <strong>de facto gold standard</strong> for monitoring GI function.</li>
+      <li><strong>Try the enteral route first</strong> for non-nutritional benefits: supports mucosal health (improves blood flow, releases trophic agents such as cholecystokinin and bile salts), stimulates GALT/MALT, feeds the microbiota, and is cheaper than PN.</li>
+      <li>With similar energy targets and rapid progression, large RCTs show <strong>equipoise between EN and PN</strong> — even in septic shock (NUTRIREA-2, CALORIES). <em>Route matters little; preventing acquired malnutrition matters a lot.</em></li>
+      <li>GI dysfunction patients are typical candidates for <strong>supplemental PN</strong> to avoid an escalating energy/protein deficit.</li>
+    </ul>
+
+    <h3>6.2 Timing — what we know</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>Feeding timing and the gut</caption>
+        <thead>
+          <tr><th>Strategy</th><th>Effect on the gut</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Prolonged fasting (7 vs 3 days)</td><td>Attenuates nutrient absorption once EN is eventually given.</td></tr>
+          <tr><td>Early EN</td><td>May preserve GI immunity and attenuate pro-inflammatory change and bacterial overgrowth.</td></tr>
+          <tr><td>Prolonged starvation</td><td>Promotes pro-inflammatory changes and bacterial overgrowth.</td></tr>
+          <tr><td><strong>Early full EN within 24 h in shock</strong></td><td><strong>Harmful</strong> — increased non-occlusive bowel ischaemia and colonic pseudo-obstruction (NUTRIREA-2).</td></tr>
+          <tr><td>Guideline standard</td><td><strong>Low-dose early EN (&lt;48 h)</strong> in patients unable to maintain oral intake.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <span class="tag">Open question</span>
+      Should intolerance of EN be accepted as a <strong>protective adaptive response</strong> to critical illness, or treated to increase nutrient delivery? The quantity of nutrients actually absorbed during EN in critical illness is uncertain.
+    </div>
+
+    <h3>6.3 Fibre</h3>
+    <ul>
+      <li>Recommended intake <strong>15–30 g/day</strong> — should be part of any enteral feeding solution.</li>
+      <li><strong>Soluble fibre</strong> (guar gum, partially hydrolysed guar gum) supplies short-chain fatty acids to the mucosa, promotes electrolyte and water reabsorption in the colon, limits pathogen growth, and normalises transit time.</li>
+      <li><strong>Insoluble fibre</strong> increases bulk and improves transit, reducing laxative need.</li>
+      <li><strong>Fibre-free EN reduces the number and diversity of micro-organisms</strong> — clearly a bad option. Fibre-containing solutions are safe in the critically ill.</li>
+    </ul>
+
+    <h3>6.4 Micronutrients</h3>
+    <ul>
+      <li>Absorption is compromised in GI dysfunction → enteral micronutrient bioavailability is <strong>uncertain</strong>, especially early in acute disease.</li>
+      <li><strong>Rational strategy:</strong> IV combination of moderate-dose micronutrients <strong>plus thiamine 100–200 mg/day</strong>.</li>
+      <li>Most frequent deficiencies: <strong>zinc, vitamin B12, vitamin D</strong>. In chronic intestinal disorders also check B7, A, E, K, copper and iron with blood levels.</li>
+      <li>After surgical bypass of the duodenum (bariatric or other), <strong>vitamin B12 may need lifelong therapeutic administration</strong>.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 7. SPECIFIC PROBLEMS ============ -->
+<details class="sec">
+  <summary>7 · Specific clinical problems</summary>
+  <div class="sec-body">
+
+    <h3>7.1 Constipation</h3>
+    <ul>
+      <li><strong>Definition:</strong> no passing of stools for &gt;4 days. More common in enterally fed patients; frequently under-diagnosed.</li>
+      <li><strong>Consequences:</strong> increases risk of abdominal compartment syndrome; adverse effects on other organs, particularly the lung.</li>
+      <li><strong>Risk factors:</strong> dehydration, motility-reducing drugs (opioids, myorelaxants, antihypertensives, iron and calcium supplements), bed rest.</li>
+      <li><strong>Treatment:</strong> laxatives and enema; <strong>neostigmine</strong> IV or SC for the most persistent paralytic ileus; dietary fibre for prevention.</li>
+    </ul>
+
+    <h3>7.2 Diarrhoea</h3>
+    <ul>
+      <li>A burden on nursing workload and a risk to the patient (skin integrity, malabsorption).</li>
+      <li><strong>Main cause: antibiotics</strong> (&gt;70% of ICU patients).</li>
+      <li><strong>Prevention:</strong> fibre-containing enteral solutions.</li>
+      <li><strong>Mechanisms</strong> across inflammatory, infectious and secretory forms: altered ion/solute transporters and activation of cyclic nucleotide and Ca²⁺ signalling pathways.</li>
+      <li><strong>Management</strong> has changed little in 30 years: replace fluid and electrolyte losses (oral or IV); cautious use of motility-reducing drugs (µ-opioid agonists) or antisecretory agents; targeted antibiotics for enteric infection; <strong>probiotics</strong> prevent or shorten diarrhoea.</li>
+      <li>Antimotility drugs are limited by concerns of ileus, ischaemic colitis and bacterial overgrowth.</li>
+    </ul>
+
+    <h3>7.3 Short bowel syndrome &amp; high-output stoma</h3>
+    <ul>
+      <li><strong>HOS</strong> = stoma output <strong>&gt;2000 mL/day</strong>. Complications: dehydration, electrolyte loss (sodium, magnesium), undernutrition.</li>
+      <li>Absorption of most nutrients occurs in the first <strong>100 cm of jejunum</strong>; B12 and bile salts in the last <strong>100 cm of ileum</strong>; magnesium in terminal ileum and proximal colon.</li>
+      <li><strong>Treatment:</strong> oral fluid restriction (isotonic drinks 500–1000 mL/day) + IV hydration (0.9% NaCl, 1:1 replacement above 1500 mL/24 h) and KCl; antimotility drugs (loperamide, codeine phosphate); antisecretory drugs (PPI, octreotide); correct magnesium, vitamins B12/A/D/E/K and zinc; cover needs with combined EN + PN.</li>
+      <li>Add <strong>cholestyramine</strong> if fat malabsorption, steatorrhoea or pruritic bilious output.</li>
+      <li>Prevent calcium bilirubinate gallstones: maintain enteral feeding, limit fasting, limit narcotics and anticholinergics.</li>
+      <li>Multidisciplinary approach including psychological support is essential.</li>
+    </ul>
+
+    <h3>7.4 Chylous leaks</h3>
+    <ul>
+      <li><strong>Definition:</strong> triglyceride concentration &gt;120 mg/dL (1.35 mmol/L) in pleural fluid or ascites; cholesterol &lt;200 mg/dL (5.2 mmol/L) in pleural fluid also indicative.</li>
+      <li><strong>Causes:</strong> traumatic (post-oesophagectomy, major abdominal surgery) or obstructive (tuberculosis, malignancy, cirrhosis) disruption of the lymphatic system.</li>
+      <li><strong>Nutritional therapy:</strong> high-protein, <strong>low-fat with medium-chain triglycerides (MCT)</strong> to reduce chyle production; total PN with MCT may be required. Progressive reintroduction with a semi-elemental MCT diet, then oral diet once chyle production is markedly reduced.</li>
+    </ul>
+
+    <h3>7.5 When to rest the bowel, when to feed</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>Bowel rest versus early feeding</caption>
+        <thead>
+          <tr><th>Situation</th><th>Approach</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Obstruction, perforation, bowel ischaemia</strong></td>
+            <td>Nil per intestine — <strong>absolute</strong></td>
+            <td>Start PN until the problem is resolved.</td>
+          </tr>
+          <tr>
+            <td><strong>Acute mesenteric ischaemia</strong></td>
+            <td>Stop EN during the episode and until vessels are recanalised</td>
+            <td>After revascularisation, a RCT in 183 patients found EN within the first week was advantageous: less prolonged PN, fewer infections, fewer respiratory complications, earlier restoration of bowel continuity after resection.</td>
+          </tr>
+          <tr>
+            <td><strong>Bowel necrosis during jejunal feeding</strong></td>
+            <td>Prompt resection + bowel rest for a few days</td>
+            <td>Can occur without classic risk factors for enteric ischaemia — presents as nonspecific symptoms, severe shock, then multiorgan failure.</td>
+          </tr>
+          <tr>
+            <td><strong>Severe diarrhoea / <em>C. difficile</em>, active inflammatory bowel disease</strong></td>
+            <td>Bowel rest — <strong>relative</strong></td>
+            <td>Combine PN + EN as needed. Evidence for bowel rest in severe acute colitis is weak (reduced stool weight only; no effect on surgery or other outcomes).</td>
+          </tr>
+          <tr>
+            <td><strong>Chylous leak</strong></td>
+            <td>Bowel rest of <em>fat</em> — relative</td>
+            <td>Temporarily suppress enteral fat; use MCT with amino acids and glucose, or PN.</td>
+          </tr>
+          <tr>
+            <td><strong>Surgical / ERAS patients</strong></td>
+            <td><strong>No restriction</strong> — feed early</td>
+            <td>Bowel rest has a very limited place; use the gut as early as possible, with oral nutrition supplements if needed. Same applies to intubated medical or surgical patients.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<!-- ============ 8. PATHOPHYSIOLOGY ============ -->
+<details class="sec">
+  <summary>8 · Pathophysiological mechanisms</summary>
+  <div class="sec-body">
+
+    <h3>8.1 The gut in multiple organ dysfunction</h3>
+    <ul>
+      <li>Animal models: altered microbiome during critical illness is associated with <strong>loss of intestinal barrier</strong> → translocation of bacterial products across the mucosa → further inflammation → <strong>remote organ dysfunction</strong>.</li>
+      <li>Acute lung injury can follow release of gut-derived products into lymphatics and/or directly into the lungs — shown in murine models and in humans. <strong>Ligation of the mesenteric lymph duct prevents lung injury</strong> in animals.</li>
+      <li>Intestinal dysbiosis may also lead to hepatic impairment.</li>
+      <li>Clinically, translocation-induced inflammation triggers fluids and vasopressors → fluid-induced tissue oedema and mesenteric vasoconstriction amplify gut injury and may lead to <strong>NOMI</strong>.</li>
+    </ul>
+
+    <h3>8.2 Microbiome</h3>
+    <ul>
+      <li>Critical illness causes a rapid dysbiosis: <strong>loss of diversity, loss of site specificity, and dominance of pathogens</strong> compared with healthy controls.</li>
+      <li>Not only antibiotics — many other common ICU drugs interfere with the gut microbiome.</li>
+      <li>Presence of specific GI pathogens at ICU admission is associated with increased risk of death or all-cause infection; rectal carriage of common ICU pathogens may predict specific infections.</li>
+      <li>Selective decontamination of the digestive tract (SDD) causes a strong deviation from healthy microbiota; recolonisation with resistant bacteria may occur after discharge and cessation.</li>
+      <li>In ARDS, the <strong>lung microbiome is enriched with gut bacteria</strong>.</li>
+      <li>Endogenous bacteria may play a beneficial role in acute illness. The shift to a "disease-promoting microbiome" / "pathobiome" drives pro-inflammatory downstream events, increased tight-junction permeability and mucus disintegration — both cause and consequence of GI injury and MODS.</li>
+    </ul>
+
+    <h3>8.3 Mucosal integrity</h3>
+    <ul>
+      <li>Intestinal epithelial cells (enterocytes, goblet cells, Paneth cells, enteroendocrine cells, M cells, epithelial stem cells) are the <strong>central regulators</strong> of barrier function and immune homeostasis.</li>
+      <li>First line of defence: epithelial-derived mucins, antimicrobial peptides and IgA. Physical border: the tight epithelial lining.</li>
+      <li>Loss of integrity → translocation of (patho)antigens → activation of intestinal macrophages and recruitment of intestinal T lymphocytes (CD4⁺ α4β7⁺ CCR9⁺) → release of TNF, IL-1β, IL-10, reactive oxygen species and nitric oxide → further barrier failure and impaired motility via disruption of tight junctions and smooth muscle contractile elements.</li>
+    </ul>
+
+    <h3>8.4 GI hormones &amp; bile acids</h3>
+    <ul>
+      <li><strong>Hormones:</strong> early phase shows decreased orexigenic hormones (e.g. ghrelin) and increased anorexigenic hormones (e.g. PYY). No direct correlation with GI function has been reported; none is used clinically as a monitor.</li>
+      <li><strong>Bile acids:</strong> intrahepatic cholestasis of the critically ill reflects altered hepatocellular bile acid signalling and transport, occurring early after ICU admission. In malabsorption, reduced bile acid reabsorption removes negative feedback on hepatic synthesis. <strong>Increased circulating bile acids are associated with adverse outcome</strong> and are a candidate marker of malabsorption (gut–liver axis).</li>
+    </ul>
+
+    <h3>8.5 Bowel oedema &amp; distension</h3>
+    <ul>
+      <li><strong>Oedema</strong> arises from inflammation and capillary leak, fluid resuscitation and increased venous pressure. It can cause endotoxaemia, impair intestinal motility and impair healing of anastomoses. Oedema-induced cell stretch and cytoskeletal change may explain the dysmotility.</li>
+      <li>With raised mesenteric venous pressure (right heart failure, mesenteric hypervolaemia, raised IAP), increased lymphatic drainage is required; when proteins are washed out, interstitial oncotic pressure rises, lymphatic flow is impaired, and oedema worsens.</li>
+      <li><strong>Distension</strong> = expansion through increased intraluminal pressure (bloating, pain). Can lead to perforation, increased bacterial translocation and stimulation of MODS.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 9. UNCERTAINTIES & RESEARCH ============ -->
+<details class="sec">
+  <summary>9 · Remaining uncertainties &amp; research priorities</summary>
+  <div class="sec-body">
+
+    <h3>9.1 Six topics prioritised for a formal consensus process</h3>
+    <ol>
+      <li><strong>Feeding intolerance</strong> — a single agreed definition.</li>
+      <li><strong>Core set of daily monitoring</strong> of GI function (harmonised symptom definitions).</li>
+      <li><strong>Core outcome set (COS)</strong> for studies of GI (dys)function.</li>
+      <li><strong>Protocol for abdominal ultrasound</strong> to assess GI function (with radiologists and gastroenterologists).</li>
+      <li><strong>Descriptive definition of NOMI</strong> (with radiologists, gastroenterologists and surgeons).</li>
+      <li><strong>Reference methods</strong> to measure gastric emptying, nutrient absorption and barrier dysfunction in ICU studies.</li>
+    </ol>
+    <div class="callout">
+      <span class="tag">Caveat</span>
+      In the light of current poor evidence, these consensus definitions will likely need to be adapted as new evidence emerges — but they are crucial to <em>produce</em> that evidence.
+    </div>
+
+    <h3>9.2 Top ten research priorities (Delphi-ranked)</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>Ranked study proposals — "what we need to know"</caption>
+        <thead>
+          <tr><th>Rank</th><th>Topic</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Prevention of diarrhoea</td></tr>
+          <tr><td>2</td><td>Opioid antagonists for GI dysfunction</td></tr>
+          <tr><td>3</td><td>Management of diarrhoea</td></tr>
+          <tr><td>4</td><td>Upper GI feeding intolerance</td></tr>
+          <tr><td>5</td><td>Lower GI feeding intolerance</td></tr>
+          <tr><td>6</td><td>Role of intra-abdominal hypertension in the development of NOMI</td></tr>
+          <tr><td>7</td><td>Indications for post-pyloric feeding</td></tr>
+          <tr><td>8</td><td>IAH in the development and monitoring of GI dysfunction</td></tr>
+          <tr><td>9</td><td>AGI grading as a bedside clinical tool</td></tr>
+          <tr><td>10</td><td>Effect of proton pump inhibitors on the microbiome in critical illness</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fig-note">Ranking weighted <strong>feasibility</strong> as well as importance — hence practical bedside questions scored highly. High-cost or definition-dependent questions (which may be most warranted) scored lower.</p>
+
+    <h3>9.3 Other open questions worth knowing</h3>
+    <ul>
+      <li>Can measurement of GRV identify delayed gastric emptying, and does monitoring it avoid complications?</li>
+      <li>Which biomarker(s) could guide decisions on EN, or on NOMI?</li>
+      <li>How to quantify bowel oedema; how to distinguish pathological from physiological mucosal permeability.</li>
+      <li>Which GI symptoms identify patients who would benefit from IAP monitoring?</li>
+      <li>Could a specific fluid-resuscitation strategy reduce the prevalence and severity of GI dysfunction?</li>
+      <li>Could high-normal potassium and magnesium improve GI motility?</li>
+      <li>Could early mobilisation, or a particular sedation strategy, improve GI function?</li>
+      <li>Optimal timing/duration of trophic EN (to feed mucosa and microbiome) versus full feeding (to match energy expenditure).</li>
+      <li>Best sampling method for microbiome studies (stool vs rectal swab).</li>
+      <li>Does bowel oedema drive dysmotility, or dysmotility drive oedema?</li>
+    </ul>
+
+    <h3>9.4 Limitations of the evidence base</h3>
+    <ul>
+      <li>Searches limited to English; interpretation is a consensus summary.</li>
+      <li>The list of study proposals is not exhaustive; individual academic or industry bias may persist despite consensus methods.</li>
+      <li>Voting emphasised feasibility — which may change with methodological advances.</li>
+      <li>All voting members were clinicians/researchers; patients may prioritise differently.</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 10. REFERENCES ============ -->
+<details class="sec">
+  <summary>10 · Sources &amp; references</summary>
+  <div class="sec-body">
+    <ol class="refs">
+      <li>
+        Reintam Blaser A, Preiser J-C, Fruhwald S, Wilmer A, Wernerman J, Benstoem C, Casaer MP, Starkopf J, van Zanten A, Rooyackers O, Jakob SM, Loudet CI, Bear DE, Elke G, Kott M, Lautenschläger I, Schäper J, Gunst J, Stoppe C, Nobile L, Fuhrmann V, Berger MM, Oudemans-van Straaten HM, Arabi YM, Deane AM; Working Group on Gastrointestinal Function, MEN Section, ESICM.
+        <strong>Gastrointestinal dysfunction in the critically ill: a systematic scoping review and research agenda proposed by the Section of Metabolism, Endocrinology and Nutrition of the European Society of Intensive Care Medicine.</strong>
+        <em>Critical Care.</em> 2020;24:224.
+        doi: <a href="https://doi.org/10.1186/s13054-020-02889-4" target="_blank" rel="noopener">10.1186/s13054-020-02889-4</a>
+      </li>
+      <li>
+        Berger MM, Hurni C-A.
+        <strong>Management of gastrointestinal failure in the adult critical care setting.</strong>
+        <em>Current Opinion in Critical Care.</em> 2022;28(2):190–197.
+        (Review — includes the AGI→GIDS evolution, NRS-2002, GRV/IAP assessment, fibre, micronutrients, short bowel and chylous leak management.)
+      </li>
+      <li>
+        Deranged Physiology.
+        <strong>Gut dysmotility and prokinetics</strong> (Required Reading — Gastrointestinal Intensive Care, Chapter 513).
+        <a href="https://derangedphysiology.com/main/required-reading/gastrointestinal-intensive-care/Chapter-513/gut-dysmotility-and-prokinetics" target="_blank" rel="noopener">derangedphysiology.com — Chapter 513</a>
+      </li>
+    </ol>
+
+    <h3>Key primary studies cited within the above</h3>
+    <ul class="refs">
+      <li>Reintam Blaser A, et al. Development of the Gastrointestinal Dysfunction Score (GIDS) for critically ill patients — prospective multicentre observational study (ISOFAS). <em>Clin Nutr.</em> 2021;40:4932–4940.</li>
+      <li>Reintam Blaser A, Malbrain ML, Starkopf J, et al. Gastrointestinal function in intensive care patients: terminology, definitions and management. ESICM Working Group on Abdominal Problems. <em>Intensive Care Med.</em> 2012;38:384–394.</li>
+      <li>Reignier J, et al. Effect of not monitoring residual gastric volume on risk of ventilator-associated pneumonia… <em>JAMA.</em> 2013;309(3):249–256.</li>
+      <li>Reignier J, et al. Enteral versus parenteral early nutrition in ventilated adults with shock (NUTRIREA-2). <em>Lancet.</em> 2018;391:133–143.</li>
+      <li>Harvey S, et al. Trial of the route of early nutritional support in critically ill adults (CALORIES). <em>N Engl J Med.</em> 2014;371:1673–1684.</li>
+      <li>Singer P, Reintam Blaser A, Berger MM, et al. ESPEN guideline on clinical nutrition in the intensive care unit. <em>Clin Nutr.</em> 2019;38:48–79.</li>
+      <li>Kirkpatrick AW, Roberts DJ, De Waele J, et al. Intra-abdominal hypertension and the abdominal compartment syndrome: updated consensus definitions and clinical practice guidelines from the WSACS. <em>Intensive Care Med.</em> 2013;39:1190–1206.</li>
+      <li>Lewis K, et al. Efficacy and safety of prokinetic agents in critically ill patients receiving enteral nutrition: systematic review and meta-analysis. <em>Crit Care.</em> 2016;20:259.</li>
+      <li>Reintam Blaser A, Regli A, De Keulenaer B, et al. Incidence, risk factors, and outcomes of intra-abdominal hypertension in critically ill patients (IROI Study). <em>Crit Care Med.</em> 2019;47:535–542.</li>
+      <li>de Azevedo R, et al. Daily laxative therapy reduces organ dysfunction in mechanically ventilated patients: phase II RCT. <em>Crit Care.</em> 2015;19:329.</li>
+      <li>Yang S, et al. Enteral nutrition improves clinical outcome and reduces costs of acute mesenteric ischaemia after recanalisation in the ICU. <em>Clin Nutr.</em> 2019;38:398–406.</li>
+      <li>Preiser J-C, Arabi YM, Berger MM, et al. A guide to enteral nutrition in intensive care units: 10 expert tips for daily practice. <em>Crit Care.</em> 2021;25:424.</li>
+    </ul>
+
+    <div class="callout warn">
+      <span class="tag">Disclaimer</span>
+      This is a condensed educational quick reference derived from the cited reviews. It is <strong>not</strong> a clinical guideline and does not replace local protocols, current guidelines, or clinical judgement. Doses shown are indicative — always verify against your local formulary.
+    </div>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  Quick reference built from: Reintam Blaser et al., <em>Crit Care</em> 2020;24:224 · Berger &amp; Hurni, <em>Curr Opin Crit Care</em> 2022;28:190–197 · Deranged Physiology Ch. 513
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content   = document.getElementById('content');
+  var input     = document.getElementById('searchInput');
+  var statusEl  = document.getElementById('searchStatus');
+  var marks     = [];
+  var cur       = -1;
+  var debounce  = null;
+
+  /* ---------- Expand / collapse all ---------- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    document.querySelectorAll('details.sec').forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    document.querySelectorAll('details.sec').forEach(function (d) { d.open = false; });
+  });
+
+  /* ---------- Font size ---------- */
+  var fs = 16;
+  function setFs(v) {
+    fs = Math.min(22, Math.max(13, v));
+    document.documentElement.style.fontSize = fs + 'px';
+  }
+  document.getElementById('fsUp').addEventListener('click', function () { setFs(fs + 1); });
+  document.getElementById('fsDown').addEventListener('click', function () { setFs(fs - 1); });
+
+  /* ---------- Highlight helpers ---------- */
+  function clearMarks() {
+    var all = content.querySelectorAll('mark.hl');
+    for (var i = 0; i < all.length; i++) {
+      var m = all[i];
+      var parent = m.parentNode;
+      var txt = document.createTextNode(m.textContent);
+      parent.replaceChild(txt, m);
+      parent.normalize();
+    }
+    marks = [];
+    cur = -1;
+  }
+
+  function openAncestors(el) {
+    while (el && el !== document.body) {
+      if (el.tagName === 'DETAILS') { el.open = true; }
+      el = el.parentElement;
+    }
+  }
+
+  function focusMark(i) {
+    if (!marks.length) { return; }
+    for (var k = 0; k < marks.length; k++) { marks[k].classList.remove('current'); }
+    cur = (i + marks.length) % marks.length;
+    var m = marks[cur];
+    openAncestors(m.parentElement);
+    m.classList.add('current');
+    m.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    statusEl.textContent = (cur + 1) + ' / ' + marks.length;
+  }
+
+  /* ---------- Search ---------- */
+  function runSearch() {
+    clearMarks();
+    var q = input.value.trim();
+    if (!q) { statusEl.textContent = ''; return; }
+    var needle = q.toLowerCase();
+
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) { return NodeFilter.FILTER_REJECT; }
+          var p = node.parentNode;
+          if (!p) { return NodeFilter.FILTER_REJECT; }
+          if (p.nodeName === 'SCRIPT' || p.nodeName === 'STYLE') { return NodeFilter.FILTER_REJECT; }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      },
+      false
+    );
+
+    var nodes = [];
+    while (walker.nextNode()) { nodes.push(walker.currentNode); }
+
+    for (var n = 0; n < nodes.length; n++) {
+      var node = nodes[n];
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(needle);
+      if (idx === -1) { continue; }
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+      while (idx !== -1) {
+        frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + needle.length);
+        frag.appendChild(mark);
+        last = idx + needle.length;
+        idx = lower.indexOf(needle, last);
+      }
+      frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    }
+
+    marks = Array.prototype.slice.call(content.querySelectorAll('mark.hl'));
+
+    if (marks.length) {
+      focusMark(0);
+    } else {
+      statusEl.textContent = 'No match';
+    }
+  }
+
+  input.addEventListener('input', function () {
+    clearTimeout(debounce);
+    debounce = setTimeout(runSearch, 260);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!marks.length) { runSearch(); return; }
+      focusMark(e.shiftKey ? cur - 1 : cur + 1);
+    }
+    if (e.key === 'Escape') {
+      input.value = '';
+      clearMarks();
+      statusEl.textContent = '';
+    }
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', function () { focusMark(cur + 1); });
+  document.getElementById('prevBtn').addEventListener('click', function () { focusMark(cur - 1); });
+  document.getElementById('clearBtn').addEventListener('click', function () {
+    input.value = '';
+    clearMarks();
+    statusEl.textContent = '';
+    input.focus({ preventScroll: true });
+  });
+
+  /* Open first section by default already set in HTML */
+})();
+</script>
+</body>
+</html>
