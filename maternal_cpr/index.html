@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maternal Cardiac Arrest — Quick Reference for Anaesthetists &amp; Intensivists</title>
+<style>
+  :root{
+    --fs: 17px;
+    --bg:#f4f7ff;
+    --card:#ffffff;
+    --ink:#152238;
+    --muted:#4f5b74;
+    --blue:#1d4ed8;
+    --blue-dark:#12306b;
+    --blue-light:#e8f0ff;
+    --pink:#d6336c;
+    --pink-dark:#a61e4d;
+    --pink-light:#ffe9f2;
+    --border:#dbe3f4;
+  }
+
+  *{box-sizing:border-box;}
+  html{font-size:var(--fs);scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- Header ---------- */
+  .hero{
+    background:linear-gradient(120deg,#12306b 0%,#1d4ed8 48%,#d6336c 100%);
+    color:#fff;
+    padding:1.5rem 1.1rem 1.7rem;
+    text-align:center;
+  }
+  .hero h1{margin:0 0 .3rem;font-size:1.65rem;letter-spacing:.2px;}
+  .hero p{margin:0;font-size:.92rem;opacity:.94;}
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;flex-wrap:wrap;gap:.55rem;
+    align-items:center;justify-content:center;
+    padding:.65rem .9rem;
+    background:rgba(255,255,255,.97);
+    backdrop-filter:blur(6px);
+    border-bottom:2px solid var(--border);
+    box-shadow:0 2px 12px rgba(18,48,107,.09);
+  }
+  .search-wrap{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;justify-content:center;}
+  #search{
+    width:min(400px,58vw);
+    padding:.5rem .85rem;
+    border:2px solid var(--border);
+    border-radius:999px;
+    font:inherit;font-size:.9rem;
+    color:var(--ink);background:#fff;outline:none;
+  }
+  #search:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(214,51,108,.16);}
+  .count{
+    font-size:.78rem;font-variant-numeric:tabular-nums;
+    background:var(--blue-light);color:var(--blue-dark);
+    border:1px solid var(--border);border-radius:999px;
+    padding:.16rem .55rem;min-width:3.6rem;text-align:center;
+  }
+  button{
+    font:inherit;font-size:.82rem;
+    padding:.42rem .78rem;
+    border-radius:999px;
+    border:1.5px solid var(--blue);
+    background:#fff;color:var(--blue);
+    cursor:pointer;transition:.15s;white-space:nowrap;
+  }
+  button:hover{background:var(--blue);color:#fff;}
+  button:active{transform:scale(.97);}
+  .pink-btn{border-color:var(--pink);color:var(--pink-dark);}
+  .pink-btn:hover{background:var(--pink);color:#fff;}
+  .btn-group{display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;justify-content:center;}
+  .divider{width:1px;height:1.4rem;background:var(--border);}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1020px;margin:1.1rem auto 2.5rem;padding:0 1rem;}
+
+  /* ---------- Accordions ---------- */
+  details.acc{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-left:6px solid var(--blue);
+    border-radius:12px;
+    margin-bottom:.8rem;
+    box-shadow:0 1px 3px rgba(18,48,107,.06);
+    overflow:hidden;
+  }
+  details.acc:nth-of-type(even){border-left-color:var(--pink);}
+
+  summary{
+    cursor:pointer;list-style:none;
+    display:flex;align-items:center;gap:.6rem;
+    padding:.8rem 1rem;
+    font-weight:650;font-size:1rem;
+    color:var(--blue-dark);
+    background:linear-gradient(90deg,var(--blue-light),var(--pink-light));
+    user-select:none;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{
+    content:"▸";margin-left:auto;
+    color:var(--pink);font-size:1rem;
+    transition:transform .2s;
+  }
+  details[open]>summary::after{transform:rotate(90deg);}
+  summary:hover{filter:brightness(.985);}
+
+  .acc-body{padding:.85rem 1.05rem 1.05rem;}
+  .acc-body p{margin:.45rem 0;}
+  .acc-body ul{margin:.4rem 0 .5rem 1.05rem;padding:0;}
+  .acc-body li{margin:.32rem 0;}
+  .acc-body h4{margin:.9rem 0 .3rem;font-size:.95rem;color:var(--pink-dark);}
+  strong{color:var(--blue-dark);}
+  .pink{color:var(--pink-dark);font-weight:650;}
+
+  .note{
+    background:var(--pink-light);
+    border-left:4px solid var(--pink);
+    padding:.55rem .8rem;border-radius:8px;
+    margin:.65rem 0;font-size:.88rem;
+  }
+  .note.blue{background:var(--blue-light);border-left-color:var(--blue);}
+
+  /* ---------- Step diagram ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(228px,1fr));
+    gap:.7rem;margin-top:.45rem;
+  }
+  .step{
+    background:#fff;border:1px solid var(--border);
+    border-radius:12px;padding:.75rem .8rem;
+    display:flex;gap:.65rem;align-items:flex-start;
+    box-shadow:0 1px 2px rgba(18,48,107,.05);
+  }
+  .step .n{
+    flex:0 0 auto;width:1.95rem;height:1.95rem;border-radius:50%;
+    display:grid;place-items:center;
+    font-weight:700;color:#fff;font-size:.9rem;background:var(--blue);
+  }
+  .step:nth-child(even) .n{background:var(--pink);}
+  .step h4{margin:0 0 .2rem;font-size:.9rem;color:var(--blue-dark);line-height:1.3;}
+  .step p{margin:0;font-size:.82rem;color:var(--muted);line-height:1.45;}
+
+  /* ---------- Tables ---------- */
+  .scroll{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:1px solid var(--border);border-radius:10px;
+    margin:.6rem 0;
+  }
+  table{border-collapse:collapse;width:100%;min-width:620px;font-size:.87rem;}
+  th{
+    background:var(--blue-dark);color:#fff;text-align:left;
+    padding:.5rem .7rem;font-weight:600;font-size:.85rem;
+    position:sticky;top:0;
+  }
+  td{padding:.5rem .7rem;border-top:1px solid var(--border);vertical-align:top;}
+  tbody tr:nth-child(even){background:#f7f9ff;}
+  td:first-child{font-weight:650;color:var(--pink-dark);}
+
+  /* ---------- Search highlight ---------- */
+  mark.hl{
+    background:#ffd7e7;color:#5c0a2c;
+    border-radius:3px;padding:0 1px;
+  }
+  mark.hl.current{
+    background:var(--pink);color:#fff;
+    box-shadow:0 0 0 2px rgba(214,51,108,.35);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    max-width:1020px;margin:0 auto 3rem;padding:0 1rem;
+    font-size:.8rem;color:var(--muted);
+  }
+  footer h3{font-size:.92rem;color:var(--blue-dark);margin:0 0 .4rem;}
+  footer ol{margin:.3rem 0 .8rem 1.1rem;padding:0;}
+  footer li{margin:.35rem 0;}
+  footer a{color:var(--blue);word-break:break-word;}
+  .disclaimer{
+    background:#fff;border:1px dashed var(--pink);
+    border-radius:10px;padding:.7rem .85rem;margin-bottom:1rem;
+  }
+
+  @media (max-width:520px){
+    .hero h1{font-size:1.35rem;}
+    #search{width:80vw;}
+    .count{min-width:3.2rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Maternal Cardiac Arrest</h1>
+  <p>Quick reference for anaesthetists &amp; intensivists · CPR · left uterine displacement · resuscitative hysterotomy</p>
+</header>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search page… (e.g. hysterotomy, magnesium, intralipid)" autocomplete="off" aria-label="Search">
+    <span class="count" id="count">—</span>
+    <button class="pink-btn" id="prev" title="Previous match">▲ Prev</button>
+    <button class="pink-btn" id="next" title="Next match">Next ▼</button>
+    <button id="clear" title="Clear search">✕</button>
+  </div>
+  <div class="btn-group">
+    <button id="expandAll">Expand all</button>
+    <button id="collapseAll">Collapse all</button>
+    <span class="divider"></span>
+    <button id="fontDown" title="Smaller text">A−</button>
+    <button id="fontReset" title="Reset text size">↺</button>
+    <button id="fontUp" title="Larger text">A+</button>
+  </div>
+</div>
+
+<main id="content">
+
+  <!-- ============ 1. AT A GLANCE ============ -->
+  <details class="acc" open>
+    <summary>1 · At a glance — epidemiology &amp; outcomes</summary>
+    <div class="acc-body">
+      <ul>
+        <li>Maternal cardiac arrest is <strong>rare</strong>: 1 in 12,000–36,000 women per year in the developed world.</li>
+        <li>Maternal mortality (2015): <strong>UK 9/100,000</strong>; <strong>USA 14/100,000</strong>. Low-income countries (WHO 2017): <strong>462/100,000 live births</strong>.</li>
+        <li>UK survival after basic life support (2011–2014): <strong>58%</strong>.</li>
+        <li>~<strong>25%</strong> of UK maternal cardiac arrests were anaesthesia-related (tracheal intubation problems, cardiovascular collapse after epidural top-up, total spinal) — <strong>obesity</strong> complicated most of these.</li>
+        <li>USA predominant causes: <strong>haemorrhage, heart failure, amniotic fluid embolism, sepsis</strong>.</li>
+        <li>Obstetric issues associated with arrest: <strong>stillbirth, caesarean delivery, severe pre-eclampsia, placenta praevia</strong>.</li>
+        <li>Racial disparity: mortality approximately <strong>3× higher in Black than White women</strong> (UK and USA).</li>
+        <li>Survival is <strong>better</strong> when arrest is anaesthesia-related (hypoxia, cardiac causes, anaphylaxis, drug toxicity) and <strong>worse</strong> with hypovolaemia, VTE, sepsis, amniotic fluid embolism, intracerebral bleed, aortic dissection, asthma, pulmonary artery rupture.</li>
+      </ul>
+      <div class="note blue">
+        <strong>Golden rule:</strong> prompt, coordinated multidisciplinary response — advanced cardiac life support + <span class="pink">left uterine displacement</span> + <span class="pink">resuscitative hysterotomy</span> + treatment of the underlying cause.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 2. STEPS DIAGRAM ============ -->
+  <details class="acc" open>
+    <summary>2 · The first 5 minutes — 9 steps (quick reference card)</summary>
+    <div class="acc-body">
+      <div class="steps">
+        <div class="step">
+          <span class="n">1</span>
+          <div>
+            <h4>Confirm arrest &amp; call for help</h4>
+            <p>Declare “Obstetric cardiac arrest”. Team for mother <em>and</em> team for neonate if ≥20 weeks: obstetrician with scalpel, obstetric &amp; cardiac anaesthetists, neonatologist, adult cardiac arrest team, ECMO team if available, TOE/TTE.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">2</span>
+          <div>
+            <h4>Position &amp; uterine displacement</h4>
+            <p>Lie flat, apply <strong>manual left uterine displacement</strong>; or left lateral tilt 15–30° (head to toe) on a firm surface.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">3</span>
+          <div>
+            <h4>Commence CPR</h4>
+            <p>Standard CPR ratios and hand position apply. Request cardiac arrest trolley. Evaluate potential causes (4H’s &amp; 4T’s — see section 7).</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">4</span>
+          <div>
+            <h4>Team leader &amp; roles</h4>
+            <p>Identify team leader, allocate roles including <strong>scribe</strong>. Note the time.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">5</span>
+          <div>
+            <h4>Rhythm &amp; defibrillation</h4>
+            <p>Apply pads, check rhythm. Defibrillation is safe in pregnancy at standard energies. VF/pVT → shock; adrenaline &amp; amiodarone after 3rd shock. PEA/asystole → resume CPR, adrenaline immediately. Check rhythm &amp; pulse every 2 min; adrenaline every 3–5 min.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">6</span>
+          <div>
+            <h4>Airway &amp; ventilation</h4>
+            <p>100% O₂ via bag-valve-mask. Supraglottic airway with drain port, or tracheal tube if trained (intubation may be difficult). Waveform capnography — if expired CO₂ is absent, presume oesophageal intubation until excluded.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">7</span>
+          <div>
+            <h4>Circulation &amp; access</h4>
+            <p>IV access <strong>above the diaphragm</strong>; if it fails or is impossible, use upper limb intraosseous (IO). Drugs per section 8. Consider extracorporeal CPR (ECPR) if available.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">8</span>
+          <div>
+            <h4>Emergency hysterotomy</h4>
+            <p>Perimortem caesarean section if ≥20 weeks. <strong>Perform immediately</strong> with fatal maternal injuries or prolonged pre-hospital arrest; <strong>by 5 minutes</strong> if no return of spontaneous circulation.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">9</span>
+          <div>
+            <h4>Post-ROSC / haemorrhage</h4>
+            <p>Activate Massive Haemorrhage Protocol; consider uterotonics, fibrinogen, tranexamic acid, uterine tamponade/sutures, aortic compression, hysterectomy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 3. CHEST COMPRESSIONS ============ -->
+  <details class="acc">
+    <summary>3 · Chest compressions</summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>Hard and fast</strong>, on a firm flat surface: depth <strong>≥5 cm</strong> at a rate of <strong>100 min⁻¹</strong>.</li>
+        <li>Use a <strong>backboard</strong> if resuscitating on a typical hospital mattress.</li>
+        <li>Optimal hand position is the <strong>lower sternum</strong>. There is no scientific evidence to support a higher hand position, despite superior/anterolateral myocardial displacement by the gravid uterus.</li>
+        <li>Where available, <strong>transoesophageal echocardiography</strong> can confirm adequate compression location.</li>
+        <li>Swap/change providers every 2 minutes.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 4. LEFT UTERINE DISPLACEMENT ============ -->
+  <details class="acc">
+    <summary>4 · Left uterine displacement (LUD)</summary>
+    <div class="acc-body">
+      <ul>
+        <li>From <strong>20 weeks’ gestation</strong> the gravid uterus obstructs the vena cava in the supine position → reduced venous return and impaired resuscitation.</li>
+        <li>Assume ≥20 weeks if the <strong>fundus reaches or exceeds the umbilicus</strong>.</li>
+        <li><strong>Manual LUD is preferred over left lateral tilt</strong> — it is more difficult to create the appropriate compression force vector with tilt.</li>
+        <li>From the patient’s <strong>left side</strong>: use two hands to pull the uterus upward and to the left.</li>
+        <li>From the patient’s <strong>right side</strong>: push the uterus up and to the left.</li>
+        <li>OAA alternative: lie flat with manual LUD, <em>or</em> left lateral tilt 15–30° (head to toe) on a firm surface.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 5. AIRWAY ============ -->
+  <details class="acc">
+    <summary>5 · Airway &amp; ventilation</summary>
+    <div class="acc-body">
+      <ul>
+        <li>↓ Functional residual capacity plus ↑ oxygen consumption by the fetus → <strong>rapid hypoxaemia</strong>.</li>
+        <li>Vascular engorgement causes oedema of the oro- and nasopharynx, larynx and trachea → <strong>difficult intubation</strong>; use <strong>smaller tracheal tubes</strong>.</li>
+        <li><strong>Videolaryngoscopy</strong> is recommended for the first intubation attempt, if possible.</li>
+        <li>Confirm tracheal intubation with a <strong>capnometer</strong>.</li>
+        <li>Use <strong>nasopharyngeal airways with caution</strong> (increased bleeding risk).</li>
+        <li>Ventilate with <strong>100% oxygen</strong>, tidal volumes <strong>500–700 mL at 10 bpm</strong>.</li>
+        <li>Bag-mask ventilation until endotracheal intubation; place a laryngeal mask airway in the event of failed intubation.</li>
+        <li>End-tidal CO₂ <strong>&gt;1.3 kPa (10 mmHg)</strong> suggests quality chest compressions. Absent EtCO₂ → presume oesophageal intubation until absolutely excluded.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 6. ACCESS / DRUGS / DEFIB ============ -->
+  <details class="acc">
+    <summary>6 · Intravenous access, drugs &amp; defibrillation</summary>
+    <div class="acc-body">
+      <h4>Access</h4>
+      <ul>
+        <li>Large-bore IV access <strong>above the diaphragm</strong> — uterine compression and bleeding may prevent adequate resuscitation from below.</li>
+        <li>Ultrasound-guided venous access or <strong>intraosseous access in the proximal humerus</strong> if access is difficult.</li>
+        <li>Rapid intravascular volume repletion; fluid warmer; massive transfusion blood products as needed; send laboratory tests as indicated.</li>
+      </ul>
+
+      <h4>Drugs</h4>
+      <ul>
+        <li>Physiological anaemia of pregnancy: circulating volume increases out of proportion to haemoglobin; ↑ volume and ↓ protein binding may mildly alter volume of distribution, but changes are <strong>negligible in the low-flow state of arrest</strong>.</li>
+        <li>Give resuscitation drugs according to <strong>standard guidelines at usual doses</strong> — none are considered contraindicated.</li>
+        <li><strong>Stop oxytocin</strong> (vasodilatory and negative inotropic effects).</li>
+        <li><strong>Stop neuraxial local anaesthetic infusions.</strong></li>
+        <li><strong>Stop magnesium</strong> if it is contributing to significant hypotension.</li>
+      </ul>
+
+      <h4>Defibrillation</h4>
+      <ul>
+        <li>Perform for a shockable rhythm — <strong>safe for the fetus</strong> during maternal cardiac arrest.</li>
+        <li><strong>No change to energy requirements</strong>; thoracic impedance is unchanged in pregnancy.</li>
+        <li>The theoretical risk of burns from fetal external/internal monitors should <strong>not delay defibrillation</strong> while waiting to disconnect or remove them.</li>
+        <li>Resume compressions immediately after defibrillation.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7. CAUSES TABLE ============ -->
+  <details class="acc">
+    <summary>7 · Differential diagnosis of maternal cardiac arrest &amp; suggested management</summary>
+    <div class="acc-body">
+      <p class="note">Adapted from Table 1 (Madden &amp; Meng, 2020). Scroll horizontally to view all columns.</p>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr><th>Diagnosis / cause</th><th>Action items</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Complications of anaesthesia<br><span style="font-weight:400;color:#4f5b74;">High neuraxial block · loss of airway, aspiration, respiratory depression · hypotension</span></td>
+              <td>Treat hypotension aggressively (e.g. low-dose adrenaline); support airway and breathing; difficult airway algorithm; vasopressors; lower head of bed to improve cerebral perfusion; volume replacement; obtain more IV access; give intralipid; consider cardiopulmonary bypass or ECMO.</td>
+            </tr>
+            <tr>
+              <td>Bleeding<br><span style="font-weight:400;color:#4f5b74;">Coagulopathy · uterine atony · placenta accreta · placental abruption · placenta praevia · uterine rupture · trauma · transfusion reaction</span></td>
+              <td>Fibrinogen replacement; fresh frozen plasma; cryoprecipitate; platelets; tranexamic acid 1 g IV; uterotonics; Bakri balloon; compression suture; uterine artery embolisation; hysterectomy; delivery if indicated; monitor for coagulopathy; prepare for lower uterine segment atony; uterine repair or hysterectomy; call general surgeon; activate massive transfusion; stop transfusion and notify blood bank (transfusion reaction).</td>
+            </tr>
+            <tr>
+              <td>Cardiovascular<br><span style="font-weight:400;color:#4f5b74;">Cardiomyopathy · myocardial infarction · aortic dissection · arrhythmias</span></td>
+              <td>Inotrope infusion; call for ECMO; call cardiac surgeon; call cardiac catheterisation laboratory; send cardiac enzymes; activate massive transfusion (dissection).<br>
+              VF / unstable VT → <strong>defibrillate</strong>; stable VT → magnesium/amiodarone; torsade de pointes → magnesium; SVT / atrial fibrillation → amiodarone.</td>
+            </tr>
+            <tr>
+              <td>Embolic — pulmonary embolus / coronary thrombus</td>
+              <td>Call interventional radiology; call cardiac surgeon; prepare catheterisation laboratory; echocardiography; start heparin IV; consider thrombolytics in cardiac arrest; nitric oxide; nitroglycerine; nitric oxide if right heart failure; consider ECMO.</td>
+            </tr>
+            <tr>
+              <td>Amniotic fluid embolism</td>
+              <td>Initiate cardiopulmonary resuscitation; call for extracorporeal membrane oxygenator; call for transoesophageal echocardiography; prepare for coagulopathy and need for massive transfusion protocol; consider unproven “A-OK” therapy (atropine, ondansetron, ketorolac); consider steroids; consider nitric oxide.</td>
+            </tr>
+            <tr>
+              <td>Obstetric haemorrhage at caesarean / refractory hypotension</td>
+              <td>Flood field if uterine venous sinuses open; internalise uterus; give broad-spectrum antibiotics; fluids and volume replacement; vasopressors; place arterial line; perform echocardiogram; inotrope if low cardiac output.</td>
+            </tr>
+            <tr>
+              <td>Anaphylaxis</td>
+              <td>Adrenaline; steroids; diphenhydramine; ranitidine; send tryptase.</td>
+            </tr>
+            <tr>
+              <td>Drugs — local anaesthetic toxicity</td>
+              <td>Intralipid 1.5 mL kg⁻¹ IV bolus, then 15 mL kg⁻¹ hr⁻¹ IV infusion.</td>
+            </tr>
+            <tr>
+              <td>Drugs — opioid / benzodiazepine overdose</td>
+              <td>Naloxone (opioid); flumazenil (benzodiazepine).</td>
+            </tr>
+            <tr>
+              <td>Drugs — cocaine coronary vasospasm</td>
+              <td>Oxygen, aspirin, nitrates, thrombolytic therapy or acute percutaneous coronary intervention.</td>
+            </tr>
+            <tr>
+              <td>Drugs — magnesium toxicity</td>
+              <td>Stop magnesium; calcium chloride 10 mL of 10% solution or calcium gluconate 30 mL of 10% solution.</td>
+            </tr>
+            <tr>
+              <td>Drugs — insulin overdose</td>
+              <td>Give glucose/dextrose.</td>
+            </tr>
+            <tr>
+              <td>Drugs — oxytocin overdose</td>
+              <td>Stop oxytocin; treat hypotension (fluids, vasopressors).</td>
+            </tr>
+            <tr>
+              <td>Drug error</td>
+              <td>Identify, discontinue the agent and treat.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 8. BOX A ============ -->
+  <details class="acc">
+    <summary>8 · Potential causes — obstetric 4H’s &amp; 4T’s</summary>
+    <div class="acc-body">
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Cause</th><th>Obstetric considerations</th></tr></thead>
+          <tbody>
+            <tr><td>Hypoxia</td><td>Respiratory — pulmonary embolus, failed intubation, aspiration; heart failure; anaphylaxis; eclampsia/pre-eclampsia (pulmonary oedema, seizure).</td></tr>
+            <tr><td>Hypovolaemia</td><td>Haemorrhage — obstetric (remember concealed), abnormal placentation, uterine rupture, atony, splenic artery/hepatic rupture, aneurysm rupture. Cardiac — arrhythmia, myocardial infarction. Distributive — sepsis, high regional block, anaphylaxis.</td></tr>
+            <tr><td>Hypo/hyperkalaemia</td><td>Also consider blood sugar, sodium, calcium and magnesium levels.</td></tr>
+            <tr><td>Hypothermia</td><td>—</td></tr>
+            <tr><td>Tamponade</td><td>Aortic dissection, peripartum cardiomyopathy, trauma.</td></tr>
+            <tr><td>Thrombosis</td><td>Amniotic fluid embolus, pulmonary embolus, myocardial infarction, air embolism.</td></tr>
+            <tr><td>Toxins</td><td>Local anaesthetic, magnesium, illicit drugs.</td></tr>
+            <tr><td>Tension pneumothorax</td><td>Entonox in pre-existing pneumothorax, trauma.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 9. BOX B ============ -->
+  <details class="acc">
+    <summary>9 · IV drugs for use during cardiac arrest (Box B)</summary>
+    <div class="acc-body">
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Agent</th><th>Dose / indication</th></tr></thead>
+          <tbody>
+            <tr><td>Fluids</td><td>500 mL IV crystalloid bolus</td></tr>
+            <tr><td>Adrenaline (epinephrine)</td><td>1 mg IV every 3–5 min in non-shockable rhythm, or after the 3rd shock</td></tr>
+            <tr><td>Amiodarone</td><td>300 mg IV after the 3rd shock</td></tr>
+            <tr><td>Atropine</td><td>0.5–1 mg IV up to 3 mg if vagal tone is a likely cause</td></tr>
+            <tr><td>Calcium chloride</td><td>10% 10 mL IV for magnesium overdose, low calcium or hyperkalaemia</td></tr>
+            <tr><td>Magnesium</td><td>2 g IV for polymorphic VT / hypomagnesaemia; 4 g IV for eclampsia</td></tr>
+            <tr><td>Thrombolysis / PCI</td><td>For suspected massive pulmonary embolus or myocardial infarction</td></tr>
+            <tr><td>Tranexamic acid</td><td>1 g IV if haemorrhage</td></tr>
+            <tr><td>Intralipid</td><td>1.5 mL kg⁻¹ IV bolus and 15 mL kg⁻¹ hr⁻¹ IV infusion</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 10. HYSTEROTOMY ============ -->
+  <details class="acc">
+    <summary>10 · Resuscitative hysterotomy (perimortem caesarean delivery)</summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>Timing matters:</strong> arrest-to-hysterotomy &lt;5 min vs &gt;5 min → maternal survival <strong>61% vs 35%</strong>; neonatal survival <strong>96% vs 70%</strong>.</li>
+        <li><strong>Site matters:</strong> maternal survival <strong>72% vs 36%</strong> when performed at the site of arrest rather than after transfer to the operating theatre.</li>
+        <li>Perform <strong>by 5 minutes if no return of spontaneous circulation at 4 minutes</strong>, in patients ≥20 weeks’ gestation.</li>
+        <li>Perform <strong>immediately</strong> if there are fatal maternal injuries or a prolonged pre-hospital arrest.</li>
+        <li>Physiology: removing the fetus reduces oxygen consumption and removes the anatomical barrier to vena caval flow and optimal pulmonary mechanics.</li>
+        <li><strong>Equipment for caesarean delivery — especially a scalpel — must be immediately available.</strong></li>
+        <li>After delivery: further surgery may be required to repair or close the hysterotomy; ensure haemostasis, antibiotics and intensive care protocols.</li>
+      </ul>
+      <div class="note"><strong>Do not transfer the patient</strong> to the operating room for hysterotomy — transfer causes unnecessary delays and interruption in care.</div>
+    </div>
+  </details>
+
+  <!-- ============ 11. TOE / ECMO ============ -->
+  <details class="acc">
+    <summary>11 · Transoesophageal echocardiography &amp; ECMO-CPR</summary>
+    <div class="acc-body">
+      <h4>Transoesophageal echocardiography (TOE)</h4>
+      <ul>
+        <li>Where equipment and expertise are available, TOE may identify the <strong>cause of arrest</strong> and assess the <strong>efficacy of resuscitation</strong>.</li>
+        <li>Helps identify gross pathology: spontaneous coronary artery dissection with wall motion abnormalities, aortic dissection, pericardial and pleural effusions, saddle pulmonary embolism, ventricular thrombus.</li>
+        <li>May aid placement of cannulae for <strong>ECMO</strong>.</li>
+        <li>Can visualise compression vector and return of myocardial function.</li>
+        <li>Transthoracic or subcostal images are <strong>limited</strong> during resuscitation.</li>
+      </ul>
+
+      <h4>ECMO / ECPR</h4>
+      <ul>
+        <li>Used to stabilise critically ill obstetric patients and as rescue therapy in maternal cardiac arrest attributable to cardiopulmonary causes.</li>
+        <li>Few absolute contraindications in obstetric patients, but <strong>caution with massive haemorrhage or DIC</strong> — extracorporeal circulation may activate coagulation factors and worsen thrombosis or coagulopathy.</li>
+        <li>Obstetric patients at high risk of cardiopulmonary decompensation should be managed at hospitals with <strong>ECMO capabilities</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 12. POST ROSC ============ -->
+  <details class="acc">
+    <summary>12 · Return of spontaneous circulation &amp; post-resuscitation care</summary>
+    <div class="acc-body">
+      <ul>
+        <li>Usual post-resuscitation care once ROSC is achieved.</li>
+        <li>Patients may require further surgery to <strong>repair or close the resuscitative hysterotomy</strong>.</li>
+        <li>Follow appropriate haemostasis, antibiotics and intensive care protocols, including <strong>hypothermia where appropriate</strong> — but note that maternal hypothermia may <strong>worsen coagulopathy</strong>.</li>
+        <li>Patients with return of awareness require appropriate <strong>analgesia and sedation</strong>.</li>
+        <li>Haemorrhage: activate Massive Haemorrhage Protocol; consider uterotonic drugs, fibrinogen and tranexamic acid; uterine tamponade/sutures, aortic compression, hysterectomy.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 13. TEAM ============ -->
+  <details class="acc">
+    <summary>13 · Team preparedness &amp; human factors</summary>
+    <div class="acc-body">
+      <ul>
+        <li>Maternal cardiac arrest is a <strong>high-stakes / low-frequency</strong> event: response plans and plans to mobilise responders should be <strong>regularly reviewed</strong> by obstetricians, anaesthesiologists, neonatologists and labour &amp; delivery nurses, with didactic and simulation sessions.</li>
+        <li>In-situ drills reduce the time to initiation of CPR and resuscitative hysterotomy in simulated settings.</li>
+        <li><strong>Strong leadership and teamwork</strong> are essential.</li>
+        <li>Use <strong>closed-loop communication</strong>: acknowledge tasks assigned by the leader, announce when tasks are completed, and feel empowered to make suggestions.</li>
+        <li>Once enough support arrives, the code leader should move to a position of <strong>oversight</strong> — ensure completion of tasks, identify the differential diagnosis and direct appropriate treatment.</li>
+      </ul>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational quick reference only.</strong> Not a substitute for local protocols, current resuscitation guidelines or clinical judgement. Always follow your institution’s maternal cardiac arrest / major haemorrhage policies.
+  </div>
+
+  <h3>Sources</h3>
+  <ol>
+    <li>Madden A-M, Meng M-L. <em>Cardiopulmonary resuscitation in the pregnant patient.</em> BJA Education, 2020. (PDF: PIIS2058534920300482) — primary source for sections 1, 3–6, 7 (Table 1), 10–13.</li>
+    <li>Obstetric Anaesthetists’ Association. <em>Maternal Cardiac Arrest — Quick Reference Handbook (QRH), v1.1.</em> — source for the 9-step card, Box A (4H’s &amp; 4T’s) and Box B (IV drugs).</li>
+    <li>Deranged Physiology. <em>Cardiac arrest in the pregnant patient.</em> <a href="https://derangedphysiology.com/main/required-reading/cardiovascular-intensive-care/Chapter-220/cardiac-arrest-pregnant-patient" target="_blank" rel="noopener">derangedphysiology.com — Chapter 220</a></li>
+  </ol>
+
+  <h3>Key further reading (from the review)</h3>
+  <ol>
+    <li>Soar J, Perkins GD, Abbas G, et al. European Resuscitation Council Guidelines for Resuscitation 2010, Section 8. <em>Resuscitation</em> 2010;81:1400–33.</li>
+    <li>Lipman S, Cohen S, Einav S, et al. SOAP consensus statement on the management of cardiac arrest in pregnancy. <em>Anesth Analg</em> 2014;118:1003–16.</li>
+    <li>Beckett VA, Knight M, Sharpe P. The CAPS Study. <em>BJOG</em> 2017;124:1374–81.</li>
+    <li>Mhyre JM, Tsen LC, Einav S, et al. Cardiac arrest during hospitalization for delivery in the United States, 1998–2011. <em>Anesthesiology</em> 2014;120:810–8.</li>
+    <li>Agerstrand C, Abrams D, Bisconti M, et al. ECMO for cardiopulmonary failure during pregnancy and postpartum. <em>Ann Thorac Surg</em> 2016;102:774–9.</li>
+  </ol>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content    = document.getElementById('content');
+  var searchInput= document.getElementById('search');
+  var countEl    = document.getElementById('count');
+  var marks      = [];
+  var current    = -1;
+
+  /* ---------------- Text size ---------------- */
+  var fs = 17;
+  try { var saved = localStorage.getItem('mca-fs'); if (saved) fs = parseInt(saved, 10) || 17; } catch (e) {}
+
+  function applyFont() {
+    fs = Math.min(26, Math.max(13, fs));
+    document.documentElement.style.setProperty('--fs', fs + 'px');
+    try { localStorage.setItem('mca-fs', String(fs)); } catch (e) {}
+  }
+  applyFont();
+
+  document.getElementById('fontUp').addEventListener('click', function () { fs += 1; applyFont(); });
+  document.getElementById('fontDown').addEventListener('click', function () { fs -= 1; applyFont(); });
+  document.getElementById('fontReset').addEventListener('click', function () { fs = 17; applyFont(); });
+
+  /* ---------------- Expand / collapse ---------------- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = false; });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ---------------- Highlight helpers ---------------- */
+  function clearMarks() {
+    content.querySelectorAll('mark.hl').forEach(function (m) {
+      var parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+    marks = [];
+    current = -1;
+  }
+
+  function openAncestors(el) {
+    var p = el.parentElement;
+    while (p && p !== content) {
+      if (p.tagName === 'DETAILS') { p.open = true; }
+      p = p.parentElement;
+    }
+  }
+
+  function updateCurrent(scroll) {
+    marks.forEach(function (m) { m.classList.remove('current'); });
+    if (current < 0 || current >= marks.length) { countEl.textContent = '—'; return; }
+    var m = marks[current];
+    m.classList.add('current');
+    openAncestors(m);
+    if (scroll !== false) {
+      requestAnimationFrame(function () {
+        m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    countEl.textContent = (current + 1) + ' / ' + marks.length;
+  }
+
+  function doSearch() {
+    clearMarks();
+    var q = searchInput.value.trim();
+    if (q.length < 2) { countEl.textContent = '—'; return; }
+
+    var ql = q.toLowerCase();
+
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) { nodes.push(walker.currentNode); }
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(ql);
+      if (idx === -1) { return; }
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) { frag.appendChild(document.createTextNode(text.slice(last, idx))); }
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mark);
+        marks.push(mark);
+        last = idx + q.length;
+        idx = lower.indexOf(ql, last);
+      }
+      if (last < text.length) { frag.appendChild(document.createTextNode(text.slice(last))); }
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    if (marks.length) {
+      current = 0;
+      updateCurrent();
+    } else {
+      countEl.textContent = '0 / 0';
+    }
+  }
+
+  function step(dir) {
+    if (!marks.length) { return; }
+    current = (current + dir + marks.length) % marks.length;
+    updateCurrent();
+  }
+
+  /* ---------------- Events ---------------- */
+  var timer = null;
+  searchInput.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(doSearch, 180);
+  });
+
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (marks.length) { step(1); } else { doSearch(); }
+    }
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      clearMarks();
+      countEl.textContent = '—';
+    }
+  });
+
+  document.getElementById('next').addEventListener('click', function () {
+    if (!marks.length) { doSearch(); } else { step(1); }
+  });
+  document.getElementById('prev').addEventListener('click', function () {
+    if (!marks.length) { doSearch(); } else { step(-1); }
+  });
+  document.getElementById('clear').addEventListener('click', function () {
+    searchInput.value = '';
+    clearMarks();
+    countEl.textContent = '—';
+    searchInput.focus();
+  });
+
+  /* "/" focuses the search box */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
