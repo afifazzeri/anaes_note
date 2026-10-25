@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scoliosis Surgery — Anaesthetic &amp; ICU Quick Reference</title>
+<style>
+  :root{
+    --bg:#f2f0fb;
+    --card:#ffffff;
+    --ink:#1f1b3d;
+    --muted:#565080;
+    --primary:#4b3fbe;
+    --primary-dark:#3a2f8f;
+    --accent:#2f6bff;
+    --violet:#7a4dff;
+    --border:#dcd6f7;
+    --chip:#efeafd;
+    --ok:#0f7b52;
+    --warnbg:#fff6e8;
+    --warnbd:#d97706;
+  }
+  *{box-sizing:border-box}
+  html{font-size:16px; scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size:1rem; line-height:1.62;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    background:linear-gradient(120deg,#2c2270 0%,#4b3fbe 45%,#2f6bff 100%);
+    color:#fff; padding:1.6rem 1rem 1.4rem;
+  }
+  .head-inner{max-width:1040px;margin:0 auto;}
+  header h1{margin:0 0 .25rem; font-size:1.55rem; line-height:1.25; letter-spacing:.2px}
+  header p{margin:0; opacity:.9; font-size:.92rem}
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+    box-shadow:0 2px 10px rgba(59,47,143,.08);
+  }
+  .toolbar-inner{
+    max-width:1040px; margin:0 auto; padding:.55rem 1rem;
+    display:flex; flex-wrap:wrap; gap:.5rem; align-items:center;
+  }
+  .btn{
+    font:inherit; font-size:.85rem; font-weight:600;
+    border:1px solid var(--border); background:#fff; color:var(--primary-dark);
+    padding:.38rem .7rem; border-radius:9px; cursor:pointer;
+    transition:.15s ease; white-space:nowrap;
+  }
+  .btn:hover{background:var(--chip); border-color:#b9aef2;}
+  .btn:active{transform:translateY(1px);}
+  .btn.solid{
+    background:linear-gradient(120deg,var(--primary-dark),var(--accent));
+    color:#fff; border-color:transparent;
+  }
+  .btn.solid:hover{filter:brightness(1.08); background:linear-gradient(120deg,var(--primary-dark),var(--accent));}
+  .btn:disabled{opacity:.45; cursor:default; transform:none;}
+
+  .searchbox{
+    display:flex; align-items:center; gap:.35rem; flex:1 1 260px; min-width:220px;
+    background:#fff; border:1px solid var(--border); border-radius:10px; padding:.2rem .35rem;
+  }
+  .searchbox:focus-within{border-color:var(--violet); box-shadow:0 0 0 3px rgba(122,77,255,.18);}
+  .searchbox input{
+    font:inherit; font-size:.88rem; border:0; outline:0; background:transparent;
+    flex:1 1 auto; padding:.28rem .3rem; color:var(--ink); min-width:60px;
+  }
+  .searchbox input::placeholder{color:#9891bd;}
+  .counter{font-size:.78rem; color:var(--muted); white-space:nowrap; padding:0 .25rem; font-variant-numeric:tabular-nums;}
+
+  .fsgroup{display:flex; align-items:center; gap:.3rem; background:#fff; border:1px solid var(--border); border-radius:10px; padding:.15rem .3rem;}
+  .fsgroup span{font-size:.78rem; color:var(--muted); font-variant-numeric:tabular-nums; min-width:2.6rem; text-align:center;}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1040px; margin:0 auto; padding:1.1rem 1rem 4rem;}
+
+  /* ---------- Collapsible sections ---------- */
+  details{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    margin:0 0 .9rem; overflow:hidden;
+    box-shadow:0 1px 4px rgba(59,47,143,.07);
+  }
+  summary{
+    cursor:pointer; list-style:none; position:relative; user-select:none;
+    padding:.8rem 1rem .8rem 2.5rem;
+    font-weight:700; font-size:1.02rem; color:#fff;
+    background:linear-gradient(100deg,#3a2f8f,#5b3fd6 58%,#2f6bff);
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::before{
+    content:"▸"; position:absolute; left:.95rem; top:50%;
+    transform:translateY(-50%); font-size:.85rem; opacity:.95;
+    transition:transform .18s ease;
+  }
+  details[open] > summary::before{transform:translateY(-50%) rotate(90deg);}
+  summary:hover{filter:brightness(1.06);}
+  .content{padding:.9rem 1.1rem 1.15rem;}
+
+  h3{
+    font-size:1rem; margin:1.25rem 0 .45rem; color:var(--primary-dark);
+    border-left:4px solid var(--violet); padding-left:.55rem; line-height:1.35;
+  }
+  h3:first-child{margin-top:.15rem;}
+  h4{font-size:.92rem; margin:.9rem 0 .3rem; color:var(--primary);}
+  p{margin:.45rem 0;}
+  ul,ol{margin:.4rem 0 .6rem; padding-left:1.35rem;}
+  li{margin:.22rem 0;}
+  strong{color:#15112e;}
+  em{color:#3b3566;}
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    margin:.7rem 0 .9rem; border:1px solid var(--border); border-radius:11px;
+    background:#fff;
+  }
+  table{border-collapse:collapse; width:100%; min-width:480px; font-size:.9rem;}
+  thead th{
+    background:#eae4fd; color:#332a83; text-align:left; font-weight:700;
+    padding:.55rem .7rem; border-bottom:2px solid #cfc6f5; white-space:nowrap;
+  }
+  tbody td{padding:.5rem .7rem; border-bottom:1px solid #eeebfa; vertical-align:top;}
+  tbody tr:nth-child(even){background:#faf9ff;}
+  tbody tr:last-child td{border-bottom:0;}
+  caption{caption-side:bottom; text-align:left; font-size:.78rem; color:var(--muted); padding:.45rem .7rem;}
+
+  /* ---------- Chips / callouts ---------- */
+  .chip{
+    display:inline-block; background:var(--chip); color:#3b2f8f;
+    border:1px solid #d7cffa; border-radius:999px;
+    padding:.1rem .55rem; font-size:.78rem; font-weight:600; margin:.15rem .2rem .15rem 0;
+  }
+  .note{
+    background:#eef2ff; border-left:4px solid var(--accent);
+    border-radius:0 10px 10px 0; padding:.6rem .85rem; margin:.75rem 0; font-size:.92rem;
+  }
+  .warn{
+    background:var(--warnbg); border-left:4px solid var(--warnbd);
+    border-radius:0 10px 10px 0; padding:.6rem .85rem; margin:.75rem 0; font-size:.92rem;
+  }
+  .note strong, .warn strong{color:#15112e;}
+
+  /* ---------- Flow diagram ---------- */
+  .flow{display:grid; gap:.6rem; margin:.8rem 0 1rem;}
+  .flow-step{
+    display:grid; grid-template-columns:minmax(120px,180px) 1fr; gap:.7rem;
+    align-items:start;
+  }
+  .flow-when{
+    background:linear-gradient(120deg,#3a2f8f,#5b3fd6);
+    color:#fff; font-weight:700; font-size:.85rem; text-align:center;
+    padding:.55rem .5rem; border-radius:10px;
+  }
+  .flow-items{display:flex; flex-wrap:wrap; gap:.4rem;}
+  .flow-items span{
+    background:#eae4fd; border:1px solid #d3c9f8; color:#2e2670;
+    border-radius:9px; padding:.4rem .65rem; font-size:.85rem; font-weight:600;
+  }
+  @media (max-width:560px){
+    .flow-step{grid-template-columns:1fr;}
+  }
+
+  /* ---------- SVG diagram ---------- */
+  .diagram{
+    background:#fbfaff; border:1px solid var(--border); border-radius:12px;
+    padding:.7rem; margin:.8rem 0; text-align:center;
+  }
+  .diagram svg{max-width:100%; height:auto; display:block; margin:0 auto;}
+  .diagram figcaption{font-size:.8rem; color:var(--muted); margin-top:.5rem; line-height:1.45;}
+
+  /* ---------- Search highlight ---------- */
+  mark.hit{
+    background:#ffe066; color:#1a1035; border-radius:3px; padding:0 1px;
+    box-shadow:0 0 0 1px rgba(217,119,6,.25);
+  }
+  mark.hit.current{
+    background:#ff9f1c; color:#231100;
+    box-shadow:0 0 0 2px #d9480f;
+  }
+
+  /* ---------- References ---------- */
+  .refs{font-size:.86rem; color:var(--muted);}
+  .refs li{margin:.35rem 0;}
+  .refs a{color:var(--primary); word-break:break-word;}
+
+  footer{
+    max-width:1040px; margin:0 auto; padding:0 1rem 3rem;
+    font-size:.8rem; color:var(--muted); text-align:center;
+  }
+  .disclaimer{
+    font-size:.82rem; color:#4a4478; background:#ece9fb;
+    border:1px dashed #c4baf2; border-radius:10px; padding:.6rem .85rem; margin-bottom:1rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <h1>Scoliosis Surgery — Anaesthetic &amp; Critical Care Quick Reference</h1>
+    <p>Adolescent idiopathic &amp; non-idiopathic scoliosis · perioperative, intraoperative and postoperative essentials</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <button class="btn solid" id="expandAll">⊞ Expand all</button>
+    <button class="btn" id="collapseAll">⊟ Collapse all</button>
+
+    <div class="fsgroup" title="Text size">
+      <button class="btn" id="fsDown" aria-label="Decrease text size">A−</button>
+      <span id="fsVal">16px</span>
+      <button class="btn" id="fsUp" aria-label="Increase text size">A+</button>
+    </div>
+
+    <div class="searchbox">
+      <input id="searchInput" type="search" placeholder="Search this reference…" aria-label="Search">
+      <span class="counter" id="counter">0 / 0</span>
+      <button class="btn" id="prevBtn" disabled title="Previous match">▲</button>
+      <button class="btn" id="nextBtn" disabled title="Next match">▼</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="disclaimer">
+    <strong>Quick reference only.</strong> Not a substitute for clinical judgement, local protocols, or the full source articles. Doses are those reported in the sources — verify against your institutional formulary.
+  </div>
+
+  <div id="content">
+
+  <!-- ============ 1 ============ -->
+  <details open>
+    <summary>1 · Overview, Classification &amp; Indications for Surgery</summary>
+    <div class="content">
+      <ul>
+        <li><strong>Prevalence:</strong> abnormal lateral curvature of the spine in <strong>2–3%</strong> of the population; usually becomes evident between <strong>10–15 years</strong>.</li>
+        <li><strong>Sex:</strong> slightly more common in females, but females progress to surgical correction <strong>8× as often</strong>.</li>
+        <li><strong>Idiopathic</strong> = most common (<strong>65%</strong> of cases; ~80% of adolescent cases). Other categories: <strong>congenital</strong> and <strong>neuromuscular</strong> (cerebral palsy, spinal cord trauma, spinal muscular atrophy, spina bifida, muscular dystrophy).</li>
+        <li><strong>Curve pattern:</strong> usually right-sided (right convex), involving 7–10 vertebrae.
+          <div class="warn" style="margin-top:.5rem"><strong>Left convex curve</strong> → higher likelihood of associated anomalies: spinal cord <strong>20%</strong>, genitourinary <strong>20–33%</strong>, cardiac <strong>10–15%</strong>.</div>
+        </li>
+        <li><strong>Surgical indication:</strong> Cobb angle generally <strong>&gt; 45–50°</strong> (idiopathic curves may stay functionally normal until ~65°).</li>
+        <li><strong>Cobb angle ≥ 100°</strong> → likely severe cardiac and respiratory dysfunction.</li>
+      </ul>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 360 240" role="img" aria-label="Diagram of Cobb angle measurement">
+          <rect x="0" y="0" width="360" height="240" fill="none"/>
+          <!-- upper endplate line -->
+          <line x1="40" y1="172" x2="340" y2="74" stroke="#2f6bff" stroke-width="3" stroke-linecap="round"/>
+          <!-- lower endplate line -->
+          <line x1="40" y1="68" x2="340" y2="166" stroke="#7a4dff" stroke-width="3" stroke-linecap="round"/>
+          <!-- angle arc -->
+          <path d="M 133.4 98.5 A 70 70 0 0 0 133.4 141.5" fill="none" stroke="#d9480f" stroke-width="3"/>
+          <!-- vertex dot -->
+          <circle cx="200" cy="120" r="4" fill="#d9480f"/>
+          <!-- labels -->
+          <text x="125" y="126" text-anchor="end" font-size="13" font-weight="700" fill="#b33d06">Cobb angle</text>
+          <text x="336" y="66" text-anchor="end" font-size="11" font-weight="600" fill="#2f6bff">superior endplate</text>
+          <text x="336" y="184" text-anchor="end" font-size="11" font-weight="600" fill="#7a4dff">inferior endplate</text>
+        </svg>
+        <figcaption>
+          <strong>Cobb angle</strong> = angle between perpendiculars to the superior endplate of the upper end vertebra and the inferior endplate of the lower end vertebra (equal to the angle between the two endplate lines).
+        </figcaption>
+      </figure>
+
+      <p><span class="chip">Right convex: 7–10 vertebrae</span><span class="chip">Left convex: screen for anomalies</span><span class="chip">≥45–50° → operate</span><span class="chip">≥100° → severe cardiorespiratory risk</span></p>
+    </div>
+  </details>
+
+  <!-- ============ 2 ============ -->
+  <details>
+    <summary>2 · Preoperative Assessment</summary>
+    <div class="content">
+      <p>A detailed history and physical exam is essential — advanced scoliosis carries significant <strong>pulmonary, cardiac and neurologic</strong> comorbidity. Baseline <strong>exercise tolerance</strong> and <strong>respiratory function</strong> are general predictors of the ability to withstand major surgery.</p>
+
+      <h3>Pulmonary function</h3>
+      <ul>
+        <li>Severity depends on: underlying cause (e.g. neuromuscular disease), speed of onset, and degree of curvature.</li>
+        <li>Mechanism: decreased lung volumes from restricted diaphragm/chest wall movement → poor ventilation distribution → <strong>hypercarbia, hypoxaemia, infection</strong>.</li>
+        <li>Reduced chest wall compliance causes <strong>restrictive</strong> disease; exercise tolerance may be reduced even with normal lung volumes.</li>
+        <li><strong>PFT pattern in restriction:</strong> ↓ FEV₁, ↓ FVC, <strong>normal FEV₁/FVC ratio</strong>, ↓ TLC, but <strong>residual volume is generally maintained</strong>.</li>
+        <li>Clinical signs of significant impairment: dyspnoea at rest or on activity, inability to cough or clear secretions.</li>
+        <li>PFTs are important but <strong>not always possible</strong> — especially in severe cerebral palsy.</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 1 — Assessment of severity of restrictive lung disease using PFTs (FVC = forced vital capacity; TLC = total lung capacity; LLN = lower limit of normal).</caption>
+          <thead>
+            <tr><th>Degree of disease</th><th>% predicted FVC</th><th>% predicted TLC</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Mild</td><td>70% – LLN</td><td>70% – LLN</td></tr>
+            <tr><td>Moderate</td><td>60–69%</td><td>60–69%</td></tr>
+            <tr><td>Moderately severe</td><td>50–59%</td><td>&lt; 50%</td></tr>
+            <tr><td>Severe</td><td>34–49%</td><td>&lt; 50%</td></tr>
+            <tr><td>Very severe</td><td>&lt; 34%</td><td>&lt; 50%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Cardiac function</h3>
+      <ul>
+        <li>Rare, but severe scoliosis can progress to significant cardiac disease: regional hypoventilation + chronic hypercarbia/hypoxaemia → <strong>pulmonary hypertension and right ventricular failure</strong>.</li>
+        <li>Neuromuscular scoliosis (e.g. <strong>Duchenne muscular dystrophy</strong>, long-chain acyl-CoA dehydrogenase deficiency) — the primary disease can cause <strong>dilated cardiomyopathy</strong>.</li>
+        <li>Evaluate with echocardiography if there is significant exercise intolerance, JVP distension, hepatic congestion, or lower limb oedema.</li>
+        <li><strong>Mitral valve prolapse</strong> may be present in <strong>25%</strong> of children with scoliosis.</li>
+      </ul>
+
+      <h3>Non-idiopathic scoliosis — special considerations</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Condition</th><th>Anaesthetic relevance</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Cerebral palsy</strong></td>
+              <td>Non-progressive neurological disease of fetal/neonatal brain development; movement limitation and spastic paralysis. Often some degree of cognitive impairment — may be severe and limit cooperation with preoperative testing (e.g. PFTs) and preparation.</td>
+            </tr>
+            <tr>
+              <td><strong>Duchenne muscular dystrophy (DMD)</strong></td>
+              <td>Genetic, progressive muscle degeneration. Proximal weakness and pseudohypertrophy from early childhood → skeletal deformity (incl. scoliosis), paralysis, cardiorespiratory failure.</td>
+            </tr>
+            <tr>
+              <td><strong>Mitochondrial disease</strong></td>
+              <td>Multiorgan dysfunction from inadequate cellular energy; genetic defects of mitochondrial metabolism. Can affect every system, sometimes causing profound neuromuscular disease leading to scoliosis.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">These patients often already receive specialised care — <strong>obtain and review those records before surgery.</strong></div>
+    </div>
+  </details>
+
+  <!-- ============ 3 ============ -->
+  <details>
+    <summary>3 · Preoperative Optimisation</summary>
+    <div class="content">
+      <p>Scoliosis correction is <strong>never an emergency</strong> — there is usually time to optimise, which benefits patients with significant comorbidity most.</p>
+      <ul>
+        <li><strong>Nutrition:</strong> optimise to aid recovery; correct underlying anaemia.</li>
+        <li><strong>Pulmonary:</strong> treat and control reversible causes — asthma, pneumonia.</li>
+        <li><strong>Cardiac:</strong> optimise volume status and blood pressure control.</li>
+        <li><strong>Logistics:</strong> notify the <strong>blood bank</strong> and <strong>intensive care unit</strong> in advance for adequate preparation and resource allocation.</li>
+        <li><strong>Pre-admission clinic</strong> (≥2 weeks before surgery): full assessment, optimisation, and a detailed discussion of the perioperative plan (including pain and symptom management) — reduces anxiety and improves satisfaction.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 4 ============ -->
+  <details>
+    <summary>4 · Intraoperative Management</summary>
+    <div class="content">
+
+      <h3>Surgical approaches</h3>
+      <ol>
+        <li><strong>Posterior spinal fusion</strong> with contoured or adjustable rods — commonly used in younger children (lengthening over time); fixed rods more common in older children.</li>
+        <li><strong>Anterior</strong> approach via thoracoabdominal incision — removal of intervertebral discs or hemivertebrae contributing to the curvature.</li>
+        <li><strong>Combined</strong> posterior fusion + anterior release (endoscopic anterior release in rare selected cases).</li>
+      </ol>
+
+      <h3>Monitoring</h3>
+      <ul>
+        <li><strong>Standard:</strong> ECG, NIBP, pulse oximetry, temperature, capnography, Foley catheter for urine output.</li>
+        <li><strong>Arterial line:</strong> for blood pressure monitoring, cardiac output monitoring (e.g. LiDCO) and intraoperative blood tests — consider if significant comorbidity or higher-than-normal blood loss expected.</li>
+        <li><strong>Central venous pressure:</strong> to guide fluid resuscitation, or when peripheral IV access is difficult (syndromic patients, moderate–severe pulmonary or cardiac dysfunction). <em>Not usually required for idiopathic scoliosis.</em></li>
+        <li><strong>BIS (processed EEG):</strong> reassuring when using TIVA rather than volatile anaesthesia.</li>
+      </ul>
+      <div class="warn">
+        <strong>Right heart strain</strong> (e.g. muscular dystrophy-related cardiac failure): avoid factors that increase pulmonary vascular resistance — <strong>acidosis, hypoxaemia, hypercarbia, hypothermia</strong>.
+      </div>
+
+      <h3>Positioning (prone)</h3>
+      <ul>
+        <li>Challenging: abnormal body habitus and need to expose a large area of the spine.</li>
+        <li>Secure and monitor the <strong>endotracheal tube and IV lines</strong> — they can move during the case.</li>
+        <li><strong>Pad all pressure points.</strong></li>
+        <li>Support chest and pelvis so the <strong>abdomen is free to move</strong> — raised abdominal pressure compromises IVC venous return, raises epidural vein pressure and <strong>increases operative blood loss</strong>.</li>
+        <li><strong>Avoid any pressure on the eyes</strong> — critical.</li>
+        <li>Specialised tables (e.g. Allen table) can help.</li>
+      </ul>
+
+      <h3>Haemorrhage &amp; blood conservation</h3>
+      <ul>
+        <li>Large incision, vertebral bone removal at multiple levels, many hours; prone positioning engorges vertebral veins.</li>
+        <li><strong>Loss of up to one half of a patient's blood volume or more is not unexpected</strong> — plan for large-volume haemorrhage throughout.</li>
+        <li>Preoperative <strong>iron supplementation or erythropoietin</strong> if anaemic; autologous blood donation where available.</li>
+        <li><strong>Acute normovolaemic haemodilution</strong> (adults, occasionally): remove 2–3 units at start, replace with equal volume colloid or 3× volume crystalloid; transfuse back at the end.</li>
+        <li><strong>Cell salvage</strong> (e.g. Cell Saver) may be considered.</li>
+        <li><strong>Tranexamic acid</strong> (adolescent AIS): <span class="chip">20–30 mg/kg loading</span> <span class="chip">then 10 mg/kg/h infusion</span> — reduces blood loss; most dose-finding studies suggest a higher dose. No clear evidence for the single best bolus/infusion regimen.</li>
+        <li>Intraoperative cell salvage is <strong>not usually necessary</strong> for AIS posterior spinal fusion (reported loss 275–907 mL).</li>
+      </ul>
+      <div class="warn">
+        <strong>Induced hypotension</strong> (targeting systolic ~80 mmHg) is used in some centres to reduce bleeding, but is associated with <strong>postoperative visual loss</strong> and <strong>anterior spinal ischaemia → postoperative paralysis</strong>. Avoid in any patient at high risk from reduced perfusion to vital organs (kidneys, eyes, brain, heart).
+      </div>
+      <p><strong>Goal-directed fluid therapy</strong> using stroke volume variation has been applied in major adult spine surgery in the prone position with positive results. Both hypovolaemia (→ AKI, end-organ dysfunction) and fluid overload (→ pulmonary oedema, ileus, reduced tissue oxygenation) are harmful.</p>
+
+      <h3>Respiratory management</h3>
+      <ul>
+        <li>Baseline respiratory status is <strong>unlikely to improve during or immediately after</strong> correction — ventilation may be challenging.</li>
+        <li>Anticipate significant <strong>postoperative atelectasis</strong>; severe cases may need controlled ventilation postoperatively.</li>
+        <li><strong>Neuromuscular causes</strong> contribute to greater respiratory dysfunction (respiratory muscle involvement).</li>
+        <li>For <strong>intrathoracic approaches</strong>: lung isolation with a double-lumen tube, bronchial blocker, or endobronchial intubation may be required.</li>
+      </ul>
+
+      <h3>Temperature &amp; infection prevention</h3>
+      <ul>
+        <li>Large surface area exposed for prolonged periods → <strong>careful temperature monitoring</strong> to avoid hypothermia.</li>
+        <li>Use <strong>warmed IV fluids, forced-air warmers, elevated room temperature</strong>.</li>
+        <li><strong>Active prewarming</strong> with a forced-air blanket before transfer to theatre reduces the duration of intraoperative hypothermia.</li>
+        <li>Maintain temperature <strong>36–38 °C</strong> from incision until skin closure to reduce SSI.</li>
+        <li><strong>Cefazolin 40 mg/kg (max 2 g)</strong> IV 10–60 min before incision; repeat dose at 4 h until skin closure.</li>
+        <li>Aseptic technique for all cannulae, including arterial and central venous catheters.</li>
+        <li>SSI incidence after AIS surgery is up to <strong>6.7%</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 5 ============ -->
+  <details>
+    <summary>5 · Intraoperative Neuromonitoring</summary>
+    <div class="content">
+      <p><strong>Goal:</strong> identify disruption in nerve signals quickly so surgical adjustments can be made <em>before</em> the final spinal column configuration is set.</p>
+
+      <h3>Modalities</h3>
+      <ul>
+        <li><strong>SSEPs (somatosensory evoked potentials):</strong> stimulate a peripheral nerve → measure signal generated in the <strong>somatosensory cortex</strong>.</li>
+        <li><strong>MEPs (motor evoked potentials):</strong> stimulate near the <strong>motor cortex</strong> → measure signals at the target muscle.</li>
+        <li>Together they assess the entire pathway (cortex, spinal cord, peripheral nerves) continuously.</li>
+        <li><strong>Wake-up test:</strong> historical/basic test — patient awakened after rod placement to assess lower limb nerve function; requires ability to follow simple motor commands. May need titration of naloxone if excessive opioid; rapid-acting opioids (remifentanil) or dexmedetomidine may help. Used where neuromonitoring is unavailable.</li>
+      </ul>
+
+      <h3>Anaesthetic effects</h3>
+      <ul>
+        <li><strong>Volatile anaesthetics</strong> disrupt SSEPs and MEPs — particularly above <strong>0.5 MAC</strong>; nitrous oxide also disrupts them.</li>
+        <li><strong>Neuromuscular blockers</strong> disrupt MEP signals (measured at the neuromuscular junction) → <strong>avoid non-depolarising NMBAs</strong> with MEP monitoring. Small doses (e.g. rocuronium 0.2–0.4 mg/kg) may be used for intubation but should be metabolised before surgery starts.</li>
+        <li>Because of signal interference, these cases are most commonly done with <strong>TIVA</strong> (propofol ± remifentanil ± ketamine).</li>
+        <li>Use a <strong>processed EEG (BIS)</strong> during TIVA to assess depth and avoid awareness.</li>
+        <li>Other factors that alter signal transduction: <strong>hypoxia, hypercarbia, hypothermia, hypotension</strong> — avoid all; maintain a constant depth of anaesthesia.</li>
+        <li><strong>If the signal is disrupted, notify the surgeon immediately.</strong></li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 2 — Effect of anaesthetic agents on neuromonitoring signals (qualitative summary from source: + minimal, ++ moderate, +++ marked suppression; ± variable/no significant effect).</caption>
+          <thead>
+            <tr><th>Anaesthetic drug</th><th>Effect on SSEP</th><th>Effect on MEP</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Isoflurane</td><td>+++</td><td>+++</td></tr>
+            <tr><td>Sevoflurane</td><td>+++</td><td>+++</td></tr>
+            <tr><td>Nitrous oxide</td><td>+++</td><td>+++</td></tr>
+            <tr><td>Barbiturates</td><td>++</td><td>++</td></tr>
+            <tr><td>Benzodiazepines</td><td>+</td><td>+</td></tr>
+            <tr><td>Propofol</td><td>+</td><td>+</td></tr>
+            <tr><td>Ketamine</td><td>± (may enhance amplitude)</td><td>± (may enhance amplitude)</td></tr>
+            <tr><td>Fentanyl</td><td>No effect</td><td>No effect</td></tr>
+            <tr><td>Remifentanil</td><td>No effect</td><td>No effect</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        Nitrous oxide causes a more profound depression of amplitude and longer latency in SSEPs and MEPs than halogenated volatile agents. Nevertheless, <strong>all volatile anaesthetics and nitrous oxide should be eliminated before initiating neuromonitoring</strong>. Propofol does affect accuracy, but equipotent IV doses have less effect than inhalational agents.
+      </div>
+      <p><span class="chip">Volatiles &gt;0.5 MAC → signal loss</span><span class="chip">N₂O → avoid</span><span class="chip">NMBA → avoid for MEP</span><span class="chip">TIVA preferred</span><span class="chip">BIS to guide depth</span></p>
+    </div>
+  </details>
+
+  <!-- ============ 6 ============ -->
+  <details>
+    <summary>6 · Postoperative Care (ICU / HDU)</summary>
+    <div class="content">
+
+      <h3>Respiratory</h3>
+      <ul>
+        <li>Postoperative pulmonary complications are more likely with <strong>more severe disease, congenital scoliosis and syndromic children</strong>, greater baseline curvature, and pre-existing pulmonary dysfunction.</li>
+        <li>Correction may <strong>prevent further decline</strong> but is <strong>not likely to improve baseline function</strong>, particularly in the immediate postoperative period.</li>
+        <li><strong>Preoperative VC or FEV₁ &lt; 40% of predicted</strong> → may require <strong>postoperative controlled ventilation</strong>.</li>
+        <li><strong>Preoperative VC or FEV₁ ≥ 70%</strong> → usually has adequate pulmonary reserve for <strong>immediate extubation</strong>.</li>
+        <li>Optimise respiratory status postoperatively: atelectasis, hypotension, secretion retention, immobilisation and analgesics all worsen underlying pulmonary disease.</li>
+        <li>Manage in a <strong>high dependency or specialised postoperative area</strong> familiar with spinal corrective surgery.</li>
+      </ul>
+
+      <h3>Pain management</h3>
+      <ul>
+        <li>Challenging — large skin incisions and multiple osteotomies. Good control improves satisfaction and prevents hypoventilation/respiratory complications.</li>
+        <li><strong>Multimodal:</strong> paracetamol (acetaminophen), NSAIDs, gabapentin, ketamine, opioids.</li>
+        <li><strong>Patient-controlled analgesia (PCA)</strong> improves patient satisfaction.</li>
+        <li><strong>Intrathecal morphine</strong> (2–19 µg/kg; duration ~16 h) + PCA provided the most effective pain relief in a retrospective comparison vs PCA alone vs PCEA. Loss of effect on the morning of POD 1 often coincides with the start of physiotherapy.</li>
+        <li><strong>Epidural</strong> placement may be considered, but weigh against <strong>hypotension and impaired postoperative neurological examination</strong>; intrathecal opioids carry a risk of <strong>pruritus</strong>.</li>
+        <li>Persistent chronic pain with a neuropathic component is common after AIS surgery and is associated with preoperative pain and high early postoperative opioid consumption.</li>
+      </ul>
+
+      <h3>Postoperative nausea &amp; vomiting (PONV)</h3>
+      <ul>
+        <li>Often a major challenge; <strong>multiple prophylactic antiemetics</strong> may be required.</li>
+        <li><strong>Dexamethasone</strong> 0.15 mg/kg (max 8 mg) + <strong>ondansetron</strong> 0.1 mg/kg (max 8 mg) intraoperatively.</li>
+        <li><strong>Aprepitant</strong> (NK₁ antagonist, half-life 9–13 h): 40 mg PO 30–60 min before surgery; 40 and 80 mg appear to give similar antiemetic effects to ondansetron. Triple therapy (aprepitant + dexamethasone + ondansetron) was more effective than dexamethasone + ondansetron.</li>
+        <li>Rescue: fluid bolus 10–20 mL/kg, reassess opioid contribution, dimenhydrinate 0.5–1 mg/kg IV q6h PRN.</li>
+      </ul>
+
+      <h3>Postoperative visual loss (POVL)</h3>
+      <div class="warn">
+        Rare but devastating. More common in prolonged <strong>prone</strong> or steep Trendelenburg positioning. Two forms:
+        <ul style="margin:.4rem 0 0">
+          <li><strong>Ischaemic optic neuropathy (ION)</strong> — anterior or posterior (posterior occurs 3× as frequently). Associated with blood loss &gt; 1000 mL or &gt; 45% of estimated blood volume, operations &gt; 6 h, preoperative anaemia, intraoperative hypotension, intraoperative haematocrit &lt; 30; periorbital oedema from high-volume crystalloid resuscitation may also contribute.</li>
+          <li><strong>Central retinal artery occlusion (CRAO)</strong> — from <strong>direct compression of the eye</strong> causing retinal ischaemia. <strong>Any direct pressure on the eye must be avoided.</strong></li>
+        </ul>
+      </div>
+
+      <h3>Other postoperative issues</h3>
+      <ul>
+        <li><strong>Ileus/constipation</strong> — opioid-induced; bowel routine helps (see ERAS pathway).</li>
+        <li><strong>Pruritus</strong> — from intrathecal opioids; nalbuphine 0.05–0.1 mg/kg q6h PRN controls it without reversing analgesia.</li>
+        <li><strong>Neurological complications</strong> — uncommon but significant; incidence <strong>0.3%</strong> after posterior spinal fusion.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7 ============ -->
+  <details>
+    <summary>7 · Enhanced Recovery (ERAS) Pathway — AIS Posterior Spinal Fusion</summary>
+    <div class="content">
+
+      <h3>Perioperative care plan (flow)</h3>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-when">Weeks before surgery</div>
+          <div class="flow-items"><span>Assess and discuss plan with patient</span></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-when">Hour before surgery</div>
+          <div class="flow-items"><span>Preoperative warming blanket</span><span>Aprepitant</span></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-when">During surgery</div>
+          <div class="flow-items">
+            <span>Total intravenous anaesthesia</span>
+            <span>Intrathecal morphine + ketamine infusion</span>
+            <span>Dexamethasone + ondansetron</span>
+            <span>Tranexamic acid</span>
+            <span>Early and regular dosing of antibiotics</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Postoperative day 0</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Domain</th><th>Management</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Pain</strong></td>
+              <td>PCA hydromorphone: basal 0 µg/h; bolus 15 µg/kg every 6 min, max 150 µg/kg/h<br>Ketorolac 0.3 mg/kg IV q8h (max 20 mg)<br>Paracetamol 15 mg/kg q6h</td>
+            </tr>
+            <tr>
+              <td><strong>Uncontrolled pain</strong></td>
+              <td>Start PCA basal infusion; start ketamine infusion 0–150 µg/kg/h</td>
+            </tr>
+            <tr>
+              <td><strong>Pruritus</strong></td>
+              <td>Nalbuphine 0.05–0.1 mg/kg IV q6h PRN</td>
+            </tr>
+            <tr>
+              <td><strong>PONV</strong></td>
+              <td>Ondansetron 4–8 mg IV q8h for 24 h<br>Dexamethasone 0.15–0.3 mg/kg IV q8h PRN<br>Fluid bolus 10–20 mL/kg<br>Reassess if opioid is contributing<br>Dimenhydrinate 0.5–1 mg/kg IV q6h PRN<br>Aprepitant 40–80 mg PO once</td>
+            </tr>
+            <tr>
+              <td><strong>Bowel routine</strong></td>
+              <td>Senna 2 tablets (8.6 mg/tablet) PO twice daily<br>Polyethylene glycol 17 g (in 12 mL) PO daily</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Postoperative day 1</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Domain</th><th>Management</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Pain</strong></td>
+              <td>Discontinue PCA basal infusion (if started)<br>Discontinue ketamine (if started)<br>Initiate long-acting enteral opioid:
+                <ul style="margin:.3rem 0 0">
+                  <li>Morphine extended release 10 mg PO q8–12h until discharge</li>
+                  <li>Hydromorphone extended release 3 mg PO q8–12h until discharge</li>
+                </ul>
+                Attempt transition from PCA to oral morphine or hydromorphone
+              </td>
+            </tr>
+            <tr><td><strong>Catheter</strong></td><td>Discontinue urinary catheter</td></tr>
+            <tr><td><strong>Mobility</strong></td><td>Two physiotherapy sessions by end of day</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Postoperative day 2</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Domain</th><th>Management</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Pain</strong></td>
+              <td>Discontinue PCA if still in use. Initiate one of:
+                <ul style="margin:.3rem 0 0">
+                  <li>Morphine 5–10 mg PO q3–4h</li>
+                  <li>Hydromorphone 1–2 mg PO q3–4h</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>NSAID switch</strong></td>
+              <td>Discontinue ketorolac; initiate ibuprofen 10 mg/kg PO (max 600 mg) q6h</td>
+            </tr>
+            <tr><td><strong>Mobility</strong></td><td>Ambulating on the wards</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <strong>Adjuncts with evidence:</strong> ketamine 2 µg/kg/min intraoperatively and continued 48 h postoperatively decreased morphine consumption and antiemetic requirements (a 29.5% reduction in morphine requirements was seen with ketamine 150 µg/kg/h + magnesium 8 mg/kg/h intraoperatively). A single preoperative gabapentin dose was ineffective and increased sedation, but gabapentin started before and continued after surgery reduced opioid requirements and pain.
+      </div>
+      <p><span class="chip">Early oral opioids</span><span class="chip">Early catheter removal</span><span class="chip">Physio POD 1</span><span class="chip">Multimodal analgesia</span><span class="chip">Aggressive PONV prophylaxis</span></p>
+    </div>
+  </details>
+
+  <!-- ============ 8 ============ -->
+  <details>
+    <summary>8 · Self-Test: True / False Answers</summary>
+    <div class="content">
+      <h4>1 · Pulmonary function and scoliosis</h4>
+      <ul>
+        <li><strong>1a — False.</strong> Restrictive disease is diagnosed with ↓ FVC and ↓ FEV₁; TLC is also <em>reduced</em> (not elevated).</li>
+        <li><strong>1b — False.</strong> A preoperative FEV₁ &lt; 40% indicates severe pulmonary disease and may require postoperative ventilation.</li>
+        <li><strong>1c — False.</strong> Atelectasis, pain, opioids and sedation contribute to diminished postoperative pulmonary status.</li>
+        <li><strong>1d — True.</strong> Postoperative pulmonary complications are greater in non-idiopathic than idiopathic scoliosis.</li>
+        <li><strong>1e — False.</strong> TLC is reduced, but residual volume is generally <em>maintained</em>.</li>
+      </ul>
+
+      <h4>2 · Complications of surgical correction</h4>
+      <ul>
+        <li><strong>2a — True.</strong> Cardiac complications are more common with certain non-idiopathic forms.</li>
+        <li><strong>2b — False.</strong> Large incisions and multiple osteotomies → significant postoperative pain.</li>
+        <li><strong>2c — True.</strong> Correction is generally indicated with a Cobb angle &gt; 40–45°.</li>
+        <li><strong>2d — False.</strong> Large exposed surface area → temperature must be monitored closely for hypothermia.</li>
+        <li><strong>2e — True.</strong> Central retinal artery occlusion can occur with prolonged direct compression of the eye.</li>
+      </ul>
+
+      <h4>3 · Intraoperative neuromonitoring</h4>
+      <ul>
+        <li><strong>3a — False.</strong> Volatile anaesthetics disrupt both SSEP and MEP, especially above 0.5 MAC — use opioid infusion or TIVA.</li>
+        <li><strong>3b — True.</strong> SSEPs measure signal transduction from a peripheral nerve stimulus to the somatosensory cortex.</li>
+        <li><strong>3c — True.</strong> Hypotension can change SSEP and MEP signals.</li>
+        <li><strong>3d — False.</strong> Sevoflurane and other volatiles have a <em>greater</em> effect on SSEP signals than propofol.</li>
+        <li><strong>3e — False.</strong> MEP monitoring relies on signals conducted at the neuromuscular junction and is unreliable with neuromuscular blockade.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 9 ============ -->
+  <details>
+    <summary>9 · Anaesthesia for Non-Scoliosis Procedures in Patients with Scoliosis</summary>
+    <div class="content">
+      <ul>
+        <li><strong>Positioning:</strong> careful attention to pressure points to avoid nerve injury and skin ulceration. Extra padding/support may be needed — curvature may prevent visual positioning on a flat table. Specialised tables (e.g. Allen) with chest pad, hip pad, thigh pad, head support and leg supports are often used.</li>
+        <li><strong>Neuraxial anaesthesia</strong> in lumbar/thoracic scoliosis can be particularly challenging:
+          <ul>
+            <li>Choose an area of minimal abnormal curvature that still provides adequate coverage.</li>
+            <li>Warn the patient of possible multiple attempts and increased risk of accidental dural puncture.</li>
+            <li>Delineate the curvature by tracing the spinous processes; the intervertebral space is often larger more laterally, in the direction of the curvature away from midline (toward the convexity).</li>
+            <li>Ultrasound may help; alternatively the surgeon can inject intraoperatively.</li>
+            <li>Spread of medication may be unpredictable — often patchy or one-sided.</li>
+          </ul>
+        </li>
+        <li>Postoperatively, epidural anaesthesia may confuse neurological assessment — now rarely used for this reason.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 10 ============ -->
+  <details>
+    <summary>10 · Sources &amp; Further Reading</summary>
+    <div class="content">
+      <ol class="refs">
+        <li><strong>Kynes JM, Evans FM.</strong> <em>Surgical Correction of Scoliosis: Anaesthetic Considerations.</em> Tutorial of the Week (ATOTW) 318, World Federation of Societies of Anaesthesiologists (WFSA); 10 July 2015. Edited by Dr V. Hodgetts and Dr K. Wilson. Correspondence: atotw@wfsahq.org. <em>(Source of Sections 1–5, 8 and 9, including Tables 1–2 and the Cobb angle figure.)</em></li>
+        <li><strong>Young C, McLuckie D, Spencer A.</strong> <em>Perioperative care of the paediatric patient with adolescent idiopathic scoliosis.</em> BJA Education (Elsevier); PIIS 2058-5349(19)30052-6. Foothills Medical Centre, Alberta Children's Hospital &amp; University of Calgary, Canada. <em>(Source of Sections 4, 6 and 7, including the ERAS care plan and Tables.)</em></li>
+        <li>Davis PJ, Cladis FP, Motoyama EK. <em>Smith's Anesthesia for Infants and Children</em> — "Anesthesia for Orthopedic Surgery." Mosby, Philadelphia, PA, 2011.</li>
+        <li>Gibson PR. Anaesthesia for the correction of scoliosis in children. <em>Anaesth Intensive Care</em> 2004;32:548–559.</li>
+        <li>Raw DA, Beattie JK, Hunter JM. Anaesthesia for spinal surgery in adults. <em>Br J Anaesth</em> 2003;91(6):886–904.</li>
+        <li>Sloan TB, Heyer EJ. Anesthesia for intraoperative neurophysiologic monitoring of the spinal cord. <em>J Clin Neurophysiol</em> 2002;19(5):430–443.</li>
+        <li>Levin DN, Strantzas S, Steinberg BE. Intraoperative neuromonitoring in paediatric spinal surgery. <em>BJA Educ</em> 2019;19:165–171.</li>
+        <li>Edgcombe H, Carter K, Yarrow S. Anaesthesia in the prone position. <em>Br J Anaesth</em> 2008;100:165–183.</li>
+        <li>Gan TJ, Diemunsch P, Habib AS, et al. Consensus guidelines for the management of postoperative nausea and vomiting. <em>Anesth Analg</em> 2014;118:85–113.</li>
+        <li>Stackhouse RA, Beers R, Brown D, et al. Recommendations for infection control for the practice of anesthesiology, 3rd edition, 2016. American Society of Anesthesiologists.</li>
+        <li>Makaryus R, Miller TE, Gan TJ. Current concepts of fluid management in enhanced recovery pathways. <em>Br J Anaesth</em> 2018;120:376–383.</li>
+      </ol>
+      <p class="refs"><strong>Weblinks (as cited in source 1):</strong> Anaesthesia for Spinal Surgery — Anaesthesia UK; Scoliosis — Wheeless' Textbook of Orthopedics.</p>
+    </div>
+  </details>
+
+  </div><!-- /#content -->
+</div>
+
+<footer>
+  Scoliosis Surgery — Anaesthetic &amp; Critical Care Quick Reference · Built from ATOTW 318 (2015) and BJA Education (2019) · For educational use only.
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------- Expand / Collapse all ---------------- */
+  var detailsList = Array.prototype.slice.call(document.querySelectorAll('#content details'));
+
+  document.getElementById('expandAll').addEventListener('click', function () {
+    detailsList.forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    detailsList.forEach(function (d) { d.open = false; });
+  });
+
+  /* ---------------- Font size control ---------------- */
+  var fs = 16;
+  var fsVal = document.getElementById('fsVal');
+  function setFS(v) {
+    fs = Math.max(13, Math.min(22, v));
+    document.documentElement.style.fontSize = fs + 'px';
+    fsVal.textContent = fs + 'px';
+  }
+  document.getElementById('fsUp').addEventListener('click', function () { setFS(fs + 1); });
+  document.getElementById('fsDown').addEventListener('click', function () { setFS(fs - 1); });
+
+  /* ---------------- Search ---------------- */
+  var content   = document.getElementById('content');
+  var input     = document.getElementById('searchInput');
+  var counter   = document.getElementById('counter');
+  var prevBtn   = document.getElementById('prevBtn');
+  var nextBtn   = document.getElementById('nextBtn');
+
+  var marks = [];
+  var current = -1;
+  var debounceTimer = null;
+
+  function updateButtons() {
+    var has = marks.length > 0;
+    prevBtn.disabled = !has;
+    nextBtn.disabled = !has;
+  }
+
+  function updateCounter() {
+    if (!marks.length) { counter.textContent = '0 / 0'; return; }
+    counter.textContent = (current + 1) + ' / ' + marks.length;
+  }
+
+  function clearMarks() {
+    if (!marks.length) { current = -1; updateCounter(); updateButtons(); return; }
+    var parents = [];
+    marks.forEach(function (m) {
+      var p = m.parentNode;
+      if (parents.indexOf(p) === -1) parents.push(p);
+      p.replaceChild(document.createTextNode(m.textContent), m);
+    });
+    parents.forEach(function (p) { if (p.normalize) p.normalize(); });
+    marks = [];
+    current = -1;
+    updateCounter();
+    updateButtons();
+  }
+
+  function revealAncestors(el) {
+    var p = el.parentNode;
+    while (p && p !== document.body) {
+      if (p.tagName === 'DETAILS' && !p.open) p.open = true;
+      p = p.parentNode;
+    }
+  }
+
+  function focusMark(i) {
+    if (!marks.length) return;
+    if (i < 0) i = marks.length - 1;
+    if (i >= marks.length) i = 0;
+    current = i;
+
+    marks.forEach(function (m) { m.classList.remove('current'); });
+    var el = marks[current];
+    el.classList.add('current');
+    revealAncestors(el);
+    updateCounter();
+
+    // wait a tick so <details> open animation/layout settles
+    setTimeout(function () {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 30);
+  }
+
+  function runSearch(term) {
+    clearMarks();
+    var q = (term || '').trim();
+    if (q.length < 2) { updateCounter(); updateButtons(); return; }
+
+    var lower = q.toLowerCase();
+
+    // Collect text nodes first (avoids mutating while walking)
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var hay  = text.toLowerCase();
+      var idx  = hay.indexOf(lower);
+      if (idx === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+
+        var mark = document.createElement('mark');
+        mark.className = 'hit';
+        mark.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mark);
+        marks.push(mark);
+
+        last = idx + q.length;
+        idx = hay.indexOf(lower, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    updateButtons();
+    if (marks.length) {
+      focusMark(0);
+    } else {
+      counter.textContent = '0 / 0';
+    }
+  }
+
+  input.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () { runSearch(input.value); }, 260);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (marks.length) {
+        focusMark(current + (e.shiftKey ? -1 : 1));
+      } else {
+        runSearch(input.value);
+      }
+    } else if (e.key === 'Escape') {
+      input.value = '';
+      runSearch('');
+    }
+  });
+
+  prevBtn.addEventListener('click', function () { if (marks.length) focusMark(current - 1); });
+  nextBtn.addEventListener('click', function () { if (marks.length) focusMark(current + 1); });
+
+  // Keyboard shortcut: Ctrl/Cmd + F jumps to our search box
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+
+  updateButtons();
+})();
+</script>
+</body>
+</html>
