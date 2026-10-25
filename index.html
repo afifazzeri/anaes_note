@@ -61,6 +61,36 @@
     --link:           #4fdcf0;
   }
 
+  /* ============ SECTION COLOUR PALETTE ============ */
+  /* Twelve colour pairs, cycled across the chapter headings.
+     --sec       → heading text + marker dot
+     --sec-line  → soft rule beneath the heading              */
+  .sc-1  { --sec: #0e7490; --sec-line: #d3e9ef; }  /* teal    */
+  .sc-2  { --sec: #be123c; --sec-line: #f6d2db; }  /* rose    */
+  .sc-3  { --sec: #a16207; --sec-line: #f0e0bb; }  /* amber   */
+  .sc-4  { --sec: #15803d; --sec-line: #d3e8d8; }  /* green   */
+  .sc-5  { --sec: #6d28d9; --sec-line: #e0d9f7; }  /* violet  */
+  .sc-6  { --sec: #1d4ed8; --sec-line: #d5e0f9; }  /* blue    */
+  .sc-7  { --sec: #c2410c; --sec-line: #f6dccd; }  /* orange  */
+  .sc-8  { --sec: #a21caf; --sec-line: #f3d5f3; }  /* fuchsia */
+  .sc-9  { --sec: #4d7c0f; --sec-line: #e2eac9; }  /* lime    */
+  .sc-10 { --sec: #b91c1c; --sec-line: #f6d6d6; }  /* red     */
+  .sc-11 { --sec: #4338ca; --sec-line: #d9dbf7; }  /* indigo  */
+  .sc-12 { --sec: #047857; --sec-line: #cfe9e0; }  /* emerald */
+
+  html[data-theme="dark"] .sc-1  { --sec: #38dcf0; --sec-line: #17414c; }
+  html[data-theme="dark"] .sc-2  { --sec: #fb7185; --sec-line: #4a1e28; }
+  html[data-theme="dark"] .sc-3  { --sec: #fbbf24; --sec-line: #4a3a12; }
+  html[data-theme="dark"] .sc-4  { --sec: #4ade80; --sec-line: #1a3a24; }
+  html[data-theme="dark"] .sc-5  { --sec: #a78bfa; --sec-line: #2c2350; }
+  html[data-theme="dark"] .sc-6  { --sec: #60a5fa; --sec-line: #1a2c52; }
+  html[data-theme="dark"] .sc-7  { --sec: #fb923c; --sec-line: #4a2a17; }
+  html[data-theme="dark"] .sc-8  { --sec: #e879f9; --sec-line: #451a45; }
+  html[data-theme="dark"] .sc-9  { --sec: #a3e635; --sec-line: #2b3a17; }
+  html[data-theme="dark"] .sc-10 { --sec: #f87171; --sec-line: #4a1e1e; }
+  html[data-theme="dark"] .sc-11 { --sec: #818cf8; --sec-line: #252a52; }
+  html[data-theme="dark"] .sc-12 { --sec: #34d399; --sec-line: #14403a; }
+
   * { box-sizing: border-box; }
 
   html { -webkit-text-size-adjust: 100%; }
@@ -216,8 +246,8 @@
     font-weight: 700;
     letter-spacing: 0.075em;
     text-transform: uppercase;
-    color: var(--primary);
-    border-bottom: 1px solid var(--line);
+    color: var(--sec, var(--primary));
+    border-bottom: 1px solid var(--sec-line, var(--line));
     transition: color .25s ease, border-color .25s ease;
   }
   h2::before {
@@ -226,7 +256,8 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--accent);
+    background: var(--sec, var(--accent));
+    transition: background-color .25s ease;
   }
   h2:first-of-type { margin-top: 0; }
 
@@ -436,7 +467,7 @@
     <li><a href="thyroid/index.html" class="has-file">Thyroid </a></li>
   </ul>
 
-  
+
   <!-- 10 -->
   <h2>10. Bone, Joint and Connective Tissue Disorders</h2>
   <ul>
@@ -640,6 +671,15 @@
 <script>
 (function(){
   "use strict";
+
+  /* ---------- CHAPTER COLOURS ---------- */
+  /* Cycles twelve colour pairs across the section headings. */
+  (function(){
+    var PALETTE_SIZE = 12;
+    document.querySelectorAll('main h2').forEach(function(h2, i){
+      h2.classList.add('sc-' + ((i % PALETTE_SIZE) + 1));
+    });
+  })();
 
   /* ---------- THEME TOGGLE ---------- */
   var root   = document.documentElement;
