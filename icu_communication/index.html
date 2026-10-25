@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICU Communication — Quick Reference (Anaesthesia &amp; Intensive Care)</title>
+<style>
+  :root{
+    --base: 16px;
+    --purple-900:#2c1a4d;
+    --purple-800:#3b2368;
+    --purple-700:#4b2e83;
+    --purple-600:#5d3a9b;
+    --purple-400:#8f74c4;
+    --purple-300:#cbbce8;
+    --purple-100:#efe9f9;
+    --purple-050:#f7f3fd;
+    --green-800:#175740;
+    --green-700:#1f6b4f;
+    --green-600:#2a8a66;
+    --green-500:#3aa87e;
+    --green-100:#e2f4ec;
+    --bg:#f5f3fa;
+    --card:#ffffff;
+    --text:#1c2030;
+    --muted:#565c6e;
+    --avoid-border:#8b3f9e;
+    --avoid-bg:#f6ecfa;
+    --shadow:0 2px 10px rgba(44,26,77,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    font-size:var(--base);
+    line-height:1.6;
+    color:var(--text);
+    background:var(--bg);
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 16px 80px}
+
+  /* ---------- HEADER ---------- */
+  header.top{
+    background:linear-gradient(120deg,var(--purple-800) 0%,var(--purple-600) 48%,var(--green-600) 100%);
+    color:#fff;
+    padding:26px 16px 22px;
+  }
+  header.top .inner{max-width:1000px;margin:0 auto}
+  header.top h1{
+    margin:0 0 6px;
+    font-size:1.5em;
+    line-height:1.25;
+    letter-spacing:.2px;
+  }
+  header.top p.sub{margin:0;opacity:.92;font-size:.9em}
+  .badge{
+    display:inline-block;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    padding:2px 10px;
+    border-radius:999px;
+    font-size:.72em;
+    letter-spacing:.6px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(255,255,255,.97);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--purple-300);
+    box-shadow:0 2px 8px rgba(44,26,77,.06);
+  }
+  .toolbar .inner{
+    max-width:1000px;
+    margin:0 auto;
+    padding:10px 16px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+  }
+  button, .btn{
+    font-family:inherit;
+    font-size:.82em;
+    font-weight:600;
+    border-radius:8px;
+    border:1px solid var(--purple-300);
+    background:#fff;
+    color:var(--purple-800);
+    padding:7px 12px;
+    cursor:pointer;
+    transition:.15s;
+    line-height:1.2;
+  }
+  button:hover,.btn:hover{background:var(--purple-100);border-color:var(--purple-400)}
+  button:active{transform:translateY(1px)}
+  button.green{
+    background:var(--green-600);
+    border-color:var(--green-700);
+    color:#fff;
+  }
+  button.green:hover{background:var(--green-700)}
+  button.purple{
+    background:var(--purple-700);
+    border-color:var(--purple-800);
+    color:#fff;
+  }
+  button.purple:hover{background:var(--purple-800)}
+  .sep{width:1px;height:26px;background:var(--purple-300);margin:0 2px}
+
+  .searchbox{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border:1px solid var(--purple-300);
+    border-radius:8px;
+    background:#fff;
+    padding:4px 6px 4px 10px;
+    flex:1 1 260px;
+    min-width:220px;
+  }
+  .searchbox input{
+    border:none;
+    outline:none;
+    font-family:inherit;
+    font-size:.88em;
+    flex:1;
+    min-width:60px;
+    background:transparent;
+    color:var(--text);
+    padding:4px 0;
+  }
+  .searchbox .icon{color:var(--purple-600);font-size:.95em}
+  .count{
+    font-size:.76em;
+    color:var(--muted);
+    white-space:nowrap;
+    min-width:62px;
+    text-align:right;
+    font-variant-numeric:tabular-nums;
+  }
+  .mini{
+    padding:5px 8px;
+    font-size:.8em;
+    border-radius:6px;
+  }
+  .size-group{display:flex;align-items:center;gap:4px}
+  .size-label{font-size:.76em;color:var(--muted);min-width:34px;text-align:center}
+
+  /* ---------- JUMP BAR ---------- */
+  .jump{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:14px 0 4px;
+  }
+  .jump a{
+    font-size:.76em;
+    text-decoration:none;
+    color:var(--purple-800);
+    background:#fff;
+    border:1px solid var(--purple-300);
+    padding:4px 10px;
+    border-radius:999px;
+    transition:.15s;
+  }
+  .jump a:hover{background:var(--green-100);border-color:var(--green-600);color:var(--green-800)}
+
+  /* ---------- SECTIONS ---------- */
+  details.section{
+    background:var(--card);
+    border:1px solid var(--purple-300);
+    border-radius:12px;
+    margin:14px 0;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    scroll-margin-top:90px;
+  }
+  details.section > summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 16px;
+    font-weight:700;
+    font-size:1.02em;
+    color:var(--purple-900);
+    background:linear-gradient(90deg,var(--purple-100),#fff 75%);
+    border-bottom:1px solid transparent;
+    user-select:none;
+  }
+  details.section[open] > summary{border-bottom-color:var(--purple-300)}
+  details.section > summary::-webkit-details-marker{display:none}
+  .chev{
+    display:inline-block;
+    color:var(--green-600);
+    font-size:.75em;
+    transition:transform .2s ease;
+    width:12px;
+    flex:0 0 12px;
+  }
+  .chev::before{content:"▶"}
+  details[open] > summary .chev{transform:rotate(90deg)}
+  .num{
+    background:var(--purple-700);
+    color:#fff;
+    font-size:.72em;
+    font-weight:700;
+    border-radius:6px;
+    padding:2px 7px;
+    flex:0 0 auto;
+  }
+  .ttl{flex:1}
+
+  .body{padding:14px 18px 20px}
+  .body > *:first-child{margin-top:0}
+  .body > *:last-child{margin-bottom:0}
+
+  h3{
+    font-size:.98em;
+    color:var(--purple-800);
+    margin:20px 0 8px;
+    padding-left:10px;
+    border-left:4px solid var(--green-600);
+    line-height:1.3;
+  }
+  h4{
+    font-size:.92em;
+    color:var(--green-800);
+    margin:16px 0 6px;
+  }
+  p{margin:8px 0}
+  ul,ol{margin:8px 0 8px 0;padding-left:22px}
+  li{margin:4px 0}
+  li::marker{color:var(--purple-600)}
+  strong{color:var(--purple-900)}
+  em{color:var(--green-800);font-style:italic}
+
+  /* ---------- CALLOUTS ---------- */
+  .say, .avoid{
+    border-radius:0 8px 8px 0;
+    padding:10px 14px;
+    margin:12px 0;
+    font-size:.92em;
+    border-left:5px solid;
+  }
+  .say{background:var(--green-100);border-color:var(--green-600)}
+  .avoid{background:var(--avoid-bg);border-color:var(--avoid-border)}
+  .say .lbl, .avoid .lbl{
+    display:block;
+    font-size:.74em;
+    font-weight:800;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+    margin-bottom:4px;
+  }
+  .say .lbl{color:var(--green-800)}
+  .avoid .lbl{color:var(--avoid-border)}
+  .say q, .avoid q{quotes:"“" "”";color:var(--text);font-style:italic}
+
+  .note{
+    background:var(--purple-050);
+    border:1px dashed var(--purple-400);
+    border-radius:10px;
+    padding:10px 14px;
+    margin:12px 0;
+    font-size:.9em;
+  }
+
+  /* ---------- TABLES ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--purple-300);
+    border-radius:10px;
+    margin:14px 0;
+    background:#fff;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:640px;
+    font-size:.88em;
+  }
+  thead th{
+    background:linear-gradient(180deg,var(--purple-700),var(--purple-800));
+    color:#fff;
+    text-align:left;
+    padding:10px 12px;
+    font-weight:700;
+    font-size:.95em;
+    position:sticky;
+    top:0;
+  }
+  tbody td{
+    padding:9px 12px;
+    border-top:1px solid #e8e2f4;
+    vertical-align:top;
+  }
+  tbody tr:nth-child(even){background:var(--purple-050)}
+  tbody tr:hover{background:var(--green-100)}
+  td strong{color:var(--purple-800)}
+  .col-type{
+    font-weight:700;
+    color:var(--green-800);
+    white-space:nowrap;
+  }
+  .scroll-hint{
+    font-size:.72em;
+    color:var(--muted);
+    margin:-6px 0 10px;
+    font-style:italic;
+  }
+
+  /* ---------- NESTED (case studies) ---------- */
+  details.case{
+    border:1px solid var(--purple-300);
+    border-radius:10px;
+    margin:10px 0;
+    background:var(--purple-050);
+    overflow:hidden;
+    scroll-margin-top:90px;
+  }
+  details.case > summary{
+    cursor:pointer;
+    list-style:none;
+    padding:10px 14px;
+    font-weight:700;
+    font-size:.92em;
+    color:var(--purple-800);
+    display:flex;
+    align-items:center;
+    gap:9px;
+    background:var(--purple-100);
+  }
+  details.case > summary::-webkit-details-marker{display:none}
+  details.case[open] > summary{border-bottom:1px solid var(--purple-300)}
+  details.case .body{padding:10px 16px 14px;font-size:.94em}
+  .tag{
+    display:inline-block;
+    font-size:.68em;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    padding:1px 8px;
+    border-radius:999px;
+    background:var(--green-600);
+    color:#fff;
+    flex:0 0 auto;
+  }
+
+  /* ---------- HIGHLIGHT ---------- */
+  mark{
+    background:#ffe066;
+    color:#1c2030;
+    border-radius:3px;
+    padding:0 1px;
+    scroll-margin-top:120px;
+  }
+  mark.current{
+    background:var(--green-600);
+    color:#fff;
+    outline:2px solid var(--purple-800);
+    outline-offset:1px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer.src{
+    margin-top:34px;
+    padding:20px 18px;
+    background:#fff;
+    border:1px solid var(--purple-300);
+    border-left:6px solid var(--green-600);
+    border-radius:12px;
+    font-size:.85em;
+    color:var(--muted);
+    box-shadow:var(--shadow);
+  }
+  footer.src h3{
+    border-left:none;
+    padding-left:0;
+    margin-top:0;
+    color:var(--purple-900);
+    font-size:1em;
+  }
+  footer.src ol{padding-left:20px}
+  footer.src li{margin:5px 0}
+  .cite-line{color:var(--text);font-size:.95em}
+
+  @media (max-width:600px){
+    header.top h1{font-size:1.2em}
+    .toolbar .inner{padding:8px 12px}
+    .body{padding:12px 14px 16px}
+    details.section > summary{padding:12px 13px;font-size:.95em}
+  }
+  @media print{
+    .toolbar,.jump{display:none}
+    details{open:true}
+    body{background:#fff}
+    details.section{border:1px solid #999;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <span class="badge">Quick Reference</span>
+    <h1>Communication in the Intensive Care</h1>
+    <p class="sub">A practical guide for anaesthetists &amp; intensivists — verbal &amp; non-verbal skills, family conferences, breaking bad news, decision-making, conflict resolution and end-of-life care</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="inner">
+    <button class="purple" id="expandAll" type="button">⊞ Expand all</button>
+    <button class="purple" id="collapseAll" type="button">⊟ Collapse all</button>
+    <div class="sep"></div>
+    <div class="size-group">
+      <button class="mini" id="fontDown" type="button" title="Smaller text">A−</button>
+      <span class="size-label" id="sizeLabel">16px</span>
+      <button class="mini" id="fontUp" type="button" title="Larger text">A+</button>
+      <button class="mini" id="fontReset" type="button" title="Reset text size">↺</button>
+    </div>
+    <div class="sep"></div>
+    <div class="searchbox">
+      <span class="icon">🔍</span>
+      <input id="search" type="search" placeholder="Search (e.g. brain death, amputation, empathy)…" autocomplete="off">
+      <span class="count" id="count"></span>
+      <button class="mini" id="prevBtn" type="button" title="Previous match">▲</button>
+      <button class="mini" id="nextBtn" type="button" title="Next match">▼</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <nav class="jump">
+    <a href="#s1">1. Barriers</a>
+    <a href="#s2">2. Verbal / Non-verbal</a>
+    <a href="#s3">3. The Patient</a>
+    <a href="#s4">4. Family Conference</a>
+    <a href="#s5">5. Nurses</a>
+    <a href="#s6">6. Decision-Making</a>
+    <a href="#s7">7. Bad News</a>
+    <a href="#s8">8. Forgoing Treatment</a>
+    <a href="#s9">9. Case Studies</a>
+    <a href="#s10">10. Conflict</a>
+    <a href="#s11">11. Critical Incidents</a>
+    <a href="#s12">12. End-of-Life</a>
+  </nav>
+
+  <div id="content">
+
+  <!-- ================= 1 ================= -->
+  <details class="section" id="s1" open>
+    <summary><span class="chev"></span><span class="num">1</span><span class="ttl">Introduction &amp; Communication Barriers</span></summary>
+    <div class="body">
+      <p>Daily ICU work demands <strong>skilled communication from every team member</strong>. The pressure of intensive care practice compromises communication with colleagues, patients and families. Good communication is often perceived as time-consuming, unnecessary or “too hard” — the challenge is to rise above this.</p>
+      <ul>
+        <li>Patients are often unable to participate in their own management plan, so <strong>families are sought for discussions and decisions</strong>.</li>
+        <li>Families are frightened and grieving while urgent, seldom straightforward decisions must be made — our <strong>empathy and guidance</strong> are required.</li>
+        <li>In advanced chronic illness, patients and families look to our experience for <strong>compassionate outcomes</strong>; other teams seek our opinion on the burdens and benefits of intensive therapy.</li>
+        <li>Skilled communication enhances the doctor–patient relationship, improves patient and family participation, facilitates decision-making and <strong>minimises conflict</strong>.</li>
+      </ul>
+
+      <h3>Communication barriers: patients &amp; families</h3>
+      <p class="scroll-hint">↔ Table scrolls horizontally on small screens</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th style="width:20%">Barrier</th><th style="width:40%">Examples</th><th style="width:40%">Possible measures</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-type">Fears</td>
+              <td>Being judged; causing distress within the family; being perceived as ungrateful; being unable to voice thoughts; breaking down and crying; hearing bad news; burdening healthcare professionals.</td>
+              <td>
+                <ul>
+                  <li>Greet patients and families; set a tone of openness and concern from the beginning.</li>
+                  <li>Assure them that showing emotion is normal and acceptable — <em>“Most people in your situation react the same way…”</em></li>
+                  <li>Express support — <em>“I am here to help…”</em></li>
+                  <li>Invite them to talk about how they feel.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Beliefs</td>
+              <td>Clinicians should already know the complications of the illness; clinicians are only interested in certain problems; “this is not the right professional person to talk to”; healthcare professionals are too busy; healthcare professionals cannot be questioned.</td>
+              <td>
+                <ul>
+                  <li>Show positive regard — show them that they are respected and valued.</li>
+                  <li>Clarify misconceptions, fixed ideas or prejudices patiently.</li>
+                  <li>Dedicate time to speak to patients and families on a regular basis.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Communication challenges</td>
+              <td>Language barrier; cognitive and sensory impairment; difficulty finding the right words.</td>
+              <td>
+                <ul>
+                  <li>Listen carefully.</li>
+                  <li>Ask open questions — <em>“How are things with you today?” “What are your concerns?”</em></li>
+                  <li>Invite further questions — <em>“Is there something else that is worrying you?” “Is there something else you would like to talk about?”</em></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Communication barriers: healthcare professionals</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th style="width:20%">Barrier</th><th style="width:40%">Examples</th><th style="width:40%">Possible measures</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-type">Fears</td>
+              <td>Unleashing and dealing with strong emotions; being the bearer of bad news; facing difficult questions; taking up too much time; facing our own failure; dealing with conflicts.</td>
+              <td>
+                <ul>
+                  <li>Show professionalism.</li>
+                  <li>Dedicate adequate time.</li>
+                  <li>Plan what to say and anticipate questions.</li>
+                  <li>Do not view death as a medical failure.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Beliefs</td>
+              <td>Patients and families should deal with their own emotional problems; discussing inevitable problems is just a waste of time; patients and families are unable to comprehend medical complexities.</td>
+              <td>
+                <ul>
+                  <li>Manage the patient and family in a holistic manner.</li>
+                  <li>Show empathy and acknowledge feelings.</li>
+                  <li>Be sensitive and flexible.</li>
+                  <li>Demonstrate awareness of the impact of critical illness, dying, death and bereavement.</li>
+                  <li>Realise that the way we deal with them will impact their acceptance and closure.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Lack of confidence or skill</td>
+              <td>Starting end-of-life discussions; exploring concerns; handling difficult questions; saying the “right thing”.</td>
+              <td>
+                <ul>
+                  <li>Plan what to say and anticipate difficult questions.</li>
+                  <li>Prepare information in a range of formats — pamphlets, diagrams, simple written text.</li>
+                  <li>Recognise that their priorities and ability to communicate may vary over time.</li>
+                  <li>Identify good communicators among colleagues — observe and learn from them.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 2 ================= -->
+  <details class="section" id="s2">
+    <summary><span class="chev"></span><span class="num">2</span><span class="ttl">Verbal &amp; Non-verbal Communication</span></summary>
+    <div class="body">
+      <h3>Verbal techniques</h3>
+      <ul>
+        <li><strong>Provide appropriate explanations.</strong> Tailor information to patient and family needs, educational and cultural background. Clinical tasks that are routine to us may be completely foreign to them — explaining them shows respect and helps them feel involved.</li>
+        <li><strong>Use common words, not medical jargon.</strong> Say <em>“Your father has bacteria in his blood which has caused many of his organs to shut down”</em> instead of <em>“Your father is in septic shock and has multi-organ failure.”</em></li>
+        <li><strong>Allow them to tell their story.</strong> Insight helps us understand their wishes and formulate a treatment plan — <em>“Tell me what’s going through your mind…” “How are you coping?”</em></li>
+        <li><strong>Be honest.</strong> Let them know what we are thinking — <em>“In my opinion, adding this therapy will not benefit patients at this advanced stage of their illness, like your father…”</em></li>
+        <li><strong>Verbalise active listening.</strong> Listening well encourages participation and enhances the exchange of information; it also lets the clinician set the pace and tone.</li>
+        <li><strong>Acknowledge feelings.</strong> <em>“I can see that you are upset.” “You sound very upset.”</em></li>
+        <li><strong>Check understanding by paraphrasing.</strong> <em>“So you think that your father would not want this type of treatment plan.”</em></li>
+        <li><strong>Ask for clarification.</strong> <em>“What are the things troubling you?”</em></li>
+        <li><strong>Summarise</strong> so nothing important is missed. <em>“So, what’s most important for you is…”</em></li>
+      </ul>
+
+      <div class="note">
+        <strong>Tailor the detail.</strong> For a patient with severe malaria — <br>
+        <em>Family A</em> (satisfied with broad descriptions): “Your wife’s condition remains the same. Her kidneys continue to require support and her liver has not shown any signs of improvement.”<br>
+        <em>Family B</em> (wants detail): “Her conscious state is still poor due to the sedative drugs that she needs. Her kidneys continue to require continuous dialysis. Her liver functions have not improved — in fact she is more jaundiced and has an increased bleeding tendency that requires plasma transfusion.”
+      </div>
+
+      <h3>Non-verbal cues</h3>
+      <p>Words express only part of a message — tone and body language convey the rest. Non-verbal cues are the first signal of our level of commitment and engagement, even before verbal communication begins. Even with the right words, if non-verbal cues signal otherwise, the message is lost. Be mindful that some cues are culture-specific (eye contact, physical contact).</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:24%">Cue</th><th style="width:76%">Do / avoid</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="col-type">Eye contact</td>
+              <td>
+                <ul>
+                  <li>Conveys respect, empathy, interest and warmth; shows active listening; helps detect emotional distress.</li>
+                  <li>Break eye contact at times when speaking to signal a non-provocative stance.</li>
+                  <li><strong>Avoid</strong> staring and rolling of eyes.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Body stance</td>
+              <td>
+                <ul>
+                  <li>Maintain a non-threatening, open posture; stand straight and balanced.</li>
+                  <li><strong>Avoid</strong> folding arms, placing both hands on the waist, leaning on furniture, shaking legs.</li>
+                  <li>Maintain eye-level position — stand up if the person is standing.</li>
+                  <li>A forward lean implies the genuine desire to hear what others have to say.</li>
+                  <li>Be aware of personal space — especially with an angry family member or a confrontational colleague.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Facial expression</td>
+              <td>
+                <ul>
+                  <li>Expression should align with the verbal message.</li>
+                  <li>Maintain a professional expression — do not allow anger, irritation or annoyance to manifest.</li>
+                  <li>Nod to show attentiveness and agreement.</li>
+                  <li><strong>Avoid</strong> pursing lips and raising eyebrows.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Tone of voice</td>
+              <td>
+                <ul>
+                  <li>Maintain a neutral tone; do not reveal negative emotions; avoid sarcasm.</li>
+                  <li>Control the volume; speak firmly during conflict.</li>
+                  <li>Use pauses strategically when explaining complex or difficult issues.</li>
+                  <li>Remain silent when faced with an angry outburst.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Hand gestures</td>
+              <td>
+                <ul>
+                  <li><strong>Avoid</strong> finger pointing and distracting gestures (fidgeting with objects, tapping fingers).</li>
+                  <li><strong>Avoid</strong> aggressive gestures, especially in conflict.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Active listening</td>
+              <td>
+                <ul>
+                  <li>Give undivided attention; maintain eye contact; lean forward.</li>
+                  <li>Show you are listening with minimal responses — <em>“Yes, yes, hmmm…”</em> [nods]; <em>“Yes, go on…”</em> [nods].</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>During an angry encounter</h3>
+      <ul>
+        <li>Stay calm; be aware of your own body language.</li>
+        <li>Avoid a threatening or condescending posture; be aware of personal space.</li>
+        <li>Remain silent when faced with an angry outburst — do not interrupt.</li>
+        <li>Maintain non-threatening eye contact; when speaking, break eye contact from time to time to signal a conciliatory stance.</li>
+        <li>Control the volume of your voice and maintain a neutral tone.</li>
+        <li>Do not raise your eyebrow; do not purse your lips.</li>
+        <li>Use calm gestures; avoid finger pointing; avoid touching in an attempt to pacify.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 3 ================= -->
+  <details class="section" id="s3">
+    <summary><span class="chev"></span><span class="num">3</span><span class="ttl">Communicating with the (Non-communicative) Patient</span></summary>
+    <div class="body">
+      <p>Many critically ill patients find it difficult to communicate — because of intubation, cognitive or sensory deficits from sedatives and underlying illness, or language barrier. This can be terrifying and is associated with panic, frustration, isolation and helplessness. For the non-communicative patient, <strong>head nods, mouthing of words, hand gestures and facial expressions</strong> are common methods. Stay alert, patient and persistent.</p>
+
+      <h3>Assessment of communication</h3>
+      <ul>
+        <li>Presence of sensory deficit (vision/hearing) — ascertain if the patient uses glasses or hearing aids.</li>
+        <li>Preferred language for verbal or written communication.</li>
+        <li>Cognitive function — can the patient follow commands (raise arm, blink)?</li>
+        <li>Emotional state — withdrawn, upset, cheerful.</li>
+        <li>Presence of receptive or expressive aphasia.</li>
+        <li>Presence of dyspnoea (may reduce verbal communication).</li>
+        <li>Upper limb motor function — ask the patient to point or write.</li>
+        <li>Oral motor function — ask the patient to count from one to ten.</li>
+      </ul>
+      <p><strong>Then decide</strong> the best method: verbal, written, gestures, communication aids, or a combination.</p>
+
+      <h3>Strategies to facilitate communication</h3>
+      <ol>
+        <li>Ensure glasses/hearing aids are available and within reach.</li>
+        <li><strong>Greet and smile</strong> — signals the start of interaction, breaks down barriers, puts the patient at ease. Keep distractions and background sound to a minimum.</li>
+        <li><strong>Initiate conversation regularly</strong> — patients are often unable to do so.
+          <div class="note">
+            Nurse: “Miss Lim, are you in pain?” · Patient: [grimaces] · Nurse: “Miss Lim, you look like you’re in pain…” [pauses] · Patient: [nods] · Nurse: “OK, I will give you an injection for your pain” [gestures “injection”] · Patient: [nods]
+          </div>
+        </li>
+        <li><strong>Lean forward with an open body posture</strong> — suggests willingness to interact and approachability. Stand close within the patient’s line of vision; seeing the face or lips enhances what is being said.</li>
+        <li><strong>Maintain eye contact</strong> — conveys that you are paying attention to the individual.</li>
+        <li><strong>Talk at a slow, even pace</strong> — speak clearly, do not mumble.</li>
+        <li><strong>Use short sentences</strong> when explaining or instructing — repeat key words to avoid confusion; instruct on what the patient is capable of doing (“point to where the pain is”, “open your mouth”, “nod your head”).</li>
+        <li><strong>Use gestures together with verbal communication</strong> — e.g. before suctioning, inform the patient verbally while gesturing the intended action. Patients often read our body language, sincerity and mood.</li>
+        <li><strong>Read non-verbal cues</strong> — observe attentively for clues in tone of voice and facial expression.</li>
+        <li><strong>Repeat and mirror after the patient</strong> to verify understanding.
+          <div class="note">
+            Patient: “Leg…leg…hhu…hurts…” · Nurse: “Leg hurts? Your leg hurts?” · Patient: [nods, glances at right leg] · Nurse: “Your right leg?” [points] · Patient: [nods] · Nurse: “Is it painful?” · Patient: [nods]
+          </div>
+        </li>
+        <li><strong>Ask yes/no questions</strong> — easiest for patients to answer. Rehearse signals first: nod = yes, shake = no; thumbs up/down; or point to a communication board.</li>
+        <li><strong>Ask one question at a time</strong> — too many options cause confusion.</li>
+        <li><strong>Allow ample time to respond</strong> — non-verbal patients need longer; sedated patients take longer to initiate movement, mouthing or gesturing.</li>
+        <li><strong>Interact consistently</strong> — keep conversation natural and meaningful (families, hobbies) to build rapport. Continue a one-way conversation even with a totally non-communicative or comatose patient; unresponsive patients may still be aware and understand.</li>
+        <li><strong>Seek an interpreter</strong> if the patient does not speak the same language.</li>
+        <li><strong>Use communication aids</strong> — writing pad and pencil, tablet, alphabet board, word and phrase cards. Use a marker pen to improve grip; write in lower case; do not underline words.</li>
+      </ol>
+
+      <div class="avoid">
+        <span class="lbl">Avoid</span>
+        <ul>
+          <li>Speaking in a loud voice.</li>
+          <li>Interrupting — the patient may be planning what to say next.</li>
+          <li>Pretending to have understood. Be honest: <em>“I’m sorry, I don’t understand. Let’s try again.”</em></li>
+          <li>Completing the patient’s sentence — it may frustrate them. Ask permission before helping.</li>
+          <li>“Talking down” to the patient — they may feel patronised or undervalued.</li>
+          <li>Restraining patients — it hinders hand gesturing and alternative aids, and contributes to stress, anxiety and depression.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 4 ================= -->
+  <details class="section" id="s4">
+    <summary><span class="chev"></span><span class="num">4</span><span class="ttl">The Family Conference</span></summary>
+    <div class="body">
+      <p>A <strong>family conference</strong> is a planned, formal encounter with relevant family members. It is a well-established platform for:</p>
+      <ul>
+        <li>Updating the patient’s progress.</li>
+        <li>Delivering bad news.</li>
+        <li>Discussing a decision point (e.g. changing from curative to palliative intent).</li>
+        <li>Resolving conflict (e.g. family members disagreeing with the treatment course).</li>
+      </ul>
+      <p>A family is an independent organisation with its own way of communicating. Individual members may have their own interests and agenda, their own emotional needs, and different preferences for information detail or decision-making.</p>
+
+      <h3>Communication challenges &amp; tools</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:26%">Challenge</th><th style="width:74%">Tools &amp; suggested responses</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="col-type">Family dynamics</td>
+              <td>
+                <ul>
+                  <li>Identify the patient’s role in the family unit and how it has changed — <em>“Who should we talk to if we need consent for your mother?”</em></li>
+                  <li>Pay attention to family roles.</li>
+                  <li>Ask how the family usually makes decisions — <em>“Perhaps you can share with me how you would like to discuss and decide on the treatment plan.”</em></li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-type">Differing opinions among family members</td>
+              <td>
+                <ul>
+                  <li>Avoid taking sides; remain neutral — <em>“I wonder if you could put these aside for now, so that we can focus on what is going on with your mother.”</em></li>
+                  <li>Lay down rules and boundaries; be firm but polite.</li>
+                  <li>Identify and state the point of disagreement; reframe it neutrally and focus on the patient — <em>“I wonder what your dad would say if he was here?”</em></li>
+                  <li>Reframe: <em>“So you opt for a nursing home because you think he would get the best care there, and your brother wants him to go to his house because he thinks he will be happier. Let’s think of a way to make him happy while receiving the best care.”</em></li>
+                  <li>Acknowledge emotion: <em>“I can see that this is very upsetting to you. Most people in your situation would be upset.”</em></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Steps for conducting the conference</h3>
+      <ol>
+        <li><strong>Prepare.</strong> Prepare a room to ensure privacy. Invite other clinicians involved in the patient’s care whenever appropriate. Ensure <strong>medical consensus</strong> has been reached. Invite relevant family members. Involve the nurse in charge of the patient. Include a social worker whenever possible to help with complex family dynamics.</li>
+        <li><strong>Introduce everyone and state the purpose.</strong> Ask clinicians to introduce themselves and explain their roles; invite family members to introduce themselves and identify the primary caregiver or surrogate decision-maker. Set the tone to diffuse anxiety — <em>“This is a meeting we hold routinely with many other families…”</em> State the purpose — <em>“Shall we talk about your father’s progress so you are clear about what is being done.” “We want to try and understand his values and wishes so that an appropriate care plan can be drawn out.”</em></li>
+        <li><strong>Assess what the family knows and expects.</strong> Ask them to describe their current understanding. Family A saying <em>“We don’t think he will make it”</em> leads to a different conversation from Family B saying <em>“The doctors say he’s not improving, but we are praying for a miracle.”</em> Identify and correct misconceptions.</li>
+        <li><strong>Describe the clinical situation.</strong> Brief overview; avoid detailed pathophysiology and medical jargon; focus on two or three important issues; avoid too much information.</li>
+        <li><strong>Ask for questions and concerns.</strong> Check comprehension and encourage questions; turn to other family members if one dominates — <em>“Does anyone else have questions? Do you, Mr Lai, have any concerns?”</em> Acknowledge emotions — <em>“I can see this has not been easy and everyone is upset.”</em> Offer help — <em>“What can we do to help you get through this difficult time?”</em></li>
+        <li><strong>Provide a management plan.</strong> Propose appropriate goals based on the patient’s values; weigh risks and benefits of treatment; be prepared to negotiate with the family.</li>
+        <li><strong>Conclude.</strong> Summarise the meeting; set a date for a further conference if required; ensure the family knows how to reach the team; <strong>document the discussion</strong>.</li>
+      </ol>
+    </div>
+  </details>
+
+  <!-- ================= 5 ================= -->
+  <details class="section" id="s5">
+    <summary><span class="chev"></span><span class="num">5</span><span class="ttl">The Nurse’s Role in Communication</span></summary>
+    <div class="body">
+      <p>Effective communication is a fundamental nursing skill — most critically ill patients cannot speak or express their needs. Being at the bedside most of the time qualifies the nurse as the <strong>patient’s advocate</strong>; nurses are also more knowledgeable about family concerns and dynamics and can solicit key information not readily available to clinicians. A thorough nursing handover should always include the patient’s and family’s concerns and fears.</p>
+
+      <h3>1. Daily interactions with patients</h3>
+      <ul>
+        <li><strong>Introduce and orientate</strong> at the beginning of every shift.
+          <div class="note">“Good morning Mr Lim.” [pause, looks at his face, touches shoulder] … “I am Staff Nurse Aishah. Remember me? I took care of you yesterday.” [smiles] … “Do you know what day it is today? Today is Sunday, 3rd of February. It is eight in the morning now. You were admitted to ICU two days ago.”</div>
+        </li>
+        <li><strong>Talk through procedures.</strong> Alert the patient and gain attention before care — call the name aloud and pause for acknowledgement (head nod, facial expression, eye contact). Look at the face while gently touching hands or shoulders. Stay focused; avoid distracting or irrelevant conversation.</li>
+        <li><strong>Praise accomplishments</strong> and give encouragement — <em>“Mr Lim, you are doing well today.”</em> [thumbs up]</li>
+        <li><strong>Acknowledge frustrations</strong> — <em>“Pak Cik, it’s not been a good day today. We have given you medicine for your diarrhoea and hopefully it will work soon.”</em> [gentle pat on arm]</li>
+        <li>With <strong>unresponsive patients</strong>, introduction, orientation and talking through procedures must continue.</li>
+      </ul>
+
+      <h3>2. Daily interaction with families</h3>
+      <ul>
+        <li>Introduce yourself; ask the family to introduce themselves.</li>
+        <li>Orientate the family to the ICU environment; brief them on visitation rules and hand hygiene; briefly explain the equipment and monitors.</li>
+        <li>Encourage the family to interact with the patient — verbally and through touch — even when the patient is unresponsive.</li>
+        <li>Explain progress by describing organ function — <em>“Encik Ahmad is still requiring high doses of drugs to keep the heart pumping. However his lungs are better today.”</em></li>
+        <li><strong>Reassure about common concerns:</strong>
+          <ul>
+            <li>Pain relief — <em>“Mr Lim is being treated for pain.”</em></li>
+            <li>Poor conscious state due to sedatives — <em>“Mr Krishnan is not responding to you because we have given him some medication to sleep so that he is comfortable on the ventilator.”</em></li>
+            <li>Feeding — <em>“Encik Din has a tube in the stomach through which we are feeding him.”</em></li>
+          </ul>
+        </li>
+        <li>Clarify the roles of different healthcare professionals.</li>
+        <li>Liaise between family and clinicians — convey the family’s concerns (e.g. referral to social or welfare services).</li>
+      </ul>
+
+      <h3>3. Assessment of pain</h3>
+      <p>Impaired communication may lead to inaccurate assessment and inadequate pain management. Look for <strong>non-verbal signs of pain</strong>; a pain assessment ruler can help.</p>
+      <ul>
+        <li><strong>Facial:</strong> grimacing, squinting, tense facies, tearing.</li>
+        <li><strong>Body movements:</strong> restlessness, irritability, agitation, head shaking, writhing, clenched fist, closed eyes.</li>
+        <li><strong>Physiological:</strong> hypertension, tachycardia, diaphoresis, tachypnoea, ventilator dyssynchrony, coughing, biting the endotracheal tube.</li>
+        <li><strong>Reactions to examination, movement and procedures:</strong> rigidity, immobility, closed eyes, resistance, combativeness, striking staff.</li>
+      </ul>
+
+      <h3>4. Management of delirium</h3>
+      <ul>
+        <li>Introduce visitors — <em>“Mr Subra, your mother has come to visit you.”</em></li>
+        <li>Orientate with repeated reminders of day, time and location.</li>
+        <li>Explain what is to be done and what to expect before a procedure.</li>
+        <li>Avoid the use of restraints.</li>
+        <li>Avoid medical jargon in the patient’s presence — it may cause paranoia.</li>
+        <li>Continue one-way conversation with unresponsive patients; encourage family to do the same.</li>
+        <li>Ensure visual and hearing aids are available.</li>
+        <li>Explain to families why the patient may be delirious — it can be frightening for them.</li>
+        <li>Involve the family to encourage feelings of security and orientation; engage an interpreter if necessary.</li>
+      </ul>
+
+      <h3>5. Delivering bad news</h3>
+      <p>Nurses usually know the family’s concerns, fears and expectations — convey these to the clinician before the family meeting. The nurse should be present during the meeting to:</p>
+      <ul>
+        <li>Reinforce or clarify medical information and plan afterwards.</li>
+        <li>Offer emotional support during and after delivery of bad news.</li>
+        <li>Alert the clinician to possible family misconceptions and give feedback on their response.</li>
+        <li>Communicate pertinent issues raised during handover.</li>
+      </ul>
+
+      <h3>6. End-of-life care</h3>
+      <p>The dying process and death will forever be in the family’s memory. The nurse must address the family’s fears and concerns, be sensitive to loss and grief, and attend to spiritual and cultural needs.</p>
+      <ul>
+        <li>Reassure that distressing symptoms will be attended to, and that regular suctioning and positioning will not be abandoned.</li>
+        <li>Ensure dignity — cleanliness and hygiene maintained.</li>
+        <li>Allow access and privacy while minimising distractions — silence alarms, arrange chairs around the bed, put down bedrails, draw curtains.</li>
+        <li>Facilitate religious obligations and honouring the patient’s wishes.</li>
+        <li>Inform clinicians to pronounce death promptly.</li>
+        <li>Allow time and space for mourning.</li>
+        <li>Answer queries — be familiar with administrative affairs.</li>
+        <li>Allow the family to perform the last office on request.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 6 ================= -->
+  <details class="section" id="s6">
+    <summary><span class="chev"></span><span class="num">6</span><span class="ttl">Strategies to Facilitate Decision-Making</span></summary>
+    <div class="body">
+      <p>Decisions about treatment are not solely clinical — they combine clinical information with the values and beliefs of multiple participants, under time constraints and often with surrogate decision-makers. Well-managed discussions result in minimal conflict.</p>
+
+      <h3>Barriers among clinicians</h3>
+      <ul>
+        <li><strong>Perceiving death as failure of medicine.</strong> Clinicians are accustomed to exhausting all therapeutic options despite falling survival rates. Explicitly acknowledging that a patient will not survive, and discussing end-of-life decisions, causes great discomfort. Some feel they are taking away hope, or that they have failed to be a “good” doctor. This results in too little or skewed discussion, affecting decision-making and the family’s long-term acceptance.</li>
+        <li><strong>Fear and lack of confidence.</strong> Clinicians may be unwilling to make strong treatment recommendations and shift the burden of decision-making onto the family — leading to deferred decisions, unwarranted escalation, unrealistic expectations and conflict. Drivers include:
+          <ul>
+            <li>Fear of legal action, of being viewed as paternalistic, of confrontation, of taking sole clinical responsibility.</li>
+            <li>Inability to deal with strong emotions.</li>
+            <li>“Attachment” with patients.</li>
+            <li>Concerns about prognostic uncertainty.</li>
+            <li>Difficulty achieving consensus with other treating teams.</li>
+          </ul>
+        </li>
+        <li><strong>Lack of time spent interacting</strong> with the patient and family — no foundation of trust and understanding is formed, so decision discussions become uncomfortable.</li>
+        <li><strong>Inability to understand lay perspectives</strong> — cultural, religious, socio-economic factors and family dynamics.</li>
+        <li><strong>Lack of communication training.</strong> Skills can be acquired through workshops, shadowing an experienced consultant with good communication skills, and continuous self-improvement — including asking nurses for feedback after delivering bad news or conducting a family conference.</li>
+      </ul>
+
+      <h3>Barriers among families</h3>
+      <ul>
+        <li><strong>Lack of understanding.</strong> Families need to understand the precipitating events and the gravity of the situation. Families of chronically ill patients have fewer problems understanding deterioration; acute illness often leaves families struggling to grasp the severity.</li>
+        <li><strong>Lack of trust</strong> in a member or members of the treating team may compel delay; some resist attempts to discuss deteriorating condition and treatment plans.</li>
+        <li><strong>Fear of abandoning their loved one.</strong> They fear the decision will be seen as a sign they no longer care — equating it with abandonment, resulting in long-term guilt and difficulty finding closure.</li>
+        <li><strong>Lack of close family ties.</strong> Families recall the patient’s life journey to examine values and preferences; close ties enhance the capacity to reflect on moments when life and death issues were discussed.</li>
+        <li><strong>Fear of severing family ties</strong> — families avoid decisions that could cause rifts among themselves.</li>
+        <li><strong>Feeling pressured.</strong> Families must grapple with information cognitively and emotionally; hastening decision-making is counter-productive.</li>
+      </ul>
+
+      <h3>Facilitating strategies</h3>
+      <ol>
+        <li><strong>Organise the information to be delivered.</strong> Present medical problems clearly; explicitly discuss specific problems and complications. Avoid discussing inappropriate treatment options — if discussed, highlight futility with phrases such as <em>“very unlikely to benefit”, “impossible at this stage”, “not suitable for his current condition”.</em> Avoid explicit mention of insignificant improvement in patients with poor prognosis: say <em>“His blood pressure is still maintained with very high doses of medication”</em> rather than <em>“His blood pressure is more stable today”</em> when he is still on high-dose inotropes. Remind the family of the reality of the condition; demonstrate sequential decline — this justifies and facilitates decision-making. Avoid equating death with medical failure; avoid saying <em>“There is nothing else we can do”</em> or <em>“There is no more treatment we can offer.”</em> Offer a summary implying gravity and urgency — <em>“…therefore, if we do not remove the infected leg soon, he will die.”</em></li>
+        <li><strong>Ensure timely communication.</strong> Inform family as soon as possible of any significant change so they have time to understand and accept. Communicate with nurses — they may know the family’s readiness for end-of-life decisions.</li>
+        <li><strong>Prepare the family for possible treatment failure</strong> — with discretion, so they do not assume the team has given up hope. <em>“It would be good to start thinking about the kinds of treatment your father would want should he not improve.” “We will try our very best but we must be prepared for the worst.”</em></li>
+        <li><strong>Encourage consensus among family members.</strong> Clarify family roles; guide them — <em>“I can see that you have different concerns but you must try to think what would be best for your mother.”</em> Avoid placing the burden on one individual: not <em>“As you are the only child, you will need to decide whether to continue with the treatment or not…”</em> but <em>“You are the closest to him, you know his values and beliefs best…”</em></li>
+        <li><strong>Show support for the family’s decision.</strong> <em>“I think all of you have made the best possible decision for your mother.” “You have taken good care of your father and I am sure you will be able to decide what is best for him.”</em></li>
+        <li><strong>Assure access to the patient</strong> — especially important in end-of-life care. <em>“You can be with your daughter and help out in caring for her as you wish.”</em></li>
+        <li><strong>Accommodate family grief.</strong> <em>“It is natural to be upset but we will have to think about how we must move forward.”</em></li>
+        <li><strong>Allocate adequate time and space</strong> so families do not feel pressured to arrive at a decision.</li>
+      </ol>
+    </div>
+  </details>
+
+  <!-- ================= 7 ================= -->
+  <details class="section" id="s7">
+    <summary><span class="chev"></span><span class="num">7</span><span class="ttl">Delivering Bad News</span></summary>
+    <div class="body">
+      <p>Bad news is <strong>any information that creates a negative view of a person’s health</strong> (Buckman, 1984). In the ICU, clinicians usually break bad news to the family or surrogate — often meeting them for the very first time. Bad news conveyed well allows better acceptance and closure and promotes satisfaction with the care given.</p>
+
+      <h3>Principles</h3>
+      <ol>
+        <li><strong>Prepare the meeting.</strong>
+          <ul>
+            <li><em>Who informs</em> — a senior clinician with experience, ideally one who has had contact with the family and continues to be involved in care.</li>
+            <li><em>When</em> — as soon as possible depending on urgency; occasionally by phone (e.g. unexpected cardiac arrest).</li>
+            <li><em>Whom</em> — ensure relevant family members are present; with large families, limit numbers if necessary; identify the spokesperson/caregiver. Do not give bad news to only one family member if possible — they may need support afterwards.</li>
+            <li><em>Where</em> — ensure privacy: a separate room, or at the bedside with curtains drawn. Adequate seating; clinicians should face all family members to facilitate eye contact and be heard by everyone. If aggression is anticipated, sit closest to the exit. When breaking news to the patient, do it at the bedside with no ongoing procedures.</li>
+            <li><em>What to prepare</em> — review notes and know all facts (name, age, surgeries); know the family’s perception if possible; mentally rehearse the message; ensure sufficient time; minimise disruptions (silence phones); have a third person present (nurse in charge or fellow clinician); anticipate difficult questions and emotional responses; arrange a trained interpreter if there is a language barrier.</li>
+          </ul>
+        </li>
+        <li><strong>Begin the meeting.</strong> Introduce yourself and other healthcare professionals; allow family members to introduce themselves and state their relationship to the patient. Be aware of anyone who is not the surrogate but exerts significant influence on decision-making.</li>
+        <li><strong>Elicit the family’s understanding.</strong> <em>“From your previous discussions with the doctors, what have you understood regarding your father’s medical condition?”</em> Gauge understanding and rectify misconceptions. Note denial or excessive optimism — <em>“My father has been in hospital many times this year for difficulty in breathing but every time he has gotten better and gone home.”</em> Note differences of opinion among family members.</li>
+        <li><strong>Disclose information.</strong>
+          <ul>
+            <li>Give a <em>warning shot</em> — <em>“Unfortunately I have some bad news to tell you.” “Unfortunately things have not gone as well as we would like them to…”</em></li>
+            <li>Avoid medical jargon: not <em>“septic shock with multi-organ failure”</em> but <em>“an overwhelming infection that has affected many organs in his body”</em>; not <em>“decompensated cardiac failure”</em> but <em>“your father’s heart is failing.”</em></li>
+            <li>Avoid euphemism: not <em>“He will not be himself again”</em> but <em>“He will remain unconscious because he has severe brain damage.”</em></li>
+            <li>Be direct and truthful yet not overtly blunt: not <em>“There is no point in keeping that leg”</em> but <em>“We need to remove that leg.”</em></li>
+            <li>Provide information in chunks; pause to check understanding — <em>“Was I clear with my explanation?” “Do you need me to clarify something?”</em> Continue once they have assimilated the previous information.</li>
+            <li>Correct misconceptions. <strong>Remain silent for some time after providing the information.</strong></li>
+          </ul>
+        </li>
+        <li><strong>Deal with emotions and decisions.</strong> Provide time and space to react in anger, shock or grief — these expressions allow families to work through their emotions. Listen quietly and attentively — <em>“I can see that you are finding it difficult to accept the news. Is there anything I can do…”</em> Use appropriate non-verbal cues — offering tissue paper to someone crying, a gentle touch on the shoulder.</li>
+        <li><strong>Close the meeting.</strong> Check understanding — <em>“Do you have any other questions to ask me?”</em> Summarise key information. Inform the family of the next step in management and care. Provide contact information. Arrange the next meeting if necessary.</li>
+        <li><strong>Document the discussion.</strong></li>
+      </ol>
+
+      <h3>Documentation should include</h3>
+      <ul>
+        <li>Names of healthcare professionals and family members present.</li>
+        <li>Exact information conveyed to the family.</li>
+        <li>The family’s understanding and acceptance of the information.</li>
+        <li>Feelings of unhappiness or anger, and any disagreements.</li>
+        <li>Further care plan of the patient.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Example of documentation:</strong> “I have spoken to Mr Chong’s wife and son, Alex, in the presence of SN Roshidah regarding his progress in ICU. Mr Chong sustained injury to his spine resulting in him being quadriplegic permanently. He is currently dependent on mechanical ventilation and there is a high likelihood that we will not be able to wean him off the ventilator. I addressed the issue of prolonged ICU stay and the following complications were mentioned, i.e. repeated infections, pressure ulcers, deep vein thrombosis, depression and death. Mrs Chong was mostly silent during the discussion while Alex seemed dissatisfied with the explanation. He requested for a meeting with the surgeons. I have noted his request and will arrange for a meeting.”
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 8 ================= -->
+  <details class="section" id="s8">
+    <summary><span class="chev"></span><span class="num">8</span><span class="ttl">Forgoing Life-Sustaining Treatment</span></summary>
+    <div class="body">
+      <p>Foregoing life-sustaining treatment is a <strong>process, not an isolated event</strong>. Clinicians should consider this option and communicate early when death is a possible outcome. Acknowledging that treatment may fail can increase trust and create realistic expectations — but if discussed too soon, without appreciating the family’s perspective and emotional impact of the loss, conflict may ensue.</p>
+
+      <h3>Principles of effective communication</h3>
+      <ol>
+        <li><strong>Prepare for the meeting.</strong> Achieve <strong>consensus among all teams</strong> before the meeting — inconsistent communication confuses families and impedes decision-making. A senior member with prior rapport should conduct the meeting and should examine their own feelings, attitudes and biases. Know: the patient’s condition, treatment and prognosis; the charts and investigation results; the family’s understanding; and concerns expressed to other team members.</li>
+        <li><strong>At the beginning.</strong> Allow introduction of all present and their roles or relationships. Be aware of anyone who is not the surrogate but exerts significant influence. State the purpose clearly — <em>“The purpose of today’s meeting is to discuss further treatment plan for your father. He has not been progressing the way we hoped.”</em></li>
+        <li><strong>Elicit the family’s understanding.</strong> <em>“Would you like to tell me what you know about your father’s condition so far.”</em> Explain the current situation in a way that assures the family every medically appropriate option has been given but has failed — <em>“Your father has been in the ICU for seven days and he has not shown any improvement despite all the treatment provided, from lung support, blood pressure support to dialysis.”</em></li>
+        <li><strong>Elicit patient and family values and goals.</strong> Recognise and respect the patient as an individual — <em>“I can see this comes as a big shock to all of you, as just a week ago he was still driving his grandchildren to school.”</em> Explore wishes, values, expectations, hopes and fears — <em>“If your father knows that continuing treatment will only prolong the dying process, what will he say?” “Having heard of your father’s lack of progress in the last two weeks, what do you as a family expect?”</em> Honour wishes communicated to the family or in an advance directive. Establish how much involvement the family wants in decision-making — some prefer to leave it to the treating clinician.</li>
+        <li><strong>State recommendations clearly.</strong> Before recommending, provide: underlying disease, complications and treatment given; prognosis and realistic outcome; burden of treatment versus benefits and likelihood of achieving goals; and comfort-care options when discussing withdrawal or withholding. Convey the recommendation in a clear, straightforward manner; use the words <strong>“death”</strong> or <strong>“dying”</strong> where appropriate.
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>At this stage of his illness, continuing current treatment will only prolong the dying process. Based on medical consensus, I would like to suggest that we withdraw treatment.</q><br>
+            <q>He’s dying despite all treatment provided.</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid placing undue burden before recommendations are made</span>
+            <q>Do you want everything to be done for your father?</q> <q>What would you like us to do for him?</q>
+          </div>
+          <p>Place emphasis on the <strong>disease process</strong> to deflect guilt — <em>“Despite our best efforts, his blood pressure continues to drop. The infection is overwhelming and has caused many of his organs to fail.”</em> Reassure that withdrawal does not mean abandonment of care — <em>“The aim of treatment from now would be to relieve pain and discomfort. We will ensure that he is as comfortable as possible.”</em></p>
+        </li>
+        <li><strong>Address questions.</strong> Ask for their opinion — <em>“How do you feel about what I’ve told you?”</em> Respond to specific questions. Be prepared for requests to continue treatment — <em>“Can you help me understand why you want these treatments continued.”</em> Provide emotional support and listen carefully.</li>
+        <li><strong>At the end of the meeting.</strong> Summarise major points and reiterate the recommendation; ensure the family knows how to reach you; make referrals for psychological, emotional and spiritual support if necessary.</li>
+        <li><strong>Document the meeting.</strong> Record: those present; information relayed regarding clinical status and likely course; treatment options discussed and recommended; decisions reached and subsequent treatment and care; and outstanding issues needing further discussion.</li>
+      </ol>
+
+      <div class="note">
+        <strong>Example of documentation:</strong> “I had a discussion with Mr Rajoo’s wife and his brothers, Mr Siva and Mr Rajah, on further treatment plans. Also present were neurologist Dr Tan TH and SN Siti Rokiah. The patient has not shown any improvement clinically and remains unconscious despite sedatives being stopped for four days. His CT brain shows a massive right middle cerebral artery territory infarct. He is not expected to regain his mental function. Mrs Rajoo expressed that her husband would not have wanted to be dependent on anyone. The option of comfort care including terminal extubation was suggested. Mrs Rajoo was concerned that her husband would be ‘suffering’ following extubation. She was reassured that he will be comfortable on morphine infusion. The family agreed to comfort care but requested some time to break the news to Mr Rajoo’s elderly mother. In the event of deterioration, the family has agreed that there will be no escalation of treatment or CPR.”
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 9 ================= -->
+  <details class="section" id="s9">
+    <summary><span class="chev"></span><span class="num">9</span><span class="ttl">Case Studies (1–11)</span></summary>
+    <div class="body">
+      <p>Each case highlights a specific communicative challenge, suggested responses and phrases to avoid. Identities have been changed. Some scenarios include Bahasa Malaysia phrases as used in local practice.</p>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 1</span> Sudden unexpected death</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Encik Ahmad, 60, diabetic and hypertensive, had an uncomplicated AAA repair and was recovering well in ICU, due for ward transfer. His wife Puan Halimah and son Adam had just visited. Adam still resents the ward staff for a wrong medication given before surgery. While awaiting transfer, Encik Ahmad had a cardiac arrest secondary to severe myocardial infarction and was not resuscitable.</p>
+          <p><strong>Challenge.</strong> Adam distrusts the hospital; the unexpected turn of events is likely to rouse suspicion and anger. Requires gentle breaking of news, clear explanation, acceptance of anger and empathy.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>I am afraid that something serious has happened. Your father’s heart stopped suddenly.</q> [pause] <q>I am sorry, we were unable to save him.</q><br>
+            <q>No, it was not a mistake. He suffered a massive heart attack. Yes, you are right, he was fine. In fact he was reading the newspaper when he complained of severe chest pain and collapsed. We tried to revive him for 30 minutes but he did not respond. I’m sorry your father has passed away.</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>You know you are taking a risk when you signed the consent form.</q> <q>These things happen all the time.</q> <q>If it didn’t happen now, it might happen in the ward.</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 2</span> Loss of limb — urgent decision</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Mr Chandra, 46, a taxi driver and sole breadwinner with three school-going children, was admitted with acute critical limb ischaemia and gangrenous toes, underwent emergency femoropopliteal bypass, and returns to ICU one week later with severe sepsis needing NIV and vasopressors. The surgeon decides on an urgent below-knee amputation. Neither he nor his wife knows that the deterioration is due to the ischaemic limb; surgical opinion has not been conveyed.</p>
+          <p><strong>Challenge.</strong> First contact with the couple is to deliver bad news; time is critical — he could die if surgery is delayed. Expect distrust, denial, feeling pressured, bargaining for time.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>Mr Chandra, you know about the serious infection of your leg.</q> [pause] <q>The antibiotics have not worked.</q> [pause] <q>The infection has worsened. I am so sorry to tell you that we need to amputate that leg.</q><br>
+            <q>Your husband has to undergo surgery to remove the infected leg to save his life.</q><br>
+            <q>We need you to decide urgently. The infection has spread beyond the leg and has affected other organs.</q> [pause] <q>You can die if we delay the surgery.</q><br>
+            <q>Would you both like some time alone to discuss this?</q>
+          </div>
+          <p>Explore options after losing a limb (e.g. artificial limb); a further meeting may be required.</p>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>If you delay or refuse, you will have to bear the consequences.</q> <q>You are just losing your leg.</q> <q>If you refuse the operation, there is nothing else we can do.</q> <q>You should be grateful you still have a chance to live.</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 3</span> Medically inappropriate care</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Aisha, 40, mother of two, had status asthmaticus at home, was pulseless and cyanosed on arrival, ROSC after 20 minutes, cerebral protection for 24 hours. At 72 hours her neurology remains poor; CT shows severe cerebral oedema with extensive infarcts and EEG is consistent with severe encephalopathy. The neurologist confirms a poor prognosis — she will be totally dependent if she survives. Her husband Johan remains extremely hopeful and is adamant all resuscitative measures continue.</p>
+          <p><strong>Challenge.</strong> Denial, guilt, persistence, helplessness. Explain the turn of events and the basis of the poor prognosis, focus on the patient’s values, show empathy, allow time, give frequent and consistent explanations, discuss care of a comatose patient.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>We have tried all appropriate treatment but</q> [pause] <q>I am so sorry to tell you that the damage to her brain is very severe.</q> [pause] <q>This is why she is still in a coma.</q><br>
+            <q>Persisting with current treatment is of no benefit and therefore we should consider stopping treatment.</q> [pause]<br>
+            <q>She will continue to breathe on her own but we don’t know for how long. Should she develop any breathing difficulties, we will not put the tube back. We will make sure that she is comfortable and be allowed to die.</q><br>
+            <q>You have done all you can, Encik Johan. You brought her to hospital as soon as possible</q> [pause] <q>and you have been by her side ever since.</q><br>
+            <q>What would Aisha have wanted if she knew she would remain comatose?</q> / <q>Do you want some time to think this over and perhaps discuss this with someone?</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>There is nothing more we can do for her. You need to decide soon.</q> <q>It is utterly futile to go on.</q> <q>It will be very difficult to care for someone in this state.</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 4</span> Brain death</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Mr Lim, 66, a pensioner, is diagnosed brain dead secondary to subarachnoid haemorrhage three days earlier. His only next-of-kin, daughter Lisa, has just arrived from London after a phone call that his neurological prognosis was poor and confirmatory tests were being done. She is meeting the ICU team for the first time.</p>
+          <p><strong>Challenge.</strong> Suddenness, lack of rapport and family support, the concept of brain death, guilt for being away, denial, intense grief. Assess her understanding, explain the clinical and imaging tests, explain that brain death <em>is</em> death, listen, use silence, support her. <strong>Avoid discussion of organ donation until death is well accepted and understood.</strong></p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>May I know what they told you over the phone about your father’s condition?</q><br>
+            <q>We carried out further tests to check his brain function.</q> [pause] <q>I am sorry to tell you that the results show that he is brain dead.</q><br>
+            <q>Although he appears to be ‘alive’ and breathing, it is only because of the machine. Once we take him off the machine his heart will eventually stop.</q><br>
+            <q>This is a standard test done all over the world to examine the brain stem… His brain is dead and being brain dead is equivalent to death.</q><br>
+            <q>I am so sorry but no one would have been able to predict this. It may be comforting for you to know that he did not suffer. Is there anyone that we can call for you?</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>You just have to accept that by law he is dead and we have no obligation to continue.</q> <q>We are going to switch off the ventilator whether you agree or not.</q> <q>Yes, he is still alive but the brain is dead.</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 5</span> Prolonged ICU stay</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Mr Alias, 50, a security guard, had a laparotomy for perforated duodenal ulcer, admitted to ICU with septic shock, complicated by recurrent intra-abdominal sepsis requiring four relaparotomies. At day 58 he is anuric, on TPN, tracheostomised, and difficult to wean.</p>
+          <p><strong>Challenge.</strong> Clinicians may find it difficult to discuss plans for deterioration because he “pulled through” previous episodes and they may have developed attachment. The family sees each survival as proof he is a “fighter” and may not be receptive to palliative care. Obtain medical consensus first, understand their view of treatment, discuss expectations, guide them to the conclusion, follow up, and allow several meetings.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>We need to discuss how we should provide the best care for Encik Alias should he deteriorate again.</q><br>
+            <q>Do you expect your father to get better?</q> → <q>We have been treating him all this while as we thought we could cure his illness. However, despite almost two months of intensive treatment he remains very ill.</q> [pause] <q>Should he get worse again, we suggest not to restart his blood pressure medication or perform CPR.</q><br>
+            <q>We don’t think that restarting his blood pressure medication will benefit him as the infection in his gut cannot be controlled.</q> [pause] <q>In our honest opinion, despite treatment, he will die because of his illness.</q><br>
+            <q>Of course not, we will continue caring for him.</q> [pause] <q>Although we cannot cure his illness, we will still care for him, make sure he is not in pain and help to keep him comfortable.</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>Don’t you realise he is just getting from bad to worse.</q> <q>Well, we can go on and on but that would be pointless.</q> <q>Think about what you are doing to your father and the suffering that we are inflicting on him.</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 6</span> Conflict with the family — advance care plan</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Encik Yusof, 71, has advanced COPD, multiple ICU admissions and two ventilations in seven months; he is now housebound, dependent and on home oxygen. A previous documented discussion with him, his wife and respiratory physician Dr Ali concluded that in the event of deterioration, intubation and CPR would not be performed — palliative treatment instead. He is admitted again with worsening dyspnoea; despite NIV he is dyspnoeic and increasingly drowsy, and palliative care is instituted. His daughter Zara, who lives with him, is angry that he is not admitted to ICU, was unaware of the prior discussion, and does not think her parents understood the implications.</p>
+          <p><strong>Challenge.</strong> Lack of information and understanding, non-acceptance, distress, guilt, anger, distrust. Explain how the limitation decision was made, involve her mother and the team from the previous discussion, clarify misinformation, reaffirm that the plan honours her father’s wish, avoid dwelling on documentation, address her fear, reassure that comfort care continues.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>What do you understand of your father’s condition?</q><br>
+            <q>The last time, your parents had a conversation with the doctor looking after his lungs, Dr Ali. Your father was clear about his deteriorating condition and does not want further intensive treatment.</q><br>
+            <q>I see that this is hard for you but this is what your father had wanted for himself.</q> [pause] <q>All of us wish that our parents will be with us always but in his situation it would be best not to intervene.</q><br>
+            <q>We will continue to care for your father till the end. We have promised him we will give him medication to keep him comfortable.</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>Can’t you see he is getting worse with time?</q> <q>There is nothing more we can do.</q> <q>You can’t go against your father’s wishes.</q> <q>It has already been decided.</q> <q>The decision is legal and clearly documented.</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 7</span> Conflict with another healthcare professional</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Mrs Lee, 47, has ESRF since 30, a renal transplant with 12 dialysis-free years, then chronic rejection and dialysis dependence for four years. Admitted with pneumonia, she was found unconscious in the ward; CPR with ROSC after 10 minutes. CT showed a massive intracranial bleed; craniotomy and clot removal was performed, then ICU admission. One week later neurology remains poor, repeat CT shows residual bleed with mild cerebral oedema, and EEG is consistent with severe encephalopathy. The intensivist plans withdrawal, but nephrologist Dr Hashim disagrees and wants all treatment continued including tracheostomy.</p>
+          <p><strong>Challenge.</strong> Two clinicians disagree on the direction of care; they must negotiate and agree before presenting the plan to the family, in the patient’s best interest.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>Dr Hashim, thank you for coming to discuss on further treatment plan for Mrs Lee. I realise that you have taken care of Mrs Lee for many years and have looked after her very well.</q><br>
+            <q>Mrs Lee’s neurological recovery has been poor. Her GCS has not improved — it remains at four since her sedation was weaned off one week ago. I suggest we start discussing with her family on withdrawal of therapy.</q><br>
+            <q>I understand you’re hoping for a positive outcome but her neurological recovery is expected to be poor. She will likely be in a persistent vegetative state, even if she can be weaned off the ventilator.</q> [pause] <q>Do you have any thoughts on her family’s preferences?</q><br>
+            <q>We need to come to a decision on what is best for Mrs Lee as quickly as possible because her family needs to know the direction of care. Can I suggest we seek the opinion of the neurologist on the prognostication?</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>You need to let go.</q> <q>Withdrawal is the only option…</q> <q>She will die regardless of what we do…</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 8</span> Medical misadventure — supporting a colleague</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Mr Tan, 58, was admitted with septic shock from pneumonia. Medical officer Dr Asnita intubated him and inserted a central line after three attempts. A chest X-ray followed. He then developed progressive hypotension and hypoxaemia requiring escalating inotropes and ventilator support. Dr Asnita attributed this to the severe pneumonia; 15 minutes later he arrested and could not be resuscitated. The chest X-ray revealed a large pneumothorax on the side of line insertion. She is distressed, feeling guilty, and frightened of the repercussions.</p>
+          <p><strong>Challenge.</strong> Distress, guilt, shame, inadequacy, loss of confidence, physical symptoms. Initiate a private meeting as soon as possible, go through events, encourage expression, highlight positives (immediate attendance after deterioration), assure her she will not be the one to inform the family at this time, offer time off and counselling.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>Asnita, can you tell me what happened?</q> … <q>Don’t be frightened, tell me what happened. I am here to listen.</q><br>
+            <q>Is that how you feel about yourself now, guilty?</q><br>
+            <q>Don’t worry, I will talk to them when they arrive. Any doctor in your situation will feel like this. It is okay to have these thoughts. Why don’t you take two days off and we can meet again when you get back.</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>How could you make such a mistake and not think of a pneumothorax?</q> <q>You cannot work in intensive care if you can’t even manage an obvious diagnosis.</q> <q>Let’s hope Mr Tan didn’t die in vain and you have learnt from this.</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 9</span> Needlestick injury</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Dr Ng inserted a central line for an intravenous drug abuser in septic shock and was seen placing sharps into the sharps bin. Murni, a junior staff nurse who is seven months pregnant, cleared the central line tray with drapes on it and pricked her finger on a needle inadvertently left between the drapes. She washed her finger, informed the nursing sister and the post-needlestick protocol was followed. She remains extremely distraught and is crying.</p>
+          <p><strong>Challenge.</strong> Uncertainty of the future, blaming others, distress, anger, fear, worry, helplessness, numbness, physical symptoms. Listen with empathy, establish the facts, encourage sharing of feelings, ask about physical symptoms, reassure that reactions are normal, offer support, reassure that sharps handling will be reinforced.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>Would you like to tell me what happened this morning?</q><br>
+            <q>I am so sorry this happened.</q> [pause] <q>It’s normal to feel frightened and anxious about the future.</q><br>
+            <q>I assure you that the procedure for handling sharps will be reinforced to all doctors.</q><br>
+            <q>Let’s do the screening test for the patient first. Why don’t you take some time off. Let’s meet again after the result is back.</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>You should have been more careful.</q> <q>It was the doctor’s fault. He should have removed all the sharps.</q> <q>Don’t worry, it will be okay.</q> <q>This could have happened to anyone.</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 10</span> Last office</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Ms Tan, 50, with advanced carcinoma of the uterus, was admitted to ICU for severe pneumonia and did not respond after three days. A family conference with her brother and niece (next-of-kin) decided to withdraw treatment and institute palliative care. Her niece Jenny requests to be with her in her final hours and to participate in care after death.</p>
+          <p><strong>Challenge.</strong> Never witnessed dying, not knowing what to expect, need to provide a good death, fear, worry, helplessness. Listen to the family’s concerns, explain the dying process, facilitate care after death, and address cultural and spiritual needs.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>No, we will make every effort to keep her comfortable till the end. We will provide her with pain relief.</q><br>
+            <q>Yes, of course. You can be by her side and say your prayers if you wish.</q><br>
+            <q>And yes, if you want, you can help the nurses and carry out the care after death.</q> [then explain the steps taken after a patient dies]
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>Why do you want to do it?</q> <q>Don’t worry, we can handle it.</q> <q>Why don’t you just sit by the side and say your prayers.</q> <q>At this stage, she will not know if you are present or not.</q>
+          </div>
+        </div>
+      </details>
+
+      <details class="case">
+        <summary><span class="chev"></span><span class="tag">Case 11</span> Dying at home</summary>
+        <div class="body">
+          <p><strong>Scenario.</strong> Mr Ranjit Singh, 80, previously well, suffered a massive stroke leaving him hemiplegic, aphasic and dysphagic. He was ventilated in ICU and subsequently extubated. The family is clear that re-intubation, tracheostomy and other intensive therapy would not be what he wanted should he deteriorate. He then develops hospital-acquired pneumonia and becomes increasingly short of breath. The family is concerned he is suffering and that his final wish to die at home may go unfulfilled.</p>
+          <p><strong>Challenge.</strong> Honour his wish to die at home while the family worries about managing symptoms; some members may have their own discomforts and misgivings. Keep communication clear and honest, support efforts to honour his wishes, listen to concerns, explain the final moments and symptom management, and involve palliative care/hospice.</p>
+          <div class="say">
+            <span class="lbl">Say</span>
+            <q>I can see how important this is to your father and the family.</q> [pause] <q>Actually, many people share the wish to die at home and we can help you.</q><br>
+            <q>Please tell me what is troubling you?</q><br>
+            <q>I am unable to say when exactly he will pass on…</q><br>
+            <q>Death is a natural process.</q> [pause] <q>Some things might occur during this time,</q> [pause] <q>like moaning, difficulty in breathing and gasping. We can contact hospice for assistance to manage these symptoms at home.</q>
+          </div>
+          <div class="avoid">
+            <span class="lbl">Avoid</span>
+            <q>He is unconscious and wouldn’t feel anything.</q> <q>Who knows when he would die.</q> <q>It is more convenient to die in hospital because…</q> <q>Why do you want to take him home?</q>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- ================= 10 ================= -->
+  <details class="section" id="s10">
+    <summary><span class="chev"></span><span class="num">10</span><span class="ttl">Conflict Resolution &amp; Negotiation</span></summary>
+    <div class="body">
+      <p>Conflict occurs when there is inability to arrive at consensus on management decisions, goals of care, and the extent of therapy to be instituted or withheld. While every effort should be made to maintain a trusting relationship, conflict may be inevitable. It is the healthcare professional’s responsibility to commit to a resolution and settle it above vested interest.</p>
+
+      <h3>Causes</h3>
+      <ul>
+        <li>Inadequate understanding of the situation due to insufficient, confusing or inconsistent information.</li>
+        <li>Poor communication.</li>
+        <li>Differing viewpoints or expectations.</li>
+        <li>Feelings of guilt, fear or distrust.</li>
+        <li>Different religious and cultural backgrounds.</li>
+      </ul>
+      <p>Conflicts may occur <strong>among healthcare professionals</strong> when multiple teams are involved — it is best to achieve consensus on management issues <em>before</em> discussing with families, especially regarding treatment goals and limitation of therapy.</p>
+
+      <h3>Consequences if unresolved</h3>
+      <ul>
+        <li>Patients suffer undue pain and distress.</li>
+        <li>Families are left feeling angry and guilty — potentially long-lasting, resulting in complicated bereavement.</li>
+        <li>Healthcare professionals may experience moral distress and disillusionment.</li>
+        <li>For all involved it is draining, time-consuming, stressful and costly.</li>
+      </ul>
+
+      <h3>Negotiation — three steps</h3>
+      <ol>
+        <li><strong>Understand the fundamental problem.</strong> Be aware of your own role in contributing to the conflict. Examine your biases or perceptions — e.g. perceiving the family as difficult or annoying, feeling it is a power struggle, feeling demoralised or a failure. Avoid attributing blame; do not label the family as ignorant or colleagues as unreasonably optimistic. Identify and stay focused on the problem — in medical futility, the focus should be that CPR will not benefit the patient, rather than the family’s unrealistic expectations.</li>
+        <li><strong>Analyse and understand the competing interests.</strong>
+          <ul>
+            <li>Have an open, honest discussion to establish early rapport and trust.</li>
+            <li>Listen carefully to show genuine interest in the other party’s perspectives, frustrations and fears. Explore unspoken concerns with open-ended questions — <em>“Explain to me how you see the situation now.” “I encourage you to share with me your thoughts on…”</em></li>
+            <li>Check understanding to ensure shared expectations — <em>“Please tell me what you think the outcome of this illness will be so that I can better understand.”</em></li>
+            <li>In withdrawal/withholding cases, avoid harping on futility — it encourages power struggle and belittles the other party.</li>
+            <li>Understand cultural and spiritual beliefs; some view illness as a test of faith — <em>“I understand that you are hoping for a miracle. However, we must prepare for the worst.”</em></li>
+            <li>Address prior misunderstanding and bad experiences with the healthcare system — <em>“I am sorry you feel this way about things, how can we make it better for you.” “Thank you for bringing this to our attention.”</em></li>
+            <li>Overcome reluctance to engage even when hostility is sensed: stay calm, accept the anger, respond visibly through silent communication (nodding, appropriate eye contact), keep tone and content neutral.</li>
+            <li>Express empathy and compassion — <em>“I sense that this is frustrating and overwhelming for you.” “Anyone receiving this news will be devastated.”</em></li>
+          </ul>
+        </li>
+        <li><strong>Work on a solution.</strong>
+          <ul>
+            <li>Find common ground; avoid focusing on differences — <em>“We share the same goals. I can see you want the best for the patient. We also want to provide appropriate medical care for him.”</em></li>
+            <li>Establish mutual respect by acknowledging concerns.</li>
+            <li>Set clear goals for evaluation, e.g. a time-limited trial — <em>“We will continue on these high doses of drugs to support his BP for another 48 hours. If his BP remains low, this would indicate that the drugs are not working and we will withdraw treatment.”</em></li>
+            <li>Provide objective information to substantiate recommendations — <em>“The chance of survival in patients with out-of-hospital cardiac arrest is only 5%.”</em></li>
+            <li>Get assistance from individuals uninvolved in the conflict to provide a neutral platform — social workers, religious figures or other healthcare professionals.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </details>
+
+  <!-- ================= 11 ================= -->
+  <details class="section" id="s11">
+    <summary><span class="chev"></span><span class="num">11</span><span class="ttl">Critical Incidents — Defusing &amp; Debriefing</span></summary>
+    <div class="body">
+      <p>Critical incidents are events or situations “that have sufficient emotional power to overcome the usual coping abilities of people working in environments where some degree of exposure is expected” (Mitchell &amp; Bray, 1990). In medicine these include unanticipated adverse events, medical error, or patient-related injury or death. Staff involved may be traumatised.</p>
+      <ul>
+        <li><strong>Debriefing</strong> — allows deeper reflection on thoughts, symptoms and emotions, with a larger group, within <strong>3–5 days</strong> of the incident.</li>
+        <li><strong>Defusing</strong> — conducted <strong>as soon as possible</strong> to reduce intense reactions quickly, prevent misinterpretation of one’s emotions, and facilitate return to normal duties. In ICU, defusing may be more applicable.</li>
+      </ul>
+      <p>Ideally conducted by trained facilitators, in a private and neutral environment. The process has three segments:</p>
+
+      <h3>Introduction</h3>
+      <ul>
+        <li>Use a private, neutral environment (e.g. seminar room, not the consultant’s office).</li>
+        <li>Introduce all present.</li>
+        <li>State the purpose — to assist individuals in returning to routine functions after the incident.</li>
+        <li>Emphasise that it is <strong>not an investigation</strong> of the incident.</li>
+        <li>Ensure confidentiality.</li>
+      </ul>
+
+      <h3>Exploration</h3>
+      <ul>
+        <li>Set a conversational, informal tone. Encourage participation; be open and honest.</li>
+        <li>Begin by asking participants to describe the incident briefly — guide them to focus only on what they did. <em>“Please describe what you did during the incident?” “Can you give a brief overview of what happened?”</em></li>
+        <li>Encourage description of thoughts, emotions, and physical symptoms during the event (tremors, sweating, palpitations). <em>“How did you feel when it happened?” “Personally for you, what was the worst thing?” “What disturbs you the most about the event?” “What symptoms are you currently experiencing?”</em></li>
+        <li><strong>Restate the key phrase</strong> to check accuracy and provide assurance.
+          <div class="note">Junior doctor: “I feel so horrible. I want to quit.” [sobs] · Senior doctor: “So, you are feeling horrible and want to quit.” [nods] · Junior doctor: [nods]</div>
+        </li>
+        <li>Allow silence. Summarise the discussion.</li>
+      </ul>
+
+      <h3>Information</h3>
+      <ul>
+        <li>Assure participants that their reactions are normal.</li>
+        <li>Provide information on how to seek further support (e.g. counselling).</li>
+        <li>Provide practical stress-coping skills.</li>
+        <li>Answer questions.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ================= 12 ================= -->
+  <details class="section" id="s12">
+    <summary><span class="chev"></span><span class="num">12</span><span class="ttl">End-of-Life Care — Before, At and After Death</span></summary>
+    <div class="body">
+      <p>In ICU, the end-of-life period may last from hours to days. Effective communication is of the utmost importance — <strong>we only have one chance to do it right</strong>. Done well, significant personal and family growth may follow; done poorly, closure may be incomplete, suffering may occur, and bereavement may be difficult and prolonged.</p>
+
+      <h3>Before death</h3>
+      <ol>
+        <li><strong>Timing of withdrawal of treatment.</strong> Seek the family’s preference (e.g. waiting for a close relative to arrive); allow flexibility whenever possible.</li>
+        <li><strong>Social or religious needs.</strong> Ask whether other family members need to be present; address the presence of young children; inform the family that their presence during withdrawal is entirely up to them; reassure that the patient will not be left alone; assist with religious needs whenever possible.</li>
+        <li><strong>Option of dying at home.</strong> Some patients prefer to die at home — every effort should be made to facilitate this; address symptom management at home.</li>
+        <li><strong>The actual process of withdrawing treatment.</strong>
+          <ul>
+            <li>Start with assurance — <em>“I want you to be assured that your mother will be pain free throughout this process.”</em></li>
+            <li>Explain in simple terms — <em>“After everyone has seen Puan Hasnah and said your prayers, we will remove her breathing tube and she will breathe on her own. We will also start a medication that will help keep her comfortable.”</em></li>
+            <li>Make clear that death is the expected outcome — <em>“You understand that by removing the breathing tube she will be allowed to die naturally because of her illness.”</em></li>
+            <li><strong>Be mindful of words that may incite guilt.</strong> Say <em>“She will not breathe on her own for long due to her terminal condition”</em> rather than <em>“She will die after stopping therapy”</em> — the latter may imply death was due to cessation of therapy rather than the natural progression of illness.</li>
+          </ul>
+        </li>
+        <li><strong>The dying process.</strong>
+          <ul>
+            <li>Assess expectations and address fear — not many have witnessed death. <em>“Do you have any worries?”</em></li>
+            <li>Explain the process if they want to know: secretions, noisy and irregular breathing, slowing of heart rate and its eventual stop.</li>
+            <li>Reassure that any distress will be attended to promptly and that the “sounds” they hear do not mean the patient is suffering.</li>
+            <li>Reiterate that the exact duration cannot be predicted — <em>“After the medications that maintain his blood pressure are stopped, I expect Mr Rajah to die from his illness. In my experience, though I cannot be certain, it is likely to be minutes to hours, instead of days.”</em></li>
+            <li>Reassure families that they may be with the patient as they wish.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3>At the moment of death</h3>
+      <ul>
+        <li>Pronounce death promptly and inform the family immediately — <em>“Your mother has died. I am sorry for your loss.”</em></li>
+        <li>Console with appropriate non-verbal cues — an arm around the shoulder, a hug, a gentle pat.</li>
+        <li><strong>Remain silent after pronouncing death.</strong> Anticipate and allow strong emotions.</li>
+      </ul>
+
+      <h3>After death</h3>
+      <ul>
+        <li>Give families time and privacy to talk, pray and say their last goodbyes before final arrangements.</li>
+        <li>Allow the family to participate in the last office if they wish.</li>
+        <li>Be ready with information on handling the deceased body and other administrative matters.</li>
+        <li>Identify family members who may have problems coping and refer for counselling.</li>
+        <li>Encourage the family to call if they require further support.</li>
+      </ul>
+    </div>
+  </details>
+
+  </div><!-- /#content -->
+
+  <!-- ================= SOURCE ================= -->
+  <footer class="src">
+    <h3>Source &amp; citation</h3>
+    <p class="cite-line">
+      <strong>Primary source:</strong> Ibrahim NA, Chan L, Ibrahim NA, Deva SR, Tai LL (eds).
+      <em>Communication in the Intensive Care: A Practical Guide.</em>
+      Ministry of Health Malaysia. Foreword by Datin Dr V Sivasakthi, Head of Anaesthesiology and Intensive Care Services, Ministry of Health, Malaysia.
+    </p>
+    <p>This page is a condensed quick-reference adaptation of the above manual for anaesthetists and intensivists. Case scenarios are drawn from the original text (identities changed there for anonymity). Always follow local institutional policies, legal requirements and clinical judgement.</p>
+    <p><strong>Key references cited in the original manual:</strong></p>
+    <ol>
+      <li>Aldridge M, Barton E. Establishing terminal status in end-of-life discussions. <em>Qualitative Health Research</em> 2007; 17: 908.</li>
+      <li>Arnold RNJ. Educational Modules for the Critical Care Communication (C3) Course. A Communication Skills Training Program for Intensive Care Fellows. 2010.</li>
+      <li>Baile WF, Buckman R, Lenzi R, Glober G, Beale EA, Kudelka AP. SPIKES — A six-step protocol for delivering bad news. <em>The Oncologist</em> 2000; 5(4): 302–311.</li>
+      <li>Buckman R. Breaking bad news: why is it still so difficult? <em>BMJ</em> 1984.</li>
+      <li>Clayton JM, Hancock KM, Butow PN, Tattersall MH, Currow DC. Clinical practice guidelines for communicating prognosis and end-of-life issues with adults in the advanced stages of a life-limiting illness, and their caregivers. <em>Med J Aust</em> 2007; 186(12): 77–108.</li>
+      <li>De Negri B, Brown LD, Hernandez O, Rosenbaum J, Roter D. <em>Improving Interpersonal Communication Between Health Care Providers and Clients.</em> Bethesda, MD: Quality Assurance Project; 1997.</li>
+      <li>Farrell M. The challenges of breaking bad news. <em>Intensive and Critical Care Nursing</em> 1999; 15(2): 101–110.</li>
+      <li>Fellowfield F. <em>Communication with the Patient and Family in Palliative Medicine.</em> Oxford University Press; 2011.</li>
+      <li>Fellows A, Hayes A, Lindsey K. <em>Finding the Words. Communication Skills Workbook.</em> Maguire Communication Skills Unit, National End of Life Care Programme; 2011.</li>
+      <li>Girgis A, Sanson-Fisher RW. Breaking bad news 1: Current best advice for clinicians. <em>Behavioral Medicine</em> 2010; 24(2): 53–59.</li>
+      <li>Happ MB, Tuite P, Dobbin K, DiVirgilio-Thomas D, Kitutu J. Communication ability, method, and content among non-speaking, non-surviving patients treated with mechanical ventilation in the intensive care unit. <em>Am J Crit Care</em> 2004; 13(3): 210–218.</li>
+      <li>Kendall A, Arnold R. <em>Conflict Resolution II: Principled Negotiation, Fast Facts and Concepts.</em> 2007.</li>
+      <li>Long T, Sque M, Addington-Hall J. Conflict rationalisation: How family members cope with a diagnosis of brain stem death. <em>Social Science &amp; Medicine</em> 2008; 67(2008): 253–261.</li>
+      <li>Mitchell JT, Bray G. <em>Emergency Services Stress: Guidelines for Preserving the Health and Careers of Emergency Service Personnel.</em> NJ: Prentice Hall, Englewood Cliffs; 1990.</li>
+      <li>Mitchell JT, Everly GS. <em>Critical Incident Stress Debriefing: An Operations Manual for CISD, Defusing and other Group Crisis Intervention Services.</em> 3rd ed. Ellicott City, MD: Chevron; 2001.</li>
+      <li>National Literacy and Health Program, Canadian Public Health Association. <em>Easy Does it. Plain Language and Clear Verbal Communication. A Training Manual.</em> Ottawa, Ontario; 1998.</li>
+      <li>Norlander L. <em>To Comfort Always: A Guide to End-of-Life.</em> Honor Society of Nursing, Sigma Theta Tau International; 2008.</li>
+      <li>Norton SA. Life Support Withdrawal: Communication and Conflict. <em>Am J Crit Care</em> 2003; 12(6): 548–555.</li>
+      <li>New South Wales Health. <em>Conflict Resolution in End of Life Settings (CRELS).</em> North Sydney, NSW: NSW Department of Health; 2010.</li>
+      <li>Slatore GS, Hansen L, Ganzini L, et al. Communication by nurses in the intensive care unit: Qualitative analysis of domains of patient-centered care. <em>Am J Crit Care</em> 2012; 21(6): 410–418.</li>
+      <li>Swigart V, Lidz C, Butterworth V, Arnold R. Letting go: Family willingness to forgo life support. <em>Heart Lung</em> 1996; 25: 483–494.</li>
+      <li><em>The Michigan Physician Guide to End-of-Life Care.</em> 2001.</li>
+      <li>Workman S. A communication model for encouraging optimal care at the end-of-life for hospitalized patients. <em>Q J Med</em> 2007; 100: 791–797.</li>
+    </ol>
+  </footer>
+
+</div><!-- /.wrap -->
+
+<script>
+(function () {
+  'use strict';
+
+  var content   = document.getElementById('content');
+  var searchEl  = document.getElementById('search');
+  var countEl   = document.getElementById('count');
+  var sizeLabel = document.getElementById('sizeLabel');
+  var root      = document.documentElement;
+
+  /* ---------------- Expand / Collapse ---------------- */
+  function allDetails() {
+    return Array.prototype.slice.call(content.querySelectorAll('details'));
+  }
+  document.getElementById('expandAll').addEventListener('click', function () {
+    allDetails().forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    allDetails().forEach(function (d) { d.open = false; });
+  });
+
+  /* ---------------- Font size ---------------- */
+  var size = 16;
+  function applySize() {
+    root.style.setProperty('--base', size + 'px');
+    sizeLabel.textContent = size + 'px';
+  }
+  document.getElementById('fontUp').addEventListener('click', function () {
+    size = Math.min(22, size + 1); applySize();
+  });
+  document.getElementById('fontDown').addEventListener('click', function () {
+    size = Math.max(13, size - 1); applySize();
+  });
+  document.getElementById('fontReset').addEventListener('click', function () {
+    size = 16; applySize();
+  });
+  applySize();
+
+  /* ---------------- Search ---------------- */
+  var marks = [];
+  var current = -1;
+  var lastQuery = '';
+
+  function clearHighlights() {
+    var ms = content.querySelectorAll('mark');
+    for (var i = 0; i < ms.length; i++) {
+      var m = ms[i];
+      var txt = document.createTextNode(m.textContent);
+      if (m.parentNode) m.parentNode.replaceChild(txt, m);
+    }
+    content.normalize();
+    marks = [];
+    current = -1;
+  }
+
+  function openAncestors(el) {
+    var d = el.parentElement ? el.parentElement.closest('details') : null;
+    while (d) {
+      d.open = true;
+      d = d.parentElement ? d.parentElement.closest('details') : null;
+    }
+  }
+
+  function highlight(query) {
+    var found = [];
+    var q = query.toLowerCase();
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentElement;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          if (p.closest('script, style, mark')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(q);
+      if (idx === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+      while (idx !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var mk = document.createElement('mark');
+        mk.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mk);
+        found.push(mk);
+        last = idx + q.length;
+        idx = lower.indexOf(q, last);
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      if (node.parentNode) node.parentNode.replaceChild(frag, node);
+    });
+
+    return found;
+  }
+
+  function updateCurrent(scroll) {
+    for (var i = 0; i < marks.length; i++) {
+      if (i === current) marks[i].classList.add('current');
+      else marks[i].classList.remove('current');
+    }
+    if (current >= 0 && marks[current]) {
+      if (scroll !== false) {
+        marks[current].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      countEl.textContent = (current + 1) + ' / ' + marks.length;
+    }
+  }
+
+  function runSearch() {
+    var q = searchEl.value.trim();
+    clearHighlights();
+
+    if (q.length < 2) {
+      countEl.textContent = q.length === 1 ? 'type 2+ chars' : '';
+      lastQuery = q;
+      return;
+    }
+
+    lastQuery = q;
+    marks = highlight(q);
+
+    if (marks.length === 0) {
+      countEl.textContent = '0 found';
+      return;
+    }
+
+    marks.forEach(function (m) { openAncestors(m); });
+
+    current = 0;
+    updateCurrent();
+  }
+
+  function nextMatch() {
+    if (!marks.length) { runSearch(); return; }
+    current = (current + 1) % marks.length;
+    updateCurrent();
+  }
+  function prevMatch() {
+    if (!marks.length) { runSearch(); return; }
+    current = (current - 1 + marks.length) % marks.length;
+    updateCurrent();
+  }
+
+  var timer;
+  searchEl.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(runSearch, 260);
+  });
+
+  searchEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (searchEl.value.trim() !== lastQuery || !marks.length) runSearch();
+      else if (e.shiftKey) prevMatch();
+      else nextMatch();
+    } else if (e.key === 'Escape') {
+      searchEl.value = '';
+      clearHighlights();
+      countEl.textContent = '';
+      lastQuery = '';
+    }
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', function () {
+    if (searchEl.value.trim() !== lastQuery) runSearch();
+    else nextMatch();
+  });
+  document.getElementById('prevBtn').addEventListener('click', function () {
+    if (searchEl.value.trim() !== lastQuery) runSearch();
+    else prevMatch();
+  });
+
+  /* Keep deep-links opening the target section */
+  document.querySelectorAll('.jump a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var target = document.querySelector(a.getAttribute('href'));
+      if (!target) return;
+      var d = target.closest('details');
+      while (d) { d.open = true; d = d.parentElement ? d.parentElement.closest('details') : null; }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
