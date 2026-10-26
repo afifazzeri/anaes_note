@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pulmonary Hypertension — Anaesthetic &amp; Critical Care Quick Reference</title>
+<style>
+/* ============================================================
+   THEME — matcha green + soft brown
+   ============================================================ */
+:root{
+  --bg:#f6f1e6;
+  --bg-2:#efe7d6;
+  --card:#fffdf7;
+  --ink:#3a3227;
+  --ink-2:#5d5344;
+  --ink-3:#8a7c66;
+  --matcha:#6f8f5b;
+  --matcha-d:#4c6a3c;
+  --matcha-l:#dfe9d5;
+  --matcha-xl:#eef4e8;
+  --brown:#8b7154;
+  --brown-l:#e9dcc6;
+  --brown-xl:#f4ecdd;
+  --warn:#a9553b;
+  --warn-bg:#f8e8e0;
+  --ok:#4f7a3f;
+  --ok-bg:#e8f1e0;
+  --hit:#ffe08a;
+  --hit-cur:#ffb347;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(90,70,40,.06), 0 6px 18px rgba(90,70,40,.07);
+}
+*{box-sizing:border-box}
+html{font-size:16px; scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, #fbf7ee 0%, rgba(251,247,238,0) 60%),
+    radial-gradient(900px 400px at 100% 0%, #e9f0e0 0%, rgba(233,240,224,0) 55%),
+    var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  font-size:1rem;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Top bar ---------- */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(246,241,230,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--brown-l);
+  padding:10px 16px 12px;
+}
+.topbar-inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand .dot{
+  width:12px;height:12px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,#8fb377,#5b7a47);
+  box-shadow:0 0 0 3px var(--matcha-xl);
+}
+.brand h1{font-size:1.02rem;margin:0;font-weight:700;letter-spacing:.2px;color:var(--ink)}
+.brand small{display:block;font-size:.7rem;font-weight:500;color:var(--ink-3);letter-spacing:.4px;text-transform:uppercase}
+
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+.searchwrap{
+  display:flex;align-items:center;gap:6px;
+  background:var(--card);
+  border:1px solid var(--brown-l);
+  border-radius:999px;
+  padding:4px 6px 4px 12px;
+  box-shadow:var(--shadow);
+}
+.searchwrap input{
+  border:none;outline:none;background:transparent;
+  font-size:.9rem;width:190px;color:var(--ink);
+  font-family:inherit;
+}
+.searchwrap input::placeholder{color:var(--ink-3)}
+.count{font-size:.75rem;color:var(--ink-3);min-width:52px;text-align:center;font-variant-numeric:tabular-nums}
+
+button{
+  font-family:inherit;font-size:.8rem;cursor:pointer;
+  border:1px solid var(--brown-l);
+  background:var(--card);color:var(--ink-2);
+  padding:6px 11px;border-radius:999px;
+  transition:.15s ease;
+  line-height:1.2;
+}
+button:hover{background:var(--matcha-xl);border-color:var(--matcha-l);color:var(--matcha-d)}
+button:active{transform:translateY(1px)}
+button.primary{background:var(--matcha);border-color:var(--matcha-d);color:#fff}
+button.primary:hover{background:var(--matcha-d);color:#fff}
+button.icon{padding:6px 9px}
+.nav-arrow{font-weight:700}
+
+.fsgroup{display:flex;align-items:center;gap:4px;background:var(--card);border:1px solid var(--brown-l);border-radius:999px;padding:3px 6px;box-shadow:var(--shadow)}
+.fsgroup span{font-size:.72rem;color:var(--ink-3);min-width:34px;text-align:center;font-variant-numeric:tabular-nums}
+.fsgroup button{border:none;background:transparent;padding:4px 7px;font-size:.85rem;font-weight:700;color:var(--brown)}
+
+/* ---------- Quick nav ---------- */
+.quicknav{
+  max-width:1080px;margin:0 auto;padding:10px 16px 0;
+  display:flex;gap:7px;flex-wrap:wrap;
+}
+.quicknav a{
+  font-size:.74rem;text-decoration:none;color:var(--ink-2);
+  background:var(--brown-xl);border:1px solid var(--brown-l);
+  padding:4px 10px;border-radius:999px;transition:.15s;
+}
+.quicknav a:hover{background:var(--matcha-l);color:var(--matcha-d);border-color:var(--matcha)}
+
+/* ---------- Layout ---------- */
+main{max-width:1080px;margin:0 auto;padding:18px 16px 80px}
+
+/* ---------- Hero stats ---------- */
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:6px 0 22px}
+.stat{
+  background:var(--card);border:1px solid var(--brown-l);border-radius:var(--radius);
+  padding:14px 15px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--matcha),var(--brown))}
+.stat .n{font-size:1.42rem;font-weight:750;color:var(--matcha-d);line-height:1.15;font-variant-numeric:tabular-nums}
+.stat .l{font-size:.78rem;color:var(--ink-2);margin-top:3px}
+.stat .s{font-size:.68rem;color:var(--ink-3);margin-top:5px}
+
+/* ---------- Accordion sections ---------- */
+.sec{
+  background:var(--card);
+  border:1px solid var(--brown-l);
+  border-radius:var(--radius);
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.sec>summary{
+  list-style:none;
+  display:flex;align-items:center;gap:10px;
+  padding:14px 16px;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--matcha-xl) 0%,var(--card) 65%);
+  border-left:5px solid var(--matcha);
+  user-select:none;
+  transition:background .15s;
+}
+.sec>summary::-webkit-details-marker{display:none}
+.sec>summary:hover{background:linear-gradient(90deg,var(--matcha-l) 0%,var(--brown-xl) 100%)}
+.sec>summary .chev{
+  color:var(--matcha-d);font-size:.8rem;transition:transform .2s ease;
+  display:inline-block;width:12px;flex:none;
+}
+.sec[open]>summary .chev{transform:rotate(90deg)}
+.sec-title{font-weight:700;font-size:1rem;color:var(--ink);letter-spacing:.1px}
+.sec-tag{
+  margin-left:auto;font-size:.66rem;color:var(--brown);
+  background:var(--brown-xl);border:1px solid var(--brown-l);
+  padding:2px 8px;border-radius:999px;white-space:nowrap;
+  letter-spacing:.3px;font-weight:600;
+}
+.sec-body{padding:16px 18px 20px;border-top:1px solid var(--brown-l)}
+
+/* nested details (sub-accordions) */
+.sub{
+  border:1px dashed var(--brown-l);border-radius:10px;
+  background:var(--brown-xl);margin:12px 0;overflow:hidden;
+}
+.sub>summary{
+  list-style:none;cursor:pointer;padding:9px 13px;
+  font-weight:650;font-size:.9rem;color:var(--matcha-d);
+  display:flex;align-items:center;gap:8px;
+}
+.sub>summary::-webkit-details-marker{display:none}
+.sub>summary::before{content:"▸";font-size:.72rem;transition:transform .2s}
+.sub[open]>summary::before{transform:rotate(90deg)}
+.sub .sub-body{padding:2px 14px 12px;font-size:.9rem}
+
+/* ---------- Typography ---------- */
+h3{font-size:.92rem;margin:20px 0 8px;color:var(--matcha-d);letter-spacing:.2px;text-transform:uppercase;font-weight:750}
+h3:first-child{margin-top:2px}
+p{margin:8px 0}
+ul,ol{margin:8px 0 8px 0;padding-left:20px}
+li{margin:4px 0}
+li::marker{color:var(--matcha)}
+strong{color:var(--ink);font-weight:680}
+em{color:var(--ink-2)}
+.muted{color:var(--ink-3);font-size:.84rem}
+.src{
+  display:inline-block;font-size:.68rem;color:var(--brown);
+  background:var(--brown-xl);border:1px solid var(--brown-l);
+  border-radius:6px;padding:1px 6px;margin-left:4px;vertical-align:middle;
+  font-weight:600;letter-spacing:.2px;white-space:nowrap;
+}
+
+/* callouts */
+.note{
+  border-left:4px solid var(--matcha);
+  background:var(--matcha-xl);
+  border-radius:0 10px 10px 0;
+  padding:10px 14px;margin:12px 0;font-size:.9rem;
+}
+.note.warn{border-left-color:var(--warn);background:var(--warn-bg)}
+.note.warn strong{color:var(--warn)}
+.note.ok{border-left-color:var(--ok);background:var(--ok-bg)}
+.note.ok strong{color:var(--ok)}
+.note .nh{display:block;font-weight:750;font-size:.78rem;letter-spacing:.4px;text-transform:uppercase;margin-bottom:4px;color:var(--matcha-d)}
+.note.warn .nh{color:var(--warn)}
+.note.ok .nh{color:var(--ok)}
+
+/* ---------- Tables ---------- */
+.tw{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid var(--brown-l);
+  border-radius:12px;
+  margin:12px 0;
+  background:var(--card);
+}
+.tw::-webkit-scrollbar{height:9px}
+.tw::-webkit-scrollbar-track{background:var(--brown-xl);border-radius:9px}
+.tw::-webkit-scrollbar-thumb{background:var(--matcha-l);border-radius:9px}
+.tw::-webkit-scrollbar-thumb:hover{background:var(--matcha)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.84rem}
+thead th{
+  background:linear-gradient(180deg,var(--matcha-l),var(--matcha-xl));
+  color:var(--matcha-d);text-align:left;font-weight:750;
+  padding:9px 12px;border-bottom:2px solid var(--matcha-l);
+  font-size:.76rem;letter-spacing:.35px;text-transform:uppercase;white-space:nowrap;
+}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--brown-xl);vertical-align:top;color:var(--ink-2)}
+tbody td:first-child{color:var(--ink);font-weight:620}
+tbody tr:nth-child(even){background:#fdfbf4}
+tbody tr:hover{background:var(--matcha-xl)}
+tbody tr:last-child td{border-bottom:none}
+td.red{color:var(--warn);font-weight:650}
+td.green{color:var(--ok);font-weight:650}
+
+/* ---------- Diagram: classification hub ---------- */
+.diagram{
+  background:linear-gradient(160deg,var(--matcha-xl),var(--brown-xl));
+  border:1px solid var(--brown-l);
+  border-radius:16px;
+  padding:16px;
+  margin:14px 0;
+}
+.diagram .cap{
+  font-size:.72rem;color:var(--ink-3);text-align:center;margin-top:12px;
+  letter-spacing:.3px;font-style:italic;
+}
+.hub{
+  display:grid;
+  grid-template-columns:1fr 168px 1.35fr;
+  gap:12px;align-items:center;
+}
+.hub-mid{
+  grid-row:1 / span 4;
+  background:radial-gradient(circle at 35% 30%,#8fb377,#4c6a3c);
+  color:#fff;border-radius:16px;
+  padding:18px 12px;text-align:center;
+  font-weight:750;font-size:.88rem;line-height:1.35;
+  box-shadow:0 6px 18px rgba(76,106,60,.28);
+}
+.hub-mid small{display:block;font-weight:500;font-size:.68rem;opacity:.9;margin-top:6px;letter-spacing:.3px}
+.hub-col{display:flex;flex-direction:column;gap:9px}
+.gcard{
+  background:var(--card);border:1px solid var(--brown-l);
+  border-left:4px solid var(--matcha);
+  border-radius:10px;padding:9px 12px;
+  font-size:.78rem;color:var(--ink-2);
+  box-shadow:0 1px 2px rgba(90,70,40,.05);
+}
+.gcard b{display:block;color:var(--matcha-d);font-size:.8rem;margin-bottom:2px}
+.gcard.g1{border-left-color:#6f8f5b}
+.gcard.g2{border-left-color:#8b7154}
+.gcard.g3{border-left-color:#a98159}
+.gcard.g4{border-left-color:#7d8f6a}
+.gcard.g5{border-left-color:#a69070}
+
+/* ---------- Diagram: flow / stepper ---------- */
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:12px 0}
+.flow .step{
+  flex:1 1 150px;
+  background:var(--card);
+  border:1px solid var(--matcha-l);
+  border-top:3px solid var(--matcha);
+  border-radius:10px;
+  padding:9px 11px;
+  font-size:.78rem;
+  color:var(--ink-2);
+  box-shadow:0 1px 2px rgba(90,70,40,.05);
+}
+.flow .step b{display:block;color:var(--matcha-d);font-size:.76rem;letter-spacing:.2px;margin-bottom:3px;text-transform:uppercase}
+.flow .arrow{align-self:center;color:var(--matcha);font-weight:800;font-size:.95rem;flex:none}
+
+/* ---------- Diagram: RV failure spiral ---------- */
+.spiral{display:grid;grid-template-columns:1fr 178px;gap:14px;align-items:start;margin:12px 0}
+.spiral-main{display:flex;flex-direction:column;gap:0}
+.sp-step{
+  background:var(--card);border:1px solid var(--brown-l);
+  border-left:4px solid var(--warn);
+  border-radius:10px;padding:9px 12px;font-size:.8rem;color:var(--ink-2);
+}
+.sp-step b{display:block;color:var(--ink);font-size:.82rem;margin-bottom:2px}
+.sp-step.comp{border-left-color:var(--matcha)}
+.sp-step.comp b{color:var(--matcha-d)}
+.sp-down{text-align:center;color:var(--warn);font-size:.85rem;line-height:1.1;padding:3px 0}
+.sp-side{
+  background:linear-gradient(180deg,var(--ok-bg),var(--matcha-xl));
+  border:1px solid var(--matcha-l);
+  border-radius:12px;padding:12px;font-size:.76rem;color:var(--ink-2);
+  position:relative;
+}
+.sp-side b{display:block;color:var(--ok);font-size:.72rem;letter-spacing:.4px;text-transform:uppercase;margin-bottom:8px}
+.sp-side ul{padding-left:16px;margin:0}
+.sp-side li{margin:5px 0}
+.sp-up{font-size:1.1rem;color:var(--ok);text-align:center;margin-bottom:6px}
+
+/* ---------- Badges / pills ---------- */
+.pill{
+  display:inline-block;font-size:.7rem;font-weight:700;
+  padding:2px 9px;border-radius:999px;letter-spacing:.3px;
+  background:var(--matcha-l);color:var(--matcha-d);border:1px solid var(--matcha);
+}
+.pill.red{background:var(--warn-bg);color:var(--warn);border-color:#e2bfb1}
+.pill.amber{background:#fbf0da;color:#9a6c1d;border-color:#e8d3a8}
+
+/* two-column list layout */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){
+  .cols{grid-template-columns:1fr}
+  .hub{grid-template-columns:1fr;}
+  .hub-mid{grid-row:auto;order:-1}
+  .spiral{grid-template-columns:1fr}
+  .searchwrap input{width:120px}
+  .sec-tag{display:none}
+}
+
+/* ---------- Highlights ---------- */
+mark.hit{
+  background:var(--hit);
+  color:#2e2719;
+  border-radius:3px;
+  padding:0 1px;
+  box-shadow:0 0 0 1px rgba(201,150,40,.25);
+}
+mark.hit.current{
+  background:var(--hit-cur);
+  box-shadow:0 0 0 2px #b3761f, 0 2px 8px rgba(179,118,31,.35);
+}
+
+/* ---------- Footer ---------- */
+footer{
+  max-width:1080px;margin:0 auto;padding:0 16px 60px;
+  font-size:.78rem;color:var(--ink-3);
+}
+.ref{
+  background:var(--card);border:1px solid var(--brown-l);
+  border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);
+}
+.ref ol{margin:6px 0 0;padding-left:20px}
+.ref li{margin:8px 0;font-size:.8rem;color:var(--ink-2);line-height:1.5}
+.ref li b{color:var(--ink)}
+
+/* to top */
+.totop{
+  position:fixed;right:18px;bottom:18px;z-index:60;
+  background:var(--matcha);color:#fff;border:none;
+  width:42px;height:42px;border-radius:50%;
+  font-size:1rem;box-shadow:0 6px 18px rgba(76,106,60,.35);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:.25s;
+}
+.totop.show{opacity:1;pointer-events:auto}
+.totop:hover{background:var(--matcha-d)}
+
+@media print{
+  .topbar,.quicknav,.totop,.tools{display:none}
+  .sec{break-inside:avoid;box-shadow:none}
+  details{display:block}
+  details>summary{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="dot"></span>
+      <h1>Pulmonary Hypertension
+        <small>Anaesthesia &amp; Critical Care Quick Reference</small>
+      </h1>
+    </div>
+
+    <div class="tools">
+      <div class="searchwrap">
+        <input id="search" type="search" placeholder="Search… (e.g. vasopressin)" aria-label="Search the reference" />
+        <span class="count" id="count">0 / 0</span>
+        <button class="icon nav-arrow" id="prev" title="Previous match (Shift+Enter)">▲</button>
+        <button class="icon nav-arrow" id="next" title="Next match (Enter)">▼</button>
+        <button class="icon" id="clearSearch" title="Clear search">✕</button>
+      </div>
+
+      <div class="fsgroup" title="Resize text">
+        <button id="fsMinus" aria-label="Decrease text size">A−</button>
+        <span id="fsLabel">100%</span>
+        <button id="fsPlus" aria-label="Increase text size">A+</button>
+      </div>
+
+      <button class="primary" id="expandAll">Expand all</button>
+      <button id="collapseAll">Collapse all</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== QUICK NAV ===================== -->
+<nav class="quicknav">
+  <a href="#s1" data-goto="s1">1 · Definitions</a>
+  <a href="#s2" data-goto="s2">2 · Risk</a>
+  <a href="#s3" data-goto="s3">3 · Physiology</a>
+  <a href="#s4" data-goto="s4">4 · Pre-op</a>
+  <a href="#s5" data-goto="s5">5 · Drugs</a>
+  <a href="#s6" data-goto="s6">6 · Monitoring</a>
+  <a href="#s7" data-goto="s7">7 · Intra-op</a>
+  <a href="#s8" data-goto="s8">8 · Crisis</a>
+  <a href="#s9" data-goto="s9">9 · Post-op / ICU</a>
+  <a href="#s10" data-goto="s10">10 · Special situations</a>
+  <a href="#s11" data-goto="s11">11 · Pitfalls</a>
+  <a href="#s12" data-goto="s12">12 · References</a>
+</nav>
+
+<main id="content">
+
+  <!-- ===================== HERO STATS ===================== -->
+  <div class="statgrid">
+    <div class="stat">
+      <div class="n">&gt;20 mmHg</div>
+      <div class="l">mPAP defining PH (6th WSPH / ESC-ERS 2022)</div>
+      <div class="s">Older threshold ≥25 mmHg used in ATOTW 2011</div>
+    </div>
+    <div class="stat">
+      <div class="n">0.81%</div>
+      <div class="l">Prevalence of PH in non-cardiac surgery</div>
+      <div class="s">0.4% (2004) → 1.2% (2014) — AHA 2023</div>
+    </div>
+    <div class="stat">
+      <div class="n">8.3% vs 2.0%</div>
+      <div class="l">Peri-op MACE with vs without PH</div>
+      <div class="s">Adjusted OR 1.43 for death/MI/stroke</div>
+    </div>
+    <div class="stat">
+      <div class="n">2–18%</div>
+      <div class="l">30-day mortality, elective non-cardiac surgery</div>
+      <div class="s">Rises to 15–50% in emergency surgery</div>
+    </div>
+    <div class="stat">
+      <div class="n">48–72 h</div>
+      <div class="l">Highest-risk window for RV decompensation</div>
+      <div class="s">Plan ICU/HDU monitoring accordingly</div>
+    </div>
+  </div>
+
+  <!-- ===================== 1. DEFINITIONS ===================== -->
+  <details class="sec" id="s1" open>
+    <summary><span class="chev">▸</span><span class="sec-title">1 · Definitions &amp; classification</span><span class="sec-tag">AHA 2023 · ATOTW</span></summary>
+    <div class="sec-body">
+
+      <h3>Haemodynamic definitions</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>Category</th><th>mPAP</th><th>PAWP</th><th>PVR</th><th>Typical groups</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Pre-capillary PH</td><td>&gt;20 mmHg</td><td>≤15 mmHg</td><td>&gt;2 WU</td><td>1, 3, 4, 5</td></tr>
+            <tr><td>Isolated post-capillary PH</td><td>&gt;20 mmHg</td><td>&gt;15 mmHg</td><td>≤2 WU</td><td>2, 5</td></tr>
+            <tr><td>Combined pre- &amp; post-capillary</td><td>&gt;20 mmHg</td><td>&gt;15 mmHg</td><td>&gt;2 WU</td><td>2, 5</td></tr>
+            <tr><td>Exercise PH</td><td colspan="3">mPAP/CO slope between rest and exercise &gt;3 mmHg·L⁻¹·min⁻¹</td><td>1–5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">The threshold moved from ≥25 → &gt;20 mmHg (2 SD above the normal 14.0 ± 3.3 mmHg) and PVR from ≥3 → ≥2 Wood units. <span class="src">AHA 2023</span> The older ATOTW definition used mPAP &gt;25 mmHg with PCWP &lt;12 mmHg; "moderately severe" was mPAP &gt;35 mmHg, and RV failure was said to be unusual below mPAP 50 mmHg. <span class="src">ATOTW 228</span></p>
+
+      <h3>The five WSPH clinical groups</h3>
+      <div class="diagram">
+        <div class="hub">
+          <div class="hub-col">
+            <div class="gcard g1"><b>Group 1 · PAH</b>Idiopathic, heritable (BMPR2), drug/toxin, connective tissue disease, HIV, portal hypertension, congenital heart disease, schistosomiasis; also PVOD / PCH</div>
+          </div>
+          <div class="hub-mid">PULMONARY<br>HYPERTENSION<small>mPAP &gt; 20 mmHg</small></div>
+          <div class="hub-col">
+            <div class="gcard g2"><b>Group 2 · Left heart disease</b>HFpEF, HFrEF, valvular disease, cardiomyopathy — post-capillary</div>
+            <div class="gcard g3"><b>Group 3 · Lung disease / hypoxia</b>COPD, ILD, OSA / hypoventilation, high altitude, developmental lung disease</div>
+            <div class="gcard g4"><b>Group 4 · Chronic thromboembolic</b>CTEPH and other pulmonary artery obstructions — potentially curable by endarterectomy</div>
+            <div class="gcard g5"><b>Group 5 · Multifactorial / unclear</b>Sarcoidosis, renal failure, haematological &amp; myeloproliferative disease, fibrosing mediastinitis</div>
+          </div>
+        </div>
+        <div class="cap">Simplified from Fig 1 (Condliffe &amp; Kiely) and Table 1 (AHA 2023).</div>
+      </div>
+
+      <div class="note">
+        <span class="nh">Anaesthetic relevance</span>
+        Cardiac anaesthetists meet <strong>Group 2</strong> (mitral valve disease, LV failure). Non-cardiac anaesthetists meet <strong>Group 3</strong> most often — COPD, interstitial lung disease, sleep-disordered breathing — usually with only modest PH. <span class="src">ATOTW 228</span>
+      </div>
+
+      <h3>PAH-targeted therapy — what the patient may be taking</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Pathway</th><th>Drugs</th><th>Peri-operative notes</th></tr></thead>
+          <tbody>
+            <tr><td>Nitric oxide / cGMP</td><td>Sildenafil, tadalafil (PDE5 inhibitors); riociguat (sGC stimulator)</td><td>Contraindicated with nitrates. IV sildenafil 10 mg TDS available if NPO.</td></tr>
+            <tr><td>Endothelin</td><td>Bosentan, ambrisentan, macitentan (ERAs)</td><td>Bosentan liquid suspension exists — tablets cannot be crushed reliably for NG.</td></tr>
+            <tr><td>Prostacyclin</td><td>Epoprostenol IV/inhaled; treprostinil IV/SC/oral/inhaled; iloprost inhaled; selexipag oral</td><td><strong>Never interrupt</strong> — rebound PH crisis. Transition oral → IV/inhaled when NPO. Do not flush the prostacyclin line (bolus effect).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">Pregnancy categories: ERAs and riociguat are contraindicated (category X); PDE5 inhibitors and prostacyclin pathway agonists are considered safe. <span class="src">AHA 2023</span></p>
+
+    </div>
+  </details>
+
+  <!-- ===================== 2. RISK ===================== -->
+  <details class="sec" id="s2">
+    <summary><span class="chev">▸</span><span class="sec-title">2 · Why it matters — peri-operative risk</span><span class="sec-tag">AHA 2023 · Price 2021</span></summary>
+    <div class="sec-body">
+
+      <ul>
+        <li>PH is associated with <strong>4× higher peri-operative major adverse cardiovascular events</strong> (death, MI, stroke) vs no PH — 8.3% vs 2.0% in 17 million US non-cardiac surgical hospitalisations. <span class="src">AHA 2023</span></li>
+        <li>Adjusted odds ratio <strong>1.43</strong> (95% CI 1.40–1.46) for the composite of death/MI/stroke; ~2× risk of cardiogenic shock and cardiac arrest.</li>
+        <li>Complications and death usually relate to <strong>acute right ventricular failure</strong>, typically within the first <strong>48–72 hours</strong>.</li>
+      </ul>
+
+      <h3>Key outcome studies</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Study</th><th>Population</th><th>Outcome</th></tr></thead>
+          <tbody>
+            <tr><td>Smilowitz 2019 (US national)</td><td>17 million non-cardiac surgical admissions</td><td class="red">MACE 8.3% vs 2.0%; aOR 1.43; ~2× cardiogenic shock/arrest</td></tr>
+            <tr><td>Meyer 2013 (prospective, multicentre)</td><td>114 PAH patients, 75% in PH centres</td><td class="red">Major complications 6.1%; mortality 3.5% (15% emergency vs 2% elective). Predictors: RAP ≥7 mmHg, ↓6MWD, peri-op vasopressors</td></tr>
+            <tr><td>Ramakrishna 2005</td><td>145 PH, general anaesthesia</td><td class="red">Mortality 7–10%; morbidity 42%; RV failure in ~50% of deaths</td></tr>
+            <tr><td>Deljou 2020</td><td>196 procedures, 98.5% GA, PH centre</td><td class="red">Complications 27%; 30-day mortality 3%. WHO FC III/IV and NT-proBNP ≥300 pg/mL predicted complications</td></tr>
+            <tr><td>Price 2010</td><td>28 PAH / inoperable CTEPH</td><td class="red">Mortality 7%, morbidity 29%</td></tr>
+            <tr><td>Memtsoudis 2010</td><td>THA/TKA, US coding data</td><td class="red">Mortality 5.2% (THA) / 2.3% (TKA) in PAH; 4–5× increased risk of death</td></tr>
+            <tr><td>Krowka 2000</td><td>Portopulmonary PH + liver transplant</td><td class="red">mPAP &gt;50: 100% mortality; 35–50: 35%; &lt;35: 0%</td></tr>
+            <tr><td>Lai 2007</td><td>62 PH, non-cardiac surgery</td><td class="red">Mortality 9.7%; morbidity 24%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Risk stratification — the "traffic light" (ESC/ERS)</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Marker</th><th>Low risk</th><th>Intermediate</th><th>High risk</th></tr></thead>
+          <tbody>
+            <tr><td>WHO functional class</td><td class="green">I–II</td><td>III</td><td class="red">IV</td></tr>
+            <tr><td>6-minute walk distance</td><td class="green">&gt;440 m</td><td>165–440 m</td><td class="red">&lt;165 m</td></tr>
+            <tr><td>Peak VO₂ (CPET)</td><td class="green">&gt;15 mL/kg/min (&gt;65%)</td><td>11–15 (35–65%)</td><td class="red">&lt;11 (&lt;35%)</td></tr>
+            <tr><td>BNP / NT-proBNP</td><td class="green">&lt;50 / &lt;300 ng/L</td><td>50–300 / 300–1400</td><td class="red">&gt;300 / &gt;1400 ng/L</td></tr>
+            <tr><td>Right atrial pressure</td><td class="green">&lt;8 mmHg</td><td>8–14 mmHg</td><td class="red">&gt;14 mmHg</td></tr>
+            <tr><td>Cardiac index</td><td class="green">&gt;2.5 L/min/m²</td><td>2.0–2.4</td><td class="red">&lt;2.0</td></tr>
+            <tr><td>SvO₂</td><td class="green">&gt;65%</td><td>60–65%</td><td class="red">&lt;60%</td></tr>
+            <tr><td>RA area / RV function (echo)</td><td class="green">&lt;18 cm², preserved RV</td><td>18–26 cm², impaired</td><td class="red">&gt;26 cm², pericardial effusion</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">PAH risk scores (REVEAL 2.0, ESC/ERS-derived, COMPERA, FPHR) have <strong>not been validated in non-cardiac surgery</strong> — use them as a framework, not a calculator. <span class="src">AHA 2023 · Price 2021</span></p>
+
+      <h3>Procedure-related risk factors</h3>
+      <div class="cols">
+        <div>
+          <div class="note warn">
+            <span class="nh">High-risk features</span>
+            <ul style="margin:0;padding-left:18px">
+              <li>Emergency surgery — <strong>15–50% mortality</strong></li>
+              <li>Major / intermediate-risk surgery</li>
+              <li>Duration &gt;2–3 hours</li>
+              <li>Laparoscopy (CO₂ pneumoperitoneum)</li>
+              <li>One-lung ventilation</li>
+              <li>Steep Trendelenburg or prone positioning</li>
+              <li>Orthopaedic cementing / tourniquet release</li>
+              <li>Large anticipated fluid shifts or bleeding</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="note ok">
+            <span class="nh">Lower-risk alternatives to consider</span>
+            <ul style="margin:0;padding-left:18px">
+              <li>Non-surgical or palliative options first</li>
+              <li>Local / regional / peripheral nerve block ± minimal sedation</li>
+              <li>Open rather than laparoscopic approach where benefit is marginal</li>
+              <li>Staged or shorter procedures</li>
+              <li>Perform in a specialist PH centre with ICU/HDU backup</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===================== 3. PHYSIOLOGY ===================== -->
+  <details class="sec" id="s3">
+    <summary><span class="chev">▸</span><span class="sec-title">3 · Physiology &amp; the RV failure spiral</span><span class="sec-tag">AHA 2023 · ATOTW</span></summary>
+    <div class="sec-body">
+
+      <p>RV output depends on <strong>preload, afterload, contractility and heart rate</strong> — each must be optimised. Raised PVR places a pressure load on a right ventricle that is poorly designed to tolerate it. <span class="src">ATOTW 228</span></p>
+
+      <h3>The downward spiral</h3>
+      <div class="spiral">
+        <div class="spiral-main">
+          <div class="sp-step"><b>1 · ↑ RV afterload</b>↑ PVR and ↑ mPAP → ↑ RV wall stress and myocardial oxygen demand</div>
+          <div class="sp-down">▼</div>
+          <div class="sp-step comp"><b>2 · Compensated hypertrophy</b>Concentric hypertrophy maintains stroke volume and RV–PA coupling — but only up to a limit</div>
+          <div class="sp-down">▼</div>
+          <div class="sp-step"><b>3 · Dilatation &amp; uncoupling</b>RV dilatation, tricuspid regurgitation, septal shift → LV underfilling, ↓ coronary perfusion, ischaemia</div>
+          <div class="sp-down">▼</div>
+          <div class="sp-step"><b>4 · ↓ Cardiac output</b>↓ RV output → ↓ LV preload → ↓ systemic BP → ↓ RV coronary perfusion (a self-reinforcing loop)</div>
+          <div class="sp-down">▼</div>
+          <div class="sp-step"><b>5 · Right heart failure</b>Cardiogenic shock → cardiac arrest → death</div>
+        </div>
+        <div class="sp-side">
+          <div class="sp-up">▲</div>
+          <b>Counteract the spiral</b>
+          <ul>
+            <li>PAH-targeted therapies</li>
+            <li>Diuretics — reduce wall stress</li>
+            <li>Supplemental oxygen</li>
+            <li>Restore / maintain AV synchrony</li>
+            <li>Correct iron deficiency</li>
+            <li>Inotropes to restore coupling</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap" style="font-size:.72rem;color:var(--ink-3);text-align:center;margin-top:6px;font-style:italic">Simplified from Figure 1, AHA 2023 Scientific Statement.</div>
+
+      <h3>Why the right coronary circulation is the vulnerable point</h3>
+      <ul>
+        <li>RV perfusion depends on the <strong>aortic root–RV pressure gradient</strong>, which in turn depends on cardiac output and systemic vascular resistance.</li>
+        <li><strong>SVR must be aggressively defended</strong> — RV ischaemia can trigger a downward spiral into cardiovascular collapse. <span class="src">ATOTW 228</span></li>
+        <li>RV hypertrophy lengthens capillary-to-myocyte diffusion distance and limits oxygen supply — supply/demand mismatch develops early.</li>
+      </ul>
+
+      <div class="note warn">
+        <span class="nh">Factors that raise PVR — avoid</span>
+        Hypoxia · hypercarbia · acidaemia · hypothermia · pain · nitrous oxide · high PEEP and lung hyperinflation · protamine · serotonin · thromboxane A₂ · prostaglandin F₂α / PGE₂ · anxiety and stress. <span class="src">ATOTW 228</span>
+      </div>
+
+      <div class="note ok">
+        <span class="nh">Factors that lower PVR — may help</span>
+        Mild hypocarbia (hyperventilation) · inhaled nitric oxide · prostacyclin (PGI₂) · nitroglycerine · sodium nitroprusside · isoprenaline · aminophylline · morphine · tolazoline. <em>(Classic ATOTW list; modern practice favours selective pulmonary vasodilators — iNO, inhaled prostacyclin/iloprost, PDE5 inhibitors.)</em> <span class="src">ATOTW 228</span>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===================== 4. PRE-OP ===================== -->
+  <details class="sec" id="s4">
+    <summary><span class="chev">▸</span><span class="sec-title">4 · Pre-operative assessment &amp; optimisation</span><span class="sec-tag">AHA 2023 · Price 2021</span></summary>
+    <div class="sec-body">
+
+      <h3>The 5-step AHA framework</h3>
+      <div class="flow">
+        <div class="step"><b>1 · Classify</b>Which WSPH group? Defines the underlying pathology and treatment targets</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>2 · Risk assess</b>Patient + surgical factors guide decision-making and consent</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>3 · Optimise</b>Targeted therapy, preload, comorbidities, prehabilitation</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>4 · Intra-operative</b>Avoid RV dysfunction; maintain cardiac output</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>5 · Post-operative</b>ICU/HDU 48–72 h; continue therapy; early extubation</div>
+      </div>
+
+      <h3>Timing &amp; work-up (2–4 weeks before surgery is reasonable)</h3>
+      <ul>
+        <li>Symptoms/signs of decompensation — progressive dyspnoea, syncope, raised JVP, peripheral oedema — predict morbidity and death.</li>
+        <li>Repeat <strong>TTE, ECG, creatinine, BNP/NT-proBNP, 6-minute walk test</strong>; consider CPET and right heart catheterisation.</li>
+        <li>Echo high-risk features: RV dilatation/dysfunction, TR jet velocity &gt;2.8 m/s, flattened interventricular septum (parasternal short axis), RA enlargement, pericardial effusion.</li>
+        <li>ABG and pulse oximetry (hypoxia/acidosis worsen PVR); PFTs if lung disease; DLCO &lt;32% predicted suggests advanced disease.</li>
+        <li>Treat supraventricular tachycardia — an independent risk factor for death in PH.</li>
+      </ul>
+      <p class="muted">TTE can under- or over-estimate PAP in up to half of at-risk patients; right heart catheterisation is required to confirm the diagnosis and for vasodilator challenge. <span class="src">ATOTW 228</span></p>
+
+      <h3>Optimisation checklist</h3>
+      <div class="cols">
+        <div>
+          <ul>
+            <li><strong>Continue all PAH-targeted therapy</strong> up to and including the day of surgery — give oral drugs with a sip of water even with an NPO order.</li>
+            <li>Newly started targeted therapy: allow <strong>6–12 weeks</strong> for maximal effect before elective surgery.</li>
+            <li>Escalate or switch to IV / inhaled where needed — sildenafil IV, prostacyclin IV or inhaled.</li>
+            <li><strong>Never stop prostanoids</strong> — rebound PH crisis can be fatal.</li>
+            <li>Continue diuretics pre-op to avoid acute decompensated heart failure.</li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li>CTEPH: consider pulmonary endarterectomy or balloon pulmonary angioplasty before time-sensitive surgery (e.g. cancer resection).</li>
+            <li>Correct anaemia and iron deficiency; optimise haemoglobin.</li>
+            <li>Pulmonary rehabilitation / prehabilitation improves 6MWD, quality of life and possibly survival.</li>
+            <li>Plan anticoagulation carefully (CTEPH, arrhythmia, prior stroke) — bridge as needed.</li>
+            <li>Book <strong>ICU/HDU bed for 48–72 h</strong> in advance.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Where should the surgery happen?</h3>
+      <div class="note">
+        <span class="nh">Recommendation</span>
+        Planned intermediate- or high-risk procedures should be performed in a centre with <strong>PH specialist, peri-operative anaesthetic and post-operative intensive care expertise</strong>. If urgent surgery cannot be transferred, seek urgent telephone advice from a PH centre. Most reported good outcomes in well-characterised PAH/CTEPH come from specialist centres. <span class="src">Price 2021 · AHA 2023</span>
+      </div>
+
+      <div class="note warn">
+        <span class="nh">Consent</span>
+        Counsel about the risk of peri-operative complications <strong>including death</strong>, the possible need for mechanical circulatory support (ECMO), and agreed ceilings of care. Give time for a follow-up consultation where possible. <span class="src">Price 2021</span>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===================== 5. DRUGS ===================== -->
+  <details class="sec" id="s5">
+    <summary><span class="chev">▸</span><span class="sec-title">5 · Anaesthetic drugs — what to use and what to avoid</span><span class="sec-tag">ATOTW · AHA · Price</span></summary>
+    <div class="sec-body">
+
+      <div class="note">
+        <span class="nh">Key principle</span>
+        The <strong>technique chosen matters less than how it is executed</strong>. There are no comparative trials of induction agents in PH — the priorities are avoiding tachycardia, hypotension, hypoxaemia and hypercarbia. <span class="src">ATOTW 228 · AHA 2023</span>
+      </div>
+
+      <h3>Induction agents</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Agent</th><th>Use</th><th>Caveats</th></tr></thead>
+          <tbody>
+            <tr><td>Etomidate</td><td>0.15–0.3 mg/kg — minimal effect on systemic and pulmonary pressures, heart rate and contractility; often described as the "ideal" agent in PH</td><td>Adrenal suppression with infusion or repeat doses — avoid; single induction dose considered safe in meta-analysis</td></tr>
+            <tr><td>Propofol</td><td>Widely used; TIVA 50–150 µg/kg/min for maintenance</td><td>Direct/indirect RV depression and hypotension — have a vasopressor running or immediately available</td></tr>
+            <tr><td>Ketamine</td><td>Has been used safely in humans with PH; sympathetic effect can support SVR and RV performance</td><td>Historically said to raise PVR; AHA advises avoiding unless PVR monitoring or concomitant pulmonary vasodilation is used</td></tr>
+            <tr><td>Midazolam / fentanyl</td><td>Common balanced technique; blunts sympathetic response</td><td>Judicious dosing — hypoventilation → hypercarbia and hypoxia → acute rise in PA pressure</td></tr>
+            <tr><td>Thiopentone</td><td>Has been used without problems</td><td>Similar precautions to propofol</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Adjuncts to blunt laryngoscopy</h3>
+      <ul>
+        <li>Fentanyl <strong>1–2 µg/kg</strong> and lidocaine <strong>50–100 mg IV</strong> before laryngoscopy. <span class="src">AHA 2023</span></li>
+        <li>Moderate-to-high dose opioid (fentanyl 2–7 µg/kg) as part of a balanced induction is most reliable at limiting tachycardia and SVR fall, though recovery is prolonged. <span class="src">Price 2021</span></li>
+        <li>Rapid sequence induction with careful, brief mask ventilation — avoid high intrathoracic pressures (they acutely reduce preload and cause severe hypotension).</li>
+        <li>Rocuronium 1.2 mg/kg or suxamethonium 1–1.5 mg/kg for rapid airway control. Non-depolarising and depolarising relaxants are both safe — choose by airway considerations.</li>
+      </ul>
+
+      <h3>Maintenance</h3>
+      <ul>
+        <li><strong>Volatile agent + opioid</strong> is a standard balanced technique. All modern volatiles have been used safely; no evidence favours one over another.</li>
+        <li><span class="pill red">Avoid N₂O</span> — nitrous oxide raises PVR. <span class="src">ATOTW 228 · AHA 2023</span></li>
+        <li>TIVA alternative: propofol infusion ± opioid.</li>
+      </ul>
+
+      <h3>Drugs to avoid or use with caution</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Drug</th><th>Concern</th></tr></thead>
+          <tbody>
+            <tr><td>Nitrous oxide</td><td class="red">Raises PVR</td></tr>
+            <tr><td>Ketamine</td><td class="red">Historically associated with ↑PVR (controversial; may be offset by sympathetic stimulation)</td></tr>
+            <tr><td>Protamine</td><td class="red">Raises PVR; anaphylactoid reactions</td></tr>
+            <tr><td>Adrenaline / dopamine (ATOTW view)</td><td class="red">Listed as PVR-raising — though AHA 2023 supports epinephrine when systemic hypotension coexists. Individualise.</td></tr>
+            <tr><td>Phenylephrine</td><td class="amber">Unopposed pulmonary vasoconstriction, ↑PVR and reflex bradycardia — but useful for right coronary perfusion. Prefer noradrenaline / vasopressin first-line.</td></tr>
+            <tr><td>Prostaglandin F₂α / PGE₂, serotonin, thromboxane A₂</td><td class="red">Raise PVR</td></tr>
+            <tr><td>Nitrates + PDE5 inhibitor</td><td class="red">Contraindicated — profound systemic hypotension</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===================== 6. MONITORING ===================== -->
+  <details class="sec" id="s6">
+    <summary><span class="chev">▸</span><span class="sec-title">6 · Monitoring</span><span class="sec-tag">AHA 2023 · Price 2021</span></summary>
+    <div class="sec-body">
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Monitor</th><th>Role</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Standard ASA monitors</td><td>All patients</td><td>Pulse oximetry, capnography, ECG, NIBP, temperature</td></tr>
+            <tr><td>Invasive arterial line</td><td><strong>Pre-induction</strong> in most PH patients</td><td>Beat-to-beat coronary perfusion pressure; allows early, aggressive treatment of hypotension</td></tr>
+            <tr><td>Central venous catheter ± ScvO₂</td><td>Major surgery, vasoactive infusions</td><td>Static CVP does not predict preload, but <strong>dynamic changes</strong> are useful: ↑CVP with hypotension = RV failure; ↓CVP with hypotension = hypovolaemia</td></tr>
+            <tr><td>Pulmonary artery catheter</td><td>Selected cases only</td><td>No proven outcome benefit in non-cardiac surgery; risks arrhythmia, RBBB/complete heart block, PA rupture. PA pressures remain elevated even when RV function is optimised — interpret trends, not absolutes</td></tr>
+            <tr><td>TOE / TTE</td><td>Major, prolonged, high-risk surgery</td><td>Real-time biventricular function, TR, RVSP, filling, RV–PA coupling. TOE usually needs a secure airway</td></tr>
+            <tr><td>Cardiac output monitors</td><td>LiDCO, PiCCO etc. where available</td><td>Trend CO, stroke volume and SVR</td></tr>
+            <tr><td>Defibrillator pads</td><td><strong>Apply before induction</strong> in all PH patients</td><td>Ready for immediate cardioversion of new haemodynamically significant arrhythmia</td></tr>
+            <tr><td>ECMO sheaths</td><td>Very high-risk cases</td><td>Pre-emptive pre-induction placement of small-calibre venous/arterial sheaths can expedite rescue cannulation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="nh">Recommendation</span>
+        Invasive arterial pressure monitoring (± CVP with mixed venous saturation) is recommended; add advanced monitoring (TOE, PAC, CO monitor) selectively based on RV dysfunction severity, surgical risk and local expertise. <span class="src">Price 2021</span>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===================== 7. INTRA-OP ===================== -->
+  <details class="sec" id="s7">
+    <summary><span class="chev">▸</span><span class="sec-title">7 · Intra-operative management</span><span class="sec-tag">AHA 2023 · Price 2021</span></summary>
+    <div class="sec-body">
+
+      <h3>Haemodynamic goals</h3>
+      <ul>
+        <li><strong>MAP ≥60 mmHg</strong> (many PH centres target higher to protect RV coronary perfusion). <span class="src">AHA 2023</span></li>
+        <li><strong>Maintain normal sinus rhythm</strong> — continue outpatient β-blockers and calcium channel blockers, but do not start them intra-operatively (negative inotropy). Cardiovert new haemodynamically significant arrhythmias promptly.</li>
+        <li><strong>Avoid or mitigate</strong> hypoxia, hypercarbia, acidosis, hypothermia and pain.</li>
+        <li><strong>Maintain baseline RV loading</strong> — hypovolaemia ↓MAP and RV perfusion; hypervolaemia overloads the RV. The hypertrophied RV has a narrow optimal preload window and tolerates volume overload poorly.</li>
+        <li>Optimise CVP / preload and RV function with diuretics and PAH-targeted therapy; use inhaled or parenteral pulmonary vasodilators to acutely reduce RV afterload.</li>
+        <li>Positioning is a rapid preload tool: Trendelenburg / leg lift ↑preload; reverse Trendelenburg ↓preload.</li>
+      </ul>
+
+      <h3>Ventilation — "RV-protective"</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Parameter</th><th>Target</th><th>Rationale</th></tr></thead>
+          <tbody>
+            <tr><td>Tidal volume</td><td>6–8 mL/kg ideal body weight (some use 5–7)</td><td>Avoid high airway pressures</td></tr>
+            <tr><td>PEEP</td><td>5–10 cmH₂O — keep low</td><td>High PEEP ↓venous return, ↑PVR, ↓CO, worsens RV function</td></tr>
+            <tr><td>PaCO₂</td><td>30–35 mmHg (mild hypocarbia)</td><td>Hypercarbia raises PVR</td></tr>
+            <tr><td>pH</td><td>&gt;7.4</td><td>Acidaemia raises PVR</td></tr>
+            <tr><td>SpO₂</td><td>&gt;92%</td><td>Hypoxic pulmonary vasoconstriction</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">PVR is lowest at functional residual capacity — the PVR/lung-volume relationship is U-shaped. If hypoxia occurs after recruitment, <strong>raise FiO₂ rather than PEEP</strong>. Avoid inadvertent high PEEP from bag-mask ventilation, especially in COPD.</p>
+
+      <h3>Vasoactive agents</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Agent</th><th>Typical dose</th><th>Role &amp; cautions</th></tr></thead>
+          <tbody>
+            <tr><td>Norepinephrine</td><td>0.01–0.4 (up to 0.5) µg/kg/min</td><td><strong>First-line vasopressor</strong> in most centres. α₁ + β₁ — maintains coronary perfusion and adds inotropy; improves RV–afterload coupling</td></tr>
+            <tr><td>Vasopressin</td><td>0.01–0.04 U/min</td><td>Systemic vasoconstriction with minimal effect on PVR (may even cause pulmonary vasodilation). Avoid &gt;0.08–0.1 U/min (coronary vasoconstriction → RV ischaemia)</td></tr>
+            <tr><td>Phenylephrine</td><td>40–100 µg bolus; 50–300 µg/min</td><td>Pure α₁ — improves right coronary perfusion but raises PVR and causes reflex bradycardia. Generally avoided; useful as a rescue/peripheral agent</td></tr>
+            <tr><td>Metaraminol</td><td>1–5 mg/h</td><td>Peripheral α₁ agonist; limited PH-specific data</td></tr>
+            <tr><td>Dobutamine</td><td>2.5–10 µg/kg/min</td><td>β₁ inotropy; limited by tachycardia and systemic hypotension</td></tr>
+            <tr><td>Dopamine</td><td>0.5–10 µg/kg/min</td><td>Inotropy; arrhythmogenic</td></tr>
+            <tr><td>Milrinone</td><td>25–50 µg/kg over 10 min, then 0.25–0.75 µg/kg/min</td><td>Inodilator — ↓PVR and ↑contractility; significant systemic hypotension. <strong>Avoid the bolus in hypovolaemia/hypotension</strong>; co-administer a vasopressor</td></tr>
+            <tr><td>Enoximone</td><td>0.5–1 mg/kg slow, then 5–20 µg/kg/min</td><td>Inodilator; hypotension</td></tr>
+            <tr><td>Levosimendan</td><td>6–12 µg/kg over 10 min, then 0.1 µg/kg/min</td><td>Calcium sensitiser with inodilator properties; possibly less hypotension; not widely available</td></tr>
+            <tr><td>Epinephrine</td><td>—</td><td>Tachycardia, arrhythmia, dose-dependent ↑PVR — but <strong>does not lower SVR</strong>, so is appropriate when systemic hypotension coexists</td></tr>
+            <tr><td>Inhaled nitric oxide</td><td>1–80 ppm (usually 20–40)</td><td>Selective pulmonary vasodilation; watch rebound PH on cessation and methaemoglobinaemia</td></tr>
+            <tr><td>Inhaled epoprostenol</td><td>10–50 ng/kg/min</td><td>Comparable efficacy to iNO, lower cost, short half-life</td></tr>
+            <tr><td>Nebulised iloprost</td><td>5 µg</td><td>Half-life ~30 min</td></tr>
+            <tr><td>IV sildenafil</td><td>10 mg up to TDS</td><td>For patients who cannot take oral medication; contraindicated with nitrates</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Regional anaesthesia</h3>
+      <ul>
+        <li>Neuraxial anaesthesia can be used safely, but be vigilant about the cardiovascular consequences of sympathetic blockade. There are <strong>no α₁ receptors in the pulmonary circulation</strong>, so neuraxial block is unlikely to directly affect PVR. <span class="src">ATOTW 228</span></li>
+        <li>Systemic vasodilation reduces aortic/coronary perfusion pressure <em>and</em> venous return to the right heart.</li>
+        <li>↓Right atrial filling → ↓atrial receptor stretch → <strong>reflex bradycardia</strong>. Blockade of cardio-accelerator fibres at <strong>T1–T4</strong> causes bradycardia and loss of inotropy.</li>
+        <li><strong>Avoid single-shot spinal</strong> — can cause profound hypotension and bradycardia. Prefer titrated epidural or low-dose CSE, with vasopressors immediately available.</li>
+        <li>Peripheral nerve blocks with minimal or no sedation are preferred where feasible.</li>
+      </ul>
+
+      <h3>Specific surgical considerations</h3>
+      <ul>
+        <li><strong>Laparoscopy:</strong> CO₂ insufflation to 12–15 mmHg reduces venous return and CO; diaphragmatic displacement and Trendelenburg worsen lung compliance; rapid insufflation can cause vagal bradycardia → RV distension, impaired right coronary flow, arrest. Use minimal, slow insufflation; increase minute ventilation to clear CO₂; be ready to convert to open. <span class="src">Price 2021</span></li>
+        <li><strong>Orthopaedic:</strong> cement implantation and tourniquet release cause embolic events and abrupt ↑PVR. <span class="src">Price 2021</span></li>
+        <li><strong>One-lung ventilation:</strong> hypoxia, hypercarbia and high airway pressures all raise PVR.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ===================== 8. CRISIS ===================== -->
+  <details class="sec" id="s8">
+    <summary><span class="chev">▸</span><span class="sec-title">8 · Pulmonary hypertensive crisis — recognition &amp; management</span><span class="sec-tag">Price 2021 · Condliffe</span></summary>
+    <div class="sec-body">
+
+      <div class="note warn">
+        <span class="nh">Recognise early</span>
+        <strong>↑PVR + ↑RV filling pressures + ↓cardiac output + hypotension</strong> = a spiral toward cardiovascular collapse. Precipitants include induction of anaesthesia (vasodilation), laryngoscopy, hypoxaemia, positive pressure ventilation, extubation, peri-operative inflammation, micro-pulmonary embolism, arrhythmias and post-operative fluid shifts.
+      </div>
+
+      <h3>Stepwise management</h3>
+      <div class="flow">
+        <div class="step"><b>1 · Treat the precipitant</b>Hypoxia, hypercarbia, acidosis, pain, arrhythmia, sepsis, anaemia, PE, pneumothorax, drug error</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>2 · 100% O₂ &amp; hyperventilate</b>Target PaCO₂ 30–35 mmHg; correct acidosis</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>3 · Vasopressors</b>Norepinephrine up to 0.5 µg/kg/min; add low-dose vasopressin (≤0.04 U/min)</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>4 · Reduce PVR</b>Inhaled NO, nebulised prostacyclin/iloprost, IV prostacyclin or sildenafil</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>5 · Optimise RV</b>Preload (CVP 8–12 mmHg), inotrope/inodilator (dobutamine, milrinone) + vasopressor</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>6 · Escalate</b>CPR, VA-ECMO / RV assist as a bridge to recovery or transplant</div>
+      </div>
+
+      <div class="note">
+        <span class="nh">Do not</span>
+        <ul style="margin:0;padding-left:18px">
+          <li>Do not stop pulmonary vasodilators during hypotension.</li>
+          <li>Do not give a large fluid bolus blindly — the hypertrophied RV tolerates volume overload poorly.</li>
+          <li>Do not give a milrinone bolus in a hypovolaemic or hypotensive patient.</li>
+        </ul>
+      </div>
+
+      <h3>Cardiopulmonary resuscitation &amp; ceilings of care</h3>
+      <ul>
+        <li>Attempts at CPR in PAH have limited success — discuss prognosis and ceilings of care <strong>before</strong> surgery. <span class="src">Price 2021</span></li>
+        <li>VA-ECMO may support the RV as a bridge to recovery or transplantation; some centres have percutaneous RV assist devices.</li>
+        <li>Because mortality is very high in patients on extracorporeal support who do not proceed to transplantation, <strong>discuss high-risk patients with the local transplant team before elective surgery</strong>.</li>
+        <li>In very high-risk cases, consider elective insertion of ECMO vascular sheaths at induction.</li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ===================== 9. POST-OP / ICU ===================== -->
+  <details class="sec" id="s9">
+    <summary><span class="chev">▸</span><span class="sec-title">9 · Post-operative &amp; critical care management</span><span class="sec-tag">AHA 2023 · Condliffe</span></summary>
+    <div class="sec-body">
+
+      <h3>Post-operative care</h3>
+      <ul>
+        <li>Most morbidity and mortality relates to RV dysfunction and occurs up to <strong>48–72 h</strong> after apparently uncomplicated surgery — plan ICU/HDU monitoring for at least this period in significant PAH and after major surgery.</li>
+        <li><strong>Continue PAH therapies</strong> without interruption. Use in-line filters for patients with right-to-left shunting (Eisenmenger, PFO).</li>
+        <li>Restart anticoagulation as soon as surgically safe, with bridging heparin where indicated.</li>
+        <li>Good analgesia to blunt sympathetic drive and tachycardia — but avoid excessive sedation causing hypercarbia.</li>
+        <li><strong>Early extubation</strong> is desirable: spontaneous ventilation reduces intrathoracic pressure and RV stress.</li>
+        <li>Physiotherapy, DVT prophylaxis and early mobilisation.</li>
+      </ul>
+
+      <h3>Critical care — the four-step approach</h3>
+      <div class="flow">
+        <div class="step"><b>1 · Treat precipitants</b>Arrhythmia (restore sinus rhythm), sepsis, anaemia, thromboembolism, pericardial effusion, metabolic disturbance, exacerbation of chronic disease</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>2 · Optimise RV preload</b>Loop diuretics ± aldosterone antagonist ± thiazide; continuous infusion; CVVH if resistant</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>3 · Reduce RV afterload</b>IV prostanoid (start low, titrate slowly), add PDE5 inhibitor, inhaled NO / nebulised prostanoid</div>
+        <div class="arrow">→</div>
+        <div class="step"><b>4 · Maintain perfusion</b>Inotropes ± vasopressors; consider ECMO / transplant referral</div>
+      </div>
+
+      <h3>Monitoring &amp; targets in ICU</h3>
+      <ul>
+        <li>Continuous arterial line; central venous access; consider LiDCO/PiCCO or PAC in selected patients.</li>
+        <li>Suggested triggered alerts: <strong>cardiac index &lt;2.2 L/min/m²</strong>, <strong>SvO₂ &lt;55%</strong>, <strong>urine output &lt;0.5 mL/kg/h for 2 consecutive hours</strong>.</li>
+        <li>Serial liver and renal function — venous congestion and low-output states cause multi-organ dysfunction.</li>
+        <li>Generally aim for a <strong>net negative fluid balance</strong> as a starting point in PH-induced RV failure.</li>
+        <li>Echocardiography at the bedside: RV:LV ratio, septal shift, TR severity, pericardial effusion, RV–PA coupling.</li>
+      </ul>
+
+      <h3>Respiratory support</h3>
+      <div class="note warn">
+        <span class="nh">Ventilation strategy matters</span>
+        In a national cohort of &gt;21,000 patients with PH, <strong>invasive mechanical ventilation</strong> was associated with much higher mortality than non-invasive support (<strong>39.1% vs 12.6%</strong>, p&lt;0.001) and longer hospital stay (12 vs 7 days). Prefer HFNC/NIV where possible; if intubation is required, do it <strong>early</strong> and with vasopressors/inotropes ready. <span class="src">AHA 2023</span>
+      </div>
+
+      <h3>Mechanical circulatory support</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Modality</th><th>Role</th><th>Caveats</th></tr></thead>
+          <tbody>
+            <tr><td>VA-ECMO</td><td>Usual rescue for refractory RV failure / cardiac arrest in theatre, PACU or ICU; bridge to decision</td><td>Peripheral cannulation; "north–south syndrome" if lung injury persists — monitor right upper limb ABG</td></tr>
+            <tr><td>VV-ECMO</td><td>Oxygenation / CO₂ removal to lower PVR and unload the RV</td><td>Requires a functioning RV; does not directly address RV decompensation</td></tr>
+            <tr><td>VAV-ECMO</td><td>Combined respiratory + circulatory support</td><td>Adjustable split of flow to PA vs arterial circulation</td></tr>
+            <tr><td>Percutaneous RV assist device</td><td>Persistent isolated RV failure with normal lungs</td><td>Inappropriate in untreated severe pre-capillary PH — may worsen RV dysfunction</td></tr>
+            <tr><td>IABP</td><td>Improves coronary perfusion and LV forward flow</td><td><strong>Not recommended as primary therapy</strong> for PH-induced RV failure</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Outcomes in critical care</h3>
+      <ul>
+        <li>43 patients with severe heart failure secondary to PAH requiring catecholamines: in-hospital mortality <strong>43%</strong>; worse with low admission BP, low sodium, high creatinine, high NT-proBNP and high CRP.</li>
+        <li>119 patients admitted with right heart failure secondary to PAH: 90-day mortality <strong>29%</strong>; respiratory rate, renal function, hyponatraemia and severity of tricuspid regurgitation predicted poor outcome. <span class="src">Condliffe &amp; Kiely</span></li>
+      </ul>
+
+    </div>
+  </details>
+
+  <!-- ===================== 10. SPECIAL SITUATIONS ===================== -->
+  <details class="sec" id="s10">
+    <summary><span class="chev">▸</span><span class="sec-title">10 · Special situations</span><span class="sec-tag">AHA 2023 · Price 2021 · Condliffe</span></summary>
+    <div class="sec-body">
+
+      <details class="sub">
+        <summary>Obstetric anaesthesia</summary>
+        <div class="sub-body">
+          <ul>
+            <li>Pregnancy is generally discouraged in PH — maternal mortality historically 30–56%, currently <strong>10–20%</strong> in modern series.</li>
+            <li>ERAs and riociguat are <strong>contraindicated</strong> (category X); PDE5 inhibitors and prostacyclin pathway agonists are considered safe. Parenteral prostacyclin is preferred because it is easily titrated.</li>
+            <li>Deliver electively at <strong>34–36 weeks</strong> by planned caesarean section under combined spinal–epidural (minimises SVR swings) in a specialist centre.</li>
+            <li><strong>Avoid bolus oxytocin</strong> — it increases PVR and reduces SVR; use a low-dose infusion. Avoid nitrous oxide.</li>
+            <li>The <strong>immediate post-partum period is the highest-risk time</strong> (fluid shifts, autotransfusion) — monitor in critical care for at least <strong>72 hours</strong> with arterial and central lines.</li>
+            <li>Multidisciplinary team: experienced obstetrician, PH specialist and anaesthetist.</li>
+          </ul>
+          <p class="muted">AHA 2023 notes no prospective comparisons of epidural vs spinal vs CSE vs general anaesthesia — all have been described. Low-dose neuraxial with vasopressors titrated to maintain MAP at or above baseline, with inotropes and pulmonary vasodilators immediately available, is advised.</p>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Laparoscopic surgery</summary>
+        <div class="sub-body">
+          <ul>
+            <li>CO₂ pneumoperitoneum at 12–15 mmHg reduces venous return and cardiac output; diaphragmatic displacement and Trendelenburg worsen lung compliance and FRC.</li>
+            <li>Rapid CO₂ insufflation can cause vagal bradycardia → RV distension, impaired right coronary flow and arrest.</li>
+            <li>Within 5 minutes of insufflation, rising end-tidal CO₂ may require increased minute ventilation or deflation to avoid a rise in PVR.</li>
+            <li>Mitigations: minimal and slow insufflation, low insufflation pressure, early conversion to open surgery if haemodynamics deteriorate.</li>
+            <li>No studies compare laparoscopic vs open surgery in PH; the general benefits of laparoscopy (pain, bleeding) still apply when planning.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Orthopaedic surgery</summary>
+        <div class="sub-body">
+          <ul>
+            <li>Lower limb joint surgery carries a risk of intra-operative pulmonary embolism of bone marrow, cement and debris — increasing PVR and precipitating acute RV failure.</li>
+            <li>Cement implantation syndrome and tourniquet release are the classic triggers.</li>
+            <li>Coding studies show a four-fold adjusted risk of mortality (2.4% vs 0.6%) for any PH undergoing total hip replacement — higher still in the PAH group (5%).</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Liver transplantation / portopulmonary hypertension</summary>
+        <div class="sub-body">
+          <ul>
+            <li>Up to 5% of patients on the liver transplant waiting list develop portopulmonary hypertension.</li>
+            <li>Patients with mPAP &gt;35 mmHg are generally deemed unsuitable for orthotopic liver transplantation unless they respond to PAH therapy.</li>
+            <li>Mortality data: mPAP &gt;50 mmHg — 100% mortality; 35–50 mmHg — 35%; &lt;35 mmHg — no deaths.</li>
+            <li>Consider PVR and RV function alongside mPAP, since high-output liver disease can raise mPAP with normal PVR.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Sedation &amp; endoscopy</summary>
+        <div class="sub-body">
+          <ul>
+            <li>Even mild sedation can cause hypoxaemia, hypercapnia and increased PVR in high-risk PH patients — sedation is <strong>not</strong> risk-free.</li>
+            <li>Bronchoscopic biopsy, TBNA and airway manipulation can trigger arrhythmias and cardiovascular complications; oxygen use reduces complication rates.</li>
+            <li>Gastrointestinal endoscopy: vagal stimulation may precipitate cardiac arrest in severe PH. In one French reference-centre series of 37 procedures under sedation/GA, major complications to 28 days occurred in <strong>14%</strong> (severe hypotension, arrhythmias, RV failure) — no deaths, but this exceeded the 1.8% cardiopulmonary adverse event rate seen in ASA 3 patients undergoing GI procedures.</li>
+            <li>Patients with severe PH requiring endoscopy should be monitored by experienced staff in PH centres.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Congenital heart disease &amp; Eisenmenger syndrome</summary>
+        <div class="sub-body">
+          <ul>
+            <li>Eisenmenger syndrome: peri-operative mortality ~7% in an older cohort; more recent data show systemic hypotension in 26%, oxygen desaturation in 17% and 30-day mortality 3.8%.</li>
+            <li>Single-ventricle / Fontan physiology depends on passive venous return — maintain preload, avoid high PEEP and high intrathoracic pressure.</li>
+            <li>With shunts, prevent increased right-to-left shunting (which can spiral into hypoxaemia, acidosis and hypotension) by keeping the PVR:SVR ratio low.</li>
+            <li>Neuraxial blockade can enhance right-to-left shunting in Eisenmenger syndrome or PAH with a PFO.</li>
+            <li>Use in-line filters for all IV lines in patients with right-to-left shunts.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="sub">
+        <summary>Emergency surgery</summary>
+        <div class="sub-body">
+          <ul>
+            <li>Highest risk of all — 30-day mortality <strong>15–50%</strong> in non-cardiac, non-obstetric surgery.</li>
+            <li>Same principles as critical care: optimise preload, reduce RV afterload, maintain RV coronary perfusion.</li>
+            <li>Use the most pulmonary-selective vasodilators (iNO, inhaled prostanoids) to acutely reduce PVR without dropping SVR.</li>
+            <li>Normalise haemoglobin, arterial pH, oxygenation and lung volumes on positive pressure to avoid acute PVR rises.</li>
+            <li>Aggressive analgesia — untreated pain acutely raises pulmonary vascular tone.</li>
+            <li>Preserving a low PVR:SVR ratio is the key objective; this may mandate higher-than-normal MAP goals during a crisis.</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </details>
+
+  <!-- ===================== 11. PITFALLS ===================== -->
+  <details class="sec" id="s11">
+    <summary><span class="chev">▸</span><span class="sec-title">11 · Pitfalls, pearls &amp; the "do not do" list</span><span class="sec-tag">All sources</span></summary>
+    <div class="sec-body">
+
+      <div class="cols">
+        <div>
+          <h3>Diagnostic pitfalls</h3>
+          <ul>
+            <li>Symptoms are non-specific (exertional dyspnoea) — diagnosis is often delayed.</li>
+            <li>TTE under- or over-estimates PAP in up to <strong>half</strong> of at-risk patients; right heart catheterisation is required for confirmation. <span class="src">ATOTW 228</span></li>
+            <li>An enlarged LA, LV hypertrophy and elevated E/e' suggest left heart disease as the cause.</li>
+            <li>Isotope perfusion scanning is the most sensitive way to exclude CTEPH; CTPA also assesses lungs and heart.</li>
+            <li>An acute vasodilator challenge (usually inhaled NO) identifies the ~10% with a predominantly vasoconstrictive phenotype who may respond to high-dose calcium channel blockers.</li>
+          </ul>
+
+          <h3>Therapeutic pearls</h3>
+          <ul>
+            <li>Treat the underlying cause of deterioration first — arrhythmia and sepsis are common and reversible.</li>
+            <li>Atrial flutter occurs in up to 25% of pre-capillary PH patients; restoring sinus rhythm improves outcomes more than rate control alone.</li>
+            <li>An unexplained rising CRP in a patient on IV prostanoids should prompt a search for catheter-related bloodstream infection — often with no external signs.</li>
+            <li>Continuous veno-venous haemofiltration may be considered for resistant RV failure / volume overload.</li>
+            <li>Balloon atrial septostomy is a potential therapy for severe PAH but is rarely performed; high RA pressure and significant hypoxaemia are risk factors for mortality.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="color:var(--warn)">Do not…</h3>
+          <div class="note warn" style="margin-top:4px">
+            <ul style="margin:0;padding-left:18px">
+              <li>Do not interrupt PAH-targeted therapy, especially prostanoids</li>
+              <li>Do not give nitrous oxide</li>
+              <li>Do not allow hypoxaemia, hypercarbia or acidosis</li>
+              <li>Do not use high PEEP or high plateau pressures</li>
+              <li>Do not allow marked falls in venous return or SVR</li>
+              <li>Do not use drugs that cause myocardial depression without vasopressor cover</li>
+              <li>Do not allow tachycardia or bradycardia to persist</li>
+              <li>Do not perform a single-shot spinal in severe PH</li>
+              <li>Do not flush a prostacyclin infusion line</li>
+              <li>Do not give nitrates with a PDE5 inhibitor</li>
+              <li>Do not give a milrinone bolus to a hypovolaemic patient</li>
+            </ul>
+          </div>
+
+          <h3 style="color:var(--ok)">Always…</h3>
+          <div class="note ok" style="margin-top:4px">
+            <ul style="margin:0;padding-left:18px">
+              <li>Apply defibrillator pads before induction</li>
+              <li>Site an arterial line before induction where possible</li>
+              <li>Have vasopressors drawn up and running at induction</li>
+              <li>Keep the patient warm, pain-free and euvolaemic</li>
+              <li>Book ICU/HDU for 48–72 hours</li>
+              <li>Involve the PH team and, if relevant, the ECMO/transplant team early</li>
+              <li>Discuss ceilings of care and resuscitation status pre-operatively</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</main>
+
+<!-- ===================== REFERENCES ===================== -->
+<footer id="s12">
+  <div class="ref">
+    <h3 style="margin-top:0">Sources &amp; further reading</h3>
+    <ol>
+      <li><b>Thomas S.</b> Anaesthesia for the patient with pulmonary hypertension. <em>Anaesthesia Tutorial of the Week 228</em>. World Federation of Societies of Anaesthesiologists / ATOTW, 20 June 2011.</li>
+      <li><b>Rajagopal S, Ruetzler K, Ghadimi K, Horn EM, Kelava M, Kudelko KT, Moreno-Duarte I, Preston I, Rose Bovino LL, Smilowitz NR, Vaidya A;</b> on behalf of the American Heart Association Council on Cardiopulmonary, Critical Care, Perioperative and Resuscitation, and the Council on Cardiovascular and Stroke Nursing. Evaluation and management of pulmonary hypertension in noncardiac surgery: a scientific statement from the American Heart Association. <em>Circulation</em> 2023;147:1317–1343. doi:10.1161/CIR.0000000000001136</li>
+      <li><b>Condliffe R, Kiely DG.</b> Critical care management of pulmonary hypertension. <em>BJA Education</em> (Continuing Education in Anaesthesia, Critical Care &amp; Pain).</li>
+      <li><b>Price LC, Martinez G, Brame A, Pickworth T, Samaranayake C, Alexander D, Garfield B, Aw T-C, McCabe C, Mukherjee B, Harries C, Kempny A, Gatzoulis M, Marino P, Kiely DG, Condliffe R, Howard L, Davies R, Coghlan G, Schreiber BE, Lordan J, Taboada D, Gaine S, Johnson M, Church C, Kemp SV, Wong D, Curry A, Levett D, Price S, Ledot S, Reed A, Dimopoulos K, Wort SJ.</b> Perioperative management of patients with pulmonary hypertension undergoing non-cardiothoracic, non-obstetric surgery: a systematic review and expert consensus statement. <em>British Journal of Anaesthesia</em> 2021;126(4):774–790. doi:10.1016/j.bja.2021.01.005</li>
+    </ol>
+    <p class="muted" style="margin-top:14px">
+      This quick reference is a summary for educational use. It does not replace clinical judgement, local protocols or the full source documents. Doses and thresholds should be verified against current local guidelines and the original publications before use in patient care.
+    </p>
+  </div>
+</footer>
+
+<button class="totop" id="toTop" title="Back to top">↑</button>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ==========================================================
+     1. TEXT SIZE
+     ========================================================== */
+  var root = document.documentElement;
+  var MIN_FS = 13, MAX_FS = 23, DEF_FS = 16;
+  var fs = DEF_FS;
+
+  try {
+    var saved = localStorage.getItem('ph-qr-fs');
+    if (saved) {
+      var n = parseInt(saved, 10);
+      if (!isNaN(n) && n >= MIN_FS && n <= MAX_FS) fs = n;
+    }
+  } catch (e) { /* storage unavailable */ }
+
+  function applyFs() {
+    root.style.fontSize = fs + 'px';
+    var lbl = document.getElementById('fsLabel');
+    if (lbl) lbl.textContent = Math.round((fs / DEF_FS) * 100) + '%';
+    try { localStorage.setItem('ph-qr-fs', fs); } catch (e) {}
+  }
+  applyFs();
+
+  document.getElementById('fsPlus').addEventListener('click', function () {
+    fs = Math.min(MAX_FS, fs + 1); applyFs();
+  });
+  document.getElementById('fsMinus').addEventListener('click', function () {
+    fs = Math.max(MIN_FS, fs - 1); applyFs();
+  });
+
+  /* ==========================================================
+     2. EXPAND / COLLAPSE ALL
+     ========================================================== */
+  var content = document.getElementById('content');
+
+  document.getElementById('expandAll').addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = false; });
+  });
+
+  /* ==========================================================
+     3. QUICK NAV — open target section then scroll
+     ========================================================== */
+  document.querySelectorAll('.quicknav a').forEach(function (a) {
+    a.addEventListener('click', function (ev) {
+      var id = a.getAttribute('data-goto');
+      var el = document.getElementById(id);
+      if (!el) return;
+      ev.preventDefault();
+      if (el.tagName === 'DETAILS') el.open = true;
+      setTimeout(function () {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 30);
+    });
+  });
+
+  /* ==========================================================
+     4. SEARCH — highlight, count, next / previous
+     ========================================================== */
+  var searchInput = document.getElementById('search');
+  var countEl = document.getElementById('count');
+  var matches = [];
+  var current = -1;
+  var debounceTimer = null;
+
+  function clearHighlights() {
+    var marks = content.querySelectorAll('mark.hit');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+    matches = [];
+    current = -1;
+  }
+
+  function updateCount() {
+    if (!countEl) return;
+    if (!matches.length) {
+      countEl.textContent = '0 / 0';
+    } else {
+      countEl.textContent = (current + 1) + ' / ' + matches.length;
+    }
+  }
+
+  function openAncestors(el) {
+    var p = el.parentElement;
+    while (p && p !== document.body) {
+      if (p.tagName === 'DETAILS') p.open = true;
+      p = p.parentElement;
+    }
+  }
+
+  function focusMatch(index, doScroll) {
+    if (!matches.length) { updateCount(); return; }
+    if (index < 0) index = matches.length - 1;
+    if (index >= matches.length) index = 0;
+
+    if (current >= 0 && matches[current]) {
+      matches[current].classList.remove('current');
+    }
+    current = index;
+    var m = matches[current];
+    m.classList.add('current');
+
+    if (doScroll !== false) {
+      openAncestors(m);
+      setTimeout(function () {
+        m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 40);
+    }
+    updateCount();
+  }
+
+  function runSearch(query) {
+    clearHighlights();
+
+    var needle = (query || '').trim().toLowerCase();
+    if (needle.length < 2) {
+      updateCount();
+      return;
+    }
+
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName;
+          if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      },
+      false
+    );
+
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var lower = text.toLowerCase();
+      var idx = lower.indexOf(needle);
+      if (idx === -1) return;
+
+      var frag = document.createDocumentFragment();
+      var last = 0;
+
+      while (idx !== -1) {
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+
+        var mark = document.createElement('mark');
+        mark.className = 'hit';
+        mark.textContent = text.slice(idx, idx + needle.length);
+        frag.appendChild(mark);
+        matches.push(mark);
+
+        last = idx + needle.length;
+        idx = lower.indexOf(needle, last);
+      }
+
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    if (matches.length) {
+      current = 0;
+      matches[0].classList.add('current');
+    }
+    updateCount();
+  }
+
+  searchInput.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    var q = searchInput.value;
+    debounceTimer = setTimeout(function () { runSearch(q); }, 260);
+  });
+
+  searchInput.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Enter') {
+      ev.preventDefault();
+      clearTimeout(debounceTimer);
+      if (matches.length === 0) {
+        runSearch(searchInput.value);
+        if (matches.length) focusMatch(0, true);
+      } else {
+        focusMatch(ev.shiftKey ? current - 1 : current + 1, true);
+      }
+    } else if (ev.key === 'Escape') {
+      searchInput.value = '';
+      clearHighlights();
+      updateCount();
+    }
+  });
+
+  document.getElementById('next').addEventListener('click', function () {
+    if (!matches.length) { runSearch(searchInput.value); }
+    focusMatch(current + 1, true);
+  });
+
+  document.getElementById('prev').addEventListener('click', function () {
+    if (!matches.length) { runSearch(searchInput.value); }
+    focusMatch(current - 1, true);
+  });
+
+  document.getElementById('clearSearch').addEventListener('click', function () {
+    searchInput.value = '';
+    clearHighlights();
+    updateCount();
+    searchInput.focus();
+  });
+
+  /* ==========================================================
+     5. BACK TO TOP
+     ========================================================== */
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 500) toTop.classList.add('show');
+    else toTop.classList.remove('show');
+  }, { passive: true });
+
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+})();
+</script>
+</body>
+</html>
