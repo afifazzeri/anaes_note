@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CVVH / CVVHDF — Quick Reference (Paediatric Critical Care)</title>
+<style>
+  :root{
+    --fs: 15.5px;
+    --bg:#e9f1f5;
+    --panel:#ffffff;
+    --ink:#12262f;
+    --muted:#4d6b78;
+    --brand:#0b4a5c;
+    --brand2:#0e7490;
+    --accent:#0891b2;
+    --line:#cfe0e8;
+    --soft:#f2f8fa;
+    --warnbg:#fff6e5; --warnline:#e9b96b; --warnink:#7c4304;
+    --alertbg:#fdeceb; --alertline:#eda9a5; --alertink:#8b1c1c;
+    --okbg:#e9f6f1;   --okline:#a3dcc3;   --okink:#0f5132;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:var(--fs);line-height:1.55;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:linear-gradient(135deg,#08384a 0%,#0b4a5c 35%,#0e7490 70%,#0891b2 100%);
+    color:#fff;padding:20px 0 18px;
+  }
+  header.top h1{margin:0;font-size:1.55em;line-height:1.2;letter-spacing:.2px}
+  header.top .sub{margin:6px 0 0;color:#bfe7f2;font-size:.92em}
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:60;
+    background:rgba(233,241,245,.96);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 2px 8px rgba(11,74,92,.07);
+  }
+  .tbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 16px}
+  .searchbox{display:flex;align-items:center;gap:6px;flex:1 1 340px;min-width:260px;
+    background:#fff;border:1px solid var(--line);border-radius:10px;padding:4px 6px 4px 10px}
+  .searchbox:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(8,145,178,.15)}
+  .sicon{color:var(--brand2);font-size:.95em}
+  #search{flex:1;border:0;outline:0;background:transparent;font:inherit;color:var(--ink);padding:6px 2px;min-width:60px}
+  .count{font-size:.8em;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;padding:0 4px}
+  .tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .tbtn{
+    font:inherit;font-size:.85em;cursor:pointer;
+    background:#fff;border:1px solid var(--line);color:var(--brand);
+    border-radius:8px;padding:6px 10px;line-height:1.2;white-space:nowrap;
+    transition:background .15s,border-color .15s,color .15s;
+  }
+  .tbtn:hover{background:#e2f1f6;border-color:#9cc7d5}
+  .tbtn:active{transform:translateY(1px)}
+  .tbtn.ghost{color:var(--muted)}
+  .sep{width:1px;height:22px;background:var(--line);margin:0 4px}
+
+  /* ---------- Cards / accordions ---------- */
+  main{padding:6px 0 30px}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    margin:14px 0;overflow:hidden;box-shadow:0 1px 2px rgba(11,74,92,.06);
+  }
+  .acc-head{
+    width:100%;display:flex;align-items:center;gap:10px;
+    padding:12px 16px;border:0;font:inherit;font-weight:700;color:var(--brand);
+    background:linear-gradient(180deg,#f8fcfd,#edf6f9);
+    border-bottom:1px solid var(--line);cursor:pointer;text-align:left;
+    scroll-margin-top:110px;
+  }
+  .acc-head:hover{background:#e2f1f6}
+  .acc-head .num{
+    flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+    width:26px;height:26px;border-radius:8px;background:var(--brand2);color:#fff;
+    font-size:.78em;font-weight:800;letter-spacing:.02em;
+  }
+  .acc-head .ttl{flex:1 1 auto}
+  .chev{flex:0 0 auto;color:var(--brand2);font-size:.85em;transition:transform .2s}
+  .card.closed .chev{transform:rotate(-90deg)}
+  .card.closed .acc-body{display:none}
+  .acc-inner{padding:14px 18px 18px}
+  .acc-inner > :first-child{margin-top:0}
+  .acc-inner > :last-child{margin-bottom:0}
+
+  /* ---------- Typography ---------- */
+  h3{font-size:1.02em;color:var(--brand);margin:18px 0 6px}
+  h4{font-size:.95em;color:var(--brand2);margin:14px 0 4px}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0 8px 0;padding-left:22px}
+  li{margin:3px 0}
+  strong{color:#0a3a49}
+  small{font-size:.86em}
+  .muted{color:var(--muted)}
+  code{background:#e6f1f5;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:.9em}
+
+  /* ---------- KPI grid ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px;margin:12px 0}
+  .kpi{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:9px 12px}
+  .kpi .k{font-size:.72em;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800}
+  .kpi .v{font-weight:700;color:var(--brand2);font-size:1.02em;line-height:1.35}
+
+  /* ---------- Callouts ---------- */
+  .note,.warn,.danger,.ok{border-left:4px solid;border-radius:8px;padding:10px 13px;margin:12px 0}
+  .note{background:var(--soft);border-color:var(--accent);color:#0d3c4a}
+  .warn{background:var(--warnbg);border-color:var(--warnline);color:var(--warnink)}
+  .danger{background:var(--alertbg);border-color:var(--alertline);color:var(--alertink)}
+  .ok{background:var(--okbg);border-color:var(--okline);color:var(--okink)}
+  .note b,.warn b,.danger b,.ok b{color:inherit}
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#fff;
+    scrollbar-width:thin;
+  }
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:.92em}
+  th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  thead th{background:#dcecf1;color:var(--brand);font-weight:800;font-size:.95em}
+  tbody tr:nth-child(even){background:#f6fafb}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr.grp td{background:#cfe6ee;color:var(--brand);font-weight:800;font-size:.86em;letter-spacing:.04em;text-transform:uppercase}
+  td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
+  .table-cap{font-size:.82em;color:var(--muted);margin:2px 0 10px}
+
+  /* ---------- Weight-bracket diagram ---------- */
+  .bracket{
+    display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;
+    margin:14px 0;
+  }
+  .arrow{
+    display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;
+    border-radius:12px;padding:10px 12px;font-size:.82em;font-weight:700;line-height:1.25;
+    min-width:112px;
+  }
+  .arrow .ico{font-size:1.8em;line-height:1}
+  .arrow.up{background:#e3f5ec;border:1px solid #a3dcc3;color:#0f5132}
+  .arrow.down{background:#fdeceb;border:1px solid #eda9a5;color:#8b1c1c}
+  .bracket .table-wrap{margin:0}
+  .bracket table{min-width:420px}
+
+  /* ---------- Search highlight ---------- */
+  mark.hl{background:#fde68a;color:#1a2b33;border-radius:3px;padding:0 1px;scroll-margin-top:120px}
+  mark.hl.current{background:#22d3ee;color:#04222b;box-shadow:inset 0 0 0 2px #0e7490}
+
+  /* ---------- Footer ---------- */
+  footer.foot{border-top:1px solid var(--line);background:#dfeaf0;padding:22px 0 40px;margin-top:26px}
+  footer.foot h2{font-size:1em;color:var(--brand);margin:0 0 8px}
+  footer.foot p{font-size:.88em;color:#274b58;margin:8px 0}
+  footer.foot .tiny{font-size:.8em;color:#4d6b78}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:820px){
+    .bracket{grid-template-columns:1fr}
+    .arrow{flex-direction:row;justify-content:center;min-width:0}
+    .arrow .ico{font-size:1.3em}
+  }
+  @media (max-width:560px){
+    .searchbox{flex:1 1 100%}
+    .tools{flex:1 1 100%;justify-content:space-between}
+    .acc-head{font-size:.96em;padding:11px 12px}
+    .acc-inner{padding:12px 13px 15px}
+  }
+  @media print{
+    .toolbar{display:none}
+    .card.closed .acc-body{display:block}
+    body{background:#fff}
+    .card{break-inside:avoid;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>CVVH / CVVHDF — Quick Reference</h1>
+    <p class="sub">Paediatric Critical Care Unit · Baxter Prismaflex · citrate-first anticoagulation · for anaesthetists &amp; intensivists</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap tbar">
+    <div class="searchbox">
+      <span class="sicon">🔍</span>
+      <input id="search" type="search" placeholder="Search guideline (citrate, iCa, flow rate, calcium, heparin…)" autocomplete="off" spellcheck="false" aria-label="Search guideline">
+      <span id="count" class="count">0 / 0</span>
+      <button class="tbtn" id="prev" title="Previous match (Shift+Enter)">↑</button>
+      <button class="tbtn" id="next" title="Next match (Enter)">↓</button>
+      <button class="tbtn ghost" id="clearSearch" title="Clear search">✕</button>
+    </div>
+    <div class="tools">
+      <button class="tbtn" id="expandAll">Expand all</button>
+      <button class="tbtn" id="collapseAll">Collapse all</button>
+      <span class="sep"></span>
+      <button class="tbtn" id="fsDown" title="Smaller text">A−</button>
+      <button class="tbtn" id="fsUp" title="Larger text">A+</button>
+      <button class="tbtn ghost" id="fsReset" title="Reset text size">Reset</button>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+<div class="wrap">
+
+  <!-- ============ 1 · AT A GLANCE ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">1</span><span class="ttl">At a glance — default settings</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="kpis">
+        <div class="kpi"><div class="k">Mode</div><div class="v">Always set up in CVVHDF</div></div>
+        <div class="kpi"><div class="k">Anticoagulation</div><div class="v">Regional citrate (Prismocitrate 18/0)</div></div>
+        <div class="kpi"><div class="k">Citrate dose</div><div class="v">3 mmol/L blood · 4 mmol/L if septic</div></div>
+        <div class="kpi"><div class="k">Filter (post-membrane) iCa</div><div class="v">0.25 – 0.35 mmol/L</div></div>
+        <div class="kpi"><div class="k">Patient iCa</div><div class="v">1.0 – 1.3 mmol/L</div></div>
+        <div class="kpi"><div class="k">Calcium compensation</div><div class="v">Start 100% (90% if iCa &gt;1.3 · 110% if iCa &lt;1.0)</div></div>
+        <div class="kpi"><div class="k">Minimum effluent dose</div><div class="v">≥ 30 mL/kg/h</div></div>
+        <div class="kpi"><div class="k">Gain/loss limit</div><div class="v">10 mL/kg over 3 h (locked once set)</div></div>
+        <div class="kpi"><div class="k">Priming</div><div class="v">Plasmalyte 148 · single prime · no heparin</div></div>
+        <div class="kpi"><div class="k">Dialysate</div><div class="v">PrismOcal B22 (calcium-free)</div></div>
+      </div>
+      <div class="warn"><b>Treat the patient, not the machine.</b> The Prismaflex will keep removing fluid even when the patient is hypovolaemic. Review the fluid removal rate hourly.</div>
+      <div class="note">Clinical guidelines are guidance only — interpretation and application remain the responsibility of the individual. If in doubt, consult a senior colleague, the renal critical care nurse or the consultant.</div>
+    </div></div>
+  </section>
+
+  <!-- ============ 2 · INDICATIONS ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">2</span><span class="ttl">Indications &amp; aims of therapy</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <p>Continuous renal replacement therapy (CRRT) is a supportive therapy for fluid balance and metabolic derangement in critically ill patients, with or without acute kidney injury (AKI).</p>
+      <h3>Aims</h3>
+      <ul>
+        <li>Relieve hypervolaemia and maintain fluid balance</li>
+        <li>Remove excess urea &amp; creatinine</li>
+        <li>Correct and maintain metabolic and electrolyte balance</li>
+        <li>Remove toxins</li>
+      </ul>
+      <h3>Indications to commence</h3>
+      <ul>
+        <li>Fluid overload</li>
+        <li>Electrolyte imbalance</li>
+        <li>Acute kidney injury (AKI)</li>
+        <li>Inborn errors of metabolism</li>
+        <li>Sepsis</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- ============ 3 · HOW IT WORKS ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">3</span><span class="ttl">How it works — convection, diffusion, CVVH vs CVVHDF</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3>Convection (ultrafiltration)</h3>
+      <p>Large volumes of fluid cross the semi-permeable membrane down a hydrostatic pressure gradient, dragging solute with it (solvent drag). Replacement fluid (pre-blood pump and/or post-dilution) increases flow across the membrane. <b>Best for middle and large molecules.</b></p>
+
+      <h3>Diffusion</h3>
+      <p>Solute moves down a concentration gradient. Achieved by running dialysate counter-current to blood on the other side of the membrane, maintaining the gradient along the whole filter. <b>Best for small molecules</b> (urea, creatinine, ammonia).</p>
+
+      <h3>Adsorption</h3>
+      <p>Some molecules adhere to the artificial membrane — thought to be how inflammatory markers are removed. High levels can clog the filter and reduce effectiveness.</p>
+
+      <div class="note">Prismaflex filter pores pass molecules up to <b>35,000 Daltons</b> — small ions and molecules freely, plus some larger molecules (myoglobin, insulin, interleukins).</div>
+
+      <h3>CVVH vs CVVHDF</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Mode</th><th>Principles</th><th>Clearance</th></tr></thead>
+          <tbody>
+            <tr><td>CVVH</td><td>Ultrafiltration / convection only (replacement fluid)</td><td>Middle &amp; large molecules</td></tr>
+            <tr><td>CVVHDF</td><td>Convection + diffusion (replacement fluid <i>and</i> dialysate)</td><td>Optimises clearance across all molecule sizes; better acid–base, waste and electrolyte control</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><b>Always select CVVHDF when setting up the Prismaflex.</b></li>
+        <li>With <b>heparin</b> you may switch between CVVH and CVVHDF during treatment according to clinical condition.</li>
+        <li>With <b>citrate</b>, CVVHDF is always the therapy of choice — dialysate off-loads citrate into the effluent bag (limits citrate accumulation) and reduces high blood bicarbonate.</li>
+        <li>If therapy is too efficient, move the patient <b>down a weight bracket</b> (see §9).</li>
+      </ul>
+      <p class="muted"><small>Replacement ≈ 50% of body weight (1 kg = 1 litre) is usually adequate for solute and electrolyte removal. Low blood flow, high haematocrit and high plasma protein limit filtration.</small></p>
+    </div></div>
+  </section>
+
+  <!-- ============ 4 · CITRATE ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">4</span><span class="ttl">Anticoagulation — regional citrate (first line)</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <p>Citrate is the anticoagulation of choice on PCCU. It is <b>regional</b>: it anticoagulates the circuit and filter without anticoagulating the patient, so the bleeding risk is much lower than with heparin. It also increases circuit life and reduces treatment interruptions.</p>
+
+      <h3>How it works</h3>
+      <ul>
+        <li>Citrate binds ionised calcium (iCa) and magnesium. iCa is essential for activation of the coagulation cascade — binding it prevents clotting in the extracorporeal circuit.</li>
+        <li>Metabolised in the <b>liver</b> to bicarbonate (<b>1 mmol citrate → 3 mmol bicarbonate</b>).</li>
+        <li>Delivered <b>pre-filter on the pre-blood pump (PBP) scale</b>, so both circuit and filter are anticoagulated.</li>
+        <li>Dose is expressed in <b>mmol/L blood</b>. If blood flow is adjusted, the Prismaflex automatically adjusts the PBP citrate rate to hold the set dose.</li>
+        <li>Most citrate is cleared by the filter into the effluent; the remainder reaching the patient is the <b>patient citrate load</b>.</li>
+      </ul>
+
+      <div class="kpis">
+        <div class="kpi"><div class="k">Solution used</div><div class="v">Prismocitrate 18/0<br><small>(trisodium citrate 18 mmol/L, citric acid 0 mmol/L)</small></div></div>
+        <div class="kpi"><div class="k">Starting dose</div><div class="v">3 mmol/L blood</div></div>
+        <div class="kpi"><div class="k">Septic patients</div><div class="v">4 mmol/L blood</div></div>
+        <div class="kpi"><div class="k">Filter iCa target</div><div class="v">0.25 – 0.35 mmol/L</div></div>
+      </div>
+      <p class="muted"><small>Only change the citrate dose after discussion with the consultant or renal critical care nurse.</small></p>
+
+      <h3>Citrate also binds magnesium</h3>
+      <p>Expect a fall in serum magnesium — <b>check daily</b> while on the filter. Correct if &lt; 0.7 mmol/L (per unit policy; discuss with consultant and pharmacist before replacing).</p>
+
+      <h3>Precautions / contraindications — discuss with consultant</h3>
+      <ul>
+        <li>Severe liver disease (the calcium–citrate complex is metabolised by the liver)</li>
+        <li>Severe hepatic failure with INR &gt; 3.5</li>
+        <li>Paracetamol hepatitis with gross elevation of AST/INR and raised lactate</li>
+        <li>Ethylene glycol poisoning</li>
+        <li>Clinical bleeding risk considered too great for <i>any</i> CRRT anticoagulation</li>
+        <li>Previous citrate accumulation, if organ dysfunction persists</li>
+        <li>Additional citrate load, e.g. ongoing massive transfusion</li>
+      </ul>
+      <p class="muted"><small>If citrate is contraindicated, see Appendix A (heparin) and Appendix B (epoprostenol).</small></p>
+    </div></div>
+  </section>
+
+  <!-- ============ 5 · CALCIUM ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">5</span><span class="ttl">Calcium gluconate infusion &amp; calcium compensation</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <p>Citrate binds ionised calcium and some of that complex is lost in the effluent. To avoid systemic ionised hypocalcaemia, a <b>separate calcium infusion</b> is required, adjusted to keep <b>patient iCa 1.0 – 1.3 mmol/L</b>.</p>
+
+      <div class="danger">
+        <b>Route:</b> the calcium infusion is delivered by the Prismaflex syringe pump <b>directly to the patient via a central line — not into the circuit</b>.
+        <b>DO NOT</b> infuse calcium gluconate into the return lumen unless instructed by the consultant or Paediatric Renal Critical Care Nurse. If central access is problematic, discuss options with the consultant and pharmacist.
+      </div>
+
+      <h3>Syringe preparation (all patients)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Component</th><th>Volume</th></tr></thead>
+          <tbody>
+            <tr><td>Calcium gluconate 10%</td><td>40 mL</td></tr>
+            <tr><td>Sodium chloride 0.9%</td><td>10 mL</td></tr>
+            <tr><td>Final concentration</td><td><b>0.18 mmol/mL of calcium gluconate</b> (50 mL luer-lock syringe)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Calcium compensation (%)</h3>
+      <ul>
+        <li>The Prismaflex calculates the calcium to deliver from the estimated calcium loss in the effluent, the syringe concentration, CRRT dose and body weight.</li>
+        <li><b>100%</b> = complete replacement of the calcium lost in the effluent.</li>
+        <li>Range <b>5 – 200%</b>; can be modified during treatment.</li>
+        <li>The <b>syringe flow rate cannot be set directly</b> — the machine derives it from the selected compensation.</li>
+      </ul>
+
+      <div class="kpis">
+        <div class="kpi"><div class="k">iCa &gt; 1.3</div><div class="v">Start compensation at 90%</div></div>
+        <div class="kpi"><div class="k">iCa 1.0 – 1.3</div><div class="v">Start compensation at 100%</div></div>
+        <div class="kpi"><div class="k">iCa &lt; 1.0</div><div class="v">Start compensation at 110%</div></div>
+      </div>
+      <p class="muted"><small>If iCa is very low, consider a correction bolus before starting. If a calcium infusion is already running, keep it going while filtration is established, then stop the non-Prismaflex infusion once iCa is at target.</small></p>
+    </div></div>
+  </section>
+
+  <!-- ============ 6 · FLUIDS ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">6</span><span class="ttl">Fluids — what goes on which scale</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Scale</th><th>Fluid (citrate circuits)</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Pre-blood pump (PBP)</td><td><b>Prismocitrate 18/0</b></td><td>Never add sodium to this bag</td></tr>
+            <tr><td>Dialysate</td><td><b>PrismOcal B22</b></td><td>Must be calcium-free — calcium would restore iCa and clot the filter</td></tr>
+            <tr><td>Replacement</td><td><b>PrismOcal B22</b> or <b>Phoxilium</b></td><td>Phoxilium contains calcium → watch the return line for clotting; contains <b>no glucose</b> → monitor glucose closely; helps replace phosphate lost in filtration</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><b>Heparin circuits:</b> Prismasol 4 if potassium &lt; 6 mmol/L; Hemosol B0 if potassium &gt; 6 mmol/L.</p>
+      <div class="warn">Discuss any patient with a <b>high potassium</b> with the consultant before commencing treatment.</div>
+      <div class="note"><b>Fluid bags must be changed every 24 hours.</b></div>
+
+      <h3>Fluid composition (mmol/L unless stated)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Fluid</th><th class="num">Na</th><th class="num">K</th><th class="num">Ca</th><th class="num">Mg</th><th class="num">Cl</th><th class="num">PO₄</th><th class="num">Lactate</th><th class="num">HCO₃</th><th class="num">Glucose</th><th class="num">Citrate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Prismocitrate 18/0</td><td class="num">140</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">86</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">18</td></tr>
+            <tr><td>PrismOcal B22</td><td class="num">140</td><td class="num">4</td><td class="num">0</td><td class="num">0.75</td><td class="num">120.5</td><td class="num">0</td><td class="num">3</td><td class="num">22</td><td class="num">6.1</td><td class="num">0</td></tr>
+            <tr><td>Phoxilium</td><td class="num">140</td><td class="num">4</td><td class="num">1.25</td><td class="num">0.6</td><td class="num">115.9</td><td class="num">1.2</td><td class="num">0</td><td class="num">30</td><td class="num">0</td><td class="num">0</td></tr>
+            <tr><td>Prismasol 4</td><td class="num">140</td><td class="num">4</td><td class="num">1.75</td><td class="num">0.5</td><td class="num">113.5</td><td class="num">0</td><td class="num">3</td><td class="num">32</td><td class="num">5.5</td><td class="num">0</td></tr>
+            <tr><td>Hemosol B0</td><td class="num">140</td><td class="num">0</td><td class="num">1.75</td><td class="num">0.5</td><td class="num">109.5</td><td class="num">0</td><td class="num">3</td><td class="num">35</td><td class="num">0</td><td class="num">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-cap">Reproduced from the guideline — always check the bag label before use.</p>
+
+      <h3>Adding electrolytes</h3>
+      <ul>
+        <li>With the exception of <b>sodium</b>, no additives should be added to any fluid bag (citrate circuits).</li>
+        <li><b>Phosphate</b>: discuss with consultant and pharmacist — give as a direct correction to the patient.</li>
+        <li>Additives (phosphate, glucose) are only added to bags used with <b>heparin or epoprostenol</b> anticoagulation — see Appendix C.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- ============ 7 · ACCESS / EQUIPMENT / PRIMING ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">7</span><span class="ttl">Access, equipment &amp; priming</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3>Vascular access</h3>
+      <ul>
+        <li>Temporary central venous lines; follow the PCCU CVL insertion guideline.</li>
+        <li><b>Ultrasound guidance must be used</b> for insertion.</li>
+        <li><b>Heparin line lock must be aspirated and discarded</b> before connection to the patient.</li>
+        <li>5 Fr × 6 cm catheters are <b>not</b> suitable for CRRT on these machines.</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Weight</th><th>Catheter (Gam Cath)</th><th>Line lock — red lumen</th><th>Line lock — blue lumen</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 10 kg</td><td>6.5 Fr × 7.5 cm</td><td>0.72 mL</td><td>0.75 mL</td></tr>
+            <tr><td rowspan="2">10 – 20 kg</td><td>6.5 Fr × 10 cm</td><td>0.75 mL</td><td>0.78 mL</td></tr>
+            <tr><td>8 Fr × 10 cm</td><td>0.80 mL</td><td>0.82 mL</td></tr>
+            <tr><td rowspan="3">&gt; 20 kg</td><td>8 Fr × 12.5 cm</td><td>0.84 mL</td><td>0.86 mL</td></tr>
+            <tr><td>11 Fr × 15 cm</td><td>1.0 mL</td><td>1.1 mL</td></tr>
+            <tr><td>11 Fr × 25 cm</td><td>1.36 mL</td><td>1.42 mL</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-cap">Catheter size selection — confirm against local stock and the CVL guideline.</p>
+
+      <h3>Equipment required (citrate)</h3>
+      <ul>
+        <li>Prismaflex circuit <b>HF20 / ST60 / ST100</b> (size per prescription)</li>
+        <li>Dedicated calcium infusion line (<b>CA250</b>) + 50 mL luer-lock syringe</li>
+        <li>5 L bag <b>Prismocitrate 18/0</b> — pre-blood pump scale</li>
+        <li>5 L bag <b>PrismOcal B22</b> — dialysate scale</li>
+        <li>5 L bag <b>PrismOcal B22</b> — replacement scale</li>
+        <li>1 L bag <b>Plasmalyte 148</b> for priming</li>
+        <li><b>Calcium gluconate 10%</b></li>
+        <li>At least <b>one adult unit of packed red cells</b> available in blood bank</li>
+      </ul>
+      <p class="muted"><small>Refer to the citrate anticoagulation SOP attached to each Prismaflex when setting up. Use aseptic non-touch technique throughout.</small></p>
+
+      <h3>Priming</h3>
+      <ul>
+        <li><b>Plasmalyte 148</b> is the priming fluid of choice (use 0.9% sodium chloride if potassium is high).</li>
+        <li>With citrate, a heparin prime is <b>no longer necessary</b> — one prime with Plasmalyte 148 is all that is required.</li>
+        <li>4.5% HAS prime may be considered if required — discuss with consultant.</li>
+        <li><b>Blood priming should not be practised.</b> If the patient needs blood, transfuse before or during commencement of therapy.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- ============ 8 · BEFORE YOU START ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">8</span><span class="ttl">Pre-treatment checklist</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ol>
+        <li><b>Baseline bloods:</b> ABG, FBC, U&amp;E, LFT, magnesium, phosphate, total calcium, clotting.</li>
+        <li><b>Check iCa and magnesium</b> are within normal limits.</li>
+        <li><b>Set calcium compensation</b> from pre-treatment iCa:
+          <ul>
+            <li>iCa &gt; 1.3 → start at <b>90%</b></li>
+            <li>iCa 1.0–1.3 → start at <b>100%</b></li>
+            <li>iCa &lt; 1.0 → start at <b>110%</b> (consider a correction first)</li>
+          </ul>
+        </li>
+        <li><b>Magnesium &lt; 0.7</b> → correct (unit policy; discuss with consultant &amp; pharmacist).</li>
+        <li>If a <b>systemic calcium infusion</b> is already running, continue it until filtration is established and iCa is at target, then stop the non-Prismaflex infusion.</li>
+        <li><b>No ACT needed</b> with citrate — effectiveness is monitored by filter iCa.</li>
+        <li>Complete the CVVH/CVVHDF daily prescription and record chart; every change is <b>checked by two nurses</b> and signed.</li>
+      </ol>
+    </div></div>
+  </section>
+
+  <!-- ============ 9 · STARTING SETTINGS & FLOW RATES ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">9</span><span class="ttl">Starting settings &amp; flow rates</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3>Initial treatment settings</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Setting</th><th class="num">&lt; 6 kg</th><th class="num">6–12 kg</th><th class="num">12–15 kg</th><th class="num">&gt;15–24.9 kg</th><th class="num">25–49.9 kg</th><th class="num">&gt; 50 kg</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Blood flow rate</td><td class="num">20 mL/min</td><td class="num">30 mL/min</td><td class="num">40 mL/min</td><td class="num">3 mL/kg/min</td><td class="num">3 mL/kg/min</td><td class="num">3 mL/kg/min</td></tr>
+            <tr><td>Dialysate</td><td class="num" colspan="6">20 mL/kg/h</td></tr>
+            <tr><td>Replacement</td><td class="num">20 mL/h</td><td class="num">20–40 mL/h</td><td class="num">50 mL/h</td><td class="num">100 mL/h</td><td class="num">150 mL/h</td><td class="num">200 mL/h</td></tr>
+            <tr><td>Patient gain/loss limit</td><td class="num" colspan="6">10 mL/kg over 3 hours — once set, this cannot be changed during treatment</td></tr>
+            <tr><td>Citrate dose</td><td class="num" colspan="6">3 mmol/L (septic patients 4 mmol/L); adjust per algorithm</td></tr>
+            <tr><td>Calcium syringe</td><td class="num" colspan="6">Start at 100% if patient calcium is normal; adjust per algorithm</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-cap">These are initial flows for commencing treatment and can be altered to the patient's condition. Increasing blood pump speed also increases citrate delivery to the circuit.</p>
+
+      <h3>Blood &amp; fluid flow settings — patients &lt; 50 kg</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Weight (kg)</th><th class="num">Blood pump (mL/min)</th><th class="num">PBP (mL/h)</th><th class="num">Dialysate (mL/h)</th><th class="num">Replacement (mL/h)</th></tr></thead>
+          <tbody>
+            <tr class="grp"><td colspan="5">HF20 circuit</td></tr>
+            <tr><td>4</td><td class="num">20</td><td class="num">200</td><td class="num">100</td><td class="num">20</td></tr>
+            <tr><td>6</td><td class="num">20</td><td class="num">200</td><td class="num">150</td><td class="num">20</td></tr>
+            <tr><td>10</td><td class="num">30</td><td class="num">300</td><td class="num">200</td><td class="num">20–40</td></tr>
+            <tr><td>11</td><td class="num">30</td><td class="num">300</td><td class="num">200</td><td class="num">20–40</td></tr>
+            <tr><td>12</td><td class="num">30</td><td class="num">300</td><td class="num">250</td><td class="num">20–40</td></tr>
+            <tr class="grp"><td colspan="5">ST60 circuit</td></tr>
+            <tr><td>12</td><td class="num">40</td><td class="num">400</td><td class="num">250</td><td class="num">50</td></tr>
+            <tr><td>15</td><td class="num">40</td><td class="num">400</td><td class="num">300</td><td class="num">50</td></tr>
+            <tr><td>20</td><td class="num">60</td><td class="num">600</td><td class="num">400</td><td class="num">100</td></tr>
+            <tr><td>25</td><td class="num">75</td><td class="num">750</td><td class="num">500</td><td class="num">150</td></tr>
+            <tr><td>25</td><td class="num">80</td><td class="num">800</td><td class="num">500</td><td class="num">150</td></tr>
+            <tr><td>30</td><td class="num">90</td><td class="num">900</td><td class="num">600</td><td class="num">150</td></tr>
+            <tr class="grp"><td colspan="5">ST100 circuit</td></tr>
+            <tr><td>35</td><td class="num">100</td><td class="num">1000</td><td class="num">700</td><td class="num">150</td></tr>
+            <tr><td>40</td><td class="num">120</td><td class="num">1200</td><td class="num">800</td><td class="num">150</td></tr>
+            <tr><td>45</td><td class="num">130</td><td class="num">1300</td><td class="num">900</td><td class="num">150</td></tr>
+            <tr><td>50</td><td class="num">150</td><td class="num">1500</td><td class="num">1000</td><td class="num">200</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Blood &amp; fluid flow settings — patients &gt; 50 kg</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Weight (kg)</th><th class="num">Blood pump (mL/min)</th><th class="num">PBP (mL/h)</th><th class="num">Dialysate (mL/h)</th><th class="num">Replacement (mL/h)</th></tr></thead>
+          <tbody>
+            <tr class="grp"><td colspan="5">ST100 circuit</td></tr>
+            <tr><td>50</td><td class="num">150</td><td class="num">1500</td><td class="num">1000</td><td class="num">200</td></tr>
+            <tr><td>60</td><td class="num">180</td><td class="num">1800</td><td class="num">1200</td><td class="num">200</td></tr>
+            <tr><td>70</td><td class="num">210</td><td class="num">2100</td><td class="num">1400</td><td class="num">200</td></tr>
+            <tr><td>80</td><td class="num">240</td><td class="num">2400</td><td class="num">1600</td><td class="num">200</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-cap">Based on a citrate dose of 3 mmol/L. The PBP rate changes automatically if the citrate dose or blood pump speed is altered.</p>
+
+      <h3>Weight-bracket diagram — adjusting clearance</h3>
+      <p class="muted">Move the patient <b>up</b> a weight bracket to increase clearance; move <b>down</b> a bracket if therapy is too efficient.</p>
+      <div class="bracket">
+        <div class="arrow up">
+          <span class="ico">↑</span>
+          <span>To <b>increase</b> clearance<br>move patient <b>up</b> a weight bracket</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th class="num">Weight (kg)</th><th class="num">Blood pump (mL/min)</th><th class="num">Dialysate (mL/h)</th><th class="num">Replacement (mL/h)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="num">80</td><td class="num">220</td><td class="num">1600</td><td class="num">200</td></tr>
+              <tr><td class="num">70</td><td class="num">200</td><td class="num">1400</td><td class="num">200</td></tr>
+              <tr><td class="num">60</td><td class="num">180</td><td class="num">1200</td><td class="num">200</td></tr>
+              <tr><td class="num">50</td><td class="num">150</td><td class="num">1000</td><td class="num">200</td></tr>
+              <tr><td class="num">45</td><td class="num">130</td><td class="num">900</td><td class="num">150</td></tr>
+              <tr><td class="num">40</td><td class="num">120</td><td class="num">800</td><td class="num">150</td></tr>
+              <tr><td class="num">35</td><td class="num">100</td><td class="num">700</td><td class="num">150</td></tr>
+              <tr><td class="num">30</td><td class="num">90</td><td class="num">600</td><td class="num">150</td></tr>
+              <tr><td class="num">25</td><td class="num">80</td><td class="num">500</td><td class="num">150</td></tr>
+              <tr><td class="num">25</td><td class="num">75</td><td class="num">500</td><td class="num">150</td></tr>
+              <tr><td class="num">20</td><td class="num">60</td><td class="num">400</td><td class="num">100</td></tr>
+              <tr><td class="num">15</td><td class="num">40</td><td class="num">300</td><td class="num">50</td></tr>
+              <tr><td class="num">12</td><td class="num">40</td><td class="num">250</td><td class="num">60</td></tr>
+              <tr><td class="num">12</td><td class="num">30</td><td class="num">250</td><td class="num">60</td></tr>
+              <tr><td class="num">11</td><td class="num">30</td><td class="num">200</td><td class="num">60</td></tr>
+              <tr><td class="num">10</td><td class="num">30</td><td class="num">200</td><td class="num">60</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="arrow down">
+          <span class="ico">↓</span>
+          <span>To <b>decrease</b> clearance<br>move patient <b>down</b> a weight bracket</span>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ============ 10 · FLUID REMOVAL ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">10</span><span class="ttl">Patient fluid removal rate (net balance)</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <ul>
+        <li>Calculated hourly from actual fluid balance, desired balance, and the patient's condition and stability.</li>
+        <li>Depends on input (nutrition, IV fluids, drugs) and output (urine, gastric, drains).</li>
+        <li>The Prismaflex continues at the set hourly rate until changed by staff — <b>the rate must be reviewed every hour</b>.</li>
+        <li>Beware of removing fluid too quickly.</li>
+      </ul>
+
+      <h3>How to calculate the programmed rate</h3>
+      <div class="note">
+        <b>Net fluid removal rate</b> = desired net removal (e.g. 0 mL/h = neutral balance; 10 mL/h = −10 mL/h to the patient).<br>
+        <b>Programmed rate</b> = net fluid removal rate <b>+</b> total hourly input (IV fluids, infusions, drugs).<br>
+        <em>Example: 45 mL/h of IV fluids and infusions + 10 mL/h net removal = program 55 mL/h.</em>
+      </div>
+      <ul>
+        <li><b>Do not</b> remove fluid given as a bolus to support blood pressure or replace intravascular loss.</li>
+        <li>Blood products given for volume should be added to the programmed fluid removal rate.</li>
+        <li>A <b>minus number</b> on the machine means it has gained that amount of fluid — common at commencement; it should readjust after a few minutes.</li>
+      </ul>
+
+      <div class="danger">
+        <b>EXTREME CAUTION</b> when setting the fluid loss rate. The Prismaflex will try to remove whatever is set — it cannot assess the effect on the patient and will continue removing fluid even when the patient is <b>hypovolaemic</b>. Extra caution in low body weight children. No paediatric CRRT equipment is accurate mL for mL.
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ============ 11 · MONITORING ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">11</span><span class="ttl">Monitoring — iCa algorithm, Ca ratio, acid–base, bloods</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3>Clinical monitoring</h3>
+      <ul>
+        <li>Examine haemodynamic status as soon as therapy is commenced; continuous cardiovascular and respiratory monitoring.</li>
+        <li>Observations hourly or half-hourly depending on stability.</li>
+        <li><b>Continuous temperature</b> measurement (centrally if able).</li>
+        <li>Arterial blood pressure monitoring is ideal (and required for regular patient iCa sampling).</li>
+        <li>CVP, pulse pressure variation and cardiac index if available.</li>
+        <li>Weigh daily (bed scales if possible).</li>
+        <li>Assess fluid status using <b>all</b> of: fluid balance, clinical examination (HR, ABP, CVP), biochemistry, haematocrit, weight.</li>
+      </ul>
+
+      <h3>Monitoring iCa — post-filter and patient</h3>
+      <ul>
+        <li>Take a blood sample from the <b>blue port on the circuit</b> (post-filter) and another from the <b>patient's arterial line</b> — <b>at the same time</b>.</li>
+        <li>Check within the first hour of commencing, then again <b>1 hour later</b> even if the first results are normal.</li>
+        <li>If both sets remain in range, monitor <b>4-hourly</b>.</li>
+        <li>After any change to citrate dose or calcium compensation, recheck both after <b>1 hour</b>.</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Patient iCa</th><th>Filter iCa &gt; 0.35</th><th>Filter iCa 0.25–0.35</th><th>Filter iCa &lt; 0.25</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>&lt; 1.0</b></td>
+              <td>Increase citrate dose by 0.5 mmol/L blood</td>
+              <td>Increase calcium compensation by 10%</td>
+              <td>Increase calcium compensation by 10%<br><b>Decrease</b> citrate dose by 0.5 mmol/L blood</td>
+            </tr>
+            <tr>
+              <td><b>1.0 – 1.3</b></td>
+              <td>Increase citrate dose by 0.5 mmol/L blood</td>
+              <td><b>Normal — ideal values, no change</b></td>
+              <td>Decrease citrate dose by 0.5 mmol/L blood</td>
+            </tr>
+            <tr>
+              <td><b>&gt; 1.3</b></td>
+              <td>Decrease calcium compensation by 10%</td>
+              <td>Decrease calcium compensation by 10%</td>
+              <td>Decrease calcium compensation by 10%<br>Decrease citrate dose by 0.5 mmol/L blood</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-cap">Reproduced from the guideline. Every change must be documented, checked by two nurses and signed on the prescription chart. If any result or intended adjustment is unclear, confirm with the renal critical care nurse or consultant before acting.</p>
+
+      <div class="note">If the citrate dose is reduced, the pre-blood pump and total effluent will reduce. If total effluent falls below <b>30 mL/kg/h</b>, gradually increase the replacement flow rate until a dose of 30 mL/kg/h is achieved.</div>
+      <div class="warn">Increasing calcium compensation requirements may indicate <b>citrate accumulation</b> — check the total calcium / iCa ratio.</div>
+
+      <h3>Total calcium : iCa ratio (calcium T:I ratio)</h3>
+      <p>Take total calcium with the morning bloods the morning after treatment has commenced; divide total calcium by patient iCa. Repeat daily once stable. <b>Inform the renal critical care nurse if ratio &gt; 2.5.</b></p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Calcium T:I ratio</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 2.5</td><td>No change needed — check daily</td></tr>
+            <tr><td>&gt; 2.5</td><td>Aim for post-filter iCa 0.35–0.40 mmol/L by decreasing the citrate dose in 0.5 mmol/L increments until the range is achieved; recheck the ratio 30 min after the change. If the ratio is still &gt; 2.5 after a 1 mmol/L decrease in citrate dose → see <b>Citrate accumulation</b> (§12).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Acid–base management — aim for pH 7.35–7.45</h3>
+      <p><b>Metabolic acidosis</b> (pH &lt; 7.35, BE &lt; −4 mmol/L, HCO₃ &lt; 22 mmol/L)</p>
+      <ul>
+        <li>Most AKI patients have some acidosis at commencement; it should improve over the first few hours.</li>
+        <li>If BE/HCO₃ fail to improve towards normal, consider:
+          <ul>
+            <li>Decreasing the dialysate rate by 50% from baseline (more citrate reaches the patient)</li>
+            <li>Increasing the blood flow rate (increases citrate delivery)</li>
+            <li>Systemic sodium bicarbonate</li>
+          </ul>
+        </li>
+        <li>These have different effects on clearance, citrate toxicity risk and cardiovascular status — discuss with consultant and renal critical care nurse.</li>
+      </ul>
+      <p><b>Metabolic alkalosis</b> (pH &gt; 7.45, BE &gt; +4 mmol/L, HCO₃ &gt; 25 mmol/L)</p>
+      <ul>
+        <li>Occurs from citrate metabolism to bicarbonate (1 mmol citrate → 3 mmol bicarbonate) plus bicarbonate in the dialysate. May indicate citrate accumulation — <b>check the calcium T:I ratio</b>.</li>
+        <li>Consider doubling baseline dialysate flow (increases citrate clearance) or decreasing blood flow (minimum 20 mL/min) — discuss with consultant and renal critical care nurse.</li>
+      </ul>
+
+      <h3>Bloods — what and when</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Test</th><th>Target</th><th>Timing</th></tr></thead>
+          <tbody>
+            <tr><td>Post-filter iCa (blood gas, blue port)</td><td>0.25–0.35 mmol/L (up to 0.40 accepted)</td><td>Within first hour, 1 h later, then 4-hourly once stable</td></tr>
+            <tr><td>Patient systemic iCa (blood gas, arterial line)</td><td>1.0–1.3 mmol/L</td><td>Same times — <b>must be taken at the same time as the post-filter sample</b></td></tr>
+            <tr><td>Patient total calcium (not corrected)</td><td>2.2–2.5 mmol/L</td><td>With morning bloods the day after commencing, then daily</td></tr>
+            <tr><td>Calcium ratio (total Ca / systemic iCa)</td><td>&lt; 2.5</td><td>Daily once stable</td></tr>
+            <tr><td>Arterial blood gas (pH, lactate, HCO₃, Na, K, glucose, iCa)</td><td>—</td><td>Within first hour, 1 h later, then 4-hourly once stable</td></tr>
+            <tr><td>U&amp;E including calcium, magnesium, phosphate</td><td>—</td><td>Daily (morning bloods)</td></tr>
+            <tr><td>Clotting</td><td>—</td><td>Every 12 hours</td></tr>
+            <tr><td>FBC</td><td>—</td><td>Daily</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Other considerations during therapy</h3>
+      <ul>
+        <li><b>Drug handling:</b> filtration removes non-protein-bound, water-soluble drugs; adding dialysate increases diffusive removal. Check dose changes with a pharmacist. <b>IVIG does not pass through the haemofilter.</b></li>
+        <li><b>Temperature control:</b> set the sleeve heater 1–2 °C above the desired patient temperature on the return line. Beware of the heater masking pyrexia. Leave part of the line exposed near the catheter so air remains visible. Additional warming may be needed.</li>
+        <li><b>Asepsis:</b> aseptic technique when connecting/disconnecting vascular access.</li>
+      </ul>
+    </div></div>
+  </section>
+
+  <!-- ============ 12 · PROBLEMS ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="true">
+      <span class="num">12</span><span class="ttl">Potential problems &amp; emergencies</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <h3>Emergency disconnection</h3>
+      <p>Required if lines have clotted, technical failure, or evacuation of the unit. Consider wash-back. If time allows, disconnect and flush/lock the CVVH catheter with heparin or at least sodium chloride 0.9%.</p>
+
+      <h3>Cardiac arrest</h3>
+      <ul>
+        <li>Stop treatment; aspirate, flush and lock the line as time allows.</li>
+        <li>Wash-back of circuit blood may be an option if deemed necessary for the patient.</li>
+        <li>Continuing filtration may be appropriate in some circumstances (e.g. life-threatening <b>hyperkalaemia</b>).</li>
+        <li>Haemofiltration catheters are central venous access and can be used instead of standard central lines in an emergency.</li>
+      </ul>
+
+      <h3>Air embolism</h3>
+      <ul>
+        <li>Attempt to aspirate air using the central line.</li>
+        <li>Place the patient on their <b>left side, head down</b>.</li>
+        <li>Summon emergency assistance.</li>
+      </ul>
+
+      <h3>Citrate accumulation</h3>
+      <p>Occurs when the body fails to metabolise citrate effectively, or the citrate infusion rate exceeds the clearance capacity of the liver and haemofilter. Result: <b>rising total calcium with falling patient iCa and a calcium T:I ratio &gt; 2.5</b>.</p>
+      <p>If the ratio remains high despite the steps in §11:</p>
+      <ol>
+        <li>Reduce the citrate dose to <b>1.5 mmol/L</b></li>
+        <li>Repeat the ratio after <b>30 minutes</b></li>
+        <li>If still &gt; 2.5, <b>double the baseline dialysate flow</b> (increases citrate clearance)</li>
+        <li>Decrease blood pump speed (minimum 20 mL/min) — reduces total citrate administered</li>
+        <li>If improvement is seen, restart citrate at <b>70% of the previous dose</b></li>
+        <li>Monitor circuit iCa <b>hourly</b> to ensure adequate anticoagulation</li>
+      </ol>
+      <div class="danger">If the calcium T:I ratio remains high despite these actions, <b>do not restart citrate</b> — discuss converting to an alternative anticoagulation with the consultant.</div>
+    </div></div>
+  </section>
+
+  <!-- ============ APPENDIX A · HEPARIN ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">A</span><span class="ttl">Appendix A — CVVH/CVVHDF with heparin anticoagulation</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <p>Used only when citrate is contraindicated (e.g. citrate accumulation).</p>
+
+      <h3>Properties</h3>
+      <ul>
+        <li>Inhibits coagulation by preventing conversion of prothrombin to thrombin and fibrinogen to fibrin; acts almost immediately IV; clotting time returns to normal 2–6 hours after stopping.</li>
+        <li>Binds extensively to plasma proteins; activated in the liver, excreted in urine.</li>
+        <li>Reversed by <b>protamine sulphate</b> — dose depends on the heparin rate (see BNFC); base the protamine dose on the cumulative heparin dose over the previous 2 hours.</li>
+      </ul>
+
+      <h3>Administration</h3>
+      <ul>
+        <li>Given into the dedicated heparin infusion line on the <b>access side</b> of the circuit.</li>
+        <li>Initial bolus (if appropriate) as blood reaches the pre-filter port, then a continuous infusion.</li>
+        <li>Made up in a <b>50 mL syringe</b>.</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Pre-treatment ACT</th><th>Bolus loading dose</th><th>Maintenance infusion (strength)</th><th>Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Normal: ACT &lt; 180</td><td>25–50 units/kg</td><td>100 units/kg in 40 mL sodium chloride 0.9%</td><td>2 mL/h = 5 units/kg/h (range 2–10 mL/h)</td></tr>
+            <tr><td>Abnormal: ACT 180–200</td><td>12.5 units/kg</td><td>50 units/kg in 40 mL sodium chloride 0.9%</td><td>2 mL/h = 2.5 units/kg/h (range 2–10 mL/h)</td></tr>
+            <tr><td>Abnormal: ACT &gt; 200</td><td>No bolus</td><td>50 units/kg in 40 mL sodium chloride 0.9%</td><td>2 mL/h = 2.5 units/kg/h (range 2–10 mL/h)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Monitoring</h3>
+      <ul>
+        <li>Anticoagulation is monitored by <b>ACT</b> (Actalyke MINI).</li>
+        <li>A pre-filtration, non-heparinised clotting time must be taken at initial catheter insertion — individuals respond differently to the same dose. <b>Initial ACT should be 100–130 seconds.</b></li>
+        <li>Check ACT 1–2 hourly thereafter; keep within the limits set on the prescription chart.</li>
+        <li><b>Maximum concentration</b> 100 units/kg/40 mL; <b>maximum rate</b> 10 mL/h (25 units/kg/h). If ACTs remain low at this maximum rate, review and amend the target range and document it.</li>
+        <li>ACT low → risk of thrombosis/clotting (circuit and patient). ACT too high → risk of bleeding.</li>
+        <li>Monitor laboratory clotting closely; if deranged, the ACT target may need review and reduction.</li>
+      </ul>
+
+      <h3>Contraindications</h3>
+      <p>Active bleeding · imminent or recent surgery · coagulopathies (e.g. thrombocytopenia, especially septic/oncology) · heparin-induced thrombocytopenia (HIT) · DIC · liver disease · haemophilia · diabetes · pericarditis.</p>
+      <p class="muted"><small>CRRT may be carried out in these circumstances with minimal/no heparin or an alternative such as epoprostenol (Appendix B).</small></p>
+
+      <h3>Flow rates with heparin</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parameter</th><th>Guidance</th></tr></thead>
+          <tbody>
+            <tr><td>Blood flow</td><td>Standard 6–9 mL/kg/min (12–15 mL/kg/min in low weight babies); minimum 30 mL/min. In patients &gt; 30 kg aim for 180–240 mL/min; higher rates are not always achievable or necessary. Adjust in high-flow CRRT to compensate for haemoconcentration of the filter.</td></tr>
+            <tr><td>Replacement (convection — middle/large molecules)</td><td>Standard 30 mL/kg/h, programmed as 10 mL/kg/h pre-blood pump + 20 mL/kg/h replacement. Up to 100 mL/kg/h in sepsis and hyperammonaemia (increase incrementally, monitor closely). Increasing % pre-dilution may help filter problems (max 90% pre / 10% post).</td></tr>
+            <tr><td>Dialysate (diffusion — small molecules, urea/ammonia)</td><td>Standard 20 mL/kg/h; may increase to 50 mL/kg/h incrementally with close monitoring.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted"><small>In AKI there is no evidence supporting one mode over another; a combination of convection and diffusion optimises removal of small and medium molecules. Typical starting prescription for fluid overload/oliguria: 30 mL/kg/h convection, plus 20 mL/kg/h diffusion in SIRS/sepsis.</small></p>
+    </div></div>
+  </section>
+
+  <!-- ============ APPENDIX B · EPOPROSTENOL ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">B</span><span class="ttl">Appendix B — CVVH/CVVHDF with epoprostenol anticoagulation</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <p>Use if the patient has contraindications to <b>both</b> citrate and heparin; may also be combined with heparin if heparin alone is inadequate. Epoprostenol anticoagulates the patient (and therefore the blood travelling through the circuit).</p>
+
+      <h3>Properties</h3>
+      <ul>
+        <li>Prostaglandin and potent inhibitor of platelet aggregation — dose related; half-life ~6 minutes.</li>
+        <li><b>ACTs are not affected</b> — do not use ACT to titrate the epoprostenol rate (overall coagulation status may still be checked regularly).</li>
+        <li>Potentiates heparin by ~50%, possibly by reducing release of heparin-neutralising factor.</li>
+        <li>If blood pressure is supported with inotropes, titrate these upwards before reducing the epoprostenol dose.</li>
+        <li><b>Never give a bolus</b> (systemic effects).</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Regimen</th><th>Dose</th></tr></thead>
+          <tbody>
+            <tr><td>Starting dose</td><td>4 nanogram/kg/min</td></tr>
+            <tr><td>Without heparin</td><td>Start 4 ng/kg/min; if filter life &lt; 48 hours increase by 2 ng/kg/min. Usual maximum 8 ng/kg/min (up to 10 ng/kg/min has been used).</td></tr>
+            <tr><td>In combination with heparin</td><td>Start 4 ng/kg/min; if filter life &lt; 36 hours increase by 2 ng/kg/min; maximum 8 ng/kg/min. Heparin prescribed and adjusted by ACT per this guideline.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warn"><b>Administration:</b> epoprostenol must be delivered <b>directly to the patient, not through the Prismaflex machine</b>. Use a dedicated central line; if access is difficult, add a 3-way tap on the return line of the circuit.</div>
+
+      <h3>Contraindications / cautions</h3>
+      <ul>
+        <li>Treat any hypovolaemia before commencing the infusion.</li>
+        <li>Avoid sudden withdrawal — risk of rebound pulmonary hypertension.</li>
+        <li>Contraindicated in severe left ventricular dysfunction and pulmonary veno-occlusive disease.</li>
+        <li>Inhibition of platelet aggregation can cause unwanted bleeding — monitor coagulation carefully, especially with other anticoagulants.</li>
+        <li>Vasodilator effect may be augmented by, or augment, other vasodilators.</li>
+        <li>Caution with abnormal coagulation.</li>
+      </ul>
+      <p class="muted"><small>See the SC(NHS)FT Epoprostenol Administration guideline for further information.</small></p>
+    </div></div>
+  </section>
+
+  <!-- ============ APPENDIX C · ADDITIVES / HYPERNATRAEMIA ============ -->
+  <section class="card">
+    <button class="acc-head" aria-expanded="false">
+      <span class="num">C</span><span class="ttl">Appendix C — Additives &amp; management of hypernatraemia</span><span class="chev">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-inner">
+      <p>Additives should only be added to fluid bags used with <b>heparin or epoprostenol</b> anticoagulation. Additives are prescribed <b>per litre</b> of fluid as a total dose — take care when making up. More frequent blood sampling is required when additives are used.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Electrolyte</th><th>Indication</th><th>Additive</th></tr></thead>
+          <tbody>
+            <tr><td>Phosphate</td><td>Serum phosphate &lt; 2 mmol/L</td><td>Sodium glycerophosphate 1 mmol/L (5 mmol added to a 5 litre bag)</td></tr>
+            <tr><td>Glucose</td><td>Serum glucose &lt; 6 mmol/L</td><td>Glucose 1.1 g/L (6 mmol/L) — 5.5 g glucose to a 5 litre bag of Hemosol B0 = add 11 mL of 50% glucose</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Hypernatraemia on CRRT</h3>
+      <p>Sodium may need to be added to replacement/dialysate fluid so that serum sodium does not fall too quickly (standard bags contain 140 mmol/L). Document the addition clearly on the CVVH/CVVHDF Daily Prescription and Record Chart and monitor serum sodium closely.</p>
+      <ul>
+        <li><b>Citrate circuits:</b> if plasma sodium &gt; 150 mmol/L, add sodium to <b>PrismOcal B22 / Phoxilium</b>. Sodium must <b>NOT</b> be added to the Prismocitrate 18/0 bag.</li>
+        <li><b>Heparin circuits:</b> if plasma sodium &gt; 160 mmol/L, add sodium to <b>Prismasol 4 / Hemosol B0</b>.</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Target Na⁺ (mmol/L)</th><th>Addition to 5 litre bag</th></tr></thead>
+          <tbody>
+            <tr><td class="num">150</td><td>10 mL sodium chloride 30%</td></tr>
+            <tr><td class="num">155</td><td>15 mL sodium chloride 30%</td></tr>
+            <tr><td class="num">160</td><td>20 mL sodium chloride 30%</td></tr>
+            <tr><td class="num">165</td><td>25 mL sodium chloride 30%</td></tr>
+            <tr><td class="num">170</td><td>30 mL sodium chloride 30%</td></tr>
+            <tr><td class="num">175</td><td>35 mL sodium chloride 30%</td></tr>
+            <tr><td class="num">180</td><td>40 mL sodium chloride 30%</td></tr>
+            <tr><td class="num">185</td><td>45 mL sodium chloride 30%</td></tr>
+            <tr><td class="num">190</td><td>50 mL sodium chloride 30%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-cap"><b>Remove the same volume</b> from the replacement/dialysate bag before adding (e.g. for a target of 150 mmol/L, remove 10 mL then add 10 mL sodium chloride 30%). Sodium chloride 30% contains <b>5 mmol/mL</b> of sodium.</p>
+    </div></div>
+  </section>
+
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h2>Source / reference</h2>
+    <p>
+      <strong>Peace K.</strong> <em>Guideline for the use of Continuous Veno-Venous Haemofiltration (CVVH) and Continuous Veno-Venous Haemodiafiltration (CVVHDF) within the Paediatric Critical Care Unit.</em>
+      Sheffield Children's Hospital NHS Foundation Trust — Paediatric Critical Care Unit. Written by Kate Peace; peer reviewed by Paula Avram &amp; Karen Bourne; approved May 2022. Based on the Nottingham Children's Hospital PCCU guideline for CVVH and CVVHDF (K. Peace, 2020).
+    </p>
+    <p class="tiny">
+      This page is an unofficial quick-reference summary of the document above, prepared for anaesthetists and intensivists. It does not replace the full guideline, the CVVH/CVVHDF daily prescription and record chart, or local policy. Always confirm doses, fluids, flow rates and machine settings against the original document and with the renal critical care nurse, pharmacist or consultant.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------- Accordion ---------------- */
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+
+  cards.forEach(function (card) {
+    var head = card.querySelector('.acc-head');
+    if (!head) return;
+    head.addEventListener('click', function () {
+      var closed = card.classList.toggle('closed');
+      head.setAttribute('aria-expanded', closed ? 'false' : 'true');
+    });
+  });
+
+  function setAll(open) {
+    cards.forEach(function (card) {
+      card.classList.toggle('closed', !open);
+      var head = card.querySelector('.acc-head');
+      if (head) head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+  document.getElementById('expandAll').addEventListener('click', function () { setAll(true); });
+  document.getElementById('collapseAll').addEventListener('click', function () { setAll(false); });
+
+  /* ---------------- Text size ---------------- */
+  var rootStyle = document.documentElement.style;
+  var fs = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('--fs')) || 15.5;
+  var stored = localStorage.getItem('cvvh_fs');
+  if (stored) { fs = parseFloat(stored) || fs; }
+
+  function applyFs() {
+    fs = Math.min(23, Math.max(12, fs));
+    rootStyle.setProperty('--fs', fs + 'px');
+    try { localStorage.setItem('cvvh_fs', String(fs)); } catch (e) {}
+  }
+  applyFs();
+
+  document.getElementById('fsUp').addEventListener('click', function () { fs += 1; applyFs(); });
+  document.getElementById('fsDown').addEventListener('click', function () { fs -= 1; applyFs(); });
+  document.getElementById('fsReset').addEventListener('click', function () { fs = 15.5; applyFs(); });
+
+  /* ---------------- Search ---------------- */
+  var content = document.getElementById('content');
+  var input = document.getElementById('search');
+  var countEl = document.getElementById('count');
+  var marks = [];
+  var cur = -1;
+  var debounceTimer = null;
+
+  function escapeReg(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function clearMarks() {
+    var old = content.querySelectorAll('mark.hl');
+    for (var i = old.length - 1; i >= 0; i--) {
+      var m = old[i];
+      var parent = m.parentNode;
+      if (!parent) continue;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    }
+    marks = [];
+    cur = -1;
+  }
+
+  function updateCount() {
+    if (!marks.length) {
+      countEl.textContent = input.value.trim().length >= 2 ? 'No matches' : '0 / 0';
+    } else {
+      countEl.textContent = (cur + 1) + ' / ' + marks.length;
+    }
+  }
+
+  function openAncestors(el) {
+    var card = el.closest ? el.closest('.card') : null;
+    while (card) {
+      card.classList.remove('closed');
+      var h = card.querySelector('.acc-head');
+      if (h) h.setAttribute('aria-expanded', 'true');
+      card = card.parentElement ? card.parentElement.closest('.card') : null;
+    }
+  }
+
+  function jumpTo(index, smooth) {
+    if (!marks.length) { updateCount(); return; }
+    if (cur >= 0 && marks[cur]) marks[cur].classList.remove('current');
+    cur = (index + marks.length) % marks.length;
+    var m = marks[cur];
+    m.classList.add('current');
+    openAncestors(m);
+    m.scrollIntoView({ block: 'center', behavior: smooth ? 'smooth' : 'auto' });
+    updateCount();
+  }
+
+  function highlight(query) {
+    clearMarks();
+    var q = query.trim();
+    if (q.length < 2) { updateCount(); return; }
+
+    var walker = document.createTreeWalker(
+      content,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: function (node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          var p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName.toUpperCase();
+          if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      },
+      false
+    );
+
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    var re = new RegExp(escapeReg(q), 'gi');
+
+    textNodes.forEach(function (node) {
+      var text = node.nodeValue;
+      re.lastIndex = 0;
+      var match, last = 0, found = false;
+      var frag = document.createDocumentFragment();
+
+      while ((match = re.exec(text)) !== null) {
+        found = true;
+        if (match.index > last) {
+          frag.appendChild(document.createTextNode(text.slice(last, match.index)));
+        }
+        var mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = match[0];
+        frag.appendChild(mark);
+        marks.push(mark);
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+
+      if (found) {
+        if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+        node.parentNode.replaceChild(frag, node);
+      }
+    });
+
+    if (marks.length) {
+      jumpTo(0, false);
+    } else {
+      updateCount();
+    }
+  }
+
+  input.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () { highlight(input.value); }, 180);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (marks.length) {
+        jumpTo(e.shiftKey ? cur - 1 : cur + 1, true);
+      } else {
+        clearTimeout(debounceTimer);
+        highlight(input.value);
+      }
+    }
+    if (e.key === 'Escape') {
+      input.value = '';
+      clearMarks();
+      updateCount();
+      input.blur();
+    }
+  });
+
+  document.getElementById('next').addEventListener('click', function () {
+    if (marks.length) jumpTo(cur + 1, true);
+  });
+  document.getElementById('prev').addEventListener('click', function () {
+    if (marks.length) jumpTo(cur - 1, true);
+  });
+  document.getElementById('clearSearch').addEventListener('click', function () {
+    input.value = '';
+    clearMarks();
+    updateCount();
+    input.focus();
+  });
+
+  /* "/" focuses the search box */
+  document.addEventListener('keydown', function (e) {
+    var tag = (document.activeElement && document.activeElement.tagName) || '';
+    if (e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA') {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+
+  updateCount();
+})();
+</script>
+</body>
+</html>
