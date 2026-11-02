@@ -201,6 +201,22 @@ mark{background:#FFE97A;color:#111;border-radius:3px;padding:0 .12em;font-weight
 .st-moderate{background:#FFCF00;color:#3a2f00;border-color:#E0B500;box-shadow:0 2px 0 #E0B500;}
 .st-poor{background:#D5121A;color:#fff;border-color:#A80E14;box-shadow:0 2px 0 #A80E14;}
 
+/* ★ memory-palace toggle */
+.mp-btn{
+  flex:0 0 auto;cursor:pointer;line-height:1;
+  font-size:.62rem;font-weight:900;letter-spacing:.4px;text-transform:uppercase;
+  padding:.32rem .5rem;border-radius:999px;white-space:nowrap;
+  border:2px dashed #C9B3E8;background:#F7F4FC;color:#8A74AD;
+  transition:transform .08s,filter .15s,background .15s,color .15s,box-shadow .15s;
+}
+.mp-btn:hover{filter:brightness(.96);}
+.mp-btn:active{transform:scale(.95);}
+.mp-btn.on{
+  background:#6C3FA0;color:#fff;border:2px solid #4B2A78;box-shadow:0 2px 0 #4B2A78;
+}
+.chip.mp{background:#EFE8F9;color:#4B2A78;border-color:#C9B3E8;}
+#mpBar{height:100%;width:0;background:linear-gradient(90deg,#6C3FA0,#B39DDB);transition:width .3s;}
+
 footer{text-align:center;font-size:.72rem;color:#7a7a7a;padding:1.5rem 1rem 3rem;line-height:1.7;}
 footer b{color:#444;}
 footer a{color:#0B5FA5;text-decoration:none;font-weight:700;}
@@ -318,6 +334,7 @@ footer a:hover{text-decoration:underline;}
   .logo{width:2.7rem;height:2.7rem;font-size:.6rem;}
   .topic{font-size:.8rem;}
   .status{font-size:.6rem;padding:.25rem .42rem;}
+  .mp-btn{font-size:.55rem;padding:.26rem .4rem;}
   .sec-head{font-size:.85rem;}
   .qs li{font-size:.74rem;}
   .qtext{font-size:.95rem;}
@@ -367,7 +384,14 @@ footer a:hover{text-decoration:underline;}
       <span class="chip clickable st-moderate" data-filter="moderate" title="Only ✓ Moderate topics">✓ <b id="cMod">0</b></span>
       <span class="chip clickable st-poor" data-filter="poor" title="Only ✕ Poor topics">✕ <b id="cPoor">0</b></span>
       <span class="chip clickable st-none" data-filter="none" title="Only unmarked topics">○ <b id="cNone">0</b></span>
-      <div class="progress"><div id="bar"></div></div>
+            <div class="progress"><div id="bar"></div></div>
+
+      <span class="chip mp" title="Memory palaces made / total topics">
+        🏛 MP <b id="cMp">0</b>/<b id="cMpTotal">0</b>
+      </span>
+      <div class="progress" title="Memory palace progress" style="flex:0 1 70px;">
+        <div id="mpBar"></div>
+      </div>
     </div>
   </div>
 </header>
@@ -420,11 +444,13 @@ footer a:hover{text-decoration:underline;}
 
       <div class="qmark">
         <span class="lbl">How did you do?</span>
-        <span id="qMarkRow" style="display:flex;gap:.35rem;flex-wrap:wrap;">
+               <span id="qMarkRow" style="display:flex;gap:.35rem;flex-wrap:wrap;">
           <button class="status st-excellent" data-qmark="excellent"><span class="st-sym">✓✓</span><span class="st-txt">Excellent</span></button>
           <button class="status st-moderate"  data-qmark="moderate"><span class="st-sym">✓</span><span class="st-txt">Moderate</span></button>
           <button class="status st-poor"      data-qmark="poor"><span class="st-sym">✕</span><span class="st-txt">Poor</span></button>
         </span>
+        <button class="mp-btn" id="qMpBtn" type="button"
+                title="Memory palace made for this topic">🏛 MP</button>
       </div>
 
       <p style="font-size:.72rem;color:#6b7280;margin:.75rem 0 0;">
@@ -2648,6 +2674,11 @@ const USER_KEY   = "frca-lego-userdata-v3";
 let marks = {};
 try { marks = JSON.parse(localStorage.getItem(STORE_KEY) || "{}"); } catch(e){ marks = {}; }
 
+/* --- ★ memory palace flags --- */
+const MP_KEY = "frca-lego-mp-v3";
+let mp = {};
+try { mp = JSON.parse(localStorage.getItem(MP_KEY) || "{}"); } catch(e){ mp = {}; }
+
 /* --- question open state --- */
 let qsOpen = false;
 let qsOverrides = {};
@@ -2734,6 +2765,17 @@ function esc(s){
 }
 function saveMarks(){
   try { localStorage.setItem(STORE_KEY, JSON.stringify(marks)); } catch(e){}
+}
+function saveMp(){
+  try { localStorage.setItem(MP_KEY, JSON.stringify(mp)); } catch(e){}
+}
+function toggleMp(topicId){
+  if(mp[topicId]) delete mp[topicId]; else mp[topicId] = true;
+  saveMp();
+  toc.querySelectorAll('.mp-btn[data-mp="' + CSS.escape(topicId) + '"]')
+     .forEach(b => b.classList.toggle("on", !!mp[topicId]));
+  updateCounters();
+    if(qOverlay.classList.contains("show")) refreshQMarkButtons();
 }
 function saveQs(){
   try { localStorage.setItem(QS_KEY, JSON.stringify(qsOverrides)); } catch(e){}
@@ -2852,10 +2894,12 @@ function buildTOC(){
                             title="${hasQ?"Show / hide questions":"No questions recorded"}"
                             ${hasQ?"":"disabled style='opacity:.25'"}>▶</button>`;
         html += `    <span class="topic-title">${esc(t.title)}</span>`;
-        html += `    <button class="edit-btn" type="button" data-edit="${esc(t.id)}"
+                html += `    <button class="edit-btn" type="button" data-edit="${esc(t.id)}"
                             title="Edit / delete this topic">✎</button>`;
+        html += `    <button class="mp-btn${mp[t.id] ? " on" : ""}" type="button" data-mp="${esc(t.id)}"
+                            title="Have you built a memory palace for this topic?">🏛 MP</button>`;
         html += `    <button class="status st-none" type="button" data-status="${esc(t.id)}"
-                            title="Click to cycle: Excellent → Moderate → Poor → clear"
+        title="Click to cycle: Excellent → Moderate → Poor → clear"
                             aria-label="Mark topic ${esc(t.title)}">
                        <span class="st-sym">○</span><span class="st-txt">Mark</span>
                      </button>`;
@@ -2932,8 +2976,21 @@ function updateCounters(){
 
   const total = exc+mod+poor+none;
   const done  = exc+mod+poor;
-  const pct   = total ? Math.round((done/total)*100) : 0;
+    const pct   = total ? Math.round((done/total)*100) : 0;
   document.getElementById("bar").style.width = pct + "%";
+
+  /* ★ memory-palace progress */
+  let mpDone = 0, mpTotal = 0;
+  toc.querySelectorAll(".mp-btn").forEach(b=>{
+    mpTotal++;
+    if(mp[b.dataset.mp]) mpDone++;
+  });
+  const cMp      = document.getElementById("cMp");
+  const cMpTotal = document.getElementById("cMpTotal");
+  const mpBar    = document.getElementById("mpBar");
+  if(cMp)      cMp.textContent = mpDone;
+  if(cMpTotal) cMpTotal.textContent = mpTotal;
+  if(mpBar)    mpBar.style.width = (mpTotal ? (mpDone/mpTotal)*100 : 0) + "%";
 }
 function cycleStatus(btn){
   const id  = btn.dataset.status;
@@ -3198,13 +3255,15 @@ function nextQuestion(){
     ? pool.length + " question" + (pool.length===1?"":"s") + " available"
     : "0 questions available";
 
-  if(!pool.length){
+    if(!pool.length){
     currentQ = null;
     qText.textContent = "No questions match this scope. Try a different option above.";
     qReveal.classList.remove("show");
     qReveal.innerHTML = "";
     qRevealBtn.disabled = true;
     qMarkRow.querySelectorAll(".status").forEach(b=>b.classList.remove("sel"));
+    const qmp0 = document.getElementById("qMpBtn");
+    if(qmp0) qmp0.classList.remove("on");
     return;
   }
   qRevealBtn.disabled = false;
@@ -3249,8 +3308,9 @@ function refreshQMarkButtons(){
   qMarkRow.querySelectorAll(".status").forEach(b=>{
     b.classList.toggle("sel", b.dataset.qmark === v);
   });
+  const qmp = document.getElementById("qMpBtn");
+  if(qmp) qmp.classList.toggle("on", !!(currentQ && mp[currentQ.topicId]));
 }
-
 /* =========================================================
    MARKED TOPICS LIST
    ========================================================= */
@@ -3498,7 +3558,9 @@ function deleteEdit(){
   }
   delete userStore.edits[tid];
   delete marks[tid];
+  delete mp[tid];
   saveMarks();
+  saveMp();
 
   saveUser();
   rebuildAll();
@@ -3549,10 +3611,13 @@ toc.addEventListener("click", e=>{
   const ed = e.target.closest(".edit-btn");
   if(ed){ e.stopPropagation(); openEditTopic(ed.dataset.edit); return; }
 
+    /* ★ memory palace */
+  const mpb = e.target.closest(".mp-btn");
+  if(mpb){ e.stopPropagation(); toggleMp(mpb.dataset.mp); return; }
+
   /* status */
   const st = e.target.closest(".status");
   if(st){ cycleStatus(st); return; }
-
   /* topic chevron */
   const chev = e.target.closest(".topic-chev");
   if(chev){
@@ -3637,6 +3702,10 @@ document.getElementById("qOpenTopic").addEventListener("click", ()=>{
 qScope.addEventListener("change", ()=>{
   qHistory = [];
   nextQuestion();
+});
+  document.getElementById("qMpBtn").addEventListener("click", ()=>{
+  if(!currentQ) return;
+  toggleMp(currentQ.topicId);
 });
 qMarkRow.addEventListener("click", e=>{
   const b = e.target.closest(".status");
