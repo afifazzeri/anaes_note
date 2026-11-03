@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🧱 LEGO Crush Guide — Oral Medication Crushing Quick Reference</title>
+<meta name="description" content="Crushable / non-crushable oral medication quick reference & calculator for anaesthetists and intensivists.">
+<style>
+/* ============================================================
+   LEGO THEME — Crush Guide
+   ============================================================ */
+:root{
+  --yellow:#FFCF00;
+  --red:#D01012;
+  --blue:#0057B8;
+  --green:#00852B;
+  --amber:#FF8A00;
+  --dark:#1B2A34;
+  --grey:#8A94A0;
+  --paper:#EEF1F5;
+  --radius:.6rem;
+}
+html{ font-size:15px; }           /* JS-controlled for text resize */
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;
+  color:var(--dark);
+  background-color:var(--paper);
+  background-image:radial-gradient(circle, rgba(0,0,0,.055) 32%, transparent 34%);
+  background-size:26px 26px;
+  line-height:1.45;
+}
+
+/* ---------- Header brick ---------- */
+header.lego-head{
+  background:linear-gradient(180deg,#e62225,#c00d10);
+  color:#fff;
+  padding:0 0 1.1rem;
+  box-shadow:0 .45rem 0 rgba(0,0,0,.22);
+  position:relative;
+}
+.stud-strip{
+  height:1rem;
+  background-image:radial-gradient(circle at 1rem .62rem, #e62225 0 .42rem, transparent .44rem);
+  background-size:2rem 1rem;
+  background-repeat:repeat-x;
+  background-position:center bottom;
+}
+.head-inner{ max-width:1200px; margin:0 auto; padding:.4rem 1rem 0; }
+header h1{
+  margin:.2rem 0 .1rem;
+  font-size:1.85rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  text-shadow:0 .14rem 0 rgba(0,0,0,.35);
+}
+header h1 .brick-emoji{ filter:drop-shadow(0 .1rem 0 rgba(0,0,0,.3)); }
+header p.sub{ margin:0; font-size:.92rem; opacity:.95; }
+.pill-row{ display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.7rem; }
+.pill{
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:2rem;
+  padding:.16rem .7rem;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+/* ---------- Toolbar ---------- */
+.toolbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(238,241,245,.94);
+  backdrop-filter:blur(6px);
+  border-bottom:.22rem solid var(--blue);
+  box-shadow:0 .25rem 0 rgba(0,0,0,.08);
+}
+.toolbar-inner{
+  max-width:1200px; margin:0 auto; padding:.6rem 1rem;
+  display:flex; flex-wrap:wrap; gap:.55rem; align-items:center;
+}
+.search-wrap{ position:relative; flex:1 1 20rem; min-width:14rem; }
+.search-wrap input{
+  width:100%;
+  padding:.62rem .8rem .62rem 2.1rem;
+  font-size:1rem;
+  font-family:inherit;
+  border:.18rem solid var(--dark);
+  border-radius:var(--radius);
+  background:#fff;
+  box-shadow:inset 0 .15rem 0 rgba(0,0,0,.06);
+  outline:none;
+}
+.search-wrap input:focus{ border-color:var(--blue); box-shadow:0 0 0 .18rem rgba(0,87,184,.25); }
+.search-wrap::before{
+  content:"🔍";
+  position:absolute; left:.6rem; top:50%; transform:translateY(-50%);
+  font-size:.95rem; pointer-events:none;
+}
+
+/* ---------- LEGO buttons ---------- */
+.btn{
+  font-family:inherit;
+  font-weight:800;
+  font-size:.8rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--dark);
+  background:var(--yellow);
+  border:none;
+  border-radius:var(--radius);
+  padding:.52rem .8rem;
+  cursor:pointer;
+  box-shadow:0 .26rem 0 rgba(0,0,0,.3), inset 0 .12rem 0 rgba(255,255,255,.55);
+  transition:transform .07s ease, box-shadow .07s ease, background .15s;
+  user-select:none;
+}
+.btn:hover{ filter:brightness(1.06); }
+.btn:active{ transform:translateY(.2rem); box-shadow:0 .06rem 0 rgba(0,0,0,.3), inset 0 .12rem 0 rgba(255,255,255,.55); }
+.btn.blue{ background:var(--blue); color:#fff; }
+.btn.green{ background:var(--green); color:#fff; }
+.btn.red{ background:var(--red); color:#fff; }
+.btn.amber{ background:var(--amber); }
+.btn.ghost{ background:#fff; box-shadow:0 .26rem 0 rgba(0,0,0,.18), inset 0 0 0 .12rem rgba(0,0,0,.12); }
+.btn.small{ padding:.34rem .55rem; font-size:.72rem; }
+.btn[aria-pressed="true"]{ outline:.2rem solid var(--dark); outline-offset:.1rem; }
+
+/* ---------- Filter chips ---------- */
+.chips{ display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; }
+.chip{
+  font-family:inherit; font-weight:800; font-size:.72rem;
+  text-transform:uppercase; letter-spacing:.03em;
+  border:none; cursor:pointer;
+  border-radius:2rem; padding:.35rem .75rem;
+  background:#fff; color:var(--dark);
+  box-shadow:0 .2rem 0 rgba(0,0,0,.18), inset 0 0 0 .1rem rgba(0,0,0,.1);
+}
+.chip[aria-pressed="true"]{ background:var(--dark); color:#fff; box-shadow:0 .2rem 0 rgba(0,0,0,.35); }
+
+/* ---------- Main ---------- */
+main{ max-width:1200px; margin:0 auto; padding:1rem; }
+
+/* ---------- Decision flow diagram ---------- */
+.flow{
+  background:#fff;
+  border-radius:var(--radius);
+  padding:.9rem 1rem 1.1rem;
+  box-shadow:0 .3rem 0 rgba(0,0,0,.14), inset 0 0 0 .12rem rgba(0,0,0,.06);
+  margin-bottom:1rem;
+}
+.flow h2{
+  margin:0 0 .7rem; font-size:.95rem; text-transform:uppercase; letter-spacing:.06em;
+  display:flex; align-items:center; gap:.45rem;
+}
+.flow-row{ display:flex; flex-wrap:wrap; align-items:stretch; gap:.55rem; }
+.flow-node{
+  flex:1 1 12rem;
+  border-radius:var(--radius);
+  padding:.6rem .75rem;
+  font-size:.82rem;
+  font-weight:700;
+  color:#fff;
+  box-shadow:0 .25rem 0 rgba(0,0,0,.22), inset 0 .12rem 0 rgba(255,255,255,.28);
+  position:relative;
+}
+.flow-node span.k{ display:block; font-size:.68rem; letter-spacing:.08em; opacity:.9; text-transform:uppercase; }
+.flow-node.n-yellow{ background:var(--yellow); color:var(--dark); }
+.flow-node.n-blue{ background:var(--blue); }
+.flow-node.n-green{ background:var(--green); }
+.flow-node.n-amber{ background:var(--amber); color:var(--dark); }
+.flow-node.n-red{ background:var(--red); }
+.flow-arrow{ align-self:center; font-size:1.2rem; color:var(--grey); font-weight:900; }
+
+/* ---------- Verdict calculator panel ---------- */
+#verdictPanel{
+  display:none;
+  margin-bottom:1rem;
+  background:#fff;
+  border-radius:var(--radius);
+  padding:.85rem 1rem 1rem;
+  box-shadow:0 .3rem 0 rgba(0,0,0,.14), inset 0 0 0 .12rem rgba(0,0,0,.06);
+  border-top:.5rem solid var(--blue);
+}
+#verdictPanel.on{ display:block; }
+#verdictPanel h2{
+  margin:0 0 .6rem; font-size:.92rem; text-transform:uppercase; letter-spacing:.06em;
+}
+.verdict-top{
+  display:flex; flex-wrap:wrap; gap:.6rem; align-items:center;
+  border-radius:var(--radius);
+  padding:.7rem .85rem;
+  color:#fff;
+  box-shadow:0 .28rem 0 rgba(0,0,0,.2);
+  margin-bottom:.7rem;
+}
+.verdict-top.v-yes{ background:var(--green); }
+.verdict-top.v-no{ background:var(--red); }
+.verdict-top.v-alt{ background:var(--amber); color:var(--dark); }
+.verdict-top.v-cut{ background:var(--yellow); color:var(--dark); }
+.verdict-top.v-unk{ background:var(--grey); }
+.verdict-top .big{ font-size:1.15rem; font-weight:900; letter-spacing:.03em; }
+.verdict-top .who{ font-size:.85rem; opacity:.95; }
+.verdict-top .detail{ flex:1 1 100%; font-size:.85rem; font-weight:600; opacity:.98; }
+.mini-list{ display:flex; flex-direction:column; gap:.35rem; }
+.mini-row{
+  display:flex; flex-wrap:wrap; gap:.5rem; align-items:center;
+  padding:.42rem .55rem;
+  border-radius:.45rem;
+  background:#f6f8fa;
+  font-size:.82rem;
+}
+.mini-row .nm{ font-weight:800; flex:1 1 14rem; }
+.mini-row .fm{ color:#4b5563; font-size:.76rem; }
+
+/* ---------- Badges ---------- */
+.badge{
+  display:inline-block;
+  font-size:.62rem;
+  font-weight:900;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:.2rem .42rem;
+  border-radius:.35rem;
+  white-space:nowrap;
+  color:#fff;
+}
+.badge.v-yes{ background:var(--green); }
+.badge.v-no{ background:var(--red); }
+.badge.v-alt{ background:var(--amber); color:var(--dark); }
+.badge.v-cut{ background:var(--yellow); color:var(--dark); }
+.badge.v-unk{ background:var(--grey); }
+
+/* ---------- Alphabet brick sections ---------- */
+.brick-section{
+  margin-bottom:.85rem;
+  background:#fff;
+  border-radius:var(--radius);
+  box-shadow:0 .28rem 0 rgba(0,0,0,.16), inset 0 0 0 .12rem rgba(0,0,0,.06);
+  overflow:hidden;
+}
+.brick-section[hidden]{ display:none; }
+
+.brick-head{
+  width:100%;
+  display:flex; align-items:center; gap:.7rem;
+  font-family:inherit;
+  font-size:1rem;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#fff;
+  background:linear-gradient(180deg,#0a63c9,#0057B8);
+  border:none;
+  padding:.62rem .9rem .62rem .9rem;
+  cursor:pointer;
+  text-align:left;
+  position:relative;
+  box-shadow:inset 0 .14rem 0 rgba(255,255,255,.25);
+}
+.brick-head:hover{ filter:brightness(1.07); }
+.brick-head .stud{
+  width:1.15rem; height:1.15rem;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #ffffffcc, #ffffff22 60%);
+  box-shadow:inset 0 0 0 .14rem rgba(255,255,255,.45);
+  flex:0 0 auto;
+}
+.brick-head .letter{
+  font-size:1.1rem;
+  background:rgba(0,0,0,.22);
+  border-radius:.35rem;
+  padding:.05rem .5rem;
+  min-width:2rem;
+  text-align:center;
+}
+.brick-head .head-title{ flex:1 1 auto; font-size:.88rem; }
+.brick-head .cnt{
+  background:var(--yellow); color:var(--dark);
+  border-radius:2rem; padding:.05rem .5rem; font-size:.72rem;
+}
+.brick-head .chev{ transition:transform .18s ease; font-size:.8rem; }
+.brick-section.closed .chev{ transform:rotate(-90deg); }
+.brick-section.closed .brick-body{ display:none; }
+
+/* colour-code the brick heads by letter for fun */
+.brick-section:nth-child(6n+1) .brick-head{ background:linear-gradient(180deg,#0a63c9,#0057B8); }
+.brick-section:nth-child(6n+2) .brick-head{ background:linear-gradient(180deg,#e62225,#c00d10); }
+.brick-section:nth-child(6n+3) .brick-head{ background:linear-gradient(180deg,#00992f,#00852B); }
+.brick-section:nth-child(6n+4) .brick-head{ background:linear-gradient(180deg,#ff9d2e,#ef7c00); color:#2a1a00; }
+.brick-section:nth-child(6n+5) .brick-head{ background:linear-gradient(180deg,#4b5563,#374151); }
+.brick-section:nth-child(6n)   .brick-head{ background:linear-gradient(180deg,#8b5cf6,#6d28d9); }
+
+/* ---------- Scrollable tables ---------- */
+.table-wrap{
+  overflow:auto;
+  max-height:70vh;
+  -webkit-overflow-scrolling:touch;
+}
+table{
+  border-collapse:separate;
+  border-spacing:0;
+  width:100%;
+  min-width:62rem;
+  font-size:.86rem;
+}
+thead th{
+  position:sticky; top:0; z-index:3;
+  background:#1B2A34;
+  color:#fff;
+  text-align:left;
+  font-size:.66rem;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  padding:.55rem .7rem;
+  white-space:nowrap;
+}
+tbody td{
+  padding:.5rem .7rem;
+  border-bottom:1px solid #E1E6EC;
+  vertical-align:top;
+}
+tbody tr:nth-child(even){ background:rgba(0,87,184,.045); }
+tbody tr:hover{ background:#FFF8D6; }
+td.num{ color:var(--grey); font-size:.72rem; font-weight:700; width:2.6rem; }
+td.drug{ font-weight:700; min-width:16rem; }
+td:nth-child(3){ min-width:11rem; }
+td:nth-child(4){ min-width:9rem; color:#374151; }
+td:nth-child(5){ min-width:16rem; }
+td:nth-child(6){ min-width:8.5rem; }
+
+mark{
+  background:#FFE873;
+  color:inherit;
+  padding:0 .12rem;
+  border-radius:.2rem;
+  box-shadow:0 0 0 .1rem #FFE873;
+}
+
+/* ---------- Empty / no results ---------- */
+.no-results{
+  display:none;
+  text-align:center;
+  padding:2rem 1rem;
+  background:#fff;
+  border-radius:var(--radius);
+  box-shadow:0 .28rem 0 rgba(0,0,0,.16), inset 0 0 0 .12rem rgba(0,0,0,.06);
+  font-weight:700;
+}
+.no-results.on{ display:block; }
+
+/* ---------- Legend + References ---------- */
+.panel{
+  background:#fff;
+  border-radius:var(--radius);
+  padding:1rem 1.1rem;
+  margin:1rem 0;
+  box-shadow:0 .3rem 0 rgba(0,0,0,.14), inset 0 0 0 .12rem rgba(0,0,0,.06);
+}
+.panel h2{
+  margin:0 0 .6rem;
+  font-size:.95rem;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  display:flex; align-items:center; gap:.45rem;
+}
+.legend{ display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.5rem; }
+.legend-item{
+  display:flex; gap:.55rem; align-items:flex-start;
+  background:#f6f8fa;
+  border-radius:.45rem;
+  padding:.5rem .6rem;
+  font-size:.8rem;
+}
+.legend-item .swatch{
+  width:1rem; height:1rem; border-radius:.25rem; flex:0 0 auto; margin-top:.15rem;
+  box-shadow:inset 0 0 0 .1rem rgba(0,0,0,.15);
+}
+.sw-yes{ background:var(--green); } .sw-no{ background:var(--red); }
+.sw-alt{ background:var(--amber); } .sw-cut{ background:var(--yellow); }
+.sw-unk{ background:var(--grey); }
+
+.refs{ list-style:none; margin:0; padding:0; columns:2; column-gap:1.4rem; font-size:.78rem; }
+.refs li{ margin-bottom:.28rem; break-inside:avoid; }
+.refs a{ color:var(--blue); word-break:break-all; }
+.source-cite{
+  margin-top:.8rem;
+  padding-top:.7rem;
+  border-top:.15rem dashed #cfd6de;
+  font-size:.78rem;
+  color:#4b5563;
+}
+.disclaimer{
+  margin-top:.6rem;
+  background:#FFF4CC;
+  border-left:.4rem solid var(--yellow);
+  padding:.6rem .75rem;
+  border-radius:.35rem;
+  font-size:.78rem;
+}
+footer.lego-foot{
+  background:var(--dark);
+  color:#cbd5e1;
+  text-align:center;
+  padding:1.2rem 1rem 1.6rem;
+  font-size:.75rem;
+  margin-top:1.5rem;
+}
+footer.lego-foot strong{ color:var(--yellow); }
+
+/* ---------- Small screens ---------- */
+@media (max-width:640px){
+  header h1{ font-size:1.35rem; }
+  .toolbar-inner{ padding:.5rem .6rem; }
+  main{ padding:.6rem; }
+  .refs{ columns:1; }
+  .table-wrap{ max-height:60vh; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="lego-head">
+  <div class="stud-strip" aria-hidden="true"></div>
+  <div class="head-inner">
+    <h1><span class="brick-emoji">🧱</span> Crush Guide</h1>
+    <p class="sub">Oral medication crushing quick reference &amp; calculator for anaesthetists &amp; intensivists</p>
+    <div class="pill-row">
+      <span class="pill">NG / PEG tube</span>
+      <span class="pill">Swallowing difficulty</span>
+      <span class="pill">ICU &amp; Peri-operative</span>
+      <span class="pill">154 formulations</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search drug, brand, dosage form or instruction…" autocomplete="off" aria-label="Search drugs">
+    </div>
+
+    <button class="btn blue" id="expandAll" type="button">⊞ Expand all</button>
+    <button class="btn ghost" id="collapseAll" type="button">⊟ Collapse all</button>
+
+    <button class="btn small ghost" id="fontDown" type="button" title="Decrease text size">A−</button>
+    <button class="btn small ghost" id="fontReset" type="button" title="Reset text size">A</button>
+    <button class="btn small ghost" id="fontUp" type="button" title="Increase text size">A+</button>
+
+    <div class="chips" role="group" aria-label="Filter by verdict">
+      <button class="chip" data-filter="all" aria-pressed="true">All</button>
+      <button class="chip" data-filter="yes" aria-pressed="false">✅ Can crush</button>
+      <button class="chip" data-filter="no" aria-pressed="false">⛔ Do not crush</button>
+      <button class="chip" data-filter="alt" aria-pressed="false">🔁 Alternative</button>
+      <button class="chip" data-filter="cut" aria-pressed="false">✂️ Cut only</button>
+    </div>
+
+    <span style="font-size:.75rem;font-weight:700;color:#4b5563">
+      Showing <span id="count">0</span> formulations
+    </span>
+  </div>
+</div>
+
+<main>
+
+  <!-- ================= FLOW DIAGRAM ================= -->
+  <div class="flow">
+    <h2>🧭 Decision pathway</h2>
+    <div class="flow-row">
+      <div class="flow-node n-yellow"><span class="k">Step 1</span>Patient cannot swallow solid dose form</div>
+      <div class="flow-arrow" aria-hidden="true">➜</div>
+      <div class="flow-node n-blue"><span class="k">Step 2</span>Search the drug in the calculator below</div>
+      <div class="flow-arrow" aria-hidden="true">➜</div>
+      <div class="flow-node n-green"><span class="k">✅ Can crush</span>Crush → disperse in water → give via NG/PEG → flush</div>
+      <div class="flow-node n-amber"><span class="k">🔁 Alternative</span>Use liquid / IV / alternative formulation or route</div>
+      <div class="flow-node n-red"><span class="k">⛔ Do not crush</span>Risk of dose dumping, tube blockage or mucosal injury</div>
+    </div>
+  </div>
+
+  <!-- ================= VERDICT CALCULATOR ================= -->
+  <section id="verdictPanel" aria-live="polite">
+    <h2>⚡ Crushability calculator</h2>
+    <div id="verdictTop"></div>
+    <div class="mini-list" id="verdictList"></div>
+  </section>
+
+  <!-- ================= ALPHABET SECTIONS ================= -->
+  <div id="sections"></div>
+
+  <div class="no-results" id="noResults">
+    🧱 No matching formulation found. Try a generic name, brand name, or clear the filters.
+  </div>
+
+  <!-- ================= LEGEND ================= -->
+  <section class="panel">
+    <h2>🎨 Colour legend</h2>
+    <div class="legend">
+      <div class="legend-item"><span class="swatch sw-yes"></span><div><strong>CAN CRUSH / DISPERSE</strong> — crush, disperse in water, or open capsule and give via enteral tube.</div></div>
+      <div class="legend-item"><span class="swatch sw-no"></span><div><strong>DO NOT CRUSH / DO NOT OPEN</strong> — modified-release, enteric-coated or soft-gel forms; risk of dose dumping or tube blockage.</div></div>
+      <div class="legend-item"><span class="swatch sw-alt"></span><div><strong>ALTERNATIVE ROUTE / FORMULATION</strong> — a liquid, IV or alternative product is preferred.</div></div>
+      <div class="legend-item"><span class="swatch sw-cut"></span><div><strong>CUT ONLY / SWALLOW WHOLE</strong> — tablet may be halved but not crushed.</div></div>
+      <div class="legend-item"><span class="swatch sw-unk"></span><div><strong>CHECK PHARMACY</strong> — no clear instruction captured; verify before administering.</div></div>
+    </div>
+    <div class="disclaimer">
+      ⚠️ <strong>Clinical safety note:</strong> Always confirm with the current product leaflet, your hospital formulary and a pharmacist before crushing or opening any medication. Cytotoxic, hormonal, and irritant drugs require special handling. Flush the enteral tube before and after each dose.
+    </div>
+  </section>
+
+  <!-- ================= REFERENCES ================= -->
+  <section class="panel">
+    <h2>📚 References &amp; source</h2>
+    <ol class="refs">
+      <li>[1] Product leaflet</li>
+      <li>[2] Special alternatives guidance</li>
+      <li>[3] www.healthline.com</li>
+      <li>[4] www.drugviewer.com</li>
+      <li>[5] www.tabletwise.com</li>
+      <li>[6] Handbook of drug administration through enteral feeding 2015</li>
+      <li>[7] Inf disease in clinical practice 2017</li>
+      <li>[8] WebMD</li>
+      <li>[9] MIMS</li>
+      <li>[10] Medscape</li>
+      <li>[11] Nationwide Children Hospital</li>
+      <li>[12] www.mayoclinic.org</li>
+      <li>[13] 2016 Nurses' Drug Handbook</li>
+      <li>[14] X-Temp Oral Suspension System 7th edition</li>
+      <li>[15] RxList</li>
+      <li>[16] Pills to powder: A clinician's reference for crushable psychotropic medications</li>
+      <li>[17] Hospital Formulary</li>
+      <li>[18] Waitemata District Health Board</li>
+      <li>[19] NEEMMC guidelines</li>
+      <li>[20] www.drugs.com</li>
+      <li>[21] <a href="http://www.hivclinic.ca/main/drugs_extra_files/crushing%20ARVs.pdf" target="_blank" rel="noopener">hivclinic.ca — Crushing ARVs</a></li>
+      <li>[22] Lexicomp</li>
+    </ol>
+    <p class="source-cite">
+      <strong>Source document:</strong> “Guide for Crushing Oral Medication for Patients with Swallowing Difficulties (presentation) 29.6.19”. Bracketed numbers in the Administration column correspond to the reference list above.
+    </p>
+  </section>
+
+</main>
+
+<footer class="lego-foot">
+  🧱 <strong>LEGO Crush Guide</strong> — built for quick bedside decisions. Not a substitute for clinical judgement or pharmacy review.
+</footer>
+
+<script>
+/* ============================================================
+   1. DATA  — [letter, drug name, brand (manufacturer), dosage form, administration info]
+   ============================================================ */
+const DRUGS = [
+/* ---- A ---- */
+["A","Acetylsalicylic Acid 100 mg, Glycine 45 mg Tablet","Glyprin","Tablet","Disperse in water [1]"],
+["A","Acetylsalicylic Acid 300 mg Soluble Tablet","Millisipirin","Uncoated Scored Tablet","Dissolve in water [1]"],
+["A","Acyclovir 200 mg, 800 mg Tablet","Pharmaniaga","Tablet","Can be crushed [2]"],
+["A","Adefovir Dipivoxil 10 mg Tablet","Hepsera","Tablet","Cannot be crushed [1]"],
+["A","Albendazole 200 mg Tablet","Zendal","Film Coated Tablet","Can be crushed [12]"],
+["A","Alendronate Sodium 70 mg and Cholecalciferol 5600 IU, Alendronate Sodium 70 mg Tablet","Fosamax Plus / Alendronate","Tablet","Cannot be crushed [1]"],
+["A","Alfacalcidol 0.25 mcg, 1 mcg Capsule","Alfa-D","Vegetable Capsule","Cannot be crushed [1]"],
+["A","Allopurinol 100 mg Tablet","Hovid Allopurinol","Uncoated Tablet","Can be crushed [2]"],
+["A","Allopurinol 300 mg Tablet","Pharmaniaga","Tablet","Can be crushed [2][14]"],
+["A","Alprazolam 0.5 mg Tablet","Xanapam","Scored Tablet","Can be crushed [3]"],
+["A","Amiodarone 200 mg Tablet","Amiocheal 200","Scored Tablet","Can be crushed [2][14]"],
+["A","Amitriptyline HCl 25 mg Tablet","APO-Amitriptyline","Film Coated Tablet","Can be crushed and added to a small amount of liquid [1]"],
+["A","Amlodipine 5 mg, 10 mg Tablet","Hovasc","Uncoated Scored Tablet","Can be crushed [2][14]"],
+["A","Amoxicillin 250 mg & 500 mg Capsule","Betamox","Capsule","Alternative route available [17]"],
+["A","Amoxicillin 500 mg & Clavulanate 125 mg Tablet","Co-Amoxiclav (Pharmaniaga)","Tablet","Can be crushed [18]"],
+["A","Ampicillin Sodium & Sulbactam Sodium 375 mg Tablet","Unasyn","Film Coated Tablet","Can be crushed [1]"],
+["A","Apixaban 5 mg Film Coated Tablet","Eliquis (Pfizer)","Film Coated Tablet","Can be crushed and added to a small amount of liquid [1]"],
+["A","Aripiprazole 10 mg, 15 mg Tablet","Arian","Uncoated Tablet","Can be crushed [16]"],
+["A","Atenolol 100 mg Tablet","Ateheval (Salutas Pharma GmbH)","Film Coated, Scored Tablet","Can be crushed [2][14]"],
+["A","Atorvastatin 20 mg, 40 mg Tablet","Storvas-C","Film Coated, Scored Tablet","Can be crushed [2]"],
+["A","Azithromycin 250 mg Tablet","Azimax","Film Coated, Scored Tablet","Alternative route available [17]"],
+
+/* ---- B ---- */
+["B","Baclofen 10 mg Tablet","Musafen","Tablet","Can be crushed [14][19]"],
+["B","Benzhexol 2 mg Tablet","Pharmaniaga","Scored Tablet","Can be crushed [3]"],
+["B","Betahistine Dihydrochloride 24 mg Tablet","Betaserc","Scored Tablet","Can be crushed [2]"],
+["B","Bisacodyl 5 mg Tablet","Dyna Laxative Pill","Enteric Coated","Cannot be crushed [18]"],
+["B","Bisoprolol Fumarate 2.5 mg, 5 mg Tablet","Bisocor","Scored Tablet","Can be cut, swallow whole without chew or crush [1]"],
+["B","Bromhexine HCl 8 mg Tablet","Chulia Pharma Sdn. Bhd","Tablet","Alternative route available [17]"],
+
+/* ---- C ---- */
+["C","Calcitriol 0.25 mcg Capsule","Osteocap","Capsule","Cannot be crushed [1]"],
+["C","Calcium Carbonate 500 mg Tablet","Malaysian Pharmaceutical Industries Sdn Bhd","Tablet","Can be crushed [19]"],
+["C","Calcium Lactate 300 mg Tablet","Idaman Pharma","Tablet","Can be crushed [19]"],
+["C","Captopril 25 mg Tablet","Apuzin (Y.S.P Industries (M) Sdn. Bhd)","Tablet","Can be crushed [2][14]"],
+["C","Carbamazepine 200 mg Tablet","Tegretol (Norvatis)","Tablet","Can be crushed [2]"],
+["C","Carbamazepine 400 mg CR Tablet","Tegretol (Norvatis)","Tablet","Can cut, but not be crushed [18]"],
+["C","Carbimazole 5 mg Tablet","Camazol","Tablet","Can be crushed [2]"],
+["C","Carvedilol 6.25 mg, 25 mg Tablet","Vacidil","Film Coated Scored Tablet","Can be crushed [2][14]"],
+["C","Cefuroxime Axetil 125 mg Tablet","Auroxetil","Uncoated Tablet","Can be crushed [6]"],
+["C","Celecoxib 200 mg Capsule","Celebrex (Pfizer)","Capsule","Open the capsule and added to a small amount of semi-solid/liquid [1]"],
+["C","Cephalexin Monohydrate 250 mg Capsule","Pharmaniaga","Hard Gelatin Capsule","Open the capsule and added to a small amount of liquid [20]"],
+["C","Cetirizine HCl 10 mg Tablet","Ceritec","Film Coated, Scored Tablet","Can be cut [18]"],
+["C","Chlorpheniramine Maleate 4 mg Tablet","Pharmaniaga","Tablet","Can be crushed [19]"],
+["C","Chlorpromazine HCl 25 mg, 100 mg Tablet","Idaman Pharma","Sugar-coated Tablet","Can be crushed [19]"],
+["C","Ciclosporin 25 mg, 100 mg Capsule","Sandimmun Neoral (Norvatis)","Soft Gelatin Capsule","Can not be opened [18]"],
+["C","Ciprofloxacin 250 mg Tablet","C-flox","Film Coated Tablet","Can be crushed [19]"],
+["C","Clarithromycin 250 mg Tablet","(Pharmaniaga)","Film Coated, Scored Tablet","Can be crushed [1]"],
+["C","Clindamycin HCl 300 mg Capsule","Tidact","Capsule","Open the capsule and dispersed in water [2]"],
+["C","Clonazepam 0.5 mg, 2 mg Tablet","Rivotril (Roche)","Scored Tablet","Can be crushed [6][14]"],
+["C","Clopidogrel 75 mg Tablet","Ceruvin","Film Coated Tablet","Can be crushed [6][14]"],
+["C","Cloxacillin Sodium 250 mg, 500 mg Capsule","Dynapharm","Capsule","Alternative route available [17]"],
+["C","Clozapine 25 mg, 100 mg Tablet","Clozaril","Scored Tablet","Can be crushed [14]"],
+["C","Colchicine 0.5 mg Tablet","Goutnor (Noripharma Sdn. Bhd)","Tablet","Can be dispersed in water [18]"],
+
+/* ---- D ---- */
+["D","Dabigatran Etexilate 110 mg, 150 mg Capsule","Pradaxa","Hard Gelatin Capsule","Cannot be opened [1]"],
+["D","Dapsone 100 mg Tablet","Dapsone Tablets I.P.","Uncoated Tablet","Can be crushed [14]"],
+["D","Desmopressin 0.1 mg Tablet","Minirin","Tablet","Can cut, but not be crushed [1]"],
+["D","Dexamethasone 0.5 mg Tablet","SW-Dexasone","Scored Tablet","Can be crushed [2][14]"],
+["D","Diclofenac 50 mg Tablet","Dicloran","Enteric Coated Tablet","Cannot be crushed [1]"],
+["D","Digoxin 0.25 mg Tablet","Lanoxin","Scored Tablet","Can be crushed [2]"],
+["D","Dihydrocodeine Tartrate 30 mg Tablet","Noripharma","Tablet","Alternative medication available [17]"],
+["D","Diltiazem HCl 30 mg Tablet","Herbesser","Tablet","Cannot be crushed [8]"],
+["D","Diosmin 450 mg and Hesperidin 50 mg Tablet","HemoRid","Tablet","Cannot be crushed [1]"],
+["D","Diphenoxylate HCl 2.5 mg with Atropine Sulphate 0.025 mg Tablet","Pharmaniaga","Tablet","Can be crushed [6]"],
+["D","Doxazosin Mesilate 4 mg CR Tablet","Kamiren XL MR Tab","Controlled Release Tablet","Cannot be crushed [9]"],
+["D","Doxycycline 100 mg Capsule","Xidox (Idaman Pharma Manufacturing Sdn Bhd)","Capsule","Open the capsule and dispersed in the water [1]"],
+
+/* ---- E ---- */
+["E","Efavirenz 600 mg Tablet","Efavir-600 mg","Film Coated Tablet","Cannot be crushed [22]"],
+["E","Enalapril 10 mg Tablet","Encardil","Tablet","Can be crushed [2][14]"],
+["E","Enalapril 5 mg Tablet","Pharmaniaga","Scored Tablet","Can be crushed [2][14]"],
+["E","Erythromycin Ethylsuccinate 400 mg Tablet","Axcel Erythromycin ES","Film Coated Tablet","Alternative route available [17]"],
+["E","Esomeprazole 40 mg Tablet","Axiago","Film Coated Tablet","Dispersed in liquid [1]"],
+["E","Ethambutol HCl 400 mg Tablet","Ecoc","Film Coated, Scored Tablet","Can be crushed [1][14]"],
+["E","Ezetimibe 10 mg & Simvastatin 20 mg Tablet","Vytorin","Tablet","Cannot be crushed [1]"],
+["E","Ezetimibe 10 mg Tablet","Ezetrol","Tablet","Can be crushed [19]"],
+
+/* ---- F ---- */
+["F","Felodipine 5 mg, 10 mg Extended Release Tablet","Plendil","Film Coated Extended Release Tablet","Cannot be crushed [1]"],
+
+/* ---- H ---- */
+["H","Hyoscine N-Butylbromide 10 mg Tablet","Sunward Pharmaceutical","Film Coated Tablet","Can be crushed [18]"],
+
+/* ---- I ---- */
+["I","Ibuprofen 200 mg Tablet","Ibuspan / Royce Ibuprofen","Film Coated Tablet","Alternative formulation available [2]"],
+["I","Isoniazid 100 mg Tablet","Pharmaniaga","Scored Tablet","Can be crushed [14][19]"],
+["I","Isosorbide Dinitrate 10 mg Tablet","Solbid","Uncoated Score Tablet","Can be crushed [2]"],
+["I","Isosorbide-5-Mononitrate 60 mg SR Tablet","Imdex","Film Coated Controlled Released, Score Tablet","Cannot be crushed [1]"],
+["I","Itopride HCl 50 mg Tablet","Ganaton","Film Coated Scored Tablet","Cannot be crushed [1]"],
+["I","Itraconazole 100 mg Capsule","Inox","Capsule","Can be compound extemporaneous [14]"],
+["I","Ivabradine 5 mg Tablet","Coralan","Film Coated, Scored Tablet","Can cut, but not be crushed [1]"],
+
+/* ---- L ---- */
+["L","Labetalol HCl 100 mg Tablet","Trantalol","Scored Tablet","Can be crushed [14]"],
+["L","Lamivudine 100 mg, 150 mg Tablet","Aurobindo Lamivudine / Zeffix","Film Coated Tablet","Can be crushed and added to a small amount of semi-solid/liquid [7]"],
+["L","Lamotrigine 100 mg Tablet","APO-Lamotrigine","Scored Tablet","Can be crushed [14]"],
+["L","Lamotrigine 25 mg Dispersible/Chewable Tablet","APO-Lamotrigine","Scored Tablet","Disperse in liquid [1]"],
+["L","Leflunomide 10 mg, 20 mg Tablet","Arava (Sanofi)","Film Coated Tablet","Cannot be crushed [1]"],
+["L","Levetiracetam 500 mg Tablet","Torleva","Film Coated, Scored Tablet","Can be crushed [14]"],
+["L","Levodopa 100 mg, Benserazide 25 mg HBS Capsule","Madopar","Capsule","Cannot open the capsule [18]"],
+["L","Levodopa 200 mg, Benserazide 50 mg Tablet","Madopar","Cross-scored Tablet","Can be crushed [1]"],
+["L","Levodopa 250 mg and Carbidopa 25 mg Tablet","Sinedopa (Duopharma)","Scored Tablet","May be disperse in water [14][18]"],
+["L","Levothyroxine Sodium 25 mcg, 50 mcg, 100 mcg Tablet","Liothyronine Sod / Thyrosit","Scored Tablet","Can be crushed [1]"],
+["L","Lithium Carbonate 300 mg Tablet","Liconate","Tablet","Can be crushed [16]"],
+["L","Lopinavir 200 mg and Ritonavir 50 mg Tablet","Kaletra","Film Coated Tablet","Cannot be crushed [1]"],
+["L","Loratadine 10 mg Tablet","Pharmaniaga","Scored Tablet","Alternative medication available [17]"],
+["L","Loratadine 5 mg and Pseudoephedrine Sulphate 120 mg Tablet","Clarinase","Coated Tablet","Cannot be crushed [9]"],
+["L","Lorazepam 1 mg Tablet","Tranpam","Tablet","Can be crushed [2][14]"],
+["L","Losartan 50 mg, 100 mg Tablet","Cozaar","Film Coated, Scored Tablet","Can be crushed [1]"],
+["L","Losartan Potassium / Hydrochlorothiazide 100/12.5 mg Tablet","Hyzaar","Tablet","Cannot be crushed [2]"],
+
+/* ---- M ---- */
+["M","Magnesium Trisilicate Tablet","Idaman Pharma Magnesium Trisilicate","Scored Tablet","Can be crushed [1]"],
+["M","Mecobalamin 500 mcg Tablet","Mecovit","Film Coated Tablet","Alternative route available [17]"],
+["M","Metformin 500 mg and Glibenclamide 2.5 mg Tablet","Diamide","Film Coated, Scored Tablet","Alternative medication available [17]"],
+["M","Metformin HCl 500 mg Extended Release Tablet","Proglutrol","Extended Release Tablet","Cannot be crushed [1]"],
+["M","Metformin HCl 500 mg Tablet","Glumet DC","Film Coated, Scored Tablet","Can be crushed [2]"],
+["M","Methyldopa 250 mg Tablet","Pharmaniaga","Film Coated, Scored Tablet","Can be crushed [19]"],
+["M","Metoclopramide HCl 10 mg Tablet","Metoclopramide Tablet (Drug Houses of Australia)","Scored Tablet","Alternative route available [18]"],
+["M","Metoprolol Tartrate 50 mg, 100 mg Tablet","Metoprolol (Pharmaniaga) / Betawin","Scored Tablet","Can be crushed [14]"],
+["M","Metronidazole 200 mg Tablet","Pharmaniaga","Film Coated, Scored Tablet","Can be compound extemporaneous [14]"],
+["M","Midazolam 7.5 mg Tablet","Fulsed (Ranbaxy)","Film Coated Tablet","Alternative route available [19]"],
+["M","Minoxidil 5 mg Tablet","Minoxidil Tablet (Zontron Pharmaceutical)","Scored Tablet","Can be crushed [19]"],
+["M","Montelukast Sodium 10 mg Tablet","Aspira / Oxair","Film Coated Tablet","Alternative formulation available [17]"],
+["M","Montelukast Sodium 5 mg Tablet","Aspira (Pharmaniaga)","Chewable Tablet","Can be crushed [1]"],
+["M","Morphine Sulphate 10 mg, 30 mg Controlled Release Tablet","MST Continus","Prolonged Release Film Coated Tablet","Cannot be crushed [1]"],
+
+/* ---- N ---- */
+["N","Nevirapine 200 mg Tablet","Hirapine","Scored Tablet","Can be crushed [21]"],
+["N","Nifedipine 10 mg Tablet","Nudipin","Uncoated Scored Tablet","Can be crushed [14]"],
+["N","Nimodipine 30 mg Tablet","Nimotop / Nimodipine HEXAL","Film Coated Tablet","Can be crushed [19]"],
+
+/* ---- O ---- */
+["O","Ofloxacin 100 mg Tablet","Taravid","Film Coated Tablet","Can be crushed [19]"],
+["O","Olanzapine 10 mg Disintegrating Tablet","Tolanz ODT / Zyprexa Zydis","Uncoated, Scored Orodispensible Tablet","Dispersed in liquids [1]"],
+["O","Olanzapine 5 mg, 10 mg Tablet","Zyprexa","Coated Tablet","Cannot be crushed [18]"],
+["O","Omeprazole 20 mg Capsule","Pharmaniaga","Capsule","Open the capsule and dissolve in sodium bicarbonate [1]"],
+["O","Oseltamivir 75 mg Capsule","Fluhalt","Hard Gelatin Capsule","Can be compound extemporaneous [14]"],
+
+/* ---- P ---- */
+["P","Pantoprazole 40 mg Tablet","Vencid","Enteric Coated Tablet","Cannot be crushed [1]"],
+["P","Paracetamol 500 mg Tablet","Paracil","Scored Tablet","Can be crushed [1]"],
+["P","Perindopril 4 mg and Indapamide 1.25 mg Tablet","Coversyl Plus","Tablet","Cannot be crushed [1]"],
+["P","Perindopril 4 mg, 8 mg Tablet","Perinace / Provinace","Scored Tablet","Can be crushed [2]"],
+["P","Phenobarbitone 30 mg Tablet","Idaman Pharma","Tablet","Can be crushed [14]"],
+["P","Phenoxymethyl Penicillin 125 mg Tablet","Pen V","Tablet","Alternative route available [17]"],
+["P","Phenytoin Sodium 30 mg, 100 mg Capsule","Dilantin","Capsule","Alternative formulation available [17]"],
+["P","Piracetam 1.2 g Tablet","Nootropil","Film Coated Scored Tablet","Cannot be crushed [1]"],
+["P","Potassium Chloride 600 mg SR Tablet","Potrelease TR","Film Coated Tablet","Cannot be crushed [1]"],
+["P","Pravastatin Sodium 20 mg Tablet","Pravatas","Uncoated Tablet","Can be crushed [2]"],
+["P","Prazosin HCl 1 mg, 2 mg, 5 mg Tablet","Minipress","Scored Tablet","Can be crushed [1]"],
+["P","Prednisolone 5 mg Tablet","Noripharma Prednisolone","Scored Tablet","Can be crushed [2]"],
+["P","Propranolol HCl 10 mg, 40 mg Tablet","Inderal / Coberta","Tablet","Can be crushed [14]"],
+["P","Propylthiouracil 50 mg Tablet","Drug Houses of Australia Propylthiouracil Tablet","Scored Tablet","Can be crushed [1][14]"],
+["P","Pyrazinamide 500 mg Tablet","Pharmaniaga","Tablet","Can be crushed [14]"],
+["P","Pyridostigmine Bromide 60 mg Tablet","Mestinon","Sugar Coated Tablet","Can be crushed [18]"],
+["P","Pyridoxine HCl 10 mg Tablet","M'sian P'ceutical Ind Sdn Bhd","Tablet","Can be crushed [18]"],
+
+/* ---- Q ---- */
+["Q","Quetiapine Fumarate 100 mg, 200 mg Immediate Release Tablet","APO-Quetiapine","Film Coated Tablet","Can be crushed [2]"],
+["Q","Quetiapine Fumarate 50 mg, 200 mg, 300 mg, 400 mg Extended Release Tablet","Seroquel XR","Film Coated Extended Release Tablet","Cannot be crushed [1]"],
+
+/* ---- R ---- */
+["R","Ranitidine 150 mg Tablet","Pharmaniaga","Film Coated, Scored Tablet","Can be crushed [19]"],
+["R","Rifampicin 150 mg, 300 mg Capsule","Royce Rifampicin","Capsule","Can be compound extemporaneous [14]"],
+["R","Rifampicin 150 mg, Isoniazid 75 mg, Pyrazinamide 400 mg & Ethambutol","Akurit-4","Film Coated, Scored Tablet","Can be crushed [1]"],
+
+/* ---- T ---- */
+["T","Tolterodine Tartrate SR 4 mg Capsule","Detrusitol SR","Extended-release Capsule","Cannot be opened [1]"],
+["T","Topiramate 50 mg, 100 mg Tablet","Epimate","Film Coated, Scored Tablet","Can be cut but cannot be crushed [1]"],
+["T","Ticagrelor 90 mg Tablet","Brinlinta","Film Coated Tablet","Can be crushed and add to water [1]"],
+["T","Tramadol HCl 50 mg Capsule","Acugesic","Hard Gelatin Capsule","Open the capsule and dispersed in the water [1][14]"],
+["T","Tranexamic Acid 250 mg Capsule","Transamin","Capsule","Open the capsule and disperse in water [2]"],
+["T","Trimetazidine 20 mg Tablet","Metazine","Scored Tablet","Can be cut, may be crushed [1]"],
+["T","Trimetazidine 35 mg MR Tablet","Vasteral MR","Modified Release Film Coated Tablet","Cannot be crushed [1]"],
+
+/* ---- V ---- */
+["V","Valsartan 80 mg Tablet","Diovan","Film Coated, Scored Tablet","Can be crushed [3]"],
+["V","Verapamil HCl 40 mg Tablet","Akilen","Film Coated, Scored Tablet","Can be crushed [14][19]"],
+["V","Vildagliptin 50 mg and Metformin HCl 1000 mg Tablet","Galvusmet","Tablet","Cannot be crushed [1]"],
+["V","Vitamin B Complex Tablet","Pharmaniaga","Tablet","Can be crushed [19]"],
+["V","Vitamin B1, B6, B12 Tablet","Vitbion Forte","Film Coated Tablet","Cannot be crush [9]"],
+
+/* ---- W ---- */
+["W","Warfarin Sodium 1 mg, 2 mg, 3 mg, 5 mg Tablet","APO-Warfarin / Orfarin","Uncoated, Scored Tablet","Can be crushed [2][14]"],
+
+/* ---- Z ---- */
+["Z","Zincofer","Apex Lab","Capsule","Cannot be opened [1]"]
+];
+
+/* ============================================================
+   2. CLASSIFIER — turns the administration text into a verdict
+   ============================================================ */
+function classify(info){
+  const t = (info || "").toLowerCase();
+  if (/cannot be crush|can not be crush|not be crush|cannot be open|can not be open|cannot open|do not crush/.test(t))
+    return { k:"no",  label:"⛔ Do not crush", cls:"v-no"  };
+  if (/swallow whole/.test(t))
+    return { k:"cut", label:"✂️ Swallow whole", cls:"v-cut" };
+  if (/alternative/.test(t))
+    return { k:"alt", label:"🔁 Alternative", cls:"v-alt" };
+  if (/crush|disperse|dissolve|open the capsule|compound extemporaneous/.test(t))
+    return { k:"yes", label:"✅ Can crush", cls:"v-yes" };
+  if (/can be cut|can cut/.test(t))
+    return { k:"cut", label:"✂️ Cut only", cls:"v-cut" };
+  return { k:"unk", label:"❓ Check pharmacy", cls:"v-unk" };
+}
+
+/* ============================================================
+   3. BUILD MODEL
+   ============================================================ */
+const groups = {};
+DRUGS.forEach((row, i) => {
+  const [letter, drug, brand, form, info] = row;
+  const v = classify(info);
+  const obj = {
+    idx: i + 1,
+    letter, drug, brand, form, info,
+    verdict: v,
+    search: (drug + " " + brand + " " + form + " " + info + " " + letter).toLowerCase()
+  };
+  (groups[letter] = groups[letter] || []).push(obj);
+});
+const LETTERS = Object.keys(groups).sort();
+
+/* ============================================================
+   4. HELPERS
+   ============================================================ */
+function esc(s){
+  return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+}
+function escRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+function hl(text, q){
+  const safe = esc(text);
+  if (!q) return safe;
+  try {
+    return safe.replace(new RegExp("(" + escRe(q) + ")", "gi"), "<mark>$1</mark>");
+  } catch(e){ return safe; }
+}
+
+/* ============================================================
+   5. STATE
+   ============================================================ */
+const state = { q:"", filter:"all", closed:new Set() };
+let fontSize = 15;
+
+/* ============================================================
+   6. BUILD SECTION SHELLS
+   ============================================================ */
+const sectionsEl = document.getElementById("sections");
+const secRefs = {};
+
+LETTERS.forEach(letter => {
+  const sec = document.createElement("section");
+  sec.className = "brick-section";
+  sec.dataset.letter = letter;
+  sec.innerHTML = `
+    <button class="brick-head" type="button" aria-expanded="true">
+      <span class="stud" aria-hidden="true"></span>
+      <span class="letter">${letter}</span>
+      <span class="head-title">${letter} — <span class="cnt">0</span> formulation(s)</span>
+      <span class="chev" aria-hidden="true">▼</span>
+    </button>
+    <div class="brick-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Drug Name</th>
+              <th>Brand (Manufacturer)</th>
+              <th>Dosage Form</th>
+              <th>Administration / Product Information</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>`;
+  sectionsEl.appendChild(sec);
+  secRefs[letter] = sec;
+
+  sec.querySelector(".brick-head").addEventListener("click", () => {
+    const isClosed = sec.classList.toggle("closed");
+    sec.querySelector(".brick-head").setAttribute("aria-expanded", String(!isClosed));
+    if (isClosed) state.closed.add(letter); else state.closed.delete(letter);
+  });
+});
+
+/* ============================================================
+   7. RENDER
+   ============================================================ */
+const countEl   = document.getElementById("count");
+const noResults = document.getElementById("noResults");
+const panel     = document.getElementById("verdictPanel");
+const vTop      = document.getElementById("verdictTop");
+const vList     = document.getElementById("verdictList");
+
+function render(){
+  const q = state.q.trim().toLowerCase();
+  let shown = 0;
+
+  LETTERS.forEach(letter => {
+    const sec = secRefs[letter];
+    const list = groups[letter].filter(d =>
+      (!q || d.search.includes(q)) &&
+      (state.filter === "all" || d.verdict.k === state.filter)
+    );
+
+    if (!list.length){ sec.hidden = true; return; }
+    sec.hidden = false;
+    shown += list.length;
+
+    const tbody = sec.querySelector("tbody");
+    tbody.innerHTML = list.map(d => `
+      <tr>
+        <td class="num">${d.idx}</td>
+        <td class="drug">${hl(d.drug, q)}</td>
+        <td>${hl(d.brand, q)}</td>
+        <td>${hl(d.form, q)}</td>
+        <td>${hl(d.info, q)}</td>
+        <td><span class="badge ${d.verdict.cls}">${d.verdict.label}</span></td>
+      </tr>`).join("");
+
+    sec.querySelector(".cnt").textContent = list.length;
+
+    // keep collapse state in sync
+    sec.classList.toggle("closed", state.closed.has(letter));
+    sec.querySelector(".brick-head").setAttribute("aria-expanded", String(!state.closed.has(letter)));
+  });
+
+  countEl.textContent = shown;
+  noResults.classList.toggle("on", shown === 0);
+
+  renderVerdictPanel(q);
+}
+
+/* ---------- Verdict calculator panel ---------- */
+function score(d, q){
+  const n = d.drug.toLowerCase();
+  if (n.startsWith(q)) return 0;
+  if (n.includes(q))   return 1;
+  if (d.brand.toLowerCase().includes(q)) return 2;
+  if (d.search.includes(q)) return 3;
+  return 99;
+}
+
+function renderVerdictPanel(q){
+  if (q.length < 2){ panel.classList.remove("on"); return; }
+
+  const hits = DRUGS.map((r,i)=>({
+      idx:i+1, letter:r[0], drug:r[1], brand:r[2], form:r[3], info:r[4],
+      verdict: classify(r[4]), search:(r[1]+" "+r[2]+" "+r[3]+" "+r[4]).toLowerCase()
+    }))
+    .filter(d => d.search.includes(q))
+    .sort((a,b) => score(a,q) - score(b,q))
+    .slice(0, 6);
+
+  if (!hits.length){ panel.classList.remove("on"); return; }
+
+  const top = hits[0];
+  vTop.className = "verdict-top " + top.verdict.cls;
+  vTop.innerHTML = `
+    <div>
+      <div class="big">${top.verdict.label}</div>
+      <div class="who">${esc(top.drug)}${top.brand ? " · " + esc(top.brand) : ""}</div>
+    </div>
+    <div class="detail">
+      <strong>Dosage form:</strong> ${esc(top.form)} &nbsp;|&nbsp;
+      <strong>Instruction:</strong> ${esc(top.info)}
+    </div>`;
+
+  vList.innerHTML = hits.slice(1).map(d => `
+    <div class="mini-row">
+      <span class="nm">${esc(d.drug)}</span>
+      <span class="fm">${esc(d.form)} · ${esc(d.info)}</span>
+      <span class="badge ${d.verdict.cls}">${d.verdict.label}</span>
+    </div>`).join("");
+
+  panel.classList.add("on");
+}
+
+/* ============================================================
+   8. CONTROLS
+   ============================================================ */
+let searchTimer = null;
+document.getElementById("search").addEventListener("input", e => {
+  clearTimeout(searchTimer);
+  const val = e.target.value;
+  searchTimer = setTimeout(() => { state.q = val; render(); }, 110);
+});
+
+document.getElementById("expandAll").addEventListener("click", () => {
+  state.closed.clear();
+  render();
+});
+document.getElementById("collapseAll").addEventListener("click", () => {
+  LETTERS.forEach(l => state.closed.add(l));
+  render();
+});
+
+/* ---------- Filter chips ---------- */
+document.querySelectorAll(".chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed","false"));
+    chip.setAttribute("aria-pressed","true");
+    state.filter = chip.dataset.filter;
+    render();
+  });
+});
+
+/* ---------- Text resize ---------- */
+function applyFont(){
+  document.documentElement.style.fontSize = fontSize + "px";
+  try { localStorage.setItem("crushguide_font", fontSize); } catch(e){}
+}
+document.getElementById("fontUp").addEventListener("click", () => { fontSize = Math.min(22, fontSize + 1); applyFont(); });
+document.getElementById("fontDown").addEventListener("click", () => { fontSize = Math.max(12, fontSize - 1); applyFont(); });
+document.getElementById("fontReset").addEventListener("click", () => { fontSize = 15; applyFont(); });
+
+try {
+  const saved = parseInt(localStorage.getItem("crushguide_font"), 10);
+  if (!isNaN(saved)) { fontSize = Math.min(22, Math.max(12, saved)); }
+} catch(e){}
+applyFont();
+
+/* ---------- Keyboard shortcuts ---------- */
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && document.activeElement !== document.getElementById("search")) {
+    e.preventDefault();
+    document.getElementById("search").focus();
+  }
+  if (e.key === "Escape") {
+    const s = document.getElementById("search");
+    if (document.activeElement === s) { s.value = ""; state.q = ""; render(); }
+  }
+});
+
+/* ============================================================
+   9. GO
+   ============================================================ */
+render();
+</script>
+</body>
+</html>
