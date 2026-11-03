@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neuraxial Anaesthesia in the Parturient with Intracranial Pathology — Quick Reference</title>
+<style>
+  :root{
+    --green:#1b7a3e;  --green-l:#e6f4ea;  --green-b:#b7e0c6;
+    --blue:#12508f;   --blue-l:#e4eef9;   --blue-b:#b8d3ef;
+    --yellow:#8a6300; --yellow-l:#fff6d8; --yellow-b:#f0d68a;
+    --pink:#a61b4e;   --pink-l:#fde7ef;   --pink-b:#f3b8cd;
+    --ink:#17251f;    --muted:#4a5b55;
+    --line:#dfe9e3;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; padding:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:#f4f8f5; color:var(--ink); line-height:1.55;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    background:linear-gradient(135deg,#1b7a3e 0%,#12508f 60%,#a61b4e 130%);
+    color:#fff; padding:24px 18px 20px;
+  }
+  header h1{margin:0 0 6px; font-size:1.42rem; line-height:1.25; letter-spacing:.2px}
+  header p{margin:0; font-size:.9rem; opacity:.95}
+  header .tag{
+    display:inline-block; margin-top:10px; font-size:.72rem; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase;
+    background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35);
+    padding:3px 10px; border-radius:999px;
+  }
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:60; background:#fff;
+    border-bottom:1px solid var(--line); padding:10px 14px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    box-shadow:0 2px 10px rgba(16,40,28,.07);
+  }
+  .btn{
+    border:1px solid transparent; border-radius:999px; padding:6px 13px;
+    font-size:.8rem; font-weight:700; cursor:pointer; white-space:nowrap;
+    transition:background .15s,color .15s,transform .08s; font-family:inherit;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-green{background:var(--green-l); color:var(--green); border-color:var(--green-b)}
+  .btn-green:hover{background:var(--green); color:#fff}
+  .btn-blue{background:var(--blue-l); color:var(--blue); border-color:var(--blue-b)}
+  .btn-blue:hover{background:var(--blue); color:#fff}
+  .btn-pink{background:var(--pink-l); color:var(--pink); border-color:var(--pink-b)}
+  .btn-pink:hover{background:var(--pink); color:#fff}
+  .btn-yellow{background:var(--yellow-l); color:var(--yellow); border-color:var(--yellow-b)}
+  .btn-yellow:hover{background:var(--yellow); color:#fff}
+
+  .fs-group{display:flex; align-items:center; gap:5px}
+  #fsLabel{font-size:.76rem; font-weight:700; color:var(--muted); min-width:42px; text-align:center}
+
+  .search-wrap{
+    display:flex; align-items:center; gap:6px; flex:1 1 280px; min-width:230px;
+  }
+  #searchInput{
+    flex:1; min-width:120px; padding:7px 14px; border-radius:999px;
+    border:1px solid var(--blue-b); font-size:.85rem; outline:none; font-family:inherit;
+    background:#fff; color:var(--ink);
+  }
+  #searchInput:focus{border-color:var(--blue); box-shadow:0 0 0 3px rgba(18,80,143,.13)}
+  #searchCount{
+    font-size:.76rem; font-weight:800; color:var(--blue);
+    background:var(--blue-l); border-radius:999px; padding:4px 10px; white-space:nowrap;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1000px; margin:0 auto; padding:18px 14px 70px}
+  #content{font-size:16px}
+
+  /* ---------- COLLAPSIBLE SECTIONS ---------- */
+  details.sec{
+    background:#fff; border:1px solid var(--line); border-radius:12px;
+    margin-bottom:14px; overflow:hidden; box-shadow:0 1px 3px rgba(16,40,28,.05);
+  }
+  details.sec > summary{
+    cursor:pointer; list-style:none; padding:13px 16px;
+    font-weight:800; font-size:1.02em; display:flex; align-items:center; gap:10px;
+    background:var(--c-l); color:var(--c-d);
+    border-left:6px solid var(--c-d); user-select:none;
+    transition:filter .15s;
+  }
+  details.sec > summary:hover{filter:brightness(.97)}
+  details.sec > summary::-webkit-details-marker{display:none}
+  details.sec > summary::after{
+    content:"+"; margin-left:auto; font-weight:800; font-size:1.15em;
+    line-height:1; opacity:.75;
+  }
+  details.sec[open] > summary::after{content:"–"}
+  .sec-body{padding:14px 18px 18px; border-left:6px solid var(--c-d)}
+
+  .sec--green{--c-d:var(--green); --c-l:var(--green-l)}
+  .sec--blue{--c-d:var(--blue);  --c-l:var(--blue-l)}
+  .sec--yellow{--c-d:var(--yellow);--c-l:var(--yellow-l)}
+  .sec--pink{--c-d:var(--pink);  --c-l:var(--pink-l)}
+
+  /* ---------- TEXT ---------- */
+  .sec-body ul{margin:8px 0 8px; padding-left:20px}
+  .sec-body li{margin:5px 0}
+  .sec-body p{margin:8px 0}
+  .sec-body h4{
+    margin:16px 0 6px; font-size:.95em; color:var(--c-d);
+    text-transform:uppercase; letter-spacing:.05em;
+  }
+  .sec-body strong{color:#0f2a1c}
+
+  .callout{
+    border-radius:10px; padding:10px 14px; margin:12px 0;
+    font-size:.95em; border-left:5px solid;
+  }
+  .callout.warn{background:var(--pink-l);   border-color:var(--pink);   color:#5c0f2b}
+  .callout.ok{background:var(--green-l);    border-color:var(--green);  color:#0f3f22}
+  .callout.info{background:var(--blue-l);   border-color:var(--blue);   color:#0a2d52}
+  .callout.note{background:var(--yellow-l); border-color:var(--yellow); color:#4a3600}
+  .callout b{font-weight:800}
+
+  /* ---------- TABLES ---------- */
+  .table-wrap{
+    overflow:auto; -webkit-overflow-scrolling:touch; max-height:72vh;
+    border:1px solid var(--line); border-radius:10px; margin:12px 0;
+  }
+  table{border-collapse:collapse; width:100%; min-width:600px; font-size:.92em}
+  th,td{padding:9px 12px; text-align:left; vertical-align:top; border-bottom:1px solid #e8f0ea}
+  thead th{
+    position:sticky; top:0; z-index:2;
+    background:var(--blue-l); color:var(--blue); font-weight:800;
+    border-bottom:2px solid var(--blue-b);
+  }
+  tbody tr:nth-child(even){background:#fafdfb}
+  tbody tr:hover{background:#f1f8f3}
+  td:first-child{font-weight:700; color:#0f2a1c; min-width:150px}
+
+  /* ---------- FLOWCHART (Figure 1 simplified) ---------- */
+  .flow{margin:16px 0; font-size:.94em}
+  .flow-node{
+    background:#fff; border:2px solid var(--blue-b); border-left:6px solid var(--blue);
+    border-radius:10px; padding:10px 14px;
+  }
+  .flow-node p{margin:4px 0}
+  .flow-node.decision{background:var(--yellow-l); border-color:var(--yellow-b); border-left-color:var(--yellow); color:#4a3600}
+  .flow-node.danger{background:var(--pink-l); border-color:var(--pink-b); border-left-color:var(--pink); color:#5c0f2b}
+  .flow-node.safe{background:var(--green-l); border-color:var(--green-b); border-left-color:var(--green); color:#0f3f22}
+  .flow-node.neutral{background:var(--blue-l); border-color:var(--blue-b); border-left-color:var(--blue); color:#0a2d52}
+  .flow-arrow{text-align:center; color:var(--muted); font-size:1.05em; line-height:1.7; font-weight:800}
+  .branch{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:8px 0}
+  @media (max-width:640px){ .branch{grid-template-columns:1fr} }
+  .chip{
+    display:inline-block; font-size:.7em; font-weight:900; letter-spacing:.08em;
+    padding:2px 9px; border-radius:999px; margin-bottom:6px; text-transform:uppercase;
+  }
+  .chip.yes{background:var(--pink); color:#fff}
+  .chip.no{background:var(--green); color:#fff}
+  .chip.q{background:var(--yellow); color:#fff}
+
+  /* ---------- SEARCH HIGHLIGHT ---------- */
+  mark.srch{
+    background:#ffe680; color:#000; padding:0 1px; border-radius:2px;
+  }
+  mark.srch.cur{
+    background:#f2b705; color:#000; outline:2px solid var(--pink); outline-offset:1px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    max-width:1000px; margin:0 auto; padding:0 14px 60px;
+    font-size:.86rem; color:var(--muted);
+  }
+  .cite{
+    background:#fff; border:1px solid var(--line); border-left:6px solid var(--green);
+    border-radius:12px; padding:14px 18px; box-shadow:0 1px 3px rgba(16,40,28,.05);
+  }
+  .cite h3{margin:0 0 8px; font-size:.95rem; color:var(--green); text-transform:uppercase; letter-spacing:.06em}
+  .cite p{margin:6px 0}
+  .cite ol{margin:8px 0 0; padding-left:20px}
+  .cite li{margin:4px 0}
+  .disclaimer{margin-top:14px; font-size:.8rem; font-style:italic}
+
+  .kbd{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#eef4f0; border:1px solid var(--line); border-radius:4px;
+    padding:1px 5px; font-size:.85em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Neuraxial Anaesthesia for the Parturient with Intracranial Pathology</h1>
+  <p>Quick reference for anaesthetists &amp; intensivists · labour analgesia, caesarean delivery &amp; postpartum care</p>
+  <span class="tag">BJA Education 2024 · Summary</span>
+</header>
+
+<div class="toolbar">
+  <button class="btn btn-green" id="expandAll">⊕ Expand all</button>
+  <button class="btn btn-pink" id="collapseAll">⊖ Collapse all</button>
+
+  <div class="fs-group">
+    <button class="btn btn-yellow" id="fsDown" title="Decrease text size">A−</button>
+    <span id="fsLabel">16px</span>
+    <button class="btn btn-yellow" id="fsUp" title="Increase text size">A+</button>
+    <button class="btn btn-blue" id="fsReset" title="Reset text size">Reset</button>
+  </div>
+
+  <div class="search-wrap">
+    <input id="searchInput" type="search" placeholder="Search this page… (Enter = next, Shift+Enter = prev)" autocomplete="off">
+    <button class="btn btn-blue" id="prevBtn" title="Previous match">⟨ Prev</button>
+    <button class="btn btn-blue" id="nextBtn" title="Next match">Next ⟩</button>
+    <span id="searchCount">0/0</span>
+  </div>
+</div>
+
+<main>
+<div id="content">
+
+  <!-- ============ 1. KEY POINTS ============ -->
+  <details class="sec sec--green" open>
+    <summary>1 · Key Points at a Glance</summary>
+    <div class="sec-body">
+      <ul>
+        <li><strong>CPP = MAP − ICP.</strong> Normal CPP 60–100 mmHg in pregnant and non-pregnant adults. Normal ICP 7–15 mmHg.</li>
+        <li>Sustained ICP of <strong>20–25 mmHg</strong> is generally treated; <strong>&gt; 40 mmHg</strong> is life-threatening.</li>
+        <li>Neuraxial analgesia is the <strong>most common (77%)</strong> and most effective technique for labour pain in the USA, and is preferred for caesarean delivery (CD).</li>
+        <li>Pregnancy, neuraxial anaesthesia and general anaesthesia (GA) can all cause <strong>acute changes in ICP</strong>.</li>
+        <li>Pathologies raising ICP: <strong>preeclampsia 6–8%</strong> of pregnancies, <strong>head trauma 0.5–6%</strong>, <strong>ischaemic/haemorrhagic stroke 0.01–0.03%</strong>, <strong>intracranial venous thrombosis 1:50,000</strong>, <strong>tumours ~3.5 per million births</strong>; Chiari malformation ~0.8% radiological prevalence.</li>
+        <li>Evidence is limited to <strong>case reports and retrospective reviews</strong> → individualised, multidisciplinary, shared decision-making.</li>
+      </ul>
+      <div class="callout info">
+        <b>Bottom line:</b> Neuraxial techniques are usually safe when there is <em>no mass effect and no obstruction to CSF flow</em>. They are relatively contraindicated when dural puncture could create a pressure gradient across an obstructed compartment.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 2. PHYSIOLOGY ============ -->
+  <details class="sec sec--blue">
+    <summary>2 · Intracranial Physiology — General Principles</summary>
+    <div class="sec-body">
+      <ul>
+        <li><strong>Cerebral blood flow (CBF)</strong> depends on <strong>cerebral perfusion pressure (CPP)</strong>: <strong>CPP = MAP − ICP</strong>.</li>
+        <li>Significant falls in CPP (↓MAP or ↑ICP) → cerebral hypoperfusion and ischaemia.</li>
+        <li><strong>Monro–Kellie doctrine:</strong> the skull is a rigid, fixed volume (~1500 mL) containing brain tissue (80%), blood (10%) and CSF (10%). An increase in one component requires compensatory decrease in the others.</li>
+        <li><strong>Hydrocephalus:</strong> increased CSF accumulation — obstructive (↑ICP) or non-obstructive (normal ICP). Causes include tumours, congenital malformations, infection, post-haemorrhagic obstruction of CSF resorption.</li>
+        <li>Choroid plexus produces ~<strong>20 mL CSF per hour</strong>; absorption at arachnoid granulations of cerebral veins. <strong>Raised venous pressure</strong> (venous thrombosis, jugular compression) reduces reabsorption.</li>
+        <li>Any blockage at the <strong>foramen magnum</strong> → obstructed CSF flow → ↑ICP and possible herniation.</li>
+      </ul>
+      <div class="callout note">
+        <b>Remember:</b> The two questions that determine neuraxial safety are <em>mass effect</em> and <em>CSF flow obstruction</em>.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 3. PREGNANCY FACTORS ============ -->
+  <details class="sec sec--blue">
+    <summary>3 · Pregnancy &amp; Labour Factors Affecting ICP</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Resting CSF pressure in pregnancy is <strong>similar to non-pregnant adults</strong>.</li>
+        <li><strong>Uterine contractions</strong> increase CSF pressure by ~<strong>30 mmHg</strong> (↑ central blood volume and MAP).</li>
+        <li><strong>Pushing in the second stage</strong> transiently raises CSF pressure by ~<strong>53 mmHg</strong> — the largest increase.</li>
+        <li><strong>Aortocaval compression</strong> from ~20 weeks (earlier in multiple pregnancy) ↓ preload, cardiac output and MAP → use <strong>15–30° left uterine displacement</strong>.</li>
+        <li><strong>Uteroplacental perfusion is not autoregulated</strong>; it depends on arterial pressure.</li>
+        <li><strong>Vasopressors</strong> (phenylephrine, ephedrine, noradrenaline) are well studied for short-term use in CD without fetal harm. <strong>Target haemodynamics within 10–15% of baseline.</strong></li>
+        <li><strong>Progesterone</strong> increases cerebral CO₂ sensitivity → chronic respiratory alkalosis with metabolic compensation; normal <strong>PaCO₂ ~4 kPa</strong> (4.0–4.3 kPa).</li>
+        <li>Pain relief attenuates maternal hyperventilation (which causes uterine artery vasoconstriction) and blunts catecholamine-driven ICP surges.</li>
+        <li><strong>But:</strong> systemic opioids and sedatives can cause hypoventilation and hypercarbia → cerebral vasodilation → <strong>↑ICP</strong>.</li>
+      </ul>
+      <div class="callout warn">
+        <b>Ventilation sweet spot:</b> Avoid extreme hypocapnia (cerebral &amp; uteroplacental vasoconstriction, left-shifted maternal Hb dissociation curve) <em>and</em> hypercapnia (↑ICP). Aim <strong>PaCO₂ 3.3–4.0 kPa</strong>.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 4. GOALS TABLE ============ -->
+  <details class="sec sec--yellow">
+    <summary>4 · Physiological Goals — Target Values (Table 1)</summary>
+    <div class="sec-body">
+      <p>Adapted from Godoy and colleagues (see source).</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Variable</th><th>Goal</th><th>Rationale</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Glucose</td><td>6.1–8.3 mmol L⁻¹</td><td>Hyperglycaemia is associated with inflammation and cerebral oedema, may contribute to thrombosis; the injured brain consumes more glucose.</td></tr>
+            <tr><td>Haemoglobin</td><td>7–10 g dL⁻¹ (keep &gt; 7)</td><td>Maximise oxygen transport and prevent cerebral hypoxia.</td></tr>
+            <tr><td>Oxygenation</td><td>SaO₂ &gt; 92%; PaO₂ &gt; 70 mmHg</td><td>Hypoxia leads to tissue hypoxia and lower cerebral blood flow.</td></tr>
+            <tr><td>Sodium</td><td>135–145 mEq L⁻¹</td><td>Hyponatraemia can exacerbate cerebral oedema.</td></tr>
+            <tr><td>Temperature</td><td>&lt; 37.5 °C</td><td>Hyperthermia ↑ICP via cerebral vasodilation, increased blood–brain barrier permeability and release of neurotoxin mediators.</td></tr>
+            <tr><td>Arterial pressure</td><td>Within 10–15% of baseline</td><td>Maintain near baseline — the target will be <em>higher</em> in hypertensive diseases of pregnancy.</td></tr>
+            <tr><td>Ventilation</td><td>PaCO₂ 3.3–4.0 kPa</td><td>Hypercapnia causes cerebral vasodilation and ↑ICP; extreme hypocapnia causes cerebral and uteroplacental vasoconstriction and ischaemia.</td></tr>
+            <tr><td>Volume status</td><td>Normovolaemia</td><td>Hypovolaemia → hypoperfusion; hypervolaemia → oedema.</td></tr>
+            <tr><td>Cerebral perfusion pressure</td><td>60–70 mmHg</td><td>Lower CPP may cause ischaemia.</td></tr>
+            <tr><td>Intracranial pressure</td><td>≤ 22 mmHg</td><td>Increased ICP can lead to decreased CPP and herniation.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.85em;color:var(--muted)">Normal PaCO₂ in pregnancy is 4.0–4.3 kPa. Table scrolls horizontally and vertically on small screens.</p>
+    </div>
+  </details>
+
+  <!-- ============ 5. NEURAXIAL ============ -->
+  <details class="sec sec--pink">
+    <summary>5 · Neuraxial Procedures — Risks &amp; Precautions</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Neuraxial risks in intracranial pathology: <strong>acute and chronic CSF leak</strong> with changes in CPP and transcompartment pressure gradients, plus <strong>cerebral hypoperfusion</strong> from spinal/epidural hypotension.</li>
+        <li>Untreated spinal hypotension → maternal nausea/vomiting, fetal acidosis, lower Apgar scores, compromised CPP. Treat rapidly with <strong>IV fluids + prophylactic vasopressor infusion</strong>.</li>
+        <li><strong>Unintended dural puncture (DP)</strong> during epidural placement occurs in <strong>0.5–1.5%</strong>, even with experienced operators.</li>
+        <li>A <strong>17-G epidural needle</strong> leaves a much larger dural hole than a <strong>25-G spinal needle</strong> → larger, more acute CSF leak and greater pressure-gradient change.</li>
+        <li><strong>Epidural fluid boluses</strong> may transiently ↑ICP. In non-pregnant patients with raised ICP, ICP rises within <strong>&lt; 1 min</strong>; lasting ~<strong>4.5 min</strong> after a 10 mL bolus vs ~<strong>2.8 min</strong> after 5 mL.</li>
+        <li>For CD under spinal: give <strong>1 L IV crystalloid</strong> plus a <strong>prophylactic vasopressor infusion</strong>; keep BP within <strong>10%</strong> of baseline.</li>
+        <li>About one-third of parturients with intracranial pathology undergo CD; some require GA. Weigh risks and benefits of both, with shared decision-making.</li>
+      </ul>
+      <div class="callout warn">
+        <b>Historical vs current view:</b> Neuraxial procedures were traditionally considered contraindicated with raised ICP because of herniation risk after DP. Current literature suggests raised ICP <em>without an obstructive component</em> does not automatically preclude neuraxial anaesthesia — e.g. 224 patients with cerebral venous thrombosis (83% with raised ICP) had no difference in death or neurological worsening after lumbar puncture.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 6. GA ============ -->
+  <details class="sec sec--pink">
+    <summary>6 · General Anaesthesia — Considerations</summary>
+    <div class="sec-body">
+      <h4>Why GA is higher risk in pregnancy</h4>
+      <ul>
+        <li>Difficult intubation <strong>1:49</strong>; failed intubation <strong>1:808</strong>.</li>
+        <li>↑ aspiration risk: raised intra-abdominal pressure from the gravid uterus, ↓ lower oesophageal sphincter tone, delayed gastric emptying (pain and opioids in labour).</li>
+        <li>↓ functional residual capacity + ↑ oxygen consumption → <strong>rapid desaturation</strong> during apnoea at induction, even with optimal preoxygenation.</li>
+        <li>Potent inhaled anaesthetics cause <strong>uterine relaxation</strong> → atony and postpartum haemorrhage, and <strong>↑CBF</strong>.</li>
+        <li>Accidental awareness under GA for CD: <strong>1 in 212</strong>.</li>
+      </ul>
+      <h4>Modifications for raised ICP</h4>
+      <ul>
+        <li>Blunt the stress response to direct laryngoscopy with <strong>opioids or antihypertensives</strong>.</li>
+        <li>Plan a <strong>smooth emergence</strong> — avoid coughing and bucking at extubation.</li>
+        <li>Maintain PaCO₂ and MAP at target; avoid hypoxia and hypotension.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7. SPECIFIC CONDITIONS ============ -->
+  <details class="sec sec--blue">
+    <summary>7 · Specific Conditions — Quick Reference Table</summary>
+    <div class="sec-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Condition</th><th>Key points</th><th>Neuraxial / anaesthetic implication</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Obstructive hydrocephalus / CSF flow obstruction</td>
+              <td>Communicating vs non-communicating. Obstructive (non-communicating) hydrocephalus with an intracranial mass = obstruction along the ventricular system. Aqueductal stenosis is the commonest non-tumoural obstructive type and may be undiagnosed until adulthood.</td>
+              <td><strong>Contraindication to dural puncture</strong> when due to a mass lesion (herniation risk). LP is generally well tolerated in isolated aqueductal stenosis.</td>
+            </tr>
+            <tr>
+              <td>Brain tumours</td>
+              <td>Pregnancy hormones may accelerate growth of glioblastomas and meningiomas; relative immunosuppression, vascular growth, ↑blood volume and cardiac output contribute to tumour growth and surrounding oedema. Repeat MRI within 2 months of planned delivery.</td>
+              <td>Labour epidurals are reported successful — but <strong>avoid DP</strong> where there is mass effect, ventricular compression and ↑ICP. Fatal herniation reported after unintentional DP. Tumour <em>without</em> mass effect → spinal/epidural acceptable.</td>
+            </tr>
+            <tr>
+              <td>Chiari malformation (CM)</td>
+              <td>Type 1 commonest (0.8% radiological prevalence); symptoms rare (~1/1000): headache, neck pain, visual change, hearing difficulty, gait ataxia. May be associated with syringomyelia (CSF collection in cord) suggesting intermittent foramen magnum obstruction. Kyphosis (↑GA difficulty) and scoliosis (↑neuraxial difficulty).</td>
+              <td>Higher CD and GA rates but similar morbidity vs controls. <strong>No reported fatal or devastating herniation</strong> after neuraxial procedures in CM. Usual care if no foramen magnum crowding and no CM symptoms; neurosurgery often advises CD if syringomyelia/significant symptoms — shared decision-making.</td>
+            </tr>
+            <tr>
+              <td>Spontaneous intracranial hypotension</td>
+              <td>Spontaneous spinal CSF leak; incidence ~4 per 100,000 per year; may be exacerbated by pregnancy. Brain sagging may mimic CM.</td>
+              <td>LP historically avoided to prevent worsening brain sagging — <strong>but</strong> CSF pressure is already low, so further ICP decrease from unintended DP is unlikely.</td>
+            </tr>
+            <tr>
+              <td>Idiopathic intracranial hypertension (IIH)</td>
+              <td>↑ICP without structural cause; likely insufficient CSF resorption. Commonest in women of childbearing age, often with obesity (1–2 per 100,000). Opening pressure ≥ 25 cmH₂O (18.4 mmHg).</td>
+              <td><strong>No contraindication to neuraxial procedures</strong> — no intracranial–spinal pressure gradient and no obstructive structure. LP is often therapeutic.</td>
+            </tr>
+            <tr>
+              <td>Arteriovenous malformation (AVM)</td>
+              <td>Direct low-resistance, high-flow arteriovenous shunts. Rupture risk may ↑ with higher oestrogen and cardiac output; AVM sequelae account for <strong>5–12% of maternal deaths</strong>.</td>
+              <td><strong>Neuraxial considered safe in stable AVM</strong> — avoids pain-related ICP surges and the induction/intubation response of GA.</td>
+            </tr>
+            <tr>
+              <td>Preeclampsia</td>
+              <td>Multiorgan disease with CNS involvement: cerebral oedema and ↑ICP on imaging. Severe features show ↑ICP in <strong>19–43%</strong> based on optic nerve sheath diameter.</td>
+              <td><strong>No reports of preeclampsia-related ↑ICP causing herniation after DP.</strong> Labour epidural and neuraxial anaesthesia remain preferred with close haemodynamic control. Autoregulation threshold is shifted → maintain a higher BP for maternal and fetal perfusion.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 8. DECISION MAKING + FIGURE 1 ============ -->
+  <details class="sec sec--green">
+    <summary>8 · Decision-Making &amp; Risk Assessment (Figure 1 Simplified)</summary>
+    <div class="sec-body">
+      <h4>Before delivery</h4>
+      <ul>
+        <li>Anaesthesia consultation <strong>several weeks before delivery</strong>: obtain records, imaging and neurosurgical opinion.</li>
+        <li><strong>Multidisciplinary team</strong> — obstetrics, neurosurgery, anaesthesia — to discuss mode of delivery and analgesia/anaesthesia options, including postpartum.</li>
+        <li><strong>Review imaging for mass effect</strong> (Table 2 below), which suggests ↑ICP and herniation risk with DP. Repeat imaging within 2 months for tumours.</li>
+        <li>Neurosurgical consultation should cover: symptoms, pathophysiology, <strong>herniation risk with DP</strong> (24–27 G spinal vs 16–18 G epidural needle), risk of acute ICP surges, and mode of delivery (tolerance of second-stage Valsalva).</li>
+      </ul>
+
+      <h4>Simplified risk-assessment pathway</h4>
+      <div class="flow">
+
+        <div class="flow-node neutral">
+          <p><strong>Parturient with known or suspected intracranial pathology</strong></p>
+        </div>
+        <div class="flow-arrow">▼</div>
+
+        <div class="flow-node">
+          <p><strong>Multidisciplinary review</strong> — obstetrics + neurosurgery + anaesthesia. Review CT/MRI within 2 months. Document baseline neurological examination.</p>
+        </div>
+        <div class="flow-arrow">▼</div>
+
+        <div class="flow-node decision">
+          <span class="chip q">Question 1</span>
+          <p><strong>Mass effect or signs of raised ICP on imaging?</strong><br>
+          Midline shift · flattened gyri · cistern effacement · tense dura · narrow sulci · ventricle compression · papilloedema</p>
+        </div>
+        <div class="branch">
+          <div class="flow-node danger">
+            <span class="chip yes">Yes</span>
+            <p><strong>Avoid dural puncture.</strong> High risk of herniation with acute CSF leak. Consider GA for CD with ICP precautions, or neuraxial only after neurosurgical optimisation (e.g. external ventricular drain).</p>
+          </div>
+          <div class="flow-node safe">
+            <span class="chip no">No</span>
+            <p>Proceed to Question 2.</p>
+          </div>
+        </div>
+        <div class="flow-arrow">▼</div>
+
+        <div class="flow-node decision">
+          <span class="chip q">Question 2</span>
+          <p><strong>Obstruction to CSF flow?</strong><br>
+          Obstructive hydrocephalus · foramen magnum crowding · syringomyelia</p>
+        </div>
+        <div class="branch">
+          <div class="flow-node danger">
+            <span class="chip yes">Yes</span>
+            <p><strong>Avoid dural puncture.</strong> Neurosurgery-guided plan; CD frequently advised (Valsalva may worsen obstruction).</p>
+          </div>
+          <div class="flow-node safe">
+            <span class="chip no">No</span>
+            <p>Proceed to the box below.</p>
+          </div>
+        </div>
+        <div class="flow-arrow">▼</div>
+
+        <div class="flow-node safe">
+          <p><strong>Neuraxial analgesia/anaesthesia acceptable</strong> — e.g. IIH, preeclampsia, stable AVM, Chiari type 1 without crowding, tumour without mass effect.</p>
+          <p><strong>Risk mitigation:</strong> ≤ 25 G atraumatic pencil-point needle · senior/experienced operator · neuraxial ultrasound · IV crystalloid + prophylactic vasopressor · keep MAP within 10–15% of baseline · hourly neuro checks.</p>
+        </div>
+
+        <div class="flow-arrow">▼</div>
+        <div class="flow-node danger">
+          <p><strong>Any patient with decompensated neurological status:</strong> high suspicion of pathological ↑ICP — neuraxial techniques should be <strong>avoided</strong>.</p>
+        </div>
+      </div>
+
+      <h4>Table 2 · Characteristics of Increased ICP</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Clinical signs &amp; symptoms</th><th>Imaging (CT or MRI)</th><th>Ultrasound</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Altered / decreased consciousness<br>Seizures<br>Neurological deficits<br>Papilloedema<br>Pupil asymmetry</td>
+              <td>Midline shift<br>Flattened gyri<br>Cistern effacement<br>Tense dura<br>Narrow sulci<br>Ventricle compression</td>
+              <td>Increased optic nerve sheath diameter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 9. RISK MODIFICATION ============ -->
+  <details class="sec sec--yellow">
+    <summary>9 · Risk Modification, Safety &amp; Monitoring</summary>
+    <div class="sec-body">
+      <h4>Reducing physiological risk</h4>
+      <ul>
+        <li><strong>Reduce ICP before delivery</strong> — e.g. an external ventricular drain was used to lower and monitor ICP, allowing spinal anaesthesia and awake neurological monitoring for CD in a patient with a cerebellopontine angle mass.</li>
+        <li>Use <strong>atraumatic pencil-point spinal needles</strong> — smaller (≤ 25 G) needles leak less and for shorter periods.</li>
+        <li>In vitro CSF flow through human dura: <strong>65% of 29 G Quincke holes had no flow within 5 min</strong> vs only 10% after 22 G dural puncture. A 26 G Quincke needle had a median CSF loss of <strong>0.12 mL min⁻¹</strong> (range 0–1.5).</li>
+        <li>Maintain CPP: strict BP monitoring, keep within 10–15% of baseline, prophylactic vasopressor infusion.</li>
+        <li><strong>Neuraxial ultrasound</strong> for anticipated difficult placement increases first-pass success and may reduce complications. Use a senior/experienced operator to reduce unintentional or multiple DPs.</li>
+      </ul>
+      <h4>Monitoring</h4>
+      <ul>
+        <li>Labouring or postpartum patients with raised ICP: <strong>hourly neurological checks</strong>.</li>
+        <li>Consider <strong>1:1 nursing</strong> or <strong>ICU admission</strong> based on symptoms and likelihood of deterioration.</li>
+      </ul>
+      <div class="callout ok">
+        <b>Safety net:</b> With increasing risk of a disease process that could produce acute herniation from acute CSF leak, neuraxial analgesia/anaesthesia becomes <em>relatively contraindicated</em>.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 10. ALTERNATIVES ============ -->
+  <details class="sec sec--pink">
+    <summary>10 · Alternative (Non-Neuraxial) Pain Relief</summary>
+    <div class="sec-body">
+      <p>Consider when neuraxial techniques are contraindicated, or when the patient elects to avoid them after shared decision-making.</p>
+
+      <h4>Systemic opioids — remifentanil PCA</h4>
+      <ul>
+        <li>Provides <strong>better pain control</strong> than traditional non-neuraxial options for labour; commonly used in Europe.</li>
+        <li>Typically <strong>reserved for contraindications to neuraxial analgesia</strong> because of the higher risk of maternal respiratory depression.</li>
+        <li>Mitigate risk with <strong>1:1 nursing, continuous pulse oximetry and continuous end-tidal CO₂</strong>.</li>
+        <li>Neonatal outcomes (Apgar, NICU admission, resuscitation) are comparable with other methods.</li>
+        <li>In intracranial pathology, remember that <strong>respiratory depression → hypercarbia → ↑ICP</strong>.</li>
+      </ul>
+
+      <h4>Nitrous oxide</h4>
+      <ul>
+        <li>Can increase CBF, cerebral metabolic rate and ICP.</li>
+        <li>No difference in outcomes vs controls during aneurysm clipping in <strong>non-pregnant</strong> patients.</li>
+        <li>Concerns should be part of interdisciplinary discussion and shared decision-making for labour analgesia or scheduled CD under GA.</li>
+      </ul>
+
+      <h4>Fascial plane blocks</h4>
+      <ul>
+        <li><strong>Transversus abdominis plane (TAP)</strong> or <strong>quadratus lumborum (QL)</strong> blocks ± catheters after CD when intrathecal opioids cannot be given.</li>
+        <li>Use as part of <strong>multimodal analgesia</strong>; reserve systemic opioids for rescue only.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 11. COMPLICATIONS ============ -->
+  <details class="sec sec--pink">
+    <summary>11 · Managing Potential Complications</summary>
+    <div class="sec-body">
+
+      <h4>Deterioration of mental status</h4>
+      <ul>
+        <li><strong>Clinical emergency</strong> — activate the brain decompensation rapid response team where available.</li>
+        <li>Assess and treat causes (e.g. ↓MAP / ↓CPP). Ensure a neurosurgeon is aware when a patient with ↑ICP or a significant intracranial mass starts labouring or is scheduled for CD.</li>
+        <li><strong>Acute standard actions:</strong> elevate the head (avoid positions impairing intracranial venous outflow), hyperventilate, give IV mannitol.</li>
+        <li>Balance positioning: avoid aortocaval compression (left uterine displacement) while optimising preload to maintain fetal perfusion.</li>
+        <li>Cautious hyperventilation to <strong>end-tidal CO₂ 3.3–4.0 kPa</strong>.</li>
+        <li>Mannitol in pregnancy has not been studied in humans but appears to cross the placenta in animals; IV mannitol <strong>0.25–0.5 g kg⁻¹</strong> has been reported without adverse effects. Hypertonic saline (not studied in pregnancy) may also be considered.</li>
+      </ul>
+
+      <h4>Unintentional dural puncture</h4>
+      <ul>
+        <li>If it occurs with <strong>non-obstructive</strong> intracranial pathology: monitor closely for acute neurological change.</li>
+        <li>Options: place an intrathecal catheter via the epidural needle, or withdraw and resite at the same or a different level (most choose the latter).</li>
+        <li>Keep the patient <strong>supine with left uterine displacement</strong> to minimise the intracranial–spinal canal pressure gradient.</li>
+        <li>Acute boluses of preservative-free normal saline into the epidural/intrathecal space can temporarily raise spinal canal pressure and reduce the gradient.</li>
+        <li>If discharged postpartum: <strong>follow up for at least one week</strong> with strict return-to-hospital instructions for any neurological deterioration.</li>
+        <li>Post-DP headache: treat symptomatically. <strong>Epidural blood patch</strong> is an individualised risk/benefit decision based on the intracranial pathology.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 12. POSTPARTUM ============ -->
+  <details class="sec sec--green">
+    <summary>12 · Postpartum &amp; Postoperative Care</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Immediately after delivery the uterus contracts → <strong>↑ central blood volume and cardiac output to its peripartum peak</strong>. This is the <strong>highest-risk period for intracranial haemorrhage</strong>.</li>
+        <li>The vasodilation of neuraxial anaesthesia <strong>moderates</strong> this immediate rise until the block wears off (typically 1–2 h).</li>
+        <li><strong>IV diuretics</strong> after delivery can help mitigate the acute increase in circulating volume.</li>
+        <li>Treat postpartum/postoperative pain with <strong>multimodal analgesia</strong>; use systemic opioids only as 'rescue' (risk of hypoventilation → ↑ICP).</li>
+        <li>Maintain <strong>vigilance and increased monitoring for the first 48 h</strong> — increased cardiac output, fluid shifts and acute pain needs raise the chance of adverse events.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 13. CONCLUSIONS ============ -->
+  <details class="sec sec--green">
+    <summary>13 · Conclusions</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Pregnancy and the physiological changes of labour, pain and haemodynamic swings may affect ICP, especially with coexisting disease.</li>
+        <li><strong>Neuraxial analgesia may not be contraindicated</strong> in milder intracranial disease such as Chiari type 1 malformation.</li>
+        <li>Alternative labour pain relief methods can also have <strong>harmful effects on ICP</strong>.</li>
+        <li><strong>GA for CD</strong> has physiological effects on ICP and cerebral haemodynamics.</li>
+        <li>Patients with significant intracranial pathology are best served by <strong>interdisciplinary discussion</strong> of the individual pathology — with specific attention to <strong>intracranial mass effect</strong>, <strong>obstruction to CSF flow</strong> and <strong>risk of herniation with dural puncture</strong> — within a shared decision-making framework.</li>
+      </ul>
+    </div>
+  </details>
+
+</div><!-- /#content -->
+</main>
+
+<footer>
+  <div class="cite">
+    <h3>Source &amp; Reference</h3>
+    <p>
+      <strong>Warrick C, Schievink W, Zakowski M.</strong> Neuraxial anaesthesia for the parturient with intracranial pathology.
+      <em>BJA Education</em>. 2024;38(0). PII: S2058-5349(24)00104-5.
+    </p>
+    <p style="font-size:.92em">
+      Affiliations: University of Utah Health, Salt Lake City, USA; Cedars-Sinai Medical Center, Los Angeles, USA.
+      Corresponding author: mark.zakowski@cshs.org
+    </p>
+    <h3 style="margin-top:14px">Key references cited in the original article</h3>
+    <ol>
+      <li>Godoy DA, Robba C, Paiva WS, Rabinstein AA. Acute intracranial hypertension during pregnancy: special considerations and management adjustments. <em>Neurocrit Care</em> 2022;36:302–16.</li>
+      <li>Leffert LR, Schwamm LH. Neuraxial anesthesia in parturients with intracranial pathology: a comprehensive review and reassessment of risk. <em>Anesthesiology</em> 2013;119:703–18.</li>
+      <li>Kinsella SM, Carvalho B, Dyer RA et al. International consensus statement on the management of hypotension with vasopressors during Caesarean section under spinal anaesthesia. <em>Anaesthesia</em> 2018;73:71–92.</li>
+      <li>Bollag L, Lim G, Sultan P et al. Society for Obstetric Anesthesia and Perinatology: consensus statement and recommendations for enhanced recovery after cesarean. <em>Anesth Analg</em> 2021;132:1362–77.</li>
+      <li>Waters JFR, O'Neal MA, Pilato M et al. Management of anesthesia and delivery in women with Chiari I malformations. <em>Obstet Gynecol</em> 2018;132:1180–4.</li>
+      <li>Canhao P, Abreu LF, Ferro JM et al. Safety of lumbar puncture in patients with cerebral venous thrombosis. <em>Eur J Neurol</em> 2013;20:1075–80.</li>
+      <li>Cruickshank RH, Hopkinson JM. Fluid flow through dural puncture sites. An in vitro comparison of needle point types. <em>Anaesthesia</em> 1989;44:415–8.</li>
+      <li>Su TM, Lan CM, Yang LC et al. Brain tumor presenting with fatal herniation following delivery under epidural anesthesia. <em>Anesthesiology</em> 2002;96:508–9.</li>
+      <li>Weibel S, Jelting Y, Afshari A et al. Patient-controlled analgesia with remifentanil versus alternative parenteral methods for pain management in labour. <em>Cochrane Database Syst Rev</em> 2017;4:CD011989.</li>
+      <li>Osterman MJK, Hamilton BE, Martin JA et al. Births: final data for 2021. <em>Natl Vital Stat Rep</em> 2023;72:1–53.</li>
+    </ol>
+  </div>
+  <p class="disclaimer">
+    This page is an educational quick-reference summary of the published article. Always consult the full text, local guidelines and multidisciplinary team before clinical decisions. Figures and tables have been simplified for web display.
+  </p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content   = document.getElementById('content');
+  var input     = document.getElementById('searchInput');
+  var countEl   = document.getElementById('searchCount');
+  var marks     = [];
+  var currentIdx = -1;
+  var debounceTimer = null;
+
+  /* ---------------- Expand / Collapse ---------------- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = false; });
+  });
+
+  /* ---------------- Font resizing ---------------- */
+  var fontSize = 16;
+  var fsLabel  = document.getElementById('fsLabel');
+
+  function setFontSize(v) {
+    fontSize = Math.max(13, Math.min(22, v));
+    content.style.fontSize = fontSize + 'px';
+    fsLabel.textContent = fontSize + 'px';
+  }
+  document.getElementById('fsUp').addEventListener('click', function () { setFontSize(fontSize + 1); });
+  document.getElementById('fsDown').addEventListener('click', function () { setFontSize(fontSize - 1); });
+  document.getElementById('fsReset').addEventListener('click', function () { setFontSize(16); });
+
+  /* ---------------- Search ---------------- */
+  function updateCount() {
+    countEl.textContent = marks.length ? (currentIdx + 1) + '/' + marks.length : '0/0';
+  }
+
+  function clearMarks() {
+    var old = content.querySelectorAll('mark.srch');
+    if (old.length) {
+      old.forEach(function (m) { m.parentNode.replaceChild(document.createTextNode(m.textContent), m); });
+      content.normalize();
+    }
+    marks = [];
+    currentIdx = -1;
+  }
+
+  function openAncestors(node) {
+    var p = node.parentNode;
+    while (p && p !== content) {
+      if (p.tagName === 'DETAILS' && !p.open) { p.open = true; }
+      p = p.parentNode;
+    }
+  }
+
+  function runSearch() {
+    clearMarks();
+    var q = input.value.trim();
+    if (q.length < 2) { updateCount(); return; }
+
+    var needle = q.toLowerCase();
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, null);
+    var textNodes = [];
+    var n;
+    while ((n = walker.nextNode())) {
+      var parent = n.parentNode;
+      if (!parent) { continue; }
+      var pn = parent.nodeName;
+      if (pn === 'SCRIPT' || pn === 'STYLE') { continue; }
+      if (!n.nodeValue || !n.nodeValue.trim()) { continue; }
+      textNodes.push(n);
+    }
+
+    textNodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var low  = text.toLowerCase();
+      var i    = low.indexOf(needle);
+      if (i === -1) { return; }
+
+      var frag = document.createDocumentFragment();
+      var pos  = 0;
+
+      while (i !== -1) {
+        if (i > pos) { frag.appendChild(document.createTextNode(text.slice(pos, i))); }
+        var m = document.createElement('mark');
+        m.className = 'srch';
+        m.textContent = text.slice(i, i + needle.length);
+        frag.appendChild(m);
+        marks.push(m);
+        pos = i + needle.length;
+        i = low.indexOf(needle, pos);
+      }
+      if (pos < text.length) { frag.appendChild(document.createTextNode(text.slice(pos))); }
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    if (marks.length) {
+      currentIdx = -1;
+      step(1);
+    } else {
+      updateCount();
+    }
+  }
+
+  function step(dir) {
+    if (!marks.length) { updateCount(); return; }
+    if (currentIdx >= 0 && marks[currentIdx]) {
+      marks[currentIdx].classList.remove('cur');
+    }
+    currentIdx = (currentIdx + dir + marks.length) % marks.length;
+    var m = marks[currentIdx];
+    openAncestors(m);
+    m.classList.add('cur');
+    m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    updateCount();
+  }
+
+  input.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 220);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!marks.length) { runSearch(); }
+      else { step(e.shiftKey ? -1 : 1); }
+    } else if (e.key === 'Escape') {
+      input.value = '';
+      clearMarks();
+      updateCount();
+    }
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', function () { step(1); });
+  document.getElementById('prevBtn').addEventListener('click', function () { step(-1); });
+
+  /* ---------------- Init ---------------- */
+  setFontSize(16);
+  updateCount();
+})();
+</script>
+</body>
+</html>
