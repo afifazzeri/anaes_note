@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anaesthesia for Electroconvulsive Therapy (ECT) — Quick Reference</title>
+<style>
+  :root{
+    --orange:#b9540a;  --orange-l:#fff2e3;  --orange-b:#f6c894;
+    --cyan:#0e7490;    --cyan-l:#e2f7fb;    --cyan-b:#a6e4ef;
+    --green:#1b7a3e;   --green-l:#e7f5ec;   --green-b:#b8e1c7;
+    --ink:#14231f;     --muted:#4c5f58;
+    --line:#dde9e4;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; padding:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:#f5faf8; color:var(--ink); line-height:1.55;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    background:linear-gradient(120deg,#b9540a 0%,#0e7490 55%,#1b7a3e 110%);
+    color:#fff; padding:24px 18px 20px;
+  }
+  header h1{margin:0 0 6px; font-size:1.4rem; line-height:1.25; letter-spacing:.2px}
+  header p{margin:0; font-size:.9rem; opacity:.96}
+  header .tag{
+    display:inline-block; margin-top:10px; font-size:.72rem; font-weight:800;
+    letter-spacing:.08em; text-transform:uppercase;
+    background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.38);
+    padding:3px 10px; border-radius:999px;
+  }
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:60; background:#fff;
+    border-bottom:1px solid var(--line); padding:10px 14px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    box-shadow:0 2px 12px rgba(14,60,45,.08);
+  }
+  .btn{
+    border:1px solid transparent; border-radius:999px; padding:6px 13px;
+    font-size:.8rem; font-weight:800; cursor:pointer; white-space:nowrap;
+    transition:background .15s,color .15s,transform .08s; font-family:inherit;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-green{background:var(--green-l); color:var(--green); border-color:var(--green-b)}
+  .btn-green:hover{background:var(--green); color:#fff}
+  .btn-cyan{background:var(--cyan-l); color:var(--cyan); border-color:var(--cyan-b)}
+  .btn-cyan:hover{background:var(--cyan); color:#fff}
+  .btn-orange{background:var(--orange-l); color:var(--orange); border-color:var(--orange-b)}
+  .btn-orange:hover{background:var(--orange); color:#fff}
+
+  .fs-group{display:flex; align-items:center; gap:5px}
+  #fsLabel{font-size:.76rem; font-weight:800; color:var(--muted); min-width:42px; text-align:center}
+
+  .search-wrap{display:flex; align-items:center; gap:6px; flex:1 1 300px; min-width:230px}
+  #searchInput{
+    flex:1; min-width:120px; padding:7px 14px; border-radius:999px;
+    border:1px solid var(--cyan-b); font-size:.85rem; outline:none; font-family:inherit;
+    background:#fff; color:var(--ink);
+  }
+  #searchInput:focus{border-color:var(--cyan); box-shadow:0 0 0 3px rgba(14,116,144,.14)}
+  #searchCount{
+    font-size:.76rem; font-weight:800; color:var(--cyan);
+    background:var(--cyan-l); border-radius:999px; padding:4px 10px; white-space:nowrap;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1020px; margin:0 auto; padding:18px 14px 70px}
+  #content{font-size:16px}
+
+  /* ---------- COLLAPSIBLE SECTIONS ---------- */
+  details.sec{
+    background:#fff; border:1px solid var(--line); border-radius:12px;
+    margin-bottom:14px; overflow:hidden; box-shadow:0 1px 3px rgba(14,60,45,.06);
+  }
+  details.sec > summary{
+    cursor:pointer; list-style:none; padding:13px 16px;
+    font-weight:800; font-size:1.02em; display:flex; align-items:center; gap:10px;
+    background:var(--c-l); color:var(--c-d);
+    border-left:6px solid var(--c-d); user-select:none;
+    transition:filter .15s;
+  }
+  details.sec > summary:hover{filter:brightness(.97)}
+  details.sec > summary::-webkit-details-marker{display:none}
+  details.sec > summary::after{
+    content:"+"; margin-left:auto; font-weight:800; font-size:1.15em; line-height:1; opacity:.75;
+  }
+  details.sec[open] > summary::after{content:"–"}
+  .sec-body{padding:14px 18px 18px; border-left:6px solid var(--c-d)}
+
+  .sec--orange{--c-d:var(--orange); --c-l:var(--orange-l)}
+  .sec--cyan{--c-d:var(--cyan);     --c-l:var(--cyan-l)}
+  .sec--green{--c-d:var(--green);   --c-l:var(--green-l)}
+
+  /* ---------- TEXT ---------- */
+  .sec-body ul{margin:8px 0; padding-left:20px}
+  .sec-body li{margin:5px 0}
+  .sec-body p{margin:8px 0}
+  .sec-body h4{
+    margin:16px 0 6px; font-size:.94em; color:var(--c-d);
+    text-transform:uppercase; letter-spacing:.05em;
+  }
+  .sec-body strong{color:#0d2a1d}
+
+  .callout{border-radius:10px; padding:10px 14px; margin:12px 0; font-size:.95em; border-left:5px solid}
+  .callout.warn{background:var(--orange-l); border-color:var(--orange); color:#5a2a04}
+  .callout.ok{background:var(--green-l);    border-color:var(--green);  color:#0f3f22}
+  .callout.info{background:var(--cyan-l);   border-color:var(--cyan);   color:#0a2d3a}
+  .callout b{font-weight:800}
+
+  .pill{
+    display:inline-block; font-size:.72em; font-weight:900; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 9px; border-radius:999px; margin-right:6px;
+    vertical-align:middle;
+  }
+  .pill.red{background:var(--orange); color:#fff}
+  .pill.blue{background:var(--cyan); color:#fff}
+  .pill.green{background:var(--green); color:#fff}
+
+  /* ---------- TABLES ---------- */
+  .table-wrap{
+    overflow:auto; -webkit-overflow-scrolling:touch; max-height:70vh;
+    border:1px solid var(--line); border-radius:10px; margin:12px 0;
+  }
+  table{border-collapse:collapse; width:100%; min-width:640px; font-size:.92em}
+  th,td{padding:9px 12px; text-align:left; vertical-align:top; border-bottom:1px solid #e9f1ee}
+  thead th{
+    position:sticky; top:0; z-index:2;
+    background:var(--cyan-l); color:var(--cyan); font-weight:800;
+    border-bottom:2px solid var(--cyan-b);
+  }
+  tbody tr:nth-child(even){background:#fbfdfc}
+  tbody tr:hover{background:#f1f9f5}
+  td:first-child{font-weight:700; color:#0d2a1d; min-width:150px}
+
+  /* ---------- CHECKLIST ---------- */
+  ol.steps{counter-reset:step; list-style:none; padding-left:0; margin:10px 0}
+  ol.steps li{
+    counter-increment:step; position:relative; padding:6px 0 6px 40px;
+    border-bottom:1px dashed #e2ece8; font-size:.96em;
+  }
+  ol.steps li:last-child{border-bottom:none}
+  ol.steps li::before{
+    content:counter(step); position:absolute; left:0; top:6px;
+    width:25px; height:25px; border-radius:50%;
+    background:var(--c-d); color:#fff; font-size:.75em; font-weight:900;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ---------- FIGURE / SVG ---------- */
+  figure.fig{
+    margin:16px 0; padding:12px; background:#fbfefd;
+    border:1px solid var(--cyan-b); border-radius:12px;
+  }
+  figure.fig svg{display:block; width:100%; height:auto; max-width:700px; margin:0 auto}
+  figure.fig figcaption{
+    margin-top:10px; font-size:.86em; color:var(--muted); text-align:center; line-height:1.5;
+  }
+
+  /* ---------- SEARCH HIGHLIGHT ---------- */
+  mark.srch{background:#ffe27a; color:#000; padding:0 1px; border-radius:2px}
+  mark.srch.cur{background:#ffb300; color:#000; outline:2px solid var(--orange); outline-offset:1px}
+
+  /* ---------- FOOTER ---------- */
+  footer{max-width:1020px; margin:0 auto; padding:0 14px 60px; font-size:.86rem; color:var(--muted)}
+  .cite{
+    background:#fff; border:1px solid var(--line); border-left:6px solid var(--cyan);
+    border-radius:12px; padding:14px 18px; box-shadow:0 1px 3px rgba(14,60,45,.06);
+  }
+  .cite h3{margin:0 0 8px; font-size:.94rem; color:var(--cyan); text-transform:uppercase; letter-spacing:.06em}
+  .cite h3 + h3{margin-top:16px}
+  .cite p{margin:6px 0}
+  .cite ol{margin:8px 0 0; padding-left:20px}
+  .cite li{margin:4px 0}
+  .disclaimer{margin-top:14px; font-size:.8rem; font-style:italic}
+
+  .kbd{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#eef6f3; border:1px solid var(--line); border-radius:4px;
+    padding:1px 5px; font-size:.85em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Anaesthesia for Electroconvulsive Therapy (ECT)</h1>
+  <p>Quick reference for anaesthetists &amp; intensivists · remote-site anaesthesia, physiological responses, drug choice</p>
+  <span class="tag">Combined summary · 2014 tutorial + BJA Education 2022</span>
+</header>
+
+<div class="toolbar">
+  <button class="btn btn-green" id="expandAll">⊕ Expand all</button>
+  <button class="btn btn-orange" id="collapseAll">⊖ Collapse all</button>
+
+  <div class="fs-group">
+    <button class="btn btn-cyan" id="fsDown" title="Decrease text size">A−</button>
+    <span id="fsLabel">16px</span>
+    <button class="btn btn-cyan" id="fsUp" title="Increase text size">A+</button>
+    <button class="btn btn-orange" id="fsReset" title="Reset text size">Reset</button>
+  </div>
+
+  <div class="search-wrap">
+    <input id="searchInput" type="search" placeholder="Search this page… (Enter = next, Shift+Enter = prev)" autocomplete="off">
+    <button class="btn btn-cyan" id="prevBtn" title="Previous match">⟨ Prev</button>
+    <button class="btn btn-cyan" id="nextBtn" title="Next match">Next ⟩</button>
+    <span id="searchCount">0/0</span>
+  </div>
+</div>
+
+<main>
+<div id="content">
+
+  <!-- ============ 1. KEY POINTS ============ -->
+  <details class="sec sec--green" open>
+    <summary>1 · Key Points &amp; Exam Quick-Fire</summary>
+    <div class="sec-body">
+      <ul>
+        <li>ECT is a <strong>safe and effective</strong> treatment for severe medication-resistant depression; also useful in mania and catatonia.</li>
+        <li>Usually undertaken on <strong>remote sites</strong>, often in <strong>elderly patients with significant comorbidity</strong>.</li>
+        <li>Cardiovascular and central nervous system responses are the <strong>most dangerous</strong> physiological effects.</li>
+        <li>Anaesthesia must be of <strong>adequate depth without adversely affecting treatment efficacy</strong> — most anaesthetic agents are anticonvulsant.</li>
+        <li>There are <strong>no absolute contraindications</strong> to ECT; all listed contraindications are relative.</li>
+        <li><strong>Relative contraindications:</strong> raised intracranial pressure, recent cerebrovascular accident, untreated cerebral aneurysm, myocardial ischaemia or uncontrolled cardiac failure, unstable major fracture, severe osteoporosis.</li>
+        <li><strong>Modified ECT</strong> (anaesthesia + muscle relaxant) is the recommended standard; WHO has called for a worldwide ban on unmodified ECT.</li>
+      </ul>
+
+      <div class="callout info">
+        <h4 style="margin-top:0;color:var(--cyan)">Answers to the opening MCQs (per the source article)</h4>
+        <p><strong>Q1 · Accepted characteristics of 'modified' ECT → A, B &amp; E</strong><br>
+        <em>A</em> anaesthesia with muscle relaxants is used · <em>B</em> a tonic–clonic seizure is induced · <em>E</em> can be performed unilaterally.<br>
+        <span style="font-size:.9em"><em>Not C</em> — a seizure &gt; <strong>120 s</strong> (not 30 s) is "prolonged". <em>Not D</em> — it is not "always" effective.</span></p>
+
+        <p><strong>Q2 · Absolute contraindications → NONE are absolute.</strong><br>
+        <span style="font-size:.9em">MI in the last 3 months, cochlear implant, epilepsy, pacemaker and pregnancy are all <em>relative</em> considerations or manageable conditions.</span></p>
+
+        <p><strong>Q3 · Common side effects → A &amp; B</strong><br>
+        <span style="font-size:.9em"><em>A</em> headache · <em>B</em> confusion. Note: myalgia and urinary incontinence are described in the text but are not keyed as answers; long-bone fractures are rare with modified ECT.</span></p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 2. INDICATIONS ============ -->
+  <details class="sec sec--cyan">
+    <summary>2 · Indications &amp; Efficacy</summary>
+    <div class="sec-body">
+      <h4>Accepted indications</h4>
+      <ul>
+        <li><strong>Acute, life-threatening depression</strong> — high suicide risk, or very poor food and/or fluid intake.</li>
+        <li><strong>Drug-resistant depression</strong> — failure to respond to two medications given at adequate dose for an adequate period, or where treatment is limited by unacceptable side effects. Consider early initiation if there has been a good response previously, or if the patient is known to respond only to ECT.</li>
+        <li><strong>Acute catatonia</strong> — where first-line intramuscular benzodiazepines have failed to produce improvement.</li>
+        <li><strong>Mania</strong> — where treatment has failed to alleviate the condition or is limited by side effects.</li>
+      </ul>
+
+      <h4>Not generally indicated</h4>
+      <ul>
+        <li><strong>Schizophrenia</strong> — unless there is an affective component.</li>
+        <li><strong>Age &lt; 16 years</strong> — ECT is generally not considered.</li>
+      </ul>
+
+      <h4>Efficacy &amp; risk</h4>
+      <ul>
+        <li>Remission rates for depression of <strong>60–80%</strong> can be expected.</li>
+        <li><strong>Significant relapse rate</strong>, particularly if left untreated in the first year.</li>
+        <li>Mortality <strong>1 per 73,440 cases</strong> (2014 source) — on a par with dental anaesthesia and lower than treatment with antidepressants or psychotherapy. The 2022 review quotes <strong>~1 per 10,000 patients (1 per 80,000 treatments)</strong>, similar to anaesthesia for minor surgery.</li>
+      </ul>
+
+      <div class="callout ok">
+        <b>Why it matters clinically:</b> ECT has a <strong>quicker onset</strong> than other treatment modalities and is potentially <strong>life-saving in catatonia</strong> — for example when there is no oral intake. Balance the risks of untreated depression against the risks of anaesthesia and ECT.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 3. TREATMENT & SEIZURE ============ -->
+  <details class="sec sec--cyan">
+    <summary>3 · Treatment Course, Electrode Placement &amp; Seizure Monitoring</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Given as a <strong>course of treatment</strong> — most patients require <strong>6–10 treatments</strong>, performed <strong>twice weekly</strong>.</li>
+        <li><strong>Bilateral ECT</strong> is used more commonly; electrodes are placed over the poles of the temporal lobes. It is preferred when <strong>speed of clinical recovery takes priority</strong>.</li>
+        <li><strong>Unilateral ECT</strong> is performed on the <strong>non-dominant hemisphere</strong> and has the advantage of minimising cognitive adverse effects. Used if there are concerns over post-ictal confusion.</li>
+        <li><strong>EEG monitoring is mandatory in the UK.</strong> It should show an initially localised seizure that becomes a generalised tonic–clonic seizure within <strong>5–10 seconds</strong>.</li>
+        <li>Seizure duration: ideally <strong>&gt; 15 s and &lt; 120 s</strong>. A seizure <strong>&gt; 120 s</strong> is classified as <strong>"prolonged"</strong> and pharmacological agents may be needed to terminate it. (The 2022 review notes optimal duration is unclear; too short — &lt; 10 s — or too long — &gt; 120 s — may reduce clinical efficacy, and some evidence suggests the <em>amount of current</em> delivered matters more than seizure length.)</li>
+        <li><strong>Maintenance ECT</strong> is not recommended within NICE guidelines (lack of robust evidence base), but is considered a valid treatment option by the Royal College of Psychiatrists and the American Psychiatric Association for those in whom it is difficult to maintain mood.</li>
+        <li>ECT may be given to patients with <strong>epilepsy</strong>, but anticonvulsants may raise the baseline seizure threshold, requiring higher energy. ECT is itself an anticonvulsant (it has been used to treat status epilepticus) and seizure thresholds rise through the course.</li>
+      </ul>
+
+      <figure class="fig">
+        <svg viewBox="0 0 700 330" role="img" aria-labelledby="figTitle">
+          <title id="figTitle">Simplified diagram of bilateral versus unilateral ECT electrode placement</title>
+
+          <!-- ===== PANEL A : BILATERAL (top-down view) ===== -->
+          <g>
+            <text x="170" y="28" text-anchor="middle" font-size="15" font-weight="800" fill="#0e7490">A · Bilateral ECT</text>
+
+            <!-- head outline -->
+            <circle cx="170" cy="168" r="84" fill="#e2f7fb" stroke="#0e7490" stroke-width="2.5"/>
+            <!-- nose -->
+            <path d="M160 86 L170 62 L180 86 Z" fill="#0e7490"/>
+            <!-- midline -->
+            <line x1="170" y1="84" x2="170" y2="252" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="6 6" opacity=".4"/>
+            <!-- electrodes -->
+            <circle cx="86" cy="168" r="12" fill="#b9540a" stroke="#fff" stroke-width="3"/>
+            <circle cx="254" cy="168" r="12" fill="#b9540a" stroke="#fff" stroke-width="3"/>
+            <!-- leader lines -->
+            <line x1="86" y1="168" x2="52" y2="206" stroke="#b9540a" stroke-width="1.6"/>
+            <line x1="254" y1="168" x2="288" y2="206" stroke="#b9540a" stroke-width="1.6"/>
+            <!-- labels -->
+            <text x="170" y="284" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b9540a">Electrodes over each temporal region</text>
+            <text x="170" y="302" text-anchor="middle" font-size="11.5" fill="#4c5f58">(viewed from above)</text>
+          </g>
+
+          <!-- ===== PANEL B : UNILATERAL (side view) ===== -->
+          <g>
+            <text x="515" y="28" text-anchor="middle" font-size="15" font-weight="800" fill="#0e7490">B · Unilateral ECT</text>
+
+            <!-- head outline -->
+            <ellipse cx="515" cy="168" rx="66" ry="86" fill="#e2f7fb" stroke="#0e7490" stroke-width="2.5"/>
+            <!-- nose (right) -->
+            <path d="M576 150 L604 168 L576 186 Z" fill="#0e7490"/>
+            <!-- ear -->
+            <path d="M452 158 q-14 14 0 28" fill="none" stroke="#0e7490" stroke-width="2" opacity=".6"/>
+
+            <!-- arc between electrodes -->
+            <path d="M462 140 Q 500 78 542 96" fill="none" stroke="#1b7a3e" stroke-width="2.2"
+                  stroke-dasharray="7 5" marker-end="url(#arrowGreen)"/>
+            <defs>
+              <marker id="arrowGreen" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+                <path d="M0 0 L9 4.5 L0 9 Z" fill="#1b7a3e"/>
+              </marker>
+            </defs>
+
+            <!-- electrodes -->
+            <circle cx="462" cy="140" r="11" fill="#b9540a" stroke="#fff" stroke-width="3"/>
+            <circle cx="542" cy="96" r="11" fill="#1b7a3e" stroke="#fff" stroke-width="3"/>
+
+            <!-- labels -->
+            <line x1="462" y1="140" x2="424" y2="196" stroke="#b9540a" stroke-width="1.6"/>
+            <text x="418" y="212" text-anchor="end" font-size="12" font-weight="700" fill="#b9540a">1st electrode</text>
+            <text x="418" y="226" text-anchor="end" font-size="12" font-weight="700" fill="#b9540a">(temporal)</text>
+
+            <line x1="542" y1="96" x2="600" y2="74" stroke="#1b7a3e" stroke-width="1.6"/>
+            <text x="606" y="72" font-size="12" font-weight="700" fill="#1b7a3e">2nd electrode</text>
+            <text x="606" y="86" font-size="12" font-weight="700" fill="#1b7a3e">(on arc, ~18 cm)</text>
+
+            <text x="496" y="72" text-anchor="middle" font-size="12" font-weight="800" fill="#1b7a3e">18 cm</text>
+
+            <text x="515" y="284" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b9540a">Temporo-parietal positioning</text>
+            <text x="515" y="302" text-anchor="middle" font-size="11.5" fill="#4c5f58">Maximise electrode distance to reduce current shunting</text>
+          </g>
+        </svg>
+        <figcaption>
+          <strong>Figure 1 (simplified).</strong> Electrode positions for ECT. <em>A — bilateral:</em> one electrode over each temporal region.
+          <em>B — unilateral:</em> first electrode temporal, second placed on an arc approximately 18 cm away (temporo-parietal or d'Elia positioning).
+          Maximising the distance between electrodes reduces shunting of electrical current. The patient sometimes has to be turned laterally to achieve the appropriate electrode position.
+        </figcaption>
+      </figure>
+    </div>
+  </details>
+
+  <!-- ============ 4. CNS ============ -->
+  <details class="sec sec--orange">
+    <summary>4 · Physiological Response — Central Nervous System</summary>
+    <div class="sec-body">
+      <ul>
+        <li><strong>↑ Intracranial pressure.</strong></li>
+        <li><strong>↑ Regional cerebral blood flow, cerebral oxygen consumption and glucose utilisation.</strong></li>
+        <li><strong>↑ Blood–brain barrier permeability.</strong></li>
+        <li><strong>Headache, confusion and transient memory loss</strong> are common in the immediate post-treatment period.</li>
+        <li>Conflicting evidence as to whether neuronal cell death occurs, and if so whether it is clinically relevant.</li>
+        <li>Rare neurological complications reported: <strong>transient ischaemic deficits, intracranial haemorrhage and cortical blindness</strong>. Prolonged seizures or status epilepticus are other complications.</li>
+      </ul>
+
+      <h4>Cognitive adverse effects (the common ones)</h4>
+      <ul>
+        <li><strong>Disorientation, impaired attention and memory problems</strong> are frequent post-ictally.</li>
+        <li><strong>Short-term memory impairment lasting several weeks</strong> occurs in more than <strong>50%</strong> of patients. It usually resolves within 6 months, but <strong>permanent memory loss is possible</strong>.</li>
+        <li>Both <strong>retrograde and anterograde amnesia</strong> can occur.</li>
+        <li><strong>Non-memory cognitive functions</strong> (e.g. intelligence, judgement) are <strong>unaffected</strong>.</li>
+        <li>May be greater in patients with <strong>pre-existing dementia</strong>.</li>
+        <li><strong>Reduce cognitive effects</strong> by altering stimulus intensity or waveform, using <strong>unilateral</strong> electrode placement, and <strong>lengthening the inter-ECT interval</strong>.</li>
+      </ul>
+
+      <div class="callout warn">
+        <b>Intracranial pressure caution:</b> ICP rises with ECT. In patients with an intracranial mass lesion, ICP may be reduced by <strong>pretreatment with steroids and diuretics</strong> and by <strong>hyperventilation before applying the electrical stimulus</strong>. Raised ICP is a relative contraindication.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 5. CVS & OTHER ============ -->
+  <details class="sec sec--orange">
+    <summary>5 · Physiological Response — Cardiovascular &amp; Other Systems</summary>
+    <div class="sec-body">
+
+      <h4>Phase 1 — Parasympathetic discharge (10–15 seconds)</h4>
+      <ul>
+        <li>Begins with the electrical stimulus.</li>
+        <li><strong>Bradycardia, hypotension, or even asystole</strong> may occur.</li>
+      </ul>
+
+      <h4>Phase 2 — Sympathetic response (peaking at 3–5 minutes)</h4>
+      <ul>
+        <li>Catecholamine release: <strong>systolic arterial pressure rises 30–40%</strong>, <strong>heart rate rises ≥ 20%</strong>.</li>
+        <li>Cardiac arrhythmias occasionally occur during this phase.</li>
+        <li><strong>Myocardial oxygen consumption increases</strong>, as determined by the rate–pressure product (RPP).</li>
+        <li>RPP increases are <strong>more marked with bilateral ECT, in older patients, and during hyperventilation-induced hypocapnia</strong>.</li>
+        <li>Simultaneously, seizure activity increases tissue oxygen consumption, potentially <strong>reducing myocardial oxygen supply</strong>.</li>
+        <li><strong>Myocardial ischaemia and infarction</strong> can therefore occur, particularly with pre-existing disease.</li>
+        <li><strong>Left ventricular systolic and diastolic function can remain decreased up to 6 hours after ECT</strong> — even in normal hearts.</li>
+        <li><strong>Cardiac rupture</strong> has been described (very rare).</li>
+      </ul>
+
+      <h4>Other physiological effects</h4>
+      <ul>
+        <li><strong>↑ Intraocular pressure.</strong></li>
+        <li><strong>↑ Intragastric pressure</strong> — does not appear to be clinically significant.</li>
+      </ul>
+
+      <h4>General physical effects</h4>
+      <ul>
+        <li>During unmodified fits there was a high incidence of <strong>fractures and dislocations</strong> — now rare with modified ECT.</li>
+        <li><strong>Headache, myalgia</strong> (from the seizure or from succinylcholine), <strong>drowsiness, weakness, nausea and anorexia</strong> — usually mild.</li>
+        <li><strong>Increased salivation.</strong></li>
+        <li><strong>Dental damage</strong> to crowns, veneers, bridges, implants or intraosseous denture supports; <strong>oral cavity lacerations</strong> of tongue and gums.</li>
+      </ul>
+
+      <div class="callout info">
+        <b>Recovery-room reality check:</b> the commonest side effects are <strong>confusion, agitation, violent behaviour, amnesia, headache, myalgia, and nausea and vomiting</strong>. Cardiovascular complications may still occur during recovery.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 6. MORTALITY ============ -->
+  <details class="sec sec--orange">
+    <summary>6 · Mortality &amp; Overall Risk</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Despite the physiological effects — and frequent use in elderly people with significant comorbidity — ECT is a <strong>low-risk procedure</strong>.</li>
+        <li>Mortality <strong>~1 per 10,000 patients (1 per 80,000 treatments)</strong>, similar to anaesthesia for minor surgical procedures.</li>
+        <li>Cardiovascular complications (<strong>arrhythmia and myocardial infarction</strong>) and, to a lesser extent, pulmonary complications (<strong>laryngospasm and aspiration</strong>) are the most common causes of death and serious morbidity.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 7. PREOPERATIVE ASSESSMENT ============ -->
+  <details class="sec sec--green">
+    <summary>7 · Preoperative Assessment — History, Examination, Investigations</summary>
+    <div class="sec-body">
+
+      <h4>Who assesses, and where</h4>
+      <ul>
+        <li>An <strong>initial medical assessment should be carried out by the attending psychiatrist</strong>. Anaesthetic high-risk cases should be referred to the anaesthetic team for assessment and optimisation before the treatment course begins.</li>
+        <li>Assume patients may be <strong>poor historians</strong>, may have <strong>neglected regular medications</strong>, and may not have accessed community medical services.</li>
+        <li>Carry out a <strong>detailed assessment at the start of a treatment course</strong>, then a <strong>check for any changes before each subsequent treatment</strong>. Repeat the full assessment if there is any change in physical status.</li>
+      </ul>
+
+      <h4>History — focus on</h4>
+      <ul>
+        <li>Ischaemic heart disease, cardiac failure, severe valvular heart disease, uncontrolled hypertension.</li>
+        <li>Severe chronic obstructive pulmonary disease, <strong>gastro-oesophageal reflux</strong> (aspiration risk).</li>
+        <li>Previous anaesthetic history and any known drug allergies.</li>
+        <li><strong>Dentition:</strong> caries, loose teeth, and any artificial work — crowns, veneers, bridges, implants, intraosseous denture supports. Document it and warn the patient of the risk of damage.</li>
+        <li>Baseline vital signs and weight.</li>
+      </ul>
+
+      <h4>Examination — seek evidence of</h4>
+      <ul>
+        <li>Cardiac failure, severe valvular disease, dysrhythmia, uncontrolled hypertension.</li>
+        <li>Poor dentition.</li>
+        <li>Dehydration requiring fluid therapy.</li>
+        <li>Airway assessment and aspiration risk.</li>
+      </ul>
+
+      <h4>Investigations</h4>
+      <ul>
+        <li><strong>Essential:</strong> full blood count, urea and electrolytes.</li>
+        <li><strong>Glycosylated haemoglobin</strong> in diabetic patients.</li>
+        <li><strong>12-lead ECG</strong> in all patients above the age of 60 years.</li>
+        <li><strong>As indicated:</strong> pregnancy testing, sickle cell test, INR.</li>
+        <li><strong>Lithium level</strong> if the patient has been on long-term lithium treatment.</li>
+        <li>Other investigations as clinically indicated. The time taken to optimise problems has to be balanced against the urgency of ECT — but "emergency" ECT usually begins within <strong>days, not hours</strong>.</li>
+      </ul>
+
+      <div class="callout ok">
+        <b>Remote-site safety (RCoA / AAGBI standards):</b> anaesthesia should be provided by an <strong>experienced anaesthetist</strong>, assisted by suitably trained operating department practitioners or anaesthetic nurses, with appropriately trained recovery staff. Resuscitation equipment and drugs must be <strong>immediately available</strong>; monitoring, trained assistance and recovery facilities must meet AAGBI standards; and resources to transfer the patient to critical care must always be in place. Overall responsibility for anaesthetic services for ECT should be allocated to a <strong>lead consultant anaesthetist</strong>.
+      </div>
+
+      <div class="callout warn">
+        <b>ASA III or higher:</b> discussion should precede any decision to provide ECT at a remote site — taking into account the individual patient's needs, the hazards of transfer, and contingency plans for transfer to a critical care facility if needed.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 8. PSYCHOTROPIC DRUGS ============ -->
+  <details class="sec sec--orange">
+    <summary>8 · Psychotropic Medications &amp; Anaesthetic Interactions</summary>
+    <div class="sec-body">
+      <p>Psychotropic medications (antipsychotics, mood stabilisers, antidepressants and anxiolytics) have a range of side effects and the potential to interact with anaesthetic agents.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Drug class</th><th>Key side effects / risks</th><th>Anaesthetic interaction</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tricyclic antidepressants (TCAs)</td>
+              <td>Postural hypotension in the elderly; widening of the QRS complex; prolongation of the QT interval.</td>
+              <td><strong>Hypertensive crisis</strong> can be precipitated with indirectly acting sympathomimetic drugs. Direct-acting sympathomimetics should be used cautiously.</td>
+            </tr>
+            <tr>
+              <td>Monoamine oxidase inhibitors (MAOIs)</td>
+              <td>Profound pressor effect with both direct and indirectly acting sympathomimetic agents.</td>
+              <td>Traditionally <strong>stopped at least 2 weeks prior to ECT</strong>.</td>
+            </tr>
+            <tr>
+              <td>Selective serotonin re-uptake inhibitors (SSRIs)</td>
+              <td>May precipitate <strong>SIADH</strong> (syndrome of inappropriate antidiuretic hormone secretion).</td>
+              <td>Interact with <strong>meperidine and tramadol</strong> → <strong>serotonin syndrome</strong> (hyperreflexia, agitation, hyperthermia).</td>
+            </tr>
+            <tr>
+              <td>Lithium</td>
+              <td>Narrow therapeutic index; can trigger <strong>nephrogenic diabetes insipidus</strong>.</td>
+              <td>Check lithium level if on long-term treatment.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <b>Reassuring note from the 2022 review:</b> interactions with anaesthetic drugs are <strong>uncommon</strong>, as the drugs in question (indirect sympathomimetics, meperidine, tramadol) are <strong>not generally required during ECT</strong>.
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 9. CONTRAINDICATIONS ============ -->
+  <details class="sec sec--orange">
+    <summary>9 · Contraindications</summary>
+    <div class="sec-body">
+      <h4>Absolute contraindications</h4>
+      <div class="callout warn">
+        <b>NONE.</b> There are no absolute contraindications to ECT. Every listed contraindication is relative and must be balanced against the risks of untreated mental illness.
+      </div>
+
+      <h4>Relative contraindications</h4>
+      <ul>
+        <li><strong>Myocardial infarction within the last 3 months</strong>, or unstable angina.</li>
+        <li><strong>Cerebrovascular event within the last 3 months.</strong></li>
+        <li><strong>Raised intracranial pressure</strong> or <strong>untreated cerebral aneurysm</strong>.</li>
+        <li><strong>Unstable major fracture</strong> or <strong>cervical spine injury</strong>; <strong>severe osteoporosis</strong>.</li>
+        <li><strong>Phaeochromocytoma.</strong></li>
+        <li><strong>Uncontrolled cardiac failure</strong> or <strong>severe valvular disease</strong>.</li>
+        <li><strong>Deep venous thrombosis</strong> (until anticoagulated).</li>
+        <li><strong>Retinal detachment or glaucoma.</strong></li>
+      </ul>
+
+      <h4>Devices &amp; implants</h4>
+      <ul>
+        <li><strong>Cochlear or other brain implants</strong> — pose technical challenges; discuss with the neurology team. <strong>Unilateral ECT has been achieved successfully</strong> in the presence of cochlear implants.</li>
+        <li><strong>Pacemakers</strong> — ECT has been administered safely. Risks are low because only small amounts of electricity reach the device due to high tissue resistance. Skeletal muscle potentials during the seizure may trigger pacemaker activity; <strong>temporary conversion to fixed-rate pacing before ECT is recommended</strong>.</li>
+        <li><strong>Implantable cardioverter-defibrillators (ICDs)</strong> — <strong>deactivate</strong> defibrillation and anti-tachycardia functions before ECT and <strong>reactivate immediately afterwards</strong> (or in the early recovery period).</li>
+      </ul>
+
+      <h4>Pregnancy</h4>
+      <ul>
+        <li>A large number of reports suggest ECT is <strong>safe and effective throughout pregnancy</strong>, and it may be preferable to some forms of drug therapy.</li>
+        <li>Plan in consultation with the obstetrician. Consider risks to the <strong>mother</strong> (aspiration, premature labour) and the <strong>fetus</strong> (spontaneous abortion, death).</li>
+        <li><strong>Prophylactic tocolytic therapy</strong> is recommended if there is a history of premature labour.</li>
+        <li><strong>Rapid sequence induction with an endotracheal tube</strong> may be used to secure the airway; take measures to avoid supine hypotension syndrome from aortocaval compression after the second trimester.</li>
+        <li><strong>Sevoflurane</strong> can be used to maintain anaesthesia in the later stages of pregnancy to reduce the risk of uterine contractions.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 10. INDUCTION AGENTS ============ -->
+  <details class="sec sec--cyan">
+    <summary>10 · Induction Agents — Comparison Table</summary>
+    <div class="sec-body">
+      <p>The dose is titrated against the patient's weight for the first treatment, then modified depending on clinical response, haemodynamic stability and seizure threshold. A systematic review concluded that <strong>all currently available induction agents are suitable</strong> for ECT; small variations in emergence and recovery times should not govern drug choice. Whichever drug is used, it is preferable to <strong>use the same agent throughout a course</strong> to avoid interfering with the seizure threshold (which generally rises over a course).</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Induction agent &amp; dose</th>
+              <th>Effect on seizure</th>
+              <th>Advantages</th>
+              <th>Disadvantages</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Propofol<br>0.75–2.5 mg kg⁻¹</td>
+              <td>Shortest duration (weighted mean difference only ~9 s). Duration reduced but <strong>efficacy unaffected</strong>.</td>
+              <td>Familiarity; improved cardiovascular stability; less PONV; quicker emergence; reduced early cognitive impairment.</td>
+              <td>Pain on injection.</td>
+            </tr>
+            <tr>
+              <td>Etomidate<br>0.15–0.3 mg kg⁻¹</td>
+              <td><strong>Duration prolonged</strong>; may <strong>reduce the seizure threshold</strong> — the only IV induction agent that may do so. Produces seizures where other agents have shown no seizure activity. Longest seizure duration.</td>
+              <td>Useful for resistant seizures.</td>
+              <td>Hyperdynamic response more pronounced compared with propofol; pain on induction; PONV; longer emergence/recovery; abnormal movements; adrenocortical suppression.</td>
+            </tr>
+            <tr>
+              <td>Methohexital<br>0.5–1.5 mg kg⁻¹</td>
+              <td>The <strong>"gold standard"</strong> reference for seizure quality; minimal anticonvulsant properties compared with other barbiturates.</td>
+              <td>Long history of use.</td>
+              <td>Reduced availability; increasing lack of familiarity with use.</td>
+            </tr>
+            <tr>
+              <td>Thiopental<br>2–5 mg kg⁻¹<br><span style="font-weight:400;font-size:.9em">(2014 source: 1.5–2.5 mg kg⁻¹)</span></td>
+              <td>Duration reduced; <strong>better than propofol</strong>.</td>
+              <td>Available worldwide; useful for resistant seizures.</td>
+              <td>Needs to be reconstituted; increased dysrhythmias; haemodynamic response less well attenuated; longer recovery.</td>
+            </tr>
+            <tr>
+              <td>Ketamine<br>0.7–2.8 mg kg⁻¹</td>
+              <td><strong>Unclear</strong> — reduced in some studies, prolonged in others.</td>
+              <td>Resurgence of use; may have an inherent antidepressant action.</td>
+              <td>Emergence phenomena; reduced cardiovascular stability; <strong>increased ICP</strong>; hypertension; longer recovery.</td>
+            </tr>
+            <tr>
+              <td>Sevoflurane<br>6–8% inspired for induction, thereafter 1–2 MAC</td>
+              <td>Comparable with thiopental; reduced seizure duration compared with methohexital.</td>
+              <td>Useful when venous access is difficult; <strong>reduces uterine contraction in pregnancy</strong>.</td>
+              <td>Extra equipment required; more time-consuming.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Opioid co-induction</h4>
+      <ul>
+        <li><strong>Alfentanil 10–25 µg kg⁻¹</strong> or <strong>remifentanil 1 µg kg⁻¹</strong> (over 30–60 s) can be used with the induction agent to <strong>increase seizure duration</strong> and <strong>reduce the haemodynamic response</strong>.</li>
+        <li>It is unclear whether the effect on seizure duration is an inherent effect of the opioid or a result of its <strong>dose-sparing effect</strong> on the induction agent.</li>
+        <li>Combining opioids with agents <strong>other than etomidate</strong> can produce similar effects.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 11. MUSCLE RELAXANTS ============ -->
+  <details class="sec sec--cyan">
+    <summary>11 · Muscle Relaxants</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Used to <strong>reduce the risk of injury</strong> from the convulsion. <strong>Complete muscular paralysis is not essential</strong> — the reduced or modified muscular contractions, along with EEG monitoring, are used to monitor seizure duration.</li>
+        <li><strong>Succinylcholine (suxamethonium) 0.5–1.5 mg kg⁻¹</strong> is the muscle relaxant of choice, due to its rapid onset and short duration.</li>
+        <li>Larger doses up to <strong>1.5 mg kg⁻¹</strong> may be required, particularly in severe cachexia, osteoporosis or pre-existing skeletal injury.</li>
+        <li><strong>Muscle pains</strong> are usually mild, seen more commonly in younger patients, and easily resolved with non-opioid analgesia — typically paracetamol.</li>
+        <li><strong>If succinylcholine is contraindicated</strong>, non-depolarising agents can be used safely:
+          <ul>
+            <li><strong>Atracurium 0.3–0.5 mg kg⁻¹</strong></li>
+            <li><strong>Mivacurium 0.08–0.2 mg kg⁻¹</strong> — short acting, but seizure modification is reportedly inadequate at low doses (0.08 mg kg⁻¹); <strong>use at least 0.15 mg kg⁻¹</strong>.</li>
+            <li><strong>Rocuronium 0.3–0.6 mg kg⁻¹</strong> — generally used only as a precurarising agent, but could theoretically be used with sugammadex.</li>
+          </ul>
+        </li>
+        <li>With non-depolarisers, <strong>allow sufficient time for onset</strong>, and anticipate airway management while waiting for the effects to wear off.</li>
+      </ul>
+
+      <div class="callout warn">
+        <b>Neuroleptic malignant syndrome (NMS):</b> a serious side effect of some antipsychotic drugs with clinical similarities to malignant hyperthermia — muscle rigidity, fever, elevated creatine kinase, delirium and autonomic instability. <strong>Avoid succinylcholine and other MH triggers.</strong>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 12. ADJUNCTS ============ -->
+  <details class="sec sec--cyan">
+    <summary>12 · Adjunct Drugs</summary>
+    <div class="sec-body">
+
+      <h4>Anticholinergics — for the parasympathetic phase</h4>
+      <ul>
+        <li><strong>Glycopyrrolate 100–600 µg</strong> — minimises parasympathetic stimulation. Superior anti-sialagogue effects, <strong>no adverse central nervous system effects</strong>, and results in <strong>less post-ECT tachycardia</strong>.</li>
+        <li><strong>Atropine 300–600 µg</strong> — has been used for the same reason, but has the disadvantage of a <strong>high peak, prolonged tachycardia, and crosses the blood–brain barrier</strong>.</li>
+        <li><strong>Routine atropine premedication is NOT recommended</strong> — detrimental effects on myocardial work and oxygen demand.</li>
+      </ul>
+
+      <h4>Beta-blockers — for the sympathetic phase</h4>
+      <ul>
+        <li>Sympathetic stimulation can be attenuated with <strong>esmolol 1.0–2.0 mg kg⁻¹</strong>, <strong>labetalol 0.05–0.4 mg kg⁻¹</strong>, or <strong>verapamil 0.1 mg kg⁻¹</strong>.</li>
+        <li>Beta-blockers may be given pre-procedurally (<strong>atenolol</strong>) or intra-procedurally (<strong>labetalol, esmolol</strong>).</li>
+        <li><strong>Controversy:</strong> whether labetalol and esmolol reduce seizure duration.</li>
+      </ul>
+
+      <h4>Other agents for haemodynamic control</h4>
+      <ul>
+        <li><strong>Calcium-channel blockers</strong> can effectively control arterial pressure: sublingual nifedipine and IV nicardipine (but reflex tachycardia occurs), as has diltiazem — although it may reduce seizure duration.</li>
+        <li><strong>Alpha-2 agonists</strong> such as <strong>dexmedetomidine</strong> blunt the hyperdynamic response.</li>
+        <li><strong>Glyceryl trinitrate (GTN)</strong> also blunts the hyperdynamic response and should be considered in patients at high risk of myocardial ischaemia.</li>
+        <li><strong>Intravenous lidocaine is NOT effective</strong> for this purpose.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 13. CONDUCT & AIRWAY ============ -->
+  <details class="sec sec--green">
+    <summary>13 · Airway Management &amp; Conduct of Anaesthesia</summary>
+    <div class="sec-body">
+
+      <h4>Objectives</h4>
+      <ul>
+        <li>Provide a <strong>short duration of unconsciousness and adequate muscle relaxation</strong> for the electrical stimulus and subsequent seizure.</li>
+        <li>Return to consciousness should be <strong>rapid</strong>, and full orientation is desirable.</li>
+        <li>Minimise the physiological and physical effects described above.</li>
+      </ul>
+
+      <h4>Airway &amp; ventilation</h4>
+      <ul>
+        <li><strong>Pre-oxygenate</strong> with continuous oxygen flow.</li>
+        <li>Airway and breathing should be supported once anaesthesia is achieved; ventilation can be <strong>gently assisted with a face mask</strong>.</li>
+        <li><strong>Intubation of the trachea is not routinely required</strong>, unless there are specific risk factors for reflux (or in pregnancy, where RSI with an ETT may be used).</li>
+        <li><strong>Hyperventilation just before the electrical stimulus</strong> lowers the seizure threshold and can prolong seizure duration — but note it also aggravates the rise in rate–pressure product.</li>
+        <li>A <strong>bite block</strong> is inserted prior to treatment to protect the patient's teeth, lips and tongue.</li>
+        <li><strong>Manual ventilation during the clonic phase</strong> to avoid oxygen desaturation; maintain until adequate spontaneous ventilation resumes.</li>
+        <li>During initial treatments the stimulus magnitude may be titrated until an adequate seizure is generated — in these circumstances <strong>further boluses of induction agent are required</strong> to maintain anaesthesia.</li>
+      </ul>
+
+      <h4>Pre-treatment checklist</h4>
+      <ul>
+        <li><strong>Avoid sedative premedication</strong> — it delays emergence and interferes with seizure generation.</li>
+        <li>Check <strong>consent</strong>, <strong>fasting status</strong> and <strong>vital parameters</strong>; administer regular medications.</li>
+        <li>Encourage the patient to <strong>empty their bladder</strong> — incontinence is common.</li>
+        <li>Secure IV access and apply full monitoring.</li>
+      </ul>
+
+      <h4>A typical treatment sequence (as described at the authors' trust)</h4>
+      <ol class="steps">
+        <li>Full anaesthetic assessment on first presentation, with particular attention to <strong>aspiration risk</strong>; note any artificial dentition and warn of the risk of damage.</li>
+        <li>For repeat patients, review to ensure no acute changes in health or medication; repeat the full assessment if physical status has changed.</li>
+        <li>Check <strong>consent, vital parameters and fasting status</strong>. Secure IV access and full monitoring.</li>
+        <li>Commence <strong>pre-oxygenation</strong>; administer an anticholinergic agent if one is to be used.</li>
+        <li><strong>Induce anaesthesia</strong>; administer the muscle relaxant once verbal communication is lost.</li>
+        <li>Commence <strong>gentle assisted ventilation</strong> and observe for signs of fasciculation.</li>
+        <li>Carefully insert a <strong>bite block</strong> once the patient is ready.</li>
+        <li>Apply <strong>EEG electrodes</strong> to the head; place the <strong>paddles on the temporal regions</strong>.</li>
+        <li>The anaesthetist <strong>stands clear</strong>; the electrical current is applied.</li>
+        <li>Evaluate for <strong>tonic–clonic seizure activity</strong> and document it.</li>
+        <li><strong>Remove the bite block</strong> when seizure activity has stopped; continue airway support.</li>
+        <li>Transfer to the <strong>recovery room</strong> once spontaneous ventilation has returned. Offer a warm drink and light meal when appropriate.</li>
+      </ol>
+    </div>
+  </details>
+
+  <!-- ============ 14. RECOVERY ============ -->
+  <details class="sec sec--green">
+    <summary>14 · Recovery &amp; Postoperative Care</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Continue monitoring <strong>oxygen saturation, heart rate and non-invasive blood pressure</strong> in the recovery room until the patient is awake and maintains oxygen saturation on room air.</li>
+        <li>Most patients <strong>recover quickly</strong> and can be discharged according to standard criteria.</li>
+        <li>The presence of a <strong>trained escort familiar to the patient</strong> can be reassuring.</li>
+        <li><strong>Commonest side effects:</strong> confusion, agitation, violent behaviour, amnesia, headache, myalgia, and nausea and vomiting. <strong>Cardiovascular complications may also still occur at this stage.</strong></li>
+        <li><strong>Emergence agitation</strong> can be the most challenging problem to treat. Small doses of <strong>midazolam</strong> may be useful if simple measures — such as a secluded, calm recovery environment — do not help.</li>
+        <li><strong>Regular review</strong> during the treatment course is required to assess response to ECT and to detect any adverse physical events early, so they can be avoided, minimised or treated.</li>
+        <li>Adverse psychological effects are rare, but <strong>some patients develop an intense fear of treatment</strong> — support and information are important in reducing this side effect.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 15. SPECIAL POPULATIONS ============ -->
+  <details class="sec sec--orange">
+    <summary>15 · Special Patient Populations</summary>
+    <div class="sec-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Population</th><th>Key considerations</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cerebral aneurysm</td>
+              <td>An increase in <strong>aneurysm wall stress</strong> can lead to enlargement or rupture. The increase in cerebral blood flow velocity during ECT is generally <strong>less with propofol than thiopental</strong>. <strong>Nitroprusside and beta-blockers</strong> can partially inhibit this increase. Untreated cerebral aneurysm is a relative contraindication.</td>
+            </tr>
+            <tr>
+              <td>Intracranial mass lesion / raised ICP</td>
+              <td>ICP may be reduced by <strong>pretreatment with steroids and diuretics</strong> and by <strong>hyperventilation before applying the electrical stimulus</strong>. Raised ICP is a relative contraindication. Avoid ketamine (increases ICP).</td>
+            </tr>
+            <tr>
+              <td>Pacemakers / ICDs</td>
+              <td>Risks are low because only small amounts of electricity reach the device due to high tissue resistance. Skeletal muscle potentials during the seizure may trigger pacemaker activity — <strong>temporary conversion to fixed-rate pacing</strong> before ECT is recommended. <strong>ICDs should be deactivated beforehand and reactivated in the early recovery period.</strong></td>
+            </tr>
+            <tr>
+              <td>Neuroleptic malignant syndrome (NMS)</td>
+              <td>Serious side effect of some antipsychotics with clinical similarities to malignant hyperthermia: muscle rigidity, fever, elevated creatine kinase, delirium, autonomic instability. <strong>Avoid succinylcholine and other MH triggers.</strong></td>
+            </tr>
+            <tr>
+              <td>Pregnancy</td>
+              <td>Large number of reports suggest ECT is <strong>safe and effective throughout pregnancy</strong> and may be preferable to some drug therapies. Risks to mother (<strong>aspiration</strong>) and fetus (<strong>premature labour, spontaneous abortion</strong>). <strong>Prophylactic tocolysis</strong> if history of premature labour. After the second trimester, avoid supine hypotension from aortocaval compression; <strong>RSI with an ETT</strong> may be used. <strong>Sevoflurane</strong> for maintenance in later pregnancy may reduce the risk of uterine contractions.</td>
+            </tr>
+            <tr>
+              <td>Epilepsy</td>
+              <td>ECT may be given, but <strong>anticonvulsants may raise the baseline seizure threshold</strong>, resulting in higher energy requirements. Seizure thresholds rise through the course.</td>
+            </tr>
+            <tr>
+              <td>Severe cachexia / osteoporosis / pre-existing skeletal injury</td>
+              <td>Higher doses of succinylcholine (up to <strong>1.5 mg kg⁻¹</strong>) may be required to prevent injury from the convulsion.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ 16. CONSENT ============ -->
+  <details class="sec sec--green">
+    <summary>16 · Consent &amp; the Mental Health Act</summary>
+    <div class="sec-body">
+      <ul>
+        <li>Illnesses requiring ECT can feature <strong>significant impairment of mental capacity</strong>, which may preclude obtaining informed consent. When prescribing ECT, <strong>capacity must first be assessed</strong>.</li>
+        <li>An adult has capacity if they can <strong>understand and retain</strong> the information relevant to the decision, <strong>believe</strong> that information, and <strong>weigh</strong> it to arrive at a choice.</li>
+        <li>When a patient can understand the nature, purpose and likely risks and benefits, <strong>ECT cannot be given without consent</strong>.</li>
+        <li>Even when a patient is capable, <strong>NICE recommends</strong> doctors encourage the involvement of either an <strong>independent person who speaks on behalf of the patient (an 'advocate')</strong> or the person's carer.</li>
+        <li>When a patient is <strong>unable to consent</strong>, approval from the patient's family should ideally be sought, but this is <strong>not legally required</strong>. Care must be taken to ensure it is legal to deliver ECT.</li>
+        <li><strong>UK framework:</strong>
+          <ul>
+            <li><strong>Not detained, not resisting, but unable to give informed consent</strong> → <strong>Incapacity legislation</strong> may be used.</li>
+            <li><strong>Detained under Mental Health legislation</strong> → some patients still have capacity to consent. If a detained patient is <strong>incapable</strong> of consenting, a <strong>formal, independent second opinion</strong> from the appropriate governing body (e.g. the Care Quality Commission in England, the Mental Welfare Commission in Scotland) must be arranged.</li>
+            <li><strong>Resisting or objecting to treatment, or unable to express consent</strong> → the second opinion is essentially to confirm that ECT should only be administered <strong>to save the patient's life or to prevent serious deterioration or suffering</strong>.</li>
+          </ul>
+        </li>
+        <li><strong>Emergency treatment</strong> (where the rate of deterioration dictates that time is of the essence) may be administered <strong>without consent or a formal second opinion</strong>, although it is good practice to obtain an informal second opinion before proceeding.</li>
+        <li>Where a patient has an <strong>Advance Directive or Statement</strong> indicating they would not wish to receive ECT, this would normally be overridden <strong>only in an emergency</strong>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ============ 17. SUMMARY ============ -->
+  <details class="sec sec--green">
+    <summary>17 · Summary</summary>
+    <div class="sec-body">
+      <ul>
+        <li><strong>Appropriately administered ECT is safe and effective.</strong></li>
+        <li>Anaesthetists must be aware of the <strong>physiological responses to ECT</strong> and how to modify them.</li>
+        <li>They must also understand the <strong>anaesthetic factors that may influence the efficacy of ECT</strong> — principally the anticonvulsant effect of induction agents and the balance between adequate depth and seizure generation.</li>
+        <li>ECT is usually administered at <strong>remote locations</strong> — adequately trained staff and an appropriately equipped unit are imperative for safe practice.</li>
+        <li><strong>'Modified ECT'</strong> — the use of anaesthesia and muscle relaxants — is the recommended standard practice.</li>
+        <li><strong>Full anaesthetic assessment, with attention to aspiration risk, is essential.</strong></li>
+      </ul>
+    </div>
+  </details>
+
+</div><!-- /#content -->
+</main>
+
+<footer>
+  <div class="cite">
+    <h3>Primary Sources</h3>
+    <p>
+      <strong>1.</strong> Kulkarni A, Manji M, Rayner I. <em>Anaesthesia for Electroconvulsive Therapy.</em>
+      Queen Elizabeth University Hospital, Birmingham, UK; Birmingham &amp; Solihull Mental Health Foundation (NHS) Trust, Birmingham, UK. 7 April 2014.
+      Correspondence: aditi.kulkarni@uhb.nhs.uk
+    </p>
+    <p>
+      <strong>2.</strong> Uppal V, Dourish J, Macfarlane A. <em>Anaesthesia for electroconvulsive therapy.</em>
+      BJA Education. 2022. PII: S1743-1816(17)30338-4.
+      <br>
+      <span style="font-size:.92em">
+        Vishal Uppal MBBS DA FRCA — Specialty Registrar in Anaesthetics, Glasgow Royal Infirmary;
+        Jonathan Dourish MB ChB MRCPsych — Specialist Registrar in Psychiatry, Parkhead Hospital, Glasgow;
+        Alan Macfarlane BSc MBChB MRCP FRCA — Consultant Anaesthetist, Department of Anaesthesia, Glasgow Royal Infirmary and Stobhill Hospital, Glasgow, UK.
+      </span>
+    </p>
+
+    <h3>Key References Cited in the Source Articles</h3>
+    <ol>
+      <li>Scott AIF. <em>The ECT Handbook</em>, 2nd edn. Glasgow: The Royal College of Psychiatrists; 2005.</li>
+      <li>Ding Z, White PF. Anesthesia for electroconvulsive therapy. <em>Anesth Analg</em> 2002;94:1351–64.</li>
+      <li>Adverse effects. <em>The Practice of Electroconvulsive Therapy: Recommendations for Treatment, Training and Privileging</em> (A Task Force Report of the American Psychiatric Association), 2nd edn. Washington, DC: American Psychiatric Association; 2001:59–76.</li>
+      <li><em>Guidance for Electro-convulsive Therapy (ECT) Provided in Remote Sites.</em> London: The Royal College of Anaesthetists; 2003.</li>
+      <li>Hooten WM, Rasmussen KG Jr. Effects of general anesthetic agents in adults receiving electroconvulsive therapy: a systematic review. <em>J Electroconvuls Ther</em> 2008;24:208–23.</li>
+      <li>Akcaboy ZN, Akcaboy EY, Yigitbasl B et al. Effects of remifentanil and alfentanil on seizure duration, stimulus amplitudes and recovery parameters during ECT. <em>Acta Anaesthesiol Scand</em> 2005;49:1068–71.</li>
+      <li>Fredman B, Smith I, d'Ettienne J, White PF. Use of muscle relaxants for electroconvulsive therapy: how much is enough? <em>Anesth Analg</em> 1994;78:195–6.</li>
+      <li><em>Consent for Anaesthesia.</em> London: The Association of Anaesthetists of Great Britain and Ireland; 2006.</li>
+      <li>Geretsegger C, Nickel M, Judendorfer B et al. Propofol and methohexital as anesthetic agents for electroconvulsive therapy: a randomized, double-blind comparison of seizure quality, therapeutic efficacy, and cognitive performance. <em>J Electroconvuls Ther</em> 2007;23:239–43.</li>
+      <li>Gazdag G, Kocsis N, Tolna J, Ivanyi Z. Etomidate versus propofol for electroconvulsive therapy in patients with schizophrenia. <em>J Electroconvuls Ther</em> 2004;20:225–7.</li>
+      <li>Avramov MN, Husain MM, White PF. The comparative effects of methohexital, propofol, and etomidate for electroconvulsive therapy. <em>Anesth Analg</em> 1995;81:596–602.</li>
+      <li>Villalonga A, Bernardo M, Gomar C et al. Cardiovascular response and anesthetic recovery in electroconvulsive therapy with propofol or thiopental. <em>Convuls Ther</em> 1993;9:108–11.</li>
+      <li>Krystal AD, Weiner RD, Dean MD et al. Comparison of seizure duration, ictal EEG, and cognitive effects of ketamine and methohexital anesthesia with ECT. <em>J Neuropsychiatry Clin Neurosci</em> 2003;15:27–34.</li>
+      <li>Rasmussen KG, Laurila DR, Brady BM et al. Seizure length with sevoflurane and thiopental for induction of general anesthesia in electroconvulsive therapy: a randomized double-blind trial. <em>J Electroconvuls Ther</em> 2006;22:240–2.</li>
+      <li>Calarge CA, Crowe RR, Gergis SD et al. The comparative effects of sevoflurane and methohexital for electroconvulsive therapy. <em>J Electroconvuls Ther</em> 2003;19:221–5.</li>
+      <li>Wells DG, Davies GG. Haemodynamic changes associated with electroconvulsive therapy. <em>Anesth Analg</em> 1987;66:1193–5.</li>
+      <li>MacPherson RD, Loo CK, Barrett N. Electroconvulsive therapy in patients with cardiac pacemakers. <em>Anaesth Intensive Care</em> 2006;34(4):470–4.</li>
+      <li>NICE Clinical Guideline CG90. <em>Depression in adults: recognition and management</em>. 2009.</li>
+    </ol>
+  </div>
+  <p class="disclaimer">
+    This page is an educational quick-reference summary of the cited publications. Always consult the full texts, local guidelines, the Mental Health Act legislation applicable in your jurisdiction, and the multidisciplinary team before clinical decisions. Figure 1 has been simplified and redrawn for web display.
+  </p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var content = document.getElementById('content');
+  var input   = document.getElementById('searchInput');
+  var countEl = document.getElementById('searchCount');
+  var marks   = [];
+  var currentIdx = -1;
+  var debounceTimer = null;
+
+  /* ---------------- Expand / Collapse ---------------- */
+  document.getElementById('expandAll').addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    content.querySelectorAll('details').forEach(function (d) { d.open = false; });
+  });
+
+  /* ---------------- Font resizing ---------------- */
+  var fontSize = 16;
+  var fsLabel  = document.getElementById('fsLabel');
+
+  function setFontSize(v) {
+    fontSize = Math.max(13, Math.min(22, v));
+    content.style.fontSize = fontSize + 'px';
+    fsLabel.textContent = fontSize + 'px';
+  }
+  document.getElementById('fsUp').addEventListener('click', function () { setFontSize(fontSize + 1); });
+  document.getElementById('fsDown').addEventListener('click', function () { setFontSize(fontSize - 1); });
+  document.getElementById('fsReset').addEventListener('click', function () { setFontSize(16); });
+
+  /* ---------------- Search ---------------- */
+  function updateCount() {
+    countEl.textContent = marks.length ? (currentIdx + 1) + '/' + marks.length : '0/0';
+  }
+
+  function clearMarks() {
+    var old = content.querySelectorAll('mark.srch');
+    if (old.length) {
+      old.forEach(function (m) {
+        var t = document.createTextNode(m.textContent);
+        m.parentNode.replaceChild(t, m);
+      });
+      content.normalize();
+    }
+    marks = [];
+    currentIdx = -1;
+  }
+
+  function openAncestors(node) {
+    var p = node.parentNode;
+    while (p && p !== content) {
+      if (p.tagName === 'DETAILS' && !p.open) { p.open = true; }
+      p = p.parentNode;
+    }
+  }
+
+  function runSearch() {
+    clearMarks();
+    var q = input.value.trim();
+    if (q.length < 2) { updateCount(); return; }
+
+    var needle = q.toLowerCase();
+    var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, null);
+    var textNodes = [];
+    var n;
+
+    while ((n = walker.nextNode())) {
+      var parent = n.parentNode;
+      if (!parent) { continue; }
+      var pn = parent.nodeName;
+      if (pn === 'SCRIPT' || pn === 'STYLE') { continue; }
+      /* Skip SVG — HTML <mark> does not render inside the SVG namespace */
+      if (parent.closest && parent.closest('svg')) { continue; }
+      if (!n.nodeValue || !n.nodeValue.trim()) { continue; }
+      textNodes.push(n);
+    }
+
+    textNodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var low  = text.toLowerCase();
+      var i    = low.indexOf(needle);
+      if (i === -1) { return; }
+
+      var frag = document.createDocumentFragment();
+      var pos  = 0;
+
+      while (i !== -1) {
+        if (i > pos) { frag.appendChild(document.createTextNode(text.slice(pos, i))); }
+        var m = document.createElement('mark');
+        m.className = 'srch';
+        m.textContent = text.slice(i, i + needle.length);
+        frag.appendChild(m);
+        marks.push(m);
+        pos = i + needle.length;
+        i = low.indexOf(needle, pos);
+      }
+      if (pos < text.length) { frag.appendChild(document.createTextNode(text.slice(pos))); }
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    if (marks.length) {
+      currentIdx = -1;
+      step(1);
+    } else {
+      updateCount();
+    }
+  }
+
+  function step(dir) {
+    if (!marks.length) { updateCount(); return; }
+    if (currentIdx >= 0 && marks[currentIdx]) {
+      marks[currentIdx].classList.remove('cur');
+    }
+    currentIdx = (currentIdx + dir + marks.length) % marks.length;
+    var m = marks[currentIdx];
+    openAncestors(m);
+    m.classList.add('cur');
+    m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    updateCount();
+  }
+
+  input.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 220);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!marks.length) { runSearch(); }
+      else { step(e.shiftKey ? -1 : 1); }
+    } else if (e.key === 'Escape') {
+      input.value = '';
+      clearMarks();
+      updateCount();
+    }
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', function () { step(1); });
+  document.getElementById('prevBtn').addEventListener('click', function () { step(-1); });
+
+  /* ---------------- Init ---------------- */
+  setFontSize(16);
+  updateCount();
+})();
+</script>
+</body>
+</html>
