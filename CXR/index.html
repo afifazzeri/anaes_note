@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chest X-Ray (CXR) Interpretation Quick Reference</title>
+<style>
+:root {
+  --brand: #08384a;
+  --brand2: #0e7490;
+  --accent: #0891b2;
+  --line: #cbd5e1;
+  --panel: #ffffff;
+  --soft: #edf6f9;
+  --muted: #64748b;
+  --warnbg: #fffbeb;
+  --warnline: #f59e0b;
+  --warnink: #b45309;
+  --alertbg: #fef2f2;
+  --alertline: #ef4444;
+  --alertink: #b91c1c;
+  --okbg: #f0fdf4;
+  --okline: #22c55e;
+  --okink: #15803d;
+  --bg: #f1f5f9;
+  --ink: #0f172a;
+  --base: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: var(--base);
+}
+
+header.top {
+  background: linear-gradient(135deg, #08384a 0%, #0b4a5c 35%, #0e7490 70%, #0891b2 100%);
+  color: #fff;
+  padding: 24px 20px;
+}
+
+header.top h1 {
+  margin: 0;
+  font-size: 1.6em;
+  line-height: 1.2;
+  letter-spacing: .2px;
+}
+
+header.top .sub {
+  margin: 6px 0 0;
+  color: #bfe7f2;
+  font-size: .95em;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(233, 241, 245, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 2px 8px rgba(11, 74, 92, .07);
+}
+
+.tbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tgroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.tbtn {
+  font: inherit;
+  font-size: .82em;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--brand);
+  border-radius: 8px;
+  padding: 6px 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all .15s ease;
+  line-height: 1.2;
+}
+
+.tbtn:hover {
+  background: #e2f1f6;
+  border-color: #9cc7d5;
+}
+
+.tbtn.primary {
+  background: var(--brand2);
+  border-color: var(--brand2);
+  color: #fff;
+}
+
+.tbtn.primary:hover {
+  background: #0b5f75;
+  border-color: #0b5f75;
+}
+
+.fsgroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 2px 4px;
+}
+
+.fsgroup .tbtn {
+  border: 0;
+  padding: 4px 9px;
+  background: transparent;
+}
+
+.fsgroup .tbtn:hover { background: #e2f1f6; }
+
+.fslabel {
+  font-size: .78em;
+  font-weight: 800;
+  color: var(--muted);
+  min-width: 30px;
+  text-align: center;
+  letter-spacing: .03em;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin: 16px 0;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(11, 74, 92, .06);
+  scroll-margin-top: 76px;
+}
+
+.acc-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  font: inherit;
+  font-weight: 700;
+  color: var(--brand);
+  background: linear-gradient(180deg, #f8fcfd, #edf6f9);
+  text-align: left;
+  font-size: 1.05em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.acc-head:hover { background: linear-gradient(180deg, #f2fafc, #e3f1f6); }
+.acc-head:focus-visible { outline: 3px solid #7dd3fc; outline-offset: -3px; }
+
+.acc-head .num {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--brand2);
+  color: #fff;
+  font-size: .82em;
+  font-weight: 800;
+}
+
+.chev {
+  margin-left: auto;
+  flex: 0 0 auto;
+  color: var(--brand2);
+  font-size: 1em;
+  transition: transform .2s ease;
+}
+
+.card.collapsed .chev { transform: rotate(-90deg); }
+.card.collapsed .acc-head { border-bottom: 0; }
+.card.collapsed .acc-inner { display: none; }
+
+.acc-inner {
+  padding: 18px 20px;
+}
+
+h3 {
+  font-size: 1.05em;
+  color: var(--brand);
+  margin: 18px 0 8px;
+  border-bottom: 2px solid #e2f1f6;
+  padding-bottom: 4px;
+}
+
+h4 {
+  font-size: .98em;
+  color: var(--brand2);
+  margin: 14px 0 6px;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.kpi {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.kpi .k {
+  font-size: .75em;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.kpi .v {
+  font-weight: 700;
+  color: var(--brand2);
+  font-size: 1.02em;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+.note, .warn, .danger, .ok {
+  border-left: 4px solid;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin: 14px 0;
+  font-size: .93em;
+}
+
+.note { background: var(--soft); border-color: var(--accent); color: #0d3c4a; }
+.warn { background: var(--warnbg); border-color: var(--warnline); color: var(--warnink); }
+.danger { background: var(--alertbg); border-color: var(--alertline); color: var(--alertink); }
+.ok { background: var(--okbg); border-color: var(--okline); color: var(--okink); }
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin: 14px 0;
+  background: #fff;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 550px;
+  font-size: .92em;
+}
+
+th, td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th {
+  background: #dcecf1;
+  color: var(--brand);
+  font-weight: 800;
+  font-size: .95em;
+}
+
+tbody tr:nth-child(even) { background: #f6fafb; }
+tbody tr.grp td {
+  background: #cfe6ee;
+  color: var(--brand);
+  font-weight: 800;
+  font-size: .88em;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+ul, ol { margin: 8px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+strong { color: #08384a; }
+
+/* ---------- Presentation template styles ---------- */
+.script {
+  background: #f8fcfd;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--brand2);
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin: 14px 0;
+  font-size: .94em;
+  line-height: 1.65;
+}
+
+.script b { color: var(--brand); }
+.script .ph {
+  color: var(--brand2);
+  font-weight: 700;
+  background: #e0f2f8;
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+.checklist {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 12px;
+  margin: 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: .93em;
+  background: #fff;
+}
+
+.checklist li:last-child { border-bottom: 0; }
+.checklist li:nth-child(even) { background: #f8fcfd; }
+
+.checklist input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  accent-color: var(--brand2);
+  cursor: pointer;
+}
+
+.checklist li:has(input:checked) {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: #9cc7d5;
+}
+
+.checklist li .ck-note {
+  color: var(--muted);
+  font-size: .92em;
+}
+
+.cl-group-title {
+  font-size: .8em;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--brand2);
+  margin: 16px 0 6px;
+}
+
+footer.foot {
+  border-top: 1px solid var(--line);
+  background: #dfeaf0;
+  padding: 24px 20px;
+  margin-top: 30px;
+  text-align: center;
+  font-size: .88em;
+  color: #274b58;
+}
+
+footer.foot h2 {
+  font-size: 1.05em;
+  margin: 0 0 8px;
+  color: var(--brand);
+}
+
+footer.foot p { margin: 6px 0; }
+
+@media (max-width: 620px) {
+  .tbar { padding: 8px 10px; }
+  .acc-inner { padding: 14px 14px; }
+  .acc-head { font-size: 1em; padding: 12px 14px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="container">
+    <h1>Chest X-Ray (CXR) Interpretation Quick Reference</h1>
+    <div class="sub">Comprehensive Clinical System: Prof. Rowi ICU Protocol &amp; Radiopaedia Radiological Anatomy Integration</div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="tbar">
+    <div class="tgroup">
+      <a href="#sec0" class="tbtn primary">★ Presentation Template</a>
+      <a href="#sec1" class="tbtn">1. Technical</a>
+      <a href="#sec2" class="tbtn">2. Lines</a>
+      <a href="#sec3" class="tbtn">3. Mediastinum</a>
+      <a href="#sec4" class="tbtn">4. Heart</a>
+      <a href="#sec5" class="tbtn">5. Airways</a>
+      <a href="#sec6" class="tbtn">6. Lungs</a>
+      <a href="#sec7" class="tbtn">7. Diaphragm</a>
+      <a href="#sec8" class="tbtn">8. Bones</a>
+      <a href="#sec9" class="tbtn">9. Etiologies</a>
+    </div>
+    <div class="tgroup">
+      <button class="tbtn" id="expandAll" type="button">Expand all</button>
+      <button class="tbtn" id="collapseAll" type="button">Collapse all</button>
+      <span class="fsgroup">
+        <button class="tbtn" id="fsMinus" type="button" aria-label="Decrease text size">A−</button>
+        <span class="fslabel" id="fsLabel">16</span>
+        <button class="tbtn" id="fsPlus" type="button" aria-label="Increase text size">A+</button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 0 — PRESENTATION TEMPLATE -->
+  <div class="card" id="sec0">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">0</span>
+      <span class="ttl">CXR Presentation Template — Exam Script (Start Here)</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+
+      <div class="note">
+        <b>How to use this template:</b> Present every film in the same order, every time. Structure earns marks even when the film is normal — a calm, organised presentation of a normal film scores higher than a disorganised hunt for pathology. Say the <b>5-line summary first</b>, then expand with A–H only if asked or if you find something.
+      </div>
+
+      <h3>Part 1 — The 5-Line Summary (say this first, ~30 seconds)</h3>
+      <div class="script">
+        <b>1. Film type:</b> "This is a <span class="ph">[PA / AP]</span> <span class="ph">[erect / supine]</span> chest radiograph of <span class="ph">[patient name, age, sex]</span>, taken on <span class="ph">[date]</span>."<br>
+        <b>2. Quality:</b> "The film is of adequate quality — adequate penetration, no significant rotation, and adequate inspiration. The framing includes the lower neck down to the upper abdomen."<br>
+        <b>3. Hardware:</b> "There are no lines or tubes in situ." <i>or</i> "There is an ETT with the tip <span class="ph">[3–5 cm above the carina]</span>, a CVC with the tip at the <span class="ph">[cavoatrial junction]</span>, and an NGT passing below the diaphragm into the stomach."<br>
+        <b>4. Systematic findings:</b> "The airway is central. The lungs are clear and symmetrical. The heart size and mediastinal contours are normal. Both hemidiaphragms are smooth, the right normally higher than the left, with sharp costophrenic angles. The bones and soft tissues are unremarkable."<br>
+        <b>5. Impression:</b> "In summary, this is a normal chest radiograph. I would correlate clinically and compare with any previous films."
+      </div>
+
+      <h3>Part 2 — The A–H Systematic Run-Through</h3>
+      <p>Use this order every time. State each step out loud, even if normal.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Step</th><th>What You Say / Do</th><th>What You Are Checking</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>0. Introduction</b></td>
+              <td>"This is a [PA/AP] [erect/supine] film of [patient], [age], taken [date]."</td>
+              <td>Name, DOB, MRN, date/time, projection, position, previous films available</td>
+            </tr>
+            <tr>
+              <td><b>0. Quality</b></td>
+              <td>"Adequate penetration, no rotation, adequate inspiration, full framing."</td>
+              <td>Vertebrae visible behind heart; clavicles equidistant from spinous process; 9–10 posterior ribs above diaphragm; lower neck to upper abdomen included</td>
+            </tr>
+            <tr>
+              <td><b>H. Hardware</b></td>
+              <td>"ETT tip at …, CVC tip at …, NGT tip below the diaphragm."</td>
+              <td>ETT 3–5 cm above carina; CVL at cavoatrial junction; NGT in stomach; no pneumothorax after line insertion</td>
+            </tr>
+            <tr>
+              <td><b>A. Airway</b></td>
+              <td>"The trachea is central and the carina is at T4–T5. Both main bronchi are patent."</td>
+              <td>Tracheal deviation, narrowing, carinal angle, right main bronchus (wider, more vertical)</td>
+            </tr>
+            <tr>
+              <td><b>B. Bones &amp; soft tissues</b></td>
+              <td>"The ribs, clavicles, scapulae and spine appear intact. No soft tissue abnormality."</td>
+              <td>Rib fractures, lytic/sclerotic lesions, pedicle loss, subcutaneous emphysema, mastectomy, breast shadows</td>
+            </tr>
+            <tr>
+              <td><b>C. Cardiac silhouette &amp; mediastinum</b></td>
+              <td>"The heart size is normal with a cardiothoracic ratio under 50%. The mediastinum is not widened and the borders are preserved. The hila are normal."</td>
+              <td>CTR &lt; 50%; mediastinal width &lt; 6 cm (PA) / &lt; 8 cm (AP) at aortic knob; right and left borders; AP window; hilar angle and size</td>
+            </tr>
+            <tr>
+              <td><b>D. Diaphragm</b></td>
+              <td>"Both hemidiaphragms are smooth and well defined; the right is normally 1.5–2 cm higher than the left. There is no free air under the diaphragm."</td>
+              <td>Flattening (hyperinflation), elevation (phrenic palsy, collapse, subphrenic collection), pneumoperitoneum</td>
+            </tr>
+            <tr>
+              <td><b>E. Effusion &amp; pleura</b></td>
+              <td>"Both costophrenic angles are sharp. There is no pleural effusion and no pneumothorax."</td>
+              <td>Blunted angles, meniscus, loculation, visible visceral pleural edge, absent peripheral markings</td>
+            </tr>
+            <tr>
+              <td><b>F. Fields (lungs)</b></td>
+              <td>"The lung fields are clear and symmetrical, with no consolidation, nodule or mass."</td>
+              <td>Compare zone-by-zone side to side; review apices, behind clavicles, retrocardiac space, behind hila</td>
+            </tr>
+            <tr>
+              <td><b>G. Gastric bubble &amp; upper abdomen</b></td>
+              <td>"The gastric bubble is normal. There is no free air or dilated bowel loop."</td>
+              <td>Gastric bubble position, free air, bowel gas pattern, calcifications</td>
+            </tr>
+            <tr>
+              <td><b>H. Hidden review areas</b></td>
+              <td>"Finally, I have reviewed the apices, the retrocardiac space, the subdiaphragmatic region and the soft tissues."</td>
+              <td>Most commonly missed pathology: Pancoast tumour, retrocardiac consolidation, free air, subtle hilar mass</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Part 3 — Fill-In Checklist (tick as you go)</h3>
+
+      <div class="cl-group-title">Before you speak</div>
+      <ul class="checklist">
+        <li><input type="checkbox"><span>Patient identifiers on the film match the request (name, DOB, MRN, date, time)</span></li>
+        <li><input type="checkbox"><span>Previous film available for comparison</span></li>
+        <li><input type="checkbox"><span>Projection (PA / AP) and position (erect / supine) noted</span></li>
+      </ul>
+
+      <div class="cl-group-title">Quality (RIPE)</div>
+      <ul class="checklist">
+        <li><input type="checkbox"><span><b>R</b>otation — medial ends of clavicles equidistant from the spinous process</span></li>
+        <li><input type="checkbox"><span><b>I</b>nspiration — 9–10 posterior ribs (or 5–6 anterior ribs) above the diaphragm</span></li>
+        <li><input type="checkbox"><span><b>P</b>enetration — thoracic vertebrae visible behind the cardiac shadow</span></li>
+        <li><input type="checkbox"><span><b>E</b>xposure/framing — lower neck to upper abdomen fully included</span></li>
+      </ul>
+
+      <div class="cl-group-title">Hardware</div>
+      <ul class="checklist">
+        <li><input type="checkbox"><span>ETT tip 3–5 cm above the carina</span></li>
+        <li><input type="checkbox"><span>CVC tip at the cavoatrial junction</span></li>
+        <li><input type="checkbox"><span>NGT tip below the diaphragm, in the stomach</span></li>
+        <li><input type="checkbox"><span>No misplaced, kinked or fractured device; no new pneumothorax</span></li>
+      </ul>
+
+      <div class="cl-group-title">A–H systematic</div>
+      <ul class="checklist">
+        <li><input type="checkbox"><span><b>A</b> — Trachea central, carina at T4–T5, main bronchi patent</span></li>
+        <li><input type="checkbox"><span><b>B</b> — Ribs, clavicles, scapulae and spine intact; no soft tissue gas or mass</span></li>
+        <li><input type="checkbox"><span><b>C</b> — CTR &lt; 50%; mediastinum not widened; borders preserved; hila normal</span></li>
+        <li><input type="checkbox"><span><b>D</b> — Hemidiaphragms smooth; right slightly higher; no free air</span></li>
+        <li><input type="checkbox"><span><b>E</b> — Costophrenic angles sharp; no pleural edge or effusion</span></li>
+        <li><input type="checkbox"><span><b>F</b> — Lung fields clear and symmetrical; no consolidation, nodule or mass</span></li>
+        <li><input type="checkbox"><span><b>G</b> — Gastric bubble normal; no free air or dilated bowel</span></li>
+        <li><input type="checkbox"><span><b>H</b> — Hidden areas reviewed: apices, retrocardiac, subdiaphragmatic, soft tissues</span></li>
+      </ul>
+
+      <div class="cl-group-title">Closing</div>
+      <ul class="checklist">
+        <li><input type="checkbox"><span>Positive and important negative findings stated explicitly</span></li>
+        <li><input type="checkbox"><span>Single most likely diagnosis given</span></li>
+        <li><input type="checkbox"><span>Next step stated (compare with prior, CT, clinical correlation)</span></li>
+      </ul>
+
+      <p><button class="tbtn" id="resetChecks" type="button">Reset checklist</button></p>
+
+      <h3>Part 4 — Stock Phrases for the Impression</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Finding</th><th>How to Say It</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Normal</b></td><td>"This is a normal chest radiograph. There is no acute cardiopulmonary abnormality."</td></tr>
+            <tr><td><b>Consolidation</b></td><td>"There is air-space opacification in the right lower zone with loss of the right hemidiaphragm silhouette, consistent with right lower lobe consolidation."</td></tr>
+            <tr><td><b>Pleural effusion</b></td><td>"There is blunting of the left costophrenic angle with a meniscus, consistent with a left pleural effusion."</td></tr>
+            <tr><td><b>Pneumothorax</b></td><td>"There is a visible visceral pleural edge with absent lung markings peripherally in the right apex, consistent with a pneumothorax."</td></tr>
+            <tr><td><b>Cardiomegaly</b></td><td>"The cardiothoracic ratio is greater than 50%, consistent with cardiomegaly."</td></tr>
+            <tr><td><b>Widened mediastinum</b></td><td>"The mediastinum is widened beyond 6 cm at the aortic knob; I would consider vascular, nodal or traumatic causes and proceed to CT."</td></tr>
+            <tr><td><b>Misplaced line</b></td><td>"The ETT tip lies at the level of the carina — it is too deep and should be withdrawn approximately 2 cm."</td></tr>
+            <tr><td><b>Hyperinflation</b></td><td>"There is flattening of both hemidiaphragms with increased lung volumes, consistent with hyperinflation."</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Part 5 — How to Close (Conclusion Formula)</h3>
+      <div class="ok">
+        <b>Findings → Diagnosis → Next step.</b><br>
+        &bull; <b>Findings:</b> one sentence summarising the positive findings and the important negatives.<br>
+        &bull; <b>Diagnosis:</b> the single most likely diagnosis, plus one alternative if genuinely uncertain.<br>
+        &bull; <b>Next step:</b> "I would compare with previous films / correlate clinically / proceed to CT / repeat film after line repositioning."
+      </div>
+
+      <h3>Part 6 — Common Exam Traps</h3>
+      <ul>
+        <li>Jumping straight to pathology without stating <b>technical adequacy</b>.</li>
+        <li>Forgetting to <b>compare left with right</b> and to look at the <b>apices and retrocardiac space</b>.</li>
+        <li>Calling <b>AP magnification</b> cardiomegaly — always qualify heart size by projection.</li>
+        <li>Missing a <b>subtle apical pneumothorax</b> — trace the lung edge deliberately.</li>
+        <li>Ignoring <b>lines and tubes</b> on an ICU film — these are often the reason for the film.</li>
+        <li>Giving a long differential without ever committing to <b>one most likely diagnosis</b>.</li>
+        <li>Not mentioning <b>free air under the diaphragm</b> — a classic missed finding.</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="card" id="sec1">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">1</span>
+      <span class="ttl">Technical Assessment &amp; Quality Check (Prof. Rowi Steps 1–6)</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+      <p>Before interpreting pathology, systematically verify image quality and technical adequacy to avoid diagnostic errors.</p>
+
+      <div class="kpis">
+        <div class="kpi"><div class="k">Step 1</div><div class="v">Patient Name &amp; Identifiers</div></div>
+        <div class="kpi"><div class="k">Step 2</div><div class="v">Position: Supine vs. Sitting / Upright</div></div>
+        <div class="kpi"><div class="k">Step 3</div><div class="v">Projection: AP vs. PA</div></div>
+        <div class="kpi"><div class="k">Step 4</div><div class="v">Framing: Lower Neck to Upper Abdomen</div></div>
+        <div class="kpi"><div class="k">Step 5</div><div class="v">Exposure / Penetration</div></div>
+        <div class="kpi"><div class="k">Step 6</div><div class="v">Rotation Verification</div></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Parameter</th><th>Standard / Clinical Landmark</th><th>Diagnostic Pitfall / Impact</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>1. Identification</b></td>
+              <td>Confirm patient name, date of birth, MRN, date and time of film.</td>
+              <td>Wrong patient/prior comparison errors.</td>
+            </tr>
+            <tr>
+              <td><b>2. Position</b></td>
+              <td>Supine, semi-recumbent, or erect/sitting.</td>
+              <td>Supine films redistribute pleural fluid (veiling lucency) and alter mediastinal contour.</td>
+            </tr>
+            <tr>
+              <td><b>3. Projection</b></td>
+              <td><b>PA (Posteroanterior):</b> Standard upright film.<br><b>AP (Anteroposterior):</b> Portable ICU films.</td>
+              <td>AP projections cause magnification of the cardiac silhouette and anterior mediastinum.</td>
+            </tr>
+            <tr>
+              <td><b>4. Framing</b></td>
+              <td>Must completely include the soft tissue of the lower neck down to the subdiaphragmatic upper abdomen.</td>
+              <td>Missed low neck subcutaneous emphysema or subdiaphragmatic free air / abdominal pathology.</td>
+            </tr>
+            <tr>
+              <td><b>5. Exposure</b></td>
+              <td><b>Proper:</b> Thoracic spine vertebrae just visible behind the cardiac shadow.<br><b>Under-penetrated:</b> Too white; hides bibasilar details.<br><b>Over-penetrated:</b> Too dark; obscures subtle pulmonary parenchyma.</td>
+              <td>Under-penetration mimics consolidation; over-penetration hides subtle ground-glass/reticular opacities.</td>
+            </tr>
+            <tr>
+              <td><b>6. Rotation</b></td>
+              <td>Medial ends of both clavicles should be equidistant from the central thoracic spinous process.</td>
+              <td>Rotation falsely distorts hilar size, lung field clarity, and cardiac silhouette.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="card" id="sec2">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">2</span>
+      <span class="ttl">Intubated Status &amp; ICU Lines / Tubes Verification</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+      <div class="warn">
+        <b>ICU Rule:</b> Always evaluate tube placement immediately after quality verification. Misplaced lines and tubes can lead to critical complications (e.g., endobronchial intubation, arterial line placement, or pneumothorax).
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Device / Line</th><th>Target Anatomical Location</th><th>Radiological Landmark &amp; Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Endotracheal Tube (ETT)</b></td>
+              <td>Mid-trachea, ~3–5 cm above the Carina (level of T4–T5).</td>
+              <td>Head flexion/extension moves tip up to 2 cm. Too deep &rarr; right main bronchus intubation and left lung atelectasis.</td>
+            </tr>
+            <tr>
+              <td><b>Central Venous Line (CVL / CVP)</b></td>
+              <td>Cavoatrial Junction / Recess.</td>
+              <td>Junction between the Superior Vena Cava (SVC) and the upper right atrium. Ensures accurate CVP monitoring and prevents vascular erosion.</td>
+            </tr>
+            <tr>
+              <td><b>Nasogastric Tube (NGT)</b></td>
+              <td>Body/fundus of stomach, well below the diaphragm.</td>
+              <td>Must follow midline down esophagus, cross the gastroesophageal junction, and tip must rest in the stomach lumen. Verify before feed administration!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="card" id="sec3">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">3</span>
+      <span class="ttl">Mediastinum, Contours, Lines &amp; Stripes</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+      <h3>Mediastinal Width &amp; Measurement</h3>
+      <div class="note">
+        <b>Measurement Rule:</b> Measure mediastinal width at the level of the aortic knob.<br>
+        &bull; <b>Widened Mediastinum:</b> Measured width <b>&gt; 6 cm</b> on upright PA film or <b>&gt; 8 cm</b> on supine AP film.
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><div class="k">PA Film Threshold</div><div class="v">&gt; 6 cm at Aortic Knob</div></div>
+        <div class="kpi"><div class="k">Supine AP Threshold</div><div class="v">&gt; 8 cm at Aortic Knob</div></div>
+      </div>
+
+      <h4>10 Differential Causes of Widened Mediastinum (Prof. Rowi Checklist):</h4>
+      <ol>
+        <li>Hypertensive mediastinal/aortic changes</li>
+        <li>Cardiomegaly</li>
+        <li>Retrosternal goitre</li>
+        <li>Thoracic aortic aneurysm</li>
+        <li>Lymphoma</li>
+        <li>Thymoma</li>
+        <li>Esophageal tumour</li>
+        <li>Bronchial tumour</li>
+        <li>Pneumomediastinum</li>
+        <li>Traumatic mediastinal hematoma / aortic disruption</li>
+      </ol>
+      <p><b>Narrow Mediastinum:</b> Commonly seen in COPD, severe hyperinflation, or thin/asthenic habitus.</p>
+
+      <h3>Anatomical Mediastinal Contours (Radiopaedia Integration)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Side</th><th>Contour / Border (Superior to Inferior)</th><th>Underlying Anatomical Structure</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="5"><b>Left Mediastinal Border</b></td>
+              <td>1. Superior Smooth Border</td>
+              <td>Left Subclavian Artery</td>
+            </tr>
+            <tr>
+              <td>2. Aortic Knuckle / Arch</td>
+              <td>Aortic Arch</td>
+            </tr>
+            <tr>
+              <td>3. AP (Aortopulmonary) Window</td>
+              <td>Concavity between aortic arch &amp; left pulmonary trunk</td>
+            </tr>
+            <tr>
+              <td>4. Mid Cardiac Contour</td>
+              <td>Left Atrial Appendage (LAA)</td>
+            </tr>
+            <tr>
+              <td>5. Inferolateral Cardiac Border</td>
+              <td>Left Ventricle (LV)</td>
+            </tr>
+            <tr>
+              <td rowspan="3"><b>Right Mediastinal Border</b></td>
+              <td>1. Superior Linear Border</td>
+              <td>Superior Vena Cava (SVC) &amp; Brachiocephalic veins</td>
+            </tr>
+            <tr>
+              <td>2. Cable-Atrial Recess</td>
+              <td>Junction of SVC and Right Atrium (CVL tip target)</td>
+            </tr>
+            <tr>
+              <td>3. Inferior Lateral Border</td>
+              <td>Right Atrium (RA)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Mediastinal Lines &amp; Stripes (Radiopaedia Detail)</h3>
+      <p>A <i>line</i> is soft tissue bounded by aerated lung on both sides; a <i>stripe</i> is broader soft tissue opacity.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Line / Stripe</th><th>Anatomical Origin &amp; Location</th><th>Clinical Relevance</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Posterior Junctional Line</b></td>
+              <td>Four pleural layers abutt behind trachea and esophagus.</td>
+              <td>Visible superiorly; displacement indicates posterior mediastinal mass.</td>
+            </tr>
+            <tr>
+              <td><b>Anterior Junctional Line</b></td>
+              <td>Pleural abutment behind manubrium, anterior to heart.</td>
+              <td>Oblique line over upper sternum.</td>
+            </tr>
+            <tr>
+              <td><b>Azygoesophageal Recess / Line</b></td>
+              <td>Interface where right lung enters recess behind esophagus &amp; azygous vein.</td>
+              <td>Loss of recess concavity indicates subcarinal/posterior mass or adenopathy.</td>
+            </tr>
+            <tr>
+              <td><b>Paratracheal Stripes (Right &amp; Left)</b></td>
+              <td>Soft tissue adjacent to trachea (right stripe &lt; 4 mm thick).</td>
+              <td>Widening suggests paratracheal lymphadenopathy, Pancoast tumor, or hemorrhage.</td>
+            </tr>
+            <tr>
+              <td><b>Paravertebral Lines</b></td>
+              <td>Pleural reflection along lateral margins of vertebral bodies.</td>
+              <td>Displacement suggests paravertebral hematoma, fracture, or neurogenic tumor.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="card" id="sec4">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">4</span>
+      <span class="ttl">Cardiac Silhouette &amp; Border Silhouette Sign</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+      <h3>Normal Heart Position &amp; Size</h3>
+      <ul>
+        <li><b>Thoracic Position:</b> Normally <b>1/3</b> of cardiac diameter lies to the right and <b>2/3</b> to the left of the thoracic vertebrae spinous processes.</li>
+        <li><b>Borders:</b> Right atrium forms the right border; Left ventricle forms the left border. (Note: Right ventricle is an anterior structure on axial/CT projections).</li>
+        <li><b>Cardiomegaly:</b> Cardiothoracic ratio (CTR) &gt; 50% on upright PA film.</li>
+      </ul>
+
+      <h3>Prof. Rowi Cardiac Border Silhouette Sign Rules</h3>
+      <div class="danger">
+        <b>Silhouette Sign Concept:</b> Loss of a normal anatomical soft-tissue border occurs when an adjacent lung segment loses aeration (consolidation/atelectasis).
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Loss of Border</th><th>Implicated Anatomical Lung Segment</th><th>Clinical Cause / Pathology</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Loss of Right Heart Border</b></td>
+              <td>Right Middle Lobe (RML)</td>
+              <td>RML Consolidation / Atelectasis</td>
+            </tr>
+            <tr>
+              <td><b>Loss of Left Heart Border</b></td>
+              <td>Lingula of Left Upper Lobe (LUL)</td>
+              <td>Lingular Consolidation / Atelectasis</td>
+            </tr>
+            <tr>
+              <td><b>Loss of Costocardiac Border</b></td>
+              <td>Anterior lower lobe / pericardial fat pad space</td>
+              <td>Lower lobe consolidation or anterior mediastinal fluid/fat</td>
+            </tr>
+            <tr>
+              <td><b>Loss of Hemidiaphragm Border</b></td>
+              <td>Ipsilateral Lower Lobe (RLL / LLL)</td>
+              <td>Lower Lobe Consolidation or Pleural Effusion</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Pediatric &amp; Specific Cardiac Shapes</h3>
+      <div class="kpis">
+        <div class="kpi"><div class="k">Globular Heart</div><div class="v">Pericardial Effusion ("Water-bottle heart")</div></div>
+        <div class="kpi"><div class="k">Boot-Shaped Heart</div><div class="v">Tetralogy of Fallot (Coeur en sabot)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="card" id="sec5">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">5</span>
+      <span class="ttl">Airways &amp; Detailed Hilar Anatomy</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+      <h3>Tracheobronchial Tree Anatomy</h3>
+      <ul>
+        <li><b>Trachea:</b> Central airway, bifurcates at the Carina (T4–T5).</li>
+        <li><b>Right Main Bronchus:</b> Wider, shorter, and more vertically inclined. <i>Clinical consequence:</i> Aspiration and foreign bodies preferentially lodge in the right side.</li>
+        <li><b>Left Main Bronchus:</b> Longer, narrower, and more horizontal/oblique.</li>
+        <li><b>Right Divisions:</b> Right Upper Lobe (RUL) bronchus + Bronchus Intermedius (which divides into RML and RLL bronchi).</li>
+        <li><b>Left Divisions:</b> Left Upper Lobe (LUL) bronchus + Left Lower Lobe (LLL) bronchus.</li>
+      </ul>
+
+      <h3>Hilar Anatomy (Radiopaedia Comprehensive Breakdown)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Hilum</th><th>Pulmonary Artery Path &amp; Branches</th><th>Venous &amp; Bronchial Structures</th><th>Hilar Angle / Morphology</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Right Hilum</b></td>
+              <td>Right Pulmonary Artery passes <b>anterior</b> to right main bronchus &amp; posterior to SVC. Divides into:<br>&bull; <i>Truncus Anterior:</i> Medial to RUL bronchus.<br>&bull; <i>Right Interlobar Artery:</i> Dense structure ("little finger") lateral to bronchus intermedius.</td>
+              <td>Right Superior Pulmonary Vein forms the superior limb. RUL bronchus seen end-on/medially.</td>
+              <td><b>Hilar Angle:</b> Sharp V-shaped concavity formed between the interlobar artery and superior pulmonary vein.</td>
+            </tr>
+            <tr>
+              <td><b>Left Hilum</b></td>
+              <td>Left Pulmonary Artery arches <b>over and behind</b> the left main bronchus. Gives off Left Interlobar Artery (inferior limb) and superior lobe branches.</td>
+              <td>Left Superior Pulmonary Vein drains posteriorly to left atrium. Left main bronchus lies inferior to artery (Hyparterial bronchus).</td>
+              <td>Left hilum is normally <b>1–2 cm higher</b> than the right hilum due to the left pulmonary artery arching over the bronchus.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="card" id="sec6">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">6</span>
+      <span class="ttl">Lung Lobes, Fissures, Parenchyma &amp; Pleura</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+      <h3>Lobes &amp; Fissures Geography</h3>
+      <ul>
+        <li><b>High Apex of Lower Lobes:</b> Posteriorly, both lower lobes extend high up to the level of <b>T4 (left)</b> and <b>T5 (right)</b>. Upper zone opacities on frontal CXR can be in lower lobes!</li>
+        <li><b>Horizontal Fissure (Right Lung):</b> Runs horizontally from hilum to anterior 4th–6th rib, separating RUL from RML.</li>
+        <li><b>Oblique Fissures (Bilateral):</b> Extend from T4/T5 posteriorly down to diaphragm 3–4 cm behind sternum.</li>
+        <li><b>Luftsichel Sign:</b> Hyper-expansion of the LLL superior segment around the aortic arch in LUL collapse.</li>
+      </ul>
+
+      <h3>Parenchymal Opacities (Prof. Rowi Classification)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Pattern Type</th><th>Radiological Appearance</th><th>Differential Causes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Reticular Opacity</b></td>
+              <td>Net-like linear opacities.</td>
+              <td>Interstitial pulmonary fibrosis, pulmonary edema.</td>
+            </tr>
+            <tr>
+              <td><b>Air Space / Homogeneous Opacity</b></td>
+              <td>Uniform fluffy consolidation with air bronchograms.</td>
+              <td>Bacterial pneumonia, alveolar hemorrhage, ARDS.</td>
+            </tr>
+            <tr>
+              <td><b>Heterogeneous Opacity</b></td>
+              <td>Patchy, non-uniform consolidation.</td>
+              <td>Bronchopneumonia, aspiration, multifocal infection.</td>
+            </tr>
+            <tr>
+              <td><b>Nodular Opacity</b></td>
+              <td>Discrete round opacities (&lt;3 cm).</td>
+              <td>Metastases, granulomas (TB, fungal), rheumatoid nodules.</td>
+            </tr>
+            <tr>
+              <td><b>Mixed Reticulonodular</b></td>
+              <td>Combination of lines and small nodules.</td>
+              <td>Miliary TB, sarcoidosis, pneumoconiosis.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Pleural Space &amp; Effusions</h3>
+      <ul>
+        <li><b>Costophrenic Angles:</b> Sharp acute angles. Blunting indicates pleural effusion (&gt;200 mL on PA film; posterior costophrenic angle on lateral film is most sensitive, detecting &gt;50 mL).</li>
+        <li><b>Pneumothorax:</b> Visible visceral pleural edge with absent lung markings peripherally.</li>
+        <li><b>Loculated Effusion vs. Empyema:</b> D-shaped or lenticular opacities along chest wall/fissures.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="card" id="sec7">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">7</span>
+      <span class="ttl">Diaphragm, Lateral Anatomy &amp; Critical Review Areas</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+      <h3>Diaphragm Curvature &amp; Levels</h3>
+      <ul>
+        <li><b>Normal Position:</b> Right hemidiaphragm is <b>~1.5–2 cm higher</b> than the left due to underlying liver.</li>
+        <li><b>Flattened Diaphragm:</b> Sign of severe hyperinflation (COPD/asthma).</li>
+        <li><b>6 Causes of Abnormal Diaphragm Elevation:</b> Phrenic nerve palsy, lower lobe atelectasis/collapse, subphrenic abscess, hepatomegaly/splenomegaly, eventration, volume loss.</li>
+        <li><b>Free Air (Pneumoperitoneum):</b> Crescentic lucency under hemidiaphragms (requires upright positioning).</li>
+      </ul>
+
+      <h3>Diaphragmatic Apertures (Exam High-Yield)</h3>
+      <div class="kpis">
+        <div class="kpi"><div class="k">T8 Opening</div><div class="v">IVC &amp; Right Phrenic Nerve branches</div></div>
+        <div class="kpi"><div class="k">T10 Opening</div><div class="v">Esophagus &amp; Vagus Nerves</div></div>
+        <div class="kpi"><div class="k">T12 Opening</div><div class="v">Aorta, Thoracic Duct &amp; Azygous Vein</div></div>
+      </div>
+
+      <h3>Lateral View Hemidiaphragm Differentiation</h3>
+      <div class="ok">
+        <b>Left vs. Right Hemidiaphragm on Lateral CXR:</b><br>
+        &bull; <b>Left Hemidiaphragm:</b> Abuts the cardiac shadow anteriorly &rarr; <i>loses its anterior border contour</i>.<br>
+        &bull; <b>Right Hemidiaphragm:</b> Clear unbroken contour extending all the way to the anterior chest wall.
+      </div>
+
+      <h3>Critical Review Areas (Where Pathology is Commonly Missed!)</h3>
+      <ol>
+        <li><b>Apices:</b> Behind clavicles (Pancoast tumors, early TB).</li>
+        <li><b>Retrocardiac Space:</b> Behind the heart (left lower lobe consolidation, mass).</li>
+        <li><b>Subdiaphragmatic Region:</b> Free air, stomach bubble, subphrenic abscess.</li>
+        <li><b>Hilar Regions:</b> Subtle lymphadenopathy or early central mass.</li>
+        <li><b>Soft Tissues &amp; Scapulae:</b> Mastectomy, subcutaneous emphysema, chest wall masses.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="card" id="sec8">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">8</span>
+      <span class="ttl">Bones, Soft Tissues &amp; Upper Abdomen</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Region</th><th>Structures to Evaluate</th><th>Pathological Findings</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Bones &amp; Skeleton</b></td>
+              <td>Ribs (count 9–10 posterior or 5–6 anterior above diaphragm), Clavicles, Scapulae, Humeral heads, Cervical/Thoracic vertebrae.</td>
+              <td>Rib fractures (flail chest), osteolytic/osteoblastic metastases, osteoporosis, rib notching (coarctation of aorta), pedicle erosion.</td>
+            </tr>
+            <tr>
+              <td><b>Soft Tissues</b></td>
+              <td>Chest wall thickness, male vs. female breast shadows, neck and axillary regions.</td>
+              <td>Subcutaneous emphysema (surgical asthma), fat stripe vs. air, breast shadow asymmetry (mastectomy), axillary lymphadenopathy.</td>
+            </tr>
+            <tr>
+              <td><b>Upper Abdomen</b></td>
+              <td>Stomach gas bubble (triangular shape), subdiaphragmatic renal areas, bowel gas pattern.</td>
+              <td>Dilated bowel loops (trauma/ileus), ascites, pancreatic calcification, renal stones, gallbladder stones.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="card" id="sec9">
+    <button class="acc-head" type="button" aria-expanded="true">
+      <span class="num">9</span>
+      <span class="ttl">Clinical Etiology &amp; Pathogen Correlation (Prof. Rowi Level)</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-inner">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Clinical Condition / Pathogen</th><th>Characteristic CXR Findings &amp; Features</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Staphylococcus aureus</b></td>
+              <td>Multifocal heterogeneous opacities, rapid cavitation, pneumatoceles, empyema.</td>
+            </tr>
+            <tr>
+              <td><b>Fungal Infections</b></td>
+              <td>Nodular opacities, upper lobe cavitary lesions, halo sign or air-crescent sign.</td>
+            </tr>
+            <tr>
+              <td><b>Tuberculosis (TB)</b></td>
+              <td>Apical parenchymal opacities, cavitary lesions, miliary reticulonodular pattern, ghon complex.</td>
+            </tr>
+            <tr>
+              <td><b>Pulmonary Embolism (PE)</b></td>
+              <td>May be normal film; classic signs include Westermark sign (regional oligemia), Hampton's hump (wedge-shaped opacity), or pleural effusion.</td>
+            </tr>
+            <tr>
+              <td><b>Fat Embolism Syndrome</b></td>
+              <td>Diffuse bilateral alveolar infiltrates ("snowstorm" pattern) 24–72 hours after long bone trauma/fractures.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="foot">
+  <div class="container">
+    <h2>Chest X-Ray Anatomy &amp; Interpretation Quick Reference</h2>
+    <p>Synthesized from Prof. Rowi ICU CXR Interpretation Protocol &amp; Radiopaedia / Radiology Tutorials Chest Radiograph Anatomy Guide.</p>
+    <div class="tiny">Designed in CRRT Guideline Responsive HTML/CSS Style. Confidential Medical Reference.</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Collapsible cards ---------- */
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+
+  function setCollapsed(card, collapsed) {
+    card.classList.toggle('collapsed', collapsed);
+    var head = card.querySelector('.acc-head');
+    if (head) head.setAttribute('aria-expanded', String(!collapsed));
+  }
+
+  cards.forEach(function (card) {
+    var head = card.querySelector('.acc-head');
+    if (!head) return;
+    head.addEventListener('click', function () {
+      setCollapsed(card, !card.classList.contains('collapsed'));
+    });
+  });
+
+  document.getElementById('expandAll').addEventListener('click', function () {
+    cards.forEach(function (c) { setCollapsed(c, false); });
+  });
+
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    cards.forEach(function (c) { setCollapsed(c, true); });
+  });
+
+  /* ---------- Text size control ---------- */
+  var MIN = 13, MAX = 22, DEFAULT = 16;
+  var stored = parseInt(window.localStorage.getItem('cxr_fontsize'), 10);
+  var size = (isNaN(stored) || stored < MIN || stored > MAX) ? DEFAULT : stored;
+
+  var label = document.getElementById('fsLabel');
+
+  function applySize() {
+    document.documentElement.style.setProperty('--base', size + 'px');
+    if (label) label.textContent = size;
+    try { window.localStorage.setItem('cxr_fontsize', String(size)); } catch (e) {}
+  }
+
+  document.getElementById('fsMinus').addEventListener('click', function () {
+    size = Math.max(MIN, size - 1);
+    applySize();
+  });
+
+  document.getElementById('fsPlus').addEventListener('click', function () {
+    size = Math.min(MAX, size + 1);
+    applySize();
+  });
+
+  /* Double-click the label to reset to 16px */
+  if (label) {
+    label.style.cursor = 'pointer';
+    label.title = 'Double-click to reset to 16';
+    label.addEventListener('dblclick', function () {
+      size = DEFAULT;
+      applySize();
+    });
+  }
+
+  applySize();
+
+  /* ---------- Checklist reset ---------- */
+  var resetBtn = document.getElementById('resetChecks');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      var boxes = document.querySelectorAll('#sec0 input[type="checkbox"]');
+      Array.prototype.forEach.call(boxes, function (b) { b.checked = false; });
+    });
+  }
+
+  /* ---------- Smooth scroll for toolbar links ---------- */
+  document.querySelectorAll('.tbtn[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      /* make sure the target card is open before scrolling */
+      var card = target.classList.contains('card') ? target : target.closest('.card');
+      if (card) setCollapsed(card, false);
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
