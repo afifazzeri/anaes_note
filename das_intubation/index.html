@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="dashboard">
+  <meta name="design-style" content="handbook">
+  <title>DAS 2025 Tracheal Intubation Guidelines — Interactive Clinical Quick Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Public+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --fs: 16px;
+
+      /* Page and surfaces */
+      --background: #f5f8fb;
+      --surface: #ffffff;
+      --surface-container-low: #edf3f8;
+      --surface-container: #e1ebf4;
+      --surface-container-high: #d2e1ee;
+
+      /* Ink */
+      --on-surface: #0b0c0c;
+      --on-surface-variant: #44515b;
+
+      /* Rules */
+      --outline: #0b0c0c;
+      --outline-variant: #b8c7d4;
+
+      /* Blue primary clinical palette */
+      --primary: #0d2d52;
+      --primary-hover: #081e38;
+      --on-primary: #ffffff;
+      --primary-container: #dceaf7;
+      --on-primary-container: #0a2a4d;
+      --secondary: #155e75;
+      --tertiary: #145da0;
+      --tertiary-soft: #eef5fc;
+
+      /* Green (safe / oxygenation confirmed / target in range) */
+      --positive: #0f6b3e;
+      --positive-ink: #094527;
+      --positive-surface: #e6f5ec;
+      --positive-border: #15803d;
+
+      /* Yellow / Amber (caution / priming / transition / focus) */
+      --warning: #6b4400;
+      --warning-ink: #2b1b00;
+      --warning-surface: #fef7d6;
+      --warning-border: #d99b00;
+      --focus-yellow: #ffdd00;
+
+      /* Emergency CICO alert (Plan D only) */
+      --error: #b91c1c;
+      --error-ink: #7f1d1d;
+      --error-surface: #fef2f2;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #145da0;
+      --data-2: #0f6b3e;
+      --data-3: #d99b00;
+      --data-4: #0d2d52;
+      --data-context: #b8c7d4;
+
+      /* Fonts */
+      --font-headline: 'Public Sans', system-ui, -apple-system, sans-serif;
+      --font-body: 'Public Sans', system-ui, -apple-system, sans-serif;
+      --font-label: 'Public Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+      /* Shape (Handbook square precision) */
+      --rounded: 0px;
+      --rounded-lg: 0px;
+      --rounded-full: 0px;
+
+      /* Style effects */
+      --top-index-rule: 6px solid var(--primary);
+      --inset-rule: 5px solid var(--tertiary);
+      --button-ground: 0 2px 0 var(--primary-hover);
+      --button-ground-secondary: 0 2px 0 var(--outline-variant);
+      --focus-ring: 3px solid var(--focus-yellow);
+      --focus-bar: inset 0 0 0 2px var(--on-surface);
+      --focus-underline: 0 -2px var(--focus-yellow), 0 4px var(--on-surface);
+      --card-shadow: 0 1px 2px rgba(13, 45, 82, 0.06);
+
+      /* Type scale (Dashboard / Reference) */
+      --display-size: clamp(1.6rem, 1.3rem + 1.1vw, 2.15rem);
+      --headline-size: clamp(1.15rem, 1.05rem + 0.45vw, 1.4rem);
+      --subhead-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+      --body-size: 1rem;
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+
+      /* Focus / Semantic alias */
+      --focus: var(--focus-yellow);
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      font-size: var(--fs);
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+      overflow-x: clip;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: clip;
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.55;
+    }
+    header { position: static !important; }
+
+    .wrap {
+      width: min(1160px, 100% - 2rem);
+      margin-inline: auto;
+    }
+
+    /* ---------- HEADER / MASTHEAD ---------- */
+    .site-head {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-top: 6px solid var(--focus-yellow);
+      border-bottom: 4px solid var(--positive);
+      padding: var(--space-lg) 0 var(--space-md);
+    }
+    .index-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--primary-container);
+    }
+    .index-bar .badge-pill {
+      background: var(--focus-yellow);
+      color: var(--on-surface);
+      padding: 0.15rem 0.55rem;
+      font-weight: 800;
+    }
+    .site-head h1 {
+      margin: 0 0 var(--space-xs);
+      font-family: var(--font-headline);
+      font-size: var(--display-size);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      color: var(--on-primary);
+    }
+    .site-head .lede {
+      margin: 0 0 var(--space-md);
+      color: var(--primary-container);
+      font-size: 1.02rem;
+      max-width: 70ch;
+      line-height: 1.5;
+    }
+    .head-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .meta-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: var(--on-primary);
+    }
+    .meta-tag strong { color: var(--focus-yellow); }
+
+    /* ---------- QUICK-JUMP TOC ---------- */
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding-top: var(--space-xs);
+    }
+    .toc a {
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--on-primary);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      padding: 0.45rem 0.75rem;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .toc a:hover {
+      background: var(--positive);
+      border-color: var(--positive);
+      color: var(--on-primary);
+    }
+    .toc a.toc-caution:hover {
+      background: var(--focus-yellow);
+      border-color: var(--focus-yellow);
+      color: var(--on-surface);
+    }
+    .toc a.toc-alert {
+      border-color: var(--focus-yellow);
+    }
+    .toc a.toc-alert:hover {
+      background: var(--error);
+      border-color: var(--error);
+      color: var(--on-error);
+    }
+    .toc a:focus-visible {
+      outline: none;
+      background: var(--focus-yellow);
+      color: var(--on-surface);
+      box-shadow: var(--focus-underline);
+    }
+
+    /* ---------- STICKY TOOLBAR ---------- */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--surface);
+      border-bottom: 2px solid var(--primary);
+      padding: var(--space-sm) 0;
+      box-shadow: 0 3px 10px rgba(13, 45, 82, 0.08);
+    }
+    .toolbar-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: end;
+    }
+    .search-group {
+      flex: 1 1 300px;
+      min-width: 220px;
+    }
+    .control-label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-surface);
+      margin-bottom: 0.25rem;
+    }
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-box input[type="search"] {
+      width: 100%;
+      min-height: 44px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 0.45rem 8.5rem 0.45rem 0.75rem;
+      border: 2px solid var(--outline);
+      border-radius: var(--rounded);
+      background: var(--surface);
+      color: var(--on-surface);
+    }
+    .search-box input[type="search"]:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 0;
+      box-shadow: var(--focus-bar);
+    }
+    .search-meta {
+      position: absolute;
+      right: 0.3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .match-count {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--on-primary-container);
+      background: var(--primary-container);
+      padding: 0.2rem 0.45rem;
+      min-width: 3.4rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .match-count.has-none {
+      background: var(--warning-surface);
+      color: var(--warning-ink);
+    }
+    .mini-btn {
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.85rem;
+      font-weight: 800;
+      min-width: 34px;
+      min-height: 34px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .mini-btn:hover {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .mini-btn:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 0;
+      box-shadow: var(--focus-bar);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: end;
+    }
+    .btn {
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 700;
+      min-height: 44px;
+      padding: 0.5rem 0.9rem;
+      border: 0;
+      border-radius: var(--rounded);
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--button-ground);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover { background: var(--primary-hover); }
+    .btn:active { transform: translateY(2px); box-shadow: none; }
+    .btn:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 0;
+      box-shadow: var(--focus-bar);
+    }
+    .btn.secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      box-shadow: var(--button-ground-secondary);
+    }
+    .btn.secondary:hover { background: var(--surface-container); }
+
+    .fs-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .fs-group {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      min-height: 44px;
+      padding: 0.25rem 0.5rem;
+      background: var(--surface-container-low);
+      border: 2px solid var(--outline);
+    }
+    .fs-group input[type="range"] {
+      width: 76px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .fs-label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      background: transparent;
+      border: 0;
+      padding: 0.2rem 0.3rem;
+      min-width: 3rem;
+      cursor: pointer;
+    }
+    .fs-label:hover { background: var(--primary-container); }
+    .fs-label:focus-visible {
+      outline: var(--focus-ring);
+      box-shadow: var(--focus-bar);
+    }
+
+    /* ---------- MAIN LAYOUT ---------- */
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg) 0 var(--space-2xl);
+      width: min(1160px, 100% - 2rem);
+      margin-inline: auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    .section-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-top: var(--top-index-rule);
+      border-bottom: 1px solid var(--outline-variant);
+      padding: var(--space-sm) 0;
+      margin: var(--space-md) 0 var(--space-md);
+    }
+    .section-heading h2 {
+      margin: 0;
+      font-family: var(--font-headline);
+      font-size: var(--headline-size);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--primary);
+    }
+    .section-heading .sec-tag {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* ---------- TOP KPI / KEY NUMBERS STRIP ---------- */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      border-left: 5px solid var(--tertiary);
+      padding: var(--space-md);
+      box-shadow: var(--card-shadow);
+    }
+    .kpi-card.green { border-left-color: var(--positive); }
+    .kpi-card.yellow { border-left-color: var(--warning-border); }
+    .kpi-card.alert { border-left-color: var(--error); }
+    .kpi-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--on-surface-variant);
+      margin-bottom: 0.2rem;
+    }
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.15;
+      margin-bottom: 0.25rem;
+    }
+    .kpi-card.green .kpi-value { color: var(--positive-ink); }
+    .kpi-card.yellow .kpi-value { color: var(--warning); }
+    .kpi-card.alert .kpi-value { color: var(--error-ink); }
+    .kpi-desc {
+      font-size: 0.875rem;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    /* ---------- MASTER LINEAR ALGORITHM FLOW (FIG 1) ---------- */
+    .algo-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .algo-node {
+      background: var(--surface);
+      border: 2px solid var(--tertiary);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+      color: var(--on-surface);
+      box-shadow: var(--card-shadow);
+      transition: transform var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .algo-node:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(13, 45, 82, 0.14);
+    }
+    .algo-node:focus-visible {
+      outline: var(--focus-ring);
+      box-shadow: var(--focus-bar);
+    }
+    .algo-node.plan-a { border-top: 6px solid var(--tertiary); }
+    .algo-node.plan-b { border-top: 6px solid var(--positive); border-color: var(--positive); }
+    .algo-node.plan-c { border-top: 6px solid var(--warning-border); border-color: var(--warning-border); }
+    .algo-node.plan-d { border-top: 6px solid var(--error); border-color: var(--error); }
+
+    .algo-plan-badge {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      width: fit-content;
+    }
+    .plan-a .algo-plan-badge { background: var(--primary-container); color: var(--on-primary-container); }
+    .plan-b .algo-plan-badge { background: var(--positive-surface); color: var(--positive-ink); }
+    .plan-c .algo-plan-badge { background: var(--warning-surface); color: var(--warning-ink); }
+    .plan-d .algo-plan-badge { background: var(--error); color: var(--on-error); }
+
+    .algo-node h3 {
+      margin: 0.25rem 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--on-surface);
+    }
+    .algo-node ul {
+      margin: 0.25rem 0;
+      padding-left: 1.1rem;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+    .algo-trigger {
+      margin-top: auto;
+      padding-top: var(--space-xs);
+      border-top: 1px solid var(--outline-variant);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .plan-b .algo-trigger { color: var(--warning); }
+    .plan-c .algo-trigger { color: var(--error-ink); }
+    .plan-d .algo-trigger { color: var(--error-ink); }
+
+    /* ---------- ACCORDION CARDS ---------- */
+    details.card {
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      border-left: 6px solid var(--tertiary);
+      margin-bottom: var(--space-md);
+      box-shadow: var(--card-shadow);
+      scroll-margin-top: 96px;
+    }
+    details.card.card-green { border-left-color: var(--positive); }
+    details.card.card-yellow { border-left-color: var(--warning-border); }
+    details.card.card-alert { border-left-color: var(--error); }
+
+    details.card > summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 0.85rem var(--space-md);
+      min-height: 52px;
+      background: var(--surface-container-low);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: 1.08rem;
+      color: var(--primary);
+      user-select: none;
+      border-bottom: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    details.card[open] > summary {
+      border-bottom-color: var(--outline-variant);
+      background: var(--surface-container);
+    }
+    details.card > summary::-webkit-details-marker { display: none; }
+    details.card > summary::before {
+      content: "▸";
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-size: 0.85rem;
+      flex: none;
+      transition: transform var(--dur-micro) var(--ease-out);
+    }
+    details.card.card-green > summary::before { background: var(--positive); }
+    details.card.card-yellow > summary::before { background: var(--warning-border); color: var(--on-surface); }
+    details.card.card-alert > summary::before { background: var(--error); }
+    details.card[open] > summary::before { transform: rotate(90deg); }
+    details.card > summary:hover { background: var(--surface-container); }
+    details.card > summary:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: -3px;
+      box-shadow: var(--focus-bar);
+    }
+    details.card > summary .tag {
+      margin-left: auto;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    details.card.card-green > summary .tag {
+      background: var(--positive-surface);
+      color: var(--positive-ink);
+    }
+    details.card.card-yellow > summary .tag {
+      background: var(--focus-yellow);
+      color: var(--on-surface);
+    }
+    details.card.card-alert > summary .tag {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    .card-body {
+      padding: var(--space-md) var(--space-lg) var(--space-lg);
+    }
+    .card-body > :first-child { margin-top: 0; }
+    .card-body > :last-child { margin-bottom: 0; }
+
+    h3 {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 800;
+      color: var(--primary);
+      margin: var(--space-lg) 0 var(--space-sm);
+    }
+    h4 {
+      font-family: var(--font-headline);
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin: var(--space-md) 0 var(--space-xs);
+    }
+    p { margin: 0.45rem 0; max-width: 72ch; }
+    ul, ol { margin: 0.45rem 0 0.75rem; padding-left: 1.35rem; max-width: 72ch; }
+    li { margin: 0.3rem 0; }
+    li::marker { color: var(--tertiary); font-weight: 700; }
+
+    /* ---------- INSET CALLOUTS (Blue / Green / Yellow / Alert) ---------- */
+    .callout {
+      border-left: 5px solid var(--tertiary);
+      background: var(--tertiary-soft);
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+    .callout.green {
+      border-left-color: var(--positive);
+      background: var(--positive-surface);
+    }
+    .callout.yellow {
+      border-left-color: var(--warning-border);
+      background: var(--warning-surface);
+    }
+    .callout.alert {
+      border-left-color: var(--error);
+      background: var(--error-surface);
+    }
+    .callout .label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-primary-container);
+      margin-bottom: 0.25rem;
+    }
+    .callout.green .label { color: var(--positive-ink); }
+    .callout.yellow .label { color: var(--warning-ink); }
+    .callout.alert .label { color: var(--error-ink); }
+
+    /* ---------- WEB-FRIENDLY FLOWCHARTS INSIDE PLANS ---------- */
+    .flowchart {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+    .flowchart-title {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      margin: 0 0 var(--space-sm);
+    }
+    .flow-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-sm);
+      align-items: stretch;
+    }
+    .flow-box {
+      background: var(--surface);
+      border: 2px solid var(--tertiary);
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .flow-box.green { border-color: var(--positive); background: var(--positive-surface); }
+    .flow-box.yellow { border-color: var(--warning-border); background: var(--warning-surface); }
+    .flow-box.alert { border-color: var(--error); background: var(--error-surface); }
+    .flow-box .flow-head {
+      font-family: var(--font-label);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--primary);
+    }
+    .flow-box.green .flow-head { color: var(--positive-ink); }
+    .flow-box.yellow .flow-head { color: var(--warning-ink); }
+    .flow-box.alert .flow-head { color: var(--error-ink); }
+    .flow-box p, .flow-box ul {
+      margin: 0;
+      font-size: 0.875rem;
+    }
+    .flow-box ul { padding-left: 1.1rem; }
+
+    .flow-arrow-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: var(--space-xs) 0;
+      font-family: var(--font-label);
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .flow-branch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+      margin-top: var(--space-sm);
+    }
+
+    /* ---------- STEP BADGES & 19-STEP EFONA GRID ---------- */
+    .efona-phases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+    .efona-phase {
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      border-top: 4px solid var(--primary);
+      padding: var(--space-md);
+    }
+    .efona-phase h4 {
+      margin: 0 0 var(--space-sm);
+      color: var(--primary);
+      font-size: 0.95rem;
+    }
+    .step-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .step-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 26px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex: none;
+    }
+    .step-badge.green { background: var(--positive); }
+    .step-badge.yellow { background: var(--focus-yellow); color: var(--on-surface); }
+
+    /* ---------- SCHEMATIC SVG CARDS (FIG 7) ---------- */
+    .svg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+    .svg-card {
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-sm);
+    }
+    .svg-card svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+    }
+    .svg-cap {
+      margin-top: var(--space-xs);
+      font-size: 0.85rem;
+      color: var(--on-surface);
+    }
+    .svg-cap strong { display: block; color: var(--primary); }
+
+    /* ---------- TABLES (Ruled Handbook Style, Scrollable) ---------- */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--outline-variant);
+      background: var(--surface);
+      margin: var(--space-md) 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 640px;
+      font-size: 0.9rem;
+    }
+    thead th {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      text-align: left;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.65rem 0.75rem;
+      border-bottom: 2px solid var(--outline);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    .num-cell {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .status-chip {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.12rem 0.45rem;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .status-chip.green { background: var(--positive-surface); color: var(--positive-ink); }
+    .status-chip.yellow { background: var(--focus-yellow); color: var(--on-surface); }
+    .status-chip.alert { background: var(--error); color: var(--on-error); }
+
+    /* ---------- WEIGHT-BASED RSI DOSE CALCULATOR ---------- */
+    .calc-panel {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-left: 5px solid var(--positive);
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+    .calc-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: end;
+    }
+    .calc-input-group label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-surface);
+      margin-bottom: 0.25rem;
+    }
+    .calc-input-group input[type="number"] {
+      width: 130px;
+      min-height: 44px;
+      padding: 0.4rem 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      border: 2px solid var(--outline);
+      background: var(--surface);
+      color: var(--on-surface);
+    }
+    .calc-input-group input[type="number"]:focus-visible {
+      outline: var(--focus-ring);
+      box-shadow: var(--focus-bar);
+    }
+    .calc-outputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      flex: 1 1 280px;
+    }
+    .calc-result {
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      padding: 0.5rem 0.85rem;
+      min-width: 170px;
+    }
+    .calc-result .res-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .calc-result .res-val {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--positive-ink);
+    }
+
+    /* ---------- TWO-COLUMN SUBGRID FOR CONTENT ---------- */
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-md);
+      margin: var(--space-sm) 0;
+    }
+    .sub-panel {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-md);
+    }
+    .sub-panel h4 { margin-top: 0; color: var(--primary); }
+
+    /* ---------- SEARCH HIGHLIGHTS ---------- */
+    mark.srch {
+      background: var(--focus-yellow);
+      color: var(--on-surface);
+      padding: 0 0.1em;
+    }
+    mark.srch.cur {
+      background: var(--primary);
+      color: var(--on-primary);
+      outline: 2px solid var(--focus-yellow);
+    }
+
+    /* ---------- CITATION FOOTER ---------- */
+    footer.cite-footer {
+      background: var(--surface);
+      border-top: 6px solid var(--primary);
+      padding: var(--space-xl) 0 var(--space-2xl);
+      color: var(--on-surface);
+    }
+    .cite-box {
+      border-left: 5px solid var(--positive);
+      background: var(--surface-container-low);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    .cite-box p { max-width: 85ch; font-size: 0.92rem; }
+    .disclaimer-text {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+      max-width: 85ch;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .algo-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .algo-strip { grid-template-columns: 1fr; }
+      .flow-branch-grid { grid-template-columns: 1fr; }
+      .card-body { padding: var(--space-md); }
+      .toolbar-actions { width: 100%; }
+      .fs-group input[type="range"] { width: 60px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-head">
+    <div class="wrap">
+      <div class="index-bar">
+        <span>Bedside Clinical Reference &middot; Adult Tracheal Intubation</span>
+        <span class="badge-pill">DAS 2025 Guidelines</span>
+      </div>
+      <h1>Difficult Airway Society 2025 Guidelines: Unanticipated Difficult Tracheal Intubation in Adults</h1>
+      <p class="lede">
+        Structured quick-reference guide for anaesthetists, intensivists, and multidisciplinary airway teams. Emphasises maximising first-attempt success, continuous peroxygenation, uninterrupted waveform capnography, early priming, and decisive linear progression from Plan A to Plan D.
+      </p>
+      <div class="head-meta">
+        <span class="meta-tag"><strong>65</strong> Recommendations</span>
+        <span class="meta-tag"><strong>1241</strong> Papers Reviewed</span>
+        <span class="meta-tag"><strong>Plan A &rarr; D</strong> Linear Algorithm</span>
+        <span class="meta-tag"><strong>Default:</strong> Videolaryngoscopy + 2nd-Gen SAD</span>
+      </div>
+
+      <nav class="toc" aria-label="Quick navigation">
+        <a href="#overview">Algorithm Overview</a>
+        <a href="#sec-prep">Preparation &amp; Assessment</a>
+        <a href="#sec-monitoring">Monitoring, Drugs &amp; Peroxygenation</a>
+        <a href="#sec-plan-a">Plan A: Intubation</a>
+        <a href="#sec-plan-b" class="toc-caution">Plan B: SAD Rescue</a>
+        <a href="#sec-plan-c" class="toc-caution">Plan C: Facemask</a>
+        <a href="#sec-plan-d" class="toc-alert">Plan D: eFONA (CICO)</a>
+        <a href="#sec-special">RSI, Physiology &amp; Obesity</a>
+        <a href="#sec-post">Emergence, Handover &amp; Human Factors</a>
+        <a href="#sec-tables">Reference Tables</a>
+        <a href="#citation">Source Citation</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="toolbar" role="region" aria-label="Search and reading controls">
+    <div class="wrap toolbar-grid">
+      <div class="search-group">
+        <label class="control-label" for="search">Search guidelines (auto-expands matching sections)</label>
+        <div class="search-box">
+          <input id="search" type="search" placeholder="Search e.g. rocuronium, bougie, ETO2, capnography, cricoid…" autocomplete="off">
+          <div class="search-meta">
+            <span class="match-count" id="matchCount" aria-live="polite">Ready</span>
+            <button type="button" class="mini-btn" id="prevMatch" title="Previous match (Shift+Enter)" aria-label="Previous match">&uarr;</button>
+            <button type="button" class="mini-btn" id="nextMatch" title="Next match (Enter)" aria-label="Next match">&darr;</button>
+            <button type="button" class="mini-btn" id="clearSearch" title="Clear search (Esc)" aria-label="Clear search">&times;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="toolbar-actions">
+        <div>
+          <span class="control-label">Sections</span>
+          <div style="display:flex; gap:0.4rem;">
+            <button type="button" class="btn" id="expandAll" onclick="toggleAllCards(true)">+ Expand all</button>
+            <button type="button" class="btn secondary" id="collapseAll" onclick="toggleAllCards(false)">&minus; Collapse all</button>
+          </div>
+        </div>
+
+        <div class="fs-wrap">
+          <label class="control-label" for="fsRange">Text size</label>
+          <div class="fs-group">
+            <button type="button" class="mini-btn" id="fsDown" onclick="stepFontSize(-1)" aria-label="Decrease text size">A&minus;</button>
+            <input type="range" id="fsRange" min="13" max="22" step="1" value="16" oninput="setFontFromSlider(this.value)" aria-label="Text size slider">
+            <button type="button" class="mini-btn" id="fsUp" onclick="stepFontSize(1)" aria-label="Increase text size">A+</button>
+            <button type="button" class="fs-label" id="fsLabel" onclick="resetFontSize()" title="Reset text size to 100%">100%</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-grid">
+
+    <!-- SECTION: OVERVIEW & LINEAR ALGORITHM -->
+    <section id="overview" aria-labelledby="heading-overview">
+      <div class="section-heading">
+        <h2 id="heading-overview">Linear Airway Algorithm &amp; Core Safety Thresholds</h2>
+        <span class="sec-tag">Figure 1 Overview</span>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-kicker">Plan A Attempt Limit</div>
+          <div class="kpi-value">3 + 1 max</div>
+          <p class="kpi-desc">Max 3 attempts + 1 final attempt by a more experienced colleague. Change something every attempt.</p>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-kicker">Pre-oxygenation Target</div>
+          <div class="kpi-value">ETO2 &ge; 0.9</div>
+          <p class="kpi-desc">Head-up (&ge;30&deg;) with positive pressure where feasible. Continue peroxygenation throughout.</p>
+        </div>
+        <div class="kpi-card yellow">
+          <div class="kpi-kicker">Plan B SAD Limit</div>
+          <div class="kpi-value">Max 3 tries</div>
+          <p class="kpi-desc">Second-generation SAD. Open eFONA kit if unsuccessful after 3 attempts; move to Plan C.</p>
+        </div>
+        <div class="kpi-card alert">
+          <div class="kpi-kicker">Plan D (eFONA) Kit</div>
+          <div class="kpi-value">10 &middot; Bougie &middot; 6.0</div>
+          <p class="kpi-desc">No. 10 scalpel, bougie (advance 10&ndash;15 cm), size 6.0 mm cuffed tracheal tube + suction.</p>
+        </div>
+      </div>
+
+      <div class="algo-strip" role="navigation" aria-label="Plan A to D interactive selector">
+        <button type="button" class="algo-node plan-a" onclick="jumpToCard('sec-plan-a')">
+          <span class="algo-plan-badge">Plan A &middot; First-line</span>
+          <h3>Tracheal Intubation</h3>
+          <ul>
+            <li>Videolaryngoscopy first-line</li>
+            <li>Max 3+1 attempts; NMB routine</li>
+            <li>2-point check: view + capnography</li>
+          </ul>
+          <span class="algo-trigger">If fails: Declare failed intubation &rarr; Prime eFONA kit &rarr; Plan B</span>
+        </button>
+
+        <button type="button" class="algo-node plan-b" onclick="jumpToCard('sec-plan-b')">
+          <span class="algo-plan-badge">Plan B &middot; Rescue</span>
+          <h3>Supraglottic Airway (SAD)</h3>
+          <ul>
+            <li>2nd-generation SAD; max 3 tries</li>
+            <li>Confirm O2 &amp; waveform capnography</li>
+            <li>Stop, think &amp; communicate (default: wake)</li>
+          </ul>
+          <span class="algo-trigger">If fails: Declare failed SAD &rarr; Open eFONA kit &rarr; Plan C</span>
+        </button>
+
+        <button type="button" class="algo-node plan-c" onclick="jumpToCard('sec-plan-c')">
+          <span class="algo-plan-badge">Plan C &middot; Final FMV</span>
+          <h3>Facemask Ventilation</h3>
+          <ul>
+            <li>Full NMB + optimal positioning</li>
+            <li>OPA / NPA airway adjuncts</li>
+            <li>4-handed (2-person) + depth</li>
+          </ul>
+          <span class="algo-trigger">If fails: Declare CICO &rarr; Allocate roles &rarr; Plan D</span>
+        </button>
+
+        <button type="button" class="algo-node plan-d" onclick="jumpToCard('sec-plan-d')">
+          <span class="algo-plan-badge">Plan D &middot; CICO Emergency</span>
+          <h3>Emergency FONA</h3>
+          <ul>
+            <li>Max neck extension + full NMB</li>
+            <li>Upper airway O2 throughout</li>
+            <li>Vertical incision default if uncertain</li>
+          </ul>
+          <span class="algo-trigger">Scalpel (No. 10) &rarr; Bougie &rarr; 6.0 mm Tube</span>
+        </button>
+      </div>
+
+      <div class="callout green">
+        <span class="label">2025 Core Principle — Maximise Success, Not Just Failure Management</span>
+        Every airway plan prioritises continuous oxygen delivery (peroxygenation), first-attempt intubation success, uninterrupted waveform capnography to exclude oesophageal intubation, early priming for eFONA, and explicit verbal declaration when transitioning between plans.
+      </div>
+    </section>
+
+    <!-- ACCORDION 1: PREPARATION & ASSESSMENT -->
+    <section aria-label="Clinical Guideline Sections">
+      <details class="card" id="sec-prep" open>
+        <summary>
+          <span>1. Airway Assessment, Strategy &amp; Preparation</span>
+          <span class="tag">Figure 2 &middot; Pre-induction</span>
+        </summary>
+        <div class="card-body">
+          <div class="flowchart">
+            <p class="flowchart-title">Preparation &amp; Strategy Decision Flow (Figure 2)</p>
+            <div class="flow-row">
+              <div class="flow-box">
+                <span class="flow-head">Step 1: Pre-induction Assessment</span>
+                <p>History (prior difficulty, OSA/snoring), bedside tests (Upper Lip Bite Test + combined tests), difficult FMV screen, CTM localisation in <strong>full neck extension</strong>, and physiological difficulty screen.</p>
+              </div>
+              <div class="flow-box yellow">
+                <span class="flow-head">Step 2: Difficulty Anticipated?</span>
+                <p>Assess difficulty across <strong>Plan A</strong> (intubation), <strong>Plan B</strong> (SAD), <strong>Plan C</strong> (FMV), or <strong>Plan D</strong> (eFONA). If ANY difficulty is anticipated &rarr; <strong>Consider Awake Tracheal Intubation (ATI)</strong> or awake tracheostomy.</p>
+              </div>
+              <div class="flow-box green">
+                <span class="flow-head">Step 3: Team Brief &amp; Setup</span>
+                <p>Share strategy with anaesthetic assistant &amp; theatre team brief. Optimise position before pre-oxygenation. Ensure Plans A&ndash;D kit is immediately available. Plan out-of-hours/non-theatre transfers early.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="sub-panel">
+              <h4>Key Assessment Predictors</h4>
+              <ul>
+                <li><strong>Previous difficult airway history:</strong> Most reliable predictor; check alert cards and medical records.</li>
+                <li><strong>Upper Lip Bite Test (ULBT):</strong> Highest diagnostic accuracy among bedside tests; combining multiple bedside tests improves sensitivity.</li>
+                <li><strong>OSA &amp; snoring:</strong> More reliable predictors of difficult airway management.</li>
+                <li><strong>Difficult facemask ventilation features:</strong> Prior difficulty, OSA, neck radiotherapy, high BMI, increased neck circumference, Mallampati 3/4, male sex.</li>
+                <li><strong>Cricothyroid membrane (CTM):</strong> Identify visually, by palpation, or by point-of-care ultrasound with the neck <strong>fully extended</strong> to inform Plan D.</li>
+              </ul>
+            </div>
+
+            <div class="sub-panel">
+              <h4>Investigations &amp; Scoring Tools</h4>
+              <ul>
+                <li><strong>Nasendoscopy:</strong> Rapid, safe, easily performed bedside assessment with significant value in guiding strategy.</li>
+                <li><strong>Point-of-care ultrasound (POCUS):</strong> Pre-induction CTM/cricoid localisation and gastric aspiration risk assessment.</li>
+                <li><strong>Other imaging:</strong> CT, virtual endoscopy, awake videolaryngoscopic assessment, 3D printing where indicated.</li>
+                <li><strong>Validated scoring systems:</strong> <strong>HEAVEN</strong> criteria (pre-hospital), <strong>MACOCHA</strong> score (critical care), <strong>Lim &amp; Nielsen</strong> grading (facemask ventilation).</li>
+                <li><strong>Emergency checklists:</strong> Use a checklist for emergency tracheal intubation to reduce omissions and improve adherence.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout yellow">
+            <span class="label">Out-of-Hours &amp; Non-Theatre Environments</span>
+            Airway management outside operating theatres or out of hours carries elevated risk. Explicitly plan timing, clinical urgency, whether to transfer the patient to an anaesthetic room/theatre, early senior input, and allocation of a dedicated team member (not the airway assistant) to summon help.
+          </div>
+        </div>
+      </details>
+
+      <!-- ACCORDION 2: MONITORING, DRUGS & PEROXYGENATION -->
+      <details class="card card-green" id="sec-monitoring">
+        <summary>
+          <span>2. Monitoring, Pharmacology &amp; Peroxygenation</span>
+          <span class="tag">Continuous Oxygenation &amp; NMB</span>
+        </summary>
+        <div class="card-body">
+          <div class="two-col">
+            <div class="sub-panel">
+              <h4>Essential Monitoring Standards</h4>
+              <ul>
+                <li><strong>Pre-induction capnography check:</strong> Verify waveform capnography is working and correctly interpretable <em>before</em> induction.</li>
+                <li><strong>Uninterrupted waveform capnography:</strong> Gold standard throughout all phases; most sensitive and specific monitor to exclude oesophageal intubation.</li>
+                <li><strong>Do NOT rely on clinical signs alone:</strong> Tube misting, chest rise, and auscultation are unreliable in isolation.</li>
+                <li><strong>Pre-oxygenation efficacy:</strong> Target <strong>ETO2 &ge; 0.9</strong> on facemask (less reliable when using HFNO).</li>
+                <li><strong>Situational awareness triggers:</strong> Enable <strong>audible SpO2 tones</strong> before induction; start a <strong>timer</strong> at NMB administration.</li>
+                <li><strong>Quantitative NMB monitoring:</strong> Use to confirm adequate neuromuscular block before intubation attempts and before emergence/extubation.</li>
+              </ul>
+            </div>
+
+            <div class="sub-panel">
+              <h4>Peroxygenation Strategy</h4>
+              <ul>
+                <li><strong>Definition:</strong> Continuous O2 delivery from pre-oxygenation, through apnoea, and throughout laryngoscopy until the airway is secured.</li>
+                <li><strong>Optimal pre-oxygenation:</strong> <strong>Head-up position (&ge;30&deg;)</strong> combined with positive pressure (HFNO, NIV, or facemask CPAP) maximises functional residual capacity (FRC).</li>
+                <li><strong>High-flow nasal oxygen (HFNO &gt;30 L/min):</strong> Prolongs safe apnoea, particularly in anatomically or physiologically difficult airways. Requires a patent upper airway.</li>
+                <li><strong>HFNO limitations:</strong> Delays rather than guarantees prevention of hypoxaemia; some cannulae must be removed to achieve an effective facemask seal; <strong>never initiate HFNO as a rescue technique</strong> after facemask ventilation has failed.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Induction Agents &amp; Neuromuscular Blockade</h3>
+          <ul>
+            <li><strong>Neuromuscular blocking agents (NMBs):</strong> Use routinely to facilitate tracheal intubation; improves conditions for intubation, SAD ventilation, facemask ventilation, and eFONA. <strong>Do not delay NMB administration to check facemask ventilation.</strong></li>
+            <li><strong>Induction agents:</strong> Propofol provides favourable intubating conditions, but can precipitate cardiovascular collapse in physiologically difficult airways; consider ketamine, etomidate, or remimazolam in high-risk patients and prepare vasopressors regardless of agent.</li>
+            <li><strong>Awareness risk:</strong> A single bolus of propofol may be insufficient during prolonged difficult airway management; maintain anaesthesia throughout attempts.</li>
+            <li><strong>Inhalation induction in adults:</strong> Unreliable and associated with substantial risks in anticipated difficult airways.</li>
+          </ul>
+
+          <div class="callout alert">
+            <span class="label">Critical Warning — Sugammadex in CICO</span>
+            Reversing rocuronium with sugammadex during a &ldquo;cannot intubate, cannot oxygenate&rdquo; (CICO) crisis is <strong>not a reliable rescue strategy</strong>. It does not guarantee a patent upper airway, risks laryngospasm or pulmonary aspiration, and delays immediate airway rescue. If sugammadex has been administered and eFONA is required, use a non-steroidal NMB (other than rocuronium or vecuronium).
+          </div>
+        </div>
+      </details>
+
+      <!-- ACCORDION 3: PLAN A -->
+      <details class="card" id="sec-plan-a">
+        <summary>
+          <span>3. Plan A: Tracheal Intubation &amp; Facemask Ventilation</span>
+          <span class="tag">Figure 3 &middot; Max 3+1 Attempts</span>
+        </summary>
+        <div class="card-body">
+          <div class="flowchart">
+            <p class="flowchart-title">Plan A Execution &amp; Escalation Flow (Figure 3)</p>
+            <div class="flow-row">
+              <div class="flow-box">
+                <span class="flow-head">1. First-Line Approach</span>
+                <p>Ensure NMB + head-up/ramped position + continuous peroxygenation. Use <strong>videolaryngoscopy first-line</strong> whenever possible. With hyperangulated blade: use shaped stylet, bougie, or flexible bronchoscope.</p>
+              </div>
+              <div class="flow-box yellow">
+                <span class="flow-head">2. If Difficulty Occurs (Max 3+1)</span>
+                <p>Oxygenate via FMV between attempts; maintain anaesthesia. Make an active change each attempt (position, blade type/size, introducer, BURP, suction, remove cricoid force, optimise NMB, change operator; 4th attempt only by more experienced colleague).</p>
+              </div>
+            </div>
+            <div class="flow-branch-grid">
+              <div class="flow-box green">
+                <span class="flow-head">Success &rarr; Two-Point Confirmation</span>
+                <p>Confirm BOTH: (1) Visualisation of tube passing through vocal cords (where possible) AND (2) Sustained exhaled CO2 on waveform capnography.</p>
+              </div>
+              <div class="flow-box alert">
+                <span class="flow-head">Failure &rarr; Declare &amp; Prime</span>
+                <p>Declare <strong>&ldquo;Failed Intubation&rdquo;</strong> (can be declared after 1st attempt if futile). Summon help, <strong>prime eFONA kit</strong> (immediately accessible + assign eFONA operator), proceed to <strong>Plan B</strong>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="sub-panel">
+              <h4>Videolaryngoscopy &amp; Introducers</h4>
+              <ul>
+                <li><strong>Videolaryngoscope first-line:</strong> Increases first-attempt success, reduces hypoxaemia, and lowers oesophageal intubation risk across operators and settings.</li>
+                <li><strong>Blade awareness:</strong> Macintosh-type vs hyperangulated blades require distinct insertion and tube-delivery techniques.</li>
+                <li><strong>Introducer safety:</strong> Never perform blind bougie insertion (Cormack&ndash;Lehane Grade 3 or 4); avoid eliciting the bronchial &ldquo;hold-up&rdquo; sign due to airway perforation/trauma risk.</li>
+                <li><strong>External laryngeal manipulation (BURP):</strong> Backward, upward, rightward pressure on the thyroid cartilage by a trained assistant improves glottic view.</li>
+              </ul>
+            </div>
+
+            <div class="sub-panel">
+              <h4>Facemask Ventilation Between Attempts</h4>
+              <ul>
+                <li><strong>High-risk signal:</strong> Difficult facemask ventilation increases failed tracheal intubation risk &gt;10-fold.</li>
+                <li><strong>Optimisation techniques:</strong> Correctly sized mask with airtight seal, increased fresh gas flow, chin lift/jaw thrust, oropharyngeal/nasopharyngeal airways, and <strong>VE two-handed grip</strong> (more effective than CE two-handed grip).</li>
+                <li><strong>Early warning signs:</strong> Increased airway pressure, reduced tidal volume, loss of seal, deteriorating capnography, or rising operator effort signal pending failure of Plans A&ndash;C &mdash; verbalise immediately and call for help.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <span class="label">Plan A Abandonment &amp; Early Discontinuation</span>
+            If hypoxaemia occurs during laryngoscopy, abandon the attempt immediately and prioritise facemask ventilation. Failure of Plan A may be declared at any stage (even after attempt 1) if conditions cannot be improved or further instrumentation risks trauma. If discontinuing anaesthesia at this point, maintain effective FMV or insert a SAD until full NMB reversal and emergence.
+          </div>
+        </div>
+      </details>
+
+      <!-- ACCORDION 4: PLAN B -->
+      <details class="card card-green" id="sec-plan-b">
+        <summary>
+          <span>4. Plan B: Supraglottic Airway Device (SAD) Rescue</span>
+          <span class="tag">Figure 4 &middot; Max 3 Attempts</span>
+        </summary>
+        <div class="card-body">
+          <div class="flowchart">
+            <p class="flowchart-title">Plan B Rescue &amp; Decision Tree (Figure 4)</p>
+            <div class="flow-row">
+              <div class="flow-box">
+                <span class="flow-head">1. Insert 2nd-Generation SAD (Max 3 Tries)</span>
+                <p>Use 2nd-gen SAD (higher seal, gastric drainage port, intubation conduit). Remove cricoid force if applied. Change size/device and ensure full NMB between attempts; FMV between tries. Confirm ventilation with <strong>waveform capnography + SpO2</strong>.</p>
+              </div>
+            </div>
+            <div class="flow-branch-grid">
+              <div class="flow-box green">
+                <span class="flow-head">Oxygenation Established &rarr; Stop, Think, Communicate</span>
+                <ul>
+                  <li><strong>Default option:</strong> Discontinue anaesthesia &amp; wake patient up (safest).</li>
+                  <li><strong>High-risk (senior input):</strong> Proceed with surgery via SAD (if life-threatening/essential).</li>
+                  <li><strong>High-risk (1 attempt only):</strong> Intubate via SAD under visualisation (flexible bronchoscope &plusmn; Aintree catheter). <strong>NO blind intubation.</strong></li>
+                  <li><strong>Controlled FONA:</strong> Senior surgical/anaesthetic tracheostomy or cricothyroidotomy.</li>
+                </ul>
+              </div>
+              <div class="flow-box alert">
+                <span class="flow-head">Plan B Fails &rarr; Open eFONA Kit</span>
+                <p>If oxygenation fails after max 3 attempts (or earlier): Declare <strong>&ldquo;Failed SAD Ventilation&rdquo;</strong>, <strong>open the eFONA kit</strong>, summon urgent help, and proceed to <strong>Plan C</strong>. Prepare for high likelihood of Plan D.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="sub-panel">
+              <h4>Device Selection &amp; Efficacy</h4>
+              <ul>
+                <li><strong>Second-generation SADs:</strong> Mandatory over first-generation devices; rescue failed intubation in ~60&ndash;65% of cases.</li>
+                <li><strong>Cuffed 2nd-gen SADs:</strong> Offer higher oropharyngeal leak pressures and allow cuff pressure adjustment.</li>
+                <li><strong>Attempt discipline:</strong> Repeated insertion causes airway oedema/trauma and delays Plan C; limit strictly to <strong>3 attempts</strong>.</li>
+              </ul>
+            </div>
+
+            <div class="sub-panel">
+              <h4>Safety Rules for Proceeding or Intubating via SAD</h4>
+              <ul>
+                <li><strong>Waking up:</strong> Guide full reversal with quantitative NMB monitoring; remain vigilant for laryngospasm on emergence.</li>
+                <li><strong>Proceeding with SAD in situ:</strong> Optimise cuff pressure, pass nasogastric tube to decompress stomach, optimise head/neck position &amp; NMB, expedite safe surgery, and prepare a failure plan.</li>
+                <li><strong>Intubation through SAD:</strong> Only <strong>one attempt</strong> if patient stable, oxygenation adequate, and team trained; <strong>blind intubation through a SAD is not recommended</strong>.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- ACCORDION 5: PLAN C -->
+      <details class="card card-yellow" id="sec-plan-c">
+        <summary>
+          <span>5. Plan C: Final Attempt at Facemask Ventilation</span>
+          <span class="tag">Figure 5 &middot; Pre-CICO Bridge</span>
+        </summary>
+        <div class="card-body">
+          <div class="flowchart">
+            <p class="flowchart-title">Plan C Final Optimisation &amp; CICO Transition (Figure 5)</p>
+            <div class="flow-row">
+              <div class="flow-box yellow">
+                <span class="flow-head">Apply All 5 Mandatory Optimisations Simultaneously</span>
+                <ol>
+                  <li>Ensure <strong>adequate neuromuscular block</strong></li>
+                  <li>Ensure <strong>patient positioning is optimised</strong></li>
+                  <li>Insert <strong>airway adjuncts</strong> (oropharyngeal, nasopharyngeal, or both)</li>
+                  <li>Use a <strong>four-handed (two-person) technique</strong></li>
+                  <li>Ensure <strong>adequate depth of anaesthesia</strong></li>
+                </ol>
+              </div>
+            </div>
+            <div class="flow-branch-grid">
+              <div class="flow-box green">
+                <span class="flow-head">FMV Successful (Capnography + SpO2 Maintained/Improving)</span>
+                <p><strong>Stop, think, and communicate</strong> with senior clinicians. Options: full NMB reversal and careful emergence (monitor closely as reversal can worsen obstruction) OR proceed to controlled FONA.</p>
+              </div>
+              <div class="flow-box alert">
+                <span class="flow-head">FMV Unsuccessful &rarr; Declare CICO</span>
+                <p>Immediately declare <strong>&ldquo;Cannot Intubate, Cannot Oxygenate&rdquo; (CICO)</strong>, allocate team roles (operator, assistant, upper airway O2), and proceed immediately to <strong>Plan D (eFONA)</strong>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout yellow">
+            <span class="label">Clinical Vigilance in Plan C</span>
+            Repeated intubation and SAD instrumentation may have caused airway oedema and bleeding, making facemask ventilation much harder than at induction. At this stage, clinical signs may be the only available marker of effective oxygenation alongside capnography and SpO2. Do not persist with failing mask ventilation &mdash; rapid transition to Plan D saves brain and life.
+          </div>
+        </div>
+      </details>
+
+      <!-- ACCORDION 6: PLAN D (eFONA) -->
+      <details class="card card-alert" id="sec-plan-d">
+        <summary>
+          <span>6. Plan D: Emergency Front-of-Neck Airway (eFONA / CICO)</span>
+          <span class="tag">Figures 6 &amp; 7 &middot; CICO Action</span>
+        </summary>
+        <div class="card-body">
+          <div class="callout alert">
+            <span class="label">Immediate CICO Action — Eliminate Choice Under Stress</span>
+            When Plans A, B, and C have failed, CICO exists: hypoxic brain injury or death will ensue without immediate eFONA. <strong>Default incision rule:</strong> If the cricothyroid membrane (CTM) was not explicitly assessed, is impalpable, or there is ANY uncertainty, perform a <strong>vertical skin incision as default</strong>.
+          </div>
+
+          <div class="flowchart">
+            <p class="flowchart-title">Plan D Readiness &amp; Execution Checklist (Figure 6)</p>
+            <div class="flow-row">
+              <div class="flow-box alert">
+                <span class="flow-head">1. Allocate Roles &amp; Position</span>
+                <p>Senior team member allocates: (a) eFONA operator, (b) operator&rsquo;s assistant, (c) upper airway O2 provider. Achieve <strong>maximal neck extension</strong> (pillow under shoulders or drop head of bed).</p>
+              </div>
+              <div class="flow-box yellow">
+                <span class="flow-head">2. NMB &amp; Upper Airway O2</span>
+                <p>Confirm <strong>full neuromuscular block</strong> (never attempt eFONA without full NMB; use non-steroidal NMB if sugammadex given). Apply 100% O2 via upper airway throughout (SAD, facemask, or nasal cannula).</p>
+              </div>
+              <div class="flow-box">
+                <span class="flow-head">3. Equipment Ready</span>
+                <p><strong>No. 10 scalpel blade</strong>, <strong>bougie</strong>, <strong>size 6.0 mm cuffed tracheal tube</strong>, and <strong>suction</strong>. (Note: Alternative scalpel&ndash;bougie&ndash;tube techniques such as right-to-right cephalad-to-caudad are also acceptable if trained.)</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Figure 7: Vertical Scalpel&ndash;Bougie&ndash;Tube Sequence (19 Steps)</h3>
+          <div class="svg-grid">
+            <div class="svg-card">
+              <svg viewBox="0 0 260 150" aria-hidden="true">
+                <rect x="0" y="0" width="260" height="150" style="fill:var(--surface-container-low);" />
+                <!-- Neck outline in extension -->
+                <path d="M20,120 Q90,95 160,92 Q210,90 245,105" style="fill:none;stroke:var(--primary);stroke-width:3;" />
+                <!-- Thyroid and Cricoid landmarks -->
+                <ellipse cx="115" cy="95" rx="18" ry="10" style="fill:var(--primary-container);stroke:var(--primary);stroke-width:2;" />
+                <ellipse cx="155" cy="93" rx="12" ry="8" style="fill:var(--primary-container);stroke:var(--primary);stroke-width:2;" />
+                <!-- Vertical incision line -->
+                <line x1="95" y1="95" x2="185" y2="95" style="stroke:var(--error);stroke-width:4;stroke-dasharray:8 4;" />
+                <text x="140" y="42" text-anchor="middle" style="font-family:var(--font-label);font-size:11px;font-weight:700;fill:var(--primary);">MAXIMAL NECK EXTENSION</text>
+                <text x="140" y="60" text-anchor="middle" style="font-family:var(--font-mono);font-size:10px;fill:var(--error-ink);">Vertical skin incision &le;8 cm</text>
+                <text x="140" y="136" text-anchor="middle" style="font-family:var(--font-label);font-size:10px;fill:var(--on-surface-variant);">Caudad &rarr; Cephalad &bull; Blunt dissection</text>
+              </svg>
+              <div class="svg-cap">
+                <strong>Phase 1&ndash;2: Incision &amp; Dissection (Steps 1&ndash;6)</strong>
+                Midline vertical skin incision up to 8 cm (caudad to cephalad); blunt finger dissection to locate CTM.
+              </div>
+            </div>
+
+            <div class="svg-card">
+              <svg viewBox="0 0 260 150" aria-hidden="true">
+                <rect x="0" y="0" width="260" height="150" style="fill:var(--surface-container-low);" />
+                <!-- Trachea lumen -->
+                <rect x="45" y="75" width="170" height="36" style="fill:var(--surface);stroke:var(--primary);stroke-width:2;" />
+                <!-- Scalpel vertical -->
+                <line x1="120" y1="22" x2="120" y2="92" style="stroke:var(--on-surface);stroke-width:4;" />
+                <!-- Bougie sliding alongside blade -->
+                <path d="M138,24 L138,85 Q138,94 152,94 L202,94" style="fill:none;stroke:var(--warning-border);stroke-width:5;stroke-linecap:round;" />
+                <text x="130" y="16" text-anchor="middle" style="font-family:var(--font-label);font-size:10px;font-weight:700;fill:var(--primary);">90&deg; CAUDAL ROTATION + BOUGIE</text>
+                <text x="130" y="135" text-anchor="middle" style="font-family:var(--font-mono);font-size:10px;fill:var(--warning);">Advance coud&eacute; tip 10&ndash;15 cm</text>
+              </svg>
+              <div class="svg-cap">
+                <strong>Phase 3: CTM Stab &amp; Bougie (Steps 7&ndash;14)</strong>
+                Transverse CTM stab, rotate 90&deg; caudally, swap hands, slide coud&eacute; bougie 10&ndash;15 cm, remove scalpel.
+              </div>
+            </div>
+
+            <div class="svg-card">
+              <svg viewBox="0 0 260 150" aria-hidden="true">
+                <rect x="0" y="0" width="260" height="150" style="fill:var(--surface-container-low);" />
+                <!-- Trachea lumen -->
+                <rect x="45" y="75" width="170" height="36" style="fill:var(--positive-surface);stroke:var(--positive);stroke-width:2;" />
+                <!-- 6.0 mm tube with cuff -->
+                <path d="M115,24 L115,82 Q115,93 128,93 L188,93" style="fill:none;stroke:var(--tertiary);stroke-width:9;" />
+                <ellipse cx="176" cy="93" rx="10" ry="14" style="fill:var(--primary-container);stroke:var(--primary);stroke-width:1.5;opacity:0.85;" />
+                <text x="130" y="16" text-anchor="middle" style="font-family:var(--font-label);font-size:10px;font-weight:700;fill:var(--positive-ink);">RAILROAD 6.0 mm CUFFED TUBE</text>
+                <text x="130" y="135" text-anchor="middle" style="font-family:var(--font-mono);font-size:10px;fill:var(--positive-ink);">100% O2 + Waveform Capnography</text>
+              </svg>
+              <div class="svg-cap">
+                <strong>Phase 4: Intubate &amp; Confirm (Steps 15&ndash;19)</strong>
+                Rotate &amp; railroad 6.0 mm tube, remove bougie, inflate cuff, ventilate 100% O2, confirm capnography, secure.
+              </div>
+            </div>
+          </div>
+
+          <div class="efona-phases">
+            <div class="efona-phase">
+              <h4>Phase 1: Positioning &amp; Skin Incision</h4>
+              <ol class="step-list">
+                <li><span class="step-badge">1</span><span>Stand on the patient&rsquo;s <strong>left-hand side</strong> if right-handed (reverse if left-handed).</span></li>
+                <li><span class="step-badge">2</span><span>Identify laryngeal anatomy in <strong>maximum neck extension</strong>; locate midline with non-dominant hand.</span></li>
+                <li><span class="step-badge">3</span><span>Apply tension to the skin and stabilise the larynx with the non-dominant hand.</span></li>
+                <li><span class="step-badge">4</span><span>Make a <strong>midline vertical skin incision up to 8 cm</strong> in length, caudad to cephalad (bottom to top).</span></li>
+                <li><span class="step-badge">5</span><span>Use <strong>blunt dissection</strong> with fingers of both hands to separate tissues and stabilise larynx.</span></li>
+                <li><span class="step-badge">6</span><span>Use the non-dominant index finger to identify the <strong>cricothyroid membrane (CTM)</strong>.</span></li>
+              </ol>
+            </div>
+
+            <div class="efona-phase">
+              <h4>Phase 2: CTM Incision &amp; Bougie</h4>
+              <ol class="step-list">
+                <li><span class="step-badge yellow">7</span><span>Hold No. 10 scalpel in dominant hand; make a <strong>transverse stab incision</strong> through CTM with cutting edge facing towards you.</span></li>
+                <li><span class="step-badge yellow">8</span><span>Keep scalpel perpendicular to skin and <strong>turn 90&deg;</strong> so sharp edge points caudally (towards the feet).</span></li>
+                <li><span class="step-badge yellow">9</span><span><strong>Swap hands</strong>; hold the scalpel with your non-dominant hand.</span></li>
+                <li><span class="step-badge yellow">10</span><span>Maintain gentle lateral traction pulling scalpel towards you, handle vertical to skin (not slanted).</span></li>
+                <li><span class="step-badge yellow">11</span><span>Pick up the <strong>bougie</strong> with your dominant hand.</span></li>
+                <li><span class="step-badge yellow">12</span><span>Slide the <strong>coud&eacute; tip</strong> of the bougie down the side of the scalpel blade into the trachea.</span></li>
+                <li><span class="step-badge yellow">13</span><span>Rotate and align the bougie with the trachea and advance gently to <strong>10&ndash;15 cm</strong>.</span></li>
+                <li><span class="step-badge yellow">14</span><span>Remove the scalpel.</span></li>
+              </ol>
+            </div>
+
+            <div class="efona-phase">
+              <h4>Phase 3: Tube Railroading &amp; Post-eFONA</h4>
+              <ol class="step-list">
+                <li><span class="step-badge green">15</span><span>Stabilise trachea, apply skin tension, and hold bougie with non-dominant hand.</span></li>
+                <li><span class="step-badge green">16</span><span>Railroad a <strong>size 6.0 mm cuffed tracheal tube</strong> over the bougie with dominant hand, rotating as advanced.</span></li>
+                <li><span class="step-badge green">17</span><span>Remove the bougie.</span></li>
+                <li><span class="step-badge green">18</span><span>Inflate cuff, ventilate with <strong>100% oxygen</strong>, and confirm with <strong>waveform capnography</strong>.</span></li>
+                <li><span class="step-badge green">19</span><span>Secure the tube.</span></li>
+              </ol>
+              <div class="callout green" style="margin-top:0.75rem;">
+                <span class="label">After eFONA</span>
+                Exclude bronchial intubation and pneumothorax. Arrange surgical review for definitive management. If eFONA fails: extend incision, perform further blunt dissection, change patient/operator position, change operator, or use a smaller tube. Provide debriefing and psychological support to all staff involved.
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- ACCORDION 7: RSI, PHYSIOLOGICAL DIFFICULTY & OBESITY -->
+      <details class="card" id="sec-special">
+        <summary>
+          <span>7. Special Contexts: RSI, Physiologically Difficult Airway &amp; Obesity</span>
+          <span class="tag">Table 1 &middot; High-Risk Physiology</span>
+        </summary>
+        <div class="card-body">
+          <h3>Rapid Sequence Induction &amp; Intubation (RSI)</h3>
+          <div class="calc-panel">
+            <div class="calc-row">
+              <div class="calc-input-group">
+                <label for="ptWeight">RSI Weight-Based NMB Helper (kg)</label>
+                <input type="number" id="ptWeight" min="30" max="250" step="1" value="70" oninput="updateRsiDoses(this.value)">
+              </div>
+              <div class="calc-outputs" aria-live="polite">
+                <div class="calc-result">
+                  <div class="res-name">Rocuronium (1.2 mg/kg)</div>
+                  <div class="res-val" id="rocDose">84 mg</div>
+                </div>
+                <div class="calc-result">
+                  <div class="res-name">Suxamethonium (1.5 mg/kg)</div>
+                  <div class="res-val" id="suxDose">105 mg</div>
+                </div>
+              </div>
+            </div>
+            <p style="font-size:0.8125rem; color:var(--on-surface-variant); margin:0.5rem 0 0;">
+              Dosing per DAS 2025 Table 1 (no latency between induction agent and NMB; adjust dosing for patient physiology).
+            </p>
+          </div>
+
+          <ul>
+            <li><strong>Cricoid force:</strong> Classically 10 N before induction &rarr; 30 N after loss of consciousness by a trained assistant. Use in patients at particularly high risk of pulmonary aspiration. <strong>Remove cricoid force immediately</strong> if laryngoscopy view is poor, when inserting a SAD in Plan B, if intubation difficulty occurs, or if active vomiting occurs.</li>
+            <li><strong>Aspiration risk &amp; stomach prep:</strong> Assess risk (history, exam, point-of-care gastric ultrasound); consider prokinetics/antacids; suction existing NG tube or consider insertion; keep suction on and at hand.</li>
+            <li><strong>Positioning &amp; ventilation:</strong> Head-up &ge;30&deg;; ETO2 &ge;0.9 (consider HFNO); gentle low-pressure mask ventilation or apnoeic oxygenation if required; videolaryngoscopy with bougie or stylet prepared.</li>
+          </ul>
+
+          <div class="two-col">
+            <div class="sub-panel">
+              <h4>Physiologically Difficult Airway</h4>
+              <p style="font-size:0.9rem;">Applies to physiological/pathophysiological states (e.g. older age, pregnancy, sepsis, cardiac failure) increasing risks of hypoxaemia, aspiration, and peri-intubation cardiovascular collapse.</p>
+              <ul>
+                <li><strong>Pre-induction optimisation:</strong> Correct fluid status, prepare vasopressors, and select induction agents carefully (propofol caution; consider ketamine, etomidate, or remimazolam).</li>
+                <li><strong>Dedicated haemodynamic lead:</strong> Nominate a team member to independently monitor and manage haemodynamic status so the airway manager can focus on intubation.</li>
+                <li><strong>First-attempt urgency:</strong> Multiple attempts sharply raise adverse events; prioritise positive-pressure pre-oxygenation and peroxygenation.</li>
+              </ul>
+            </div>
+
+            <div class="sub-panel">
+              <h4>Patients Living with Obesity</h4>
+              <p style="font-size:0.9rem;">Higher risk of difficult FMV, SAD ventilation, intubation, FONA, and rapid haemoglobin desaturation (higher basal metabolic rate, reduced FRC).</p>
+              <ul>
+                <li><strong>Consider Awake Tracheal Intubation (ATI)</strong> and performing airway management in the <strong>operating theatre</strong>.</li>
+                <li><strong>Pre-oxygenate head-up (&ge;30&deg;)</strong> and use <strong>HFNO for peroxygenation</strong>.</li>
+                <li><strong>Early 2nd-generation SAD:</strong> Consider early SAD ventilation if facemask ventilation is suboptimal.</li>
+                <li><strong>Call for help earlier</strong> than in non-obese patients.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- ACCORDION 8: EMERGENCE, HUMAN FACTORS, POCUS, DOCUMENTATION & TRAINING -->
+      <details class="card card-yellow" id="sec-post">
+        <summary>
+          <span>8. Emergence, Human Factors, POCUS, Documentation &amp; Training</span>
+          <span class="tag">Non-Technical &amp; Governance</span>
+        </summary>
+        <div class="card-body">
+          <div class="two-col">
+            <div class="sub-panel">
+              <h4>Post-Intubation Care, Reversal &amp; Emergence</h4>
+              <ul>
+                <li><strong>Quantitative NMB monitoring:</strong> Use to guide maintenance, ensure complete reversal before emergence/extubation, and manage controlled emergence when discontinuing anaesthesia after failed Plan A, B, or C.</li>
+                <li><strong>Emergence vigilance:</strong> Watch closely for laryngospasm or worsening upper airway obstruction after reversal of neuromuscular block.</li>
+                <li><strong>Post-eFONA checks:</strong> Exclude bronchial intubation and pneumothorax; obtain surgical review.</li>
+                <li><strong>Structured handover:</strong> Communicate airway events and ongoing plan to PACU, ward, or critical care staff.</li>
+              </ul>
+            </div>
+
+            <div class="sub-panel">
+              <h4>Human Factors &amp; Team Dynamics</h4>
+              <ul>
+                <li><strong>Priming:</strong> Plan A fails &rarr; ensure eFONA kit is immediately accessible &amp; identify eFONA operator. Plan B fails (3 SAD tries) &rarr; assistant opens eFONA kit.</li>
+                <li><strong>Transitioning:</strong> Counteract task fixation using attempt limits, NMB timer, and physiological triggers. Declare every transition aloud to the team.</li>
+                <li><strong>Calling for help:</strong> Driven by clinical scenario, not seniority; assign a non-assistant team member at the team brief when difficulty is anticipated.</li>
+                <li><strong>Airway assistant:</strong> Empowered to confirm sustained exhaled CO2, track time/attempts, prompt transitions, and apply <strong>graded assertiveness</strong> (e.g. PACE).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="sub-panel">
+              <h4>Point-of-Care Ultrasound (POCUS)</h4>
+              <ul>
+                <li><strong>CTM &amp; cricoid localisation:</strong> Pre-induction sonographic marking (with neck extended) is significantly more accurate than digital palpation.</li>
+                <li><strong>Gastric ultrasound:</strong> Assesses pulmonary aspiration risk (e.g. non-fasted patients, emergency surgery, GLP-1 receptor agonist therapy).</li>
+                <li><strong>Confirmation caveat:</strong> Tracheal ultrasound can confirm tube placement in studies, but is time-consuming and may distract from immediate care compared with capnography + visualisation.</li>
+              </ul>
+            </div>
+
+            <div class="sub-panel">
+              <h4>Documentation, M&amp;M &amp; Training</h4>
+              <ul>
+                <li><strong>Clinical documentation:</strong> Record assessment, devices/techniques, difficulties (distinguish training use vs actual/anticipated difficulty), and outcomes.</li>
+                <li><strong>Patient &amp; GP communication:</strong> Inform patient verbally and in writing; notify primary care using <strong>SNOMED CT 718446005</strong>; enter into national registries (DAS Difficult Airway Registry / DAS eFONA Registry).</li>
+                <li><strong>Education &amp; M&amp;M:</strong> Multidisciplinary simulation, tea trolley training, capnography training for all staff, regular eFONA rehearsal, psychological support after CICO, and M&amp;M review of every failed intubation and eFONA.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- SECTION: RESPONSIVE SCROLLABLE REFERENCE TABLES -->
+    <section id="sec-tables" aria-labelledby="heading-tables">
+      <div class="section-heading">
+        <h2 id="heading-tables">Structured Bedside Reference Tables</h2>
+        <span class="sec-tag">Doses &middot; Checks &middot; Criteria</span>
+      </div>
+
+      <details class="card" id="tab-drugs" open>
+        <summary>
+          <span>Table A: Airway Pharmacology, RSI Considerations &amp; Dosages</span>
+          <span class="tag">Drugs &amp; RSI</span>
+        </summary>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Agent / Intervention</th>
+                  <th>Role in Algorithm</th>
+                  <th>Key Dose / Parameter</th>
+                  <th>Critical Precautions &amp; Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Rocuronium</strong></td>
+                  <td>Routine NMB / RSI</td>
+                  <td class="num-cell">1.2 mg kg&minus;1 (RSI)</td>
+                  <td>Administer with zero latency after induction agent; do not delay NMB to test FMV; improves intubation, SAD, FMV, and eFONA.</td>
+                </tr>
+                <tr>
+                  <td><strong>Suxamethonium</strong></td>
+                  <td>Rapid Sequence Induction</td>
+                  <td class="num-cell">1.5 mg kg&minus;1 (RSI)</td>
+                  <td>Provides fast intubating conditions; weigh against side-effect profile and reported association with postoperative pulmonary complications.</td>
+                </tr>
+                <tr>
+                  <td><strong>Sugammadex</strong></td>
+                  <td>Elective NMB reversal</td>
+                  <td>Full reversal via quantitative NMB monitoring</td>
+                  <td><span class="status-chip alert">Not reliable in CICO</span> Do not rely on sugammadex to rescue failed intubation (laryngospasm/aspiration risk; delays eFONA). After sugammadex, use non-steroidal NMB if eFONA needed.</td>
+                </tr>
+                <tr>
+                  <td><strong>Propofol</strong></td>
+                  <td>Standard induction agent</td>
+                  <td>Titrated to physiology</td>
+                  <td>Can worsen haemodynamic collapse in physiologically difficult airways; single bolus risks awareness during prolonged airway rescue &mdash; maintain anaesthesia.</td>
+                </tr>
+                <tr>
+                  <td><strong>Ketamine / Etomidate / Remimazolam</strong></td>
+                  <td>Haemodynamically unstable / critically ill</td>
+                  <td>Physiology-adjusted</td>
+                  <td>Consider as alternative induction agents in physiologically difficult airways alongside fluids and vasopressors.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cricoid Force (RSI)</strong></td>
+                  <td>High pulmonary aspiration risk</td>
+                  <td class="num-cell">10 N &rarr; 30 N</td>
+                  <td>10 N awake &rarr; 30 N on loss of consciousness by trained assistant. <strong>Remove immediately</strong> if poor view, Plan B SAD insertion, intubation difficulty, or active vomiting.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="card card-green" id="tab-checks" open>
+        <summary>
+          <span>Table B: Equipment Checks, Monitoring Targets &amp; Plan Limits</span>
+          <span class="tag">Checks &amp; Limits</span>
+        </summary>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Phase / Domain</th>
+                  <th>Equipment / Check Required</th>
+                  <th>Target / Limit</th>
+                  <th>Mandatory Action on Failure / Trigger</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Pre-induction Monitoring</strong></td>
+                  <td>Waveform capnography, inspired/expired O2, pulse oximetry, NIBP, ECG, temp, quantitative NMB monitor</td>
+                  <td class="num-cell">ETO2 &ge; 0.9 (FM)</td>
+                  <td>Verify capnography trace <em>before</em> induction; enable audible SpO2 tones; start timer at NMB dose.</td>
+                </tr>
+                <tr>
+                  <td><strong>Pre-oxygenation &amp; Peroxygenation</strong></td>
+                  <td>Head-up position + positive pressure (HFNO, NIV, or FM CPAP); suction on &amp; at hand</td>
+                  <td class="num-cell">Head-up &ge;30&deg;; HFNO &gt;30 L/min</td>
+                  <td>Continue O2 throughout apnoea/laryngoscopy (requires patent airway). Never start HFNO as rescue after FMV fails.</td>
+                </tr>
+                <tr>
+                  <td><strong>Plan A: Tracheal Intubation</strong></td>
+                  <td>Videolaryngoscope (first-line), shaped stylet/bougie/bronchoscope (hyperangulated blade)</td>
+                  <td class="num-cell">Max 3 + 1 attempts</td>
+                  <td>Confirm with 2-point check (visualisation + sustained CO2). On failure: declare failed intubation, <strong>prime eFONA kit</strong>, go to Plan B.</td>
+                </tr>
+                <tr>
+                  <td><strong>Plan B: SAD Rescue</strong></td>
+                  <td>Second-generation SAD (cuffed preferred where available); flexible bronchoscope if intubating via SAD</td>
+                  <td class="num-cell">Max 3 SAD tries; max 1 via SAD</td>
+                  <td>Stop, think &amp; communicate (default: wake up). Never intubate blindly via SAD. On failure: <strong>open eFONA kit</strong>, go to Plan C.</td>
+                </tr>
+                <tr>
+                  <td><strong>Plan C: Final FMV</strong></td>
+                  <td>OPA and/or NPA adjuncts, two-person four-handed mask grip (VE grip preferred)</td>
+                  <td class="num-cell">1 final optimised attempt</td>
+                  <td>Ensure full NMB, optimal position, adjuncts, 4-handed grip, depth. On failure: <strong>declare CICO</strong>, allocate roles, go to Plan D.</td>
+                </tr>
+                <tr>
+                  <td><strong>Plan D: eFONA</strong></td>
+                  <td>No. 10 scalpel blade, coud&eacute; bougie, size 6.0 mm cuffed tracheal tube, suction</td>
+                  <td class="num-cell">&le;8 cm vertical; 10&ndash;15 cm bougie</td>
+                  <td>Max neck extension, full NMB, upper airway O2. Vertical skin incision default if CTM impalpable/uncertain. Confirm with capnography.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="card card-yellow" id="tab-assess" open>
+        <summary>
+          <span>Table C: Airway Assessment Criteria &amp; High-Risk Stratification</span>
+          <span class="tag">Assessment Matrix</span>
+        </summary>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Assessment Domain</th>
+                  <th>Specific Findings / Tools</th>
+                  <th>Clinical Interpretation</th>
+                  <th>Recommended Strategy Adjustment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>History</strong></td>
+                  <td>Previous difficult airway, alert cards, OSA, snoring</td>
+                  <td>Previous difficulty is the most reliable predictor; OSA/snoring predict difficulty</td>
+                  <td>Review medical records; consider ATI if difficulty anticipated in Plans A&ndash;D.</td>
+                </tr>
+                <tr>
+                  <td><strong>Bedside Exam</strong></td>
+                  <td>Upper Lip Bite Test (ULBT) + combined bedside screening tests</td>
+                  <td>Individual tests poor alone; ULBT has highest accuracy; combinations raise sensitivity</td>
+                  <td>Synthesise multiple tests; never rely on a single reassuring bedside test.</td>
+                </tr>
+                <tr>
+                  <td><strong>Difficult FMV Predictors</strong></td>
+                  <td>Prior difficulty, OSA, radiotherapy, high BMI, large neck circumference, Mallampati 3/4, male sex</td>
+                  <td>Difficult FMV increases failed intubation risk &gt;10-fold</td>
+                  <td>Grade FMV using Lim &amp; Nielsen scale; prepare OPA/NPA, 2-person VE grip, early 2nd-gen SAD.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cricothyroid Membrane</strong></td>
+                  <td>Visual inspection, digital palpation, or POCUS in <strong>full neck extension</strong></td>
+                  <td>Digital palpation is frequently inaccurate; must be verbalised by end of Plan A</td>
+                  <td>Mark with POCUS before induction if difficult; default to vertical skin incision in Plan D if uncertain.</td>
+                </tr>
+                <tr>
+                  <td><strong>Physiological &amp; Context Scores</strong></td>
+                  <td>HEAVEN (pre-hospital), MACOCHA (ICU), gastric POCUS, nasendoscopy</td>
+                  <td>Identifies hypoxaemia, hypotension, and aspiration risks beyond anatomy</td>
+                  <td>Optimise fluids/vasopressors pre-induction; assign haemodynamic lead; head-up &ge;30&deg; + HFNO; RSI if aspiration risk.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="cite-footer" id="citation">
+    <div class="wrap">
+      <div class="section-heading" style="margin-top:0;">
+        <h2>Source Citation &amp; Clinical Disclaimer</h2>
+        <span class="sec-tag">Grounding Reference</span>
+      </div>
+      <div class="cite-box">
+        <p>
+          <strong>Primary Source:</strong> Ahmad I, El-Boghdadly K, Iliff H, Dua G, Higgs A, Huntington M, Mir F, Nouraei SAR, O&rsquo;Sullivan EP, Patel A, Rivett K, McNarry AF. Difficult Airway Society 2025 guidelines for management of unanticipated difficult tracheal intubation in adults. <em>British Journal of Anaesthesia</em> 2026; <strong>136</strong>(1): 283&ndash;307. Advance Access Publication Date: 7 November 2025. doi: 10.1016/j.bja.2025.10.006.
+        </p>
+        <p style="margin-bottom:0;">
+          <strong>Related Clinical Coding &amp; Registries noted in guidelines:</strong> SNOMED CT <code>718446005</code> (difficult airway notification), Difficult Airway Society Difficult Airway Registry, and Royal College of Anaesthetists Emergency Front-of-Neck Airway Registry (eFONAr).
+        </p>
+      </div>
+      <p class="disclaimer-text">
+        <strong>Clinical Disclaimer:</strong> As stated in the Difficult Airway Society 2025 guidelines, these recommendations are not intended to represent a minimum standard of practice, nor are they a substitute for good clinical judgement. They provide a structured framework for decision-making by airway managers (anaesthetists, intensive care physicians, and emergency and pre-hospital physicians) in conjunction with local departmental protocols and equipment.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const searchInput = document.getElementById(`search`);
+      const matchCountEl = document.getElementById(`matchCount`);
+      const prevBtn = document.getElementById(`prevMatch`);
+      const nextBtn = document.getElementById(`nextMatch`);
+      const clearBtn = document.getElementById(`clearSearch`);
+      const mainEl = document.querySelector(`main`);
+
+      let matches = [];
+      let currentIdx = -1;
+
+      function clearHighlights() {
+        if (!mainEl) return;
+        const marks = mainEl.querySelectorAll(`mark.srch`);
+        marks.forEach(function (mark) {
+          const parent = mark.parentNode;
+          if (!parent) return;
+          parent.replaceChild(document.createTextNode(mark.textContent), mark);
+          parent.normalize();
+        });
+        matches = [];
+        currentIdx = -1;
+      }
+
+      function escapeRegExp(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
+      }
+
+      function highlightTextNodes(query) {
+        if (!mainEl || !query || query.length < 2) {
+          if (matchCountEl) {
+            matchCountEl.textContent = query && query.length === 1 ? `2+ chars` : `Ready`;
+            matchCountEl.classList.remove(`has-none`);
+          }
+          return;
+        }
+
+        const regex = new RegExp(escapeRegExp(query), `gi`);
+        const walker = document.createTreeWalker(
+          mainEl,
+          NodeFilter.SHOW_TEXT,
+          {
+            acceptNode: function (node) {
+              if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+              const parent = node.parentElement;
+              if (!parent) return NodeFilter.FILTER_REJECT;
+              const tag = parent.tagName;
+              if (tag === `SCRIPT` || tag === `STYLE` || tag === `INPUT` || tag === `TEXTAREA`) {
+                return NodeFilter.FILTER_REJECT;
+              }
+              if (parent.closest(`svg`)) return NodeFilter.FILTER_REJECT;
+              return NodeFilter.FILTER_ACCEPT;
+            }
+          }
+        );
+
+        const textNodes = [];
+        let n = walker.nextNode();
+        while (n) {
+          textNodes.push(n);
+          n = walker.nextNode();
+        }
+
+        textNodes.forEach(function (node) {
+          const text = node.nodeValue;
+          regex.lastIndex = 0;
+          if (!regex.test(text)) return;
+
+          regex.lastIndex = 0;
+          const frag = document.createDocumentFragment();
+          let lastIdx = 0;
+          let m = regex.exec(text);
+          while (m) {
+            if (m.index > lastIdx) {
+              frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
+            }
+            const mark = document.createElement(`mark`);
+            mark.className = `srch`;
+            mark.textContent = m[0];
+            frag.appendChild(mark);
+            matches.push(mark);
+            lastIdx = m.index + m[0].length;
+            m = regex.exec(text);
+          }
+          if (lastIdx < text.length) {
+            frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+          }
+          if (node.parentNode) {
+            node.parentNode.replaceChild(frag, node);
+          }
+        });
+
+        if (matches.length > 0) {
+          matches.forEach(function (mk) {
+            const card = mk.closest(`details.card`);
+            if (card && !card.open) card.open = true;
+          });
+          focusMatch(0);
+        } else if (matchCountEl) {
+          matchCountEl.textContent = `0 matches`;
+          matchCountEl.classList.add(`has-none`);
+        }
+      }
+
+      function focusMatch(idx) {
+        if (matches.length === 0) return;
+        if (currentIdx >= 0 && matches[currentIdx]) {
+          matches[currentIdx].classList.remove(`cur`);
+        }
+        currentIdx = ((idx % matches.length) + matches.length) % matches.length;
+        const target = matches[currentIdx];
+        if (!target) return;
+        const card = target.closest(`details.card`);
+        if (card && !card.open) card.open = true;
+        target.classList.add(`cur`);
+        target.scrollIntoView({ behavior: `smooth`, block: `center` });
+        if (matchCountEl) {
+          matchCountEl.textContent = `${currentIdx + 1} / ${matches.length}`;
+          matchCountEl.classList.remove(`has-none`);
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener(`input`, function () {
+          clearHighlights();
+          highlightTextNodes(searchInput.value.trim());
+        });
+
+        searchInput.addEventListener(`keydown`, function (e) {
+          if (e.key === `Enter`) {
+            e.preventDefault();
+            if (matches.length > 0) {
+              focusMatch(e.shiftKey ? currentIdx - 1 : currentIdx + 1);
+            }
+          } else if (e.key === `Escape`) {
+            searchInput.value = ``;
+            clearHighlights();
+            if (matchCountEl) {
+              matchCountEl.textContent = `Ready`;
+              matchCountEl.classList.remove(`has-none`);
+            }
+          }
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener(`click`, function () {
+          if (matches.length > 0) focusMatch(currentIdx + 1);
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener(`click`, function () {
+          if (matches.length > 0) focusMatch(currentIdx - 1);
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener(`click`, function () {
+          if (searchInput) {
+            searchInput.value = ``;
+            searchInput.focus();
+          }
+          clearHighlights();
+          if (matchCountEl) {
+            matchCountEl.textContent = `Ready`;
+            matchCountEl.classList.remove(`has-none`);
+          }
+        });
+      }
+
+      const tocLinks = document.querySelectorAll(`.toc a`);
+      tocLinks.forEach(function (link) {
+        link.addEventListener(`click`, function () {
+          const href = link.getAttribute(`href`);
+          if (!href || !href.startsWith(`#`)) return;
+          const target = document.getElementById(href.slice(1));
+          if (target && target.tagName === `DETAILS`) {
+            target.open = true;
+          }
+        });
+      });
+    })();
+
+    function toggleAllCards(openState) {
+      const cards = document.querySelectorAll(`details.card`);
+      cards.forEach(function (card) {
+        card.open = Boolean(openState);
+      });
+    }
+
+    function jumpToCard(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (el.tagName === `DETAILS`) el.open = true;
+      el.scrollIntoView({ behavior: `smooth`, block: `start` });
+    }
+
+    function applyFontSize(px) {
+      const clamped = Math.min(22, Math.max(13, Number(px) || 16));
+      document.documentElement.style.setProperty(`--fs`, `${clamped}px`);
+      const slider = document.getElementById(`fsRange`);
+      const label = document.getElementById(`fsLabel`);
+      if (slider) slider.value = String(clamped);
+      if (label) label.textContent = `${Math.round((clamped / 16) * 100)}%`;
+    }
+
+    function setFontFromSlider(val) {
+      applyFontSize(val);
+    }
+
+    function stepFontSize(delta) {
+      const slider = document.getElementById(`fsRange`);
+      const cur = slider ? Number(slider.value) : 16;
+      applyFontSize(cur + delta);
+    }
+
+    function resetFontSize() {
+      applyFontSize(16);
+    }
+
+    function updateRsiDoses(rawWeight) {
+      const w = parseFloat(rawWeight);
+      const rocEl = document.getElementById(`rocDose`);
+      const suxEl = document.getElementById(`suxDose`);
+      if (!rocEl || !suxEl) return;
+      if (isNaN(w) || w <= 0) {
+        rocEl.textContent = `-- mg`;
+        suxEl.textContent = `-- mg`;
+        return;
+      }
+      const clampedW = Math.min(350, Math.max(20, w));
+      rocEl.textContent = `${Math.round(clampedW * 1.2)} mg`;
+      suxEl.textContent = `${Math.round(clampedW * 1.5)} mg`;
+    }
+  </script>
+</body>
+</html>
