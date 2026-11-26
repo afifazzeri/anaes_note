@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="vitals">
+  <title>Perioperative Stroke: Mechanisms, Risk Stratification &amp; Management — Clinical Quick Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Figtree:wght@300..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Dynamic base font size controlled by text-resizer */
+      --fs: 16px;
+
+      /* Page and surfaces (Vitals clinical palette adapted to Navy/Slate Blue, Amber/Yellow, Surgical Green) */
+      --background: #ffffff;
+      --surface-page: #f3f6fa;
+      --surface-container-low: #edf3f9;
+      --surface-container: #e1ebf5;
+      --surface-container-high: #d2e1f0;
+
+      /* Ink */
+      --on-surface: #0f2338;
+      --on-surface-variant: #3c536a;
+
+      /* Rules */
+      --outline: #6c849c;
+      --outline-variant: #cedbe7;
+
+      /* Accents — Blue (primary structure), Green (safe/indications), Amber/Yellow (warnings/highlights) */
+      --primary: #143d66;
+      --primary-hover: #0d2b49;
+      --on-primary: #ffffff;
+      --primary-container: #e6eff8;
+      --on-primary-container: #0f2e4e;
+      --link-blue: #185a94;
+
+      --secondary: #0f5c3a;
+      --tertiary: #15804e;
+      --tertiary-container: #e7f6ee;
+
+      --warning: #8a4f00;
+      --warning-accent: #d98200;
+      --warning-container: #fff7e0;
+
+      --error: #b3261e;
+      --error-container: #fdecea;
+      --on-error: #ffffff;
+
+      /* Search highlight tokens */
+      --highlight-bg: #ffe484;
+      --highlight-ink: #0f2338;
+      --highlight-active-bg: #d98200;
+      --highlight-active-ink: #ffffff;
+
+      /* Data series */
+      --data-1: #143d66;
+      --data-2: #15804e;
+      --data-3: #d98200;
+      --data-4: #185a94;
+      --data-context: #b8c7d6;
+
+      /* Fonts */
+      --font-headline: 'Figtree', sans-serif;
+      --font-body: 'Atkinson Hyperlegible', sans-serif;
+      --font-label: 'Figtree', sans-serif;
+
+      /* Type scale */
+      --display-size: clamp(1.65rem, 1.3rem + 1.4vw, 2.35rem);
+      --headline-size: clamp(1.15rem, 1.02rem + 0.45vw, 1.4rem);
+      --subhead-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+      --body-size: 1rem;
+      --label-size: 0.75rem;
+
+      /* Shape */
+      --rounded: 0.625rem;
+      --rounded-lg: 0.875rem;
+      --rounded-full: 9999px;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.25rem;
+      --space-2xl: 3.25rem;
+
+      /* Style effects */
+      --top-bar: 6px solid var(--primary);
+      --status-bar-width: 4px;
+      --card-border: 1px solid var(--outline-variant);
+      --card-lift: 0 1px 2px rgb(15 35 56 / 0.05), 0 6px 16px rgb(15 35 56 / 0.05);
+      --focus-ring: 3px solid var(--warning-accent);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      font-size: var(--fs);
+      -webkit-text-size-adjust: 100%;
+      overflow-x: clip;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: clip;
+      background: var(--surface-page);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+    }
+    header { position: static !important; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .wrap {
+      width: min(1140px, 100% - 2rem);
+      margin-inline: auto;
+    }
+
+    /* ---------- HEADER (6px Vitals Top Bar + Clinical Navy Band) ---------- */
+    .site-head {
+      border-top: var(--top-bar);
+      background: var(--primary);
+      color: var(--on-primary);
+      padding: var(--space-lg) 0 var(--space-lg);
+    }
+    .kicker {
+      margin: 0 0 var(--space-xs);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--surface-container-high);
+    }
+    .site-head h1 {
+      margin: 0 0 var(--space-sm);
+      font-family: var(--font-headline);
+      font-size: var(--display-size);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--on-primary);
+      max-width: 34ch;
+    }
+    .lede {
+      margin: 0 0 var(--space-md);
+      font-size: 1.05em;
+      line-height: 1.55;
+      color: var(--surface-container-low);
+      max-width: 65ch;
+    }
+    .source-pill {
+      display: inline-block;
+      margin: 0;
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--on-primary);
+      background: var(--primary-hover);
+      border: 1px solid var(--outline);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+    }
+
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .toc a {
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--on-primary);
+      text-decoration: none;
+      background: var(--primary-hover);
+      border: 1px solid var(--outline);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .toc a:hover {
+      background: var(--link-blue);
+      transform: translateY(-1px);
+    }
+    .toc a:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    /* ---------- STICKY TOOLBAR ---------- */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--background);
+      border-bottom: 1px solid var(--outline-variant);
+      box-shadow: var(--card-lift);
+      padding: var(--space-sm) 0;
+    }
+    .toolbar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: flex-end;
+    }
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .control-group.search-group {
+      flex: 1 1 280px;
+      min-width: 220px;
+    }
+    .control-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-icon {
+      position: absolute;
+      left: var(--space-sm);
+      width: 1.1rem;
+      height: 1.1rem;
+      color: var(--primary);
+      pointer-events: none;
+    }
+    .search-box input[type="search"] {
+      width: 100%;
+      min-height: 44px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: var(--space-xs) 7.5rem var(--space-xs) 2.25rem;
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline);
+      background: var(--background);
+      color: var(--on-surface);
+      transition: box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .search-box input[type="search"]:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 1px;
+    }
+    .search-meta {
+      position: absolute;
+      right: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .count {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-primary-container);
+      background: var(--primary-container);
+      border-radius: var(--rounded-full);
+      padding: 0.15rem 0.55rem;
+      white-space: nowrap;
+    }
+    .mini-btn {
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--primary);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      min-width: 30px;
+      min-height: 30px;
+      border-radius: var(--rounded);
+      cursor: pointer;
+      display: inline-grid;
+      place-items: center;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .mini-btn:hover {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .mini-btn:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .btn {
+      min-height: 44px;
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--primary);
+      background: var(--background);
+      color: var(--primary);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+      white-space: nowrap;
+    }
+    .btn:hover {
+      background: var(--surface-container-low);
+    }
+    .btn.primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn.primary:hover {
+      background: var(--primary-hover);
+    }
+    .btn:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    .fs-group {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--background);
+      border: 1px solid var(--outline);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+    }
+    .fs-group input[type="range"] {
+      width: 86px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .fs-group input[type="range"]:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 2px;
+    }
+    .fs-label {
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--primary);
+      background: var(--primary-container);
+      border: none;
+      border-radius: var(--rounded-full);
+      padding: 0.15rem 0.5rem;
+      min-width: 3.1rem;
+      text-align: center;
+      cursor: pointer;
+    }
+    .fs-label:hover {
+      background: var(--surface-container-high);
+    }
+    .fs-label:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    /* ---------- MAIN & KPI STRIP ---------- */
+    main {
+      padding: var(--space-lg) 0 var(--space-2xl);
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .kpi-grid * { min-width: 0; }
+
+    .status-card {
+      background: var(--background);
+      border: var(--card-border);
+      border-left: var(--status-bar-width) solid var(--primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      box-shadow: var(--card-lift);
+    }
+    .status-card[data-status="ok"] { border-left-color: var(--tertiary); }
+    .status-card[data-status="warn"] { border-left-color: var(--warning-accent); }
+    .status-card[data-status="alert"] { border-left-color: var(--error); }
+
+    .kpi-label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .kpi-val {
+      display: block;
+      font-family: var(--font-headline);
+      font-size: clamp(1.4rem, 1.2rem + 0.6vw, 1.85rem);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+    .kpi-cap {
+      display: block;
+      font-size: 0.875rem;
+      line-height: 1.4;
+      color: var(--on-surface-variant);
+    }
+
+    /* ---------- SECTIONS & ACCORDION CARDS ---------- */
+    section {
+      margin-bottom: var(--space-xl);
+      scroll-margin-top: 6rem;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-headline);
+      font-size: var(--label-size);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0 0 var(--space-sm);
+    }
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--outline-variant);
+    }
+
+    details.card {
+      background: var(--background);
+      border: var(--card-border);
+      border-left: var(--status-bar-width) solid var(--primary);
+      border-radius: var(--rounded-lg);
+      margin: 0 0 var(--space-md);
+      overflow: hidden;
+      box-shadow: var(--card-lift);
+      scroll-margin-top: 6rem;
+    }
+    details.card[data-tone="ok"] { border-left-color: var(--tertiary); }
+    details.card[data-tone="warn"] { border-left-color: var(--warning-accent); }
+
+    details.card > summary {
+      cursor: pointer;
+      list-style: none;
+      padding: var(--space-md) var(--space-lg);
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--headline-size);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--on-surface);
+      background: var(--surface-container-low);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      user-select: none;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    details.card > summary::-webkit-details-marker { display: none; }
+    details.card > summary::before {
+      content: "▸";
+      color: var(--primary);
+      font-size: 1em;
+      line-height: 1;
+      transition: transform var(--dur-short) var(--ease-out);
+      flex: none;
+    }
+    details.card[open] > summary::before {
+      transform: rotate(90deg);
+    }
+    details.card > summary:hover {
+      background: var(--surface-container);
+    }
+    details.card > summary:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: -3px;
+    }
+
+    .tag {
+      margin-left: auto;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      flex: none;
+    }
+    .tag.ok {
+      background: var(--tertiary-container);
+      color: var(--secondary);
+    }
+    .tag.warn {
+      background: var(--warning-container);
+      color: var(--warning);
+    }
+
+    .card-body {
+      padding: var(--space-md) var(--space-lg) var(--space-lg);
+      border-top: 1px solid var(--outline-variant);
+    }
+    .card-body > :first-child { margin-top: 0; }
+    .card-body > :last-child { margin-bottom: 0; }
+
+    h3 {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 700;
+      color: var(--primary);
+      margin: var(--space-lg) 0 var(--space-xs);
+    }
+    h4 {
+      font-family: var(--font-headline);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin: var(--space-md) 0 var(--space-xs);
+    }
+    p {
+      margin: var(--space-xs) 0 var(--space-sm);
+      max-width: 72ch;
+    }
+    ul, ol {
+      margin: var(--space-xs) 0 var(--space-md);
+      padding-left: 1.35rem;
+      max-width: 72ch;
+    }
+    li {
+      margin: var(--space-xs) 0;
+    }
+    li::marker {
+      color: var(--link-blue);
+      font-weight: 700;
+    }
+    strong {
+      color: var(--on-surface);
+      font-weight: 700;
+    }
+
+    /* ---------- CALLOUTS & CHIPS ---------- */
+    .callout {
+      border-left: var(--status-bar-width) solid var(--primary);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-md) 0;
+    }
+    .callout.warn {
+      border-left-color: var(--warning-accent);
+      background: var(--warning-container);
+      color: var(--on-surface);
+    }
+    .callout.ok {
+      border-left-color: var(--tertiary);
+      background: var(--tertiary-container);
+      color: var(--on-surface);
+    }
+    .callout.alert {
+      border-left-color: var(--error);
+      background: var(--error-container);
+      color: var(--on-surface);
+    }
+    .callout .label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-xs);
+    }
+    .callout.warn .label { color: var(--warning); }
+    .callout.ok .label { color: var(--secondary); }
+    .callout.alert .label { color: var(--error); }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin: var(--space-sm) 0 var(--space-md);
+    }
+    .chip {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .chip.ok {
+      background: var(--tertiary-container);
+      color: var(--secondary);
+    }
+    .chip.warn {
+      background: var(--warning-container);
+      color: var(--warning);
+    }
+    .chip.alert {
+      background: var(--error-container);
+      color: var(--error);
+    }
+
+    /* ---------- TWO-COLUMN CLINICAL GRID ---------- */
+    .split-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+      gap: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+    .split-grid * { min-width: 0; }
+    .panel {
+      background: var(--surface-page);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .panel h4 { margin-top: 0; color: var(--primary); }
+
+    /* ---------- TABLES (Scrollable) ---------- */
+    .table-wrap {
+      overflow-x: auto;
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      background: var(--background);
+      margin: var(--space-md) 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 620px;
+      font-size: 0.9rem;
+    }
+    thead th {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      text-align: left;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 2px solid var(--outline-variant);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+      font-variant-numeric: tabular-nums;
+    }
+    tbody tr:hover {
+      background: var(--surface-page);
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .num-cell {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* ---------- FIGURE 1: INTERACTIVE RISK FACTORS SCHEMATIC ---------- */
+    .diagram-shell {
+      background: var(--surface-page);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+    .diagram-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .diagram-title {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 800;
+      color: var(--primary);
+      margin: 0;
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    .filter-btn {
+      min-height: 36px;
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline);
+      background: var(--background);
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .filter-btn:hover { background: var(--surface-container-low); }
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .filter-btn:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    .risk-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .risk-col {
+      background: var(--background);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .risk-col-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      border-bottom: 2px solid var(--primary);
+    }
+    .risk-col.proc .risk-col-head {
+      border-bottom-color: var(--warning-accent);
+    }
+    .risk-col-head h4 {
+      margin: 0;
+      font-family: var(--font-headline);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .risk-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .risk-item {
+      border: 1px solid var(--outline-variant);
+      border-left: 4px solid var(--link-blue);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      transition: opacity var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+    }
+    .risk-item[data-severity="high"] { border-left-color: var(--warning-accent); }
+    .risk-item.dimmed { opacity: 0.35; }
+    .risk-item.highlighted {
+      background: var(--warning-container);
+      box-shadow: 0 0 0 2px var(--warning-accent);
+    }
+    .risk-item-title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      margin-bottom: 0.15rem;
+    }
+    .risk-item-desc {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      line-height: 1.45;
+    }
+
+    /* ---------- FIGURE 2: RESPONSIVE ACUTE STROKE FLOWCHART ---------- */
+    .flow-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .flow-node {
+      width: 100%;
+      max-width: 680px;
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-left: 5px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      box-shadow: var(--card-lift);
+      transition: opacity var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .flow-node.decision {
+      border-left-width: 1px;
+      border: 2px solid var(--primary);
+      background: var(--primary-container);
+      text-align: center;
+    }
+    .flow-node.ok {
+      border-left-color: var(--tertiary);
+      background: var(--tertiary-container);
+    }
+    .flow-node.warn {
+      border-left-color: var(--warning-accent);
+      background: var(--warning-container);
+    }
+    .flow-node.alert {
+      border-left-color: var(--error);
+      background: var(--error-container);
+    }
+    .flow-node.dimmed { opacity: 0.35; }
+    .flow-node.active-path {
+      box-shadow: 0 0 0 3px var(--primary);
+      opacity: 1;
+    }
+    .flow-kicker {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-xs);
+    }
+    .flow-node.ok .flow-kicker { color: var(--secondary); }
+    .flow-node.warn .flow-kicker { color: var(--warning); }
+    .flow-node.alert .flow-kicker { color: var(--error); }
+
+    .flow-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs);
+    }
+    .flow-desc {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+      line-height: 1.45;
+    }
+    .flow-arrow {
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+      flex: none;
+    }
+
+    .flow-branches {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+      gap: var(--space-md);
+      align-items: start;
+    }
+    .flow-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .branch-badge {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .branch-badge.no {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .sub-branches {
+      width: 100%;
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    /* ---------- SEARCH HIGHLIGHTS ---------- */
+    mark.srch {
+      background: var(--highlight-bg);
+      color: var(--highlight-ink);
+      border-radius: 3px;
+      padding: 0 0.1em;
+    }
+    mark.srch.cur {
+      background: var(--highlight-active-bg);
+      color: var(--highlight-active-ink);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    /* ---------- REFERENCES & FOOTER ---------- */
+    ol.refs {
+      font-size: 0.875rem;
+      padding-left: 1.45rem;
+      max-width: 80ch;
+    }
+    ol.refs li {
+      margin: var(--space-xs) 0;
+      color: var(--on-surface-variant);
+    }
+    footer {
+      border-top: 1px solid var(--outline-variant);
+      background: var(--background);
+      padding: var(--space-lg) 0 var(--space-xl);
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* ---------- REDUCED MOTION & RESPONSIVE ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: calc(100% - 1.25rem); }
+      .site-head { padding: var(--space-md) 0; }
+      details.card > summary { padding: var(--space-sm) var(--space-md); }
+      .card-body { padding: var(--space-md); }
+      .fs-group input[type="range"] { width: 64px; }
+      .search-box input[type="search"] { padding-right: 6.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-head">
+    <div class="wrap">
+      <p class="kicker">Perioperative Medicine · Anaesthesia &amp; Intensive Care Quick Reference</p>
+      <h1>Perioperative Stroke: Mechanisms, Risk Stratification &amp; Management</h1>
+      <p class="lede">
+        Practical bedside and theatre reference synthesizing preoperative optimization, intraoperative cerebral perfusion,
+        postoperative neurological surveillance, and acute revascularization pathways.
+      </p>
+      <p class="source-pill">Source: Shu L, Aziz YN, de Havenon A, et al. Stroke. 2025 (American Heart Association)</p>
+
+      <nav class="toc" aria-label="Section navigation">
+        <a href="#sec-overview" onclick="return openAndScroll('card-overview')">Overview</a>
+        <a href="#sec-risk" onclick="return openAndScroll('card-risk-fig')">Risk Factors (Fig 1)</a>
+        <a href="#sec-tables" onclick="return openAndScroll('card-incidence')">Incidence &amp; Scores</a>
+        <a href="#sec-mechanisms" onclick="return openAndScroll('card-mech')">Mechanisms</a>
+        <a href="#sec-preop" onclick="return openAndScroll('card-preop')">Pre-op Optimization</a>
+        <a href="#sec-intraop" onclick="return openAndScroll('card-intraop')">Intra-op Care</a>
+        <a href="#sec-postop" onclick="return openAndScroll('card-postop')">Post-op &amp; AF</a>
+        <a href="#sec-acute" onclick="return openAndScroll('card-acute')">Acute Stroke (Fig 2)</a>
+        <a href="#sec-refs" onclick="return openAndScroll('card-refs')">References</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="toolbar" role="region" aria-label="Page tools">
+    <div class="wrap toolbar-inner">
+      <div class="control-group search-group">
+        <label class="control-label" for="searchInput">Search clinical guidance</label>
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+          </svg>
+          <input id="searchInput" type="search" placeholder="e.g. thrombectomy, 14 days, MAP, aspirin, carotid" autocomplete="off">
+          <div class="search-meta">
+            <span class="count" id="matchCount" aria-live="polite"></span>
+            <button type="button" class="mini-btn" id="prevBtn" onclick="stepMatch(-1)" title="Previous match (Shift+Enter)" aria-label="Previous match">&#8593;</button>
+            <button type="button" class="mini-btn" id="nextBtn" onclick="stepMatch(1)" title="Next match (Enter)" aria-label="Next match">&#8595;</button>
+            <button type="button" class="mini-btn" id="clearBtn" onclick="clearSearch()" title="Clear search (Esc)" aria-label="Clear search">&times;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <span class="control-label">Sections</span>
+        <div class="btn-row">
+          <button type="button" class="btn primary" id="expandAllBtn" onclick="toggleAllCards(true)">+ Expand all</button>
+          <button type="button" class="btn" id="collapseAllBtn" onclick="toggleAllCards(false)">&minus; Collapse all</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="fsRange">Text size</label>
+        <div class="fs-group">
+          <button type="button" class="mini-btn" id="fsDownBtn" onclick="stepFontSize(-1)" aria-label="Decrease text size">A&minus;</button>
+          <input type="range" id="fsRange" min="13" max="22" step="1" value="16" oninput="applyFontSize(this.value)" aria-label="Text size slider">
+          <button type="button" class="mini-btn" id="fsUpBtn" onclick="stepFontSize(1)" aria-label="Increase text size">A+</button>
+          <button type="button" class="fs-label" id="fsLabel" onclick="applyFontSize(16)" title="Click to reset to 100%">100%</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- KEY METRICS AT A GLANCE -->
+    <div class="kpi-grid" aria-label="Key clinical figures">
+      <div class="status-card" data-status="info">
+        <span class="kpi-label">Noncardiac / Non-neuro</span>
+        <span class="kpi-val">0.1%–1%</span>
+        <span class="kpi-cap">Overt perioperative stroke; covert infarcts occur in up to 10%.</span>
+      </div>
+      <div class="status-card" data-status="warn">
+        <span class="kpi-label">High-Risk Procedures</span>
+        <span class="kpi-val">5%–10%+</span>
+        <span class="kpi-cap">Cardiac, major vascular &amp; intracranial neurosurgical procedures.</span>
+      </div>
+      <div class="status-card" data-status="alert">
+        <span class="kpi-label">Critical Window</span>
+        <span class="kpi-val">First 24 h</span>
+        <span class="kpi-cap">Approximately half of all perioperative strokes occur within 24 hours.</span>
+      </div>
+      <div class="status-card" data-status="ok">
+        <span class="kpi-label">Post-Stroke Delay</span>
+        <span class="kpi-val">6–9 months</span>
+        <span class="kpi-cap">Recommended elective surgery deferral after ischemic stroke or TIA.</span>
+      </div>
+    </div>
+
+    <!-- ============ SECTION 1: OVERVIEW ============ -->
+    <section id="sec-overview">
+      <h2 class="section-title">1 · Core clinical orientation</h2>
+
+      <details class="card" id="card-overview" open>
+        <summary>Definition, Epidemiology &amp; Anaesthetic Imperatives <span class="tag ok">Start here</span></summary>
+        <div class="card-body">
+          <div class="callout">
+            <span class="label">Definition</span>
+            <strong>Perioperative stroke</strong> is a cerebrovascular event occurring <strong>during surgery or within 30 days postoperatively</strong>.
+            Events are predominantly <strong>ischemic</strong> rather than hemorrhagic and carry substantial morbidity, loss of functional independence, prolonged hospitalization, and markedly higher perioperative mortality.
+          </div>
+
+          <ul>
+            <li><strong>Rising clinical burden:</strong> Driven by an aging surgical population with multimorbidity increasingly undergoing complex cardiac, vascular, and neurosurgical interventions.</li>
+            <li><strong>Covert (silent) strokes:</strong> Clinically silent infarcts detected on postoperative diffusion-weighted MRI occur in up to <strong>10%</strong> of noncardiac, non-neurological surgeries, <strong>5%–10%</strong> after CEA, <strong>30%–50%</strong> after CAS, and <strong>15%–45%</strong> after neurosurgical procedures.</li>
+            <li><strong>Early vigilance is decisive:</strong> Roughly <strong>50%</strong> of perioperative strokes manifest within the first <strong>24 hours</strong> postoperatively, when residual anaesthesia, prolonged intubation sedation, analgesia, and stroke-induced consciousness changes obscure deficits.</li>
+            <li><strong>Immediate systems trigger:</strong> Suspected stroke requires instant activation of the institutional stroke team and urgent neurology assessment—<strong>mechanical thrombectomy</strong> is preferred for large vessel occlusion (LVO) due to superior efficacy and lower bleeding risk than systemic thrombolysis.</li>
+          </ul>
+
+          <div class="chips">
+            <span class="chip">30-day window</span>
+            <span class="chip warn">Emergency surgery = independent risk</span>
+            <span class="chip ok">Multidisciplinary neurology–anaesthesia–surgery care</span>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ SECTION 2: RISK STRATIFICATION & FIGURE 1 ============ -->
+    <section id="sec-risk">
+      <h2 class="section-title">2 · Risk stratification &amp; Figure 1</h2>
+
+      <details class="card" id="card-risk-fig" open>
+        <summary>Figure 1 · Major Patient-Specific and Procedure-Related Risk Factors <span class="tag">Interactive Figure 1</span></summary>
+        <div class="card-body">
+          <p>
+            Identifying high-risk patients enables proactive preoperative neurology consultation, tailored intraoperative hemodynamic targets, and intensified postoperative surveillance. Filter below by primary pathophysiological driver:
+          </p>
+
+          <div class="diagram-shell" id="fig1Container">
+            <div class="diagram-head">
+              <h3 class="diagram-title">Figure 1 · Risk Factor Matrix for Perioperative Stroke</h3>
+              <div class="filter-bar" role="group" aria-label="Filter risk factors by mechanism">
+                <button type="button" class="filter-btn active" data-filter="all" onclick="filterRiskFactors('all', this)">All Factors</button>
+                <button type="button" class="filter-btn" data-filter="embolic" onclick="filterRiskFactors('embolic', this)">Embolic</button>
+                <button type="button" class="filter-btn" data-filter="hypoperfusion" onclick="filterRiskFactors('hypoperfusion', this)">Hypoperfusion</button>
+                <button type="button" class="filter-btn" data-filter="thrombotic" onclick="filterRiskFactors('thrombotic', this)">Thrombotic / Vascular</button>
+              </div>
+            </div>
+
+            <div class="risk-columns">
+              <div class="risk-col">
+                <div class="risk-col-head">
+                  <h4>Patient-Specific Risk Factors</h4>
+                  <span class="chip">Baseline Vulnerability</span>
+                </div>
+                <div class="risk-list">
+                  <div class="risk-item" data-mech="embolic hypoperfusion thrombotic" data-severity="high">
+                    <div class="risk-item-title">
+                      <span>Prior Stroke or TIA</span>
+                      <span class="chip warn">Strongest Predictor</span>
+                    </div>
+                    <div class="risk-item-desc">Highest recurrence risk when prior cerebrovascular event occurred within the <strong>past 9 months</strong>.</div>
+                  </div>
+                  <div class="risk-item" data-mech="embolic thrombotic" data-severity="high">
+                    <div class="risk-item-title">
+                      <span>Advancing Age (&gt;65 y; Peak &gt;85 y)</span>
+                      <span class="chip">Independent</span>
+                    </div>
+                    <div class="risk-item-desc">Risk rises independently after age 65 and peaks above 85 years due to cumulative vascular burden.</div>
+                  </div>
+                  <div class="risk-item" data-mech="embolic" data-severity="high">
+                    <div class="risk-item-title">
+                      <span>Atrial Fibrillation &amp; Cardiac Thrombus</span>
+                      <span class="chip warn">High Embolic Risk</span>
+                    </div>
+                    <div class="risk-item-desc">AF, left ventricular thrombus, or severe heart failure; markedly exacerbated when perioperative anticoagulation is interrupted.</div>
+                  </div>
+                  <div class="risk-item" data-mech="embolic hypoperfusion" data-severity="high">
+                    <div class="risk-item-title">
+                      <span>Carotid &amp; Intracranial Arterial Stenosis</span>
+                      <span class="chip warn">Dual Mechanism</span>
+                    </div>
+                    <div class="risk-item-desc">High-grade, especially symptomatic carotid stenosis drives both artery-to-artery embolism and watershed hypoperfusion.</div>
+                  </div>
+                  <div class="risk-item" data-mech="thrombotic hypoperfusion">
+                    <div class="risk-item-title">
+                      <span>Chronic Vascular Comorbidities</span>
+                      <span class="chip">Endothelial Dysfunction</span>
+                    </div>
+                    <div class="risk-item-desc">Hypertension, diabetes mellitus, chronic kidney disease / dialysis, COPD, and coronary artery disease.</div>
+                  </div>
+                  <div class="risk-item" data-mech="embolic thrombotic">
+                    <div class="risk-item-title">
+                      <span>PFO, Migraine with Aura &amp; Sex</span>
+                      <span class="chip">Modest / Variable</span>
+                    </div>
+                    <div class="risk-item-desc">Patent foramen ovale (paradoxical embolism), migraine with aura (reactivity/prothrombotic), and inconsistent female sex association.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="risk-col proc">
+                <div class="risk-col-head">
+                  <h4>Procedure-Related Risk Factors</h4>
+                  <span class="chip warn">Operative Triggers</span>
+                </div>
+                <div class="risk-list">
+                  <div class="risk-item" data-mech="embolic hypoperfusion thrombotic" data-severity="high">
+                    <div class="risk-item-title">
+                      <span>Surgical Type &amp; Complexity</span>
+                      <span class="chip warn">5%–16%</span>
+                    </div>
+                    <div class="risk-item-desc">Complex cardiac, aortic arch, carotid revascularization, and intracranial neurosurgery carry the highest procedural risk.</div>
+                  </div>
+                  <div class="risk-item" data-mech="hypoperfusion thrombotic" data-severity="high">
+                    <div class="risk-item-title">
+                      <span>Emergency Surgery</span>
+                      <span class="chip warn">Independent</span>
+                    </div>
+                    <div class="risk-item-desc">Precludes preoperative medical optimization and amplifies hemodynamic and thrombotic instability.</div>
+                  </div>
+                  <div class="risk-item" data-mech="embolic" data-severity="high">
+                    <div class="risk-item-title">
+                      <span>Cardiac, Aortic &amp; Vessel Manipulation</span>
+                      <span class="chip">Plaque Embolization</span>
+                    </div>
+                    <div class="risk-item-desc">Aortic cannulation, cross-clamping, carotid stenting, and intracranial vessel handling dislodge atheroma or thrombi.</div>
+                  </div>
+                  <div class="risk-item" data-mech="hypoperfusion" data-severity="high">
+                    <div class="risk-item-title">
+                      <span>Hypotension, Clamping &amp; Positioning</span>
+                      <span class="chip">Cerebral Perfusion Drop</span>
+                    </div>
+                    <div class="risk-item-desc">Prolonged hypotension, major artery clamping, excessive anaesthetic depth, or beach-chair shoulder positioning.</div>
+                  </div>
+                  <div class="risk-item" data-mech="thrombotic embolic">
+                    <div class="risk-item-title">
+                      <span>Inflammation &amp; Hypercoagulable State</span>
+                      <span class="chip">CPB &amp; Stress Response</span>
+                    </div>
+                    <div class="risk-item-desc">Surgery and cardiopulmonary bypass induce systemic inflammation, platelet activation, and transient hypercoagulability.</div>
+                  </div>
+                  <div class="risk-item" data-mech="embolic thrombotic">
+                    <div class="risk-item-title">
+                      <span>Antithrombotic Interruption</span>
+                      <span class="chip">Unprotected Window</span>
+                    </div>
+                    <div class="risk-item-desc">Withholding chronic anticoagulation or antiplatelets leaves high-risk patients vulnerable to thromboembolism.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout ok" style="margin-bottom:0;">
+              <span class="label">High-Risk Threshold &amp; Decision Support</span>
+              Patients with <strong>&ge;5 key risk factors</strong> (e.g., age &ge;62 y, stroke/TIA, COPD, renal failure) on the Perioperative Stroke Risk Index carry markedly elevated odds of stroke. Automated EMR clinical decision support prompts timely preoperative neurology/stroke evaluation.
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" id="card-incidence">
+        <summary>Table 1 · Incidence of Perioperative Stroke by Type of Surgery <span class="tag">Scrollable Table 1</span></summary>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Type of Surgery</th>
+                  <th>Subtype / Procedure</th>
+                  <th>Incidence Rate</th>
+                  <th>Clinical &amp; Covert Context</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cardiac Surgery</strong></td>
+                  <td>Complex cardiac surgery (e.g., aortic arch)</td>
+                  <td class="num-cell"><span class="chip alert">Up to 9.7%</span></td>
+                  <td>High embolic load from heart/great vessel manipulation &amp; CPB inflammation.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cardiac Surgery</strong></td>
+                  <td>Coronary artery bypass grafting (CABG)</td>
+                  <td class="num-cell"><span class="chip warn">3%–5%</span></td>
+                  <td>Aortic no-touch off-pump techniques significantly lower stroke risk.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cardiac Surgery</strong></td>
+                  <td>Mitral valve replacement / Mitral valve repair</td>
+                  <td class="num-cell"><span class="chip warn">4% / 3%</span></td>
+                  <td>Minimally invasive valve stroke rates vary; careful de-airing required.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cardiac Surgery</strong></td>
+                  <td>Aortic valve surgery</td>
+                  <td class="num-cell"><span class="chip warn">2.3%–2.6%</span></td>
+                  <td>Silent DWI infarcts are more frequent after TAVR.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cardiac Surgery</strong></td>
+                  <td>Percutaneous coronary intervention (PCI)</td>
+                  <td class="num-cell"><span class="chip ok">0.5%–1.1%</span></td>
+                  <td>Substantially lower stroke incidence than surgical CABG.</td>
+                </tr>
+                <tr>
+                  <td><strong>Vascular Surgery</strong></td>
+                  <td>Carotid artery stenting (CAS) / Carotid endarterectomy (CEA)</td>
+                  <td class="num-cell"><span class="chip warn">2%–3%</span></td>
+                  <td>CREST-2 registry ~1.6%–1.8%; ACST-2 ~1% disabling stroke/death. Silent DWI: 5%–10% CEA vs 30%–50% CAS.</td>
+                </tr>
+                <tr>
+                  <td><strong>Vascular Surgery</strong></td>
+                  <td>Transcarotid artery revascularization (TCAR)</td>
+                  <td class="num-cell"><span class="chip">2%</span></td>
+                  <td>Dynamic flow reversal diverts emboli away from cerebral circulation (~1%–2% in ROADSTER 2).</td>
+                </tr>
+                <tr>
+                  <td><strong>Neurological Surgery</strong></td>
+                  <td>Overall neurological procedures</td>
+                  <td class="num-cell"><span class="chip alert">&gt;5%</span></td>
+                  <td>Direct intracranial vascular manipulation; 15%–45% new ischemic lesions on post-op DWI.</td>
+                </tr>
+                <tr>
+                  <td><strong>Neurological Surgery</strong></td>
+                  <td>Unruptured aneurysm clipping / coiling</td>
+                  <td class="num-cell"><span class="chip alert">4.9%–8.0%</span></td>
+                  <td>Ischemic stroke 4.9%–8.0% plus 1.8% intracranial hemorrhage risk.</td>
+                </tr>
+                <tr>
+                  <td><strong>Neurological Surgery</strong></td>
+                  <td>Glioma resection (low- and high-grade)</td>
+                  <td class="num-cell"><span class="chip alert">12.5%–16%</span></td>
+                  <td>Highest procedural stroke rate regardless of tumor grade.</td>
+                </tr>
+                <tr>
+                  <td><strong>Noncardiac, Non-neurological</strong></td>
+                  <td>Overall general / non-vascular surgeries</td>
+                  <td class="num-cell"><span class="chip ok">0.1%–1.9%</span></td>
+                  <td>Driven by baseline patient risk factors and emergency operations; covert stroke up to 10%.</td>
+                </tr>
+                <tr>
+                  <td><strong>Noncardiac, Non-neurological</strong></td>
+                  <td>Organ transplant surgery</td>
+                  <td class="num-cell"><span class="chip">Up to 1.9%</span></td>
+                  <td>Complex hemodynamic shifts and vascular comorbidities.</td>
+                </tr>
+                <tr>
+                  <td><strong>Noncardiac, Non-neurological</strong></td>
+                  <td>Knee and hip replacements</td>
+                  <td class="num-cell"><span class="chip ok">0.1%–0.3%</span></td>
+                  <td>Low baseline incidence unless major patient risk factors coexist.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" id="card-scores">
+        <summary>Table 2 · Validated Perioperative Stroke Risk Scores <span class="tag">Scrollable Table 2</span></summary>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Risk Score</th>
+                  <th>Surgical Population</th>
+                  <th>Outcome Predicted</th>
+                  <th>Included Clinical Features</th>
+                  <th>Validation AUC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>ACS-NSQIP Stroke Risk Model</strong></td>
+                  <td>Noncardiac, non-neurological surgeries</td>
+                  <td>30-day postoperative stroke, major cardiac complications, and mortality</td>
+                  <td>Age, history of coronary artery disease, stroke, emergency surgery, serum sodium, creatinine, hematocrit, ASA physical status, type of surgery</td>
+                  <td class="num-cell"><span class="chip ok">0.876</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Perioperative Stroke Risk Index</strong></td>
+                  <td>Noncardiac, non-neurological surgeries</td>
+                  <td>Perioperative stroke within 30 days</td>
+                  <td>Age &ge;62 y, recent MI, renal failure, history of stroke or TIA, dialysis, hypertension, COPD, tobacco use, body mass index (&ge;5 factors = high risk)</td>
+                  <td class="num-cell"><span class="chip ok">0.80</span></td>
+                </tr>
+                <tr>
+                  <td><strong>STRAS Score</strong><br><small>(Stroke After Surgery)</small></td>
+                  <td>Noncardiac surgeries</td>
+                  <td>Ischemic stroke within 1 year post-surgery</td>
+                  <td>Age, sex, race/ethnicity, ASA status, stroke/TIA history, carotid stenosis, patent foramen ovale, migraine, hypertension, AF, emergency surgery, neurosurgery/vascular type</td>
+                  <td class="num-cell"><span class="chip ok">0.88</span></td>
+                </tr>
+                <tr>
+                  <td><strong>STS 2018 Cardiac Surgery Risk Model</strong></td>
+                  <td>Adult cardiac surgeries</td>
+                  <td>Stroke during hospitalization or within 30 days</td>
+                  <td>Patient demographics, comorbidities, procedural factors, prior cardiac interventions, tailored to specific cardiac surgery</td>
+                  <td class="num-cell"><span class="chip">0.656 (valve)<br>0.697 (CABG)<br>0.632 (combined)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ SECTION 3: PATHOPHYSIOLOGY & TABLE 3 ============ -->
+    <section id="sec-mechanisms">
+      <h2 class="section-title">3 · Pathophysiology &amp; timing mechanisms</h2>
+
+      <details class="card" id="card-mech">
+        <summary>Embolic, Hypoperfusion, Thrombotic &amp; Hemorrhagic Pathways (Table 3) <span class="tag">Scrollable Table 3</span></summary>
+        <div class="card-body">
+          <div class="split-grid">
+            <div class="panel">
+              <h4>1. Embolic Mechanisms (Predominant)</h4>
+              <ul>
+                <li><strong>Direct dislodgement:</strong> Intraoperative manipulation of the heart, aorta, or great vessels frees atheromatous plaque or thrombi.</li>
+                <li><strong>Atrial fibrillation:</strong> New-onset postoperative AF or chronic AF with held anticoagulation promotes left atrial thrombus formation.</li>
+                <li><strong>Paradoxical embolism:</strong> Perioperative DVT combined with sudden rises in intrathoracic pressure across a patent foramen ovale.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h4>2. Hypoperfusion &amp; Prothrombotic State</h4>
+              <ul>
+                <li><strong>Watershed / global ischemia:</strong> Intraoperative hypotension, large-artery clamping, or excessive anaesthetic depth critically reduce CBF in patients with arterial stenosis or poor collaterals.</li>
+                <li><strong>Hypercoagulability:</strong> Surgical tissue trauma and CPB trigger systemic inflammation and transient prothrombotic activation, compounded by interrupted antithrombotics.</li>
+                <li><strong>Hemorrhagic stroke (rare):</strong> Linked to surgical manipulation, anticoagulation, postoperative hypertension, or preexisting intracranial lesions.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Table 3 · Mechanisms of Perioperative Stroke by Time of Occurrence</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Timing</th>
+                  <th>Primary Pathophysiological Mechanisms</th>
+                  <th>Perioperative Vigilance Focus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Intraoperative</strong></td>
+                  <td>
+                    <ul style="margin:0;padding-left:1.1rem;">
+                      <li>Embolic events from cardiac or aortic manipulation</li>
+                      <li>Hypoperfusion due to hypotension or major vessel clamping</li>
+                    </ul>
+                  </td>
+                  <td>Prevent profound hypotension at induction/clamping; optimize aortic clamp/cannula sites via CTA/TEE; monitor neurophysiology.</td>
+                </tr>
+                <tr>
+                  <td><strong>Postoperative</strong></td>
+                  <td>
+                    <ul style="margin:0;padding-left:1.1rem;">
+                      <li>New-onset atrial fibrillation</li>
+                      <li>Myocardial infarction</li>
+                      <li>Prothrombotic / hypercoagulable state</li>
+                      <li>Hemodynamic instability and sepsis</li>
+                      <li>Surgical complications &amp; antithrombotic interruption</li>
+                    </ul>
+                  </td>
+                  <td>Telemetry/AF surveillance, early neurological checks (q2–4h in first 24h for high risk), sepsis/hypotension prevention, timely antithrombotic resumption.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ SECTION 4: PREOPERATIVE EVALUATION ============ -->
+    <section id="sec-preop">
+      <h2 class="section-title">4 · Preoperative assessment &amp; optimization</h2>
+
+      <details class="card" id="card-preop">
+        <summary>Surgical Timing, Carotid / Aortic Evaluation &amp; Antithrombotic Management <span class="tag warn">Pre-op Checklist</span></summary>
+        <div class="card-body">
+          <h3>Surgical Timing After Cerebrovascular Events</h3>
+          <div class="callout warn">
+            <span class="label">Elective Deferral Rule</span>
+            Ideally delay elective noncardiac surgery for <strong>at least 6 months — and optimally 9 months — after an ischemic stroke or TIA</strong>, as recurrence risk declines substantially over this interval.
+            <br><strong>Exceptions:</strong> Urgent carotid revascularization, acute coronary interventions, and surgery for infective endocarditis. If stroke risk is extreme and surgical benefit modest, reconsider elective surgery.
+          </div>
+
+          <h3>Carotid &amp; Aortic Disease Workup</h3>
+          <ul>
+            <li><strong>Symptomatic carotid stenosis (&gt;70%):</strong> Consider carotid revascularization <em>prior to</em> other major elective surgeries.</li>
+            <li><strong>Asymptomatic carotid stenosis:</strong> Routine prophylactic carotid revascularization is generally discouraged unless specific scenarios exist (e.g., contralateral occlusion). Optimal medical vs procedural management awaits CREST-2 trial outcomes.</li>
+            <li><strong>Focused screening only:</strong> Preoperative neurology evaluation and carotid ultrasound/MRA are justified in high-risk patients (prior stroke or carotid bruit). <strong>Routine carotid screening in low- or average-risk asymptomatic patients is not recommended.</strong></li>
+            <li><strong>Aortic atherosclerosis / aneurysms:</strong> Use preoperative CTA, MRA, or TEE to identify high-risk aortic plaques and guide intraoperative clamp/cannula placement.</li>
+          </ul>
+
+          <h3>Perioperative Medication &amp; Antithrombotic Matrix</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Medication Class</th>
+                  <th>Preoperative Action</th>
+                  <th>Key Clinical Nuances &amp; Exceptions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Aspirin (Secondary Stroke Prevention)</strong></td>
+                  <td><span class="chip ok">Continue perioperatively</span></td>
+                  <td>Continue unless high-bleeding-risk surgery (intracranial, spinal, major oncologic), where aspirin is stopped ~<strong>7 days</strong> pre-op. Do <strong>not</strong> start aspirin de novo for primary prevention (POISE-2: increased bleeding without benefit).</td>
+                </tr>
+                <tr>
+                  <td><strong>P2Y12 Inhibitors (e.g., Clopidogrel)</strong></td>
+                  <td><span class="chip warn">Hold 5–7 days</span></td>
+                  <td>If placed for a <strong>carotid or intracranial stent</strong>, defer elective surgery <strong>&ge;6 months</strong> post-stent. If earlier urgent surgery is unavoidable, consider IV <strong>cangrelor</strong> bridging.</td>
+                </tr>
+                <tr>
+                  <td><strong>Warfarin</strong></td>
+                  <td><span class="chip warn">Stop ~5 days prior</span></td>
+                  <td>Check INR preoperatively. Reserve parenteral LMWH bridging strictly for high thrombotic risk.</td>
+                </tr>
+                <tr>
+                  <td><strong>Direct Oral Anticoagulants (DOACs)</strong></td>
+                  <td><span class="chip warn">Stop 2–3 days prior</span></td>
+                  <td>Adjust hold interval based on renal function and procedural bleeding risk.</td>
+                </tr>
+                <tr>
+                  <td><strong>Parenteral Bridging (LMWH)</strong></td>
+                  <td><span class="chip">High-Risk Only</span></td>
+                  <td>Reserved for <strong>mechanical mitral valves, recent thromboembolism, or antiphospholipid syndrome</strong>. Routine bridging in lower-risk AF increases bleeding without reducing thrombosis (BRIDGE / PERIOP2). For anticoagulation-intolerant AF, consider LAA occlusion (e.g., WATCHMAN).</td>
+                </tr>
+                <tr>
+                  <td><strong>Beta-Blockers</strong></td>
+                  <td><span class="chip alert">Avoid De Novo</span> / <span class="chip ok">Continue Chronic</span></td>
+                  <td><strong>Do not initiate</strong> high-dose &beta;-blockers immediately before surgery in &beta;-blocker–naive patients (raises stroke risk via hypotension). Continue chronic therapy to avoid withdrawal.</td>
+                </tr>
+                <tr>
+                  <td><strong>Statins</strong></td>
+                  <td><span class="chip ok">Continue</span></td>
+                  <td>Reduces postoperative cardiac complications, although evidence does not show a significant reduction in perioperative stroke incidence.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ SECTION 5: INTRAOPERATIVE MANAGEMENT ============ -->
+    <section id="sec-intraop">
+      <h2 class="section-title">5 · Intraoperative management</h2>
+
+      <details class="card" id="card-intraop" data-tone="ok">
+        <summary>Hemodynamics, Cerebral Perfusion Targets, Surgical Techniques &amp; Neuromonitoring <span class="tag ok">Theatre</span></summary>
+        <div class="card-body">
+          <div class="callout ok">
+            <span class="label">Primary Intraoperative Objective</span>
+            Maintain stable <strong>cerebral perfusion</strong> and minimize <strong>embolic burden</strong>—especially during anaesthetic induction, major arterial clamping, and aortic/cardiac manipulation.
+          </div>
+
+          <h3>Hemodynamic Monitoring &amp; Blood Pressure Targets</h3>
+          <ul>
+            <li><strong>Avoid profound and prolonged hypotension:</strong> Hypotension contributes directly to watershed and global cerebral ischemia.</li>
+            <li><strong>Cardiopulmonary bypass (CPB) target:</strong> Current guidelines recommend prompt correction of hypotension to maintain <strong>MAP 60–65 mmHg</strong> during cardiac bypass.</li>
+            <li><strong>Individualize for cerebrovascular disease:</strong> Target <strong>higher MAP thresholds</strong> in patients with known carotid/intracranial stenosis, impaired autoregulation, or poor collateral flow.</li>
+            <li><strong>Evidence nuance:</strong> Randomized trials targeting uniformly higher intraoperative BP with IV vasopressors (e.g., POISE-3 hypotension- vs hypertension-avoidance; CPB high vs low BP targets) showed neutral results or harm—focus on preventing significant drops rather than aggressive routine hypertension.</li>
+          </ul>
+
+          <h3>Surgical Techniques &amp; Positioning</h3>
+          <ul>
+            <li><strong>Aortic no-touch technique:</strong> Off-pump CABG combined with strict aortic no-touch consistently lowers stroke incidence by avoiding atheroma dislodgement.</li>
+            <li><strong>Imaging-guided cannulation/clamping:</strong> Use CTA or intraoperative TEE / epiaortic ultrasound to choose plaque-free zones for aortic clamps and cannulas.</li>
+            <li><strong>Embolic protection &amp; flow reversal:</strong> Embolic protection devices and <strong>dynamic flow reversal</strong> (used in TCAR via proximal carotid clamping) divert embolic debris away from the cerebral circulation.</li>
+            <li><strong>Positioning hazard — Beach chair position:</strong> Frequently used in shoulder surgery; significantly lowers cerebral perfusion pressure and risks watershed stroke in patients with impaired autoregulation or cerebrovascular stenosis. Consider alternative positioning or cerebral monitoring in high-risk patients.</li>
+          </ul>
+
+          <h3>Intraoperative Neurophysiological Monitoring</h3>
+          <p>
+            Valuable during high-risk procedures (ascending aorta, aortic arch, thoracoabdominal aortic repairs, carotid/neurosurgery) to detect cerebral or spinal cord ischemia and microemboli early enough for immediate intervention:
+          </p>
+          <div class="chips">
+            <span class="chip">Somatosensory Evoked Potentials (SSEP)</span>
+            <span class="chip">Motor Evoked Potentials (MEP)</span>
+            <span class="chip">Electroencephalography (EEG)</span>
+            <span class="chip">Transcranial Doppler (TCD)</span>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ SECTION 6: POSTOPERATIVE MONITORING & AF ============ -->
+    <section id="sec-postop">
+      <h2 class="section-title">6 · Postoperative surveillance, AF &amp; antithrombotic resumption</h2>
+
+      <details class="card" id="card-postop">
+        <summary>Neurological Checks, Postoperative AF &amp; Restarting Antithrombotics <span class="tag">ICU / Ward</span></summary>
+        <div class="card-body">
+          <h3>Structured Neurological Surveillance</h3>
+          <ul>
+            <li><strong>Critical first 24 hours:</strong> Approximately <strong>50%</strong> of all perioperative strokes occur within 24 hours of surgery. Residual anaesthetics, prolonged intubation sedation, and opioids mask focal deficits.</li>
+            <li><strong>Minimum standard:</strong> Basic neurological assessment at every routine nursing shift and physician round.</li>
+            <li><strong>High-risk protocol:</strong> Perform focused neurological exams <strong>every 2–4 hours during the first 24 hours</strong> in elderly patients, those with prior stroke/TIA, high-risk surgery, or multiple vascular comorbidities, tapering as the high-risk window passes.</li>
+            <li><strong>Standardized bedside tools:</strong> Train surgical and ICU staff in <strong>FAST</strong> (Face, Arm, Speech, Time) and <strong>modified NIHSS</strong> adapted for rapid bedside screening. Suspect stroke &rarr; immediate stroke team activation and urgent neurology consult.</li>
+          </ul>
+
+          <h3>Postoperative Atrial Fibrillation (POAF) Surveillance</h3>
+          <ul>
+            <li><strong>Incidence:</strong> Occurs in <strong>30%–60%</strong> of cardiac surgeries and roughly <strong>3%</strong> of major noncardiac surgeries; driven by age, CHF, hypertension, CAD, hypovolemia, hypotension, anemia, surgical trauma, and metabolic disturbances.</li>
+            <li><strong>Telemetry risk stratification:</strong> Use validated scores—<strong>CHA<sub>2</sub>DS<sub>2</sub>-VASc</strong>, <strong>HATCH</strong>, <strong>POAF</strong>, and <strong>COM-AF</strong>—to select patients for continuous telemetry or prolonged rhythm monitoring.</li>
+            <li><strong>Surgical prophylaxis &amp; anticoagulation:</strong> Left-sided posterior pericardiotomy may reduce POAF in cardiac surgery. Patients with newly diagnosed POAF lasting <strong>&gt;48 hours</strong> may benefit from anticoagulation for stroke prevention.</li>
+          </ul>
+
+          <h3>Resumption of Antithrombotic Therapy</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Agent &amp; Clinical Context</th>
+                  <th>Target Restart Window</th>
+                  <th>Clinical &amp; Bleeding Risk Considerations</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Oral Anticoagulation — Low Bleeding Risk</strong></td>
+                  <td class="num-cell"><span class="chip ok">24 hours post-op</span></td>
+                  <td>Warfarin or DOACs per ACS, CCS, and ACC guidelines once hemostasis is secure.</td>
+                </tr>
+                <tr>
+                  <td><strong>Oral Anticoagulation — High Bleeding Risk</strong></td>
+                  <td class="num-cell"><span class="chip warn">48–72 hours post-op</span></td>
+                  <td>Confirm adequate surgical hemostasis first. Pre-op bridge restart plans for mechanical valves / high-risk AF must be reassessed daily post-op.</td>
+                </tr>
+                <tr>
+                  <td><strong>Aspirin (Previously Held)</strong></td>
+                  <td class="num-cell"><span class="chip ok">Within 24 hours</span></td>
+                  <td>Longer delays may be required after neurosurgery or prostate surgery; coordinate surgeon–neurologist plan.</td>
+                </tr>
+                <tr>
+                  <td><strong>Interim DVT Prophylaxis</strong></td>
+                  <td class="num-cell"><span class="chip">Early post-op</span></td>
+                  <td>Prophylactic-dose heparin or low-dose aspirin for DVT prophylaxis provides partial interim stroke protection in AF until full anticoagulation resumes.</td>
+                </tr>
+                <tr>
+                  <td><strong>High Bleeding Risk Patients</strong><br><small>(ARC-HBR &ge;4%/yr or HAS-BLED &ge;3)</small></td>
+                  <td class="num-cell"><span class="chip alert">Individualized delay</span></td>
+                  <td>ARC-HBR and HAS-BLED were derived in cardiology cohorts and do not capture surgical hemostasis—apply clinical judgment; consider abbreviated DAPT and selective delayed restart.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ SECTION 7: ACUTE STROKE MANAGEMENT & FIGURE 2 ============ -->
+    <section id="sec-acute">
+      <h2 class="section-title">7 · Acute perioperative stroke management &amp; Figure 2</h2>
+
+      <details class="card" id="card-acute" data-tone="warn" open>
+        <summary>Figure 2 · Decision Algorithm: Mechanical Thrombectomy, IV Thrombolysis &amp; Antiplatelets <span class="tag warn">Interactive Figure 2</span></summary>
+        <div class="card-body">
+          <p>
+            Recent surgery elevates hemorrhagic risk, making <strong>mechanical thrombectomy</strong> the cornerstone intervention for large vessel occlusion (LVO). Select a clinical scenario below to trace the decision pathway:
+          </p>
+
+          <div class="diagram-shell" id="fig2Container">
+            <div class="diagram-head">
+              <h3 class="diagram-title">Figure 2 · Acute Perioperative Stroke Treatment Algorithm</h3>
+              <div class="filter-bar" role="group" aria-label="Highlight acute stroke treatment pathway">
+                <button type="button" class="filter-btn active" onclick="highlightFlow('all', this)">Full Algorithm</button>
+                <button type="button" class="filter-btn" onclick="highlightFlow('lvo', this)">LVO Present</button>
+                <button type="button" class="filter-btn" onclick="highlightFlow('neuro', this)">Neuro/Spine &lt;3 mo</button>
+                <button type="button" class="filter-btn" onclick="highlightFlow('major10', this)">Major Surg 10–14 d</button>
+                <button type="button" class="filter-btn" onclick="highlightFlow('minor', this)">&gt;14 d or Minor Surg</button>
+              </div>
+            </div>
+
+            <div class="flow-wrap">
+              <!-- STEP 1 -->
+              <div class="flow-node" data-flow="all lvo neuro major10 minor">
+                <span class="flow-kicker">Step 1 · Immediate Action</span>
+                <p class="flow-title">Suspected Acute Perioperative Stroke</p>
+                <p class="flow-desc">Activate institutional stroke response team &rarr; urgent neurology evaluation &rarr; emergent CT/CTA (rule out intracranial hemorrhage; evaluate for Large Vessel Occlusion).</p>
+              </div>
+
+              <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <line x1="12" y1="3" x2="12" y2="19"></line>
+                <polyline points="6 14 12 20 18 14"></polyline>
+              </svg>
+
+              <!-- DECISION NODE -->
+              <div class="flow-node decision" data-flow="all lvo neuro major10 minor">
+                <span class="flow-kicker">Decision Point · Vascular Imaging</span>
+                <p class="flow-title">Large Vessel Occlusion (LVO) Identified?</p>
+                <p class="flow-desc">Assess CTA/MRA for proximal occlusion and salvageable brain tissue (up to 24 h window; selected large ischemic cores eligible).</p>
+              </div>
+
+              <!-- BRANCHES -->
+              <div class="flow-branches">
+                <!-- YES: LVO -->
+                <div class="flow-col">
+                  <span class="branch-badge">Yes · LVO Confirmed</span>
+                  <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                    <line x1="12" y1="3" x2="12" y2="19"></line>
+                    <polyline points="6 14 12 20 18 14"></polyline>
+                  </svg>
+                  <div class="flow-node ok" data-flow="lvo">
+                    <span class="flow-kicker">Preferred Intervention</span>
+                    <p class="flow-title">Mechanical Thrombectomy</p>
+                    <p class="flow-desc">
+                      <strong>Superior efficacy &amp; lower bleeding risk</strong> vs systemic or intra-arterial thrombolysis. Recanalization rates <strong>&gt;80%</strong> with improved functional outcomes. Eligible up to <strong>24 hours</strong> post-onset (and selected large ischemic cores).
+                    </p>
+                  </div>
+                  <div class="flow-node" data-flow="lvo">
+                    <span class="flow-kicker">Endovascular Alternative</span>
+                    <p class="flow-title">Intra-Arterial Thrombolysis (Select Cases)</p>
+                    <p class="flow-desc">If systemic thrombolysis carries excessive bleeding risk and mechanical retrieval is incomplete, cautious intra-arterial alteplase may be considered via specialized neurointerventional teams.</p>
+                  </div>
+                </div>
+
+                <!-- NO: NON-LVO / MT NOT FEASIBLE -->
+                <div class="flow-col">
+                  <span class="branch-badge no">No LVO · or MT Not Feasible</span>
+                  <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                    <line x1="12" y1="3" x2="12" y2="19"></line>
+                    <polyline points="6 14 12 20 18 14"></polyline>
+                  </svg>
+                  <div class="sub-branches">
+                    <div class="flow-node alert" data-flow="neuro">
+                      <span class="flow-kicker">Intracranial / Intraspinal Surgery &lt;3 Months</span>
+                      <p class="flow-title">IV Thrombolysis Strictly Contraindicated</p>
+                      <p class="flow-desc">Absolute contraindication within 3 months of intracranial or intraspinal surgery. Start <strong>early antiplatelet therapy within 24 hours</strong> (barring contraindications).</p>
+                    </div>
+
+                    <div class="flow-node warn" data-flow="major10">
+                      <span class="flow-kicker">Major Surgery Within 14 Days</span>
+                      <p class="flow-title">Generally Contraindicated &middot; Multidisciplinary Review at 10–14 d</p>
+                      <p class="flow-desc">IV thrombolysis is generally contraindicated &lt;14 days, but may be carefully weighed <strong>especially after 10 days</strong> via multidisciplinary review (surgical-site hemorrhage ~7%, serious ~3%, rarely fatal). Otherwise initiate <strong>antiplatelet therapy within 24 hours</strong>.</p>
+                    </div>
+
+                    <div class="flow-node ok" data-flow="minor">
+                      <span class="flow-kicker">&gt;14 Days Post-Op or Minor Surgery</span>
+                      <p class="flow-title">Consider IV Thrombolysis or Early Antiplatelets</p>
+                      <p class="flow-desc">If within the standard IV thrombolysis window and surgical hemostasis is secure, administer <strong>IV thrombolysis</strong> with multidisciplinary sign-off. If ineligible, start <strong>antiplatelet therapy within 24 hours</strong>.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <line x1="12" y1="3" x2="12" y2="19"></line>
+                <polyline points="6 14 12 20 18 14"></polyline>
+              </svg>
+
+              <!-- STEP 4 -->
+              <div class="flow-node" data-flow="all lvo neuro major10 minor">
+                <span class="flow-kicker">Post-Acute Comprehensive Care</span>
+                <p class="flow-title">Secondary Prevention, Mobilization &amp; Multimodal Rehabilitation</p>
+                <p class="flow-desc">Maintain cerebral perfusion, initiate early mobilization and individualized rehabilitation, and optimize secondary stroke prevention. Investigational neuroprotective therapies targeting excitotoxicity, oxidative stress, and inflammation remain under clinical study.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ SECTION 8: REFERENCES ============ -->
+    <section id="sec-refs">
+      <h2 class="section-title">8 · Primary source &amp; key guideline references</h2>
+
+      <details class="card" id="card-refs">
+        <summary>Formal Citations &amp; Supporting Guidelines / Trials <span class="tag">References</span></summary>
+        <div class="card-body">
+          <div class="callout">
+            <span class="label">Primary Source Article</span>
+            <strong>Shu L, Aziz YN, de Havenon A, Messe SR, Nguyen TN, Sur NB, Xiong L, Yaghi S.</strong>
+            Perioperative Stroke: Mechanisms, Risk Stratification, and Management.
+            <em>Stroke.</em> 2025; American Heart Association, Inc. (ahajournals.org/journal/str).
+          </div>
+
+          <h3>Key Guidelines, Scientific Statements &amp; Landmark Trials Cited</h3>
+          <ol class="refs">
+            <li><strong>Benesch C, Glance LG, Derdeyn CP, et al.</strong> Perioperative neurological evaluation and management to lower the risk of acute stroke in patients undergoing noncardiac, nonneurological surgery: a scientific statement from the AHA/ASA. <em>Circulation.</em> 2021;143:e923–e946. doi: 10.1161/CIR.0000000000000968</li>
+            <li><strong>Thompson A, Fleischmann KE, Smilowitz NR, et al.</strong> 2024 AHA/ACC/ACS/ASNC/HRS/SCA/SCCT/SCMR/SVM Guideline for perioperative cardiovascular management for noncardiac surgery. <em>Circulation.</em> 2024;150:e351–e442. doi: 10.1161/CIR.0000000000001285</li>
+            <li><strong>Gaudino M, Benesch C, Bakaeen F, et al.</strong> Considerations for reduction of risk of perioperative stroke in adult patients undergoing cardiac and thoracic aortic operations: a scientific statement from the AHA. <em>Circulation.</em> 2020;142:e193–e209. doi: 10.1161/CIR.0000000000000885</li>
+            <li><strong>Powers WJ, Rabinstein AA, Ackerson T, et al.</strong> Guidelines for the early management of patients with acute ischemic stroke: 2019 update to the 2018 guidelines for healthcare professionals from the AHA/ASA. <em>Stroke.</em> 2019;50:e344–e418. doi: 10.1161/STR.0000000000000211</li>
+            <li><strong>Douketis JD, Spyropoulos AC, Murad MH, et al.</strong> Executive summary: perioperative management of antithrombotic therapy: an American College of Chest Physicians Clinical Practice Guideline. <em>Chest.</em> 2022;162:1127–1139. doi: 10.1016/j.chest.2022.08.004</li>
+            <li><strong>Fanning JP, Campbell BCV, Bulbulia R, et al.</strong> Perioperative stroke. <em>Nat Rev Dis Primers.</em> 2024;10:3. doi: 10.1038/s41572-023-00487-6</li>
+            <li><strong>Mashour GA, Shanks AM, Kheterpal S.</strong> Perioperative stroke and associated mortality after noncardiac, nonneurologic surgery (Perioperative Stroke Risk Index). <em>Anesthesiology.</em> 2011;114:1289–1296. doi: 10.1097/ALN.0b013e318216e7f4</li>
+            <li><strong>Woo SH, Marhefka GD, Cowan SW, Ackermann L.</strong> Development and validation of a prediction model for stroke, cardiac, and mortality risk after non-cardiac surgery (ACS-NSQIP). <em>J Am Heart Assoc.</em> 2021;10:e018013. doi: 10.1161/JAHA.120.018013</li>
+            <li><strong>Platzbecker K, Grabitz SD, Raub D, et al.</strong> Development and external validation of a prognostic model for ischaemic stroke after surgery (STRAS Score). <em>Br J Anaesth.</em> 2021;127:713–721. doi: 10.1016/j.bja.2021.05.035</li>
+            <li><strong>O'Brien SM, Feng L, He X, et al.</strong> The Society of Thoracic Surgeons 2018 adult cardiac surgery risk models: part 2—statistical methods and results. <em>Ann Thorac Surg.</em> 2018;105:1419–1428. doi: 10.1016/j.athoracsur.2018.03.003</li>
+            <li><strong>Devereaux PJ, Mrkobrada M, Sessler DI, et al; POISE-2 Investigators.</strong> Aspirin in patients undergoing noncardiac surgery. <em>N Engl J Med.</em> 2014;370:1494–1503. doi: 10.1056/NEJMoa1401105</li>
+            <li><strong>Marcucci M, Painter TW, Conen D, et al; POISE-3 Trial Investigators.</strong> Hypotension-avoidance versus hypertension-avoidance strategies in noncardiac surgery. <em>Ann Intern Med.</em> 2023;176:605–614. doi: 10.7326/M22-3157</li>
+            <li><strong>Douketis JD, Spyropoulos AC, Kaatz S, et al; BRIDGE Investigators.</strong> Perioperative bridging anticoagulation in patients with atrial fibrillation. <em>N Engl J Med.</em> 2015;373:823–833. doi: 10.1056/NEJMoa1501035</li>
+            <li><strong>Kovacs MJ, Wells PS, Anderson DR, et al; PERIOP2 Investigators.</strong> Postoperative low molecular weight heparin bridging treatment for patients at high risk of arterial thromboembolism. <em>BMJ.</em> 2021;373:n1205. doi: 10.1136/bmj.n1205</li>
+            <li><strong>Halliday A, Bulbulia R, Bonati LH, et al; ACST-2 Collaborative Group.</strong> Second Asymptomatic Carotid Surgery Trial (ACST-2): carotid artery stenting versus endarterectomy. <em>Lancet.</em> 2021;398:1065–1073. doi: 10.1016/S0140-6736(21)01910-3</li>
+            <li><strong>Voelkel N, Hubert ND, Backhaus R, Haberl RL, Hubert GJ.</strong> Thrombolysis in postoperative stroke. <em>Stroke.</em> 2017;48:3034–3039. doi: 10.1161/STROKEAHA.117.017957</li>
+            <li><strong>Nguyen TN, Abdalkader M, Fischer U, et al.</strong> Endovascular management of acute stroke. <em>Lancet.</em> 2024;404:1265–1278. doi: 10.1016/S0140-6736(24)01410-7</li>
+            <li><strong>Goyal M, Menon BK, van Zwam WH, et al; HERMES Collaborators.</strong> Endovascular thrombectomy after large-vessel ischaemic stroke. <em>Lancet.</em> 2016;387:1723–1731. doi: 10.1016/S0140-6736(16)00163-X</li>
+          </ol>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p style="margin:0 0 var(--space-xs);">
+        <strong>Clinical Reference Disclaimer:</strong> Synthesized from Shu et al. (<em>Stroke</em>, 2025) for anaesthetists and intensivists. Always integrate with institutional stroke-code protocols, surgical hemostasis assessment, and multidisciplinary neurology consultation.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    var BASE_FS = 16;
+    var currentFs = 16;
+    var matches = [];
+    var activeMatchIdx = -1;
+    var searchTimer = null;
+
+    function applyFontSize(val) {
+      var num = parseInt(val, 10);
+      if (isNaN(num)) num = BASE_FS;
+      if (num < 13) num = 13;
+      if (num > 22) num = 22;
+      currentFs = num;
+      document.documentElement.style.setProperty('--fs', num + 'px');
+      var range = document.getElementById('fsRange');
+      if (range) range.value = String(num);
+      var label = document.getElementById('fsLabel');
+      if (label) label.textContent = Math.round((num / BASE_FS) * 100) + '%';
+    }
+
+    function stepFontSize(delta) {
+      applyFontSize(currentFs + delta);
+    }
+
+    function toggleAllCards(openState) {
+      var cards = document.querySelectorAll('details.card');
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].open = !!openState;
+      }
+    }
+
+    function openAndScroll(cardId) {
+      var card = document.getElementById(cardId);
+      if (card) {
+        card.open = true;
+        setTimeout(function () {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 30);
+        return false;
+      }
+      return true;
+    }
+
+    function filterRiskFactors(mech, btnEl) {
+      var shell = document.getElementById('fig1Container');
+      if (!shell) return;
+      var btns = shell.querySelectorAll('.filter-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove('active');
+      }
+      if (btnEl) btnEl.classList.add('active');
+
+      var items = shell.querySelectorAll('.risk-item');
+      for (var j = 0; j < items.length; j++) {
+        var item = items[j];
+        var mechs = (item.getAttribute('data-mech') || '').split(' ');
+        item.classList.remove('dimmed', 'highlighted');
+        if (mech !== 'all') {
+          if (mechs.indexOf(mech) !== -1) {
+            item.classList.add('highlighted');
+          } else {
+            item.classList.add('dimmed');
+          }
+        }
+      }
+    }
+
+    function highlightFlow(pathKey, btnEl) {
+      var shell = document.getElementById('fig2Container');
+      if (!shell) return;
+      var btns = shell.querySelectorAll('.filter-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove('active');
+      }
+      if (btnEl) btnEl.classList.add('active');
+
+      var nodes = shell.querySelectorAll('.flow-node');
+      for (var j = 0; j < nodes.length; j++) {
+        var node = nodes[j];
+        var paths = (node.getAttribute('data-flow') || '').split(' ');
+        node.classList.remove('dimmed', 'active-path');
+        if (pathKey !== 'all') {
+          if (paths.indexOf(pathKey) !== -1) {
+            node.classList.add('active-path');
+          } else {
+            node.classList.add('dimmed');
+          }
+        }
+      }
+    }
+
+    function clearHighlights() {
+      var marks = document.querySelectorAll('mark.srch');
+      for (var i = 0; i < marks.length; i++) {
+        var m = marks[i];
+        var parent = m.parentNode;
+        if (parent) {
+          parent.replaceChild(document.createTextNode(m.textContent), m);
+          parent.normalize();
+        }
+      }
+      matches = [];
+      activeMatchIdx = -1;
+    }
+
+    function updateMatchCounter(query) {
+      var countEl = document.getElementById('matchCount');
+      if (!countEl) return;
+      if (!query) {
+        countEl.textContent = '';
+        return;
+      }
+      if (query.length < 2) {
+        countEl.textContent = '2+ chars';
+        return;
+      }
+      if (matches.length === 0) {
+        countEl.textContent = '0 matches';
+      } else {
+        countEl.textContent = (activeMatchIdx + 1) + ' of ' + matches.length;
+      }
+    }
+
+    function activateMatch(index) {
+      if (matches.length === 0) return;
+      if (activeMatchIdx >= 0 && matches[activeMatchIdx]) {
+        matches[activeMatchIdx].classList.remove('cur');
+      }
+      activeMatchIdx = (index + matches.length) % matches.length;
+      var target = matches[activeMatchIdx];
+      if (!target) return;
+
+      var parentCard = target.closest('details.card');
+      if (parentCard) parentCard.open = true;
+
+      target.classList.add('cur');
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var input = document.getElementById('searchInput');
+      updateMatchCounter(input ? input.value.trim() : '');
+    }
+
+    function stepMatch(delta) {
+      if (matches.length === 0) return;
+      activateMatch(activeMatchIdx + delta);
+    }
+
+    function clearSearch() {
+      var input = document.getElementById('searchInput');
+      if (input) {
+        input.value = '';
+        input.focus();
+      }
+      clearHighlights();
+      updateMatchCounter('');
+    }
+
+    function runSearch() {
+      clearHighlights();
+      var input = document.getElementById('searchInput');
+      var raw = input ? input.value.trim() : '';
+      if (raw.length < 2) {
+        updateMatchCounter(raw);
+        return;
+      }
+
+      var needle = raw.toLowerCase();
+      var mainEl = document.querySelector('main');
+      if (!mainEl) return;
+
+      var walker = document.createTreeWalker(
+        mainEl,
+        NodeFilter.SHOW_TEXT,
+        {
+          acceptNode: function (node) {
+            if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            var p = node.parentElement;
+            if (!p) return NodeFilter.FILTER_REJECT;
+            if (p.closest('script, style, svg, button, input, mark')) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        }
+      );
+
+      var textNodes = [];
+      var n;
+      while ((n = walker.nextNode())) {
+        if (n.nodeValue.toLowerCase().indexOf(needle) !== -1) {
+          textNodes.push(n);
+        }
+      }
+
+      for (var i = 0; i < textNodes.length; i++) {
+        var node = textNodes[i];
+        var text = node.nodeValue;
+        var lower = text.toLowerCase();
+        var frag = document.createDocumentFragment();
+        var pos = 0;
+        var idx;
+        while ((idx = lower.indexOf(needle, pos)) !== -1) {
+          if (idx > pos) {
+            frag.appendChild(document.createTextNode(text.slice(pos, idx)));
+          }
+          var mark = document.createElement('mark');
+          mark.className = 'srch';
+          mark.textContent = text.slice(idx, idx + needle.length);
+          frag.appendChild(mark);
+          matches.push(mark);
+          pos = idx + needle.length;
+        }
+        if (pos < text.length) {
+          frag.appendChild(document.createTextNode(text.slice(pos)));
+        }
+        if (node.parentNode) {
+          node.parentNode.replaceChild(frag, node);
+        }
+      }
+
+      for (var m = 0; m < matches.length; m++) {
+        var card = matches[m].closest('details.card');
+        if (card) card.open = true;
+      }
+
+      if (matches.length > 0) {
+        activateMatch(0);
+      } else {
+        updateMatchCounter(raw);
+      }
+    }
+
+    (function () {
+      var searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          clearTimeout(searchTimer);
+          searchTimer = setTimeout(runSearch, 140);
+        });
+        searchInput.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            if (e.shiftKey) {
+              stepMatch(-1);
+            } else {
+              stepMatch(1);
+            }
+          } else if (e.key === 'Escape') {
+            clearSearch();
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
